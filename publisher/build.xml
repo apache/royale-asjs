@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="asjsPublisher" default="main" basedir=".">
+    <property file="${basedir}/build.properties" description="Properties for the ASJS Publisher" />
+
+    <property name="DIR_CLOSURE_LIBRARY" value="${DIR_CLOSURE}/library" />
+    <property name="FILE_CLOSURE_BUILDER" value="${DIR_CLOSURE}/builder/closurebuilder.py" />
+    <property name="FILE_CLOSURE_DEPENDENCIES" value="${DIR_CLOSURE_LIBRARY}/closure/goog/deps.js" />
+    <property name="FILE_CLOSURE_JAR" value="${DIR_CLOSURE}/compiler/compiler.jar" />
+    
+    <property name="DIR_FRAMEWORK" value="${basedir}/../frameworks/js/src" />
+
+    <property name="DIR_INTERMEDIATE" value="${basedir}/intermediate" />
+    <property name="DIR_RELEASE" value="${basedir}/release" />
+
+    <property name="DIR_INTERMEDIATE_APPLICATION" value="${DIR_INTERMEDIATE}/${app.name}" />
+    <property name="DIR_RELEASE_APPLICATION" value="${DIR_RELEASE}/${app.name}" />
+
+    <property name="FILE_HTML_TEMPLATE" value="${basedir}/index.html.template" />
+    <property name="FILE_RELEASE" value="${DIR_RELEASE_APPLICATION}/FlexJS.js" />
+
+    <macrodef name="closureBuilder">
+        <sequential>
+            <exec executable="python" failonerror="true" logError="true">
+                <arg value="${FILE_CLOSURE_BUILDER}" />
+                <arg line="--root=${DIR_CLOSURE_LIBRARY}" />
+                <arg line="--root=${DIR_FRAMEWORK}" />
+                <arg line="--root=${DIR_INTERMEDIATE_APPLICATION}" />
+                <arg line="--output_mode=compiled" />
+                <arg line="--compiler_jar=${FILE_CLOSURE_JAR}" />
+                <arg line="--output_file=${FILE_RELEASE}" />
+                <arg line="--compiler_flags=--compilation_level=ADVANCED_OPTIMIZATIONS" />
+                <arg line="--compiler_flags=--js=${FILE_CLOSURE_DEPENDENCIES}" />
+                <arg line="--compiler_flags=--warning_level=VERBOSE" />
+                <arg line="--namespace=${app.name}" />
+                <arg line="--compiler_flags=--jscomp_error=checkTypes" />
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <!-- target name="main" description="Compiles framework files" depends="clean,createDirs,falconJS,closureBuilding,createHTML" / -->
+    <target name="main" description="Compiles framework files" depends="clean,createDirs,lint,closureBuilding,createHTML" />
+
+    <target name="clean" description="Clean up previous runs" depends="cleanIntermediate,cleanRelease">
+        <echo>Delete 'intermediate' and 'release' directories</echo>
+    </target>
+
+    <target name="checkDeleteIntermediate">
+        <condition property="deleteIntermediate">
+            <istrue value="${CLEAN_INTERMEDIATE_JS}" />
+        </condition>
+    </target>
+
+    <target name="cleanIntermediate" depends="checkDeleteIntermediate" if="deleteIntermediate">
+        <delete dir="${DIR_INTERMEDIATE_APPLICATION}" />
+    </target>
+
+    <target name="cleanRelease">
+        <delete dir="${DIR_RELEASE_APPLICATION}" />
+    </target>
+
+    <target name="createDirs">
+        <echo>Create 'intermediate' and 'release' directory structure</echo>
+        <mkdir dir="${DIR_INTERMEDIATE_APPLICATION}" />
+        <mkdir dir="${DIR_INTERMEDIATE_APPLICATION}/js" />
+        <mkdir dir="${DIR_RELEASE_APPLICATION}" />
+    </target>
+
+    <target name="falconJS">
+        <echo>Compiling the AS project into intermediate JS</echo>
+        <copy todir="${DIR_INTERMEDIATE_APPLICATION}/as" flatten="true">
+            <fileset dir="${app.location}/${app.name}">
+                <include name="**/*.as"/>
+            </fileset>
+        </copy>
+        <exec executable="${FILE_FALCONJS_COMPILE_SCRIPT}">
+            <arg value="${DIR_INTERMEDIATE_APPLICATION}/as/${app.name}.as"/>
+            <arg value="-output"/>
+            <arg value="${DIR_INTERMEDIATE_APPLICATION}/js/${app.name}.js"/>
+        </exec>
+    </target>
+
+    <target name="lint">
+        <echo>Lint-ing the FlexJS JS framework</echo>
+    </target>
+
+    <target name="closureBuilding">
+        <echo>Creating combined and compiled output JS</echo>
+        <closureBuilder />
+    </target>
+
+    <target name="createHTML">
+        <echo>Creating playback HTML file from template</echo>
+        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_RELEASE_APPLICATION}/${app.name}.html" overwrite="true" />
+        <replace file="${DIR_RELEASE_APPLICATION}/${app.name}.html" token="@APPLICATION_NAME@" value="${app.name}" />
+    </target>
+</project>
