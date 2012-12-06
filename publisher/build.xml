@@ -69,11 +69,11 @@
     </target>
 
     <target name="cleanIntermediate" depends="checkDeleteIntermediate" if="deleteIntermediate">
-        <delete dir="${DIR_INTERMEDIATE_APPLICATION}" />
+        <delete dir="${DIR_INTERMEDIATE}" />
     </target>
 
     <target name="cleanRelease">
-        <delete dir="${DIR_RELEASE_APPLICATION}" />
+        <delete dir="${DIR_RELEASE}" />
     </target>
 
     <target name="createDirs">
