@@ -29,7 +29,6 @@ package
 	{
 		public function MySimpleValuesImpl()
 		{
-			super();
 			values = { 
 				ITextButtonBead: TextButtonBead,
 				ITextBead: TextFieldBead,

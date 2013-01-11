@@ -17,10 +17,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:basic="http://ns.apache.org/flex/basic" 
-				   xmlns:html="http://ns.apache.org/flex/html" 
+<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:local="*"
+				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+				   xmlns:models="models.*" 
+				   xmlns:controllers="controllers.*"
+				   initialize="model.labelText='Hello World'"
 				   >
-	<basic:Label id="lbl" x="100" y="25" text="{model.labelText}" />
-	<basic:Button text="OK" x="100" y="75" click="dispatchEvent(new Event('buttonClicked'))" />
-</basic:ViewBase>
+	<basic:valuesImpl>
+		<local:MySimpleValuesImpl />
+	</basic:valuesImpl>
+	<basic:initialView>
+		<local:MyInitialView />
+	</basic:initialView>
+	<basic:model>
+		<models:MyModel />
+	</basic:model>
+	<basic:controller>
+		<controllers:MyController />
+	</basic:controller>
+</basic:Application>

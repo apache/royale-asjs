@@ -20,15 +20,21 @@ package controllers
 {
 	import flash.events.Event;
 
-	public class MyController
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.Application;
+	
+	public class MyController implements IDocument
 	{
-		public function MyController(app:FlexJSTest)
+		public function MyController(app:Application = null)
 		{
-			this.app = app;
-			app.addEventListener("viewChanged", viewChangeHandler);
+			if (app)
+			{
+				this.app = app;
+				app.addEventListener("viewChanged", viewChangeHandler);
+			}
 		}
 		
-		private var app:FlexJSTest;
+		private var app:Application;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -39,5 +45,12 @@ package controllers
 		{
 			app.model.labelText = "Hello Universe";
 		}
+		
+		public function setDocument(document:Object, id:String = null):void
+		{
+			this.app = document as Application;
+			app.addEventListener("viewChanged", viewChangeHandler);
+		}
+
 	}
 }
