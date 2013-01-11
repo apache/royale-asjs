@@ -18,13 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.IEventDispatcher;
-
-	/** 
-	 *  Marker interface for models
-	 */
-	public interface IBeadModel extends IBead, IEventDispatcher
+	public interface IDocument
 	{
-		
+		function setDocument(document:Object, id:String = null):void
 	}
 }

@@ -29,6 +29,12 @@ org.apache.flex.core.UIBase = function() {
      * @type {Object}
      */
     this.positioner;
+
+    /**
+     * @private
+     * @type {Array}
+     */
+    this.strand;
 };
 goog.inherits(org.apache.flex.core.UIBase, org.apache.flex.FlexObject);
 
@@ -81,4 +87,134 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
 org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
     this.positioner.style.position = 'absolute';
     this.positioner.style.top = pixels.toString() + 'px';
+};
+
+/**
+ * @expose
+ * @type {string}
+ */
+org.apache.flex.core.UIBase.prototype.id;
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {string} The id.
+ */
+org.apache.flex.core.UIBase.prototype.get_id = function() {
+    return this.id;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} value The new id.
+ */
+org.apache.flex.core.UIBase.prototype.set_id = function(value) {
+    if (this.id != value)
+    {
+        this.id = value;
+        this.dispatchEvent(new Event('idChanged'));
+    }
+};
+
+/**
+ * @expose
+ * @type {object}
+ */
+org.apache.flex.core.UIBase.prototype.model;
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {object} The model.
+ */
+org.apache.flex.core.UIBase.prototype.get_model = function() {
+    return this.model;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} value The new model.
+ */
+org.apache.flex.core.UIBase.prototype.set_model = function(value) {
+    if (this.model != value)
+    {
+        this.addBead(value);
+        this.dispatchEvent(new Event('modelChanged'));
+    }
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} bead The new bead.
+ */
+org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
+    if (!this.strand)
+        this.strand = [];
+    this.strand.push(bead);
+    if (typeof(bead.constructor.$implements) != 'undefined' &&
+        typeof(bead.constructor.$implements.IBeadModel != 'undefined'))
+        this.model = bead;
+    bead.set_strand(this);
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} classOrInterface The requested bead type.
+ * @return {object} The bead.
+ */
+org.apache.flex.core.UIBase.prototype.getBeadByType =
+                                    function(classOrInterface) {
+    var n;
+    n = this.strand.length;
+    for (var i = 0; i < n; i++)
+    {
+        var bead = strand[i];
+        if (bead instanceof classOrInterface)
+            return bead;
+        if (classOrInterface in bead.constructor.$implements)
+            return bead;
+    }
+    return null;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} bead The bead to remove.
+ * @return {object} The bead.
+ */
+org.apache.flex.core.UIBase.prototype.remove = function(bead) {
+    var n = this.strand.length;
+    for (var i = 0; i < n; i++)
+    {
+        var bead = strand[i];
+        if (bead == value)
+        {
+            this.strand.splice(i, 1);
+            return bead;
+        }
+    }
+    return null;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {Array} The array of descriptors.
+ */
+org.apache.flex.core.UIBase.prototype.get_MXMLDescriptor = function() {
+    return null;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {Array} The array of properties.
+ */
+org.apache.flex.core.UIBase.prototype.get_MXMLProperties = function() {
+    return null;
 };

@@ -66,10 +66,36 @@ package org.apache.flex.core
 		}
 		
 		private var _model:IBeadModel;
-		protected function get model():IBeadModel
+		public function get model():IBeadModel
 		{
 			return _model;
 		}
+		public function set model(value:IBeadModel):void
+		{
+			if (_model != value)
+			{
+				addBead(value as IBead);
+				dispatchEvent(new Event("modelChanged"));
+			}
+		}
+		
+		private var _id:String;
+		public function get id():String
+		{
+			return _id;
+		}
+		public function set id(value:String):void
+		{
+			if (_id != value)
+			{
+				_id = value;
+				dispatchEvent(new Event("idChanged"));
+			}
+		}
+		
+		// beads declared in MXML are added to the strand.
+		// from AS, just call addBead()
+		public var beads:Array;
 		
 		private var strand:Vector.<IBead>;
 		public function addBead(bead:IBead):void

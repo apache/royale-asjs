@@ -16,15 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package
 {
-	import flash.events.IEventDispatcher;
 
-	/** 
-	 *  Marker interface for models
-	 */
-	public interface IBeadModel extends IBead, IEventDispatcher
-	{
-		
-	}
+/**
+ *  @private
+ *  This class is used to link additional classes into rpc.swc
+ *  beyond those that are found by dependecy analysis starting
+ *  from the classes specified in manifest.xml.
+ */
+internal class FlexJSUIClasses
+{
+	import org.apache.flex.html.staticControls.beads.IButtonBead; IButtonBead;
+	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
+	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
+	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
+}
+
 }

@@ -38,13 +38,13 @@ org.apache.flex.binding.SimpleBinding.prototype.destination = null;
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.SimpleBinding.prototype.destinationPropertyName = "";
+org.apache.flex.binding.SimpleBinding.prototype.destinationPropertyName = '';
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.SimpleBinding.prototype.eventName = "";
+org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
 /**
  * @expose
@@ -56,7 +56,7 @@ org.apache.flex.binding.SimpleBinding.prototype.source = null;
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.SimpleBinding.prototype.sourcePropertyName = "";
+org.apache.flex.binding.SimpleBinding.prototype.sourcePropertyName = '';
 
 /**
  * @this {org.apache.flex.binding.SimpleBinding}
@@ -69,8 +69,11 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 
 /**
  * @this {org.apache.flex.binding.SimpleBinding}
+ * @param {object} value The strand (owner) of the bead.
  */
-org.apache.flex.binding.SimpleBinding.prototype.initialize = function() {
+org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
+    this.destination = value;
+    this.source = this.document[this.sourceID];
     this.source.addEventListener(
         this.eventName, org.apache.flex.FlexGlobal.createProxy(
             this, this.changeHandler
@@ -78,4 +81,14 @@ org.apache.flex.binding.SimpleBinding.prototype.initialize = function() {
     );
 
     this.changeHandler();
+};
+
+/**
+ * @this {org.apache.flex.binding.SimpleBinding}
+ * @param {object} document The MXML object.
+ * @param {string} id The id for the instance.
+ */
+org.apache.flex.binding.SimpleBinding.prototype.setDocument =
+                                                    function(document, id) {
+    this.document = document;
 };

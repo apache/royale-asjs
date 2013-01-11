@@ -22,7 +22,9 @@ package org.apache.flex.core
 	
 	import org.apache.flex.binding.SimpleBinding;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 
+	[DefaultProperty("mxmlContent")]
 	public class ViewBase extends UIBase
 	{
 		public function ViewBase()
@@ -30,87 +32,25 @@ package org.apache.flex.core
 			super();
 		}
 		
-		public function get uiDescriptors():Array
+		public function initUI(model:Object):void
+		{
+			applicationModel = model;
+			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+		}
+		
+		public function get MXMLDescriptor():Array
 		{
 			return null;
 		}
 		
-		public function initUI(app:Application):void
+		public function get MXMLProperties():Array
 		{
-			// cache this for speed
-			var descriptors:Array = uiDescriptors;
-			
-			var n:int = descriptors.length;
-			var i:int = 0;
-			
-			while (i < n)
-			{
-				var valueName:String;
-				var value:Object;
-
-				var c:Class = descriptors[i++];					// class
-				var o:DisplayObject = new c() as DisplayObject;
-				if (o is UIBase)
-					UIBase(o).addToParent(this);
-				else
-					addChild(o);
-				c = descriptors[i++];							// model
-				if (c)
-				{
-					value = new c();
-					IStrand(o).addBead(value as IBead);
-				}
-				if (o is IInitModel)
-					IInitModel(o).initModel();
-				var j:int;
-				var m:int;
-				valueName = descriptors[i++];					// id
-				if (valueName)
-					this[valueName] = o;
-
-				m = descriptors[i++];							// num props
-				for (j = 0; j < m; j++)
-				{
-					valueName = descriptors[i++];
-					value = descriptors[i++];
-					o[valueName] = value;
-				}
-				m = descriptors[i++];							// num beads
-				for (j = 0; j < m; j++)
-				{
-					c = descriptors[i++];
-					value = new c();
-					IStrand(o).addBead(value as IBead);
-				}
-				if (o is IInitSkin)
-				{
-					IInitSkin(o).initSkin();
-				}
-				m = descriptors[i++];							// num events
-				for (j = 0; j < m; j++)
-				{
-					valueName = descriptors[i++];
-					value = descriptors[i++];
-					o.addEventListener(valueName, value as Function);
-				}
-				m = descriptors[i++];							// num bindings
-				for (j = 0; j < m; j++)
-				{
-					valueName = descriptors[i++];
-					var bindingType:int = descriptors[i++];
-					switch (bindingType)
-					{
-						case 0: 
-							var sb:SimpleBinding = new SimpleBinding();
-							sb.destination = o;
-							sb.destinationPropertyName = valueName;
-							sb.source = app[descriptors[i++]];
-							sb.sourcePropertyName = descriptors[i++];
-							sb.eventName = descriptors[i++];
-							sb.initialize();
-					}
-				}
-			}
+			return null;
 		}
+		
+		public var mxmlContent:Array;
+		
+		public var applicationModel:Object;
 	}
 }

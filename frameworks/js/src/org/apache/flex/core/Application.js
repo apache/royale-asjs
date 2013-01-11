@@ -20,6 +20,7 @@ goog.require('org.apache.flex.FlexObject');
 goog.require('org.apache.flex.core.SimpleValuesImpl');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.core.ViewBase');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 /**
  * @constructor
@@ -101,12 +102,37 @@ org.apache.flex.core.Application.prototype.start = function() {
         }
     }
 
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, 
+            this.get_MXMLProperties());
+
     org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
 
+    evt = document.createEvent('Event');
+    evt.initEvent('initialize', true, true);
+    this.element.dispatchEvent(evt);
+
     this.initialView.addToParent(this.element);
-    this.initialView.initUI(this);
+    this.initialView.initUI(this.model);
 
     evt = document.createEvent('Event');
     evt.initEvent('viewChanged', true, true);
     this.element.dispatchEvent(evt);
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.Application}
+ * @return {Array} The array of descriptors.
+ */
+org.apache.flex.core.Application.prototype.get_MXMLDescriptor = function() {
+    return null;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.Application}
+ * @return {Array} The array of properties.
+ */
+org.apache.flex.core.Application.prototype.get_MXMLProperties = function() {
+    return null;
 };

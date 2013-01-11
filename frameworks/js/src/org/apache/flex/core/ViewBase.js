@@ -16,9 +16,9 @@ goog.provide('org.apache.flex.core.ViewBase');
 
 goog.require('org.apache.flex.FlexGlobal');
 
-goog.require('org.apache.flex.binding.SimpleBinding');
-
 goog.require('org.apache.flex.core.UIBase');
+
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 /**
  * @constructor
@@ -36,99 +36,29 @@ org.apache.flex.core.ViewBase = function() {
 goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
 
 /**
- * @protected
- * @return {Array} The array of UI element descriptors.
+ * @expose
+ * @type {Object}
  */
-org.apache.flex.core.ViewBase.prototype.get_uiDescriptors = function() {
-    return [];
-};
+org.apache.flex.core.ViewBase.prototype.applicationModel;
+
+/**
+ * @expose
+ * @type {Array}
+ */
+org.apache.flex.core.ViewBase.prototype.MXMLProperties;
+
+/**
+ * @expose
+ * @type {Array}
+ */
+org.apache.flex.core.ViewBase.prototype.MXMLDescriptor;
 
 /**
  * @this {org.apache.flex.core.ViewBase}
- * @param {org.apache.flex.core.Application} app The main application.
+ * @param {Object} model The model for this view.
  */
-org.apache.flex.core.ViewBase.prototype.initUI = function(app) {
-    var count, descriptor, descriptors, i, j, n, sb, value;
-
-    descriptors = this.get_uiDescriptors();
-
-    if (descriptors && descriptors.length) {
-        n = descriptors.length;
-        i = 0;
-        while (i < n)
-        {
-            // class (index 0)
-            descriptor = descriptors[i++];
-            this.currentObject_ =
-                /* : org.apache.flex.core.ViewBase */ new descriptor();
-            this.currentObject_.addToParent(this.element);
-
-            // model (index 1)
-            descriptor = descriptors[i++];
-            if (descriptor) {
-                value = new descriptor();
-                this.currentObject_.addBead(value);
-            }
-            if (typeof this.currentObject_.initModel == 'function') {
-                this.currentObject_.initModel();
-            }
-
-            // id (index 2)
-            descriptor = descriptors[i++];
-            if (descriptor) {
-                this[descriptor] = this.currentObject_;
-            }
-
-            // num props
-            count = descriptors[i++];
-            for (j = 0; j < count; j++) {
-                descriptor = descriptors[i++];
-                value = descriptors[i++];
-                this.currentObject_['set_' + descriptor](value);
-            }
-
-            // num beads
-            count = descriptors[i++];
-            for (j = 0; j < count; j++) {
-                descriptor = descriptors[i++];
-                value = new descriptor();
-                this.currentObject_.addBead(value);
-            }
-            if (typeof this.currentObject_.initSkin == 'function') {
-                this.currentObject_.initSkin();
-            }
-
-            // num events
-            count = descriptors[i++];
-            for (j = 0; j < count; j++) {
-                descriptor = descriptors[i++];
-                value = descriptors[i++];
-                this.currentObject_.addEventListener(
-                    descriptor, org.apache.flex.FlexGlobal.createProxy(
-                        this, value
-                    )
-                );
-            }
-
-            // num bindings
-            count = descriptors[i++];
-            for (j = 0; j < count; j++) {
-                descriptor = descriptors[i++];
-                value = descriptors[i++];
-                switch (value) {
-                    case 0 : {
-                        sb = new org.apache.flex.binding.SimpleBinding();
-                        sb.destination = this.currentObject_;
-                        sb.destinationPropertyName = descriptor;
-                        sb.source = app[descriptors[i++]];
-                        sb.sourcePropertyName = descriptors[i++];
-                        sb.eventName = descriptors[i++];
-                        sb.initialize();
-
-                        break;
-                    }
-                }
-            }
-        }
-    }
+org.apache.flex.core.ViewBase.prototype.initUI = function(model) {
+    this.applicationModel = model;
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, this.get_MXMLProperties());
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
 };

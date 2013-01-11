@@ -20,23 +20,37 @@ package org.apache.flex.binding
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IDocument;
 
-	public class SimpleBinding
+	public class SimpleBinding implements IBead, IDocument
 	{
 		public function SimpleBinding()
 		{
 		}
 		
-		public var source:IEventDispatcher;
+		protected var source:IEventDispatcher;
+		protected var document:IEventDispatcher;
+		protected var destination:Object;
+
+		public var sourceID:String;
 		public var sourcePropertyName:String;
 		public var eventName:String;
-		public var destination:Object;
 		public var destinationPropertyName:String;
 		
-		public function initialize():void
+		public function set strand(value:IStrand):void
 		{
+			destination = value;
+			source = document[sourceID] as IEventDispatcher;
 			source.addEventListener(eventName, changeHandler);
 			destination[destinationPropertyName] = source[sourcePropertyName];
+		}
+		
+		public function setDocument(document:Object, id:String = null):void
+		{
+			this.document = document as IEventDispatcher;
 		}
 		
 		private function changeHandler(event:Event):void

@@ -18,33 +18,57 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
-	
-	public class Application extends Sprite
-	{
-		public function Application()
-		{
-			super();
-			loaderInfo.addEventListener(Event.INIT, initHandler);
-		}
-		
-		private function initHandler(event:Event):void
-		{
-			valuesImpl = new valuesImplClass as IValuesImpl;
-			ValuesManager.valuesImpl = valuesImpl;
-			
-			initialView = new initialViewClass as ViewBase;
-			initialView.addToParent(this);
-			initialView.initUI(this);
-			dispatchEvent(new Event("viewChanged"));
-		}
-		
-		public var valuesImplClass:Class;
-		public var valuesImpl:IValuesImpl;
-		
-		public var initialViewClass:Class;
-		public var initialView:ViewBase;
-		
-	}
+    import flash.display.Sprite;
+    import flash.events.Event;
+    
+    import org.apache.flex.utils.MXMLDataInterpreter;
+    
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched at startup.
+     */
+    [Event(name="initialize", type="flash.events.Event")]
+    
+    public class Application extends Sprite
+    {
+        public function Application()
+        {
+            super();
+            loaderInfo.addEventListener(Event.INIT, initHandler);
+        }
+
+        private function initHandler(event:Event):void
+        {
+            MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+
+            ValuesManager.valuesImpl = valuesImpl;
+
+            dispatchEvent(new Event("initialize"));
+
+    	    initialView.addToParent(this);
+    	    initialView.initUI(model);
+    	    dispatchEvent(new Event("viewChanged"));
+        }
+
+        public var valuesImpl:IValuesImpl;
+
+        public var initialView:ViewBase;
+
+        public var model:Object;
+
+        public var controller:Object;
+
+        public function get MXMLDescriptor():Array
+        {
+        return null;
+        }
+
+    	public function get MXMLProperties():Array
+        {
+            return null;
+        }
+    }
 }
