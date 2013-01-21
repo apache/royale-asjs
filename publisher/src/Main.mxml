@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:components="org.apache.flex.asjs.components.*"
+					   width="640"
+					   height="480"
+					   currentState="FalconJx"
+					   creationComplete="creationCompleteHandler(event)">
+	
+	<fx:Script><![CDATA[
+		
+		import mx.events.FlexEvent;
+		
+		import org.apache.flex.asjs.CommandScript;
+		import org.apache.flex.asjs.Utils;
+		import org.apache.flex.asjs.enums.BrowseTypes;
+		import org.apache.flex.asjs.enums.ScriptNames;
+		
+
+		
+		//----------------------------------------------------------------------
+		//
+		//    Variables
+		//
+		//----------------------------------------------------------------------
+		
+		private var _commandScript:CommandScript;
+		
+		
+			
+		//----------------------------------------------------------------------
+		//
+		//    Event handlers
+		//
+		//----------------------------------------------------------------------
+		
+		//----------------------------------
+		//    creationCompleteHandler
+		//----------------------------------
+		
+		protected function creationCompleteHandler(event:FlexEvent):void
+		{
+			var command:String;
+			
+			antPath.path = Utils.readPath("ant");
+
+			if (falconJxPath)
+				falconJxPath.path = Utils.readPath("falconJx");
+			
+			projectPath.path = Utils.readPath("project");
+			uiLibPath.path = Utils.readPath("uiLib");
+			
+			_commandScript = new CommandScript();
+			
+			var options:String = "";
+			//options += "-d ";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/generated/src";
+			//options += "-sourcepath ";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/generated/src:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/src:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/tools/AnnotateClass:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/tools/problemEnumGenerator:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/tools/problemlocalizer:";
+			//options +=     ".";
+			options += "-cp ";
+			options +=     "/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/compiler/compiler.jar:";
+			options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/commons-io.jar:";
+			options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/generated/classes:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/generated/src:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/src:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/antlr.jar:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/commons-cli.jar:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/guava.jar:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/jburg.jar:";
+			//options +=     "/Users/erik/Documents/ApacheFlex/repo/falcon/compiler/lib/lzma-sdk.jar:";
+			options +=     ".";
+			//options += " -d ";
+			//options +=     "../generated/classes";
+
+			var params:String = "";
+			//params += "-define=CONFIG::performanceInstrumentation,false";
+			//params += " -load-config=\"/Applications/Adobe Flash Builder 4.7/sdks/4.9.0/frameworks/flex-config.xml\"";
+			//params += " +env.PLAYERGLOBAL_HOME=/Users/erik/Documents/ApacheFlex/dependencies/PlayerGlobal/player";
+			//params += " +playerglobal.version=11.1";
+			params += " -output=/Users/erik/Desktop/asjs-test-again/bin-release/Example.js";
+			params += " {2}";
+			
+			command = "";
+			//command += "cd {0}/bin" + "\n"; // path to FalconJx compiler class
+			//command += "java " + options + " org/apache/flex/compiler/clients/MXMLJSC " + params + "\n";
+			command += "{0}/bin/mxmlc " + params + "\n";
+			_commandScript.scripts[ScriptNames.COMPILE_FALCONJX] = command;
+			
+			command = "";
+			command += "cd {0}" + "\n";
+			command += "{1} -Denv.FLEX_HOME={2} -Denv.PLAYERGLOBAL_HOME={3} -Dplayerglobal.version=11.1" + "\n";
+			_commandScript.scripts[ScriptNames.BUILD_FLEXJS_UI] = command;
+			
+			command = "";
+			command += "\n";
+			_commandScript.scripts[ScriptNames._TEST] = command;
+		}
+		
+		//----------------------------------
+		//    btnBuildFlexJSUI_clickHandler
+		//----------------------------------
+		
+		protected function btnBuildFlexJSUI_clickHandler(event:MouseEvent):void
+		{
+			_commandScript.exec(ScriptNames.BUILD_FLEXJS_UI, [
+				uiLibPath.path, 
+				antPath.path, 
+				"/Users/erik/Documents/apacheFlex/repo/sdk",
+				"/Users/erik/Documents/ApacheFlex/dependencies/PlayerGlobal/player"]);
+		}
+		
+		//----------------------------------
+		//    btnCompileProjectToJS_clickHandler
+		//----------------------------------
+		
+		protected function btnCompileProjectToJS_clickHandler(event:MouseEvent):void
+		{
+			/*_commandScript.exec(ScriptNames.COMPILE_FALCONJS, [
+				falconJSPath.path,
+				uiLibPath.path, 
+				projectPath.path]);*/
+			
+			_commandScript.exec(ScriptNames.COMPILE_FALCONJX, [
+					falconJxPath.path,
+					uiLibPath.path, 
+					projectPath.path]);
+		}
+		
+	]]></fx:Script>
+	
+	<fx:Declarations />
+	
+	<s:states>
+		<s:State name="FalconJx" />
+		<s:State name="settings" />
+	</s:states>
+	
+	<s:Panel id="pnlGeneral" left="10" top="10" right="10"
+			 width="100%" height="100">
+		<s:VGroup left="10" right="10" top="10" bottom="10"
+				  gap="10">
+			<components:PathSelectionBox id="antPath" 
+										 width="100%"
+										 pathName="ant"
+										 hint="e.g. /usr/share/ant/bin/ant"
+										 instruction="Enter the path to your ANT installation directory:" />
+		</s:VGroup>
+	</s:Panel>
+	
+	<s:Panel id="pnlProject" left="10" top="120" right="10" bottom="40"
+			 width="100%" height="100%">
+		<s:VGroup left="10" right="10" top="10" bottom="10"
+				  gap="10">
+			<components:PathSelectionBox id="projectPath" 
+										 width="100%"
+										 browseType="{BrowseTypes.BROWSE_FILE}"
+										 pathName="project"
+										 hint="e.g. /Users/Documents/myProject/myMain.mxml"
+										 instruction="Enter the path to your PROJECT main file:" />
+			
+			<components:PathSelectionBox id="uiLibPath" 
+										 width="100%"
+										 pathName="uiLib"
+										 hint="e.g. /Users/Documents/myUILib"
+										 instruction="Enter the path to the UI library of choice:" />
+			
+			<components:PathSelectionBox id="falconJxPath" 
+										 width="100%"
+										 pathName="falconJx"
+										 hint="e.g. /Users/Documents/myCompiler"
+										 instruction="Enter the path to the FalconJx compiler:" />
+		</s:VGroup>
+	</s:Panel>
+	
+	<s:HGroup bottom="10"
+			  width="100%"
+			  horizontalAlign="center">
+		<s:Button id="btnBuildFlexJSUI" label="Build FlexJS UI"
+				  bottom="10"
+				  horizontalCenter="0"
+				  click="btnBuildFlexJSUI_clickHandler(event)" />
+		
+		<s:Button id="btnCompileProjectToJS" label="Compile Project to JS"
+				  bottom="10"
+				  horizontalCenter="0"
+				  click="btnCompileProjectToJS_clickHandler(event)" />
+	</s:HGroup>
+	
+</s:WindowedApplication>

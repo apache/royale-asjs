@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Script><![CDATA[
+		
+		import org.apache.flex.asjs.Utils;
+		import org.apache.flex.asjs.enums.BrowseTypes;
+		
+		//----------------------------------------------------------------------
+		//
+		//    Properties
+		//
+		//----------------------------------------------------------------------
+		
+		//----------------------------------
+		//    browseType
+		//----------------------------------
+		
+		private var _browseType:BrowseTypes = BrowseTypes.BROWSE_DIR;
+
+		public function get browseType():BrowseTypes
+		{
+			return _browseType;
+		}
+
+		public function set browseType(value:BrowseTypes):void
+		{
+			_browseType = value;
+		}
+		
+		//----------------------------------
+		//    hint
+		//----------------------------------
+		
+		private var _hint:String;
+
+		[Bindable]
+		public function get hint():String
+		{
+			return _hint;
+		}
+
+		public function set hint(value:String):void
+		{
+			_hint = value;
+		}
+
+		//----------------------------------
+		//    instruction
+		//----------------------------------
+		
+		private var _instruction:String;
+		
+		[Bindable]
+		public function get instruction():String
+		{
+			return _instruction;
+		}
+		
+		public function set instruction(value:String):void
+		{
+			_instruction = value;
+		}
+		
+		//----------------------------------
+		//    path
+		//----------------------------------
+		
+		private var _path:String;
+		
+		[Bindable]
+		public function get path():String
+		{
+			return _path;
+		}
+
+		public function set path(value:String):void
+		{
+			_path = value;
+		}
+
+		//----------------------------------
+		//    pathName
+		//----------------------------------
+		
+		public var pathName:String;
+		
+		
+		
+		//----------------------------------------------------------------------
+		//
+		//    Event handlers
+		//
+		//----------------------------------------------------------------------
+		
+		//----------------------------------
+		//    select_clickHandler
+		//----------------------------------
+		
+		protected function select_clickHandler(event:MouseEvent):void
+		{
+			var file:File = new File();
+			file.addEventListener(Event.SELECT, select_completeHandler);
+			
+			if (browseType == BrowseTypes.BROWSE_DIR)
+				file.browseForDirectory("Select the " + pathName.toUpperCase() + " directory");
+			else
+				file.browse();
+		}
+		
+		//----------------------------------
+		//    select_completeHandler
+		//----------------------------------
+		
+		protected function select_completeHandler(event:Event):void
+		{
+			if (event.target is File)
+				path = File(event.target).nativePath;
+			
+			Utils.writePath(pathName, path);
+		}
+		
+	]]></fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Declarations />
+	
+	<fx:Binding source="path" destination="tiSelect.text" twoWay="true" />
+	
+	<s:Label text="{instruction}"/>
+	
+	<s:HGroup width="100%">
+		<s:TextInput id="tiSelect"
+					 width="100%" 
+					 prompt="{hint}"
+					 focusOut="select_completeHandler(event)"/>
+		
+		<s:Button label="Select..."
+				  right="0"
+				  click="select_clickHandler(event)" />
+	</s:HGroup>
+	
+</s:Group>
