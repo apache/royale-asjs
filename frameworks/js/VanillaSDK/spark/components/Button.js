@@ -1,16 +1,15 @@
 goog.provide('spark.components.Button');
 
-goog.require("goog.events.Event");
+goog.require("goog.dom");
+goog.require("goog.events");
+goog.require("goog.events.EventType");
 
 /**
  * @constructor
  */
 spark.components.Button = function() {
-	this.element = document.createElement('input');
-	this.element.type = "button";
-	this.element.value = "Click me";
-	
-	document.body.appendChild(this.element);
+	this.element = goog.dom.createDom('button', {'id':'button'}, 'Click here');
+	goog.dom.appendChild(document.body, this.element);
 }
 
 spark.components.Button.prototype.addEventListener = function(type, handler) {
