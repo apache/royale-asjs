@@ -4,12 +4,12 @@ goog.require("mx.core.UIComponent");
 
 /**
  * @constructor
+ * @extends {mx.core.UIComponent}
  */
 spark.components.Label = function() {
 	goog.base(this);
 	
 	this.element = goog.dom.createDom('div', null, 'Boo!');
-	this.addChild(this.element);
 }
 goog.inherits(spark.components.Label, mx.core.UIComponent);
 

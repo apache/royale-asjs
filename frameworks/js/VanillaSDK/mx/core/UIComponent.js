@@ -4,16 +4,12 @@ goog.provide('mx.core.UIComponent');
  * @constructor
  */
 mx.core.UIComponent = function() {
-	this.element = goog.dom.createDom('div');
-	goog.dom.appendChild(document.body, this.element);
 }
 
 /**
- * @type {mx.core.UIComponent}
+ * @type {Object}
  */
-mx.core.UIComponent.prototype.addChild = function(child) {
-	goog.dom.appendChild(this.element, child);
-}
+mx.core.UIComponent.prototype.element;
 
 /**
  * @type {number}
@@ -25,7 +21,7 @@ Object.defineProperty(
 	{
 	get:
 		function() {
-			return this.element.style.offsetLeft;
+			return this.element.offsetLeft;
 		}, 
 	set:
 		function(value) {
@@ -44,7 +40,7 @@ Object.defineProperty(
 	{
 	get:
 		function() {
-			return this.element.style.offsetTop;
+			return this.element.offsetTop;
 		}, 
 	set:
 		function(value) {
