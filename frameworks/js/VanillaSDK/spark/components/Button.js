@@ -1,6 +1,6 @@
 goog.provide('spark.components.Button');
 
-goog.require("goog.events");
+goog.require("goog.events.Event");
 
 /**
  * @constructor
