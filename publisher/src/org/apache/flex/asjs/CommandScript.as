@@ -1,13 +1,18 @@
 package org.apache.flex.asjs
 {
 
+import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
 
 import mx.utils.StringUtil;
 
+import org.apache.flex.asjs.events.CommandLineEvent;
+import org.apache.flex.asjs.events.CommandScriptEvent;
 import org.apache.flex.asjs.interfaces.IExecutable;
 
-public class CommandScript implements IExecutable
+[Event(name="done", type="org.apache.flex.asjs.events.CommandScriptEvent")]
+
+public class CommandScript extends EventDispatcher implements IExecutable
 {
 
 	//----------------------------------------------------------------------
@@ -21,9 +26,12 @@ public class CommandScript implements IExecutable
 		this.scripts = new Dictionary();
 		
 		_commandLine = new CommandLine();
+		_commandLine.addEventListener(CommandLineEvent.EXIT, commandlineExitHandler);
+		
+		chain = [];
 	}
 	
-	
+
 	
 	//----------------------------------------------------------------------
 	//
@@ -40,6 +48,12 @@ public class CommandScript implements IExecutable
 	//    Properties
 	//
 	//----------------------------------------------------------------------
+	
+	//----------------------------------
+	//    chain
+	//----------------------------------
+	
+	public var chain:Array;
 	
 	//----------------------------------
 	//    scripts
@@ -59,25 +73,58 @@ public class CommandScript implements IExecutable
 	//    exec
 	//----------------------------------
 	
-	public function exec(scriptName:String, params:Array = null):void
+	public function exec(scriptName:String = "", params:Array = null):void
 	{
-		var script:String = scripts[scriptName];
+		runScript();
+	}
+	
+	
+	//----------------------------------
+	//    runScript
+	//----------------------------------
+	
+	private function runScript():void
+	{
+		var chainItem:Array = chain.shift();
+		
+		var script:String = scripts[chainItem[0]];
+		var params:Array = chainItem[1];
 		
 		if (params)
 			script = StringUtil.substitute(script, params);
 		
 		var command:String, commands:Array = script.split("\n");
-			
-		var n:int = commands.length - 1; // last line is always empty
+		
+		commands.push("exit");
+		
+		var n:int = commands.length; // last line is always empty
 		for (var i:int = 0; i < n; i++)
 		{
 			command = commands[i];
 			
-			trace("COMMAND: " + command);
-
-			_commandLine.exec(commands[i] + "\n", null);
+			_commandLine.exec(command + "\n", null);
 		}
 	}
+	
+	
+	
+	//----------------------------------------------------------------------
+	//
+	//    Event handlers
+	//
+	//----------------------------------------------------------------------
+	
+	//----------------------------------
+	//    commandlineExitHandler
+	//----------------------------------
+	
+	private function commandlineExitHandler(event:CommandLineEvent):void
+	{
+		if (chain.length > 0)
+			runScript();
+		else
+			dispatchEvent(new CommandScriptEvent(CommandScriptEvent.DONE));
+	}	
 	
 }
 }

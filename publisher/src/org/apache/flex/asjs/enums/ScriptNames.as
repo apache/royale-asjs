@@ -9,13 +9,21 @@ public class ScriptNames
 	//
 	//----------------------------------------------------------------------
 	
-	public static const _TEST:String = "_test";
+	public static const ANT_BUILD:String = "antBuild";
 	
-	public static const BUILD_FLEXJS_UI:String = "buildFlexJSUI";
+	public static const COMPILE_TO_INTERMEDIATE_JS:String = "compileToIntermediateJS";
 	
-	public static const COMPILE_FALCONJS:String = "compileFalconJS";
+	public static const COPY_DIR:String = "copyDir";
+
+	public static const COPY_FILE:String = "copyFile";
 	
-	public static const COMPILE_FALCONJX:String = "compileFalconJx";
+	public static const FIND_DEPENDENCIES:String = "findJSDependencies";
+	
+	public static const GET_SVN:String = "getClosureLib";
+	
+	public static const GET_CLOSURE_BUILDER:String = "getClosureBuilder";
+	
+	public static const OPEN_BROWSER:String = "openBrowser";
 	
 	//----------------------------------------------------------------------
 	//

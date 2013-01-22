@@ -3,6 +3,7 @@ package org.apache.flex.asjs
 
 import flash.desktop.NativeProcess;
 import flash.desktop.NativeProcessStartupInfo;
+import flash.events.EventDispatcher;
 import flash.events.NativeProcessExitEvent;
 import flash.events.ProgressEvent;
 import flash.filesystem.File;
@@ -10,9 +11,12 @@ import flash.system.Capabilities;
 
 import mx.utils.StringUtil;
 
+import org.apache.flex.asjs.events.CommandLineEvent;
 import org.apache.flex.asjs.interfaces.IExecutable;
 
-public class CommandLine implements IExecutable
+[Event(name="exit", type="org.apache.flex.asjs.events.CommandLineEvent")]
+
+public class CommandLine extends EventDispatcher implements IExecutable
 {
 	
 	//----------------------------------------------------------------------
@@ -33,6 +37,8 @@ public class CommandLine implements IExecutable
 
 	private var _nativeProcess:NativeProcess;
 	
+	private var _nativeProcessStartupInfo:NativeProcessStartupInfo;
+	
 	
 	
 	//----------------------------------------------------------------------
@@ -44,14 +50,17 @@ public class CommandLine implements IExecutable
 	//----------------------------------
 	//    exec
 	//----------------------------------
-	
-	public function exec(command:String, params:Array = null):void
+
+	public function exec(command:String = "", params:Array = null):void
 	{
 		if (params)
 			command = StringUtil.substitute(command, params);
 		
 		if (!_nativeProcess)
 			init();
+		
+		if (!_nativeProcess.running)
+			_nativeProcess.start(_nativeProcessStartupInfo);
 		
 		_nativeProcess.standardInput.writeUTFBytes(command);
 	}
@@ -94,10 +103,10 @@ public class CommandLine implements IExecutable
 			_nativeProcess.addEventListener(ProgressEvent.STANDARD_OUTPUT_DATA, outputHandler);
 			_nativeProcess.addEventListener(NativeProcessExitEvent.EXIT, exitHandler);
 
-			var nativeProcessStartupInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
-			nativeProcessStartupInfo.executable = getCommandExecutable();
+			_nativeProcessStartupInfo = new NativeProcessStartupInfo();
+			_nativeProcessStartupInfo.executable = getCommandExecutable();
 			
-			_nativeProcess.start(nativeProcessStartupInfo);
+			_nativeProcess.start(_nativeProcessStartupInfo);
 		}
 		else
 		{
@@ -128,7 +137,10 @@ public class CommandLine implements IExecutable
 	
 	public function exitHandler(event:NativeProcessExitEvent):void
 	{
-		trace("EXIT CODE: " + event.exitCode);
+		if (event.exitCode == 0)
+			dispatchEvent(new CommandLineEvent(CommandLineEvent.EXIT));
+		else
+			throw ("SOMETHING WENT WRONG WITH THE LAST COMMAND");
 	}
 	
 	//----------------------------------
