@@ -1,17 +1,22 @@
 goog.provide('spark.components.Label');
 
+goog.require("mx.core.UIComponent");
+
 /**
  * @constructor
  */
 spark.components.Label = function() {
+	goog.base(this);
+	
 	this.element = goog.dom.createDom('div', null, 'Boo!');
-	goog.dom.appendChild(document.body, this.element);
+	this.addChild(this.element);
 }
+goog.inherits(spark.components.Label, mx.core.UIComponent);
 
 /**
- * @type {number}
+ * @type {string}
  */
-spark.components.Label.prototype.a;
+spark.components.Label.prototype.text;
 
 Object.defineProperty(
 	spark.components.Label.prototype, 
