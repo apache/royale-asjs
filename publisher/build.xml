@@ -20,85 +20,96 @@
 <project name="asjsPublisher" default="main" basedir=".">
     <property file="${basedir}/build.properties" description="Properties for the ASJS Publisher" />
 
-    <property name="DIR_CLOSURE_LIBRARY" value="${DIR_CLOSURE}/library" />
-    <property name="FILE_CLOSURE_BUILDER" value="${DIR_CLOSURE}/builder/closurebuilder.py" />
-    <property name="FILE_CLOSURE_DEPENDENCIES" value="${DIR_CLOSURE_LIBRARY}/closure/goog/deps.js" />
-    <property name="FILE_CLOSURE_JAR" value="${DIR_CLOSURE}/compiler/compiler.jar" />
+    <basename property="PROJECT_NAME" file="${project.main.file}" suffix=".as" />
     
-    <property name="DIR_FRAMEWORK" value="${basedir}/../frameworks/js/src" />
+    <dirname property="DIR_PROJECT" file="${project.main.file}/.." />
 
-    <property name="DIR_INTERMEDIATE" value="${basedir}/intermediate" />
-    <property name="DIR_RELEASE" value="${basedir}/release" />
+    <property name="DIR_CLOSURE_THIRD_PARTY" location="${DIR_CLOSURE_LIBRARY}/third_party/closure/goog" />
+    <property name="DIR_CLOSURE_SCRIPTS" location="${DIR_CLOSURE_LIBRARY}/closure/bin/build" />
+    
+    <property name="DIR_INTERMEDIATE_APPLICATION" location="${DIR_PROJECT}/js-intermediate" />
+    <property name="DIR_RELEASE_APPLICATION" location="${DIR_PROJECT}/js-release" />
 
-    <property name="DIR_INTERMEDIATE_APPLICATION" value="${DIR_INTERMEDIATE}/${app.name}" />
-    <property name="DIR_RELEASE_APPLICATION" value="${DIR_RELEASE}/${app.name}" />
-
-    <property name="FILE_HTML_TEMPLATE" value="${basedir}/index.html.template" />
-    <property name="FILE_RELEASE" value="${DIR_RELEASE_APPLICATION}/FlexJS.js" />
+    <property name="FILE_DEPS" location="${DIR_INTERMEDIATE_APPLICATION}/deps.js" />
+    <property name="FILE_HTML_TEMPLATE" location="index.html.template" />
+    <property name="FILE_OUTPUT_MAIN" location="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.js" />
+    
+    <macrodef name="depsWriter">
+        <sequential>
+            <exec executable="python" failonerror="true" logError="true">
+                <arg value="${DIR_CLOSURE_SCRIPTS}/depswriter.py" />
+                <arg line="--root=${DIR_INTERMEDIATE_APPLICATION}" />
+                <arg line="--root_with_prefix='${DIR_INTERMEDIATE_APPLICATION}/goog goog'" />
+                <arg line="--root_with_prefix='${DIR_INTERMEDIATE_APPLICATION}/goog_thirdParty goog_thirdParty'" />
+                <arg line="--root_with_prefix='${DIR_INTERMEDIATE_APPLICATION}/VanillaSDK VanillaSDK'" />
+                <arg line="--output_file=${FILE_DEPS}" />
+            </exec>
+        </sequential>
+    </macrodef>
 
     <macrodef name="closureBuilder">
         <sequential>
             <exec executable="python" failonerror="true" logError="true">
-                <arg value="${FILE_CLOSURE_BUILDER}" />
-                <arg line="--root=${DIR_CLOSURE_LIBRARY}" />
-                <arg line="--root=${DIR_FRAMEWORK}" />
+                <arg value="${DIR_CLOSURE_SCRIPTS}/closurebuilder.py" />
+                <arg line="--compiler_jar=${DIR_CLOSURE_COMPILER}/compiler.jar" />
                 <arg line="--root=${DIR_INTERMEDIATE_APPLICATION}" />
                 <arg line="--output_mode=compiled" />
-                <arg line="--compiler_jar=${FILE_CLOSURE_JAR}" />
-                <arg line="--output_file=${FILE_RELEASE}" />
+                <arg line="--output_file=${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.js" />
                 <arg line="--compiler_flags=--compilation_level=ADVANCED_OPTIMIZATIONS" />
-                <arg line="--compiler_flags=--js=${FILE_CLOSURE_DEPENDENCIES}" />
+                <arg line="--compiler_flags=--js=${FILE_DEPS}" />
                 <arg line="--compiler_flags=--warning_level=VERBOSE" />
-                <arg line="--namespace=${app.name}" />
+                <arg line="--namespace=${PROJECT_NAME}" />
                 <arg line="--compiler_flags=--jscomp_error=checkTypes" />
             </exec>
         </sequential>
     </macrodef>
 
-    <!-- target name="main" description="Compiles framework files" depends="clean,createDirs,falconJS,closureBuilding,createHTML" / -->
-    <target name="main" description="Compiles framework files" depends="clean,createDirs,lint,closureBuilding,createHTML" />
-
-    <target name="clean" description="Clean up previous runs" depends="cleanIntermediate,cleanRelease">
-        <echo>Delete 'intermediate' and 'release' directories</echo>
-    </target>
-
-    <target name="checkDeleteIntermediate">
-        <condition property="deleteIntermediate">
-            <istrue value="${CLEAN_INTERMEDIATE_JS}" />
-        </condition>
-    </target>
-
-    <target name="cleanIntermediate" depends="checkDeleteIntermediate" if="deleteIntermediate">
-        <delete dir="${DIR_INTERMEDIATE}" />
-    </target>
-
-    <target name="cleanRelease">
-        <delete dir="${DIR_RELEASE}" />
-    </target>
-
+    <!-- target name="main" description="Compiles framework files" 
+            depends="clean,createDirs,prepareOutput,falconJx,calculateDependencies,closureBuilding,createIntermediateOutput,createReleaseOutput" / -->
+    <target name="main" description="Compiles framework files" 
+        depends="clean,createDirs,prepareOutput,falconJx,calculateDependencies,closureBuilding,createIntermediateOutput,createReleaseOutput" />
+    
     <target name="createDirs">
         <echo>Create 'intermediate' and 'release' directory structure</echo>
         <mkdir dir="${DIR_INTERMEDIATE_APPLICATION}" />
-        <mkdir dir="${DIR_INTERMEDIATE_APPLICATION}/js" />
         <mkdir dir="${DIR_RELEASE_APPLICATION}" />
     </target>
 
-    <target name="falconJS">
-        <echo>Compiling the AS project into intermediate JS</echo>
-        <copy todir="${DIR_INTERMEDIATE_APPLICATION}/as" flatten="true">
-            <fileset dir="${app.location}/${app.name}">
-                <include name="**/*.as"/>
-            </fileset>
+    <target name="prepareOutput">
+        <echo>Creating 'intermediate' and 'release' target directory requirements</echo>
+        <copy todir="${DIR_INTERMEDIATE_APPLICATION}/goog">
+            <fileset dir="${DIR_CLOSURE_LIBRARY}/closure/goog" />
         </copy>
-        <exec executable="${FILE_FALCONJS_COMPILE_SCRIPT}">
-            <arg value="${DIR_INTERMEDIATE_APPLICATION}/as/${app.name}.as"/>
-            <arg value="-output"/>
-            <arg value="${DIR_INTERMEDIATE_APPLICATION}/js/${app.name}.js"/>
-        </exec>
+        <copy todir="${DIR_INTERMEDIATE_APPLICATION}/goog_thirdParty">
+            <fileset dir="${DIR_CLOSURE_LIBRARY}/third_party/closure/goog" />
+        </copy>
+        <copy todir="${DIR_INTERMEDIATE_APPLICATION}/VanillaSDK">
+            <fileset dir="${DIR_FRAMEWORK}"/>
+        </copy>
     </target>
 
-    <target name="lint">
-        <echo>Lint-ing the FlexJS JS framework</echo>
+    <target name="falconJx">
+        <echo>Compiling the AS project into intermediate JS</echo>
+        <exec executable="${FILE_FALCONJS_COMPILE_SCRIPT}">
+            <arg value="${DIR_PROJECT}/src/${PROJECT_NAME}.as"/>
+            <arg value="-output=${FILE_OUTPUT_MAIN}"/>
+        </exec>
+        <!-- 
+            # Making sure that the main class' name doesn't get renamed 
+              during the compile, which would invalidate the call to it 
+              in the project's HTML
+        -->
+        <echo file="${FILE_OUTPUT_MAIN}" append="true">
+<![CDATA[
+// Ensures the symbol will be visible after compiler renaming.
+goog.exportSymbol('${PROJECT_NAME}', ${PROJECT_NAME});
+]]>
+        </echo>
+    </target>
+
+    <target name="calculateDependencies">
+        <echo>Calculating dependencies and writing them to 'deps.js'</echo>
+        <depsWriter />
     </target>
 
     <target name="closureBuilding">
@@ -106,9 +117,47 @@
         <closureBuilder />
     </target>
 
-    <target name="createHTML">
-        <echo>Creating playback HTML file from template</echo>
-        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_RELEASE_APPLICATION}/${app.name}.html" overwrite="true" />
-        <replace file="${DIR_RELEASE_APPLICATION}/${app.name}.html" token="@APPLICATION_NAME@" value="${app.name}" />
+    <target name="createIntermediateOutput">
+        <echo>Creating 'intermediate' playback project</echo>
+        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" overwrite="true" />
+        <move  file="${DIR_INTERMEDIATE_APPLICATION}/goog/base.js" todir="${DIR_INTERMEDIATE_APPLICATION}" />
+        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_OPEN@" value="" />
+        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_CLOSE@" value="" />
+        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_OPEN@" value="!-- " />
+        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_CLOSE@" value=" --" />
+        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@APPLICATION_NAME@" value="${PROJECT_NAME}" />
     </target>
+
+    <target name="createReleaseOutput">
+        <echo>Creating 'release' playback project</echo>
+        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" overwrite="true" />
+        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_OPEN@" value="!-- " />
+        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_CLOSE@" value=" --" />
+        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_OPEN@" value="" />
+        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_CLOSE@" value="" />
+        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@APPLICATION_NAME@" value="${PROJECT_NAME}" />
+    </target>
+
+    <!--
+
+        CLEANUP
+
+    -->
+
+    <target name="clean" description="Clean up previous runs" depends="cleanIntermediate,cleanRelease">
+        <echo>Delete 'intermediate' and 'release' directories</echo>
+    </target>
+
+    <target name="cleanIntermediate">
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${DIR_INTERMEDIATE_APPLICATION}" />
+		</delete>
+    </target>
+
+    <target name="cleanRelease">
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${DIR_RELEASE_APPLICATION}" />
+		</delete>
+    </target>
+
 </project>

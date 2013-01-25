@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <script type="text/javascript" src="./base.js"></script>
-    <!-- script type="text/javascript" src="./@APPLICATION_NAME@_deps.js"></script -->
-    <script type="text/javascript" src="./Example_deps.js"></script>
+    <@RELEASE_OPEN@script type="text/javascript" src="./@APPLICATION_NAME@.js"></script@RELEASE_CLOSE@>
+    <@INTERMEDIATE_OPEN@script type="text/javascript" src="./base.js"></script>
     <script type="text/javascript">
-        //goog.require("@APPLICATION_NAME@()");
-        goog.require("Example");
-    </script>
+        goog.require("@APPLICATION_NAME@");
+    </script@INTERMEDIATE_CLOSE@>
 </head>
 <body>
     <script type="text/javascript">
-        //new @APPLICATION_NAME@().init();
-        new Example().init();
+        new @APPLICATION_NAME@();
     </script>
 </body>
 </html>

@@ -2,17 +2,13 @@ ASJS Publisher
 ==============
 
     The ASJS Publisher is a tool to cross-compile projects from ActionScript (AS) 
-    to Javascript (JS). On the AS side, a project needs to be built with the
-    FlexJS AS framework (instead of the regular Flex SDK). The Publisher collects 
-    the project's AS code and uses the FalconJS compiler to create JS code. This 
-    JS code is then combined with the FlexJS JS framework using the Google Closure
-    Builder. This tool takes all the JS files, calculates dependencies and creates
-    one, highly optimized and minified, JS file: FlexJS.js. This one file is
-    combined with a minimal HTML file and together these contain all code needed 
-    to play the project in a browser.
-
-    The Publisher also contains some targets that help with developing the FlexJS
-    JS framework, like a Linter to check the correct use of coding conventions. For
+    to Javascript (JS). On the AS side, a project can to be built with the regular 
+	Flex SDK). The Publisher collects the project's AS code and uses the FalconJx 
+	compiler to create JS code. This JS code is then combined with the 
+	VanillaSDK JS framework using the Google Closure Builder. This tool takes all 
+	the JS files, calculates dependencies and creates one, highly optimized and 
+	minified, JS file. This one JS file is combined with a minimal HTML file and 
+	together these contain all code needed to play the project in a browser. For
     more information, read on.
     
 Using the Publisher
@@ -25,37 +21,27 @@ Prerequisites
         
         https://developers.google.com/closure/
     
-    In particular it uses the Library, Linter, Compiler and Builder. In order
+    In particular it uses the Library, Compiler and Builder. In order
     to use the Publisher on your machine, you'll have to download/install these
     tools first.
 
-    1)  Prepare a root directory to hold the various tools.
-    
-    2)  Get the Google Closure Library into '<root>/library'
+    1)  Get the Google Closure Library
     
             svn checkout http://closure-library.googlecode.com/svn/trunk/ library
         
-    3)  Install the Google Closure Linter into '<root>/linter'
-
-            https://developers.google.com/closure/utilities/docs/linter_howto
-
-    4)  Download the Google Closure Compiler and unzip into '<root>/compiler'
+    2)  Download the Google Closure Compiler and unzip
         
             http://closure-compiler.googlecode.com/files/compiler-latest.zip
+
+	3)  Get the Falcon compilers 
     
-    5)  Get the Google Closure Builder into '<root>/builder'
-    
-            svn checkout http://closure-library.googlecode.com/svn/trunk/closure/bin/build/ builder
-    
+    		svn checkout https://svn.apache.org/repos/asf/flex/falcon/trunk falcon
+
 Preparing for publishing
 ------------------------
 
-    1)  The ASJS Publisher uses the FalconJS compiler, which in turn needs the
-        Falcon compiler. Get Falcon from SVN:
-        
-            https://svn.apache.org/repos/asf/incubator/flex/falcon/trunk
-            
-        And build it using the README as your guide.
+    1)  The ASJS Publisher uses the FalconJx compiler, which in turn needs the
+        Falcon compiler. Build both projects using the READMEs as your guide.
     
     2)  The Publisher is an ant script, 'build.xml', which uses 
         'build.properties' and command line arguments to set dynamic properties. 
@@ -65,34 +51,12 @@ Preparing for publishing
 Publishing
 ----------
 
-    A full run ('main') of the ant script takes 2 command line arguments: 
-    path.name and path.location. Usage is:
+    A full run ('main') of the ant script needs a single command line argument: 
+    project.main.file. You point this argument to the 'master' AS (no MXML yet)
+	of your project, like so:
     
-        ant -Dapp.name=<your.app.name.here> -Dapp.location=<your.app.location.here>
-    
-    'app.name' is the name of the FlexJS AS project you want to publish. 'app.location' 
-    is the full path to the directory this project lives in. If you're working 
-    from an intermediate FlexJS JS project (see below), the second argument is
-    not needed, as that type of project lives in the 'intermediate' directory
-    in the Publisher root.
-    
-    NOTE: as of 2012-12-06, the FalconJS compiler doesn't output JS that can be 
-    parsed by the new tool set. While this is being corrected, you'll have to 
-    create your own 'intermediate' JS project, or modify one of the examples 
-    (I've included 'FlexJSTest_dummy' in the repo). Make sure to not include the 
-    'falconJS' dependency (?) in the build.xml and if you don't want to loose 
-    your work, set CLEAN_INTERMEDIATE_JS to 'false' in build.properties.
-    
-    If you're doing work on the FlexJS JS framework, you should use 
-    
-        ant lint
-        
-    regularly, to make sure your code is formatted correctly and in perfect
-    condition to be parsed by the Google Closure Compiler.
+        ant -Dproject.main.file=../examples/VanillaSDK_POC/src/Example.as
     
 That's it, have fun!
 
 The Apache Flex Project
-    
-    <http://incubator.apache.org/flex/>
-    
