@@ -13,8 +13,6 @@
 			var main:Example = new Example();
 			
 			this.addElement(main);
-			
-			main.init();
 		}
 		
 	]]></fx:Script>

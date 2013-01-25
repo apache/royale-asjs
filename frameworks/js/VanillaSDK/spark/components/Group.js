@@ -15,4 +15,6 @@ spark.components.Group.prototype.addElement = function(object) {
 	object.element.style.position = "absolute";
 	
 	goog.dom.appendChild(document.body, object.element);
+	
+	object.owner = this;
 };

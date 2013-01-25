@@ -1,35 +1,34 @@
 goog.provide('spark.components.Label');
 
-goog.require("mx.core.UIComponent");
+goog.require("other.ViewElement");
 
 /**
  * @constructor
- * @extends {mx.core.UIComponent}
+ * @extends {other.ViewElement}
  */
 spark.components.Label = function() {
+	var self = this;
 	goog.base(this);
 	
-	this.element = goog.dom.createDom('div', null, 'Boo!');
+	self.element = goog.dom.createDom('div', null, 'Boo!');
 }
-goog.inherits(spark.components.Label, mx.core.UIComponent);
+goog.inherits(spark.components.Label, other.ViewElement);
 
 /**
  * @type {string}
  */
 spark.components.Label.prototype.text;
-
 Object.defineProperty(
 	spark.components.Label.prototype, 
 	'text', 
-	{get:function() {
-		return this.element.innerHTML;
-	}, configurable:true}
-);
-
-Object.defineProperty(
-	spark.components.Label.prototype, 
-	'text', 
-	{set:function(value) {
-		this.element.innerHTML = value;
-	}, configurable:true}
+	{
+		get:function() {
+			var self = this;
+			return self.element.innerHTML;
+		},
+		set:function(value) {
+			var self = this;
+			self.element.innerHTML = value;
+		}
+	}
 );
