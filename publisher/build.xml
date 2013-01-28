@@ -18,22 +18,36 @@
 
 -->
 <project name="asjsPublisher" default="main" basedir=".">
-    <property file="${basedir}/build.properties" description="Properties for the ASJS Publisher" />
+    <property file="${basedir}/build.properties" 
+        description="Properties for the ASJS Publisher" />
 
-    <basename property="PROJECT_NAME" file="${project.main.file}" suffix=".as" />
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
     
-    <dirname property="DIR_PROJECT" file="${project.main.file}/.." />
+    <basename property="PROJECT_NAME" 
+        file="${project.main.file}" suffix=".as" />
+    
+    <dirname property="DIR_PROJECT" 
+        file="${project.main.file}/.." />
 
-    <property name="DIR_CLOSURE_THIRD_PARTY" location="${DIR_CLOSURE_LIBRARY}/third_party/closure/goog" />
-    <property name="DIR_CLOSURE_SCRIPTS" location="${DIR_CLOSURE_LIBRARY}/closure/bin/build" />
+    <property name="DIR_CLOSURE_THIRD_PARTY" 
+        location="${DIR_CLOSURE_LIBRARY}/third_party/closure/goog" />
+    <property name="DIR_CLOSURE_SCRIPTS" 
+        location="${DIR_CLOSURE_LIBRARY}/closure/bin/build" />
     
-    <property name="DIR_INTERMEDIATE_APPLICATION" location="${DIR_PROJECT}/js-intermediate" />
-    <property name="DIR_RELEASE_APPLICATION" location="${DIR_PROJECT}/js-release" />
+    <property name="DIR_INTERMEDIATE_APPLICATION" 
+        location="${DIR_PROJECT}/js-intermediate" />
+    <property name="DIR_RELEASE_APPLICATION" 
+        location="${DIR_PROJECT}/js-release" />
 
-    <property name="FILE_DEPS" location="${DIR_INTERMEDIATE_APPLICATION}/deps.js" />
-    <property name="FILE_HTML_TEMPLATE" location="index.html.template" />
-    <property name="FILE_OUTPUT_MAIN" location="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.js" />
-    
+    <property name="FILE_DEPS" 
+        location="${DIR_INTERMEDIATE_APPLICATION}/deps.js" />
+    <property name="FILE_HTML_TEMPLATE" 
+        location="index.html.template" />
+    <property name="FILE_OUTPUT_MAIN" 
+        location="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.js" />
+
     <macrodef name="depsWriter">
         <sequential>
             <exec executable="python" failonerror="true" logError="true">
@@ -64,10 +78,9 @@
         </sequential>
     </macrodef>
 
-    <!-- target name="main" description="Compiles framework files" 
-            depends="clean,createDirs,prepareOutput,falconJx,calculateDependencies,closureBuilding,createIntermediateOutput,createReleaseOutput" / -->
     <target name="main" description="Compiles framework files" 
-        depends="clean,createDirs,prepareOutput,falconJx,calculateDependencies,closureBuilding,createIntermediateOutput,createReleaseOutput" />
+        depends="clean,createDirs,prepareOutput,falconJx,calculateDependencies,
+            closureBuilding,createIntermediateOutput,createReleaseOutput" />
     
     <target name="createDirs">
         <echo>Create 'intermediate' and 'release' directory structure</echo>
@@ -76,7 +89,9 @@
     </target>
 
     <target name="prepareOutput">
-        <echo>Creating 'intermediate' and 'release' target directory requirements</echo>
+        <echo>
+            Creating 'intermediate' and 'release' target directory requirements
+        </echo>
         <copy todir="${DIR_INTERMEDIATE_APPLICATION}/goog">
             <fileset dir="${DIR_CLOSURE_LIBRARY}/closure/goog" />
         </copy>
@@ -88,9 +103,17 @@
         </copy>
     </target>
 
-    <target name="falconJx">
+    <target name="ifWindows" if="isWindows">
+        <property name="FILE_SUFFIX" value=".bat" />
+    </target>
+
+    <target name="ifOtherOS" unless="isWindows">
+        <property name="FILE_SUFFIX" value="" />
+    </target>
+
+    <target name="falconJx" depends="ifWindows,ifOtherOS">
         <echo>Compiling the AS project into intermediate JS</echo>
-        <exec executable="${FILE_FALCONJS_COMPILE_SCRIPT}">
+        <exec executable="${FILE_FALCONJX_COMPILE_SCRIPT}${FILE_SUFFIX}">
             <arg value="${DIR_PROJECT}/src/${PROJECT_NAME}.as"/>
             <arg value="-output=${FILE_OUTPUT_MAIN}"/>
         </exec>
@@ -119,23 +142,53 @@ goog.exportSymbol('${PROJECT_NAME}', ${PROJECT_NAME});
 
     <target name="createIntermediateOutput">
         <echo>Creating 'intermediate' playback project</echo>
-        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" overwrite="true" />
-        <move  file="${DIR_INTERMEDIATE_APPLICATION}/goog/base.js" todir="${DIR_INTERMEDIATE_APPLICATION}" />
-        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_OPEN@" value="" />
-        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_CLOSE@" value="" />
-        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_OPEN@" value="!-- " />
-        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_CLOSE@" value=" --" />
-        <replace file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" token="@APPLICATION_NAME@" value="${PROJECT_NAME}" />
+        <copy file="${FILE_HTML_TEMPLATE}" 
+            tofile="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html" 
+            overwrite="true" />
+        <move file="${DIR_INTERMEDIATE_APPLICATION}/goog/base.js" 
+            todir="${DIR_INTERMEDIATE_APPLICATION}" />
+        <echo file="${DIR_INTERMEDIATE_APPLICATION}/${PROJECT_NAME}.html"><![CDATA[
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript" src="./base.js"></script>
+    <script type="text/javascript">
+        goog.require("${PROJECT_NAME}");
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        new ${PROJECT_NAME}();
+    </script>
+</body>
+</html>
+        ]]></echo>
     </target>
 
     <target name="createReleaseOutput">
         <echo>Creating 'release' playback project</echo>
-        <copy file="${FILE_HTML_TEMPLATE}" tofile="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" overwrite="true" />
-        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_OPEN@" value="!-- " />
-        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@INTERMEDIATE_CLOSE@" value=" --" />
-        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_OPEN@" value="" />
-        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@RELEASE_CLOSE@" value="" />
-        <replace file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" token="@APPLICATION_NAME@" value="${PROJECT_NAME}" />
+        <copy file="${FILE_HTML_TEMPLATE}" 
+            tofile="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html" 
+            overwrite="true" />
+        <echo file="${DIR_RELEASE_APPLICATION}/${PROJECT_NAME}.html"><![CDATA[
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript" src="./${PROJECT_NAME}.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        new ${PROJECT_NAME}();
+    </script>
+</body>
+</html>
+        ]]></echo>
     </target>
 
     <!--
@@ -144,7 +197,8 @@ goog.exportSymbol('${PROJECT_NAME}', ${PROJECT_NAME});
 
     -->
 
-    <target name="clean" description="Clean up previous runs" depends="cleanIntermediate,cleanRelease">
+    <target name="clean" description="Clean up previous runs" 
+        depends="cleanIntermediate,cleanRelease">
         <echo>Delete 'intermediate' and 'release' directories</echo>
     </target>
 

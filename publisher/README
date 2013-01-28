@@ -34,8 +34,16 @@ Prerequisites
             http://closure-compiler.googlecode.com/files/compiler-latest.zip
 
 	3)  Get the Falcon compilers 
-    
-    		svn checkout https://svn.apache.org/repos/asf/flex/falcon/trunk falcon
+ 
+	 		svn checkout https://svn.apache.org/repos/asf/flex/falcon/trunk falcon
+
+	4)  The Closure Tools use Python scripts. These scripts are designed to work
+	    with Python 2.7. Make sure your system can properly execute Python 
+		scripts... For info on checking your system's capabilities and, when 
+		needed, for instructions on how to install the proper version of Python 
+		on your system, please visit:
+ 
+	 		http://www.python.org/
 
 Preparing for publishing
 ------------------------
