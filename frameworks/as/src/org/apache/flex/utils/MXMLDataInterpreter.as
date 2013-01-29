@@ -228,11 +228,15 @@ public class MXMLDataInterpreter
     
     public static function generateMXMLInstances(document:Object, parent:DisplayObjectContainer, data:Array, recursive:Boolean = true):void
     {
+		if (!data) return;
+		
         generateMXMLArray(document, parent, data, recursive);
     }
     
     public static function generateMXMLProperties(host:Object, data:Array):void
     {
+		if (!data) return;
+		
         var i:int = 0;
         var m:int;
         var j:int;
