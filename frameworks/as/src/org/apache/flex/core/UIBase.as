@@ -97,12 +97,12 @@ package org.apache.flex.core
 		// from AS, just call addBead()
 		public var beads:Array;
 		
-		private var strand:Vector.<IBead>;
+		private var _beads:Vector.<IBead>;
 		public function addBead(bead:IBead):void
 		{
-			if (!strand)
-				strand = new Vector.<IBead>;
-			strand.push(bead);
+			if (!_beads)
+				_beads = new Vector.<IBead>;
+			_beads.push(bead);
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
 			bead.strand = this;
@@ -110,7 +110,7 @@ package org.apache.flex.core
 		
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
-			for each (var bead:IBead in strand)
+			for each (var bead:IBead in _beads)
 			{
 				if (bead is classOrInterface)
 					return bead;
@@ -120,13 +120,13 @@ package org.apache.flex.core
 		
 		public function removeBead(value:IBead):IBead	
 		{
-			var n:int = strand.length;
+			var n:int = _beads.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var bead:IBead = strand[i];
+				var bead:IBead = _beads[i];
 				if (bead == value)
 				{
-					strand.splice(i, 1);
+					_beads.splice(i, 1);
 					return bead;
 				}
 			}
