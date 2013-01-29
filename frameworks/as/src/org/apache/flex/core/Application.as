@@ -19,6 +19,9 @@
 package org.apache.flex.core
 {
     import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	
     import flash.events.Event;
     
     import org.apache.flex.utils.MXMLDataInterpreter;
@@ -37,12 +40,18 @@ package org.apache.flex.core
         public function Application()
         {
             super();
+			if (stage)
+			{
+				stage.align = StageAlign.TOP_LEFT;
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+			}
+			
             loaderInfo.addEventListener(Event.INIT, initHandler);
         }
 
         private function initHandler(event:Event):void
         {
-            MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+	        MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 
             ValuesManager.valuesImpl = valuesImpl;
 
