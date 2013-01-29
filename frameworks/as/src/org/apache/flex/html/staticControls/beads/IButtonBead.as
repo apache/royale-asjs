@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	public interface IButtonBead
+	import org.apache.flex.core.IBead;
+
+	public interface IButtonBead extends IBead
 	{
-		function get state():String;
-		function set state(value:String):void;
 	}
 }
