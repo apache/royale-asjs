@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
+    import flash.events.IEventDispatcher;
 	import flash.events.Event;
 	
 	import org.apache.flex.core.IBead;
@@ -46,8 +47,9 @@ package org.apache.flex.html.staticControls.beads.layouts
 			sbModel.addEventListener("minimumChange", changeHandler);
 			sbModel.addEventListener("snapIntervalChange", changeHandler);
 			sbModel.addEventListener("stepSizeChange", changeHandler);
+            sbModel.addEventListener("pageSizeChange", changeHandler);
 			sbModel.addEventListener("valueChange", changeHandler);
-			sbModel.addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(sbView.strand).addEventListener("heightChanged", changeHandler);
 			changeHandler(null);
 		}
 	
@@ -66,10 +68,10 @@ package org.apache.flex.html.staticControls.beads.layouts
 			track.x = 0;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
+            thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;
 			if (track.height > thumb.height)
 			{
 				thumb.visible = true;
-				thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;
 				thumb.y = (sbModel.value / (sbModel.maximum - sbModel.minimum - sbModel.pageSize) * (track.height - thumb.height)) + track.y;
 			}
 			else

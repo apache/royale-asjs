@@ -50,6 +50,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 			sbView = value.getBeadByType(IScrollBarBead) as IScrollBarBead;
 			sbView.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			sbView.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
+            sbView.decrement.addEventListener("buttonRepeat", decrementClickHandler);
+            sbView.increment.addEventListener("buttonRepeat", incrementClickHandler);
 			sbView.track.addEventListener(MouseEvent.CLICK, trackClickHandler);
 			sbView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbMouseDownHandler);
 		}
@@ -71,15 +73,15 @@ package org.apache.flex.html.staticControls.beads.controllers
 			return n;
 		}
 		
-		protected function decrementClickHandler(event:MouseEvent):void
+		protected function decrementClickHandler(event:Event):void
 		{
 			sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.stepSize));
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
 		}
 		
-		protected function incrementClickHandler(event:MouseEvent):void
+		protected function incrementClickHandler(event:Event):void
 		{
-			sbModel.value = snap(Math.min(sbModel.maximum, sbModel.value + sbModel.stepSize));	
+			sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.stepSize));	
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
 		}
 		

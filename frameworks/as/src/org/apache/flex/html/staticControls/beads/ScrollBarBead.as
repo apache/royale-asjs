@@ -26,6 +26,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.Button;
+	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 
 	public class ScrollBarBead implements IBead, IInitSkin, IStrand, IScrollBarBead
 	{
@@ -53,17 +54,19 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(value).addChild(_increment);
 			UIBase(value).addChild(_track);
 			UIBase(value).addChild(_thumb);
-			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;	
+			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
 		}
-			
+		        
 		public function initSkin():void
 		{
 			// TODO: (aharui) put in values impl
 			_increment = new Button();
 			Button(_increment).addBead(new DownArrowButtonBead());
+            Button(_increment).addBead(new ButtonAutoRepeatController());
 			Button(_increment).initSkin();
 			_decrement = new Button();
 			Button(_decrement).addBead(new UpArrowButtonBead());
+            Button(_decrement).addBead(new ButtonAutoRepeatController());
 			Button(_decrement).initSkin();
 			_track = new Button();				
 			Button(_track).addBead(new VScrollBarTrackBead());

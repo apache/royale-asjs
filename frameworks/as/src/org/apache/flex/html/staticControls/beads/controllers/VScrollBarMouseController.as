@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 				}
 				else
 				{
-					sbModel.value = snap(Math.min(sbModel.maximum, sbModel.value + sbModel.pageStepSize));
+					sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.pageStepSize));
 					IEventDispatcher(strand).dispatchEvent(new Event("scroll"));
 				}
 			}

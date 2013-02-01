@@ -26,5 +26,5 @@ package org.apache.flex.html.staticControls.supportClasses
 		{
 			super();
 		}		
-	}
+   	}
 }
