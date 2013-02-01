@@ -29,7 +29,7 @@ package org.apache.flex.core
 			super();
 		}
 		
-		private var _width:Number;
+		private var _width:Number = 0;
 		override public function get width():Number
 		{
 			return _width;
@@ -47,7 +47,7 @@ package org.apache.flex.core
 			return super.width;
 		}
 		
-		private var _height:Number;
+		private var _height:Number = 0;
 		override public function get height():Number
 		{
 			return _height;
