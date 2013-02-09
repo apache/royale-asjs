@@ -16,23 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.binding
 {
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IDocument;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class FlexJSUIClasses
-{
-	import org.apache.flex.html.staticControls.beads.IButtonBead; IButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
-	import org.apache.flex.html.staticControls.beads.TextInputBead; TextInputBead;
-	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
-    import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
-}
+	public class ConstantBinding implements IBead, IDocument
+	{
+		public function ConstantBinding()
+		{
+		}
+		
+		protected var source:IEventDispatcher;
+		protected var document:IEventDispatcher;
+		protected var destination:Object;
 
+		public var sourceID:String;
+		public var sourcePropertyName:String;
+		public var destinationPropertyName:String;
+		
+		public function set strand(value:IStrand):void
+		{
+			destination = value;
+			source = document[sourceID] as IEventDispatcher;
+			destination[destinationPropertyName] = source[sourcePropertyName];
+		}
+		
+		public function setDocument(document:Object, id:String = null):void
+		{
+			this.document = document as IEventDispatcher;
+		}
+		
+	}
 }

@@ -18,10 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.UIBase;
+	import flash.events.Event;
 	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.ItemRendererClassFactory;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.staticControls.beads.IListBead;
+	import org.apache.flex.html.staticControls.beads.ListBead;
+	import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData;
+	import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController;
+	import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController;
+	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout;
+	import org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer;
+	
+    [Event("change", flash.events.Event)]
+    
 	/**
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
@@ -36,7 +52,16 @@ package org.apache.flex.html.staticControls
 			super();
 		}
 		
-		public function get selectedIndex():int
+        public function get dataProvider():Object
+        {
+            return ISelectionModel(model).dataProvider;
+        }
+        public function set dataProvider(value:Object):void
+        {
+            ISelectionModel(model).dataProvider = value;
+        }
+
+        public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
 		}
@@ -56,10 +81,37 @@ package org.apache.flex.html.staticControls
 		
 		override public function initModel():void
 		{
+            if (getBeadByType(ISelectionModel) == null)
+                addBead(new (ValuesManager.valuesImpl.getValue("ISelectionModel")) as IBead);
 		}
 		
 		public function initSkin():void
 		{
+            // TODO: (aharui) remove later
+            if (getBeadByType(IListBead) == null)
+            {
+                var lb:ListBead = new ListBead();
+                addBead(lb);	
+                var irf:TextItemRendererFactoryForArrayData = new TextItemRendererFactoryForArrayData();
+                var ircf:ItemRendererClassFactory = new ItemRendererClassFactory();
+                ircf.createFunction = createTextItemRenderer;
+                irf.itemRendererFactory = ircf;
+                addBead(irf);
+                var ll:NonVirtualVerticalScrollingLayout = new NonVirtualVerticalScrollingLayout();
+                lb.addBead(ll);
+                var lmc:ListSingleSelectionMouseController = new ListSingleSelectionMouseController();
+                addBead(lmc);
+                
+            }
 		}
+        
+        private function createTextItemRenderer(parent:IItemRendererParent):IItemRenderer
+        {
+            var tfir:TextFieldItemRenderer = new TextFieldItemRenderer();
+            tfir.addBead(new ItemRendererMouseController());
+            tfir.height = 24;
+            return tfir;
+            
+        }
 	}
 }

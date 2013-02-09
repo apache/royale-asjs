@@ -46,9 +46,11 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
         var value;
         var id;
 
-        var generateMXMLArray = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
-        
+        var generateMXMLArray =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+        var generateMXMLObject =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+
         m = data[i++]; // num props
         for (j = 0; j < m; j++)
         {
@@ -93,8 +95,10 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
         if (typeof(recursive) == 'undefined')
             recursive = true;
 
-        var generateMXMLArray = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+        var generateMXMLArray =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+        var generateMXMLObject =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
         var comps = [];
 
@@ -224,13 +228,13 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
                 comp.setStyle(name, value);
             }
             */
-            
+
             m = data[i++]; // num events
             for (j = 0; j < m; j++)
             {
                 name = data[i++];
                 value = data[i++];
-                comp.addEventListener(name, 
+                comp.addEventListener(name,
                     org.apache.flex.FlexGlobal.createProxy(document, value));
             }
 
@@ -238,7 +242,11 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
             if (children)
             {
                 if (recursive)
-                    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(document, comp, children, recursive);
+                {
+                    self = org.apache.flex.utils.MXMLDataInterpreter;
+                    self.generateMXMLInstances(
+                    document, comp, children, recursive);
+                }
                 else
                     comp.setMXMLDescriptor(children);
             }
@@ -285,18 +293,27 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
         var simple;
         var value;
         var id = null;
-        
-        var generateMXMLArray = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject = org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+
+        var generateMXMLArray =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+        var generateMXMLObject =
+            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
         m = data[i++]; // num props
+        var beadOffset = i + (m - 1) * 3;
+        if (m > 0 && data[beadOffset] == 'beads')
+        {
+            m--;
+        }
+        else
+            beadOffset = -1;
         for (j = 0; j < m; j++)
         {
             name = data[i++];
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value, false);
+                value = generateMXMLArray(host, null, value, true);
             else if (simple == false)
                 value = generateMXMLObject(host, value);
             if (name == 'id')
@@ -311,6 +328,31 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
                     host[name] = value;
             }
         }
+        if (beadOffset > -1)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(host, null, value, true);
+            else if (simple == false)
+                value = generateMXMLObject(host, value);
+            else
+            {
+            if (typeof(host['set_' + name]) == 'function')
+                host['set_' + name](value);
+            else
+                host[name] = value;
+            }
+            var beads = value;
+            var l = beads.length;
+            for (var k = 0; k < l; k++)
+            {
+                var bead = beads[k];
+                host.addBead(bead);
+            }
+        }
+
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)
         {
@@ -318,7 +360,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value, false);
+                value = generateMXMLArray(host, null, value, true);
             else if (simple == false)
                 value = generateMXMLObject(host, value);
             if (typeof(host['set_' + name]) == 'function')
@@ -344,13 +386,13 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
                 host[name] = value;
         }
         */
-        
+
         m = data[i++]; // num events
         for (j = 0; j < m; j++)
         {
             name = data[i++];
             value = data[i++];
-            host.addEventListener(name, 
+            host.addEventListener(name,
                 org.apache.flex.FlexGlobal.createProxy(host, value));
         }
 };

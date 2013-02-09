@@ -18,15 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.html.staticControls.beads.SingleLineBorderBead;
-    import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-    import org.apache.flex.html.staticControls.supportClasses.Border;
-    import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
-
 	public class JSONInputParser implements IInputParser
 	{        
 		public function parseItems(s:String):Array

@@ -24,6 +24,6 @@ org.apache.flex.html.staticControls.beads.TextButtonBead = function() {
     org.apache.flex.FlexObject.call(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.TextButtonBead, 
+    org.apache.flex.html.staticControls.beads.TextButtonBead,
     org.apache.flex.FlexObject
 );

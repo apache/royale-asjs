@@ -59,6 +59,8 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor;
  */
 org.apache.flex.core.ViewBase.prototype.initUI = function(model) {
     this.applicationModel = model;
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, this.get_MXMLProperties());
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
+            this.get_MXMLProperties());
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
+            this, this.get_MXMLDescriptor());
 };

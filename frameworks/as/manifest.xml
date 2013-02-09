@@ -24,9 +24,15 @@
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
+    <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
     <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
     <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
     <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>
+    <component id="List" class="org.apache.flex.html.staticControls.List"/>
+    <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
+    <component id="LazyCollection" class="org.apache.flex.net.dataConverters.LazyCollection"/>
+    <component id="JSONInputParser" class="org.apache.flex.net.JSONInputParser"/>
+    <component id="JSONItemConverter" class="org.apache.flex.net.JSONItemConverter"/>
 
 </componentPackage>

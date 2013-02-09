@@ -20,6 +20,14 @@ limitations under the License.
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:basic="library://ns.apache.org/flexjs/basic" 
 			   >
+    <fx:Script>
+        <![CDATA[            
+            public function get symbol():String
+            {
+                return list.selectedItem as String;
+            }
+        ]]>
+    </fx:Script>
 	<basic:Label id="lbl" x="100" y="25" >
 		<basic:beads>
 			<basic:SimpleBinding eventName="labelTextChanged"
@@ -29,4 +37,12 @@ limitations under the License.
 		</basic:beads>
 	</basic:Label>
 	<basic:TextButton text="OK" x="100" y="75" click="dispatchEvent(new Event('buttonClicked'))" />
+    <basic:List id="list" x="200" y="25" width="100" height="200" change="dispatchEvent(new Event('listChanged'))">
+        <basic:beads>
+            <basic:ConstantBinding
+                                 sourceID="applicationModel"
+                                 sourcePropertyName="strings"
+                                 destinationPropertyName="dataProvider" />
+        </basic:beads>
+    </basic:List>
 </basic:ViewBase>

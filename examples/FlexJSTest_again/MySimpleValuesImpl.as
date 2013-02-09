@@ -23,13 +23,15 @@ package
 	import org.apache.flex.core.SimpleValuesImpl;
 	import org.apache.flex.html.staticControls.beads.TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead;
-	import org.apache.flex.html.staticControls.beads.models.TextModel;
+	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
+    import org.apache.flex.html.staticControls.beads.models.TextModel;
 	
 	public class MySimpleValuesImpl extends SimpleValuesImpl
 	{
 		public function MySimpleValuesImpl()
 		{
 			values = { 
+                ISelectionModel: ArraySelectionModel,
 				ITextButtonBead: TextButtonBead,
 				ITextBead: TextFieldBead,
 				ITextModel: TextModel				

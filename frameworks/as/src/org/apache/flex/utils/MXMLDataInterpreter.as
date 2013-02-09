@@ -93,7 +93,7 @@ public class MXMLDataInterpreter
             {
                 if (comp is UIBase)
                     comp.addToParent(parent);
-                else
+                else if (comp is DisplayObject)
                     parent.addChild(comp as DisplayObject);
             }
             
@@ -246,13 +246,22 @@ public class MXMLDataInterpreter
         var id:String = null;
         
         m = data[i++]; // num props
+        var beadOffset:int = i + (m - 1) * 3;
+        if (beadOffset >= -1)
+            trace(beadOffset, data[beadOffset]);
+        if (m > 0 && data[beadOffset] == "beads")
+        {
+            m--;
+        }
+        else
+            beadOffset = -1;
         for (j = 0; j < m; j++)
         {
             name = data[i++];
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, false);
+                value = generateMXMLArray(host, null, value as Array, true);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             if (name == "id")
@@ -262,6 +271,26 @@ public class MXMLDataInterpreter
             else
                 host[name] = value;
         }
+        if (beadOffset > -1)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(host, null, value as Array, true);
+            else if (simple == false)
+                value = generateMXMLObject(host, value as Array);
+            else
+                host[name] = value;
+            var beads:Array = value as Array;
+            var l:int = beads.length;
+            for (var k:int = 0; k < l; k++)
+            {
+                var bead:IBead = beads[k] as IBead;
+                IStrand(host).addBead(bead);
+                bead.strand = host as IStrand;
+            }
+        }
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)
         {
@@ -269,7 +298,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, false);
+                value = generateMXMLArray(host, null, value as Array, true);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             host[name] = value;
@@ -282,7 +311,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, false);
+                value = generateMXMLArray(host, null, value as Array, true);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             host[name] = value;

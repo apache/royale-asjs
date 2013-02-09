@@ -20,13 +20,16 @@ package org.apache.flex.net
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
     
-	public class HTTPService extends EventDispatcher implements IStrand
+    [DefaultProperty("beads")]
+    
+	public class HTTPService extends EventDispatcher implements IStrand, IBead
 	{
 		public function HTTPService()
 		{
@@ -61,6 +64,13 @@ package org.apache.flex.net
 			}
 		}
 		
+        private var _strand:IStrand;
+        
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+        }
+
 		// beads declared in MXML are added to the strand.
 		// from AS, just call addBead()
 		public var beads:Array;

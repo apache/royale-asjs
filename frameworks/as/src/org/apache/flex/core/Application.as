@@ -19,9 +19,8 @@
 package org.apache.flex.core
 {
     import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
     import flash.events.Event;
     
     import org.apache.flex.utils.MXMLDataInterpreter;
@@ -35,7 +34,7 @@ package org.apache.flex.core
      */
     [Event(name="initialize", type="flash.events.Event")]
     
-    public class Application extends Sprite
+    public class Application extends Sprite implements IStrand
     {
         public function Application()
         {
@@ -72,11 +71,49 @@ package org.apache.flex.core
 
         public function get MXMLDescriptor():Array
         {
-        return null;
+            return null;
         }
 
     	public function get MXMLProperties():Array
         {
+            return null;
+        }
+        
+        // beads declared in MXML are added to the strand.
+        // from AS, just call addBead()
+        public var beads:Array;
+        
+        private var _beads:Vector.<IBead>;
+        public function addBead(bead:IBead):void
+        {
+            if (!_beads)
+                _beads = new Vector.<IBead>;
+            _beads.push(bead);
+            bead.strand = this;
+        }
+        
+        public function getBeadByType(classOrInterface:Class):IBead
+        {
+            for each (var bead:IBead in _beads)
+            {
+                if (bead is classOrInterface)
+                    return bead;
+            }
+            return null;
+        }
+        
+        public function removeBead(value:IBead):IBead	
+        {
+            var n:int = _beads.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var bead:IBead = _beads[i];
+                if (bead == value)
+                {
+                    _beads.splice(i, 1);
+                    return bead;
+                }
+            }
             return null;
         }
     }

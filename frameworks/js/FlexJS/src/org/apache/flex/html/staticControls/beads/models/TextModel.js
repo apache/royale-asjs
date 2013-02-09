@@ -24,6 +24,6 @@ org.apache.flex.html.staticControls.beads.TextModel = function() {
     org.apache.flex.FlexObject.call(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.TextModel, 
+    org.apache.flex.html.staticControls.beads.TextModel,
     org.apache.flex.FlexObject
 );

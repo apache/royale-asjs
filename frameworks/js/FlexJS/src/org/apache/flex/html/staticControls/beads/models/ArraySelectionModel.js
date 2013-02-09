@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.TextFieldBead');
+goog.provide('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 goog.require('org.apache.flex.FlexObject');
 
@@ -20,10 +20,10 @@ goog.require('org.apache.flex.FlexObject');
  * @constructor
  * @extends {org.apache.flex.FlexObject}
  */
-org.apache.flex.html.staticControls.beads.TextFieldBead = function() {
+org.apache.flex.html.staticControls.beads.ArraySelectionModel = function() {
     org.apache.flex.FlexObject.call(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.TextFieldBead,
+    org.apache.flex.html.staticControls.beads.ArraySelectionModel,
     org.apache.flex.FlexObject
 );

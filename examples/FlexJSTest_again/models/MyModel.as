@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import flash.events.EventDispatcher;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	
 	public class MyModel extends EventDispatcher
 	{
@@ -42,5 +42,12 @@ package models
 				dispatchEvent(new Event("labelTextChanged"));
 			}
 		}
+        
+        private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
+        public function get strings():Array
+        {
+            return _strings;
+        }
+
 	}
 }
