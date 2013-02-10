@@ -113,7 +113,9 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
     if (this.id != value)
     {
         this.id = value;
-        this.dispatchEvent(new Event('idChanged'));
+        var evt = document.createEvent('Event');
+        evt.initEvent('idChanged', false, false);
+        this.dispatchEvent(evt);
     }
 };
 

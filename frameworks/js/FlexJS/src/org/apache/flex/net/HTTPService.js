@@ -113,7 +113,7 @@ org.apache.flex.net.HTTPService.prototype.send = function() {
 org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
     if (this.element.readyState == 4)
     {
-        evt = document.createEvent('Event');
+        var evt = document.createEvent('Event');
         evt.initEvent('complete', true, true);
         this.element.dispatchEvent(evt);
     }
@@ -143,7 +143,9 @@ org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
     if (this.id != value)
     {
         this.id = value;
-        this.dispatchEvent(new Event('idChanged'));
+        var evt = document.createEvent('Event');
+        evt.initEvent('idChanged', false, false);
+        this.dispatchEvent(evt);
     }
 };
 
