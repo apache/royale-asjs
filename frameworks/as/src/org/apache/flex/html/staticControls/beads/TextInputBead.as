@@ -17,9 +17,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
+	import flash.events.IEventDispatcher;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
@@ -35,14 +38,21 @@ package org.apache.flex.html.staticControls.beads
 			_textField.selectable = true;
 			_textField.type = TextFieldType.INPUT;
 			_textField.mouseEnabled = true;
+			_textField.multiline = false;
+			_textField.wordWrap = false;
 			
 			// for debug only
 			_textField.border = true;
-			_textField.borderColor = 0xFF0000;
+			_textField.borderColor = 0x333333;
+			_textField.width = 100;
+			_textField.height = 18;
 		}
+		
 		private var textModel:ITextModel;
 		
 		private var _strand:IStrand;
+		
+		private var _textField:TextField;
 		
 		public function set strand(value:IStrand):void
 		{
@@ -59,6 +69,15 @@ package org.apache.flex.html.staticControls.beads
 			// for input, listen for changes to the _textField and update
 			// the model
 			_textField.addEventListener(Event.CHANGE, inputChangeHandler);
+			
+			// set initial size, if present, and listen for changes in dimension
+			var ww:Number = DisplayObject(value).width;
+			var hh:Number = DisplayObject(value).height;
+			
+			if( !isNaN(ww) && ww > 0 ) _textField.width = ww;
+			if( !isNaN(hh) && hh > 0 ) _textField.height = hh;
+			IEventDispatcher(_strand).addEventListener("widthChanged", widthChangedHandler);
+			IEventDispatcher(_strand).addEventListener("heightChanged", heightChangedHandler);
 		}
 		
 		private function textChangeHandler(event:Event):void
@@ -76,7 +95,17 @@ package org.apache.flex.html.staticControls.beads
 			textModel.text = _textField.text;
 		}
 		
-		private var _textField:TextField;
+		private function widthChangedHandler(event:Event):void
+		{
+			var ww:Number = DisplayObject(_strand).width;
+			_textField.width = ww;
+		}
+		
+		private function heightChangedHandler(event:Event):void
+		{
+			var hh:Number = DisplayObject(_strand).height;
+			_textField.height = hh;
+		}
 		
 		public function get text():String
 		{
