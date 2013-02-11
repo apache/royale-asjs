@@ -23,6 +23,7 @@ package
 	import org.apache.flex.core.SimpleValuesImpl;
 	import org.apache.flex.html.staticControls.beads.TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead;
+	import org.apache.flex.html.staticControls.beads.TextInputBead;
 	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.TextModel;
 	
@@ -34,7 +35,8 @@ package
                 ISelectionModel: ArraySelectionModel,
 				ITextButtonBead: TextButtonBead,
 				ITextBead: TextFieldBead,
-				ITextModel: TextModel				
+				ITextModel: TextModel,
+				ITextInputBead: TextInputBead				
 			}
 		}
 		

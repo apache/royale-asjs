@@ -44,6 +44,7 @@ package controllers
 		{
 			app.initialView.addEventListener("buttonClicked", buttonClickHandler);
             app.initialView.addEventListener("listChanged", listChangedHandler);
+            app.initialView.addEventListener("transferClicked", transferClickHandler);
 		}
 		
         private function buttonClickHandler(event:Event):void
@@ -62,6 +63,11 @@ package controllers
         private function listChangedHandler(event:Event):void
         {
             MyModel(app.model).labelText = MyInitialView(app.initialView).symbol;
+        }
+        
+        private function transferClickHandler(event:Event):void
+        {
+        	MyModel(app.model).labelText = MyInitialView(app.initialView).inputText;
         }
         
 		public function setDocument(document:Object, id:String = null):void
