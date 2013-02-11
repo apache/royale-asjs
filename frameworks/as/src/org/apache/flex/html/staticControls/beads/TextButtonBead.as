@@ -20,14 +20,11 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
-	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.ITextModel;
 
 	public class TextButtonBead implements ITextButtonBead

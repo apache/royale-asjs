@@ -109,7 +109,7 @@ package org.apache.flex.html.staticControls
         {
             var tfir:TextFieldItemRenderer = new TextFieldItemRenderer();
             tfir.addBead(new ItemRendererMouseController());
-            tfir.height = 24;
+            tfir.height = 16;
             return tfir;
             
         }

@@ -34,7 +34,7 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
     function(p) {
-    this.element = document.createElement('input');
+    this.element = document.createElement('button');
     this.element.setAttribute('type', 'button');
 
     p.appendChild(this.element);
@@ -48,7 +48,7 @@ org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
-    return this.element.value;
+    return this.element.innerHTML;
 };
 
 /**
@@ -58,5 +58,5 @@ org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
  */
 org.apache.flex.html.staticControls.TextButton.prototype.set_text =
     function(value) {
-    this.element.value = value;
+    this.element.innerHTML = value;
 };

@@ -91,6 +91,24 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
 
 /**
  * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {number} pixels The pixel count from the left edge.
+ */
+org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
+    this.positioner.style.width = pixels.toString() + 'px';
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {number} pixels The pixel count from the top edge.
+ */
+org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
+    this.positioner.style.height = pixels.toString() + 'px';
+};
+
+/**
+ * @expose
  * @type {string}
  */
 org.apache.flex.core.UIBase.prototype.id;
