@@ -29,6 +29,7 @@
     <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
     <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
     <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>
+    <component id="TextInput" class="org.apache.flex.html.staticControls.TextInput"/>
     <component id="List" class="org.apache.flex.html.staticControls.List"/>
     <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
     <component id="LazyCollection" class="org.apache.flex.net.dataConverters.LazyCollection"/>
