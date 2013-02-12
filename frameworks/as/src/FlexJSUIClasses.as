@@ -31,6 +31,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
 	import org.apache.flex.html.staticControls.beads.TextInputBead; TextInputBead;
+	import org.apache.flex.html.staticControls.beads.TextInputWithBorderBead; TextInputWithBorderBead;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
 }

@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -20,54 +21,48 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IStrand;
-	
-	public class TextInputBead extends BaseTextFieldBead
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
+
+	public class TextInputWithBorderBead extends TextInputBead
 	{
-		public function TextInputBead()
+		public function TextInputWithBorderBead()
 		{
 			super();
-			
-			textField.selectable = true;
-			textField.type = TextFieldType.INPUT;
-			textField.mouseEnabled = true;
-			textField.multiline = false;
-			textField.wordWrap = false;
+		}
+		
+		private var _border:Border;
+		
+		public function get border():Border
+		{
+			return _border;
 		}
 		
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 			
-			// Default size
-			var ww:Number = DisplayObject(strand).width;
-			if( isNaN(ww) || ww == 0 ) DisplayObject(strand).width = 100;
-			var hh:Number = DisplayObject(strand).height;
-			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 18;
-			
-			// for input, listen for changes to the _textField and update
-			// the model
-			textField.addEventListener(Event.CHANGE, inputChangeHandler);
+			// add a border to this
+			_border = new Border();
+			border.addToParent(UIBase(strand));
+			_border.model = new SingleLineBorderModel();
+			_border.addBead(new SingleLineBorderBead());
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
 		}
 		
-		private function inputChangeHandler(event:Event):void
-		{
-			textModel.text = textField.text;
-		}
-		
 		private function sizeChangedHandler(event:Event):void
 		{
 			var ww:Number = DisplayObject(strand).width;
-			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
+			_border.width = ww;
 			
 			var hh:Number = DisplayObject(strand).height;
-			if( !isNaN(hh) && hh > 0 ) textField.height = hh;
+			_border.height = hh;
 		}
 	}
 }

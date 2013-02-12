@@ -18,71 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
-	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
-	import org.apache.flex.core.ITextModel;
-	
-	public class TextFieldBead implements IBead, ITextBead
+	public class TextFieldBead extends BaseTextFieldBead
 	{
 		public function TextFieldBead()
 		{
-			_textField = new TextField();
-			_textField.selectable = false;
-			_textField.type = TextFieldType.DYNAMIC;
-			_textField.mouseEnabled = false;
-		}
-		private var textModel:ITextModel;
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			textModel = value.getBeadByType(ITextModel) as ITextModel;
-			textModel.addEventListener("textChange", textChangeHandler);
-			textModel.addEventListener("htmlChange", htmlChangeHandler);
-			DisplayObjectContainer(value).addChild(_textField);
-			if (textModel.text !== null)
-				text = textModel.text;
-			if (textModel.html !== null)
-				html = textModel.html;
-		}
-		
-		private function textChangeHandler(event:Event):void
-		{
-			text = textModel.text;
-		}
-		
-		private function htmlChangeHandler(event:Event):void
-		{
-			html = textModel.html;
-		}
-		
-		private var _textField:TextField;
-		
-		public function get text():String
-		{
-			return _textField.text;
-		}
-		public function set text(value:String):void
-		{
-			_textField.text = value;
-		}
-		
-		public function get html():String
-		{
-			return _textField.htmlText;
-		}
-		
-		public function set html(value:String):void
-		{
-			_textField.htmlText = value;
+			super();
+			
+			textField.selectable = false;
+			textField.type = TextFieldType.DYNAMIC;
+			textField.mouseEnabled = false;
 		}
 	}
 }
