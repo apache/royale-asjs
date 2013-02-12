@@ -20,7 +20,7 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.text.TextFieldType;
 	
-	public class TextFieldBead extends BaseTextFieldBead
+	public class TextFieldBead extends TextFieldBeadBase
 	{
 		public function TextFieldBead()
 		{

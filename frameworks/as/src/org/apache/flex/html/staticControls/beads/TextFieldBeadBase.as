@@ -27,9 +27,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.ITextModel;
 	
-	public class BaseTextFieldBead implements IBead, ITextBead
+	public class TextFieldBeadBase implements IBead, ITextBead
 	{
-		public function BaseTextFieldBead()
+		public function TextFieldBeadBase()
 		{
 			_textField = new TextField();
 		}

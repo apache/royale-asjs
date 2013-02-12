@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IStrand;
 	
-	public class TextInputBead extends BaseTextFieldBead
+	public class TextInputBead extends TextFieldBeadBase
 	{
 		public function TextInputBead()
 		{
