@@ -53,21 +53,18 @@ package org.apache.flex.html.staticControls.beads.controllers
         
         private var timeout:uint;
         private var repeater:uint;
-		private var stop:Boolean = false;
         
         private function mouseDownHandler(event:MouseEvent):void
         {
             event.target.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
             event.target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-			stop = false;
-            setTimeout(sendFirstRepeat, delay); 
+            timeout = setTimeout(sendFirstRepeat, delay); 
         }
         
         private function mouseOutHandler(event:MouseEvent):void
         {
             event.target.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
             event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler); 
-			stop = true;
             if (repeater > 0)
                 clearInterval(repeater);
             repeater = 0;
@@ -79,8 +76,7 @@ package org.apache.flex.html.staticControls.beads.controllers
         private function mouseUpHandler(event:MouseEvent):void
         {
             event.target.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
-            event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);   
-			stop = true;
+            event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);  
             if (repeater > 0)
                 clearInterval(repeater);
             repeater = 0;
@@ -93,22 +89,13 @@ package org.apache.flex.html.staticControls.beads.controllers
         {
             clearTimeout(timeout);
             timeout = 0;
-			if (!stop) {
-            	repeater = setInterval(sendRepeats, interval);
-            	IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
-			}
+        	repeater = setInterval(sendRepeats, interval);
+        	IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
         }
         
         private function sendRepeats():void
         {
-			if( stop ) {
-				if (repeater > 0 ) 
-					clearInterval(repeater);
-				repeater = 0;
-			}
-			else {
-        	    IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
-			}
+       	    IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
         }
 	}
 }
