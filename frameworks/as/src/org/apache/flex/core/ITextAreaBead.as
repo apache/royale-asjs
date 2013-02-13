@@ -16,25 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.core
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class FlexJSUIClasses
-{
-	import org.apache.flex.html.staticControls.beads.IButtonBead; IButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
-	import org.apache.flex.html.staticControls.beads.TextInputBead; TextInputBead;
-	import org.apache.flex.html.staticControls.beads.TextInputWithBorderBead; TextInputWithBorderBead;
-	import org.apache.flex.html.staticControls.beads.TextAreaBead; TextAreaBead;
-	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
-    import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
-}
-
+	public interface ITextAreaBead extends IBead
+	{
+		function get text():String;
+		function set text(value:String):void;
+		
+		function get html():String;
+		function set html(value:String):void;
+	}
 }

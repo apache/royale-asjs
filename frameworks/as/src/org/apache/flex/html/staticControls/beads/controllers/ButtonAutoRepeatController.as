@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
 {
+	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-    import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.clearInterval;
 	import flash.utils.clearTimeout;
-    import flash.utils.setInterval;
-    import flash.utils.setTimeout;
+	import flash.utils.setInterval;
+	import flash.utils.setTimeout;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
@@ -53,11 +53,13 @@ package org.apache.flex.html.staticControls.beads.controllers
         
         private var timeout:uint;
         private var repeater:uint;
+		private var stop:Boolean = false;
         
         private function mouseDownHandler(event:MouseEvent):void
         {
             event.target.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
             event.target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			stop = false;
             setTimeout(sendFirstRepeat, delay); 
         }
         
@@ -65,6 +67,7 @@ package org.apache.flex.html.staticControls.beads.controllers
         {
             event.target.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
             event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler); 
+			stop = true;
             if (repeater > 0)
                 clearInterval(repeater);
             repeater = 0;
@@ -76,7 +79,8 @@ package org.apache.flex.html.staticControls.beads.controllers
         private function mouseUpHandler(event:MouseEvent):void
         {
             event.target.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);   
-            event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);               
+            event.target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);   
+			stop = true;
             if (repeater > 0)
                 clearInterval(repeater);
             repeater = 0;
@@ -89,13 +93,22 @@ package org.apache.flex.html.staticControls.beads.controllers
         {
             clearTimeout(timeout);
             timeout = 0;
-            repeater = setInterval(sendRepeats, interval);
-            IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+			if (!stop) {
+            	repeater = setInterval(sendRepeats, interval);
+            	IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+			}
         }
         
         private function sendRepeats():void
         {
-            IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+			if( stop ) {
+				if (repeater > 0 ) 
+					clearInterval(repeater);
+				repeater = 0;
+			}
+			else {
+        	    IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+			}
         }
 	}
 }
