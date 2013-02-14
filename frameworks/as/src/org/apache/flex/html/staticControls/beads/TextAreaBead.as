@@ -132,8 +132,15 @@ package org.apache.flex.html.staticControls.beads
 		
 		private function textScrollHandler(event:Event):void
 		{
+			/* This needs work. the calculation is still off. Reverting to basic
+			   values for scrolling and scroll position.
+			*/
+			//trace("numLines="+textField.numLines+", scrollV="+textField.scrollV+", bottom="+textField.bottomScrollV+", max="+textField.maxScrollV);
+			var visibleLines:int = textField.bottomScrollV - textField.scrollV + 1;
+			var scrollableLines:int = textField.numLines - visibleLines + 1;
+			//trace("-- scrollableLines="+scrollableLines+", visibleLines="+visibleLines);
 			var vsbm:ScrollBarModel = ScrollBarModel(vScrollBar.model);
-			vsbm.maximum = textField.numLines;
+			vsbm.maximum = textField.numLines;//scrollableLines;
 			vsbm.value = textField.scrollV;
 		}
 		
