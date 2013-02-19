@@ -50,7 +50,18 @@ limitations under the License.
                                  destinationPropertyName="dataProvider" />
         </basic:beads>
     </basic:List>
-    <basic:Label x="50" y="210" text="Input:" />
-    <basic:TextInput id="input" x="50" y="225" />
-    <basic:TextButton text="Transfer" x="50" y="250" click="dispatchEvent(new Event('transferClicked'))" />
+    
+    
+    <basic:TextArea x="320" y="25" width="150" height="75">
+		<basic:beads>
+			<basic:SimpleBinding eventName="labelTextChanged"
+								 sourceID="applicationModel"
+								 sourcePropertyName="labelText"
+								 destinationPropertyName="text" />
+		</basic:beads>
+    </basic:TextArea>
+    <basic:TextInput id="input" x="320" y="110" />
+    <basic:TextButton text="Transfer" x="320" y="138" click="dispatchEvent(new Event('transferClicked'))" />
+    
+    
 </basic:ViewBase>
