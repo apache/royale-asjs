@@ -63,5 +63,7 @@ limitations under the License.
     <basic:TextInput id="input" x="320" y="110" />
     <basic:TextButton text="Transfer" x="320" y="138" click="dispatchEvent(new Event('transferClicked'))" />
     
+    <basic:CheckBox id="checkbox" x="320" y="170" text="Check Me" />
+    
     
 </basic:ViewBase>

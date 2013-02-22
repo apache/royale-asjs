@@ -21,12 +21,14 @@ package
 	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.core.SimpleValuesImpl;
+	import org.apache.flex.html.staticControls.beads.CheckBoxBead;
 	import org.apache.flex.html.staticControls.beads.TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead;
 	import org.apache.flex.html.staticControls.beads.TextInputBead;
 	import org.apache.flex.html.staticControls.beads.TextInputWithBorderBead;
 	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.TextModel;
+	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel;
 	
 	public class MySimpleValuesImpl extends SimpleValuesImpl
 	{
@@ -37,7 +39,9 @@ package
 				ITextButtonBead: TextButtonBead,
 				ITextBead: TextFieldBead,
 				ITextModel: TextModel,
-				ITextInputBead: TextInputWithBorderBead				
+				ITextInputBead: TextInputWithBorderBead,
+				IToggleButtonModel: ToggleButtonModel,
+				ICheckBoxBead:  CheckBoxBead				
 			}
 		}
 		
