@@ -32,7 +32,7 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>manifest.xml</manifest>
+                <manifest>basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
