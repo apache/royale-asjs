@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   xmlns:s="library://ns.adobe.com/flex/spark"
-			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   creationComplete="creationCompleteHandler(event)" viewSourceURL="srcview/index.html">
-
+<g:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:g="http://flex.apache.org/jsg"
+			   creationComplete="creationCompleteHandler(event)" >
+	
 	<fx:Script><![CDATA[
 		
-		import mx.events.FlexEvent;
+		import js.goog.mx.events.FlexEvent;
 		
 		protected function creationCompleteHandler(event:FlexEvent):void
 		{
@@ -19,4 +18,4 @@
 	
 	<fx:Declarations />
 	
-</s:Application>
+</g:Application>

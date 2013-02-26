@@ -3,9 +3,9 @@ package
 
 import flash.events.MouseEvent;
 
-import spark.components.Button;
-import spark.components.Group;
-import spark.components.Label;
+import js.goog.spark.components.Button;
+import js.goog.spark.components.Group;
+import js.goog.spark.components.Label;
 
 public class Example extends Group
 {
