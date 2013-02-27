@@ -34,6 +34,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.TextInputWithBorderBead; TextInputWithBorderBead;
 	import org.apache.flex.html.staticControls.beads.TextAreaBead; TextAreaBead;
 	import org.apache.flex.html.staticControls.beads.CheckBoxBead; CheckBoxBead;
+	import org.apache.flex.html.staticControls.beads.RadioButtonBead; RadioButtonBead;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;

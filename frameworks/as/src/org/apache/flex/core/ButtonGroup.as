@@ -16,83 +16,60 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.core
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-	
-	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel
+	import flash.utils.Dictionary;
+
+	public class ButtonGroup extends EventDispatcher
 	{
-		public function ToggleButtonModel()
-		{
-			super();
-		}
+		private static var groups:Dictionary;
 		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
+		public static function getGroup( name:String ) : ButtonGroup
 		{
-			_strand = value;
-		}
-		
-		private var _text:String;
-		public function get text():String
-		{
-			return _text;
-		}
-		
-		public function set text(value:String):void
-		{
-			if (value != _text)
-			{
-				_text = value;
-				dispatchEvent(new Event("textChange"));
+			if( groups == null ) {
+				groups = new Dictionary();
 			}
-		}
-		
-		private var _html:String;
-		public function get html():String
-		{
-			return _html;
-		}
-		
-		public function set html(value:String):void
-		{
-			if( value != html )
-			{
-				_html = value;
-				dispatchEvent(new Event("htmlChange"));
+			
+			var result:ButtonGroup;
+			if( groups.hasOwnProperty(name) ) result = groups[name];
+			else {
+				result = new ButtonGroup();
+				result.name = name;
+				groups[name] = result;
 			}
+			return result;
 		}
 		
-		private var _selected:Boolean;
 		
-		public function get selected():Boolean
+		public function ButtonGroup()
 		{
-			return _selected;
 		}
 		
-		public function set selected(value:Boolean):void
+		private var _name:String;
+		
+		public function get name() : String
 		{
-			if( value != _selected )
-			{
-				_selected = value;
-				dispatchEvent(new Event("selectedChange"));
+			return _name;
+		}
+		
+		public function set name( value:String ) : void
+		{
+			if( value != _name ) {
+				_name = value;
+				dispatchEvent(new Event("nameChange"));
 			}
 		}
 		
 		private var _value:Object;
 		
-		public function get value():Object
+		public function get value() : Object
 		{
 			return _value;
 		}
 		
-		public function set value(newValue:Object):void
+		public function set value(newValue:Object) : void
 		{
 			if( newValue != _value )
 			{

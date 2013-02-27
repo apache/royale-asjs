@@ -33,6 +33,7 @@
     <component id="TextArea" class="org.apache.flex.html.staticControls.TextArea"/>
     <component id="List" class="org.apache.flex.html.staticControls.List"/>
     <component id="CheckBox" class="org.apache.flex.html.staticControls.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.html.staticControls.RadioButton"/>
     <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
     <component id="LazyCollection" class="org.apache.flex.net.dataConverters.LazyCollection"/>
     <component id="JSONInputParser" class="org.apache.flex.net.JSONInputParser"/>

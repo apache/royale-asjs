@@ -18,16 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IToggleButtonModel extends IBeadModel
+	public interface IRadioButtonBead extends IBead
 	{
 		function get text():String;
 		function set text(value:String):void;
 		
 		function get html():String;
 		function set html(value:String):void;
-		
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
 		
 		function get value():Object;
 		function set value(newValue:Object):void;
