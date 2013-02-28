@@ -19,70 +19,68 @@
 package org.apache.flex.html.staticControls.beads.models
 {
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-	
-	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel
+	import org.apache.flex.core.ButtonGroup;
+	import org.apache.flex.core.IValueToggleButtonModel;
+
+	public class ValueToggleButtonModel extends ToggleButtonModel implements IValueToggleButtonModel
 	{
-		public function ToggleButtonModel()
+		public function ValueToggleButtonModel()
 		{
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
+		override public function set selected(selValue:Boolean):void
 		{
-			_strand = value;
-		}
-		
-		private var _text:String;
-		public function get text():String
-		{
-			return _text;
-		}
-		
-		public function set text(value:String):void
-		{
-			if (value != _text)
+			if( selValue != super.selected )
 			{
-				_text = value;
-				dispatchEvent(new Event("textChange"));
+				super.selected = selValue;
+				
+				if( selValue ) {
+					_buttonGroup.value = this.value;
+				}
 			}
 		}
 		
-		private var _html:String;
-		public function get html():String
+		private var _value:Object;
+		
+		public function get value():Object
 		{
-			return _html;
+			return _value;
 		}
 		
-		public function set html(value:String):void
+		public function set value(newValue:Object):void
 		{
-			if( value != html )
+			if( newValue != _value )
 			{
-				_html = value;
-				dispatchEvent(new Event("htmlChange"));
+				_value = newValue;
+				dispatchEvent(new Event("valueChange"));
 			}
 		}
 		
-		private var _selected:Boolean;
+		private var _groupName:String;
 		
-		public function get selected():Boolean
+		public function get groupName():String
 		{
-			return _selected;
+			return _groupName;
 		}
 		
-		public function set selected(value:Boolean):void
+		public function set groupName(value:String):void
 		{
-			if( value != _selected )
+			if( value != _groupName )
 			{
-				_selected = value;
-				dispatchEvent(new Event("selectedChange"));
+				_groupName = value;
+				dispatchEvent(new Event("groupNameChange"));
+				
+				_buttonGroup = ButtonGroup.getGroup(groupName);
 			}
+		}
+		
+		private var _buttonGroup:ButtonGroup;
+		
+		public function get buttonGroup() : ButtonGroup
+		{
+			return _buttonGroup;
 		}
 	}
 }

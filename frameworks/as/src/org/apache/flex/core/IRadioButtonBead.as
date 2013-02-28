@@ -25,8 +25,5 @@ package org.apache.flex.core
 		
 		function get html():String;
 		function set html(value:String):void;
-		
-		function get value():Object;
-		function set value(newValue:Object):void;
 	}
 }

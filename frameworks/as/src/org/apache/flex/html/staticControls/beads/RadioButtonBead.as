@@ -29,7 +29,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IRadioButtonBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
+	import org.apache.flex.core.IValueToggleButtonModel;
 	
 	public class RadioButtonBead implements IBead, IRadioButtonBead
 	{
@@ -64,9 +64,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var sprites:Array;
 		
-		private var _toggleButtonModel:IToggleButtonModel;
+		private var _toggleButtonModel:IValueToggleButtonModel;
 		
-		public function get toggleButtonModel() : IToggleButtonModel
+		public function get toggleButtonModel() : IValueToggleButtonModel
 		{
 			return _toggleButtonModel;
 		}
@@ -76,11 +76,10 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+			_toggleButtonModel = value.getBeadByType(IValueToggleButtonModel) as IValueToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
 			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
-			_toggleButtonModel.addEventListener("valueChange", valueChangeHandler);
 			if (_toggleButtonModel.text != null)
 				text = _toggleButtonModel.text;
 			if (_toggleButtonModel.html != null)
@@ -177,26 +176,9 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
-		private var _value:Object;
-		
-		public function get value() : Object
-		{
-			return _value;
-		}
-		
-		public function set value(newValue:Object):void
-		{
-			_value = newValue;
-		}
-		
 		private function selectedChangeHandler(event:Event):void
 		{
 			selected = toggleButtonModel.selected;
-		}
-		
-		private function valueChangeHandler(event:Event):void
-		{
-			value = toggleButtonModel.value;
 		}
 		
 		protected function layoutControl() : void

@@ -30,7 +30,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IRadioButtonBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
+	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.core.ValuesManager;
 	
 	public class RadioButton extends SimpleButton implements IStrand, IInitSkin, IInitModel
@@ -42,70 +42,57 @@ package org.apache.flex.html.staticControls
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 		
-		private var _buttonGroup:ButtonGroup;
+		private function handleValueChange(event:Event):void
+		{
+			selected = IValueToggleButtonModel(model).buttonGroup.value == value;
+		}
 		
 		private var _groupName:String;
 		
 		public function get groupName() : String
 		{
-			return _groupName;
+			return IValueToggleButtonModel(model).groupName;
 		}
 		
 		public function set groupName(value:String) : void
 		{
-			if( _groupName != value )
-			{
-				_groupName = value;
-				
-				_buttonGroup = ButtonGroup.getGroup(groupName);
-				_buttonGroup.addEventListener("nameChange", handleNameChange);
-				_buttonGroup.addEventListener("valueChange",handleValueChange);
-			}
-		}
-		
-		private function handleNameChange(event:Event):void
-		{
-			
-		}
-		
-		private function handleValueChange(event:Event):void
-		{
-			selected = _buttonGroup.value == value;
+			IValueToggleButtonModel(model).groupName = value;
+			IValueToggleButtonModel(model).buttonGroup.addEventListener("valueChange", handleValueChange);
 		}
 		
 		public function get text():String
 		{
-			return IToggleButtonModel(model).text;
+			return IValueToggleButtonModel(model).text;
 		}
 		public function set text(value:String):void
 		{
-			IToggleButtonModel(model).text = value;
+			IValueToggleButtonModel(model).text = value;
 		}
 		
 		public function get selected():Boolean
 		{
-			return IToggleButtonModel(model).selected;
+			return IValueToggleButtonModel(model).selected;
 		}
 		
-		public function set selected(value:Boolean):void
+		public function set selected(selValue:Boolean):void
 		{
-			IToggleButtonModel(model).selected = value;
+			IValueToggleButtonModel(model).selected = selValue;
 		}
 		
 		public function get value():Object
 		{
-			return IToggleButtonModel(model).value;
+			return IValueToggleButtonModel(model).value;
 		}
 		
 		public function set value(newValue:Object):void
 		{
-			IToggleButtonModel(model).value = newValue;
+			IValueToggleButtonModel(model).value = newValue;
 		}
 		
 		public function initModel():void
 		{
-			if (getBeadByType(IToggleButtonModel) == null) 
-				addBead(new (ValuesManager.valuesImpl.getValue("IToggleButtonModel")) as IBead);
+			if (getBeadByType(IValueToggleButtonModel) == null) 
+				addBead(new (ValuesManager.valuesImpl.getValue("IValueToggleButtonModel")) as IBead);
 		}
 		
 		public function initSkin():void
@@ -211,9 +198,11 @@ package org.apache.flex.html.staticControls
 		
 		private function internalMouseHandler(event:MouseEvent) : void
 		{
-			selected = !selected;
-			_buttonGroup.value = value;
-			dispatchEvent( new Event(Event.CHANGE) );
+			// prevent radiobutton from being turned off by a click
+			if( !selected ) {
+				selected = !selected;
+				dispatchEvent( new Event(Event.CHANGE) );
+			}
 		}
 	}
 }

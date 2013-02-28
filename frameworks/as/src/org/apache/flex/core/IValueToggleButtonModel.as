@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IToggleButtonModel extends IBeadModel
+	public interface IValueToggleButtonModel extends IToggleButtonModel
 	{
-		function get text():String;
-		function set text(value:String):void;
+		function get value():Object;
+		function set value(newValue:Object):void;
 		
-		function get html():String;
-		function set html(value:String):void;
+		function get groupName():String;
+		function set groupName(value:String):void;
 		
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
+		function get buttonGroup():ButtonGroup;
 	}
 }

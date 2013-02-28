@@ -20,16 +20,15 @@ package org.apache.flex.core
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	import flash.utils.Dictionary;
 
 	public class ButtonGroup extends EventDispatcher
 	{
-		private static var groups:Dictionary;
+		private static var groups:Object;
 		
 		public static function getGroup( name:String ) : ButtonGroup
 		{
 			if( groups == null ) {
-				groups = new Dictionary();
+				groups = new Object();
 			}
 			
 			var result:ButtonGroup;
