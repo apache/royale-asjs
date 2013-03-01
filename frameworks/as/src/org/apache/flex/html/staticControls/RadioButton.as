@@ -23,9 +23,9 @@ package org.apache.flex.html.staticControls
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.ButtonGroup;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IButtonGroup;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IRadioButtonBead;
@@ -42,10 +42,9 @@ package org.apache.flex.html.staticControls
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 		
-		private function handleValueChange(event:Event):void
-		{
-			selected = IValueToggleButtonModel(model).buttonGroup.value == value;
-		}
+		protected static var groups:Array = new Array();
+		
+		private var _buttonGroup:IButtonGroup;
 		
 		private var _groupName:String;
 		
@@ -56,8 +55,22 @@ package org.apache.flex.html.staticControls
 		
 		public function set groupName(value:String) : void
 		{
-			IValueToggleButtonModel(model).groupName = value;
-			IValueToggleButtonModel(model).buttonGroup.addEventListener("valueChange", handleValueChange);
+			for(var i:int=0; i < groups.length; i++)
+			{
+				var bg:IButtonGroup = groups[i] as IButtonGroup;
+				if( bg.name == value ) {
+					_buttonGroup = bg;
+					break;
+				}
+			}
+			
+			if( _buttonGroup == null )  {
+				_buttonGroup = new (ValuesManager.valuesImpl.getValue("IButtonGroup")) as IButtonGroup;
+				_buttonGroup.name = value;
+				groups.push(_buttonGroup);
+			}
+			
+			_buttonGroup.addEventListener("valueChange", handleButtonGroupValueChange);
 		}
 		
 		public function get text():String
@@ -77,6 +90,10 @@ package org.apache.flex.html.staticControls
 		public function set selected(selValue:Boolean):void
 		{
 			IValueToggleButtonModel(model).selected = selValue;
+			
+			if( selValue ) {
+				_buttonGroup.value = value;
+			}
 		}
 		
 		public function get value():Object
@@ -194,6 +211,11 @@ package org.apache.flex.html.staticControls
 				}
 			}
 			return null;
+		}
+		
+		private function handleButtonGroupValueChange(event:Event):void
+		{
+			selected = _buttonGroup.value == value;
 		}
 		
 		private function internalMouseHandler(event:MouseEvent) : void

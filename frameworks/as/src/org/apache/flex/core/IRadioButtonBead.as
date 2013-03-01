@@ -25,5 +25,8 @@ package org.apache.flex.core
 		
 		function get html():String;
 		function set html(value:String):void;
+		
+		function get selected():Boolean;
+		function set selected(value:Boolean):void;
 	}
 }

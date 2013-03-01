@@ -20,7 +20,6 @@ package org.apache.flex.html.staticControls.beads.models
 {
 	import flash.events.Event;
 	
-	import org.apache.flex.core.ButtonGroup;
 	import org.apache.flex.core.IValueToggleButtonModel;
 
 	public class ValueToggleButtonModel extends ToggleButtonModel implements IValueToggleButtonModel
@@ -28,18 +27,6 @@ package org.apache.flex.html.staticControls.beads.models
 		public function ValueToggleButtonModel()
 		{
 			super();
-		}
-		
-		override public function set selected(selValue:Boolean):void
-		{
-			if( selValue != super.selected )
-			{
-				super.selected = selValue;
-				
-				if( selValue ) {
-					_buttonGroup.value = this.value;
-				}
-			}
 		}
 		
 		private var _value:Object;
@@ -71,16 +58,7 @@ package org.apache.flex.html.staticControls.beads.models
 			{
 				_groupName = value;
 				dispatchEvent(new Event("groupNameChange"));
-				
-				_buttonGroup = ButtonGroup.getGroup(groupName);
 			}
-		}
-		
-		private var _buttonGroup:ButtonGroup;
-		
-		public function get buttonGroup() : ButtonGroup
-		{
-			return _buttonGroup;
 		}
 	}
 }

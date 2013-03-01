@@ -21,27 +21,8 @@ package org.apache.flex.core
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 
-	public class ButtonGroup extends EventDispatcher
+	public class ButtonGroup extends EventDispatcher implements IButtonGroup
 	{
-		private static var groups:Object;
-		
-		public static function getGroup( name:String ) : ButtonGroup
-		{
-			if( groups == null ) {
-				groups = new Object();
-			}
-			
-			var result:ButtonGroup;
-			if( groups.hasOwnProperty(name) ) result = groups[name];
-			else {
-				result = new ButtonGroup();
-				result.name = name;
-				groups[name] = result;
-			}
-			return result;
-		}
-		
-		
 		public function ButtonGroup()
 		{
 		}

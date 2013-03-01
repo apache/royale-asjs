@@ -18,12 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IValueToggleButtonModel extends IToggleButtonModel
-	{
-		function get value():Object;
-		function set value(newValue:Object):void;
+	import flash.events.IEventDispatcher;
+
+	public interface IButtonGroup extends IEventDispatcher
+	{	
+		function get name() : String;
+		function set name(value:String):void;
 		
-		function get groupName():String;
-		function set groupName(value:String):void;
+		function get value() : Object;
+		function set value(newValue:Object):void;
 	}
 }
