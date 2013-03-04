@@ -22,10 +22,10 @@ package org.apache.flex.html.staticControls
 	import flash.display.SimpleButton;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.Dictionary;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IButtonGroup;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IRadioButtonBead;
@@ -42,9 +42,7 @@ package org.apache.flex.html.staticControls
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 		
-		protected static var groups:Array = new Array();
-		
-		private var _buttonGroup:IButtonGroup;
+		protected static var dict:Dictionary = new Dictionary(true);
 		
 		private var _groupName:String;
 		
@@ -55,22 +53,7 @@ package org.apache.flex.html.staticControls
 		
 		public function set groupName(value:String) : void
 		{
-			for(var i:int=0; i < groups.length; i++)
-			{
-				var bg:IButtonGroup = groups[i] as IButtonGroup;
-				if( bg.name == value ) {
-					_buttonGroup = bg;
-					break;
-				}
-			}
-			
-			if( _buttonGroup == null )  {
-				_buttonGroup = new (ValuesManager.valuesImpl.getValue("IButtonGroup")) as IButtonGroup;
-				_buttonGroup.name = value;
-				groups.push(_buttonGroup);
-			}
-			
-			_buttonGroup.addEventListener("valueChange", handleButtonGroupValueChange);
+			IValueToggleButtonModel(model).groupName = value;
 		}
 		
 		public function get text():String
@@ -91,8 +74,16 @@ package org.apache.flex.html.staticControls
 		{
 			IValueToggleButtonModel(model).selected = selValue;
 			
+			// if this button is being selected, its value should become
+			// its group's selectedValue
 			if( selValue ) {
-				_buttonGroup.value = value;
+				for each(var rb:RadioButton in dict)
+				{
+					if( rb.groupName == groupName )
+					{
+						rb.selectedValue = value;
+					}
+				}
 			}
 		}
 		
@@ -104,6 +95,18 @@ package org.apache.flex.html.staticControls
 		public function set value(newValue:Object):void
 		{
 			IValueToggleButtonModel(model).value = newValue;
+		}
+		
+		public function get selectedValue():Object 
+		{
+			return IValueToggleButtonModel(model).selectedValue;
+		}
+		
+		public function set selectedValue(newValue:Object):void 
+		{
+			// a radio button is really selected when its value matches that of the group's value
+			IValueToggleButtonModel(model).selected = (newValue == value);
+			IValueToggleButtonModel(model).selectedValue = newValue;
 		}
 		
 		public function initModel():void
@@ -119,6 +122,19 @@ package org.apache.flex.html.staticControls
 			
 			_width = $width;
 			_height = $height;
+			
+			// make sure this button's selectedValue is set from its group's selectedValue
+			// to keep it in sync with the rest of the buttons in its group.
+			for each(var rb:RadioButton in dict)
+			{
+				if( rb.groupName == groupName )
+				{
+					selectedValue = rb.selectedValue;
+					break;
+				}
+			}
+			
+			dict[this] = this;
 		}
 		
 		private var _id:String;
@@ -211,11 +227,6 @@ package org.apache.flex.html.staticControls
 				}
 			}
 			return null;
-		}
-		
-		private function handleButtonGroupValueChange(event:Event):void
-		{
-			selected = _buttonGroup.value == value;
 		}
 		
 		private function internalMouseHandler(event:MouseEvent) : void

@@ -60,5 +60,21 @@ package org.apache.flex.html.staticControls.beads.models
 				dispatchEvent(new Event("groupNameChange"));
 			}
 		}
+		
+		private var _selectedValue:Object;
+		
+		public function get selectedValue():Object
+		{
+			return _selectedValue;
+		}
+		
+		public function set selectedValue(newValue:Object):void
+		{
+			if( _selectedValue != newValue )
+			{
+				_selectedValue = newValue;
+				dispatchEvent(new Event("selectedValueChange"));
+			}
+		}
 	}
 }

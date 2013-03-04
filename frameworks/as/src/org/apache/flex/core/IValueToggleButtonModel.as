@@ -25,5 +25,8 @@ package org.apache.flex.core
 		
 		function get groupName():String;
 		function set groupName(value:String):void;
+		
+		function get selectedValue():Object;
+		function set selectedValue(newValue:Object):void;
 	}
 }

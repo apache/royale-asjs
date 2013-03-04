@@ -79,7 +79,7 @@ package org.apache.flex.html.staticControls.beads
 			_toggleButtonModel = value.getBeadByType(IValueToggleButtonModel) as IValueToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
-			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
+			_toggleButtonModel.addEventListener("selectedValueChange", selectedValueChangeHandler);
 			if (_toggleButtonModel.text != null)
 				text = _toggleButtonModel.text;
 			if (_toggleButtonModel.html != null)
@@ -162,8 +162,6 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_selected = value;
 			
-			layoutControl();
-			
 			if( value ) {
 				SimpleButton(_strand).upState = upAndSelectedSprite;
 				SimpleButton(_strand).downState = downAndSelectedSprite;
@@ -174,11 +172,13 @@ package org.apache.flex.html.staticControls.beads
 				SimpleButton(_strand).downState = downSprite;
 				SimpleButton(_strand).overState = overSprite;
 			}
+			
+			layoutControl();
 		}
 		
-		private function selectedChangeHandler(event:Event):void
+		private function selectedValueChangeHandler(event:Event):void
 		{
-			selected = toggleButtonModel.selected;
+			selected = _toggleButtonModel.value == _toggleButtonModel.selectedValue;
 		}
 		
 		protected function layoutControl() : void
@@ -209,7 +209,7 @@ package org.apache.flex.html.staticControls.beads
 			icon.graphics.drawEllipse(0,0,10,10);
 			icon.graphics.endFill();
 			
-			if( _toggleButtonModel.selected ) {
+			if( selected ) {
 				icon.graphics.beginFill(0x555555);
 				icon.graphics.drawEllipse(2,2,6,6);
 				icon.graphics.endFill();
