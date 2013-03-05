@@ -123,14 +123,21 @@ package org.apache.flex.html.staticControls
 			_width = $width;
 			_height = $height;
 			
-			// make sure this button's selectedValue is set from its group's selectedValue
-			// to keep it in sync with the rest of the buttons in its group.
-			for each(var rb:RadioButton in dict)
-			{
-				if( rb.groupName == groupName )
+			// if this instance is selected, set the local selectedValue to
+			// this instance's value
+			if( selected ) selectedValue = value;
+			
+			else {
+			
+				// make sure this button's selectedValue is set from its group's selectedValue
+				// to keep it in sync with the rest of the buttons in its group.
+				for each(var rb:RadioButton in dict)
 				{
-					selectedValue = rb.selectedValue;
-					break;
+					if( rb.groupName == groupName )
+					{
+						selectedValue = rb.selectedValue;
+						break;
+					}
 				}
 			}
 			
