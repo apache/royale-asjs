@@ -65,5 +65,13 @@ limitations under the License.
     
     <basic:CheckBox id="checkbox" x="320" y="170" text="Check Me" />
     
+    <basic:RadioButton groupName="group1" text="Apples" value="0" x="100" y="130" />
+    <basic:RadioButton groupName="group1" text="Oranges" value="1" x="100" y="150" selected="true" />
+    <basic:RadioButton groupName="group1" text="Grapes" value="2" x="100" y="170" />
+    
+    <basic:RadioButton groupName="group2" text="Red" value="red" x="100" y="230" selected="true" />
+    <basic:RadioButton groupName="group2" text="Green" value="green" x="100" y="250" />
+    <basic:RadioButton groupName="group2" text="Blue" value="blue" x="100" y="270"  />
+    
     
 </basic:ViewBase>

@@ -22,6 +22,7 @@ package
 	
 	import org.apache.flex.core.SimpleValuesImpl;
 	import org.apache.flex.html.staticControls.beads.CheckBoxBead;
+	import org.apache.flex.html.staticControls.beads.RadioButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead;
 	import org.apache.flex.html.staticControls.beads.TextInputBead;
@@ -29,6 +30,7 @@ package
 	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.TextModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel;
+	import org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel;
 	
 	public class MySimpleValuesImpl extends SimpleValuesImpl
 	{
@@ -41,7 +43,9 @@ package
 				ITextModel: TextModel,
 				ITextInputBead: TextInputWithBorderBead,
 				IToggleButtonModel: ToggleButtonModel,
-				ICheckBoxBead:  CheckBoxBead				
+				ICheckBoxBead:  CheckBoxBead,
+				IValueToggleButtonModel: ValueToggleButtonModel,
+				IRadioButtonBead: RadioButtonBead				
 			}
 		}
 		
