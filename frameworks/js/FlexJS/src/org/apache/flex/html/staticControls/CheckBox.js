@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.CheckBox');
 
 goog.require('org.apache.flex.core.UIBase');
 
+var cbCount = 0;
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
@@ -34,8 +36,17 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.addToParent = 
     function(p) {
-    this.element = document.createElement('input');
-    this.element.type = "checkbox";
+    this.element = document.createElement('div');
+    
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = "cb"+(cbCount++);
+    this.element.appendChild(cb);
+    
+    var label = document.createElement('label');
+    label.innerHTML = "Check Box";
+    label.setAttribute('for',cb.id);
+    this.element.appendChild(label);
 
     p.appendChild(this.element);
 
@@ -48,7 +59,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.get_text = function() {
-    return this.element.value
+    return this.element.childNodes.item(1).innerHTML;
 };
 
 /**
@@ -57,7 +68,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.get_text = function() {
  * @param {string} value The text setter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.set_text = function(value) {
-    this.element.value = value;
+    this.element.childNodes.item(1).innerHTML = value;
 };
 
 /**
@@ -66,7 +77,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.set_text = function(value
  * @return {bool} The selected getter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.get_selected = function() {
-    return this.element.checked
+    return this.element.childNodes.item(0).checked;
 };
 
 /**
@@ -75,5 +86,5 @@ org.apache.flex.html.staticControls.CheckBox.prototype.get_selected = function()
  * @param {bool} value The selected setter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.set_selected = function(value) {
-    this.element.checked = value;
+    this.element.childNodes.item(0).checked = value;
 };
