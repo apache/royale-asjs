@@ -36,18 +36,13 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.addToParent = 
     function(p) {
-    this.element = document.createElement('div');
-    
-    var cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.id = "cb"+(cbCount++);
-    this.element.appendChild(cb);
-    
-    var label = document.createElement('label');
-    label.innerHTML = "Check Box";
-    label.setAttribute('for',cb.id);
-    this.element.appendChild(label);
-
+	this.element = document.createElement('label');
+	
+	var cb = document.createElement('input');
+	cb.type = 'checkbox';
+	this.element.appendChild(cb);
+	this.element.appendChild(document.createTextNode("check box"));
+	
     p.appendChild(this.element);
 
     this.positioner = this.element;
@@ -59,7 +54,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.get_text = function() {
-    return this.element.childNodes.item(1).innerHTML;
+    return this.element.childNodes.item(1).nodeValue;
 };
 
 /**
@@ -68,7 +63,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.get_text = function() {
  * @param {string} value The text setter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.set_text = function(value) {
-    this.element.childNodes.item(1).innerHTML = value;
+    this.element.childNodes.item(1).nodeValue = value;
 };
 
 /**

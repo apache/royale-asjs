@@ -36,17 +36,12 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.addToParent = 
     function(p) {
-    this.element = document.createElement('div');
-    
-    var rb = document.createElement('input');
-    rb.type = 'radio';
-    rb.id = "rb"+(rbCount++);
-    this.element.appendChild(rb);
-    
-    var label = document.createElement('label');
-    label.innerHTML = this.groupName;//"Radio Button";
-    label.setAttribute('for',rb.id);
-    this.element.appendChild(label);
+	this.element = document.createElement('label');
+	
+	var rb = document.createElement('input');
+	rb.type = 'radio';
+	this.element.appendChild(rb);
+	this.element.appendChild(document.createTextNode("radio button"));
 
     p.appendChild(this.element);
 
@@ -77,7 +72,7 @@ org.apache.flex.html.staticControls.RadioButton.prototype.set_groupName = functi
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.get_text = function() {
-    return this.element.childNodes.item(1).innerHTML;
+    return this.element.childNodes.item(1).nodeValue;
 };
 
 /**
@@ -86,7 +81,7 @@ org.apache.flex.html.staticControls.RadioButton.prototype.get_text = function() 
  * @param {string} value The text setter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.set_text = function(value) {
-    this.element.childNodes.item(1).innerHTML = value;
+    this.element.childNodes.item(1).nodeValue = value;
 };
 
 /**
