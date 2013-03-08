@@ -112,13 +112,13 @@ package org.apache.flex.html.staticControls
 		public function initModel():void
 		{
 			if (getBeadByType(IValueToggleButtonModel) == null) 
-				addBead(new (ValuesManager.valuesImpl.getValue("IValueToggleButtonModel")) as IBead);
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iValueToggleButtonModel")) as IBead);
 		}
 		
 		public function initSkin():void
 		{
 			if (getBeadByType(IRadioButtonBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue("IRadioButtonBead")) as IBead);	
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iRadioButtonBead")) as IBead);	
 			
 			_width = $width;
 			_height = $height;

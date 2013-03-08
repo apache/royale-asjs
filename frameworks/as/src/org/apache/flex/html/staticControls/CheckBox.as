@@ -63,13 +63,13 @@ package org.apache.flex.html.staticControls
 		public function initModel():void
 		{
 			if (getBeadByType(IToggleButtonModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue("IToggleButtonModel")) as IBead);
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iToggleButtonModel")) as IBead);
 		}
 		
 		public function initSkin():void
 		{
 			if (getBeadByType(ICheckBoxBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue("ICheckBoxBead")) as IBead);	
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iCheckBoxBead")) as IBead);	
 			
 			_width = $width;
 			_height = $height;

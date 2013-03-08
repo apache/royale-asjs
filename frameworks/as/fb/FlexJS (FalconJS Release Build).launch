@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="FLEXJS_HOME" value="/Users/aharui/Work/apache/asjs/branches/develop/frameworks/js/FlexJS/src"/>
+<mapEntry key="GOOG_HOME" value="/Applications/GoogleClosure/library/closure/goog"/>
+</mapAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.ui.externaltools.launchGroup"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${project}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin/java"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-Xmx384m -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;${FLEX_HOME}&quot; -Dflexlib=&quot;${FLEX_HOME}/frameworks&quot; -jar ${FLEX_HOME}/js/lib/mxmlc.jar -compiler.mxml.children-as-data -output=&quot;${project_loc}/binjs-release/${project_name}.js&quot; &quot;${resource_loc}&quot;"/>
+</launchConfiguration>

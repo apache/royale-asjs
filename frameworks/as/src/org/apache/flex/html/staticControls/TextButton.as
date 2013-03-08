@@ -55,13 +55,13 @@ package org.apache.flex.html.staticControls
 		override public function initModel():void
 		{
 			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue("ITextModel")) as IBead);
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
 		}
 		
 		override public function initSkin():void
 		{
 			if (getBeadByType(ITextButtonBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue("ITextButtonBead")) as IBead);			
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextButtonBead")) as IBead);			
 		}
 	}
 }

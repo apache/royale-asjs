@@ -18,38 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
-	
-	import org.apache.flex.events.ValueChangeEvent;
-	
-	public class SimpleValuesImpl extends EventDispatcher implements IValuesImpl
+    /**
+     * An object of various properties and values that are not otherwise
+     * linked in by hard class references, like styles, rsls, mixins.
+     */
+	public interface IFlexInfo
 	{
-		public function SimpleValuesImpl()
-		{
-			super();
-		}
-		
-		public var values:Object;
-		
-		public function getValue(thisObject:Object, valueName:String):Object
-		{
-			return values[valueName];
-		}
-		
-		public function setValue(thisObject:Object, valueName:String, value:Object):void
-		{
-			var oldValue:Object = values[valueName];
-			if (oldValue != value)
-			{
-				values[valueName] = value;
-				dispatchEvent(new ValueChangeEvent(ValueChangeEvent.VALUE_CHANGE, false, false, oldValue, value));
-			}
-		}
-        
-        public function init(mainClass:Object):void
-        {
-            // do nothing
-        }
+		function get info():Object
 	}
 }

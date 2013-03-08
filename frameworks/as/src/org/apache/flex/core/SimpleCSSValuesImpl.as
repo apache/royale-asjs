@@ -1,0 +1,180 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+package org.apache.flex.core
+{
+	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
+	import flash.system.ApplicationDomain;
+	import flash.utils.getQualifiedClassName;
+	
+	import org.apache.flex.events.ValueChangeEvent;
+	
+	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
+	{
+		public function SimpleCSSValuesImpl()
+		{
+			super();
+		}
+		
+        public function init(mainClass:Object):void
+        {
+            var mainClassName:String = getQualifiedClassName(mainClass);
+            var styleClassName:String = "_" + mainClassName + "_Styles";
+            var c:Class = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
+            values = {};
+            generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
+        }
+        
+        public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
+        {
+            var declarationName:String = "";
+            var segmentName:String = "";
+            var n:int = arr.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var className:int = arr[i];
+                if (className == CSSClass.CSSSelector)
+                {
+                    var selectorName:String = arr[++i];
+                    segmentName = selectorName + segmentName;
+                    if (declarationName != "")
+                        declarationName += " ";
+                    declarationName += segmentName;
+                    segmentName = "";
+                }
+                else if (className == CSSClass.CSSCondition)
+                {
+                    // not supported
+                }
+                else if (className == CSSClass.CSSStyleDeclaration)
+                {
+                    var factoryName:int = arr[++i]; // defaultFactory or factory
+                    var defaultFactory:Boolean = factoryName == CSSFactory.DefaultFactory;
+                    /*
+                    if (defaultFactory)
+                    {
+                        mergedStyle = styleManager.getMergedStyleDeclaration(declarationName);
+                        style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
+                    }
+                    else
+                    {
+                        style = styleManager.getStyleDeclaration(declarationName);
+                        if (!style)
+                        {
+                            style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
+                            if (factoryName == CSSFactory.Override)
+                                newSelectors.push(style);
+                        }
+                    }
+                    */
+                    var finalName:String;
+                    var valuesFunction:Function;
+                    var valuesObject:Object;
+                    if (defaultFactory)
+                    {
+                        valuesFunction = factoryFunctions[declarationName];
+                        valuesObject = new valuesFunction();
+                        finalName = fixNames(declarationName);
+                        values[finalName] = valuesObject;
+                    }
+                    else
+                    {
+                        valuesFunction = factoryFunctions[declarationName];
+                        valuesObject = new valuesFunction();
+                        var o:Object = values[declarationName];
+                        finalName = fixNames(declarationName);
+                        if (o == null)
+                            values[finalName] = valuesObject;
+                        else
+                        {
+                            valuesFunction.prototype = o;
+                            values[finalName] = new valuesFunction();
+                        }
+                    }
+                    declarationName = "";
+                }
+            }
+            
+        }
+
+        private function fixNames(s:String):String
+        {
+            var arr:Array = s.split(" ");
+            var n:int = arr.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var segmentName:String = arr[i];
+                var c:int = segmentName.lastIndexOf(".");
+                if (c != -1)
+                {
+                    segmentName = segmentName.substr(0, c) + "::" + segmentName.substr(c + 1);
+                    arr[i] = segmentName;
+                }
+            }
+            return arr.join(" ");
+        }
+
+        public var values:Object;
+		
+		public function getValue(thisObject:Object, valueName:String):Object
+		{
+            var className:String = getQualifiedClassName(thisObject);
+            var o:Object = values[className];
+            var value:*;
+            if (o)
+            {
+                value = o[valueName];
+                if (value !== undefined)
+                    return value;
+            }
+            o = values["global"];
+			return o[valueName];
+		}
+		
+		public function setValue(thisObject:Object, valueName:String, value:Object):void
+		{
+			var oldValue:Object = values[valueName];
+			if (oldValue != value)
+			{
+				values[valueName] = value;
+				dispatchEvent(new ValueChangeEvent(ValueChangeEvent.VALUE_CHANGE, false, false, oldValue, value));
+			}
+		}
+	}
+}
+
+class CSSClass
+{
+    public static const CSSSelector:int = 0;
+    public static const CSSCondition:int = 1;
+    public static const CSSStyleDeclaration:int = 2;
+}
+
+class CSSFactory
+{
+    public static const DefaultFactory:int = 0;
+    public static const Factory:int = 1;
+    public static const Override:int = 2;
+}
+
+class CSSDataType
+{
+    public static const Native:int = 0;
+    public static const Definition:int = 1;
+}

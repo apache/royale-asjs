@@ -82,7 +82,7 @@ package org.apache.flex.html.staticControls
 		override public function initModel():void
 		{
             if (getBeadByType(ISelectionModel) == null)
-                addBead(new (ValuesManager.valuesImpl.getValue("ISelectionModel")) as IBead);
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iSelectionModel")) as IBead);
 		}
 		
 		public function initSkin():void

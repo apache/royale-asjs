@@ -25,7 +25,7 @@ limitations under the License.
 				   initialize="MyModel(model).labelText='Hello World'"
 				   >
 	<basic:valuesImpl>
-		<local:MySimpleValuesImpl />
+		<basic:SimpleCSSValuesImpl />
 	</basic:valuesImpl>
 	<basic:initialView>
 		<local:MyInitialView />

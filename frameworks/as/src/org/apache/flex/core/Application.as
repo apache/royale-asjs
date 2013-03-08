@@ -34,7 +34,7 @@ package org.apache.flex.core
      */
     [Event(name="initialize", type="flash.events.Event")]
     
-    public class Application extends Sprite implements IStrand
+    public class Application extends Sprite implements IStrand, IFlexInfo
     {
         public function Application()
         {
@@ -53,6 +53,7 @@ package org.apache.flex.core
 	        MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 
             ValuesManager.valuesImpl = valuesImpl;
+            ValuesManager.valuesImpl.init(this);
 
             dispatchEvent(new Event("initialize"));
 
@@ -115,6 +116,11 @@ package org.apache.flex.core
                 }
             }
             return null;
+        }
+        
+        public function get info():Object
+        {
+            return {};           
         }
     }
 }

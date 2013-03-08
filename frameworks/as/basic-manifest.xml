@@ -23,6 +23,7 @@
 
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
+    <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
