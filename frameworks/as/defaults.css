@@ -33,6 +33,12 @@ CheckBox
     ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
 
+ComboBox
+{
+    IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
+    IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
+}
+
 List
 {
     ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
@@ -40,7 +46,7 @@ List
 
 RadioButton
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 

@@ -112,7 +112,7 @@ package org.apache.flex.html.staticControls
 		public function initModel():void
 		{
 			if (getBeadByType(IValueToggleButtonModel) == null) 
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iValueToggleButtonModel")) as IBead);
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iToggleButtonModel")) as IBead);
 		}
 		
 		public function initSkin():void
