@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.net.HTTPService');
 
 goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.net.HTTPHeader');
 
 /**
  * @constructor
@@ -32,6 +33,30 @@ org.apache.flex.net.HTTPService = function() {
 
     /**
      * @private
+     * @type {String}
+     */
+    this._method = "GET";
+
+    /**
+     * @private
+     * @type {Array}
+     */
+    this._headers;
+
+    /**
+     * @private
+     * @type {String}
+     */
+    this._contentData;
+
+    /**
+     * @private
+     * @type {String}
+     */
+    this._contentType = "application/x-www-form-urlencoded";
+
+    /**
+     * @private
      * @type {Array}
      */
     this.strand;
@@ -45,6 +70,30 @@ org.apache.flex.net.HTTPService = function() {
     this.element = new XMLHttpRequest();
 };
 goog.inherits(org.apache.flex.net.HTTPService, org.apache.flex.FlexObject);
+
+/**
+ * @expose
+ * @type {String}
+ */
+org.apache.flex.net.HTTPService.HTTP_METHOD_GET = "GET";
+
+/**
+ * @expose
+ * @type {String}
+ */
+org.apache.flex.net.HTTPService.HTTP_METHOD_POST = "POST";
+
+/**
+ * @expose
+ * @type {String}
+ */
+org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = "PUT";
+
+/**
+ * @expose
+ * @type {String}
+ */
+org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = "DELETE";
 
 /**
  * @this {org.apache.flex.net.HTTPService}
@@ -80,6 +129,78 @@ org.apache.flex.net.HTTPService.prototype.get_data = function() {
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
+ * @return {string} value The contentData.
+ */
+org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
+    return this._contentData;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {string} value The contentData.
+ */
+org.apache.flex.net.HTTPService.prototype.set_contentData = function(value) {
+    this._contentData = value;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {string} value The contentType.
+ */
+org.apache.flex.net.HTTPService.prototype.get_contentType = function() {
+    return this._contentType;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {string} value The contentType.
+ */
+org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
+    this._contentType = value;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {Array} value The array of HTTPHeaders.
+ */
+org.apache.flex.net.HTTPService.prototype.get_headers = function() {
+    return this._headers;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {Array} value The array of HTTPHeaders.
+ */
+org.apache.flex.net.HTTPService.prototype.set_headers = function(value) {
+    this._headers = value;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {String} value The method.
+ */
+org.apache.flex.net.HTTPService.prototype.get_method = function() {
+    return this._method;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {String} value The method.
+ */
+org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
+    this._method = value;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_url = function() {
@@ -102,8 +223,49 @@ org.apache.flex.net.HTTPService.prototype.set_url = function(value) {
 org.apache.flex.net.HTTPService.prototype.send = function() {
     this.element.onreadystatechange = org.apache.flex.FlexGlobal.createProxy(
             this, this.progressHandler);
-    this.element.open("GET",this._url,false);
-    this.element.send();        
+    var url = this._url;
+    var contentData = null;
+    if (this._contentData != undefined)
+    {
+        if (this._method == org.apache.flex.net.HTTPService.HTTP_METHOD_GET)
+        {
+            if (url.indexOf("?") != -1)
+                url += this._contentData;
+            else
+                url += "?" + this._contentData;
+        }
+        else
+            contentData = this._contentData;
+    }
+    
+    this.element.open(this._method,this._url,false);
+    var sawContentType = false;
+    if (this._headers)
+    {
+        var n = this._headers.length;
+        for (var i = 0; i < n; i++)
+        {
+            var header = this._headers[i];
+            if (header.name == org.apache.flex.net.HTTPHeader.CONTENT_TYPE)
+                sawContentType = true;
+            this.element.setRequestHeader(header.name, header.value);
+        }
+    }
+    if (this._method != org.apache.flex.net.HTTPService.HTTP_METHOD_GET &&
+        !sawContentType && contentData != null)
+    {
+        this.element.setRequestHeader(org.apache.flex.net.HTTPHeader.CONTENT_TYPE,
+            this._contentType);
+    }
+    
+    if (contentData != null)
+    {
+        this.element.setRequestHeader("Content-length", contentData.length);
+        this.element.setRequestHeader("Connection", "close");
+        this.element.send(contentData);
+    }
+    else        
+        this.element.send();        
 };
 
 /**

@@ -20,20 +20,90 @@ package org.apache.flex.net
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.URLRequestHeader;
+	import flash.net.URLRequestMethod;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	
+	[Event("complete", flash.events.Event)]
+	
+	[Event("ioError", flash.events.IOErrorEvent)]
+	
+	
     
     [DefaultProperty("beads")]
     
 	public class HTTPService extends EventDispatcher implements IStrand, IBead
 	{
+		public static const HTTP_METHOD_GET:String = URLRequestMethod.GET;
+		public static const HTTP_METHOD_POST:String = URLRequestMethod.POST;
+		public static const HTTP_METHOD_PUT:String = URLRequestMethod.PUT;
+		public static const HTTP_METHOD_DELETE:String = URLRequestMethod.DELETE;
+		
 		public function HTTPService()
 		{
 			super();
+		}
+		
+		private var _contentType:String = "application/x-www-form-urlencoded";
+		public function get contentType():String
+		{
+			return _contentType;
+		}
+		public function set contentType(value:String):void
+		{
+			if (_contentType != value)
+			{
+				_contentType = value;
+				dispatchEvent(new Event("contentTypeChanged"));
+			}
+		}
+		
+		private var _contentData:String;
+		public function get contentData():String
+		{
+			return _contentData;
+		}
+		public function set contentData(value:String):void
+		{
+			if (_contentData != value)
+			{
+				_contentData = value;
+				dispatchEvent(new Event("contentDataChanged"));
+			}
+		}
+
+		private var _headers:Array;
+		public function get headers():Array
+		{
+			return _headers;
+		}
+		public function set headers(value:Array):void
+		{
+			if (_headers != value)
+			{
+				_headers = value;
+				dispatchEvent(new Event("headersChanged"));
+			}
+		}
+		
+		private var _method:String = HTTP_METHOD_GET;
+		public function get method():String
+		{
+			return _method;
+		}
+		public function set method(value:String):void
+		{
+			if (_method != value)
+			{
+				_method = value;
+				dispatchEvent(new Event("methodChanged"));
+			}
 		}
 		
 		private var _url:String;
@@ -115,10 +185,48 @@ package org.apache.flex.net
         {
             if (!urlLoader)
                 urlLoader = new URLLoader();
-            urlLoader.load(new URLRequest(url));
-            urlLoader.addEventListener(Event.COMPLETE, completeHandler);
+			var request:URLRequest = new URLRequest(url);
+			request.method = method;
+			var sawContentType:Boolean;
+			if (headers)
+			{
+				for each (var header:HTTPHeader in headers)
+				{
+					var urlHeader:URLRequestHeader = new URLRequestHeader(header.name, header.value);
+					request.requestHeaders.push(urlHeader);
+					if (header.name == HTTPHeader.CONTENT_TYPE)
+						sawContentType = true;
+				}
+			}
+			if (method != HTTP_METHOD_GET && !sawContentType && contentData != null)
+			{
+				urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
+				request.requestHeaders.push(urlHeader);
+			}
+			if (contentData)
+			{
+				if (method == HTTP_METHOD_GET)
+				{
+					if (url.indexOf("?") != -1)
+						url += contentData;
+					else
+						url += "?" + contentData;
+				}
+				else
+					request.data = contentData;
+			}
+			urlLoader.addEventListener(Event.COMPLETE, completeHandler);
+			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, ioErrorHandler);
+			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, ioErrorHandler);
+            urlLoader.load(request);
         }
         
+		protected function ioErrorHandler(event:Event):void
+		{
+			dispatchEvent(event);
+		}
+		
         protected function completeHandler(event:Event):void
         {
             dispatchEvent(event);
