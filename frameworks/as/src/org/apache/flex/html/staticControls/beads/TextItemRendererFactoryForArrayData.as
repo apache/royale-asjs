@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads
 			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			var listBead:IListBead = value.getBeadByType(IListBead) as IListBead;
 			dataGroup = listBead.dataGroup;
-			selectionModel.addEventListener("dataProviderChange", dataProviderChangeHandler);
+			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			dataProviderChangeHandler(null);
 		}
 		
@@ -55,6 +55,8 @@ package org.apache.flex.html.staticControls.beads
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
+			if (!dp)
+				return;
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
