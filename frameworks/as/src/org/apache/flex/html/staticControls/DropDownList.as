@@ -18,29 +18,65 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	public class DropDownList
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.ISelectionModel;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.html.staticControls.beads.DropDownListBead;
+    import org.apache.flex.html.staticControls.beads.IDropDownListBead;
+	import org.apache.flex.html.staticControls.beads.controllers.DropDownListController;
+    
+    [Event("change", flash.events.Event)]
+    
+	public class DropDownList extends Button
 	{
 		public function DropDownList()
 		{
 		}
 		
-		private var _dataProvider:Array;
-		
-		public function get dataProvider():Array
-		{
-			return _dataProvider;
-		}
-		
-		public function set dataProvider(value:Array):void
-		{
-			_dataProvider = value;	
-		}
-		
-		private var _selectedIndex:int;
-		
-		public function get selectedIndex():int
-		{
-			return _selectedIndex;	
-		}
-	}
+        public function get dataProvider():Object
+        {
+            return ISelectionModel(model).dataProvider;
+        }
+        public function set dataProvider(value:Object):void
+        {
+            ISelectionModel(model).dataProvider = value;
+        }
+        
+        public function get selectedIndex():int
+        {
+            return ISelectionModel(model).selectedIndex;
+        }
+        public function set selectedIndex(value:int):void
+        {
+            ISelectionModel(model).selectedIndex = value;
+        }
+        
+        public function get selectedItem():Object
+        {
+            return ISelectionModel(model).selectedItem;
+        }
+        public function set selectedItem(value:Object):void
+        {
+            ISelectionModel(model).selectedItem = value;
+        }
+        
+        override public function initModel():void
+        {
+            if (getBeadByType(ISelectionModel) == null)
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iSelectionModel")) as IBead);
+        }
+        
+        override public function initSkin():void
+        {
+            // TODO: (aharui) remove later
+            if (getBeadByType(IDropDownListBead) == null)
+            {
+                var lb:DropDownListBead = new DropDownListBead();
+                addBead(lb);	
+				var lc:DropDownListController = new DropDownListController();
+				addBead(lc);	
+            }
+        }
+        
+    }
 }
