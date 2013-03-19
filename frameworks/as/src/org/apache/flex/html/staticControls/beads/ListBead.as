@@ -94,8 +94,11 @@ package org.apache.flex.html.staticControls.beads
 				var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
                 ir.selected = false;
 			}
-            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex);
-            ir.selected = true;
+			if (listModel.selectedIndex != -1)
+			{
+	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex);
+	            ir.selected = true;
+			}
             lastSelectedIndex = listModel.selectedIndex;
 		}
 			
