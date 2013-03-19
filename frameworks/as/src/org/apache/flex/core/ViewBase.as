@@ -18,10 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
+	import flash.events.Event;
 	
-	import org.apache.flex.binding.SimpleBinding;
-	import org.apache.flex.core.IStrand;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]
@@ -34,7 +32,8 @@ package org.apache.flex.core
 		
 		public function initUI(model:Object):void
 		{
-			applicationModel = model;
+			_applicationModel = model;
+			dispatchEvent(new Event("modelChanged"));
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 		}
@@ -51,6 +50,12 @@ package org.apache.flex.core
 		
 		public var mxmlContent:Array;
 		
-		public var applicationModel:Object;
+		private var _applicationModel:Object;
+		
+		[Bindable("modelChanged")]
+		public function get applicationModel():Object
+		{
+			return _applicationModel;
+		}
 	}
 }
