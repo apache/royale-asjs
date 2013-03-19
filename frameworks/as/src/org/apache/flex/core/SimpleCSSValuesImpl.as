@@ -32,8 +32,11 @@ package org.apache.flex.core
 			super();
 		}
 		
+        private var mainClass:Object;
+        
         public function init(mainClass:Object):void
         {
+            this.mainClass = mainClass;
             var mainClassName:String = getQualifiedClassName(mainClass);
             var styleClassName:String = "_" + mainClassName + "_Styles";
             var c:Class = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
@@ -156,6 +159,18 @@ package org.apache.flex.core
 				dispatchEvent(new ValueChangeEvent(ValueChangeEvent.VALUE_CHANGE, false, false, oldValue, value));
 			}
 		}
+        
+        public function getInstance(valueName:String):Object
+        {
+            var o:Object = values["global"];
+            if (o is Class)
+            {
+                o[valueName] = new o[valueName]();
+                if (o[valueName] is IDocument)
+                    o[valueName].setDocument(mainClass);
+            }
+            return o[valueName];
+        }
 	}
 }
 

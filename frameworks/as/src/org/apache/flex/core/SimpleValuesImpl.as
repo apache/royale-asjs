@@ -47,6 +47,11 @@ package org.apache.flex.core
 			}
 		}
         
+        public function getInstance(valueName:String):Object
+        {
+            return values[valueName];
+        }
+        
         public function init(mainClass:Object):void
         {
             // do nothing

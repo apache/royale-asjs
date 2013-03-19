@@ -21,6 +21,7 @@ package org.apache.flex.core
 	public interface IValuesImpl
 	{
 		function getValue(thisObject:Object, valueName:String):Object;
+        function getInstance(valueName:String):Object;
         
         function init(mainClass:Object):void;
 	}
