@@ -96,7 +96,10 @@ package org.apache.flex.html.staticControls.beads.layouts
                 vScrollBar.addEventListener("scroll", scrollHandler);
 			}
 			else if (vScrollBar)
+			{
+				dataGroup.scrollRect = null;
 				vScrollBar.visible = false;
+			}
 		}
 
         private function scrollHandler(event:Event):void
