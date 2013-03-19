@@ -39,9 +39,20 @@ ComboBox
     IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
 }
 
-List
+DropDownList
 {
     ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
+
+DropDownListList
+{
+    ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+}
+
+List
+{
+	ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
 
 RadioButton

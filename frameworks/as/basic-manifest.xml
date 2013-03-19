@@ -28,6 +28,8 @@
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
     <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
+    <component id="DropDownList" class="org.apache.flex.html.staticControls.DropDownList"/>
+    <component id="DropDownListList" class="org.apache.flex.html.staticControls.supportClasses.DropDownListList"/>
     <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
     <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>
     <component id="TextInput" class="org.apache.flex.html.staticControls.TextInput"/>
