@@ -33,6 +33,12 @@ org.apache.flex.net.HTTPService = function() {
 
     /**
      * @private
+     * @type {Number}
+     */
+    this._status;
+
+    /**
+     * @private
      * @type {String}
      */
     this._method = "GET";
@@ -42,6 +48,24 @@ org.apache.flex.net.HTTPService = function() {
      * @type {Array}
      */
     this._headers;
+
+    /**
+     * @private
+     * @type {Array}
+     */
+    this._responseHeaders;
+
+    /**
+     * @private
+     * @type {String}
+     */
+    this._responseURL;
+
+    /**
+     * @private
+     * @type {Number}
+     */
+    this._timeout;
 
     /**
      * @private
@@ -201,6 +225,65 @@ org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
+ * @return {Array} value The array of HTTPHeaders.
+ */
+org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
+    if (typeof this._responseHeaders == 'undefined')
+    {
+        var allHeaders = this.element.getAllResponseHeaders();
+        this._responseHeaders = allHeaders.split('\n');
+        var n = this._responseHeaders.length;
+        for (var i = 0; i < n; i++)
+        {
+            var hdr = this._responseHeaders[i];
+            var c = hdr.indexOf(':');
+            var part1 = hdr.substring(0, c);
+            var part2 = hdr.substring(c + 2);
+            this._responseHeaders[i] = new org.apache.flex.net.HTTPHeader(part1, part2);
+        }
+    }
+    return this._responseHeaders;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {string} value The url.
+ */
+org.apache.flex.net.HTTPService.prototype.get_responseUrl = function() {
+    return this._responseUrl;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {Number} value The status.
+ */
+org.apache.flex.net.HTTPService.prototype.get_status = function() {
+    return this._status;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @return {Number} value The timeout.
+ */
+org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
+    return this._timeout;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {Number} value The timeout.
+ */
+org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
+    this._timeout = value;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_url = function() {
@@ -238,7 +321,8 @@ org.apache.flex.net.HTTPService.prototype.send = function() {
             contentData = this._contentData;
     }
     
-    this.element.open(this._method,this._url,false);
+    this.element.timeout = this._timeout;
+    this.element.open(this._method,this._url,true);
     var sawContentType = false;
     if (this._headers)
     {
@@ -273,7 +357,18 @@ org.apache.flex.net.HTTPService.prototype.send = function() {
  * @this {org.apache.flex.net.HTTPService}
  */
 org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
-    if (this.element.readyState == 4)
+    var foo = this.element.readyState;
+    if (this.element.readyState == 2)
+    {
+        this._status = this.element.status;
+        var evt = document.createEvent('Event');
+        evt.initEvent('httpResponseStatus', true, true);
+        this.element.dispatchEvent(evt);
+        evt = document.createEvent('Event');
+        evt.initEvent('httpStatus', true, true);
+        this.element.dispatchEvent(evt);
+    }
+    else if (this.element.readyState == 4)
     {
         var evt = document.createEvent('Event');
         evt.initEvent('complete', true, true);

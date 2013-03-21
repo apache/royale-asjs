@@ -34,7 +34,9 @@ package org.apache.flex.net
 	
 	[Event("ioError", flash.events.IOErrorEvent)]
 	
+	[Event("httpStatus", flash.events.Event)]
 	
+	[Event("httpResponseStatus", flash.events.Event)]
     
     [DefaultProperty("beads")]
     
@@ -106,6 +108,37 @@ package org.apache.flex.net
 			}
 		}
 		
+		private var _responseHeaders:Array;
+		public function get responseHeaders():Array
+		{
+			if (_responseHeaders && _responseHeaders.length > 0)
+			{
+				if (_responseHeaders[0] is URLRequestHeader)
+				{
+					var n:int = _responseHeaders.length;
+					for (var i:int = 0; i < n; i++)
+					{
+						var old:URLRequestHeader = _responseHeaders[i];
+						var nu:HTTPHeader = new HTTPHeader(old.name, old.value);
+						_responseHeaders[i] = nu;
+					}
+				}
+			}
+			return _responseHeaders;
+		}
+		
+		private var _responseURL:String;
+		private function get responseURL():String
+		{
+			return _responseURL;	
+		}
+		
+		private var _status:int;
+		public function get status():int
+		{
+			return _status;
+		}
+		
 		private var _url:String;
 		public function get url():String
 		{
@@ -117,6 +150,20 @@ package org.apache.flex.net
 			{
                 _url = value;
 				dispatchEvent(new Event("urlChanged"));
+			}
+		}
+		
+		private var _timeout:Number = 0;
+		public function get timeout():Number
+		{
+			return _timeout;
+		}
+		public function set timeout(value:Number):void
+		{
+			if (_timeout != value)
+			{
+				_timeout = value;
+				dispatchEvent(new Event("timeoutChanged"));
 			}
 		}
 		
@@ -187,6 +234,10 @@ package org.apache.flex.net
                 urlLoader = new URLLoader();
 			var request:URLRequest = new URLRequest(url);
 			request.method = method;
+			if ("idleTimeout" in request)
+			{
+				request["idleTimeout"] = timeout;
+			}
 			var sawContentType:Boolean;
 			if (headers)
 			{
@@ -217,11 +268,19 @@ package org.apache.flex.net
 			}
 			urlLoader.addEventListener(Event.COMPLETE, completeHandler);
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-			urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, ioErrorHandler);
-			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, ioErrorHandler);
+			urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
+			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
             urlLoader.load(request);
         }
         
+		protected function statusHandler(event:HTTPStatusEvent):void
+		{
+			_status = event.status;
+			_responseHeaders = event.responseHeaders;
+			_responseURL = event.responseURL;
+			dispatchEvent(event);
+		}
+		
 		protected function ioErrorHandler(event:Event):void
 		{
 			dispatchEvent(event);
