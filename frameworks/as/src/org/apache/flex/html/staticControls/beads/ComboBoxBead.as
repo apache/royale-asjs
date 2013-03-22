@@ -20,7 +20,7 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-	import flash.events.EventDispatcher;
+	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.binding.ConstantBinding;
@@ -105,6 +105,12 @@ package org.apache.flex.html.staticControls.beads
 				list.addBead(cb);
 			}
 			list.initSkin();
+			
+			// listen for events on the list and take those selections to the text input
+			list.addEventListener("change", listChangeHandler,false,0,true);
+			
+			// listen for events on the text input and modify the list and selection
+			textInput.addEventListener("change", textChangeHandler,false,0,true);
 		}
 		
 		private var upSprite:Sprite;
@@ -129,6 +135,24 @@ package org.apache.flex.html.staticControls.beads
 			sprite.graphics.lineTo(int(width/2),height-4);
 			sprite.graphics.lineTo(4,4);
 			sprite.graphics.endFill();
+		}
+		
+		private function listChangeHandler( event:Event ) : void
+		{
+			var item:Object = list.selectedItem;
+			textInput.text = item.toString();
+			
+			var newEvent:Event = new Event(Event.CHANGE);
+			IEventDispatcher(strand).dispatchEvent(newEvent);
+		}
+		
+		private function textChangeHandler( event:Event ) : void
+		{
+			list.selectedItem = textInput.text;
+			list.selectedIndex = -1;
+			
+			var newEvent:Event = new Event(Event.CHANGE);
+			IEventDispatcher(strand).dispatchEvent(newEvent);
 		}
 	}
 }
