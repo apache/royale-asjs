@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	<s:Rect height="75" width="75" x="100" y="215" radiusX="20" radiusY="50">
+		<s:fill>
+			<s:SolidColor color="0x0000FF"/>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0x666666" weight="1"/>
+		</s:stroke>
+	</s:Rect>
+	<s:Rect id="shadow" x="100" y="100" width="300" height="300" radiusX="2">
+		<s:fill>
+			<s:LinearGradient>
+				<s:GradientEntry color="0x000000" alpha="0.01" ratio="0"/>
+				<s:GradientEntry color="0x000000" alpha="0.07" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+		<s:Rect x="500" y="500" width="300" height="300" radiusX="2">
+		<s:fill>
+			<s:LinearGradient>
+				<s:GradientEntry color="0x0000FF" alpha="0.1" ratio="0"/>
+				<s:GradientEntry color="0x00FF00" alpha="0.9" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+</s:Application>
