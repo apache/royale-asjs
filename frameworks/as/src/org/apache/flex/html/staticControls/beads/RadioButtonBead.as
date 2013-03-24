@@ -21,7 +21,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
@@ -30,6 +29,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IRadioButtonBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
+	import org.apache.flex.events.Event;
 	
 	public class RadioButtonBead implements IBead, IRadioButtonBead
 	{

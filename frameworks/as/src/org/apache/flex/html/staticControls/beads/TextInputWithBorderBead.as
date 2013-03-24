@@ -19,13 +19,13 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class TextInputWithBorderBead extends TextInputBead
 	{

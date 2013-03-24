@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
-	import flash.events.Event;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxModel;
-		
+	import org.apache.flex.events.Event;
+			
 	public class ComboBoxModel extends ArraySelectionModel implements IBead, IComboBoxModel
 	{
 		public function ComboBoxModel()

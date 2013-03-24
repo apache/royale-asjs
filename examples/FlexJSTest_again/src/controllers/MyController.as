@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-	import flash.events.Event;
-	
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
+	import org.apache.flex.events.Event;
+	
     
     import models.MyModel;
     	
@@ -31,14 +31,14 @@ package controllers
 		{
 			if (app)
 			{
-				this.app = app as FlexJSTest;
+				this.app = app as FlexJSTest_again;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
         private var queryBegin:String = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
         private var queryEnd:String = "%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json";
-		private var app:FlexJSTest;
+		private var app:FlexJSTest_again;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -72,7 +72,7 @@ package controllers
         
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as FlexJSTest;
+			this.app = document as FlexJSTest_again;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

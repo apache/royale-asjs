@@ -63,7 +63,7 @@ org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
 
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {flash.events.Event} evt The event.
+ * @param {org.apache.flex.events.Event} evt The event.
  */
 org.apache.flex.core.UIBase.prototype.dispatchEvent = function(evt) {
     this.element.dispatchEvent(evt);

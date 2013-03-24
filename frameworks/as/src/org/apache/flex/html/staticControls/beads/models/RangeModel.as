@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IRangeModel;
-		
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+			
 	public class RangeModel extends EventDispatcher implements IBead, IRangeModel
 	{
 		public function RangeModel()

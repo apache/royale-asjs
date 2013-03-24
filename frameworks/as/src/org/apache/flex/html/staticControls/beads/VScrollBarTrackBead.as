@@ -21,9 +21,9 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Graphics;
 	import flash.display.SimpleButton;
 	import flash.display.Shape;
-	import flash.events.Event;
 	
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
 	
 	public class VScrollBarTrackBead implements IButtonBead
 	{

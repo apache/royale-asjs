@@ -21,8 +21,12 @@ package org.apache.flex.core
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-    import flash.events.Event;
+	
+	// this import is not used, but keeps the compiler from
+	// complaining about explicit usage of flash.events.Event
+	import flash.events.IOErrorEvent;
     
+	import org.apache.flex.events.Event;
     import org.apache.flex.utils.MXMLDataInterpreter;
     
     //--------------------------------------
@@ -32,7 +36,7 @@ package org.apache.flex.core
     /**
      *  Dispatched at startup.
      */
-    [Event(name="initialize", type="flash.events.Event")]
+    [Event(name="initialize", type="org.apache.flex.events.Event")]
     
     public class Application extends Sprite implements IStrand, IFlexInfo
     {
@@ -45,10 +49,10 @@ package org.apache.flex.core
 				stage.scaleMode = StageScaleMode.NO_SCALE;
 			}
 			
-            loaderInfo.addEventListener(Event.INIT, initHandler);
+            loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
         }
 
-        private function initHandler(event:Event):void
+        private function initHandler(event:flash.events.Event):void
         {
 	        MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 

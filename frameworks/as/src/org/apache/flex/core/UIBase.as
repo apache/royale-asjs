@@ -20,9 +20,10 @@ package org.apache.flex.core
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-	import flash.events.Event;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand
+	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher
 	{
 		public function UIBase()
 		{

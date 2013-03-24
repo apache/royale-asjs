@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.Event;
-	
+	import org.apache.flex.events.Event;	
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]

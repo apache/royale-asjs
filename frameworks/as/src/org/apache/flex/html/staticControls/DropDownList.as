@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls
     import org.apache.flex.html.staticControls.beads.IDropDownListBead;
 	import org.apache.flex.html.staticControls.beads.controllers.DropDownListController;
     
-    [Event("change", flash.events.Event)]
+    [Event("change", org.apache.flex.events.Event)]
     
 	public class DropDownList extends Button
 	{

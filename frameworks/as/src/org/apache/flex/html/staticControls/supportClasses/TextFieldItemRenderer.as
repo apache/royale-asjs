@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls.supportClasses
 {
     import flash.text.TextField;
-    import flash.text.TextFieldAutoSize;
     import flash.text.TextFieldType;
     
     import org.apache.flex.core.IBead;

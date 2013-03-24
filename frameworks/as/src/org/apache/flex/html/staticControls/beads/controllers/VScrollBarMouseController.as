@@ -19,14 +19,11 @@
 package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.IScrollBarBead;
-
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+	
 	public class VScrollBarMouseController extends ScrollBarMouseControllerBase
 	{
 		public function VScrollBarMouseController()

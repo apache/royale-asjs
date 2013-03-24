@@ -18,21 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.binding
 {
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
-
+	
 	public class ConstantBinding implements IBead, IDocument
 	{
 		public function ConstantBinding()
 		{
 		}
 		
-		protected var source:IEventDispatcher;
-		protected var document:IEventDispatcher;
+		protected var source:Object;
+		protected var document:Object;
 		protected var destination:Object;
 
 		public var sourceID:String;
@@ -42,13 +39,13 @@ package org.apache.flex.binding
 		public function set strand(value:IStrand):void
 		{
 			destination = value;
-			source = document[sourceID] as IEventDispatcher;
+			source = document[sourceID];
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
 		
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.document = document as IEventDispatcher;
+			this.document = document;
 		}
 		
 	}

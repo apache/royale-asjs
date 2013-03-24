@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
-	import flash.events.Event;
 	
 	import org.apache.flex.core.IValueToggleButtonModel;
+	import org.apache.flex.events.Event;
 
 	public class ValueToggleButtonModel extends ToggleButtonModel implements IValueToggleButtonModel
 	{

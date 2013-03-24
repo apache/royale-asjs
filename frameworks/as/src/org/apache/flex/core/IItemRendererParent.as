@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
-	import flash.events.IEventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public interface IItemRendererParent extends IEventDispatcher
 	{

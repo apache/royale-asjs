@@ -19,12 +19,12 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
-    import flash.events.IEventDispatcher;
-	import flash.events.Event;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.IScrollBarBead;
 
 	public class VScrollBarLayout implements IBead

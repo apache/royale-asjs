@@ -17,13 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.binding
-{
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-	
+{	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class SimpleBinding implements IBead, IDocument
 	{
@@ -32,7 +31,7 @@ package org.apache.flex.binding
 		}
 		
 		protected var source:IEventDispatcher;
-		protected var document:IEventDispatcher;
+		protected var document:Object;
 		protected var destination:Object;
 
 		public var sourceID:String;
@@ -50,7 +49,7 @@ package org.apache.flex.binding
 		
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.document = document as IEventDispatcher;
+			this.document = document;
 		}
 		
 		private function changeHandler(event:Event):void

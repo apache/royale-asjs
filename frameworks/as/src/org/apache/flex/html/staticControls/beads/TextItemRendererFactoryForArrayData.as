@@ -19,13 +19,13 @@
 package org.apache.flex.html.staticControls.beads
 {
     import flash.display.DisplayObject;
-    import flash.events.Event;
     
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IItemRendererClassFactory;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
 
 	public class TextItemRendererFactoryForArrayData implements IBead
 	{

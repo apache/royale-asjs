@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	
 	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel
 	{

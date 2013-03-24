@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	
 	public class MyModel extends EventDispatcher
 	{

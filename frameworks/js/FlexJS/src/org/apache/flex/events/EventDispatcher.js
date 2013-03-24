@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('flash.events.EventDispatcher');
+goog.provide('org.apache.flex.events.EventDispatcher');
 
 goog.require('org.apache.flex.FlexGlobal');
 
@@ -20,7 +20,7 @@ goog.require('org.apache.flex.FlexGlobal');
  * @constructor
  * @extends {org.apache.flex.FlexGlobal}
  */
-flash.events.EventDispatcher = function() {
+org.apache.flex.events.EventDispatcher = function() {
     org.apache.flex.FlexGlobal.call(this);
 
     /**
@@ -29,14 +29,15 @@ flash.events.EventDispatcher = function() {
      */
     this.listeners_ = {};
 };
-goog.inherits(flash.events.EventDispatcher, org.apache.flex.FlexGlobal);
+goog.inherits(org.apache.flex.events.EventDispatcher,
+    org.apache.flex.FlexGlobal);
 
 /**
- * @this {flash.events.EventDispatcher}
+ * @this {org.apache.flex.events.EventDispatcher}
  * @param {string} type The event type.
  * @param {function(?): ?} fn The event handler.
  */
-flash.events.EventDispatcher.prototype.addEventListener = function(type, fn) {
+org.apache.flex.events.EventDispatcher.prototype.addEventListener = function(type, fn) {
     if (!this.listeners_.type) {
         this.listeners_[type] = [];
     }
@@ -45,10 +46,10 @@ flash.events.EventDispatcher.prototype.addEventListener = function(type, fn) {
 };
 
 /**
- * @this {flash.events.EventDispatcher}
+ * @this {org.apache.flex.events.EventDispatcher}
  * @param {Object} event The event to dispatch.
  */
-flash.events.EventDispatcher.prototype.dispatchEvent = function(event) {
+org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(event) {
     var arr, i, n, type;
 
     type = event.type;

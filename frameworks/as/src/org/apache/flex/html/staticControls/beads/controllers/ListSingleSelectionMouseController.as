@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
 {
-	import flash.events.Event;
-    import flash.events.IEventDispatcher;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.staticControls.beads.IListBead;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+	
 
 	public class ListSingleSelectionMouseController implements IBead
 	{

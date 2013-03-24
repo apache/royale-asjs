@@ -16,34 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.events
 {
-	import flash.geom.Rectangle;
-	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.EventDispatcher;
-		
-	public class SingleLineBorderModel extends EventDispatcher implements IBead, IBorderModel
+	/**
+	 *  MXML auto-imports flash.events.Event which then requires
+	 *  full qualification to use org.apache.flex.events.Event.
+	 *  Use CustomEvent to skip all that extra typing.  Eventually
+	 *  we should add a flag to strip out the default auto-imports.
+	 *  Like org.apache.flex.events.Event events on the JS side
+	 *  are DOMEvents and not really instances of this class
+	 */
+	public class CustomEvent extends Event
 	{
-		public function SingleLineBorderModel()
+		public function CustomEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
+			super(type, bubbles, cancelable);
 		}
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-
-        static private var rect:Rectangle = new Rectangle(1, 1, 1, 1);
-        
-        public function get offsets():Rectangle
-        {
-            return rect;
-        }
-
 	}
 }

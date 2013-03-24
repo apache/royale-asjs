@@ -20,7 +20,6 @@ package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
@@ -32,6 +31,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
 	
 	public class RadioButton extends SimpleButton implements IStrand, IInitSkin, IInitModel
 	{
@@ -241,7 +241,7 @@ package org.apache.flex.html.staticControls
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {
 				selected = !selected;
-				dispatchEvent( new Event(Event.CHANGE) );
+				dispatchEvent(new Event("change"));
 			}
 		}
 	}

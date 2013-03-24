@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
 {
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.utils.clearInterval;
 	import flash.utils.clearTimeout;
@@ -28,6 +26,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
     public class ButtonAutoRepeatController implements IBead
 	{

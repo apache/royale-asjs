@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-	import flash.events.Event;
-	
 	public class ValueChangeEvent extends Event
 	{
 		public function ValueChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 

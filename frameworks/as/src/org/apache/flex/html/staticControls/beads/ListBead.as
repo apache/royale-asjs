@@ -17,9 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{
-	import flash.events.Event;
-	
+{	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IItemRenderer;
@@ -27,6 +25,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController;
 	import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;

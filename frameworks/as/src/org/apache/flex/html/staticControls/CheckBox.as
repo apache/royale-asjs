@@ -20,7 +20,6 @@ package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
@@ -31,6 +30,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
 	
 	public class CheckBox extends SimpleButton implements IStrand, IInitSkin, IInitModel
 	{
@@ -170,7 +170,7 @@ package org.apache.flex.html.staticControls
 		private function internalMouseHandler(event:MouseEvent) : void
 		{
 			selected = !selected;
-			dispatchEvent( new Event(Event.CHANGE) );
+			dispatchEvent(new Event("change"));
 		}
 	}
 }

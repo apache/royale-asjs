@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	import flash.system.ApplicationDomain;
 	import flash.utils.getQualifiedClassName;
 	
 	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.flex.events.EventDispatcher;
 	
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
 	{

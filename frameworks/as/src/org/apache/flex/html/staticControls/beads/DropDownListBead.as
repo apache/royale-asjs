@@ -24,8 +24,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
@@ -34,6 +32,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class DropDownListBead implements IDropDownListBead
 	{

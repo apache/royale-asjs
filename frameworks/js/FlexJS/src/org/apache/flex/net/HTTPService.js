@@ -135,7 +135,7 @@ function(type, fn) {
 
 /**
  * @this {org.apache.flex.net.HTTPService}
- * @param {flash.events.Event} evt The event.
+ * @param {org.apache.flex.events.Event} evt The event.
  */
 org.apache.flex.net.HTTPService.prototype.dispatchEvent = function(evt) {
     this.element.dispatchEvent(evt);

@@ -16,34 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.events
 {
-	import flash.geom.Rectangle;
+	import flash.events.EventDispatcher;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.EventDispatcher;
-		
-	public class SingleLineBorderModel extends EventDispatcher implements IBead, IBorderModel
+	/**
+	 *  This class simply wraps flash.events.EventDispatcher so that
+	 *  no flash packages are needed on the JS side.
+	 */
+	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher
 	{
-		public function SingleLineBorderModel()
+		public function EventDispatcher()
 		{
+			super();
 		}
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-
-        static private var rect:Rectangle = new Rectangle(1, 1, 1, 1);
-        
-        public function get offsets():Rectangle
-        {
-            return rect;
-        }
-
 	}
 }

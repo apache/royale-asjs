@@ -19,12 +19,12 @@
 package org.apache.flex.net.dataConverters
 {
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.data.ICollection;
+	import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.net.IInputParser;
     import org.apache.flex.net.IItemConverter;
     

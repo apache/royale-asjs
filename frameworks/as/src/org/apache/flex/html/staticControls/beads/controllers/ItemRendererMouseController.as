@@ -18,14 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
 {
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
 
 	public class ItemRendererMouseController implements IBead
 	{

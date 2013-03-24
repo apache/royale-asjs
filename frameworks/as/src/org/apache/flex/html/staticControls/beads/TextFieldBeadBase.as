@@ -19,13 +19,13 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
 	import flash.text.TextField;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.events.Event;
 	
 	public class TextFieldBeadBase implements IBead, ITextBead
 	{

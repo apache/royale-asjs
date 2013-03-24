@@ -17,13 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
-{
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	
+{	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 		
 	public class TextModel extends EventDispatcher implements IBead, ITextModel
 	{

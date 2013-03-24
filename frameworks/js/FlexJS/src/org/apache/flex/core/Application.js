@@ -57,7 +57,7 @@ org.apache.flex.core.Application.prototype.initialView = null;
 
 /**
  * @expose
- * @type {flash.events.EventDispatcher}
+ * @type {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.core.Application.prototype.model = null;
 

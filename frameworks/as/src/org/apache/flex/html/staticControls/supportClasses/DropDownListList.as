@@ -22,7 +22,7 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.html.staticControls.List;
     import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
     
-    [Event("change", flash.events.Event)]
+    [Event("change", org.apache.flex.events.Event)]
     
 	public class DropDownListList extends List implements IPopUp
 	{

@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 		
 	public class StringSelectionModel extends EventDispatcher implements ISelectionModel
 	{

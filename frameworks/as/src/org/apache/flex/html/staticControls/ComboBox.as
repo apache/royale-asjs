@@ -22,7 +22,6 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	

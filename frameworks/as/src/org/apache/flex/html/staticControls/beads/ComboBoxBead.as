@@ -20,13 +20,13 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.binding.ConstantBinding;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.List;
 	import org.apache.flex.html.staticControls.TextInput;
@@ -137,21 +137,21 @@ package org.apache.flex.html.staticControls.beads
 			sprite.graphics.endFill();
 		}
 		
-		private function listChangeHandler( event:Event ) : void
+		private function listChangeHandler(event:Event):void
 		{
 			var item:Object = list.selectedItem;
 			textInput.text = item.toString();
 			
-			var newEvent:Event = new Event(Event.CHANGE);
+			var newEvent:Event = new Event("change");
 			IEventDispatcher(strand).dispatchEvent(newEvent);
 		}
 		
-		private function textChangeHandler( event:Event ) : void
+		private function textChangeHandler(event:Event):void
 		{
 			list.selectedItem = textInput.text;
 			list.selectedIndex = -1;
 			
-			var newEvent:Event = new Event(Event.CHANGE);
+			var newEvent:Event = new Event("change");
 			IEventDispatcher(strand).dispatchEvent(newEvent);
 		}
 	}

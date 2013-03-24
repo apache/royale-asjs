@@ -20,15 +20,16 @@ package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
-	import flash.events.Event;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
-	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel
+	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel, IEventDispatcher
 	{
 		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{

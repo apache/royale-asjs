@@ -18,11 +18,14 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.text.TextFieldType;
+	// this import is not used, but keeps the compiler from
+	// complaining about explicit usage of flash.events.Event
+	import flash.events.IOErrorEvent;
 	
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
 	public class TextInputBead extends TextFieldBeadBase
 	{
@@ -49,7 +52,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			// for input, listen for changes to the _textField and update
 			// the model
-			textField.addEventListener(Event.CHANGE, inputChangeHandler);
+			textField.addEventListener(flash.events.Event.CHANGE, inputChangeHandler);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);

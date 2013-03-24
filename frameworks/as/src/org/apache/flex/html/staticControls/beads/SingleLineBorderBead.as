@@ -19,12 +19,12 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.Graphics;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class SingleLineBorderBead implements IBead
 	{

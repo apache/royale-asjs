@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.HTTPStatusEvent;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
@@ -29,14 +27,16 @@ package org.apache.flex.net
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	
-	[Event("complete", flash.events.Event)]
+	[Event("complete", org.apache.flex.events.Event)]
 	
-	[Event("ioError", flash.events.IOErrorEvent)]
+	[Event("ioError", org.apache.flex.events.Event)]
 	
-	[Event("httpStatus", flash.events.Event)]
+	[Event("httpStatus", org.apache.flex.events.Event)]
 	
-	[Event("httpResponseStatus", flash.events.Event)]
+	[Event("httpResponseStatus", org.apache.flex.events.Event)]
     
     [DefaultProperty("beads")]
     
@@ -266,9 +266,10 @@ package org.apache.flex.net
 				else
 					request.data = contentData;
 			}
-			urlLoader.addEventListener(Event.COMPLETE, completeHandler);
+			urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-			urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
+			if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
+				urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
 			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
             urlLoader.load(request);
         }
@@ -276,19 +277,21 @@ package org.apache.flex.net
 		protected function statusHandler(event:HTTPStatusEvent):void
 		{
 			_status = event.status;
-			_responseHeaders = event.responseHeaders;
-			_responseURL = event.responseURL;
-			dispatchEvent(event);
+			if ("responseHeaders" in event)
+				_responseHeaders = event.responseHeaders;
+			if ("responseURL" in event)
+				_responseURL = event.responseURL;
+			dispatchEvent(new Event(event.type));
 		}
 		
-		protected function ioErrorHandler(event:Event):void
+		protected function ioErrorHandler(event:IOErrorEvent):void
 		{
-			dispatchEvent(event);
+			dispatchEvent(new Event(event.type));
 		}
 		
-        protected function completeHandler(event:Event):void
+        protected function completeHandler(event:flash.events.Event):void
         {
-            dispatchEvent(event);
+            dispatchEvent(new Event(event.type));
         }
         
         public function get data():*

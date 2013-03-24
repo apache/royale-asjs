@@ -14,7 +14,8 @@
 
 goog.provide('org.apache.flex.FlexGlobal');
 
-goog.require('flash.events.Event');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.CustomEvent');
 
 /**
  * @constructor
@@ -40,7 +41,9 @@ org.apache.flex.FlexGlobal.createProxy = function(context, method) {
 org.apache.flex.FlexGlobal.newObject = function(ctor, ctorArgs) {
     var evt;
 
-    if (ctor === flash.events.Event && ctorArgs.length === 1) {
+    if ((ctor === org.apache.flex.events.Event ||
+         ctor === org.apache.flex.events.CustomEvent) && 
+         ctorArgs.length === 1) {
         evt = document.createEvent('Event');
         evt.initEvent(ctorArgs[0], false, false);
 

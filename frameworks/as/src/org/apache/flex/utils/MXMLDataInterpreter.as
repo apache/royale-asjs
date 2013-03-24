@@ -21,7 +21,6 @@ package org.apache.flex.utils
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 
-import org.apache.flex.binding.SimpleBinding;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;

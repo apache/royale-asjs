@@ -19,14 +19,14 @@
 package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.staticControls.beads.IDropDownListBead;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class DropDownListController implements IBead
 	{
@@ -54,7 +54,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 			DisplayObject(viewBead.popUp).height = 200;
 			DisplayObject(viewBead.popUp).x = DisplayObject(_strand).x;
 			DisplayObject(viewBead.popUp).y = DisplayObject(_strand).y;
-            IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
+            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
         }
         
         private function changeHandler(event:Event):void

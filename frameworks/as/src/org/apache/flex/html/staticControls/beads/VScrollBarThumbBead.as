@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-    import flash.events.Event;
-    import flash.events.IEventDispatcher;
-    
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
     import flash.display.DisplayObject;
 
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;	
 	
 	public class VScrollBarThumbBead implements IButtonBead
 	{

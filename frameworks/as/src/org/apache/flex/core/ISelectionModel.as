@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.IEventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public interface ISelectionModel extends IEventDispatcher, IBeadModel
 	{

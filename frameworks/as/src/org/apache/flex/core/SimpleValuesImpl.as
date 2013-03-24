@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
-	
+	import org.apache.flex.events.EventDispatcher;	
 	import org.apache.flex.events.ValueChangeEvent;
 	
 	public class SimpleValuesImpl extends EventDispatcher implements IValuesImpl

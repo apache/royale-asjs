@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-goog.provide('flash.events.Event');
+goog.provide('org.apache.flex.events.CustomEvent');
 
 /**
  * @constructor
  */
-flash.events.Event = function() {
+org.apache.flex.events.CustomEvent = function() {
     /**
      * @private
      * @type {string}
@@ -26,9 +26,9 @@ flash.events.Event = function() {
 };
 
 /**
- * @this {flash.events.Event}
+ * @this {org.apache.flex.events.CustomEvent}
  * @param {string} type The event type.
  */
-flash.events.Event.prototype.init = function(type) {
+org.apache.flex.events.CustomEvent.prototype.init = function(type) {
     this.type_ = type;
 };
