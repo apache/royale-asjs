@@ -5,6 +5,9 @@
 .manager
 .scala_dependencies
 .cache
+.actionScriptProperties
+.flexProperties
+.flexLibProperties
 
 # idea conf files
 .idea
@@ -24,6 +27,11 @@ build.log
 release
 out
 gen
+bin-debug
+bin-release
+binjs-debug
+binjs-release
+examples/FlexJSTest_again/html-template
 
 #Apache Flex Projects
 lib/
