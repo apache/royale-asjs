@@ -36,8 +36,7 @@
 	</xsl:template>
 	
 	<xsl:template match="fx:Script" mode="#all" />
-	
-
+	<xsl:template match="fx:Metadata" mode="#all" />
 
 	<xsl:template match="s:Rect" mode="rect">
 		<rect >
@@ -98,11 +97,13 @@
 
 		</rect>
 
-
-
 	</xsl:template>
 
 	<xsl:template match="s:fill" mode="rect">
+		<xsl:apply-templates mode="rect" />
+	</xsl:template>
+	
+	<xsl:template match="s:stroke" mode="rect">
 		<xsl:apply-templates mode="rect" />
 	</xsl:template>
 
@@ -111,17 +112,29 @@
 			select="substring-after(@color, '0x')" />
 		</xsl:attribute>
 	</xsl:template>
-
+	
 	<xsl:template match="s:LinearGradient" mode="rect">
 		<xsl:attribute name="style">fill:url(#<xsl:value-of
 			select="generate-id(.)" />)</xsl:attribute>
 	</xsl:template>
-
+	
+		<xsl:template match="s:LinearGradientStroke" mode="rect">
+		<xsl:attribute name="style">stroke:url(#<xsl:value-of
+			select="generate-id(.)" />)</xsl:attribute>
+	</xsl:template>
+	
 	<xsl:template match="//s:LinearGradient" mode="defs">
 		<linearGradient>
 			<xsl:attribute name="id"><xsl:value-of select="generate-id()" /></xsl:attribute>
 			<xsl:apply-templates mode="defs" />
 		</linearGradient>
+	</xsl:template>
+	
+		<xsl:template match="//s:LinearGradientStroke" mode="defs">
+			<linearGradient>
+				<xsl:attribute name="id"><xsl:value-of select="generate-id()" /></xsl:attribute>
+				<xsl:apply-templates mode="defs" />
+			</linearGradient>
 	</xsl:template>
 
 	<xsl:template match="//s:GradientEntry" mode="defs">
