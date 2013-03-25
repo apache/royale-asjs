@@ -42,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
             IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:Event):void
+        private function clickHandler(event:MouseEvent):void
         {
             var viewBead:IDropDownListBead = _strand.getBeadByType(IDropDownListBead) as IDropDownListBead;
             viewBead.popUpVisible = true;
