@@ -47,6 +47,28 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener = function(typ
 
 /**
  * @this {org.apache.flex.events.EventDispatcher}
+ * @param {string} type The event type.
+ * @param {function(?): ?} fn The event handler.
+ */
+org.apache.flex.events.EventDispatcher.prototype.removeEventListener = function(type, fn) {
+    if (!this.listeners_.type) {
+        return;
+    }
+
+    var listeners = this.listeners_[type];
+    var n = listeners.length;
+    for (var i = 0; i < n; i++)
+    {
+        if (fn == listeners[i])
+        {
+            listeners.splice(i, 1);
+            break;
+        }
+    }
+};
+
+/**
+ * @this {org.apache.flex.events.EventDispatcher}
  * @param {Object} event The event to dispatch.
  */
 org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(event) {
