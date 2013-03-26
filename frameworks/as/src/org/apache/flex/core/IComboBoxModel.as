@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IComboBoxModel
+	import org.apache.flex.events.IEventDispatcher;
+	
+	public interface IComboBoxModel extends IEventDispatcher, IBeadModel
 	{
 		function get text():String;
 		function set text(value:String):void;

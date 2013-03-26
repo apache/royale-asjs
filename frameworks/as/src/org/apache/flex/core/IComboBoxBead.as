@@ -26,5 +26,10 @@ package org.apache.flex.core
 		
 		function get html():String;
 		function set html(value:String):void;
+		
+		function get popUp():IStrand;
+		
+		function get popUpVisible():Boolean;
+		function set popUpVisible(value:Boolean):void;
 	}
 }

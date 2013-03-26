@@ -24,6 +24,9 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController;
+	
+	[Event("change", org.apache.flex.events.Event)]
 	
 	public class ComboBox extends UIBase implements IInitSkin
 	{
@@ -60,7 +63,9 @@ package org.apache.flex.html.staticControls
 		{
 			if (getBeadByType(IComboBoxBead) == null) {
 				var cb:IComboBoxBead = new (ValuesManager.valuesImpl.getValue(this, "iComboBoxBead")) as IComboBoxBead;
-				addBead(cb);
+				addBead(cb);	
+				var lc:ComboBoxController = new ComboBoxController();
+				addBead(lc);
 			}
 		}
 	}
