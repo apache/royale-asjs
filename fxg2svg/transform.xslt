@@ -25,22 +25,40 @@
 	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/">
-		<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
-			version="1.1">
-			<defs>
-				<xsl:apply-templates mode="defs" />
-			</defs>
 			<xsl:apply-templates mode="rect" />
-			
-		</svg>
 	</xsl:template>
 	
 	<xsl:template match="fx:Script" mode="#all" />
 	<xsl:template match="fx:Metadata" mode="#all" />
 
-	<xsl:template match="s:Rect" mode="rect">
+	<xsl:template match="s:Rect|Rect" mode="rect">
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+			version="1.1" >
+			<xsl:if test="@left">
+				<xsl:attribute name="left">
+					<xsl:value-of select="@left" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@right">
+				<xsl:attribute name="right">
+					<xsl:value-of select="@right" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@top">
+				<xsl:attribute name="top">
+					<xsl:value-of select="@top" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@bottom">
+				<xsl:attribute name="bottom">
+					<xsl:value-of select="@bottom" />
+				</xsl:attribute>
+			</xsl:if>
+			<defs>
+				<xsl:apply-templates mode="defs" />
+			</defs>
 		<rect >
-		<xsl:if test="@id">
+			<xsl:if test="@id">
 				<xsl:attribute name="id">
 					<xsl:value-of select="@id" />
 				</xsl:attribute>
@@ -92,11 +110,17 @@
 					<xsl:value-of select="@radiusY" />
 				</xsl:attribute>
 			</xsl:if>
+			<xsl:if test="not(@width) ">
+					<xsl:attribute name="width">100%</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="not(@height) ">
+					<xsl:attribute name="height">100%</xsl:attribute>
+			</xsl:if>
 
 			<xsl:apply-templates mode="rect" />
 
 		</rect>
-
+</svg>
 	</xsl:template>
 
 	<xsl:template match="s:fill" mode="rect">

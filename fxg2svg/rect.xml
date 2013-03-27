@@ -42,4 +42,24 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
+    <s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.0"
+                                 alpha="0.33" 
+                                 alpha.over="0.22" 
+                                 alpha.down="0.12"/>
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.48"
+                                 alpha="0.33"
+                                 alpha.over="0.22"
+                                 alpha.down="0.12" />
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.48001"
+                                 alpha="0" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>	
+	
 </s:Application>
