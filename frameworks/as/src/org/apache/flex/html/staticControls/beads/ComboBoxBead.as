@@ -18,17 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
 	import org.apache.flex.binding.ConstantBinding;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxBead;
+	import org.apache.flex.core.IComboBoxModel;
+	import org.apache.flex.core.IInitModel;
+	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Button;
-	import org.apache.flex.html.staticControls.List;
 	import org.apache.flex.html.staticControls.TextInput;
 	
 	public class ComboBoxBead implements IBead, IComboBoxBead
@@ -39,7 +44,6 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var textInput:TextInput;
 		private var button:Button;
-		private var list:List;
 		
 		public function get text():String
 		{
@@ -65,9 +69,13 @@ package org.apache.flex.html.staticControls.beads
 			return _strand;
 		}
 		
+		private var selectionModel:IComboBoxModel;
+		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			selectionModel = value.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			
 			textInput = new TextInput();
 			textInput.addToParent(DisplayObjectContainer(strand));
@@ -91,23 +99,6 @@ package org.apache.flex.html.staticControls.beads
 			button.x = textInput.width;
 			button.y = textInput.y;
 			button.initSkin();
-			
-			list = new List();
-			list.addToParent(DisplayObjectContainer(strand));
-			list.initModel();
-			list.width = 118;
-			list.height = 100;
-			list.x = textInput.x;
-			list.y = textInput.y + textInput.height + 2;
-			
-			if( value.getBeadByType(ConstantBinding) ) {
-				var cb:ConstantBinding = value.getBeadByType(ConstantBinding) as ConstantBinding;
-				list.addBead(cb);
-			}
-			list.initSkin();
-			
-			// listen for events on the list and take those selections to the text input
-			list.addEventListener("change", listChangeHandler,false,0,true);
 			
 			// listen for events on the text input and modify the list and selection
 			textInput.addEventListener("change", textChangeHandler,false,0,true);
@@ -137,20 +128,55 @@ package org.apache.flex.html.staticControls.beads
 			sprite.graphics.endFill();
 		}
 		
-		private function listChangeHandler(event:Event):void
+		private var _popUp:IStrand;
+		public function get popUp():IStrand
 		{
-			var item:Object = list.selectedItem;
-			textInput.text = item.toString();
-			
-			var newEvent:Event = new Event("change");
-			IEventDispatcher(strand).dispatchEvent(newEvent);
+			return _popUp;
+		}
+		
+		private var _popUpVisible:Boolean;
+		
+		public function get popUpVisible():Boolean
+		{
+			return _popUpVisible;
+		}
+		
+		public function set popUpVisible(value:Boolean):void
+		{
+			if (value != _popUpVisible)
+			{
+				_popUpVisible = value;
+				if (value)
+				{
+					if (!_popUp)
+					{
+						var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+						_popUp = new popUpClass() as IStrand;
+					}
+					var root:Object = DisplayObject(_strand).root;
+					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
+					while (host.parent != root)
+						host = host.parent;
+					host.addChild(_popUp as DisplayObject);
+					if (_popUp is IInitModel)
+						IInitModel(_popUp).initModel();
+					if (_popUp is IInitSkin)
+						IInitSkin(_popUp).initSkin();
+				}
+				else
+				{
+					DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
+				}
+			}
+		}
+		
+		private function selectionChangeHandler(event:Event):void
+		{
+			text = selectionModel.selectedItem.toString();
 		}
 		
 		private function textChangeHandler(event:Event):void
-		{
-			list.selectedItem = textInput.text;
-			list.selectedIndex = -1;
-			
+		{	
 			var newEvent:Event = new Event("change");
 			IEventDispatcher(strand).dispatchEvent(newEvent);
 		}

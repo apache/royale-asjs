@@ -37,6 +37,7 @@ ComboBox
 {
     IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
     IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
+    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
 }
 
 DropDownList

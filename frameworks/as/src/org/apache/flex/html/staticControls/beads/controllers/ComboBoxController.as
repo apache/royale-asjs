@@ -22,15 +22,15 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.IDropDownListBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class DropDownListController implements IBead
+	public class ComboBoxController implements IBead
 	{
-		public function DropDownListController()
+		public function ComboBoxController()
 		{
 		}
 		
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		
         private function clickHandler(event:MouseEvent):void
         {
-            var viewBead:IDropDownListBead = _strand.getBeadByType(IDropDownListBead) as IDropDownListBead;
+            var viewBead:IComboBoxBead = _strand.getBeadByType(IComboBoxBead) as IComboBoxBead;
             viewBead.popUpVisible = true;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -59,7 +59,7 @@ package org.apache.flex.html.staticControls.beads.controllers
         
         private function changeHandler(event:Event):void
         {
-            var viewBead:IDropDownListBead = _strand.getBeadByType(IDropDownListBead) as IDropDownListBead;
+            var viewBead:IComboBoxBead = _strand.getBeadByType(IComboBoxBead) as IComboBoxBead;
             viewBead.popUpVisible = false;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;

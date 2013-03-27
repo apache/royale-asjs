@@ -16,20 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.utils
 {
+import flash.events.TimerEvent;
+import flash.utils.Timer;
 
-	public interface IComboBoxBead extends IBead
+import org.apache.flex.events.Event;
+
+[Event(name="timer", type="org.apache.flex.events.Event")]
+
+public class Timer extends flash.utils.Timer
+{
+    public function Timer(delay:Number, repeatCount:int = 0)
+    {
+        super(delay, repeatCount);
+		addEventListener("timer", interceptor, false, 9999);
+    }
+
+	private function interceptor(event:flash.events.Event):void
 	{
-		function get text():String;
-		function set text(value:String):void;
-		
-		function get html():String;
-		function set html(value:String):void;
-		
-		function get popUp():IStrand;
-		
-		function get popUpVisible():Boolean;
-		function set popUpVisible(value:Boolean):void;
+		if (event is TimerEvent)
+		{
+			event.stopImmediatePropagation();
+			dispatchEvent(new Event("timer"));
+		}
 	}
+}
 }

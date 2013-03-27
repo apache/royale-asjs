@@ -23,6 +23,10 @@ limitations under the License.
     <fx:Script>
         <![CDATA[            
 			import org.apache.flex.events.CustomEvent;
+			import org.apache.flex.events.Event;
+			import org.apache.flex.utils.Timer;
+			
+			private var timer:org.apache.flex.utils.Timer;
 			
             public function get symbol():String
             {
@@ -33,6 +37,18 @@ limitations under the License.
             {
             	return input.text;
             }
+			
+			public function startTimer():void
+			{
+				timer = new org.apache.flex.utils.Timer(1000);
+				timer.addEventListener('timer', timerHandler);
+				timer.start()				
+			}
+			
+			public function timerHandler(event:org.apache.flex.events.Event):void
+			{
+				timerLabel.text = timer.currentCount.toString();	
+			}
         ]]>
     </fx:Script>
 	<basic:Label id="lbl" x="100" y="25" >
@@ -52,6 +68,9 @@ limitations under the License.
                                  destinationPropertyName="dataProvider" />
         </basic:beads>
     </basic:List>
+	<basic:TextButton text="Start Timer" x="100" y="75" click="startTimer()" />
+	<basic:TextButton text="Stop Timer" x="100" y="100" click="timer.removeEventListener('timer', timerHandler);timer.stop()" />
+	<basic:Label id="timerLabel" x="100" y="125" />
     
     
     <basic:TextArea x="320" y="25" width="150" height="75">
@@ -63,17 +82,17 @@ limitations under the License.
 		</basic:beads>
     </basic:TextArea>
     <basic:TextInput id="input" x="320" y="110" />
-    <basic:TextButton text="Transfer" x="320" y="138" click="dispatchEvent(new Event('transferClicked'))" />
+    <basic:TextButton text="Transfer" x="320" y="138" click="dispatchEvent(new CustomEvent('transferClicked'))" />
     
     <basic:CheckBox id="checkbox" x="320" y="170" text="Check Me" />
     
-    <basic:RadioButton groupName="group1" text="Apples" value="0" x="100" y="130" />
-    <basic:RadioButton groupName="group1" text="Oranges" value="1" x="100" y="150" selected="true" />
-    <basic:RadioButton groupName="group1" text="Grapes" value="2" x="100" y="170" />
+    <basic:RadioButton groupName="group1" text="Apples" value="0" x="100" y="150" />
+    <basic:RadioButton groupName="group1" text="Oranges" value="1" x="100" y="170" selected="true" />
+    <basic:RadioButton groupName="group1" text="Grapes" value="2" x="100" y="190" />
     
-    <basic:RadioButton groupName="group2" text="Red" value="red" x="100" y="230" selected="true" />
-    <basic:RadioButton groupName="group2" text="Green" value="green" x="100" y="250" />
-    <basic:RadioButton groupName="group2" text="Blue" value="blue" x="100" y="270"  />
+    <basic:RadioButton groupName="group2" text="Red" value="red" x="100" y="250" selected="true" />
+    <basic:RadioButton groupName="group2" text="Green" value="green" x="100" y="270" />
+    <basic:RadioButton groupName="group2" text="Blue" value="blue" x="100" y="290"  />
     
     
 </basic:ViewBase>

@@ -40,7 +40,7 @@ goog.inherits(
  * @param {Object} p The parent element.
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.addToParent = 
-    function(p) {
+function(p) {
 	this.element = document.createElement('div');
 	
 	var input = document.createElement('input');
@@ -50,10 +50,23 @@ org.apache.flex.html.staticControls.ComboBox.prototype.addToParent =
 	box.onchange = this.selectChanged;
 	this.element.appendChild(box);
 	
+	var button = document.createElement('div');
+	button.style.position = "absolute";
+	button.style.top = "0px";
+	button.style.right = "0px";
+	button.style.background = "#bbb";
+	button.style.width = "16px";
+	button.style.height = "20px";
+	button.style.margin = "0";
+	button.style.border = "solid #609 1px";
+	button.onclick = this.buttonClicked;
+	this.element.appendChild(button);
+	
 	this.element.style.position = "relative";
 	input.style.width = "100px";
 	input.style["float"] = "left";
 	box.style["float"] = "left";
+	button.style["float"] = "left";
 	
     p.appendChild(this.element);
 
@@ -69,6 +82,37 @@ function() {
 	var box = this.parentNode.childNodes.item(1);
 	var input = this.parentNode.childNodes.item(0);
 	input.value = box.value;
+};
+
+org.apache.flex.html.staticControls.ComboBox.prototype.buttonClicked =
+function() {
+	var box = this.parentNode.childNodes.item(1);
+	
+    var popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.id = 'test';
+    popup.style.position = "absolute";
+    popup.style.top = "0px";
+    popup.style.left = "0px";
+    popup.style.margin = "100px auto";
+    popup.style.width = "200px";
+    popup.style.height = "150px";
+    popup.style.padding = "10px";
+    popup.style['background-color'] = "rgb(240,240,240)";
+    popup.style.border = "2px solid grey";
+    popup.style['z-index'] = "100000000000000000";
+    popup.style.display = "none";
+    var cancel = document.createElement('div');
+    cancel.className = 'cancel';
+    cancel.innerHTML = 'close';
+    cancel.onclick = function (e) { popup.parentNode.removeChild(popup) };
+    var message = document.createElement('span');
+    message.innerHTML = "This is a test message";
+    popup.appendChild(message);                                    
+    popup.appendChild(cancel);
+    document.body.appendChild(popup);
+    
+
 };
 
 /**

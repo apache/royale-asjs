@@ -59,7 +59,7 @@ package org.apache.flex.html.staticControls.beads
 			sizeChangedHandler(null);
 		}
 		
-		private function inputChangeHandler(event:Event):void
+		private function inputChangeHandler(event:flash.events.Event):void
 		{
 			textModel.text = textField.text;
 		}
