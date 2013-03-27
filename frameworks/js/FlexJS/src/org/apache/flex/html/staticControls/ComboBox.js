@@ -34,6 +34,7 @@ goog.inherits(
     org.apache.flex.html.staticControls.ComboBox, org.apache.flex.core.UIBase
 );
 
+
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.ComboBox}
@@ -44,11 +45,9 @@ function(p) {
 	this.element = document.createElement('div');
 	
 	var input = document.createElement('input');
+	input.style.position = "absolute";
+	input.style.width = "80px";
 	this.element.appendChild(input);
-	
-	var box = document.createElement('select');
-	box.onchange = this.selectChanged;
-	this.element.appendChild(box);
 	
 	var button = document.createElement('div');
 	button.style.position = "absolute";
@@ -59,14 +58,11 @@ function(p) {
 	button.style.height = "20px";
 	button.style.margin = "0";
 	button.style.border = "solid #609 1px";
-	button.onclick = this.buttonClicked;
+	button.onclick = org.apache.flex.FlexGlobal.createProxy(
+                this, this.buttonClicked);
 	this.element.appendChild(button);
 	
 	this.element.style.position = "relative";
-	input.style.width = "100px";
-	input.style["float"] = "left";
-	box.style["float"] = "left";
-	button.style["float"] = "left";
 	
     p.appendChild(this.element);
 
@@ -78,38 +74,67 @@ function(p) {
  * @this {org.apache.flex.html.staticControls.ComboBox}
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.selectChanged =
-function() {
-	var box = this.parentNode.childNodes.item(1);
-	var input = this.parentNode.childNodes.item(0);
-	input.value = box.value;
+function(event) {
+	var select = event.currentTarget;
+	var input = this.element.childNodes.item(0);
+	input.value = select.value;
+	
+	this.popup.parentNode.removeChild(this.popup);
+	this.popup = null;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.ComboBox}
+ */
 org.apache.flex.html.staticControls.ComboBox.prototype.buttonClicked =
 function() {
-	var box = this.parentNode.childNodes.item(1);
+	
+	// remove the popup if it already exists
+	if( this.popup ) {
+		this.popup.parentNode.removeChild(this.popup);
+		this.popup = null;
+		return;
+	}
+	
+	var input = this.element.childNodes.item(0);
+	
+	var pn = this.element;
+	var top = pn.offsetTop + input.offsetHeight;
+	var left = pn.offsetLeft;
+	var width = pn.offsetWidth;
 	
     var popup = document.createElement('div');
     popup.className = 'popup';
     popup.id = 'test';
     popup.style.position = "absolute";
-    popup.style.top = "0px";
-    popup.style.left = "0px";
-    popup.style.margin = "100px auto";
-    popup.style.width = "200px";
-    popup.style.height = "150px";
-    popup.style.padding = "10px";
-    popup.style['background-color'] = "rgb(240,240,240)";
-    popup.style.border = "2px solid grey";
-    popup.style['z-index'] = "100000000000000000";
-    popup.style.display = "none";
-    var cancel = document.createElement('div');
-    cancel.className = 'cancel';
-    cancel.innerHTML = 'close';
-    cancel.onclick = function (e) { popup.parentNode.removeChild(popup) };
-    var message = document.createElement('span');
-    message.innerHTML = "This is a test message";
-    popup.appendChild(message);                                    
-    popup.appendChild(cancel);
+    popup.style.top = top.toString() + "px";
+    popup.style.left = left.toString() + "px";
+    popup.style.width = width.toString() + "px";
+    popup.style.margin = "0px auto";
+    popup.style.padding = "0px";
+    popup.style.zIndex = "10000";
+    
+    var select = document.createElement('select');
+    select.style.width = width.toString() + "px";
+	select.onchange = org.apache.flex.FlexGlobal.createProxy(
+                this, this.selectChanged);
+    var opts = select.options;
+
+    var dp = this._dataProvider;
+    var n = dp.length;
+    for (i = 0; i < n; i++)
+    {
+        var opt = document.createElement('option');
+        opt.text = dp[i];
+        opts.add(opt);
+    }
+    select.size = n;
+    
+    this.popup = popup;
+
+    popup.appendChild(select); 
     document.body.appendChild(popup);
     
 
@@ -133,20 +158,6 @@ function() {
 org.apache.flex.html.staticControls.ComboBox.prototype.set_dataProvider =
 function(value) {
     this._dataProvider = value;
-
-	var box = this.element.childNodes.item(1);
-    var dp = box.options;
-    var n = dp.length;
-    for (var i = 0; i < n; i++)
-        dp.remove(0);
-
-    n = value.length;
-    for (i = 0; i < n; i++)
-    {
-        var opt = document.createElement('option');
-        opt.text = value[i];
-        dp.add(opt);
-    }
 };
 
 /**
