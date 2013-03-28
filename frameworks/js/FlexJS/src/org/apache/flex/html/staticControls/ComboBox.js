@@ -29,6 +29,7 @@ org.apache.flex.html.staticControls.ComboBox = function() {
      * @type {Array.<Object>}
      */
     this._dataProvider;
+    this._selectedIndex = -1;
 };
 goog.inherits(
     org.apache.flex.html.staticControls.ComboBox, org.apache.flex.core.UIBase
@@ -67,6 +68,12 @@ function(p) {
     p.appendChild(this.element);
 
     this.positioner = this.element;
+    
+    // add a click handler to p's parentElement so that a click
+    // outside of the combo box can dismiss the pop-up should it
+    // be visible
+    p.parentElement.onclick = org.apache.flex.FlexGlobal.createProxy(
+                this, this.dismissPopup);
 };
 
 /**
@@ -76,8 +83,9 @@ function(p) {
 org.apache.flex.html.staticControls.ComboBox.prototype.selectChanged =
 function(event) {
 	var select = event.currentTarget;
-	var input = this.element.childNodes.item(0);
-	input.value = select.value;
+//	var input = this.element.childNodes.item(0);
+//	input.value = select.value;
+	this.set_selectedItem(select.value);
 	
 	this.popup.parentNode.removeChild(this.popup);
 	this.popup = null;
@@ -88,8 +96,24 @@ function(event) {
  * @expose
  * @this {org.apache.flex.html.staticControls.ComboBox}
  */
+org.apache.flex.html.staticControls.ComboBox.prototype.dismissPopup =
+function(event) {
+
+	// remove the popup if it already exists
+	if( this.popup ) {
+		this.popup.parentNode.removeChild(this.popup);
+		this.popup = null;
+	}
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.ComboBox}
+ */
 org.apache.flex.html.staticControls.ComboBox.prototype.buttonClicked =
-function() {
+function(event) {
+
+	event.stopPropagation();
 	
 	// remove the popup if it already exists
 	if( this.popup ) {
@@ -131,6 +155,8 @@ function() {
         opts.add(opt);
     }
     select.size = n;
+    if( this._selectedIndex < 0 ) select.value = null;
+    else select.value = this._dataProvider[this._selectedIndex];
     
     this.popup = popup;
 
@@ -167,7 +193,7 @@ function(value) {
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.get_selectedIndex =
 function() {
-    return this.element.childNodes.item(1).selectedIndex;
+    return this._selectedIndex;
 };
 
 /**
@@ -177,7 +203,7 @@ function() {
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.set_selectedIndex =
 function(value) {
-    this.element.childNodes.item(1).selectedIndex = value;
+    this._selectedIndex = value;
 };
 
 /**
@@ -187,7 +213,8 @@ function(value) {
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.get_selectedItem =
 function() {
-    return this._dataProvider[this.element.childNodes.item(1).selectedIndex];
+	if( this._dataProvider == null || this._selectedIndex < 0 || this._selectedIndex >= this._dataProvider.length ) return null;
+    return this._dataProvider[this._selectedIndex];
 };
 
 /**
@@ -206,7 +233,7 @@ function(value) {
             break;
     }
     if (i < n) {
-        this.element.childNodes.item(1).selectedIndex = i;
+        this._selectedIndex = i;
         this.element.childNodes.item(0).value = this._dataProvider[i];
     }
 };
