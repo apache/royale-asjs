@@ -275,7 +275,8 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
                                 function(document, parent, data, recursive) {
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
+    if (data)
+        org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
                                 document, parent, data, recursive);
 };
 
@@ -286,6 +287,8 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
                                                     function(host, data) {
+        if (!data) return;
+        
         var i = 0;
         var m;
         var j;
