@@ -30,13 +30,13 @@ package org.apache.flex.net
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
-	[Event("complete", org.apache.flex.events.Event)]
+	[Event(name="complete", type="org.apache.flex.events.Event")]
 	
-	[Event("ioError", org.apache.flex.events.Event)]
+	[Event(name="ioError", type="org.apache.flex.events.Event")]
 	
-	[Event("httpStatus", org.apache.flex.events.Event)]
+	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
 	
-	[Event("httpResponseStatus", org.apache.flex.events.Event)]
+	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
     
     [DefaultProperty("beads")]
     
@@ -83,6 +83,8 @@ package org.apache.flex.net
 		private var _headers:Array;
 		public function get headers():Array
 		{
+			if (_headers == null)
+				_headers = [];
 			return _headers;
 		}
 		public function set headers(value:Array):void
@@ -128,7 +130,7 @@ package org.apache.flex.net
 		}
 		
 		private var _responseURL:String;
-		private function get responseURL():String
+		public function get responseURL():String
 		{
 			return _responseURL;	
 		}

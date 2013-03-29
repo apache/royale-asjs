@@ -192,6 +192,8 @@ org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_headers = function() {
+    if (this._headers == undefined)
+        this._headers = [];
     return this._headers;
 };
 
@@ -250,8 +252,8 @@ org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
  * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The url.
  */
-org.apache.flex.net.HTTPService.prototype.get_responseUrl = function() {
-    return this._responseUrl;
+org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
+    return this._responseURL;
 };
 
 /**
