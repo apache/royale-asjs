@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
@@ -39,10 +38,10 @@ package org.apache.flex.html.staticControls.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
+            IEventDispatcher(value).addEventListener("click", clickHandler);
 		}
 		
-        private function clickHandler(event:MouseEvent):void
+        private function clickHandler(event:Event):void
         {
             var viewBead:IDropDownListBead = _strand.getBeadByType(IDropDownListBead) as IDropDownListBead;
             viewBead.popUpVisible = true;

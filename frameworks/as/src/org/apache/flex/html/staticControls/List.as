@@ -34,7 +34,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout;
 	import org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer;
 	
-    [Event("change", org.apache.flex.events.Event)]
+    [Event(name="change", type="org.apache.flex.events.Event")]
     
 	/**
 	 *  Label probably should extend TextField directly,
