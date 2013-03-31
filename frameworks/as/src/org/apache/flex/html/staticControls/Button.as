@@ -20,6 +20,7 @@ package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
+	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
@@ -29,6 +30,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	[Event(name="click", type="org.apache.flex.events.Event")]
+
 	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel, IEventDispatcher
 	{
 		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
@@ -36,6 +39,16 @@ package org.apache.flex.html.staticControls
 			super(upState, overState, downState, hitTestState);
 			// mouseChildren = true;
 			// mouseEnabled = true;
+			addEventListener(MouseEvent.CLICK, clickKiller, false, 9999); 
+		}
+		
+		private function clickKiller(event:flash.events.Event):void
+		{
+			if (event is MouseEvent)
+			{
+				event.stopImmediatePropagation();
+				dispatchEvent(new Event("click"));
+			}
 		}
 		
 		private var _width:Number = 0;
