@@ -25,11 +25,20 @@
 	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/">
+		<svg id="button">
 			<xsl:apply-templates mode="rect" />
+			<xsl:apply-templates mode="text" />
+		</svg>
 	</xsl:template>
 	
 	<xsl:template match="fx:Script" mode="#all" />
 	<xsl:template match="fx:Metadata" mode="#all" />
+	
+	<xsl:template match="s:states" mode="rect">
+			<xsl:for-each select="s:State">
+					<xsl:apply-templates mode="rect" />
+			</xsl:for-each>
+	</xsl:template>
 
 	<xsl:template match="s:Rect|Rect" mode="rect">
 		<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +125,9 @@
 			<xsl:if test="not(@height) ">
 					<xsl:attribute name="height">100%</xsl:attribute>
 			</xsl:if>
+			<xsl:if test="not(s:fill) ">
+					<xsl:attribute name="fill">none</xsl:attribute>
+			</xsl:if>
 
 			<xsl:apply-templates mode="rect" />
 
@@ -142,14 +154,17 @@
 			select="generate-id(.)" />)</xsl:attribute>
 	</xsl:template>
 	
-		<xsl:template match="s:LinearGradientStroke" mode="rect">
-		<xsl:attribute name="style">stroke:url(#<xsl:value-of
+	<xsl:template match="s:LinearGradientStroke" mode="rect">
+		<xsl:attribute name="style">stroke-width:<xsl:value-of select="@weight+1"></xsl:value-of>;stroke:url(#<xsl:value-of
 			select="generate-id(.)" />)</xsl:attribute>
 	</xsl:template>
 	
 	<xsl:template match="//s:LinearGradient" mode="defs">
 		<linearGradient>
 			<xsl:attribute name="id"><xsl:value-of select="generate-id()" /></xsl:attribute>
+			<xsl:if test="@rotation">
+				<xsl:attribute name="gradientTransform">rotate(<xsl:value-of select="@rotation" />)</xsl:attribute>
+			</xsl:if>			
 			<xsl:apply-templates mode="defs" />
 		</linearGradient>
 	</xsl:template>
@@ -164,7 +179,7 @@
 	<xsl:template match="//s:GradientEntry" mode="defs">
 		<stop>
 			<xsl:attribute name="offset">
-				<xsl:value-of select="@ratio*100"></xsl:value-of>
+				<xsl:value-of select="@ratio"></xsl:value-of>
 			</xsl:attribute>
 			<xsl:attribute name="stop-color">#<xsl:value-of
 				select="substring-after(@color, '0x')" />
@@ -174,5 +189,24 @@
 			</xsl:attribute>
 		</stop>
 	</xsl:template>
+	
+<!-- Text -->
+
+	<xsl:template match="s:Label" mode="text" >
+	<svg>
+		<text>
+			<xsl:if test="@id">
+				<xsl:attribute name="id">
+					<xsl:value-of select="@id" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:attribute name="text-anchor">middle</xsl:attribute>
+			<xsl:attribute name="pointer-events">none</xsl:attribute>
+			<xsl:attribute name="dy">.3em</xsl:attribute>
+			<xsl:attribute name="x">50%</xsl:attribute>
+			<xsl:attribute name="y">50%</xsl:attribute>Hello</text>
+		</svg>	
+	</xsl:template>	
+	
 
 </xsl:stylesheet>
