@@ -172,6 +172,9 @@
 		<xsl:template match="//s:LinearGradientStroke" mode="defs">
 			<linearGradient>
 				<xsl:attribute name="id"><xsl:value-of select="generate-id()" /></xsl:attribute>
+				<xsl:if test="@rotation">
+					<xsl:attribute name="gradientTransform">rotate(<xsl:value-of select="@rotation" />)</xsl:attribute>
+				</xsl:if>
 				<xsl:apply-templates mode="defs" />
 			</linearGradient>
 	</xsl:template>
