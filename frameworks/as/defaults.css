@@ -18,6 +18,7 @@
  */
 
 @namespace "library://ns.apache.org/flexjs/basic";
+@namespace h5 "library://ns.apache.org/flexjs/html5";
 
 /* Global style declaration */
 global
@@ -70,4 +71,22 @@ TextButton
 TextInput
 {
     ITextInputBead: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderBead");
+}
+
+/* HTML5 */
+
+h5|TextButton
+{
+	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+}
+
+h5|TextInput
+{
+    ITextInputBead: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderBead");
+}
+
+h5|CheckBox
+{
+    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
