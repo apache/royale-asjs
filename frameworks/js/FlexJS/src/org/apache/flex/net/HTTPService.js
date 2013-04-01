@@ -15,15 +15,15 @@
 goog.provide('org.apache.flex.net.HTTPService');
 
 goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
 goog.require('org.apache.flex.net.HTTPHeader');
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.net.HTTPService = function() {
-    org.apache.flex.FlexObject.call(this);
+    org.apache.flex.core.HTMLElementWrapper.call(this);
 
     /**
      * @protected
@@ -65,7 +65,7 @@ org.apache.flex.net.HTTPService = function() {
      * @private
      * @type {Number}
      */
-    this._timeout;
+    this._timeout = 0;
 
     /**
      * @private
@@ -81,19 +81,14 @@ org.apache.flex.net.HTTPService = function() {
 
     /**
      * @private
-     * @type {Array}
-     */
-    this.strand;
-
-    /**
-     * @private
      * @type {XMLHttpRequest}
      */
     this.element;
 
     this.element = new XMLHttpRequest();
 };
-goog.inherits(org.apache.flex.net.HTTPService, org.apache.flex.FlexObject);
+goog.inherits(org.apache.flex.net.HTTPService,
+    org.apache.flex.core.HTMLElementWrapper);
 
 /**
  * @expose
@@ -118,28 +113,6 @@ org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = "PUT";
  * @type {String}
  */
 org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = "DELETE";
-
-/**
- * @this {org.apache.flex.net.HTTPService}
- * @param {string} type The event type.
- * @param {function(?): ?} fn The event handler.
- */
-org.apache.flex.net.HTTPService.prototype.addEventListener =
-function(type, fn) {
-    if (typeof this.element.attachEvent == 'function') {
-        this.element.attachEvent(org.apache.flex.FlexGlobal.EventMap[type], fn);
-    } else if (typeof this.element.addEventListener == 'function') {
-        this.element.addEventListener(type, fn);
-    }
-};
-
-/**
- * @this {org.apache.flex.net.HTTPService}
- * @param {org.apache.flex.events.Event} evt The event.
- */
-org.apache.flex.net.HTTPService.prototype.dispatchEvent = function(evt) {
-    this.element.dispatchEvent(evt);
-};
 
 /**
  * @expose
@@ -323,8 +296,8 @@ org.apache.flex.net.HTTPService.prototype.send = function() {
             contentData = this._contentData;
     }
     
-    this.element.timeout = this._timeout;
     this.element.open(this._method,this._url,true);
+    this.element.timeout = this._timeout;
     var sawContentType = false;
     if (this._headers)
     {
@@ -363,18 +336,15 @@ org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
     if (this.element.readyState == 2)
     {
         this._status = this.element.status;
-        var evt = document.createEvent('Event');
-        evt.initEvent('httpResponseStatus', true, true);
-        this.element.dispatchEvent(evt);
-        evt = document.createEvent('Event');
-        evt.initEvent('httpStatus', true, true);
-        this.element.dispatchEvent(evt);
+        var evt = this.createEvent('httpResponseStatus');
+        this.dispatchEvent(evt);
+        evt = this.createEvent('httpStatus');
+        this.dispatchEvent(evt);
     }
     else if (this.element.readyState == 4)
     {
-        var evt = document.createEvent('Event');
-        evt.initEvent('complete', true, true);
-        this.element.dispatchEvent(evt);
+        var evt = this.createEvent('complete');
+        this.dispatchEvent(evt);
     }
 };
 
@@ -402,8 +372,7 @@ org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
     if (this.id != value)
     {
         this.id = value;
-        var evt = document.createEvent('Event');
-        evt.initEvent('idChanged', false, false);
+        var evt = this.createEvent('idChanged');
         this.dispatchEvent(evt);
     }
 };

@@ -96,8 +96,7 @@ org.apache.flex.utils.Timer.prototype.timerHandler =
     if (this._repeatCount > 0 && this._currentCount >= this._repeatCount)
         this.stop();
         
-    var evt = document.createEvent('Event');
-    evt.initEvent('timer', false, false);
+    var evt = org.apache.flex.events.EventDispatcher.createEvent('timer');
     this.dispatchEvent(evt);
     
 };

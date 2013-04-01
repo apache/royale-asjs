@@ -41,7 +41,7 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.List.prototype.addToParent = function(p) {
     this.element = document.createElement('select');
-    this.element.onChange = org.apache.flex.FlexGlobal.createProxy(
+    this.element.onchange = org.apache.flex.FlexGlobal.createProxy(
                 this, this.changeHandler);
     this.element.size = 5;
                 
@@ -139,8 +139,7 @@ function(value) {
  */
 org.apache.flex.html.staticControls.List.prototype.changeHandler =
 function() {
-    evt = document.createEvent('Event');
-    evt.initEvent('change', false, false);
-    this.element.dispatchEvent(evt);
+    evt = this.createEvent('change');
+    this.dispatchEvent(evt);
 };
 

@@ -15,14 +15,14 @@
 goog.provide('org.apache.flex.core.UIBase');
 
 goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.UIBase = function() {
-    org.apache.flex.FlexObject.call(this);
+    org.apache.flex.core.HTMLElementWrapper.call(this);
 
     /**
      * @protected
@@ -30,26 +30,9 @@ org.apache.flex.core.UIBase = function() {
      */
     this.positioner;
 
-    /**
-     * @private
-     * @type {Array}
-     */
-    this.strand;
 };
-goog.inherits(org.apache.flex.core.UIBase, org.apache.flex.FlexObject);
-
-/**
- * @this {org.apache.flex.core.UIBase}
- * @param {string} type The event type.
- * @param {function(?): ?} fn The event handler.
- */
-org.apache.flex.core.UIBase.prototype.addEventListener = function(type, fn) {
-    if (typeof this.element.attachEvent == 'function') {
-        this.element.attachEvent(org.apache.flex.FlexGlobal.EventMap[type], fn);
-    } else if (typeof this.element.addEventListener == 'function') {
-        this.element.addEventListener(type, fn);
-    }
-};
+goog.inherits(org.apache.flex.core.UIBase,
+    org.apache.flex.core.HTMLElementWrapper);
 
 /**
  * @this {org.apache.flex.core.UIBase}
@@ -59,14 +42,6 @@ org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
     this.element = document.createElement('div');
 
     p.appendChild(this.element);
-};
-
-/**
- * @this {org.apache.flex.core.UIBase}
- * @param {org.apache.flex.events.Event} evt The event.
- */
-org.apache.flex.core.UIBase.prototype.dispatchEvent = function(evt) {
-    this.element.dispatchEvent(evt);
 };
 
 /**
@@ -131,8 +106,7 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
     if (this.id != value)
     {
         this.id = value;
-        var evt = document.createEvent('Event');
-        evt.initEvent('idChanged', false, false);
+        var evt = this.createEvent('idChanged');
         this.dispatchEvent(evt);
     }
 };
@@ -165,76 +139,3 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
     }
 };
 
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @param {object} bead The new bead.
- */
-org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
-    if (!this.strand)
-        this.strand = [];
-    this.strand.push(bead);
-    if (typeof(bead.constructor.$implements) != 'undefined' &&
-        typeof(bead.constructor.$implements.IBeadModel != 'undefined'))
-        this.model = bead;
-    bead.set_strand(this);
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @param {object} classOrInterface The requested bead type.
- * @return {object} The bead.
- */
-org.apache.flex.core.UIBase.prototype.getBeadByType =
-                                    function(classOrInterface) {
-    var n;
-    n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead instanceof classOrInterface)
-            return bead;
-        if (classOrInterface in bead.constructor.$implements)
-            return bead;
-    }
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @param {object} bead The bead to remove.
- * @return {object} The bead.
- */
-org.apache.flex.core.UIBase.prototype.remove = function(bead) {
-    var n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead == value)
-        {
-            this.strand.splice(i, 1);
-            return bead;
-        }
-    }
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @return {Array} The array of descriptors.
- */
-org.apache.flex.core.UIBase.prototype.get_MXMLDescriptor = function() {
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @return {Array} The array of properties.
- */
-org.apache.flex.core.UIBase.prototype.get_MXMLProperties = function() {
-    return null;
-};

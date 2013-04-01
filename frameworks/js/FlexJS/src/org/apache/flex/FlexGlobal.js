@@ -44,9 +44,7 @@ org.apache.flex.FlexGlobal.newObject = function(ctor, ctorArgs) {
     if ((ctor === org.apache.flex.events.Event ||
          ctor === org.apache.flex.events.CustomEvent) && 
          ctorArgs.length === 1) {
-        evt = document.createEvent('Event');
-        evt.initEvent(ctorArgs[0], false, false);
-
+        evt = org.apache.flex.events.EventDispatcher.createEvent(ctorArgs[0]);
         return evt;
     }
 
@@ -61,9 +59,3 @@ org.apache.flex.FlexGlobal.newObject = function(ctor, ctorArgs) {
     return {};
 };
 
-/**
- * @enum {string}
- */
-org.apache.flex.FlexGlobal.EventMap = {
-    CLICK: 'onClick'
-};

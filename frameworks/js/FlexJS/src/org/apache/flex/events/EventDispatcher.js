@@ -84,3 +84,22 @@ org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(event)
         }
     }
 };
+
+/**
+ * @param {String} type The event type.
+ * @returns {Object} event The event to dispatch.
+ */
+org.apache.flex.events.EventDispatcher.createEvent = function(type) {
+    var evt;
+    if (document.createEvent)
+    {
+        evt = document.createEvent('Event');
+        evt.initEvent(type, false, false);
+    }
+    else if (document.createEventObject)
+    {
+        evt = document.createEventObject();
+        evt.type = type;
+    }
+    return evt;
+};

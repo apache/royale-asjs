@@ -14,8 +14,7 @@
 
 goog.provide('org.apache.flex.core.Application');
 
-goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
 
 goog.require('org.apache.flex.core.SimpleValuesImpl');
 goog.require('org.apache.flex.core.ValuesManager');
@@ -24,10 +23,10 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.Application = function() {
-    org.apache.flex.FlexObject.call(this);
+    org.apache.flex.core.HTMLElementWrapper.call(this);
 
     /**
      * @private
@@ -35,13 +34,9 @@ org.apache.flex.core.Application = function() {
      */
     this.queuedListeners_;
 
-    /**
-     * @private
-     * @type {Array}
-     */
-    this.strand;
 };
-goog.inherits(org.apache.flex.core.Application, org.apache.flex.FlexObject);
+goog.inherits(org.apache.flex.core.Application,
+    org.apache.flex.core.HTMLElementWrapper);
 
 /**
  * @expose
@@ -83,11 +78,7 @@ org.apache.flex.core.Application.prototype.addEventListener = function(t, fn) {
         return;
     }
 
-    if (typeof this.element.attachEvent == 'function') {
-        this.element.attachEvent(org.apache.flex.FlexGlobal.EventMap[t], fn);
-    } else if (typeof this.element.addEventListener == 'function') {
-        this.element.addEventListener(t, fn);
-    }
+    goog.base(this, 'addEventListener', t, fn);
 };
 
 /**
@@ -113,89 +104,13 @@ org.apache.flex.core.Application.prototype.start = function() {
 
     org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
 
-    evt = document.createEvent('Event');
-    evt.initEvent('initialize', true, true);
-    this.element.dispatchEvent(evt);
+    evt = this.createEvent('initialize');
+    this.dispatchEvent(evt);
 
     this.initialView.addToParent(this.element);
     this.initialView.initUI(this.model);
 
-    evt = document.createEvent('Event');
-    evt.initEvent('viewChanged', true, true);
-    this.element.dispatchEvent(evt);
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.Application}
- * @return {Array} The array of descriptors.
- */
-org.apache.flex.core.Application.prototype.get_MXMLDescriptor = function() {
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.Application}
- * @return {Array} The array of properties.
- */
-org.apache.flex.core.Application.prototype.get_MXMLProperties = function() {
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.Application}
- * @param {object} bead The new bead.
- */
-org.apache.flex.core.Application.prototype.addBead = function(bead) {
-    if (!this.strand)
-        this.strand = [];
-    this.strand.push(bead);
-    if (typeof(bead.constructor.$implements) != 'undefined' &&
-        typeof(bead.constructor.$implements.IBeadModel != 'undefined'))
-        this.model = bead;
-    bead.set_strand(this);
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.Application}
- * @param {object} classOrInterface The requested bead type.
- * @return {object} The bead.
- */
-org.apache.flex.core.Application.prototype.getBeadByType =
-                                    function(classOrInterface) {
-    var n;
-    n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead instanceof classOrInterface)
-            return bead;
-        if (classOrInterface in bead.constructor.$implements)
-            return bead;
-    }
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.core.Application}
- * @param {object} bead The bead to remove.
- * @return {object} The bead.
- */
-org.apache.flex.core.Application.prototype.removeBead = function(bead) {
-    var n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead == value)
-        {
-            this.strand.splice(i, 1);
-            return bead;
-        }
-    }
-    return null;
+    evt = this.createEvent('viewChanged');
+    this.dispatchEvent(evt);
 };
 
