@@ -1,0 +1,5 @@
+1.  Gradient: In FXG, if there are only two stops, the first ratio (stop-offset) defaults to 0 and second ratio (stop-offset) defaults to 1
+2.  GradientTransform: rotation(270) must be set in the format: x1="0%" y1="100%" x2="0%" y2="0%" (Right now doing it by hand)
+3.  Text does not seem to be vertially centered in SVG.  (done)
+4.  Handle multiple states (via Ant, I guess)
+5.  Make sure empty namespace is not created for linearGradient (done)

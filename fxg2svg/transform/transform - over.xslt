@@ -19,13 +19,13 @@
 -->
 <xsl:stylesheet version="2.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="http://www.w3.org/2000/svg">
 
 	<xsl:strip-space elements="s:*" />
 	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/">
-		<svg id="button">
+		<svg id="button_over" width="100%" height="100%" version="1.1" >
 			<xsl:apply-templates mode="rect" />
 			<xsl:apply-templates mode="text" />
 		</svg>
@@ -181,16 +181,36 @@
 			<xsl:attribute name="offset">
 				<xsl:value-of select="@ratio"></xsl:value-of>
 			</xsl:attribute>
-			<xsl:attribute name="stop-color">#<xsl:value-of
+			<xsl:choose>
+				<xsl:when test="attribute(color.over)">
+					<xsl:attribute name="stop-color">#<xsl:value-of
+				select="substring-after(@color.over, '0x')" />
+			</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="stop-color">#<xsl:value-of
 				select="substring-after(@color, '0x')" />
 			</xsl:attribute>
-			<xsl:attribute name="stop-opacity">
-				<xsl:value-of select="@alpha" />
-			</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
+			
+			<xsl:choose>
+				<xsl:when test="attribute(alpha.over)">
+					<xsl:attribute name="stop-opacity">
+						<xsl:value-of select="@alpha.over" />
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="stop-opacity">
+						<xsl:value-of select="@alpha" />
+					</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
+
 		</stop>
 	</xsl:template>
 	
-<!-- Text -->
+<!-- Text
 
 	<xsl:template match="s:Label" mode="text" >
 	<svg>
@@ -208,5 +228,5 @@
 		</svg>	
 	</xsl:template>	
 	
-
+ -->
 </xsl:stylesheet>
