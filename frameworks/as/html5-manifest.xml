@@ -29,5 +29,7 @@
     <component id="CheckBox" class="org.apache.flex.html5.staticControls.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.html5.staticControls.RadioButton"/>
     <component id="List" class="org.apache.flex.html5.staticControls.List"/>
+    <component id="DropDownList" class="org.apache.flex.html5.staticControls.DropDownList"/>
+    <component id="ComboBox" class="org.apache.flex.html5.staticControls.ComboBox"/>
 
 </componentPackage>

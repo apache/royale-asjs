@@ -101,3 +101,16 @@ h5|List
 {
 	ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
+
+h5|DropDownList
+{
+    ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
+
+h5|ComboBox
+{
+    IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
+    IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
+    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
