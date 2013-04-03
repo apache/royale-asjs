@@ -55,7 +55,14 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addEventListener =
 org.apache.flex.core.HTMLElementWrapper.prototype.dispatchEvent = 
     function(evt) {
     if (this.element.addEventListener)
-        this.element.dispatchEvent(evt);    
+    {
+        try {
+            this.element.dispatchEvent(evt);
+        } catch (e) {
+            var domevt = this.createEvent(evt.type);
+            this.element.dispatchEvent(domevt);
+        }
+    }
     else if (this.element.attachEvent || !this.element.dispatchEvent)
         org.apache.flex.utils.IE8Utils.dispatchEvent(this, this.element, evt)
 };

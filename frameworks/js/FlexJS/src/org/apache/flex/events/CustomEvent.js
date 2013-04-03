@@ -17,12 +17,8 @@ goog.provide('org.apache.flex.events.CustomEvent');
 /**
  * @constructor
  */
-org.apache.flex.events.CustomEvent = function() {
-    /**
-     * @private
-     * @type {string}
-     */
-     this.type_;
+org.apache.flex.events.CustomEvent = function(type) {
+    this.type = type;
 };
 
 /**
@@ -32,3 +28,9 @@ org.apache.flex.events.CustomEvent = function() {
 org.apache.flex.events.CustomEvent.prototype.init = function(type) {
     this.type_ = type;
 };
+
+/**
+ * @expose 
+ * @type {string} type The event type.
+ */
+org.apache.flex.events.CustomEvent.prototype.type;
