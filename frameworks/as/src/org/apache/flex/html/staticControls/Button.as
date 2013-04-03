@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
 	
@@ -156,6 +157,11 @@ package org.apache.flex.html.staticControls
 		{
 			_width = $width;
 			_height = $height;
+		}
+		
+		public function addToParent(p:DisplayObjectContainer):void
+		{
+			p.addChild(this);
 		}
 	}
 }
