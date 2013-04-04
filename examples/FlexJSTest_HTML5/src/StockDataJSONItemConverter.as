@@ -16,44 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	
-	public class MyModel extends EventDispatcher
-	{
-		public function MyModel()
-		{
-		}
-		
-		private var _labelText:String;
-		
-		public function get labelText():String
-		{
-			return _labelText;
-		}
-		
-		public function set labelText(value:String):void
-		{
-			if (value != _labelText)
-			{
-				_labelText = value;
-				dispatchEvent(new Event("labelTextChanged"));
-			}
-		}
-        
-        private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
-        public function get strings():Array
+    import org.apache.flex.net.JSONItemConverter;
+    
+    public class StockDataJSONItemConverter extends JSONItemConverter
+    {
+        public function StockDataJSONItemConverter()
         {
-            return _strings;
+            super();
         }
-		
-		private var _cities:Array = ["London", "Miami", "Paris", "Sydney", "Tokyo"];
-		public function get cities():Array
-		{
-			return _cities;
-		}
-
-	}
+        
+        override public function convertItem(data:String):Object
+        {
+            var obj:Object = super.convertItem(data);
+            return obj.query.results.quote.Ask;
+        }
+    }
 }

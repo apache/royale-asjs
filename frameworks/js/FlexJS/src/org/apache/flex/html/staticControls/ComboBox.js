@@ -89,6 +89,9 @@ function(event) {
 	
 	this.popup.parentNode.removeChild(this.popup);
 	this.popup = null;
+	
+	evt = this.createEvent('change');
+    this.dispatchEvent(evt);
 };
 
 

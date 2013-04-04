@@ -53,6 +53,15 @@ package org.apache.flex.html.staticControls
 			IComboBoxModel(model).selectedIndex = value;
 		}
 		
+		public function get selectedItem():Object
+		{
+			return IComboBoxModel(model).selectedItem;
+		}
+		public function set selectedItem(value:Object):void
+		{
+			IComboBoxModel(model).selectedItem = value;
+		}
+		
 		override public function initModel():void
 		{
 			if (getBeadByType(IComboBoxModel) == null)
