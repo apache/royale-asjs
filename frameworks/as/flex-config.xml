@@ -205,13 +205,6 @@
 
       </fonts>
       
-      <!-- MXML automatically imports some classes. -->
-      <mxml>
-        <imports>
-          <implicit-import>org.apache.flex.events.Event</implicit-import>
-        </imports>
-      </mxml>
-      
       <!-- Array.toString() format has changed. -->
       <warn-array-tostring-changes>false</warn-array-tostring-changes>
 
