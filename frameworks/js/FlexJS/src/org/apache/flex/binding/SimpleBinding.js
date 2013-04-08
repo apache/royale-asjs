@@ -23,6 +23,13 @@ goog.require('org.apache.flex.FlexObject');
  */
 org.apache.flex.binding.SimpleBinding = function() {
     org.apache.flex.FlexObject.call(this);
+    
+    /**
+     * @private
+     * @type {object}
+     */
+    this.document;
+
 };
 goog.inherits(
     org.apache.flex.binding.SimpleBinding, org.apache.flex.FlexObject
@@ -51,6 +58,12 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
  * @type {Object}
  */
 org.apache.flex.binding.SimpleBinding.prototype.source = null;
+
+/**
+ * @expose
+ * @type {string}
+ */
+org.apache.flex.binding.SimpleBinding.prototype.sourceID = '';
 
 /**
  * @expose
