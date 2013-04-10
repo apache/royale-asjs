@@ -3,3 +3,4 @@
 3.  Text does not seem to be vertially centered in SVG.  (done)
 4.  Handle multiple states (via Ant, I guess)
 5.  Make sure empty namespace is not created for linearGradient (done)
+6.  Change transform so that the element ids are not repeated for the various skin states.  

@@ -196,7 +196,7 @@
 		</stop>
 	</xsl:template>
 	
-<!-- Text
+<!-- Text -->
 
 	<xsl:template match="s:Label" mode="text" >
 	<svg>
@@ -214,5 +214,5 @@
 		</svg>	
 	</xsl:template>	
 	
- -->
+
 </xsl:stylesheet>

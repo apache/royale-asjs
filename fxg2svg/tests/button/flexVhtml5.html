@@ -79,6 +79,16 @@
 			}
 			
 		</style>
+		
+		<script>
+			function editOKBtn()
+			{
+				var startTimerBtn = document.getElementById("startTimerBtn");
+				var svg = startTimerBtn.style.background;
+				svg.borderSVG.border.rx = 25;
+				svg.borderSVG.border.ry = 25;
+			}
+		</script>		
     </head>
     <body>
 		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="500" height="500" id="SeeFXG" top="0" left="0">
@@ -108,8 +118,8 @@
 			<!--<![endif]-->
 		</object>
 		<div id="html5">
-			<button type="button" class="button ok">OK</button>	
-			<button type="button" class="button timer start">Start Timer</button>
+			<button id="okBtn" type="button" class="button ok" onclick="editOKBtn()">OK</button>	
+			<button id="startTimerBtn" type="button" style="background: url(button_skin_up.svg)">Start Timer</button>
 			<button type="button" class="button timer stop">Stop Timer</button>
 			<button type="button" class="button big">Big Button</button>
 		</div>
