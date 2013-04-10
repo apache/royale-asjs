@@ -33,6 +33,7 @@ goog.inherits(org.apache.flex.events.EventDispatcher,
     org.apache.flex.FlexGlobal);
 
 /**
+ * @expose
  * @this {org.apache.flex.events.EventDispatcher}
  * @param {string} type The event type.
  * @param {function(?): ?} fn The event handler.
@@ -46,6 +47,7 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener = function(typ
 };
 
 /**
+ * @expose
  * @this {org.apache.flex.events.EventDispatcher}
  * @param {string} type The event type.
  * @param {function(?): ?} fn The event handler.
@@ -68,6 +70,7 @@ org.apache.flex.events.EventDispatcher.prototype.removeEventListener = function(
 };
 
 /**
+ * @expose
  * @this {org.apache.flex.events.EventDispatcher}
  * @param {Object} event The event to dispatch.
  */
@@ -86,6 +89,7 @@ org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(event)
 };
 
 /**
+ * @expose
  * @param {String} type The event type.
  * @returns {Object} event The event to dispatch.
  */
