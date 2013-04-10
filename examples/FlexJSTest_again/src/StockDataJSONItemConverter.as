@@ -30,7 +30,7 @@ package
         override public function convertItem(data:String):Object
         {
             var obj:Object = super.convertItem(data);
-            return obj.query.results.quote.Ask;
+            return obj['query']['results']['quote']['Ask'];
         }
     }
 }
