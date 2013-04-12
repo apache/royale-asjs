@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.HTMLElementWrapper');
 
 goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.utils.IE8Utils');
 
 /**

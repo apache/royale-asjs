@@ -30,6 +30,8 @@ package
         override public function convertItem(data:String):Object
         {
             var obj:Object = super.convertItem(data);
+			if (obj['query']['results'] == null)
+				return 'No Quote Available';
             return obj['query']['results']['quote']['Ask'];
         }
     }
