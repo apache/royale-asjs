@@ -1,0 +1,331 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+	  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="marmotinni" default="main" basedir=".">
+
+	<property name="test.file" value="FlexJS/framework/org/apache/flex/html/staticControls/TextButton/TextButton.mxml" />
+	<property name="test.class" value="org.apache.flex.html.staticControls.textButton.TextButton" />
+	
+	<property file="build.properties" />
+	
+	<!-- Put 'teardown' option under command line control (-Ddo.teardown=) -->
+	<property name="do.teardown" value="true" />  
+	<condition property="do_teardown">
+		<istrue value="${do.teardown}" />
+	</condition>
+	
+	<!-- Constants -->
+	<property name="mxmlc.dir" value="../../flex-falcon/compiler.jx/bin" />
+	<property name="player.version" value="11.1" />
+	<property name="sdk.dir" value="../../flex-sdk" />
+	
+	<property name="output.goog.dir.name" value="library" />
+    <property name="output.intermediate.dir.name" value="js-debug" />
+	<property name="output.release.dir.name" value="js-release" />
+	<property name="output.root.dir.name" value="bin" />
+	<property name="output.sdk.dir.name" value="org" />
+	
+	<property name="output.dir" value="${basedir}/temp" />
+	
+	<!-- Property/constant dependent settings -->
+	<!-- 1st -->
+	<property name="output.goog.dir" value="${output.intermediate.dir.name}/${output.goog.dir.name}" /> <!-- js-debug/library -->
+    <property name="output.js.root.dir" value="${output.dir}/${output.root.dir.name}" /> <!-- [path]/bin -->
+	<property name="output.sdk.dir.name" value="${output.intermediate.dir.name}/${output.sdk.dir.name}" /> <!-- js-debug/org -->
+	<property name="project.main" value="${basedir}/tests/${test.file}" />	
+
+	<!-- 2nd -->
+    <property name="output.js.intermediate.dir" value="${output.js.root.dir}/${output.intermediate.dir.name}" /> <!-- [path]/bin/js-debug -->
+    <property name="output.js.release.dir" value="${output.js.root.dir}/${output.release.dir.name}" /> <!-- [path]/bin/js-release -->
+	
+	<!-- host_os_name (formerly real_os_name) is the machine which is compiling. -->
+	<condition property="host_os_name" value="mac" >
+		<os family="mac" />
+	</condition>
+
+	<condition property="short_os_name" value="mac" >
+		<os family="mac" />
+	</condition>
+
+	<condition property="host_os_name" value="windows" >
+		<os family="windows" />
+	</condition>
+
+	<condition property="short_os_name" value="win" >
+		<os family="windows" />
+	</condition>
+
+	<condition property="host_os_name" value="Linux" >
+		<os name="Linux" />
+	</condition>	
+
+    <!--=====================================================================-->
+    <!--    Main                                                             -->
+    <!--=====================================================================-->
+	<target name="main" depends="get_os, setup, run, teardown">
+		<echo>All done now, thank you ;-)</echo>
+	</target>
+
+    <!--=====================================================================-->
+    <!--    Test                                                             -->
+    <!--=====================================================================-->
+	<target name="test" depends="test_compile">
+		<echo>Testing...</echo>
+        
+		<java classname="${param.test.class}" outputproperty="stdout" classpath="${basedir}/java/bin" fork="true" failonerror="yes">
+		    <arg value="url=${param.test.url}" />
+            <classpath>
+            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.32.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/bsh-1.3.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-codec-1.6.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-exec-1.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-io-2.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-lang3-3.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-logging-1.1.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/cssparser-0.9.9.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/guava-14.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/htmlunit-2.12.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/htmlunit-core-js-2.12.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpclient-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpcore-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpmime-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/ini4j-0.5.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jcommander-1.29.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jetty-websocket-8.1.8.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jna-3.4.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jna-platform-3.4.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/json-20080701.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/junit-dep-4.11.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/nekohtml-1.9.17.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/operadriver-1.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/phantomjsdriver-1.0.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/protobuf-java-2.4.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/sac-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/serializer-2.7.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/testng-6.8.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xalan-2.7.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xercesImpl-2.10.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+            </classpath>
+		</java>
+		
+		<fail message="The test '${param.test.class}' reports: ${stdout}.">
+            <condition>
+                <not>
+                    <equals arg1="${stdout}" arg2="success" />
+                </not>
+            </condition>
+        </fail>
+		
+		<echo>The test '${param.test.class}' passed.</echo>
+	</target>
+
+    <target name="test_clean">
+        <delete dir="${basedir}/java/bin"/>
+    </target>
+
+    <target name="test_prepare" depends="test_clean">
+        <mkdir dir="${basedir}/java/bin"/>
+    </target>
+
+    <target name="test_compile" depends="test_prepare">
+        <javac srcdir="${basedir}/java/src/org/apache/flex/html/staticControls/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
+            <classpath>
+            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.32.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/bsh-1.3.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-codec-1.6.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-exec-1.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-io-2.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-lang3-3.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/commons-logging-1.1.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/cssparser-0.9.9.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/guava-14.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/htmlunit-2.12.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/htmlunit-core-js-2.12.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpclient-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpcore-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/httpmime-4.2.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/ini4j-0.5.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jcommander-1.29.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jetty-websocket-8.1.8.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jna-3.4.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/jna-platform-3.4.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/json-20080701.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/junit-dep-4.11.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/nekohtml-1.9.17.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/operadriver-1.2.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/phantomjsdriver-1.0.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/protobuf-java-2.4.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/sac-1.3.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/serializer-2.7.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/testng-6.8.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xalan-2.7.1.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xercesImpl-2.10.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!--=====================================================================-->
+    <!--    Run                                                              -->
+    <!--=====================================================================-->
+	<target name="run" depends="run_setup">
+		<antcall target="mxmlc">
+			<param name="param.file" value="${project.main}"/>
+			<param name="param.js.sdk" value="${flexjs.lib}"/>
+			<param name="param.type" value="FLEXJS"/>
+			<param name="param.lib" value="${flexjs.ui.swc}"/>
+		</antcall>
+		
+		<move file="${output.js.intermediate.dir}/deps.js" tofile="${output.js.intermediate.dir}/${output.goog.dir.name}/closure/goog/deps.js" />
+		
+		<antcall target="test">
+			<param name="param.test.class" value="${test.class}"/>
+			<param name="param.test.url" value="file://localhost/Users/erik/Documents/ApacheFlex/git/flex-asjs/marmotinni/temp/bin/js-release/index.html"/>
+		</antcall>
+		
+		<antcall target="run_teardown" />
+	</target>
+
+	<target name="run_setup">
+		<echo>This is the run setup.</echo>
+	</target>
+
+	<target name="run_teardown" depends="test_clean" if="do_teardown">
+		<echo>This is the run teardown.</echo>
+
+		<!-- Restore original deps.js (is overwritten by previous run) -->
+		<copy file="${output.js.root.dir}/deps-orig.js" tofile="${output.js.intermediate.dir}/${output.goog.dir.name}/closure/goog/deps.js" overwrite="true" />
+
+		<!-- delete all files created during the run, but leave the libs in place -->
+		<delete includeemptydirs="true">
+			<fileset dir="${output.js.intermediate.dir}" defaultexcludes="false">
+				<include name="**/*" />
+				<exclude name="${output.goog.dir.name}/" />
+				<exclude name="${output.sdk.dir.name}/" />
+			</fileset>
+		</delete>
+		<delete dir="${output.js.release.dir}" includeemptydirs="true" />
+	</target>
+
+    <!--=====================================================================-->
+    <!--    MXMLC                                                            -->
+    <!--=====================================================================-->
+	<target name="mxmlc">
+		<echo>Execute mxmlc.</echo>
+		<exec executable="${mxmlc.dir}/${mxmlc.exe}">
+			<env key="PLAYERGLOBAL_HOME" value="${playerglobal.home}" />
+			<arg value="+playerglobal.version=${player.version}" /> 
+			<arg value="-load-config=${sdk.dir}/frameworks/flex-config.xml" /> 
+			<arg value="-js-output-type=${param.type}" /> 
+			<arg value="-library-path+=${param.lib}" />
+			<arg value="-sdk-js-lib=${param.js.sdk}" />
+			<arg value="-closure-lib=${goog.closure.lib}" />
+			<arg value="${param.file}" />
+			<arg value="-marmotinni=${output.dir}" />
+		</exec>
+	</target>
+
+    <!--=====================================================================-->
+    <!--    Setup                                                            -->
+    <!--=====================================================================-->
+	<target name="setup" depends="setup_linux, setup_mac, setup_windows">
+		<echo>This is the actual setup.</echo>
+		
+		<mkdir dir="${output.js.intermediate.dir}" />
+		
+		<mkdir dir="${output.js.root.dir}/${output.release.dir.name}" />
+		
+		<copy todir="${output.js.intermediate.dir}/${output.goog.dir.name}">
+			<fileset dir="${goog.closure.lib}">
+				<include name="closure/goog/" />
+				<include name="third_party/" />
+				<exclude name="closure/goog/demos/" />
+			</fileset>
+		</copy>
+		
+		<!-- back up original deps.js -->
+		<copy file="${goog.closure.lib}/closure/goog/deps.js" tofile="${output.js.root.dir}/deps-orig.js" overwrite="true"/>
+		
+		<copy todir="${output.js.intermediate.dir}/${output.sdk.dir.name}">
+			<fileset dir="${flexjs.lib}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
+        <subant target="main">
+            <fileset dir="${basedir}/java" includes="downloads.xml"/>
+        </subant>
+	</target>
+
+	<target name="get_os" >
+		<condition property="is_mac" value="true" >
+			<equals arg1="${host_os_name}" arg2="mac" />
+		</condition>
+		<condition property="is_win" value="true" >
+			<or>
+				<equals arg1="${host_os_name}" arg2="windows" />
+				<equals arg1="${host_os_name}" arg2="win" />
+			</or>
+		</condition>
+		<condition property="is_linux" value="true" >
+			<equals arg1="${host_os_name}" arg2="Linux" />
+		</condition>
+	</target>
+
+	<target name="setup_linux" if="is_linux">
+		<echo>Doing Linux setup.</echo>
+		<property name="mxmlc.exe" value="mxmlc"/>
+	</target>
+	
+	<target name="setup_mac" if="is_mac">
+		<echo>Doing Mac setup.</echo>
+		<property name="mxmlc.exe" value="mxmlc"/>
+	</target>
+	
+	<target name="setup_windows" if="is_win">
+		<echo>Doing Windows setup.</echo>
+		<property name="mxmlc.exe" value="mxmlc.bat"/>
+	</target>
+	
+    <!--=====================================================================-->
+    <!--    Teardown                                                         -->
+    <!--=====================================================================-->
+	<target name="teardown" if="do_teardown">
+		<echo>This is the final teardown.</echo>
+		<delete includeemptydirs="true">
+			<fileset dir="${output.dir}" defaultexcludes="false" />
+		</delete>
+	</target>
+
+</project>
