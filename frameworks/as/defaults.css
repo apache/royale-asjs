@@ -19,6 +19,7 @@
 
 @namespace "library://ns.apache.org/flexjs/basic";
 @namespace h5 "library://ns.apache.org/flexjs/html5";
+@namespace jq "library://ns.apache.org/flexjs/jquery";
 
 /* Global style declaration */
 global
@@ -113,4 +114,24 @@ h5|ComboBox
     IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
     IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
+
+/* jQuery */
+
+jq|TextButton
+{
+	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+}
+
+
+jq|CheckBox
+{
+    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
+}
+
+jq|RadioButton
+{
+    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
+    IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
