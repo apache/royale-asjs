@@ -16,34 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.utils
 {
-	import flash.text.TextField;
-	import flash.text.TextFormat;
-	
-	import org.apache.flex.core.ValuesManager;
-		
-	public class CSSTextField extends TextField
-	{
-		public function CSSTextField()
-		{
-			super();
-		}
+	import flash.display.Graphics;
 
-		override public function set text(value:String):void
-		{
-			var tf: TextFormat = new TextFormat();
-			tf.font = ValuesManager.valuesImpl.getValue(this, "fontFamily") as String;
-			tf.size = ValuesManager.valuesImpl.getValue(this, "fontSize");
-			tf.color = ValuesManager.valuesImpl.getValue(this, "color");
-			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
-			if (padding != null)
-			{
-				tf.leftMargin = padding;
-				tf.rightMargin = padding;
-			}
-			defaultTextFormat = tf;
-			super.text = value;
-		}
+public class SolidBorderUtil
+{
+	public static function drawBorder(g:Graphics, x:Number, y:Number, 
+									  width:Number, height:Number,
+									  color:uint, backgroundColor:Object = null, 
+									  thickness:int = 1, alpha:Number = 1.0):void
+	{
+		g.lineStyle(thickness, color, alpha);
+		if (backgroundColor != null)
+			g.beginFill(uint(backgroundColor));	
+		
+		g.drawRect(x, y, width, height);
+		if (backgroundColor != null)
+			g.endFill();
 	}
+}
 }

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;	
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
@@ -33,6 +34,10 @@ package org.apache.flex.core
 		{
 			_applicationModel = model;
 			dispatchEvent(new Event("modelChanged"));
+			
+			// each MXML file can also have styles in fx:Style block
+			ValuesManager.valuesImpl.init(this);
+			
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 		}

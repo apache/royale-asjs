@@ -61,6 +61,22 @@ limitations under the License.
 			}
         ]]>
     </fx:Script>
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.skinned {
+			background-image: "ButtonImageUp.png";
+		}
+		
+		.skinned:hover {
+			background-image: "ButtonImageOver.png";
+		}
+		
+		.skinned:active {
+			background-image: "ButtonImageDown.png";
+		}
+
+	</fx:Style>
 	<basic:Label id="lbl" x="100" y="25" >
 		<basic:beads>
 			<basic:SimpleBinding eventName="labelTextChanged"
@@ -112,6 +128,7 @@ limitations under the License.
 		</basic:beads>
 	</basic:DropDownList>
 	<basic:TextButton text="OK" x="200" y="230" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
+	<basic:TextButton text="Skinned" x="200" y="260" className="skinned" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
 	
 	<basic:ComboBox id="comboBox" x="320" y="200" width="100" change="dispatchEvent(new CustomEvent('comboBoxChanged'))">
 		<basic:beads>

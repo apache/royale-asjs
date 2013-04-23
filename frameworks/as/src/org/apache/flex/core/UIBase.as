@@ -94,6 +94,20 @@ package org.apache.flex.core
 			}
 		}
 		
+		private var _className:String;
+		public function get className():String
+		{
+			return _className;
+		}
+		public function set className(value:String):void
+		{
+			if (_className != value)
+			{
+				_className = value;
+				dispatchEvent(new Event("classNameChanged"));
+			}
+		}
+		
 		// beads declared in MXML are added to the strand.
 		// from AS, just call addBead()
 		public var beads:Array;

@@ -39,11 +39,21 @@ package org.apache.flex.core
 
         public function init(mainClass:Object):void
         {
-            this.mainClass = mainClass;
-            var mainClassName:String = getQualifiedClassName(mainClass);
-            var styleClassName:String = "_" + mainClassName + "_Styles";
-            var c:Class = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
-            values = {};
+			var styleClassName:String;
+			var c:Class;
+			if (!values)
+			{
+				values = {};
+	            this.mainClass = mainClass;
+	            var mainClassName:String = getQualifiedClassName(mainClass);
+				styleClassName = "_" + mainClassName + "_Styles";
+				c = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
+			}
+			else
+			{
+				var className:String = getQualifiedClassName(mainClass);
+				c = ApplicationDomain.currentDomain.getDefinition(className) as Class;
+			}
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
         }
         
@@ -138,8 +148,11 @@ package org.apache.flex.core
             for (var i:int = 0; i < n; i++)
             {
                 var segmentName:String = arr[i];
+				if (segmentName.charAt(0) == "#" || segmentName.charAt(0) == ".")
+					continue;
+				
                 var c:int = segmentName.lastIndexOf(".");
-                if (c != -1)
+                if (c > -1)	// it is 0 for class selectors
                 {
                     segmentName = segmentName.substr(0, c) + "::" + segmentName.substr(c + 1);
                     arr[i] = segmentName;
@@ -153,13 +166,50 @@ package org.apache.flex.core
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object
 		{
 			var value:*;
-			var className:String = getQualifiedClassName(thisObject);
+			var o:Object;
+			var className:String;
+			var selectorName:String;
+			
+			if ("className" in thisObject)
+			{
+				className = thisObject.className;
+				if (state)
+				{
+					selectorName = className + ":" + state;
+					o = values["." + selectorName];
+					if (o)
+					{
+						value = o[valueName];
+						if (value !== undefined)
+							return value;
+					}
+				}
+				
+				o = values["." + className];
+				if (o)
+				{
+					value = o[valueName];
+					if (value !== undefined)
+						return value;
+				}
+			}
+			
+			className = getQualifiedClassName(thisObject);
 			while (className != "Object")
 			{
 				if (state)
-					className += ":" + state;
+				{
+					selectorName = className + ":" + state;
+					o = values[selectorName];
+					if (o)
+					{
+						value = o[valueName];
+						if (value !== undefined)
+							return value;
+					}
+				}
 				
-	            var o:Object = values[className];
+	            o = values[className];
 	            if (o)
 	            {
 	                value = o[valueName];
