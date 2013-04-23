@@ -103,7 +103,7 @@ limitations under the License.
 	<basic:RadioButton groupName="group2" text="Green" value="green" x="100" y="270" />
 	<basic:RadioButton groupName="group2" text="Blue" value="blue" x="100" y="290"  />
 	
-	<basic:DropDownList id="list" x="200" y="200" width="100" height="24" change="dispatchEvent(new CustomEvent('listChanged'))">
+	<basic:DropDownList id="list" x="200" y="200" width="100" height="18" change="dispatchEvent(new CustomEvent('listChanged'))">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
