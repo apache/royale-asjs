@@ -22,13 +22,11 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
-	import org.apache.flex.binding.ConstantBinding;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;

@@ -18,14 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.supportClasses
 {
-    import flash.text.TextField;
     import flash.text.TextFieldType;
-    
+
+	import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 	
-	public class TextFieldItemRenderer extends TextField implements ITextItemRenderer, IStrand
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand
 	{
 		public function TextFieldItemRenderer()
 		{

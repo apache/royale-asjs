@@ -25,11 +25,12 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 
-	public class TextButtonBead implements ITextButtonBead
+	public class CSSTextButtonBead implements ITextButtonBead
 	{
-		public function TextButtonBead()
+		public function CSSTextButtonBead()
 		{
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
@@ -40,12 +41,6 @@ package org.apache.flex.html.staticControls.beads
 			upTextField.background = true;
 			downTextField.background = true;
 			overTextField.background = true;
-			upTextField.borderColor = 0;
-			downTextField.borderColor = 0;
-			overTextField.borderColor = 0;
-			upTextField.backgroundColor = 0xCCCCCC;
-			downTextField.backgroundColor = 0x808080;
-			overTextField.backgroundColor = 0xFFCCCC;
 			upTextField.selectable = false;
 			upTextField.type = TextFieldType.DYNAMIC;
 			downTextField.selectable = false;
@@ -82,6 +77,53 @@ package org.apache.flex.html.staticControls.beads
 				text = textModel.text;
 			if (textModel.html !== null)
 				html = textModel.html;
+			var defaultBorderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			var defaultBackgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "backgroundColor");
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border", "hover");
+			var borderColor:uint;
+			var borderThickness:uint;
+			var borderStyle:String;
+			if (!borderStyles)
+				borderStyles = defaultBorderStyles;
+			if (borderStyles is Array)
+			{
+				borderColor = borderStyles[2];
+				borderStyle = borderStyles[1];
+				borderThickness = borderStyles[0];
+				overTextField.borderColor = borderColor;
+				overTextField.border = borderStyle != "none";
+			}
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "backgroundColor", "hover");
+			if (backgroundColor == null)
+				backgroundColor = defaultBackgroundColor;
+			overTextField.backgroundColor = backgroundColor as uint;
+			
+			borderStyles = ValuesManager.valuesImpl.getValue(value, "border", "active");
+			if (!borderStyles)
+				borderStyles = defaultBorderStyles;
+			if (borderStyles is Array)
+			{
+				borderColor = borderStyles[2];
+				borderStyle = borderStyles[1];
+				borderThickness = borderStyles[0];
+				downTextField.borderColor = borderColor;
+				downTextField.border = borderStyle != "none";
+			}
+			backgroundColor = ValuesManager.valuesImpl.getValue(value, "backgroundColor", "active");
+			if (backgroundColor == null)
+				backgroundColor = defaultBackgroundColor;
+			downTextField.backgroundColor = backgroundColor as uint;
+
+			borderStyles = defaultBorderStyles;
+			if (borderStyles is Array)
+			{
+				borderColor = borderStyles[2];
+				borderStyle = borderStyles[1];
+				borderThickness = borderStyles[0];
+				upTextField.borderColor = borderColor;
+				upTextField.border = borderStyle != "none";
+			}
+			upTextField.backgroundColor = defaultBackgroundColor as uint;
 		}
 		
 		private function textChangeHandler(event:Event):void

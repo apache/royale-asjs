@@ -24,9 +24,9 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ISelectionModel;
@@ -42,9 +42,9 @@ package org.apache.flex.html.staticControls.beads
             upSprite = new Sprite();
             downSprite = new Sprite();
             overSprite = new Sprite();
-			upTextField = new TextField();
-			downTextField = new TextField();
-			overTextField = new TextField();
+			upTextField = new CSSTextField();
+			downTextField = new CSSTextField();
+			overTextField = new CSSTextField();
             upSprite.addChild(upTextField);
             overSprite.addChild(overTextField);
             downSprite.addChild(downTextField);
@@ -86,7 +86,7 @@ package org.apache.flex.html.staticControls.beads
         {
             var g:Graphics = shape.graphics;
             g.beginFill(color);
-            g.drawRect(0, 0, 16, 16);
+            g.drawRect(0, 0, 16, 17);
             g.endFill();
             g.beginFill(0);
             g.moveTo(8, 2);
@@ -101,7 +101,7 @@ package org.apache.flex.html.staticControls.beads
             g.lineTo(8, 14);
             g.endFill();
             g.lineStyle(1, 0);
-            g.drawRect(0, 0, 16, 16);
+            g.drawRect(0, 0, 16, 17);
         }
         
 		private var selectionModel:ISelectionModel;
@@ -154,9 +154,9 @@ package org.apache.flex.html.staticControls.beads
 			shape.graphics.endFill();
         }
         
-		private var upTextField:TextField;
-		private var downTextField:TextField;
-		private var overTextField:TextField;
+		private var upTextField:CSSTextField;
+		private var downTextField:CSSTextField;
+		private var overTextField:CSSTextField;
         private var upSprite:Sprite;
         private var downSprite:Sprite;
         private var overSprite:Sprite;

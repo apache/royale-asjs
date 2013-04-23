@@ -21,10 +21,10 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IRadioButtonBead;
 	import org.apache.flex.core.IStrand;
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			for each( var s:Sprite in sprites )
 			{
-				var tf:TextField = new TextField();
+				var tf:CSSTextField = new CSSTextField();
 				tf.type = TextFieldType.DYNAMIC;
 				tf.autoSize = TextFieldAutoSize.LEFT;
 				tf.name = "textField";
@@ -109,7 +109,7 @@ package org.apache.flex.html.staticControls.beads
 		
 		public function get text():String
 		{
-			var tf:TextField = upSprite.getChildByName('textField') as TextField;
+			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.text;
 		}
 		
@@ -117,7 +117,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 			for each( var s:Sprite in sprites )
 			{
-				var tf:TextField = s.getChildByName('textField') as TextField;
+				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
 				tf.text = value;
 			}
 			
@@ -126,7 +126,7 @@ package org.apache.flex.html.staticControls.beads
 		
 		public function get html():String
 		{
-			var tf:TextField = upSprite.getChildByName('textField') as TextField;
+			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.htmlText;
 		}
 		
@@ -134,7 +134,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 			for each(var s:Sprite in sprites)
 			{
-				var tf:TextField = s.getChildByName('textField') as TextField;
+				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
 				tf.htmlText = value;
 			}
 			
@@ -186,7 +186,7 @@ package org.apache.flex.html.staticControls.beads
 			for each(var s:Sprite in sprites)
 			{
 				var icon:Shape = s.getChildByName("icon") as Shape;
-				var tf:TextField = s.getChildByName("textField") as TextField;
+				var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
 				
 				drawRadioButton(icon);
 				

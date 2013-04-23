@@ -18,11 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IValuesImpl
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
+	import org.apache.flex.core.ValuesManager;
+		
+	public class CSSTextField extends TextField
 	{
-		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object;
-        function getInstance(valueName:String):Object;
-        
-        function init(mainClass:Object):void;
+		public function CSSTextField()
+		{
+			super();
+		}
+
+		override public function set text(value:String):void
+		{
+			var tf: TextFormat = new TextFormat();
+			tf.font = ValuesManager.valuesImpl.getValue(this, "fontFamily") as String;
+			tf.size = ValuesManager.valuesImpl.getValue(this, "fontSize");
+			tf.color = ValuesManager.valuesImpl.getValue(this, "color");			
+			defaultTextFormat = tf;
+			super.text = value;
+		}
 	}
 }

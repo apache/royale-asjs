@@ -20,6 +20,8 @@ package org.apache.flex.core
 {
 	import flash.system.ApplicationDomain;
 	import flash.utils.getQualifiedClassName;
+	import flash.utils.getQualifiedSuperclassName;
+	import flash.utils.getDefinitionByName;
 	
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.EventDispatcher;
@@ -33,6 +35,8 @@ package org.apache.flex.core
 		
         private var mainClass:Object;
         
+		private var conditionCombiners:Object;
+
         public function init(mainClass:Object):void
         {
             this.mainClass = mainClass;
@@ -62,7 +66,16 @@ package org.apache.flex.core
                 }
                 else if (className == CSSClass.CSSCondition)
                 {
-                    // not supported
+					if (!conditionCombiners)
+					{
+						conditionCombiners = {};
+						conditionCombiners["class"] = ".";
+						conditionCombiners["id"] = "#";
+						conditionCombiners["pseudo"] = ':';    
+					}
+					var conditionType:String = arr[++i];
+					var conditionName:String = arr[++i];
+					segmentName = segmentName + conditionCombiners[conditionType] + conditionName;
                 }
                 else if (className == CSSClass.CSSStyleDeclaration)
                 {
@@ -117,6 +130,9 @@ package org.apache.flex.core
 
         private function fixNames(s:String):String
         {
+			if (s == "")
+				return "*";
+			
             var arr:Array = s.split(" ");
             var n:int = arr.length;
             for (var i:int = 0; i < n; i++)
@@ -134,18 +150,30 @@ package org.apache.flex.core
 
         public var values:Object;
 		
-		public function getValue(thisObject:Object, valueName:String):Object
+		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object
 		{
-            var className:String = getQualifiedClassName(thisObject);
-            var o:Object = values[className];
-            var value:*;
-            if (o)
-            {
-                value = o[valueName];
-                if (value !== undefined)
-                    return value;
-            }
+			var value:*;
+			var className:String = getQualifiedClassName(thisObject);
+			while (className != "Object")
+			{
+				if (state)
+					className += ":" + state;
+				
+	            var o:Object = values[className];
+	            if (o)
+	            {
+	                value = o[valueName];
+	                if (value !== undefined)
+	                    return value;
+	            }
+				className = getQualifiedSuperclassName(thisObject);
+				thisObject = getDefinitionByName(className);
+			}
             o = values["global"];
+			value = o[valueName];
+			if (value !== undefined)
+				return value;
+			o = values["*"];			
 			return o[valueName];
 		}
 		
