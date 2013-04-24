@@ -134,6 +134,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
     return this.className;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
@@ -144,10 +145,10 @@ org.apache.flex.core.UIBase.prototype.set_className = function(value) {
     {
         this.element.className = value;
         this.className = value;
-        var evt = this.createEvent('classNameChanged');
-        this.dispatchEvent(evt);
+        this.dispatchEvent('classNameChanged');
     }
 };
+
 
 /**
  * @expose
