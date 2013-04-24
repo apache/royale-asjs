@@ -90,38 +90,47 @@ package org.apache.flex.html.staticControls.beads
 	
 		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
 		{
-			
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundImage", state);
-			if (backgroundImage)
+			var borderColor:uint;
+			var borderThickness:uint;
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
+			if (borderStyles is Array)
 			{
-				var loader:Loader = new Loader();
-				sprite.addChildAt(loader, 0);
-				loader.load(new URLRequest(backgroundImage as String));
-				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
-					textField.y = (sprite.height - textField.height) / 2;
-					textField.x = (sprite.width - textField.width) / 2;
-					updateHitArea();
-				});
+				borderColor = borderStyles[2];
+				borderStyle = borderStyles[1];
+				borderThickness = borderStyles[0];
 			}
-			else
+			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
+			if (value != null)
+				borderStyle = value as String;
+			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
+			if (value != null)
+				borderColor = value as uint;
+			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
+			if (value != null)
+				borderThickness = value as uint;
+			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundColor", state);
+			if (borderStyle == "solid")
 			{
-				var borderColor:uint;
-				var borderThickness:uint;
-				var borderStyle:String;
-				var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
-				if (borderStyles is Array)
-				{
-					borderColor = borderStyles[2];
-					borderStyle = borderStyles[1];
-					borderThickness = borderStyles[0];
-				}
-				var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
-				var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundColor", state);
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, textField.textWidth + Number(padding) * 2, textField.textHeight + Number(padding) * 2,
 					borderColor, backgroundColor, borderThickness);
 				textField.y = (sprite.height - textField.height) / 2;
 				textField.x = (sprite.width - textField.width) / 2;
+			}			
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundImage", state);
+			if (backgroundImage)
+			{
+				var loader:Loader = new Loader();
+				sprite.addChildAt(loader, 0);
+				var url:String = backgroundImage as String;
+				loader.load(new URLRequest(url));
+				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
+					textField.y = (sprite.height - textField.height) / 2;
+					textField.x = (sprite.width - textField.width) / 2;
+					updateHitArea();
+				});
 			}
 		}
 		
