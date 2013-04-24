@@ -14,17 +14,13 @@
 
 goog.provide('org.apache.flex.net.JSONInputParser');
 
-goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.net.JSONInputParser = function() {
-    org.apache.flex.FlexObject.call(this);
 };
-goog.inherits(org.apache.flex.net.JSONInputParser, org.apache.flex.FlexObject);
 
 
 /**
@@ -34,5 +30,5 @@ goog.inherits(org.apache.flex.net.JSONInputParser, org.apache.flex.FlexObject);
  * @return {Array.<String>} The Array of unparsed objects.
  */
 org.apache.flex.net.JSONInputParser.prototype.parseItems = function(s) {
-    return s.split('},');
+  return s.split('},');
 };

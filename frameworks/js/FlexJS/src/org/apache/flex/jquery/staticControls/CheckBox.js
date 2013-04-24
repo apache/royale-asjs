@@ -16,46 +16,48 @@ goog.provide('org.apache.flex.jquery.staticControls.CheckBox');
 
 goog.require('org.apache.flex.core.UIBase');
 
-var cbCount = 0;
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.jquery.staticControls.CheckBox = function() {
-    org.apache.flex.core.UIBase.call(this);
-  
+  goog.base(this);
+
 };
-goog.inherits(
-    org.apache.flex.jquery.staticControls.CheckBox, org.apache.flex.core.UIBase
-);
+goog.inherits(org.apache.flex.jquery.staticControls.CheckBox,
+    org.apache.flex.core.UIBase);
+
 
 /**
  * @override
  * @this {org.apache.flex.jquery.staticControls.CheckBox}
  * @param {Object} p The parent element.
  */
-org.apache.flex.jquery.staticControls.CheckBox.prototype.addToParent = 
+org.apache.flex.jquery.staticControls.CheckBox.prototype.addToParent =
     function(p) {
-    
-    var d = document.createElement('div');
-    var cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.id = 'checkbox1';
-    
-    var lb = document.createElement('label');
-    lb.htmlFor = 'checkbox1';
-    
-    d.appendChild(cb);
-    d.appendChild(lb);
-    
-    this.element = d;
-    p.appendChild(this.element);
-    
-    $(cb).button();
+  var cb, d, lb;
 
-    this.positioner = this.element;
+  d = document.createElement('div');
+  cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.id = 'checkbox1';
+
+  lb = document.createElement('label');
+  lb.htmlFor = 'checkbox1';
+
+  d.appendChild(cb);
+  d.appendChild(lb);
+
+  this.element = d;
+  p.appendChild(this.element);
+
+  $(cb).button();
+
+  this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -63,32 +65,38 @@ org.apache.flex.jquery.staticControls.CheckBox.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.jquery.staticControls.CheckBox.prototype.get_text = function() {
-    return this.element.childNodes.item(1).value;
+  return this.element.childNodes.item(1).value;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.jquery.staticControls.CheckBox}
  * @param {string} value The text setter.
  */
-org.apache.flex.jquery.staticControls.CheckBox.prototype.set_text = function(value) {
-    this.element.childNodes.item(1).appendChild(document.createTextNode(value));;
+org.apache.flex.jquery.staticControls.CheckBox.prototype.set_text =
+    function(value) {
+  this.element.childNodes.item(1).appendChild(document.createTextNode(value));
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.jquery.staticControls.CheckBox}
  * @return {bool} The selected getter.
  */
-org.apache.flex.jquery.staticControls.CheckBox.prototype.get_selected = function() {
-    return this.element.childNodes.item(0).checked;
+org.apache.flex.jquery.staticControls.CheckBox.prototype.get_selected =
+    function() {
+  return this.element.childNodes.item(0).checked;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.jquery.staticControls.CheckBox}
  * @param {bool} value The selected setter.
  */
-org.apache.flex.jquery.staticControls.CheckBox.prototype.set_selected = function(value) {
-    this.element.childNodes.item(0).checked = value;
+org.apache.flex.jquery.staticControls.CheckBox.prototype.set_selected =
+    function(value) {
+  this.element.childNodes.item(0).checked = value;
 };

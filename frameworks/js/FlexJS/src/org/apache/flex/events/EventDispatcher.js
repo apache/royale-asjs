@@ -14,96 +14,44 @@
 
 goog.provide('org.apache.flex.events.EventDispatcher');
 
-goog.require('org.apache.flex.FlexGlobal');
+goog.require('goog.events.EventTarget');
+
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexGlobal}
+ * @extends {goog.events.EventTarget}
  */
 org.apache.flex.events.EventDispatcher = function() {
-    org.apache.flex.FlexGlobal.call(this);
+  goog.base(this);
 
-    /**
-     * @private
-     * @type {Object}
-     */
-    this.listeners_ = {};
 };
 goog.inherits(org.apache.flex.events.EventDispatcher,
-    org.apache.flex.FlexGlobal);
+    goog.events.EventTarget);
+
 
 /**
+ * @override
  * @expose
  * @this {org.apache.flex.events.EventDispatcher}
  * @param {string} type The event type.
  * @param {function(?): ?} fn The event handler.
  */
-org.apache.flex.events.EventDispatcher.prototype.addEventListener = function(type, fn) {
-    if (!this.listeners_.type) {
-        this.listeners_[type] = [];
-    }
+org.apache.flex.events.EventDispatcher.prototype.addEventListener =
+    function(type, fn) {
+  var source;
 
-    this.listeners_[type].push(fn);
-};
+  /**
+   *  A bit of a hack, but for 'native' HTML element based controls, we
+   *  want to listen to the 'native' events from the element; for other
+   *  types of controls, we listen to 'custom' events.
+   */
+  source = this;
+  if (this.element && this.element.nodeName &&
+      this.element.nodeName.toLowerCase() !== 'div' &&
+      this.element.nodeName.toLowerCase() !== 'body') {
+    source = this.element;
+  }
 
-/**
- * @expose
- * @this {org.apache.flex.events.EventDispatcher}
- * @param {string} type The event type.
- * @param {function(?): ?} fn The event handler.
- */
-org.apache.flex.events.EventDispatcher.prototype.removeEventListener = function(type, fn) {
-    if (!this.listeners_.type) {
-        return;
-    }
-
-    var listeners = this.listeners_[type];
-    var n = listeners.length;
-    for (var i = 0; i < n; i++)
-    {
-        if (fn == listeners[i])
-        {
-            listeners.splice(i, 1);
-            break;
-        }
-    }
-};
-
-/**
- * @expose
- * @this {org.apache.flex.events.EventDispatcher}
- * @param {Object} event The event to dispatch.
- */
-org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(event) {
-    var arr, i, n, type;
-
-    type = event.type;
-
-    if (this.listeners_[type]) {
-        arr = this.listeners_[type];
-        n = arr.length;
-        for (i = 0; i < n; i++) {
-            arr[i](event);
-        }
-    }
-};
-
-/**
- * @expose
- * @param {String} type The event type.
- * @returns {Object} event The event to dispatch.
- */
-org.apache.flex.events.EventDispatcher.createEvent = function(type) {
-    var evt;
-    if (document.createEvent)
-    {
-        evt = document.createEvent('Event');
-        evt.initEvent(type, false, false);
-    }
-    else if (document.createEventObject)
-    {
-        evt = document.createEventObject();
-        evt.type = type;
-    }
-    return evt;
+  goog.events.listen(source, type, fn);
 };

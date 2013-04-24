@@ -14,35 +14,37 @@
 
 goog.provide('org.apache.flex.core.UIBase');
 
-goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.UIBase = function() {
-    org.apache.flex.core.HTMLElementWrapper.call(this);
+  goog.base(this);
 
-    /**
-     * @protected
-     * @type {Object}
-     */
-    this.positioner;
-
+  /**
+   * @protected
+   * @type {Object}
+   */
+  this.positioner;
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
  * @param {Object} p The parent element.
  */
 org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
-    this.element = document.createElement('div');
+  this.element = document.createElement('div');
 
-    p.appendChild(this.element);
+  p.appendChild(this.element);
 };
+
 
 /**
  * @expose
@@ -50,9 +52,10 @@ org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.left = pixels.toString() + 'px';
+  this.positioner.style.position = 'absolute';
+  this.positioner.style.left = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -60,9 +63,10 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.top = pixels.toString() + 'px';
+  this.positioner.style.position = 'absolute';
+  this.positioner.style.top = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -70,8 +74,9 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
-    this.positioner.style.width = pixels.toString() + 'px';
+  this.positioner.style.width = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -79,8 +84,9 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
-    this.positioner.style.height = pixels.toString() + 'px';
+  this.positioner.style.height = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -88,29 +94,30 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
  */
 org.apache.flex.core.UIBase.prototype.id;
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
  * @return {string} The id.
  */
 org.apache.flex.core.UIBase.prototype.get_id = function() {
-    return this.id;
+  return this.id;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
- * @param {object} value The new id.
+ * @param {Object} value The new id.
  */
 org.apache.flex.core.UIBase.prototype.set_id = function(value) {
-    if (this.id != value)
-    {
-        this.element.id = value;
-        this.id = value;
-        var evt = this.createEvent('idChanged');
-        this.dispatchEvent(evt);
-    }
+  if (this.id !== value) {
+    this.element.id = value;
+    this.id = value;
+    this.dispatchEvent('idChanged');
+  }
 };
+
 
 /**
  * @expose
@@ -148,25 +155,26 @@ org.apache.flex.core.UIBase.prototype.set_className = function(value) {
  */
 org.apache.flex.core.UIBase.prototype.model;
 
-/**
- * @expose
- * @this {org.apache.flex.core.UIBase}
- * @return {object} The model.
- */
-org.apache.flex.core.UIBase.prototype.get_model = function() {
-    return this.model;
-};
 
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
- * @param {object} value The new model.
+ * @return {Object} The model.
+ */
+org.apache.flex.core.UIBase.prototype.get_model = function() {
+  return this.model;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_model = function(value) {
-    if (this.model != value)
-    {
-        this.addBead(value);
-        this.dispatchEvent(new Event('modelChanged'));
-    }
+  if (this.model !== value) {
+    this.addBead(value);
+    this.dispatchEvent('modelChanged');
+  }
 };
 

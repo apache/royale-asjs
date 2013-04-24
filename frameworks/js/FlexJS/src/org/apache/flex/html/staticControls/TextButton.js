@@ -16,16 +16,18 @@ goog.provide('org.apache.flex.html.staticControls.TextButton');
 
 goog.require('org.apache.flex.core.UIBase');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.staticControls.TextButton = function() {
-    org.apache.flex.core.UIBase.call(this);
+  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.html.staticControls.TextButton, org.apache.flex.core.UIBase
-);
+goog.inherits(org.apache.flex.html.staticControls.TextButton,
+    org.apache.flex.core.UIBase);
+
 
 /**
  * @override
@@ -34,13 +36,14 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
     function(p) {
-    this.element = document.createElement('button');
-    this.element.setAttribute('type', 'button');
+  this.element = document.createElement('button');
+  this.element.setAttribute('type', 'button');
 
-    p.appendChild(this.element);
+  p.appendChild(this.element);
 
-    this.positioner = this.element;
+  this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -48,8 +51,9 @@ org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
-    return this.element.innerHTML;
+  return this.element.innerHTML;
 };
+
 
 /**
  * @expose
@@ -58,5 +62,5 @@ org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
  */
 org.apache.flex.html.staticControls.TextButton.prototype.set_text =
     function(value) {
-    this.element.innerHTML = value;
+  this.element.innerHTML = value;
 };

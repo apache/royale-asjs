@@ -1,12 +1,12 @@
 /**
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -14,105 +14,110 @@
 
 goog.provide('org.apache.flex.net.HTTPService');
 
-goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.core.HTMLElementWrapper');
 goog.require('org.apache.flex.net.HTTPHeader');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.net.HTTPService = function() {
-    org.apache.flex.core.HTMLElementWrapper.call(this);
+  goog.base(this);
 
-    /**
-     * @protected
-     * @type {String}
-     */
-    this._url;
+  /**
+   * @protected
+   * @type {string}
+   */
+  this.url_;
 
-    /**
-     * @private
-     * @type {Number}
-     */
-    this._status;
+  /**
+   * @private
+   * @type {Number}
+   */
+  this.status_;
 
-    /**
-     * @private
-     * @type {String}
-     */
-    this._method = "GET";
+  /**
+   * @private
+   * @type {string}
+   */
+  this.method_ = 'GET';
 
-    /**
-     * @private
-     * @type {Array}
-     */
-    this._headers;
+  /**
+   * @private
+   * @type {Array}
+   */
+  this.headers_;
 
-    /**
-     * @private
-     * @type {Array}
-     */
-    this._responseHeaders;
+  /**
+   * @private
+   * @type {Array}
+   */
+  this.responseHeaders_;
 
-    /**
-     * @private
-     * @type {String}
-     */
-    this._responseURL;
+  /**
+   * @private
+   * @type {string}
+   */
+  this.responseURL_;
 
-    /**
-     * @private
-     * @type {Number}
-     */
-    this._timeout = 0;
+  /**
+   * @private
+   * @type {Number}
+   */
+  this.timeout_ = 0;
 
-    /**
-     * @private
-     * @type {String}
-     */
-    this._contentData;
+  /**
+   * @private
+   * @type {string}
+   */
+  this.contentData_;
 
-    /**
-     * @private
-     * @type {String}
-     */
-    this._contentType = "application/x-www-form-urlencoded";
+  /**
+   * @private
+   * @type {string}
+   */
+  this.contentType_ = 'application/x-www-form-urlencoded';
 
-    /**
-     * @private
-     * @type {XMLHttpRequest}
-     */
-    this.element;
+  //try { // (erikdebruin) 'desperate' attempt to bypass XDR security in IE < 10
+  //  this.contentType_ = 'text/plain';
+  //  this.element = new XDomainRequest();
+  //} catch (e) {}
 
-    this.element = new XMLHttpRequest();
+  this.element = new XMLHttpRequest();
 };
 goog.inherits(org.apache.flex.net.HTTPService,
     org.apache.flex.core.HTMLElementWrapper);
 
-/**
- * @expose
- * @type {String}
- */
-org.apache.flex.net.HTTPService.HTTP_METHOD_GET = "GET";
 
 /**
  * @expose
- * @type {String}
+ * @type {string}
  */
-org.apache.flex.net.HTTPService.HTTP_METHOD_POST = "POST";
+org.apache.flex.net.HTTPService.HTTP_METHOD_GET = 'GET';
+
 
 /**
  * @expose
- * @type {String}
+ * @type {string}
  */
-org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = "PUT";
+org.apache.flex.net.HTTPService.HTTP_METHOD_POST = 'POST';
+
 
 /**
  * @expose
- * @type {String}
+ * @type {string}
  */
-org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = "DELETE";
+org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = 'PUT';
+
+
+/**
+ * @expose
+ * @type {string}
+ */
+org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = 'DELETE';
+
 
 /**
  * @expose
@@ -120,8 +125,9 @@ org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = "DELETE";
  * @return {string} value The data.
  */
 org.apache.flex.net.HTTPService.prototype.get_data = function() {
-    return this.element.responseText;
+  return this.element.responseText;
 };
+
 
 /**
  * @expose
@@ -129,8 +135,9 @@ org.apache.flex.net.HTTPService.prototype.get_data = function() {
  * @return {string} value The contentData.
  */
 org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
-    return this._contentData;
+  return this.contentData_;
 };
+
 
 /**
  * @expose
@@ -138,8 +145,9 @@ org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
  * @param {string} value The contentData.
  */
 org.apache.flex.net.HTTPService.prototype.set_contentData = function(value) {
-    this._contentData = value;
+  this.contentData_ = value;
 };
+
 
 /**
  * @expose
@@ -147,8 +155,9 @@ org.apache.flex.net.HTTPService.prototype.set_contentData = function(value) {
  * @return {string} value The contentType.
  */
 org.apache.flex.net.HTTPService.prototype.get_contentType = function() {
-    return this._contentType;
+  return this.contentType_;
 };
+
 
 /**
  * @expose
@@ -156,8 +165,9 @@ org.apache.flex.net.HTTPService.prototype.get_contentType = function() {
  * @param {string} value The contentType.
  */
 org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
-    this._contentType = value;
+  this.contentType_ = value;
 };
+
 
 /**
  * @expose
@@ -165,10 +175,13 @@ org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_headers = function() {
-    if (this._headers == undefined)
-        this._headers = [];
-    return this._headers;
+  if (this.headers_ === 'undefined') {
+    this.headers_ = [];
+  }
+
+  return this.headers_;
 };
+
 
 /**
  * @expose
@@ -176,26 +189,29 @@ org.apache.flex.net.HTTPService.prototype.get_headers = function() {
  * @param {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.set_headers = function(value) {
-    this._headers = value;
+  this.headers_ = value;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
- * @return {String} value The method.
+ * @return {string} value The method.
  */
 org.apache.flex.net.HTTPService.prototype.get_method = function() {
-    return this._method;
+  return this.method_;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
- * @param {String} value The method.
+ * @param {string} value The method.
  */
 org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
-    this._method = value;
+  this.method_ = value;
 };
+
 
 /**
  * @expose
@@ -203,22 +219,24 @@ org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
-    if (typeof this._responseHeaders == 'undefined')
-    {
-        var allHeaders = this.element.getAllResponseHeaders();
-        this._responseHeaders = allHeaders.split('\n');
-        var n = this._responseHeaders.length;
-        for (var i = 0; i < n; i++)
-        {
-            var hdr = this._responseHeaders[i];
-            var c = hdr.indexOf(':');
-            var part1 = hdr.substring(0, c);
-            var part2 = hdr.substring(c + 2);
-            this._responseHeaders[i] = new org.apache.flex.net.HTTPHeader(part1, part2);
-        }
+  var allHeaders, c, hdr, i, n, part1, part2;
+
+  if (typeof this.responseHeaders_ === 'undefined') {
+    allHeaders = this.element.getAllResponseHeaders();
+    this.responseHeaders_ = allHeaders.split('\n');
+    n = this.responseHeaders_.length;
+    for (i = 0; i < n; i++) {
+      hdr = this.responseHeaders_[i];
+      c = hdr.indexOf(':');
+      part1 = hdr.substring(0, c);
+      part2 = hdr.substring(c + 2);
+      this.responseHeaders_[i] =
+          new org.apache.flex.net.HTTPHeader(part1, part2);
     }
-    return this._responseHeaders;
+  }
+  return this.responseHeaders_;
 };
+
 
 /**
  * @expose
@@ -226,8 +244,9 @@ org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
-    return this._responseURL;
+  return this.responseURL_;
 };
+
 
 /**
  * @expose
@@ -235,8 +254,9 @@ org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
  * @return {Number} value The status.
  */
 org.apache.flex.net.HTTPService.prototype.get_status = function() {
-    return this._status;
+  return this.status_;
 };
+
 
 /**
  * @expose
@@ -244,8 +264,9 @@ org.apache.flex.net.HTTPService.prototype.get_status = function() {
  * @return {Number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
-    return this._timeout;
+  return this.timeout_;
 };
+
 
 /**
  * @expose
@@ -253,8 +274,9 @@ org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
  * @param {Number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
-    this._timeout = value;
+  this.timeout_ = value;
 };
+
 
 /**
  * @expose
@@ -262,8 +284,9 @@ org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_url = function() {
-    return this._url;
+  return this.url_;
 };
+
 
 /**
  * @expose
@@ -271,82 +294,80 @@ org.apache.flex.net.HTTPService.prototype.get_url = function() {
  * @param {string} value The url to fetch.
  */
 org.apache.flex.net.HTTPService.prototype.set_url = function(value) {
-    this._url = value;
+  this.url_ = value;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
  */
 org.apache.flex.net.HTTPService.prototype.send = function() {
-    this.element.onreadystatechange = org.apache.flex.FlexGlobal.createProxy(
-            this, this.progressHandler);
-    var url = this._url;
-    var contentData = null;
-    if (this._contentData != undefined)
-    {
-        if (this._method == org.apache.flex.net.HTTPService.HTTP_METHOD_GET)
-        {
-            if (url.indexOf("?") != -1)
-                url += this._contentData;
-            else
-                url += "?" + this._contentData;
-        }
-        else
-            contentData = this._contentData;
+  var contentData, header, i, n, sawContentType, url;
+
+  this.element.onreadystatechange = goog.bind(this.progressHandler, this);
+
+  url = this.url_;
+
+  contentData = null;
+  if (this.contentData_ !== undefined) {
+    if (this.method_ === org.apache.flex.net.HTTPService.HTTP_METHOD_GET) {
+      if (url.indexOf('?') !== -1) {
+        url += this.contentData_;
+      } else {
+        url += '?' + this.contentData_;
+      }
+    } else {
+      contentData = this.contentData_;
     }
-    
-    this.element.open(this._method,this._url,true);
-    this.element.timeout = this._timeout;
-    var sawContentType = false;
-    if (this._headers)
-    {
-        var n = this._headers.length;
-        for (var i = 0; i < n; i++)
-        {
-            var header = this._headers[i];
-            if (header.name == org.apache.flex.net.HTTPHeader.CONTENT_TYPE)
-                sawContentType = true;
-            this.element.setRequestHeader(header.name, header.value);
-        }
+  }
+
+  this.element.open(this.method_, this.url_, true);
+  this.element.timeout = this.timeout_;
+
+  sawContentType = false;
+  if (this.headers_) {
+    n = this.headers_.length;
+    for (i = 0; i < n; i++) {
+      header = this.headers_[i];
+      if (header.name === org.apache.flex.net.HTTPHeader.CONTENT_TYPE) {
+        sawContentType = true;
+      }
+
+      this.element.setRequestHeader(header.name, header.value);
     }
-    if (this._method != org.apache.flex.net.HTTPService.HTTP_METHOD_GET &&
-        !sawContentType && contentData != null)
-    {
-        this.element.setRequestHeader(org.apache.flex.net.HTTPHeader.CONTENT_TYPE,
-            this._contentType);
-    }
-    
-    if (contentData != null)
-    {
-        this.element.setRequestHeader("Content-length", contentData.length);
-        this.element.setRequestHeader("Connection", "close");
-        this.element.send(contentData);
-    }
-    else        
-        this.element.send();        
+  }
+
+  if (this.method_ !== org.apache.flex.net.HTTPService.HTTP_METHOD_GET &&
+      !sawContentType && contentData) {
+    this.element.setRequestHeader(
+        org.apache.flex.net.HTTPHeader.CONTENT_TYPE, this.contentType_);
+  }
+
+  if (contentData) {
+    this.element.setRequestHeader('Content-length', contentData.length);
+    this.element.setRequestHeader('Connection', 'close');
+    this.element.send(contentData);
+  } else {
+    this.element.send();
+  }
 };
+
 
 /**
  * @protected
  * @this {org.apache.flex.net.HTTPService}
  */
 org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
-    var foo = this.element.readyState;
-    if (this.element.readyState == 2)
-    {
-        this._status = this.element.status;
-        var evt = this.createEvent('httpResponseStatus');
-        this.dispatchEvent(evt);
-        evt = this.createEvent('httpStatus');
-        this.dispatchEvent(evt);
-    }
-    else if (this.element.readyState == 4)
-    {
-        var evt = this.createEvent('complete');
-        this.dispatchEvent(evt);
-    }
+  if (this.element.readyState === 2) {
+    this.status_ = this.element.status;
+    this.dispatchEvent('httpResponseStatus');
+    this.dispatchEvent('httpStatus');
+  } else if (this.element.readyState === 4) {
+    this.dispatchEvent('complete');
+  }
 };
+
 
 /**
  * @expose
@@ -354,97 +375,29 @@ org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
  */
 org.apache.flex.net.HTTPService.prototype.id;
 
+
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
  * @return {string} The id.
  */
 org.apache.flex.net.HTTPService.prototype.get_id = function() {
-    return this.id;
+  return this.id;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.net.HTTPService}
- * @param {object} value The new id.
+ * @param {Object} value The new id.
  */
 org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
-    if (this.id != value)
-    {
-        this.id = value;
-        var evt = this.createEvent('idChanged');
-        this.dispatchEvent(evt);
-    }
+  if (this.id !== value) {
+    this.id = value;
+    this.dispatchEvent('idChanged');
+  }
 };
 
-/**
- * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
- * @param {object} value The new host.
- */
-org.apache.flex.net.HTTPService.prototype.set_strand =
-function(value) {
-    if (this.strand != value)
-    {
-        this.strand = value;
-    }
-};
-
-/**
- * @expose
- * @this {org.apache.flex.net.HTTPService}
- * @param {object} bead The new bead.
- */
-org.apache.flex.net.HTTPService.prototype.addBead = function(bead) {
-    if (!this.strand)
-        this.strand = [];
-    this.strand.push(bead);
-    if (typeof(bead.constructor.$implements) != 'undefined' &&
-        typeof(bead.constructor.$implements.IBeadModel != 'undefined'))
-        this.model = bead;
-    bead.set_strand(this);
-};
-
-/**
- * @expose
- * @this {org.apache.flex.net.HTTPService}
- * @param {object} classOrInterface The requested bead type.
- * @return {object} The bead.
- */
-org.apache.flex.net.HTTPService.prototype.getBeadByType =
-                                    function(classOrInterface) {
-    var n;
-    n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead instanceof classOrInterface)
-            return bead;
-        if (classOrInterface in bead.constructor.$implements)
-            return bead;
-    }
-    return null;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.net.HTTPService}
- * @param {object} bead The bead to remove.
- * @return {object} The bead.
- */
-org.apache.flex.net.HTTPService.prototype.removeBead = function(bead) {
-    var n = this.strand.length;
-    for (var i = 0; i < n; i++)
-    {
-        var bead = strand[i];
-        if (bead == value)
-        {
-            this.strand.splice(i, 1);
-            return bead;
-        }
-    }
-    return null;
-};
 
 /**
  * @expose
@@ -452,8 +405,9 @@ org.apache.flex.net.HTTPService.prototype.removeBead = function(bead) {
  * @return {Array} The array of descriptors.
  */
 org.apache.flex.net.HTTPService.prototype.get_MXMLDescriptor = function() {
-    return null;
+  return null;
 };
+
 
 /**
  * @expose
@@ -461,16 +415,15 @@ org.apache.flex.net.HTTPService.prototype.get_MXMLDescriptor = function() {
  * @return {Array} The array of properties.
  */
 org.apache.flex.net.HTTPService.prototype.get_MXMLProperties = function() {
-    return null;
+  return null;
 };
 
+
 /**
- * @this {org.apache.flex.binding.SimpleBinding}
- * @param {object} document The MXML object.
+ * @this {org.apache.flex.net.HTTPService}
+ * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */
-org.apache.flex.net.HTTPService.prototype.setDocument =
-                                                    function(document, id) {
-    this.document = document;
-
+org.apache.flex.net.HTTPService.prototype.setDocument = function(document, id) {
+  this.document = document;
 };
