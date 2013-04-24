@@ -31,21 +31,21 @@
 Button
 {
 	background-color: #d8d8d8;
-	border: 1px solid #0;
+	border: 1px solid #000000;
 	padding: 4px;
 }
 
 Button:hover
 {
 	background-color: #9fa0a1;
-	border: 1px solid #0;
+	border: 1px solid #000000;
 	padding: 4px;
 }
 
 Button:active
 {
 	background-color: #929496;
-	border: 1px solid #0;
+	border: 1px solid #000000;
 	padding: 4px;
 }
 
