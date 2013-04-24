@@ -65,15 +65,16 @@ limitations under the License.
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 		
 		.skinned {
-			background-image: "ButtonImageUp.png";
+			background-image: url('ButtonImageUp.png');
+			border-style: none;
 		}
 		
 		.skinned:hover {
-			background-image: "ButtonImageOver.png";
+			background-image: url('ButtonImageOver.png');
 		}
 		
 		.skinned:active {
-			background-image: "ButtonImageDown.png";
+			background-image: url('ButtonImageDown.png');
 		}
 
 	</fx:Style>
@@ -128,7 +129,7 @@ limitations under the License.
 		</basic:beads>
 	</basic:DropDownList>
 	<basic:TextButton text="OK" x="200" y="230" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
-	<basic:TextButton text="Skinned" x="200" y="260" className="skinned" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
+	<basic:TextButton text="Skinned" x="200" y="260" width="80" height="24" className="skinned" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
 	
 	<basic:ComboBox id="comboBox" x="320" y="200" width="100" change="dispatchEvent(new CustomEvent('comboBoxChanged'))">
 		<basic:beads>
