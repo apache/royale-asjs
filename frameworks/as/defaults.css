@@ -20,6 +20,7 @@
 @namespace "library://ns.apache.org/flexjs/basic";
 @namespace h5 "library://ns.apache.org/flexjs/html5";
 @namespace jq "library://ns.apache.org/flexjs/jquery";
+@namespace createjs "library://ns.apache.org/flexjs/createjs";
 
 /* Global style declaration */
 *
@@ -167,4 +168,10 @@ jq|RadioButton
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 
+/* createjs */
+
+createjs|TextButton
+{
+        ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
 }
+

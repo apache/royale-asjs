@@ -42,6 +42,10 @@
                 <uri>library://ns.apache.org/flexjs/jquery</uri>
                 <manifest>jquery-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/createjs</uri>
+                <manifest>createjs-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -64,6 +68,7 @@
         <uri>library://ns.apache.org/flexjs/basic</uri>
         <uri>library://ns.apache.org/flexjs/html5</uri>
         <uri>library://ns.apache.org/flexjs/jquery</uri>
+        <uri>library://ns.apache.org/flexjs/createjs</uri>
     </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>
