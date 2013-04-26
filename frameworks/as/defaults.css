@@ -168,4 +168,12 @@ jq|RadioButton
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 
+/* createjs */
+
+createjs|TextButton
+{
+        ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+}
+
+
 }
