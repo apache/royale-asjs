@@ -28,6 +28,7 @@ package
 internal class FlexJSUIClasses
 {
 	import org.apache.flex.html.staticControls.beads.IButtonBead; IButtonBead;
+	import org.apache.flex.html.staticControls.beads.CSSTextButtonBead; CSSTextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
 	import org.apache.flex.html.staticControls.beads.TextInputBead; TextInputBead;

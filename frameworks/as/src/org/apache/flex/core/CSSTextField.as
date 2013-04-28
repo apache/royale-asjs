@@ -18,48 +18,32 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;	
-	import org.apache.flex.utils.MXMLDataInterpreter;
-
-	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase
+		
+	public class CSSTextField extends TextField
 	{
-		public function ViewBase()
+		public function CSSTextField()
 		{
 			super();
 		}
-		
-		public function initUI(model:Object):void
+
+		override public function set text(value:String):void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
-			
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-			
-			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
-			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
-		}
-		
-		public function get MXMLDescriptor():Array
-		{
-			return null;
-		}
-		
-		public function get MXMLProperties():Array
-		{
-			return null;
-		}
-		
-		public var mxmlContent:Array;
-		
-		private var _applicationModel:Object;
-		
-		[Bindable("modelChanged")]
-		public function get applicationModel():Object
-		{
-			return _applicationModel;
+			var tf: TextFormat = new TextFormat();
+			tf.font = ValuesManager.valuesImpl.getValue(this, "fontFamily") as String;
+			tf.size = ValuesManager.valuesImpl.getValue(this, "fontSize");
+			tf.color = ValuesManager.valuesImpl.getValue(this, "color");
+			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
+			if (padding != null)
+			{
+				tf.leftMargin = padding;
+				tf.rightMargin = padding;
+			}
+			defaultTextFormat = tf;
+			super.text = value;
 		}
 	}
 }

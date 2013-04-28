@@ -16,10 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.createjs.core
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
+	import org.apache.flex.core.IInitModel;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -91,20 +95,6 @@ package org.apache.flex.core
 			{
 				_id = value;
 				dispatchEvent(new Event("idChanged"));
-			}
-		}
-		
-		private var _className:String;
-		public function get className():String
-		{
-			return _className;
-		}
-		public function set className(value:String):void
-		{
-			if (_className != value)
-			{
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
 		

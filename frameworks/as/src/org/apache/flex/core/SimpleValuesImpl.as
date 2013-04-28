@@ -30,7 +30,7 @@ package org.apache.flex.core
 		
 		public var values:Object;
 		
-		public function getValue(thisObject:Object, valueName:String):Object
+		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object
 		{
 			return values[valueName];
 		}

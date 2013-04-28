@@ -20,6 +20,38 @@
 @namespace "library://ns.apache.org/flexjs/basic";
 @namespace h5 "library://ns.apache.org/flexjs/html5";
 @namespace jq "library://ns.apache.org/flexjs/jquery";
+@namespace createjs "library://ns.apache.org/flexjs/createjs";
+
+/* Global style declaration */
+*
+{
+    font-family: "Arial";
+    font-size: 12px;
+}
+
+Button
+{
+	background-color: #d8d8d8;
+	border: 1px solid #000000;
+	padding: 4px;
+}
+
+Button:hover
+{
+	background-color: #9fa0a1;
+	border: 1px solid #000000;
+	padding: 4px;
+}
+
+Button:active
+{
+	background-color: #929496;
+	border: 1px solid #000000;
+	padding: 4px;
+}
+
+@media -flex-flash
+{
 
 /* Global style declaration */
 global
@@ -66,7 +98,7 @@ RadioButton
 
 TextButton
 {
-	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonBead");
 }
 
 TextInput
@@ -134,4 +166,14 @@ jq|RadioButton
 {
     IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
+}
+
+/* createjs */
+
+createjs|TextButton
+{
+        ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+}
+
+
 }

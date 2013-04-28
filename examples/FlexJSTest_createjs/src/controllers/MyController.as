@@ -16,50 +16,42 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
-{
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;	
-	import org.apache.flex.utils.MXMLDataInterpreter;
-
-	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase
+package controllers
+{	
+	import models.MyModel;
+	
+	import org.apache.flex.core.Application;
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.events.Event;
+    	
+	public class MyController implements IDocument
 	{
-		public function ViewBase()
+		public function MyController(app:Application = null)
 		{
-			super();
+			if (app)
+			{
+				this.app = app as CreateJSExample;
+				app.addEventListener("viewChanged", viewChangeHandler);
+			}
 		}
 		
-		public function initUI(model:Object):void
+		private var app:CreateJSExample;
+		
+		private function viewChangeHandler(event:Event):void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
-			
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-			
-			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
-			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+			app.initialView.addEventListener("pushme2Clicked", pushme2ClickHandler);
 		}
 		
-		public function get MXMLDescriptor():Array
+		private function pushme2ClickHandler(event:Event):void
 		{
-			return null;
+			MyModel(app.model).labelText = "push me again";
 		}
-		
-		public function get MXMLProperties():Array
+        
+		public function setDocument(document:Object, id:String = null):void
 		{
-			return null;
+			this.app = document as CreateJSExample;
+			app.addEventListener("viewChanged", viewChangeHandler);
 		}
-		
-		public var mxmlContent:Array;
-		
-		private var _applicationModel:Object;
-		
-		[Bindable("modelChanged")]
-		public function get applicationModel():Object
-		{
-			return _applicationModel;
-		}
+
 	}
 }

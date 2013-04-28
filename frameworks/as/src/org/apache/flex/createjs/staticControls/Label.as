@@ -16,13 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.createjs.staticControls
 {
-	public interface IValuesImpl
+	import org.apache.flex.html.staticControls.Label;
+	
+	public class Label extends org.apache.flex.html.staticControls.Label
 	{
-		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object;
-        function getInstance(valueName:String):Object;
-        
-        function init(mainClass:Object):void;
+		
 	}
 }

@@ -16,13 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.utils
 {
-	public interface IValuesImpl
+	import flash.display.Graphics;
+
+public class SolidBorderUtil
+{
+	public static function drawBorder(g:Graphics, x:Number, y:Number, 
+									  width:Number, height:Number,
+									  color:uint, backgroundColor:Object = null, 
+									  thickness:int = 1, alpha:Number = 1.0):void
 	{
-		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object;
-        function getInstance(valueName:String):Object;
-        
-        function init(mainClass:Object):void;
+		g.lineStyle(thickness, color, alpha);
+		if (backgroundColor != null)
+			g.beginFill(uint(backgroundColor));	
+		
+		g.drawRect(x, y, width, height);
+		if (backgroundColor != null)
+			g.endFill();
 	}
+}
 }

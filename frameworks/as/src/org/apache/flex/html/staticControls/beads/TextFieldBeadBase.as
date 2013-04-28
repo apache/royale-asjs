@@ -19,8 +19,8 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
-	import flash.text.TextField;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextBead;
@@ -31,12 +31,12 @@ package org.apache.flex.html.staticControls.beads
 	{
 		public function TextFieldBeadBase()
 		{
-			_textField = new TextField();
+			_textField = new CSSTextField();
 		}
 		
-		private var _textField:TextField;
+		private var _textField:CSSTextField;
 		
-		protected function get textField() : TextField
+		protected function get textField() : CSSTextField
 		{
 			return _textField;
 		}

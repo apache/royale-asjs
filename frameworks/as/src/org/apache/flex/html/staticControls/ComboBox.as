@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController;
 	
-	[Event("change", org.apache.flex.events.Event)]
+	[Event(name="change", type="org.apache.flex.events.Event")]
 	
 	public class ComboBox extends UIBase implements IInitSkin
 	{

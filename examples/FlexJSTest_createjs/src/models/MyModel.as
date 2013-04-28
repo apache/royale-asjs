@@ -16,50 +16,38 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package models
 {
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;	
-	import org.apache.flex.utils.MXMLDataInterpreter;
-
-	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+	
+	public class MyModel extends EventDispatcher
 	{
-		public function ViewBase()
+		public function MyModel()
 		{
-			super();
 		}
 		
-		public function initUI(model:Object):void
+		private var _labelText:String;
+		
+		public function get labelText():String
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
-			
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-			
-			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
-			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+			return _labelText;
 		}
 		
-		public function get MXMLDescriptor():Array
+		public function set labelText(value:String):void
 		{
-			return null;
+			if (value != _labelText)
+			{
+				_labelText = value;
+				dispatchEvent(new Event("labelTextChanged"));
+			}
 		}
 		
-		public function get MXMLProperties():Array
+		private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
+		public function get strings():Array
 		{
-			return null;
+			return _strings;
 		}
 		
-		public var mxmlContent:Array;
-		
-		private var _applicationModel:Object;
-		
-		[Bindable("modelChanged")]
-		public function get applicationModel():Object
-		{
-			return _applicationModel;
-		}
 	}
 }

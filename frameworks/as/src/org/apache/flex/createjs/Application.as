@@ -16,96 +16,79 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.createjs
 {
-	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher
+	// this import is not used, but keeps the compiler from
+	// complaining about explicit usage of flash.events.Event
+	import flash.events.IOErrorEvent;
+	
+//	import org.apache.flex.core.Application;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IFlexInfo;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IValuesImpl;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.createjs.core.ViewBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.utils.MXMLDataInterpreter;
+	
+	//--------------------------------------
+	//  Events
+	//--------------------------------------
+	
+	/**
+	 *  Dispatched at startup.
+	 */
+	[Event(name="initialize", type="org.apache.flex.events.Event")]
+	
+	public class Application extends Sprite implements IStrand, IFlexInfo
 	{
-		public function UIBase()
+		public function Application()
 		{
 			super();
+			if (stage)
+			{
+				stage.align = StageAlign.TOP_LEFT;
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+			}
+			
+			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
 		}
 		
-		private var _width:Number = 0;
-		override public function get width():Number
+		private function initHandler(event:Event):void
 		{
-			return _width;
-		}
-		override public function set width(value:Number):void
-		{
-			if (_width != value)
-			{
-				_width = value;
-				dispatchEvent(new Event("widthChanged"));
-			}
-		}
-		protected function get $width():Number
-		{
-			return super.width;
+			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+			
+			ValuesManager.valuesImpl = valuesImpl;
+			ValuesManager.valuesImpl.init(this);
+			
+			dispatchEvent(new Event("initialize"));
+			
+			initialView.addToParent(this);
+			initialView.initUI(model);
+			dispatchEvent(new Event("viewChanged"));
 		}
 		
-		private var _height:Number = 0;
-		override public function get height():Number
+		public var valuesImpl:IValuesImpl;
+		
+		public var initialView:ViewBase;
+		
+		public var model:Object;
+		
+		public var controller:Object;
+		
+		public function get MXMLDescriptor():Array
 		{
-			return _height;
-		}
-		override public function set height(value:Number):void
-		{
-			if (_height != value)
-			{
-				_height = value;
-				dispatchEvent(new Event("heightChanged"));
-			}
-		}
-		protected function get $height():Number
-		{
-			return super.height;
+			return null;
 		}
 		
-		private var _model:IBeadModel;
-		public function get model():IBeadModel
+		public function get MXMLProperties():Array
 		{
-			return _model;
-		}
-		public function set model(value:IBeadModel):void
-		{
-			if (_model != value)
-			{
-				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
-			}
-		}
-		
-		private var _id:String;
-		public function get id():String
-		{
-			return _id;
-		}
-		public function set id(value:String):void
-		{
-			if (_id != value)
-			{
-				_id = value;
-				dispatchEvent(new Event("idChanged"));
-			}
-		}
-		
-		private var _className:String;
-		public function get className():String
-		{
-			return _className;
-		}
-		public function set className(value:String):void
-		{
-			if (_className != value)
-			{
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
+			return null;
 		}
 		
 		// beads declared in MXML are added to the strand.
@@ -118,8 +101,6 @@ package org.apache.flex.core
 			if (!_beads)
 				_beads = new Vector.<IBead>;
 			_beads.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
 			bead.strand = this;
 		}
 		
@@ -148,14 +129,9 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		public function initModel():void
+		public function get info():Object
 		{
-			
-		}
-		
-		public function addToParent(p:DisplayObjectContainer):void
-		{
-			p.addChild(this);
+			return {};           
 		}
 	}
 }

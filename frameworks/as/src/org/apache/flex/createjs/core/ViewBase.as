@@ -16,12 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.createjs.core
 {
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;	
+	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
-
+	
 	[DefaultProperty("mxmlContent")]
 	public class ViewBase extends UIBase
 	{
@@ -34,10 +33,6 @@ package org.apache.flex.core
 		{
 			_applicationModel = model;
 			dispatchEvent(new Event("modelChanged"));
-			
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-			
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 		}

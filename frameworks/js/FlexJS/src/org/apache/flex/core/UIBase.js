@@ -105,8 +105,39 @@ org.apache.flex.core.UIBase.prototype.get_id = function() {
 org.apache.flex.core.UIBase.prototype.set_id = function(value) {
     if (this.id != value)
     {
+        this.element.id = value;
         this.id = value;
         var evt = this.createEvent('idChanged');
+        this.dispatchEvent(evt);
+    }
+};
+
+/**
+ * @expose
+ * @type {string}
+ */
+org.apache.flex.core.UIBase.prototype.className;
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {string} The className.
+ */
+org.apache.flex.core.UIBase.prototype.get_className = function() {
+    return this.className;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} value The new className.
+ */
+org.apache.flex.core.UIBase.prototype.set_className = function(value) {
+    if (this.className != value)
+    {
+        this.element.className = value;
+        this.className = value;
+        var evt = this.createEvent('classNameChanged');
         this.dispatchEvent(evt);
     }
 };

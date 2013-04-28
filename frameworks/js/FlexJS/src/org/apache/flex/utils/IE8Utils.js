@@ -94,6 +94,7 @@ org.apache.flex.utils.IE8Utils.dispatchEvent = function(obj, el, event) {
  */
 org.apache.flex.utils.IE8Utils.EventMap = {
     click: 'onclick',
+    change: 'onchange',
     mouseUp: 'onmouseup',
     mouseDown: 'onmousedown',
     mouseMove: 'onmousemove',
