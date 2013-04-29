@@ -175,5 +175,9 @@ createjs|TextButton
         ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
 }
 
+createjs|CheckBox
+{
+        ICheckBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");
+}
 
 }
