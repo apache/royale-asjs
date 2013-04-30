@@ -87,6 +87,7 @@ package org.apache.flex.html.staticControls.beads.models
 				}
 			}
 			dispatchEvent(new Event("selectedItemChanged"));			
+			dispatchEvent(new Event("selectedIndexChanged"));			
 		}
 	}
 }
