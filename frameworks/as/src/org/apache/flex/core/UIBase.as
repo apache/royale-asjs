@@ -30,9 +30,11 @@ package org.apache.flex.core
 			super();
 		}
 		
-		private var _width:Number = 0;
+		private var _width:Number;
 		override public function get width():Number
 		{
+			if (isNaN(_width))
+				_width = Number(ValuesManager.valuesImpl.getValue(this, "width"));
 			return _width;
 		}
 		override public function set width(value:Number):void
@@ -48,9 +50,11 @@ package org.apache.flex.core
 			return super.width;
 		}
 		
-		private var _height:Number = 0;
+		private var _height:Number;
 		override public function get height():Number
 		{
+			if (isNaN(_height))
+				_height = Number(ValuesManager.valuesImpl.getValue(this, "height"));
 			return _height;
 		}
 		override public function set height(value:Number):void

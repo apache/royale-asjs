@@ -29,14 +29,15 @@ package org.apache.flex.core
 		{
 			super();
 		}
-
+		
 		override public function set text(value:String):void
 		{
 			var tf: TextFormat = new TextFormat();
-			tf.font = ValuesManager.valuesImpl.getValue(this, "fontFamily") as String;
-			tf.size = ValuesManager.valuesImpl.getValue(this, "fontSize");
-			tf.color = ValuesManager.valuesImpl.getValue(this, "color");
-			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
+			tf.font = ValuesManager.valuesImpl.getValue(parent, "fontFamily") as String;
+			tf.size = ValuesManager.valuesImpl.getValue(parent, "fontSize");
+			tf.bold = ValuesManager.valuesImpl.getValue(parent, "fontWeight") == "bold";
+			tf.color = ValuesManager.valuesImpl.getValue(parent, "color");
+			var padding:Object = ValuesManager.valuesImpl.getValue(parent, "padding");
 			if (padding != null)
 			{
 				tf.leftMargin = padding;
