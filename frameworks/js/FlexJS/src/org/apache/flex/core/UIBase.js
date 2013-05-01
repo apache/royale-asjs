@@ -30,6 +30,12 @@ org.apache.flex.core.UIBase = function() {
      */
     this.positioner;
 
+    /**
+     * @private
+     * @type {string}
+     */
+    this.lastDisplay;
+
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
@@ -170,3 +176,37 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
     }
 };
 
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {object} True if visible.
+ */
+org.apache.flex.core.UIBase.prototype.get_visible = function() {
+    return this.element.style.display != 'none';
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {object} value The new model.
+ */
+org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
+    var oldValue = this.element.style.display != 'none';
+    if (value != oldValue)
+    {
+        if (!value)
+        {
+            this.lastDisplay = this.element.style.display;
+            this.element.style.display = 'none';
+            this.dispatchEvent(new org.apache.flex.events.Event('hide'));
+        }
+        else
+        {
+            if (this.lastDisplay)
+                this.element.style.display = this.lastDisplay;
+            else
+                this.element.style.display = 'block';
+            this.dispatchEvent(new org.apache.flex.events.Event('show'));
+        }
+    }
+};
