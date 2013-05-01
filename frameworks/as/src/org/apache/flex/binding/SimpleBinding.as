@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.binding
 {	
+	import flash.events.IEventDispatcher;
+	import flash.events.Event;
+
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 
 	public class SimpleBinding implements IBead, IDocument
 	{

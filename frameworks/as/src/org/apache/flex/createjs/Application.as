@@ -59,7 +59,7 @@ package org.apache.flex.createjs
 			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
 		}
 		
-		private function initHandler(event:Event):void
+		private function initHandler(event:flash.events.Event):void
 		{
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 			

@@ -59,6 +59,11 @@ package org.apache.flex.core
         
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
+			if (factoryFunctions == null)
+				return;
+			if (arr == null)
+				return;
+			
             var declarationName:String = "";
             var segmentName:String = "";
             var n:int = arr.length;
