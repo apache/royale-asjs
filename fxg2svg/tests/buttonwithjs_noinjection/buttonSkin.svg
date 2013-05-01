@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="button" width="100%" height="100%" 
+	onload="return init(evt)"
+	onmouseover="return handleMouseOver(evt)" 
+	onmousedown="return handleMouseDown(evt)" 
+	onmouseup="return handleMouseUp(evt)" 
+	onmouseout="return handleMouseOut(evt)"
+	>
+	<style type="text/css">
+		.button {cursor: pointer;}
+	</style>
+  
+  <script type="text/ecmascript">
+	<![CDATA[
+		
+		var labelStr = "";
+		var clickHandler;
+		
+		function init(event)
+		{
+			//Set Initial button state
+			document.getElementById("button_up").style.display="inline";
+			document.getElementById("button_over").style.display="none";
+			document.getElementById("button_down").style.display="none";
+			
+			//Set label from the embed's frameElement.attributes values
+			labelStr = window.frameElement.attributes["label"].value;
+			var labelElement = document.getElementById("labelDisplay");
+			labelElement.firstChild.nodeValue = labelStr;
+			
+			//Store callbacks
+			//clickHandler = window.frameElement.attributes["onclick"].value;
+		}
+	
+		function handleMouseOver(event)
+		{
+			document.getElementById("button_up").style.display="none";
+			document.getElementById("button_over").style.display="inline";
+			document.getElementById("button_down").style.display="none";
+		}
+		
+		function handleMouseDown(event)
+		{
+			document.getElementById("button_up").style.display="none";
+			document.getElementById("button_over").style.display="none";
+			document.getElementById("button_down").style.display="inline";
+		}
+		
+		function handleMouseUp(event)
+		{
+			document.getElementById("button_up").style.display="none";
+			document.getElementById("button_over").style.display="inline";
+			document.getElementById("button_down").style.display="none";
+		}
+		
+		function handleMouseOut(event)
+		{
+			document.getElementById("button_up").style.display="inline";
+			document.getElementById("button_over").style.display="none";
+			document.getElementById("button_down").style.display="none";
+		}
+		
+		function handleOnClick(evt)
+		{
+			top[clickHandler](evt,this);
+		}
+
+	]]></script>
+	<svg xmlns="http://www.w3.org/2000/svg" id="button_up" width="100%" height="100%" version="1.1" >
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="-1" right="-1" top="-1" bottom="-1">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientx63x32" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#000000" stop-opacity="0.01" />
+					<stop offset="1" stop-color="#000000" stop-opacity="0.07" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_shadow" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_up_idLinearGradientx63x32)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientx63x54" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.85" />
+					<stop offset="1" stop-color="#D8D8D8" stop-opacity="0.85" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_fill" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_up_idLinearGradientx63x54)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientx63x76" x1="0%" y1="100%" x2="0%" y2="0%">
+					<stop offset="0.0" stop-color="#000000" stop-opacity="0.0627" />
+					<stop offset="0.48" stop-color="#000000" stop-opacity="0.0099" />
+					<stop offset="0.48001" stop-color="#000000" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_lowlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_up_idLinearGradientx63x76)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientx63x100" gradientTransform="rotate(90)">
+					<stop offset="0.0" stop-color="#FFFFFF" stop-opacity="0.33" />
+					<stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0.33" />
+					<stop offset="0.48001" stop-color="#FFFFFF" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_highlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_up_idLinearGradientx63x100)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientStrokex63x129" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#FFFFFF" />
+					<stop offset="1" stop-color="#D8D8D8" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_highlightStroke" rx="2" ry="2" width="100%" height="100%" fill="none" style="stroke-width:2;stroke:url(#button_up_idLinearGradientStrokex63x129)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="0" right="0" top="0" bottom="0">
+			<defs>
+				<linearGradient id="button_up_idLinearGradientStrokex63x205" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#000000" stop-opacity="0.5625" />
+					<stop offset="1" stop-color="#000000" stop-opacity="0.75" />
+				</linearGradient>
+			</defs>
+			<rect id="button_up_border" rx="2" ry="2" width="100%" height="100%" fill="none" style="stroke-width:2;stroke:url(#button_up_idLinearGradientStrokex63x205)" />
+		</svg>
+	</svg>
+
+	<svg xmlns="http://www.w3.org/2000/svg" id="button_over" width="100%" height="100%" version="1.1" >
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="-1" right="-1" top="-1" bottom="-1">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientx63x32" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#000000" stop-opacity="0.01" />
+					<stop offset="1" stop-color="#000000" stop-opacity="0.07" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_shadow" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_over_idLinearGradientx63x32)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientx63x54" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#BBBDBD" stop-opacity="0.85" />
+					<stop offset="1" stop-color="#9FA0A1" stop-opacity="0.85" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_fill" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_over_idLinearGradientx63x54)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientx63x76" x1="0%" y1="100%" x2="0%" y2="0%">
+					<stop offset="0.0" stop-color="#000000" stop-opacity="0.0627" />
+					<stop offset="0.48" stop-color="#000000" stop-opacity="0.0099" />
+					<stop offset="0.48001" stop-color="#000000" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_lowlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_over_idLinearGradientx63x76)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientx63x100" gradientTransform="rotate(90)">
+					<stop offset="0.0" stop-color="#FFFFFF" stop-opacity="0.22" />
+					<stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0.22" />
+					<stop offset="0.48001" stop-color="#FFFFFF" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_highlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_over_idLinearGradientx63x100)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientStrokex63x129" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22" />
+					<stop offset="1" stop-color="#D8D8D8" stop-opacity="0.22" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_highlightStroke" rx="2" ry="2" width="100%" height="100%" fill="none" style="stroke-width:2;stroke:url(#button_over_idLinearGradientStrokex63x129)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="0" right="0" top="0" bottom="0">
+			<defs>
+				<linearGradient id="button_over_idLinearGradientStrokex63x205" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#000000" stop-opacity="0.5625" />
+					<stop offset="1" stop-color="#000000" stop-opacity="0.75" />
+				</linearGradient>
+			</defs>
+			<rect id="button_over_border" width="100%" height="100%" rx="2" ry="2" fill="none" style="stroke-width:2;stroke:url(#button_over_idLinearGradientStrokex63x205)" />
+		</svg>
+	</svg>
+	<svg xmlns="http://www.w3.org/2000/svg" id="button_down" width="100%" height="100%" version="1.1" >
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="-1" right="-1" top="-1" bottom="-1">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientx63x32" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#FFFFFF" stop-opacity="0" />
+					<stop offset="1" stop-color="#FFFFFF" stop-opacity="0.5" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_shadow" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_down_idLinearGradientx63x32)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientx63x54" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#AAAAAA" stop-opacity="0.85" />
+					<stop offset="1" stop-color="#929496" stop-opacity="0.85" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_fill" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_down_idLinearGradientx63x54)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientx63x76" x1="0%" y1="100%" x2="0%" y2="0%">
+					<stop offset="0.0" stop-color="#000000" stop-opacity="0.0627" />
+					<stop offset="0.48" stop-color="#000000" stop-opacity="0.0099" />
+					<stop offset="0.48001" stop-color="#000000" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_lowlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_down_idLinearGradientx63x76)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientx63x100" gradientTransform="rotate(90)">
+					<stop offset="0.0" stop-color="#FFFFFF" stop-opacity="0.12" />
+					<stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0.12" />
+					<stop offset="0.48001" stop-color="#FFFFFF" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_highlight" rx="2" ry="2" width="100%" height="100%" style="fill:url(#button_down_idLinearGradientx63x100)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="1" right="1" top="1" bottom="1">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientStrokex63x149" gradientTransform="rotate(90)">
+					<stop offset="0.0" stop-color="#000000" stop-opacity="0.25" />
+					<stop offset="0.001" stop-color="#000000" stop-opacity="0.25" />
+					<stop offset="0.0011" stop-color="#000000" stop-opacity="0.07" />
+					<stop offset="0.965" stop-color="#000000" stop-opacity="0.07" />
+					<stop offset="0.9651" stop-color="#000000" stop-opacity="0.00" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_hldownstroke1" rx="2" ry="2" width="100%" height="100%" fill="none" style="stroke-width:2;stroke:url(#button_down_idLinearGradientStrokex63x149)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="2" right="2" top="2" bottom="2">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientStrokex63x182" gradientTransform="rotate(90)">
+					<stop offset="0.0" stop-color="#000000" stop-opacity="0.09" />
+					<stop offset="0.0001" stop-color="#000000" stop-opacity="0.00" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_hldownstroke2" rx="2" ry="2" width="100%" height="100%" fill="none" style="stroke-width:2;stroke:url(#button_down_idLinearGradientStrokex63x182)" />
+		</svg>
+		<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" left="0" right="0" top="0" bottom="0">
+			<defs>
+				<linearGradient id="button_down_idLinearGradientStrokex63x205" gradientTransform="rotate(90)">
+					<stop offset="0" stop-color="#000000" stop-opacity="0.6375" />
+					<stop offset="1" stop-color="#000000" stop-opacity="0.85" />
+				</linearGradient>
+			</defs>
+			<rect id="button_down_border" width="100%" height="100%" rx="2" ry="2" fill="none" style="stroke-width:2;stroke:url(#button_down_idLinearGradientStrokex63x205)" />
+		</svg>
+	</svg>
+	<svg id="labelDisplaySVG" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1" >
+		<text id="labelDisplay" text-anchor="middle" font-family="verdana" font-size="12" dy=".3em" x="50%" y="50%" > </text>
+	</svg>
+	<rect id="mouse_catcher" width="100%" height="100%" fill="none" pointer-events="all"/>
+</svg>

@@ -34,8 +34,9 @@ goog.inherits(
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
     function(p) {
-    this.element = document.createElement('button');
-    this.element.setAttribute('type', 'button');
+    this.element = document.createElement('embed');
+    this.element.setAttribute('src', 'skins/TextButtonSkin.svg');
+	this.element.setAttribute('type', 'button');
 
     p.appendChild(this.element);
 
@@ -48,7 +49,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
-    return this.element.innerHTML;
+    return this.element.getAttribute('label');;
 };
 
 /**
@@ -58,5 +59,5 @@ org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.set_text =
     function(value) {
-    this.element.innerHTML = value;
+    this.element.setAttribute('label', value);
 };
