@@ -63,4 +63,15 @@ org.apache.flex.core.ViewBase.prototype.initUI = function(model) {
             this.get_MXMLProperties());
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
             this, this.get_MXMLDescriptor());
+    this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
 };
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.ViewBase}
+ * @return {Object} The application model.
+ */
+org.apache.flex.core.UIBase.prototype.get_applicationModel = function() {
+    return this.applicationModel;
+};
+
