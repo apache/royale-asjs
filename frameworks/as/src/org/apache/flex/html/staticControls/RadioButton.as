@@ -33,6 +33,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
 	public class RadioButton extends SimpleButton implements IStrand, IInitSkin, IInitModel
 	{
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
