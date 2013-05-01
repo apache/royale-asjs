@@ -58,7 +58,7 @@ org.apache.flex.binding.ConstantBinding.prototype.sourcePropertyName = '';
  */
 org.apache.flex.binding.ConstantBinding.prototype.set_strand = function(value) {
     this.destination = value;
-    this.source = this.document[this.sourceID];
+    this.source = this.document['get_' + this.sourceID]();
 
     this.destination['set_' + this.destinationPropertyName](
         this.source['get_' + this.sourcePropertyName]()
