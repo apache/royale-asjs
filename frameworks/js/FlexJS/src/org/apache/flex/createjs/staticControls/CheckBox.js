@@ -27,10 +27,10 @@ goog.inherits(
     org.apache.flex.createjs.staticControls.CheckBox, org.apache.flex.createjs.core.UIBase
 );
 
-org.apache.flex.createjs.staticControls.TextButton.prototype.checkMark = null;
-org.apache.flex.createjs.staticControls.TextButton.prototype.checkMarkBackground = null;
-org.apache.flex.createjs.staticControls.TextButton.prototype.checkBoxLabel = null;
-org.apache.flex.createjs.staticControls.TextButton.prototype.selected = false;
+org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMark = null;
+org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMarkBackground = null;
+org.apache.flex.createjs.staticControls.CheckBox.prototype.checkBoxLabel = null;
+org.apache.flex.createjs.staticControls.CheckBox.prototype.selected = false;
 
 /**
  * @override
