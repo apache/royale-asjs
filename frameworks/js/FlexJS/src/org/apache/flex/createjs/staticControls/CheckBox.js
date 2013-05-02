@@ -30,7 +30,6 @@ goog.inherits(
 org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMark = null;
 org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMarkBackground = null;
 org.apache.flex.createjs.staticControls.CheckBox.prototype.checkBoxLabel = null;
-org.apache.flex.createjs.staticControls.CheckBox.prototype.selected = false;
 
 /**
  * @override
@@ -42,7 +41,11 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.addToParent = functio
 	this.checkMarkBackground = new createjs.Shape();
 	this.checkMarkBackground.name = "checkmarkbackground";
 	this.checkMarkBackground.graphics.beginFill("red").drawRoundRect(0, 0, 40, 40, 8);
-	
+	//this.checkMarkBackground.graphics.setStrokeStyle( 0 ).beginStroke( '#000' ).drawRect( 0, 0, this.width, this.height);
+	//var hit = new createjs.Shape();
+	//hit.graphics.beginFill("#000").drawRect(0, 0, this.width, this.height);
+	//this.checkMarkBackground.hitArea = hit;
+
 	this.checkMark = new createjs.Shape();
 	this.checkMark.name = "checkmark";
 	this.checkMark.graphics.beginFill("white").drawRoundRect(0, 0, 32, 32, 6);
@@ -56,10 +59,13 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.addToParent = functio
 	this.checkBoxLabel.textBaseline = "middle";
 	this.checkBoxLabel.x = 45;
 	this.checkBoxLabel.y = 40/2;
-	
+
 	this.element = new createjs.Container();
 	this.element.name = "checkbox";
 	this.element.addChild(this.checkMarkBackground, this.checkBoxLabel, this.checkMark);
+	// use bind(this) to avoid loose scope
+	this.element.onClick = this.clickHandler.bind(this);
+
 	p.addChild(this.element);
 
     this.positioner = this.element;
@@ -100,4 +106,12 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.get_selected = functi
 org.apache.flex.createjs.staticControls.CheckBox.prototype.set_selected = function(value) {
 	this.checkMark.visible = this.selected = value;
 	this.element.getStage().update();
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.createjs.staticControls.CheckBox}
+ */
+org.apache.flex.createjs.staticControls.CheckBox.prototype.clickHandler = function(event) {
+	this.set_selected(!this.get_selected());
 };
