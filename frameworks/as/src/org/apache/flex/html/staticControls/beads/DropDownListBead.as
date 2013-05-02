@@ -57,9 +57,9 @@ package org.apache.flex.html.staticControls.beads
 			upTextField.borderColor = 0;
 			downTextField.borderColor = 0;
 			overTextField.borderColor = 0;
-			upTextField.backgroundColor = 0xCCCCCC;
+			upTextField.backgroundColor = 0xEEEEEE;
 			downTextField.backgroundColor = 0x808080;
-			overTextField.backgroundColor = 0xFFCCCC;
+			overTextField.backgroundColor = 0xFFFFFF;
 			upTextField.selectable = false;
 			upTextField.type = TextFieldType.DYNAMIC;
 			downTextField.selectable = false;
@@ -76,8 +76,8 @@ package org.apache.flex.html.staticControls.beads
             upSprite.addChild(upArrows);
 			overSprite.addChild(overArrows);
 			downSprite.addChild(downArrows);
-            drawArrows(upArrows, 0xCCCCCC);
-            drawArrows(overArrows, 0xFFCCCC);
+            drawArrows(upArrows, 0xEEEEEE);
+            drawArrows(overArrows, 0xFFFFFF);
             drawArrows(downArrows, 0x808080);
 
 		}
