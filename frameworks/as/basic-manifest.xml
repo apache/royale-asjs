@@ -42,5 +42,6 @@
     <component id="LazyCollection" class="org.apache.flex.net.dataConverters.LazyCollection"/>
     <component id="JSONInputParser" class="org.apache.flex.net.JSONInputParser"/>
     <component id="JSONItemConverter" class="org.apache.flex.net.JSONItemConverter"/>
+    <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption"/>
 
 </componentPackage>
