@@ -39,7 +39,19 @@ goog.inherits(org.apache.flex.createjs.core.ViewBase, org.apache.flex.createjs.c
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.core.ViewBase.prototype.applicationModel;
+org.apache.flex.createjs.core.ViewBase.prototype.get_applicationModel = function()
+{
+  return this.applicationModel;
+}
+
+/**
+ * @expose
+ * @type {Object}
+ */
+org.apache.flex.createjs.core.ViewBase.prototype.set_applicationModel = function(value)
+{
+  this.applicationModel = value;
+}
 
 /**
  * @expose

@@ -86,14 +86,16 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
  */
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
     this.destination = value;
-    if(this.document['get_' + this.sourceID] != undefined)
+
+    try
     {
         this.source = this.document['get_' + this.sourceID]();
-    }
-    else
+    } 
+    catch(e)
     {
         this.source = this.document[this.sourceID];
     }
+    
     this.source.addEventListener(
         this.eventName, org.apache.flex.FlexGlobal.createProxy(
             this, this.changeHandler
