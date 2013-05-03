@@ -78,6 +78,9 @@ package org.apache.flex.html.staticControls.beads
 			SimpleButton(value).downState = downTextField;
 			SimpleButton(value).overState = overTextField;
 			SimpleButton(value).hitTestState = shape;
+			upTextField.styleParent = value;
+			downTextField.styleParent = value;
+			overTextField.styleParent = value;
 			if (textModel.text !== null)
 				text = textModel.text;
 			if (textModel.html !== null)
