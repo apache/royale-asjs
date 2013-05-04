@@ -14,26 +14,20 @@
 
 goog.provide('org.apache.flex.core.ViewBase');
 
-goog.require('org.apache.flex.FlexGlobal');
-
 goog.require('org.apache.flex.core.UIBase');
-
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.ViewBase = function() {
-    org.apache.flex.core.UIBase.call(this);
-
-     /**
-      * @private
-      * @type {org.apache.flex.core.ViewBase}
-      */
-      this.currentObject_;
+  goog.base(this);
 };
 goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
+
 
 /**
  * @expose
@@ -41,11 +35,13 @@ goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
  */
 org.apache.flex.core.ViewBase.prototype.applicationModel;
 
+
 /**
  * @expose
  * @type {Array}
  */
 org.apache.flex.core.ViewBase.prototype.MXMLProperties;
+
 
 /**
  * @expose
@@ -53,17 +49,21 @@ org.apache.flex.core.ViewBase.prototype.MXMLProperties;
  */
 org.apache.flex.core.ViewBase.prototype.MXMLDescriptor;
 
+
 /**
  * @this {org.apache.flex.core.ViewBase}
  * @param {Object} model The model for this view.
  */
 org.apache.flex.core.ViewBase.prototype.initUI = function(model) {
-    this.applicationModel = model;
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-            this.get_MXMLProperties());
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
-            this, this.get_MXMLDescriptor());
-    this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
+  this.applicationModel = model;
+
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
+      this.get_MXMLProperties());
+
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
+      this, this.get_MXMLDescriptor());
+
+  this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
 };
 
 /**
