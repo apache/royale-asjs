@@ -14,24 +14,36 @@
 
 goog.provide('org.apache.flex.events.Event');
 
-/**
- * @constructor
- */
-org.apache.flex.events.Event = function(type) {
-    this.type = type;
-};
+goog.require('goog.events.Event');
+
+
 
 /**
+ * @constructor
+ * @extends {goog.events.Event}
+ * @param {string} type The event type.
+ */
+org.apache.flex.events.Event = function(type) {
+  goog.base(this, type);
+
+  this.type = type;
+};
+goog.inherits(org.apache.flex.events.Event,
+    goog.events.Event);
+
+
+/**
+ * @expose
  * @this {org.apache.flex.events.Event}
  * @param {string} type The event type.
  */
 org.apache.flex.events.Event.prototype.init = function(type) {
-    this.type = type;
+  this.type = type;
 };
 
+
 /**
- * @expose 
+ * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.Event.prototype.type;
-
+org.apache.flex.events.CustomEvent.prototype.type;

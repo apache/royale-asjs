@@ -16,30 +16,33 @@ goog.provide('org.apache.flex.html.staticControls.TextArea');
 
 goog.require('org.apache.flex.core.UIBase');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.staticControls.TextArea = function() {
-    org.apache.flex.core.UIBase.call(this);
+  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.html.staticControls.TextArea, org.apache.flex.core.UIBase
-);
+goog.inherits(org.apache.flex.html.staticControls.TextArea,
+    org.apache.flex.core.UIBase);
+
 
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.TextArea}
  * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.TextArea.prototype.addToParent = 
+org.apache.flex.html.staticControls.TextArea.prototype.addToParent =
     function(p) {
-    this.element = document.createElement('textarea');
+  this.element = document.createElement('textarea');
 
-    p.appendChild(this.element);
+  p.appendChild(this.element);
 
-    this.positioner = this.element;
+  this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -47,14 +50,16 @@ org.apache.flex.html.staticControls.TextArea.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.TextArea.prototype.get_text = function() {
-    return this.element.value
+  return this.element.value;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.TextArea}
  * @param {string} value The text setter.
  */
-org.apache.flex.html.staticControls.TextArea.prototype.set_text = function(value) {
-    this.element.value = value;
+org.apache.flex.html.staticControls.TextArea.prototype.set_text =
+    function(value) {
+  this.element.value = value;
 };

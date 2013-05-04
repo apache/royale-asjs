@@ -14,25 +14,20 @@
 
 goog.provide('org.apache.flex.html.staticControls.List');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ListBase');
+
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.staticControls.List = function() {
-    org.apache.flex.core.UIBase.call(this);
-
-    /**
-     * @private
-     * @type {Array.<Object>}
-     */
-    this._dataProvider;
-
+  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.html.staticControls.List, org.apache.flex.core.UIBase
-);
+goog.inherits(org.apache.flex.html.staticControls.List,
+    org.apache.flex.core.ListBase);
+
 
 /**
  * @override
@@ -40,106 +35,7 @@ goog.inherits(
  * @param {Object} p The parent element.
  */
 org.apache.flex.html.staticControls.List.prototype.addToParent = function(p) {
-    this.element = document.createElement('select');
-    //this.element.onchange = org.apache.flex.FlexGlobal.createProxy(
-    //            this, this.changeHandler);
-    this.element.size = 5;
-                
-    p.appendChild(this.element);
+  goog.base(this, 'addToParent', p);
 
-    this.positioner = this.element;
+  this.element.size = 5;
 };
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @return {Array.<Object>} The collection of data.
- */
-org.apache.flex.html.staticControls.List.prototype.get_dataProvider =
-function() {
-    return this._dataProvider;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @param {Array.<Object>} value The text setter.
- */
-org.apache.flex.html.staticControls.List.prototype.set_dataProvider =
-function(value) {
-    this._dataProvider = value;
-
-    var dp = this.element.options;
-    var n = dp.length;
-    for (var i = 0; i < n; i++)
-        dp.remove(0);
-
-    n = value.length;
-    for (i = 0; i < n; i++)
-    {
-        var opt = document.createElement('option');
-        opt.text = value[i];
-        dp.add(opt);
-    }
-};
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @return {int} The selected index.
- */
-org.apache.flex.html.staticControls.List.prototype.get_selectedIndex =
-function() {
-    return this.element.selectedIndex;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @param {int} value The selected index.
- */
-org.apache.flex.html.staticControls.List.prototype.set_selectedIndex =
-function(value) {
-    this.element.selectedIndex = value;
-};
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @return {Object} The selected item.
- */
-org.apache.flex.html.staticControls.List.prototype.get_selectedItem =
-function() {
-    return this._dataProvider[this.element.selectedIndex];
-};
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.List}
- * @param {Object} value The selected item.
- */
-org.apache.flex.html.staticControls.List.prototype.set_selectedItem =
-function(value) {
-
-    var dp = this._dataProvider;
-    var n = dp.length;
-    for (var i = 0; i < n; i++)
-    {
-        if (dp[i] == value)
-            break;
-    }
-    if (i < n)
-        this.element.selectedIndex = i;
-};
-
-/**
- * @protected
- * @this {org.apache.flex.html.staticControls.List}
- * @return {Object} The selected item.
- */
-org.apache.flex.html.staticControls.List.prototype.changeHandler =
-function() {
-    var evt = this.createEvent('change');
-    this.dispatchEvent(evt);
-};
-

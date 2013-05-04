@@ -14,38 +14,19 @@
 
 goog.provide('org.apache.flex.binding.SimpleBinding');
 
-goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+goog.require('org.apache.flex.binding.BindingBase');
+
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.binding.SimpleBinding = function() {
-    org.apache.flex.FlexObject.call(this);
-    
-    /**
-     * @private
-     * @type {object}
-     */
-    this.document;
-
+  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.binding.SimpleBinding, org.apache.flex.FlexObject
-);
+goog.inherits(org.apache.flex.binding.SimpleBinding,
+    org.apache.flex.binding.BindingBase);
 
-/**
- * @expose
- * @type {Object}
- */
-org.apache.flex.binding.SimpleBinding.prototype.destination = null;
-
-/**
- * @expose
- * @type {string}
- */
-org.apache.flex.binding.SimpleBinding.prototype.destinationPropertyName = '';
 
 /**
  * @expose
@@ -53,11 +34,6 @@ org.apache.flex.binding.SimpleBinding.prototype.destinationPropertyName = '';
  */
 org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
-/**
- * @expose
- * @type {Object}
- */
-org.apache.flex.binding.SimpleBinding.prototype.source = null;
 
 /**
  * @expose
@@ -65,50 +41,27 @@ org.apache.flex.binding.SimpleBinding.prototype.source = null;
  */
 org.apache.flex.binding.SimpleBinding.prototype.sourceID = '';
 
-/**
- * @expose
- * @type {string}
- */
-org.apache.flex.binding.SimpleBinding.prototype.sourcePropertyName = '';
 
 /**
  * @this {org.apache.flex.binding.SimpleBinding}
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
-    this.destination['set_' + this.destinationPropertyName](
-        this.source['get_' + this.sourcePropertyName]()
-    );
+  this.destination['set_' + this.destinationPropertyName](
+      this.source['get_' + this.sourcePropertyName]()
+  );
 };
 
+
 /**
+ * @override
  * @this {org.apache.flex.binding.SimpleBinding}
- * @param {object} value The strand (owner) of the bead.
+ * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
-    this.destination = value;
-    if(this.document['get_' + this.sourceID] != undefined)
-    {
-        this.source = this.document['get_' + this.sourceID]();
-    }
-    else
-    {
-        this.source = this.document[this.sourceID];
-    }
-    this.source.addEventListener(
-        this.eventName, org.apache.flex.FlexGlobal.createProxy(
-            this, this.changeHandler
-        )
-    );
+  goog.base(this, 'set_strand', value);
 
-    this.changeHandler();
-};
+  this.source.addEventListener(this.eventName,
+      goog.bind(this.changeHandler, this));
 
-/**
- * @this {org.apache.flex.binding.SimpleBinding}
- * @param {object} document The MXML object.
- * @param {string} id The id for the instance.
- */
-org.apache.flex.binding.SimpleBinding.prototype.setDocument =
-                                                    function(document, id) {
-    this.document = document;
+  this.changeHandler();
 };

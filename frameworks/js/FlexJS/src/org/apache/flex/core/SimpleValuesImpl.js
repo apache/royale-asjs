@@ -14,15 +14,10 @@
 
 goog.provide('org.apache.flex.core.SimpleValuesImpl');
 
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.core.SimpleValuesImpl = function() {
-    org.apache.flex.FlexObject.call(this);
 };
-goog.inherits(
-    org.apache.flex.core.SimpleValuesImpl, org.apache.flex.FlexObject
-);
