@@ -63,7 +63,12 @@ org.apache.flex.binding.BindingBase.prototype.sourcePropertyName = '';
 org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   this.destination = value;
 
-  this.source = this.document_[this.sourceID];
+  try {
+      this.source = this.document_['get_' + this.sourceID]();
+  } 
+  catch(e) {
+      this.source = this.document_[this.sourceID];
+  }
 };
 
 
