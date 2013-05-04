@@ -39,10 +39,10 @@ goog.inherits(org.apache.flex.createjs.core.UIBase,
  * @param {Object} p The parent element.
  */
 org.apache.flex.createjs.core.UIBase.prototype.addToParent = function(p) {
-    
+
     this.element = new createjs.Container();
     p.addChild(this.element);
-    
+
     this.positioner = this.element;
 };
 

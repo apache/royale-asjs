@@ -29,7 +29,7 @@ org.apache.flex.core.ListBase = function() {
    * @protected
    * @type {Array.<Object>}
    */
-  this.dataProvider_;
+  this.dataProvider = null;
 
   /**
    * @private
@@ -64,7 +64,7 @@ org.apache.flex.core.ListBase.prototype.addToParent = function(p) {
  */
 org.apache.flex.core.ListBase.prototype.get_dataProvider =
     function() {
-  return this.dataProvider_;
+  return this.dataProvider;
 };
 
 
@@ -77,7 +77,7 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
     function(value) {
   var dp, i, n, opt;
 
-  this.dataProvider_ = value;
+  this.dataProvider = value;
 
   dp = this.element.options;
   n = dp.length;
@@ -101,11 +101,15 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedIndex =
     function() {
-  if (typeof this.element.selectedIndex !== 'undefined') {
-    return this.element.selectedIndex;
+  var result;
+
+  if (this.element.selectedIndex !== undefined) {
+    result = this.element.selectedIndex;
   } else {
-    return this.selectedIndex_;
+    result = this.selectedIndex_;
   }
+
+  return result;
 };
 
 
@@ -135,12 +139,12 @@ org.apache.flex.core.ListBase.prototype.get_selectedItem =
 
   si = this.get_selectedIndex();
 
-  if (!this.dataProvider_ || si < 0 ||
-      si >= this.dataProvider_.length) {
+  if (!this.dataProvider || si < 0 ||
+      si >= this.dataProvider.length) {
     return null;
   }
 
-  return this.dataProvider_[si];
+  return this.dataProvider[si];
 };
 
 
@@ -153,7 +157,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedItem =
     function(value) {
   var dp, i, n;
 
-  dp = this.dataProvider_;
+  dp = this.dataProvider;
   n = dp.length;
   for (i = 0; i < n; i++) {
     if (dp[i] === value) {

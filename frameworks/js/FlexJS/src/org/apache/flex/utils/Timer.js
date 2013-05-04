@@ -27,7 +27,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 org.apache.flex.utils.Timer = function(delay, opt_repeatCount) {
   goog.base(this);
 
-  if (typeof opt_repeatCount !== 'undefined') {
+  if (opt_repeatCount !== undefined) {
     this._repeatCount = opt_repeatCount;
   }
 

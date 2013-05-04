@@ -24,32 +24,32 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
    * @private
    * @type {Object}
    */
-  this.data_;
+  this.data_ = null;
 
   /**
    * @private
    * @type {Object}
    */
 
-  this.itemConverter_;
+  this.itemConverter_ = null;
 
   /**
    * @private
    * @type {Object}
    */
-  this.inputParser_;
+  this.inputParser_ = null;
 
   /**
    * @private
    * @type {Object}
    */
-  this.rawData_;
+  this.rawData_ = null;
 
   /**
    * @private
    * @type {Object}
    */
-  this.strand_;
+  this.strand_ = null;
 };
 
 
@@ -101,7 +101,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
  * @expose
  * @type {string}
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.id;
+org.apache.flex.net.dataConverters.LazyCollection.prototype.id = null;
 
 
 /**
@@ -164,7 +164,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.getItemAt =
     function(index) {
-  if (typeof this.data_[index] === 'undefined') {
+  if (this.data_[index] === undefined) {
     this.data_[index] =
         this.itemConverter_.convertItem(this.rawData_[index]);
   }

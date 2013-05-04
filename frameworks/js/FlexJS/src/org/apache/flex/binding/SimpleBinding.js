@@ -47,7 +47,7 @@ org.apache.flex.binding.SimpleBinding.prototype.sourceID = '';
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
   this.destination['set_' + this.destinationPropertyName](
-      this.source['get_' + this.sourcePropertyName]()
+    this.source['get_' + this.sourcePropertyName]()
   );
 };
 

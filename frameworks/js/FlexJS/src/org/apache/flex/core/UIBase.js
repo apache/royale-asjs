@@ -29,13 +29,13 @@ org.apache.flex.core.UIBase = function() {
    * @private
    * @type {string}
    */
-  this.lastDisplay;
+  this.lastDisplay_ = null;
 
   /**
    * @protected
    * @type {Object}
    */
-  this.positioner;
+  this.positioner = null;
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
@@ -98,7 +98,7 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.id;
+org.apache.flex.core.UIBase.prototype.id = null;
 
 
 /**
@@ -129,7 +129,7 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.className;
+org.apache.flex.core.UIBase.prototype.className = null;
 
 /**
  * @expose
@@ -147,7 +147,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
  * @param {object} value The new className.
  */
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
-    if (this.className != value)
+    if (this.className !== value)
     {
         this.element.className = value;
         this.className = value;
@@ -160,7 +160,7 @@ org.apache.flex.core.UIBase.prototype.set_className = function(value) {
  * @expose
  * @type {object}
  */
-org.apache.flex.core.UIBase.prototype.model;
+org.apache.flex.core.UIBase.prototype.model = null;
 
 
 /**
@@ -191,7 +191,7 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
  * @return {object} True if visible.
  */
 org.apache.flex.core.UIBase.prototype.get_visible = function() {
-    return this.element.style.display != 'none';
+    return this.element.style.display !== 'none';
 };
 
 /**
@@ -200,21 +200,18 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
  * @param {object} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
-    var oldValue = this.element.style.display != 'none';
-    if (value != oldValue)
-    {
-        if (!value)
-        {
-            this.lastDisplay = this.element.style.display;
+    var oldValue = this.element.style.display !== 'none';
+    if (value !== oldValue) {
+        if (!value) {
+            this.lastDisplay_ = this.element.style.display;
             this.element.style.display = 'none';
             this.dispatchEvent(new org.apache.flex.events.Event('hide'));
-        }
-        else
-        {
-            if (this.lastDisplay)
-                this.element.style.display = this.lastDisplay;
-            else
-                this.element.style.display = 'block';
+        } else {
+            if (this.lastDisplay_) {
+              this.element.style.display = this.lastDisplay_;
+            } else {
+              this.element.style.display = 'block';
+            }
             this.dispatchEvent(new org.apache.flex.events.Event('show'));
         }
     }

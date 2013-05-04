@@ -33,21 +33,21 @@ goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.ViewBase.prototype.applicationModel;
+org.apache.flex.core.ViewBase.prototype.applicationModel = null;
 
 
 /**
  * @expose
  * @type {Array}
  */
-org.apache.flex.core.ViewBase.prototype.MXMLProperties;
+org.apache.flex.core.ViewBase.prototype.MXMLProperties = null;
 
 
 /**
  * @expose
  * @type {Array}
  */
-org.apache.flex.core.ViewBase.prototype.MXMLDescriptor;
+org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**

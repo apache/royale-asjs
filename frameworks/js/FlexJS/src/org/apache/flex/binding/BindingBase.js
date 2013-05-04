@@ -24,7 +24,7 @@ org.apache.flex.binding.BindingBase = function() {
    * @private
    * @type {Object}
    */
-  this.document_;
+  this.document_ = null;
 };
 
 
@@ -64,10 +64,9 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   this.destination = value;
 
   try {
-      this.source = this.document_['get_' + this.sourceID]();
-  } 
-  catch(e) {
-      this.source = this.document_[this.sourceID];
+    this.source = this.document_['get_' + this.sourceID]();
+  } catch (e) {
+    this.source = this.document_[this.sourceID];
   }
 };
 
@@ -75,9 +74,7 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
 /**
  * @this {org.apache.flex.binding.BindingBase}
  * @param {Object} document The MXML object.
- * @param {string} id The id for the instance.
  */
-org.apache.flex.binding.BindingBase.prototype.setDocument =
-    function(document, id) {
+org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
   this.document_ = document;
 };

@@ -94,7 +94,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
   var bead, beadOffset, beads, children, Cls, comp, comps, generateMXMLArray,
       generateMXMLObject, i, id, j, k, l, m, n, name, self, simple, value;
 
-  if (typeof opt_recursive === 'undefined') {
+  if (opt_recursive === undefined) {
     opt_recursive = true;
   }
 
@@ -142,7 +142,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
           typeof comp.get_strand === 'function') {
         comp.addBead(value);
       }
-      //*/
+      */
     }
 
     if (typeof(comp.initModel) === 'function') {

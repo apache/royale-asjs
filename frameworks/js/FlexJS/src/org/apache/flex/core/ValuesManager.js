@@ -27,4 +27,4 @@ org.apache.flex.core.ValuesManager = function() {
  * @expose
  * @type {org.apache.flex.core.ValuesManager}
  */
-org.apache.flex.core.ValuesManager.prototype.valuesImpl;
+org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;

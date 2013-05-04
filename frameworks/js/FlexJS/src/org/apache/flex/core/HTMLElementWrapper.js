@@ -55,8 +55,8 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
 
   this.strand.push(bead);
 
-  if (typeof bead.constructor.$implements !== 'undefined' &&
-      typeof bead.constructor.$implements.IBeadModel !== 'undefined') {
+  if (bead.constructor.$implements !== undefined &&
+      bead.constructor.$implements.IBeadModel !== undefined) {
     this.model = bead;
   }
 

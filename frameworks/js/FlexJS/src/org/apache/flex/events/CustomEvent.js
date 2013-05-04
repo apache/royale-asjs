@@ -25,7 +25,7 @@ goog.require('goog.events.Event');
  */
 org.apache.flex.events.CustomEvent = function(type) {
   goog.base(this);
-  
+
   this.type = type;
 };
 goog.inherits(org.apache.flex.events.CustomEvent,
@@ -46,4 +46,4 @@ org.apache.flex.events.CustomEvent.prototype.init = function(type) {
  * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.CustomEvent.prototype.type;
+org.apache.flex.events.CustomEvent.prototype.type = null;

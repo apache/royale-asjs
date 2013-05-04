@@ -37,5 +37,6 @@ org.apache.flex.binding.ConstantBinding.prototype.set_strand = function(value) {
   goog.base(this, 'set_strand', value);
 
   this.destination['set_' + this.destinationPropertyName](
-      this.source['get_' + this.sourcePropertyName]());
+    this.source['get_' + this.sourcePropertyName]()
+  );
 };
