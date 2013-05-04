@@ -175,7 +175,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.set_dataProvider =
     function(value) {
-  this.dataProvider_ = value;
+  this.dataProvider = value;
 };
 
 
