@@ -20,9 +20,7 @@ package org.apache.flex.html5.staticControls
 {
 	import org.apache.flex.html.staticControls.List;
 	
-    [Event("change", org.apache.flex.events.Event)]
-    
-	/**
+    /**
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
 	 *  direct instantiation, and we might want to allow

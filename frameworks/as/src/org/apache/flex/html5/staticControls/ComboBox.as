@@ -20,8 +20,6 @@ package org.apache.flex.html5.staticControls
 {
 	import org.apache.flex.html.staticControls.ComboBox;
 	
-	[Event("change", org.apache.flex.events.Event)]
-	
 	public class ComboBox extends org.apache.flex.html.staticControls.ComboBox
 	{
 	}

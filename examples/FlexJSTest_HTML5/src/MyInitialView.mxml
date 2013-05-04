@@ -62,6 +62,23 @@ limitations under the License.
 			}
         ]]>
     </fx:Script>
+	<fx:Style>
+		@namespace html5 "library://ns.apache.org/flexjs/html5";
+		
+		.skinned {
+			background-image: url('ButtonImageUp.png');
+			border-style: none;
+		}
+		
+		.skinned:hover {
+			background-image: url('ButtonImageOver.png');
+		}
+		
+		.skinned:active {
+			background-image: url('ButtonImageDown.png');
+		}
+		
+	</fx:Style>
 	<html5:Label id="lbl" x="100" y="25" >
 		<html5:beads>
 			<basic:SimpleBinding eventName="labelTextChanged"
@@ -113,6 +130,7 @@ limitations under the License.
 		</html5:beads>
 	</html5:DropDownList>
 	<html5:TextButton text="OK" x="200" y="230" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
+	<html5:TextButton text="Skinned" x="200" y="260" width="80" height="24" className="skinned" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
 	
 	<html5:ComboBox id="comboBox" x="320" y="200" width="100" change="dispatchEvent(new CustomEvent('comboBoxChanged'))">
 		<html5:beads>

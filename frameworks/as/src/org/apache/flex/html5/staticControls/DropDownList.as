@@ -20,9 +20,7 @@ package org.apache.flex.html5.staticControls
 {
     import org.apache.flex.html.staticControls.DropDownList;
     
-    [Event("change", org.apache.flex.events.Event)]
-    
-	public class DropDownList extends org.apache.flex.html.staticControls.DropDownList
+    public class DropDownList extends org.apache.flex.html.staticControls.DropDownList
 	{
     }
 }
