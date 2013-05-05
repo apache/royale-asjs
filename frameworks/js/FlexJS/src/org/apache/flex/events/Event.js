@@ -54,4 +54,4 @@ org.apache.flex.events.Event.prototype.get_target = function() {
  * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.CustomEvent.prototype.type;
+org.apache.flex.events.Event.prototype.type = null;

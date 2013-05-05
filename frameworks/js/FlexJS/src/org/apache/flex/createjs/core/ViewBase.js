@@ -14,24 +14,23 @@
 
 goog.provide('org.apache.flex.createjs.core.ViewBase');
 
-goog.require('org.apache.flex.FlexGlobal');
-
 goog.require('org.apache.flex.createjs.core.UIBase');
-
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.core.ViewBase = function() {
-    org.apache.flex.createjs.core.UIBase.call(this);
+    goog.base(this);
 
      /**
       * @private
       * @type {org.apache.flex.createjs.core.ViewBase}
       */
-      this.currentObject_;
+      this.currentObject_ = null;
 };
 goog.inherits(org.apache.flex.createjs.core.ViewBase,
   org.apache.flex.createjs.core.UIBase);
@@ -58,13 +57,13 @@ org.apache.flex.createjs.core.ViewBase.prototype.set_applicationModel =
  * @expose
  * @type {Array}
  */
-org.apache.flex.createjs.core.ViewBase.prototype.MXMLProperties;
+org.apache.flex.createjs.core.ViewBase.prototype.MXMLProperties = null;
 
 /**
  * @expose
  * @type {Array}
  */
-org.apache.flex.createjs.core.ViewBase.prototype.MXMLDescriptor;
+org.apache.flex.createjs.core.ViewBase.prototype.MXMLDescriptor = null;
 
 /**
  * @this {org.apache.flex.createjs.core.ViewBase}

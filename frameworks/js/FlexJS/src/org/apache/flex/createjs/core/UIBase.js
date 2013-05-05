@@ -14,21 +14,22 @@
 
 goog.provide('org.apache.flex.createjs.core.UIBase');
 
-goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.core.UIBase = function() {
-    org.apache.flex.core.HTMLElementWrapper.call(this);
+    goog.base(this);
 
     /**
      * @protected
      * @type {Object}
      */
-    this.positioner;
+    this.positioner = null;
 
 };
 goog.inherits(org.apache.flex.createjs.core.UIBase,
@@ -39,7 +40,6 @@ goog.inherits(org.apache.flex.createjs.core.UIBase,
  * @param {Object} p The parent element.
  */
 org.apache.flex.createjs.core.UIBase.prototype.addToParent = function(p) {
-
     this.element = new createjs.Container();
     p.addChild(this.element);
 
@@ -90,7 +90,7 @@ org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
  * @expose
  * @type {string}
  */
-org.apache.flex.createjs.core.UIBase.prototype.id;
+org.apache.flex.createjs.core.UIBase.prototype.id = null;
 
 /**
  * @expose
@@ -107,12 +107,11 @@ org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
  * @param {object} value The new id.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
-    if (this.name != value)
+    if (this.name !== value)
     {
         this.element.name = value;
         this.name = value;
-        var evt = this.createEvent('idChanged');
-        this.dispatchEvent(evt);
+        this.dispatchEvent('idChanged');
     }
 };
 
@@ -120,7 +119,7 @@ org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {object}
  */
-org.apache.flex.createjs.core.UIBase.prototype.model;
+org.apache.flex.createjs.core.UIBase.prototype.model = null;
 
 /**
  * @expose
@@ -137,10 +136,10 @@ org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
  * @param {object} value The new model.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_model = function(value) {
-    if (this.model != value)
+    if (this.model !== value)
     {
         this.addBead(value);
-        this.dispatchEvent(new Event('modelChanged'));
+        this.dispatchEvent('modelChanged');
     }
 };
 
