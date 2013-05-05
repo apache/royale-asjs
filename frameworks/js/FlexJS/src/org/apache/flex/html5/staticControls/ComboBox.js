@@ -170,10 +170,10 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
 /**
  * @override
  * @expose
- * @this {org.apache.flex.html.staticControls.ComboBox}
+ * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {Array.<Object>} value The collection of data.
  */
-org.apache.flex.html.staticControls.ComboBox.prototype.set_dataProvider =
+org.apache.flex.html5.staticControls.ComboBox.prototype.set_dataProvider =
     function(value) {
   this.dataProvider = value;
 };

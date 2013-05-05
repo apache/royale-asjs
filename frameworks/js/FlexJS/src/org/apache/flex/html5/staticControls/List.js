@@ -14,19 +14,19 @@
 
 goog.provide('org.apache.flex.html5.staticControls.List');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ListBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html5.staticControls.List = function() {
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html5.staticControls.List,
-    org.apache.flex.core.UIBase);
+    org.apache.flex.core.ListBase);
 
 
 /**
