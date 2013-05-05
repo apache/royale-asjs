@@ -122,7 +122,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
     function(value) {
   this.selectedIndex_ = value;
 
-  if (this.element.selectedIndex) {
+  if (this.element.selectedIndex !== undefined) {
     this.element.selectedIndex = value;
   }
 };
@@ -168,7 +168,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedItem =
   if (i < n) {
     this.selectedIndex_ = i;
 
-    if (this.element.selectedIndex) {
+    if (this.element.selectedIndex !== undefined) {
       this.element.selectedIndex = i;
     }
 
