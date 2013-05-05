@@ -41,6 +41,14 @@ org.apache.flex.events.Event.prototype.init = function(type) {
   this.type = type;
 };
 
+/**
+ * @expose
+ * @this {org.apache.flex.events.Event}
+ * @return {Object} The event target.
+ */
+org.apache.flex.events.Event.prototype.get_target = function() {
+  return this.target;
+};
 
 /**
  * @expose
