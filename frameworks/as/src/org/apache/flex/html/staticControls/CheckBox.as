@@ -32,6 +32,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
 	public class CheckBox extends SimpleButton implements IStrand, IInitSkin, IInitModel
 	{
 		public function CheckBox(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)

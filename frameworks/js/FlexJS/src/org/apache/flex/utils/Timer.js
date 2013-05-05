@@ -14,44 +14,44 @@
 
 goog.provide('org.apache.flex.utils.Timer');
 
-goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.events.EventDispatcher');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
+ * @param {number} delay The delay.
+ * @param {number=} opt_repeatCount The repeatCount.
  */
-org.apache.flex.utils.Timer = function(delay, repeatCount) {
-    org.apache.flex.events.EventDispatcher.call(this);
-    
-    
-    /**
-     * @private
-     * @type {number}
-     */
-    this.timerInterval = -1;
+org.apache.flex.utils.Timer = function(delay, opt_repeatCount) {
+  goog.base(this);
 
-    /**
-     * @private
-     * @type {number}
-     */
-    this._delay = delay;
-    
-    /**
-     * @private
-     * @type {number}
-     */
-    this._currentCount = 0;
-    
+  if (opt_repeatCount !== undefined) {
+    this._repeatCount = opt_repeatCount;
+  }
 
-    if (typeof(repeatCount) != 'undefined') 
-    { 
-        this._repeatCount = repeatCount;
-    }
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.timerInterval = -1;
 
+  /**
+   * @protected
+   * @type {number}
+   */
+  this._delay = delay;
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this._currentCount = 0;
 };
 goog.inherits(org.apache.flex.utils.Timer,
-                org.apache.flex.events.EventDispatcher);
+    org.apache.flex.events.EventDispatcher);
+
 
 /**
  * @expose
@@ -59,74 +59,78 @@ goog.inherits(org.apache.flex.utils.Timer,
  * Stops the timer and sets currentCount = 0.
  */
 org.apache.flex.utils.Timer.prototype.reset = function() {
-    this.stop();
-    this._currentCount = 0;
+  this.stop();
+  this._currentCount = 0;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
  * Stops the timer.
  */
-org.apache.flex.utils.Timer.prototype.stop =
-                                function() {
-    clearInterval(this.timerInterval);
-    this.timerInterval = -1;
+org.apache.flex.utils.Timer.prototype.stop = function() {
+  clearInterval(this.timerInterval);
+  this.timerInterval = -1;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
  * Starts the timer.
  */
-org.apache.flex.utils.Timer.prototype.start =
-                                function() {
-    this.timerInterval = setInterval(org.apache.flex.FlexGlobal.createProxy     
-        (this, this.timerHandler),
-        this._delay);
+org.apache.flex.utils.Timer.prototype.start = function() {
+  this.timerInterval =
+      setInterval(goog.bind(this.timerHandler, this), this._delay);
 };
 
+
 /**
- * @private
+ * @protected
  * @this {org.apache.flex.utils.Timer}
  */
 org.apache.flex.utils.Timer.prototype.timerHandler =
-                                function() {
-    this._currentCount++;
-    if (this._repeatCount > 0 && this._currentCount >= this._repeatCount)
-        this.stop();
-        
-    var evt = org.apache.flex.events.EventDispatcher.createEvent('timer');
-    this.dispatchEvent(evt);
-    
+    function() {
+  this._currentCount++;
+  if (this._repeatCount > 0 && this._currentCount >= this._repeatCount) {
+    this.stop();
+  }
+
+  this.dispatchEvent(new org.apache.flex.events.Event('timer'));
+
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
- * @returns {Number} The currentCount.
+ * @return {Number} The currentCount.
  */
 org.apache.flex.utils.Timer.prototype.get_currentCount = function() {
-    return this._currentCount;
+  return this._currentCount;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
- * @returns {boolean} True if the timer is running.
+ * @return {boolean} True if the timer is running.
  */
 org.apache.flex.utils.Timer.prototype.get_running = function() {
-    return this.timerInterval != -1;
+  return this.timerInterval !== -1;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
- * @returns {Number} The number of milliseconds between events.
+ * @return {Number} The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.get_delay = function() {
-    return this._delay;
+  return this._delay;
 };
+
 
 /**
  * @expose
@@ -134,17 +138,19 @@ org.apache.flex.utils.Timer.prototype.get_delay = function() {
  * @param {Number} value The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.set_delay = function(value) {
-    this._delay = value;
+  this._delay = value;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.utils.Timer}
- * @returns {Number} The repeat count.
+ * @return {Number} The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
-    return this._repeatCount;
+  return this._repeatCount;
 };
+
 
 /**
  * @expose
@@ -152,5 +158,5 @@ org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
  * @param {Number} value The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.set_repeatCount = function(value) {
-    this._repeatCount = value;
+  this._repeatCount = value;
 };

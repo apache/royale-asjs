@@ -12,15 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.FlexObject');
+goog.provide('org.apache.flex.utils.ViewSourceContextMenuOption');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org.apache.flex.FlexObject = function() {};
+org.apache.flex.utils.ViewSourceContextMenuOption = function() {
+    // no implementation in JS since ViewSource is already in menu
+};
 
 /**
- * @protected
- * @type {Object}
+ * @this {org.apache.flex.utils.ViewSourceContextMenuOption}
+ * @param {object} value The strand (owner) of the bead.
  */
-org.apache.flex.FlexObject.prototype.element = null;
+org.apache.flex.utils.ViewSourceContextMenuOption.prototype.set_strand =
+  function(value) {
+};
+

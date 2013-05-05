@@ -14,33 +14,37 @@
 
 goog.provide('org.apache.flex.net.HTTPHeader');
 
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
+ * @param {string=} opt_name The name.
+ * @param {string=} opt_value The value.
  */
-org.apache.flex.net.HTTPHeader = function(name, value) {
-    org.apache.flex.FlexObject.call(this);
+org.apache.flex.net.HTTPHeader = function(opt_name, opt_value) {
+  if (typeof opt_name !== 'undefined') {
+    this.name = opt_name;
+  }
 
-    if (typeof(name) != "undefined")
-        this.name = name;
-    if (typeof(value) != "undefined")
-        this.value = value;
+  if (typeof opt_value !== 'undefined') {
+    this.value = opt_value;
+  }
 };
-goog.inherits(org.apache.flex.net.HTTPHeader, org.apache.flex.FlexObject);
+
 
 /**
  * @expose
- * @type {String}
+ * @type {string}
  */
-org.apache.flex.net.HTTPHeader.CONTENT_TYPE = "Content-type";
+org.apache.flex.net.HTTPHeader.CONTENT_TYPE = 'Content-type';
+
 
 /**
  * @expose
  * @type {string}
  */
 org.apache.flex.net.HTTPHeader.prototype.value;
+
 
 /**
  * @expose

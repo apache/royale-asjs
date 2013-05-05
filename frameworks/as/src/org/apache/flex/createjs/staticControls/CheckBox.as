@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5.staticControls
+package org.apache.flex.createjs.staticControls
 {
-    import org.apache.flex.html.staticControls.DropDownList;
-    
-    public class DropDownList extends org.apache.flex.html.staticControls.DropDownList
-	{
-    }
+	import org.apache.flex.html.staticControls.CheckBox;
+	
+	public class CheckBox extends org.apache.flex.html.staticControls.CheckBox
+	{	
+	}
 }

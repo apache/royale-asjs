@@ -23,12 +23,21 @@ goog.require('org.apache.flex.createjs.core.UIBase');
 org.apache.flex.createjs.staticControls.TextButton = function() {
     org.apache.flex.createjs.core.UIBase.call(this);
 };
-goog.inherits(
-    org.apache.flex.createjs.staticControls.TextButton, org.apache.flex.createjs.core.UIBase
-);
+goog.inherits(org.apache.flex.createjs.staticControls.TextButton,
+  org.apache.flex.createjs.core.UIBase);
 
+/**
+ * @expose
+ * @type {Object}
+ */
 org.apache.flex.createjs.staticControls.TextButton.prototype.buttonLabel = null;
-org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground = null;
+
+/**
+ * @expose
+ * @type {Object}
+ */
+org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground =
+  null;
 
 /**
  * @override
@@ -37,24 +46,26 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground = 
  */
 org.apache.flex.createjs.staticControls.TextButton.prototype.addToParent =
     function(p) {
-    
+
     this.buttonBackground = new createjs.Shape();
-	this.buttonBackground.name = "background";
-	this.buttonBackground.graphics.beginFill("red").drawRoundRect(0, 0, 200, 60, 10);
-	
-	this.buttonLabel = new createjs.Text("button", "bold 24px Arial", "#FFFFFF");
-	this.buttonLabel.name = "label";
-	this.buttonLabel.textAlign = "center";
-	this.buttonLabel.textBaseline = "middle";
-	this.buttonLabel.x = 200/2;
-	this.buttonLabel.y = 60/2;
-	
-	this.element = new createjs.Container();
-	this.element.name = "button";
-	this.element.x = 50;
-	this.element.y = 25;
-	this.element.addChild(this.buttonBackground, this.buttonLabel);
-	p.addChild(this.element);
+    this.buttonBackground.name = 'background';
+    this.buttonBackground.graphics.beginFill('red').
+      drawRoundRect(0, 0, 200, 60, 10);
+
+    this.buttonLabel = new createjs.Text('button', 'bold 24px Arial',
+      '#FFFFFF');
+    this.buttonLabel.name = 'label';
+    this.buttonLabel.textAlign = 'center';
+    this.buttonLabel.textBaseline = 'middle';
+    this.buttonLabel.x = 200 / 2;
+    this.buttonLabel.y = 60 / 2;
+
+    this.element = new createjs.Container();
+    this.element.name = 'button';
+    this.element.x = 50;
+    this.element.y = 25;
+    this.element.addChild(this.buttonBackground, this.buttonLabel);
+    p.addChild(this.element);
 
     this.positioner = this.element;
 };
@@ -64,7 +75,8 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.addToParent =
  * @this {org.apache.flex.createjs.staticControls.TextButton}
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.get_text = function() {
+org.apache.flex.createjs.staticControls.TextButton.prototype.get_text =
+  function() {
     return this.buttonLabel.text;
 };
 

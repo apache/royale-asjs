@@ -29,14 +29,24 @@ package org.apache.flex.core
 		{
 			super();
 		}
-
+		
+		// if used as the display object in a button, parent is null and
+		// the css lookup doesn't work.  This will be used if parent is 
+		// null.
+		public var styleParent:Object;
+		
 		override public function set text(value:String):void
 		{
+			var sp:Object = parent;
+			if (!sp)
+				sp = styleParent;
+			
 			var tf: TextFormat = new TextFormat();
-			tf.font = ValuesManager.valuesImpl.getValue(this, "fontFamily") as String;
-			tf.size = ValuesManager.valuesImpl.getValue(this, "fontSize");
-			tf.color = ValuesManager.valuesImpl.getValue(this, "color");
-			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
+			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily") as String;
+			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize");
+			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight") == "bold";
+			tf.color = ValuesManager.valuesImpl.getValue(sp, "color");
+			var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
 			if (padding != null)
 			{
 				tf.leftMargin = padding;

@@ -14,19 +14,17 @@
 
 goog.provide('org.apache.flex.core.ValuesManager');
 
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.core.ValuesManager = function() {
-    org.apache.flex.FlexObject.call(this);
 };
-goog.inherits(org.apache.flex.core.ValuesManager, org.apache.flex.FlexObject);
+
 
 /**
  * @expose
- * @type {org.apache.flex.core.SimpleValuesImpl}
+ * @type {org.apache.flex.core.ValuesManager}
  */
-org.apache.flex.core.ValuesManager.prototype.valuesImpl;
+org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;

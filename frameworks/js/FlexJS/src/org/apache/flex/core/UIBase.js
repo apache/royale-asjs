@@ -14,35 +14,43 @@
 
 goog.provide('org.apache.flex.core.UIBase');
 
-goog.require('org.apache.flex.FlexGlobal');
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+
+
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.UIBase = function() {
-    org.apache.flex.core.HTMLElementWrapper.call(this);
+  goog.base(this);
 
-    /**
-     * @protected
-     * @type {Object}
-     */
-    this.positioner;
+  /**
+   * @private
+   * @type {string}
+   */
+  this.lastDisplay_ = null;
 
+  /**
+   * @protected
+   * @type {Object}
+   */
+  this.positioner = null;
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
  * @param {Object} p The parent element.
  */
 org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
-    this.element = document.createElement('div');
+  this.element = document.createElement('div');
 
-    p.appendChild(this.element);
+  p.appendChild(this.element);
 };
+
 
 /**
  * @expose
@@ -50,9 +58,10 @@ org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.left = pixels.toString() + 'px';
+  this.positioner.style.position = 'absolute';
+  this.positioner.style.left = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -60,9 +69,10 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
-    this.positioner.style.position = 'absolute';
-    this.positioner.style.top = pixels.toString() + 'px';
+  this.positioner.style.position = 'absolute';
+  this.positioner.style.top = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -70,8 +80,9 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
-    this.positioner.style.width = pixels.toString() + 'px';
+  this.positioner.style.width = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -79,14 +90,16 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
-    this.positioner.style.height = pixels.toString() + 'px';
+  this.positioner.style.height = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.id;
+org.apache.flex.core.UIBase.prototype.id = null;
+
 
 /**
  * @expose
@@ -94,29 +107,29 @@ org.apache.flex.core.UIBase.prototype.id;
  * @return {string} The id.
  */
 org.apache.flex.core.UIBase.prototype.get_id = function() {
-    return this.id;
+  return this.id;
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
- * @param {object} value The new id.
+ * @param {Object} value The new id.
  */
 org.apache.flex.core.UIBase.prototype.set_id = function(value) {
-    if (this.id != value)
-    {
-        this.element.id = value;
-        this.id = value;
-        var evt = this.createEvent('idChanged');
-        this.dispatchEvent(evt);
-    }
+  if (this.id !== value) {
+    this.element.id = value;
+    this.id = value;
+    this.dispatchEvent('idChanged');
+  }
 };
+
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.className;
+org.apache.flex.core.UIBase.prototype.className = null;
 
 /**
  * @expose
@@ -127,34 +140,58 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
     return this.className;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
  * @param {object} value The new className.
  */
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
-    if (this.className != value)
+    if (this.className !== value)
     {
         this.element.className = value;
         this.className = value;
-        var evt = this.createEvent('classNameChanged');
-        this.dispatchEvent(evt);
+        this.dispatchEvent('classNameChanged');
     }
 };
+
 
 /**
  * @expose
  * @type {object}
  */
-org.apache.flex.core.UIBase.prototype.model;
+org.apache.flex.core.UIBase.prototype.model = null;
+
 
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
- * @return {object} The model.
+ * @return {Object} The model.
  */
 org.apache.flex.core.UIBase.prototype.get_model = function() {
-    return this.model;
+  return this.model;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} value The new model.
+ */
+org.apache.flex.core.UIBase.prototype.set_model = function(value) {
+  if (this.model !== value) {
+    this.addBead(value);
+    this.dispatchEvent('modelChanged');
+  }
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {object} True if visible.
+ */
+org.apache.flex.core.UIBase.prototype.get_visible = function() {
+    return this.element.style.display !== 'none';
 };
 
 /**
@@ -162,11 +199,20 @@ org.apache.flex.core.UIBase.prototype.get_model = function() {
  * @this {org.apache.flex.core.UIBase}
  * @param {object} value The new model.
  */
-org.apache.flex.core.UIBase.prototype.set_model = function(value) {
-    if (this.model != value)
-    {
-        this.addBead(value);
-        this.dispatchEvent(new Event('modelChanged'));
+org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
+    var oldValue = this.element.style.display !== 'none';
+    if (value !== oldValue) {
+        if (!value) {
+            this.lastDisplay_ = this.element.style.display;
+            this.element.style.display = 'none';
+            this.dispatchEvent(new org.apache.flex.events.Event('hide'));
+        } else {
+            if (this.lastDisplay_) {
+              this.element.style.display = this.lastDisplay_;
+            } else {
+              this.element.style.display = 'block';
+            }
+            this.dispatchEvent(new org.apache.flex.events.Event('show'));
+        }
     }
 };
-

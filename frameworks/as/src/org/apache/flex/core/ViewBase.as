@@ -22,6 +22,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;	
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
+	[Event(name="initComplete", type="org.apache.flex.events.Event")]
 	[DefaultProperty("mxmlContent")]
 	public class ViewBase extends UIBase
 	{
@@ -40,6 +41,8 @@ package org.apache.flex.core
 			
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+			
+			dispatchEvent(new Event("initComplete"))
 		}
 		
 		public function get MXMLDescriptor():Array

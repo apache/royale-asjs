@@ -34,9 +34,9 @@ package org.apache.flex.html.staticControls.supportClasses
             selectable = false;
 		}
         
-        public var highlightColor:uint = 0xFF0000;
-        public var selectedColor:uint = 0x00FF00;
-        public var downColor:uint = 0x0000FF;
+        public var highlightColor:uint = 0xCEDBEF;
+        public var selectedColor:uint = 0xA8C6EE;
+        public var downColor:uint = 0x808080;
 
         public function get data():Object
         {

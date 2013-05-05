@@ -33,13 +33,26 @@ org.apache.flex.createjs.core.ViewBase = function() {
       */
       this.currentObject_;
 };
-goog.inherits(org.apache.flex.createjs.core.ViewBase, org.apache.flex.createjs.core.UIBase);
+goog.inherits(org.apache.flex.createjs.core.ViewBase,
+  org.apache.flex.createjs.core.UIBase);
 
 /**
  * @expose
- * @type {Object}
+ * @return {Object} Returns the application model.
  */
-org.apache.flex.createjs.core.ViewBase.prototype.applicationModel;
+org.apache.flex.createjs.core.ViewBase.prototype.get_applicationModel =
+  function() {
+  return this.applicationModel;
+};
+
+/**
+ * @expose
+ * @param {Object} value The application model.
+ */
+org.apache.flex.createjs.core.ViewBase.prototype.set_applicationModel =
+  function(value) {
+  this.applicationModel = value;
+};
 
 /**
  * @expose

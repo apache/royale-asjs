@@ -25,7 +25,7 @@
 // ------------------------------------------------------------------
 // end createjs
 // ------------------------------------------------------------------
- 
+
 goog.provide('org.apache.flex.createjs.Application');
 
 //goog.require('org.apache.flex.core.HTMLElementWrapper');
@@ -87,7 +87,8 @@ org.apache.flex.createjs.Application.prototype.valuesImpl = null;
  * @param {string} t The event type.
  * @param {function(?): ?} fn The event handler.
  */
-org.apache.flex.createjs.Application.prototype.addEventListener = function(t, fn) {
+org.apache.flex.createjs.Application.prototype.addEventListener =
+  function(t, fn) {
     if (!this.element) {
         if (!this.queuedListeners_) {
             this.queuedListeners_ = [];
@@ -107,19 +108,19 @@ org.apache.flex.createjs.Application.prototype.addEventListener = function(t, fn
  */
 org.apache.flex.createjs.Application.prototype.start = function() {
     var evt, i, n, q;
-    
+
     // For createjs, the application is the same as the canvas
     // and it provides convenient access to the stage.
-    
-	this.element = document.createElement('canvas');
-	this.element.id = 'flexjsCanvas';
-	this.element.width = 700;
-	this.element.height = 500;
+
+    this.element = document.createElement('canvas');
+    this.element.id = 'flexjsCanvas';
+    this.element.width = 700;
+    this.element.height = 500;
 
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(this.element);
-   
-    this.stage = new createjs.Stage("flexjsCanvas");
+
+    this.stage = new createjs.Stage('flexjsCanvas');
 
     if (this.queuedListeners_) {
         n = this.queuedListeners_.length;

@@ -85,6 +85,12 @@ DropDownListList
     ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
 
+Label
+{
+	width: 95;
+	height: 18;
+}
+
 List
 {
 	ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
@@ -104,13 +110,15 @@ TextButton
 TextInput
 {
     ITextInputBead: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderBead");
+	width: 135;
+	height: 20;
 }
 
 /* HTML5 */
 
 h5|TextButton
 {
-	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
+	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonBead");
 }
 
 h5|TextInput
@@ -175,5 +183,9 @@ createjs|TextButton
         ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonBead");
 }
 
+createjs|CheckBox
+{
+        ICheckBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");
+}
 
 }

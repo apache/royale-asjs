@@ -3,7 +3,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,257 +14,272 @@
 
 goog.provide('org.apache.flex.utils.MXMLDataInterpreter');
 
-goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.utils.MXMLDataInterpreter = function() {
-    org.apache.flex.FlexObject.call(this);
-
 };
-goog.inherits(org.apache.flex.utils.MXMLDataInterpreter,
-                org.apache.flex.FlexObject);
+
 
 /**
- * @param {object} document The MXML object.
+ * @param {Object} document The MXML object.
  * @param {Array} data The data array.
- * @return {object} The generated object.
+ * @return {Object} The generated object.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
-                                                    function(document, data) {
-        var i = 0;
-        var cls = data[i++];
-        var comp = new cls();
+    function(document, data) {
+  var assingComp, Cls, comp, generateMXMLArray, generateMXMLObject, i, id, j, m,
+      name, simple, value;
 
-        var m;
-        var j;
-        var name;
-        var simple;
-        var value;
-        var id;
+  i = 0;
+  Cls = data[i++];
+  comp = new Cls();
 
-        var generateMXMLArray =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+  generateMXMLArray =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+  generateMXMLObject =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-        m = data[i++]; // num props
-        for (j = 0; j < m; j++)
-        {
-            name = data[i++];
-            simple = data[i++];
-            value = data[i++];
-            if (simple == null)
-                value = generateMXMLArray(document, null, value);
-            else if (simple == false)
-                value = generateMXMLObject(document, value);
-            if (name == 'id')
-            {
-                document['set_' + value](comp);
-                id = value;
-            }
-            else if (name == '_id')
-            {
-                document[value] = comp;
-                id = value;
-                continue; // skip assignment to comp
-            }
-            if (typeof(comp['set_' + name]) == 'function')
-                comp['set_' + name](value);
-            else
-                comp[name] = value;
-        }
-        if (typeof(comp.setDocument) == 'function')
-            comp.setDocument(document, id);
-        return comp;
+  m = data[i++]; // num props
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
+
+    if (simple === null) {
+      value = generateMXMLArray(document, null, value);
+    } else if (simple === false) {
+      value = generateMXMLObject(document, value);
+    }
+
+    assingComp = true;
+    if (name === 'id') {
+      document['set_' + value](comp);
+      id = value;
+    } else if (name === '_id') {
+      document[value] = comp;
+      id = value;
+      assingComp = false;
+    }
+
+    if (assingComp) {
+      if (typeof comp['set_' + name] === 'function') {
+        comp['set_' + name](value);
+      } else {
+        comp[name] = value;
+      }
+    }
+  }
+
+  if (typeof comp.setDocument === 'function') {
+    comp.setDocument(document, id);
+  }
+
+  return comp;
 };
+
 
 /**
  * @expose
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
- * @param {Boolean} recursive Whether to create objects in children.
+ * @param {Boolean=} opt_recursive Whether to create objects in children.
  * @return {Array} The generated array.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
-                                function(document, parent, data, recursive) {
-        if (typeof(recursive) == 'undefined')
-            recursive = true;
+    function(document, parent, data, opt_recursive) {
+  var bead, beadOffset, beads, children, Cls, comp, comps, generateMXMLArray,
+      generateMXMLObject, i, id, j, k, l, m, n, name, self, simple, value;
 
-        var generateMXMLArray =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+  if (opt_recursive === undefined) {
+    opt_recursive = true;
+  }
 
-        var comps = [];
+  generateMXMLArray =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+  generateMXMLObject =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-        var n = data.length;
-        var i = 0;
-        while (i < n)
-        {
-            var cls = data[i++];
-            var comp = new cls();
+  comps = [];
 
-            if (parent)
-            {
-                comp.addToParent(parent.element);
-            }
+  n = data.length;
+  i = 0;
+  while (i < n) {
+    Cls = data[i++];
+    comp = new Cls();
 
-            var m;
-            var j;
-            var name;
-            var simple;
-            var value;
-            var id = null;
+    if (parent) {
+      comp.addToParent(parent.element);
+    }
 
-            m = data[i++]; // num props
-            if (m > 0 && data[0] == 'model')
-            {
-                m--;
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, parent,
-                                                value, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value);
-                if (typeof(comp['set_' + name]) == 'function')
-                    comp['set_' + name](value);
-                else
-                    comp[name] = value;
-                if (typeof(value.addBead) == 'function' &&
-                    typeof(comp.get_strand) == 'function')
-                    comp.addBead(value);
-            }
-            if (typeof(comp.initModel) == 'function')
-                comp.initModel();
-            var beadOffset = i + (m - 1) * 3;
-            if (m > 0 && data[beadOffset] == 'beads')
-            {
-                m--;
-            }
-            else
-                beadOffset = -1;
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value);
-                if (name == 'id')
-                    id = value;
-                if (name == 'document' && !comp.document)
-                    comp.document = document;
-                else if (name == '_id')
-                    id = value; // and don't assign to comp
-                else
-                {
-                    if (typeof(comp['set_' + name]) == 'function')
-                        comp['set_' + name](value);
-                    else
-                        comp[name] = value;
-                }
-            }
-            if (beadOffset > -1)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value);
-                else
-                {
-                if (typeof(comp['set_' + name]) == 'function')
-                    comp['set_' + name](value);
-                else
-                    comp[name] = value;
-                }
-                var beads = value;
-                var l = beads.length;
-                for (var k = 0; k < l; k++)
-                {
-                    var bead = beads[k];
-                    comp.addBead(bead);
-                }
-            }
-            m = data[i++]; // num styles
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value);
-                comp.setStyle(name, value);
-            }
-            if (typeof(comp.initSkin) == 'function')
-            {
-                comp.initSkin();
-            }
+    id = null;
 
-            /*
-            m = data[i++]; // num effects
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value);
-                comp.setStyle(name, value);
-            }
-            */
+    m = data[i++]; // num props
+    if (m > 0 && data[0] === 'model') {
+      m--;
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
 
-            m = data[i++]; // num events
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                value = data[i++];
-                comp.addEventListener(name,
-                    org.apache.flex.FlexGlobal.createProxy(document, value));
-            }
+      if (simple === null) {
+        value = generateMXMLArray(document, parent, value, opt_recursive);
+      } else if (simple === false) {
+        value = generateMXMLObject(document, value);
+      }
 
-            var children = data[i++];
-            if (children)
-            {
-                if (recursive)
-                {
-                    self = org.apache.flex.utils.MXMLDataInterpreter;
-                    self.generateMXMLInstances(
-                    document, comp, children, recursive);
-                }
-                else
-                    comp.setMXMLDescriptor(children);
-            }
+      if (typeof comp['set_' + name] === 'function') {
+        comp['set_' + name](value);
+      } else {
+        comp[name] = value;
+      }
 
-            if (id)
-            {
-                if (typeof(document['set_' + id]) == 'function')
-                    document['set_' + id](comp);
-                else
-                    document[id] = comp;
-            }
+      // (erikdebruin) There are no components with the 'get_strand' method...
+      /*
+      if (typeof value.addBead === 'function' &&
+          typeof comp.get_strand === 'function') {
+        comp.addBead(value);
+      }
+      */
+    }
 
-            if (typeof(comp.setDocument) == 'function')
-                comp.setDocument(document, id);
-            comps.push(comp);
+    if (typeof(comp.initModel) === 'function') {
+      comp.initModel();
+    }
+
+    beadOffset = i + (m - 1) * 3;
+    if (m > 0 && data[beadOffset] === 'beads') {
+      m--;
+    } else {
+      beadOffset = -1;
+    }
+
+    for (j = 0; j < m; j++) {
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
+
+      if (simple === null) {
+        value = generateMXMLArray(document, null, value, opt_recursive);
+      } else if (simple === false) {
+        value = generateMXMLObject(document, value);
+      }
+
+      if (name === 'id') {
+        id = value;
+      }
+
+      if (name === 'document' && !comp.document) {
+        comp.document = document;
+      } else if (name === '_id') {
+        id = value; // and don't assign to comp
+      } else {
+        if (typeof(comp['set_' + name]) === 'function') {
+          comp['set_' + name](value);
+        } else {
+          comp[name] = value;
         }
-        return comps;
+      }
+    }
+
+    if (beadOffset > -1)
+    {
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
+
+      if (simple === null) {
+        value = generateMXMLArray(document, null, value, opt_recursive);
+      } else if (simple === false) {
+        value = generateMXMLObject(document, value);
+      } else {
+        if (typeof(comp['set_' + name]) === 'function') {
+          comp['set_' + name](value);
+        } else {
+          comp[name] = value;
+        }
+      }
+
+      beads = value;
+      l = beads.length;
+      for (k = 0; k < l; k++) {
+        bead = beads[k];
+        comp.addBead(bead);
+      }
+    }
+
+    m = data[i++]; // num styles
+    for (j = 0; j < m; j++) {
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
+
+      if (simple === null) {
+        value = generateMXMLArray(document, null, value, opt_recursive);
+      } else if (simple === false) {
+        value = generateMXMLObject(document, value);
+      }
+
+      comp.setStyle(name, value);
+    }
+    if (typeof(comp.initSkin) === 'function') {
+      comp.initSkin();
+    }
+
+    /*
+    m = data[i++]; // num effects
+    for (j = 0; j < m; j++)
+    {
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
+      if (simple === null)
+        value = generateMXMLArray(document, null, value, opt_recursive);
+      else if (simple === false)
+        value = generateMXMLObject(document, value);
+      comp.setStyle(name, value);
+    }
+    */
+
+    m = data[i++]; // num events
+    for (j = 0; j < m; j++) {
+      name = data[i++];
+      value = data[i++];
+
+      comp.addEventListener(name, goog.bind(value, document));
+    }
+
+    children = data[i++];
+    if (children) {
+      if (opt_recursive) {
+        self = org.apache.flex.utils.MXMLDataInterpreter;
+        self.generateMXMLInstances(
+            document, comp, children, opt_recursive);
+      } else {
+        comp.setMXMLDescriptor(children);
+      }
+    }
+
+    if (id) {
+      if (typeof(document['set_' + id]) === 'function') {
+        document['set_' + id](comp);
+      } else {
+        document[id] = comp;
+      }
+    }
+
+    if (typeof(comp.setDocument) === 'function') {
+      comp.setDocument(document, id);
+    }
+
+    comps.push(comp);
+  }
+
+  return comps;
 };
+
 
 /**
  * @expose
@@ -274,11 +289,13 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
  * @param {Boolean} recursive Whether to create objects in children.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
-                                function(document, parent, data, recursive) {
-    if (data)
-        org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
-                                document, parent, data, recursive);
+    function(document, parent, data, recursive) {
+  if (data) {
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
+        document, parent, data, recursive);
+  }
 };
+
 
 /**
  * @expose
@@ -286,116 +303,122 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
  * @param {Array} data The data array.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
-                                                    function(host, data) {
-        if (!data) return;
-        
-        var i = 0;
-        var m;
-        var j;
-        var name;
-        var simple;
-        var value;
-        var id = null;
+    function(host, data) {
+  var bead, beadOffset, beads, generateMXMLArray, generateMXMLObject, i, id, j,
+      k, l, m, name, simple, value;
 
-        var generateMXMLArray =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
-        var generateMXMLObject =
-            org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+  if (!data) {
+    return;
+  }
 
-        m = data[i++]; // num props
-        var beadOffset = i + (m - 1) * 3;
-        if (m > 0 && data[beadOffset] == 'beads')
-        {
-            m--;
-        }
-        else
-            beadOffset = -1;
-        for (j = 0; j < m; j++)
-        {
-            name = data[i++];
-            simple = data[i++];
-            value = data[i++];
-            if (simple == null)
-                value = generateMXMLArray(host, null, value, true);
-            else if (simple == false)
-                value = generateMXMLObject(host, value);
-            if (name == 'id')
-                id = value;
-            if (name == '_id')
-                id = value; // and don't assign
-            else
-            {
-                if (typeof(host['set_' + name]) == 'function')
-                    host['set_' + name](value);
-                else
-                    host[name] = value;
-            }
-        }
-        if (beadOffset > -1)
-        {
-            name = data[i++];
-            simple = data[i++];
-            value = data[i++];
-            if (simple == null)
-                value = generateMXMLArray(host, null, value, true);
-            else if (simple == false)
-                value = generateMXMLObject(host, value);
-            else
-            {
-            if (typeof(host['set_' + name]) == 'function')
-                host['set_' + name](value);
-            else
-                host[name] = value;
-            }
-            var beads = value;
-            var l = beads.length;
-            for (var k = 0; k < l; k++)
-            {
-                var bead = beads[k];
-                host.addBead(bead);
-            }
-        }
+  i = 0;
+  id = null;
 
-        m = data[i++]; // num styles
-        for (j = 0; j < m; j++)
-        {
-            name = data[i++];
-            simple = data[i++];
-            value = data[i++];
-            if (simple == null)
-                value = generateMXMLArray(host, null, value, true);
-            else if (simple == false)
-                value = generateMXMLObject(host, value);
-            if (typeof(host['set_' + name]) == 'function')
-                host['set_' + name](value);
-            else
-                host[name] = value;
-        }
+  generateMXMLArray =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+  generateMXMLObject =
+      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-        /*
+  m = data[i++]; // num props
+  beadOffset = i + (m - 1) * 3;
+  if (m > 0 && data[beadOffset] === 'beads') {
+    m--;
+  } else {
+    beadOffset = -1;
+  }
+
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
+
+    if (simple === null) {
+      value = generateMXMLArray(host, null, value, true);
+    } else if (simple === false) {
+      value = generateMXMLObject(host, value);
+    }
+
+    if (name === 'id') {
+      id = value;
+    }
+
+    if (name === '_id') {
+      id = value; // and don't assign
+    } else {
+      if (typeof(host['set_' + name]) === 'function') {
+        host['set_' + name](value);
+      } else {
+        host[name] = value;
+      }
+    }
+  }
+
+  if (beadOffset > -1) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
+
+    if (simple === null) {
+      value = generateMXMLArray(host, null, value, true);
+    } else if (simple === false) {
+      value = generateMXMLObject(host, value);
+    } else {
+      if (typeof(host['set_' + name]) === 'function') {
+        host['set_' + name](value);
+      } else {
+        host[name] = value;
+      }
+    }
+
+    beads = value;
+    l = beads.length;
+    for (k = 0; k < l; k++) {
+      bead = beads[k];
+      host.addBead(bead);
+    }
+  }
+
+  m = data[i++]; // num styles
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
+
+    if (simple === null) {
+      value = generateMXMLArray(host, null, value, true);
+    } else if (simple === false) {
+      value = generateMXMLObject(host, value);
+    }
+
+    if (typeof(host['set_' + name]) === 'function') {
+      host['set_' + name](value);
+    } else {
+      host[name] = value;
+    }
+  }
+
+  /*
         m = data[i++]; // num effects
         for (j = 0; j < m; j++)
         {
             name = data[i++];
             simple = data[i++];
             value = data[i++];
-            if (simple == null)
+            if (simple === null)
                 value = generateMXMLArray(host, null, value, false);
-            else if (simple == false)
+            else if (simple === false)
                 value = generateMXMLObject(host, value);
             if (typeof(host['set_' + name]) == 'function')
                 host['set_' + name](value);
             else
                 host[name] = value;
         }
-        */
+      */
 
-        m = data[i++]; // num events
-        for (j = 0; j < m; j++)
-        {
-            name = data[i++];
-            value = data[i++];
-            host.addEventListener(name,
-                org.apache.flex.FlexGlobal.createProxy(host, value));
-        }
+  m = data[i++]; // num events
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    value = data[i++];
+    host.addEventListener(name, goog.bind(value, host));
+  }
 };

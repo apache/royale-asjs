@@ -14,18 +14,13 @@
 
 goog.provide('org.apache.flex.net.JSONItemConverter');
 
-goog.require('org.apache.flex.FlexGlobal');
-goog.require('org.apache.flex.FlexObject');
+
 
 /**
  * @constructor
- * @extends {org.apache.flex.FlexObject}
  */
 org.apache.flex.net.JSONItemConverter = function() {
-    org.apache.flex.FlexObject.call(this);
 };
-goog.inherits(org.apache.flex.net.JSONItemConverter,
-        org.apache.flex.FlexObject);
 
 
 /**
@@ -35,5 +30,5 @@ goog.inherits(org.apache.flex.net.JSONItemConverter,
  * @return {Object} The object.
  */
 org.apache.flex.net.JSONItemConverter.prototype.convertItem = function(s) {
-    return JSON.parse(s);
+  return JSON.parse(s);
 };

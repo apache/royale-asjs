@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.CSSTextField;
@@ -56,7 +57,10 @@ package org.apache.flex.html.staticControls.beads
 			_textModel = value.getBeadByType(ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
+			textModel.addEventListener("widthChanged", sizeChangeHandler);
+			textModel.addEventListener("heightChanged", sizeChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
+			sizeChangeHandler(null);
 			if (textModel.text !== null)
 				text = textModel.text;
 			if (textModel.html !== null)
@@ -95,6 +99,12 @@ package org.apache.flex.html.staticControls.beads
 		private function htmlChangeHandler(event:Event):void
 		{
 			html = textModel.html;
+		}
+		
+		private function sizeChangeHandler(event:Event):void
+		{
+			textField.width = DisplayObject(_strand).width;
+			textField.height = DisplayObject(_strand).height;
 		}
 	}
 }
