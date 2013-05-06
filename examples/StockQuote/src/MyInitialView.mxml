@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:basic="library://ns.apache.org/flexjs/basic"
+			    initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[
+			import org.apache.flex.events.CustomEvent;
+			import models.MyModel;
+			
+			private var _symbol:String;
+			
+            public function get symbol():String
+            {
+                return _symbol;
+            }
+			
+			public function get requestedField():String
+			{
+				return radio1.selectedValue as String;
+			}
+			
+			private function radioChanged(e:org.apache.flex.events.Event):void
+			{
+				dispatchEvent(new CustomEvent("radioClicked"));
+				field.text = RadioButton(e.target).text;
+			}
+			
+			private function initControls():void
+			{
+				list.selectedItem = MyModel(applicationModel).stockSymbol;
+				radio1.selectedValue = MyModel(applicationModel).requestedField;
+				if (radio1.selected)
+					field.text = radio1.text;
+				else if (radio2.selected)
+					field.text = radio2.text;
+				else if (radio3.selected)
+					field.text = radio3.text;
+				else if (radio4.selected)
+					field.text = radio4.text;
+				
+			}
+		]]>
+    </fx:Script>
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.output {
+			font-size: 20px;
+		}
+	</fx:Style>
+	<basic:Label x="20" y="8" width="300" text="Enter Stock Symbol or choose from list:" />
+	<basic:TextInput id="symbolTI" x="20" y="25" >
+		<basic:beads>
+			<basic:SimpleBinding eventName="stockSymbolChanged"
+								 sourceID="applicationModel"
+								 sourcePropertyName="stockSymbol"
+								 destinationPropertyName="text" />
+		</basic:beads>
+	</basic:TextInput>
+	<basic:DropDownList id="list" x="180" y="25" width="100" height="17"
+						change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">
+		<basic:beads>
+			<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="strings"
+				destinationPropertyName="dataProvider" />
+		</basic:beads>
+	</basic:DropDownList>
+	<basic:TextButton text="Get Quote" x="20" y="50" click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+	<basic:Label x="20" y="80" id="field" />
+	<basic:Label x="20" y="100" className="output" height="24">
+		<basic:beads>
+			<basic:SimpleBinding eventName="responseTextChanged"
+								 sourceID="applicationModel"
+								 sourcePropertyName="responseText"
+								 destinationPropertyName="text" />
+		</basic:beads>
+	</basic:Label>
+    
+	<basic:RadioButton id="radio1" text="Price" value="Ask" x="180" y="50" groupName="group1" change="radioChanged(event)"/>
+	<basic:RadioButton id="radio2" text="Change" value="Change" x="180" y="70" groupName="group1" change="radioChanged(event)"/>
+	<basic:RadioButton id="radio3" text="Day's High" value="DaysHigh" x="180" y="90" groupName="group1" change="radioChanged(event)"/>
+	<basic:RadioButton id="radio4" text="Day's Low" value="DaysLow" x="180" y="110" groupName="group1" change="radioChanged(event)"/>
+	<basic:CheckBox id="showAllData" text="Show All Data" x="180" y="140" />
+	
+	<basic:TextArea id="ta" x="20" y="160" width="300" height="100">
+		<basic:beads>
+			<basic:SimpleBinding eventName="change"
+								 sourceID="showAllData"
+								 sourcePropertyName="selected"
+								 destinationPropertyName="visible" />
+			<basic:SimpleBinding eventName="responseDataChanged"
+								 sourceID="applicationModel"
+								 sourcePropertyName="allData"
+								 destinationPropertyName="text" />
+		</basic:beads>
+	</basic:TextArea>
+</basic:ViewBase>
