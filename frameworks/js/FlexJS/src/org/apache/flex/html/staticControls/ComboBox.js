@@ -68,6 +68,8 @@ org.apache.flex.html.staticControls.ComboBox.prototype.addToParent =
   // be visible
   goog.events.listen(p.parentElement, 'click',
       goog.bind(this.dismissPopup, this));
+
+  input.flexjs_wrapper = this;
 };
 
 

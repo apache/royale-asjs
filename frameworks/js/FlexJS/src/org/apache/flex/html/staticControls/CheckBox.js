@@ -48,6 +48,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
   p.appendChild(this.element);
 
   this.positioner = this.element;
+  cb.flexjs_wrapper = this;
 };
 
 

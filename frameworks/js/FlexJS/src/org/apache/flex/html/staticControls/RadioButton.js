@@ -48,6 +48,7 @@ org.apache.flex.html.staticControls.RadioButton.prototype.addToParent =
   p.appendChild(this.element);
 
   this.positioner = this.element;
+  rb.flexjs_wrapper = this;
 };
 
 
