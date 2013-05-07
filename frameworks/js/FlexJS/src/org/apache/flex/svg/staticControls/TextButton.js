@@ -49,7 +49,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
  * @return {string} The text getter.
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
-    return this.element.getAttribute('label');;
+    return this.element.getAttribute('label');
 };
 
 /**
