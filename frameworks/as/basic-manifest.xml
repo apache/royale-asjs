@@ -43,5 +43,6 @@
     <component id="JSONInputParser" class="org.apache.flex.net.JSONInputParser"/>
     <component id="JSONItemConverter" class="org.apache.flex.net.JSONItemConverter"/>
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption"/>
+    <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
 
 </componentPackage>
