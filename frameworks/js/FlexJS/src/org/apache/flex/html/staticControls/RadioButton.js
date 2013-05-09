@@ -51,6 +51,22 @@ org.apache.flex.html.staticControls.RadioButton.prototype.addToParent =
   rb.flexjs_wrapper = this;
 };
 
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.RadioButton}
+ */
+org.apache.flex.html.staticControls.RadioButton.prototype.initModel =
+function() {
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.RadioButton}
+ */
+org.apache.flex.html.staticControls.RadioButton.prototype.initSkin =
+function() {
+};
+
 
 /**
  * @expose

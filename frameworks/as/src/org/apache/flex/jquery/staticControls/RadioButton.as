@@ -22,5 +22,9 @@ package org.apache.flex.jquery.staticControls
 	
 	public class RadioButton extends org.apache.flex.html.staticControls.RadioButton
 	{
+		override public function initModel():void
+		{
+			super.initModel();
+		}
 	}
 }
