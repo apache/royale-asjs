@@ -65,52 +65,91 @@ limitations under the License.
 		.output {
 			font-size: 20px;
 		}
+
+        .topContainer {
+            padding: 10px;
+            
+        }
+        .leftSide {
+            vertical-align: top;
+            margin-right: 10px;
+        }
+        
+        .rightSide {
+            vertical-align: top;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+        
+        .quoteButton {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
 	</fx:Style>
-	<basic:Label x="20" y="8" width="300" text="Enter Stock Symbol or choose from list:" />
-	<basic:TextInput id="symbolTI" x="20" y="25" >
-		<basic:beads>
-			<basic:SimpleBinding eventName="stockSymbolChanged"
-								 sourceID="applicationModel"
-								 sourcePropertyName="stockSymbol"
-								 destinationPropertyName="text" />
-		</basic:beads>
-	</basic:TextInput>
-	<basic:DropDownList id="list" x="180" y="25" width="100" height="17"
-						change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">
-		<basic:beads>
-			<basic:ConstantBinding
-				sourceID="applicationModel"
-				sourcePropertyName="strings"
-				destinationPropertyName="dataProvider" />
-		</basic:beads>
-	</basic:DropDownList>
-	<basic:TextButton text="Get Quote" x="20" y="50" click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
-	<basic:Label x="20" y="80" id="field" />
-	<basic:Label x="20" y="100" className="output" height="24">
-		<basic:beads>
-			<basic:SimpleBinding eventName="responseTextChanged"
-								 sourceID="applicationModel"
-								 sourcePropertyName="responseText"
-								 destinationPropertyName="text" />
-		</basic:beads>
-	</basic:Label>
-    
-	<basic:RadioButton id="radio1" text="Price" value="Ask" x="180" y="50" groupName="group1" change="radioChanged(event)"/>
-	<basic:RadioButton id="radio2" text="Change" value="Change" x="180" y="70" groupName="group1" change="radioChanged(event)"/>
-	<basic:RadioButton id="radio3" text="Day's High" value="DaysHigh" x="180" y="90" groupName="group1" change="radioChanged(event)"/>
-	<basic:RadioButton id="radio4" text="Day's Low" value="DaysLow" x="180" y="110" groupName="group1" change="radioChanged(event)"/>
-	<basic:CheckBox id="showAllData" text="Show All Data" x="180" y="140" />
-	
-	<basic:TextArea id="ta" x="20" y="160" width="300" height="100">
-		<basic:beads>
-			<basic:SimpleBinding eventName="change"
-								 sourceID="showAllData"
-								 sourcePropertyName="selected"
-								 destinationPropertyName="visible" />
-			<basic:SimpleBinding eventName="responseDataChanged"
-								 sourceID="applicationModel"
-								 sourcePropertyName="allData"
-								 destinationPropertyName="text" />
-		</basic:beads>
-	</basic:TextArea>
+    <basic:Container x="0" y="0" className="topContainer" >
+        <basic:beads>
+            <basic:NonVirtualVerticalLayout />
+        </basic:beads>
+        <basic:Label width="300" text="Enter Stock Symbol or choose from list:" />
+        <basic:Container>
+            <basic:beads>
+                <basic:NonVirtualHorizontalLayout />
+            </basic:beads>
+            <basic:Container className="leftSide">
+                <basic:beads>
+                    <basic:NonVirtualVerticalLayout />
+                </basic:beads>
+                <basic:TextInput id="symbolTI" >
+                    <basic:beads>
+                        <basic:SimpleBinding eventName="stockSymbolChanged"
+                                             sourceID="applicationModel"
+                                             sourcePropertyName="stockSymbol"
+                                             destinationPropertyName="text" />
+                    </basic:beads>
+                </basic:TextInput>
+                <basic:TextButton text="Get Quote" className="quoteButton" 
+                                  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+                <basic:Label id="field" />
+                <basic:Label className="output" height="24">
+                    <basic:beads>
+                        <basic:SimpleBinding eventName="responseTextChanged"
+                                             sourceID="applicationModel"
+                                             sourcePropertyName="responseText"
+                                             destinationPropertyName="text" />
+                    </basic:beads>
+                </basic:Label>
+            </basic:Container>
+            <basic:Container className="rightSide">
+                <basic:beads>
+                    <basic:NonVirtualVerticalLayout />
+                </basic:beads>
+                <basic:DropDownList id="list" width="100" height="17"
+                                    change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">
+                    <basic:beads>
+                        <basic:ConstantBinding
+                            sourceID="applicationModel"
+                            sourcePropertyName="strings"
+                            destinationPropertyName="dataProvider" />
+                    </basic:beads>
+                </basic:DropDownList>
+                <basic:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+                <basic:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
+                <basic:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
+                <basic:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
+                <basic:CheckBox id="showAllData" text="Show All Data" />
+            </basic:Container>
+        </basic:Container>
+        <basic:TextArea id="ta" width="300" height="100">
+            <basic:beads>
+                <basic:SimpleBinding eventName="change"
+                                     sourceID="showAllData"
+                                     sourcePropertyName="selected"
+                                     destinationPropertyName="visible" />
+                <basic:SimpleBinding eventName="responseDataChanged"
+                                     sourceID="applicationModel"
+                                     sourcePropertyName="allData"
+                                     destinationPropertyName="text" />
+            </basic:beads>
+        </basic:TextArea>
+    </basic:Container>	
 </basic:ViewBase>
