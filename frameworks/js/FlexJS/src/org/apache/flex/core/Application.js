@@ -70,9 +70,18 @@ org.apache.flex.core.Application.prototype.start = function() {
 
   this.dispatchEvent('initialize');
 
-  this.initialView.addToParent(this.element);
+  this.initialView.addToParent(this);
   this.initialView.initUI(this.model);
 
   this.dispatchEvent('viewChanged');
+};
+
+/**
+ * @this {org.apache.flex.core.Application}
+ * @param {Object} child The element to be added.
+ */
+org.apache.flex.core.Application.prototype.internalAddChild =
+    function(child) {
+  this.element.appendChild(child);
 };
 

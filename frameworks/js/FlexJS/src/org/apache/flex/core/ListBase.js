@@ -51,7 +51,7 @@ org.apache.flex.core.ListBase.prototype.addToParent = function(p) {
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

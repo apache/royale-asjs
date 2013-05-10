@@ -424,6 +424,7 @@ org.apache.flex.net.BinaryUploader.prototype.get_MXMLProperties = function() {
  * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */
-org.apache.flex.net.BinaryUploader.prototype.setDocument = function(document, id) {
+org.apache.flex.net.BinaryUploader.prototype.setDocument =
+  function(document, id) {
   this.document = document;
 };

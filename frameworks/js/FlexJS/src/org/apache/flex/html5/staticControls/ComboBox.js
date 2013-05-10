@@ -59,7 +59,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.addToParent =
 
   this.element.style.position = 'relative';
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 

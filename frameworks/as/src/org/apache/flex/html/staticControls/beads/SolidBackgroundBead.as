@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class SolidBackgroundBead implements IBead
+	public class SolidBackgroundBead implements IBead, IBackgroundBead
 	{
 		public function SolidBackgroundBead()
 		{

@@ -67,6 +67,11 @@ CheckBox
     ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
 
+Container
+{
+	IContainerBead: ClassReference("org.apache.flex.html.staticControls.beads.ContainerBead")
+}
+
 ComboBox
 {
     IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");

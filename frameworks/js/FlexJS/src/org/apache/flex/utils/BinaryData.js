@@ -51,7 +51,7 @@ org.apache.flex.utils.BinaryData.prototype.writeByte = function(b) {
   var view;
 
   this.growBuffer(1);
-  
+
   view = new Int8Array(this.data_, this.position_, 1);
   view[0] = b;
   this.position_++;
@@ -64,7 +64,7 @@ org.apache.flex.utils.BinaryData.prototype.writeByte = function(b) {
  */
 org.apache.flex.utils.BinaryData.prototype.writeShort = function(s) {
   var view;
-  
+
   this.growBuffer(2);
 
   view = new Int16Array(this.data_, this.position_, 1);
@@ -81,7 +81,7 @@ org.apache.flex.utils.BinaryData.prototype.writeInt = function(num) {
   var view;
 
   this.growBuffer(4);
-  
+
   view = new Int32Array(this.data_, this.position_, 1);
   view[0] = num;
   this.position_ += 4;
@@ -92,12 +92,12 @@ org.apache.flex.utils.BinaryData.prototype.writeInt = function(num) {
  * @this {org.apache.flex.utils.BinaryData}
  * @param {number} num The 32-bit unsigned integer to write.
  */
-org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt = 
+org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt =
     function(num) {
   var view;
 
   this.growBuffer(4);
-  
+
   view = new Uint32Array(this.data_, this.position_, 1);
   view[0] = num;
   this.position_ += 4;
@@ -110,7 +110,7 @@ org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt =
  */
 org.apache.flex.utils.BinaryData.prototype.readByte = function() {
   var view;
-  
+
   view = new Int8Array(this.data_, this.position_, 1);
   this.position_++;
   return view[0];
@@ -123,7 +123,7 @@ org.apache.flex.utils.BinaryData.prototype.readByte = function() {
  */
 org.apache.flex.utils.BinaryData.prototype.readShort = function() {
   var view;
-  
+
   view = new Int16Array(this.data_, this.position_, 1);
   this.position_ += 2;
   return view[0];
@@ -136,7 +136,7 @@ org.apache.flex.utils.BinaryData.prototype.readShort = function() {
  */
 org.apache.flex.utils.BinaryData.prototype.readInteger = function() {
   var view;
-  
+
   view = new Int32Array(this.data_, this.position_, 1);
   this.position_ += 4;
   return view[0];
@@ -150,7 +150,7 @@ org.apache.flex.utils.BinaryData.prototype.readInteger = function() {
 org.apache.flex.utils.BinaryData.prototype.readUnsignedInteger =
     function() {
   var view;
-  
+
   view = new Uint32Array(this.data_, this.position_, 1);
   this.position_ += 4;
   return view[0];
@@ -199,7 +199,7 @@ org.apache.flex.utils.BinaryData.prototype.get_bytesAvailable = function() {
  */
 org.apache.flex.utils.BinaryData.prototype.growBuffer = function(extra) {
   var newBuffer, newView, view, i, n;
-  
+
   if (this.position_ >= this.data_.byteLength)
   {
     n = this.data_.byteLength;

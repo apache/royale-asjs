@@ -45,7 +45,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
   this.element.appendChild(cb);
   this.element.appendChild(document.createTextNode('check box'));
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
   cb.flexjs_wrapper = this;

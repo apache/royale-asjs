@@ -39,7 +39,7 @@ org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;

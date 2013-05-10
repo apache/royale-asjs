@@ -18,44 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.Graphics;
-	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 
-	public class SingleLineBorderBead implements IBead, IBorderBead
+	public interface IContainerBead extends IBead
 	{
-		public function SingleLineBorderBead()
-		{
-		}
-				
-		private var _strand:IStrand;
-		
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-            IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-		}
-		        
-		private function changeHandler(event:Event):void
-		{
-            var host:UIBase = UIBase(_strand);
-            var g:Graphics = host.graphics;
-            var w:Number = host.width;
-            var h:Number = host.height;
-            g.clear();
-            g.beginFill(0);
-            g.drawRect(0, 0, w, h);
-            g.drawRect(1, 1, w-2, h-2);
-            g.endFill();
-		}
 	}
 }

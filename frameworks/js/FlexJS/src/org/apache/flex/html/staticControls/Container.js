@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.TextButton');
+goog.provide('org.apache.flex.html.staticControls.Container');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,46 +22,49 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html5.staticControls.TextButton = function() {
+org.apache.flex.html.staticControls.Container = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.TextButton,
+goog.inherits(org.apache.flex.html.staticControls.Container,
     org.apache.flex.core.UIBase);
 
 
 /**
  * @override
- * @this {org.apache.flex.html5.staticControls.TextButton}
+ * @this {org.apache.flex.html.staticControls.Container}
  * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.TextButton.prototype.addToParent =
+org.apache.flex.html.staticControls.Container.prototype.addToParent =
     function(p) {
-  this.element = document.createElement('button');
-  this.element.setAttribute('type', 'button');
+  var cb;
+
+  this.element = document.createElement('div');
 
   p.internalAddChild(this.element);
 
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 
-
 /**
- * @expose
- * @this {org.apache.flex.html5.staticControls.TextButton}
- * @return {string} The text getter.
+ * @override
+ * @this {org.apache.flex.html.staticControls.Container}
+ * @param {Object} child The element to be added.
  */
-org.apache.flex.html5.staticControls.TextButton.prototype.get_text =
+org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
     function() {
-  return this.element.innerHTML;
-};
 
+  this.dispatchEvent('childrenAdded');
+};
 
 /**
- * @expose
- * @this {org.apache.flex.html5.staticControls.TextButton}
- * @param {string} value The text setter.
+ * @this {org.apache.flex.html.staticControls.Container}
+ * @return {Array} the HTML DOM element children.
  */
-org.apache.flex.html5.staticControls.TextButton.prototype.set_text =
-    function(value) {
-  this.element.innerHTML = value;
+org.apache.flex.html.staticControls.Container.prototype.internalChildren =
+    function() {
+
+  return this.element.children;
 };
+
+

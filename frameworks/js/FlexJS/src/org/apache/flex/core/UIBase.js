@@ -43,12 +43,20 @@ goog.inherits(org.apache.flex.core.UIBase,
 
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} p The parent element.
+ * @param {Object} child The element to be added.
+ */
+org.apache.flex.core.UIBase.prototype.internalAddChild = function(child) {
+  this.element.appendChild(child);
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} p The parent component.
  */
 org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
   this.element = document.createElement('div');
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 };
 
 
