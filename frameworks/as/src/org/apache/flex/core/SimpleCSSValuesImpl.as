@@ -168,9 +168,18 @@ package org.apache.flex.core
 
         public var values:Object;
 		
-		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object
+		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
-			var value:*;
+            var c:int = valueName.indexOf("-");
+            while (c != -1)
+            {
+                valueName = valueName.substr(0, c) +
+                    valueName.charAt(c + 1).toUpperCase() +
+                    valueName..substr(c + 2);
+                c = valueName.indexOf("-");
+            }
+
+            var value:*;
 			var o:Object;
 			var className:String;
 			var selectorName:String;
@@ -232,8 +241,16 @@ package org.apache.flex.core
 			return o[valueName];
 		}
 		
-		public function setValue(thisObject:Object, valueName:String, value:Object):void
+		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
+            var c:int = valueName.indexOf("-");
+            while (c != -1)
+            {
+                valueName = valueName.substr(0, c) +
+                    valueName.charAt(c + 1).toUpperCase() +
+                    valueName..substr(c + 2);
+                c = valueName.indexOf("-");
+            }
 			var oldValue:Object = values[valueName];
 			if (oldValue != value)
 			{
