@@ -18,7 +18,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<jquery:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
 				   xmlns:basic="library://ns.apache.org/flexjs/basic"
 				   xmlns:jquery="library://ns.apache.org/flexjs/jquery"
@@ -36,19 +36,19 @@
 	-->
 	
 	
-	<basic:valuesImpl>
+	<jquery:valuesImpl>
 		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	<basic:initialView>
+	</jquery:valuesImpl>
+	<jquery:initialView>
 		<local:MyInitialView />
-	</basic:initialView>
-	<basic:model>
+	</jquery:initialView>
+	<jquery:model>
 		<models:MyModel />
-	</basic:model>
-	<basic:controller>
+	</jquery:model>
+	<jquery:controller>
 		<controllers:MyController />
-	</basic:controller>
-	<basic:beads>
+	</jquery:controller>
+	<jquery:beads>
 		<basic:HTTPService id="service">
 			<basic:LazyCollection id="collection">
 				<basic:inputParser>
@@ -59,6 +59,6 @@
 				</basic:itemConverter> 
 			</basic:LazyCollection>
 		</basic:HTTPService>
-	</basic:beads>
+	</jquery:beads>
 	
-</basic:Application>
+</jquery:Application>

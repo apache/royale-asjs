@@ -21,6 +21,7 @@
 
 <componentPackage>
 
+    <component id="Application" class="org.apache.flex.jquery.Application"/>
     <component id="TextButton" class="org.apache.flex.jquery.staticControls.TextButton"/>
     <component id="CheckBox" class="org.apache.flex.jquery.staticControls.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.jquery.staticControls.RadioButton"/>
