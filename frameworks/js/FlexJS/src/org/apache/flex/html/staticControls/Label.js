@@ -40,6 +40,20 @@ org.apache.flex.html.staticControls.Label.prototype.addToParent = function(p) {
   this.positioner = this.element;
 };
 
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Label}
+ */
+org.apache.flex.html.staticControls.Label.prototype.initModel = function() {
+};
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Label}
+ */
+org.apache.flex.html.staticControls.Label.prototype.initSkin = function() {
+
+};
+
 
 /**
  * @expose

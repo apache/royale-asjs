@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
@@ -109,6 +110,11 @@ package org.apache.flex.html.staticControls
 			// a radio button is really selected when its value matches that of the group's value
 			IValueToggleButtonModel(model).selected = (newValue == value);
 			IValueToggleButtonModel(model).selectedValue = newValue;
+		}
+		
+		public function addToParent(p:DisplayObjectContainer):void
+		{
+			p.addChild(this);
 		}
 		
 		public function initModel():void

@@ -13,102 +13,28 @@
  */
 
 // ------------------------------------------------------------------
-// jQuery
+// jquery
 // ------------------------------------------------------------------
 
-// (erikdebruin) do these have to be in the global namespace?
-var head, link, mainjs, uijs;
-
-// Bring in the jQuery sources. You can use the minified versions for
-// better performance.
-mainjs = document.createElement('script');
-/** @type {Object} */ mainjs.src = 'http://code.jquery.com/jquery-1.9.1.js';
-document.head.appendChild(mainjs);
-
-uijs = document.createElement('script');
-/** @type {Object} */ uijs.src =
-    'http://code.jquery.com/ui/1.10.2/jquery-ui.js';
-document.head.appendChild(uijs);
-
-// create a stylesheet link to the corresponding jquery theme file.
-head = document.getElementsByTagName('head')[0];
-link = document.createElement('link');
-/** @type {Object} */ link.id = 'jquerycss';
-/** @type {Object} */ link.rel = 'stylesheet';
-/** @type {Object} */ link.type = 'text/css';
-/** @type {Object} */ link.href =
-    'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css';
-/** @type {Object} */ link.media = 'all';
-head.appendChild(link);
+// <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+//	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+//	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 // ------------------------------------------------------------------
-// end jQuery
+// end jquery
 // ------------------------------------------------------------------
 
 goog.provide('org.apache.flex.jquery.Application');
 
-goog.require('org.apache.flex.core.HTMLElementWrapper');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
-
-
+goog.require('org.apache.flex.core.Application');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.HTMLElementWrapper}
+ * @extends {org.apache.flex.core.Application}
  */
 org.apache.flex.jquery.Application = function() {
-  goog.base(this);
-
+    goog.base(this);
 };
 goog.inherits(org.apache.flex.jquery.Application,
-    org.apache.flex.core.HTMLElementWrapper);
-
-
-/**
- * @expose
- * @type {Object}
- */
-org.apache.flex.jquery.Application.prototype.controller = null;
-
-
-/**
- * @expose
- * @type {org.apache.flex.core.ViewBase}
- */
-org.apache.flex.jquery.Application.prototype.initialView = null;
-
-
-/**
- * @expose
- * @type {org.apache.flex.events.EventDispatcher}
- */
-org.apache.flex.jquery.Application.prototype.model = null;
-
-
-/**
- * @expose
- * @type {org.apache.flex.core.SimpleValuesImpl}
- */
-org.apache.flex.jquery.Application.prototype.valuesImpl = null;
-
-
-/**
- * @expose
- * @this {org.apache.flex.jquery.Application}
- */
-org.apache.flex.jquery.Application.prototype.start = function() {
-  var evt, i, n, q;
-
-  this.element = document.getElementsByTagName('body')[0];
-
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
-
-  this.dispatchEvent('initialize');
-
-  this.initialView.addToParent(this.element);
-  this.initialView.initUI(this.model);
-
-  this.dispatchEvent('viewChanged');
-};
+    org.apache.flex.core.Application);
 

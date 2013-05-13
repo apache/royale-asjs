@@ -148,3 +148,24 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
     this.strand = value;
   }
 };
+
+/**
+ Hack to allow event.target expressions to work
+ * @expose
+ * @this {Event}
+ * @return {Object} The wrapping object.
+ */
+Event.prototype.get_target = function() {
+  var obj = this.target.flexjs_wrapper;
+  return obj;
+};
+
+/**
+ Hack to allow event.target expressions to work
+ * @expose
+ * @this {goog.events.BrowserEvent}
+ * @return {Object} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_target = function() {
+  return this.event_.get_target();
+};

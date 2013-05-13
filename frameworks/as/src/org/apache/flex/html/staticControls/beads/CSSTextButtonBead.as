@@ -110,7 +110,7 @@ package org.apache.flex.html.staticControls.beads
 			if (value != null)
 				borderThickness = value as uint;
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundColor", state);
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
 			if (borderStyle == "solid")
 			{
 				SolidBorderUtil.drawBorder(sprite.graphics, 
@@ -119,7 +119,7 @@ package org.apache.flex.html.staticControls.beads
 				textField.y = (sprite.height - textField.height) / 2;
 				textField.x = (sprite.width - textField.width) / 2;
 			}			
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "backgroundImage", state);
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
 			if (backgroundImage)
 			{
 				var loader:Loader = new Loader();

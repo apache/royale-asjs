@@ -59,7 +59,7 @@ org.apache.flex.html.staticControls.ComboBox.prototype.addToParent =
 
   this.element.style.position = 'relative';
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 
@@ -68,6 +68,8 @@ org.apache.flex.html.staticControls.ComboBox.prototype.addToParent =
   // be visible
   goog.events.listen(p.parentElement, 'click',
       goog.bind(this.dismissPopup, this));
+
+  input.flexjs_wrapper = this;
 };
 
 

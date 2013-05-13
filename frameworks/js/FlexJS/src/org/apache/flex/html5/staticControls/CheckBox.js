@@ -45,7 +45,7 @@ org.apache.flex.html5.staticControls.CheckBox.prototype.addToParent =
   this.element.appendChild(cb);
   this.element.appendChild(document.createTextNode('check box'));
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

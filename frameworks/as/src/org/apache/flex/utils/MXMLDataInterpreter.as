@@ -27,6 +27,7 @@ import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IInitModel;
 import org.apache.flex.core.IInitSkin;
 import org.apache.flex.core.UIBase;
+import org.apache.flex.core.IContainer;
 
 public class MXMLDataInterpreter
 {
@@ -92,6 +93,8 @@ public class MXMLDataInterpreter
             {
                 if (comp is UIBase)
                     comp.addToParent(parent);
+                else if (parent is IContainer)
+                    IContainer(parent).internalAddChild(comp as DisplayObject);
                 else if (comp is DisplayObject)
                     parent.addChild(comp as DisplayObject);
             }
@@ -210,7 +213,13 @@ public class MXMLDataInterpreter
             if (children)
             {
                 if (recursive)
+				{
                     generateMXMLInstances(document, comp as DisplayObjectContainer, children, recursive);
+					if (comp is IContainer)
+					{
+						IContainer(comp).childrenAdded();
+					}
+				}
                 else
                     comp.setMXMLDescriptor(children);
             }

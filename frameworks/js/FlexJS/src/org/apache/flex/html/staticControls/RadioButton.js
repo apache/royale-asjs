@@ -45,9 +45,26 @@ org.apache.flex.html.staticControls.RadioButton.prototype.addToParent =
   this.element.appendChild(rb);
   this.element.appendChild(document.createTextNode('radio button'));
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
+  rb.flexjs_wrapper = this;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.RadioButton}
+ */
+org.apache.flex.html.staticControls.RadioButton.prototype.initModel =
+function() {
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.RadioButton}
+ */
+org.apache.flex.html.staticControls.RadioButton.prototype.initSkin =
+function() {
 };
 
 

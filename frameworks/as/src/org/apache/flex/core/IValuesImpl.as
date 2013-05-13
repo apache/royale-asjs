@@ -20,7 +20,7 @@ package org.apache.flex.core
 {
 	public interface IValuesImpl
 	{
-		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):Object;
+		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*;
         function getInstance(valueName:String):Object;
         
         function init(mainClass:Object):void;

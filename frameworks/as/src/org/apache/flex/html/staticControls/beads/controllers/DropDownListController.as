@@ -19,13 +19,14 @@
 package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.display.DisplayObject;
+	import flash.geom.Point;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.IDropDownListBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.IDropDownListBead;
 
 	public class DropDownListController implements IBead
 	{
@@ -51,8 +52,10 @@ package org.apache.flex.html.staticControls.beads.controllers
             popUpModel.selectedIndex = selectionModel.selectedIndex;
 			DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
 			DisplayObject(viewBead.popUp).height = 200;
-			DisplayObject(viewBead.popUp).x = DisplayObject(_strand).x;
-			DisplayObject(viewBead.popUp).y = DisplayObject(_strand).y;
+            var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y);
+            pt = DisplayObject(_strand).parent.localToGlobal(pt);
+			DisplayObject(viewBead.popUp).x = pt.x;
+			DisplayObject(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
         }
         

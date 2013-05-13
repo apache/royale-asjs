@@ -112,7 +112,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
     comp = new Cls();
 
     if (parent) {
-      comp.addToParent(parent.element);
+      comp.addToParent(parent);
     }
 
     id = null;
@@ -257,6 +257,8 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
         self = org.apache.flex.utils.MXMLDataInterpreter;
         self.generateMXMLInstances(
             document, comp, children, opt_recursive);
+        if (typeof comp.childrenAdded === 'function') 
+            comp.childrenAdded();
       } else {
         comp.setMXMLDescriptor(children);
       }

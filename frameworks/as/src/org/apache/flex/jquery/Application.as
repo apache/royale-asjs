@@ -18,26 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.jquery
 {
-    import flash.display.Sprite;
-    import flash.display.StageAlign;
-    import flash.display.StageScaleMode;
-    import flash.events.IOErrorEvent;
-    
     import org.apache.flex.core.Application;
-    import org.apache.flex.core.IFlexInfo;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.utils.MXMLDataInterpreter;
-    
-    //--------------------------------------
-    //  Events
-    //--------------------------------------
-    
-    /**
-     *  Dispatched at startup.
-     */
-    [Event(name="initialize", type="org.apache.flex.events.Event")]
-    
-    public class Application extends org.apache.flex.core.Application implements IFlexInfo
-    {
+	
+	public class Application extends org.apache.flex.core.Application
+	{
+		public function Application()
+		{
+			super();
+		}
     }
 }

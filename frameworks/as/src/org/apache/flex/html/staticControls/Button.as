@@ -28,6 +28,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -52,10 +53,17 @@ package org.apache.flex.html.staticControls
 			}
 		}
 		
-		private var _width:Number = 0;
+		private var _width:Number;
 		override public function get width():Number
 		{
-			return _width;
+            if (isNaN(_width))
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+                if (value === undefined)
+                    return $width;
+                _width = Number(value);
+            }
+            return _width;
 		}
 		override public function set width(value:Number):void
 		{
@@ -70,11 +78,19 @@ package org.apache.flex.html.staticControls
 			return super.width;
 		}
 		
-		private var _height:Number = 0;
+		private var _height:Number;
 		override public function get height():Number
 		{
-			return _height;
+            if (isNaN(_height))
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+                if (value === undefined)
+                    return $height;
+                _height = Number(value);
+            }
+            return _height;
 		}
+        
 		override public function set height(value:Number):void
 		{
 			if (_height != value)

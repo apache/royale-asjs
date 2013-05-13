@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class SingleLineBorderBead implements IBead
+	public class SingleLineBorderBead implements IBead, IBorderBead
 	{
 		public function SingleLineBorderBead()
 		{

@@ -38,9 +38,10 @@ org.apache.flex.html.staticControls.TextArea.prototype.addToParent =
     function(p) {
   this.element = document.createElement('textarea');
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 
 

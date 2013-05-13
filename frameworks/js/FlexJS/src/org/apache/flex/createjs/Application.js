@@ -28,11 +28,7 @@
 
 goog.provide('org.apache.flex.createjs.Application');
 
-//goog.require('org.apache.flex.core.HTMLElementWrapper');
-
-goog.require('org.apache.flex.core.SimpleValuesImpl');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.createjs.core.ViewBase');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 /**
@@ -40,14 +36,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.Application = function() {
-    org.apache.flex.core.HTMLElementWrapper.call(this);
-
-    /**
-     * @private
-     * @type {Array.<Object>}
-     */
-    this.queuedListeners_;
-
+    goog.base(this);
 };
 goog.inherits(org.apache.flex.createjs.Application,
     org.apache.flex.core.HTMLElementWrapper);
@@ -83,31 +72,11 @@ org.apache.flex.createjs.Application.prototype.model = null;
 org.apache.flex.createjs.Application.prototype.valuesImpl = null;
 
 /**
- * @this {org.apache.flex.createjs.Application}
- * @param {string} t The event type.
- * @param {function(?): ?} fn The event handler.
- */
-org.apache.flex.createjs.Application.prototype.addEventListener =
-  function(t, fn) {
-    if (!this.element) {
-        if (!this.queuedListeners_) {
-            this.queuedListeners_ = [];
-        }
-
-        this.queuedListeners_.push({ type: t, handler: fn });
-
-        return;
-    }
-
-    goog.base(this, 'addEventListener', t, fn);
-};
-
-/**
  * @expose
  * @this {org.apache.flex.createjs.Application}
  */
 org.apache.flex.createjs.Application.prototype.start = function() {
-    var evt, i, n, q;
+    var body;
 
     // For createjs, the application is the same as the canvas
     // and it provides convenient access to the stage.
@@ -117,32 +86,19 @@ org.apache.flex.createjs.Application.prototype.start = function() {
     this.element.width = 700;
     this.element.height = 500;
 
-    var body = document.getElementsByTagName('body')[0];
+    body = document.getElementsByTagName('body')[0];
     body.appendChild(this.element);
 
     this.stage = new createjs.Stage('flexjsCanvas');
 
-    if (this.queuedListeners_) {
-        n = this.queuedListeners_.length;
-        for (i = 0; i < n; i++) {
-            q = this.queuedListeners_[i];
-
-            this.addEventListener(q.type, q.handler);
-        }
-    }
-
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
             this.get_MXMLProperties());
 
-    org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
-
-    evt = this.createEvent('initialize');
-    this.dispatchEvent(evt);
+    this.dispatchEvent('initialize');
 
     this.initialView.addToParent(this.stage);
     this.initialView.initUI(this.model);
 
-    evt = this.createEvent('viewChanged');
-    this.dispatchEvent(evt);
+    this.dispatchEvent('viewChanged');
 };
 

@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObjectContainer;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -34,7 +35,12 @@ package org.apache.flex.core
 		override public function get width():Number
 		{
 			if (isNaN(_width))
-				_width = Number(ValuesManager.valuesImpl.getValue(this, "width"));
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+                if (value === undefined)
+                    return $width;
+				_width = Number(value);
+            }
 			return _width;
 		}
 		override public function set width(value:Number):void
@@ -54,7 +60,12 @@ package org.apache.flex.core
 		override public function get height():Number
 		{
 			if (isNaN(_height))
-				_height = Number(ValuesManager.valuesImpl.getValue(this, "height"));
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+                if (value === undefined)
+                    return $height;
+  	            _height = Number(value);
+            }
 			return _height;
 		}
 		override public function set height(value:Number):void
@@ -157,9 +168,51 @@ package org.apache.flex.core
 			
 		}
 		
-		public function addToParent(p:DisplayObjectContainer):void
+		public function addToParent(p:Object):void
 		{
-			p.addChild(this);
+			if (p is UIBase)
+				UIBase(p).internalAddChild(this);
+            else
+    			p.addChild(this);
 		}
+		
+		/**
+		 * Used internally by addToParent() implementations
+		 * to determine attach a child to a parent.  Containers
+		 * may host controls in a sub-component in order to
+		 * manage scrolling and margins and other internal abstractions.
+		 * Each platform assumes that the appropriate platform call
+		 * will add the child to the parent (i.e. addChild on Flash, 
+		 * appendChild on HTML).
+		 */
+		public function internalAddChild(child:Object):void
+		{
+			addChild(child as DisplayObject);
+		}
+
+        /*
+        public function addToParent(p:Object):void
+        {
+            var doc:DisplayObjectContainer = p as DisplayObjectContainer;
+            if (p is UIBase)
+                doc = UIBase(p).getParentForChild(this) as DisplayObjectContainer;
+            doc.addChild(this);
+        }
+        */
+        
+        /**
+         * Used internally by addToParent() implementations
+         * to determine suitable parent for a child.  Containers
+         * may host controls in a sub-component in order to
+         * manage scrolling and margins and other internal abstractions.
+         * Each platform assumes that the appropriate platform call
+         * will add the child to the parent (i.e. addChild on Flash, 
+         * appendTo on HTML).
+        public function getParentForChild(child:Object):Object
+        {
+            return this;
+        }
+         */
+        
 	}
 }

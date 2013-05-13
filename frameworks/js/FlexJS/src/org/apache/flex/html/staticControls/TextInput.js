@@ -39,9 +39,10 @@ org.apache.flex.html.staticControls.TextInput.prototype.addToParent =
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
 
-  p.appendChild(this.element);
+  p.internalAddChild(this.element);
 
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 
 
