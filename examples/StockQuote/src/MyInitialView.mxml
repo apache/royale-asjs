@@ -73,12 +73,16 @@ limitations under the License.
         .leftSide {
             vertical-align: top;
             margin-right: 10px;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			border-style: solid;
         }
         
         .rightSide {
             vertical-align: top;
             margin-left: 10px;
             padding-left: 10px;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			border-style: solid;
         }
         
         .quoteButton {
@@ -98,6 +102,12 @@ limitations under the License.
             <basic:Container className="leftSide">
                 <basic:beads>
                     <basic:NonVirtualVerticalLayout />
+					<basic:PanelBead title="Left Side">
+						<basic:controlBar>
+							<basic:TextButton text="Get Quote" className="quoteButton" 
+											  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+						</basic:controlBar>
+					</basic:PanelBead>
                 </basic:beads>
                 <basic:TextInput id="symbolTI" >
                     <basic:beads>
@@ -107,8 +117,6 @@ limitations under the License.
                                              destinationPropertyName="text" />
                     </basic:beads>
                 </basic:TextInput>
-                <basic:TextButton text="Get Quote" className="quoteButton" 
-                                  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
                 <basic:Label id="field" />
                 <basic:Label className="output" height="24">
                     <basic:beads>
@@ -122,6 +130,7 @@ limitations under the License.
             <basic:Container className="rightSide">
                 <basic:beads>
                     <basic:NonVirtualVerticalLayout />
+					<basic:PanelBead title="Right Side" />
                 </basic:beads>
                 <basic:DropDownList id="list" width="100" height="17"
                                     change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">
