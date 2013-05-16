@@ -167,7 +167,6 @@ public class MXMLDataInterpreter
                 {
                     var bead:IBead = beads[k] as IBead;
                     IStrand(comp).addBead(bead);
-                    bead.strand = comp as IStrand;
                 }
             }
             m = data[i++]; // num styles
