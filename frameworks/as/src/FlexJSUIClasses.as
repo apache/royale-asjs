@@ -38,6 +38,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.RadioButtonBead; RadioButtonBead;
 	import org.apache.flex.html.staticControls.beads.ComboBoxBead; ComboBoxBead;
     import org.apache.flex.html.staticControls.beads.ContainerBead; ContainerBead;
+	import org.apache.flex.html.staticControls.beads.TitleBarBead; TitleBarBead;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
 	import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;

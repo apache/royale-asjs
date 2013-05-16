@@ -46,6 +46,7 @@
     <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
     <component id="Container" class="org.apache.flex.html.staticControls.Container"/>
     <component id="ControlBar" class="org.apache.flex.html.staticControls.ControlBar"/>
+    <component id="TitleBar" class="org.apache.flex.html.staticControls.TitleBar"/>
     <component id="NonVirtualVerticalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout"/>
     <component id="NonVirtualHorizontalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout"/>
     <component id="PanelBead" class="org.apache.flex.html.staticControls.beads.PanelBead"/>

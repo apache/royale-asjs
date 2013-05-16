@@ -36,6 +36,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.ControlBar;
+	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout;
 	import org.apache.flex.utils.MXMLDataInterpreter;
@@ -44,26 +45,29 @@ package org.apache.flex.html.staticControls.beads
 	{
 		public function PanelBead()
 		{
+			titleBar = new TitleBar();
+			titleBar.initModel();
+			titleBar.initSkin();
+			titleBar.text = "Panel";
 		}
 		
-		private var _title:String = "Panel";
 		public function get title() : String
 		{
-			return _title;
+			return titleBar.text;
 		}
 		public function set title(value:String):void
 		{
-			_title = value;
+			titleBar.text = value;
 		}
 		
-		private var _showCloseButton:Boolean = false;
 		public function get showCloseButton() : Boolean
 		{
-			return _showCloseButton;
+//			return titleBar.showCloseButton;
+			return false;
 		}
 		public function set showCloseButton(value:Boolean):void
 		{
-			_showCloseButton = value;
+//			titleBar.showCloseButton = value;
 		}
 		
 		private var _controlBar:Array;
@@ -159,10 +163,7 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);
 		}
 		
-		private var titleArea:Sprite;
-		private var titleField:TextField;
-		private var titleBackground:Shape;
-		private var closeButton:SimpleButton;
+		private var titleBar:TitleBar;
 		private var contentArea:DisplayObjectContainer;
 		private var controlBarArea:ControlBar;
 		private var controlBarBackground:Shape;
@@ -172,7 +173,7 @@ package org.apache.flex.html.staticControls.beads
 			layoutTitleArea();
 			
 			contentArea.x = 0;
-			contentArea.y = titleArea.height;
+			contentArea.y = titleBar.height;
 			contentArea.width = Container(_strand).width;
 			
 			if( controlBar ) {
@@ -185,26 +186,7 @@ package org.apache.flex.html.staticControls.beads
 		
 		protected function createTitleArea() : void
 		{
-			titleArea = new Sprite();
-			Container(_strand).addChild(titleArea);
-			
-			titleBackground = new Shape();
-			titleArea.addChild(titleBackground);
-			
-			titleField = new TextField();
-			titleField.type = TextFieldType.DYNAMIC;
-			titleField.text = title;
-			titleField.textColor = 0x000000;
-			titleField.autoSize = TextFieldAutoSize.CENTER;
-			titleArea.addChild(titleField);
-			
-			if( showCloseButton ) {
-				closeButton = new SimpleButton();
-				titleArea.addChild(closeButton);
-			}
-			else {
-				closeButton = null;
-			}
+			Container(_strand).addChild(titleBar);
 		}
 		
 		protected function createControlBar() : void
@@ -216,40 +198,10 @@ package org.apache.flex.html.staticControls.beads
 		
 		protected function layoutTitleArea() : void
 		{
-			titleBackground.graphics.clear();
-			titleBackground.graphics.beginFill(0xCCCCCC);
-			titleBackground.graphics.lineStyle(1,0x333333);
-			titleBackground.graphics.drawRect(0,0,Container(_strand).width,25);
-			titleBackground.graphics.endFill();
-			
-			titleField.width = titleBackground.width;
-			titleField.x = (titleBackground.width - titleField.width)/2;
-			titleField.y = (titleBackground.height - titleField.height)/2;
-			
-			if( closeButton )
-			{
-				var downState:Sprite = new Sprite();
-				downState.graphics.clear();
-				downState.graphics.beginFill(0x006600);
-				downState.graphics.lineStyle(1,0x333333);
-				downState.graphics.drawRect(0,0,16,16);
-				downState.graphics.endFill();
-				closeButton.downState = downState;
-			
-				var upState:Sprite = new Sprite();
-				upState.graphics.clear();
-				upState.graphics.beginFill(0xAA0000);
-				upState.graphics.lineStyle(1,0x333333);
-				upState.graphics.drawRect(0,0,16,16);
-				upState.graphics.endFill();
-				closeButton.upState = closeButton.overState = upState;
-				
-				closeButton.x = titleBackground.width - 21;
-				closeButton.y = 5;
-			}
-			
-			titleArea.x = 0;
-			titleArea.y = 0;
+			titleBar.x = 0;
+			titleBar.y = 0;
+			titleBar.width = Container(_strand).width;
+			titleBar.height = 25;
 		}
 		
 		protected function layoutControlBar() : void

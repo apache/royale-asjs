@@ -119,6 +119,11 @@ TextInput
 	height: 20;
 }
 
+TitleBar
+{
+	ITitleBarBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarBead");
+}
+
 /* HTML5 */
 
 h5|TextButton
