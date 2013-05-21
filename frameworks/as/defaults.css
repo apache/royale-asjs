@@ -121,7 +121,8 @@ TextInput
 
 TitleBar
 {
-	ITitleBarBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarBead");
+    ITitleBarBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarBead");
+    ITitleBarModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
 }
 
 /* HTML5 */

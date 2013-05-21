@@ -22,7 +22,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
@@ -30,7 +29,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ITitleBarBead;
 	import org.apache.flex.events.Event;
 	
@@ -79,11 +78,11 @@ package org.apache.flex.html.staticControls.beads
 			return _titleField;
 		}
 		
-		private var _textModel:ITextModel;
+		private var _titleBarModel:ITitleBarModel;
 		
-		public function get textModel() : ITextModel
+		public function get titleBarModel() : ITitleBarModel
 		{
-			return _textModel;
+			return _titleBarModel;
 		}
 		
 		private var _strand:IStrand;
@@ -92,18 +91,19 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			
-			_textModel = value.getBeadByType(ITextModel) as ITextModel;
-			textModel.addEventListener("textChange", textChangeHandler);
-			textModel.addEventListener("htmlChange", htmlChangeHandler);
-			textModel.addEventListener("widthChanged", sizeChangeHandler);
-			textModel.addEventListener("heightChanged", sizeChangeHandler);
+			_titleBarModel = value.getBeadByType(ITitleBarModel) as ITitleBarModel;
+			titleBarModel.addEventListener("titleChange", titleChangeHandler);
+			titleBarModel.addEventListener("htmlTitleChange", htmlTitleChangeHandler);
+			titleBarModel.addEventListener("showCloseButtonChange", showCloseButtonChangeHandler);
+			titleBarModel.addEventListener("widthChanged", sizeChangeHandler);
+			titleBarModel.addEventListener("heightChanged", sizeChangeHandler);
 			
 			DisplayObjectContainer(value).addChild(_titleField);
 			
-			if (textModel.text !== null)
-				text = textModel.text;
-			if (textModel.html !== null)
-				html = textModel.html;
+			if (titleBarModel.title !== null)
+				text = titleBarModel.title;
+			if (titleBarModel.htmlTitle !== null)
+				html = titleBarModel.htmlTitle;
 			
 			sizeChangeHandler(null);
 		}
@@ -147,14 +147,19 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
-		private function textChangeHandler(event:Event):void
+		private function titleChangeHandler(event:Event):void
 		{
-			text = textModel.text;
+			text = titleBarModel.title;
 		}
 		
-		private function htmlChangeHandler(event:Event):void
+		private function htmlTitleChangeHandler(event:Event):void
 		{
-			html = textModel.html;
+			html = titleBarModel.htmlTitle;
+		}
+		
+		private function showCloseButtonChangeHandler(event:Event):void
+		{
+			sizeChangeHandler(event);
 		}
 		
 		private function sizeChangeHandler(event:Event):void

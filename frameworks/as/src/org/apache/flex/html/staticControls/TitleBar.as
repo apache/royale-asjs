@@ -21,7 +21,7 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ITitleBarBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -40,26 +40,26 @@ package org.apache.flex.html.staticControls
 		
 		public function get text():String
 		{
-			return ITextModel(model).text;
+			return ITitleBarModel(model).title;
 		}
 		public function set text(value:String):void
 		{
-			ITextModel(model).text = value;
+			ITitleBarModel(model).title = value;
 		}
 		
 		public function get html():String
 		{
-			return ITextModel(model).html;
+			return ITitleBarModel(model).htmlTitle;
 		}
 		public function set html(value:String):void
 		{
-			ITextModel(model).html = value;
+			ITitleBarModel(model).htmlTitle = value;
 		}
 		
 		override public function initModel():void
 		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
+			if (getBeadByType(ITitleBarModel) == null)
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTitleBarModel")) as IBead);
 		}
 		
 		public function initSkin():void
@@ -70,7 +70,8 @@ package org.apache.flex.html.staticControls
 		
 		private function handleSizeChange(event:Event):void
 		{
-			IEventDispatcher(getBeadByType(ITextModel)).dispatchEvent(new Event("widthChanged"));
+			IEventDispatcher(getBeadByType(ITitleBarModel)).dispatchEvent(new Event("widthChanged"));
+			IEventDispatcher(getBeadByType(ITitleBarModel)).dispatchEvent(new Event("heightChanged"));
 		}
 	}
 }
