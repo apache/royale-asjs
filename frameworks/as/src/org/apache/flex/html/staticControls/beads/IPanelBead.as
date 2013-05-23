@@ -16,19 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.html.staticControls.beads
 {
-	import org.apache.flex.html.staticControls.beads.IContainerBead;
-
-	public interface ITitleBarBead extends IContainerBead
+	import org.apache.flex.core.IBead;
+	
+	public interface IPanelBead extends IBead
 	{
-		function get text():String;
-		function set text(value:String):void;
 		
-		function get html():String;
-		function set html(value:String):void;
-		
-		function get showCloseButton() : Boolean;
-		function set showCloseButton(value:Boolean):void;
 	}
 }

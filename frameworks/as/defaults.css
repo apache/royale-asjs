@@ -121,8 +121,14 @@ TextInput
 
 TitleBar
 {
-    ITitleBarBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarBead");
     ITitleBarModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
+    ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+}
+
+Panel
+{
+    IPanelModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");
+    IPanelBead: ClassReference("org.apache.flex.html.staticControls.beads.PanelBead");
 }
 
 /* HTML5 */

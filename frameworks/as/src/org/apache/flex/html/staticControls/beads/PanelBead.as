@@ -18,68 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
-	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.ControlBar;
 	import org.apache.flex.html.staticControls.TitleBar;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout;
-	import org.apache.flex.utils.MXMLDataInterpreter;
 	
 	public class PanelBead implements IBead, IContainerBead
 	{
 		public function PanelBead()
 		{
-			titleBar = new TitleBar();
-			titleBar.initModel();
-			titleBar.initSkin();
-			titleBar.text = "Panel";
+			_titleBar = new TitleBar();
+			_titleBar.initModel();
+			_titleBar.initSkin();
 		}
 		
-		public function get title() : String
+		private var _titleBar:TitleBar;
+		public function get titleBar():TitleBar
 		{
-			return titleBar.text;
+			return _titleBar;
 		}
-		public function set title(value:String):void
-		{
-			titleBar.text = value;
-		}
-		
-		public function get showCloseButton() : Boolean
-		{
-//			return titleBar.showCloseButton;
-			return false;
-		}
-		public function set showCloseButton(value:Boolean):void
-		{
-//			titleBar.showCloseButton = value;
-		}
-		
-		private var _controlBar:Array;
-		public function get controlBar():Array
-		{
-			return _controlBar;
-		}
-		public function set controlBar(value:Array):void
-		{
-			_controlBar = value;
-		}
-		
 		
 		private var _strand:IStrand;
 		
@@ -87,15 +52,8 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			
-			createTitleArea();
+			Container(_strand).addChild(titleBar);
 
-			if( controlBar ) {
-				createControlBar();
-			}
-			else {
-				controlBarArea = null;
-			}
-			
 			var borderStyle:String;
 			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
 			if (borderStyles is Array)
@@ -163,7 +121,6 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);
 		}
 		
-		private var titleBar:TitleBar;
 		private var contentArea:DisplayObjectContainer;
 		private var controlBarArea:ControlBar;
 		private var controlBarBackground:Shape;
@@ -176,24 +133,8 @@ package org.apache.flex.html.staticControls.beads
 			contentArea.y = titleBar.height;
 			contentArea.width = Container(_strand).width;
 			
-			if( controlBar ) {
-				layoutControlBar();
-			}
-			
 			IEventDispatcher(_strand).dispatchEvent(new Event('widthChanged'));
 			IEventDispatcher(_strand).dispatchEvent(new Event('heightChanged'));
-		}
-		
-		protected function createTitleArea() : void
-		{
-			Container(_strand).addChild(titleBar);
-		}
-		
-		protected function createControlBar() : void
-		{
-			controlBarArea = new ControlBar();
-			controlBarArea.addBead(new NonVirtualHorizontalLayout());
-			Container(_strand).addChild(controlBarArea);
 		}
 		
 		protected function layoutTitleArea() : void
@@ -201,34 +142,6 @@ package org.apache.flex.html.staticControls.beads
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = Container(_strand).width;
-			titleBar.height = 25;
-		}
-		
-		protected function layoutControlBar() : void
-		{
-			controlBarArea.x = 0;
-			controlBarArea.width = Container(_strand).width;
-			controlBarArea.height = 25;
-			
-			if( Container(_strand).height > (contentArea.y+contentArea.height+controlBarArea.height) ) {
-				controlBarArea.y = Container(_strand).height - controlBarArea.height;
-			} else {
-				controlBarArea.y = contentArea.y + contentArea.height;
-			}
-			
-			for(var i:int=0; i < controlBar.length; i++)
-			{
-				var displayObject:DisplayObject = controlBar[i] as DisplayObject;
-				if( displayObject is UIBase ) {
-					var b:UIBase = displayObject as UIBase;
-					b.addToParent(controlBarArea);
-				}
-				else {
-					controlBarArea.addChild( controlBar[i] as DisplayObject );
-				}
-			}
-			
-			controlBarArea.childrenAdded();
 		}
 	}
 }

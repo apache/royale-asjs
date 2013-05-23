@@ -18,17 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.html.staticControls.beads.IContainerBead;
-
-	public interface ITitleBarBead extends IContainerBead
+	public interface IPanelModel extends IBeadModel
 	{
-		function get text():String;
-		function set text(value:String):void;
+		function get title():String;
+		function set title(value:String):void;
 		
-		function get html():String;
-		function set html(value:String):void;
+		function get htmlTitle():String;
+		function set htmlTitle(value:String):void;
 		
-		function get showCloseButton() : Boolean;
+		function get showCloseButton():Boolean;
 		function set showCloseButton(value:Boolean):void;
 	}
 }

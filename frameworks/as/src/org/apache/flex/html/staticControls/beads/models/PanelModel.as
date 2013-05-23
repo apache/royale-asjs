@@ -19,18 +19,17 @@
 package org.apache.flex.html.staticControls.beads.models
 {
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IPanelModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
-	public class TitleBarModel extends EventDispatcher implements IBead, ITitleBarModel
+	public class PanelModel extends EventDispatcher implements IBead, IPanelModel
 	{
-		public function TitleBarModel()
+		public function PanelModel()
 		{
 			super();
 		}
-		
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
