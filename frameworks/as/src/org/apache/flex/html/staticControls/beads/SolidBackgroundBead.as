@@ -23,6 +23,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
@@ -43,6 +44,11 @@ package org.apache.flex.html.staticControls.beads
 			_strand = value;
             IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			
+			var bgColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			if( bgColor != null ) {
+				backgroundColor = uint(bgColor);
+			}
 		}
 		
 		private var _backgroundColor:uint;

@@ -32,6 +32,7 @@ package org.apache.flex.html.staticControls
 		{
 			super();
 			
+			className = "TitleBar";
 		}
 		
 		public function get title():String
@@ -91,6 +92,9 @@ package org.apache.flex.html.staticControls
 			closeButton.addToParent(this);
 			
 			childrenAdded();
+			
+			// dispatch this event to force any beads to update
+			dispatchEvent(new Event("widthChanged"));
 		}
 		
 		private function handlePropertyChange(event:Event):void
