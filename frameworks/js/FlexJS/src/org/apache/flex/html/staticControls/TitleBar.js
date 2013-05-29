@@ -53,9 +53,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addToParent =
   this.titleButton.addToParent(this);
   this.titleButton.text = 'Close';
   this.titleButton.positioner.style.display = this._showCloseButton ? "inline-block" : "none";
-  
-  //this.element.appendChild(this.titleLabel);
-  //this.element.appendChild(this.titleButton);
+  this.titleButton.positioner.style.position = "absolute";
+  this.titleButton.positioner.style.right = "0px";
 
   p.internalAddChild(this.element);
 
