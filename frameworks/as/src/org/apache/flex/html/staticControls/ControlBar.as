@@ -44,14 +44,5 @@ package org.apache.flex.html.staticControls
 				addBead(layout);
 			}
 		}
-		
-		public function transferChildren( list:Array ) : void
-		{
-			for each(var comp:IUIBase in list) {
-				comp.addToParent(this);
-			}
-			
-			childrenAdded();
-		}
 	}
 }

@@ -67,7 +67,11 @@ package org.apache.flex.html.staticControls.beads
 				_controlBar = new ControlBar();
 				_controlBar.initModel();
 				_controlBar.initSkin();
-				_controlBar.transferChildren(controlBarItems);
+				
+				for each(var comp:IUIBase in controlBarItems) {
+					comp.addToParent(_controlBar);
+				}
+				
 				Container(_strand).addChild(controlBar);
 			}
 
