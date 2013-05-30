@@ -125,6 +125,11 @@ TitleBar
     ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
 }
 
+ControlBar
+{
+    ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+}
+
 Panel
 {
     IPanelModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");

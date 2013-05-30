@@ -16,42 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.core
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-
-	public class ControlBar extends Container implements IContainer, IInitSkin
+	public interface IUIBase
 	{
-		public function ControlBar()
-		{
-			super();
-			
-			className = "ControlBar";
-		}
+		function get model():IBeadModel;
 		
-		override public function initSkin():void
-		{
-			super.initSkin();	
-			
-			if( getBeadByType(NonVirtualHorizontalLayout) == null ) {
-				var layout:IBead = new (ValuesManager.valuesImpl.getValue(this, "iLayoutBead")) as IBead;
-				addBead(layout);
-			}
-		}
+		function get id():String;
+		function set id(value:String):void;
 		
-		public function transferChildren( list:Array ) : void
-		{
-			for each(var comp:IUIBase in list) {
-				comp.addToParent(this);
-			}
-			
-			childrenAdded();
-		}
+		function get className():String;
+		function set className(value:String):void;
+		
+		function addToParent(p:Object):void;
 	}
 }

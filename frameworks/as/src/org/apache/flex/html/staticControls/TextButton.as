@@ -19,11 +19,11 @@
 package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
-
+	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.ITextButtonBead;
 	

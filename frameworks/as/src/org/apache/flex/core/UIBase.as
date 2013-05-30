@@ -24,7 +24,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher
+	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher, IUIBase
 	{
 		public function UIBase()
 		{

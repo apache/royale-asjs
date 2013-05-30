@@ -24,11 +24,13 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.ControlBar;
+	import org.apache.flex.html.staticControls.Panel;
 	import org.apache.flex.html.staticControls.TitleBar;
 	
 	public class PanelBead implements IBead, IContainerBead
@@ -46,6 +48,12 @@ package org.apache.flex.html.staticControls.beads
 			return _titleBar;
 		}
 		
+		private var _controlBar:ControlBar;
+		public function get controlBar():ControlBar
+		{
+			return _controlBar;
+		}
+		
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
@@ -53,6 +61,15 @@ package org.apache.flex.html.staticControls.beads
 			_strand = value;
 			
 			Container(_strand).addChild(titleBar);
+			
+			var controlBarItems:Array = Panel(_strand).controlBar;
+			if( controlBarItems && controlBarItems.length > 0 ) {
+				_controlBar = new ControlBar();
+				_controlBar.initModel();
+				_controlBar.initSkin();
+				_controlBar.transferChildren(controlBarItems);
+				Container(_strand).addChild(controlBar);
+			}
 
 			var borderStyle:String;
 			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
@@ -133,6 +150,8 @@ package org.apache.flex.html.staticControls.beads
 			contentArea.y = titleBar.height;
 			contentArea.width = Container(_strand).width;
 			
+			if( controlBar ) layoutControlBarArea();
+			
 			IEventDispatcher(_strand).dispatchEvent(new Event('widthChanged'));
 			IEventDispatcher(_strand).dispatchEvent(new Event('heightChanged'));
 		}
@@ -142,6 +161,13 @@ package org.apache.flex.html.staticControls.beads
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = Container(_strand).width;
+		}
+		
+		protected function layoutControlBarArea() : void
+		{
+			controlBar.x = 0;
+			controlBar.y = contentArea.y + contentArea.height;
+			controlBar.width = Container(_strand).width;
 		}
 	}
 }

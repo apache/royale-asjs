@@ -28,13 +28,15 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
 	[Event(name="click", type="org.apache.flex.events.Event")]
 
-	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel, IEventDispatcher
+	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel, IEventDispatcher, IUIBase
 	{
 		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -105,7 +107,7 @@ package org.apache.flex.html.staticControls
 		}
 
 		private var _model:IBeadModel;
-		protected function get model():IBeadModel
+		public function get model():IBeadModel
 		{
 			return _model;
 		}
@@ -189,9 +191,14 @@ package org.apache.flex.html.staticControls
 			_height = $height;
 		}
 		
-		public function addToParent(p:DisplayObjectContainer):void
+		public function addToParent(p:Object):void
 		{
-			p.addChild(this);
+			if( p is UIBase ) {
+				UIBase(p).internalAddChild(this);
+			}
+			else if( p is DisplayObjectContainer ) {
+				p.addChild(this);
+			}
 		}
 	}
 }
