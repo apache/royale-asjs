@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.staticControls.Panel');
 
 goog.require('org.apache.flex.html.staticControls.Container');
 goog.require('org.apache.flex.html.staticControls.TitleBar');
+goog.require('org.apache.flex.html.staticControls.ControlBar');
 
 
 
@@ -70,4 +71,33 @@ org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
 org.apache.flex.html.staticControls.Panel.prototype.set_title =
     function(value) {
   this.titleBar.set_title(value);
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Panel}
+ * @return {Array} The controlBar getter.
+ */
+org.apache.flex.html.staticControls.Panel.prototype.get_controlBar = function() {
+  return this.controlBarChildren;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Panel}
+ * @param {Array} value The controlBar setter.
+ */
+org.apache.flex.html.staticControls.Panel.prototype.set_controlBar =
+    function(value) {
+  this.controlBarChildren = value;
+  
+  this.controlBar = new org.apache.flex.html.staticControls.ControlBar();
+  this.controlBar.addToParent(this);
+  
+  for(var i=0; i < value.length; i++) {
+  	  var item = value[i];
+  	  item.addToParent(this.controlBar);
+  }
 };

@@ -24,6 +24,8 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.Label = function() {
   goog.base(this);
+  
+  this.element = document.createElement('div');
 };
 goog.inherits(org.apache.flex.html.staticControls.Label,
     org.apache.flex.core.UIBase);
