@@ -58,7 +58,7 @@ global
 {
     ITextBead: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldBead");
     ITextModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-
+    IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
 }
 
 CheckBox

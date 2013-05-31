@@ -175,6 +175,30 @@ package org.apache.flex.core
             else
     			p.addChild(this);
 		}
+        
+        public function addToParentAt(p:Object, index:int):void
+        {
+            if (p is UIBase)
+                UIBase(p).internalAddChildAt(this, index);
+            else
+                p.addChild(this, index);
+        }
+        
+        public function getIndexInParent(p:Object):int
+        {
+            if (p is UIBase)
+                return UIBase(p).internalGetChildIndex(this);
+            else
+                return p.getChildIndex(this);
+        }
+
+        public function removeFromParent(p:Object):void
+        {
+            if (p is UIBase)
+                UIBase(p).internalRemoveChild(this);
+            else
+                p.removeChild(this);
+        }
 		
 		/**
 		 * Used internally by addToParent() implementations
@@ -189,6 +213,21 @@ package org.apache.flex.core
 		{
 			addChild(child as DisplayObject);
 		}
+
+        public function internalAddChildAt(child:Object, index:int):void
+        {
+            addChildAt(child as DisplayObject, index);
+        }
+        
+        public function internalGetChildIndex(child:Object):int
+        {
+            return getChildIndex(child as DisplayObject);
+        }
+        
+        public function internalRemoveChild(child:Object):void
+        {
+            removeChild(child as DisplayObject);
+        }
 
         /*
         public function addToParent(p:Object):void

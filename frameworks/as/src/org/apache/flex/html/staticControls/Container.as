@@ -60,7 +60,22 @@ package org.apache.flex.html.staticControls
 			actualParent.addChild(child as DisplayObject);
 		}
 
-		public function getChildren():Array
+        override public function internalAddChildAt(child:Object, index:int):void
+        {
+            actualParent.addChildAt(child as DisplayObject, index);
+        }
+        
+        override public function internalGetChildIndex(child:Object):int
+        {
+            return actualParent.getChildIndex(child as DisplayObject);
+        }
+        
+        override public function internalRemoveChild(child:Object):void
+        {
+            actualParent.removeChild(child as DisplayObject);
+        }
+
+        public function getChildren():Array
 		{
 			var children:Array = [];
 			var n:int = actualParent.numChildren;
