@@ -136,6 +136,13 @@ Panel
     IPanelBead: ClassReference("org.apache.flex.html.staticControls.beads.PanelBead");
 }
 
+SimpleAlert
+{
+    IAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    IAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertBead");
+    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
+
 /* HTML5 */
 
 h5|TextButton

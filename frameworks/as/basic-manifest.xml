@@ -52,5 +52,7 @@
     <component id="NonVirtualVerticalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout"/>
     <component id="NonVirtualHorizontalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout"/>
     <component id="PanelBead" class="org.apache.flex.html.staticControls.beads.PanelBead"/>
+    <component id="PopUp" class="org.apache.flex.html.staticControls.supportClasses.PopUp"/>
+    <component id="SimpleAlert" class="org.apache.flex.html.staticControls.SimpleAlert"/>
 
 </componentPackage>
