@@ -42,20 +42,20 @@ package org.apache.flex.html.staticControls
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertModel")) as IBead);
 		}
 		
-		public function get message():String
+		private function get message():String
 		{
 			return IAlertModel(model).message;
 		}
-		public function set message(value:String):void
+		private function set message(value:String):void
 		{
 			IAlertModel(model).message = value;
 		}
 		
-		public function get htmlMessage():String
+		private function get htmlMessage():String
 		{
 			return IAlertModel(model).htmlMessage;
 		}
-		public function set htmlMessage(value:String):void
+		private function set htmlMessage(value:String):void
 		{
 			IAlertModel(model).htmlMessage = value;
 		}
