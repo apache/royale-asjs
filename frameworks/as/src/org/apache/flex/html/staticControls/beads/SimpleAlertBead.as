@@ -22,13 +22,17 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IAlertModel;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.TextButton;
 	
@@ -69,7 +73,11 @@ package org.apache.flex.html.staticControls.beads
 		
 		private function handleMessageChange(event:Event):void
 		{
-			var maxWidth:Number = Math.max(UIBase(_strand).width,messageLabel.width);
+			var ruler:IMeasurementBead = messageLabel.getBeadByType(IMeasurementBead) as IMeasurementBead;
+			if( ruler == null ) {
+				messageLabel.addBead(ruler = new (ValuesManager.valuesImpl.getValue(messageLabel, "iMeasurementBead")) as IMeasurementBead);
+			}
+			var maxWidth:Number = Math.max(UIBase(_strand).width,ruler.measuredWidth);
 			
 			messageLabel.x = 0;
 			messageLabel.y = 0;

@@ -94,6 +94,7 @@ Label
 {
 	width: 95;
 	height: 18;
+	iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead");
 }
 
 List

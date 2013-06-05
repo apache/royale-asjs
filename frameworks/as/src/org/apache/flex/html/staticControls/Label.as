@@ -20,10 +20,12 @@ package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ITextBead;
+	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
 	 *  Label probably should extend TextField directly,
@@ -67,6 +69,18 @@ package org.apache.flex.html.staticControls
 		{
 			if (getBeadByType(ITextBead) == null)
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextBead")) as IBead);			
+		}
+		
+		override public function set width(value:Number):void
+		{
+			super.width = value;
+			IEventDispatcher(model).dispatchEvent( new Event("widthChanged") );
+		}
+		
+		override public function set height(value:Number):void
+		{
+			super.height = value;
+			IEventDispatcher(model).dispatchEvent( new Event("heightChanged") );
 		}
 	}
 }

@@ -37,7 +37,7 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _textField:CSSTextField;
 		
-		protected function get textField() : CSSTextField
+		public function get textField() : CSSTextField
 		{
 			return _textField;
 		}
