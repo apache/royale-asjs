@@ -16,34 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
-{
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.staticControls.beads.SingleLineBorderBead;
-	import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
+package org.apache.flex.html.staticControls.beads
+{	
+	import org.apache.flex.core.IBead;
 	
-	public class PopUp extends UIBase implements IPopUp
+	public interface IAlertBead extends IBead
 	{
-		public function PopUp()
-		{
-			super();
-		}
 		
-		private var _border:Border;
-		private var _background:SolidBackgroundBead;
-		
-		public function initSkin():void
-		{			
-			_border = new Border();
-			_border.addToParent(this);
-			_border.model = new SingleLineBorderModel();
-			_border.addBead(new SingleLineBorderBead());
-			
-			_background = new SolidBackgroundBead();
-			_background.backgroundColor = 0xffffff;
-			addBead(_background);
-		}
 	}
 }

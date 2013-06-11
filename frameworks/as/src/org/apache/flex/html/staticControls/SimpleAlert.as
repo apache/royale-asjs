@@ -23,13 +23,15 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IPopUp;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.ISimpleAlertBead;
 	
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
-	public class SimpleAlert extends UIBase implements IInitSkin
+	public class SimpleAlert extends UIBase implements IInitSkin, IPopUp
 	{
 		public function SimpleAlert()
 		{
@@ -65,16 +67,13 @@ package org.apache.flex.html.staticControls
 			if( getBeadByType(ISimpleAlertBead) == null ) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
 			}
+			
+			addEventListener("close",handleAlertClose);
 		}
 		
 		public function show(parent:Object) : void
 		{
-			(getBeadByType(ISimpleAlertBead) as ISimpleAlertBead).showPopUp(parent as DisplayObjectContainer);
-		}
-		
-		public function hide() : void
-		{
-			(getBeadByType(ISimpleAlertBead) as ISimpleAlertBead).hidePopUp();
+			addToParent(parent);
 		}
 		
 		static public function show(message:String, parent:Object):SimpleAlert
@@ -86,6 +85,11 @@ package org.apache.flex.html.staticControls
 			alert.show(parent);
 			
 			return alert;
+		}
+		
+		private function handleAlertClose(event:Event):void
+		{
+			this.parent.removeChild(this);
 		}
 	}
 }

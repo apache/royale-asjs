@@ -111,6 +111,7 @@ RadioButton
 TextButton
 {
 	ITextButtonBead: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonBead");
+    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead");
 }
 
 TextInput
@@ -124,11 +125,13 @@ TitleBar
 {
     ITitleBarModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
     ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead");
 }
 
 ControlBar
 {
     ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead");
 }
 
 Panel
@@ -141,7 +144,16 @@ SimpleAlert
 {
     IAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
     IAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertBead");
-    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+}
+
+Alert
+{
+    IAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    IAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.AlertBead");
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #000000;
+	border-thickness: 2;
 }
 
 /* HTML5 */

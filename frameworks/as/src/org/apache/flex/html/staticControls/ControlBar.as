@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
+	import flash.display.DisplayObject;
+	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IInitSkin;

@@ -17,10 +17,30 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{	
-	import org.apache.flex.core.IBead;
+{
+	import org.apache.flex.core.IMeasurementBead;
+	import org.apache.flex.core.IStrand;
 	
-	public interface ISimpleAlertBead extends IBead
+	public class AlertMeasurementBead implements IMeasurementBead
 	{
+		public function AlertMeasurementBead()
+		{
+		}
+		
+		public function get measuredWidth():Number
+		{
+			return 0;
+		}
+		
+		public function get measuredHeight():Number
+		{
+			return 0;
+		}
+		
+		private var _strand:IStrand;
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+		}
 	}
 }

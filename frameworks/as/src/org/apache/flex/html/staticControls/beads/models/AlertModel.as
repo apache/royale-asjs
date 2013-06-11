@@ -89,5 +89,19 @@ package org.apache.flex.html.staticControls.beads.models
 				dispatchEvent( new Event("htmlMessageChange") );
 			}
 		}
+		
+		private var _flags:uint;
+		public function get flags():uint
+		{
+			return _flags;
+		}
+		public function set flags(value:uint):void
+		{
+			if( value != _flags )
+			{
+				_flags = value;
+				dispatchEvent( new Event("flagsChange") );
+			}
+		}
 	}
 }

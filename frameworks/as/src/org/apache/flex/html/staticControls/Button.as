@@ -27,6 +27,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -199,6 +200,16 @@ package org.apache.flex.html.staticControls
 			else if( p is DisplayObjectContainer ) {
 				p.addChild(this);
 			}
+		}
+		
+		public function get measurementBead() : IMeasurementBead
+		{
+			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;
+			if( measurementBead == null ) {
+				addBead(measurementBead = new (ValuesManager.valuesImpl.getValue(this, "iMeasurementBead")) as IMeasurementBead);
+			}
+			
+			return measurementBead;
 		}
 	}
 }

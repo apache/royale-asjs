@@ -20,27 +20,39 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.staticControls.TitleBar;
 	
-	public class TextFieldLabelMeasurementBead implements IMeasurementBead
+	public class TitleBarMeasurementBead implements IMeasurementBead
 	{
-		public function TextFieldLabelMeasurementBead()
+		public function TitleBarMeasurementBead()
 		{
 		}
 		
 		public function get measuredWidth():Number
 		{
-			var bead:TextFieldBead = _strand.getBeadByType(ITextBead) as TextFieldBead;
-			if( bead ) return bead.textField.textWidth;
-			else return 0;
+			var mwidth:Number = 0;
+			var titleBar:TitleBar = _strand as TitleBar;
+			var labelMeasure:IMeasurementBead = titleBar.titleLabel.measurementBead;
+			mwidth = labelMeasure.measuredWidth;
+			if( titleBar.showCloseButton ) {
+				var buttonMeasure:IMeasurementBead = titleBar.closeButton.measurementBead;
+				mwidth += buttonMeasure.measuredWidth;
+			}
+			return mwidth;
 		}
 		
 		public function get measuredHeight():Number
 		{
-			var bead:TextFieldBead = _strand.getBeadByType(ITextBead) as TextFieldBead;
-			if( bead ) return bead.textField.textHeight;
-			else return 0;
+			var mheight:Number = 0;
+			var titleBar:TitleBar = _strand as TitleBar;
+			var labelMeasure:IMeasurementBead = titleBar.titleLabel.measurementBead;
+			mheight = labelMeasure.measuredHeight;
+			if( titleBar.showCloseButton ) {
+				var buttonMeasure:IMeasurementBead = titleBar.closeButton.measurementBead;
+				mheight = Math.max(mheight,buttonMeasure.measuredHeight);
+			}
+			return mheight;
 		}
 		
 		private var _strand:IStrand;

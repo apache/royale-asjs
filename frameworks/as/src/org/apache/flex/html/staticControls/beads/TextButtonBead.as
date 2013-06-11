@@ -97,9 +97,9 @@ package org.apache.flex.html.staticControls.beads
 			html = textModel.html;
 		}
 		
-		private var upTextField:CSSTextField;
-		private var downTextField:CSSTextField;
-		private var overTextField:CSSTextField;
+		public var upTextField:CSSTextField;
+		public var downTextField:CSSTextField;
+		public var overTextField:CSSTextField;
 		
 		public function get text():String
 		{

@@ -33,5 +33,8 @@ package org.apache.flex.core
 		
 		function get htmlMessage():String;
 		function set htmlMessage(value:String):void;
+		
+		function get flags():uint;
+		function set flags(value:uint):void;
 	}
 }

@@ -21,9 +21,11 @@ package org.apache.flex.html.staticControls
 	import flash.display.Shape;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 	
 	public class TitleBar extends Container
@@ -72,8 +74,17 @@ package org.apache.flex.html.staticControls
 			model.addEventListener('showCloseButtonChange',handlePropertyChange);
 		}
 		
-		private var titleLabel:Label;
-		private var closeButton:Button;
+		private var _titleLabel:Label;
+		public function get titleLabel():Label
+		{
+			return _titleLabel;
+		}
+		
+		private var _closeButton:Button;
+		public function get closeButton():Button
+		{
+			return closeButton;
+		}
 		
 		override public function initSkin():void
 		{
@@ -83,13 +94,13 @@ package org.apache.flex.html.staticControls
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iLayoutBead")) as IBead);
 			
 			// add the label for the title and the button for the close
-			titleLabel = createTitle();
-			titleLabel.className = className;
-			titleLabel.addToParent(this);
+			_titleLabel = createTitle();
+			_titleLabel.className = className;
+			_titleLabel.addToParent(this);
 			
-			closeButton = createCloseButton();
-			closeButton.className = className;
-			closeButton.addToParent(this);
+			_closeButton = createCloseButton();
+			_closeButton.className = className;
+			_closeButton.addToParent(this);
 			
 			childrenAdded();
 			
@@ -103,10 +114,14 @@ package org.apache.flex.html.staticControls
 				if( closeButton ) closeButton.visible = showCloseButton;
 			}
 			else if( event.type == "titleChange" ) {
-				if( titleLabel ) titleLabel.text = title;
+				if( titleLabel ) {
+					titleLabel.text = title;
+				}
 			}
 			else if( event.type == "htmlTitleChange" ) {
-				if( titleLabel ) titleLabel.html = htmlTitle;
+				if( titleLabel ) {
+					titleLabel.html = htmlTitle;
+				}
 			}
 			
 			dispatchEvent(new Event("widthChanged"));

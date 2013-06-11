@@ -17,10 +17,34 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{	
-	import org.apache.flex.core.IBead;
+{
+	import org.apache.flex.core.IMeasurementBead;
+	import org.apache.flex.core.IStrand;
 	
-	public interface ISimpleAlertBead extends IBead
+	public class TextButtonMeasurementBead implements IMeasurementBead
 	{
+		public function TextButtonMeasurementBead()
+		{
+		}
+		
+		public function get measuredWidth():Number
+		{
+			var bead:TextButtonBead = _strand.getBeadByType(ITextButtonBead) as TextButtonBead;
+			if( bead ) return Math.max(bead.upTextField.textWidth,bead.downTextField.textWidth,bead.overTextField.textWidth);
+			else return 0;
+		}
+		
+		public function get measuredHeight():Number
+		{
+			var bead:TextButtonBead = _strand.getBeadByType(ITextButtonBead) as TextButtonBead;
+			if( bead ) return Math.max(bead.upTextField.textHeight,bead.downTextField.textHeight,bead.overTextField.textHeight);
+			else return 0;
+		}
+		
+		private var _strand:IStrand;
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+		}
 	}
 }

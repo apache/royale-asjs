@@ -213,6 +213,16 @@ package org.apache.flex.core
             return this;
         }
          */
+		
+		public function get measurementBead() : IMeasurementBead
+		{
+			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;
+			if( measurementBead == null ) {
+				addBead(measurementBead = new (ValuesManager.valuesImpl.getValue(this, "iMeasurementBead")) as IMeasurementBead);
+			}
+			
+			return measurementBead;
+		}
         
 	}
 }
