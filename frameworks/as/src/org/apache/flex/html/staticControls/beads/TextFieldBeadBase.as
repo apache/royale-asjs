@@ -79,7 +79,7 @@ package org.apache.flex.html.staticControls.beads
 		public function set text(value:String):void
 		{
             if (value == null)
-                value == "";
+                value = "";
 			_textField.text = value;
 		}
 		
