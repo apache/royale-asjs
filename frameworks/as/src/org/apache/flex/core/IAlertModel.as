@@ -36,5 +36,17 @@ package org.apache.flex.core
 		
 		function get flags():uint;
 		function set flags(value:uint):void;
+		
+		function get okLabel():String;
+		function set okLabel(value:String):void;
+		
+		function get cancelLabel():String;
+		function set cancelLabel(value:String):void;
+		
+		function get yesLabel():String;
+		function set yesLabel(value:String):void;
+		
+		function get noLabel():String;
+		function set noLabel(value:String):void;
 	}
 }

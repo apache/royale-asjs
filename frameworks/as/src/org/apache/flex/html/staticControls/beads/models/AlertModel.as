@@ -103,5 +103,61 @@ package org.apache.flex.html.staticControls.beads.models
 				dispatchEvent( new Event("flagsChange") );
 			}
 		}
+		
+		private var _okLabel:String = "OK";
+		public function get okLabel():String
+		{
+			return _okLabel;
+		}
+		public function set okLabel(value:String):void
+		{
+			if( value != _okLabel )
+			{
+				_okLabel = value;
+				dispatchEvent( new Event("okLabelChange") );
+			}
+		}
+		
+		private var _cancelLabel:String = "Cancel";
+		public function get cancelLabel():String
+		{
+			return _cancelLabel;
+		}
+		public function set cancelLabel(value:String):void
+		{
+			if( value != _cancelLabel )
+			{
+				_cancelLabel = value;
+				dispatchEvent( new Event("cancelLabelChange") );
+			}
+		}
+		
+		private var _yesLabel:String = "YES";
+		public function get yesLabel():String
+		{
+			return _yesLabel;
+		}
+		public function set yesLabel(value:String):void
+		{
+			if( value != _yesLabel )
+			{
+				_yesLabel = value;
+				dispatchEvent( new Event("yesLabelChange") );
+			}
+		}
+		
+		private var _noLabel:String = "NO";
+		public function get noLabel():String
+		{
+			return _noLabel;
+		}
+		public function set noLabel(value:String):void
+		{
+			if( value != _noLabel )
+			{
+				_noLabel = value;
+				dispatchEvent( new Event("noLabelChange") );
+			}
+		}
 	}
 }

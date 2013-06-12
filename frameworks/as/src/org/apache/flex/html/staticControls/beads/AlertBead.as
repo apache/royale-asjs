@@ -59,28 +59,28 @@ package org.apache.flex.html.staticControls.beads
 			if( flags & Alert.OK ) {
 				_okButton = new TextButton();
 				_okButton.initModel();
-				_okButton.text = "OK";
+				_okButton.text = IAlertModel(UIBase(_strand).model).okLabel;
 				_okButton.initSkin();
 				_okButton.addEventListener("click",handleOK);
 			}
 			if( flags & Alert.CANCEL ) {
 				_cancelButton = new TextButton();
 				_cancelButton.initModel();
-				_cancelButton.text = "Cancel";
+				_cancelButton.text = IAlertModel(UIBase(_strand).model).cancelLabel;
 				_cancelButton.initSkin();
 				_cancelButton.addEventListener("click",handleCancel);
 			}
 			if( flags & Alert.YES ) {
 				_yesButton = new TextButton();
 				_yesButton.initModel();
-				_yesButton.text = "YES";
+				_yesButton.text = IAlertModel(UIBase(_strand).model).yesLabel;
 				_yesButton.initSkin();
 				_yesButton.addEventListener("click",handleYes);
 			}
 			if( flags & Alert.NO ) {
 				_noButton = new TextButton();
 				_noButton.initModel();
-				_noButton.text = "NO";
+				_noButton.text = IAlertModel(UIBase(_strand).model).noLabel;
 				_noButton.initSkin();
 				_noButton.addEventListener("click",handleNo);
 			}
