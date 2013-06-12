@@ -25,12 +25,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IAlertBead;
-	import org.apache.flex.html.staticControls.beads.SingleLineBorderBead;
-	import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
 	
 	public class Alert extends UIBase implements IInitSkin, IPopUp
 	{
@@ -100,15 +95,6 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			var bdr:Border = new Border();
-			bdr.addToParent(this);
-			bdr.model = new SingleLineBorderModel();
-			bdr.addBead(new SingleLineBorderBead());
-			
-			var bb:SolidBackgroundBead = new SolidBackgroundBead();
-			bb.backgroundColor = 0xff0000;
-			addBead(bb);
-			
 			if( getBeadByType(IAlertBead) == null ) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
 			}

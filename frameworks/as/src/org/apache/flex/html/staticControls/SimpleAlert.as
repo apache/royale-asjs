@@ -17,9 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
-{
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;

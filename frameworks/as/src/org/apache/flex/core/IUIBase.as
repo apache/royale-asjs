@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IUIBase
+	public interface IUIBase extends IStrand
 	{
 		function get model():IBeadModel;
 		
@@ -29,10 +29,6 @@ package org.apache.flex.core
 		function set className(value:String):void;
 		
 		function addToParent(p:Object):void;
-		
-		function getBeadByType(classOrInterface:Class):IBead;
-		function addBead(bead:IBead):void;
-		function removeBead(value:IBead):IBead;
 		
 		function get measurementBead():IMeasurementBead;
 	}

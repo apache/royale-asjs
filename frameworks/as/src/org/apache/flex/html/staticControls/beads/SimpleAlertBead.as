@@ -35,6 +35,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
 	
 	public class SimpleAlertBead implements ISimpleAlertBead
 	{
@@ -44,11 +46,16 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var messageLabel:Label;
 		private var okButton:TextButton;
+		private var border:Border;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			var bb:SolidBackgroundBead = new SolidBackgroundBead();
+			bb.backgroundColor = 0xffffff;
+			_strand.addBead(bb);
 			
 			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
 			model.addEventListener("messageChange",handleMessageChange);
@@ -63,10 +70,15 @@ package org.apache.flex.html.staticControls.beads
 			
 			okButton = new TextButton();
 			okButton.initModel();
-			okButton.text = "OK";
+			okButton.text = model.okLabel;
 			okButton.initSkin();
 			okButton.addToParent(_strand);
 			okButton.addEventListener("click",handleOK);
+			
+			border = new Border();
+			border.addToParent(_strand);
+			border.model = new SingleLineBorderModel();
+			border.addBead(new SingleLineBorderBead());
 			
 			handleMessageChange(null);
 		}
@@ -88,6 +100,9 @@ package org.apache.flex.html.staticControls.beads
 			
 			UIBase(_strand).width = maxWidth;
 			UIBase(_strand).height = messageLabel.height + okButton.height + 20;
+			
+			border.width = UIBase(_strand).width;
+			border.height = UIBase(_strand).height;
 		}
 		
 		private function handleOK(event:Event):void
