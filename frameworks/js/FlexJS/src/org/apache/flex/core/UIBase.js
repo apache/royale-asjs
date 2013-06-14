@@ -56,7 +56,7 @@ org.apache.flex.core.UIBase.prototype.internalAddChild = function(child) {
  */
 org.apache.flex.core.UIBase.prototype.internalAddChildAt =
     function(child, index) {
-  this.element.insertBefore(child, internalGetChildAt(index));
+  this.element.insertBefore(child, this.internalGetChildAt(index));
 };
 
 /**
@@ -75,7 +75,7 @@ org.apache.flex.core.UIBase.prototype.internalRemoveChild =
  */
 org.apache.flex.core.UIBase.prototype.internalGetChildAt =
     function(index) {
-  return this.element.childNodex[index];
+  return this.element.childNodes[index];
 };
 
 /**
@@ -98,7 +98,11 @@ org.apache.flex.core.UIBase.prototype.addToParentAt = function(p, index) {
   if (this.element == null)
     this.element = document.createElement('div');
 
-  p.internalAddChildAt(this.element);
+  var children = p.internalChildren();
+  if (index >= children.length)
+    p.internalAddChild(this.element);
+  else
+    p.internalAddChildAt(this.element, index);
 };
 
 /**
@@ -107,7 +111,14 @@ org.apache.flex.core.UIBase.prototype.addToParentAt = function(p, index) {
  * @return {number} The index in parent.
  */
 org.apache.flex.core.UIBase.prototype.getIndexInParent = function(p) {
-  return p.internalGetChildIndex(this.element);
+  var children = p.internalChildren();
+  var n = children.length;
+  for (i = 0; i < n; i++)
+  {
+     if (children[i] == this.element)
+        return i;
+  }
+  return -1;
 };
 
 /**

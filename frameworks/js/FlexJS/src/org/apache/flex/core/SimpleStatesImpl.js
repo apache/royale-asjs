@@ -49,12 +49,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
 /**
  * @protected
  * @this {org.apache.flex.core.SimpleStatesImpl}
+ * @param {Object} event The event.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
-    function() {
+    function(event) {
   var s, p;
   var doc = event.target;
-  var arr = doc.states;
+  var arr = doc.get_states();
   for (p in arr)
   {
     s = arr[p];
@@ -83,7 +84,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
 org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
   var p, o;
   var arr = s.overrides;
-  for (var p in arr)
+  for (p in arr)
   {
     o = arr[p];
     if (o.type == 'AddItems')
@@ -93,7 +94,8 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
         var item = o.items[q];
         var parent = o.document[o.destination];
         item.removeFromParent(parent);
-        parent.dispatchEvent(new Event('childrenAdded'));
+        parent.dispatchEvent(
+            new org.apache.flex.events.Event('childrenAdded'));
       }
     }
     else if (o.type == 'SetProperty')
@@ -109,17 +111,20 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
  * @param {Object} s The State to apply.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.apply = function(s) {
+  var o, p;
   var arr = s.overrides;
-  for (var p in arr)
+  for (p in arr)
   {
     o = arr[p];
     if (o.type == 'AddItems')
     {
       if (o.items == null)
       {
-        var di = org.apache.flex.utils.MXMLDataInterpreter;
-        o.items = di.generateMXMLArray(o.document,
-                                        null, o.itemsDescriptor, true);
+        //TODO (aharui).  This array should be deferred
+        //var di = org.apache.flex.utils.MXMLDataInterpreter;
+        //o.items = di.generateMXMLArray(o.document,
+        //                                null, o.itemsDescriptor, true);
+        o.items = o.itemsDescriptor;
       }
       for (var q in o.items)
       {
@@ -137,7 +142,8 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply = function(s) {
         {
             item.addToParent(parent);
         }
-        parent.dispatchEvent(new Event('childrenAdded'));
+        parent.dispatchEvent(
+            new org.apache.flex.events.Event('childrenAdded'));
       }
     }
     else if (o.type == 'SetProperty')

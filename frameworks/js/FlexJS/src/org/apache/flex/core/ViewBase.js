@@ -16,8 +16,8 @@ goog.provide('org.apache.flex.core.ViewBase');
 
 // TODO: (aharui) bring this in via CSS
 goog.require('org.apache.flex.core.SimpleStatesImpl');
-
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
@@ -141,7 +141,7 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
  * @return {string} The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
-    return this.states_;
+    return this.currentState_;
 };
 
 /**
@@ -151,8 +151,8 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
     var event = new org.apache.flex.events.ValueChangeEvent(
-            'currentStateChanged', false, false, this._currentState, value);
-    this._currentState = value;
+            'currentStateChanged', this.currentState_, value);
+    this.currentState_ = value;
     this.dispatchEvent(event);
 };
 
