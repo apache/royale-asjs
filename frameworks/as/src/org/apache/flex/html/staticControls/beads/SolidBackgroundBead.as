@@ -27,7 +27,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class SolidBackgroundBead implements IBead, IBackgroundBead
+	public class SolidBackgroundBead implements IBead, IBackgroundBead, IGraphicsDrawing
 	{
 		public function SolidBackgroundBead()
 		{
@@ -49,6 +49,11 @@ package org.apache.flex.html.staticControls.beads
 			if( bgColor != null ) {
 				backgroundColor = uint(bgColor);
 			}
+			
+			var bgAlpha:Object = ValuesManager.valuesImpl.getValue(value, "opacity");
+			if( bgAlpha != null ) {
+				opacity = Number(bgAlpha);
+			}
 		}
 		
 		private var _backgroundColor:uint;
@@ -64,14 +69,31 @@ package org.apache.flex.html.staticControls.beads
 				changeHandler(null);
 		}
 		
+		private var _opacity:Number = 1.0;
+		
+		public function get opacity():Number
+		{
+			return _opacity;
+		}
+		
+		public function set opacity(value:Number):void
+		{
+			_opacity = value;
+			if( _strand )
+				changeHandler(null);
+		}
+		
 		private function changeHandler(event:Event):void
 		{
             var host:UIBase = UIBase(_strand);
             var g:Graphics = host.graphics;
             var w:Number = host.width;
             var h:Number = host.height;
-            g.clear();
-            g.beginFill(backgroundColor);
+			
+			var gd:IGraphicsDrawing = strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
+			if( this == gd ) g.clear();
+
+            g.beginFill(backgroundColor,opacity);
             g.drawRect(0, 0, w, h);
             g.endFill();
 		}

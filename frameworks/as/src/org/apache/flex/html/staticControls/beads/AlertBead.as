@@ -22,6 +22,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -29,8 +30,6 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.ControlBar;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.TitleBar;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
 	
 	public class AlertBead implements IAlertBead
 	{
@@ -45,16 +44,11 @@ package org.apache.flex.html.staticControls.beads
 		private var _cancelButton:TextButton;
 		private var _yesButton:TextButton;
 		private var _noButton:TextButton;
-		private var _border:Border;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
-			var bb:SolidBackgroundBead = new SolidBackgroundBead();
-			bb.backgroundColor = 0xffffff;
-			_strand.addBead(bb);
 			
 			var flags:uint = IAlertModel(UIBase(_strand).model).flags;
 			if( flags & Alert.OK ) {
@@ -108,11 +102,6 @@ package org.apache.flex.html.staticControls.beads
 			_controlBar.addToParent(_strand);
 			_label.addToParent(_strand);
 			
-			_border = new Border();
-			_border.addToParent(_strand);
-			_border.model = new SingleLineBorderModel();
-			_border.addBead(new SingleLineBorderBead());
-			
 			sizeHandler(null);
 		}
 		
@@ -123,24 +112,31 @@ package org.apache.flex.html.staticControls.beads
 			var ctrlMeasure:IMeasurementBead  = _controlBar.measurementBead;
 			var maxWidth:Number = Math.max(titleMeasure.measuredWidth, ctrlMeasure.measuredWidth, labelMeasure.measuredWidth);
 			
-			_titleBar.x = 0;
-			_titleBar.y = 0;
-			_titleBar.width = maxWidth;
+			var borderThickness:Object = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");
+			var borderOffset:Number;
+			if( borderThickness == null ) {
+				borderOffset = 0;
+			}
+			else {
+				borderOffset = Number(borderThickness);
+				if( isNaN(borderOffset) ) borderOffset = 0;
+			}
+			
+			_titleBar.x = borderOffset;
+			_titleBar.y = borderOffset;
+			_titleBar.width = maxWidth - 2*borderOffset;
 			
 			// content placement here
-			_label.x = 0;
-			_label.y = _titleBar.height + 2;
-			_label.width = maxWidth;
+			_label.x = borderOffset;
+			_label.y = borderOffset + _titleBar.height + 2;
+			_label.width = maxWidth - 2*borderOffset;
 			
-			_controlBar.x = 0;
-			_controlBar.y = _label.y + _label.height + 2;
-			_controlBar.width = maxWidth;
+			_controlBar.x = borderOffset;
+			_controlBar.y = borderOffset + _label.y + _label.height + 2;
+			_controlBar.width = maxWidth - 2*borderOffset;
 			
 			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = _controlBar.y + _controlBar.height;
-			
-			_border.width = UIBase(_strand).width;
-			_border.height = UIBase(_strand).height;
+			UIBase(_strand).height = _controlBar.y + _controlBar.height + borderOffset;
 		}
 		
 		private function handleOK(event:Event):void

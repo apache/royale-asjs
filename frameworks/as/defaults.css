@@ -142,18 +142,28 @@ Panel
 
 SimpleAlert
 {
-    IAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
-    IAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertBead");
+    iAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    iAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertBead");
+    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
 }
 
 Alert
 {
-    IAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
-    IAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.AlertBead");
-	background-color: #FFFFFF;
-	border-style: solid;
-	border-color: #000000;
-	border-thickness: 2;
+    iAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    iAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.AlertBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
 }
 
 /* HTML5 */

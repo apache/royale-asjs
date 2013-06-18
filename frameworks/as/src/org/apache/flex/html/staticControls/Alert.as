@@ -26,6 +26,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.IAlertBead;
+	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
+	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	
 	public class Alert extends UIBase implements IInitSkin, IPopUp
 	{
@@ -37,6 +39,8 @@ package org.apache.flex.html.staticControls
 		public function Alert()
 		{
 			super();
+			
+			className = "Alert";
 		}
 		
 		// note: only passing parent to this function as I don't see a way to identify
@@ -95,6 +99,12 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
+			if( getBeadByType(IBackgroundBead) == null ) {
+				addBead( new (ValuesManager.valuesImpl.getValue(this, "iBackgroundBead")) as IBead);
+			}
+			if( getBeadByType(IBorderBead) == null ) {
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBorderBead")) as IBead);
+			}
 			if( getBeadByType(IAlertBead) == null ) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
 			}

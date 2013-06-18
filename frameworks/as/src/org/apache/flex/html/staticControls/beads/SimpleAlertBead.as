@@ -35,8 +35,6 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.TextButton;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
 	
 	public class SimpleAlertBead implements ISimpleAlertBead
 	{
@@ -46,16 +44,11 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var messageLabel:Label;
 		private var okButton:TextButton;
-		private var border:Border;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
-			var bb:SolidBackgroundBead = new SolidBackgroundBead();
-			bb.backgroundColor = 0xffffff;
-			_strand.addBead(bb);
 			
 			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
 			model.addEventListener("messageChange",handleMessageChange);
@@ -75,11 +68,6 @@ package org.apache.flex.html.staticControls.beads
 			okButton.addToParent(_strand);
 			okButton.addEventListener("click",handleOK);
 			
-			border = new Border();
-			border.addToParent(_strand);
-			border.model = new SingleLineBorderModel();
-			border.addBead(new SingleLineBorderBead());
-			
 			handleMessageChange(null);
 		}
 		
@@ -91,18 +79,25 @@ package org.apache.flex.html.staticControls.beads
 			}
 			var maxWidth:Number = Math.max(UIBase(_strand).width,ruler.measuredWidth);
 			
-			messageLabel.x = 0;
-			messageLabel.y = 0;
-			messageLabel.width = maxWidth;
+			var borderThickness:Object = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");
+			var borderOffset:Number;
+			if( borderThickness == null ) {
+				borderOffset = 0;
+			}
+			else {
+				borderOffset = Number(borderThickness);
+				if( isNaN(borderOffset) ) borderOffset = 0;
+			}
+			
+			messageLabel.x = borderOffset;
+			messageLabel.y = borderOffset;
+			messageLabel.width = maxWidth-2*borderOffset;
 			
 			okButton.x = (UIBase(_strand).width - okButton.width)/2;
 			okButton.y = messageLabel.height + 20;
 			
 			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = messageLabel.height + okButton.height + 20;
-			
-			border.width = UIBase(_strand).width;
-			border.height = UIBase(_strand).height;
+			UIBase(_strand).height = messageLabel.height + okButton.height + 20 + 2*borderOffset;
 		}
 		
 		private function handleOK(event:Event):void

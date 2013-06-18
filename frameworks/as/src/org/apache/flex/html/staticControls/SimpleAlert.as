@@ -25,6 +25,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
+	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	import org.apache.flex.html.staticControls.beads.ISimpleAlertBead;
 	
 	[Event(name="close", type="org.apache.flex.events.Event")]
@@ -34,6 +36,8 @@ package org.apache.flex.html.staticControls
 		public function SimpleAlert()
 		{
 			super();
+			
+			className = "SimpleAlert";
 		}
 		
 		override public function initModel():void
@@ -62,6 +66,12 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
+			if( getBeadByType(IBackgroundBead) == null ) {
+				addBead( new (ValuesManager.valuesImpl.getValue(this, "iBackgroundBead")) as IBead);
+			}
+			if( getBeadByType(IBorderBead) == null ) {
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBorderBead")) as IBead);
+			}
 			if( getBeadByType(ISimpleAlertBead) == null ) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
 			}
