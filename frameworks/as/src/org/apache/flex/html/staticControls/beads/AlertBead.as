@@ -22,7 +22,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -30,6 +30,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.ControlBar;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.TitleBar;
+	import org.apache.flex.utils.BeadMetrics;
 	
 	public class AlertBead implements IAlertBead
 	{
@@ -112,31 +113,23 @@ package org.apache.flex.html.staticControls.beads
 			var ctrlMeasure:IMeasurementBead  = _controlBar.measurementBead;
 			var maxWidth:Number = Math.max(titleMeasure.measuredWidth, ctrlMeasure.measuredWidth, labelMeasure.measuredWidth);
 			
-			var borderThickness:Object = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");
-			var borderOffset:Number;
-			if( borderThickness == null ) {
-				borderOffset = 0;
-			}
-			else {
-				borderOffset = Number(borderThickness);
-				if( isNaN(borderOffset) ) borderOffset = 0;
-			}
-			
-			_titleBar.x = borderOffset;
-			_titleBar.y = borderOffset;
-			_titleBar.width = maxWidth - 2*borderOffset;
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+
+			_titleBar.x = metrics.x;
+			_titleBar.y = metrics.y;
+			_titleBar.width = maxWidth - 2*metrics.x;
 			
 			// content placement here
-			_label.x = borderOffset;
-			_label.y = borderOffset + _titleBar.height + 2;
-			_label.width = maxWidth - 2*borderOffset;
+			_label.x = metrics.x;
+			_label.y = metrics.y + _titleBar.height + 2;
+			_label.width = maxWidth - 2*metrics.x;
 			
-			_controlBar.x = borderOffset;
-			_controlBar.y = borderOffset + _label.y + _label.height + 2;
-			_controlBar.width = maxWidth - 2*borderOffset;
+			_controlBar.x = metrics.x;
+			_controlBar.y = metrics.x + _label.y + _label.height + 2;
+			_controlBar.width = maxWidth - 2*metrics.x;
 			
 			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = _controlBar.y + _controlBar.height + borderOffset;
+			UIBase(_strand).height = _controlBar.y + _controlBar.height + metrics.y;
 		}
 		
 		private function handleOK(event:Event):void

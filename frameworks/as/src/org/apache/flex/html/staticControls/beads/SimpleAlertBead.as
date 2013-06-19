@@ -29,12 +29,14 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.utils.BeadMetrics;
 	
 	public class SimpleAlertBead implements ISimpleAlertBead
 	{
@@ -79,25 +81,17 @@ package org.apache.flex.html.staticControls.beads
 			}
 			var maxWidth:Number = Math.max(UIBase(_strand).width,ruler.measuredWidth);
 			
-			var borderThickness:Object = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");
-			var borderOffset:Number;
-			if( borderThickness == null ) {
-				borderOffset = 0;
-			}
-			else {
-				borderOffset = Number(borderThickness);
-				if( isNaN(borderOffset) ) borderOffset = 0;
-			}
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
-			messageLabel.x = borderOffset;
-			messageLabel.y = borderOffset;
-			messageLabel.width = maxWidth-2*borderOffset;
+			messageLabel.x = metrics.x;
+			messageLabel.y = metrics.y;
+			messageLabel.width = maxWidth-2*metrics.x;
 			
 			okButton.x = (UIBase(_strand).width - okButton.width)/2;
 			okButton.y = messageLabel.height + 20;
 			
 			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = messageLabel.height + okButton.height + 20 + 2*borderOffset;
+			UIBase(_strand).height = messageLabel.height + okButton.height + 20 + 2*metrics.x;
 		}
 		
 		private function handleOK(event:Event):void
