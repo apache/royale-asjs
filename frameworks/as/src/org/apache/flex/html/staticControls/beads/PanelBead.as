@@ -19,12 +19,13 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -32,6 +33,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.ControlBar;
 	import org.apache.flex.html.staticControls.Panel;
 	import org.apache.flex.html.staticControls.TitleBar;
+	import org.apache.flex.utils.BeadMetrics;
 	
 	public class PanelBead implements IBead, IContainerBead
 	{
@@ -73,29 +75,6 @@ package org.apache.flex.html.staticControls.beads
 				}
 				
 				Container(_strand).addChild(controlBar);
-			}
-
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				if (value.getBeadByType(IBorderBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
-			}
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
 			}
 			
 			var paddingLeft:Object;
@@ -144,34 +123,30 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var contentArea:DisplayObjectContainer;
 		private var controlBarArea:ControlBar;
-		private var controlBarBackground:Shape;
 		
 		private function changeHandler(event:Event):void
 		{
-			layoutTitleArea();
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
-			contentArea.x = 0;
-			contentArea.y = titleBar.height;
-			contentArea.width = Container(_strand).width;
+			titleBar.x = metrics.left;
+			titleBar.y = metrics.top;
+			titleBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			
-			if( controlBar ) layoutControlBarArea();
+			contentArea.x = metrics.left;
+			contentArea.y = titleBar.y + titleBar.height;
+			contentArea.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event('widthChanged'));
-			IEventDispatcher(_strand).dispatchEvent(new Event('heightChanged'));
-		}
-		
-		protected function layoutTitleArea() : void
-		{
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = Container(_strand).width;
-		}
-		
-		protected function layoutControlBarArea() : void
-		{
-			controlBar.x = 0;
-			controlBar.y = contentArea.y + contentArea.height;
-			controlBar.width = Container(_strand).width;
+			if( controlBar ) {
+				controlBar.x = metrics.left;
+				controlBar.y = contentArea.y + contentArea.height;
+				controlBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
+			} 
+			
+			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + contentArea.height +
+				(controlBar ? controlBar.height : 0);
+			
+			//IEventDispatcher(_strand).dispatchEvent(new Event('widthChanged'));
+			//IEventDispatcher(_strand).dispatchEvent(new Event('heightChanged'));
 		}
 	}
 }

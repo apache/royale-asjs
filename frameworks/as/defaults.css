@@ -138,6 +138,13 @@ Panel
 {
     IPanelModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");
     IPanelBead: ClassReference("org.apache.flex.html.staticControls.beads.PanelBead");
+    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
 }
 
 SimpleAlert

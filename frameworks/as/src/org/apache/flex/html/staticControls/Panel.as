@@ -22,6 +22,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IPanelModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
+	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	import org.apache.flex.html.staticControls.beads.IPanelBead;
 	import org.apache.flex.html.staticControls.beads.PanelBead;
 
@@ -110,6 +112,7 @@ package org.apache.flex.html.staticControls
 			if( getBeadByType(IPanelBead) == null) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this,"iPanelBead")) as IBead);
 			}
+			
 			titleBar.title = this.title;
 			titleBar.showCloseButton = this.showCloseButton;
 		}

@@ -83,15 +83,15 @@ package org.apache.flex.html.staticControls.beads
 			
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
-			messageLabel.x = metrics.x;
-			messageLabel.y = metrics.y;
-			messageLabel.width = maxWidth-2*metrics.x;
+			messageLabel.x = metrics.left;
+			messageLabel.y = metrics.top;
+			messageLabel.width = maxWidth;
 			
-			okButton.x = (UIBase(_strand).width - okButton.width)/2;
-			okButton.y = messageLabel.height + 20;
+			okButton.x = (maxWidth - okButton.width)/2;
+			okButton.y = messageLabel.y + messageLabel.height + 20;
 			
-			UIBase(_strand).width = maxWidth;
-			UIBase(_strand).height = messageLabel.height + okButton.height + 20 + 2*metrics.x;
+			UIBase(_strand).width = maxWidth + metrics.left + metrics.right;
+			UIBase(_strand).height = okButton.y + okButton.height + metrics.bottom;
 		}
 		
 		private function handleOK(event:Event):void

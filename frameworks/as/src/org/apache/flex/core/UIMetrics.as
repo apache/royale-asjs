@@ -24,12 +24,12 @@ package org.apache.flex.core
 		{
 		}
 		
-		public var x:Number;
+		public var top:Number;
 		
-		public var y:Number;
+		public var left:Number;
 		
-		public var width:Number;
+		public var bottom:Number;
 		
-		public var height:Number;
+		public var right:Number;
 	}
 }

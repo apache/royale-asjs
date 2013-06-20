@@ -19,7 +19,6 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 
@@ -38,11 +37,41 @@ public class BeadMetrics
 			if( isNaN(borderOffset) ) borderOffset = 0;
 		}
 		
+		var paddingLeft:Object;
+		var paddingTop:Object;
+		var padding:Object = ValuesManager.valuesImpl.getValue(strand, "padding");
+		if (padding is Array)
+		{
+			if (padding.length == 1)
+				paddingLeft = paddingTop = padding[0];
+			else if (padding.length <= 3)
+			{
+				paddingLeft = padding[1];
+				paddingTop = padding[0];
+			}
+			else if (padding.length == 4)
+			{
+				paddingLeft = padding[3];
+				paddingTop = padding[0];					
+			}
+		}
+		else if (padding == null)
+		{
+			paddingLeft = ValuesManager.valuesImpl.getValue(strand, "padding-left");
+			paddingTop = ValuesManager.valuesImpl.getValue(strand, "padding-top");
+		}
+		else
+		{
+			paddingLeft = paddingTop = padding;
+		}
+		var pl:Number = Number(paddingLeft);
+		var pt:Number = Number(paddingTop);
+		
 		var result:UIMetrics = new UIMetrics();
-		result.x = borderOffset;
-		result.y = borderOffset;
-		result.width = UIBase(strand).width - 2*borderOffset;
-		result.height = UIBase(strand).height - 2*borderOffset;
+		result.top = borderOffset + pt;
+		result.left = borderOffset + pl;
+		result.bottom = borderOffset + pt;
+		result.right = borderOffset + pl;
 		
 		return result;
 	}

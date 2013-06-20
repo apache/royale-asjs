@@ -37,6 +37,15 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				if (value.getBeadByType(IBackgroundBead) == null)
+					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+			}
+			
 			var borderStyle:String;
 			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
 			if (borderStyles is Array)
@@ -51,13 +60,6 @@ package org.apache.flex.html.staticControls.beads
 			{
 				if (value.getBeadByType(IBorderBead) == null)
 					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
-			}
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
 			}
 			
 			var paddingLeft:Object;
