@@ -19,10 +19,12 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IAlertModel;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -50,6 +52,30 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				if (value.getBeadByType(IBackgroundBead) == null)
+					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+			}
+			
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			if (borderStyles is Array)
+			{
+				borderStyle = borderStyles[1];
+			}
+			if (borderStyle == null)
+			{
+				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+			}
+			if (borderStyle != null && borderStyle != "none")
+			{
+				if (value.getBeadByType(IBorderBead) == null)
+					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+			}
 			
 			var flags:uint = IAlertModel(UIBase(_strand).model).flags;
 			if( flags & Alert.OK ) {

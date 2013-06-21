@@ -144,9 +144,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + contentArea.height +
 				(controlBar ? controlBar.height : 0);
-			
-			//IEventDispatcher(_strand).dispatchEvent(new Event('widthChanged'));
-			//IEventDispatcher(_strand).dispatchEvent(new Event('heightChanged'));
 		}
 	}
 }

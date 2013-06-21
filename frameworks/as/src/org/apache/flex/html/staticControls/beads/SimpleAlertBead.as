@@ -52,6 +52,30 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				if (value.getBeadByType(IBackgroundBead) == null)
+					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+			}
+			
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			if (borderStyles is Array)
+			{
+				borderStyle = borderStyles[1];
+			}
+			if (borderStyle == null)
+			{
+				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+			}
+			if (borderStyle != null && borderStyle != "none")
+			{
+				if (value.getBeadByType(IBorderBead) == null)
+					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+			}
+			
 			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
 			model.addEventListener("messageChange",handleMessageChange);
 			model.addEventListener("htmlMessageChange",handleMessageChange);

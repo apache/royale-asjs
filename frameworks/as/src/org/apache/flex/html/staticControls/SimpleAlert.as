@@ -66,12 +66,6 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			if( getBeadByType(IBackgroundBead) == null ) {
-				addBead( new (ValuesManager.valuesImpl.getValue(this, "iBackgroundBead")) as IBead);
-			}
-			if( getBeadByType(IBorderBead) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBorderBead")) as IBead);
-			}
 			if( getBeadByType(ISimpleAlertBead) == null ) {
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
 			}
