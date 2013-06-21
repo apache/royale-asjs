@@ -46,11 +46,13 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addToParent =
   
   this.titleLabel = new org.apache.flex.html.staticControls.Label();
   this.titleLabel.addToParent(this);
+  this.titleLabel.element.id = "title";
   this.titleLabel.positioner.style.display = "inline-block";
   this.titleLabel.set_className("TitleBarLabel");
   
   this.titleButton = new org.apache.flex.html.staticControls.TextButton();
   this.titleButton.addToParent(this);
+  this.titleButton.element.id = "closeButton";
   this.titleButton.text = 'Close';
   this.titleButton.positioner.style.display = this._showCloseButton ? "inline-block" : "none";
   this.titleButton.positioner.style.position = "absolute";

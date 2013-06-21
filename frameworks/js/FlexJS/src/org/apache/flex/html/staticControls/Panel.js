@@ -41,9 +41,11 @@ org.apache.flex.html.staticControls.Panel.prototype.addToParent =
   var cb;
 
   this.element = document.createElement('div');
+  this.element.className = "Panel";
   
   this.titleBar = new org.apache.flex.html.staticControls.TitleBar();
   this.titleBar.addToParent(this);
+  this.titleBar.element.id = "titleBar";
   this.titleBar.title = "Sample Panel";
 
   p.internalAddChild(this.element);
