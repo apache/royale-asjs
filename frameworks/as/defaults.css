@@ -173,6 +173,12 @@ Alert
     border-thickness: 1;
 }
 
+Spinner
+{
+    iSpinnerModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    iSpinnerBead:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerBead");
+}
+
 /* HTML5 */
 
 h5|TextButton

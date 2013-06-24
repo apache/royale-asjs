@@ -54,5 +54,6 @@
     <component id="PanelBead" class="org.apache.flex.html.staticControls.beads.PanelBead"/>
     <component id="SimpleAlert" class="org.apache.flex.html.staticControls.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.staticControls.Alert"/>
+    <component id="Spinner" class="org.apache.flex.html.staticControls.Spinner"/>
 
 </componentPackage>
