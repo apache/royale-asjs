@@ -30,7 +30,17 @@ package org.apache.flex.events
 		
 		public var oldValue:Object;
 		public var newValue:Object;
+        public var propertyName:String;
+        public var source:Object;
 		
 		public static const VALUE_CHANGE:String = "valueChange";
+        
+        public static function createUpdateEvent(source:Object, name:String, oldValue:Object, newValue:Object):ValueChangeEvent
+        {
+            var event:ValueChangeEvent = new ValueChangeEvent(VALUE_CHANGE, false, false, oldValue, newValue);
+            event.propertyName = name;
+            event.source = source;
+            return event;
+        }
 	}
 }

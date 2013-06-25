@@ -55,5 +55,6 @@
     <component id="SimpleAlert" class="org.apache.flex.html.staticControls.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.staticControls.Alert"/>
     <component id="Spinner" class="org.apache.flex.html.staticControls.Spinner"/>
+    <component id="ViewBaseDataBinding" class="org.apache.flex.core.ViewBaseDataBinding"/>
 
 </componentPackage>

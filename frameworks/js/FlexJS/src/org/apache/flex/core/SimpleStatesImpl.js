@@ -34,7 +34,7 @@ goog.inherits(org.apache.flex.core.SimpleStatesImpl,
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
+ * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} value The new host.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
