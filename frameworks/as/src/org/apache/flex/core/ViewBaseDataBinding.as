@@ -83,7 +83,7 @@ package org.apache.flex.core
                                     else
                                     {
                                         deferredBindings[binding.destination[0]] = sb;
-                                        IEventDispatcher(_strand).addEventListener("propertyChange", deferredBindingsHandler);
+                                        IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                                     }
                                 }
                                 else if (fieldWatcher.eventNames == null)
@@ -99,7 +99,7 @@ package org.apache.flex.core
                                     else
                                     {
                                         deferredBindings[binding.destination[0]] = cb;
-                                        IEventDispatcher(_strand).addEventListener("propertyChange", deferredBindingsHandler);
+                                        IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                                     }
                                 }
                             }
