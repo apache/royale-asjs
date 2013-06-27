@@ -31,6 +31,8 @@ package org.apache.flex.html.staticControls.beads
 		public function ContainerBead()
 		{
 		}
+		
+		protected var actualParent:DisplayObjectContainer;
 				
 		private var _strand:IStrand;
 		
@@ -94,11 +96,15 @@ package org.apache.flex.html.staticControls.beads
 			if ((!isNaN(pl) && pl > 0 ||
 				!isNaN(pt) && pt > 0))
 			{
-				var actualParent:Sprite = new Sprite();
+				actualParent = new Sprite();
 				DisplayObjectContainer(value).addChild(actualParent);
 				Container(value).setActualParent(actualParent);
 				actualParent.x = pl;
 				actualParent.y = pt;
+			}
+			else
+			{
+				actualParent = value as DisplayObjectContainer;
 			}
 		}
 		

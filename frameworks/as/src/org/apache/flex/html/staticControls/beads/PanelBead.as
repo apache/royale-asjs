@@ -35,7 +35,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class PanelBead implements IBead, IContainerBead
+	public class PanelBead extends ContainerBead implements IBead, IContainerBead
 	{
 		public function PanelBead()
 		{
@@ -58,8 +58,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
+			super.strand = value;
 			_strand = value;
 			
 			Container(_strand).addChild(titleBar);
@@ -77,51 +78,9 @@ package org.apache.flex.html.staticControls.beads
 				Container(_strand).addChild(controlBar);
 			}
 			
-			var paddingLeft:Object;
-			var paddingTop:Object;
-			var padding:Object = ValuesManager.valuesImpl.getValue(value, "padding");
-			if (padding is Array)
-			{
-				if (padding.length == 1)
-					paddingLeft = paddingTop = padding[0];
-				else if (padding.length <= 3)
-				{
-					paddingLeft = padding[1];
-					paddingTop = padding[0];
-				}
-				else if (padding.length == 4)
-				{
-					paddingLeft = padding[3];
-					paddingTop = padding[0];					
-				}
-			}
-			else if (padding == null)
-			{
-				paddingLeft = ValuesManager.valuesImpl.getValue(value, "padding-left");
-				paddingTop = ValuesManager.valuesImpl.getValue(value, "padding-top");
-			}
-			else
-			{
-				paddingLeft = paddingTop = padding;
-			}
-			var pl:Number = Number(paddingLeft);
-			var pt:Number = Number(paddingTop);
-			
-			if( isNaN(pl) ) pl = 0;
-			if( isNaN(pt) ) pt = 0;
-			
-			var actualParent:Sprite = new Sprite();
-			DisplayObjectContainer(value).addChild(actualParent);
-			Container(value).setActualParent(actualParent);
-			actualParent.x = pl;
-			actualParent.y = pt;
-			
-			contentArea = actualParent;
-			
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);
 		}
 		
-		private var contentArea:DisplayObjectContainer;
 		private var controlBarArea:ControlBar;
 		
 		private function changeHandler(event:Event):void
@@ -132,17 +91,17 @@ package org.apache.flex.html.staticControls.beads
 			titleBar.y = metrics.top;
 			titleBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			
-			contentArea.x = metrics.left;
-			contentArea.y = titleBar.y + titleBar.height;
-			contentArea.width = UIBase(_strand).width - (metrics.left + metrics.right);
+			actualParent.x = metrics.left;
+			actualParent.y = titleBar.y + titleBar.height;
+			actualParent.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			
 			if( controlBar ) {
 				controlBar.x = metrics.left;
-				controlBar.y = contentArea.y + contentArea.height;
+				controlBar.y = actualParent.y + actualParent.height;
 				controlBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			} 
 			
-			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + contentArea.height +
+			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + actualParent.height +
 				(controlBar ? controlBar.height : 0);
 		}
 	}

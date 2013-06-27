@@ -96,10 +96,12 @@ package org.apache.flex.html.staticControls
 			// add the label for the title and the button for the close
 			_titleLabel = createTitle();
 			_titleLabel.className = className;
+			_titleLabel.id = "title";
 			_titleLabel.addToParent(this);
 			
 			_closeButton = createCloseButton();
 			_closeButton.className = className;
+			_closeButton.id = "closeButton";
 			_closeButton.addToParent(this);
 			
 			childrenAdded();
