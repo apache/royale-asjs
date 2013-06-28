@@ -24,7 +24,6 @@ limitations under the License.
         <![CDATA[
 			import org.apache.flex.html.staticControls.Alert;
 			import org.apache.flex.html.staticControls.SimpleAlert;
-			import org.apache.flex.html.staticControls.Spinner;
 			
 			private function initControls():void
 			{
@@ -39,9 +38,9 @@ limitations under the License.
 
 			}
 			
-			private function spinnerChanged():void
+			private function spinnerChanged(control:Object):void
 			{
-				spinMe.text = "Spin: "+String(spinner.value);
+				spinMe.text = "Spin: "+String(control.value);
 			}
 			
 			private function showSimpleAlert() : void
@@ -93,7 +92,6 @@ limitations under the License.
 		}
 		
 		.numStepper {
-			padding: 5px;
 			border-style: solid;
 			border-color: #000000;
 			border-thickness: 1;
@@ -101,6 +99,7 @@ limitations under the License.
 			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
 			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
 		}
+		
 	</fx:Style>
 	
 	
@@ -112,14 +111,12 @@ limitations under the License.
 		<basic:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
 		<basic:Label text="Displays an Alert which can have multiple buttons." />
 		<basic:TextButton text="Push Me" click="onButtonClick()" />
-		<basic:Container className="numStepper">
-			<basic:beads>
-				<basic:NonVirtualHorizontalLayout />
-			</basic:beads>
-			<basic:Label id="spinMe" width="50" text="Spin: 0" />
-			<basic:Spinner id="spinner" valueChanged="spinnerChanged()" />
-		</basic:Container>
+		<basic:Label id="spinMe" />
+		<basic:NumericStepper id="stepper" 
+							  valueChanged="spinnerChanged(stepper)" 
+							  className="numStepper"
+							  stepSize="10"/>
 	</basic:Panel>
-		
+
 	
 </basic:ViewBase>

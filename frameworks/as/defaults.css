@@ -179,6 +179,20 @@ Spinner
     iSpinnerBead:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerBead");
 }
 
+NumericStepper
+{
+    iNumericStepperModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    iNumericStepperBead: ClassReference("org.apache.flex.html.staticControls.beads.NumericStepperBead");
+
+    padding: 0px;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
+    background-color: #FFFFFF;
+    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+    iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+}
+
 /* HTML5 */
 
 h5|TextButton

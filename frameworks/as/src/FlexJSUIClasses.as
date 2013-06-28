@@ -46,6 +46,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.SpinnerBead; SpinnerBead;
+	import org.apache.flex.html.staticControls.beads.NumericStepperBead; NumericStepperBead;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
 	import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
