@@ -43,7 +43,10 @@ package org.apache.flex.binding
 		public function set strand(value:IStrand):void
 		{
 			destination = value;
-			source = document[sourceID] as IEventDispatcher;
+            if (sourceID != null)
+    			source = document[sourceID] as IEventDispatcher;
+            else
+                source = document as IEventDispatcher;
 			source.addEventListener(eventName, changeHandler);
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}

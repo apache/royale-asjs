@@ -14,11 +14,13 @@
 
 goog.provide('org.apache.flex.core.ViewBaseDataBinding');
 
+goog.require('org.apache.flex.binding.PropertyWatcher');
 goog.require('org.apache.flex.binding.ConstantBinding');
+goog.require('org.apache.flex.binding.GenericBinding');
 goog.require('org.apache.flex.binding.SimpleBinding');
 goog.require('org.apache.flex.events.Event');
 
-    
+
 /**
  * @constructor
  */
@@ -31,13 +33,13 @@ org.apache.flex.core.ViewBaseDataBinding = function() {
   this.strand_ = null;
 
   /**
-   * @private
+   * @protected
    * @type {Object}
    */
   this.deferredBindings = {};
 
 };
-        
+
 /**
  * @expose
  * @this {org.apache.flex.core.ViewBaseDataBinding}
@@ -61,6 +63,8 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.set_strand =
 org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
     function(event) {
 
+    var fieldWatcher;
+    var sb;
     var bindingData = this.strand_['_bindings'];
     var n = bindingData[0];
     var bindings = [];
@@ -77,84 +81,175 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
     for (i = 0; i < n; i++)
     {
         binding = bindings[i];
-        if (binding.source != null)
+        // try to determine if it is an array
+        if (typeof(binding.source) == 'object' &&
+            typeof(binding.source.slice) == 'function')
         {
-            // try to determine if it is an array
-            if (typeof(binding.source) == 'object' &&
-                typeof(binding.source.slice) == 'function')
+            if (binding.source[0] == 'applicationModel')
             {
-                if (binding.source[0] == 'applicationModel')
+                if (binding.source.length == 2 &&
+                    binding.destination.length == 2)
                 {
-                    if (binding.source.length == 2 &&
-                        binding.destination.length == 2)
-                    {
-                        var destination;
-                        // can be simplebinding or constantbinding
-                        var modelWatcher = 
+                    var destination;
+                    // can be simplebinding or constantbinding
+                    var modelWatcher =
                             watchers.watcherMap['applicationModel'];
-                        var childMap = modelWatcher.children.watcherMap
-                        var fieldWatcher = childMap[binding.source[1]];
-                        if (typeof(fieldWatcher.eventNames) == 'string')
-                        {
-                          var sb;
-                          sb = new org.apache.flex.binding.SimpleBinding();
-                          sb.destinationPropertyName = 
+                    var childMap = modelWatcher.children.watcherMap;
+                    fieldWatcher = childMap[binding.source[1]];
+                    if (typeof(fieldWatcher.eventNames) == 'string')
+                    {
+                        sb = new org.apache.flex.binding.SimpleBinding();
+                        sb.destinationPropertyName =
                                     binding.destination[1];
-                          sb.eventName = fieldWatcher.eventNames;
-                          sb.sourceID = binding.source[0];
-                          sb.sourcePropertyName = binding.source[1];
-                          sb.setDocument(this.strand_);
-                          destination = this.strand_[
+                        sb.eventName = fieldWatcher.eventNames;
+                        sb.sourceID = binding.source[0];
+                        sb.sourcePropertyName = binding.source[1];
+                        sb.setDocument(this.strand_);
+                        destination = this.strand_[
                                             binding.destination[0]];
-                          if (destination == null && 
+                        if (destination == null &&
                                 typeof(this.strand_['get_' +
                                     binding.destination[0]] == 'function'))
                                 destination = this.strand_[
                                         'get_' + binding.destination[0]]();
-                          if (destination)
+                        if (destination)
                               destination.addBead(sb);
-                          else
-                          {
+                        else
+                        {
                             this.deferredBindings[binding.destination[0]] =
                                     sb;
                             this.strand_.addEventListener('valueChange',
                                     this.deferredBindingsHandler);
-                          }
                         }
-                        else if (fieldWatcher.eventNames == null)
-                        {
-                          var cb;
-                          cb = org.apache.flex.binding.ConstantBinding;
-                          cb = new cb();
-                          cb.destinationPropertyName = 
+                    }
+                    else if (fieldWatcher.eventNames == null)
+                    {
+                        var cb;
+                        cb = org.apache.flex.binding.ConstantBinding;
+                        cb = new cb();
+                        cb.destinationPropertyName =
                                 binding.destination[1];
-                          cb.sourceID = binding.source[0];
-                          cb.sourcePropertyName = binding.source[1];
-                          cb.setDocument(this.strand_);
-                          destination = this.strand_[
+                        cb.sourceID = binding.source[0];
+                        cb.sourcePropertyName = binding.source[1];
+                        cb.setDocument(this.strand_);
+                        destination = this.strand_[
                                             binding.destination[0]];
-                          if (destination == null && 
+                        if (destination == null &&
                                 typeof(this.strand_['get_' +
                                     binding.destination[0]] == 'function'))
                                 destination = this.strand_[
                                         'get_' + binding.destination[0]]();
-                          if (destination)
+                        if (destination)
                                 destination.addBead(cb);
-                          else
-                          {
+                        else
+                        {
                             this.deferredBindings[binding.destination[0]] =
                                 cb;
                             this.strand_.addEventListener('valueChange',
                                 this.deferredBindingsHandler);
-                          }
                         }
                     }
                 }
             }
         }
+        else if (typeof(binding.source) == 'string')
+        {
+            fieldWatcher = watchers.watcherMap[binding.source];
+            if (typeof(fieldWatcher.eventNames) == 'string')
+            {
+                sb = new org.apache.flex.binding.SimpleBinding();
+                sb.destinationPropertyName = binding.destination[1];
+                sb.eventName = fieldWatcher.eventNames;
+                sb.sourcePropertyName = binding.source;
+                sb.setDocument(this.strand_);
+                destination = this.strand_[binding.destination[0]];
+                if (destination == null &&
+                        typeof(this.strand_['get_' +
+                                binding.destination[0]] == 'function'))
+                    destination = this.strand_[
+                                'get_' + binding.destination[0]]();
+                if (destination)
+                    destination.addBead(sb);
+                else
+                {
+                    this.deferredBindings[binding.destination[0]] = sb;
+                    this.strand_.addEventListener('valueChange',
+                                this.deferredBindingsHandler);
+                }
+            }
+        }
+        else
+        {
+            this.makeGenericBinding(binding, i, watchers);
+        }
     }
 };
-        
+
+
+/**
+ * @protected
+ * @this {org.apache.flex.core.ViewBaseDataBinding}
+ * @param {Object} binding The binding object.
+ * @param {number} index The offset in the Binding database.
+ * @param {Object} watchers The database of Watchers.
+ */
+org.apache.flex.core.ViewBaseDataBinding.prototype.makeGenericBinding =
+        function(binding, index, watchers) {
+    var gb = new org.apache.flex.binding.GenericBinding();
+    gb.setDocument(this.strand_);
+    gb.destinationData = binding.destination;
+    gb.source = binding.source;
+    this.setupWatchers(gb, index, watchers.watchers, null);
+};
+
+/**
+ * @protected
+ * @this {org.apache.flex.core.ViewBaseDataBinding}
+ * @param {Object} gb The generic binding object.
+ * @param {number} index The offset in the Binding database.
+ * @param {Object} watchers The array of Watchers.
+ * @param {Object} parentWatcher The parent Watcher or null if top.
+ */
+org.apache.flex.core.ViewBaseDataBinding.prototype.setupWatchers =
+        function(gb, index, watchers, parentWatcher) {
+    var i, n;
+    n = watchers.length;
+    for (i = 0; i < n; i++)
+    {
+        var watcher = watchers[i];
+        if (watcher.bindings.indexOf(index) != -1)
+        {
+            var type = watcher.type;
+            switch (type)
+            {
+                case 'property':
+                {
+                    var pw = new org.apache.flex.binding.PropertyWatcher(
+                                this,
+                                watcher.propertyName,
+                                watcher.eventNames,
+                                watcher.getterFunction);
+                    watcher.watcher = pw;
+                    if (parentWatcher)
+                        pw.parentChanged(parentWatcher.value);
+                    else
+                        pw.parentChanged(this.strand_);
+                    if (parentWatcher)
+                        parentWatcher.addChild(pw);
+                    if (watcher.children == null)
+                        pw.addBinding(gb);
+                    break;
+                }
+            }
+            if (watcher.children)
+            {
+                this.setupWatchers(gb, index, watcher.children,
+                    watcher.watcher);
+            }
+        }
+    }
+};
+
 /**
  * @protected
  * @this {org.apache.flex.core.ViewBaseDataBinding}
@@ -210,10 +305,10 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.decodeWatcher =
         }
         watcherData.index = watcherIndex;
         watchers.push(watcherData);
-    }            
+    }
     return { watchers: watchers, watcherMap: watcherMap };
 };
-        
+
 /**
  * @protected
  * @this {org.apache.flex.core.ViewBaseDataBinding}
