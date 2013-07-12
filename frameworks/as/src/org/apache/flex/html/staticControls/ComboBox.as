@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IComboBoxBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.UIBase;
@@ -64,8 +63,8 @@ package org.apache.flex.html.staticControls
 				
 		public function initSkin():void
 		{
-			if (getBeadByType(IComboBoxBead) == null) {
-				var cb:IComboBoxBead = new (ValuesManager.valuesImpl.getValue(this, "iComboBoxBead")) as IComboBoxBead;
+			if (getBeadByType(IBeadView) == null) {
+				var cb:IBeadView = new (ValuesManager.valuesImpl.getValue(this, "iBeadView")) as IBeadView;
 				addBead(cb);	
 				var lc:ComboBoxController = new ComboBoxController();
 				addBead(lc);

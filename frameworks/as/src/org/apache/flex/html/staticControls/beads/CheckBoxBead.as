@@ -26,12 +26,12 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ICheckBoxBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
-	public class CheckBoxBead implements IBead, ICheckBoxBead
+	public class CheckBoxBead implements IBead, IBeadView
 	{
 		public function CheckBoxBead()
 		{

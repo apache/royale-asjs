@@ -25,7 +25,6 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IAlertBead;
 	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
 	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	
@@ -92,10 +91,6 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			if( getBeadByType(IAlertBead) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertBead")) as IBead);
-			}
-			
 			addEventListener("close",handleAlertClose);
 		}
 		

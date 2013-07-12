@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.IStrand;
 
-	public interface IDropDownListBead extends IBead
+	public interface IDropDownListBead extends IBeadView
 	{
         function get popUp():IStrand;
         

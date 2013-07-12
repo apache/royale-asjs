@@ -21,7 +21,6 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.INumericStepperBead;
 
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	public class NumericStepper extends Container
@@ -80,9 +79,6 @@ package org.apache.flex.html.staticControls
 		{
 			super.initSkin();
 			
-			if (getBeadByType(INumericStepperBead) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iNumericStepperBead")) as IBead);
-			}
 		}
 	}
 }

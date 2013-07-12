@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -29,7 +29,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TextInput;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 	
-	public class NumericStepperBead implements IBead, INumericStepperBead
+	public class NumericStepperBead implements IBeadView
 	{
 		public function NumericStepperBead()
 		{

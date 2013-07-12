@@ -24,7 +24,6 @@ package org.apache.flex.html.staticControls
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.ICheckBoxBead;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
@@ -63,9 +62,6 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			if (getBeadByType(ICheckBoxBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iCheckBoxBead")) as IBead);	
-			
 			_width = $width;
 			_height = $height;
 		}

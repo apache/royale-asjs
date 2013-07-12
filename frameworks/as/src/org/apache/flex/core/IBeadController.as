@@ -16,11 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.core
 {
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.events.IEventDispatcher;
 
-	public interface IContainerBead extends IBead
+	/** 
+	 *  Marker interface for Controllers
+	 */
+	public interface IBeadController extends IBead, IEventDispatcher
 	{
+		
 	}
 }

@@ -23,7 +23,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
@@ -33,7 +32,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.TextInput;
 	
-	public class ComboBoxBead implements IBead, IComboBoxBead
+	public class ComboBoxBead implements IBead, IComboBoxView
 	{
 		public function ComboBoxBead()
 		{

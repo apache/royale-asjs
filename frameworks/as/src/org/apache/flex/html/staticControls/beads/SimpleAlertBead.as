@@ -18,26 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class SimpleAlertBead implements ISimpleAlertBead
+	public class SimpleAlertBead implements IBeadView
 	{
 		public function SimpleAlertBead()
 		{

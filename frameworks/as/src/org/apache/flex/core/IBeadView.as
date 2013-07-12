@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface ITextAreaBead extends IBead
+	import org.apache.flex.events.IEventDispatcher;
+
+	/** 
+	 *  Marker interface for Views
+	 */
+	public interface IBeadView extends IBead
 	{
-		function get text():String;
-		function set text(value:String):void;
 		
-		function get html():String;
-		function set html(value:String):void;
 	}
 }

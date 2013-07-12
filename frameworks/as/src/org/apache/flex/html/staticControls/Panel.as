@@ -18,12 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IPanelModel;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IPanelBead;
-	import org.apache.flex.html.staticControls.beads.PanelBead;
 
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
@@ -74,11 +69,7 @@ package org.apache.flex.html.staticControls
 		override public function initSkin():void
 		{
 			super.initSkin();
-			
-			if( getBeadByType(IPanelBead) == null) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this,"iPanelBead")) as IBead);
-			}
-			
+						
 		}
 	}
 }

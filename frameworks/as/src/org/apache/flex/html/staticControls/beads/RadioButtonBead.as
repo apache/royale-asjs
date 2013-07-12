@@ -25,13 +25,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IRadioButtonBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
-	public class RadioButtonBead implements IBead, IRadioButtonBead
+	public class RadioButtonBead implements IBeadView
 	{
 		public function RadioButtonBead()
 		{

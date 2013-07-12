@@ -20,6 +20,7 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -34,7 +35,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class AlertBead implements IAlertBead
+	public class AlertBead implements IBeadView
 	{
 		public function AlertBead()
 		{

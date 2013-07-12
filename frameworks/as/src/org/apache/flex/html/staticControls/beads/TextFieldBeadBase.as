@@ -24,11 +24,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	
-	public class TextFieldBeadBase implements IBead, ITextBead
+	public class TextFieldBeadBase implements IBead
 	{
 		public function TextFieldBeadBase()
 		{

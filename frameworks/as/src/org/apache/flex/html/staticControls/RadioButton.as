@@ -27,7 +27,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.IRadioButtonBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.core.ValuesManager;
@@ -118,8 +118,8 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			if (getBeadByType(IRadioButtonBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iRadioButtonBead")) as IBead);	
+			if (getBeadByType(IBeadView) == null)
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadView")) as IBead);	
 			
 			_width = $width;
 			_height = $height;

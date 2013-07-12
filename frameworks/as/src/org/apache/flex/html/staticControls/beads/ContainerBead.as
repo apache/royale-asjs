@@ -22,11 +22,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Sprite;
 
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	
-	public class ContainerBead implements IBead, IContainerBead
+	public class ContainerBead implements IBeadView
 	{
 		public function ContainerBead()
 		{

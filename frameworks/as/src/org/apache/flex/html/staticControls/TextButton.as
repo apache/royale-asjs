@@ -24,7 +24,6 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.ITextButtonBead;
 	
 	public class TextButton extends Button implements IInitSkin
 	{
@@ -53,8 +52,6 @@ package org.apache.flex.html.staticControls
 
 		override public function initSkin():void
 		{
-			if (getBeadByType(ITextButtonBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextButtonBead")) as IBead);			
 		}
 	}
 }

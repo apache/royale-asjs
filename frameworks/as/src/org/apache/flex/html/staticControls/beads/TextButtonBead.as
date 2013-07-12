@@ -23,11 +23,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 
-	public class TextButtonBead implements ITextButtonBead
+	public class TextButtonBead implements IBeadView
 	{
 		public function TextButtonBead()
 		{

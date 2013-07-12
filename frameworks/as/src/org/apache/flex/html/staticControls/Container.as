@@ -27,7 +27,6 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IContainerBead;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -44,8 +43,6 @@ package org.apache.flex.html.staticControls
 
 		public function initSkin():void
 		{
-			if (getBeadByType(IContainerBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iContainerBead")) as IBead);	
 		}
 		
 		private var actualParent:DisplayObjectContainer;

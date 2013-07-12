@@ -20,8 +20,6 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextBead;
-	import org.apache.flex.core.UIBase;
 	
 	public class TextFieldLabelMeasurementBead implements IMeasurementBead
 	{
@@ -31,14 +29,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		public function get measuredWidth():Number
 		{
-			var bead:TextFieldBead = _strand.getBeadByType(ITextBead) as TextFieldBead;
+			var bead:TextFieldBead = _strand.getBeadByType(TextFieldBead) as TextFieldBead;
 			if( bead ) return bead.textField.textWidth;
 			else return 0;
 		}
 		
 		public function get measuredHeight():Number
 		{
-			var bead:TextFieldBead = _strand.getBeadByType(ITextBead) as TextFieldBead;
+			var bead:TextFieldBead = _strand.getBeadByType(TextFieldBead) as TextFieldBead;
 			if( bead ) return bead.textField.textHeight;
 			else return 0;
 		}

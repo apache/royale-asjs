@@ -27,14 +27,15 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.CSSTextField;
+	import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.SolidBorderUtil;
 
-	public class CSSTextButtonBead implements ITextButtonBead
+	public class CSSTextButtonBead implements IBeadView
 	{
 		public function CSSTextButtonBead()
 		{

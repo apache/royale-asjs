@@ -21,7 +21,7 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -35,7 +35,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class PanelBead extends ContainerBead implements IBead, IContainerBead
+	public class PanelBead extends ContainerBead implements IBeadView
 	{
 		public function PanelBead()
 		{
