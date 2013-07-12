@@ -24,7 +24,6 @@ import flash.display.DisplayObjectContainer;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IInitModel;
 import org.apache.flex.core.IInitSkin;
 import org.apache.flex.core.UIBase;
 import org.apache.flex.core.IContainer;
@@ -121,11 +120,9 @@ public class MXMLDataInterpreter
                 if (value is IBead && comp is IStrand)
                     IStrand(comp).addBead(value as IBead);
             }
-            if (comp is IInitModel)
-            IInitModel(comp).initModel();
             var beadOffset:int = i + (m - 1) * 3;
             if (beadOffset >= -1)
-            trace(beadOffset, data[beadOffset]);
+                trace(beadOffset, data[beadOffset]);
             if (m > 0 && data[beadOffset] == "beads")
             {
                 m--;

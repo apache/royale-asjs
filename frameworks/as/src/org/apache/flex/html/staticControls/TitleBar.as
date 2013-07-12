@@ -64,16 +64,6 @@ package org.apache.flex.html.staticControls
 			ITitleBarModel(model).showCloseButton = value;
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(ITitleBarModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTitleBarModel")) as IBead);
-			
-			model.addEventListener('titleChange',handlePropertyChange);
-			model.addEventListener('htmlTitleChange',handlePropertyChange);
-			model.addEventListener('showCloseButtonChange',handlePropertyChange);
-		}
-		
 		private var _titleLabel:Label;
 		public function get titleLabel():Label
 		{
@@ -105,7 +95,11 @@ package org.apache.flex.html.staticControls
 			_closeButton.addToParent(this);
 			
 			childrenAdded();
-			
+            
+            model.addEventListener('titleChange',handlePropertyChange);
+            model.addEventListener('htmlTitleChange',handlePropertyChange);
+            model.addEventListener('showCloseButtonChange',handlePropertyChange);
+
 			// dispatch this event to force any beads to update
 			dispatchEvent(new Event("widthChanged"));
 		}
@@ -132,7 +126,6 @@ package org.apache.flex.html.staticControls
 		protected function createTitle() : Label
 		{
 			var label:Label = new Label();
-			label.initModel();
 			label.initSkin();
 			label.text = title;
 			return label;
@@ -165,7 +158,6 @@ package org.apache.flex.html.staticControls
 			hitArea.graphics.endFill();
 			
 			var button:Button = new Button(upState, overState, downState, hitArea);
-			button.initModel();
 			button.initSkin();
 			button.visible = showCloseButton;
 			

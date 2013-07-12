@@ -61,13 +61,6 @@ package org.apache.flex.html.staticControls
 			IPanelModel(model).showCloseButton = value;
 		}
 		
-		public function get titleBar():TitleBar
-		{
-			var bead:PanelBead = getBeadByType(PanelBead) as PanelBead;
-			if( bead != null ) return bead.titleBar;
-			return null;
-		}
-		
 		private var _controlBar:Array;
 		public function get controlBar():Array
 		{
@@ -78,31 +71,6 @@ package org.apache.flex.html.staticControls
 			_controlBar = value;
 		}
 		
-		override public function initModel():void
-		{
-			super.initModel();
-			
-			if (getBeadByType(IPanelModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iPanelModel")) as IBead);
-			
-			model.addEventListener('titleChange',handlePropertyChange);
-			model.addEventListener('htmlTitleChange',handlePropertyChange);
-			model.addEventListener('showCloseButtonChange',handlePropertyChange);
-		}
-		
-		private function handlePropertyChange(event:Event):void
-		{
-			if( event.type == "titleChange" && titleBar ) {
-				titleBar.title = title;
-			}
-			else if( event.type == "htmlTitleChange" && titleBar ) {
-				titleBar.htmlTitle = title;
-			}
-			else if( event.type == "showCloseButtonChange" && titleBar ) {
-				titleBar.showCloseButton = showCloseButton;
-			}
-		}
-		
 		override public function initSkin():void
 		{
 			super.initSkin();
@@ -111,8 +79,6 @@ package org.apache.flex.html.staticControls
 				addBead(new (ValuesManager.valuesImpl.getValue(this,"iPanelBead")) as IBead);
 			}
 			
-			titleBar.title = this.title;
-			titleBar.showCloseButton = this.showCloseButton;
 		}
 	}
 }

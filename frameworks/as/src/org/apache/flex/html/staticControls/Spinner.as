@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.UIBase;
@@ -28,7 +27,7 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	
-	public class Spinner extends UIBase implements IInitModel, IInitSkin
+	public class Spinner extends UIBase implements IInitSkin
 	{
 		public function Spinner()
 		{
@@ -80,13 +79,6 @@ package org.apache.flex.html.staticControls
 		public function set stepSize(value:Number):void
 		{
 			ISpinnerModel(model).stepSize = value;
-		}
-		
-		override public function initModel():void
-		{
-			if( getBeadByType(ISpinnerModel) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iSpinnerModel")) as IBead);
-			}
 		}
 		
 		public function initSkin():void

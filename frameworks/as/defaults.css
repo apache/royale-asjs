@@ -57,13 +57,13 @@ Button:active
 global
 {
     ITextBead: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldBead");
-    ITextModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
 }
 
 CheckBox
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
     ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
 
@@ -75,19 +75,19 @@ Container
 ComboBox
 {
     IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
-    IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
 }
 
 DropDownList
 {
-    ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
 }
 
 DropDownListList
 {
-    ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
 
 Label
@@ -99,12 +99,12 @@ Label
 
 List
 {
-	ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
 
 RadioButton
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 
@@ -123,7 +123,7 @@ TextInput
 
 TitleBar
 {
-    ITitleBarModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
     ILayoutBead: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
     iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead");
 }
@@ -136,7 +136,7 @@ ControlBar
 
 Panel
 {
-    IPanelModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");
     IPanelBead: ClassReference("org.apache.flex.html.staticControls.beads.PanelBead");
     iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
@@ -149,7 +149,7 @@ Panel
 
 SimpleAlert
 {
-    iAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
     iAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertBead");
     iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
@@ -162,7 +162,7 @@ SimpleAlert
 
 Alert
 {
-    iAlertModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
     iAlertBead:  ClassReference("org.apache.flex.html.staticControls.beads.AlertBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
     iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
@@ -175,13 +175,13 @@ Alert
 
 Spinner
 {
-    iSpinnerModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
     iSpinnerBead:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerBead");
 }
 
 NumericStepper
 {
-    iNumericStepperModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
     iNumericStepperBead: ClassReference("org.apache.flex.html.staticControls.beads.NumericStepperBead");
 
     padding: 0px;
@@ -207,31 +207,31 @@ h5|TextInput
 
 h5|CheckBox
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
     ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
 
 h5|RadioButton
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 
 h5|List
 {
-	ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
 }
 
 h5|DropDownList
 {
-    ISelectionModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
 }
 
 h5|ComboBox
 {
     IComboBoxBead: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxBead");
-    IComboBoxModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
 }
 
@@ -245,13 +245,13 @@ jq|TextButton
 
 jq|CheckBox
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
     ICheckBoxBead:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxBead");			
 }
 
 jq|RadioButton
 {
-    IToggleButtonModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
     IRadioButtonBead:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonBead");			
 }
 

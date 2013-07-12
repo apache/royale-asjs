@@ -27,7 +27,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -209,8 +208,6 @@ package org.apache.flex.html.staticControls.beads
 					while (host.parent != root)
 						host = host.parent;
                     host.addChild(_popUp as DisplayObject);
-					if (_popUp is IInitModel)
-						IInitModel(_popUp).initModel();
 					if (_popUp is IInitSkin)
 						IInitSkin(_popUp).initSkin();
                 }

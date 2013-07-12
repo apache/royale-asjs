@@ -51,12 +51,6 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
-		}
-		
 		public function initSkin():void
 		{
 			if (getBeadByType(ITextAreaBead) == null) {

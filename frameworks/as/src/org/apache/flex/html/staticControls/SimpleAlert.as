@@ -40,12 +40,6 @@ package org.apache.flex.html.staticControls
 			className = "SimpleAlert";
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(IAlertModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertModel")) as IBead);
-		}
-		
 		private function get message():String
 		{
 			return IAlertModel(model).message;
@@ -81,7 +75,6 @@ package org.apache.flex.html.staticControls
 		static public function show(message:String, parent:Object):SimpleAlert
 		{
 			var alert:SimpleAlert = new SimpleAlert();
-			alert.initModel();
 			alert.message = message;
 			alert.initSkin();
 			alert.show(parent);

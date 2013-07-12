@@ -40,7 +40,6 @@ package org.apache.flex.html.staticControls.beads
 		public function PanelBead()
 		{
 			_titleBar = new TitleBar();
-			_titleBar.initModel();
 			_titleBar.initSkin();
 		}
 		
@@ -68,7 +67,6 @@ package org.apache.flex.html.staticControls.beads
 			var controlBarItems:Array = Panel(_strand).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
-				_controlBar.initModel();
 				_controlBar.initSkin();
 				
 				for each(var comp:IUIBase in controlBarItems) {
@@ -79,6 +77,7 @@ package org.apache.flex.html.staticControls.beads
 			}
 			
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);
+            
 		}
 		
 		private var controlBarArea:ControlBar;
@@ -104,5 +103,6 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + actualParent.height +
 				(controlBar ? controlBar.height : 0);
 		}
+        
 	}
 }

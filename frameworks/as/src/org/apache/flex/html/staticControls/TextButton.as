@@ -21,13 +21,12 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.ITextButtonBead;
 	
-	public class TextButton extends Button implements IInitModel, IInitSkin
+	public class TextButton extends Button implements IInitSkin
 	{
 		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -52,12 +51,6 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 
-		override public function initModel():void
-		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
-		}
-		
 		override public function initSkin():void
 		{
 			if (getBeadByType(ITextButtonBead) == null)

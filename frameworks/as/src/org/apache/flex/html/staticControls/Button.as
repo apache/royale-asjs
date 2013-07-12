@@ -25,7 +25,6 @@ package org.apache.flex.html.staticControls
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
@@ -37,7 +36,7 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="click", type="org.apache.flex.events.Event")]
 
-	public class Button extends SimpleButton implements IStrand, IInitSkin, IInitModel, IEventDispatcher, IUIBase
+	public class Button extends SimpleButton implements IStrand, IInitSkin, IEventDispatcher, IUIBase
 	{
 		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -179,11 +178,6 @@ package org.apache.flex.html.staticControls
 				}
 			}
 			return null;
-		}
-		
-		public function initModel():void
-		{
-			
 		}
 		
 		public function initSkin():void

@@ -77,12 +77,6 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
-		override public function initModel():void
-		{
-            if (getBeadByType(ISelectionModel) == null)
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iSelectionModel")) as IBead);
-		}
-		
 		public function initSkin():void
 		{
             // TODO: (aharui) remove later

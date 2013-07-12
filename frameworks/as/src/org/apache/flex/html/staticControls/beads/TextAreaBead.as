@@ -110,7 +110,6 @@ package org.apache.flex.html.staticControls.beads
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
 			vsb.model = vsbm;
-			vsb.initModel();
 			vsb.width = 16;
 			var vsbb:ScrollBarBead = new ScrollBarBead();
 			vsbb.initSkin();

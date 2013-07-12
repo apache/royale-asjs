@@ -50,14 +50,12 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add an input field
 			input = new TextInput();
-			input.initModel();
 			input.addToParent(value);
 			input.initSkin();
 			
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( value.getBeadByType(ISpinnerModel) );
-			spinner.initModel();
 			spinner.addToParent(value);
 			spinner.initSkin();
 			spinner.width = 17;

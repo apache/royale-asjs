@@ -26,7 +26,6 @@ package org.apache.flex.html.staticControls
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IRadioButtonBead;
 	import org.apache.flex.core.IStrand;
@@ -36,7 +35,7 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
-	public class RadioButton extends SimpleButton implements IStrand, IInitSkin, IInitModel
+	public class RadioButton extends SimpleButton implements IStrand, IInitSkin
 	{
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -115,12 +114,6 @@ package org.apache.flex.html.staticControls
 		public function addToParent(p:DisplayObjectContainer):void
 		{
 			p.addChild(this);
-		}
-		
-		public function initModel():void
-		{
-			if (getBeadByType(IValueToggleButtonModel) == null) 
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iToggleButtonModel")) as IBead);
 		}
 		
 		public function initSkin():void

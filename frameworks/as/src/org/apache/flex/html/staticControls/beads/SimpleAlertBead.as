@@ -23,7 +23,6 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
@@ -81,14 +80,12 @@ package org.apache.flex.html.staticControls.beads
 			model.addEventListener("htmlMessageChange",handleMessageChange);
 			
 			messageLabel = new Label();
-			messageLabel.initModel();
 			messageLabel.initSkin();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
 			messageLabel.addToParent(_strand);
 			
 			okButton = new TextButton();
-			okButton.initModel();
 			okButton.text = model.okLabel;
 			okButton.initSkin();
 			okButton.addToParent(_strand);

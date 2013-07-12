@@ -25,7 +25,6 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxBead;
 	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
@@ -77,7 +76,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			textInput = new TextInput();
 			textInput.addToParent(DisplayObjectContainer(strand));
-			textInput.initModel();
 			textInput.width = 100;
 			textInput.height = 18;
 			textInput.initSkin();
@@ -91,7 +89,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			button = new Button( upSprite, overSprite, downSprite );
 			DisplayObjectContainer(strand).addChild(button);
-			button.initModel();
 			button.width = 18;
 			button.height = 18;
 			button.x = textInput.width;
@@ -156,8 +153,6 @@ package org.apache.flex.html.staticControls.beads
 					while (host.parent != root)
 						host = host.parent;
 					host.addChild(_popUp as DisplayObject);
-					if (_popUp is IInitModel)
-						IInitModel(_popUp).initModel();
 					if (_popUp is IInitSkin)
 						IInitSkin(_popUp).initSkin();
 				}

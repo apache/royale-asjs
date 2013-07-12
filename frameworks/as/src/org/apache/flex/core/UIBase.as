@@ -24,7 +24,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher, IUIBase
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase
 	{
 		public function UIBase()
 		{
@@ -84,6 +84,11 @@ package org.apache.flex.core
 		private var _model:IBeadModel;
 		public function get model():IBeadModel
 		{
+            if (_model == null)
+            {
+                // addbead will set _model
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+            }
 			return _model;
 		}
 		public function set model(value:IBeadModel):void
@@ -161,11 +166,6 @@ package org.apache.flex.core
 				}
 			}
 			return null;
-		}
-		
-		public function initModel():void
-		{
-			
 		}
 		
 		public function addToParent(p:Object):void

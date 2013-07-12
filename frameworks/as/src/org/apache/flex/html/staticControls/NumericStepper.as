@@ -76,13 +76,6 @@ package org.apache.flex.html.staticControls
 			ISpinnerModel(model).snapInterval = value;
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(ISpinnerModel) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iNumericStepperModel")) as IBead);
-			}
-		}
-		
 		override public function initSkin():void
 		{
 			super.initSkin();

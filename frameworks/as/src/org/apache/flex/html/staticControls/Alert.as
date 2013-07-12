@@ -49,7 +49,6 @@ package org.apache.flex.html.staticControls
 		static public function show( text:String, parent:Object, title:String="", flags:uint=Alert.OK ) : void
 		{
 			var alert:Alert = new Alert();
-			alert.initModel();
 			alert.message = text;
 			alert.title  = title;
 			alert.flags = flags;
@@ -61,12 +60,6 @@ package org.apache.flex.html.staticControls
 		public function show(parent:Object) : void
 		{
 			addToParent(parent);
-		}
-		
-		override public function initModel():void
-		{
-			if (getBeadByType(IAlertModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iAlertModel")) as IBead);
 		}
 		
 		public function get title():String
