@@ -29,15 +29,15 @@ package org.apache.flex.html.staticControls.beads
 		
 		public function get measuredWidth():Number
 		{
-			var bead:TextButtonBead = _strand.getBeadByType(TextButtonBead) as TextButtonBead;
-			if( bead ) return Math.max(bead.upTextField.textWidth,bead.downTextField.textWidth,bead.overTextField.textWidth);
+			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
+			if( view ) return Math.max(view.upTextField.textWidth,view.downTextField.textWidth,view.overTextField.textWidth);
 			else return 0;
 		}
 		
 		public function get measuredHeight():Number
 		{
-			var bead:TextButtonBead = _strand.getBeadByType(TextButtonBead) as TextButtonBead;
-			if( bead ) return Math.max(bead.upTextField.textHeight,bead.downTextField.textHeight,bead.overTextField.textHeight);
+			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
+			if( view ) return Math.max(view.upTextField.textHeight,view.downTextField.textHeight,view.overTextField.textHeight);
 			else return 0;
 		}
 		

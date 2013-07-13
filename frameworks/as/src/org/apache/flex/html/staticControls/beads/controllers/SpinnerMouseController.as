@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.ISpinnerBead;
+	import org.apache.flex.html.staticControls.beads.ISpinnerView;
 	
 	public class SpinnerMouseController implements IBead
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 			
 			spinnerModel = value.getBeadByType(ISpinnerModel) as ISpinnerModel;
 			
-			var spinnerBead:ISpinnerBead = value.getBeadByType(ISpinnerBead) as ISpinnerBead;
+			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
 			spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);

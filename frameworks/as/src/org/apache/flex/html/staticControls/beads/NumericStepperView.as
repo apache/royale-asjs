@@ -29,9 +29,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TextInput;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 	
-	public class NumericStepperBead implements IBeadView
+	public class NumericStepperView implements IBeadView
 	{
-		public function NumericStepperBead()
+		public function NumericStepperView()
 		{
 		}
 		

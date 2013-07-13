@@ -20,11 +20,17 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.core.IBead;
-	
-	public interface ISpinnerBead extends IBead
+	import org.apache.flex.core.IScrollBarModel;
+	import org.apache.flex.core.IStrand;
+
+	public interface IScrollBarView
 	{
 		function get increment():DisplayObject;
 		function get decrement():DisplayObject;
+		function get track():DisplayObject;
+		function get thumb():DisplayObject;
+		
+		function get scrollBarModel():IScrollBarModel;
+		function get strand():IStrand;
 	}
 }

@@ -28,9 +28,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 
-	public class TextButtonBead implements IBeadView
+	public class TextButtonView implements IBeadView
 	{
-		public function TextButtonBead()
+		public function TextButtonView()
 		{
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();

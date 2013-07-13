@@ -23,7 +23,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.IListBead;
+	import org.apache.flex.html.staticControls.beads.IListView;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -35,7 +35,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		}
 		
 		protected var listModel:ISelectionModel;
-		protected var listView:IListBead;
+		protected var listView:IListView;
 		protected var dataGroup:IItemRendererParent;
 
 		private var _strand:IStrand;
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			_strand = value;
 			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			listView = value.getBeadByType(IListBead) as IListBead;
+			listView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
             dataGroup.addEventListener("selected", selectedHandler, true);
 		}

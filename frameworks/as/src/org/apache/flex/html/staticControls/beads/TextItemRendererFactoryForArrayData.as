@@ -42,8 +42,8 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listBead:IListBead = value.getBeadByType(IListBead) as IListBead;
-			dataGroup = listBead.dataGroup;
+			var listView:IListView = value.getBeadByType(IListView) as IListView;
+			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			dataProviderChangeHandler(null);
 		}

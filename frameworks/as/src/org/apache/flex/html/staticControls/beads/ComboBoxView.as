@@ -32,9 +32,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.TextInput;
 	
-	public class ComboBoxBead implements IBead, IComboBoxView
+	public class ComboBoxView implements IBead, IComboBoxView
 	{
-		public function ComboBoxBead()
+		public function ComboBoxView()
 		{
 		}
 		

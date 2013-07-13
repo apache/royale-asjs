@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IScrollBarBead;
+	import org.apache.flex.html.staticControls.beads.IScrollBarView;
 
 	public class ScrollBarMouseControllerBase implements IBead
 	{
@@ -34,7 +34,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		}
 		
 		protected var sbModel:IScrollBarModel;
-		protected var sbView:IScrollBarBead;
+		protected var sbView:IScrollBarView;
 		
 		private var _strand:IStrand;
 		
@@ -47,7 +47,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			_strand = value;
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
-			sbView = value.getBeadByType(IScrollBarBead) as IScrollBarBead;
+			sbView = value.getBeadByType(IScrollBarView) as IScrollBarView;
 			sbView.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			sbView.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
             sbView.decrement.addEventListener("buttonRepeat", decrementClickHandler);

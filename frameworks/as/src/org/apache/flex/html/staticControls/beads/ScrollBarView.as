@@ -28,9 +28,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 
-	public class ScrollBarBead implements IBead, IInitSkin, IStrand, IScrollBarBead
+	public class ScrollBarView implements IBead, IInitSkin, IStrand, IScrollBarView
 	{
-		public function ScrollBarBead()
+		public function ScrollBarView()
 		{
 		}
 		
@@ -61,18 +61,18 @@ package org.apache.flex.html.staticControls.beads
 		{
 			// TODO: (aharui) put in values impl
 			_increment = new Button();
-			Button(_increment).addBead(new DownArrowButtonBead());
+			Button(_increment).addBead(new DownArrowButtonView());
             Button(_increment).addBead(new ButtonAutoRepeatController());
 			Button(_increment).initSkin();
 			_decrement = new Button();
-			Button(_decrement).addBead(new UpArrowButtonBead());
+			Button(_decrement).addBead(new UpArrowButtonView());
             Button(_decrement).addBead(new ButtonAutoRepeatController());
 			Button(_decrement).initSkin();
 			_track = new Button();				
-			Button(_track).addBead(new VScrollBarTrackBead());
+			Button(_track).addBead(new VScrollBarTrackView());
 			Button(_track).initSkin();
 			_thumb = new Button();				
-			Button(_thumb).addBead(new VScrollBarThumbBead());
+			Button(_thumb).addBead(new VScrollBarThumbView());
 			Button(_thumb).initSkin();
 		}
 						

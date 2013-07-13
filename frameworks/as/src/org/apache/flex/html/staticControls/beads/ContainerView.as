@@ -27,9 +27,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	
-	public class ContainerBead implements IBeadView
+	public class ContainerView implements IBeadView
 	{
-		public function ContainerBead()
+		public function ContainerView()
 		{
 		}
 		

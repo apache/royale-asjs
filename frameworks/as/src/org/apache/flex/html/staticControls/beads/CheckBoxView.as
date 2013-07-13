@@ -25,14 +25,15 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IValueToggleButtonModel;
+	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
-	public class RadioButtonBead implements IBeadView
+	public class CheckBoxView implements IBead, IBeadView
 	{
-		public function RadioButtonBead()
+		public function CheckBoxView()
 		{
 			sprites = [ upSprite = new Sprite(),
 				        downSprite = new Sprite(),
@@ -63,9 +64,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var sprites:Array;
 		
-		private var _toggleButtonModel:IValueToggleButtonModel;
+		private var _toggleButtonModel:IToggleButtonModel;
 		
-		public function get toggleButtonModel() : IValueToggleButtonModel
+		public function get toggleButtonModel() : IToggleButtonModel
 		{
 			return _toggleButtonModel;
 		}
@@ -75,14 +76,12 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			_toggleButtonModel = value.getBeadByType(IValueToggleButtonModel) as IValueToggleButtonModel;
+			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
-			_toggleButtonModel.addEventListener("selectedValueChange", selectedValueChangeHandler);
-			if (_toggleButtonModel.text != null)
+			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
+			if (_toggleButtonModel.text !== null)
 				text = _toggleButtonModel.text;
-			if (_toggleButtonModel.html != null)
-				html = _toggleButtonModel.html;
 			
 			layoutControl();
 			
@@ -100,10 +99,6 @@ package org.apache.flex.html.staticControls.beads
 				text = toggleButtonModel.text;
 			if (toggleButtonModel.html !== null)
 				html = toggleButtonModel.html;
-			
-			if (toggleButtonModel.selected && toggleButtonModel.value == value) {
-				selected = true;
-			}
 		}
 		
 		public function get text():String
@@ -161,6 +156,8 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_selected = value;
 			
+			layoutControl();
+			
 			if( value ) {
 				SimpleButton(_strand).upState = upAndSelectedSprite;
 				SimpleButton(_strand).downState = downAndSelectedSprite;
@@ -171,13 +168,11 @@ package org.apache.flex.html.staticControls.beads
 				SimpleButton(_strand).downState = downSprite;
 				SimpleButton(_strand).overState = overSprite;
 			}
-			
-			layoutControl();
 		}
 		
-		private function selectedValueChangeHandler(event:Event):void
+		private function selectedChangeHandler(event:Event):void
 		{
-			selected = _toggleButtonModel.value == _toggleButtonModel.selectedValue;
+			selected = toggleButtonModel.selected;
 		}
 		
 		protected function layoutControl() : void
@@ -187,7 +182,7 @@ package org.apache.flex.html.staticControls.beads
 				var icon:Shape = s.getChildByName("icon") as Shape;
 				var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
 				
-				drawRadioButton(icon);
+				drawCheckBox(icon);
 				
 				var mh:Number = Math.max(icon.height,tf.height);
 				
@@ -200,18 +195,19 @@ package org.apache.flex.html.staticControls.beads
 			
 		}
 		
-		protected function drawRadioButton(icon:Shape) : void
+		protected function drawCheckBox(icon:Shape) : void
 		{
 			icon.graphics.clear();
 			icon.graphics.beginFill(0xCCCCCC);
 			icon.graphics.lineStyle(1,0x333333);
-			icon.graphics.drawEllipse(0,0,10,10);
+			icon.graphics.drawRect(0,0,10,10);
 			icon.graphics.endFill();
 			
-			if( selected ) {
-				icon.graphics.beginFill(0x555555);
-				icon.graphics.drawEllipse(2,2,6,6);
-				icon.graphics.endFill();
+			if( _toggleButtonModel.selected ) {
+				icon.graphics.moveTo(0,0);
+				icon.graphics.lineTo(10,10);
+				icon.graphics.moveTo(10,0);
+				icon.graphics.lineTo(0,10);
 			}
 		}
 	}

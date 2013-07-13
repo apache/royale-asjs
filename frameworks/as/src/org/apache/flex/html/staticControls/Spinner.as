@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.ISpinnerBead;
 	
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	
@@ -83,9 +80,6 @@ package org.apache.flex.html.staticControls
 		
 		public function initSkin():void
 		{
-			if( getBeadByType(ISpinnerBead) == null ) {
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iSpinnerBead")) as IBead);
-			}
 		}
 	}
 }

@@ -26,8 +26,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ItemRendererClassFactory;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.IListBead;
-	import org.apache.flex.html.staticControls.beads.ListBead;
+	import org.apache.flex.html.staticControls.beads.IListView;
 	import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController;
@@ -80,17 +79,15 @@ package org.apache.flex.html.staticControls
 		public function initSkin():void
 		{
             // TODO: (aharui) remove later
-            if (getBeadByType(IListBead) == null)
+            if (getBeadByType(IListView) == null)
             {
-                var lb:ListBead = new ListBead();
-                addBead(lb);	
                 var irf:TextItemRendererFactoryForArrayData = new TextItemRendererFactoryForArrayData();
                 var ircf:ItemRendererClassFactory = new ItemRendererClassFactory();
                 ircf.createFunction = createTextItemRenderer;
                 irf.itemRendererFactory = ircf;
                 addBead(irf);
                 var ll:NonVirtualVerticalScrollingLayout = new NonVirtualVerticalScrollingLayout();
-                lb.addBead(ll);
+                //lb.addBead(ll);
                 var lmc:ListSingleSelectionMouseController = new ListSingleSelectionMouseController();
                 addBead(lmc);
                 

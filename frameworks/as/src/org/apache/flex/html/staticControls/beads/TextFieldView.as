@@ -17,17 +17,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{	
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
-
-	public interface IListBead
+{
+	import flash.text.TextFieldType;
+	
+	public class TextFieldView extends TextFieldViewBase
 	{
-        function get border():Border;
-		function get vScrollBar():ScrollBar;
-		function get dataGroup():IItemRendererParent;
-		function get strand():IStrand;
+		public function TextFieldView()
+		{
+			super();
+			
+			textField.selectable = false;
+			textField.type = TextFieldType.DYNAMIC;
+			textField.mouseEnabled = false;
+		}
 	}
 }

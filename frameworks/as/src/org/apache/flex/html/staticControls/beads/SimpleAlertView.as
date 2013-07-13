@@ -32,9 +32,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class SimpleAlertBead implements IBeadView
+	public class SimpleAlertView implements IBeadView
 	{
-		public function SimpleAlertBead()
+		public function SimpleAlertView()
 		{
 		}
 		

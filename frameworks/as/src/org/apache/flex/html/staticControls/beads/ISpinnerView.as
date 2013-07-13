@@ -18,17 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.text.TextFieldType;
+	import flash.display.DisplayObject;
 	
-	public class TextFieldBead extends TextFieldBeadBase
+	import org.apache.flex.core.IBead;
+	
+	public interface ISpinnerView extends IBead
 	{
-		public function TextFieldBead()
-		{
-			super();
-			
-			textField.selectable = false;
-			textField.type = TextFieldType.DYNAMIC;
-			textField.mouseEnabled = false;
-		}
+		function get increment():DisplayObject;
+		function get decrement():DisplayObject;
 	}
 }

@@ -35,9 +35,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class AlertBead implements IBeadView
+	public class AlertView implements IBeadView
 	{
-		public function AlertBead()
+		public function AlertView()
 		{
 		}
 		

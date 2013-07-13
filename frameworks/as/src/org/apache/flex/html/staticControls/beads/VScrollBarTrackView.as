@@ -19,37 +19,45 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.Graphics;
-	import flash.display.Shape;
 	import flash.display.SimpleButton;
-
-	import org.apache.flex.core.IStrand;
+	import flash.display.Shape;
 	
-	public class DownArrowButtonBead implements IButtonBead
+    import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	
+	public class VScrollBarTrackView implements IBeadView
 	{
-		public function DownArrowButtonBead()
+		public function VScrollBarTrackView()
 		{
 			upView = new Shape();
 			downView = new Shape();
 			overView = new Shape();
 
-			drawView(upView.graphics, 0xCCCCCC);
-			drawView(downView.graphics, 0x808080);
-			drawView(overView.graphics, 0xEEEEEE);
 		}
 		
-		private function drawView(g:Graphics, bgColor:uint):void
+		private function drawView(g:Graphics, bgColor:uint, h:Number):void
 		{
+			g.clear();
 			g.lineStyle(1);
 			g.beginFill(bgColor);
-			g.drawRect(0, 0, 16, 16);
+			g.drawRect(0, 0, 16, h);
 			g.endFill();
 			g.lineStyle(0);
-			g.beginFill(0);
-			g.moveTo(4, 4);
-			g.lineTo(12, 4);
-			g.lineTo(8, 12);
-			g.lineTo(4, 4);
-			g.endFill();
+		}
+
+		private function heightChangeHandler(event:Event):void
+		{
+			var h:Number = SimpleButton(_strand).height;
+			
+			drawView(upView.graphics, 0xCCCCCC, h);
+			drawView(downView.graphics, 0x808080, h);
+			drawView(overView.graphics, 0xEEEEEE, h);	
+			shape.graphics.clear();
+			shape.graphics.beginFill(0xCCCCCC);
+			shape.graphics.drawRect(0, 0, 16, h);
+			shape.graphics.endFill();
+			
 		}
 		
 		private var _strand:IStrand;
@@ -59,10 +67,8 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			SimpleButton(value).addEventListener("heightChanged", heightChangeHandler);
 			shape = new Shape();
-			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 16, 16);
-			shape.graphics.endFill();
 			SimpleButton(value).upState = upView;
 			SimpleButton(value).downState = downView;
 			SimpleButton(value).overState = overView;

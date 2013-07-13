@@ -17,20 +17,17 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{
-	import flash.display.DisplayObject;
-	
-	import org.apache.flex.core.IScrollBarModel;
+{	
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public interface IScrollBarBead
+	public interface IListView
 	{
-		function get increment():DisplayObject;
-		function get decrement():DisplayObject;
-		function get track():DisplayObject;
-		function get thumb():DisplayObject;
-		
-		function get scrollBarModel():IScrollBarModel;
+        function get border():Border;
+		function get vScrollBar():ScrollBar;
+		function get dataGroup():IItemRendererParent;
 		function get strand():IStrand;
 	}
 }

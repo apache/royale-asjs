@@ -34,9 +34,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class DropDownListBead implements IDropDownListBead
+	public class DropDownListView implements IDropDownListView
 	{
-		public function DropDownListBead()
+		public function DropDownListView()
 		{
             upSprite = new Sprite();
             downSprite = new Sprite();

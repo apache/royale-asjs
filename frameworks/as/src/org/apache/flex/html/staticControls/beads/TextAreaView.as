@@ -17,99 +17,90 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{	
+{
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	import flash.text.TextFieldType;
+	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController;
 	import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class ListBead implements IBead, IInitSkin, IStrand, IListBead
+	public class TextAreaView extends TextFieldViewBase implements IInitSkin, IStrand
 	{
-		public function ListBead()
+		public function TextAreaView()
 		{
+			super();
+			
+			textField.selectable = true;
+			textField.type = TextFieldType.INPUT;
+			textField.mouseEnabled = true;
+			textField.multiline = true;
+			textField.wordWrap = true;
 		}
-						
-		private var listModel:ISelectionModel;
 		
-        private var _border:Border;
-        
-        public function get border():Border
-        {
-            return _border;
-        }
-
-        private var _dataGroup:IItemRendererParent;
-
-		public function get dataGroup():IItemRendererParent
+		private var _border:Border;
+		
+		public function get border():Border
 		{
-			return _dataGroup;
+			return _border;
 		}
 		
 		private var _vScrollBar:ScrollBar;
 		
 		public function get vScrollBar():ScrollBar
 		{
-            if (!_vScrollBar)
-                _vScrollBar = createScrollBar();
+			if (!_vScrollBar)
+				_vScrollBar = createScrollBar();
 			return _vScrollBar;
 		}
-
-		private var _strand:IStrand;
 		
-		public function get strand():IStrand
+		override public function set strand(value:IStrand):void
 		{
-			return _strand;
-		}
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-            _border = new Border();
-            border.addToParent(UIBase(_strand));
-            _border.model = new SingleLineBorderModel();
-            _border.addBead(new SingleLineBorderBead());
-			_dataGroup = new NonVirtualDataGroup();
-			UIBase(_dataGroup).addToParent(UIBase(_strand));
-			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-		}
-		
-		private var lastSelectedIndex:int = -1;
-		
-		private function selectionChangeHandler(event:Event):void
-		{
-			if (lastSelectedIndex != -1)
-			{
-				var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
-                ir.selected = false;
-			}
-			if (listModel.selectedIndex != -1)
-			{
-	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex);
-	            ir.selected = true;
-			}
-            lastSelectedIndex = listModel.selectedIndex;
-		}
+			super.strand = value;
 			
+			// add a border to this
+			_border = new Border();
+			border.addToParent(UIBase(strand));
+			_border.model = new SingleLineBorderModel();
+			_border.addBead(new SingleLineBorderBead());
+			
+			var vb:ScrollBar = vScrollBar;
+			
+			// Default size
+			var ww:Number = DisplayObject(strand).width;
+			if( isNaN(ww) || ww == 0 ) DisplayObject(strand).width = 100;
+			var hh:Number = DisplayObject(strand).height;
+			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 42;
+			
+			// for input, listen for changes to the _textField and update
+			// the model
+			textField.addEventListener(Event.CHANGE, inputChangeHandler);
+			textField.addEventListener(Event.SCROLL, textScrollHandler);
+			
+			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
+			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
+			sizeChangedHandler(null);
+		}
+		
 		public function initSkin():void
 		{
 		}
-						
+		
 		private function createScrollBar():ScrollBar
 		{
 			var vsb:ScrollBar;
 			vsb = new ScrollBar();
-			vsb.addToParent(UIBase(_strand));
+			vsb.addToParent(UIBase(strand));
 			var vsbm:ScrollBarModel = new ScrollBarModel();
 			vsbm.maximum = 100;
 			vsbm.minimum = 0;
@@ -120,16 +111,59 @@ package org.apache.flex.html.staticControls.beads
 			vsbm.value = 0;
 			vsb.model = vsbm;
 			vsb.width = 16;
-			var vsbb:ScrollBarBead = new ScrollBarBead();
-			vsbb.initSkin();
-			vsb.addBead(vsbb);	
 			var vsbl:VScrollBarLayout = new VScrollBarLayout();
-			vsbb.addBead(vsbl);
+			//vsbb.addBead(vsbl);
 			var vsbc:VScrollBarMouseController = new VScrollBarMouseController();
 			vsb.addBead(vsbc);
+			
+			vsb.addEventListener("scroll", scrollHandler);
+			
 			return vsb;
 		}
-				
+		
+		private function inputChangeHandler(event:Event):void
+		{
+			textModel.text = textField.text;
+		}
+		
+		private function textScrollHandler(event:Event):void
+		{
+			var visibleLines:int = textField.bottomScrollV - textField.scrollV + 1;
+			var scrollableLines:int = textField.numLines - visibleLines + 1;
+			var vsbm:ScrollBarModel = ScrollBarModel(vScrollBar.model);
+			vsbm.minimum = 0;
+			vsbm.maximum = textField.numLines+1;
+			vsbm.value = textField.scrollV;
+			vsbm.pageSize = visibleLines;
+			vsbm.pageStepSize = visibleLines;
+		}
+		
+		private function sizeChangedHandler(event:Event):void
+		{
+			var ww:Number = DisplayObject(strand).width - DisplayObject(vScrollBar).width;
+			if( !isNaN(ww) && ww > 0 ) {
+				textField.width = ww;
+				_border.width = ww;
+			}
+			
+			var hh:Number = DisplayObject(strand).height;
+			if( !isNaN(hh) && hh > 0 ) {
+				textField.height = hh;
+				_border.height = hh;
+			}
+			
+			var sb:DisplayObject = DisplayObject(vScrollBar);
+			sb.y = 0;
+			sb.x = textField.width - 1;
+			sb.height = textField.height;
+		}
+		
+		private function scrollHandler(event:Event):void
+		{
+			var vpos:Number = IScrollBarModel(vScrollBar.model).value;
+			textField.scrollV = vpos;
+		}
+		
 		// beads declared in MXML are added to the strand.
 		// from AS, just call addBead()
 		public var beads:Array;

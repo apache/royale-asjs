@@ -27,26 +27,25 @@ package
  */
 internal class FlexJSUIClasses
 {
-	import org.apache.flex.html.staticControls.beads.IButtonBead; IButtonBead;
-	import org.apache.flex.html.staticControls.beads.CSSTextButtonBead; CSSTextButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextButtonBead; TextButtonBead;
-	import org.apache.flex.html.staticControls.beads.TextFieldBead; TextFieldBead;
-	import org.apache.flex.html.staticControls.beads.TextInputBead; TextInputBead;
-	import org.apache.flex.html.staticControls.beads.TextInputWithBorderBead; TextInputWithBorderBead;
-	import org.apache.flex.html.staticControls.beads.TextAreaBead; TextAreaBead;
-	import org.apache.flex.html.staticControls.beads.CheckBoxBead; CheckBoxBead;
-	import org.apache.flex.html.staticControls.beads.RadioButtonBead; RadioButtonBead;
-	import org.apache.flex.html.staticControls.beads.ComboBoxBead; ComboBoxBead;
-    import org.apache.flex.html.staticControls.beads.ContainerBead; ContainerBead;
-	import org.apache.flex.html.staticControls.beads.PanelBead; PanelBead;
-	import org.apache.flex.html.staticControls.beads.SimpleAlertBead; SimpleAlertBead;
-	import org.apache.flex.html.staticControls.beads.AlertBead; AlertBead;
+	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
+	import org.apache.flex.html.staticControls.beads.TextButtonView; TextButtonView;
+	import org.apache.flex.html.staticControls.beads.TextFieldView; TextFieldView;
+	import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
+	import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; TextInputWithBorderView;
+	import org.apache.flex.html.staticControls.beads.TextAreaView; TextAreaView;
+	import org.apache.flex.html.staticControls.beads.CheckBoxView; CheckBoxView;
+	import org.apache.flex.html.staticControls.beads.RadioButtonView; RadioButtonView;
+	import org.apache.flex.html.staticControls.beads.ComboBoxView; ComboBoxView;
+    import org.apache.flex.html.staticControls.beads.ContainerView; ContainerView;
+	import org.apache.flex.html.staticControls.beads.PanelView; PanelView;
+	import org.apache.flex.html.staticControls.beads.SimpleAlertView; SimpleAlertView;
+	import org.apache.flex.html.staticControls.beads.AlertView; AlertView;
 	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
-	import org.apache.flex.html.staticControls.beads.SpinnerBead; SpinnerBead;
-	import org.apache.flex.html.staticControls.beads.NumericStepperBead; NumericStepperBead;
+	import org.apache.flex.html.staticControls.beads.SpinnerView; SpinnerView;
+	import org.apache.flex.html.staticControls.beads.NumericStepperView; NumericStepperView;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
 	import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;

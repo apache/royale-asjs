@@ -35,9 +35,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.SolidBorderUtil;
 
-	public class CSSTextButtonBead implements IBeadView
+	public class CSSTextButtonView implements IBeadView
 	{
-		public function CSSTextButtonBead()
+		public function CSSTextButtonView()
 		{
 			upSprite = new Sprite();
 			downSprite = new Sprite();

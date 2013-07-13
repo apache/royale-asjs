@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IScrollBarBead;
+	import org.apache.flex.html.staticControls.beads.IScrollBarView;
 
 	public class VScrollBarLayout implements IBead
 	{
@@ -34,14 +34,14 @@ package org.apache.flex.html.staticControls.beads.layouts
 		}
 		
 		private var sbModel:IScrollBarModel;
-		private var sbView:IScrollBarBead;
+		private var sbView:IScrollBarView;
 		
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			sbView = value as IScrollBarBead;
+			sbView = value as IScrollBarView;
 			sbModel = sbView.scrollBarModel;
 			sbModel.addEventListener("maximumChange", changeHandler);
 			sbModel.addEventListener("minimumChange", changeHandler);

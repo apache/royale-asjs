@@ -18,15 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
-	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
-	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Container;
@@ -35,9 +31,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
-	public class PanelBead extends ContainerBead implements IBeadView
+	public class PanelView extends ContainerView implements IBeadView
 	{
-		public function PanelBead()
+		public function PanelView()
 		{
 			_titleBar = new TitleBar();
 			_titleBar.initSkin();
