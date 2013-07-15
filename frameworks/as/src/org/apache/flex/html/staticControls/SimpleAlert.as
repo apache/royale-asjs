@@ -19,14 +19,13 @@
 package org.apache.flex.html.staticControls
 {	
 	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IPopUp;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
-	public class SimpleAlert extends UIBase implements IInitSkin, IPopUp
+	public class SimpleAlert extends UIBase implements IPopUp
 	{
 		public function SimpleAlert()
 		{
@@ -53,11 +52,6 @@ package org.apache.flex.html.staticControls
 			IAlertModel(model).htmlMessage = value;
 		}
 		
-		public function initSkin():void
-		{			
-			addEventListener("close",handleAlertClose);
-		}
-		
 		public function show(parent:Object) : void
 		{
 			addToParent(parent);
@@ -67,15 +61,10 @@ package org.apache.flex.html.staticControls
 		{
 			var alert:SimpleAlert = new SimpleAlert();
 			alert.message = message;
-			alert.initSkin();
 			alert.show(parent);
 			
 			return alert;
 		}
 		
-		private function handleAlertClose(event:Event):void
-		{
-			this.parent.removeChild(this);
-		}
 	}
 }

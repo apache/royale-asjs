@@ -22,13 +22,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.geom.Point;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IDropDownListView;
 
-	public class DropDownListController implements IBead
+	public class DropDownListController implements IBead, IBeadController
 	{
 		public function DropDownListController()
 		{

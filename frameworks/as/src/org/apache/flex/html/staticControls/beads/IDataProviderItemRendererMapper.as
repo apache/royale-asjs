@@ -16,37 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.staticControls
+package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.DisplayObject;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IItemRendererClassFactory;
 
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.html.staticControls.Button;
-	
-	public class TextButton extends Button
+    /**
+     * Classes that generate ItemRenderers based on dataProvider contents.
+     * These classes use an IItemRendererFactory to generate the actual
+     * ItemRenderer instances
+     */
+	public interface IDataProviderItemRendererMapper extends IBead
 	{
-		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
-		{
-			super(upState, overState, downState, hitTestState);
-		}
-		
-		public function get text():String
-		{
-			return ITextModel(model).text;
-		}
-		public function set text(value:String):void
-		{
-			ITextModel(model).text = value;
-		}
-		
-		public function get html():String
-		{
-			return ITextModel(model).html;
-		}
-		public function set html(value:String):void
-		{
-			ITextModel(model).html = value;
-		}
-				
+        function get itemRendererFactory():IItemRendererClassFactory;
+        function set itemRendererFactory(value:IItemRendererClassFactory):void;
 	}
 }

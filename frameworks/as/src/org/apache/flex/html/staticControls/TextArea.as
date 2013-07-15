@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	
-	public class TextArea extends UIBase implements IInitSkin
+	public class TextArea extends UIBase
 	{
 		public function TextArea()
 		{
@@ -47,8 +46,5 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
-		public function initSkin():void
-		{
-		}
 	}
 }

@@ -20,14 +20,13 @@ package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	
-	public class ComboBox extends UIBase implements IInitSkin
+	public class ComboBox extends UIBase
 	{
 		public function ComboBox()
 		{
@@ -61,14 +60,5 @@ package org.apache.flex.html.staticControls
 			IComboBoxModel(model).selectedItem = value;
 		}
 				
-		public function initSkin():void
-		{
-			if (getBeadByType(IBeadView) == null) {
-				var cb:IBeadView = new (ValuesManager.valuesImpl.getValue(this, "iBeadView")) as IBeadView;
-				addBead(cb);	
-				var lc:ComboBoxController = new ComboBoxController();
-				addBead(lc);
-			}
-		}
 	}
 }

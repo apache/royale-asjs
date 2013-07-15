@@ -25,7 +25,8 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
 
 	public class TextItemRendererFactoryForArrayData implements IBead
 	{
@@ -45,12 +46,28 @@ package org.apache.flex.html.staticControls.beads
 			var listView:IListView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+            
+            if (!itemRendererFactory)
+            {
+                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererFactory")) as IItemRendererClassFactory;
+            }
+            
 			dataProviderChangeHandler(null);
 		}
 		
-        public var itemRendererFactory:IItemRendererClassFactory;
+        public var _itemRendererFactory:IItemRendererClassFactory;
         
-		public var dataGroup:IItemRendererParent;
+        public function get itemRendererFactory():IItemRendererClassFactory
+        {
+            return _itemRendererFactory
+        }
+        
+        public function set itemRendererFactory(value:IItemRendererClassFactory):void
+        {
+            _itemRendererFactory = value;
+        }
+        
+		protected var dataGroup:IItemRendererParent;
 		
 		private function dataProviderChangeHandler(event:Event):void
 		{

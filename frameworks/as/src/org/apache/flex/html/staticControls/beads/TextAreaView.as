@@ -24,7 +24,6 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -35,7 +34,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class TextAreaView extends TextFieldViewBase implements IInitSkin, IStrand
+	public class TextAreaView extends TextFieldViewBase implements IStrand
 	{
 		public function TextAreaView()
 		{
@@ -91,11 +90,7 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
 		}
-		
-		public function initSkin():void
-		{
-		}
-		
+				
 		private function createScrollBar():ScrollBar
 		{
 			var vsb:ScrollBar;

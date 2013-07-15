@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls.beads
 {	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
@@ -34,7 +33,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class ListView implements IBead, IInitSkin, IStrand, IListView
+	public class ListView implements IBead, IStrand, IListView
 	{
 		public function ListView()
 		{
@@ -101,10 +100,6 @@ package org.apache.flex.html.staticControls.beads
             lastSelectedIndex = listModel.selectedIndex;
 		}
 			
-		public function initSkin():void
-		{
-		}
-						
 		private function createScrollBar():ScrollBar
 		{
 			var vsb:ScrollBar;

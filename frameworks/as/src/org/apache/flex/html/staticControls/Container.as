@@ -23,7 +23,6 @@ package org.apache.flex.html.staticControls
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -31,7 +30,7 @@ package org.apache.flex.html.staticControls
     [Event(name="change", type="org.apache.flex.events.Event")]
     
 	[DefaultProperty("mxmlContent")]
-	public class Container extends UIBase implements IContainer, IInitSkin
+	public class Container extends UIBase implements IContainer
 	{
 		public function Container()
 		{
@@ -41,10 +40,6 @@ package org.apache.flex.html.staticControls
 		
 		public var mxmlContent:Array;
 
-		public function initSkin():void
-		{
-		}
-		
 		private var actualParent:DisplayObjectContainer;
 		
 		public function setActualParent(parent:DisplayObjectContainer):void

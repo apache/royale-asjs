@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -35,9 +35,9 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="click", type="org.apache.flex.events.Event")]
 
-	public class Button extends SimpleButton implements IStrand, IEventDispatcher, IUIBase
+	public class UIButtonBase extends SimpleButton implements IStrand, IEventDispatcher, IUIBase
 	{
-		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
 			super(upState, overState, downState, hitTestState);
 			// mouseChildren = true;

@@ -21,14 +21,13 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 
-	public class ScrollBarView implements IBead, IInitSkin, IStrand, IScrollBarView
+	public class ScrollBarView implements IBead, IStrand, IScrollBarView
 	{
 		public function ScrollBarView()
 		{
@@ -50,30 +49,24 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			UIBase(value).addChild(_decrement);
-			UIBase(value).addChild(_increment);
-			UIBase(value).addChild(_track);
-			UIBase(value).addChild(_thumb);
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
-		}
-		        
-		public function initSkin():void
-		{
-			// TODO: (aharui) put in values impl
+
+            // TODO: (aharui) put in values impl
 			_increment = new Button();
 			Button(_increment).addBead(new DownArrowButtonView());
             Button(_increment).addBead(new ButtonAutoRepeatController());
-			Button(_increment).initSkin();
 			_decrement = new Button();
 			Button(_decrement).addBead(new UpArrowButtonView());
             Button(_decrement).addBead(new ButtonAutoRepeatController());
-			Button(_decrement).initSkin();
 			_track = new Button();				
 			Button(_track).addBead(new VScrollBarTrackView());
-			Button(_track).initSkin();
 			_thumb = new Button();				
 			Button(_thumb).addBead(new VScrollBarThumbView());
-			Button(_thumb).initSkin();
+            
+            UIBase(value).addChild(_decrement);
+            UIBase(value).addChild(_increment);
+            UIBase(value).addChild(_track);
+            UIBase(value).addChild(_thumb);
 		}
 						
 		private var _decrement:DisplayObject;

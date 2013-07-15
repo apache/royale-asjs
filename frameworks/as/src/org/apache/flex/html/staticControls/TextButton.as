@@ -21,11 +21,10 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	
-	public class TextButton extends Button implements IInitSkin
+	public class TextButton extends Button
 	{
 		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
@@ -50,8 +49,5 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 
-		override public function initSkin():void
-		{
-		}
 	}
 }

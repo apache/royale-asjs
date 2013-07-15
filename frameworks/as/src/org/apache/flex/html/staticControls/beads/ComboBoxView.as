@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -77,7 +77,6 @@ package org.apache.flex.html.staticControls.beads
 			textInput.addToParent(DisplayObjectContainer(strand));
 			textInput.width = 100;
 			textInput.height = 18;
-			textInput.initSkin();
 			
 			upSprite = new Sprite();
 			drawButton( upSprite, "up", 18, 18 );
@@ -92,7 +91,6 @@ package org.apache.flex.html.staticControls.beads
 			button.height = 18;
 			button.x = textInput.width;
 			button.y = textInput.y;
-			button.initSkin();
 			
 			// listen for events on the text input and modify the list and selection
 			textInput.addEventListener("change", textChangeHandler,false,0,true);
@@ -151,9 +149,7 @@ package org.apache.flex.html.staticControls.beads
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
 					while (host.parent != root)
 						host = host.parent;
-					host.addChild(_popUp as DisplayObject);
-					if (_popUp is IInitSkin)
-						IInitSkin(_popUp).initSkin();
+					IUIBase(popUp).addToParent(host);
 				}
 				else
 				{

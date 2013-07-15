@@ -75,10 +75,5 @@ package org.apache.flex.html.staticControls
 			ISpinnerModel(model).snapInterval = value;
 		}
 		
-		override public function initSkin():void
-		{
-			super.initSkin();
-			
-		}
 	}
 }

@@ -24,7 +24,6 @@ import flash.display.DisplayObjectContainer;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IInitSkin;
 import org.apache.flex.core.UIBase;
 import org.apache.flex.core.IContainer;
 
@@ -177,12 +176,7 @@ public class MXMLDataInterpreter
                 else if (simple == false)
                     value = generateMXMLObject(document, value as Array);
                 comp.setStyle(name, value);
-            }
-            if (comp is IInitSkin)
-            {
-                IInitSkin(comp).initSkin();
-            }
-            
+            }            
             
             m = data[i++]; // num effects
             for (j = 0; j < m; j++)

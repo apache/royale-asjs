@@ -66,10 +66,5 @@ package org.apache.flex.html.staticControls
 			_controlBar = value;
 		}
 		
-		override public function initSkin():void
-		{
-			super.initSkin();
-						
-		}
 	}
 }

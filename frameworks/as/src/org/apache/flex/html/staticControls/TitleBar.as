@@ -21,12 +21,11 @@ package org.apache.flex.html.staticControls
 	import flash.display.Shape;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IMeasurementBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.Label;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 	
 	public class TitleBar extends Container
 	{
@@ -76,12 +75,12 @@ package org.apache.flex.html.staticControls
 			return closeButton;
 		}
 		
-		override public function initSkin():void
+		override protected function addedToParent():void
 		{
-			super.initSkin();
+			super.addedToParent();
 			
-			if( getBeadByType(NonVirtualHorizontalLayout) == null )
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iLayoutBead")) as IBead);
+			if( getBeadByType(IBeadLayout) == null )
+				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBead);
 			
 			// add the label for the title and the button for the close
 			_titleLabel = createTitle();
@@ -126,7 +125,6 @@ package org.apache.flex.html.staticControls
 		protected function createTitle() : Label
 		{
 			var label:Label = new Label();
-			label.initSkin();
 			label.text = title;
 			return label;
 		}
@@ -158,7 +156,6 @@ package org.apache.flex.html.staticControls
 			hitArea.graphics.endFill();
 			
 			var button:Button = new Button(upState, overState, downState, hitArea);
-			button.initSkin();
 			button.visible = showCloseButton;
 			
 			button.addEventListener('click',closeButtonHandler);

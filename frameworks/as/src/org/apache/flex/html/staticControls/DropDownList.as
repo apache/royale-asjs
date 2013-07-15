@@ -55,12 +55,6 @@ package org.apache.flex.html.staticControls
         {
             ISelectionModel(model).selectedItem = value;
         }
-                
-        override public function initSkin():void
-        {
-				var lc:DropDownListController = new DropDownListController();
-				addBead(lc);	
-        }
-        
+                        
     }
 }

@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
 	/** 
 	 *  Marker interface for Controllers
 	 */
-	public interface IBeadController extends IBead, IEventDispatcher
+	public interface IBeadController extends IBead
 	{
 		
 	}

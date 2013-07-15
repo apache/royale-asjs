@@ -18,12 +18,11 @@
 package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	
-	public class TextInput extends UIBase implements IInitSkin
+	public class TextInput extends UIBase
 	{
 		public function TextInput()
 		{
@@ -48,8 +47,5 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
-		public function initSkin():void
-		{
-		}
 	}
 }

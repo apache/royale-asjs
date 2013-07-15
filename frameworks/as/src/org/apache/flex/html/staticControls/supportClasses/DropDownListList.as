@@ -31,9 +31,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			super();
 		}
 		
-		override public function initSkin():void
+		override protected function addedToParent():void
 		{
-			super.initSkin();
+			super.addedToParent();
 			
 			var bb:SolidBackgroundBead = new SolidBackgroundBead();
 			bb.backgroundColor = 0xffffff;

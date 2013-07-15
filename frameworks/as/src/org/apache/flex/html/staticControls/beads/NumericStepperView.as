@@ -51,13 +51,11 @@ package org.apache.flex.html.staticControls.beads
 			// add an input field
 			input = new TextInput();
 			input.addToParent(value);
-			input.initSkin();
 			
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( value.getBeadByType(ISpinnerModel) );
 			spinner.addToParent(value);
-			spinner.initSkin();
 			spinner.width = 17;
 			
 			// listen for changes to the text input field which will reset the

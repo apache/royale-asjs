@@ -18,17 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import flash.display.DisplayObject;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
 
-	public class ControlBar extends Container implements IContainer, IInitSkin
+	public class ControlBar extends Container implements IContainer
 	{
 		public function ControlBar()
 		{
@@ -37,12 +32,12 @@ package org.apache.flex.html.staticControls
 			className = "ControlBar";
 		}
 		
-		override public function initSkin():void
+		override protected function addedToParent():void
 		{
-			super.initSkin();	
+			super.addedToParent();	
 			
-			if( getBeadByType(NonVirtualHorizontalLayout) == null ) {
-				var layout:IBead = new (ValuesManager.valuesImpl.getValue(this, "iLayoutBead")) as IBead;
+			if( getBeadByType(IBeadLayout) == null ) {
+				var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBeadLayout;
 				addBead(layout);
 			}
 		}

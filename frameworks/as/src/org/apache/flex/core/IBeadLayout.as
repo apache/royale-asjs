@@ -16,37 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.staticControls
+package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.html.staticControls.Button;
-	
-	public class TextButton extends Button
+	/** 
+	 *  Marker interface for Layouts
+	 */
+	public interface IBeadLayout extends IBead
 	{
-		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
-		{
-			super(upState, overState, downState, hitTestState);
-		}
 		
-		public function get text():String
-		{
-			return ITextModel(model).text;
-		}
-		public function set text(value:String):void
-		{
-			ITextModel(model).text = value;
-		}
-		
-		public function get html():String
-		{
-			return ITextModel(model).html;
-		}
-		public function set html(value:String):void
-		{
-			ITextModel(model).html = value;
-		}
-				
 	}
 }

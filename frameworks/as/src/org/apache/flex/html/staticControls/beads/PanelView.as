@@ -36,7 +36,6 @@ package org.apache.flex.html.staticControls.beads
 		public function PanelView()
 		{
 			_titleBar = new TitleBar();
-			_titleBar.initSkin();
 		}
 		
 		private var _titleBar:TitleBar;
@@ -63,7 +62,6 @@ package org.apache.flex.html.staticControls.beads
 			var controlBarItems:Array = Panel(_strand).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
-				_controlBar.initSkin();
 				
 				for each(var comp:IUIBase in controlBarItems) {
 					comp.addToParent(_controlBar);

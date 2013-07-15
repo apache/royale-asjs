@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.UIBase;
 	
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	
-	public class Spinner extends UIBase implements IInitSkin
+	public class Spinner extends UIBase
 	{
 		public function Spinner()
 		{
@@ -78,8 +77,5 @@ package org.apache.flex.html.staticControls
 			ISpinnerModel(model).stepSize = value;
 		}
 		
-		public function initSkin():void
-		{
-		}
 	}
 }

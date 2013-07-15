@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -33,7 +32,7 @@ package org.apache.flex.html.staticControls
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class Label extends UIBase implements IInitSkin
+	public class Label extends UIBase
 	{
 		public function Label()
 		{
@@ -58,10 +57,6 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 				
-		public function initSkin():void
-		{
-		}
-		
 		override public function set width(value:Number):void
 		{
 			super.width = value;

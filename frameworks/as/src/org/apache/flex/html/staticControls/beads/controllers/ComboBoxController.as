@@ -21,14 +21,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.html.staticControls.beads.IComboBoxView;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class ComboBoxController implements IBead
+	public class ComboBoxController implements IBeadController
 	{
 		public function ComboBoxController()
 		{

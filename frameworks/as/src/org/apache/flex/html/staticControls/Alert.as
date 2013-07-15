@@ -20,7 +20,6 @@ package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.IPopUp;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -28,7 +27,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
 	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	
-	public class Alert extends UIBase implements IInitSkin, IPopUp
+	public class Alert extends UIBase implements IPopUp
 	{
 		public static const YES:uint    = 0x000001;
 		public static const NO:uint     = 0x000002;
@@ -51,7 +50,6 @@ package org.apache.flex.html.staticControls
 			alert.message = text;
 			alert.title  = title;
 			alert.flags = flags;
-			alert.initSkin();
 			
 			alert.show(parent);
 		}
@@ -88,15 +86,5 @@ package org.apache.flex.html.staticControls
 			IAlertModel(model).flags = value;
 		}
 		
-		
-		public function initSkin():void
-		{
-			addEventListener("close",handleAlertClose);
-		}
-		
-		private function handleAlertClose(event:Event):void
-		{
-			this.parent.removeChild(this);
-		}
 	}
 }

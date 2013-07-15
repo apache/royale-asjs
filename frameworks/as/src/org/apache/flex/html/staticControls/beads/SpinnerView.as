@@ -39,19 +39,13 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			initSkin();
-		}
-		
-		public function initSkin():void
-		{
+            
 			_increment = new Button();
 			Button(_increment).addBead(new UpArrowButtonView());
 			Button(_increment).addBead(new ButtonAutoRepeatController());
-			Button(_increment).initSkin();
 			_decrement = new Button();
 			Button(_decrement).addBead(new DownArrowButtonView());
 			Button(_decrement).addBead(new ButtonAutoRepeatController());
-			Button(_decrement).initSkin();
 			
 			var mouseController:SpinnerMouseController = new SpinnerMouseController();
 			_strand.addBead(mouseController);

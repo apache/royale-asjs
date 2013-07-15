@@ -16,10 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
-{
-	public interface IInitSkin
+package org.apache.flex.html.staticControls.beads.controllers
+{	
+    import flash.display.DisplayObject;
+    
+	import org.apache.flex.core.IBeadController;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+
+    public class AlertController implements IBeadController
 	{
-		function initSkin():void;
+		public function AlertController()
+		{
+		}
+		
+        private var _strand:IStrand;
+        
+        public function get strand():IStrand
+        {
+            return _strand;
+        }
+        
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+            IEventDispatcher(value).addEventListener("close",handleAlertClose);
+        }
+        
+        private function handleAlertClose(event:Event):void
+        {
+            DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+        }
 	}
 }

@@ -18,17 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
+    
     import org.apache.flex.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]
-	public class ItemRendererClassFactory implements IItemRendererClassFactory, IDocument
+	public class ItemRendererClassFactory extends Strand implements IItemRendererClassFactory, IDocument, IBead
 	{
 		public function ItemRendererClassFactory()
 		{
 			super();
 		}
 				
+        private var _strand:IStrand;
+        
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+            itemRendererClass = ValuesManager.valuesImpl.getValue(this, "iItemRenderer") as Class;
+            if (itemRendererClass)
+                createFunction = createFromClass;
+        }
+
 		public function get MXMLDescriptor():Array
 		{
 			return null;
@@ -51,6 +63,15 @@ package org.apache.flex.core
         protected function createFromMXMLContent(parent:IItemRendererParent):IItemRenderer
         {
             return MXMLDataInterpreter.generateMXMLArray(document, parent as DisplayObjectContainer, MXMLDescriptor, true)[0];
+        }
+        
+        public var itemRendererClass:Class;
+        
+        public function createFromClass(parent:IItemRendererParent):IItemRenderer
+        {
+            var renderer:IItemRenderer = new itemRendererClass();
+            parent.addChild(renderer as DisplayObject);
+            return renderer;
         }
         
         private var document:Object;

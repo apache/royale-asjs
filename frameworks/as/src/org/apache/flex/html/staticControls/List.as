@@ -19,13 +19,14 @@
 package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.ItemRendererClassFactory;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	import org.apache.flex.html.staticControls.beads.IListView;
 	import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController;
@@ -42,7 +43,7 @@ package org.apache.flex.html.staticControls
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class List extends UIBase implements IInitSkin
+	public class List extends UIBase
 	{
 		public function List()
 		{
@@ -76,31 +77,14 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
-		public function initSkin():void
+		override protected function addedToParent():void
 		{
-            // TODO: (aharui) remove later
-            if (getBeadByType(IListView) == null)
+            if (getBeadByType(IDataProviderItemRendererMapper) == null)
             {
-                var irf:TextItemRendererFactoryForArrayData = new TextItemRendererFactoryForArrayData();
-                var ircf:ItemRendererClassFactory = new ItemRendererClassFactory();
-                ircf.createFunction = createTextItemRenderer;
-                irf.itemRendererFactory = ircf;
-                addBead(irf);
-                var ll:NonVirtualVerticalScrollingLayout = new NonVirtualVerticalScrollingLayout();
-                //lb.addBead(ll);
-                var lmc:ListSingleSelectionMouseController = new ListSingleSelectionMouseController();
-                addBead(lmc);
-                
+                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
+                addBead(mapper);
             }
 		}
         
-        private function createTextItemRenderer(parent:IItemRendererParent):IItemRenderer
-        {
-            var tfir:TextFieldItemRenderer = new TextFieldItemRenderer();
-            tfir.addBead(new ItemRendererMouseController());
-            tfir.height = 16;
-            return tfir;
-            
-        }
 	}
 }

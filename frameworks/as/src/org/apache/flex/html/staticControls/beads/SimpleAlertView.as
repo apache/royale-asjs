@@ -75,14 +75,12 @@ package org.apache.flex.html.staticControls.beads
 			model.addEventListener("htmlMessageChange",handleMessageChange);
 			
 			messageLabel = new Label();
-			messageLabel.initSkin();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
 			messageLabel.addToParent(_strand);
 			
 			okButton = new TextButton();
 			okButton.text = model.okLabel;
-			okButton.initSkin();
 			okButton.addToParent(_strand);
 			okButton.addEventListener("click",handleOK);
 			

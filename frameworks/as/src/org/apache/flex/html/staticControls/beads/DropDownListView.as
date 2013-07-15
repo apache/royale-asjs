@@ -27,7 +27,7 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IInitSkin;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
@@ -207,9 +207,7 @@ package org.apache.flex.html.staticControls.beads
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
 					while (host.parent != root)
 						host = host.parent;
-                    host.addChild(_popUp as DisplayObject);
-					if (_popUp is IInitSkin)
-						IInitSkin(_popUp).initSkin();
+                    IUIBase(_popUp).addToParent(host);
                 }
                 else
                 {
