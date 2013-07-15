@@ -24,7 +24,7 @@ import flash.display.DisplayObjectContainer;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;
-import org.apache.flex.core.UIBase;
+import org.apache.flex.core.IUIBase;
 import org.apache.flex.core.IContainer;
 
 public class MXMLDataInterpreter
@@ -86,17 +86,7 @@ public class MXMLDataInterpreter
         {
             var cls:Class = data[i++];
             var comp:Object = new cls();
-            
-            if (parent)
-            {
-                if (comp is UIBase)
-                    comp.addToParent(parent);
-                else if (parent is IContainer)
-                    IContainer(parent).internalAddChild(comp as DisplayObject);
-                else if (comp is DisplayObject)
-                    parent.addChild(comp as DisplayObject);
-            }
-            
+                        
             var m:int;
             var j:int;
             var name:String;
@@ -199,6 +189,16 @@ public class MXMLDataInterpreter
                 comp.addEventListener(name, value);
             }
             
+            if (parent)
+            {
+                if (comp is IUIBase)
+                    comp.addToParent(parent);
+                else if (parent is IContainer)
+                    IContainer(parent).internalAddChild(comp as DisplayObject);
+                else if (comp is DisplayObject)
+                    parent.addChild(comp as DisplayObject);
+            }
+
             var children:Array = data[i++];
             if (children)
             {

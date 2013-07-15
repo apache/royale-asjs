@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
 
 	/** 
 	 *  Marker interface for Views
 	 */
 	public interface IBeadView extends IBead
 	{
-		
 	}
 }

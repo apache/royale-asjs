@@ -84,7 +84,7 @@ package org.apache.flex.html.staticControls.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 
-			setupSkin(overSprite, overTextField, "hover");
+            setupSkin(overSprite, overTextField, "hover");
 			setupSkin(downSprite, downTextField, "active");
 			setupSkin(upSprite, upTextField);
 		}

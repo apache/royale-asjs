@@ -42,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
             IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:MouseEvent):void
+        private function clickHandler(event:Event):void
         {
             var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
             viewBead.popUpVisible = true;

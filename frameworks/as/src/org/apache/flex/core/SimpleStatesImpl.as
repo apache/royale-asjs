@@ -119,8 +119,8 @@ package org.apache.flex.core
                         }
                         else
                         {
-                            if (item is UIBase)
-                                UIBase(item).addToParent(parent);
+                            if (item is IUIBase)
+                                IUIBase(item).addToParent(parent);
                         }
                         parent.dispatchEvent(new Event("childrenAdded"));
                     }

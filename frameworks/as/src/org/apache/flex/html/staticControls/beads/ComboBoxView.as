@@ -22,7 +22,7 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IStrand;
@@ -32,7 +32,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.TextInput;
 	
-	public class ComboBoxView implements IBead, IComboBoxView
+	public class ComboBoxView implements IBeadView, IComboBoxView
 	{
 		public function ComboBoxView()
 		{
@@ -70,9 +70,10 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+        
 			selectionModel = value.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			
+            
 			textInput = new TextInput();
 			textInput.addToParent(DisplayObjectContainer(strand));
 			textInput.width = 100;

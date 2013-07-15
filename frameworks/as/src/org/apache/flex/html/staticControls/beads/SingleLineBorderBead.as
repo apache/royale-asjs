@@ -48,7 +48,7 @@ package org.apache.flex.html.staticControls.beads
 		        
 		private function changeHandler(event:Event):void
 		{
-			var styleObject:Object = ValuesManager.valuesImpl.getValue(_strand,"border-color");
+			var styleObject:* = ValuesManager.valuesImpl.getValue(_strand,"border-color");
 			var borderColor:Number = Number(styleObject);
 			if( isNaN(borderColor) ) borderColor = 0x000000;
 			styleObject = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");

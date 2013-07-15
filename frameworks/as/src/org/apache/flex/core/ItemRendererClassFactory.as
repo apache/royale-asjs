@@ -36,7 +36,7 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            itemRendererClass = ValuesManager.valuesImpl.getValue(this, "iItemRenderer") as Class;
+            itemRendererClass = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
             if (itemRendererClass)
                 createFunction = createFromClass;
         }

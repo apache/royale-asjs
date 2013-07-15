@@ -19,13 +19,9 @@
 package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.core.UIButtonBase;
@@ -134,7 +130,7 @@ package org.apache.flex.html.staticControls
 			dict[this] = this;
 		}
 				
-		private function internalMouseHandler(event:MouseEvent) : void
+		private function internalMouseHandler(event:Event) : void
 		{
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {

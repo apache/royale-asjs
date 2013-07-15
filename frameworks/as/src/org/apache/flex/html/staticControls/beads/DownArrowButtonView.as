@@ -73,6 +73,6 @@ package org.apache.flex.html.staticControls.beads
 		private var upView:Shape;
 		private var downView:Shape;
 		private var overView:Shape;
-		
+        
 	}
 }

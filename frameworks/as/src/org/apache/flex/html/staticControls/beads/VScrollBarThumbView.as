@@ -77,7 +77,7 @@ package org.apache.flex.html.staticControls.beads
 			SimpleButton(value).hitTestState = shape;
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangedHandler);
 		}
-				
+
         private function heightChangedHandler(event:Event):void
         {
             var hh:Number = DisplayObject(_strand).height;

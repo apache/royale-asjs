@@ -28,6 +28,7 @@ package
 internal class FlexJSUIClasses
 {
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
+    import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
 	import org.apache.flex.html.staticControls.beads.TextButtonView; TextButtonView;
 	import org.apache.flex.html.staticControls.beads.TextFieldView; TextFieldView;
 	import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
@@ -40,6 +41,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.PanelView; PanelView;
 	import org.apache.flex.html.staticControls.beads.SimpleAlertView; SimpleAlertView;
 	import org.apache.flex.html.staticControls.beads.AlertView; AlertView;
+    import org.apache.flex.html.staticControls.beads.ListView; ListView;
 	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
@@ -55,6 +57,12 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
 	import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
 	import org.apache.flex.html.staticControls.beads.models.SpinnerModel; SpinnerModel;
+    import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
+    import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+    import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
+    import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
+    import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;    
+    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;    
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.utils.Timer; Timer;

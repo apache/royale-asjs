@@ -47,7 +47,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a horizontal layout bead
 			value.addBead(new NonVirtualHorizontalLayout());
-			
+            
 			// add an input field
 			input = new TextInput();
 			input.addToParent(value);

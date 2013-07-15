@@ -19,11 +19,8 @@
 package org.apache.flex.html.staticControls
 {
 	import flash.display.DisplayObject;
-	import flash.display.SimpleButton;
-	import flash.events.MouseEvent;
+    import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIButtonBase;
@@ -59,7 +56,7 @@ package org.apache.flex.html.staticControls
 			IToggleButtonModel(model).selected = value;
 		}
 				
-		private function internalMouseHandler(event:MouseEvent) : void
+		private function internalMouseHandler(event:Event) : void
 		{
 			selected = !selected;
 			dispatchEvent(new Event("change"));

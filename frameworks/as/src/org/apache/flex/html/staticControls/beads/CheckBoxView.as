@@ -25,13 +25,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
-	public class CheckBoxView implements IBead, IBeadView
+	public class CheckBoxView implements IBeadView
 	{
 		public function CheckBoxView()
 		{
@@ -76,6 +75,7 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            
 			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);

@@ -18,22 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController;
-	import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class ListView implements IBead, IStrand, IListView
+	public class ListView extends Strand implements IBeadView, IStrand, IListView
 	{
 		public function ListView()
 		{
@@ -73,14 +74,23 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            
+            listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+            listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+
             _border = new Border();
-            border.addToParent(UIBase(_strand));
             _border.model = new SingleLineBorderModel();
             _border.addBead(new SingleLineBorderBead());
+            border.addToParent(UIBase(_strand));
+            
 			_dataGroup = new NonVirtualDataGroup();
 			UIBase(_dataGroup).addToParent(UIBase(_strand));
-			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+            
+            if (getBeadByType(IBeadLayout) == null)
+            {
+                var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
+                addBead(mapper);
+            }            
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -104,7 +114,6 @@ package org.apache.flex.html.staticControls.beads
 		{
 			var vsb:ScrollBar;
 			vsb = new ScrollBar();
-			vsb.addToParent(UIBase(_strand));
 			var vsbm:ScrollBarModel = new ScrollBarModel();
 			vsbm.maximum = 100;
 			vsbm.minimum = 0;
@@ -115,49 +124,9 @@ package org.apache.flex.html.staticControls.beads
 			vsbm.value = 0;
 			vsb.model = vsbm;
 			vsb.width = 16;
-			var vsbl:VScrollBarLayout = new VScrollBarLayout();
-			//vsbb.addBead(vsbl);
-			var vsbc:VScrollBarMouseController = new VScrollBarMouseController();
-			vsb.addBead(vsbc);
+            vsb.addToParent(UIBase(_strand));
 			return vsb;
 		}
 				
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
-		public var beads:Array;
-		
-		private var _beads:Vector.<IBead>;
-		public function addBead(bead:IBead):void
-		{
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			bead.strand = this;
-		}
-		
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
-		}
 	}
 }

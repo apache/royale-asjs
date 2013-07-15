@@ -46,6 +46,8 @@ package org.apache.flex.core
         {
             var fieldWatcher:Object;
             var sb:SimpleBinding;
+            if (!("_bindings" in _strand))
+                return;
             var bindingData:Array = _strand["_bindings"];
             var n:int = bindingData[0];
             var bindings:Array = [];

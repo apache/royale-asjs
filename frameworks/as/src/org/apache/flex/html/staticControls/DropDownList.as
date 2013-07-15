@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls
 {
     import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.html.staticControls.beads.controllers.DropDownListController;
     
     [Event(name="change", type="org.apache.flex.events.Event")]
     

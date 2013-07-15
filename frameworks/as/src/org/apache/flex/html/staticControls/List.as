@@ -18,21 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ItemRendererClassFactory;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
-	import org.apache.flex.html.staticControls.beads.IListView;
-	import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData;
-	import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController;
-	import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout;
-	import org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -79,6 +68,8 @@ package org.apache.flex.html.staticControls
 		
 		override protected function addedToParent():void
 		{
+            super.addedToParent();
+            
             if (getBeadByType(IDataProviderItemRendererMapper) == null)
             {
                 var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;

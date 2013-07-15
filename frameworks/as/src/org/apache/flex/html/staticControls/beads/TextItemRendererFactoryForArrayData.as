@@ -25,10 +25,11 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
 
-	public class TextItemRendererFactoryForArrayData implements IBead
+	public class TextItemRendererFactoryForArrayData implements IBead, IDataProviderItemRendererMapper
 	{
 		public function TextItemRendererFactoryForArrayData()
 		{
@@ -49,7 +50,8 @@ package org.apache.flex.html.staticControls.beads
             
             if (!itemRendererFactory)
             {
-                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererFactory")) as IItemRendererClassFactory;
+                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+                _strand.addBead(_itemRendererFactory);
             }
             
 			dataProviderChangeHandler(null);
@@ -79,6 +81,10 @@ package org.apache.flex.html.staticControls.beads
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
+                if (tf is IUIBase)
+                    IUIBase(tf).addToParent(dataGroup);
+                else
+
 				dataGroup.addChild(tf as DisplayObject);
 				tf.text = dp[i];
 			}			

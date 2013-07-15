@@ -22,7 +22,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import flash.display.DisplayObjectContainer;
 	import flash.geom.Rectangle;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
@@ -32,7 +32,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class NonVirtualVerticalScrollingLayout implements IBead
+	public class NonVirtualVerticalScrollingLayout implements IBeadLayout
 	{
 		public function NonVirtualVerticalScrollingLayout()
 		{

@@ -34,11 +34,8 @@ package org.apache.flex.core
 			super();
 		}
 		
-		public function initUI(model:Object):void
+		override protected function addedToParent():void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
-			
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 			
@@ -67,6 +64,11 @@ package org.apache.flex.core
 		{
 			return _applicationModel;
 		}
+        public function set applicationModel(value:Object):void
+        {
+            _applicationModel = value;
+            dispatchEvent(new Event("modelChanged"));
+        }
 
         private var _states:Array;
         

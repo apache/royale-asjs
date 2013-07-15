@@ -47,9 +47,9 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a border to this
 			_border = new Border();
-			border.addToParent(UIBase(strand));
 			_border.model = new SingleLineBorderModel();
 			_border.addBead(new SingleLineBorderBead());
+            border.addToParent(UIBase(strand));
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);

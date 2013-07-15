@@ -20,14 +20,17 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 
-	public class ScrollBarView implements IBead, IStrand, IScrollBarView
+	public class ScrollBarView extends Strand implements IBeadView, IStrand, IScrollBarView
 	{
 		public function ScrollBarView()
 		{
@@ -50,7 +53,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
-
+            
             // TODO: (aharui) put in values impl
 			_increment = new Button();
 			Button(_increment).addBead(new DownArrowButtonView());
@@ -67,6 +70,12 @@ package org.apache.flex.html.staticControls.beads
             UIBase(value).addChild(_increment);
             UIBase(value).addChild(_track);
             UIBase(value).addChild(_thumb);
+            
+            if( getBeadByType(IBeadLayout) == null ) {
+                var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
+                addBead(layout);
+            }
+            
 		}
 						
 		private var _decrement:DisplayObject;
@@ -91,42 +100,5 @@ package org.apache.flex.html.staticControls.beads
 			return _thumb;
 		}
 		
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
-		public var beads:Array;
-		
-		private var _beads:Vector.<IBead>;
-		public function addBead(bead:IBead):void
-		{
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			bead.strand = this;
-		}
-		
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
-		}
 	}
 }

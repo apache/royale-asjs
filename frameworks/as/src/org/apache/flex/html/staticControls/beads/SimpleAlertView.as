@@ -45,7 +45,7 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+            
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
@@ -73,8 +73,8 @@ package org.apache.flex.html.staticControls.beads
 			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
 			model.addEventListener("messageChange",handleMessageChange);
 			model.addEventListener("htmlMessageChange",handleMessageChange);
-			
-			messageLabel = new Label();
+
+            messageLabel = new Label();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
 			messageLabel.addToParent(_strand);

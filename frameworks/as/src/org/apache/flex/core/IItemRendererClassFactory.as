@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IItemRendererClassFactory
+	public interface IItemRendererClassFactory extends IBead
 	{
 		function createItemRenderer(parent:IItemRendererParent):IItemRenderer;
 	}

@@ -105,11 +105,24 @@ package org.apache.flex.core
 			return super.height;
 		}
 
-		private var _model:IBeadModel;
-		public function get model():IBeadModel
-		{
-			return _model;
-		}
+        private var _model:IBeadModel;
+        public function get model():IBeadModel
+        {
+            if (_model == null)
+            {
+                // addbead will set _model
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+            }
+            return _model;
+        }
+        public function set model(value:IBeadModel):void
+        {
+            if (_model != value)
+            {
+                addBead(value as IBead);
+                dispatchEvent(new Event("modelChanged"));
+            }
+        }
 		
 		private var _id:String;
 		public function get id():String
@@ -181,8 +194,42 @@ package org.apache.flex.core
 		
 		protected function addedToParent():void
 		{
-			_width = $width;
-			_height = $height;
+            var c:Class;
+            
+            if (getBeadByType(IBeadModel) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
+                if (c)
+                {
+                    var model:IBeadModel = new c as IBeadModel;
+                    if (model)
+                        addBead(model);
+                }
+            }
+            if (getBeadByType(IBeadView) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
+                if (c)
+                {
+                    var view:IBeadView = new c as IBeadView;
+                    if (view)
+                        addBead(view);
+                }
+            }
+            if (getBeadByType(IBeadController) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
+                if (c)
+                {
+                    var controller:IBeadController = new c as IBeadController;
+                    if (controller)
+                        addBead(controller);
+                }
+            }
+
+            _width = $width;
+            _height = $height;
+            
 		}
 		
 		public function addToParent(p:Object):void

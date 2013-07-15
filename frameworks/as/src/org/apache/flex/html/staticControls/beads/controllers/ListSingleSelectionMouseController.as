@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
 {
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
@@ -28,7 +28,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	
 
-	public class ListSingleSelectionMouseController implements IBead
+	public class ListSingleSelectionMouseController implements IBeadController
 	{
 		public function ListSingleSelectionMouseController()
 		{

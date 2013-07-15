@@ -87,7 +87,7 @@ package org.apache.flex.html.staticControls.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 		}
-		
+		        
 		private function textChangeHandler(event:Event):void
 		{
 			text = textModel.text;

@@ -20,16 +20,6 @@ package org.apache.flex.core
 {
 	public interface IUIBase extends IStrand
 	{
-		function get model():IBeadModel;
-		
-		function get id():String;
-		function set id(value:String):void;
-		
-		function get className():String;
-		function set className(value:String):void;
-		
 		function addToParent(p:Object):void;
-		
-		function get measurementBead():IMeasurementBead;
 	}
 }

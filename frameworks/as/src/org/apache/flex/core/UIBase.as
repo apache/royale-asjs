@@ -204,21 +204,37 @@ package org.apache.flex.core
 		
         protected function addedToParent():void
         {
+            var c:Class;
+            
             if (getBeadByType(IBeadModel) == null) 
             {
-                var model:IBeadModel = new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBeadModel;
-                if (model)
-                    addBead(model);
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
+                if (c)
+                {
+                    var model:IBeadModel = new c as IBeadModel;
+                    if (model)
+                        addBead(model);
+                }
             }
             if (getBeadByType(IBeadView) == null) 
             {
-                var view:IBeadView = new (ValuesManager.valuesImpl.getValue(this, "iBeadView")) as IBeadView;
-                addBead(view);
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
+                if (c)
+                {
+                    var view:IBeadView = new c as IBeadView;
+                    if (view)
+                        addBead(view);
+                }
             }
             if (getBeadByType(IBeadController) == null) 
             {
-                var controller:IBeadController = new (ValuesManager.valuesImpl.getValue(this, "iBeadController")) as IBeadController;
-                addBead(controller);
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
+                if (c)
+                {
+                    var controller:IBeadController = new c as IBeadController;
+                    if (controller)
+                        addBead(controller);
+                }
             }
         }
         

@@ -61,8 +61,8 @@ package org.apache.flex.core
 
             dispatchEvent(new Event("initialize"));
 
+            initialView.applicationModel =  model;
     	    initialView.addToParent(this);
-    	    initialView.initUI(model);
     	    dispatchEvent(new Event("viewChanged"));
         }
 

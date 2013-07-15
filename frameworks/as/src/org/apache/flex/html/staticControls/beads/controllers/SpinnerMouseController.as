@@ -20,14 +20,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ISpinnerView;
 	
-	public class SpinnerMouseController implements IBead
+	public class SpinnerMouseController implements IBeadController
 	{
 		public function SpinnerMouseController()
 		{

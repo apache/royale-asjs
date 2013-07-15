@@ -74,7 +74,7 @@ package org.apache.flex.html.staticControls.beads
 			SimpleButton(value).overState = overView;
 			SimpleButton(value).hitTestState = shape;
 		}
-				
+
 		private var upView:Shape;
 		private var downView:Shape;
 		private var overView:Shape;

@@ -22,12 +22,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	
-	public class TextFieldViewBase implements IBead
+	public class TextFieldViewBase implements IBeadView
 	{
 		public function TextFieldViewBase()
 		{
@@ -65,7 +65,7 @@ package org.apache.flex.html.staticControls.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 		}
-		
+        
 		public function get strand() : IStrand
 		{
 			return _strand;

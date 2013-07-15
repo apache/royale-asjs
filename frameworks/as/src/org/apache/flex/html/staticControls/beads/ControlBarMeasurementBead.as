@@ -42,8 +42,9 @@ package org.apache.flex.html.staticControls.beads
 			for(var i:int=0; i < n; i++) {
 				var child:IUIBase = children[i] as IUIBase;
 				if( child == null ) continue;
-				var childMeasure:IMeasurementBead = child.measurementBead;
-				mwidth += childMeasure.measuredWidth;
+				var childMeasure:IMeasurementBead = child.getBeadByType(IMeasurementBead) as IMeasurementBead;
+                if (childMeasure)
+    				mwidth += childMeasure.measuredWidth;
 			}
 			return mwidth;
 		}
@@ -58,7 +59,7 @@ package org.apache.flex.html.staticControls.beads
 			for(var i:int=0; i < n; i++) {
 				var child:IUIBase = DisplayObjectContainer(_strand).getChildAt(i) as IUIBase;
 				if( child == null ) continue;
-				var childMeasure:IMeasurementBead = child.measurementBead;
+				var childMeasure:IMeasurementBead = child.getBeadByType(IMeasurementBead) as IMeasurementBead;
 				mheight += childMeasure.measuredHeight;
 			}
 			return mheight;

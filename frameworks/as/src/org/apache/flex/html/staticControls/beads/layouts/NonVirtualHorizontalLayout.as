@@ -19,16 +19,15 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Container;
 
-	public class NonVirtualHorizontalLayout implements IBead
+	public class NonVirtualHorizontalLayout implements IBeadLayout
 	{
 		public function NonVirtualHorizontalLayout()
 		{

@@ -27,14 +27,15 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class DropDownListView implements IDropDownListView
+	public class DropDownListView implements IDropDownListView, IBeadView
 	{
 		public function DropDownListView()
 		{

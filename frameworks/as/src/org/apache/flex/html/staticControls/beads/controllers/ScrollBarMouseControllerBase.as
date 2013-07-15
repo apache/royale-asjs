@@ -20,14 +20,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 {
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IScrollBarView;
 
-	public class ScrollBarMouseControllerBase implements IBead
+	public class ScrollBarMouseControllerBase implements IBeadController
 	{
 		public function ScrollBarMouseControllerBase()
 		{
