@@ -38,6 +38,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.NumericStepperView; NumericStepperView;
     import org.apache.flex.html.staticControls.beads.PanelView; PanelView;
 	import org.apache.flex.html.staticControls.beads.RadioButtonView; RadioButtonView;
+    import org.apache.flex.html.staticControls.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.staticControls.beads.SimpleAlertView; SimpleAlertView;
     import org.apache.flex.html.staticControls.beads.SpinnerView; SpinnerView;
     import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
@@ -57,16 +58,24 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
 	import org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
+    import org.apache.flex.html.staticControls.beads.controllers.AlertController; AlertController;
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
-    import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
+    import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+    import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
+    import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
+    import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;    
     import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;    
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;    
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.utils.Timer; Timer;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
+    
+    import mx.states.AddItems; AddItems;
+    import mx.states.SetProperty; SetProperty;
+    import mx.states.State; State;
 }
 
 }
