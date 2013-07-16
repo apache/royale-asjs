@@ -70,7 +70,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
     s = arr[p];
     if (s.name == event.newValue)
     {
-      this.apply(s);
+      this.applyState(s);
       break;
     }
   }
@@ -92,7 +92,11 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
       for (var q in o.items)
       {
         var item = o.items[q];
-        var parent = o.document[o.destination];
+        var parent;
+        if (typeof(o.document['get_' + o.destination]) == 'function')
+            parent = o.document['get_' + o.destination]();
+        else
+            parent = o.document[o.destination];
         item.removeFromParent(parent);
         parent.dispatchEvent(
             new org.apache.flex.events.Event('childrenAdded'));
@@ -100,7 +104,15 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
     }
     else if (o.type == 'SetProperty')
     {
-      o.document[o.target][o.name] = o.previousValue;
+      var target;
+      if (typeof(o.document['get_' + o.target]) == 'function')
+        target = o.document['get_' + o.target]();
+      else
+        target = o.document[o.target];
+      if (typeof(target['set_' + o.name]) == 'function')
+        target['set_' + o.name](o.previousValue);
+      else
+        target[o.name] = o.previousValue;
     }
   }
 };
@@ -110,7 +122,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
  * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} s The State to apply.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.apply = function(s) {
+org.apache.flex.core.SimpleStatesImpl.prototype.applyState = function(s) {
   var o, p;
   var arr = s.overrides;
   for (p in arr)
@@ -129,10 +141,18 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply = function(s) {
       for (var q in o.items)
       {
         var item = o.items[q];
-        var parent = o.document[o.destination];
+        var parent;
+        if (typeof(o.document['get_' + o.destination]) == 'function')
+            parent = o.document['get_' + o.destination]();
+        else
+            parent = o.document[o.destination];
         if (o.relativeTo != null)
         {
-            var child = o.document[o.relativeTo];
+            var child;
+            if (typeof(o.document['get_' + o.relativeTo]) == 'function')
+                child = o.document['get_' + o.relativeTo]();
+            else
+                child = o.document[o.relativeTo];
             var index = child.getIndexInParent(parent);
             if (o.position == 'after')
                 index++;
@@ -148,8 +168,19 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply = function(s) {
     }
     else if (o.type == 'SetProperty')
     {
-      o.previousValue = o.document[o.target][o.name];
-      o.document[o.target][o.name] = o.value;
+      var target;
+      if (typeof(o.document['get_' + o.target]) == 'function')
+        target = o.document['get_' + o.target]();
+      else
+        target = o.document[o.target];
+      if (typeof(target['get_' + o.name]) == 'function')
+        o.previousValue = target['get_' + o.name]();
+      else
+        o.previousValue = target[o.name]
+      if (typeof(target['set_' + o.name]) == 'function')
+        target['set_' + o.name](o.value);
+      else
+        target[o.name] = o.value;
     }
   }
 };
