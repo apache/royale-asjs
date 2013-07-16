@@ -26,7 +26,6 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
-	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController;
 	
 	public class SpinnerView implements ISpinnerView, IBeadView
 	{
@@ -47,10 +46,7 @@ package org.apache.flex.html.staticControls.beads
 			_decrement = new Button();
 			Button(_decrement).addBead(new DownArrowButtonView());
 			Button(_decrement).addBead(new ButtonAutoRepeatController());
-			
-			var mouseController:SpinnerMouseController = new SpinnerMouseController();
-			_strand.addBead(mouseController);
-			
+						
 			Button(_increment).x = 0;
 			Button(_increment).y = 0;
 			Button(_decrement).x = 0;

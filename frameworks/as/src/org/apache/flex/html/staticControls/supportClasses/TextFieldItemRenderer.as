@@ -23,8 +23,6 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IBeadModel;
-    import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;

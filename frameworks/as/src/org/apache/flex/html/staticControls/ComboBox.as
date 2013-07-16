@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	

@@ -21,10 +21,8 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]

@@ -19,13 +19,8 @@
 package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IPopUp;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
-	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	
 	public class Alert extends UIBase implements IPopUp
 	{

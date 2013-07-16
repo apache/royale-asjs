@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISpinnerModel;
-	import org.apache.flex.core.ValuesManager;
 
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	public class NumericStepper extends Container
