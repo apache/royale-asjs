@@ -17,7 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// shim the mx classes for states
+// shim the mx classes for states.  Be careful about updates to the main SDK's
+// version as that will move the timestamp ahead of this one and then it will
+// take precedence over this one at link time.
 package mx.states
 {
     import org.apache.flex.core.IDocument;
