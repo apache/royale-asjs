@@ -40,6 +40,9 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.RadioButtonView; RadioButtonView;
     import org.apache.flex.html.staticControls.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.staticControls.beads.SimpleAlertView; SimpleAlertView;
+	import org.apache.flex.html.staticControls.beads.SliderView; SliderView;
+	import org.apache.flex.html.staticControls.beads.SliderThumbView; SliderThumbView;
+	import org.apache.flex.html.staticControls.beads.SliderTrackView; SliderTrackView;
     import org.apache.flex.html.staticControls.beads.SpinnerView; SpinnerView;
     import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
@@ -53,6 +56,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
     import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
+	import org.apache.flex.html.staticControls.beads.models.SliderModel; SliderModel;
     import org.apache.flex.html.staticControls.beads.models.SpinnerModel; SpinnerModel;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
     import org.apache.flex.html.staticControls.beads.models.TitleBarModel; TitleBarModel;
@@ -62,7 +66,8 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
-    import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
+	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
+	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;    

@@ -19,14 +19,14 @@
 package org.apache.flex.html.staticControls.beads.models
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ISpinnerModel;
+	import org.apache.flex.core.ISliderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
-	public class SpinnerModel extends EventDispatcher implements ISpinnerModel, IBead
+	public class SliderModel extends EventDispatcher implements ISliderModel, IBead
 	{
-		public function SpinnerModel()
+		public function SliderModel()
 		{
 			super();
 		}
@@ -42,7 +42,6 @@ package org.apache.flex.html.staticControls.beads.models
 			if( newValue != _value ) {
 				_value = newValue;
 				dispatchEvent( new Event("valueChanged") );
-				trace("Spinner value is " + newValue);
 			}
 		}
 		
@@ -71,34 +70,6 @@ package org.apache.flex.html.staticControls.beads.models
 			if( value != _maximum ) {
 				_maximum = value;
 				dispatchEvent( new Event("maximumChanged") );
-			}
-		}
-		
-		private var _stepSize:Number = 1;
-		public function get stepSize():Number
-		{
-			return _stepSize;
-		}
-		
-		public function set stepSize(value:Number):void
-		{
-			if( value != _stepSize ) {
-				_stepSize = value;
-				dispatchEvent( new Event("stepSizeChanged") );
-			}
-		}
-		
-		private var _allowValueWrap:Boolean = false;
-		public function get allowValueWrap():Boolean
-		{
-			return _allowValueWrap;
-		}
-		
-		public function set allowValueWrap(value:Boolean):void
-		{
-			if( value != _allowValueWrap ) {
-				_allowValueWrap = value;
-				dispatchEvent( new Event("valueWrapChanged") );
 			}
 		}
 		

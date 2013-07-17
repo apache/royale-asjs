@@ -186,6 +186,15 @@ SimpleAlert
     border-thickness: 1;
 }
 
+Slider
+{
+    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SliderModel");
+    iBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SliderView");
+    iBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SliderMouseController");
+    iThumbView: ClassReference("org.apache.flex.html.staticControls.beads.SliderThumbView");
+    iTrackView: ClassReference("org.apache.flex.html.staticControls.beads.SliderTrackView");
+}
+
 Spinner
 {
     iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
