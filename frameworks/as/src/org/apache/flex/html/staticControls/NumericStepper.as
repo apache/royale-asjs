@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.ISpinnerModel;
+	import org.apache.flex.core.IRangeModel;
 
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	public class NumericStepper extends Container
@@ -26,51 +26,57 @@ package org.apache.flex.html.staticControls
 		public function NumericStepper()
 		{
 			super();
+			
+			IRangeModel(model).value = 0;
+			IRangeModel(model).minimum = 0;
+			IRangeModel(model).maximum = 100;
+			IRangeModel(model).stepSize = 1;
+			IRangeModel(model).snapInterval = 1;
 		}
 		
 		public function get value():Number
 		{
-			return ISpinnerModel(model).value;
+			return IRangeModel(model).value;
 		}
 		public function set value(newValue:Number):void
 		{
-			ISpinnerModel(model).value = newValue;
+			IRangeModel(model).value = newValue;
 		}
 		
 		public function get minimum():Number
 		{
-			return ISpinnerModel(model).minimum;
+			return IRangeModel(model).minimum;
 		}
 		public function set minimum(value:Number):void
 		{
-			ISpinnerModel(model).minimum = value;
+			IRangeModel(model).minimum = value;
 		}
 		
 		public function get maximum():Number
 		{
-			return ISpinnerModel(model).maximum;
+			return IRangeModel(model).maximum;
 		}
 		public function set maximum(value:Number):void
 		{
-			ISpinnerModel(model).maximum = value;
+			IRangeModel(model).maximum = value;
 		}
 		
 		public function get stepSize():Number
 		{
-			return ISpinnerModel(model).stepSize;
+			return IRangeModel(model).stepSize;
 		}
 		public function set stepSize(value:Number):void
 		{
-			ISpinnerModel(model).stepSize = value;
+			IRangeModel(model).stepSize = value;
 		}
 		
 		public function get snapInterval():Number
 		{
-			return ISpinnerModel(model).snapInterval;
+			return IRangeModel(model).snapInterval;
 		}
 		public function set snapInterval(value:Number):void
 		{
-			ISpinnerModel(model).snapInterval = value;
+			IRangeModel(model).snapInterval = value;
 		}
 		
 	}

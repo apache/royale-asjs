@@ -21,7 +21,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISpinnerModel;
+	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -33,14 +34,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 		}
 		
-		private var spinnerModel:ISpinnerModel;
+		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			spinnerModel = value.getBeadByType(ISpinnerModel) as ISpinnerModel;
+			rangeModel = value.getBeadByType(IBeadModel) as IRangeModel;
 			
 			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
@@ -51,8 +52,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 		
 		protected function snap(value:Number):Number
 		{
-			var si:Number = spinnerModel.snapInterval;
-			var n:Number = Math.round((value - spinnerModel.minimum) / si) * si + spinnerModel.minimum;
+			var si:Number = rangeModel.snapInterval;
+			var n:Number = Math.round((value - rangeModel.minimum) / si) * si + rangeModel.minimum;
 			if (value > 0)
 			{
 				if (value - n < n + si - value)
@@ -67,13 +68,13 @@ package org.apache.flex.html.staticControls.beads.controllers
 		
 		private function decrementClickHandler( event:Event ) : void
 		{
-			spinnerModel.value = snap(Math.max(spinnerModel.minimum, spinnerModel.value - spinnerModel.stepSize));
+			rangeModel.value = snap(Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize));
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 		
 		private function incrementClickHandler( event:Event ) : void
 		{
-			spinnerModel.value = snap(Math.min(spinnerModel.maximum, spinnerModel.value + spinnerModel.stepSize));	
+			rangeModel.value = snap(Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize));	
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 	}

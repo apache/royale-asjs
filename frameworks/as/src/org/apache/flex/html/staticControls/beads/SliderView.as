@@ -21,8 +21,9 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ISliderModel;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -36,7 +37,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 		}
 		
-		private var sliderModel:ISliderModel;
+		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
@@ -55,7 +56,7 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			
-			sliderModel = _strand.getBeadByType(ISliderModel) as ISliderModel;
+			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			
 			// set a minimum size to trigger the size change handler
 			var needsSizing:Boolean = true;

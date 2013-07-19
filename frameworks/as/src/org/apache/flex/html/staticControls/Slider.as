@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.ISliderModel;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
 	
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
@@ -30,42 +30,48 @@ package org.apache.flex.html.staticControls
 			super();
 			
 			className = "Slider";
+			
+			IRangeModel(model).value = 0;
+			IRangeModel(model).minimum = 0;
+			IRangeModel(model).maximum = 100;
+			IRangeModel(model).stepSize = 1;
+			IRangeModel(model).snapInterval = 1;
 		}
 		
 		public function get value():Number
 		{
-			return ISliderModel(model).value;
+			return IRangeModel(model).value;
 		}
 		public function set value(newValue:Number):void
 		{
-			ISliderModel(model).value = newValue;
+			IRangeModel(model).value = newValue;
 		}
 		
 		public function get minimum():Number
 		{
-			return ISliderModel(model).minimum;
+			return IRangeModel(model).minimum;
 		}
 		public function set minimum(value:Number):void
 		{
-			ISliderModel(model).minimum = value;
+			IRangeModel(model).minimum = value;
 		}
 		
 		public function get maximum():Number
 		{
-			return ISliderModel(model).maximum;
+			return IRangeModel(model).maximum;
 		}
 		public function set maximum(value:Number):void
 		{
-			ISliderModel(model).maximum = value;
+			IRangeModel(model).maximum = value;
 		}
 		
 		public function get snapInterval():Number
 		{
-			return ISliderModel(model).snapInterval;
+			return IRangeModel(model).snapInterval;
 		}
 		public function set snapInterval(value:Number):void
 		{
-			ISliderModel(model).snapInterval = value;
+			IRangeModel(model).snapInterval = value;
 		}
 	}
 }

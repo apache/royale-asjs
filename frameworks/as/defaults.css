@@ -61,7 +61,7 @@ global
 
 Alert
 {
-    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
     IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.AlertView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.AlertController");
     iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
@@ -133,7 +133,7 @@ List
 
 NumericStepper
 {
-    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.NumericStepperView");
     
     padding: 0px;
@@ -174,7 +174,7 @@ ScrollBar
 
 SimpleAlert
 {
-    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
     IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.AlertController");
     iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
@@ -188,7 +188,7 @@ SimpleAlert
 
 Slider
 {
-    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SliderModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     iBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SliderView");
     iBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SliderMouseController");
     iThumbView: ClassReference("org.apache.flex.html.staticControls.beads.SliderThumbView");
@@ -197,7 +197,7 @@ Slider
 
 Spinner
 {
-    iBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController");
 }

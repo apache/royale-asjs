@@ -20,8 +20,9 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
 	
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ISpinnerModel;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.Button;
@@ -33,7 +34,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 		}
 		
-		private var spinnerModel:ISpinnerModel;
+		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
@@ -54,7 +55,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			UIBase(_strand).addChild(_decrement);
 			UIBase(_strand).addChild(_increment);
-			spinnerModel = _strand.getBeadByType(ISpinnerModel) as ISpinnerModel;
+			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 		}
 		
 		private var _decrement:DisplayObject;

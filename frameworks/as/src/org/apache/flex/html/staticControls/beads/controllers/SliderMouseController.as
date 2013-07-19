@@ -23,7 +23,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISliderModel;
+	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.beads.ISliderView;
@@ -35,14 +36,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 			trace("SliderMouseController");
 		}
 		
-		private var sliderModel:ISliderModel;
+		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			sliderModel = value.getBeadByType(ISliderModel) as ISliderModel;
+			rangeModel = value.getBeadByType(IBeadModel) as IRangeModel;
 			
 			var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
 			sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
@@ -53,8 +54,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 		
 		protected function snap(value:Number):Number
 		{
-			var si:Number = sliderModel.snapInterval;
-			var n:Number = Math.round((value - sliderModel.minimum) / si) * si + sliderModel.minimum;
+			var si:Number = rangeModel.snapInterval;
+			var n:Number = Math.round((value - rangeModel.minimum) / si) * si + rangeModel.minimum;
 			if (value > 0)
 			{
 				if (value - n < n + si - value)
@@ -96,17 +97,17 @@ package org.apache.flex.html.staticControls.beads.controllers
 			var newX:Number = thumb.x + deltaX;
 			
 			var p:Number = newX/UIBase(_strand).width;
-			var n:Number = p*(sliderModel.maximum - sliderModel.minimum) + sliderModel.minimum;
+			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 			n = snap(n);
-			if( n < sliderModel.minimum ) n = sliderModel.minimum;
-			else if( n > sliderModel.maximum ) n = sliderModel.maximum;
+			if( n < rangeModel.minimum ) n = rangeModel.minimum;
+			else if( n > rangeModel.maximum ) n = rangeModel.maximum;
 			
-			p = (n-sliderModel.minimum)/(sliderModel.maximum-sliderModel.minimum);
+			p = (n-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
 			newX = p*(UIBase(_strand).width);
 			
 			sliderView.thumb.x = newX - sliderView.thumb.width/2;
 			
-			sliderModel.value = n;
+			rangeModel.value = n;
 		}
 		
 		private function trackClickHandler( event:MouseEvent ) : void
@@ -117,16 +118,16 @@ package org.apache.flex.html.staticControls.beads.controllers
 			
 			var xloc:Number = event.localX;
 			var p:Number = xloc/UIBase(_strand).width;
-			var n:Number = p*(sliderModel.maximum - sliderModel.minimum) + sliderModel.minimum;
+			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 			n = snap(n);
-			if( n < sliderModel.minimum ) n = sliderModel.minimum;
-			else if( n > sliderModel.maximum ) n = sliderModel.maximum;
+			if( n < rangeModel.minimum ) n = rangeModel.minimum;
+			else if( n > rangeModel.maximum ) n = rangeModel.maximum;
 			
-			p = (n-sliderModel.minimum)/(sliderModel.maximum-sliderModel.minimum);
+			p = (n-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
 			xloc = p*(UIBase(_strand).width);
 			sliderView.thumb.x = xloc - sliderView.thumb.width/2;
 			
-			sliderModel.value = n;
+			rangeModel.value = n;
 		}
 	}
 }

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ISpinnerModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.createjs.staticControls.Label;
@@ -54,7 +54,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a spinner
 			spinner = new Spinner();
-			spinner.addBead( value.getBeadByType(ISpinnerModel) );
+			spinner.addBead( value.getBeadByType(IBeadModel) );
 			spinner.addToParent(value);
 			spinner.width = 17;
 			
