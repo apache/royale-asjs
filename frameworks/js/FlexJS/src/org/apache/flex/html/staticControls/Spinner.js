@@ -82,7 +82,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_value = function() {
  * @return {void} The value setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_value = function(newValue) {
-	this.value_ = newValue;
+	if( newValue != this.value_ ) {
+		this.value_ = newValue;
+		this.dispatchEvent('valueChanged');
+	}
 }
 
 /**
@@ -100,7 +103,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_minimum = function() {
  * @return {void} The minimum setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_minimum = function(value) {
-	this.minimum_ = value;
+	if( value != this.minimum_ ) {
+		this.minimum_ = value;
+		this.dispatchEvent('minimumChanged');
+	}
 }
 
 /**
@@ -118,7 +124,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_maximum = function() {
  * @return {void} The maximum setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_maximum = function(value) {
-	this.maximum_ = value;
+	if( value != maximum_ ) {
+		this.maximum_ = value;
+		this.dispatchEvent('maximumChanged');
+	}
 }
 
 /**
@@ -136,7 +145,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_snapInterval = functio
  * @return {void} The snapInterval setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_snapInterval = function(value) {
-	this.snapInterval_ = value;
+	if( value != snapInterval ) {
+		this.snapInterval_ = value;
+		this.dispatchEvent('snapIntervalChanged');
+	}
 }
 
 /**
@@ -154,7 +166,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_stepSize = function() 
  * @return {void} The stepSize setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_stepSize = function(value) {
-	this.stepSize_ = value;
+	if( value != this.stepSize_ ) {
+		this.stepSize_ = value;
+		this.dispatchEvent('stepSizeChanged');
+	}
 }
 
 
@@ -184,7 +199,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.snap = function(value)
 org.apache.flex.html.staticControls.Spinner.prototype.handleIncrementClick = function(event)
 {
   this.value_ = this.snap(Math.min(this.maximum_, this.value_ + this.stepSize_));	
-  this.dispatchEvent(new org.apache.flex.events.Event("valueChanged"));
 };
 
 /**
@@ -194,5 +208,4 @@ org.apache.flex.html.staticControls.Spinner.prototype.handleIncrementClick = fun
 org.apache.flex.html.staticControls.Spinner.prototype.handleDecrementClick = function(event)
 {
   this.value_ = this.snap(Math.max(this.minimum_, this.value_ - this.stepSize_));
-  this.dispatchEvent(new org.apache.flex.events.Event("valueChanged"));
 };
