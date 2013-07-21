@@ -36,86 +36,68 @@ org.apache.flex.core.UIBase = function() {
    * @type {Object}
    */
   this.positioner = null;
+
+  this.createElement();
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
 
-
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} child The element to be added.
+ * @return {Object} The array of children.
  */
-org.apache.flex.core.UIBase.prototype.internalAddChild = function(child) {
-  this.element.appendChild(child);
+org.apache.flex.core.UIBase.prototype.internalChildren =
+    function() {
+  return this.element.childNodes;
 };
 
 /**
+ * @protected
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} child The element to be added.
- * @param {number} index The index for the element to be added.
+ * @return {Object} The actual element to be parented.
  */
-org.apache.flex.core.UIBase.prototype.internalAddChildAt =
-    function(child, index) {
-  this.element.insertBefore(child, this.internalGetChildAt(index));
-};
-
-/**
- * @this {org.apache.flex.core.UIBase}
- * @param {Object} child The element to be removed.
- */
-org.apache.flex.core.UIBase.prototype.internalRemoveChild =
-    function(child) {
-  this.element.removeChild(child);
-};
-
-/**
- * @this {org.apache.flex.core.UIBase}
- * @param {number} index The index.
- * @return {Object} The child.
- */
-org.apache.flex.core.UIBase.prototype.internalGetChildAt =
-    function(index) {
-  return this.element.childNodes[index];
-};
-
-/**
- * @this {org.apache.flex.core.UIBase}
- * @param {Object} p The parent component.
- */
-org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
+org.apache.flex.core.UIBase.prototype.createElement = function() {
   if (this.element == null)
     this.element = document.createElement('div');
 
-  p.internalAddChild(this.element);
+  return this.element;
 };
 
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} p The parent component.
+ * @param {Object} c The child element.
+ */
+org.apache.flex.core.UIBase.prototype.addElement = function(c) {
+  this.element.appendChild(c.element);
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org.apache.flex.core.UIBase.prototype.addToParentAt = function(p, index) {
-  if (this.element == null)
-    this.element = document.createElement('div');
-
-  var children = p.internalChildren();
+org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
+  var children = this.internalChildren();
   if (index >= children.length)
-    p.internalAddChild(this.element);
+    this.addElement(c);
   else
-    p.internalAddChildAt(this.element, index);
+  {
+    this.element.insertBefore(c.element,
+            this.getChildAt(index));
+  }
 };
 
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} p The parent component.
+ * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org.apache.flex.core.UIBase.prototype.getIndexInParent = function(p) {
-  var children = p.internalChildren();
+org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
+  var children = this.internalChildren();
   var n = children.length;
   for (i = 0; i < n; i++)
   {
-     if (children[i] == this.element)
+     if (children[i] == c.element)
         return i;
   }
   return -1;
@@ -123,10 +105,10 @@ org.apache.flex.core.UIBase.prototype.getIndexInParent = function(p) {
 
 /**
  * @this {org.apache.flex.core.UIBase}
- * @param {Object} p The parent component.
+ * @param {Object} c The child element.
  */
-org.apache.flex.core.UIBase.prototype.removeFromParent = function(p) {
-  p.internalRemoveChild(this.element);
+org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
+  this.element.removeChild(c.element);
 };
 
 

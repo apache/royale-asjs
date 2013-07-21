@@ -32,10 +32,9 @@ goog.inherits(org.apache.flex.html5.staticControls.ComboBox,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.ComboBox}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.addToParent =
-    function(p) {
+org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
+    function() {
   var button, input;
 
   this.element = document.createElement('div');
@@ -58,8 +57,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.addToParent =
   this.element.appendChild(button);
 
   this.element.style.position = 'relative';
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 

@@ -32,10 +32,9 @@ goog.inherits(org.apache.flex.html5.staticControls.RadioButton,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.RadioButton}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.RadioButton.prototype.addToParent =
-    function(p) {
+org.apache.flex.html5.staticControls.RadioButton.prototype.createElement =
+    function() {
   var rb;
 
   this.element = document.createElement('label');
@@ -44,8 +43,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.addToParent =
   rb.type = 'radio';
   this.element.appendChild(rb);
   this.element.appendChild(document.createTextNode('radio button'));
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

@@ -82,7 +82,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
 org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
         function(parent) {
 
-    if (this.source && 
+    if (this.source &&
         typeof(this.source.removeEventListener) == 'function')
         this.removeEventListeners();
 
@@ -102,7 +102,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
 org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
         function() {
     if (typeof(this.eventNames) == 'string')
-        this.source.addEventListener(this.eventNames, 
+        this.source.addEventListener(this.eventNames,
             goog.bind(this.changeHandler, this));
     else if (typeof(this.eventNames) == 'Object')
     {
@@ -111,7 +111,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
         for (var i = 0; i < n; i++)
         {
             var eventName = this.eventNames[i];
-            this.source.addEventListener(eventName, 
+            this.source.addEventListener(eventName,
                 goog.bind(this.changeHandler, this));
         }
     }
@@ -133,7 +133,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
         for (var i = 0; i < n; i++)
         {
             var eventName = this.eventNames[i];
-            this.source.removeEventListener(eventName, 
+            this.source.removeEventListener(eventName,
                 goog.bind(this.changeHandler, this));
         }
     }

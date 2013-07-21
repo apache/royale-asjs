@@ -32,14 +32,11 @@ goog.inherits(org.apache.flex.html.staticControls.TextInput,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.TextInput}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.addToParent =
+org.apache.flex.html.staticControls.TextInput.prototype.createElement =
     function(p) {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;

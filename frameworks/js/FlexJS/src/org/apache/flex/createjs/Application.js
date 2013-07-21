@@ -96,9 +96,19 @@ org.apache.flex.createjs.Application.prototype.start = function() {
 
     this.dispatchEvent('initialize');
 
-    this.initialView.addToParent(this.stage);
-    this.initialView.initUI(this.model);
+    this.initialView.applicationModel = this.model;
+    this.addElement(this.initialView);
 
     this.dispatchEvent('viewChanged');
+};
+
+/**
+ * @this {org.apache.flex.createjs.core.Application}
+ * @param {Object} c The child element.
+ */
+org.apache.flex.createjs.core.Application.prototype.addElement =
+    function(c) {
+    this.stage.addChild(c.element);
+    c.addedToParent();
 };
 

@@ -15,8 +15,8 @@
 goog.provide('org.apache.flex.html.staticControls.NumericStepper');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.TextInput');
 goog.require('org.apache.flex.html.staticControls.Spinner');
+goog.require('org.apache.flex.html.staticControls.TextInput');
 
 
 
@@ -40,36 +40,34 @@ goog.inherits(org.apache.flex.html.staticControls.NumericStepper,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.NumericStepper}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.NumericStepper.prototype.addToParent = function(p) {
-  goog.base(this, 'addToParent', p);
-  
+org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
+    function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
-  
+
   this.input = new org.apache.flex.html.staticControls.TextInput();
-  this.input.addToParent(this);
-  this.input.positioner.style.display = "inline-block";
-  
+  this.addElement(input);
+  this.input.positioner.style.display = 'inline-block';
+
   this.spinner = new org.apache.flex.html.staticControls.Spinner();
-  this.spinner.addToParent(this);
-  this.spinner.positioner.style.display = "inline-block";
-  goog.events.listen(this.spinner, 'valueChanged', goog.bind(this.handleSpinnerChange, this));
-  
-  p.internalAddChild(this.element);
+  this.addElement(spinner);
+  this.spinner.positioner.style.display = 'inline-block';
+  goog.events.listen(this.spinner, 'valueChanged',
+                goog.bind(this.handleSpinnerChange, this));
 
   this.element.flexjs_wrapper = this;
-  
-  this.input.set_text( String(this.spinner.get_value()) );
-}
+
+  this.input.set_text(String(this.spinner.get_value()));
+};
 
 /**
  * @this {org.apache.flex.html.staticControls.Spinner}
- * @return {void} Handles click on increment button.
+ * @param {Object} event The input event.
  */
-org.apache.flex.html.staticControls.NumericStepper.prototype.handleSpinnerChange = function(event)
+org.apache.flex.html.staticControls.NumericStepper.prototype.handleSpinnerChange =
+    function(event)
 {
-   this.input.set_text( String(this.spinner.get_value()) );
-   this.dispatchEvent(new org.apache.flex.events.Event("valueChanged"));
-}
+   this.input.set_text(String(this.spinner.get_value()));
+   this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+};

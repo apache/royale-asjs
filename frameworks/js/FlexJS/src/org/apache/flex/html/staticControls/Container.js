@@ -32,15 +32,12 @@ goog.inherits(org.apache.flex.html.staticControls.Container,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.Container}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.Container.prototype.addToParent =
+org.apache.flex.html.staticControls.Container.prototype.createElement =
     function(p) {
   var cb;
 
   this.element = document.createElement('div');
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;

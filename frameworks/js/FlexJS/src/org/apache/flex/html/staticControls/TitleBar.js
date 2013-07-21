@@ -26,9 +26,9 @@ goog.require('org.apache.flex.html.staticControls.TextButton');
  */
 org.apache.flex.html.staticControls.TitleBar = function() {
   goog.base(this);
-  
+
   this._showCloseButton = false;
-  
+
 };
 goog.inherits(org.apache.flex.html.staticControls.TitleBar,
     org.apache.flex.html.staticControls.Container);
@@ -37,33 +37,31 @@ goog.inherits(org.apache.flex.html.staticControls.TitleBar,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.TitleBar}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.addToParent =
-    function(p) {
+org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
+    function() {
 
   this.element = document.createElement('div');
-  
-  this.titleLabel = new org.apache.flex.html.staticControls.Label();
-  this.titleLabel.addToParent(this);
-  this.titleLabel.element.id = "title";
-  this.titleLabel.positioner.style.display = "inline-block";
-  this.titleLabel.set_className("TitleBarLabel");
-  
-  this.titleButton = new org.apache.flex.html.staticControls.TextButton();
-  this.titleButton.addToParent(this);
-  this.titleButton.element.id = "closeButton";
-  this.titleButton.text = 'Close';
-  this.titleButton.positioner.style.display = this._showCloseButton ? "inline-block" : "none";
-  this.titleButton.positioner.style.position = "absolute";
-  this.titleButton.positioner.style.right = "0px";
 
-  p.internalAddChild(this.element);
+  this.titleLabel = new org.apache.flex.html.staticControls.Label();
+  this.addElement(titleLabel);
+  this.titleLabel.element.id = 'title';
+  this.titleLabel.positioner.style.display = 'inline-block';
+  this.titleLabel.set_className('TitleBarLabel');
+
+  this.titleButton = new org.apache.flex.html.staticControls.TextButton();
+  this.addElement(titleButton);
+  this.titleButton.element.id = 'closeButton';
+  this.titleButton.text = 'Close';
+  this.titleButton.positioner.style.display = this._showCloseButton ?
+            'inline-block' : 'none';
+  this.titleButton.positioner.style.position = 'absolute';
+  this.titleButton.positioner.style.right = '0px';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
-  
-  this.set_className("TitleBar");
+
+  this.set_className('TitleBar');
 };
 
 
@@ -72,7 +70,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addToParent =
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @return {string} The title getter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.get_title = function() {
+org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
+    function() {
   return this.titleLabel.get_text();
 };
 
@@ -82,7 +81,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_title = function() {
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {string} value The title setter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.set_title = function(value) {
+org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
+    function(value) {
   this.titleLabel.set_text(value);
 };
 
@@ -92,7 +92,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.set_title = function(valu
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @return {string} The showCloseButton getter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton = function() {
+org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
+    function() {
   return this._showCloseButton;
 };
 
@@ -102,7 +103,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton = fun
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {string} value The title setter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton = function(value) {
+org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton =
+    function(value) {
   this._showCloseButton = value;
-  this.titleButton.positioner.style.display = value ? "inline-block" : "none";
+  this.titleButton.positioner.style.display = value ? 'inline-block' : 'none';
 };

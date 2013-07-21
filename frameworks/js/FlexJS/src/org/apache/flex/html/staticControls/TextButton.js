@@ -24,8 +24,6 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.TextButton = function() {
   goog.base(this);
-  this.element = document.createElement('button');
-  this.element.setAttribute('type', 'button');
 };
 goog.inherits(org.apache.flex.html.staticControls.TextButton,
     org.apache.flex.core.UIBase);
@@ -34,12 +32,11 @@ goog.inherits(org.apache.flex.html.staticControls.TextButton,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.TextButton}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.TextButton.prototype.addToParent =
-    function(p) {
-
-  p.internalAddChild(this.element);
+org.apache.flex.html.staticControls.TextButton.prototype.createElement =
+    function() {
+  this.element = document.createElement('button');
+  this.element.setAttribute('type', 'button');
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;

@@ -75,10 +75,8 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 /**
  * @this {org.apache.flex.core.ViewBase}
- * @param {Object} model The model for this view.
  */
-org.apache.flex.core.ViewBase.prototype.initUI = function(model) {
-  this.applicationModel = model;
+org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
       this.get_MXMLProperties());

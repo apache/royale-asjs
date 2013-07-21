@@ -29,11 +29,10 @@ goog.inherits(org.apache.flex.createjs.staticControls.Label,
 /**
  * @override
  * @this {org.apache.flex.createjs.staticControls.Label}
- * @param {Object} p The parent element.
  */
-org.apache.flex.createjs.staticControls.Label.prototype.addToParent =
+org.apache.flex.createjs.staticControls.Label.prototype.createElement =
   function(p) {
-    goog.base(this, 'addToParent', p);
+    goog.base(this, 'createElement');
 
     this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
      this.element.x = 0;

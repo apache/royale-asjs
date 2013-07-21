@@ -82,12 +82,13 @@ org.apache.flex.events.ValueChangeEvent.prototype.source = null;
  * @param {string} name The property that changed.
  * @param {Object} oldValue The old value.
  * @param {Object} newValue The new value.
+ * @return {Object} An event object.
  */
 org.apache.flex.events.ValueChangeEvent.createUpdateEvent =
         function(source, name, oldValue, newValue)
 {
     var event = new org.apache.flex.events.ValueChangeEvent(
-            org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE, 
+            org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
             oldValue, newValue);
     event.propertyName = name;
     event.source = source;
@@ -98,4 +99,4 @@ org.apache.flex.events.ValueChangeEvent.createUpdateEvent =
  * @expose
  * @type {string} VALUE_CHANGE The type of the event.
  */
-org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE = "valueChange";
+org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE = 'valueChange';

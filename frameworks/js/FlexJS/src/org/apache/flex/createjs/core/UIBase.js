@@ -31,17 +31,26 @@ org.apache.flex.createjs.core.UIBase = function() {
      */
     this.positioner = null;
 
+    this.createElement();
 };
 goog.inherits(org.apache.flex.createjs.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
 
 /**
  * @this {org.apache.flex.createjs.core.UIBase}
- * @param {Object} p The parent element.
+ * @param {Object} c The child element.
  */
-org.apache.flex.createjs.core.UIBase.prototype.addToParent = function(p) {
+org.apache.flex.createjs.core.UIBase.prototype.addElement =
+    function(c) {
+    this.addChild(c.element);
+};
+
+/**
+ * @this {org.apache.flex.createjs.core.UIBase}
+ */
+org.apache.flex.createjs.core.UIBase.prototype.createElement =
+    function() {
     this.element = new createjs.Container();
-    p.addChild(this.element);
 
     this.positioner = this.element;
 };
