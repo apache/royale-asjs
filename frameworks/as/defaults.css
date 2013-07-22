@@ -133,7 +133,7 @@ List
 
 NumericStepper
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerRangeModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.NumericStepperView");
     
     padding: 0px;
@@ -188,7 +188,7 @@ SimpleAlert
 
 Slider
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerRangeModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     iBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SliderView");
     iBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SliderMouseController");
     iThumbView: ClassReference("org.apache.flex.html.staticControls.beads.SliderThumbView");
@@ -197,7 +197,7 @@ Slider
 
 Spinner
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.SpinnerRangeModel");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController");
 }

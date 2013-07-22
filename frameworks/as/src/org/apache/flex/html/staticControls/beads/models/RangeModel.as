@@ -37,7 +37,7 @@ package org.apache.flex.html.staticControls.beads.models
 			_strand = value;
 		}
 
-		private var _maximum:Number;
+		private var _maximum:Number = 100;
 		public function get maximum():Number
 		{
 			return _maximum;
@@ -52,7 +52,7 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
-		private var _minimum:Number;
+		private var _minimum:Number = 0;
 		public function get minimum():Number
 		{
 			return _minimum;
@@ -67,7 +67,7 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 
-		private var _snapInterval:Number;
+		private var _snapInterval:Number = 1;
 		public function get snapInterval():Number
 		{
 			return _snapInterval;
@@ -82,7 +82,7 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
-		private var _stepSize:Number;
+		private var _stepSize:Number = 1;
 		public function get stepSize():Number
 		{
 			return _stepSize;
@@ -97,7 +97,7 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
-		private var _value:Number;
+		private var _value:Number = 0;
 		public function get value():Number
 		{
 			return _value;
