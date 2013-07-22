@@ -82,9 +82,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_value =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_value =
     function(value) {
-	if( value != this.value_ ) {
-		this.value_ = value;
-		this.dispatchEvent('valueChanged');
+    if (value != this.value_) {
+        this.value_ = value;
+        this.dispatchEvent('valueChanged');
+    }
 };
 
 /**
@@ -103,9 +104,9 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_minimum = function() {
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_minimum =
     function(value) {
-	if( value != this.minimum_ ) {
-		this.minimum_ = value;
-		this.dispatchEvent('minimumChanged');
+    if (value != this.minimum_) {
+        this.minimum_ = value;
+        this.dispatchEvent('minimumChanged');
     }
 };
 
@@ -126,10 +127,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_maximum =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_maximum =
     function(value) {
-	if( value != maximum_ ) {
-		this.maximum_ = value;
-		this.dispatchEvent('maximumChanged');
-	}
+    if (value != maximum_) {
+        this.maximum_ = value;
+        this.dispatchEvent('maximumChanged');
+    }
 };
 
 /**
@@ -149,10 +150,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_snapInterval =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_snapInterval =
     function(value) {
-	if( value != snapInterval ) {
-		this.snapInterval_ = value;
-		this.dispatchEvent('snapIntervalChanged');
-	}
+    if (value != snapInterval) {
+        this.snapInterval_ = value;
+        this.dispatchEvent('snapIntervalChanged');
+    }
 };
 
 /**
@@ -172,10 +173,10 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_stepSize =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_stepSize =
     function(value) {
-	if( value != this.stepSize_ ) {
-		this.stepSize_ = value;
-		this.dispatchEvent('stepSizeChanged');
-	}
+    if (value != this.stepSize_) {
+        this.stepSize_ = value;
+        this.dispatchEvent('stepSizeChanged');
+    }
 };
 
 
