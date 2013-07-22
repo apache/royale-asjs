@@ -20,12 +20,13 @@ goog.provide('org.apache.flex.binding.BindingBase');
  * @constructor
  */
 org.apache.flex.binding.BindingBase = function() {
-  /**
-   * @private
-   * @type {Object}
-   */
-  this.document_ = null;
 };
+
+/**
+ * @protected
+ * @type {Object}
+ */
+org.apache.flex.binding.BindingBase.prototype.document = null;
 
 
 /**
@@ -57,17 +58,29 @@ org.apache.flex.binding.BindingBase.prototype.sourcePropertyName = '';
 
 
 /**
+ * @expose
+ * @type {string}
+ */
+org.apache.flex.binding.BindingBase.prototype.sourceID;
+
+
+/**
  * @this {org.apache.flex.binding.BindingBase}
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   this.destination = value;
 
-  try {
-    this.source = this.document_['get_' + this.sourceID]();
-  } catch (e) {
-    this.source = this.document_[this.sourceID];
+  if (this.sourceID != null)
+  {
+    try {
+        this.source = this.document['get_' + this.sourceID]();
+    } catch (e) {
+        this.source = this.document[this.sourceID];
+    }
   }
+  else
+    this.source = this.document;
 };
 
 
@@ -76,5 +89,5 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
  * @param {Object} document The MXML object.
  */
 org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
-  this.document_ = document;
+  this.document = document;
 };

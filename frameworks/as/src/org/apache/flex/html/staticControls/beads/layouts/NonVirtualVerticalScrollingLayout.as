@@ -22,17 +22,17 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import flash.display.DisplayObjectContainer;
 	import flash.geom.Rectangle;
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IListBead;
+	import org.apache.flex.html.staticControls.beads.IListView;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class NonVirtualVerticalScrollingLayout implements IBead
+	public class NonVirtualVerticalScrollingLayout implements IBeadLayout
 	{
 		public function NonVirtualVerticalScrollingLayout()
 		{
@@ -43,26 +43,26 @@ package org.apache.flex.html.staticControls.beads.layouts
         private var border:Border;		
         private var borderModel:IBorderModel
         private var vScrollBar:ScrollBar;		
-		private var listBead:IListBead;
+		private var listView:IListView;
 
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listBead = value as IListBead;
-			dataGroup = listBead.dataGroup as DisplayObjectContainer;
-            border = listBead.border;
+			listView = value as IListView;
+			dataGroup = listView.dataGroup as DisplayObjectContainer;
+            border = listView.border;
             borderModel = border.model as IBorderModel;
-			IEventDispatcher(listBead.strand).addEventListener("heightChanged", changeHandler);
-			IEventDispatcher(listBead.strand).addEventListener("widthChanged", changeHandler);
+			IEventDispatcher(listView.strand).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(listView.strand).addEventListener("widthChanged", changeHandler);
 			changeHandler(null);
 		}
 	
 		private function changeHandler(event:Event):void
 		{            
-            var ww:Number = DisplayObject(listBead.strand).width;
-            var hh:Number = DisplayObject(listBead.strand).height;
+            var ww:Number = DisplayObject(listView.strand).width;
+            var hh:Number = DisplayObject(listView.strand).height;
             border.width = ww;
             border.height = hh;
            
@@ -82,7 +82,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 			}
 			if (yy > dataGroup.height)
 			{
-                vScrollBar = listBead.vScrollBar;
+                vScrollBar = listView.vScrollBar;
 				dataGroup.width -= vScrollBar.width;
 				IScrollBarModel(vScrollBar.model).maximum = yy;
 				IScrollBarModel(vScrollBar.model).pageSize = dataGroup.height;

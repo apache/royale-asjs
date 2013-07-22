@@ -36,13 +36,6 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
 
 /**
- * @expose
- * @type {string}
- */
-org.apache.flex.binding.SimpleBinding.prototype.sourceID = '';
-
-
-/**
  * @this {org.apache.flex.binding.SimpleBinding}
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {

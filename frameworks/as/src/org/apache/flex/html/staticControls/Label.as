@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.ITextBead;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
 	 *  Label probably should extend TextField directly,
@@ -32,7 +30,7 @@ package org.apache.flex.html.staticControls
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class Label extends UIBase implements IInitSkin
+	public class Label extends UIBase
 	{
 		public function Label()
 		{
@@ -56,17 +54,17 @@ package org.apache.flex.html.staticControls
 		{
 			ITextModel(model).html = value;
 		}
-		
-		override public function initModel():void
+				
+		override public function set width(value:Number):void
 		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
+			super.width = value;
+			IEventDispatcher(model).dispatchEvent( new Event("widthChanged") );
 		}
 		
-		public function initSkin():void
+		override public function set height(value:Number):void
 		{
-			if (getBeadByType(ITextBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextBead")) as IBead);			
+			super.height = value;
+			IEventDispatcher(model).dispatchEvent( new Event("heightChanged") );
 		}
 	}
 }

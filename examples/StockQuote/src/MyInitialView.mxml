@@ -73,12 +73,16 @@ limitations under the License.
         .leftSide {
             vertical-align: top;
             margin-right: 10px;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			border-style: solid;
         }
         
         .rightSide {
             vertical-align: top;
             margin-left: 10px;
             padding-left: 10px;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			border-style: solid;
         }
         
         .quoteButton {
@@ -95,7 +99,7 @@ limitations under the License.
             <basic:beads>
                 <basic:NonVirtualHorizontalLayout />
             </basic:beads>
-            <basic:Container className="leftSide">
+            <basic:Panel title="Left Side" className="leftSide">
                 <basic:beads>
                     <basic:NonVirtualVerticalLayout />
                 </basic:beads>
@@ -107,8 +111,6 @@ limitations under the License.
                                              destinationPropertyName="text" />
                     </basic:beads>
                 </basic:TextInput>
-                <basic:TextButton text="Get Quote" className="quoteButton" 
-                                  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
                 <basic:Label id="field" />
                 <basic:Label className="output" height="24">
                     <basic:beads>
@@ -118,8 +120,10 @@ limitations under the License.
                                              destinationPropertyName="text" />
                     </basic:beads>
                 </basic:Label>
-            </basic:Container>
-            <basic:Container className="rightSide">
+				<basic:TextButton text="Get Quote" className="quoteButton" 
+								  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+            </basic:Panel>
+            <basic:Panel title="Right Side" className="rightSide">
                 <basic:beads>
                     <basic:NonVirtualVerticalLayout />
                 </basic:beads>
@@ -137,7 +141,7 @@ limitations under the License.
                 <basic:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
                 <basic:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
                 <basic:CheckBox id="showAllData" text="Show All Data" />
-            </basic:Container>
+            </basic:Panel>
         </basic:Container>
         <basic:TextArea id="ta" width="300" height="100">
             <basic:beads>

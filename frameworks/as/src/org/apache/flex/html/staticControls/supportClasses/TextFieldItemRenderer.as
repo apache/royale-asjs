@@ -19,13 +19,18 @@
 package org.apache.flex.html.staticControls.supportClasses
 {
     import flash.text.TextFieldType;
-
-	import org.apache.flex.core.CSSTextField;
+    
+    import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
     import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 	
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase
 	{
 		public function TextFieldItemRenderer()
 		{
@@ -37,6 +42,60 @@ package org.apache.flex.html.staticControls.supportClasses
         public var highlightColor:uint = 0xCEDBEF;
         public var selectedColor:uint = 0xA8C6EE;
         public var downColor:uint = 0x808080;
+
+        private var _width:Number;
+        override public function get width():Number
+        {
+            if (isNaN(_width))
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+                if (value === undefined)
+                    return $width;
+                _width = Number(value);
+                super.width = value;
+            }
+            return _width;
+        }
+        override public function set width(value:Number):void
+        {
+            if (_width != value)
+            {
+                _width = value;
+                super.width = value;
+                dispatchEvent(new Event("widthChanged"));
+            }
+        }
+        protected function get $width():Number
+        {
+            return super.width;
+        }
+        
+        private var _height:Number;
+        override public function get height():Number
+        {
+            if (isNaN(_height))
+            {
+                var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+                if (value === undefined)
+                    return $height;
+                _height = Number(value);
+                super.height = value;
+            }
+            return _height;
+        }
+        override public function set height(value:Number):void
+        {
+            if (_height != value)
+            {
+                _height = value;
+                super.height = value;
+                dispatchEvent(new Event("heightChanged"));
+            }
+        }
+        protected function get $height():Number
+        {
+            return super.height;
+        }
 
         public function get data():Object
         {
@@ -141,6 +200,35 @@ package org.apache.flex.html.staticControls.supportClasses
                 }
             }
             return null;
+        }
+        
+        public function addToParent(p:Object):void
+        {
+            if (p is UIBase)
+                UIBase(p).internalAddChild(this);
+            else
+                p.addChild(this);
+            addedToParent();
+        }
+
+        protected function addedToParent():void
+        {
+            var c:Class;
+
+            // renderer has a default model (the 'data' property)
+            // and it is essentially a view of that model, so it
+            // only needs an assignable controller
+            
+            if (getBeadByType(IBeadController) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
+                if (c)
+                {
+                    var controller:IBeadController = new c as IBeadController;
+                    if (controller)
+                        addBead(controller);
+                }
+            }
         }
     }
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:basic="library://ns.apache.org/flexjs/basic"
+			    initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[
+			import org.apache.flex.html.staticControls.Alert;
+			import org.apache.flex.html.staticControls.SimpleAlert;
+			
+			private function initControls():void
+			{
+			}
+			
+			private function onButtonClick() : void
+			{
+				Alert.show("This is an Alert! I want to see all of this text.",
+					this,
+					"Testing",
+					Alert.OK|Alert.CANCEL);
+
+			}
+			
+			private function spinnerChanged(control:Object):void
+			{
+				spinMe.text = "Spin: "+String(control.value);
+			}
+			
+			private function showSimpleAlert() : void
+			{
+				SimpleAlert.show("A Simple Alert", this);
+			}
+		]]>
+    </fx:Script>
+
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.Alert {
+			background-color: #EEEEEE;
+			border-style: solid;
+			border-color: #0000FF;
+			border-thickness: 5;
+		}
+		
+		.Alert #titleBar #title {
+			font-weight: bold;
+			color: #EEEEEE;
+		}
+		
+		.SimpleAlert {
+			background-color: #99FF00;
+			border-style: solid;
+			border-color: #FF9900;
+			border-thickness: 5;
+			padding: 5px;
+		}
+		
+		.TitleBar {
+			padding: 5px;
+			color: #FFFFFF;
+			font-weight: bold;
+			text-align: center;
+			background-color: #444444;
+			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+		}
+		
+		.panel1 {
+			padding: 1px;
+			background-color: #EEEEEE;
+			border-color: #000000;
+			border-thickness: 1;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+		}
+		
+		.numStepper {
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+			background-color: #FFFFCC;
+			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+		}
+		
+	</fx:Style>
+	
+	
+	<basic:Panel title="Example" x="300" width="300" y="50" className="panel1">
+		<basic:beads>
+			<basic:NonVirtualVerticalLayout />
+		</basic:beads>
+		<basic:Label text="Displays a SimpleAlert that has an OK button." />
+		<basic:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
+		<basic:Label text="Displays an Alert which can have multiple buttons." />
+		<basic:TextButton text="Push Me" click="onButtonClick()" />
+		<basic:Label id="spinMe" />
+		<basic:NumericStepper id="stepper" 
+							  valueChanged="spinnerChanged(stepper)" 
+							  className="numStepper"
+							  stepSize="10"/>
+	</basic:Panel>
+
+	
+</basic:ViewBase>

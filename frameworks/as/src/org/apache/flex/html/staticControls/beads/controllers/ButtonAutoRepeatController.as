@@ -25,11 +25,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.utils.setTimeout;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-    public class ButtonAutoRepeatController implements IBead
+    public class ButtonAutoRepeatController implements IBead, IBeadController
 	{
 		public function ButtonAutoRepeatController()
 		{

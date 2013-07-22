@@ -18,15 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ITextAreaBead;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.TextAreaBead;
 	
-	public class TextArea extends UIBase implements IInitSkin
+	public class TextArea extends UIBase
 	{
 		public function TextArea()
 		{
@@ -51,18 +46,5 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
-		}
-		
-		public function initSkin():void
-		{
-			if (getBeadByType(ITextAreaBead) == null) {
-				var tab:TextAreaBead = new TextAreaBead();
-				addBead(tab);		
-			}
-		}
 	}
 }

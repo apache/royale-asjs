@@ -21,14 +21,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IComboBoxBead;
+	import org.apache.flex.core.IBeadController;
+	import org.apache.flex.html.staticControls.beads.IComboBoxView;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class ComboBoxController implements IBead
+	public class ComboBoxController implements IBeadController
 	{
 		public function ComboBoxController()
 		{
@@ -42,9 +42,9 @@ package org.apache.flex.html.staticControls.beads.controllers
             IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:MouseEvent):void
+        private function clickHandler(event:Event):void
         {
-            var viewBead:IComboBoxBead = _strand.getBeadByType(IComboBoxBead) as IComboBoxBead;
+            var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
             viewBead.popUpVisible = true;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -59,7 +59,7 @@ package org.apache.flex.html.staticControls.beads.controllers
         
         private function changeHandler(event:Event):void
         {
-            var viewBead:IComboBoxBead = _strand.getBeadByType(IComboBoxBead) as IComboBoxBead;
+            var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
             viewBead.popUpVisible = false;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;

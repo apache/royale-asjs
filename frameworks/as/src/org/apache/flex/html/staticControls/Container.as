@@ -21,18 +21,14 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IInitSkin;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.IContainerBead;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
 	[DefaultProperty("mxmlContent")]
-	public class Container extends UIBase implements IContainer, IInitSkin
+	public class Container extends UIBase implements IContainer
 	{
 		public function Container()
 		{
@@ -42,12 +38,6 @@ package org.apache.flex.html.staticControls
 		
 		public var mxmlContent:Array;
 
-		public function initSkin():void
-		{
-			if (getBeadByType(IContainerBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iContainerBead")) as IBead);	
-		}
-		
 		private var actualParent:DisplayObjectContainer;
 		
 		public function setActualParent(parent:DisplayObjectContainer):void
@@ -60,7 +50,22 @@ package org.apache.flex.html.staticControls
 			actualParent.addChild(child as DisplayObject);
 		}
 
-		public function getChildren():Array
+        override public function internalAddChildAt(child:Object, index:int):void
+        {
+            actualParent.addChildAt(child as DisplayObject, index);
+        }
+        
+        override public function internalGetChildIndex(child:Object):int
+        {
+            return actualParent.getChildIndex(child as DisplayObject);
+        }
+        
+        override public function internalRemoveChild(child:Object):void
+        {
+            actualParent.removeChild(child as DisplayObject);
+        }
+
+        public function getChildren():Array
 		{
 			var children:Array = [];
 			var n:int = actualParent.numChildren;

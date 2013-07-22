@@ -20,14 +20,13 @@ package org.apache.flex.createjs.core
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-	import org.apache.flex.core.IInitModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher
 	{
 		public function UIBase()
 		{
@@ -136,11 +135,6 @@ package org.apache.flex.createjs.core
 				}
 			}
 			return null;
-		}
-		
-		public function initModel():void
-		{
-			
 		}
 		
 		public function addToParent(p:DisplayObjectContainer):void

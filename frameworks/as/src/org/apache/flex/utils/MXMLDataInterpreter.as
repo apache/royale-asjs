@@ -24,9 +24,7 @@ import flash.display.DisplayObjectContainer;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IInitModel;
-import org.apache.flex.core.IInitSkin;
-import org.apache.flex.core.UIBase;
+import org.apache.flex.core.IUIBase;
 import org.apache.flex.core.IContainer;
 
 public class MXMLDataInterpreter
@@ -88,17 +86,7 @@ public class MXMLDataInterpreter
         {
             var cls:Class = data[i++];
             var comp:Object = new cls();
-            
-            if (parent)
-            {
-                if (comp is UIBase)
-                    comp.addToParent(parent);
-                else if (parent is IContainer)
-                    IContainer(parent).internalAddChild(comp as DisplayObject);
-                else if (comp is DisplayObject)
-                    parent.addChild(comp as DisplayObject);
-            }
-            
+                        
             var m:int;
             var j:int;
             var name:String;
@@ -121,11 +109,9 @@ public class MXMLDataInterpreter
                 if (value is IBead && comp is IStrand)
                     IStrand(comp).addBead(value as IBead);
             }
-            if (comp is IInitModel)
-            IInitModel(comp).initModel();
             var beadOffset:int = i + (m - 1) * 3;
             if (beadOffset >= -1)
-            trace(beadOffset, data[beadOffset]);
+                trace(beadOffset, data[beadOffset]);
             if (m > 0 && data[beadOffset] == "beads")
             {
                 m--;
@@ -167,7 +153,6 @@ public class MXMLDataInterpreter
                 {
                     var bead:IBead = beads[k] as IBead;
                     IStrand(comp).addBead(bead);
-                    bead.strand = comp as IStrand;
                 }
             }
             m = data[i++]; // num styles
@@ -181,12 +166,7 @@ public class MXMLDataInterpreter
                 else if (simple == false)
                     value = generateMXMLObject(document, value as Array);
                 comp.setStyle(name, value);
-            }
-            if (comp is IInitSkin)
-            {
-                IInitSkin(comp).initSkin();
-            }
-            
+            }            
             
             m = data[i++]; // num effects
             for (j = 0; j < m; j++)
@@ -209,6 +189,16 @@ public class MXMLDataInterpreter
                 comp.addEventListener(name, value);
             }
             
+            if (parent)
+            {
+                if (comp is IUIBase)
+                    comp.addToParent(parent);
+                else if (parent is IContainer)
+                    IContainer(parent).internalAddChild(comp as DisplayObject);
+                else if (comp is DisplayObject)
+                    parent.addChild(comp as DisplayObject);
+            }
+
             var children:Array = data[i++];
             if (children)
             {

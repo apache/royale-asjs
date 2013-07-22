@@ -17,14 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.ITextInputBead;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
 	
-	public class TextInput extends UIBase implements IInitSkin
+	public class TextInput extends UIBase
 	{
 		public function TextInput()
 		{
@@ -49,16 +45,5 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
-		override public function initModel():void
-		{
-			if (getBeadByType(ITextModel) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextModel")) as IBead);
-		}
-		
-		public function initSkin():void
-		{
-			if (getBeadByType(ITextInputBead) == null)
-				addBead(new (ValuesManager.valuesImpl.getValue(this, "iTextInputBead")) as IBead);			
-		}
 	}
 }

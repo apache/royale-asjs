@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import mx.states.State;
+	
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;	
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
@@ -31,11 +34,8 @@ package org.apache.flex.core
 			super();
 		}
 		
-		public function initUI(model:Object):void
+		override protected function addedToParent():void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
-			
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 			
@@ -64,5 +64,59 @@ package org.apache.flex.core
 		{
 			return _applicationModel;
 		}
-	}
+        public function set applicationModel(value:Object):void
+        {
+            _applicationModel = value;
+            dispatchEvent(new Event("modelChanged"));
+        }
+
+        private var _states:Array;
+        
+        public function get states():Array
+        {
+            return _states;
+        }
+        public function set states(value:Array):void
+        {
+            _states = value;
+            if (getBeadByType(IStatesImpl) == null)
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
+            
+        }
+        
+        public function hasState(state:String):Boolean
+        {
+            for each (var s:State in _states)
+            {
+                if (s.name == state)
+                    return true;
+            }
+            return false;
+        }
+        
+        private var _currentState:String;
+        
+        public function get currentState():String
+        {
+            return _currentState;   
+        }
+        public function set currentState(value:String):void
+        {
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChanged", false, false, _currentState, value)
+            _currentState = value;
+            dispatchEvent(event);
+        }
+        
+        private var _transitions:Array;
+        
+        public function get transitions():Array
+        {
+            return _transitions;   
+        }
+        public function set transitions(value:Array):void
+        {
+            _transitions = value;   
+        }
+
+    }
 }

@@ -24,7 +24,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IInitModel, IStrand, IEventDispatcher
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase
 	{
 		public function UIBase()
 		{
@@ -84,6 +84,11 @@ package org.apache.flex.core
 		private var _model:IBeadModel;
 		public function get model():IBeadModel
 		{
+            if (_model == null)
+            {
+                // addbead will set _model
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+            }
 			return _model;
 		}
 		public function set model(value:IBeadModel):void
@@ -163,19 +168,76 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		public function initModel():void
-		{
-			
-		}
-		
 		public function addToParent(p:Object):void
 		{
 			if (p is UIBase)
 				UIBase(p).internalAddChild(this);
             else
     			p.addChild(this);
+            addedToParent();
 		}
+        
+        public function addToParentAt(p:Object, index:int):void
+        {
+            if (p is UIBase)
+                UIBase(p).internalAddChildAt(this, index);
+            else
+                p.addChild(this, index);
+            addedToParent();
+        }
+        
+        public function getIndexInParent(p:Object):int
+        {
+            if (p is UIBase)
+                return UIBase(p).internalGetChildIndex(this);
+            else
+                return p.getChildIndex(this);
+        }
+
+        public function removeFromParent(p:Object):void
+        {
+            if (p is UIBase)
+                UIBase(p).internalRemoveChild(this);
+            else
+                p.removeChild(this);
+        }
 		
+        protected function addedToParent():void
+        {
+            var c:Class;
+            
+            if (getBeadByType(IBeadModel) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
+                if (c)
+                {
+                    var model:IBeadModel = new c as IBeadModel;
+                    if (model)
+                        addBead(model);
+                }
+            }
+            if (getBeadByType(IBeadView) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
+                if (c)
+                {
+                    var view:IBeadView = new c as IBeadView;
+                    if (view)
+                        addBead(view);
+                }
+            }
+            if (getBeadByType(IBeadController) == null) 
+            {
+                c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
+                if (c)
+                {
+                    var controller:IBeadController = new c as IBeadController;
+                    if (controller)
+                        addBead(controller);
+                }
+            }
+        }
+        
 		/**
 		 * Used internally by addToParent() implementations
 		 * to determine attach a child to a parent.  Containers
@@ -189,6 +251,21 @@ package org.apache.flex.core
 		{
 			addChild(child as DisplayObject);
 		}
+
+        public function internalAddChildAt(child:Object, index:int):void
+        {
+            addChildAt(child as DisplayObject, index);
+        }
+        
+        public function internalGetChildIndex(child:Object):int
+        {
+            return getChildIndex(child as DisplayObject);
+        }
+        
+        public function internalRemoveChild(child:Object):void
+        {
+            removeChild(child as DisplayObject);
+        }
 
         /*
         public function addToParent(p:Object):void
@@ -213,6 +290,16 @@ package org.apache.flex.core
             return this;
         }
          */
+		
+		public function get measurementBead() : IMeasurementBead
+		{
+			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;
+			if( measurementBead == null ) {
+				addBead(measurementBead = new (ValuesManager.valuesImpl.getValue(this, "iMeasurementBead")) as IMeasurementBead);
+			}
+			
+			return measurementBead;
+		}
         
 	}
 }

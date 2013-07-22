@@ -51,12 +51,82 @@ org.apache.flex.core.UIBase.prototype.internalAddChild = function(child) {
 
 /**
  * @this {org.apache.flex.core.UIBase}
+ * @param {Object} child The element to be added.
+ * @param {number} index The index for the element to be added.
+ */
+org.apache.flex.core.UIBase.prototype.internalAddChildAt =
+    function(child, index) {
+  this.element.insertBefore(child, this.internalGetChildAt(index));
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} child The element to be removed.
+ */
+org.apache.flex.core.UIBase.prototype.internalRemoveChild =
+    function(child) {
+  this.element.removeChild(child);
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {number} index The index.
+ * @return {Object} The child.
+ */
+org.apache.flex.core.UIBase.prototype.internalGetChildAt =
+    function(index) {
+  return this.element.childNodes[index];
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
  * @param {Object} p The parent component.
  */
 org.apache.flex.core.UIBase.prototype.addToParent = function(p) {
-  this.element = document.createElement('div');
+  if (this.element == null)
+    this.element = document.createElement('div');
 
   p.internalAddChild(this.element);
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} p The parent component.
+ * @param {number} index The index.
+ */
+org.apache.flex.core.UIBase.prototype.addToParentAt = function(p, index) {
+  if (this.element == null)
+    this.element = document.createElement('div');
+
+  var children = p.internalChildren();
+  if (index >= children.length)
+    p.internalAddChild(this.element);
+  else
+    p.internalAddChildAt(this.element, index);
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} p The parent component.
+ * @return {number} The index in parent.
+ */
+org.apache.flex.core.UIBase.prototype.getIndexInParent = function(p) {
+  var children = p.internalChildren();
+  var n = children.length;
+  for (i = 0; i < n; i++)
+  {
+     if (children[i] == this.element)
+        return i;
+  }
+  return -1;
+};
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} p The parent component.
+ */
+org.apache.flex.core.UIBase.prototype.removeFromParent = function(p) {
+  p.internalRemoveChild(this.element);
 };
 
 

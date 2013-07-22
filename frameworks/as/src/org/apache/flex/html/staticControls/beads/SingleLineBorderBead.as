@@ -23,15 +23,16 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public class SingleLineBorderBead implements IBead, IBorderBead
+	public class SingleLineBorderBead implements IBead, IBorderBead, IGraphicsDrawing
 	{
 		public function SingleLineBorderBead()
 		{
 		}
-				
+		
 		private var _strand:IStrand;
 		
 		public function get strand():IStrand
@@ -47,14 +48,25 @@ package org.apache.flex.html.staticControls.beads
 		        
 		private function changeHandler(event:Event):void
 		{
+			var styleObject:* = ValuesManager.valuesImpl.getValue(_strand,"border-color");
+			var borderColor:Number = Number(styleObject);
+			if( isNaN(borderColor) ) borderColor = 0x000000;
+			styleObject = ValuesManager.valuesImpl.getValue(_strand,"border-thickness");
+			var borderThickness:Number = Number(styleObject);
+			if( isNaN(borderThickness) ) borderThickness = 1;
+			
             var host:UIBase = UIBase(_strand);
             var g:Graphics = host.graphics;
             var w:Number = host.width;
             var h:Number = host.height;
-            g.clear();
-            g.beginFill(0);
+			
+			var gd:IGraphicsDrawing = strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
+			if( this == gd ) g.clear();
+			
+			g.lineStyle();
+            g.beginFill(borderColor);
             g.drawRect(0, 0, w, h);
-            g.drawRect(1, 1, w-2, h-2);
+            g.drawRect(borderThickness, borderThickness, w-2*borderThickness, h-2*borderThickness);
             g.endFill();
 		}
 	}

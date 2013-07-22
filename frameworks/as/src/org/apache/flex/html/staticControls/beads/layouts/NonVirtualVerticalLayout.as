@@ -19,7 +19,6 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;

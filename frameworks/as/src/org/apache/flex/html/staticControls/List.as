@@ -18,21 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IInitSkin;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ItemRendererClassFactory;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.IListBead;
-	import org.apache.flex.html.staticControls.beads.ListBead;
-	import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData;
-	import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController;
-	import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout;
-	import org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer;
+	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -43,7 +32,7 @@ package org.apache.flex.html.staticControls
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class List extends UIBase implements IInitSkin
+	public class List extends UIBase
 	{
 		public function List()
 		{
@@ -77,39 +66,16 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
-		override public function initModel():void
+		override protected function addedToParent():void
 		{
-            if (getBeadByType(ISelectionModel) == null)
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iSelectionModel")) as IBead);
-		}
-		
-		public function initSkin():void
-		{
-            // TODO: (aharui) remove later
-            if (getBeadByType(IListBead) == null)
+            super.addedToParent();
+            
+            if (getBeadByType(IDataProviderItemRendererMapper) == null)
             {
-                var lb:ListBead = new ListBead();
-                addBead(lb);	
-                var irf:TextItemRendererFactoryForArrayData = new TextItemRendererFactoryForArrayData();
-                var ircf:ItemRendererClassFactory = new ItemRendererClassFactory();
-                ircf.createFunction = createTextItemRenderer;
-                irf.itemRendererFactory = ircf;
-                addBead(irf);
-                var ll:NonVirtualVerticalScrollingLayout = new NonVirtualVerticalScrollingLayout();
-                lb.addBead(ll);
-                var lmc:ListSingleSelectionMouseController = new ListSingleSelectionMouseController();
-                addBead(lmc);
-                
+                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
+                addBead(mapper);
             }
 		}
         
-        private function createTextItemRenderer(parent:IItemRendererParent):IItemRenderer
-        {
-            var tfir:TextFieldItemRenderer = new TextFieldItemRenderer();
-            tfir.addBead(new ItemRendererMouseController());
-            tfir.height = 16;
-            return tfir;
-            
-        }
 	}
 }

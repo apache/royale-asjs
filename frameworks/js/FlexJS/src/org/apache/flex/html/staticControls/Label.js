@@ -24,6 +24,9 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.Label = function() {
   goog.base(this);
+
+  this.element = document.createElement('div');
+  this.positioner = this.element;
 };
 goog.inherits(org.apache.flex.html.staticControls.Label,
     org.apache.flex.core.UIBase);
@@ -37,7 +40,6 @@ goog.inherits(org.apache.flex.html.staticControls.Label,
 org.apache.flex.html.staticControls.Label.prototype.addToParent = function(p) {
   goog.base(this, 'addToParent', p);
 
-  this.positioner = this.element;
 };
 
 /**

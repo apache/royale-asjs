@@ -18,12 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-    import org.apache.flex.core.IBead;
     import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.html.staticControls.beads.DropDownListBead;
-    import org.apache.flex.html.staticControls.beads.IDropDownListBead;
-	import org.apache.flex.html.staticControls.beads.controllers.DropDownListController;
     
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -59,24 +54,6 @@ package org.apache.flex.html.staticControls
         {
             ISelectionModel(model).selectedItem = value;
         }
-        
-        override public function initModel():void
-        {
-            if (getBeadByType(ISelectionModel) == null)
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iSelectionModel")) as IBead);
-        }
-        
-        override public function initSkin():void
-        {
-            // TODO: (aharui) remove later
-            if (getBeadByType(IDropDownListBead) == null)
-            {
-                var lb:DropDownListBead = new DropDownListBead();
-                addBead(lb);	
-				var lc:DropDownListController = new DropDownListController();
-				addBead(lc);	
-            }
-        }
-        
+                        
     }
 }
