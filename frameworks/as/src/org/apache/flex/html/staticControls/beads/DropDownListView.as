@@ -28,9 +28,10 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -206,9 +207,10 @@ package org.apache.flex.html.staticControls.beads
                     }
 					var root:Object = DisplayObject(_strand).root;
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
-					while (host.parent != root)
-						host = host.parent;
-                    IUIBase(_popUp).addToParent(host);
+                    while (host && !(host is IPopUpHost))
+                        host = host.parent;
+                    if (host)
+                        IPopUpHost(host).addElement(popUp);
                 }
                 else
                 {

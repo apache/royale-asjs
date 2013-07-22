@@ -21,9 +21,8 @@ package org.apache.flex.core
 	import flash.display.DisplayObject;
 	import org.apache.flex.events.IEventDispatcher;
 
-	public interface IItemRendererParent extends IEventDispatcher
+	public interface IItemRendererParent extends IParent, IEventDispatcher
 	{
 		function getItemRendererForIndex(index:int):IItemRenderer;
-        function addChild(child:DisplayObject):DisplayObject;
 	}
 }

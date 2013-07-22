@@ -51,7 +51,7 @@ package org.apache.flex.html.staticControls
 		
 		public function show(parent:Object) : void
 		{
-			addToParent(parent);
+			parent.addElement(this);
 		}
 		
 		public function get title():String

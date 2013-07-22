@@ -23,6 +23,7 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IParent;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
@@ -77,11 +78,11 @@ package org.apache.flex.html.staticControls.beads
             messageLabel = new Label();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
-			messageLabel.addToParent(_strand);
+			IParent(_strand).addElement(messageLabel);
 			
 			okButton = new TextButton();
 			okButton.text = model.okLabel;
-			okButton.addToParent(_strand);
+			IParent(_strand).addElement(okButton);
 			okButton.addEventListener("click",handleOK);
 			
 			handleMessageChange(null);

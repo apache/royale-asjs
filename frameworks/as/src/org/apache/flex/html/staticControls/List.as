@@ -66,7 +66,7 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
             super.addedToParent();
             

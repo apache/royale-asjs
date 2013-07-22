@@ -24,7 +24,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase, IParent
 	{
 		public function UIBase()
 		{
@@ -127,6 +127,11 @@ package org.apache.flex.core
 				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
+        
+        public function get element():Object
+        {
+            return this;
+        }
 		
 		// beads declared in MXML are added to the strand.
 		// from AS, just call addBead()
@@ -168,41 +173,45 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		public function addToParent(p:Object):void
+		public function addElement(c:Object):void
 		{
-			if (p is UIBase)
-				UIBase(p).internalAddChild(this);
+            if (c is IUIBase)
+            {
+                addChild(IUIBase(c).element as DisplayObject);
+                IUIBase(c).addedToParent();
+            }
             else
-    			p.addChild(this);
-            addedToParent();
+                addChild(c as DisplayObject);
 		}
         
-        public function addToParentAt(p:Object, index:int):void
+        public function addElementAt(c:Object, index:int):void
         {
-            if (p is UIBase)
-                UIBase(p).internalAddChildAt(this, index);
+            if (c is IUIBase)
+            {
+                addChildAt(IUIBase(c).element as DisplayObject, index);
+                IUIBase(c).addedToParent();
+            }
             else
-                p.addChild(this, index);
-            addedToParent();
+                addChildAt(c as DisplayObject, index);
         }
         
-        public function getIndexInParent(p:Object):int
+        public function getElementIndex(c:Object):int
         {
-            if (p is UIBase)
-                return UIBase(p).internalGetChildIndex(this);
+            if (c is IUIBase)
+                return getChildIndex(IUIBase(c).element as DisplayObject);
             else
-                return p.getChildIndex(this);
+                return getChildIndex(c as DisplayObject);
         }
 
-        public function removeFromParent(p:Object):void
+        public function removeElement(c:Object):void
         {
-            if (p is UIBase)
-                UIBase(p).internalRemoveChild(this);
+            if (c is IUIBase)
+                removeChild(IUIBase(c).element as DisplayObject);
             else
-                p.removeChild(this);
+                removeChild(c as DisplayObject);
         }
 		
-        protected function addedToParent():void
+        public function addedToParent():void
         {
             var c:Class;
             
@@ -237,60 +246,7 @@ package org.apache.flex.core
                 }
             }
         }
-        
-		/**
-		 * Used internally by addToParent() implementations
-		 * to determine attach a child to a parent.  Containers
-		 * may host controls in a sub-component in order to
-		 * manage scrolling and margins and other internal abstractions.
-		 * Each platform assumes that the appropriate platform call
-		 * will add the child to the parent (i.e. addChild on Flash, 
-		 * appendChild on HTML).
-		 */
-		public function internalAddChild(child:Object):void
-		{
-			addChild(child as DisplayObject);
-		}
-
-        public function internalAddChildAt(child:Object, index:int):void
-        {
-            addChildAt(child as DisplayObject, index);
-        }
-        
-        public function internalGetChildIndex(child:Object):int
-        {
-            return getChildIndex(child as DisplayObject);
-        }
-        
-        public function internalRemoveChild(child:Object):void
-        {
-            removeChild(child as DisplayObject);
-        }
-
-        /*
-        public function addToParent(p:Object):void
-        {
-            var doc:DisplayObjectContainer = p as DisplayObjectContainer;
-            if (p is UIBase)
-                doc = UIBase(p).getParentForChild(this) as DisplayObjectContainer;
-            doc.addChild(this);
-        }
-        */
-        
-        /**
-         * Used internally by addToParent() implementations
-         * to determine suitable parent for a child.  Containers
-         * may host controls in a sub-component in order to
-         * manage scrolling and margins and other internal abstractions.
-         * Each platform assumes that the appropriate platform call
-         * will add the child to the parent (i.e. addChild on Flash, 
-         * appendTo on HTML).
-        public function getParentForChild(child:Object):Object
-        {
-            return this;
-        }
-         */
-		
+        		
 		public function get measurementBead() : IMeasurementBead
 		{
 			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;

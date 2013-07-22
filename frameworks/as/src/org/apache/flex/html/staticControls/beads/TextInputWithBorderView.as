@@ -21,7 +21,7 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.events.Event;
@@ -49,7 +49,7 @@ package org.apache.flex.html.staticControls.beads
 			_border = new Border();
 			_border.model = new SingleLineBorderModel();
 			_border.addBead(new SingleLineBorderBead());
-            border.addToParent(UIBase(strand));
+            IParent(strand).addElement(border);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);

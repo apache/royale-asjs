@@ -21,6 +21,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IParent;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
@@ -50,12 +51,12 @@ package org.apache.flex.html.staticControls.beads
             
 			// add an input field
 			input = new TextInput();
-			input.addToParent(value);
+			IParent(value).addElement(input);
 			
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( UIBase(value).model );
-			spinner.addToParent(value);
+			IParent(value).addElement(spinner);
 			spinner.width = 17;
 			
 			// listen for changes to the text input field which will reset the

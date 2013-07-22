@@ -31,7 +31,7 @@ package org.apache.flex.html.staticControls.supportClasses
 			super();
 		}
 		
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
 			super.addedToParent();
 			

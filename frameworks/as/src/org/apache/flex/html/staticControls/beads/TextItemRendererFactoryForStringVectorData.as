@@ -61,10 +61,7 @@ package org.apache.flex.html.staticControls.beads
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                if (tf is IUIBase)
-                    IUIBase(tf).addToParent(dataGroup);
-                else
-    				dataGroup.addChild(tf as DisplayObject);
+                dataGroup.addElement(tf);
 				tf.text = dp[i];
 			}			
 		}

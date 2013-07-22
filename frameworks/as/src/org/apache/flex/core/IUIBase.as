@@ -20,6 +20,8 @@ package org.apache.flex.core
 {
 	public interface IUIBase extends IStrand
 	{
-		function addToParent(p:Object):void;
+        function get element():Object;
+        
+		function addedToParent():void;
 	}
 }
