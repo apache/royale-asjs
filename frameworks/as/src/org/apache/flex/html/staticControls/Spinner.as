@@ -30,12 +30,6 @@ package org.apache.flex.html.staticControls
 			super();
 			
 			className = "Spinner";
-			
-			IRangeModel(model).value = 0;
-			IRangeModel(model).minimum = 0;
-			IRangeModel(model).maximum = 100;
-			IRangeModel(model).stepSize = 1;
-			IRangeModel(model).snapInterval = 1;
 		}
 		
 		public function get value():Number

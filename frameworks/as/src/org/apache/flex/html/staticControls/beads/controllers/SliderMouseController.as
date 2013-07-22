@@ -33,7 +33,6 @@ package org.apache.flex.html.staticControls.beads.controllers
 	{
 		public function SliderMouseController()
 		{
-			trace("SliderMouseController");
 		}
 		
 		private var rangeModel:IRangeModel;
@@ -43,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			_strand = value;
 			
-			rangeModel = value.getBeadByType(IBeadModel) as IRangeModel;
+			rangeModel = UIBase(value).model as IRangeModel;
 			
 			var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
 			sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);

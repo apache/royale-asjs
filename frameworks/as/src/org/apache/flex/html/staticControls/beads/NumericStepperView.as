@@ -54,7 +54,7 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a spinner
 			spinner = new Spinner();
-			spinner.addBead( value.getBeadByType(IBeadModel) );
+			spinner.addBead( UIBase(value).model );
 			spinner.addToParent(value);
 			spinner.width = 17;
 			
