@@ -21,7 +21,6 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -51,31 +50,15 @@ package org.apache.flex.html.staticControls.beads.controllers
 			spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
 		}
 		
-		protected function snap(value:Number):Number
-		{
-			var si:Number = rangeModel.snapInterval;
-			var n:Number = Math.round((value - rangeModel.minimum) / si) * si + rangeModel.minimum;
-			if (value > 0)
-			{
-				if (value - n < n + si - value)
-					return n;
-				return n + si;
-				
-			}
-			if (value - n > n + si - value)
-				return n + si;
-			return n;
-		}
-		
 		private function decrementClickHandler( event:Event ) : void
 		{
-			rangeModel.value = snap(Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize));
+			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 		
 		private function incrementClickHandler( event:Event ) : void
 		{
-			rangeModel.value = snap(Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize));	
+			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);	
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 	}

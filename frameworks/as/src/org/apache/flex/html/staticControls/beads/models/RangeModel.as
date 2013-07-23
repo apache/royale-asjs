@@ -107,9 +107,31 @@ package org.apache.flex.html.staticControls.beads.models
 		{
 			if (newValue != _value)
 			{
-				_value = newValue;
+				// value must lie within the boundaries of minimum & maximum
+				// and be on a step interval, so the value is adjusted to 
+				// what is coming in.
+				newValue = Math.max(minimum, newValue - stepSize);
+				newValue = Math.min(maximum, newValue + stepSize);
+				_value = snap(newValue);
 				dispatchEvent(new Event("valueChange"));
 			}
+		}
+		
+		
+		protected function snap(value:Number):Number
+		{
+			var si:Number = snapInterval;
+			var n:Number = Math.round((value - minimum) / si) * si + minimum;
+			if (value > 0)
+			{
+				if (value - n < n + si - value)
+					return n;
+				return n + si;
+				
+			}
+			if (value - n > n + si - value)
+				return n + si;
+			return n;
 		}
 		
 	}
