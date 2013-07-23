@@ -95,7 +95,7 @@
          <namespace>
             <uri>library://ns.apache.org/flexjs/html5</uri>
             
-            <manifest>svg-manifest.xml</manifest>
+            <manifest>html5-manifest.xml</manifest>
          
         </namespace>   
       </namespaces>
