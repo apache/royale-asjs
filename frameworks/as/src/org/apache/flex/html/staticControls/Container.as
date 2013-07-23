@@ -22,6 +22,7 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	
@@ -45,26 +46,44 @@ package org.apache.flex.html.staticControls
 			actualParent = parent;	
 		}
 		
-		override public function internalAddChild(child:Object):void
-		{
-			actualParent.addChild(child as DisplayObject);
-		}
-
-        override public function internalAddChildAt(child:Object, index:int):void
+        override public function getElementIndex(c:Object):int
         {
-            actualParent.addChildAt(child as DisplayObject, index);
-        }
-        
-        override public function internalGetChildIndex(child:Object):int
-        {
-            return actualParent.getChildIndex(child as DisplayObject);
-        }
-        
-        override public function internalRemoveChild(child:Object):void
-        {
-            actualParent.removeChild(child as DisplayObject);
+            if (c is IUIBase)
+                return actualParent.getChildIndex(IUIBase(c).element as DisplayObject);
+            else
+                return actualParent.getChildIndex(c as DisplayObject);
         }
 
+        override public function addElement(c:Object):void
+        {
+            if (c is IUIBase)
+            {
+                actualParent.addChild(IUIBase(c).element as DisplayObject);
+                IUIBase(c).addedToParent();
+            }
+            else
+                actualParent.addChild(c as DisplayObject);
+        }
+        
+        override public function addElementAt(c:Object, index:int):void
+        {
+            if (c is IUIBase)
+            {
+                actualParent.addChildAt(IUIBase(c).element as DisplayObject, index);
+                IUIBase(c).addedToParent();
+            }
+            else
+                actualParent.addChildAt(c as DisplayObject, index);
+        }
+        
+        override public function removeElement(c:Object):void
+        {
+            if (c is IUIBase)
+                actualParent.removeChild(IUIBase(c).element as DisplayObject);
+            else
+                actualParent.removeChild(c as DisplayObject);
+        }
+        
         public function getChildren():Array
 		{
 			var children:Array = [];

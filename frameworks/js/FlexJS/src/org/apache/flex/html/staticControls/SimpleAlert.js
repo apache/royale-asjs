@@ -23,13 +23,18 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.SimpleAlert = function() {
   goog.base(this);
-  
+
 };
 goog.inherits(org.apache.flex.html.staticControls.SimpleAlert,
     org.apache.flex.core.UIBase);
 
 
-org.apache.flex.html.staticControls.SimpleAlert.show = function( message, host ) {
+/**
+ * @param {string} message The message to display in the alert.
+ * @param {Object} host The host that should display the alert.
+ */
+org.apache.flex.html.staticControls.SimpleAlert.show =
+    function(message, host) {
 
-	alert(message);
-}
+    alert(message);
+};

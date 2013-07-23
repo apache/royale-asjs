@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    public interface IContainer extends IParent
+    public interface IParent
 	{
-		function childrenAdded():void;
+        function addElement(c:Object):void;
+        function addElementAt(c:Object, index:int):void;
+        function getElementIndex(c:Object):int;
+        function removeElement(c:Object):void;
 	}
 }

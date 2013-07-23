@@ -24,27 +24,24 @@ goog.require('org.apache.flex.html.staticControls.Container');
  */
 org.apache.flex.html.staticControls.ControlBar = function() {
   goog.base(this);
-  
+
 };
 goog.inherits(org.apache.flex.html.staticControls.ControlBar,
     org.apache.flex.html.staticControls.Container);
-    
-    
+
+
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.ControlBar}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.ControlBar.prototype.addToParent =
+org.apache.flex.html.staticControls.ControlBar.prototype.createElement =
     function(p) {
 
   this.element = document.createElement('div');
-  this.element.style.display = "inline";
-  
-  p.internalAddChild(this.element);
+  this.element.style.display = 'inline';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
-  
-  this.set_className("ControlBar");
- }
+
+  this.set_className('ControlBar');
+};

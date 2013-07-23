@@ -32,13 +32,10 @@ goog.inherits(org.apache.flex.html5.staticControls.TextArea,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.TextArea}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.TextArea.prototype.addToParent =
-    function(p) {
+org.apache.flex.html5.staticControls.TextArea.prototype.createElement =
+    function() {
   this.element = document.createElement('textarea');
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

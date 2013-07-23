@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-	
-	// this import is not used, but keeps the compiler from
-	// complaining about explicit usage of flash.events.Event
-	import flash.events.IOErrorEvent;
+    import flash.events.IOErrorEvent;
     
-	import org.apache.flex.events.Event;
+    import org.apache.flex.events.Event;
     import org.apache.flex.utils.MXMLDataInterpreter;
     
     //--------------------------------------
@@ -38,7 +36,7 @@ package org.apache.flex.core
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
     
-    public class Application extends Sprite implements IStrand, IFlexInfo
+    public class Application extends Sprite implements IStrand, IFlexInfo, IParent
     {
         public function Application()
         {
@@ -62,7 +60,7 @@ package org.apache.flex.core
             dispatchEvent(new Event("initialize"));
 
             initialView.applicationModel =  model;
-    	    initialView.addToParent(this);
+    	    this.addElement(initialView);
     	    dispatchEvent(new Event("viewChanged"));
         }
 
@@ -126,5 +124,46 @@ package org.apache.flex.core
         {
             return {};           
         }
+        
+        public function addElement(c:Object):void
+        {
+            if (c is IUIBase)
+            {
+                addChild(IUIBase(c).element as DisplayObject);
+                IUIBase(c).addedToParent();
+            }
+            else
+                addChild(c as DisplayObject);
+        }
+        
+        public function addElementAt(c:Object, index:int):void
+        {
+            if (c is IUIBase)
+            {
+                addChildAt(IUIBase(c).element as DisplayObject, index);
+                IUIBase(c).addedToParent();
+            }
+            else
+                addChildAt(c as DisplayObject, index);
+        }
+
+        public function getElementIndex(c:Object):int
+        {
+            if (c is IUIBase)
+                return getChildIndex(IUIBase(c).element as DisplayObject);
+
+            return getChildIndex(c as DisplayObject);
+        }
+        
+        public function removeElement(c:Object):void
+        {
+            if (c is IUIBase)
+            {
+                removeChild(IUIBase(c).element as DisplayObject);
+            }
+            else
+                removeChild(c as DisplayObject);
+        }
+        
     }
 }

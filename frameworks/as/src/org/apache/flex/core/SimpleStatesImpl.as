@@ -25,6 +25,7 @@ package org.apache.flex.core
     import mx.states.SetProperty;
     import mx.states.State;
     
+    import org.apache.flex.core.IParent;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ValueChangeEvent;
@@ -78,11 +79,11 @@ package org.apache.flex.core
                     var ai:AddItems = AddItems(o);
                     for each (var item:DisplayObject in ai.items)
                     {
-                        var parent:Object = ai.document[ai.destination];
-                        if (item is UIBase)
-                            UIBase(item).removeFromParent(parent);
-                        parent.dispatchEvent(new Event("childrenAdded"));                        
+                        var parent:IParent = ai.document[ai.destination] as IParent;
+                        parent.removeElement(item);
                     }
+                    if (parent is IContainer)
+                        IContainer(parent).childrenAdded();
                 }
                 else if (o is SetProperty)
                 {
@@ -107,23 +108,22 @@ package org.apache.flex.core
                     }
                     for each (var item:DisplayObject in ai.items)
                     {
-                        var parent:Object = ai.document[ai.destination];
+                        var parent:IParent = ai.document[ai.destination] as IParent;
                         if (ai.relativeTo != null)
                         {
                             var child:Object = ai.document[ai.relativeTo];
-                            var index:int = UIBase(child).getIndexInParent(parent);
+                            var index:int = parent.getElementIndex(child);
                             if (ai.position == "after")
                                 index++;
-                            if (item is UIBase)
-                                UIBase(item).addToParentAt(parent, index);
+                            parent.addElementAt(item, index);
                         }
                         else
                         {
-                            if (item is IUIBase)
-                                IUIBase(item).addToParent(parent);
+                            parent.addElement(item);
                         }
-                        parent.dispatchEvent(new Event("childrenAdded"));
                     }
+                    if (parent is IContainer)
+                        IContainer(parent).childrenAdded();
                 }
                 else if (o is SetProperty)
                 {

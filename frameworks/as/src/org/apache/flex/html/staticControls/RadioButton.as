@@ -105,7 +105,7 @@ package org.apache.flex.html.staticControls
 			IValueToggleButtonModel(model).selectedValue = newValue;
 		}
 				
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
             super.addedToParent();
 

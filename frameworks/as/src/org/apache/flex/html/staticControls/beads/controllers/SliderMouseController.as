@@ -27,13 +27,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ISliderView;
 	
 	public class SliderMouseController implements IBead, IBeadController
 	{
 		public function SliderMouseController()
 		{
-			trace("SliderMouseController");
 		}
 		
 		private var rangeModel:IRangeModel;
@@ -43,7 +44,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			_strand = value;
 			
-			rangeModel = value.getBeadByType(IBeadModel) as IRangeModel;
+			rangeModel = UIBase(value).model as IRangeModel;
 			
 			var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
 			sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
@@ -83,6 +84,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 		
 		private var origin:Point;
@@ -108,6 +111,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 			sliderView.thumb.x = newX - sliderView.thumb.width/2;
 			
 			rangeModel.value = n;
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 		
 		private function trackClickHandler( event:MouseEvent ) : void
@@ -128,6 +133,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 			sliderView.thumb.x = xloc - sliderView.thumb.width/2;
 			
 			rangeModel.value = n;
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 	}
 }

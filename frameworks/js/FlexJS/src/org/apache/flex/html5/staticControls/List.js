@@ -32,10 +32,10 @@ goog.inherits(org.apache.flex.html5.staticControls.List,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.List}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.List.prototype.addToParent = function(p) {
-  goog.base(this, 'addToParent', p);
+org.apache.flex.html5.staticControls.List.prototype.createElement =
+    function(p) {
+  goog.base(this, 'createElement');
 
   this.element.size = 5;
 };

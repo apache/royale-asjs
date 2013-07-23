@@ -163,6 +163,11 @@ package org.apache.flex.html.staticControls.supportClasses
             else if (selected)
                 backgroundColor = selectedColor;
         }
+        
+        public function get element():Object
+        {
+            return this;
+        }
 
         // beads declared in MXML are added to the strand.
         // from AS, just call addBead()
@@ -202,16 +207,7 @@ package org.apache.flex.html.staticControls.supportClasses
             return null;
         }
         
-        public function addToParent(p:Object):void
-        {
-            if (p is UIBase)
-                UIBase(p).internalAddChild(this);
-            else
-                p.addChild(this);
-            addedToParent();
-        }
-
-        protected function addedToParent():void
+        public function addedToParent():void
         {
             var c:Class;
 

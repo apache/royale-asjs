@@ -18,18 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	
-	// this import is not used, but keeps the compiler from
-	// complaining about explicit usage of flash.events.Event
 	import flash.events.IOErrorEvent;
 	
-//	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IFlexInfo;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IValuesImpl;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.createjs.core.ViewBase;
@@ -68,7 +66,7 @@ package org.apache.flex.createjs
 			
 			dispatchEvent(new Event("initialize"));
 			
-			initialView.addToParent(this);
+			addElement(initialView);
 			initialView.initUI(model);
 			dispatchEvent(new Event("viewChanged"));
 		}
@@ -133,5 +131,10 @@ package org.apache.flex.createjs
 		{
 			return {};           
 		}
+        
+        public function addElement(c:Object):void
+        {
+            addChild(c as DisplayObject);
+        }
 	}
 }

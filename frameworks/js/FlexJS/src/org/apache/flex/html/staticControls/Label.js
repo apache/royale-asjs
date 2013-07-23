@@ -35,27 +35,11 @@ goog.inherits(org.apache.flex.html.staticControls.Label,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.Label}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.Label.prototype.addToParent = function(p) {
-  goog.base(this, 'addToParent', p);
-
+org.apache.flex.html.staticControls.Label.prototype.createElement =
+    function() {
+  goog.base(this, 'createElement');
 };
-
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.Label}
- */
-org.apache.flex.html.staticControls.Label.prototype.initModel = function() {
-};
-/**
- * @expose
- * @this {org.apache.flex.html.staticControls.Label}
- */
-org.apache.flex.html.staticControls.Label.prototype.initSkin = function() {
-
-};
-
 
 /**
  * @expose

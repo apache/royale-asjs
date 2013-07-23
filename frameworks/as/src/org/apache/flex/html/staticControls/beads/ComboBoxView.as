@@ -24,9 +24,10 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.core.IParent;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Button;
@@ -75,7 +76,7 @@ package org.apache.flex.html.staticControls.beads
 			selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             
 			textInput = new TextInput();
-			textInput.addToParent(DisplayObjectContainer(strand));
+			IParent(strand).addElement(textInput);
 			textInput.width = 100;
 			textInput.height = 18;
 			
@@ -148,9 +149,10 @@ package org.apache.flex.html.staticControls.beads
 					}
 					var root:Object = DisplayObject(_strand).root;
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
-					while (host.parent != root)
+					while (host && !(host is IPopUpHost))
 						host = host.parent;
-					IUIBase(popUp).addToParent(host);
+                    if (host)
+    					IPopUpHost(host).addElement(popUp);
 				}
 				else
 				{

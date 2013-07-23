@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
@@ -69,7 +69,7 @@ package org.apache.flex.html.staticControls.beads
 			_border = new Border();
 			_border.model = new SingleLineBorderModel();
 			_border.addBead(new SingleLineBorderBead());
-            border.addToParent(UIBase(strand));
+            IParent(strand).addElement(border);
 			
 			var vb:ScrollBar = vScrollBar;
 			
@@ -103,7 +103,7 @@ package org.apache.flex.html.staticControls.beads
 			vsbm.value = 0;
 			vsb.model = vsbm;
 			vsb.width = 16;
-            vsb.addToParent(UIBase(strand));
+            IParent(strand).addElement(vsb);
 			
 			vsb.addEventListener("scroll", scrollHandler);
 			

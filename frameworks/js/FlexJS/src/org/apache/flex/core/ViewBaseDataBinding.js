@@ -14,9 +14,9 @@
 
 goog.provide('org.apache.flex.core.ViewBaseDataBinding');
 
-goog.require('org.apache.flex.binding.PropertyWatcher');
 goog.require('org.apache.flex.binding.ConstantBinding');
 goog.require('org.apache.flex.binding.GenericBinding');
+goog.require('org.apache.flex.binding.PropertyWatcher');
 goog.require('org.apache.flex.binding.SimpleBinding');
 goog.require('org.apache.flex.events.Event');
 

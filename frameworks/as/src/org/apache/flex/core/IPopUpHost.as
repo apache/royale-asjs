@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    public interface IContainer extends IParent
+    public interface IPopUpHost extends IParent
 	{
-		function childrenAdded():void;
 	}
 }

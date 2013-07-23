@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.Strand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
@@ -81,10 +81,10 @@ package org.apache.flex.html.staticControls.beads
             _border = new Border();
             _border.model = new SingleLineBorderModel();
             _border.addBead(new SingleLineBorderBead());
-            border.addToParent(UIBase(_strand));
+            IParent(_strand).addElement(_border);
             
 			_dataGroup = new NonVirtualDataGroup();
-			UIBase(_dataGroup).addToParent(UIBase(_strand));
+			IParent(_strand).addElement(_dataGroup);
             
             if (getBeadByType(IBeadLayout) == null)
             {
@@ -124,7 +124,7 @@ package org.apache.flex.html.staticControls.beads
 			vsbm.value = 0;
 			vsb.model = vsbm;
 			vsb.width = 16;
-            vsb.addToParent(UIBase(_strand));
+            IParent(_strand).addElement(vsb);
 			return vsb;
 		}
 				

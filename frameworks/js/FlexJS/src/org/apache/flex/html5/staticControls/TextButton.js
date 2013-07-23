@@ -32,14 +32,11 @@ goog.inherits(org.apache.flex.html5.staticControls.TextButton,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.TextButton}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.TextButton.prototype.addToParent =
-    function(p) {
+org.apache.flex.html5.staticControls.TextButton.prototype.createElement =
+    function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

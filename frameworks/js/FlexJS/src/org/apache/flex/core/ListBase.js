@@ -44,14 +44,11 @@ goog.inherits(org.apache.flex.core.ListBase,
 /**
  * @override
  * @this {org.apache.flex.core.ListBase}
- * @param {Object} p The parent element.
  */
-org.apache.flex.core.ListBase.prototype.addToParent = function(p) {
+org.apache.flex.core.ListBase.prototype.createElement = function() {
   this.element = document.createElement('select');
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
 };

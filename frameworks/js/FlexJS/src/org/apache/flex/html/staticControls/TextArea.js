@@ -24,10 +24,6 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.TextArea = function() {
   goog.base(this);
-
-  this.element = document.createElement('textarea');
-  this.positioner = this.element;
-
 };
 goog.inherits(org.apache.flex.html.staticControls.TextArea,
     org.apache.flex.core.UIBase);
@@ -36,13 +32,12 @@ goog.inherits(org.apache.flex.html.staticControls.TextArea,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.TextArea}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.TextArea.prototype.addToParent =
+org.apache.flex.html.staticControls.TextArea.prototype.createElement =
     function(p) {
 
-  p.internalAddChild(this.element);
-
+  this.element = document.createElement('textarea');
+  this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
 

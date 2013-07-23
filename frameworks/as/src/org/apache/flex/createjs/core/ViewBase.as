@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.core
 {
+	import flash.display.DisplayObject;
+	
+	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	
 	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase
+	public class ViewBase extends UIBase implements IParent
 	{
 		public function ViewBase()
 		{
@@ -56,5 +60,27 @@ package org.apache.flex.createjs.core
 		{
 			return _applicationModel;
 		}
+        
+        public function addElement(c:Object):void
+        {
+            addChild(c as DisplayObject);
+        }
+
+        public function addElementAt(c:Object, index:int):void
+        {
+            addChildAt(c as DisplayObject, index);
+        }
+        
+        public function getElementIndex(c:Object):int
+        {
+            return getChildIndex(c as DisplayObject);
+        }
+        
+        public function removeElement(c:Object):void
+        {
+            removeChild(c as DisplayObject);
+        }
+        
+
 	}
 }

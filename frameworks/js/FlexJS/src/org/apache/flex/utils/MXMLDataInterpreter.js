@@ -111,10 +111,6 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
     Cls = data[i++];
     comp = new Cls();
 
-    if (parent) {
-      comp.addToParent(parent);
-    }
-
     id = null;
 
     m = data[i++]; // num props
@@ -143,10 +139,6 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
         comp.addBead(value);
       }
       */
-    }
-
-    if (typeof(comp.initModel) === 'function') {
-      comp.initModel();
     }
 
     beadOffset = i + (m - 1) * 3;
@@ -224,9 +216,6 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
 
       comp.setStyle(name, value);
     }
-    if (typeof(comp.initSkin) === 'function') {
-      comp.initSkin();
-    }
 
     /*
     m = data[i++]; // num effects
@@ -249,6 +238,10 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
       value = data[i++];
 
       comp.addEventListener(name, goog.bind(value, document));
+    }
+
+    if (parent) {
+      parent.addElement(comp);
     }
 
     children = data[i++];

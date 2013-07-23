@@ -75,7 +75,7 @@ package org.apache.flex.html.staticControls
 			return closeButton;
 		}
 		
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
 			super.addedToParent();
 			
@@ -86,12 +86,12 @@ package org.apache.flex.html.staticControls
 			_titleLabel = createTitle();
 			_titleLabel.className = className;
 			_titleLabel.id = "title";
-			_titleLabel.addToParent(this);
+			addElement(_titleLabel);
 			
 			_closeButton = createCloseButton();
 			_closeButton.className = className;
 			_closeButton.id = "closeButton";
-			_closeButton.addToParent(this);
+			addElement(_closeButton);
 			
 			childrenAdded();
             

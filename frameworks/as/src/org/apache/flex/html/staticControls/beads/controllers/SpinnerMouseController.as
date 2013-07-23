@@ -24,6 +24,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ISpinnerView;
@@ -41,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			_strand = value;
 			
-			rangeModel = value.getBeadByType(IBeadModel) as IRangeModel;
+			rangeModel = UIBase(value).model as IRangeModel;
 			
 			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);

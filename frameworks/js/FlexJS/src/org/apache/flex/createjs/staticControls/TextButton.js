@@ -42,9 +42,8 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground =
 /**
  * @override
  * @this {org.apache.flex.createjs.staticControls.TextButton}
- * @param {Object} p The parent element.
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.addToParent =
+org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
     function(p) {
 
     this.buttonBackground = new createjs.Shape();

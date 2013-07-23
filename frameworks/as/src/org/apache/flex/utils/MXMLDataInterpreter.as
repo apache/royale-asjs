@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
 
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IUIBase;
+import org.apache.flex.core.IParent;
 import org.apache.flex.core.IContainer;
 
 public class MXMLDataInterpreter
@@ -76,7 +74,7 @@ public class MXMLDataInterpreter
         return comp;
     }
     
-    public static function generateMXMLArray(document:Object, parent:DisplayObjectContainer, data:Array, recursive:Boolean = true):Array
+    public static function generateMXMLArray(document:Object, parent:IParent, data:Array, recursive:Boolean = true):Array
     {
         var comps:Array = [];
         
@@ -191,12 +189,7 @@ public class MXMLDataInterpreter
             
             if (parent)
             {
-                if (comp is IUIBase)
-                    comp.addToParent(parent);
-                else if (parent is IContainer)
-                    IContainer(parent).internalAddChild(comp as DisplayObject);
-                else if (comp is DisplayObject)
-                    parent.addChild(comp as DisplayObject);
+                parent.addElement(comp);
             }
 
             var children:Array = data[i++];
@@ -204,7 +197,7 @@ public class MXMLDataInterpreter
             {
                 if (recursive)
 				{
-                    generateMXMLInstances(document, comp as DisplayObjectContainer, children, recursive);
+                    generateMXMLInstances(document, comp as IParent, children, recursive);
 					if (comp is IContainer)
 					{
 						IContainer(comp).childrenAdded();
@@ -224,7 +217,7 @@ public class MXMLDataInterpreter
         return comps;
     }
     
-    public static function generateMXMLInstances(document:Object, parent:DisplayObjectContainer, data:Array, recursive:Boolean = true):void
+    public static function generateMXMLInstances(document:Object, parent:IParent, data:Array, recursive:Boolean = true):void
     {
 		if (!data) return;
 		

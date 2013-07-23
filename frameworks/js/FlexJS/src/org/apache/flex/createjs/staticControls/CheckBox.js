@@ -50,10 +50,9 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.checkBoxLabel = null;
 /**
  * @override
  * @this {org.apache.flex.createjs.staticControls.CheckBox}
- * @param {Object} p The parent element.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.addToParent =
-  function(p) {
+org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
+    function() {
     this.checkMarkBackground = new createjs.Shape();
     this.checkMarkBackground.name = 'checkmarkbackground';
     this.checkMarkBackground.graphics.beginFill('red').

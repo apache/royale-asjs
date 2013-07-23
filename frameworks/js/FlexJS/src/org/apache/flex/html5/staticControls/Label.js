@@ -32,10 +32,10 @@ goog.inherits(org.apache.flex.html5.staticControls.Label,
 /**
  * @override
  * @this {org.apache.flex.html5.staticControls.Label}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html5.staticControls.Label.prototype.addToParent = function(p) {
-  goog.base(this, 'addToParent', p);
+org.apache.flex.html5.staticControls.Label.prototype.createElement =
+    function() {
+  goog.base(this, 'createElement');
 
   this.positioner = this.element;
 };

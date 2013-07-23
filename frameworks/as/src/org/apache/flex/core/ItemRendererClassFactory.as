@@ -62,7 +62,7 @@ package org.apache.flex.core
 
         protected function createFromMXMLContent(parent:IItemRendererParent):IItemRenderer
         {
-            return MXMLDataInterpreter.generateMXMLArray(document, parent as DisplayObjectContainer, MXMLDescriptor, true)[0];
+            return MXMLDataInterpreter.generateMXMLArray(document, parent as IParent, MXMLDescriptor, true)[0];
         }
         
         public var itemRendererClass:Class;
@@ -70,7 +70,7 @@ package org.apache.flex.core
         public function createFromClass(parent:IItemRendererParent):IItemRenderer
         {
             var renderer:IItemRenderer = new itemRendererClass();
-            parent.addChild(renderer as DisplayObject);
+            parent.addElement(renderer);
             return renderer;
         }
         

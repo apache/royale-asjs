@@ -151,6 +151,11 @@ package org.apache.flex.core
 				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
+        
+        public function get element():Object
+        {
+            return this;
+        }
 
         // beads declared in MXML are added to the strand.
         // from AS, just call addBead()
@@ -192,7 +197,7 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		protected function addedToParent():void
+		public function addedToParent():void
 		{
             var c:Class;
             
@@ -230,17 +235,6 @@ package org.apache.flex.core
             _width = $width;
             _height = $height;
             
-		}
-		
-		public function addToParent(p:Object):void
-		{
-			if( p is UIBase ) {
-				UIBase(p).internalAddChild(this);
-			}
-			else if( p is DisplayObjectContainer ) {
-				p.addChild(this);
-			}
-            addedToParent();
 		}
 		
 		public function get measurementBead() : IMeasurementBead

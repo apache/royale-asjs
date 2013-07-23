@@ -32,7 +32,7 @@ package org.apache.flex.html.staticControls
 			className = "ControlBar";
 		}
 		
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
 			super.addedToParent();	
 			

@@ -15,8 +15,8 @@
 goog.provide('org.apache.flex.html.staticControls.Panel');
 
 goog.require('org.apache.flex.html.staticControls.Container');
-goog.require('org.apache.flex.html.staticControls.TitleBar');
 goog.require('org.apache.flex.html.staticControls.ControlBar');
+goog.require('org.apache.flex.html.staticControls.TitleBar');
 
 
 
@@ -34,21 +34,18 @@ goog.inherits(org.apache.flex.html.staticControls.Panel,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.Panel}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.Panel.prototype.addToParent =
-    function(p) {
+org.apache.flex.html.staticControls.Panel.prototype.createElement =
+    function() {
   var cb;
 
   this.element = document.createElement('div');
-  this.element.className = "Panel";
-  
-  this.titleBar = new org.apache.flex.html.staticControls.TitleBar();
-  this.titleBar.addToParent(this);
-  this.titleBar.element.id = "titleBar";
-  this.titleBar.title = "Sample Panel";
+  this.element.className = 'Panel';
 
-  p.internalAddChild(this.element);
+  this.titleBar = new org.apache.flex.html.staticControls.TitleBar();
+  this.addElement(titleBar);
+  this.titleBar.element.id = 'titleBar';
+  this.titleBar.title = 'Sample Panel';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -81,7 +78,8 @@ org.apache.flex.html.staticControls.Panel.prototype.set_title =
  * @this {org.apache.flex.html.staticControls.Panel}
  * @return {Array} The controlBar getter.
  */
-org.apache.flex.html.staticControls.Panel.prototype.get_controlBar = function() {
+org.apache.flex.html.staticControls.Panel.prototype.get_controlBar =
+    function() {
   return this.controlBarChildren;
 };
 
@@ -94,12 +92,12 @@ org.apache.flex.html.staticControls.Panel.prototype.get_controlBar = function() 
 org.apache.flex.html.staticControls.Panel.prototype.set_controlBar =
     function(value) {
   this.controlBarChildren = value;
-  
+
   this.controlBar = new org.apache.flex.html.staticControls.ControlBar();
-  this.controlBar.addToParent(this);
-  
-  for(var i=0; i < value.length; i++) {
-  	  var item = value[i];
-  	  item.addToParent(this.controlBar);
+  this.addElement(controlBar);
+
+  for (var i = 0; i < value.length; i++) {
+    var item = value[i];
+    this.controlBar.addElement(item);
   }
 };

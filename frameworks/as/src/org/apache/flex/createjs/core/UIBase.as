@@ -137,9 +137,5 @@ package org.apache.flex.createjs.core
 			return null;
 		}
 		
-		public function addToParent(p:DisplayObjectContainer):void
-		{
-			p.addChild(this);
-		}
 	}
 }

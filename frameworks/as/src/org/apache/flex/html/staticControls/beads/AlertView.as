@@ -22,6 +22,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IMeasurementBead;
+    import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
@@ -107,14 +108,14 @@ package org.apache.flex.html.staticControls.beads
 			_label.text = IAlertModel(UIBase(_strand).model).message;
 			
 			_controlBar = new ControlBar();
-			if( _okButton ) _okButton.addToParent(_controlBar);
-			if( _cancelButton ) _cancelButton.addToParent(_controlBar);
-			if( _yesButton  ) _yesButton.addToParent(_controlBar);
-			if( _noButton ) _noButton.addToParent(_controlBar);
+			if( _okButton ) _controlBar.addElement(_okButton);
+			if( _cancelButton ) _controlBar.addElement(_cancelButton);
+			if( _yesButton  ) _controlBar.addElement(_yesButton);
+			if( _noButton ) _controlBar.addElement(_noButton);
 			
-			_titleBar.addToParent(_strand);
-			_controlBar.addToParent(_strand);
-			_label.addToParent(_strand);
+		    IParent(_strand).addElement(_titleBar);
+            IParent(_strand).addElement(_controlBar);
+            IParent(_strand).addElement(_label);
 			
 			sizeHandler(null);
 		}

@@ -27,14 +27,14 @@ package org.apache.flex.core
 
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
 	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase
+	public class ViewBase extends UIBase implements IPopUpHost
 	{
 		public function ViewBase()
 		{
 			super();
 		}
 		
-		override protected function addedToParent():void
+		override public function addedToParent():void
 		{
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);

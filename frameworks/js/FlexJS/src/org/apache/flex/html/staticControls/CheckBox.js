@@ -32,9 +32,8 @@ goog.inherits(org.apache.flex.html.staticControls.CheckBox,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.CheckBox}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
+org.apache.flex.html.staticControls.CheckBox.prototype.createElement =
     function(p) {
   var cb;
 
@@ -44,8 +43,6 @@ org.apache.flex.html.staticControls.CheckBox.prototype.addToParent =
   cb.type = 'checkbox';
   this.element.appendChild(cb);
   this.element.appendChild(document.createTextNode('check box'));
-
-  p.internalAddChild(this.element);
 
   this.positioner = this.element;
   cb.flexjs_wrapper = this;

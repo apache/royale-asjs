@@ -64,7 +64,7 @@ package org.apache.flex.html.staticControls.beads
 				_controlBar = new ControlBar();
 				
 				for each(var comp:IUIBase in controlBarItems) {
-					comp.addToParent(_controlBar);
+					_controlBar.addElement(comp);
 				}
 				
 				Container(_strand).addChild(controlBar);

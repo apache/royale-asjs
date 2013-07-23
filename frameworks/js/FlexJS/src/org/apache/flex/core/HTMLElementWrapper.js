@@ -30,7 +30,7 @@ goog.inherits(org.apache.flex.core.HTMLElementWrapper,
 
 
 /**
- * @protected
+ * @expose
  * @type {Object}
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.element = null;
