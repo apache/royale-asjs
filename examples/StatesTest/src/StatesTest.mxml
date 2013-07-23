@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:local="*"
+                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                   xmlns:models="models.*" 
+                   xmlns:controllers="controllers.*"
+                   initialize="MyModel(model).stockSymbol='ADBE'"
+                   >
+    <basic:valuesImpl>
+        <basic:SimpleCSSValuesImpl />
+    </basic:valuesImpl>
+    <basic:initialView>
+        <local:MyInitialView />
+    </basic:initialView>
+    <basic:model>
+        <models:MyModel />
+    </basic:model>
+    <basic:controller>
+        <controllers:MyController />
+    </basic:controller>
+    <basic:beads>
+        <basic:HTTPService id="service">
+            <basic:LazyCollection id="collection">
+                <basic:inputParser>
+                    <basic:JSONInputParser />
+                </basic:inputParser>
+                <basic:itemConverter>
+                    <local:StockDataJSONItemConverter />
+                </basic:itemConverter> 
+            </basic:LazyCollection>
+        </basic:HTTPService>
+        <basic:ViewSourceContextMenuOption />
+    </basic:beads>
+</basic:Application>
