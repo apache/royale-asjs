@@ -23,7 +23,6 @@ package org.apache.flex.html.staticControls.beads.controllers
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -51,22 +50,6 @@ package org.apache.flex.html.staticControls.beads.controllers
 			
 			// add handler to detect click on track
 			sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
-		}
-		
-		protected function snap(value:Number):Number
-		{
-			var si:Number = rangeModel.snapInterval;
-			var n:Number = Math.round((value - rangeModel.minimum) / si) * si + rangeModel.minimum;
-			if (value > 0)
-			{
-				if (value - n < n + si - value)
-					return n;
-				return n + si;
-				
-			}
-			if (value - n > n + si - value)
-				return n + si;
-			return n;
 		}
 		
 		private function thumbDownHandler( event:MouseEvent ) : void
@@ -101,15 +84,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 			
 			var p:Number = newX/UIBase(_strand).width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
-			n = snap(n);
-			if( n < rangeModel.minimum ) n = rangeModel.minimum;
-			else if( n > rangeModel.maximum ) n = rangeModel.maximum;
-			
-			p = (n-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
-			newX = p*(UIBase(_strand).width);
-			
-			sliderView.thumb.x = newX - sliderView.thumb.width/2;
-			
+		
 			rangeModel.value = n;
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
@@ -124,13 +99,6 @@ package org.apache.flex.html.staticControls.beads.controllers
 			var xloc:Number = event.localX;
 			var p:Number = xloc/UIBase(_strand).width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
-			n = snap(n);
-			if( n < rangeModel.minimum ) n = rangeModel.minimum;
-			else if( n > rangeModel.maximum ) n = rangeModel.maximum;
-			
-			p = (n-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
-			xloc = p*(UIBase(_strand).width);
-			sliderView.thumb.x = xloc - sliderView.thumb.width/2;
 			
 			rangeModel.value = n;
 			

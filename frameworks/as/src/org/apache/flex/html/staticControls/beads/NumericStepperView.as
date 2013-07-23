@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParent;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
@@ -71,6 +71,13 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			
+			// listen for changes to the model itself and update the UI accordingly
+			IEventDispatcher(UIBase(value).model).addEventListener("valueChange",modelChangeHandler);
+			IEventDispatcher(UIBase(value).model).addEventListener("minimumChange",modelChangeHandler);
+			IEventDispatcher(UIBase(value).model).addEventListener("maximumChange",modelChangeHandler);
+			IEventDispatcher(UIBase(value).model).addEventListener("stepSizeChange",modelChangeHandler);
+			IEventDispatcher(UIBase(value).model).addEventListener("snapIntervalChange",modelChangeHandler);
+			
 			input.text = String(spinner.value);
 			
 			// set a default size which will trigger the sizeChangeHandler
@@ -107,6 +114,12 @@ package org.apache.flex.html.staticControls.beads
 			else {
 				input.text = String(spinner.value);
 			}
+		}
+		
+		private function modelChangeHandler( event:Event ) : void
+		{
+			var n:Number = IRangeModel(UIBase(_strand).model).value;
+			input.text = String(IRangeModel(UIBase(_strand).model).value);
 		}
 	}
 }

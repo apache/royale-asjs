@@ -58,6 +58,13 @@ package org.apache.flex.html.staticControls.beads
 			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			
+			// listen for changes to the model and adjust the UI accordingly.
+			IEventDispatcher(rangeModel).addEventListener("valueChange",modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("minimumChange",modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("maximumChange",modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("stepSizeChange",modelChangeHandler);
+			IEventDispatcher(rangeModel).addEventListener("snapIntervalChange",modelChangeHandler);
+			
 			// set a minimum size to trigger the size change handler
 			var needsSizing:Boolean = true;
 			if( UIBase(_strand).width < 100 ) {
@@ -100,8 +107,19 @@ package org.apache.flex.html.staticControls.beads
 			
 			_thumb.x = 10;
 			_thumb.y = 0;//(UIBase(_strand).height - _thumb.height)/2;
+		}
+		
+		private function modelChangeHandler( event:Event ) : void
+		{
+			setThumbPositionFromValue(rangeModel.value);
+		}
+		
+		private function setThumbPositionFromValue( value:Number ) : void
+		{
+			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
+			var xloc:Number = p*(UIBase(_strand).width);
 			
-			trace("track y="+_track.y+"; _thumb y="+_thumb.y);
+			_thumb.x = xloc - _thumb.width/2;
 		}
 	}
 }
