@@ -20,12 +20,14 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
-
+	
 	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
+	import org.apache.flex.html.staticControls.ContainerContentArea;
 	
 	public class ContainerView implements IBeadView
 	{
@@ -97,7 +99,7 @@ package org.apache.flex.html.staticControls.beads
 			if ((!isNaN(pl) && pl > 0 ||
 				!isNaN(pt) && pt > 0))
 			{
-				actualParent = new Sprite();
+				actualParent = new ContainerContentArea();
 				DisplayObjectContainer(value).addChild(actualParent);
 				Container(value).setActualParent(actualParent);
 				actualParent.x = pl;

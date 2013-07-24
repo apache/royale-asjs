@@ -58,6 +58,7 @@ package org.apache.flex.html.staticControls.beads
 			spinner.addBead( UIBase(value).model );
 			IParent(value).addElement(spinner);
 			spinner.width = 17;
+			input.height = spinner.height; // should be spinner.height = input.height but the spinner buttons won't get small enough
 			
 			// listen for changes to the text input field which will reset the
 			// value. ideally, we should either set the input to accept only

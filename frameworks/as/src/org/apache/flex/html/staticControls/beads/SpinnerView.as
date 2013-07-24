@@ -25,6 +25,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 	
@@ -56,6 +58,9 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).addChild(_decrement);
 			UIBase(_strand).addChild(_increment);
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+			
+			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 		}
 		
 		private var _decrement:DisplayObject;
@@ -68,6 +73,16 @@ package org.apache.flex.html.staticControls.beads
 		public function get increment():DisplayObject
 		{
 			return _increment;
+		}
+		
+		private function sizeChangeHandler( event:Event ) : void
+		{
+			_increment.width = UIBase(_strand).width;
+			_increment.height = UIBase(_strand).height/2;
+			_increment.y      = 0;
+			_decrement.width = UIBase(_strand).width;
+			_decrement.height = UIBase(_strand).height/2;
+			_decrement.y      = _increment.height;
 		}
 	}
 }

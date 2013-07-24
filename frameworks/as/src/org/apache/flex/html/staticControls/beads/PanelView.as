@@ -86,7 +86,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			actualParent.x = metrics.left;
 			actualParent.y = titleBar.y + titleBar.height;
-			actualParent.width = UIBase(_strand).width - (metrics.left + metrics.right);
 			
 			if( controlBar ) {
 				controlBar.x = metrics.left;

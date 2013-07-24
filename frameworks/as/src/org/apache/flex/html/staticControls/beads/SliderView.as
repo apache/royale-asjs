@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
+	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
@@ -43,6 +44,9 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			bkg = new Sprite();
+			UIBase(_strand).addChild(bkg);
 			
 			_track = new Button();
 			Button(_track).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
@@ -79,6 +83,7 @@ package org.apache.flex.html.staticControls.beads
 			if( needsSizing ) sizeChangeHandler(null);
 		}
 		
+		private var bkg:Sprite;
 		private var _track:DisplayObject;
 		private var _thumb:DisplayObject;
 		
@@ -97,16 +102,24 @@ package org.apache.flex.html.staticControls.beads
 			var w:Number = UIBase(_strand).width;
 			var h:Number = UIBase(_strand).height;
 			
-			_track.width = UIBase(_strand).width;
-			_track.height = 5;
-			_track.x = 0;
-			_track.y = (UIBase(_strand).height - _track.height)/2;
+			bkg.graphics.clear();
+			bkg.graphics.beginFill(0xFF8800);
+			bkg.graphics.drawRect(0,0,w,h);
+			bkg.graphics.endFill();
 			
 			_thumb.width = 20;
 			_thumb.height = UIBase(_strand).height;
 			
 			_thumb.x = 10;
-			_thumb.y = 0;//(UIBase(_strand).height - _thumb.height)/2;
+			_thumb.y = 0;
+			
+			// the track is inset 1/2 of the thumbwidth so the thumb can
+			// overlay the track on either end with the thumb center being
+			// on the track's edge
+			_track.width = UIBase(_strand).width - _thumb.width;
+			_track.height = 5;
+			_track.x = _thumb.width/2;
+			_track.y = (UIBase(_strand).height - _track.height)/2;
 		}
 		
 		private function modelChangeHandler( event:Event ) : void
@@ -117,9 +130,9 @@ package org.apache.flex.html.staticControls.beads
 		private function setThumbPositionFromValue( value:Number ) : void
 		{
 			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
-			var xloc:Number = p*(UIBase(_strand).width);
+			var xloc:Number = p*(UIBase(_strand).width - _thumb.width);
 			
-			_thumb.x = xloc - _thumb.width/2;
+			_thumb.x = xloc;
 		}
 	}
 }
