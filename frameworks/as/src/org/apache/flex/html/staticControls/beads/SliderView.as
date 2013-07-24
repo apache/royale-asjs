@@ -45,9 +45,6 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_strand = value;
 			
-			bkg = new Sprite();
-			UIBase(_strand).addChild(bkg);
-			
 			_track = new Button();
 			Button(_track).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
 			
@@ -83,7 +80,6 @@ package org.apache.flex.html.staticControls.beads
 			if( needsSizing ) sizeChangeHandler(null);
 		}
 		
-		private var bkg:Sprite;
 		private var _track:DisplayObject;
 		private var _thumb:DisplayObject;
 		
@@ -101,11 +97,6 @@ package org.apache.flex.html.staticControls.beads
 		{
 			var w:Number = UIBase(_strand).width;
 			var h:Number = UIBase(_strand).height;
-			
-			bkg.graphics.clear();
-			bkg.graphics.beginFill(0xFF8800);
-			bkg.graphics.drawRect(0,0,w,h);
-			bkg.graphics.endFill();
 			
 			_thumb.width = 20;
 			_thumb.height = UIBase(_strand).height;

@@ -20,10 +20,11 @@ package org.apache.flex.html.staticControls
 {
 	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ValuesManager;
 
-	public class ControlBar extends Container implements IContainer
+	public class ControlBar extends Container implements IContainer, IChrome
 	{
 		public function ControlBar()
 		{

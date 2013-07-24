@@ -21,6 +21,7 @@ package org.apache.flex.html.staticControls
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -58,22 +59,45 @@ package org.apache.flex.html.staticControls
         {
             if (c is IUIBase)
             {
-                actualParent.addChild(IUIBase(c).element as DisplayObject);
-                IUIBase(c).addedToParent();
+				if (c is IChrome ) {
+					addChild(IUIBase(c).element as DisplayObject);
+					IUIBase(c).addedToParent();
+				}
+				else {
+                	actualParent.addChild(IUIBase(c).element as DisplayObject);
+                	IUIBase(c).addedToParent();
+				}
             }
-            else
-                actualParent.addChild(c as DisplayObject);
+            else {
+				if (c is IChrome) {
+					addChild(c as DisplayObject);
+				}
+				else {
+					actualParent.addChild(c as DisplayObject);
+				}
+			}
         }
         
         override public function addElementAt(c:Object, index:int):void
         {
             if (c is IUIBase)
             {
-                actualParent.addChildAt(IUIBase(c).element as DisplayObject, index);
-                IUIBase(c).addedToParent();
+				if (c is IChrome) {
+					addChildAt(IUIBase(c).element as DisplayObject, index);
+					IUIBase(c).addedToParent();
+				}
+				else {
+                	actualParent.addChildAt(IUIBase(c).element as DisplayObject, index);
+                	IUIBase(c).addedToParent();
+				}
             }
-            else
-                actualParent.addChildAt(c as DisplayObject, index);
+            else {
+				if (c is IChrome) {
+					addChildAt(c as DisplayObject, index);
+				} else {
+                	actualParent.addChildAt(c as DisplayObject, index);
+				}
+			}
         }
         
         override public function removeElement(c:Object):void

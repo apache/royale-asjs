@@ -22,12 +22,13 @@ package org.apache.flex.html.staticControls
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.Label;
 	
-	public class TitleBar extends Container
+	public class TitleBar extends Container implements IChrome
 	{
 		public function TitleBar()
 		{

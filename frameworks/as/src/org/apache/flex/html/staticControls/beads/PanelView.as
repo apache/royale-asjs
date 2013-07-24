@@ -57,7 +57,11 @@ package org.apache.flex.html.staticControls.beads
 			super.strand = value;
 			_strand = value;
 			
-			Container(_strand).addChild(titleBar);
+			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
+			// any changes to values in the Panel's model that correspond values in the TitleBar will 
+			// be picked up automatically by the TitleBar.
+			titleBar.model = Panel(_strand).model;
+			Container(_strand).addElement(titleBar);
 			
 			var controlBarItems:Array = Panel(_strand).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
@@ -67,7 +71,7 @@ package org.apache.flex.html.staticControls.beads
 					_controlBar.addElement(comp);
 				}
 				
-				Container(_strand).addChild(controlBar);
+				Container(_strand).addElement(controlBar);
 			}
 			
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);

@@ -18,15 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	public interface IPanelModel extends IBeadModel
+	public interface IPanelModel extends IBeadModel, ITitleBarModel
 	{
-		function get title():String;
-		function set title(value:String):void;
-		
-		function get htmlTitle():String;
-		function set htmlTitle(value:String):void;
-		
-		function get showCloseButton():Boolean;
-		function set showCloseButton(value:Boolean):void;
+
 	}
 }
