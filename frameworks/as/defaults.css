@@ -96,6 +96,13 @@ ControlBar
 {
     IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
     iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+    
+    background-color: #CECECE;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
 }
 
 DropDownList

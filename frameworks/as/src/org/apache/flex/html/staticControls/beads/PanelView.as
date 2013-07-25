@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.Sprite;
+	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -84,21 +86,26 @@ package org.apache.flex.html.staticControls.beads
 		{
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
-			titleBar.x = metrics.left;
-			titleBar.y = metrics.top;
-			titleBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
+			var w:Number = Math.max(titleBar.width,actualParent.width+metrics.left+metrics.right,controlBar?controlBar.width:0);
+			
+			var h:Number = titleBar.height + actualParent.height + (controlBar ? controlBar.height : 0) +
+				metrics.top + metrics.bottom;
+			
+			titleBar.x = 0;
+			titleBar.y = 0;
+			titleBar.width = w;
 			
 			actualParent.x = metrics.left;
-			actualParent.y = titleBar.y + titleBar.height;
+			actualParent.y = titleBar.y + titleBar.height + metrics.top;
 			
 			if( controlBar ) {
-				controlBar.x = metrics.left;
-				controlBar.y = actualParent.y + actualParent.height;
-				controlBar.width = UIBase(_strand).width - (metrics.left + metrics.right);
-			} 
+				controlBar.x = 0;
+				controlBar.y = actualParent.y + actualParent.height + metrics.bottom;
+				controlBar.width = w;
+			}
 			
-			UIBase(_strand).height = metrics.top + metrics.bottom + titleBar.height + actualParent.height +
-				(controlBar ? controlBar.height : 0);
+			UIBase(_strand).width = w;
+			UIBase(_strand).height = h;
 		}
         
 	}
