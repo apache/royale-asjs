@@ -61,11 +61,13 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
 	import org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
     import org.apache.flex.html.staticControls.beads.controllers.AlertController; AlertController;
+	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController; ComboBoxController;
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
+	import org.apache.flex.html.staticControls.beads.controllers.TextPromptController; TextPromptController;
     import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;    

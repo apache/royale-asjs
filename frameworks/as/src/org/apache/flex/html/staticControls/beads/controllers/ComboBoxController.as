@@ -22,11 +22,11 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.html.staticControls.beads.IComboBoxView;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.IComboBoxView;
 
 	public class ComboBoxController implements IBeadController
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.html.staticControls.beads.controllers
             IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:Event):void
+        private function clickHandler(event:MouseEvent):void
         {
             var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
             viewBead.popUpVisible = true;
