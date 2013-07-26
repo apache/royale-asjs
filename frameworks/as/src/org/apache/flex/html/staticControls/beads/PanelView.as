@@ -80,29 +80,36 @@ package org.apache.flex.html.staticControls.beads
             
 		}
 		
-		private var controlBarArea:ControlBar;
-		
 		private function changeHandler(event:Event):void
 		{
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
-			var w:Number = Math.max(titleBar.width,actualParent.width+metrics.left+metrics.right,controlBar?controlBar.width:0);
+			var w:Number = UIBase(_strand).explicitWidth;
+			if (isNaN(w)) w = Math.max(titleBar.width,actualParent.width+metrics.left+metrics.right,controlBar?controlBar.width:0);
 			
-			var h:Number = titleBar.height + actualParent.height + (controlBar ? controlBar.height : 0) +
+			var h:Number = UIBase(_strand).explicitHeight;
+			if (isNaN(h)) h = titleBar.height + actualParent.height + (controlBar ? controlBar.height : 0) +
 				metrics.top + metrics.bottom;
 			
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = w;
 			
-			actualParent.x = metrics.left;
-			actualParent.y = titleBar.y + titleBar.height + metrics.top;
+			var remainingHeight:Number = h - titleBar.height;
 			
 			if( controlBar ) {
 				controlBar.x = 0;
-				controlBar.y = actualParent.y + actualParent.height + metrics.bottom;
+				controlBar.y = h - controlBar.height;
+				//controlBar.y = actualParent.y + actualParent.height + metrics.bottom;
 				controlBar.width = w;
+				
+				remainingHeight -= controlBar.height;
 			}
+			
+			actualParent.x = metrics.left;
+			actualParent.y = titleBar.y + titleBar.height + metrics.top;
+			actualParent.width = w;
+			actualParent.height = remainingHeight - metrics.top - metrics.bottom;
 			
 			UIBase(_strand).width = w;
 			UIBase(_strand).height = h;
