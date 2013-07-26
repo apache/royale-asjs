@@ -31,6 +31,79 @@ package org.apache.flex.core
 			super();
 		}
 		
+		private var _explicitWidth:Number;
+		public function get explicitWidth():Number
+		{
+			return _explicitWidth;
+		}
+		public function set explicitWidth(value:Number):void
+		{
+			if (_explicitWidth == value)
+				return;
+			
+			// width can be pixel or percent not both
+			if (!isNaN(value))
+				_percentWidth = NaN;
+			
+			_explicitWidth = value;
+			
+			dispatchEvent(new Event("explicitWidthChanged"));
+		}
+		
+		private var _explicitHeight:Number;
+		public function get explicitHeight():Number
+		{
+			return _explicitHeight;
+		}
+		public function set explicitHeight(value:Number):void
+		{
+			if (_explicitHeight == value)
+				return;
+			
+			// height can be pixel or percent not both
+			if (!isNaN(value))
+				_percentHeight = NaN;
+			
+			_explicitHeight = value;
+			
+			dispatchEvent(new Event("explicitHeightChanged"));
+		}
+		
+		private var _percentWidth:Number;
+		public function get percentWidth():Number
+		{
+			return _percentWidth;
+		}
+		public function set percentWidth(value:Number):void
+		{
+			if (_percentWidth == value)
+				return;
+			
+			if (!isNaN(value))
+				_explicitWidth = NaN;
+			
+			_percentWidth = value;
+			
+			dispatchEvent(new Event("percentWidthChanged"));
+		}
+		private var _percentHeight:Number;
+		public function get percentHeight():Number
+		{
+			return _percentHeight;
+		}
+		public function set percentHeight(value:Number):void
+		{
+			if (_percentHeight == value)
+				return;
+			
+			if (!isNaN(value))
+				_explicitHeight = NaN;
+			
+			_percentHeight = value;
+			
+			dispatchEvent(new Event("percentHeightChanged"));
+		}
+		
 		private var _width:Number;
 		override public function get width():Number
 		{
@@ -45,6 +118,11 @@ package org.apache.flex.core
 		}
 		override public function set width(value:Number):void
 		{
+			if (explicitWidth != value)
+			{
+				explicitWidth = value;
+			}
+			
 			if (_width != value)
 			{
 				_width = value;
@@ -70,6 +148,11 @@ package org.apache.flex.core
 		}
 		override public function set height(value:Number):void
 		{
+			if (explicitHeight != value)
+			{
+				explicitHeight = value;
+			}
+			
 			if (_height != value)
 			{
 				_height = value;
