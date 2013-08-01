@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.staticControls.beads
 {
 	import flash.text.TextFieldType;
 	
@@ -27,9 +27,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class TextPromptController implements IBead
+	public class TextPromptBead implements IBead
 	{
-		public function TextPromptController()
+		public function TextPromptBead()
 		{
 		}
 		
@@ -51,7 +51,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 			// listen for changes in text to hide or show the prompt
 			var model:Object = UIBase(_strand).model;
 			if (!model.hasOwnProperty("text")) {
-				throw new Error("Model requires a text property when used with TextPromptController");
+				throw new Error("Model requires a text property when used with TextPromptBead");
 			}
 			IEventDispatcher(model).addEventListener("textChange",handleTextChange);
 			

@@ -59,6 +59,6 @@
     <component id="NumericStepper" class="org.apache.flex.html.staticControls.NumericStepper" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer"/>
     <component id="ScrollBar" class="org.apache.flex.html.staticControls.supportClasses.ScrollBar"/>
-    <component id="TextPromptController" class="org.apache.flex.html.staticControls.beads.controllers.TextPromptController" />
+    <component id="TextPromptBead" class="org.apache.flex.html.staticControls.beads.TextPromptBead" />
 
 </componentPackage>

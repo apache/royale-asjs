@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.html.staticControls.TitleBar');
 goog.require('org.apache.flex.html.staticControls.Container');
 goog.require('org.apache.flex.html.staticControls.Label');
 goog.require('org.apache.flex.html.staticControls.TextButton');
+goog.require('org.apache.flex.html.staticControls.beads.models.TitleBarModel');
 
 
 
@@ -25,10 +26,10 @@ goog.require('org.apache.flex.html.staticControls.TextButton');
  * @extends {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.TitleBar = function() {
+
+  this.model_ = new org.apache.flex.html.staticControls.beads.models.TitleBarModel();
+
   goog.base(this);
-
-  this._showCloseButton = false;
-
 };
 goog.inherits(org.apache.flex.html.staticControls.TitleBar,
     org.apache.flex.html.staticControls.Container);
@@ -44,17 +45,15 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
   this.element = document.createElement('div');
 
   this.titleLabel = new org.apache.flex.html.staticControls.Label();
-  this.addElement(titleLabel);
+  this.addElement(this.titleLabel);
   this.titleLabel.element.id = 'title';
   this.titleLabel.positioner.style.display = 'inline-block';
   this.titleLabel.set_className('TitleBarLabel');
 
   this.titleButton = new org.apache.flex.html.staticControls.TextButton();
-  this.addElement(titleButton);
+  this.addElement(this.titleButton);
   this.titleButton.element.id = 'closeButton';
   this.titleButton.text = 'Close';
-  this.titleButton.positioner.style.display = this._showCloseButton ?
-            'inline-block' : 'none';
   this.titleButton.positioner.style.position = 'absolute';
   this.titleButton.positioner.style.right = '0px';
 
@@ -62,6 +61,41 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this.set_className('TitleBar');
+
+  // listen for changes to the model so items can be changed in the view
+  this.model_.addEventListener('titleChange',goog.bind(this.changeHandler, this));
+};
+
+
+/**
+ * @override
+ * @this {org.apache.flex.html.staticControls.TitleBar}
+ */
+org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
+  function() {
+  
+  this.titleLabel.set_text(this.model_.get_title());
+
+  if (this.model_.showCloseButton) {
+    this.titleButton.positioner.style.display = 'inline-block';
+  } else {
+    this.titleButton.positioner.style.display = 'none';
+  }
+};
+
+/**
+ * @private
+ * @this {org.apache.flex.html.staticControls.TitleBar}
+ * @param {Object} event The event that triggered this handler.
+ */
+org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
+  function(event) {
+    if (event.type == 'titleChange') {
+      this.titleLabel.set_text(this.model_.get_title());
+    }
+    else if (event.type == 'htmlTitleChange') {
+      this.titleLabel.set_text(this.model.get_htmlTitle());
+    }
 };
 
 
@@ -72,7 +106,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
     function() {
-  return this.titleLabel.get_text();
+  return this.model_.get_title();
 };
 
 
@@ -83,7 +117,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
     function(value) {
-  this.titleLabel.set_text(value);
+  this.model_.set_title(value);
 };
 
 
@@ -94,7 +128,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
     function() {
-  return this._showCloseButton;
+  return this.model_.get_showCloseButton();
 };
 
 
@@ -105,6 +139,5 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton =
     function(value) {
-  this._showCloseButton = value;
-  this.titleButton.positioner.style.display = value ? 'inline-block' : 'none';
+  this.model_.set_showCloseButton(value);
 };

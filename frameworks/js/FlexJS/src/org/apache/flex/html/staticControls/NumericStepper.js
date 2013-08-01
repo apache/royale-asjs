@@ -47,11 +47,11 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
   this.positioner = this.element;
 
   this.input = new org.apache.flex.html.staticControls.TextInput();
-  this.addElement(input);
+  this.addElement(this.input);
   this.input.positioner.style.display = 'inline-block';
 
   this.spinner = new org.apache.flex.html.staticControls.Spinner();
-  this.addElement(spinner);
+  this.addElement(this.spinner);
   this.spinner.positioner.style.display = 'inline-block';
   goog.events.listen(this.spinner, 'valueChanged',
                 goog.bind(this.handleSpinnerChange, this));

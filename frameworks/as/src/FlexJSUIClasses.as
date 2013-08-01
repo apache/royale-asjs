@@ -51,6 +51,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.TextFieldView; TextFieldView;
     import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
     import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; TextInputWithBorderView;
+	import org.apache.flex.html.staticControls.beads.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
@@ -67,7 +68,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
-	import org.apache.flex.html.staticControls.beads.controllers.TextPromptController; TextPromptController;
     import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;    

@@ -38,10 +38,9 @@ org.apache.flex.html.staticControls.ControlBar.prototype.createElement =
     function(p) {
 
   this.element = document.createElement('div');
+  this.element.className = 'ControlBar';
   this.element.style.display = 'inline';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
-
-  this.set_className('ControlBar');
 };

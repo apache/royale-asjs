@@ -69,6 +69,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
  */
 org.apache.flex.core.UIBase.prototype.addElement = function(c) {
   this.element.appendChild(c.element);
+  c.addedToParent();
 };
 
 /**
@@ -84,6 +85,7 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
   {
     this.element.insertBefore(c.element,
             this.getChildAt(index));
+    c.addedToParent();
   }
 };
 
@@ -111,6 +113,60 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
   this.element.removeChild(c.element);
 };
 
+/**
+ * @this {org.apache.flex.core.UIBase}
+ */
+org.apache.flex.core.UIBase.prototype.addedToParent = function() {
+  
+};
+
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} bead The bead to be added.
+ */
+org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
+  if (!this.beads_) {
+    this.beads_ = new Array();
+  }
+  this.beads_.push(bead);
+  bead.strand = this;
+};
+
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Class} classOrInterface A type or interface.
+ * @return {Object} The bead of the given type or null.
+ */
+org.apache.flex.core.UIBase.prototype.getBeadByType = 
+function(classOrInterface) {
+  for (var i=0; i < beads_.length; i++) {
+      var bead = beads_[i];
+      if (bead instanceof classOrInterface) {
+        return bead;
+      }
+  }
+  return null;
+};
+
+
+/**
+ * @this {org.apache.flex.core.UIBase}
+ * @param {Object} value The bead to be removed.
+ * @return {Object} The bead that was removed.
+ */
+org.apache.flex.core.UIBase.prototype.removeBead =
+function(value) {
+  var n = beads_.length;
+  for (var i=0; i < n; i++) {
+    var bead = beads_[i];
+    if (bead == value) {
+      beads_.splice(i,1);
+      return bead;
+    }
+  }
+};
 
 /**
  * @expose

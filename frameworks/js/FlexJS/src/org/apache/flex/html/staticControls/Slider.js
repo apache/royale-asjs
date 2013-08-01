@@ -36,17 +36,14 @@ goog.inherits(org.apache.flex.html.staticControls.Slider,
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Object} p The parent element.
  */
-org.apache.flex.html.staticControls.Slider.prototype.addToParent =
-function(p) {
-  goog.base(this, 'addToParent', p);
+org.apache.flex.html.staticControls.Slider.prototype.createElement =
+function() {
 
   this.element = document.createElement('div');
   this.element.className = 'Slider';
   this.element.style.width = '200px';
   this.element.style.height = '30px';
-  this.positioner = this.element;
 
   this.track = document.createElement('div');
   this.track.className = 'SliderTrack';
@@ -55,7 +52,7 @@ function(p) {
   this.track.style.height = '10px';
   this.track.style.width = '200px';
   this.track.style.border = 'thin solid #C4C4C4';
-  this.track.style.position = 'absolute';
+  this.track.style.position = 'relative';
   this.track.style.left = '0px';
   this.track.style.top = '10px';
   this.track.style.zIndex = '1';
@@ -68,20 +65,20 @@ function(p) {
   this.thumb.id = 'thumb';
   this.thumb.style.backgroundColor = '#949494';
   this.thumb.style.border = 'thin solid #747474';
-  this.thumb.style.position = 'absolute';
+  this.thumb.style.position = 'relative';
   this.thumb.style.height = '30px';
   this.thumb.style.width = '10px';
   this.thumb.style.zIndex = '2';
-  this.thumb.style.top = '0px';
+  this.thumb.style.top = '-10px';
   this.thumb.style.left = '20px';
   this.element.appendChild(this.thumb);
   goog.events.listen(this.thumb, goog.events.EventType.MOUSEDOWN,
                      this.handleThumbDown, false, this);
 
-  p.internalAddChild(this.element);
-
+  this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
+  this.set_className('Slider');
 };
 
 
