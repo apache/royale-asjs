@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.staticControls.Slider');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.staticControls.beads.models.RangeModel');
 
 
 
@@ -23,12 +24,9 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.staticControls.Slider = function() {
+  this.model =
+      new org.apache.flex.html.staticControls.beads.models.RangeModel();
   goog.base(this);
-
-  this.minimum_ = 0;
-  this.maximum_ = 100;
-  this.value_ = 1;
-  this.snapInterval_ = 1;
 };
 goog.inherits(org.apache.flex.html.staticControls.Slider,
     org.apache.flex.core.UIBase);
@@ -90,7 +88,7 @@ function() {
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_value =
 function() {
-    return this.value_;
+    return this.model.get_value();
 };
 
 /**
@@ -101,10 +99,7 @@ function() {
  */
 org.apache.flex.html.staticControls.Slider.prototype.set_value =
 function(newValue) {
-  if (newValue != this.value_) {
-    this.value_ = newValue;
-    this.dispatchEvent('valueChanged');
-  }
+  this.model.set_value(newValue);
 };
 
 /**
@@ -114,7 +109,7 @@ function(newValue) {
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
 function() {
-  return this.minimum_;
+  return this.model.get_minimum();
 };
 
 /**
@@ -125,10 +120,7 @@ function() {
  */
 org.apache.flex.html.staticControls.Slider.prototype.set_minimum =
 function(value) {
-  if (value != this.minimum_) {
-    this.minimum_ = value;
-    this.dispatchEvent('minimumChanged');
-  }
+  this.model.set_minimum(value);
 };
 
 /**
@@ -138,7 +130,7 @@ function(value) {
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
 function() {
-  return this.maximum_;
+  return this.model.get_maximum();
 };
 
 /**
@@ -149,10 +141,7 @@ function() {
  */
 org.apache.flex.html.staticControls.Slider.prototype.set_maximum =
 function(value) {
-  if (value != this.maximum_) {
-    this.maximum_ = value;
-    this.dispatchEvent('maximumChanged');
-  }
+  this.model.set_maximum(value);
 };
 
 /**
@@ -162,7 +151,7 @@ function(value) {
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
 function() {
-  return this.snapInterval_;
+  return this.model.get_snapInterval();
 };
 
 /**
@@ -173,10 +162,28 @@ function() {
  */
 org.apache.flex.html.staticControls.Slider.prototype.set_snapInterval =
 function(value) {
-  if (value != this.snapInterval_) {
-    this.snapInterval_ = value;
-    this.dispatchEvent('snapIntervalChanged');
-  }
+  this.model.set_snapInterval(value);
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Slider}
+ * @return {Number} The stepSize getter.
+ */
+org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
+function() {
+  return this.model.get_stepSize();
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.Slider}
+ * @param {Object} value The new stepSize value.
+ * @return {void} The stepSize setter.
+ */
+org.apache.flex.html.staticControls.Slider.prototype.set_stepSize =
+function(value) {
+  this.model.set_stepSize(value);
 };
 
 /**
@@ -186,8 +193,9 @@ function(value) {
  */
 org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
 {
-  var si = this.snapInterval_;
-  var n = Math.round((value - this.minimum_) / si) * si + this.minimum_;
+  var si = this.get_snapInterval();
+  var n = Math.round((value - this.get_minimum()) / si) *
+                     si + this.get_minimum();
   if (value > 0)
   {
     if (value - n < n + si - value)
@@ -207,14 +215,18 @@ org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
 org.apache.flex.html.staticControls.Slider.prototype.handleTrackClick =
 function(event)
 {
-  this.value_ = this.snap(Math.min(this.maximum_, this.value_ +
-                this.stepSize_));
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+  var xloc = event.clientX;
+  var p = Math.min(1, xloc / parseInt(this.track.style.width, 10));
+  var n = p * (this.get_maximum() - this.get_minimum()) + this.get_minimum();
+
+  this.set_value(n);
 
   this.origin = parseInt(this.thumb.style.left, 10);
   this.position = parseInt(this.thumb.style.left, 10);
 
   this.calcValFromMousePosition(event, true);
+
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
 /**
@@ -276,17 +288,18 @@ function(event, useOffset)
   var newX = this.position + deltaX;
 
   var p = newX / parseInt(this.track.style.width, 10);
-  var n = p * (this.maximum_ - this.minimum_) + this.minimum_;
+  var n = p * (this.get_maximum() - this.get_minimum()) + this.get_minimum();
   n = this.snap(n);
-  if (n < this.minimum_) n = this.minimum_;
-  else if (n > this.maximum_) n = this.maximum_;
+  if (n < this.get_minimum()) n = this.get_minimum();
+  else if (n > this.get_maximum()) n = this.get_maximum();
 
-  p = (n - this.minimum_) / (this.maximum_ - this.minimum_);
+  p = (n - this.get_minimum()) / (this.get_maximum() - this.get_minimum());
   newX = p * parseInt(this.track.style.width, 10);
 
   this.thumb.style.left = String(newX -
                                  parseInt(this.thumb.style.width, 10) / 2) +
                                           'px';
 
-  this.value_ = n;
+  this.set_value(n);
 };
+

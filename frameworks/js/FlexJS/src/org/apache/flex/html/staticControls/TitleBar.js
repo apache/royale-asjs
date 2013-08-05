@@ -27,7 +27,8 @@ goog.require('org.apache.flex.html.staticControls.beads.models.TitleBarModel');
  */
 org.apache.flex.html.staticControls.TitleBar = function() {
 
-  this.model_ = new org.apache.flex.html.staticControls.beads.models.TitleBarModel();
+  this.model =
+      new org.apache.flex.html.staticControls.beads.models.TitleBarModel();
 
   goog.base(this);
 };
@@ -63,7 +64,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
   this.set_className('TitleBar');
 
   // listen for changes to the model so items can be changed in the view
-  this.model_.addEventListener('titleChange',goog.bind(this.changeHandler, this));
+  this.model.addEventListener('titleChange',
+        goog.bind(this.changeHandler, this));
 };
 
 
@@ -73,10 +75,10 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
   function() {
-  
-  this.titleLabel.set_text(this.model_.get_title());
 
-  if (this.model_.showCloseButton) {
+  this.titleLabel.set_text(this.model.get_title());
+
+  if (this.model.showCloseButton) {
     this.titleButton.positioner.style.display = 'inline-block';
   } else {
     this.titleButton.positioner.style.display = 'none';
@@ -84,14 +86,13 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
 };
 
 /**
- * @private
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
   function(event) {
     if (event.type == 'titleChange') {
-      this.titleLabel.set_text(this.model_.get_title());
+      this.titleLabel.set_text(this.model.get_title());
     }
     else if (event.type == 'htmlTitleChange') {
       this.titleLabel.set_text(this.model.get_htmlTitle());
@@ -106,7 +107,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
     function() {
-  return this.model_.get_title();
+  return this.model.get_title();
 };
 
 
@@ -117,7 +118,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
     function(value) {
-  this.model_.set_title(value);
+  this.model.set_title(value);
 };
 
 
@@ -128,7 +129,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
     function() {
-  return this.model_.get_showCloseButton();
+  return this.model.get_showCloseButton();
 };
 
 
@@ -139,5 +140,5 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton =
     function(value) {
-  this.model_.set_showCloseButton(value);
+  this.model.set_showCloseButton(value);
 };

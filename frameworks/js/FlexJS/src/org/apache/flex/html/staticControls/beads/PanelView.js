@@ -20,7 +20,7 @@ goog.provide('org.apache.flex.html.staticControls.beads.PanelView');
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.PanelView = function() {
-  
+
 };
 
 /**
@@ -38,22 +38,24 @@ org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
   this.strand_.titleBar.element.id = 'titleBar';
   this.strand_.addElement(this.strand_.titleBar);
 
-  this.strand_.controlBar = new org.apache.flex.html.staticControls.ControlBar();
+  this.strand_.controlBar =
+      new org.apache.flex.html.staticControls.ControlBar();
   this.strand_.addElement(this.strand_.controlBar);
 
-  // listen for changes to the strand's model so items can be changed in the view
-  this.strand_.model_.addEventListener('titleChange',goog.bind(this.changeHandler, this));
+  // listen for changes to the strand's model so items can be changed
+  // in the view
+  this.strand_.model.addEventListener('titleChange',
+      goog.bind(this.changeHandler, this));
 
 };
 
 /**
- * @private
  * @this {org.apache.flex.html.staticControls.beads.PanelView}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.beads.PanelView.prototype.changeHandler =
   function(event) {
     if (event.type == 'titleChange') {
-      this.strand_.titleBar.set_title(this.strand_.model_.get_title());
+      this.strand_.titleBar.set_title(this.strand_.model.get_title());
     }
 };

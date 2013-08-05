@@ -22,7 +22,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel = function() {
   goog.base(this);
-  
+
   this.title_ = '';
   this.htmlTitle = '';
   this.showCloseButton_ = false;
@@ -37,8 +37,8 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.TitleBarModel,
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_strand =
-  function(value) {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+set_strand = function(value) {
   this.strand_ = value;
 };
 
@@ -46,10 +46,10 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_str
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
- * @returns {String} The title.
+ * @return {String} The title.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_title =
-  function() {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+get_title = function() {
   return this.title_;
 };
 
@@ -59,8 +59,8 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_tit
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
  * @param {String} value The title to set.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_title =
-  function(value) {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+set_title = function(value) {
   if (this.title_ != value) {
       this.title_ = value;
       this.dispatchEvent('titleChange');
@@ -71,10 +71,10 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_tit
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
- * @returns {String} The HTML title.
+ * @return {String} The HTML title.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_htmlTitle =
-  function() {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+get_htmlTitle = function() {
   return this.htmlTitle_;
 };
 
@@ -84,8 +84,8 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_htm
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
  * @param {String} value The new HTML title.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_htmlTitle =
-  function(value) {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+set_htmlTitle = function(value) {
   if (this.htmlTitle_ != value) {
     this.htmlTitle_ = value;
     this.dispatchEvent('htmlTitleChange');
@@ -96,10 +96,11 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_htm
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
- * @returns {Boolean} Returns true if the close button should appear in the TitleBar.
+ * @return {Boolean} Returns true if the close button should appear in
+ * the TitleBar.
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_showCloseButton =
-  function() {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+get_showCloseButton = function() {
   return this.showCloseButton_;
 };
 
@@ -107,10 +108,11 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.get_sho
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
- * @param {Boolean} value Determines if the close button shows (true) or not (false).
+ * @param {Boolean} value Determines if the close button shows (true) or
+ * not (false).
  */
-org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.set_showCloseButton =
-  function(value) {
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
+set_showCloseButton = function(value) {
   if (this.showCloseButton_ != value) {
     this.showCloseButton_ = value;
     this.dispatchEvent('showCloseButtonChange');

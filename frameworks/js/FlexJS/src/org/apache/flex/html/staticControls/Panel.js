@@ -27,7 +27,8 @@ goog.require('org.apache.flex.html.staticControls.beads.models.PanelModel');
  * @extends {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Panel = function() {
-  this.model_ = new org.apache.flex.html.staticControls.beads.models.PanelModel();
+  this.model =
+     new org.apache.flex.html.staticControls.beads.models.PanelModel();
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html.staticControls.Panel,
@@ -40,13 +41,13 @@ goog.inherits(org.apache.flex.html.staticControls.Panel,
  */
 org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
   if (c == this.titleBar) {
-    this.element.insertBefore(this.titleBar.element,this.contentArea);
+    this.element.insertBefore(this.titleBar.element, this.contentArea);
   }
   else if (c == this.controlBar) {
      this.element.appendChild(c.element);
   }
   else {
-  	this.contentArea.appendChild(c.element);
+    this.contentArea.appendChild(c.element);
   }
   c.addedToParent();
 };
@@ -57,7 +58,8 @@ org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org.apache.flex.html.staticControls.Panel.prototype.addElementAt = function(c, index) {
+org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
+  function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
@@ -75,7 +77,8 @@ org.apache.flex.html.staticControls.Panel.prototype.addElementAt = function(c, i
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org.apache.flex.html.staticControls.Panel.prototype.getElementIndex = function(c) {
+org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
+  function(c) {
   var children = this.internalChildren();
   var n = children.length;
   for (i = 0; i < n; i++)
@@ -91,7 +94,8 @@ org.apache.flex.html.staticControls.Panel.prototype.getElementIndex = function(c
  * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Object} c The child element.
  */
-org.apache.flex.html.staticControls.Panel.prototype.removeElement = function(c) {
+org.apache.flex.html.staticControls.Panel.prototype.removeElement =
+  function(c) {
   this.contentArea.removeChild(c.element);
 };
 
@@ -122,7 +126,7 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
  */
 org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
     function() {
-    
+
 };
 
 
@@ -132,7 +136,7 @@ org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
  * @return {string} The title getter.
  */
 org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
-  return this.model_.get_title();
+  return this.model.get_title();
 };
 
 
@@ -143,7 +147,7 @@ org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
  */
 org.apache.flex.html.staticControls.Panel.prototype.set_title =
     function(value) {
-   this.model_.set_title(value);
+   this.model.set_title(value);
 };
 
 
