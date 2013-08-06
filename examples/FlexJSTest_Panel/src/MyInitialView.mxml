@@ -47,6 +47,11 @@ limitations under the License.
 			{
 				SimpleAlert.show("A Simple Alert", this);
 			}
+			
+			private function sliderChanged(control:Object):void
+			{
+				slideMe.text = "Slider: "+String(control.value);
+			}
 		]]>
     </fx:Script>
 
@@ -116,6 +121,12 @@ limitations under the License.
 							  valueChanged="spinnerChanged(stepper)" 
 							  className="numStepper"
 							  stepSize="10"/>
+		<basic:Label id="slideMe" />
+		<basic:Slider id="slider"
+					  valueChanged="sliderChanged(slider)"
+					  minimum="20"
+					  maximum="80"
+					  stepSize="5" />
 	</basic:Panel>
 
 	
