@@ -63,6 +63,7 @@ package org.apache.flex.html.staticControls.beads
 			promptField.mouseEnabled = false;
 			promptField.multiline = false;
 			promptField.wordWrap = false;
+			promptField.textColor = 0xBBBBBB;
 			
 			// trigger the event handler to display if needed
 			handleTextChange(null);

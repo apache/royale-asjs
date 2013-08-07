@@ -52,6 +52,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
     import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; TextInputWithBorderView;
 	import org.apache.flex.html.staticControls.beads.TextPromptBead; TextPromptBead;
+	import org.apache.flex.html.staticControls.beads.PasswordInputBead; PasswordInputBead;
     import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;

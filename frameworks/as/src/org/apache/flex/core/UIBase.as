@@ -229,6 +229,10 @@ package org.apache.flex.core
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
 			bead.strand = this;
+			
+			if (bead is IBeadView) {
+				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
+			}
 		}
 		
 		public function getBeadByType(classOrInterface:Class):IBead
