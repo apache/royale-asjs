@@ -20,7 +20,32 @@ goog.provide('org.apache.flex.html.staticControls.beads.TextPromptBead');
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.TextPromptBead = function() {
-  
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.promptElement;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.TextPromptBead}
+ * @return {string} value The new prompt.
+ */
+org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.get_prompt =
+    function() {
+    return this.prompt;
+};
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.TextPromptBead}
+ * @param {string} value The new prompt.
+ */
+org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.set_prompt =
+    function(value) {
+    this.prompt = value;
 };
 
 /**
@@ -32,7 +57,6 @@ org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
-    //this.strand_.addEventListener('childrenAdded',
-    //    goog.bind(this.changeHandler, this));
+    value.element.placeholder = this.prompt;
   }
 };

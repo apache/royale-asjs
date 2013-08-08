@@ -130,7 +130,7 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
     this.beads_ = new Array();
   }
   this.beads_.push(bead);
-  bead.strand = this;
+  bead.set_strand(this);
 };
 
 
