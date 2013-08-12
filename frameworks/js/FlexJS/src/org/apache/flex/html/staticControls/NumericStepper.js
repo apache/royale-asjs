@@ -66,6 +66,8 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
 org.apache.flex.html.staticControls.NumericStepper.prototype.spinnerChange =
     function(event)
 {
+   var newValue = this.spinner.get_value();
+   this.set_value(newValue);
    this.input.set_text(String(this.spinner.get_value()));
    this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };

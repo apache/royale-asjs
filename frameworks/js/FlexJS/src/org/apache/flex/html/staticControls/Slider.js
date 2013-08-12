@@ -100,6 +100,7 @@ function() {
 org.apache.flex.html.staticControls.Slider.prototype.set_value =
 function(newValue) {
   this.model.set_value(newValue);
+  this.setThumbFromValue(this.model.get_value());
 };
 
 /**
@@ -260,6 +261,8 @@ function(event)
                        this.handleThumbMove, false, this);
 
   this.calcValFromMousePosition(event, false);
+
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
 /**
@@ -271,6 +274,8 @@ org.apache.flex.html.staticControls.Slider.prototype.handleThumbMove =
 function(event)
 {
   this.calcValFromMousePosition(event, false);
+
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
 /**
@@ -303,3 +308,19 @@ function(event, useOffset)
   this.set_value(n);
 };
 
+/**
+ * @this {org.apache.flex.html.staticControls.Slider}
+ * @param {Number} value The value used to calculate new position of the thumb.
+ * @return {void} Moves the thumb to the corresponding position.
+ */
+org.apache.flex.html.staticControls.Slider.prototype.setThumbFromValue =
+function(value)
+{
+  var min = this.model.get_minimum();
+  var max = this.model.get_maximum();
+  var p = (value-min) / (max - min);
+  var xloc = p * (parseInt(this.track.style.width, 10) -
+             parseInt(this.thumb.style.width, 10));
+
+  this.thumb.style.left = String(xloc) + 'px';
+}

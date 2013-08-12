@@ -114,8 +114,15 @@ get_value = function() {
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 set_value = function(newValue) {
   if (this.value_ != newValue) {
-      this.value_ = newValue;
-      this.dispatchEvent('valueChange');
+
+    // value must lie within the boundaries of minimum & maximum
+    // and be on a step interval, so the value is adjusted to 
+    // what is coming in.
+    newValue = Math.max(this.minimum_, newValue - this.stepSize_);
+    newValue = Math.min(this.maximum_, newValue + this.stepSize_);
+    this.value_ = this.snap(newValue);
+
+    this.dispatchEvent('valueChange');
   }
 };
 
@@ -168,4 +175,26 @@ set_stepSize = function(value) {
       this.dispatchEvent('stepSizeChange');
   }
 };
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
+ * @param {Number} value The candidate number.
+ * @return {Number} Adjusted value.
+ */
+org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
+snap = function(value) {
+  var si = this.snapInterval_;
+  var n = Math.round((value - this.minimum_) / si) *
+                 si + this.minimum_;
+  if (value > 0)
+  {
+    if (value - n < n + si - value)
+      return n;
+    return n + si;
+  }
+  if (value - n > n + si - value)
+    return n + si;
+  return n;
+}
 
