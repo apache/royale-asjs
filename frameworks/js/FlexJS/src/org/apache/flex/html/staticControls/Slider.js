@@ -15,6 +15,9 @@
 goog.provide('org.apache.flex.html.staticControls.Slider');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.staticControls.beads.SliderThumbView');
+goog.require('org.apache.flex.html.staticControls.beads.SliderTrackView');
+goog.require('org.apache.flex.html.staticControls.beads.controllers.SliderMouseController');
 goog.require('org.apache.flex.html.staticControls.beads.models.RangeModel');
 
 
@@ -39,39 +42,18 @@ org.apache.flex.html.staticControls.Slider.prototype.createElement =
 function() {
 
   this.element = document.createElement('div');
-  this.element.className = 'Slider';
   this.element.style.width = '200px';
   this.element.style.height = '30px';
 
-  this.track = document.createElement('div');
-  this.track.className = 'SliderTrack';
-  this.track.id = 'track';
-  this.track.style.backgroundColor = '#E4E4E4';
-  this.track.style.height = '10px';
-  this.track.style.width = '200px';
-  this.track.style.border = 'thin solid #C4C4C4';
-  this.track.style.position = 'relative';
-  this.track.style.left = '0px';
-  this.track.style.top = '10px';
-  this.track.style.zIndex = '1';
-  this.element.appendChild(this.track);
-  goog.events.listen(this.track, goog.events.EventType.CLICK,
-                     this.handleTrackClick, false, this);
+  this.track = new org.apache.flex.html.staticControls.beads.SliderTrackView();
+  this.track.set_strand(this);
 
-  this.thumb = document.createElement('div');
-  this.thumb.className = 'SliderThumb';
-  this.thumb.id = 'thumb';
-  this.thumb.style.backgroundColor = '#949494';
-  this.thumb.style.border = 'thin solid #747474';
-  this.thumb.style.position = 'relative';
-  this.thumb.style.height = '30px';
-  this.thumb.style.width = '10px';
-  this.thumb.style.zIndex = '2';
-  this.thumb.style.top = '-10px';
-  this.thumb.style.left = '20px';
-  this.element.appendChild(this.thumb);
-  goog.events.listen(this.thumb, goog.events.EventType.MOUSEDOWN,
-                     this.handleThumbDown, false, this);
+  this.thumb = new org.apache.flex.html.staticControls.beads.SliderThumbView();
+  this.thumb.set_strand(this);
+
+  this.controller = new org.apache.flex.html.staticControls.beads.controllers.
+                    SliderMouseController();
+  this.controller.set_strand(this);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -208,105 +190,6 @@ org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
   return n;
 };
 
-/**
- * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Event} event The event triggering the function.
- * @return {void} Handles click on track.
- */
-org.apache.flex.html.staticControls.Slider.prototype.handleTrackClick =
-function(event)
-{
-  var xloc = event.clientX;
-  var p = Math.min(1, xloc / parseInt(this.track.style.width, 10));
-  var n = p * (this.get_maximum() - this.get_minimum()) + this.get_minimum();
-
-  this.set_value(n);
-
-  this.origin = parseInt(this.thumb.style.left, 10);
-  this.position = parseInt(this.thumb.style.left, 10);
-
-  this.calcValFromMousePosition(event, true);
-
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
-};
-
-/**
- * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Event} event The event triggering the function.
- * @return {void} Handles mouse-down on the thumb.
- */
-org.apache.flex.html.staticControls.Slider.prototype.handleThumbDown =
-function(event)
-{
-  goog.events.listen(this.element, goog.events.EventType.MOUSEUP,
-                     this.handleThumbUp, false, this);
-  goog.events.listen(this.element, goog.events.EventType.MOUSEMOVE,
-                     this.handleThumbMove, false, this);
-
-  this.origin = event.clientX;
-  this.position = parseInt(this.thumb.style.left, 10);
-};
-
-/**
- * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Event} event The event triggering the function.
- * @return {void} Handles mouse-up on the thumb.
- */
-org.apache.flex.html.staticControls.Slider.prototype.handleThumbUp =
-function(event)
-{
-  goog.events.unlisten(this.element, goog.events.EventType.MOUSEUP,
-                       this.handleThumbUp, false, this);
-  goog.events.unlisten(this.element, goog.events.EventType.MOUSEMOVE,
-                       this.handleThumbMove, false, this);
-
-  this.calcValFromMousePosition(event, false);
-
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
-};
-
-/**
- * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Event} event The event triggering the function.
- * @return {void} Handles mouse-move on the thumb.
- */
-org.apache.flex.html.staticControls.Slider.prototype.handleThumbMove =
-function(event)
-{
-  this.calcValFromMousePosition(event, false);
-
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
-};
-
-/**
- * @this {org.apache.flex.html.staticControls.Slider}
- * @param {Event} event The event triggering the function.
- * @param {Boolean} useOffset If true, event.offsetX is used in the calculation.
- * @return {void} Determines the new value based on the movement of the mouse
- * along the slider.
- */
-org.apache.flex.html.staticControls.Slider.prototype.calcValFromMousePosition =
-function(event, useOffset)
-{
-  var deltaX = (useOffset ? event.offsetX : event.clientX) - this.origin;
-  var thumbW = parseInt(this.thumb.style.width, 10) / 2;
-  var newX = this.position + deltaX;
-
-  var p = newX / parseInt(this.track.style.width, 10);
-  var n = p * (this.get_maximum() - this.get_minimum()) + this.get_minimum();
-  n = this.snap(n);
-  if (n < this.get_minimum()) n = this.get_minimum();
-  else if (n > this.get_maximum()) n = this.get_maximum();
-
-  p = (n - this.get_minimum()) / (this.get_maximum() - this.get_minimum());
-  newX = p * parseInt(this.track.style.width, 10);
-
-  this.thumb.style.left = String(newX -
-                                 parseInt(this.thumb.style.width, 10) / 2) +
-                                          'px';
-
-  this.set_value(n);
-};
 
 /**
  * @this {org.apache.flex.html.staticControls.Slider}
@@ -318,9 +201,10 @@ function(value)
 {
   var min = this.model.get_minimum();
   var max = this.model.get_maximum();
-  var p = (value-min) / (max - min);
-  var xloc = p * (parseInt(this.track.style.width, 10) -
-             parseInt(this.thumb.style.width, 10));
+  var p = (value - min) / (max - min);
+  var xloc = p * (parseInt(this.track.element.style.width, 10) -
+             parseInt(this.thumb.element.style.width, 10));
 
-  this.thumb.style.left = String(xloc) + 'px';
-}
+  this.thumb.element.style.left = String(xloc) + 'px';
+};
+
