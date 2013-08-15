@@ -46,14 +46,14 @@ function() {
   this.element.style.height = '30px';
 
   this.track = new org.apache.flex.html.staticControls.beads.SliderTrackView();
-  this.track.set_strand(this);
+  this.addBead(this.track);
 
   this.thumb = new org.apache.flex.html.staticControls.beads.SliderThumbView();
-  this.thumb.set_strand(this);
+  this.addBead(this.thumb);
 
   this.controller = new org.apache.flex.html.staticControls.beads.controllers.
                     SliderMouseController();
-  this.controller.set_strand(this);
+  this.addBead(this.controller);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;

@@ -15,6 +15,8 @@
 goog.provide('org.apache.flex.html.staticControls.Spinner');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.staticControls.TextButton');
+goog.require('org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController');
 
 
 
@@ -46,21 +48,17 @@ org.apache.flex.html.staticControls.Spinner.prototype.createElement =
 
   this.element.style.verticalAlign = 'middle';
 
-  this.incrementButton = document.createElement('button');
-  this.incrementButton.id = 'incrementButton';
-  this.incrementButton.style.display = 'block';
-  this.incrementButton.innerHTML = '\u2191';
-  this.element.appendChild(this.incrementButton);
-  goog.events.listen(this.incrementButton, 'click',
-            goog.bind(this.handleIncrementClick, this));
+  this.incrementButton = new org.apache.flex.html.staticControls.TextButton();
+  this.incrementButton.set_text('\u2191');
+  this.addElement(this.incrementButton);
 
-  this.decrementButton = document.createElement('button');
-  this.decrementButton.id = 'decrementButton';
-  this.decrementButton.style.display = 'block';
-  this.decrementButton.innerHTML = '\u2193';
-  this.element.appendChild(this.decrementButton);
-  goog.events.listen(this.decrementButton, 'click',
-            goog.bind(this.handleDecrementClick, this));
+  this.decrementButton = new org.apache.flex.html.staticControls.TextButton();
+  this.decrementButton.set_text('\u2193');
+  this.addElement(this.decrementButton);
+
+  this.controller = new
+org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController();
+  this.addBead(this.controller);
 
   this.element.flexjs_wrapper = this;
 };
@@ -201,26 +199,3 @@ org.apache.flex.html.staticControls.Spinner.prototype.snap = function(value)
   return n;
 };
 
-/**
- * @this {org.apache.flex.html.staticControls.Spinner}
- * @param {Object} event The event object.
- */
-org.apache.flex.html.staticControls.Spinner.prototype.handleIncrementClick =
-    function(event)
-{
-  this.value_ = this.snap(Math.min(this.maximum_,
-                                this.value_ + this.stepSize_));
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
-};
-
-/**
- * @this {org.apache.flex.html.staticControls.Spinner}
- * @param {event} event The event object.
- */
-org.apache.flex.html.staticControls.Spinner.prototype.handleDecrementClick =
-    function(event)
-{
-  this.value_ = this.snap(Math.max(this.minimum_,
-                                this.value_ - this.stepSize_));
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
-};

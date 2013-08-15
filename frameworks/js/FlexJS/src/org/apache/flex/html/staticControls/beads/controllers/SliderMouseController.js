@@ -14,6 +14,9 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.controllers.SliderMouseController');
 
+goog.require('org.apache.flex.html.staticControls.beads.SliderThumbView');
+goog.require('org.apache.flex.html.staticControls.beads.SliderTrackView');
+
 /**
  * @constructor
  */
@@ -31,8 +34,10 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 prototype.set_strand = function(value) {
   this.strand_ = value;
 
-  this.track = this.strand_.track;
-  this.thumb = this.strand_.thumb;
+  this.track = this.strand_.getBeadByType(
+        org.apache.flex.html.staticControls.beads.SliderTrackView);
+  this.thumb = this.strand_.getBeadByType(
+        org.apache.flex.html.staticControls.beads.SliderThumbView);
 
   goog.events.listen(this.track.element, goog.events.EventType.CLICK,
                      this.handleTrackClick, false, this);
