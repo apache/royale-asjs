@@ -141,8 +141,8 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
  */
 org.apache.flex.core.UIBase.prototype.getBeadByType = 
 function(classOrInterface) {
-  for (var i=0; i < beads_.length; i++) {
-      var bead = beads_[i];
+  for (var i=0; i < this.beads_.length; i++) {
+      var bead = this.beads_[i];
       if (bead instanceof classOrInterface) {
         return bead;
       }
