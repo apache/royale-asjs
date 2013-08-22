@@ -38,9 +38,9 @@ org.apache.flex.jquery.staticControls.TextButton.prototype.createElement =
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
   $(this.element).button();
-  p.appendChild(this.element);
 
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 
 

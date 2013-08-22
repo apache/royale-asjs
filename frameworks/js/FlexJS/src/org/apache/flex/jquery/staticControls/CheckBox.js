@@ -50,11 +50,11 @@ org.apache.flex.jquery.staticControls.CheckBox.prototype.createElement =
   d.appendChild(lb);
 
   this.element = d;
-  p.appendChild(this.element);
 
   $(cb).button();
 
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 
 

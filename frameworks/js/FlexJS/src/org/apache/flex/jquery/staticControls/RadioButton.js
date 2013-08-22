@@ -65,43 +65,6 @@ org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet = false;
 org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
     function() {
 
-/*
- * NOTE: Ideally when a RadioButton was created it would be added to an
- * existing set of RadioButtons.
- * This is especially true for RadioButtons added dynamically. However, due
- * to a bug in jQuery
- * (see http://bugs.jqueryui.com/ticket/8975), it is currently not possible
- * to add or remove RadioButtons
- * programmatically. For this version the groups are maintained here in
- * RadioButton and once the
- * application has finished initializing, the groups are given their
- * buttonset().
- */
-
-    this.radioGroupName = value;
-
-    this.element.name = value;
-
-    var div;
-    var groups = org.apache.flex.jquery.staticControls.RadioButton.groups;
-    if (groups[value]) {
-        div = groups[value];
-        div.appendChild(this.element);
-        div.appendChild(this.labelFor);
-    }
-    else {
-        var p = this.element.parentElement;
-        div = document.createElement('div');
-        div.id = value;
-        div.appendChild(this.element);
-        div.appendChild(this.labelFor);
-        p.appendChild(div);
-
-        groups[String(value)] = div;
-    }
-
-    this.positioner = div;
-
     var input = document.createElement('input');
     input.type = 'radio';
     input.name = 'radio';
@@ -111,13 +74,11 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
     var label = document.createElement('label');
     label.htmlFor = input.id;
 
-    p.appendChild(input);
-    p.appendChild(label);
-
     this.element = input;
     this.labelFor = label;
 
     this.positioner = this.element;
+    this.flexjs_wrapper = this;
 };
 
 /**
@@ -167,8 +128,37 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_groupName =
  * @param {string} value The groupName setter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_groupName =
-    function(value) {
+function(value) {
 
+/*
+ * NOTE: Ideally when a RadioButton was created it would be added to an existing set of RadioButtons.
+ * This is especially true for RadioButtons added dynamically. However, due to a bug in jQuery
+ * (see http://bugs.jqueryui.com/ticket/8975), it is currently not possible to add or remove RadioButtons
+ * programmatically. For this version the groups are maintained here in RadioButton and once the
+ * application has finished initializing, the groups are given their buttonset().
+ */
+ 
+	this.radioGroupName = value;
+
+	this.element.name = value;
+
+	var div;
+
+	if( org.apache.flex.jquery.staticControls.RadioButton.groups[value] ) {
+		div = org.apache.flex.jquery.staticControls.RadioButton.groups[value];
+		div.appendChild(this.element);
+		div.appendChild(this.labelFor);
+	}
+	else {
+		div = document.createElement('div');
+		div.id = value;
+		div.appendChild(this.element);
+		div.appendChild(this.labelFor);
+
+		org.apache.flex.jquery.staticControls.RadioButton.groups[String(value)] = div;
+	}
+
+	this.positioner = div;
 };
 
 /**
