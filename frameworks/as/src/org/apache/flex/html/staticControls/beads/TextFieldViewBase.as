@@ -27,7 +27,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	
-	public class TextFieldViewBase implements IBeadView
+	public class TextFieldViewBase implements IBeadView, ITextFieldView
 	{
 		public function TextFieldViewBase()
 		{

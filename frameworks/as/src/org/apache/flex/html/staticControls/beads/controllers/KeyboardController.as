@@ -16,40 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.staticControls.beads.controllers
 {
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
-	public class PasswordInputBead implements IBead
+	public class KeyboardController implements IBead, IBeadController
 	{
-		public function PasswordInputBead()
+		public function KeyboardController()
 		{
 		}
 		
-		private var _strand:IStrand;
+		private var model:ITextModel;
+		private var textField:CSSTextField;
 		
+		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);
+			model = UIBase(_strand).model as ITextModel;
+			
+			var viewBead:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
+			textField = viewBead.textField;
+			textField.addEventListener("change", inputChangeHandler);
 		}
 		
-		private function viewChangeHandler(event:Event):void
-		{			
-			// get the ITextFieldView bead, which is required for this bead to work
-			var textView:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
-			if (textView) {
-				var textField:CSSTextField = textView.textField;
-				textField.displayAsPassword = true;
-			}
-			else {
-				throw new Error("PasswordInputBead requires strand to have a TextInputView bead");
-			}
+		private function inputChangeHandler( event:Object ) : void
+		{
+			model.text = textField.text;
 		}
 	}
 }

@@ -19,37 +19,9 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	
-	public class PasswordInputBead implements IBead
+
+	public interface ITextFieldView
 	{
-		public function PasswordInputBead()
-		{
-		}
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);
-		}
-		
-		private function viewChangeHandler(event:Event):void
-		{			
-			// get the ITextFieldView bead, which is required for this bead to work
-			var textView:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
-			if (textView) {
-				var textField:CSSTextField = textView.textField;
-				textField.displayAsPassword = true;
-			}
-			else {
-				throw new Error("PasswordInputBead requires strand to have a TextInputView bead");
-			}
-		}
+		function get textField():CSSTextField;
 	}
 }

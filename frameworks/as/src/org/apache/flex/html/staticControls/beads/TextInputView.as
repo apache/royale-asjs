@@ -18,11 +18,10 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
-	import flash.text.TextFieldType;
-	// this import is not used, but keeps the compiler from
-	// complaining about explicit usage of flash.events.Event
 	import flash.events.IOErrorEvent;
+	import flash.text.TextFieldType;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -50,18 +49,9 @@ package org.apache.flex.html.staticControls.beads
 			var hh:Number = DisplayObject(strand).height;
 			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 18;
 			
-			// for input, listen for changes to the _textField and update
-			// the model
-			textField.addEventListener(flash.events.Event.CHANGE, inputChangeHandler);
-			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
-		}
-		
-		private function inputChangeHandler(event:flash.events.Event):void
-		{
-			textModel.text = textField.text;
 		}
 		
 		private function sizeChangedHandler(event:Event):void

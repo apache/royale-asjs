@@ -81,7 +81,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			// for input, listen for changes to the _textField and update
 			// the model
-			textField.addEventListener(Event.CHANGE, inputChangeHandler);
 			textField.addEventListener(Event.SCROLL, textScrollHandler);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
@@ -108,11 +107,6 @@ package org.apache.flex.html.staticControls.beads
 			vsb.addEventListener("scroll", scrollHandler);
 			
 			return vsb;
-		}
-		
-		private function inputChangeHandler(event:Event):void
-		{
-			textModel.text = textField.text;
 		}
 		
 		private function textScrollHandler(event:Event):void
