@@ -26,9 +26,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
-	public class KeyboardController implements IBead, IBeadController
+	public class EditableTextKeyboardController implements IBead, IBeadController
 	{
-		public function KeyboardController()
+		public function EditableTextKeyboardController()
 		{
 		}
 		

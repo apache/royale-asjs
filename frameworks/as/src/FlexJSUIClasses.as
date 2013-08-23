@@ -65,8 +65,8 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.controllers.AlertController; AlertController;
 	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController; ComboBoxController;
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
+	import org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
-	import org.apache.flex.html.staticControls.beads.controllers.KeyboardController; KeyboardController;
     import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;

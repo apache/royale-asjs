@@ -67,6 +67,7 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
     p.addChild(this.element);
 
     this.positioner = this.element;
+    this.element.flexjs_wrapper = this;
 };
 
 /**

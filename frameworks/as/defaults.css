@@ -213,7 +213,7 @@ TextArea
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextAreaView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.KeyboardController");
+    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
     width: 135;
     height: 20;
 }
@@ -235,7 +235,7 @@ TextInput
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.KeyboardController");
+    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
 	width: 135;
 	height: 20;
 }
