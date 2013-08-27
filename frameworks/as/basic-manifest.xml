@@ -60,6 +60,7 @@
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer"/>
     <component id="ScrollBar" class="org.apache.flex.html.staticControls.supportClasses.ScrollBar"/>
     <component id="TextPromptBead" class="org.apache.flex.html.staticControls.beads.TextPromptBead" />
-    <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.beads.PasswordInputBead" />
+    <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead" />
+    <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.accessories.PasswordInputBead" />
 
 </componentPackage>

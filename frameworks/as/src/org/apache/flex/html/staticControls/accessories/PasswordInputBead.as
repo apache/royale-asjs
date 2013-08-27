@@ -16,13 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.staticControls.accessories
 {
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
 	public class PasswordInputBead implements IBead
 	{

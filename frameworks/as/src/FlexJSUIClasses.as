@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-
 /**
  *  @private
  *  This class is used to link additional classes into rpc.swc
@@ -27,6 +26,8 @@ package
  */
 internal class FlexJSUIClasses
 {
+	import org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
+	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
     import org.apache.flex.html.staticControls.beads.AlertView; AlertView;
     import org.apache.flex.html.staticControls.beads.CheckBoxView; CheckBoxView;
     import org.apache.flex.html.staticControls.beads.ComboBoxView; ComboBoxView;
@@ -52,7 +53,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
     import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; TextInputWithBorderView;
 	import org.apache.flex.html.staticControls.beads.TextPromptBead; TextPromptBead;
-	import org.apache.flex.html.staticControls.beads.PasswordInputBead; PasswordInputBead;
     import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
