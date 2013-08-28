@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.TextPromptBead');
+goog.provide('org.apache.flex.html.staticControls.accessories.TextPromptBead');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.TextPromptBead = function() {
+org.apache.flex.html.staticControls.accessories.TextPromptBead = function() {
 
   /**
    * @private
@@ -30,31 +30,31 @@ org.apache.flex.html.staticControls.beads.TextPromptBead = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.TextPromptBead}
+ * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @return {string} value The new prompt.
  */
-org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.get_prompt =
-    function() {
+org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
+get_prompt = function() {
     return this.prompt;
 };
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.TextPromptBead}
+ * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @param {string} value The new prompt.
  */
-org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.set_prompt =
-    function(value) {
+org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
+set_prompt = function(value) {
     this.prompt = value;
 };
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.TextPromptBead}
+ * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.TextPromptBead.prototype.set_strand =
-    function(value) {
+org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
+set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     value.element.placeholder = this.prompt;
