@@ -25,6 +25,7 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 
 	public class TextItemRendererFactoryForArrayData implements IBead, IDataProviderItemRendererMapper
 	{
@@ -80,7 +81,9 @@ package org.apache.flex.html.staticControls.beads
                 tf.index = i;
                 dataGroup.addElement(tf);
 				tf.text = dp[i];
-			}			
+			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 		
 	}

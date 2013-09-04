@@ -64,7 +64,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.target as IItemRenderer;
+			var target:IItemRenderer = event.currentTarget as IItemRenderer;
 			if (target)
 			{
                 target.down = true;
@@ -74,7 +74,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 		
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.target as IItemRenderer;
+			var target:IItemRenderer = event.currentTarget as IItemRenderer;
 			if (target)
 			{
                 target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                

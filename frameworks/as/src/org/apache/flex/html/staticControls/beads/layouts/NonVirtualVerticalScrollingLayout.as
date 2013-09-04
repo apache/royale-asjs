@@ -56,7 +56,7 @@ package org.apache.flex.html.staticControls.beads.layouts
             borderModel = border.model as IBorderModel;
 			IEventDispatcher(listView.strand).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(listView.strand).addEventListener("widthChanged", changeHandler);
-			changeHandler(null);
+			IEventDispatcher(listView.strand).addEventListener("itemsCreated", changeHandler);
 		}
 	
 		private function changeHandler(event:Event):void

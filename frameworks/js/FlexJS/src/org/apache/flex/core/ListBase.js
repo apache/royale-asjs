@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.ListBase');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.staticControls.supportClasses.StringItemRenderer');
 
 
 
@@ -46,10 +47,14 @@ goog.inherits(org.apache.flex.core.ListBase,
  * @this {org.apache.flex.core.ListBase}
  */
 org.apache.flex.core.ListBase.prototype.createElement = function() {
-  this.element = document.createElement('select');
-  goog.events.listen(this.element, 'change',
-      goog.bind(this.changeHandler, this));
-
+//  this.element = document.createElement('select');
+//  goog.events.listen(this.element, 'change',
+//      goog.bind(this.changeHandler, this));
+  this.element = document.createElement('div');
+  this.element.style.overflow='auto';
+  this.element.style.border = 'solid';
+  this.element.style.borderWidth = '1px';
+  this.element.style.borderColor = '#333333';
   this.positioner = this.element;
 };
 
@@ -61,7 +66,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
  */
 org.apache.flex.core.ListBase.prototype.get_dataProvider =
     function() {
-  return this.dataProvider;
+   return this.model.get_dataProvider();
 };
 
 
@@ -72,22 +77,7 @@ org.apache.flex.core.ListBase.prototype.get_dataProvider =
  */
 org.apache.flex.core.ListBase.prototype.set_dataProvider =
     function(value) {
-  var dp, i, n, opt;
-
-  this.dataProvider = value;
-
-  dp = this.element.options;
-  n = dp.length;
-  for (i = 0; i < n; i++) {
-    dp.remove(0);
-  }
-
-  n = value.length;
-  for (i = 0; i < n; i++) {
-    opt = document.createElement('option');
-    opt.text = value[i];
-    dp.add(opt);
-  }
+  this.model.set_dataProvider(value);
 };
 
 
@@ -98,15 +88,7 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedIndex =
     function() {
-  var result;
-
-  if (this.element.selectedIndex !== undefined) {
-    result = this.element.selectedIndex;
-  } else {
-    result = this.selectedIndex_;
-  }
-
-  return result;
+  return this.model.get_selectedIndex();
 };
 
 
@@ -117,11 +99,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedIndex =
  */
 org.apache.flex.core.ListBase.prototype.set_selectedIndex =
     function(value) {
-  this.selectedIndex_ = value;
-
-  if (this.element.selectedIndex !== undefined) {
-    this.element.selectedIndex = value;
-  }
+  this.model.set_selectedIndex(value);
 };
 
 
@@ -132,16 +110,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedItem =
     function() {
-  var si;
-
-  si = this.get_selectedIndex();
-
-  if (!this.dataProvider || si < 0 ||
-      si >= this.dataProvider.length) {
-    return null;
-  }
-
-  return this.dataProvider[si];
+  this.model.get_selectedItem();
 };
 
 
@@ -152,27 +121,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedItem =
  */
 org.apache.flex.core.ListBase.prototype.set_selectedItem =
     function(value) {
-  var dp, i, n;
-
-  dp = this.dataProvider;
-  n = dp.length;
-  for (i = 0; i < n; i++) {
-    if (dp[i] === value) {
-      break;
-    }
-  }
-
-  if (i < n) {
-    this.selectedIndex_ = i;
-
-    if (this.element.selectedIndex !== undefined) {
-      this.element.selectedIndex = i;
-    }
-
-    if (this.element.childNodes) {
-      this.element.childNodes.item(0).value = dp[i];
-    }
-  }
+  this.model.set_selectedItem(value);
 };
 
 

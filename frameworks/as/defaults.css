@@ -135,7 +135,7 @@ List
     IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
 }
 
 NumericStepper
@@ -207,6 +207,12 @@ Spinner
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
     IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController");
+}
+
+StringItemRenderer
+{
+    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
+    height: 16;
 }
 
 TextArea
