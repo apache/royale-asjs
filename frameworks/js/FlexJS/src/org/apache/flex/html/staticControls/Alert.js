@@ -63,16 +63,16 @@ org.apache.flex.html.staticControls.Alert.prototype.createElement =
 
   // add in a title bar
   this.titleBar = new org.apache.flex.html.staticControls.TitleBar();
-  this.addElement(titleBar);
+  this.addElement(this.titleBar);
   this.titleBar.element.id = 'titleBar';
 
   this.message = new org.apache.flex.html.staticControls.Label();
-  this.addElement(message);
+  this.addElement(this.message);
   this.message.element.id = 'message';
 
   // add a place for the buttons
   this.buttonArea = new org.apache.flex.html.staticControls.Container();
-  this.addElement(buttonArea);
+  this.addElement(this.buttonArea);
   this.buttonArea.element.id = 'buttonArea';
 };
 
