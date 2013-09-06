@@ -18,14 +18,22 @@ goog.provide('org.apache.flex.html.staticControls.beads.controllers.ItemRenderer
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController =
-function() {
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController = function() {
 };
 
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController.
-prototype.set_strand = function(value) {
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.controllers.
+ *        ItemRendererMouseController}
+ * @param {object} value The strand for this component.
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
- 
+
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
             goog.bind(this.handleMouseOver, this));
 
@@ -39,28 +47,65 @@ prototype.set_strand = function(value) {
             goog.bind(this.handleMouseUp, this));
 };
 
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController.
-prototype.handleMouseOver = function(event) {
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.controllers.
+ *        ItemRendererMouseController}
+ * @param {object} event The mouse event that triggered the hover.
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
    this.strand_.set_hovered(true);
 };
 
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController.
-prototype.handleMouseOut = function(event) {
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.controllers.
+ *        ItemRendererMouseController}
+ * @param {object} event The mouse-out event.
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
    this.strand_.set_hovered(false);
 };
 
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController.
-prototype.handleMouseDown = function(event) {
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.controllers.
+ *        ItemRendererMouseController}
+ * @param {object} event The mouse-down event.
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController.prototype.handleMouseDown = function(event) {
 
    // ??
 };
 
-org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController.
-prototype.handleMouseUp = function(event) {
 
-   var target = event.currentTarget;
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.controllers.
+ *        ItemRendererMouseController}
+ * @param {object} event The mouse-up event that triggers the selection.
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+ItemRendererMouseController.prototype.handleMouseUp = function(event) {
+
    var newEvent = new goog.events.Event('selected');
-   this.strand_.dispatchEvent(newEvent);
+
+   // normally you do not - and should not - change the target of an event,
+   // but these events do not propagate nor bubble up the object tree, so
+   // we have to force the event's target to be this item renderer instance.
+
+   newEvent.target = this.strand_;
+
+   // since the event is not going to up the chain, we also have to dispatch
+   // it against its final destination.
+
+   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
 };

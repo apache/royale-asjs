@@ -21,16 +21,18 @@ goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRenderer
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer = function() {
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer =
+function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.supportClasses.StringItemRenderer,
-    org.apache.flex.core.UIBase);
+goog.inherits(
+  org.apache.flex.html.staticControls.supportClasses.StringItemRenderer,
+  org.apache.flex.core.UIBase);
 
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Label}
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.createElement = function() {
@@ -40,62 +42,141 @@ prototype.createElement = function() {
 
   this.element.flexjs_wrapper = this;
   this.set_className('StringItemRenderer');
-  
+
   // itemRenderers should provide something for the background to handle
-  // the selection and highlight 
+  // the selection and highlight
   this.backgroundView = this.element;
-  
-  this.controller = new org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController();
+
+  this.controller = new org.apache.flex.html.staticControls.beads.controllers.
+      ItemRendererMouseController();
   this.controller.set_strand(this);
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {Object} value The strand.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.set_strand = function(value) {
 
   this.strand_ = value;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @return {Object} The strand.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.get_strand = function() {
   return this.strand_;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @return {Object} The item renderer's parent.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+prototype.get_itemRendererParent = function() {
+  return this.rendererParent_;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {Object} value The item renderer's parent.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+prototype.set_itemRendererParent = function(value) {
+  this.rendererParent_ = value;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @return {Object} The renderer's index.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+prototype.get_index = function() {
+  return this.index_;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {Object} value The renderer's index.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+prototype.set_index = function(value) {
+  this.index_ = value;
+};
+
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {Object} value The text to display.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.set_text = function(value) {
 
   this.element.innerHTML = value;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @return {Object} The text being displayed.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.get_text = function() {
 
   return this.element.innerHTML;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {boolean} value The selection state.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.set_selected = function(value) {
   this.selected_ = value;
 
   if (value) {
-     this.backgroundView.style.backgroundColor = '#ACACAC';
+     this.backgroundView.style.backgroundColor = '#9C9C9C';
    } else {
      this.backgroundView.style.backgroundColor = null;
    }
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
+ * @param {boolean} value The hovered state.
+ */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 prototype.set_hovered = function(value) {
   this.hovered_ = value;
 
   if (value) {
-     this.backgroundView.style.backgroundColor='#999999';
+     this.backgroundView.style.backgroundColor = '#ECECEC';
    } else {
      if (this.selected_) {
-       this.backgroundView.style.backgroundColor = '#ACACAC';
+       this.backgroundView.style.backgroundColor = '#9C9C9C';
      } else {
        this.backgroundView.style.backgroundColor = null;
      }
    }
 };
-
-

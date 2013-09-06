@@ -20,11 +20,13 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
-org.apache.flex.html.staticControls.beads.models.ArraySelectionModel = function() {
+org.apache.flex.html.staticControls.beads.models.ArraySelectionModel =
+function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.models.ArraySelectionModel,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(
+  org.apache.flex.html.staticControls.beads.models.ArraySelectionModel,
+  org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -37,33 +39,69 @@ set_strand = function(value) {
   this.strand_ = value;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @return {Object} value The dataProvider.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 get_dataProvider = function() {
   return this.dataProvider_;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @param {Object} value The dataProvider.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 set_dataProvider = function(value) {
   this.dataProvider_ = value;
   this.dispatchEvent('dataProviderChanged');
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @return {Object} value The selected index.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 get_selectedIndex = function() {
   return this.selectedIndex_;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @param {Object} value The selected index.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 set_selectedIndex = function(value) {
   this.selectedIndex_ = value;
   this.dispatchEvent('selectedIndexChanged');
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @return {Object} value The selected item.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 get_selectedItem = function() {
   return this.selectedItem_;
 };
 
+
+/**
+ * @expose
+ * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @param {Object} value The selected item.
+ */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 set_selectedItem = function(value) {
   this.selectedItem_ = value;
@@ -71,14 +109,14 @@ set_selectedItem = function(value) {
 
   this.selectedIndex_ = -1;
   var n = this.dataProvider_.length;
-  for (var i=0; i < n; i++) {
+  for (var i = 0; i < n; i++) {
      var item = this.dataProvider_[i];
      if (item == value) {
        this.selectedIndex_ = i;
        break;
      }
   }
-  
+
   this.dispatchEvent('selectedItemChanged');
   this.dispatchEvent('selectedIndexChanged');
 };

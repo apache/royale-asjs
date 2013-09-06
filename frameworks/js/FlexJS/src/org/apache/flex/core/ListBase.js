@@ -51,7 +51,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
 //  goog.events.listen(this.element, 'change',
 //      goog.bind(this.changeHandler, this));
   this.element = document.createElement('div');
-  this.element.style.overflow='auto';
+  this.element.style.overflow = 'auto';
   this.element.style.border = 'solid';
   this.element.style.borderWidth = '1px';
   this.element.style.borderColor = '#333333';
@@ -110,7 +110,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedItem =
     function() {
-  this.model.get_selectedItem();
+  return this.model.get_selectedItem();
 };
 
 
