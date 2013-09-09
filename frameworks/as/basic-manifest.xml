@@ -35,6 +35,7 @@
     <component id="TextInput" class="org.apache.flex.html.staticControls.TextInput"/>
     <component id="TextArea" class="org.apache.flex.html.staticControls.TextArea"/>
     <component id="List" class="org.apache.flex.html.staticControls.List"/>
+    <component id="SimpleList" class="org.apache.flex.html.staticControls.SimpleList"/>
     <component id="CheckBox" class="org.apache.flex.html.staticControls.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.html.staticControls.RadioButton"/>
     <component id="ComboBox" class="org.apache.flex.html.staticControls.ComboBox"/>
