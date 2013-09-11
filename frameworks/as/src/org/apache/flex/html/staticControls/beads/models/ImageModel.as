@@ -37,15 +37,15 @@ package org.apache.flex.html.staticControls.beads.models
 			_strand = value;
 		}
 		
-		private var _url:String;
-		public function get url():String
+		private var _source:String;
+		public function get source():String
 		{
-			return _url;
+			return _source;
 		}
-		public function set url(value:String):void
+		public function set source(value:String):void
 		{
-			if (value != _url) {
-				_url = value;
+			if (value != _source) {
+				_source = value;
 				dispatchEvent( new Event("urlChanged") );
 			}
 		}

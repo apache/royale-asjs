@@ -28,14 +28,14 @@ package org.apache.flex.html.staticControls
 			super();
 		}
 		
-		public function get url():String
+		public function get source():String
 		{
-			return IImageModel(model).url;
+			return IImageModel(model).source;
 		}
 		
-		public function set url(value:String):void
+		public function set source(value:String):void
 		{
-			IImageModel(model).url = value;
+			IImageModel(model).source = value;
 		}
 	}
 }

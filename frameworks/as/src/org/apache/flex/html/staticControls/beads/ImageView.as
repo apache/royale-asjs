@@ -59,7 +59,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 			loader = new Loader();
 			loader.contentLoaderInfo.addEventListener("complete",onComplete);
-			loader.load(new URLRequest(_model.url));
+			loader.load(new URLRequest(_model.source));
 		}
 		
 		private function onComplete(event:Object):void

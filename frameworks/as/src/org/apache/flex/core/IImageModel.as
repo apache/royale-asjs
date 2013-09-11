@@ -22,7 +22,7 @@ package org.apache.flex.core
 
 	public interface IImageModel extends IEventDispatcher, IBeadModel
 	{
-		function get url():String;
-		function set url(value:String):void;
+		function get source():String;
+		function set source(value:String):void;
 	}
 }
