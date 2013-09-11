@@ -30,6 +30,7 @@
     <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
     <component id="DropDownList" class="org.apache.flex.html.staticControls.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.staticControls.supportClasses.DropDownListList"/>
+    <component id="Image" class="org.apache.flex.html.staticControls.Image"/>
     <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
     <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>
     <component id="TextInput" class="org.apache.flex.html.staticControls.TextInput"/>

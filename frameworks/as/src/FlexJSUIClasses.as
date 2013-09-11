@@ -37,6 +37,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
     import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
+	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
     import org.apache.flex.html.staticControls.beads.ListView; ListView;
     import org.apache.flex.html.staticControls.beads.NumericStepperView; NumericStepperView;
     import org.apache.flex.html.staticControls.beads.PanelView; PanelView;
@@ -58,6 +59,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
+	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
     import org.apache.flex.html.staticControls.beads.models.TitleBarModel; TitleBarModel;
