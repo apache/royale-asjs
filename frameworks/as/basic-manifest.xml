@@ -61,6 +61,7 @@
     <component id="NumericStepper" class="org.apache.flex.html.staticControls.NumericStepper" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.StringItemRenderer"/>
+    <component id="DataItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.DataItemRenderer"/>
     <component id="ScrollBar" class="org.apache.flex.html.staticControls.supportClasses.ScrollBar"/>
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.accessories.PasswordInputBead" />

@@ -57,9 +57,11 @@ package org.apache.flex.html.staticControls.beads
 		
 		private function handleUrlChange(event:Event):void
 		{
-			loader = new Loader();
-			loader.contentLoaderInfo.addEventListener("complete",onComplete);
-			loader.load(new URLRequest(_model.source));
+			if (_model.source) {
+				loader = new Loader();
+				loader.contentLoaderInfo.addEventListener("complete",onComplete);
+				loader.load(new URLRequest(_model.source));
+			}
 		}
 		
 		private function onComplete(event:Object):void

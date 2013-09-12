@@ -77,6 +77,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;    
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;    
     import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
+	import org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;    
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;

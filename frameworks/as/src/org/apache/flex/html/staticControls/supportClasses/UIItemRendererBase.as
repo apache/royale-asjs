@@ -20,11 +20,21 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
 	
 	public class UIItemRendererBase extends UIBase implements IItemRenderer
 	{
 		public function UIItemRendererBase()
 		{
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			// very common for item renderers to be resized by their containers,
+			addEventListener("widthChanged", sizeChangeHandler);
+			addEventListener("heightChanged", sizeChangeHandler);
 		}
 		
 		public var backgroundColor:uint = 0xFFFFFF;
@@ -98,6 +108,16 @@ package org.apache.flex.html.staticControls.supportClasses
 				backgroundColor = highlightColor;
 			else if (selected)
 				backgroundColor = selectedColor;
+		}
+		
+		private function sizeChangeHandler(event:Event):void
+		{
+			adjustSize();
+		}
+		
+		public function adjustSize():void
+		{
+			// handle in subclass
 		}
 	}
 }

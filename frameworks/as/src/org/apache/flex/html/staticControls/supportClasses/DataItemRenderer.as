@@ -18,58 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.supportClasses
 {
-	import flash.text.TextFieldType;
-	
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
+	import flash.display.Sprite;
 
-	public class StringItemRenderer extends UIItemRendererBase implements ITextItemRenderer
+	public class DataItemRenderer extends UIItemRendererBase
 	{
-		public function StringItemRenderer()
+		public function DataItemRenderer()
 		{
 			super();
-			
-			textField = new CSSTextField();
-			textField.type = TextFieldType.DYNAMIC;
-			textField.selectable = false;
 		}
 		
-		public var textField:CSSTextField;
+		private var background:Sprite;
 		
 		override public function addedToParent():void
 		{
 			super.addedToParent();
 			
-			addChild(textField);
-
-			adjustSize();
-		}
-		
-		override public function adjustSize():void
-		{
-			textField.x = 0;
-			textField.y = 0;
-			textField.width = this.width;
-			textField.height = this.height;
-		}
-		
-		public function get text():String
-		{
-			return textField.text;
-		}
-		
-		public function set text(value:String):void
-		{
-			textField.text = value;
+			background = new Sprite();
+			addChild(background);
 		}
 		
 		override public function updateRenderer():void
 		{
 			super.updateRenderer();
 			
-			textField.background = (down || selected || hovered);
-			textField.backgroundColor = backgroundColor;
+			background.graphics.clear();
+			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
+			background.graphics.drawRect(0, 0, this.width, this.height);
+			background.graphics.endFill();
 		}
 	}
 }
