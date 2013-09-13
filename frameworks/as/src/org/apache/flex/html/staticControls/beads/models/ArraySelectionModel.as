@@ -20,7 +20,7 @@ package org.apache.flex.html.staticControls.beads.models
 {
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;	
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 			
 	public class ArraySelectionModel extends EventDispatcher implements ISelectionModel
@@ -57,22 +57,37 @@ package org.apache.flex.html.staticControls.beads.models
 		public function set selectedIndex(value:int):void
 		{
 			_selectedIndex = value;
-			_selectedString = (value == -1) ? null : (value < _dataProvider.length) ? _dataProvider[value] : null;
+			_selectedItem = (value == -1) ? null : (value < _dataProvider.length) ? _dataProvider[value] : null;
 			dispatchEvent(new Event("selectedIndexChanged"));			
 		}
-		private var _selectedString:String;
+		
+		private var _selectedItem:Object;
 		
 		public function get selectedItem():Object
 		{
-			return _selectedString;
+			return _selectedItem;
 		}
 		public function set selectedItem(value:Object):void
 		{
-			selectedString = String(value);	
+			_selectedItem = value;	
+			var n:int = _dataProvider.length;
+			for (var i:int = 0; i < n; i++)
+			{
+				if (_dataProvider[i] == value)
+				{
+					_selectedIndex = i;
+					break;
+				}
+			}
+			dispatchEvent(new Event("selectedItemChanged"));			
+			dispatchEvent(new Event("selectedIndexChanged"));
 		}
+		
+		private var _selectedString:String;
+		
 		public function get selectedString():String
 		{
-			return _selectedString;
+			return String(_selectedItem);
 		}
 		public function set selectedString(value:String):void
 		{
@@ -80,7 +95,7 @@ package org.apache.flex.html.staticControls.beads.models
 			var n:int = _dataProvider.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				if (_dataProvider[i] == value)
+				if (String(_dataProvider[i]) == value)
 				{
 					_selectedIndex = i;
 					break;
