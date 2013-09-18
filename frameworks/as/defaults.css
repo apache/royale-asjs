@@ -73,6 +73,25 @@ Alert
     border-thickness: 1;
 }
 
+ButtonBar
+{
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ListView");			
+    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer");
+
+    border-style: none;
+}
+
+ButtonBarButtonItemRenderer
+{
+    width: 80;
+    height: 30;
+}
+
 CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");

@@ -18,14 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {	
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.Strand;
-	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
@@ -34,7 +38,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
-	public class ListView extends Strand implements IBeadView, IStrand, IListView
+	public class ListView extends Strand implements IBeadView, IStrand, IListView, ILayoutParent
 	{
 		public function ListView()
 		{
@@ -64,6 +68,21 @@ package org.apache.flex.html.staticControls.beads
                 _vScrollBar = createScrollBar();
 			return _vScrollBar;
 		}
+		
+		public function get hScrollBar():ScrollBar
+		{
+			return null;
+		}
+		
+		public function get contentView():DisplayObjectContainer
+		{
+			return _dataGroup as DisplayObjectContainer;
+		}
+		
+		public function get resizableView():DisplayObject
+		{
+			return _strand as DisplayObject;
+		}
 
 		private var _strand:IStrand;
 		
@@ -89,7 +108,7 @@ package org.apache.flex.html.staticControls.beads
             if (getBeadByType(IBeadLayout) == null)
             {
                 var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                addBead(mapper);
+				strand.addBead(mapper);
             }            
 		}
 		

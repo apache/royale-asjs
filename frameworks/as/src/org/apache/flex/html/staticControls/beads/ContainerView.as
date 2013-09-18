@@ -18,18 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.ContainerContentArea;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
-	public class ContainerView implements IBeadView
+	public class ContainerView implements IBeadView, ILayoutParent
 	{
 		public function ContainerView()
 		{
@@ -109,6 +113,31 @@ package org.apache.flex.html.staticControls.beads
 			{
 				actualParent = value as DisplayObjectContainer;
 			}
+		}
+		
+		public function get contentView():DisplayObjectContainer
+		{
+			return actualParent;
+		}
+		
+		public function get border():Border
+		{
+			return null;
+		}
+		
+		public function get resizableView():DisplayObject
+		{
+			return _strand as DisplayObject;
+		}
+		
+		public function get vScrollBar():ScrollBar
+		{
+			return null;
+		}
+		
+		public function get hScrollBar():ScrollBar
+		{
+			return null;
 		}
 		
 	}

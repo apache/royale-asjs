@@ -19,13 +19,14 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Container;
 
 	public class NonVirtualVerticalLayout implements IBead
 	{
@@ -40,13 +41,15 @@ package org.apache.flex.html.staticControls.beads.layouts
 			_strand = value;
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 	
 		private function changeHandler(event:Event):void
 		{
-			var children:Array = 
-					Container(_strand).getChildren();
-			var n:int = children.length;
+			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			
+			var n:int = contentView.numChildren;
 			var hasHorizontalFlex:Boolean;
 			var flexibleHorizontalMargins:Array = [];
 			var marginLeft:Object;
@@ -57,7 +60,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 			var maxWidth:Number = 0;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:DisplayObject = children[i];
+				var child:DisplayObject = contentView.getChildAt(i);
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -147,7 +150,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 			{
 				for (i = 0; i < n; i++)
 				{
-					child = children[i];
+					child = contentView.getChildAt(i);
 					var obj:Object = flexibleHorizontalMargins[i];
 					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
 						child.x = maxWidth - child.width / 2;

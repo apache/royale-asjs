@@ -19,13 +19,14 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Container;
 
 	public class NonVirtualHorizontalLayout implements IBeadLayout
 	{
@@ -40,23 +41,26 @@ package org.apache.flex.html.staticControls.beads.layouts
 			_strand = value;
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 	
 		private function changeHandler(event:Event):void
 		{
-			var children:Array = 
-					Container(_strand).getChildren();
-			var n:int = children.length;
+			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			
+			var n:int = contentView.numChildren;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
 			var marginBottom:Object;
 			var margin:Object;
 			var maxHeight:Number = 0;
-            var verticalMargins:Array = [];
+			var verticalMargins:Array = [];
+			
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:DisplayObject = children[i];
+				var child:DisplayObject = contentView.getChildAt(i);
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -97,14 +101,14 @@ package org.apache.flex.html.staticControls.beads.layouts
 				mb = Number(marginBottom);
 				if (isNaN(mb))
 					mb = 0;
-                if (marginLeft == "auto")
-                    ml = 0;
-                else
-                {
-                    ml = Number(marginLeft);
-                    if (isNaN(ml))
-                        ml = 0;
-                }
+				if (marginLeft == "auto")
+					ml = 0;
+				else
+				{
+					ml = Number(marginLeft);
+					if (isNaN(ml))
+						ml = 0;
+				}
 				if (marginRight == "auto")
 					mr = 0;
 				else
@@ -115,26 +119,26 @@ package org.apache.flex.html.staticControls.beads.layouts
 				}
 				child.y = mt;
 				maxHeight = Math.max(maxHeight, ml + child.height + mr);
-                var xx:Number;
-                if (i == 0)
-                    child.x = ml;
-                else
-                    child.x = xx + ml + lastmr;
-                xx = child.x + child.width;
-                lastmr = mr;
-                var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-                verticalMargins.push({ marginTop: marginTop, marginBottom: marginBottom, valign: valign });
+				var xx:Number;
+				if (i == 0)
+					child.x = ml;
+				else
+					child.x = xx + ml + lastmr;
+				xx = child.x + child.width;
+				lastmr = mr;
+				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
+				verticalMargins.push({ marginTop: marginTop, marginBottom: marginBottom, valign: valign });
 			}
 			for (i = 0; i < n; i++)
 			{
-                var obj:Object = verticalMargins[0]
-				child = children[i];
+				var obj:Object = verticalMargins[0]
+				child = contentView.getChildAt(i);
 				if (obj.valign == "middle")
 					child.y = maxHeight - child.height / 2;
-                else if (valign == "bottom")
-                    child.y = maxHeight - child.height - obj.marginBottom;
-                else
-                    child.y = obj.marginTop;
+				else if (valign == "bottom")
+					child.y = maxHeight - child.height - obj.marginBottom;
+				else
+					child.y = obj.marginTop;
 			}
 		}
 	}

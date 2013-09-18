@@ -18,7 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
@@ -29,8 +33,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Spinner;
 	import org.apache.flex.html.staticControls.TextInput;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
-	public class NumericStepperView implements IBeadView
+	public class NumericStepperView implements IBeadView, ILayoutParent
 	{
 		public function NumericStepperView()
 		{
@@ -121,6 +127,31 @@ package org.apache.flex.html.staticControls.beads
 		{
 			var n:Number = IRangeModel(UIBase(_strand).model).value;
 			input.text = String(IRangeModel(UIBase(_strand).model).value);
+		}
+		
+		public function get contentView():DisplayObjectContainer
+		{
+			return _strand as DisplayObjectContainer;
+		}
+		
+		public function get border():Border
+		{
+			return null;
+		}
+		
+		public function get vScrollBar():ScrollBar
+		{
+			return null;
+		}
+		
+		public function get hScrollBar():ScrollBar
+		{
+			return null;
+		}
+		
+		public function get resizableView():DisplayObject
+		{
+			return _strand as DisplayObject;
 		}
 	}
 }
