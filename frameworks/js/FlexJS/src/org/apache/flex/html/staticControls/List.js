@@ -58,7 +58,7 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TextInput}
+ * @this {org.apache.flex.html.staticControls.List}
  * @param {object} event The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.List.prototype.selectedHandler =
