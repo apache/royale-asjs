@@ -33,5 +33,10 @@ package org.apache.flex.html.staticControls.supportClasses
         {
             return getChildAt(index) as IItemRenderer;
         }
+		
+		public function removeAllElements():void
+		{
+			this.removeChildren(0);
+		}
 	}
 }

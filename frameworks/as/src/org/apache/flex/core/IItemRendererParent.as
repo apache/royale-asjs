@@ -24,5 +24,6 @@ package org.apache.flex.core
 	public interface IItemRendererParent extends IParent, IEventDispatcher
 	{
 		function getItemRendererForIndex(index:int):IItemRenderer;
+		function removeAllElements():void;
 	}
 }

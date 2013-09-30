@@ -20,11 +20,12 @@ package org.apache.flex.html.staticControls.supportClasses
 {
     import org.apache.flex.core.IPopUp;
     import org.apache.flex.html.staticControls.List;
+    import org.apache.flex.html.staticControls.SimpleList;
     import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
     
     [Event(name="change", type="org.apache.flex.events.Event")]
     
-	public class DropDownListList extends List implements IPopUp
+	public class DropDownListList extends SimpleList implements IPopUp
 	{
 		public function DropDownListList()
 		{

@@ -104,6 +104,9 @@ ComboBox
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ComboBoxController");
     IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
 }
 
 Container
@@ -135,6 +138,9 @@ DropDownList
 DropDownListList
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
 }
 
 Image

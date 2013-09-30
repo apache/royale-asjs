@@ -56,6 +56,9 @@ package org.apache.flex.html.staticControls.beads
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Vector.<String> = selectionModel.dataProvider as Vector.<String>;
+			
+			dataGroup.removeAllElements();
+			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{

@@ -74,6 +74,9 @@ package org.apache.flex.html.staticControls.beads
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
+			
+			dataGroup.removeAllElements();
+			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
