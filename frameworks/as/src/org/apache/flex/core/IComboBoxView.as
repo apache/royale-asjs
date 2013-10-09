@@ -18,21 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
-	import org.apache.flex.html.common.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
-
-	public interface ILayoutParent
+    
+	public interface IComboBoxView extends IBeadView
 	{
-		function get contentView():DisplayObjectContainer;
+		function get text():String;
+		function set text(value:String):void;
 		
-		function get border():Border;
+		function get html():String;
+		function set html(value:String):void;
 		
-		function get vScrollBar():ScrollBar;
-		function get hScrollBar():ScrollBar;
+		function get popUp():IStrand;
 		
-		function get resizableView():DisplayObject;
+		function get popUpVisible():Boolean;
+		function set popUpVisible(value:Boolean):void;
 	}
 }

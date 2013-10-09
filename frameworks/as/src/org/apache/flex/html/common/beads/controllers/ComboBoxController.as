@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.common.beads.controllers
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IComboBoxView;
+	import org.apache.flex.core.IComboBoxView;
 
 	public class ComboBoxController implements IBeadController
 	{

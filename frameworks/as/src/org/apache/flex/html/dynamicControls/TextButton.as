@@ -16,46 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.dynamicControls
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.events.Event;
-			
-	public class ComboBoxModel extends ArraySelectionModel implements IBead, IComboBoxModel
+	import flash.display.DisplayObject;
+	
+	import org.apache.flex.core.ITextModel;
+	
+	public class TextButton extends Button
 	{
-		public function ComboBoxModel()
+		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
+			super(upState, overState, downState, hitTestState);
 		}
-
-		private var _text:String;
+		
 		public function get text():String
 		{
-			return _text;
+			return ITextModel(model).text;
 		}
-		
 		public function set text(value:String):void
 		{
-			if (value != _text)
-			{
-				_text = value;
-				dispatchEvent(new Event("textChange"));
-			}
+			ITextModel(model).text = value;
 		}
 		
-		private var _html:String;
 		public function get html():String
 		{
-			return _html;
+			return ITextModel(model).html;
 		}
-		
 		public function set html(value:String):void
 		{
-			if (value != _html)
-			{
-				_html = value;
-				dispatchEvent(new Event("htmlChange"));
-			}
+			ITextModel(model).html = value;
 		}
 	}
 }

@@ -35,6 +35,10 @@
                 <manifest>basic-manifest.xml</manifest>
             </namespace>
             <namespace>
+                <uri>library://ns.apache.org/flexjs/dynamic</uri>
+                <manifest>dynamic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
                 <uri>library://ns.adobe.com/flex/mx</uri>
                 <manifest>mx-manifest.xml</manifest>
             </namespace>
@@ -70,6 +74,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/dynamic</uri>
         <uri>library://ns.adobe.com/flex/mx</uri>
         <uri>library://ns.apache.org/flexjs/html5</uri>
         <uri>library://ns.apache.org/flexjs/jquery</uri>

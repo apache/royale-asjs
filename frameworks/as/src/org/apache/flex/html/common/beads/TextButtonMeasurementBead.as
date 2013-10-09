@@ -16,55 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
-{	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+package org.apache.flex.html.common.beads
+{
+	import org.apache.flex.core.IMeasurementBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.staticControls.beads.TextButtonView;
 	
-	[Event(name="close", type="org.apache.flex.events.Event")]
-	
-	public class Alert extends UIBase implements IPopUp
+	public class TextButtonMeasurementBead implements IMeasurementBead
 	{
-		public function Alert()
+		public function TextButtonMeasurementBead()
 		{
-			super();
-			
-			className = "Alert";
 		}
 		
-		private function get message():String
+		public function get measuredWidth():Number
 		{
-			return IAlertModel(model).message;
-		}
-		private function set message(value:String):void
-		{
-			IAlertModel(model).message = value;
+			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
+			if( view ) return Math.max(view.upTextField.textWidth,view.downTextField.textWidth,view.overTextField.textWidth);
+			else return 0;
 		}
 		
-		private function get htmlMessage():String
+		public function get measuredHeight():Number
 		{
-			return IAlertModel(model).htmlMessage;
-		}
-		private function set htmlMessage(value:String):void
-		{
-			IAlertModel(model).htmlMessage = value;
+			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
+			if( view ) return Math.max(view.upTextField.textHeight,view.downTextField.textHeight,view.overTextField.textHeight);
+			else return 0;
 		}
 		
-		public function show(parent:Object) : void
+		private var _strand:IStrand;
+		public function set strand(value:IStrand):void
 		{
-			parent.addElement(this);
+			_strand = value;
 		}
-		
-		static public function show(message:String, parent:Object):Alert
-		{
-			var alert:Alert = new Alert();
-			alert.message = message;
-			alert.show(parent);
-			
-			return alert;
-		}
-		
 	}
 }

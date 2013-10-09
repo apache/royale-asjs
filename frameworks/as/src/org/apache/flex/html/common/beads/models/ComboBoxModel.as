@@ -16,55 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
-{	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
+package org.apache.flex.html.common.beads.models
+{
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.events.Event;
-	
-	[Event(name="close", type="org.apache.flex.events.Event")]
-	
-	public class Alert extends UIBase implements IPopUp
+	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
+			
+	public class ComboBoxModel extends ArraySelectionModel implements IBead, IComboBoxModel
 	{
-		public function Alert()
+		public function ComboBoxModel()
 		{
-			super();
-			
-			className = "Alert";
+		}
+
+		private var _text:String;
+		public function get text():String
+		{
+			return _text;
 		}
 		
-		private function get message():String
+		public function set text(value:String):void
 		{
-			return IAlertModel(model).message;
-		}
-		private function set message(value:String):void
-		{
-			IAlertModel(model).message = value;
-		}
-		
-		private function get htmlMessage():String
-		{
-			return IAlertModel(model).htmlMessage;
-		}
-		private function set htmlMessage(value:String):void
-		{
-			IAlertModel(model).htmlMessage = value;
+			if (value != _text)
+			{
+				_text = value;
+				dispatchEvent(new Event("textChange"));
+			}
 		}
 		
-		public function show(parent:Object) : void
+		private var _html:String;
+		public function get html():String
 		{
-			parent.addElement(this);
+			return _html;
 		}
 		
-		static public function show(message:String, parent:Object):Alert
+		public function set html(value:String):void
 		{
-			var alert:Alert = new Alert();
-			alert.message = message;
-			alert.show(parent);
-			
-			return alert;
+			if (value != _html)
+			{
+				_html = value;
+				dispatchEvent(new Event("htmlChange"));
+			}
 		}
-		
 	}
 }

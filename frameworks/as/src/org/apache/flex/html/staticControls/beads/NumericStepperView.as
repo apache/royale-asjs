@@ -33,7 +33,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Spinner;
 	import org.apache.flex.html.staticControls.TextInput;
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
 	public class NumericStepperView implements IBeadView, ILayoutParent

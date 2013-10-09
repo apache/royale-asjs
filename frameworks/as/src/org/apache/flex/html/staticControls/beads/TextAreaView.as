@@ -28,9 +28,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.common.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.common.beads.SingleLineBorderBead;
 
 	public class TextAreaView extends TextFieldViewBase implements IStrand
 	{

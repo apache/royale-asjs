@@ -16,55 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.common.beads.controllers
 {	
-	import org.apache.flex.core.IBead;
+    import flash.display.DisplayObject;
+    
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-		
-	public class TextModel extends EventDispatcher implements IBead, ITextModel
-	{
-		public function TextModel()
-		{
-		}
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
+	import org.apache.flex.events.IEventDispatcher;
 
-		private var _text:String;
-		public function get text():String
+    public class AlertController implements IBeadController
+	{
+		public function AlertController()
 		{
-			return _text;
 		}
 		
-		public function set text(value:String):void
-		{
-			if (value != _text)
-			{
-				_text = value;
-				dispatchEvent(new Event("textChange"));
-			}
-		}
-		
-		private var _html:String;
-		public function get html():String
-		{
-			return _html;
-		}
-		
-		public function set html(value:String):void
-		{
-			if (value != _html)
-			{
-				_html = value;
-				dispatchEvent(new Event("htmlChange"));
-			}
-		}
+        private var _strand:IStrand;
+        
+        public function get strand():IStrand
+        {
+            return _strand;
+        }
+        
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+            IEventDispatcher(value).addEventListener("close",handleAlertClose);
+        }
+        
+        private function handleAlertClose(event:Event):void
+        {
+            DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+        }
 	}
 }

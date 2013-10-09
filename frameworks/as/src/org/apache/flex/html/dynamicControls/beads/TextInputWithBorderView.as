@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
-	import org.apache.flex.html.common.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.common.supportClasses.Border;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.common.beads.SingleLineBorderBead;
+	import org.apache.flex.html.common.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.common.supportClasses.Border;
 
 	public class TextInputWithBorderView extends TextInputView
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.html.staticControls.beads
 			_border = new Border();
 			_border.model = new SingleLineBorderModel();
 			_border.addBead(new SingleLineBorderBead());
-            IParent(strand).addElement(border);
+			IParent(strand).addElement(border);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);

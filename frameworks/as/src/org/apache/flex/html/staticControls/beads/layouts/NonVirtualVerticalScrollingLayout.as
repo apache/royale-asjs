@@ -29,7 +29,7 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
 	public class NonVirtualVerticalScrollingLayout implements IBeadLayout

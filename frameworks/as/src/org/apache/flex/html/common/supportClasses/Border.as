@@ -16,34 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.common.supportClasses
 {
-	import flash.geom.Rectangle;
+	import org.apache.flex.core.UIBase;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.EventDispatcher;
-		
-	public class SingleLineBorderModel extends EventDispatcher implements IBead, IBorderModel
+	public class Border extends UIBase
 	{
-		public function SingleLineBorderModel()
+		public function Border()
 		{
-		}
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-
-        static private var rect:Rectangle = new Rectangle(1, 1, 1, 1);
+			super();
+		}		
         
-        public function get offsets():Rectangle
-        {
-            return rect;
-        }
-
-	}
+   	}
 }

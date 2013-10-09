@@ -27,12 +27,26 @@ package
  */
 internal class FlexJSUIClasses
 {
+	import org.apache.flex.html.common.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
+	import org.apache.flex.html.common.beads.models.AlertModel; AlertModel;
+	import org.apache.flex.html.common.beads.models.ComboBoxModel; ComboBoxModel;
+	import org.apache.flex.html.common.beads.models.TextModel; TextModel;
+	import org.apache.flex.html.common.beads.controllers.AlertController; AlertController;
+	import org.apache.flex.html.common.beads.controllers.ComboBoxController; ComboBoxController;
+	import org.apache.flex.html.common.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
+	
+	import org.apache.flex.html.dynamicControls.beads.AlertView; AlertView;
+	import org.apache.flex.html.dynamicControls.beads.ComboBoxView; org.apache.flex.html.dynamicControls.beads.ComboBoxView;
+	import org.apache.flex.html.dynamicControls.beads.TextFieldLabelMeasurementBead; org.apache.flex.html.dynamicControls.beads.TextFieldLabelMeasurementBead;
+	import org.apache.flex.html.dynamicControls.beads.TextFieldView; org.apache.flex.html.dynamicControls.beads.TextFieldView;
+	import org.apache.flex.html.dynamicControls.beads.TextInputView; org.apache.flex.html.dynamicControls.beads.TextInputView;
+	import org.apache.flex.html.dynamicControls.beads.TextInputWithBorderView; org.apache.flex.html.dynamicControls.beads.TextInputWithBorderView;
+	
 	import org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.staticControls.accessories.TextPromptBead; TextPromptBead;
-    import org.apache.flex.html.staticControls.beads.AlertView; AlertView;
     import org.apache.flex.html.staticControls.beads.CheckBoxView; CheckBoxView;
-    import org.apache.flex.html.staticControls.beads.ComboBoxView; ComboBoxView;
+    import org.apache.flex.html.staticControls.beads.ComboBoxView; org.apache.flex.html.staticControls.beads.ComboBoxView;
     import org.apache.flex.html.staticControls.beads.ContainerView; ContainerView;
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
@@ -48,27 +62,20 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.staticControls.beads.SliderTrackView; SliderTrackView;
     import org.apache.flex.html.staticControls.beads.SpinnerView; SpinnerView;
-    import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
-	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
+	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead;
     import org.apache.flex.html.staticControls.beads.TextAreaView; TextAreaView;
     import org.apache.flex.html.staticControls.beads.TextButtonView; TextButtonView;
-    import org.apache.flex.html.staticControls.beads.TextFieldView; TextFieldView;
-    import org.apache.flex.html.staticControls.beads.TextInputView; TextInputView;
-    import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; TextInputWithBorderView;
+    import org.apache.flex.html.staticControls.beads.TextFieldView; org.apache.flex.html.staticControls.beads.TextFieldView;
+    import org.apache.flex.html.staticControls.beads.TextInputView; org.apache.flex.html.staticControls.beads.TextInputView;
+    import org.apache.flex.html.staticControls.beads.TextInputWithBorderView; org.apache.flex.html.staticControls.beads.TextInputWithBorderView;
     import org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
-    import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
-    import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
-	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
     import org.apache.flex.html.staticControls.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
 	import org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
-    import org.apache.flex.html.staticControls.beads.controllers.AlertController; AlertController;
-	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController; ComboBoxController;
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
-	import org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
@@ -79,11 +86,13 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;
     import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
-    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;    
+	
+    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;   
+	import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
+	
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.utils.Timer; Timer;
-    import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     
     import mx.states.AddItems; AddItems;
     import mx.states.SetProperty; SetProperty;

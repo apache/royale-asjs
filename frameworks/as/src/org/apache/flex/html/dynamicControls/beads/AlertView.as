@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
@@ -30,11 +30,13 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Alert;
+	import org.apache.flex.html.dynamicControls.Alert;
 	import org.apache.flex.html.staticControls.ControlBar;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.html.staticControls.beads.IBackgroundBead;
+	import org.apache.flex.html.staticControls.beads.IBorderBead;
 	
 	public class AlertView implements IBeadView
 	{

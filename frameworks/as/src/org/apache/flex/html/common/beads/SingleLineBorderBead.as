@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.common.beads
 {
 	import flash.display.Graphics;
 	
@@ -26,6 +26,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.IBorderBead;
+	import org.apache.flex.html.staticControls.beads.IGraphicsDrawing;
 
 	public class SingleLineBorderBead implements IBead, IBorderBead, IGraphicsDrawing
 	{

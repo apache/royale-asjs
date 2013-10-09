@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.common.beads.models
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;

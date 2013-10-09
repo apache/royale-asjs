@@ -16,22 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IStrand;
-    
-	public interface IComboBoxView extends IBeadView
+	import flash.text.TextFieldType;
+
+	public class TextFieldView extends TextFieldViewBase
 	{
-		function get text():String;
-		function set text(value:String):void;
-		
-		function get html():String;
-		function set html(value:String):void;
-		
-		function get popUp():IStrand;
-		
-		function get popUpVisible():Boolean;
-		function set popUpVisible(value:Boolean):void;
+		public function TextFieldView()
+		{
+			super();
+			
+			textField.selectable = false;
+			textField.type = TextFieldType.DYNAMIC;
+			textField.mouseEnabled = false;
+		}
 	}
 }

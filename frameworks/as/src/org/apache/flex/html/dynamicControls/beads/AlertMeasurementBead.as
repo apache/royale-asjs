@@ -16,55 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
-{	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+package org.apache.flex.html.dynamicControls.beads
+{
+	import org.apache.flex.core.IMeasurementBead;
+	import org.apache.flex.core.IStrand;
 	
-	[Event(name="close", type="org.apache.flex.events.Event")]
-	
-	public class Alert extends UIBase implements IPopUp
+	public class AlertMeasurementBead implements IMeasurementBead
 	{
-		public function Alert()
+		public function AlertMeasurementBead()
 		{
-			super();
-			
-			className = "Alert";
 		}
 		
-		private function get message():String
+		public function get measuredWidth():Number
 		{
-			return IAlertModel(model).message;
-		}
-		private function set message(value:String):void
-		{
-			IAlertModel(model).message = value;
+			return 0;
 		}
 		
-		private function get htmlMessage():String
+		public function get measuredHeight():Number
 		{
-			return IAlertModel(model).htmlMessage;
-		}
-		private function set htmlMessage(value:String):void
-		{
-			IAlertModel(model).htmlMessage = value;
+			return 0;
 		}
 		
-		public function show(parent:Object) : void
+		private var _strand:IStrand;
+		public function set strand(value:IStrand):void
 		{
-			parent.addElement(this);
+			_strand = value;
 		}
-		
-		static public function show(message:String, parent:Object):Alert
-		{
-			var alert:Alert = new Alert();
-			alert.message = message;
-			alert.show(parent);
-			
-			return alert;
-		}
-		
 	}
 }

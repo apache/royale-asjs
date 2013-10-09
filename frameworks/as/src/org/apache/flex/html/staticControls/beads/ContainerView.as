@@ -30,7 +30,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.ContainerContentArea;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
 	public class ContainerView implements IBeadView, ILayoutParent

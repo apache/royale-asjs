@@ -33,10 +33,11 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.common.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.common.beads.SingleLineBorderBead;
 
 	public class ListView extends Strand implements IBeadView, IStrand, IListView, ILayoutParent
 	{

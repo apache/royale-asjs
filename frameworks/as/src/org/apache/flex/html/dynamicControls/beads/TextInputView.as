@@ -16,41 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import flash.display.DisplayObject;
+	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.html.common.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.common.supportClasses.Border;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.common.beads.SingleLineBorderBead;
 
-	public class TextInputWithBorderView extends TextInputView
+	public class TextInputView extends TextFieldViewBase
 	{
-		public function TextInputWithBorderView()
+		public function TextInputView()
 		{
 			super();
-		}
-		
-		private var _border:Border;
-		
-		public function get border():Border
-		{
-			return _border;
+			
+			textField.selectable = true;
+			textField.type = TextFieldType.INPUT;
+			textField.mouseEnabled = true;
+			textField.multiline = false;
+			textField.wordWrap = false;
 		}
 		
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 			
-			// add a border to this
-			_border = new Border();
-			_border.model = new SingleLineBorderModel();
-			_border.addBead(new SingleLineBorderBead());
-            IParent(strand).addElement(border);
+			// Default size
+			var ww:Number = DisplayObject(strand).width;
+			if( isNaN(ww) || ww == 0 ) DisplayObject(strand).width = 100;
+			var hh:Number = DisplayObject(strand).height;
+			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 18;
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
@@ -60,10 +56,10 @@ package org.apache.flex.html.staticControls.beads
 		private function sizeChangedHandler(event:Event):void
 		{
 			var ww:Number = DisplayObject(strand).width;
-			_border.width = ww;
+			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
 			
 			var hh:Number = DisplayObject(strand).height;
-			_border.height = hh;
+			if( !isNaN(hh) && hh > 0 ) textField.height = hh;
 		}
 	}
 }

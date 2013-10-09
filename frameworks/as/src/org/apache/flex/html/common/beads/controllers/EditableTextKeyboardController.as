@@ -16,55 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
-{	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
+package org.apache.flex.html.common.beads.controllers
+{
+	import org.apache.flex.core.CSSTextField;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+	import org.apache.flex.core.ITextFieldView;
 	
-	[Event(name="close", type="org.apache.flex.events.Event")]
-	
-	public class SimpleAlert extends UIBase implements IPopUp
+	public class EditableTextKeyboardController implements IBead, IBeadController
 	{
-		public function SimpleAlert()
+		public function EditableTextKeyboardController()
 		{
-			super();
+		}
+		
+		private var model:ITextModel;
+		private var textField:CSSTextField;
+		
+		private var _strand:IStrand;
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 			
-			className = "SimpleAlert";
-		}
-		
-		private function get message():String
-		{
-			return IAlertModel(model).message;
-		}
-		private function set message(value:String):void
-		{
-			IAlertModel(model).message = value;
-		}
-		
-		private function get htmlMessage():String
-		{
-			return IAlertModel(model).htmlMessage;
-		}
-		private function set htmlMessage(value:String):void
-		{
-			IAlertModel(model).htmlMessage = value;
-		}
-		
-		public function show(parent:Object) : void
-		{
-			parent.addElement(this);
-		}
-		
-		static public function show(message:String, parent:Object):SimpleAlert
-		{
-			var alert:SimpleAlert = new SimpleAlert();
-			alert.message = message;
-			alert.show(parent);
+			model = UIBase(_strand).model as ITextModel;
 			
-			return alert;
+			var viewBead:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
+			textField = viewBead.textField;
+			textField.addEventListener("change", inputChangeHandler);
 		}
 		
+		private function inputChangeHandler( event:Object ) : void
+		{
+			model.text = textField.text;
+		}
 	}
 }

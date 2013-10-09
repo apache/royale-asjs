@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -31,10 +31,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Button;
-	import org.apache.flex.html.staticControls.TextInput;
+	import org.apache.flex.html.dynamicControls.Button;
+	import org.apache.flex.html.dynamicControls.TextInput;
 	
-	public class ComboBoxView implements IBeadView, org.apache.flex.core.IComboBoxView
+	public class ComboBoxView implements IBeadView, IComboBoxView
 	{
 		public function ComboBoxView()
 		{
@@ -72,10 +72,10 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-        
+			
 			selectionModel = value.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-            
+			
 			textInput = new TextInput();
 			IParent(strand).addElement(textInput);
 			textInput.width = 100;
@@ -152,8 +152,8 @@ package org.apache.flex.html.staticControls.beads
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
 					while (host && !(host is IPopUpHost))
 						host = host.parent;
-                    if (host)
-    					IPopUpHost(host).addElement(popUp);
+					if (host)
+						IPopUpHost(host).addElement(popUp);
 				}
 				else
 				{

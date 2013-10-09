@@ -16,25 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.dynamicControls.beads.TextFieldView;
 	
-	public class AlertMeasurementBead implements IMeasurementBead
+	public class TextFieldLabelMeasurementBead implements IMeasurementBead
 	{
-		public function AlertMeasurementBead()
+		public function TextFieldLabelMeasurementBead()
 		{
 		}
 		
 		public function get measuredWidth():Number
 		{
-			return 0;
+			var view:TextFieldView = _strand.getBeadByType(TextFieldView) as TextFieldView;
+			if( view ) return view.textField.textWidth;
+			else return 0;
 		}
 		
 		public function get measuredHeight():Number
 		{
-			return 0;
+			var view:TextFieldView = _strand.getBeadByType(TextFieldView) as TextFieldView;
+			if( view ) return view.textField.textHeight;
+			else return 0;
 		}
 		
 		private var _strand:IStrand;

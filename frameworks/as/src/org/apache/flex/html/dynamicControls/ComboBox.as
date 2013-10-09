@@ -16,16 +16,45 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.dynamicControls
 {
+	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.UIBase;
 	
-	public class Border extends UIBase
+	[Event(name="change", type="org.apache.flex.events.Event")]
+	
+	public class ComboBox extends UIBase
 	{
-		public function Border()
+		public function ComboBox()
 		{
 			super();
-		}		
-        
-   	}
+		}
+		
+		public function get dataProvider():Object
+		{
+			return IComboBoxModel(model).dataProvider;
+		}
+		public function set dataProvider(value:Object):void
+		{
+			IComboBoxModel(model).dataProvider = value;
+		}
+		
+		public function get selectedIndex():int
+		{
+			return IComboBoxModel(model).selectedIndex;
+		}
+		public function set selectedIndex(value:int):void
+		{
+			IComboBoxModel(model).selectedIndex = value;
+		}
+		
+		public function get selectedItem():Object
+		{
+			return IComboBoxModel(model).selectedItem;
+		}
+		public function set selectedItem(value:Object):void
+		{
+			IComboBoxModel(model).selectedItem = value;
+		}
+	}
 }

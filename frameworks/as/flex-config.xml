@@ -93,6 +93,12 @@
          
         </namespace>                                                 
          <namespace>
+            <uri>library://ns.apache.org/flexjs/dynamic</uri>
+            
+            <manifest>dynamic-manifest.xml</manifest>
+         
+        </namespace>                                                 
+         <namespace>
             <uri>library://ns.apache.org/flexjs/html5</uri>
             
             <manifest>html5-manifest.xml</manifest>

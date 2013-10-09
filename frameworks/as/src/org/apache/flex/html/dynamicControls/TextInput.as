@@ -16,55 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
-{	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
+package org.apache.flex.html.dynamicControls
+{
+	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
 	
-	[Event(name="close", type="org.apache.flex.events.Event")]
-	
-	public class Alert extends UIBase implements IPopUp
+	public class TextInput extends UIBase
 	{
-		public function Alert()
+		public function TextInput()
 		{
 			super();
-			
-			className = "Alert";
 		}
 		
-		private function get message():String
+		public function get text():String
 		{
-			return IAlertModel(model).message;
+			return ITextModel(model).text;
 		}
-		private function set message(value:String):void
+		public function set text(value:String):void
 		{
-			IAlertModel(model).message = value;
-		}
-		
-		private function get htmlMessage():String
-		{
-			return IAlertModel(model).htmlMessage;
-		}
-		private function set htmlMessage(value:String):void
-		{
-			IAlertModel(model).htmlMessage = value;
+			ITextModel(model).text = value;
 		}
 		
-		public function show(parent:Object) : void
+		public function get html():String
 		{
-			parent.addElement(this);
+			return ITextModel(model).html;
 		}
-		
-		static public function show(message:String, parent:Object):Alert
+		public function set html(value:String):void
 		{
-			var alert:Alert = new Alert();
-			alert.message = message;
-			alert.show(parent);
-			
-			return alert;
+			ITextModel(model).html = value;
 		}
-		
 	}
 }

@@ -16,40 +16,48 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.dynamicControls
 {
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.staticControls.beads.ITextFieldView;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
-	public class EditableTextKeyboardController implements IBead, IBeadController
+	public class Label extends UIBase
 	{
-		public function EditableTextKeyboardController()
+		public function Label()
 		{
+			super();
 		}
 		
-		private var model:ITextModel;
-		private var textField:CSSTextField;
-		
-		private var _strand:IStrand;
-		public function set strand(value:IStrand):void
+		public function get text():String
 		{
-			_strand = value;
-			
-			model = UIBase(_strand).model as ITextModel;
-			
-			var viewBead:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
-			textField = viewBead.textField;
-			textField.addEventListener("change", inputChangeHandler);
+			return ITextModel(model).text;
+		}
+		public function set text(value:String):void
+		{
+			ITextModel(model).text = value;
 		}
 		
-		private function inputChangeHandler( event:Object ) : void
+		public function get html():String
 		{
-			model.text = textField.text;
+			return ITextModel(model).html;
+		}
+		public function set html(value:String):void
+		{
+			ITextModel(model).html = value;
+		}
+		
+		override public function set width(value:Number):void
+		{
+			super.width = value;
+			IEventDispatcher(model).dispatchEvent( new Event("widthChanged") );
+		}
+		
+		override public function set height(value:Number):void
+		{
+			super.height = value;
+			IEventDispatcher(model).dispatchEvent( new Event("heightChanged") );
 		}
 	}
 }

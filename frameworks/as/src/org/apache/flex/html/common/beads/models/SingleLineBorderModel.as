@@ -16,35 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.common.beads.models
 {
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
+	import flash.geom.Rectangle;
 	
-	public class TextButtonMeasurementBead implements IMeasurementBead
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBorderModel;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.EventDispatcher;
+		
+	public class SingleLineBorderModel extends EventDispatcher implements IBead, IBorderModel
 	{
-		public function TextButtonMeasurementBead()
+		public function SingleLineBorderModel()
 		{
-		}
-		
-		public function get measuredWidth():Number
-		{
-			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
-			if( view ) return Math.max(view.upTextField.textWidth,view.downTextField.textWidth,view.overTextField.textWidth);
-			else return 0;
-		}
-		
-		public function get measuredHeight():Number
-		{
-			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
-			if( view ) return Math.max(view.upTextField.textHeight,view.downTextField.textHeight,view.overTextField.textHeight);
-			else return 0;
 		}
 		
 		private var _strand:IStrand;
+		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
+
+        static private var rect:Rectangle = new Rectangle(1, 1, 1, 1);
+        
+        public function get offsets():Rectangle
+        {
+            return rect;
+        }
+
 	}
 }

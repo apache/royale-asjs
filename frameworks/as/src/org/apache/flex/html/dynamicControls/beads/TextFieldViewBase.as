@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.dynamicControls.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -25,9 +25,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.events.Event;
 	import org.apache.flex.core.ITextFieldView;
-	
+	import org.apache.flex.events.Event;
+
 	public class TextFieldViewBase implements IBeadView, ITextFieldView
 	{
 		public function TextFieldViewBase()
@@ -66,7 +66,7 @@ package org.apache.flex.html.staticControls.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 		}
-        
+		
 		public function get strand() : IStrand
 		{
 			return _strand;
@@ -78,8 +78,8 @@ package org.apache.flex.html.staticControls.beads
 		}
 		public function set text(value:String):void
 		{
-            if (value == null)
-                value = "";
+			if (value == null)
+				value = "";
 			_textField.text = value;
 		}
 		

@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.accessories
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.ITextFieldView;
+	import org.apache.flex.core.ITextFieldView;
 	
 	public class NumericOnlyTextInputBead implements IBead
 	{
