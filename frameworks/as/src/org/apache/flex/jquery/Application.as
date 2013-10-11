@@ -19,8 +19,9 @@
 package org.apache.flex.jquery
 {
     import org.apache.flex.core.Application;
+	import org.apache.flex.core.IFlexInfo;
 	
-	public class Application extends org.apache.flex.core.Application
+	public class Application extends org.apache.flex.core.Application implements IFlexInfo
 	{
 		public function Application()
 		{

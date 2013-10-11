@@ -343,6 +343,7 @@ h5|ComboBox
 
 jq|TextButton
 {
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonView");
 }
 
@@ -363,6 +364,7 @@ jq|RadioButton
 
 createjs|TextButton
 {
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonView");
 }
 
