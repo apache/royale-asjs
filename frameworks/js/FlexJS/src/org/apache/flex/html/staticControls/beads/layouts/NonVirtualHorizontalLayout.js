@@ -58,11 +58,7 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
 prototype.changeHandler = function(event) {
   var children, i, n;
 
-  var layoutParent = this.strand_.getBeadByType(
-      org.apache.flex.html.staticControls.beads.ListView);
-  var contentView = layoutParent.get_dataGroup();
-
-  children = contentView.internalChildren();
+  children = this.strand_.internalChildren();
   n = children.length;
   for (i = 0; i < n; i++)
   {

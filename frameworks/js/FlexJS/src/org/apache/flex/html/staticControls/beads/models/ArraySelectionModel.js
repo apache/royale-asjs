@@ -93,7 +93,16 @@ set_selectedIndex = function(value) {
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 get_selectedItem = function() {
-  return this.selectedItem_;
+  var si;
+
+  si = this.selectedIndex_;
+
+  if (!this.dataProvider_ || si < 0 ||
+      si >= this.dataProvider_.length) {
+    return null;
+  }
+
+  return this.dataProvider_[si];
 };
 
 
@@ -104,7 +113,6 @@ get_selectedItem = function() {
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 set_selectedItem = function(value) {
-  this.selectedItem_ = value;
   // find item in dataProvider and set selectedIndex or -1 if not exists
 
   this.selectedIndex_ = -1;
