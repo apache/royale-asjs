@@ -14,9 +14,8 @@
 
 goog.provide('org.apache.flex.core.ViewBase');
 
-// TODO: (aharui) bring this in via CSS
-goog.require('org.apache.flex.core.SimpleStatesImpl');
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.events.ValueChangeEvent');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
@@ -113,8 +112,10 @@ org.apache.flex.core.ViewBase.prototype.get_states = function() {
 org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
     this.states_ = value;
 
+    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
+                getValue(this, "iStatesImpl");
     // TODO: (aharui) check if bead already exists
-    this.addBead(new org.apache.flex.core.SimpleStatesImpl());
+    this.addBead(new impl());
 };
 
 /**

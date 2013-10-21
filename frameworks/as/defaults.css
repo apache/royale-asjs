@@ -50,14 +50,14 @@ Button:active
 	padding: 4px;
 }
 
-@media -flex-flash
-{
-
 /* Global style declaration */
 global
 {
     IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
 }
+
+@media -flex-flash
+{
 
 Alert
 {

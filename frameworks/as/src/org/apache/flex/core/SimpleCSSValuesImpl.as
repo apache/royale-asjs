@@ -175,7 +175,7 @@ package org.apache.flex.core
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
-                    valueName..substr(c + 2);
+                    valueName.substr(c + 2);
                 c = valueName.indexOf("-");
             }
 

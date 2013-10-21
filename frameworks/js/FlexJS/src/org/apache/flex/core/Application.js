@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.Application');
 
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
@@ -67,6 +68,9 @@ org.apache.flex.core.Application.prototype.start = function() {
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
       this.get_MXMLProperties());
+
+  org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
+  this.valuesImpl.init(this);
 
   this.dispatchEvent('initialize');
 
