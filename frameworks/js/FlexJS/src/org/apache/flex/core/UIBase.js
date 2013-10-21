@@ -84,7 +84,7 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
   else
   {
     this.element.insertBefore(c.element,
-            this.getChildAt(index));
+            children[index]);
     c.addedToParent();
   }
 };
