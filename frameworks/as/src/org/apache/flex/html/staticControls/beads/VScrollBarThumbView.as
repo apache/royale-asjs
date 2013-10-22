@@ -80,6 +80,9 @@ package org.apache.flex.html.staticControls.beads
 
         private function heightChangedHandler(event:Event):void
         {
+			DisplayObject(_strand).scaleY = 1.0;
+			DisplayObject(_strand).scaleX = 1.0;
+			
             var hh:Number = DisplayObject(_strand).height;
             drawView(upView.graphics, 0xCCCCCC);
             drawView(downView.graphics, 0x808080);

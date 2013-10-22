@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.Graphics;
-	import flash.display.SimpleButton;
 	import flash.display.Shape;
+	import flash.display.SimpleButton;
 	
-    import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	
@@ -48,6 +49,9 @@ package org.apache.flex.html.staticControls.beads
 
 		private function heightChangeHandler(event:Event):void
 		{
+			DisplayObject(_strand).scaleY = 1.0;
+			DisplayObject(_strand).scaleX = 1.0;
+			
 			var h:Number = SimpleButton(_strand).height;
 			
 			drawView(upView.graphics, 0xCCCCCC, h);
