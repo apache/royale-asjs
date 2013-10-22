@@ -31,11 +31,14 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.staticControls.accessories.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.staticControls.beads.AlertView; AlertView;
-    import org.apache.flex.html.staticControls.beads.CheckBoxView; CheckBoxView;
+	import org.apache.flex.html.staticControls.beads.ButtonBarView; ButtonBarView;
+	import org.apache.flex.html.staticControls.beads.CheckBoxView; CheckBoxView;
     import org.apache.flex.html.staticControls.beads.ComboBoxView; ComboBoxView;
     import org.apache.flex.html.staticControls.beads.ContainerView; ContainerView;
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
+	import org.apache.flex.html.staticControls.beads.DataGridColumnView; DataGridColumnView;
+	import org.apache.flex.html.staticControls.beads.DataGridView; DataGridView;
     import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
 	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
     import org.apache.flex.html.staticControls.beads.ListView; ListView;
@@ -59,6 +62,8 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
+	import org.apache.flex.html.staticControls.beads.models.DataGridModel; DataGridModel;
+	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
@@ -74,6 +79,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.controllers.SliderMouseController; SliderMouseController;
 	import org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController; SpinnerMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
+	import org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout; ButtonBarLayout;
     import org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;  
 	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalScrollingLayout; NonVirtualHorizontalScrollingLayout;
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;

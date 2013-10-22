@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -27,12 +28,13 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.SolidBorderUtil;
 
 	public class CSSTextButtonView implements IBeadView
@@ -87,10 +89,16 @@ package org.apache.flex.html.staticControls.beads
             setupSkin(overSprite, overTextField, "hover");
 			setupSkin(downSprite, downTextField, "active");
 			setupSkin(upSprite, upTextField);
+			
+			IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
 		}
 	
 		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
 		{
+			var sw:uint = DisplayObject(_strand).width;
+			var sh:uint = DisplayObject(_strand).height;
+			
 			var borderColor:uint;
 			var borderThickness:uint;
 			var borderStyle:String;
@@ -115,7 +123,7 @@ package org.apache.flex.html.staticControls.beads
 			if (borderStyle == "solid")
 			{
 				SolidBorderUtil.drawBorder(sprite.graphics, 
-					0, 0, textField.textWidth + Number(padding) * 2, textField.textHeight + Number(padding) * 2,
+					0, 0, sw, textField.textHeight + Number(padding) * 2,
 					borderColor, backgroundColor, borderThickness);
 				textField.y = (sprite.height - textField.height) / 2;
 				textField.x = (sprite.width - textField.width) / 2;
@@ -128,11 +136,20 @@ package org.apache.flex.html.staticControls.beads
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
-					textField.y = (sprite.height - textField.height) / 2;
-					textField.x = (sprite.width - textField.width) / 2;
+					textField.y = (sh - textField.height) / 2;
+					textField.x = (sw - textField.width) / 2;
 					updateHitArea();
 				});
 			}
+		}
+		
+		private function drawSkin() : void
+		{
+			setupSkin(overSprite, overTextField, "hover");
+			setupSkin(downSprite, downTextField, "active");
+			setupSkin(upSprite, upTextField);
+			
+			updateHitArea();
 		}
 		
 		private function textChangeHandler(event:org.apache.flex.events.Event):void
@@ -143,6 +160,11 @@ package org.apache.flex.html.staticControls.beads
 		private function htmlChangeHandler(event:org.apache.flex.events.Event):void
 		{
 			html = textModel.html;
+		}
+		
+		private function sizeChangeHandler(event:org.apache.flex.events.Event):void
+		{
+			drawSkin();
 		}
 		
 		private var upTextField:CSSTextField;

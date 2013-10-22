@@ -18,15 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
-    import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	public class TextButtonView implements IBeadView
 	{
@@ -86,6 +88,9 @@ package org.apache.flex.html.staticControls.beads
 				text = textModel.text;
 			if (textModel.html !== null)
 				html = textModel.html;
+			
+			IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
 		}
 		        
 		private function textChangeHandler(event:Event):void
@@ -96,6 +101,12 @@ package org.apache.flex.html.staticControls.beads
 		private function htmlChangeHandler(event:Event):void
 		{
 			html = textModel.html;
+		}
+		
+		private function sizeChangeHandler(event:Event):void
+		{
+			upTextField.width = downTextField.width = overTextField.width = DisplayObject(_strand).width;
+			upTextField.height= downTextField.height= overTextField.height= DisplayObject(_strand).height;
 		}
 		
 		public var upTextField:CSSTextField;

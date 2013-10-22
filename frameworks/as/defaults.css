@@ -76,9 +76,9 @@ Alert
 ButtonBar
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ListView");			
+    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ButtonBarView");			
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
+    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer");
@@ -125,6 +125,15 @@ ControlBar
     border-style: solid;
     border-color: #000000;
     border-thickness: 1;
+}
+
+DataGrid
+{
+    IDataGridPresentationModel: ClassReference("org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel");
+    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.DataGridView");
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.DataGridModel");
+
+    background-color: #FFFFFF;;
 }
 
 DropDownList

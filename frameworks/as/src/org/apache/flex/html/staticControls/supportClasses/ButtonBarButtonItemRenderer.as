@@ -37,7 +37,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private function handleClickEvent(event:Event):void
 		{
-			trace("Click! on index "+this.index);
 			this.dispatchEvent(new Event("selected"));
 		}
 		

@@ -16,38 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.staticControls.beads
 {
-	import flash.display.Sprite;
-
-	public class DataItemRenderer extends UIItemRendererBase
+	import org.apache.flex.core.IStrand;
+	
+	public class DataGridColumnView extends ListView
 	{
-		public function DataItemRenderer()
+		public function DataGridColumnView()
 		{
-			super();
 		}
 		
-		private var _columnIndex:int;
-		public function get columnIndex():int
+		private var _strand:IStrand;
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			_strand = value;
+		}
+		
+		private var _columnIndex:uint;
+		public function get columnIndex():uint
 		{
 			return _columnIndex;
 		}
-		public function set columnIndex(value:int):void
+		public function set columnIndex(value:uint):void
 		{
 			_columnIndex = value;
 		}
 		
-		private var _rowIndex:int;
-		public function get rowIndex():int
-		{
-			return _rowIndex;
-		}
-		public function set rowIndex(value:int):void
-		{
-			_rowIndex = value;
-		}
-		
-		private var _labelField:String = "label";
+		private var _labelField:String;
 		public function get labelField():String
 		{
 			return _labelField;
@@ -55,26 +51,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		public function set labelField(value:String):void
 		{
 			_labelField = value;
-		}
-		
-		private var background:Sprite;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			background = new Sprite();
-			addChild(background);
-		}
-		
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
-			background.graphics.drawRect(0, 0, this.width, this.height);
-			background.graphics.endFill();
 		}
 	}
 }
