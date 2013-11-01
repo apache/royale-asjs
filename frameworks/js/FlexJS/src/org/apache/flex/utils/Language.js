@@ -53,7 +53,7 @@ org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
  * @param {*} value The value to be cast.
  * @return {number}
  */
-org.apache.flex.utils.Language.int = function(value) {
+org.apache.flex.utils.Language._int = function(value) {
 	return value >> 0;
 };
 
