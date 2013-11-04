@@ -73,6 +73,11 @@ Alert
     border-thickness: 1;
 }
 
+Button
+{
+    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSButtonView");
+}
+
 ButtonBar
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");

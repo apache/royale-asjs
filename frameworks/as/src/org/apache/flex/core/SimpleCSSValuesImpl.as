@@ -234,9 +234,12 @@ package org.apache.flex.core
 				thisObject = getDefinitionByName(className);
 			}
             o = values["global"];
-			value = o[valueName];
-			if (value !== undefined)
-				return value;
+            if (o)
+            {
+    			value = o[valueName];
+    			if (value !== undefined)
+    				return value;
+            }
 			o = values["*"];			
 			return o[valueName];
 		}
