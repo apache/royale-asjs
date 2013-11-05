@@ -14,18 +14,21 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
+goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org.apache.flex.core.IBeadModel}
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel =
 function() {
   goog.base(this);
+  this.className = 'ArraySelectionModel';
 };
 goog.inherits(
   org.apache.flex.html.staticControls.beads.models.ArraySelectionModel,
+  org.apache.flex.core.IBeadModel,
   org.apache.flex.events.EventDispatcher);
 
 

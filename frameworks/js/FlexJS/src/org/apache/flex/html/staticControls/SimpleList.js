@@ -42,6 +42,7 @@ createElement = function() {
   goog.events.listen(this.element, 'change',
     goog.bind(this.changeHandler, this));
   this.positioner = this.element;
+  this.set_className('SimpleList');
 };
 
 

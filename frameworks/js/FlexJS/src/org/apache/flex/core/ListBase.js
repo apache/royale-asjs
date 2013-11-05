@@ -66,7 +66,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
  */
 org.apache.flex.core.ListBase.prototype.get_dataProvider =
     function() {
-   return this.model.get_dataProvider();
+   return this.get_model().get_dataProvider();
 };
 
 
@@ -77,7 +77,7 @@ org.apache.flex.core.ListBase.prototype.get_dataProvider =
  */
 org.apache.flex.core.ListBase.prototype.set_dataProvider =
     function(value) {
-  this.model.set_dataProvider(value);
+  this.get_model().set_dataProvider(value);
 };
 
 
@@ -88,7 +88,7 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedIndex =
     function() {
-  return this.model.get_selectedIndex();
+  return this.get_model().get_selectedIndex();
 };
 
 
@@ -99,7 +99,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedIndex =
  */
 org.apache.flex.core.ListBase.prototype.set_selectedIndex =
     function(value) {
-  this.model.set_selectedIndex(value);
+  this.get_model().set_selectedIndex(value);
 };
 
 
@@ -110,7 +110,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
  */
 org.apache.flex.core.ListBase.prototype.get_selectedItem =
     function() {
-  return this.model.get_selectedItem();
+  return this.get_model().get_selectedItem();
 };
 
 
@@ -121,7 +121,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedItem =
  */
 org.apache.flex.core.ListBase.prototype.set_selectedItem =
     function(value) {
-  this.model.set_selectedItem(value);
+  this.get_model().set_selectedItem(value);
 };
 
 

@@ -41,7 +41,19 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+    };
+
+
+/**
+ * @override
+ * @this {org.apache.flex.html.staticControls.Container}
+ */
+org.apache.flex.html.staticControls.Container.prototype.addElement =
+function(child) {
+  goog.base(this,'addElement',child);
+  this.dispatchEvent('elementAdded');
 };
+
 
 /**
  * @override

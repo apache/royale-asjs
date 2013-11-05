@@ -23,8 +23,8 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.Shape;
 	
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.IDataGridModel;
+	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -83,6 +83,8 @@ package org.apache.flex.html.staticControls.beads
 				column.addBead(factory);
 				columnContainer.addElement(column);
 				columns.push(column);
+				
+				column.addEventListener('change',columnListChangeHandler);
 			}
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
@@ -124,6 +126,18 @@ package org.apache.flex.html.staticControls.beads
 				column.width = cw;
 				column.height = columnContainer.height; // this will actually be Nitem*rowHeight
 			}
+		}
+		
+		private function columnListChangeHandler(event:Event):void
+		{
+			var list:List = event.target as List;
+			for(var i:int=0; i < columns.length; i++) {
+				if (list != columns[i]) {
+					columns[i].selectedIndex = list.selectedIndex;
+				}
+			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 		}
 	}
 }

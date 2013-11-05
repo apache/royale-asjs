@@ -12,30 +12,31 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout');
+goog.provide('org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.core.IBeadLayout}
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout =
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
     function() {
   goog.base(this);
   this.strand_ = null;
-  this.className = 'NonVirtualHorizontalLayout';
+  this.className = 'ButtonBarLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout,
+goog.inherits(org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout,
 org.apache.flex.core.IBeadLayout);
 
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.layouts.
-          NonVirtualHorizontalLayout}
+          ButtonBarLayout}
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
@@ -43,33 +44,40 @@ prototype.set_strand =
     this.strand_.addEventListener('childrenAdded',
         goog.bind(this.changeHandler, this));
     this.strand_.addEventListener('itemsCreated',
-                                  goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('elementAdded',
-                                  goog.bind(this.changeHandler, this));
+        goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
-    
-    this.changeHandler(null);
   }
 };
 
 
 /**
  * @this {org.apache.flex.html.staticControls.beads.layouts.
-          NonVirtualHorizontalLayout}
+          ButtonBarLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 prototype.changeHandler = function(event) {
-  var children, i, n;
+  var children, i, n, xpos, useWidth, useHeight;
 
   children = this.strand_.internalChildren();
   n = children.length;
+  
+  xpos = 0;
+  useWidth = this.strand_.get_width() / n;
+  useHeight = this.strand_.get_height();
+  
   for (i = 0; i < n; i++)
   {
-    if (children[i].style.display == 'none')
+    children[i].set_width(useWidth);
+    children[i].set_height(useHeight);
+    children[i].element.style['vertical-align'] = 'middle';
+    children[i].element.style['left-margin'] = 'auto';
+    children[i].element.style['right-margin'] = 'auto';
+    
+    if (children[i].element.style.display == 'none')
       children[i].lastDisplay_ = 'inline-block';
     else
-      children[i].style.display = 'inline-block';
+      children[i].element.style.display = 'inline-block';
   }
 };
 

@@ -14,13 +14,18 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
 
+goog.require('org.apache.flex.core.IBeadController');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.core.IBeadController}
  */
 org.apache.flex.html.staticControls.beads.controllers.
 ItemRendererMouseController = function() {
+  goog.base(this);
 };
+goog.inherits(org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController,
+              org.apache.flex.core.IBeadController);
 
 
 

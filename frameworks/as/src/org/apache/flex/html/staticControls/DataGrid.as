@@ -21,6 +21,8 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.UIBase;
 	
+	[Event(name="change", type="org.apache.flex.events.Event")]
+	
 	public class DataGrid extends UIBase
 	{
 		public function DataGrid()
@@ -44,6 +46,11 @@ package org.apache.flex.html.staticControls
 		public function set labelFields(value:Object):void
 		{
 			IDataGridModel(model).labelFields = value;
+		}
+		
+		public function get selectedIndex():int
+		{
+			return IDataGridModel(model).selectedIndex;
 		}
 	}
 }

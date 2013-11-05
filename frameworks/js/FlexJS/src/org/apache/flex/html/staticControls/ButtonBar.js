@@ -24,35 +24,35 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButton
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.ListBase}
+ * @extends {org.apache.flex.html.staticControls.List}
  */
 org.apache.flex.html.staticControls.ButtonBar = function() {
 
-  this.model = new
-        org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
-  this.addBead(this.model);
+//  this.model = new
+//        org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
+//  this.addBead(this.model);
 
   goog.base(this);
 
-  this.addBead(new
-        org.apache.flex.html.staticControls.beads.ListView());
+//  this.addBead(new
+//        org.apache.flex.html.staticControls.beads.ListView());
 
-  this.addBead(new
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout());
+//  this.addBead(new
+//org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout());
 
-  this.itemRendererFactory = new
-        org.apache.flex.html.staticControls.beads.
-        DataItemRendererFactoryForArrayData();
-  this.itemRendererFactory.set_itemRendererClass('org.apache.flex.html.' +
-        'staticControls.supportClasses.ButtonBarButtonItemRenderer');
-  this.addBead(this.itemRendererFactory);
+//  this.itemRendererFactory = new
+//        org.apache.flex.html.staticControls.beads.
+//        DataItemRendererFactoryForArrayData();
+//  this.itemRendererFactory.set_itemRendererClass('org.apache.flex.html.' +
+//        'staticControls.supportClasses.ButtonBarButtonItemRenderer');
+//  this.addBead(this.itemRendererFactory);
 
-  this.addBead(new
-        org.apache.flex.html.staticControls.beads.controllers.
-        ListSingleSelectionMouseController());
+//  this.addBead(new
+//        org.apache.flex.html.staticControls.beads.controllers.
+//        ListSingleSelectionMouseController());
 };
 goog.inherits(org.apache.flex.html.staticControls.ButtonBar,
-    org.apache.flex.core.ListBase);
+    org.apache.flex.html.staticControls.List);
 
 
 /**

@@ -20,8 +20,9 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 
-	public class ButtonBarButtonItemRenderer extends UIItemRendererBase
+	public class ButtonBarButtonItemRenderer extends UIItemRendererBase implements ITextItemRenderer
 	{
 		public function ButtonBarButtonItemRenderer()
 		{
@@ -40,6 +41,15 @@ package org.apache.flex.html.staticControls.supportClasses
 			this.dispatchEvent(new Event("selected"));
 		}
 		
+		public function get text():String
+		{
+			return data as String;
+		}
+		public function set text(value:String):void
+		{
+			data = value;
+		}
+		
 		override public function set data(value:Object):void
 		{
 			super.data = value;
@@ -51,15 +61,19 @@ package org.apache.flex.html.staticControls.supportClasses
 				added = true;
 			}
 			
+			var valueAsString:String;
+			
 			if (value is String) {
-				textButton.text = String(value);
+				valueAsString = value as String;
 			}
 			else if (value.hasOwnProperty("label")) {
-				textButton.text = String(value["label"]);
+				valueAsString = String(value["label"]);
 			}
 			else if (value.hasOwnProperty("title")) {
-				textButton.text = String(value["title"]);
+				valueAsString = String(value["title"]);
 			}
+			
+			if (valueAsString) textButton.text = valueAsString;
 			
 			if (added) addElement(textButton);
 		}

@@ -15,11 +15,12 @@
 goog.provide('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
 function() {
@@ -27,6 +28,7 @@ function() {
 };
 goog.inherits(
   org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData,
+  org.apache.flex.core.IItemRenderer,
   org.apache.flex.events.EventDispatcher);
 
 
@@ -50,6 +52,8 @@ prototype.set_strand = function(value) {
 
   this.model.addEventListener('dataProviderChanged',
       goog.bind(this.dataProviderChangedHandler, this));
+  
+  this.dataProviderChangedHandler(null);
 };
 
 
@@ -73,5 +77,5 @@ prototype.dataProviderChangedHandler = function(event) {
   }
 
   var newEvent = new org.apache.flex.events.Event('itemsCreated');
-  this.dispatchEvent(newEvent);
+  this.strand_.dispatchEvent(newEvent);
 };

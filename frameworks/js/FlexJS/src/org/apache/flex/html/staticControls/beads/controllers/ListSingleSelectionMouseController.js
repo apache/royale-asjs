@@ -14,16 +14,21 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController');
 
+goog.require('org.apache.flex.core.IBeadController');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 
 /**
  * @constructor
+ * @extends {org.apache.flex.core.IBeadController}
  */
 org.apache.flex.html.staticControls.beads.controllers.
 ListSingleSelectionMouseController = function() {
+  goog.base(this);
 };
+goog.inherits(org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController,
+              org.apache.flex.core.IBeadController);
 
 
 /**

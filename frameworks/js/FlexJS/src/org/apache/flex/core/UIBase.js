@@ -15,6 +15,11 @@
 goog.provide('org.apache.flex.core.UIBase');
 
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.IBeadView');
+goog.require('org.apache.flex.core.IBeadController');
+goog.require('org.apache.flex.core.ValuesManager');
 
 
 
@@ -118,6 +123,47 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
   
+  var c;
+  if (this.getBeadByType(org.apache.flex.core.IBeadModel) == null) 
+  {
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iBeadModel');
+    if (c)
+    {
+        var model = new c();
+        if (model)
+            this.addBead(model);
+    }
+  }
+  if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
+  {
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iBeadView');
+    if (c)
+    {
+      var view = new c();
+      if (view)
+          this.addBead(view);
+    }
+  }
+  if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
+  {
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iBeadLayout');
+    if (c)
+    {
+      var layout = new c();
+      if (layout)
+        this.addBead(layout);
+    }
+  }
+  if (this.getBeadByType(org.apache.flex.core.IBeadController) == null)
+  {
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iBeadController');
+    if (c)
+    {
+      var controller = new c();
+      if (controller)
+        this.addBead(controller);
+    }
+  }
 };
 
 
@@ -130,6 +176,14 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
     this.beads_ = new Array();
   }
   this.beads_.push(bead);
+  
+  if (bead instanceof org.apache.flex.core.IBeadModel)
+    this.model = bead;
+
+  if (bead instanceof org.apache.flex.core.IBeadView) {
+    this.dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+  }
+
   bead.set_strand(this);
 };
 
@@ -141,6 +195,9 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
  */
 org.apache.flex.core.UIBase.prototype.getBeadByType = 
 function(classOrInterface) {
+  if (!this.beads_) {
+    this.beads_ = new Array();
+  }
   for (var i=0; i < this.beads_.length; i++) {
       var bead = this.beads_[i];
       if (bead instanceof classOrInterface) {
@@ -158,6 +215,7 @@ function(classOrInterface) {
  */
 org.apache.flex.core.UIBase.prototype.removeBead =
 function(value) {
+  if (!this.beads_) return null;
   var n = beads_.length;
   for (var i=0; i < n; i++) {
     var bead = beads_[i];
@@ -199,6 +257,17 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
   this.positioner.style.width = pixels.toString() + 'px';
 };
 
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {number} The width of the object in pixels.
+ */
+org.apache.flex.core.UIBase.prototype.get_width = function() {
+  var strpixels = this.positioner.style.width;
+  var pixels = parseFloat(strpixels);
+  return pixels;
+}
+
 
 /**
  * @expose
@@ -208,6 +277,17 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
   this.positioner.style.height = pixels.toString() + 'px';
 };
+
+/**
+ * @expose
+ * @this {org.apache.flex.core.UIBase}
+ * @return {number} The height of the object in pixels.
+ */
+org.apache.flex.core.UIBase.prototype.get_height = function() {
+  var strpixels = this.positioner.style.height;
+  var pixels = parseFloat(strpixels);
+  return pixels;
+}
 
 
 /**
@@ -285,6 +365,13 @@ org.apache.flex.core.UIBase.prototype.model = null;
  * @return {Object} The model.
  */
 org.apache.flex.core.UIBase.prototype.get_model = function() {
+  if (this.model == null)
+  {
+    // addbead will set _model
+    var m = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iBeadModel');
+    var b = new m;
+    this.addBead(b);
+  }
   return this.model;
 };
 
