@@ -78,8 +78,10 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 		for (i = interfaces.length - 1; i > -1; i--) {
 			if (interfaces[i] === rightOperand) {
 				return true;
-			} else if (interfaces[i].AFJS_INTERFACES) {
-				return checkInterfaces(interfaces[i]);
+			} 
+			
+			if (interfaces[i].prototype.AFJS_INTERFACES) {
+				return checkInterfaces(new interfaces[i]());
 			}
 		}
 	
@@ -89,7 +91,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 	if (leftOperand instanceof rightOperand) {
 		return true;
 	} else if (leftOperand.AFJS_INTERFACES) {
-		return checkInterfaces(leftOperand)
+		return checkInterfaces(leftOperand);
 	}
 
 	return false;
