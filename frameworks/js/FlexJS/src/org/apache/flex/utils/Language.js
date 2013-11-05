@@ -69,7 +69,30 @@ org.apache.flex.utils.Language._int = function(value) {
  * @return {boolean}
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
-	return true;
+	var checkInterfaces;
+	
+	checkInterfaces = function (left) {
+		var i, interfaces;
+	
+		interfaces = left.AFJS_INTERFACES;
+		for (i = interfaces.length - 1; i > -1; i--) {
+			if (interfaces[i] === rightOperand) {
+				return true;
+			} else if (interfaces[i].AFJS_INTERFACES) {
+				return checkInterfaces(interfaces[i]);
+			}
+		}
+	
+		return false;
+	}
+
+	if (leftOperand instanceof rightOperand) {
+		return true;
+	} else if (leftOperand.AFJS_INTERFACES) {
+		return checkInterfaces(leftOperand)
+	}
+
+	return false;
 };
 
 
