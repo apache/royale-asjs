@@ -14,15 +14,10 @@
 
 goog.provide('org.apache.flex.core.IItemRenderer');
 
-goog.require('org.apache.flex.events.EventDispatcher');
+
 
 /**
- * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @interface
  */
 org.apache.flex.core.IItemRenderer = function() {
-  goog.base(this);
 };
-goog.inherits(
-              org.apache.flex.core.IItemRenderer,
-              org.apache.flex.events.EventDispatcher);
