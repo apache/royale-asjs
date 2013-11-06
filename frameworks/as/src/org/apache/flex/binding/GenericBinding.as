@@ -35,6 +35,7 @@ package org.apache.flex.binding
 
 		public var source:Object;
 		public var destinationData:Object;
+		public var destinationFunction:Function;
 		
 		public function set strand(value:IStrand):void
 		{
@@ -76,7 +77,11 @@ package org.apache.flex.binding
         
         private function applyValue(value:Object):void
         {
-            if (destinationData is Array)
+			if (destinationFunction != null)
+			{
+				destinationFunction.apply(document, [value]);
+			}
+			else if (destinationData is Array)
             {
                 var arr:Array = destinationData as Array;
                 var n:int = arr.length;
@@ -90,10 +95,6 @@ package org.apache.flex.binding
                         return;
                 }
                 obj[arr[n-1]] = value;                
-            }
-            else if (destinationData is Function)
-            {
-                Function(destinationData).apply(document, [value]);
             }
         }
 		

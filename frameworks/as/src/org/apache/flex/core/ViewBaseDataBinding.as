@@ -57,6 +57,7 @@ package org.apache.flex.core
             {
                 var binding:Object = {};
                 binding.source = bindingData[index++];
+				binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
                 bindings.push(binding);
             }
@@ -142,6 +143,7 @@ package org.apache.flex.core
             var gb:GenericBinding = new GenericBinding();
             gb.setDocument(_strand);
             gb.destinationData = binding.destination;
+			gb.destinationFunction = binding.destFunc;
             gb.source = binding.source;
             setupWatchers(gb, index, watchers.watchers, null);
         }
@@ -200,14 +202,25 @@ package org.apache.flex.core
                     {
                         watcherData = { type: "function" };
                         watcherData.functionName = bindingData[index++];
+						watcherData.paramFunction = bindingData[index++];
                         watcherData.eventNames = bindingData[index++];
                         watcherData.bindings = bindingData[index++];
                         break;
                     }
                     case 1:
+					{
+						watcherData = { type: "static" };
+						watcherData.propertyName = bindingData[index++];
+						watcherData.eventNames = bindingData[index++];
+						watcherData.bindings = bindingData[index++];
+						watcherData.getterFunction = bindingData[index++];
+						watcherData.parentObj = bindingData[index++];
+						watcherMap[watcherData.propertyName] = watcherData;
+						break;
+					}
                     case 2:
                     {
-                        watcherData = { type: type == 1 ? "static" : "property" };
+                        watcherData = { type: "property" };
                         watcherData.propertyName = bindingData[index++];
                         watcherData.eventNames = bindingData[index++];
                         watcherData.bindings = bindingData[index++];

@@ -63,6 +63,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.set_strand =
 org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
     function(event) {
 
+    var prop;
     var fieldWatcher;
     var sb;
     var bindingData = this.strand_['_bindings'];
@@ -74,6 +75,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
     {
         var binding = {};
         binding.source = bindingData[index++];
+        binding.destFunc = bindingData[index++];
         binding.destination = bindingData[index++];
         bindings.push(binding);
     }
@@ -105,18 +107,20 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
                         sb.sourceID = binding.source[0];
                         sb.sourcePropertyName = binding.source[1];
                         sb.setDocument(this.strand_);
-                        destination = this.strand_[
-                                            binding.destination[0]];
-                        if (destination == null &&
-                                typeof(this.strand_['get_' +
-                                    binding.destination[0]] == 'function'))
+                        prop = binding.destination[0];
+                        
+                        if (typeof(this.strand_['get_' +
+                                    prop]) == 'function')
                                 destination = this.strand_[
-                                        'get_' + binding.destination[0]]();
+                                        'get_' + prop]();
+                        else
+                            destination = this.strand_[prop];
+
                         if (destination)
                               destination.addBead(sb);
                         else
                         {
-                            this.deferredBindings[binding.destination[0]] =
+                            this.deferredBindings[prop] =
                                     sb;
                             this.strand_.addEventListener('valueChange',
                                     this.deferredBindingsHandler);
@@ -132,18 +136,19 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
                         cb.sourceID = binding.source[0];
                         cb.sourcePropertyName = binding.source[1];
                         cb.setDocument(this.strand_);
-                        destination = this.strand_[
-                                            binding.destination[0]];
-                        if (destination == null &&
-                                typeof(this.strand_['get_' +
-                                    binding.destination[0]] == 'function'))
+                        prop = binding.destination[0];
+                        if (typeof(this.strand_['get_' +
+                                    prop]) == 'function')
                                 destination = this.strand_[
-                                        'get_' + binding.destination[0]]();
+                                        'get_' + prop]();
+                        else
+                            destination = this.strand_[prop];
+
                         if (destination)
                                 destination.addBead(cb);
                         else
                         {
-                            this.deferredBindings[binding.destination[0]] =
+                            this.deferredBindings[prop] =
                                 cb;
                             this.strand_.addEventListener('valueChange',
                                 this.deferredBindingsHandler);
@@ -162,17 +167,19 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
                 sb.eventName = fieldWatcher.eventNames;
                 sb.sourcePropertyName = binding.source;
                 sb.setDocument(this.strand_);
-                destination = this.strand_[binding.destination[0]];
-                if (destination == null &&
-                        typeof(this.strand_['get_' +
-                                binding.destination[0]] == 'function'))
+                prop = binding.destination[0];
+                if (typeof(this.strand_['get_' +
+                                prop]) == 'function')
                     destination = this.strand_[
-                                'get_' + binding.destination[0]]();
+                                'get_' + prop]();
+                else
+                    destination = this.strand_[prop];
+
                 if (destination)
                     destination.addBead(sb);
                 else
                 {
-                    this.deferredBindings[binding.destination[0]] = sb;
+                    this.deferredBindings[prop] = sb;
                     this.strand_.addEventListener('valueChange',
                                 this.deferredBindingsHandler);
                 }
@@ -198,6 +205,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.makeGenericBinding =
     var gb = new org.apache.flex.binding.GenericBinding();
     gb.setDocument(this.strand_);
     gb.destinationData = binding.destination;
+    gb.destinationFunction = binding.destFunc;
     gb.source = binding.source;
     this.setupWatchers(gb, index, watchers.watchers, null);
 };
@@ -274,14 +282,25 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.decodeWatcher =
             {
                 watcherData = { type: 'function' };
                 watcherData.functionName = bindingData[index++];
+                watcherData.paramFunction = bindingData[index++];
                 watcherData.eventNames = bindingData[index++];
                 watcherData.bindings = bindingData[index++];
                 break;
             }
             case 1:
+            {
+                watcherData = { type: 'static' };
+                watcherData.propertyName = bindingData[index++];
+                watcherData.eventNames = bindingData[index++];
+                watcherData.bindings = bindingData[index++];
+                watcherData.getterFunction = bindingData[index++];
+                watcherData.parentObj = bindingData[index++];
+                watcherMap[watcherData.propertyName] = watcherData;
+                break;
+            }
             case 2:
             {
-                watcherData = { type: type == 1 ? 'static' : 'property' };
+                watcherData = { type: 'property' };
                 watcherData.propertyName = bindingData[index++];
                 watcherData.eventNames = bindingData[index++];
                 watcherData.bindings = bindingData[index++];
@@ -319,15 +338,15 @@ function(event) {
     var p;
     for (p in this.deferredBindings)
     {
-        if (this.strand_[p] != null)
+        if (typeof(this.strand_['get_' + p]) == 'function')
         {
-            var destination = this.strand_[p];
+            var destination = this.strand_['get_' + p]();
             destination.addBead(this.deferredBindings[p]);
             delete deferredBindings[p];
         }
-        else if (typeof(this.strand_['get_' + p]) == 'function')
+        else if (this.strand_[p] != null)
         {
-            var destination = this.strand_['get_' + p]();
+            var destination = this.strand_[p];
             destination.addBead(this.deferredBindings[p]);
             delete deferredBindings[p];
         }

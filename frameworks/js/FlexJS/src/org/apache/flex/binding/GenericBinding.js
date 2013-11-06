@@ -32,6 +32,12 @@ org.apache.flex.binding.GenericBinding.prototype.destinationData = null;
 
 /**
  * @expose
+ * @type {function}
+ */
+org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
+
+/**
+ * @expose
  * @this {org.apache.flex.binding.GenericBinding}
  * @param {Object} value The strand (owner) of the bead.
  */
@@ -88,7 +94,11 @@ org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
 org.apache.flex.binding.GenericBinding.prototype.applyValue =
         function(value)
 {
-    if (typeof(this.destinationData) == 'object')
+    if (this.destinationFunction != null)
+    {
+        this.destinationFunction.apply(this.document, [value]);
+    }
+    else if (typeof(this.destinationData) == 'object')
     {
         var arr = this.destinationData;
         var n = arr.length;
@@ -102,10 +112,6 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
                 return;
         }
         obj['set_' + arr[n - 1]](value);
-    }
-    else if (typeof(this.destinationData) == 'function')
-    {
-        this.destinationData.apply(this.document, [value]);
     }
 };
 
