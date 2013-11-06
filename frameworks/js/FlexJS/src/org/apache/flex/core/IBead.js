@@ -18,22 +18,24 @@
 
 'use strict';
 
-goog.provide('org.apache.flex.core.IBeadLayout');
-
-goog.require('org.apache.flex.core.IBead');
+goog.provide('org.apache.flex.core.IBead');
 
 
 
 /**
+ * IBead
+ *
  * @interface
- * @implements {org.apache.flex.core.IBead}
  */
-org.apache.flex.core.IBeadLayout = function() {
+org.apache.flex.core.IBead = function() {
 };
 
 
 /**
- * @const
+ * set_strand()
+ *
+ * @expose
+ * @param {Object} value The new host.
  */
-org.apache.flex.core.IBeadLayout.prototype.AFJS_INTERFACES =
-    [org.apache.flex.core.IBead];
+org.apache.flex.core.IBead.prototype.set_strand =
+    function(value) {};

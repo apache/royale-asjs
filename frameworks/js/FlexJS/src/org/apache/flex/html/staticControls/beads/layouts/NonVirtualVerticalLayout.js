@@ -12,22 +12,26 @@
  * limitations under the License.
  */
 
+/*jshint globalstrict: true, indent: 2, maxlen: 80, strict: true,
+    white: false */
+/*global goog, org */
+
+'use strict';
+
 goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
 org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout =
     function() {
-  goog.base(this);
   this.strand_ = null;
   this.className = 'NonVirtualVerticalLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout,
-org.apache.flex.core.IBeadLayout);
+
 
 /**
  * @expose
@@ -55,10 +59,11 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.proto
   n = children.length;
   for (i = 0; i < n; i++)
   {
-    if (children[i].style.display == 'none')
+    if (children[i].style.display === 'none') {
       children[i].lastDisplay_ = 'block';
-    else
+    } else {
       children[i].style.display = 'block';
+    }
   }
 };
 

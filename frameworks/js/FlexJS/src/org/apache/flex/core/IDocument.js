@@ -18,22 +18,25 @@
 
 'use strict';
 
-goog.provide('org.apache.flex.core.IBeadLayout');
-
-goog.require('org.apache.flex.core.IBead');
+goog.provide('org.apache.flex.core.IDocument');
 
 
 
 /**
+ * IDocument
+ *
  * @interface
- * @implements {org.apache.flex.core.IBead}
  */
-org.apache.flex.core.IBeadLayout = function() {
+org.apache.flex.core.IDocument = function() {
 };
 
 
 /**
- * @const
+ * setDocument()
+ *
+ * @expose
+ * @param {Object} document The DOM document element.
+ * @param {string=} opt_id The id (optional).
  */
-org.apache.flex.core.IBeadLayout.prototype.AFJS_INTERFACES =
-    [org.apache.flex.core.IBead];
+org.apache.flex.core.IDocument.prototype.setDocument =
+    function(document, opt_id) {};
