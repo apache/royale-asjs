@@ -12,11 +12,6 @@
  * limitations under the License.
  */
 
-/*jshint globalstrict: true, indent: 2, maxlen: 80, strict: true, white: false */
-/*global goog, org */
-
-'use strict';
-
 goog.provide('org.apache.flex.utils.Language');
 
 
@@ -70,21 +65,21 @@ org.apache.flex.utils.Language._int = function(value) {
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 	var checkInterfaces;
-	
+
 	checkInterfaces = function (left) {
 		var i, interfaces;
-	
+
 		interfaces = left.AFJS_INTERFACES;
 		for (i = interfaces.length - 1; i > -1; i--) {
 			if (interfaces[i] === rightOperand) {
 				return true;
-			} 
-			
+			}
+
 			if (interfaces[i].prototype.AFJS_INTERFACES) {
 				return checkInterfaces(new interfaces[i]());
 			}
 		}
-	
+
 		return false;
 	}
 

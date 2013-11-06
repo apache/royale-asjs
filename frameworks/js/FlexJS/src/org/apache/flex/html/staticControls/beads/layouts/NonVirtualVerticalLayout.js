@@ -12,12 +12,6 @@
  * limitations under the License.
  */
 
-/*jshint globalstrict: true, indent: 2, maxlen: 80, strict: true,
-    white: false */
-/*global goog, org */
-
-'use strict';
-
 goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
