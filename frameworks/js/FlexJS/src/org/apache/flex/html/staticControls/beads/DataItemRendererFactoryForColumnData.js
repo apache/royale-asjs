@@ -127,4 +127,4 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
  * @const
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
-  .prototype.AFJS_INTERFACES = [org.apache.flex.core.IItemRenderer];
+  .prototype.FLEXJS_CLASS_INFO = { interfaces: [org.apache.flex.core.IItemRenderer] };

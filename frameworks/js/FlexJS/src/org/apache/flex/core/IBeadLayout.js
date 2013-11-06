@@ -29,5 +29,5 @@ org.apache.flex.core.IBeadLayout = function() {
 /**
  * @const
  */
-org.apache.flex.core.IBeadLayout.prototype.AFJS_INTERFACES =
-    [org.apache.flex.core.IBead];
+org.apache.flex.core.IBeadLayout.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBead] };
