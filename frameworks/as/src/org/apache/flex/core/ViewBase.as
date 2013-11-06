@@ -39,7 +39,7 @@ package org.apache.flex.core
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 			
-			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 			
 			dispatchEvent(new Event("initComplete"))
@@ -50,9 +50,11 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		public function get MXMLProperties():Array
+		private var mxmlProperties:Array ;
+		
+		public function generateMXMLAttributes(data:Array):void
 		{
-			return null;
+			mxmlProperties = data;
 		}
 		
 		public var mxmlContent:Array;

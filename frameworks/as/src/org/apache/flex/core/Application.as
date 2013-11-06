@@ -52,8 +52,6 @@ package org.apache.flex.core
 
         private function initHandler(event:flash.events.Event):void
         {
-	        MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
-
             ValuesManager.valuesImpl = valuesImpl;
             ValuesManager.valuesImpl.init(this);
 
@@ -77,9 +75,9 @@ package org.apache.flex.core
             return null;
         }
 
-    	public function get MXMLProperties():Array
+    	public function generateMXMLAttributes(data:Array):void
         {
-            return null;
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
         
         // beads declared in MXML are added to the strand.
