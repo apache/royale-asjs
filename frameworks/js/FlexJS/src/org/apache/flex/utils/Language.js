@@ -20,7 +20,6 @@ goog.provide('org.apache.flex.utils.Language');
  * @constructor
  */
 org.apache.flex.utils.Language = function() {
-	//
 };
 
 
@@ -69,13 +68,14 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 	checkInterfaces = function (left) {
 		var i, interfaces;
 
-		interfaces = left.AFJS_INTERFACES;
+		interfaces = left.FLEXJS_CLASS_INFO.interfaces;
 		for (i = interfaces.length - 1; i > -1; i--) {
 			if (interfaces[i] === rightOperand) {
 				return true;
 			}
 
-			if (interfaces[i].prototype.AFJS_INTERFACES) {
+			if (interfaces[i].prototype.FLEXJS_CLASS_INFO &&
+			    interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
 				return checkInterfaces(new interfaces[i]());
 			}
 		}
@@ -85,7 +85,8 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 
 	if (leftOperand instanceof rightOperand) {
 		return true;
-	} else if (leftOperand.AFJS_INTERFACES) {
+	} else if (leftOperand.FLEXJS_CLASS_INFO &&
+	    leftOperand.FLEXJS_CLASS_INFO.interfaces) {
 		return checkInterfaces(leftOperand);
 	}
 
