@@ -34,7 +34,6 @@ goog.inherits(org.apache.flex.events.Event,
 
 /**
  * @expose
- * @this {org.apache.flex.events.Event}
  * @param {string} type The event type.
  */
 org.apache.flex.events.Event.prototype.init = function(type) {
@@ -44,7 +43,6 @@ org.apache.flex.events.Event.prototype.init = function(type) {
 
 /**
  * @expose
- * @this {org.apache.flex.events.Event}
  * @return {Object} The event target.
  */
 org.apache.flex.events.Event.prototype.get_target = function() {

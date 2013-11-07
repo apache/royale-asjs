@@ -61,7 +61,6 @@ org.apache.flex.core.Application.prototype.valuesImpl = null;
 
 /**
  * @expose
- * @this {org.apache.flex.core.Application}
  */
 org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
@@ -82,7 +81,6 @@ org.apache.flex.core.Application.prototype.start = function() {
 
 
 /**
- * @this {org.apache.flex.core.Application}
  * @param {Object} c The child element.
  */
 org.apache.flex.core.Application.prototype.addElement =

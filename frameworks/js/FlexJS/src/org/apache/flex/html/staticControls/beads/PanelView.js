@@ -26,7 +26,6 @@ org.apache.flex.html.staticControls.beads.PanelView = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.PanelView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
@@ -52,7 +51,6 @@ org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.PanelView}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.beads.PanelView.prototype.changeHandler =

@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.createjs.staticControls.Label,
 
 /**
  * @override
- * @this {org.apache.flex.createjs.staticControls.Label}
  */
 org.apache.flex.createjs.staticControls.Label.prototype.createElement =
     function(p) {
@@ -50,7 +49,6 @@ org.apache.flex.createjs.staticControls.Label.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.Label}
  * @return {string} The text getter.
  */
 org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
@@ -60,7 +58,6 @@ org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.Label}
  * @param {string} value The text setter.
  */
 org.apache.flex.createjs.staticControls.Label.prototype.set_text =

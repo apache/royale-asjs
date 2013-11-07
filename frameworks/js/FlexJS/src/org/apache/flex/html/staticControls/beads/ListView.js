@@ -41,7 +41,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ListView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
@@ -68,7 +67,6 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ListView}
  * @return {object} The DataGroup instance.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
@@ -79,7 +77,6 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ListView}
  * @param {object} value The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.

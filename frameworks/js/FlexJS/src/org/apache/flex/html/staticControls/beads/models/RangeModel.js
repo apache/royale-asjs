@@ -37,7 +37,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.RangeModel,
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -48,7 +47,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @return {Number} The current minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -59,7 +57,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -73,7 +70,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @return {Number} The current maximu value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -84,7 +80,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} value The new maximum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -98,7 +93,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @return {Number} The current value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -109,7 +103,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} newValue The new value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -130,7 +123,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @return {Number} The current snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -141,7 +133,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -155,7 +146,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @return {Number} The current stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -166,7 +156,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
@@ -180,7 +169,6 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Number} value The candidate number.
  * @return {Number} Adjusted value.
  */

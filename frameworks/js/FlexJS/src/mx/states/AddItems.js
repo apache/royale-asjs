@@ -24,7 +24,6 @@ mx.states.AddItems = function() {
 
 
 /**
- * @this {mx.states.AddItems}
  * @param {Object} document The MXML object.
  */
 mx.states.AddItems.prototype.setDocument = function(document) {

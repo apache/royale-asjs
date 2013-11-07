@@ -38,7 +38,6 @@ goog.inherits(org.apache.flex.createjs.core.UIBase,
 
 
 /**
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {Object} c The child element.
  */
 org.apache.flex.createjs.core.UIBase.prototype.addElement =
@@ -48,7 +47,6 @@ org.apache.flex.createjs.core.UIBase.prototype.addElement =
 
 
 /**
- * @this {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.core.UIBase.prototype.createElement =
     function() {
@@ -60,7 +58,6 @@ org.apache.flex.createjs.core.UIBase.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
@@ -71,7 +68,6 @@ org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
@@ -82,7 +78,6 @@ org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
@@ -93,7 +88,6 @@ org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
@@ -111,7 +105,6 @@ org.apache.flex.createjs.core.UIBase.prototype.id = null;
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @return {string} The id.
  */
 org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
@@ -121,7 +114,6 @@ org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {object} value The new id.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
@@ -143,7 +135,6 @@ org.apache.flex.createjs.core.UIBase.prototype.model = null;
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @return {object} The model.
  */
 org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
@@ -153,7 +144,6 @@ org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.core.UIBase}
  * @param {object} value The new model.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_model = function(value) {

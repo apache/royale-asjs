@@ -121,7 +121,6 @@ org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The data.
  */
 org.apache.flex.net.HTTPService.prototype.get_data = function() {
@@ -131,7 +130,6 @@ org.apache.flex.net.HTTPService.prototype.get_data = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The contentData.
  */
 org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
@@ -141,7 +139,6 @@ org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {string} value The contentData.
  */
 org.apache.flex.net.HTTPService.prototype.set_contentData = function(value) {
@@ -151,7 +148,6 @@ org.apache.flex.net.HTTPService.prototype.set_contentData = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The contentType.
  */
 org.apache.flex.net.HTTPService.prototype.get_contentType = function() {
@@ -161,7 +157,6 @@ org.apache.flex.net.HTTPService.prototype.get_contentType = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {string} value The contentType.
  */
 org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
@@ -171,7 +166,6 @@ org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_headers = function() {
@@ -185,7 +179,6 @@ org.apache.flex.net.HTTPService.prototype.get_headers = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.set_headers = function(value) {
@@ -195,7 +188,6 @@ org.apache.flex.net.HTTPService.prototype.set_headers = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The method.
  */
 org.apache.flex.net.HTTPService.prototype.get_method = function() {
@@ -205,7 +197,6 @@ org.apache.flex.net.HTTPService.prototype.get_method = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {string} value The method.
  */
 org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
@@ -215,7 +206,6 @@ org.apache.flex.net.HTTPService.prototype.set_method = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
@@ -240,7 +230,6 @@ org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
@@ -250,7 +239,6 @@ org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Number} value The status.
  */
 org.apache.flex.net.HTTPService.prototype.get_status = function() {
@@ -260,7 +248,6 @@ org.apache.flex.net.HTTPService.prototype.get_status = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
@@ -270,7 +257,6 @@ org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {Number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
@@ -280,7 +266,6 @@ org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_url = function() {
@@ -290,7 +275,6 @@ org.apache.flex.net.HTTPService.prototype.get_url = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {string} value The url to fetch.
  */
 org.apache.flex.net.HTTPService.prototype.set_url = function(value) {
@@ -300,7 +284,6 @@ org.apache.flex.net.HTTPService.prototype.set_url = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  */
 org.apache.flex.net.HTTPService.prototype.send = function() {
   var contentData, header, i, n, sawContentType, url;
@@ -356,7 +339,6 @@ org.apache.flex.net.HTTPService.prototype.send = function() {
 
 /**
  * @protected
- * @this {org.apache.flex.net.HTTPService}
  */
 org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
   if (this.element.readyState === 2) {
@@ -378,7 +360,6 @@ org.apache.flex.net.HTTPService.prototype.id;
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {string} The id.
  */
 org.apache.flex.net.HTTPService.prototype.get_id = function() {
@@ -388,7 +369,6 @@ org.apache.flex.net.HTTPService.prototype.get_id = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @param {Object} value The new id.
  */
 org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
@@ -401,7 +381,6 @@ org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Array} The array of descriptors.
  */
 org.apache.flex.net.HTTPService.prototype.get_MXMLDescriptor = function() {
@@ -411,7 +390,6 @@ org.apache.flex.net.HTTPService.prototype.get_MXMLDescriptor = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.HTTPService}
  * @return {Array} The array of properties.
  */
 org.apache.flex.net.HTTPService.prototype.get_MXMLProperties = function() {
@@ -420,7 +398,6 @@ org.apache.flex.net.HTTPService.prototype.get_MXMLProperties = function() {
 
 
 /**
- * @this {org.apache.flex.net.HTTPService}
  * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */

@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html5.staticControls.ComboBox,
 
 /**
  * @override
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
     function() {
@@ -69,7 +68,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {string} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
@@ -88,7 +86,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {string} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
@@ -102,7 +99,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {string} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
@@ -167,7 +163,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
 /**
  * @override
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {Array.<Object>} value The collection of data.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.set_dataProvider =
@@ -178,7 +173,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.set_dataProvider =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @return {string} The text getter.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.get_text = function() {
@@ -188,7 +182,6 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.ComboBox}
  * @param {string} value The text setter.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.set_text =

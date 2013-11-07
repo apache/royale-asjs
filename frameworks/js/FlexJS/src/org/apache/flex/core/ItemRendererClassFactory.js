@@ -28,7 +28,6 @@ org.apache.flex.core.ItemRendererClassFactory = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ItemRendererClassFactory}
  * @param {object} value The component strand.
  */
 org.apache.flex.core.ItemRendererClassFactory.
@@ -45,7 +44,6 @@ org.apache.flex.core.ItemRendererClassFactory.
 
 /**
  * @expose
- * @this {org.apache.flex.core.ItemRendererClassFactory}
  * @param {object} parent The display parent of the new item renderer.
  * @return {object} The new item renderer.
  */
@@ -57,7 +55,6 @@ org.apache.flex.core.ItemRendererClassFactory.
 
 /**
  * @expose
- * @this {org.apache.flex.core.ItemRendererClassFactory}
  * @param {object} parent The parent of the new item renderer.
  * @return {object} The new item renderer.
  */

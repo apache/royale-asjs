@@ -36,7 +36,6 @@ goog.inherits(org.apache.flex.html.staticControls.NumericStepper,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
     function() {
@@ -61,7 +60,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Object} event The input event.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.spinnerChange =
@@ -76,7 +74,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.spinnerChange =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @return {Number} The current minimum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_minimum =
@@ -87,7 +84,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_minimum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_minimum =
@@ -98,7 +94,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_minimum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @return {Number} The current maximum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_maximum =
@@ -109,7 +104,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Number} value The new maximum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_maximum =
@@ -120,7 +114,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @return {Number} The current value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_value =
@@ -131,7 +124,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Number} newValue The new value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_value =
@@ -142,7 +134,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @return {Number} The current snapInterval value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_snapInterval =
@@ -153,7 +144,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_snapInterval =
@@ -164,7 +154,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @return {Number} The current stepSize value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_stepSize =
@@ -175,7 +164,6 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_stepSize =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_stepSize =

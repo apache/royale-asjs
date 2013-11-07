@@ -33,7 +33,6 @@ goog.inherits(org.apache.flex.html.staticControls.Image,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Image.prototype.createElement =
     function(p) {
@@ -55,7 +54,6 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Image}
  * @return {String} The source identifier for the Image.
  */
 org.apache.flex.html.staticControls.Image.prototype.
@@ -66,7 +64,6 @@ org.apache.flex.html.staticControls.Image.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Image}
  * @param {String} value The source identifier for the Image.
  */
 org.apache.flex.html.staticControls.Image.prototype.

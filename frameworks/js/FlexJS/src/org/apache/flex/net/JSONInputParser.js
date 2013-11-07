@@ -25,7 +25,6 @@ org.apache.flex.net.JSONInputParser = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.JSONInputParser}
  * @param {string} s The input string.
  * @return {Array.<String>} The Array of unparsed objects.
  */

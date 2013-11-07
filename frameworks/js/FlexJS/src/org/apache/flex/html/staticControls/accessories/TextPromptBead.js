@@ -31,7 +31,6 @@ org.apache.flex.html.staticControls.accessories.TextPromptBead = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @return {string} value The new prompt.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
@@ -42,7 +41,6 @@ org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @param {string} value The new prompt.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
@@ -53,7 +51,6 @@ org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.

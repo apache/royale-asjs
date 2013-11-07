@@ -25,7 +25,6 @@ org.apache.flex.core.IItemRendererParent = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.IItemRendererParent}
  * @param {number} index The selected index.
  */
 org.apache.flex.core.IItemRendererParent.prototype.

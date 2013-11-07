@@ -32,7 +32,6 @@ goog.inherits(org.apache.flex.html.staticControls.ControlBar,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.ControlBar}
  */
 org.apache.flex.html.staticControls.ControlBar.prototype.createElement =
     function(p) {

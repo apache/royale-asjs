@@ -37,7 +37,6 @@ goog.inherits(org.apache.flex.html.staticControls.DataGrid,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.DataGrid}
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
     function() {
@@ -53,7 +52,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DataGrid}
  * @return {string} The dataProvider getter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_dataProvider =
@@ -64,7 +62,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.get_dataProvider =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DataGrid}
  * @param {string} value The dataProvider setter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.set_dataProvider =
@@ -75,7 +72,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.set_dataProvider =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DataGrid}
  * @return {string} The labelFields getter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_labelFields =
@@ -86,7 +82,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.get_labelFields =
 
 /**
  * @expose
- * @this {xxx}
  * @param {string} value The labelFields setter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.set_labelFields =
@@ -97,7 +92,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.set_labelFields =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DataGrid}
  * @return {string} value The current selectedIndex.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_selectedIndex =

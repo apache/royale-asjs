@@ -32,7 +32,6 @@ goog.inherits(
 
 /**
  * @override
- * @this {org.apache.flex.svg.staticControls.TextButton}
  * @param {Object} p The parent element.
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
@@ -49,7 +48,6 @@ org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
 
 /**
  * @expose
- * @this {org.apache.flex.svg.staticControls.TextButton}
  * @return {string} The text getter.
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
@@ -59,7 +57,6 @@ org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.svg.staticControls.TextButton}
  * @param {string} value The text setter.
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.set_text =

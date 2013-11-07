@@ -36,7 +36,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -47,7 +46,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @return {Object} value The dataProvider.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -58,7 +56,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @param {Object} value The dataProvider.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -70,7 +67,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @return {Object} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -81,7 +77,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @param {Object} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -93,7 +88,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @return {Object} value The selected item.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
@@ -113,7 +107,6 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  * @param {Object} value The selected item.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.

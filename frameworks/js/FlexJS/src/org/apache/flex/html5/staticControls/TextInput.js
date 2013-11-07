@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html5.staticControls.TextInput,
 
 /**
  * @override
- * @this {org.apache.flex.html5.staticControls.TextInput}
  */
 org.apache.flex.html5.staticControls.TextInput.prototype.createElement =
     function() {
@@ -44,7 +43,6 @@ org.apache.flex.html5.staticControls.TextInput.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.TextInput}
  * @return {string} The text getter.
  */
 org.apache.flex.html5.staticControls.TextInput.prototype.get_text = function() {
@@ -54,7 +52,6 @@ org.apache.flex.html5.staticControls.TextInput.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.TextInput}
  * @param {string} value The text setter.
  */
 org.apache.flex.html5.staticControls.TextInput.prototype.set_text =

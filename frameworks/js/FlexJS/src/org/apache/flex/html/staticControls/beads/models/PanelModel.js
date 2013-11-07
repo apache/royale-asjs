@@ -35,7 +35,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.PanelModel,
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
@@ -46,7 +45,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @return {String} The title.
  */
 org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
@@ -57,7 +55,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @param {String} value The title to set.
  */
 org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
@@ -71,7 +68,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @return {String} The HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
@@ -82,7 +78,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @param {String} value The new HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
@@ -96,7 +91,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @return {Boolean} Returns true if the close button should appear in
  * the TitleBar.
  */
@@ -108,7 +102,6 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.PanelModel}
  * @param {Boolean} value Determines if the close button shows (true) or
  * not (false).
  */

@@ -39,7 +39,6 @@ goog.inherits(org.apache.flex.html.staticControls.Spinner,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Spinner}
  */
 org.apache.flex.html.staticControls.Spinner.prototype.createElement =
     function() {
@@ -66,7 +65,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @return {number} The current value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.get_value =
@@ -77,7 +75,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The new value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_value =
@@ -91,7 +88,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.set_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @return {number} The minimum value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.get_minimum = function() {
@@ -101,7 +97,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_minimum = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_minimum =
@@ -115,7 +110,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.set_minimum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @return {number} The maximum value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.get_maximum =
@@ -126,7 +120,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The new maximum setter.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_maximum =
@@ -140,7 +133,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.set_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @return {number} The snapInterval.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.get_snapInterval =
@@ -151,7 +143,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_snapInterval =
@@ -165,7 +156,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.set_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @return {number} The stepSize.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.get_stepSize =
@@ -176,7 +166,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_stepSize =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_stepSize =
@@ -189,7 +178,6 @@ org.apache.flex.html.staticControls.Spinner.prototype.set_stepSize =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Spinner}
  * @param {number} value The proposed value.
  * @return {number} The new value based on snapInterval
  * and stepSize.

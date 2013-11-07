@@ -81,7 +81,6 @@ org.apache.flex.createjs.Application.prototype.valuesImpl = null;
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.Application}
  */
 org.apache.flex.createjs.Application.prototype.start = function() {
   var body;
@@ -112,7 +111,6 @@ org.apache.flex.createjs.Application.prototype.start = function() {
 
 
 /**
- * @this {org.apache.flex.createjs.core.Application}
  * @param {Object} c The child element.
  */
 org.apache.flex.createjs.core.Application.prototype.addElement =

@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html.staticControls.TextButton,
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TextButton}
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
@@ -41,7 +40,6 @@ org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TextButton}
  * @param {string} value The text setter.
  */
 org.apache.flex.html.staticControls.TextButton.prototype.set_text =

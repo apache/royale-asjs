@@ -37,7 +37,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
@@ -49,7 +48,6 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridModel}
  * @param {Array} value Array of label fields.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
@@ -60,7 +58,6 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridModel}
  * @return {Array} Array of label fields.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.

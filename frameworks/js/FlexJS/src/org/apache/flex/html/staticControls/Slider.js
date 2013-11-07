@@ -37,7 +37,6 @@ goog.inherits(org.apache.flex.html.staticControls.Slider,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Slider}
  */
 org.apache.flex.html.staticControls.Slider.prototype.createElement =
     function() {
@@ -65,7 +64,6 @@ org.apache.flex.html.staticControls.Slider.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @return {Number} The value getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_value =
@@ -76,7 +74,6 @@ org.apache.flex.html.staticControls.Slider.prototype.get_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} newValue The new value.
  * @return {void} The value setter.
  */
@@ -89,7 +86,6 @@ org.apache.flex.html.staticControls.Slider.prototype.set_value =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @return {Number} The minimum getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
@@ -100,7 +96,6 @@ org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} value The new minimum value.
  * @return {void} The minimum setter.
  */
@@ -112,7 +107,6 @@ org.apache.flex.html.staticControls.Slider.prototype.set_minimum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @return {Number} The maximum getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
@@ -123,7 +117,6 @@ org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} value The new maximum value.
  * @return {void} The maximum setter.
  */
@@ -135,7 +128,6 @@ org.apache.flex.html.staticControls.Slider.prototype.set_maximum =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @return {Number} The snapInterval getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
@@ -146,7 +138,6 @@ org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} value The new snapInterval value.
  * @return {void} The snapInterval setter.
  */
@@ -158,7 +149,6 @@ org.apache.flex.html.staticControls.Slider.prototype.set_snapInterval =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @return {Number} The stepSize getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
@@ -169,7 +159,6 @@ org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} value The new stepSize value.
  * @return {void} The stepSize setter.
  */
@@ -180,7 +169,6 @@ org.apache.flex.html.staticControls.Slider.prototype.set_stepSize =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Object} value The current value.
  * @return {Number} Calculates the new value based snapInterval and stepSize.
  */
@@ -202,7 +190,6 @@ org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Slider}
  * @param {Number} value The value used to calculate new position of the thumb.
  * @return {void} Moves the thumb to the corresponding position.
  */

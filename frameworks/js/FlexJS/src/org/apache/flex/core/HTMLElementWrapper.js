@@ -45,7 +45,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.strand = null;
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @param {Object} bead The new bead.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
@@ -66,7 +65,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @param {Object} classOrInterface The requested bead type.
  * @return {Object} The bead.
  */
@@ -93,7 +91,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @return {Array} The array of descriptors.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLDescriptor =
@@ -104,7 +101,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLDescriptor =
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @return {Array} The array of properties.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLProperties =
@@ -115,7 +111,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLProperties =
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @param {Object} bead The bead to remove.
  * @return {Object} The bead.
  */
@@ -139,7 +134,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.HTMLElementWrapper}
  * @param {Object} value The new strand.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
@@ -153,7 +147,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
 /**
  Hack to allow event.target expressions to work
  * @expose
- * @this {Event}
  * @return {Object} The wrapping object.
  */
 Event.prototype.get_target = function() {
@@ -165,7 +158,6 @@ Event.prototype.get_target = function() {
 /**
  Hack to allow event.target expressions to work
  * @expose
- * @this {goog.events.BrowserEvent}
  * @return {Object} The wrapping object.
  */
 goog.events.BrowserEvent.prototype.get_target = function() {

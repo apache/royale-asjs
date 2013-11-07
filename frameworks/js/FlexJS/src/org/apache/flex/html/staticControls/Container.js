@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html.staticControls.Container,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Container.prototype.createElement =
     function(p) {
@@ -46,7 +45,6 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Container.prototype.addElement =
     function(child) {
@@ -57,7 +55,6 @@ org.apache.flex.html.staticControls.Container.prototype.addElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Container}
  * @param {Object} child The element to be added.
  */
 org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
@@ -68,7 +65,6 @@ org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Container}
  * @return {Array} the HTML DOM element children.
  */
 org.apache.flex.html.staticControls.Container.prototype.internalChildren =

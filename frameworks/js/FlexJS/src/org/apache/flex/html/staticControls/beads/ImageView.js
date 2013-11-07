@@ -28,7 +28,6 @@ org.apache.flex.html.staticControls.beads.ImageView = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ImageView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
@@ -45,7 +44,6 @@ org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ImageView}
  * @param {Object} event The event triggered by the source change.
  */
 org.apache.flex.html.staticControls.beads.ImageView.prototype.

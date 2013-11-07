@@ -49,7 +49,6 @@ goog.inherits(org.apache.flex.core.UIBase,
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @return {Object} The array of children.
  */
 org.apache.flex.core.UIBase.prototype.internalChildren =
@@ -60,7 +59,6 @@ org.apache.flex.core.UIBase.prototype.internalChildren =
 
 /**
  * @protected
- * @this {org.apache.flex.core.UIBase}
  * @return {Object} The actual element to be parented.
  */
 org.apache.flex.core.UIBase.prototype.createElement = function() {
@@ -72,7 +70,6 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} c The child element.
  */
 org.apache.flex.core.UIBase.prototype.addElement = function(c) {
@@ -82,7 +79,6 @@ org.apache.flex.core.UIBase.prototype.addElement = function(c) {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
@@ -100,7 +96,6 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
@@ -117,7 +112,6 @@ org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} c The child element.
  */
 org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
@@ -126,7 +120,6 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
@@ -179,7 +172,6 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} bead The bead to be added.
  */
 org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
@@ -200,7 +192,6 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Class} classOrInterface A type or interface.
  * @return {Object} The bead of the given type or null.
  */
@@ -220,7 +211,6 @@ org.apache.flex.core.UIBase.prototype.getBeadByType =
 
 
 /**
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} value The bead to be removed.
  * @return {Object} The bead that was removed.
  */
@@ -240,7 +230,6 @@ org.apache.flex.core.UIBase.prototype.removeBead =
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
@@ -251,7 +240,6 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
@@ -262,7 +250,6 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
@@ -272,7 +259,6 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {number} The width of the object in pixels.
  */
 org.apache.flex.core.UIBase.prototype.get_width = function() {
@@ -284,7 +270,6 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
@@ -294,7 +279,6 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {number} The height of the object in pixels.
  */
 org.apache.flex.core.UIBase.prototype.get_height = function() {
@@ -313,7 +297,6 @@ org.apache.flex.core.UIBase.prototype.id = null;
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {string} The id.
  */
 org.apache.flex.core.UIBase.prototype.get_id = function() {
@@ -323,7 +306,6 @@ org.apache.flex.core.UIBase.prototype.get_id = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} value The new id.
  */
 org.apache.flex.core.UIBase.prototype.set_id = function(value) {
@@ -344,7 +326,6 @@ org.apache.flex.core.UIBase.prototype.className = null;
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {string} The className.
  */
 org.apache.flex.core.UIBase.prototype.get_className = function() {
@@ -354,7 +335,6 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {object} value The new className.
  */
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
@@ -376,7 +356,6 @@ org.apache.flex.core.UIBase.prototype.model = null;
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {Object} The model.
  */
 org.apache.flex.core.UIBase.prototype.get_model = function() {
@@ -394,7 +373,6 @@ org.apache.flex.core.UIBase.prototype.get_model = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {Object} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_model = function(value) {
@@ -407,7 +385,6 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @return {object} True if visible.
  */
 org.apache.flex.core.UIBase.prototype.get_visible = function() {
@@ -417,7 +394,6 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.UIBase}
  * @param {object} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_visible = function(value) {

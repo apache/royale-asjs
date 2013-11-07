@@ -33,7 +33,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
@@ -46,7 +45,6 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @return {number} The column index for this grid column.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
@@ -57,7 +55,6 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {number} value The column index for this grid column.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
@@ -68,7 +65,6 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @return {string} The field in the data to use for the column's label.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
@@ -79,7 +75,6 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {string} value The field in the data to use for the column's label.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.

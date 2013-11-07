@@ -38,7 +38,6 @@ org.apache.flex.utils.BinaryData = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {Object} The platform-specific data.
  */
 org.apache.flex.utils.BinaryData.prototype.get_data = function() {
@@ -48,7 +47,6 @@ org.apache.flex.utils.BinaryData.prototype.get_data = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} b The byte to write.
  */
 org.apache.flex.utils.BinaryData.prototype.writeByte = function(b) {
@@ -64,7 +62,6 @@ org.apache.flex.utils.BinaryData.prototype.writeByte = function(b) {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} s The 16-bit integer to write.
  */
 org.apache.flex.utils.BinaryData.prototype.writeShort = function(s) {
@@ -80,7 +77,6 @@ org.apache.flex.utils.BinaryData.prototype.writeShort = function(s) {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} num The 32-bit integer to write.
  */
 org.apache.flex.utils.BinaryData.prototype.writeInt = function(num) {
@@ -96,7 +92,6 @@ org.apache.flex.utils.BinaryData.prototype.writeInt = function(num) {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} num The 32-bit unsigned integer to write.
  */
 org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt =
@@ -113,7 +108,6 @@ org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt =
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The byte that was read.
  */
 org.apache.flex.utils.BinaryData.prototype.readByte = function() {
@@ -127,7 +121,6 @@ org.apache.flex.utils.BinaryData.prototype.readByte = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The 16-bit integer that was read.
  */
 org.apache.flex.utils.BinaryData.prototype.readShort = function() {
@@ -141,7 +134,6 @@ org.apache.flex.utils.BinaryData.prototype.readShort = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The 32-bit integer that was read.
  */
 org.apache.flex.utils.BinaryData.prototype.readInteger = function() {
@@ -155,7 +147,6 @@ org.apache.flex.utils.BinaryData.prototype.readInteger = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The 32-bit unsigned integer that was read.
  */
 org.apache.flex.utils.BinaryData.prototype.readUnsignedInteger =
@@ -170,7 +161,6 @@ org.apache.flex.utils.BinaryData.prototype.readUnsignedInteger =
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.get_position = function() {
@@ -180,7 +170,6 @@ org.apache.flex.utils.BinaryData.prototype.get_position = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} value The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.set_position = function(value) {
@@ -190,7 +179,6 @@ org.apache.flex.utils.BinaryData.prototype.set_position = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.get_length = function() {
@@ -200,7 +188,6 @@ org.apache.flex.utils.BinaryData.prototype.get_length = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The number of bytes that can still be read.
  */
 org.apache.flex.utils.BinaryData.prototype.get_bytesAvailable = function() {
@@ -210,7 +197,6 @@ org.apache.flex.utils.BinaryData.prototype.get_bytesAvailable = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.BinaryData}
  * @param {number} extra The number of bytes to add to the buffer.
  */
 org.apache.flex.utils.BinaryData.prototype.growBuffer = function(extra) {

@@ -53,7 +53,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.checkBoxLabel = null;
 
 /**
  * @override
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
     function() {
@@ -96,7 +95,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  * @return {string} The text getter.
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.get_text =
@@ -107,7 +105,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.get_text =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  * @param {string} value The text setter.
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.set_text =
@@ -118,7 +115,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.set_text =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  * @return {bool} The selected getter.
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.get_selected =
@@ -129,7 +125,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.get_selected =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  * @param {bool} value The selected setter.
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.set_selected =
@@ -141,7 +136,6 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.set_selected =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.CheckBox}
  * @param {string|Object|goog.events.Event} event The event.
  */
 org.apache.flex.createjs.staticControls.CheckBox.prototype.clickHandler =

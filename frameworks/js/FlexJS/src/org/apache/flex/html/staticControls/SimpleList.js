@@ -34,7 +34,6 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleList,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.SimpleList}
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     createElement = function() {
@@ -49,7 +48,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @return {Object} Returns the dataProvider.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
@@ -60,7 +58,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @param {Object} value The new dataProvider.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
@@ -87,7 +84,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @return {Object} Returns the selected index.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
@@ -98,7 +94,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @param {Number} value The new selected index.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
@@ -109,7 +104,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @return {Object} Returns the selectedItem.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
@@ -120,7 +114,6 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.SimpleList}
  * @param {Object} value The new selected item.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.

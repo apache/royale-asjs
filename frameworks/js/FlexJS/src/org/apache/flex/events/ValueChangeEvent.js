@@ -38,7 +38,6 @@ goog.inherits(org.apache.flex.events.ValueChangeEvent,
 
 /**
  * @expose
- * @this {org.apache.flex.events.ValueChangeEvent}
  * @param {string} type The event type.
  */
 org.apache.flex.events.ValueChangeEvent.prototype.init = function(type) {

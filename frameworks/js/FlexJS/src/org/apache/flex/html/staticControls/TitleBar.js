@@ -38,7 +38,6 @@ goog.inherits(org.apache.flex.html.staticControls.TitleBar,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.TitleBar}
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
     function() {
@@ -71,7 +70,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.TitleBar}
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
     function() {
@@ -87,7 +85,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
@@ -103,7 +100,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TitleBar}
  * @return {string} The title getter.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
@@ -114,7 +110,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {string} value The title setter.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
@@ -125,7 +120,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TitleBar}
  * @return {string} The showCloseButton getter.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
@@ -136,7 +130,6 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {string} value The title setter.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton =

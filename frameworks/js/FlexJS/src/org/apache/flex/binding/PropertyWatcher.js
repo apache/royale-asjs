@@ -61,7 +61,6 @@ org.apache.flex.binding.PropertyWatcher.prototype.getterFunction = null;
 
 /**
  * @protected
- * @this {org.apache.flex.binding.PropertyWatcher}
  * @param {Object} event The event.
  */
 org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
@@ -83,7 +82,6 @@ org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
 
 /**
  * @protected
- * @this {org.apache.flex.binding.PropertyWatcher}
  * @param {Object} parent The new parent watcher.
  */
 org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
@@ -105,7 +103,6 @@ org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
 
 /**
  * @protected
- * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
     function() {
@@ -128,7 +125,6 @@ org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
 
 /**
  * @protected
- * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
     function() {
@@ -153,7 +149,6 @@ org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
  * @protected
  * Gets the actual property then updates
  * the Watcher's children appropriately.
- * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.updateProperty =
     function() {

@@ -33,7 +33,6 @@ goog.inherits(org.apache.flex.events.EventDispatcher,
 /**
  * @override
  * @expose
- * @this {org.apache.flex.events.EventDispatcher}
  * @param {string} type The event type.
  * @param {function(?): ?} fn The event handler.
  */

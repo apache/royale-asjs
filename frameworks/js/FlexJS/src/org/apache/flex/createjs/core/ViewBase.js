@@ -71,7 +71,6 @@ org.apache.flex.createjs.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
- * @this {org.apache.flex.createjs.core.ViewBase}
  * @param {Object} model The model for this view.
  */
 org.apache.flex.createjs.core.ViewBase.prototype.initUI = function(model) {

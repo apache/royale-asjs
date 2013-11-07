@@ -24,7 +24,6 @@ mx.states.SetProperty = function() {
 
 
 /**
- * @this {mx.states.SetProperty}
  * @param {Object} document The MXML object.
  */
 mx.states.SetProperty.prototype.setDocument = function(document) {

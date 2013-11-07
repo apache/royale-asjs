@@ -34,7 +34,6 @@ goog.inherits(
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
     prototype.createElement = function() {
@@ -57,7 +56,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -69,7 +67,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @return {Object} The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -80,7 +77,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @return {Object} The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -91,7 +87,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {Object} value The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -102,7 +97,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @return {Object} The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -113,7 +107,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {Object} value The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -124,7 +117,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {Object} value The data to display.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -136,7 +128,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @return {Object} The value being displayed.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -148,7 +139,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {boolean} value The selection state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -165,7 +155,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @param {boolean} value The hovered state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.

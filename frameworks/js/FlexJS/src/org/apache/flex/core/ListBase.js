@@ -44,7 +44,6 @@ goog.inherits(org.apache.flex.core.ListBase,
 
 /**
  * @override
- * @this {org.apache.flex.core.ListBase}
  */
 org.apache.flex.core.ListBase.prototype.createElement = function() {
   //  this.element = document.createElement('select');
@@ -61,7 +60,6 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @return {Array.<Object>} The collection of data.
  */
 org.apache.flex.core.ListBase.prototype.get_dataProvider =
@@ -72,7 +70,6 @@ org.apache.flex.core.ListBase.prototype.get_dataProvider =
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @param {Array.<Object>} value The text setter.
  */
 org.apache.flex.core.ListBase.prototype.set_dataProvider =
@@ -83,7 +80,6 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @return {number} The selected index.
  */
 org.apache.flex.core.ListBase.prototype.get_selectedIndex =
@@ -94,7 +90,6 @@ org.apache.flex.core.ListBase.prototype.get_selectedIndex =
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @param {number} value The selected index.
  */
 org.apache.flex.core.ListBase.prototype.set_selectedIndex =
@@ -105,7 +100,6 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @return {Object} The selected item.
  */
 org.apache.flex.core.ListBase.prototype.get_selectedItem =
@@ -116,7 +110,6 @@ org.apache.flex.core.ListBase.prototype.get_selectedItem =
 
 /**
  * @expose
- * @this {org.apache.flex.core.ListBase}
  * @param {Object} value The selected item.
  */
 org.apache.flex.core.ListBase.prototype.set_selectedItem =
@@ -127,7 +120,6 @@ org.apache.flex.core.ListBase.prototype.set_selectedItem =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ListBase}
  */
 org.apache.flex.core.ListBase.prototype.changeHandler =
     function() {

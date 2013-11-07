@@ -42,7 +42,6 @@ org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
 
 /**
  * @expose
- * @this {org.apache.flex.binding.GenericBinding}
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.GenericBinding.prototype.set_strand =
@@ -56,7 +55,6 @@ org.apache.flex.binding.GenericBinding.prototype.set_strand =
 
 /**
  * @expose
- * @this {org.apache.flex.binding.GenericBinding}
  * @return {Object} The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
@@ -94,7 +92,6 @@ org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
 
 /**
  * @expose
- * @this {org.apache.flex.binding.GenericBinding}
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.applyValue =
@@ -124,7 +121,6 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
 
 /**
  * @expose
- * @this {org.apache.flex.binding.GenericBinding}
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.valueChanged =

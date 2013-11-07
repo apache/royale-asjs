@@ -59,7 +59,6 @@ org.apache.flex.html.staticControls.Alert.CANCEL = 0x000008;
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Alert}
  */
 org.apache.flex.html.staticControls.Alert.prototype.createElement =
     function() {
@@ -84,7 +83,6 @@ org.apache.flex.html.staticControls.Alert.prototype.createElement =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @param {string} message The message to be displayed.
  * @param {Object} host The object to display the alert.
  * @param {string} title The message to be displayed in the title bar.
@@ -107,7 +105,6 @@ org.apache.flex.html.staticControls.Alert.show =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @return {string} The message to be displayed in the title bar.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_title = function()
@@ -117,7 +114,6 @@ org.apache.flex.html.staticControls.Alert.prototype.get_title = function()
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @param {string} value The message to be displayed in the title bar.
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_title =
@@ -128,7 +124,6 @@ org.apache.flex.html.staticControls.Alert.prototype.set_title =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @return {string} The message to be displayed.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_text = function()
@@ -138,7 +133,6 @@ org.apache.flex.html.staticControls.Alert.prototype.get_text = function()
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @param {string} value The message to be displayed.
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_text =
@@ -149,7 +143,6 @@ org.apache.flex.html.staticControls.Alert.prototype.set_text =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @return {number} The button options.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_flags = function()
@@ -159,7 +152,6 @@ org.apache.flex.html.staticControls.Alert.prototype.get_flags = function()
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @param {number} value The button options.
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_flags =
@@ -200,7 +192,6 @@ org.apache.flex.html.staticControls.Alert.prototype.set_flags =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.Alert}
  * @param {Object} event The event object.
  */
 org.apache.flex.html.staticControls.Alert.prototype.dismissAlert =

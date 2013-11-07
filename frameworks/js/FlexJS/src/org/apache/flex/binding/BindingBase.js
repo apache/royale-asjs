@@ -66,7 +66,6 @@ org.apache.flex.binding.BindingBase.prototype.sourceID;
 
 
 /**
- * @this {org.apache.flex.binding.BindingBase}
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
@@ -86,7 +85,6 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
 
 
 /**
- * @this {org.apache.flex.binding.BindingBase}
  * @param {Object} document The MXML object.
  */
 org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {

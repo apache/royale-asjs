@@ -25,7 +25,6 @@ flash.display.Sprite = function() {
 
 /**
  * @expose
- * @this {flash.display.Sprite}
  */
 flash.display.Sprite.prototype.start = function() {
 };

@@ -25,7 +25,6 @@ org.apache.flex.html.staticControls.beads.SliderTrackView = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.SliderTrackView}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.SliderTrackView.prototype.

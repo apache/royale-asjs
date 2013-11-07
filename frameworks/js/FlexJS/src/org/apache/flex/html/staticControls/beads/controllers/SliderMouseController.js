@@ -29,7 +29,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Object} value The strand.
  */
@@ -51,7 +50,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
  * @return {void} Handles click on track.
@@ -77,7 +75,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-down on the thumb.
@@ -97,7 +94,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-up on the thumb.
@@ -118,7 +114,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-move on the thumb.
@@ -134,7 +129,6 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
  * @param {Boolean} useOffset If true, event.offsetX is used in the calculation.

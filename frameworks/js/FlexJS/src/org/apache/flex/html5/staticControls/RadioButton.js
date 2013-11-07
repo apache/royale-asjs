@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html5.staticControls.RadioButton,
 
 /**
  * @override
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.createElement =
     function() {
@@ -50,7 +49,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @return {string} The groupName getter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.get_groupName =
@@ -61,7 +59,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.get_groupName =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @param {string} value The groupName setter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.set_groupName =
@@ -72,7 +69,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.set_groupName =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @return {string} The text getter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.get_text =
@@ -83,7 +79,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.get_text =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @param {string} value The text setter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.set_text =
@@ -94,7 +89,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.set_text =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @return {bool} The selected getter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.get_selected =
@@ -105,7 +99,6 @@ org.apache.flex.html5.staticControls.RadioButton.prototype.get_selected =
 
 /**
  * @expose
- * @this {org.apache.flex.html5.staticControls.RadioButton}
  * @param {bool} value The selected setter.
  */
 org.apache.flex.html5.staticControls.RadioButton.prototype.set_selected =

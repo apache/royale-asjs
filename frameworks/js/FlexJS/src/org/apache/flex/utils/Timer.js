@@ -55,7 +55,6 @@ goog.inherits(org.apache.flex.utils.Timer,
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * Stops the timer and sets currentCount = 0.
  */
 org.apache.flex.utils.Timer.prototype.reset = function() {
@@ -66,7 +65,6 @@ org.apache.flex.utils.Timer.prototype.reset = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * Stops the timer.
  */
 org.apache.flex.utils.Timer.prototype.stop = function() {
@@ -77,7 +75,6 @@ org.apache.flex.utils.Timer.prototype.stop = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * Starts the timer.
  */
 org.apache.flex.utils.Timer.prototype.start = function() {
@@ -88,7 +85,6 @@ org.apache.flex.utils.Timer.prototype.start = function() {
 
 /**
  * @protected
- * @this {org.apache.flex.utils.Timer}
  */
 org.apache.flex.utils.Timer.prototype.timerHandler =
     function() {
@@ -104,7 +100,6 @@ org.apache.flex.utils.Timer.prototype.timerHandler =
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @return {Number} The currentCount.
  */
 org.apache.flex.utils.Timer.prototype.get_currentCount = function() {
@@ -114,7 +109,6 @@ org.apache.flex.utils.Timer.prototype.get_currentCount = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @return {boolean} True if the timer is running.
  */
 org.apache.flex.utils.Timer.prototype.get_running = function() {
@@ -124,7 +118,6 @@ org.apache.flex.utils.Timer.prototype.get_running = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @return {Number} The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.get_delay = function() {
@@ -134,7 +127,6 @@ org.apache.flex.utils.Timer.prototype.get_delay = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @param {Number} value The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.set_delay = function(value) {
@@ -144,7 +136,6 @@ org.apache.flex.utils.Timer.prototype.set_delay = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @return {Number} The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
@@ -154,7 +145,6 @@ org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.utils.Timer}
  * @param {Number} value The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.set_repeatCount = function(value) {

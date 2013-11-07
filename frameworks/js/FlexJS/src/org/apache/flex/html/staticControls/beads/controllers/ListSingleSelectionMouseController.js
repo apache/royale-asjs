@@ -35,7 +35,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ListSingleSelectionMouseController}
  * @param {object} value The strand for this component.
  */
@@ -56,7 +55,6 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ListSingleSelectionMouseController}
  * @param {object} event The event that triggered the selection.
  */

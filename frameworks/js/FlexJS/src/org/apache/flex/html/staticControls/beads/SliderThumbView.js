@@ -25,7 +25,6 @@ org.apache.flex.html.staticControls.beads.SliderThumbView = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.SliderThumbView}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.SliderThumbView.prototype.

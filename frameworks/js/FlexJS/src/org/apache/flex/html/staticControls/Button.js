@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html.staticControls.Button,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Button}
  */
 org.apache.flex.html.staticControls.Button.prototype.createElement =
     function() {

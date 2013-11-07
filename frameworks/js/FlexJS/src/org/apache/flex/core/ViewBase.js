@@ -73,7 +73,6 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
- * @this {org.apache.flex.core.ViewBase}
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
@@ -91,7 +90,6 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @return {Object} The application model.
  */
 org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
@@ -101,7 +99,6 @@ org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @return {Array} The array of State objects.
  */
 org.apache.flex.core.ViewBase.prototype.get_states = function() {
@@ -111,7 +108,6 @@ org.apache.flex.core.ViewBase.prototype.get_states = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @param {Array} value The array of State objects.
  */
 org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
@@ -126,7 +122,6 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @param {string} state The name of the state.
  * @return {boolean} True if state in states array.
  */
@@ -143,7 +138,6 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @return {string} The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
@@ -153,7 +147,6 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @param {string} value The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
@@ -166,7 +159,6 @@ org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @return {Array} The array of transitions.
  */
 org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
@@ -176,7 +168,6 @@ org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBase}
  * @param {Array} value The array of transitions.
  */
 org.apache.flex.core.ViewBase.prototype.set_transitions = function(value) {

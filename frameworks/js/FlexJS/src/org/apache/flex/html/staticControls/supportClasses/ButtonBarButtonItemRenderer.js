@@ -35,7 +35,6 @@ goog.inherits(
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.supportClasses.
           ButtonBarButtonItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
@@ -62,7 +61,6 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.
           ButtonBarButtonItemRenderer}
  * @param {Object} value The strand.
  */
@@ -75,7 +73,6 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.
           ButtonBarButtonItemRenderer}
  * @return {Object} The strand.
  */
@@ -87,7 +84,6 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.
           ButtonBarButtonItemRenderer}
  * @param {Object} value The text to display.
  */

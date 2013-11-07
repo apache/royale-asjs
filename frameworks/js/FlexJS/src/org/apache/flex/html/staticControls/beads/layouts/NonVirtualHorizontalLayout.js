@@ -35,7 +35,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.layouts.
           NonVirtualHorizontalLayout}
  * @param {Object} value The new host.
  */
@@ -58,7 +57,6 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.layouts.
           NonVirtualHorizontalLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */

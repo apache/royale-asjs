@@ -36,7 +36,6 @@ goog.inherits(org.apache.flex.html.staticControls.List,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.List}
  */
 org.apache.flex.html.staticControls.List.prototype.createElement =
     function() {
@@ -47,7 +46,6 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.List}
  */
 org.apache.flex.html.staticControls.List.prototype.addedToParent =
     function() {
@@ -64,7 +62,6 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.List}
  * @return {Array.<Object>} An array of objects that make up the actual
  *                          list (most likely itemRenderers).
  */
@@ -80,7 +77,6 @@ org.apache.flex.html.staticControls.List.prototype.internalChildren =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.List}
  * @param {object} event The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.List.prototype.selectedHandler =

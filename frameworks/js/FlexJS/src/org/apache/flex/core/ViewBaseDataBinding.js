@@ -44,7 +44,6 @@ org.apache.flex.core.ViewBaseDataBinding = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} value The new host.
  */
 org.apache.flex.core.ViewBaseDataBinding.prototype.set_strand =
@@ -59,7 +58,6 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.set_strand =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} event The event.
  */
 org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
@@ -197,7 +195,6 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} binding The binding object.
  * @param {number} index The offset in the Binding database.
  * @param {Object} watchers The database of Watchers.
@@ -215,7 +212,6 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.makeGenericBinding =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} gb The generic binding object.
  * @param {number} index The offset in the Binding database.
  * @param {Object} watchers The array of Watchers.
@@ -264,7 +260,6 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.setupWatchers =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} bindingData The watcher data to decode.
  * @return {Object} The watcher tree structure.
  */
@@ -335,7 +330,6 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.decodeWatcher =
 
 /**
  * @protected
- * @this {org.apache.flex.core.ViewBaseDataBinding}
  * @param {Object} event The event.
  */
 org.apache.flex.core.ViewBaseDataBinding.prototype.deferredBindingsHandler =

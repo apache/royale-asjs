@@ -36,7 +36,6 @@ goog.inherits(org.apache.flex.core.SimpleStatesImpl,
 
 /**
  * @expose
- * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} value The new host.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
@@ -51,7 +50,6 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
 
 /**
  * @protected
- * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} event The event.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
@@ -82,7 +80,6 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
 
 /**
  * @protected
- * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} s The State to revert.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
@@ -124,7 +121,6 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
 
 /**
  * @protected
- * @this {org.apache.flex.core.SimpleStatesImpl}
  * @param {Object} s The State to apply.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.applyState = function(s) {

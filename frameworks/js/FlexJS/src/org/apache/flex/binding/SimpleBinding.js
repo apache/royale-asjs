@@ -36,7 +36,6 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
 
 /**
- * @this {org.apache.flex.binding.SimpleBinding}
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
   this.destination['set_' + this.destinationPropertyName](
@@ -47,7 +46,6 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 
 /**
  * @override
- * @this {org.apache.flex.binding.SimpleBinding}
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {

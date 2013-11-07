@@ -33,7 +33,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ItemRendererMouseController}
  * @param {object} value The strand for this component.
  */
@@ -57,7 +56,6 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ItemRendererMouseController}
  * @param {object} event The mouse event that triggered the hover.
  */
@@ -70,7 +68,6 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ItemRendererMouseController}
  * @param {object} event The mouse-out event.
  */
@@ -83,7 +80,6 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ItemRendererMouseController}
  * @param {object} event The mouse-down event.
  */
@@ -96,7 +92,6 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        ItemRendererMouseController}
  * @param {object} event The mouse-up event that triggers the selection.
  */

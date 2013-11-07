@@ -46,7 +46,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.DataGridView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
@@ -108,7 +107,6 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.DataGridView}
  * @param {object} event The selection change event from one of the column
  * lists.
  */

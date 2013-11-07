@@ -37,7 +37,6 @@ goog.inherits(org.apache.flex.html.staticControls.Panel,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Object} c Element being added.
  */
 org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
@@ -56,7 +55,6 @@ org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
@@ -76,7 +74,6 @@ org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
@@ -95,7 +92,6 @@ org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Object} c The child element.
  */
 org.apache.flex.html.staticControls.Panel.prototype.removeElement =
@@ -106,7 +102,6 @@ org.apache.flex.html.staticControls.Panel.prototype.removeElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  */
 org.apache.flex.html.staticControls.Panel.prototype.createElement =
     function() {
@@ -127,7 +122,6 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.Panel}
  */
 org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
     function() {
@@ -137,7 +131,6 @@ org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Panel}
  * @return {string} The title getter.
  */
 org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
@@ -147,7 +140,6 @@ org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {string} value The title setter.
  */
 org.apache.flex.html.staticControls.Panel.prototype.set_title =
@@ -158,7 +150,6 @@ org.apache.flex.html.staticControls.Panel.prototype.set_title =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Panel}
  * @return {Array} The controlBar getter.
  */
 org.apache.flex.html.staticControls.Panel.prototype.get_controlBar =
@@ -169,7 +160,6 @@ org.apache.flex.html.staticControls.Panel.prototype.get_controlBar =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.Panel}
  * @param {Array} value The controlBar setter.
  */
 org.apache.flex.html.staticControls.Panel.prototype.set_controlBar =

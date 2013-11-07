@@ -31,7 +31,6 @@ goog.inherits(org.apache.flex.html.staticControls.TextArea,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.TextArea}
  */
 org.apache.flex.html.staticControls.TextArea.prototype.createElement =
     function(p) {
@@ -44,7 +43,6 @@ org.apache.flex.html.staticControls.TextArea.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TextArea}
  * @return {string} The text getter.
  */
 org.apache.flex.html.staticControls.TextArea.prototype.get_text = function() {
@@ -54,7 +52,6 @@ org.apache.flex.html.staticControls.TextArea.prototype.get_text = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.TextArea}
  * @param {string} value The text setter.
  */
 org.apache.flex.html.staticControls.TextArea.prototype.set_text =

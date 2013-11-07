@@ -40,7 +40,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
           DataItemRendererFactoryForColumnData}
  * @param {object} value The component strand.
  */
@@ -73,7 +72,6 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
  *        DataItemRendererFactoryForColumnData}
  * @return {object} The factory class to use for creating item renderers.
  */
@@ -85,7 +83,6 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
  *        DataItemRendererFactoryForColumnData}
  * @param {object} value The factory class to use for creating item renderers.
  */
@@ -97,7 +94,6 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
           DataItemRendererFactoryForColumnData}
  * @param {object} event The event that triggered the dataProvider change.
  */

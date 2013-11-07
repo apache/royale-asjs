@@ -35,7 +35,6 @@ goog.inherits(org.apache.flex.jquery.staticControls.RadioButton,
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * The name of the radioGroup.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.radioGroupName;
@@ -43,7 +42,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.radioGroupName;
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * Used to provide ids to the radio buttons.
  */
 org.apache.flex.jquery.staticControls.RadioButton.radioCounter = 0;
@@ -51,14 +49,12 @@ org.apache.flex.jquery.staticControls.RadioButton.radioCounter = 0;
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * Used to manage groups on the radio buttons.
  */
 org.apache.flex.jquery.staticControls.RadioButton.groups = { };
 
 
 /**
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * Flag to make sure the event handler is set only once.
  */
 org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet = false;
@@ -66,7 +62,6 @@ org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet = false;
 
 /**
  * @override
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
     function() {
@@ -90,7 +85,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
 
 /**
  * @override
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {Object} doc the document for this item.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.setDocument =
@@ -106,7 +100,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.setDocument =
 
 
 /**
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {Event} event The event.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.initHandler =
@@ -122,7 +115,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.initHandler =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @return {string} The groupName getter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.get_groupName =
@@ -133,7 +125,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_groupName =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {string} value The groupName setter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_groupName =
@@ -176,7 +167,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.set_groupName =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @return {string} The text getter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.get_text =
@@ -187,7 +177,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_text =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {string} value The text setter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_text =
@@ -198,7 +187,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.set_text =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @return {bool} The selected getter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.get_selected =
@@ -209,7 +197,6 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_selected =
 
 /**
  * @expose
- * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {bool} value The selected setter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_selected =

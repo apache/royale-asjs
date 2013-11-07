@@ -33,7 +33,6 @@ goog.inherits(org.apache.flex.html.staticControls.DropDownList,
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.DropDownList}
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
     createElement = function() {
@@ -47,7 +46,6 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DropDownList}
  * @param {Object} value The new dataProvider.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
@@ -74,7 +72,6 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
 
 /**
  * @protected
- * @this {org.apache.flex.html.staticControls.DropDownList}
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
     function() {
@@ -85,7 +82,6 @@ org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DropDownList}
  * @param {Number} value The new selected index.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
@@ -97,7 +93,6 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.DropDownList}
  * @param {Object} value The new selected item.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.

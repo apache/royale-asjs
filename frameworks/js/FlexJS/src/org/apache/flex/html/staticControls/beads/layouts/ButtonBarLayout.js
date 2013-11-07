@@ -35,7 +35,6 @@ goog.inherits(org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout,
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.layouts.
           ButtonBarLayout}
  * @param {Object} value The new host.
  */
@@ -54,7 +53,6 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.layouts.
           ButtonBarLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */

@@ -39,7 +39,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
           TextItemRendererFactoryForArrayData}
  * @param {object} value The component strand.
  */
@@ -63,7 +62,6 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.
           TextItemRendererFactoryForArrayData}
  * @param {object} event The event that triggered the dataProvider change.
  */

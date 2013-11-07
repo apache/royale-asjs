@@ -32,7 +32,6 @@ org.apache.flex.html.staticControls.accessories.PasswordInputBead =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.accessories.PasswordInputBead}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.accessories.PasswordInputBead.

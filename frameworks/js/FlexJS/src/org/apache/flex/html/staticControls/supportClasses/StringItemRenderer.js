@@ -34,7 +34,6 @@ goog.inherits(
 
 /**
  * @override
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
     prototype.createElement = function() {
@@ -57,7 +56,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -69,7 +67,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @return {Object} The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -80,7 +77,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @return {Object} The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -91,7 +87,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {Object} value The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -102,7 +97,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @return {Object} The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -113,7 +107,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {Object} value The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -124,7 +117,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {Object} value The text to display.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -136,7 +128,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @return {Object} The text being displayed.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -148,7 +139,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {boolean} value The selection state.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -165,7 +155,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.supportClasses.StringItemRenderer}
  * @param {boolean} value The hovered state.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.

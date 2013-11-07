@@ -33,7 +33,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ImageModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
@@ -44,7 +43,6 @@ org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ImageModel}
  * @return {Object} value The image source.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
@@ -55,7 +53,6 @@ org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.ImageModel}
  * @param {Object} value The image source.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.

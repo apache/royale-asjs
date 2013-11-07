@@ -35,7 +35,6 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.ButtonBarView}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.ButtonBarView.prototype.set_strand =

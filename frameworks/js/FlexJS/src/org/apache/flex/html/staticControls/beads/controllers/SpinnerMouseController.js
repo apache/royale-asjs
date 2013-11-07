@@ -28,7 +28,6 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SpinnerMouseController}
  * @param {Object} value The strand.
  */
@@ -48,7 +47,6 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SpinnerMouseController}
  * @param {Object} event The event object.
  */
@@ -63,7 +61,6 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SpinnerMouseController}
  * @param {event} event The event object.
  */

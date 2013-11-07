@@ -46,7 +46,6 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground =
 
 /**
  * @override
- * @this {org.apache.flex.createjs.staticControls.TextButton}
  */
 org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
     function(p) {
@@ -78,7 +77,6 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.TextButton}
  * @return {string} The text getter.
  */
 org.apache.flex.createjs.staticControls.TextButton.prototype.get_text =
@@ -89,7 +87,6 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.get_text =
 
 /**
  * @expose
- * @this {org.apache.flex.createjs.staticControls.TextButton}
  * @param {string} value The text setter.
  */
 org.apache.flex.createjs.staticControls.TextButton.prototype.set_text =

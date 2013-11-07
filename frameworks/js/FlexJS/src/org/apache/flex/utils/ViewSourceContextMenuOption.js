@@ -26,7 +26,6 @@ org.apache.flex.utils.ViewSourceContextMenuOption = function() {
 
 
 /**
- * @this {org.apache.flex.utils.ViewSourceContextMenuOption}
  * @param {object} value The strand (owner) of the bead.
  */
 org.apache.flex.utils.ViewSourceContextMenuOption.prototype.set_strand =

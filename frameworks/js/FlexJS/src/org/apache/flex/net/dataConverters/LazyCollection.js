@@ -55,7 +55,6 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @return {string} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
@@ -66,7 +65,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @param {string} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
@@ -77,7 +75,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @return {string} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
@@ -88,7 +85,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @param {string} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
@@ -106,7 +102,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.id = null;
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @return {string} The id.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_id =
@@ -117,7 +112,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_id =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @param {Object} value The new id.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_id =
@@ -131,7 +125,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_id =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @param {Object} value The new host.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_strand =
@@ -146,7 +139,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_strand =
 
 /**
  * @protected
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
     function() {
@@ -158,7 +150,6 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
 
 /**
  * @expose
- * @this {org.apache.flex.net.dataConverters.LazyCollection}
  * @param {number} index The index in the collection.
  * @return {Object} An item in the collection.
  */

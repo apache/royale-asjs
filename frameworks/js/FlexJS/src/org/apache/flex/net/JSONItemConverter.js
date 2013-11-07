@@ -25,7 +25,6 @@ org.apache.flex.net.JSONItemConverter = function() {
 
 /**
  * @expose
- * @this {org.apache.flex.net.JSONItemConverter}
  * @param {string} s The input string.
  * @return {Object} The object.
  */
