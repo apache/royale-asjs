@@ -29,11 +29,10 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout =
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout}
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.prototype.set_strand =
-    function(value) {
+org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
+    prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
@@ -43,10 +42,10 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.proto
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.prototype.changeHandler = function(event) {
+org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
+    prototype.changeHandler = function(event) {
   var children, i, n;
 
   children = this.strand_.internalChildren();

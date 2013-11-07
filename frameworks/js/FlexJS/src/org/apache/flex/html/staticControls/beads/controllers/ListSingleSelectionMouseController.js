@@ -27,7 +27,8 @@ org.apache.flex.html.staticControls.beads.controllers.
 ListSingleSelectionMouseController = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController,
+goog.inherits(org.apache.flex.html.staticControls.beads.
+                  controllers.ListSingleSelectionMouseController,
               org.apache.flex.core.IBeadController);
 
 

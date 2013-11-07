@@ -34,8 +34,8 @@ goog.inherits(
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_strand =
-    function(value) {
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
+    set_strand = function(value) {
     this.strand_ = value;
 
     goog.base(this, 'set_strand', value);
@@ -47,8 +47,8 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_stran
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @return {number} The column index for this grid column.
  */
-org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.get_columnIndex =
-function() {
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
+    get_columnIndex = function() {
   return this.columnIndex_;
 };
 
@@ -58,8 +58,8 @@ function() {
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {number} The column index for this grid column.
  */
-org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_columnIndex =
-function(value) {
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
+    set_columnIndex = function(value) {
   this.columnIndex_ = value;
 };
 
@@ -69,8 +69,8 @@ function(value) {
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @return {string} The field in the data to use for the column's label.
  */
-org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.get_labelField =
-function() {
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
+    get_labelField = function() {
   return this.labelField_;
 };
 
@@ -80,7 +80,7 @@ function() {
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
  * @param {string} The field in the data to use for the column's label.
  */
-org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_labelField =
-function(value) {
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
+     set_labelField = function(value) {
   this.labelField_ = value;
 };

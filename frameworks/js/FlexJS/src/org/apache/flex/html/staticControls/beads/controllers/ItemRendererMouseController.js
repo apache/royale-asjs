@@ -24,8 +24,9 @@ org.apache.flex.html.staticControls.beads.controllers.
 ItemRendererMouseController = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController,
-              org.apache.flex.core.IBeadController);
+goog.inherits(org.apache.flex.html.staticControls.beads.
+        controllers.ItemRendererMouseController,
+    org.apache.flex.core.IBeadController);
 
 
 

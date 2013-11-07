@@ -32,33 +32,30 @@ goog.inherits(
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel}
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.prototype.
-set_strand = function(value) {
+org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.
+    prototype.set_strand = function(value) {
   this.strand_ = value;
 };
 
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel}
  * @return {Object} value The array of column labels.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.prototype.
-get_columnLabels = function() {
+org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.
+    prototype.get_columnLabels = function() {
   return this.columnLabels_;
 };
 
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel}
  * @param {Object} value The column labels.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.prototype.
-set_columnLabels = function(value) {
+org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.
+    prototype.set_columnLabels = function(value) {
   this.columnLabels_ = value;
   this.dispatchEvent('columnLabelsChanged');
 };
@@ -66,22 +63,20 @@ set_columnLabels = function(value) {
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel}
  * @return {Object} value The height of every row.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.prototype.
-get_rowHeight = function() {
+org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.
+    prototype.get_rowHeight = function() {
   return this.rowHeight_;
 };
 
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel}
  * @param {Object} value The height of every row.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.prototype.
-set_rowHeight = function(value) {
+org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel.
+    prototype.set_rowHeight = function(value) {
   this.rowHeight_ = value;
   this.dispatchEvent('rowHeightChanged');
 };

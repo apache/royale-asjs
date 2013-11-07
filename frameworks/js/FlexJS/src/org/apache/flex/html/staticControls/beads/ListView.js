@@ -47,7 +47,8 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
   this.strand_ = value;
 
   /*if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
-    var m = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iBeadLayout');
+    var m = org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this.strand_,'iBeadLayout');
     var c = new m();
     this.strand_.addBead(c);
   }*/

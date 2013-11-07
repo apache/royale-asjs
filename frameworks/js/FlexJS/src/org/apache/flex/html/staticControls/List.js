@@ -68,7 +68,8 @@ function() {
  */
 org.apache.flex.html.staticControls.List.prototype.internalChildren =
 function() {
-  var listView = this.getBeadByType(org.apache.flex.html.staticControls.beads.ListView);
+  var listView =
+      this.getBeadByType(org.apache.flex.html.staticControls.beads.ListView);
   var dg = listView.get_dataGroup();
   var items = dg.renderers;
   return items;

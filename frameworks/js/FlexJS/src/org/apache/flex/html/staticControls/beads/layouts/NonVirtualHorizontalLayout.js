@@ -26,8 +26,9 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout =
   this.strand_ = null;
   this.className = 'NonVirtualHorizontalLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout,
-org.apache.flex.core.IBeadLayout);
+goog.inherits(org.apache.flex.html.staticControls.beads.
+        layouts.NonVirtualHorizontalLayout,
+    org.apache.flex.core.IBeadLayout);
 
 /**
  * @expose

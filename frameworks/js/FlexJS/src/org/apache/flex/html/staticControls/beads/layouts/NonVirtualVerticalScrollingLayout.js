@@ -20,22 +20,22 @@ goog.require('org.apache.flex.core.IBeadLayout');
  * @constructor
  * @extends {org.apache.flex.core.IBeadLayout');
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout =
-    function() {
+org.apache.flex.html.staticControls.beads.layouts.
+    NonVirtualVerticalScrollingLayout = function() {
   goog.base(this);
   this.strand_ = null;
   this.className = 'NonVirtualVerticalScrollingLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout,
-org.apache.flex.core.IBeadLayout);
+goog.inherits(org.apache.flex.html.staticControls.beads.
+        layouts.NonVirtualVerticalScrollingLayout,
+    org.apache.flex.core.IBeadLayout);
 
 /**
  * @expose
- * @this {org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout}
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout.prototype.set_strand =
-    function(value) {
+org.apache.flex.html.staticControls.beads.layouts.
+    NonVirtualVerticalScrollingLayout.prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
@@ -45,10 +45,11 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLay
 
 
 /**
- * @this {org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout.prototype.changeHandler = function(event) {
+org.apache.flex.html.staticControls.beads.layouts.
+    NonVirtualVerticalScrollingLayout.prototype.changeHandler =
+        function(event) {
   var children, i, n;
 
   children = this.strand_.internalChildren();

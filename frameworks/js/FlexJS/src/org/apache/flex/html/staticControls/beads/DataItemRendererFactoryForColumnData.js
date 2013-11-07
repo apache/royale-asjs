@@ -33,7 +33,8 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData =
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData,
+    org.apache.flex.html.staticControls.beads.
+        DataItemRendererFactoryForColumnData,
     org.apache.flex.events.EventDispatcher);
 
 
@@ -60,7 +61,8 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
       goog.bind(this.dataProviderChangedHandler, this));
 
   if (!this.itemRendererFactory_) {
-    Irf = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRendererClassFactory');
+    Irf = org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this.strand_, 'iItemRendererClassFactory');
     this.itemRendererFactory_ = new Irf();
     this.strand_.addBead(this.itemRendererFactory_);
   }
@@ -113,7 +115,8 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     fieldName = view.get_labelField();
 
     // todo: grab an itemRenderer from a factory for this column
-    opt = new org.apache.flex.html.staticControls.supportClasses.StringItemRenderer();
+    opt = new org.apache.flex.html.staticControls.
+        supportClasses.StringItemRenderer();
     this.dataGroup.addElement(opt);
     opt.set_text(dp[i][fieldName]);
   }
@@ -127,4 +130,5 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
  * @const
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
-  .prototype.FLEXJS_CLASS_INFO = { interfaces: [org.apache.flex.core.IItemRenderer] };
+  .prototype.FLEXJS_CLASS_INFO =
+      { interfaces: [org.apache.flex.core.IItemRenderer] };
