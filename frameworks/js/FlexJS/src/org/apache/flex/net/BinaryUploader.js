@@ -286,7 +286,7 @@ org.apache.flex.net.BinaryUploader.prototype.set_url = function(value) {
  * @expose
  */
 org.apache.flex.net.BinaryUploader.prototype.send = function() {
-  var contentData, header, i, n, sawContentType, url;
+  var binaryData, header, i, n, sawContentType, url;
 
   this.element.onreadystatechange = goog.bind(this.progressHandler, this);
 
