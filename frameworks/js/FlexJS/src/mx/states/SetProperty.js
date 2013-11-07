@@ -15,11 +15,13 @@
 goog.provide('mx.states.SetProperty');
 
 
+
 /**
  * @constructor
  */
 mx.states.SetProperty = function() {
 };
+
 
 /**
  * @this {mx.states.SetProperty}
@@ -29,10 +31,12 @@ mx.states.SetProperty.prototype.setDocument = function(document) {
   this.document = document;
 };
 
+
 /**
  * @type {string} document The type of override.
  */
 mx.states.SetProperty.prototype.type = 'SetProperty';
+
 
 /**
  * @expose
@@ -40,11 +44,13 @@ mx.states.SetProperty.prototype.type = 'SetProperty';
  */
 mx.states.SetProperty.prototype.document = null;
 
+
 /**
  * @expose
  * @type {string} name The target property name.
  */
 mx.states.SetProperty.prototype.name = null;
+
 
 /**
  * @expose
@@ -52,11 +58,13 @@ mx.states.SetProperty.prototype.name = null;
  */
 mx.states.SetProperty.prototype.target = null;
 
+
 /**
  * @expose
  * @type {Object} previousValue The value to revert to.
  */
 mx.states.SetProperty.prototype.previousValue = null;
+
 
 /**
  * @expose

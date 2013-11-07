@@ -15,11 +15,13 @@
 goog.provide('mx.states.AddItems');
 
 
+
 /**
  * @constructor
  */
 mx.states.AddItems = function() {
 };
+
 
 /**
  * @this {mx.states.AddItems}
@@ -29,10 +31,12 @@ mx.states.AddItems.prototype.setDocument = function(document) {
   this.document = document;
 };
 
+
 /**
  * @type {string} document The type of override.
  */
 mx.states.AddItems.prototype.type = 'AddItems';
+
 
 /**
  * @expose
@@ -40,11 +44,13 @@ mx.states.AddItems.prototype.type = 'AddItems';
  */
 mx.states.AddItems.prototype.document = null;
 
+
 /**
  * @expose
  * @type {Array} items The array of items to add.
  */
 mx.states.AddItems.prototype.items = null;
+
 
 /**
  * @expose
@@ -52,11 +58,13 @@ mx.states.AddItems.prototype.items = null;
  */
 mx.states.AddItems.prototype.itemsDescriptor = null;
 
+
 /**
  * @expose
  * @type {string} destination The id of the parent.
  */
 mx.states.AddItems.prototype.destination = null;
+
 
 /**
  * @expose
@@ -64,11 +72,13 @@ mx.states.AddItems.prototype.destination = null;
  */
 mx.states.AddItems.prototype.propertyName = null;
 
+
 /**
  * @expose
  * @type {string} position Where the item goes relative to relativeTo.
  */
 mx.states.AddItems.prototype.position = null;
+
 
 /**
  * @expose

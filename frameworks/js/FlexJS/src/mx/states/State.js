@@ -15,17 +15,20 @@
 goog.provide('mx.states.State');
 
 
+
 /**
  * @constructor
  */
 mx.states.State = function() {
 };
 
+
 /**
  * @expose
  * @type {string} name The state name.
  */
 mx.states.State.prototype.name = null;
+
 
 /**
  * @expose
