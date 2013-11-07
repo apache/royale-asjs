@@ -14,10 +14,13 @@
 
 goog.provide('mx.states.SetProperty');
 
+goog.require('org.apache.flex.core.IDocument');
+
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IDocument}
  */
 mx.states.SetProperty = function() {
 };
@@ -25,16 +28,12 @@ mx.states.SetProperty = function() {
 
 /**
  * @param {Object} document The MXML object.
+ * @param {string=} opt_id The id.
  */
-mx.states.SetProperty.prototype.setDocument = function(document) {
+mx.states.SetProperty.prototype.setDocument = function(document, opt_id) {
+  opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
-
-
-/**
- * @type {string} document The type of override.
- */
-mx.states.SetProperty.prototype.type = 'SetProperty';
 
 
 /**
@@ -71,3 +70,25 @@ mx.states.SetProperty.prototype.previousValue = null;
  */
 mx.states.SetProperty.prototype.value = null;
 
+
+/**
+ * @expose
+ * @param {Object} properties The properties for the new object.
+ * @return {Object} The new object.
+ */
+mx.states.SetProperty.prototype.initializeFromObject = function(properties) {
+  var p;
+
+  for (p in properties) {
+    this[p] = properties[p];
+  }
+
+  return this;
+};
+
+
+/**
+ * @const
+ */
+mx.states.SetProperty.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IDocument] };

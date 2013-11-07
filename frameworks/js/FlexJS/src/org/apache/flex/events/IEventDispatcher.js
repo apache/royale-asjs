@@ -12,28 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('mx.states.State');
+goog.provide('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
- * @constructor
- * @param {Object=} opt_props The initial properties.
+ * IEventDispatcher
+ *
+ * @interface
  */
-mx.states.State = function(opt_props) {
-  opt_props = typeof opt_props !== 'undefined' ? opt_props : null;
+org.apache.flex.events.IEventDispatcher = function() {
 };
-
-
-/**
- * @expose
- * @type {string} name The state name.
- */
-mx.states.State.prototype.name = null;
-
-
-/**
- * @expose
- * @type {Array} overrides The state data.
- */
-mx.states.State.prototype.overrides = null;

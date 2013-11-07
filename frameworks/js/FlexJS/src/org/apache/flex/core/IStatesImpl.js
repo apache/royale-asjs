@@ -12,28 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('mx.states.State');
+goog.provide('org.apache.flex.core.IStatesImpl');
+
+goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
- * @constructor
- * @param {Object=} opt_props The initial properties.
+ * IStatesImpl
+ *
+ * @interface
+ * @extends {org.apache.flex.core.IBead}
+ * @extends {org.apache.flex.events.IEventDispatcher}
  */
-mx.states.State = function(opt_props) {
-  opt_props = typeof opt_props !== 'undefined' ? opt_props : null;
+org.apache.flex.core.IStatesImpl = function() {
 };
 
 
 /**
- * @expose
- * @type {string} name The state name.
+ * @const
  */
-mx.states.State.prototype.name = null;
-
-
-/**
- * @expose
- * @type {Array} overrides The state data.
- */
-mx.states.State.prototype.overrides = null;
+org.apache.flex.core.IStatesImpl.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.events.IEventDispatcher] };

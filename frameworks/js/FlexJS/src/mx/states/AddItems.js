@@ -14,10 +14,13 @@
 
 goog.provide('mx.states.AddItems');
 
+goog.require('org.apache.flex.core.IDocument');
+
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IDocument}
  */
 mx.states.AddItems = function() {
 };
@@ -25,16 +28,12 @@ mx.states.AddItems = function() {
 
 /**
  * @param {Object} document The MXML object.
+ * @param {string=} opt_id The id.
  */
-mx.states.AddItems.prototype.setDocument = function(document) {
+mx.states.AddItems.prototype.setDocument = function(document, opt_id) {
+  opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
-
-
-/**
- * @type {string} document The type of override.
- */
-mx.states.AddItems.prototype.type = 'AddItems';
 
 
 /**
@@ -85,3 +84,25 @@ mx.states.AddItems.prototype.position = null;
  */
 mx.states.AddItems.prototype.relativeTo = null;
 
+
+/**
+ * @expose
+ * @param {Object} properties The properties for the new object.
+ * @return {Object} The new object.
+ */
+mx.states.AddItems.prototype.initializeFromObject = function(properties) {
+  var p;
+
+  for (p in properties) {
+    this[p] = properties[p];
+  }
+
+  return this;
+};
+
+
+/**
+ * @const
+ */
+mx.states.AddItems.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IDocument] };
