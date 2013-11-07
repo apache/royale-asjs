@@ -172,7 +172,7 @@ org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
     var n = this.allowedErrorTypes.length;
     for (var i = 0; i < n; i++)
     {
-      if (error.constructor == allowedErrorTypes[i].type)
+      if (error.constructor == this.allowedErrorTypes[i].type)
       {
         var handler = staticClass.allowedErrorTypes[i].handler;
         if (handler != null)
