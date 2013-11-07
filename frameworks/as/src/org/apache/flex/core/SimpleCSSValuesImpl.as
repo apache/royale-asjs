@@ -241,7 +241,11 @@ package org.apache.flex.core
     				return value;
             }
 			o = values["*"];			
-			return o[valueName];
+			if(o)
+			{
+				return o[valueName];
+			}
+			return null;
 		}
 		
 		public function setValue(thisObject:Object, valueName:String, value:*):void
