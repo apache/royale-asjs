@@ -81,8 +81,15 @@ package org.apache.flex.core
         public function set states(value:Array):void
         {
             _states = value;
-            if (getBeadByType(IStatesImpl) == null)
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
+			try{
+				if (getBeadByType(IStatesImpl) == null)
+					addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
+			}
+			//TODO:  Need to handle this case more gracefully
+			catch(e:Error)
+			{
+				trace(e.message);
+			}
             
         }
         
