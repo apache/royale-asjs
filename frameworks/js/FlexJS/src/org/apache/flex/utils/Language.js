@@ -35,8 +35,8 @@ org.apache.flex.utils.Language = function() {
  *     of the type of the righthand operand, otherwise null.
  */
 org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
-	return (org.apache.flex.utils.Language.is(leftOperand, rightOperand)) ?
-	    leftOperand : null;
+  return (org.apache.flex.utils.Language.is(leftOperand, rightOperand)) ?
+      leftOperand : null;
 };
 
 
@@ -48,7 +48,7 @@ org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
  * @return {number}
  */
 org.apache.flex.utils.Language._int = function(value) {
-	return value >> 0;
+  return value >> 0;
 };
 
 
@@ -63,35 +63,35 @@ org.apache.flex.utils.Language._int = function(value) {
  * @return {boolean}
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
-	var checkInterfaces;
+  var checkInterfaces;
 
-	checkInterfaces = function(left) {
-		var i, interfaces;
+  checkInterfaces = function(left) {
+    var i, interfaces;
 
-		interfaces = left.FLEXJS_CLASS_INFO.interfaces;
-		for (i = interfaces.length - 1; i > -1; i--) {
-			if (interfaces[i] === rightOperand) {
-				return true;
-			}
+    interfaces = left.FLEXJS_CLASS_INFO.interfaces;
+    for (i = interfaces.length - 1; i > -1; i--) {
+      if (interfaces[i] === rightOperand) {
+        return true;
+      }
 
-			if (interfaces[i].prototype.FLEXJS_CLASS_INFO &&
-			    interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
-				return checkInterfaces(new interfaces[i]());
-			}
-		}
+      if (interfaces[i].prototype.FLEXJS_CLASS_INFO &&
+          interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+        return checkInterfaces(new interfaces[i]());
+      }
+    }
 
-		return false;
-	};
+    return false;
+  };
 
-	if (leftOperand instanceof rightOperand) {
-		return true;
-	} else if (leftOperand.FLEXJS_CLASS_INFO &&
-	    leftOperand.FLEXJS_CLASS_INFO.interfaces) {
-		return checkInterfaces(leftOperand);
-	} else if (rightOperand === String && typeof leftOperand === 'string')
+  if (leftOperand instanceof rightOperand) {
+    return true;
+  } else if (leftOperand.FLEXJS_CLASS_INFO &&
+      leftOperand.FLEXJS_CLASS_INFO.interfaces) {
+    return checkInterfaces(leftOperand);
+  } else if (rightOperand === String && typeof leftOperand === 'string')
         return true;
 
-	return false;
+  return false;
 };
 
 
@@ -102,13 +102,13 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
  * @param {string} value The message to be written to the console.
  */
 org.apache.flex.utils.Language.trace = function(value) {
-	try {
-		if (console && console.log) {
-			console.log(value);
-		}
-	} catch (e) {
-		// ignore; at least we tried ;-)
-	}
+  try {
+    if (console && console.log) {
+      console.log(value);
+    }
+  } catch (e) {
+    // ignore; at least we tried ;-)
+  }
 };
 
 
@@ -120,5 +120,5 @@ org.apache.flex.utils.Language.trace = function(value) {
  * @return {number}
  */
 org.apache.flex.utils.Language.uint = function(value) {
-	return value >>> 0;
+  return value >>> 0;
 };

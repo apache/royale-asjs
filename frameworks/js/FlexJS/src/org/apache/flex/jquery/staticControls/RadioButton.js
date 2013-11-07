@@ -138,27 +138,27 @@ function(value) {
  * application has finished initializing, the groups are given their buttonset().
  */
 
-	this.radioGroupName = value;
+  this.radioGroupName = value;
 
-	this.element.name = value;
+  this.element.name = value;
 
-	var div;
+  var div;
 
-	if (org.apache.flex.jquery.staticControls.RadioButton.groups[value]) {
-		div = org.apache.flex.jquery.staticControls.RadioButton.groups[value];
-		div.appendChild(this.element);
-		div.appendChild(this.labelFor);
-	}
-	else {
-		div = document.createElement('div');
-		div.id = value;
-		div.appendChild(this.element);
-		div.appendChild(this.labelFor);
+  if (org.apache.flex.jquery.staticControls.RadioButton.groups[value]) {
+    div = org.apache.flex.jquery.staticControls.RadioButton.groups[value];
+    div.appendChild(this.element);
+    div.appendChild(this.labelFor);
+  }
+  else {
+    div = document.createElement('div');
+    div.id = value;
+    div.appendChild(this.element);
+    div.appendChild(this.labelFor);
 
-		org.apache.flex.jquery.staticControls.RadioButton.groups[String(value)] = div;
-	}
+    org.apache.flex.jquery.staticControls.RadioButton.groups[String(value)] = div;
+  }
 
-	this.positioner = div;
+  this.positioner = div;
 };
 
 /**

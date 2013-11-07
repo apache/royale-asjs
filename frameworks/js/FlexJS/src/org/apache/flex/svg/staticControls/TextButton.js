@@ -36,7 +36,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
     function(p) {
     this.element = document.createElement('embed');
     this.element.setAttribute('src', 'skins/TextButtonSkin.svg');
-	this.element.setAttribute('type', 'button');
+  this.element.setAttribute('type', 'button');
 
     p.appendChild(this.element);
 
