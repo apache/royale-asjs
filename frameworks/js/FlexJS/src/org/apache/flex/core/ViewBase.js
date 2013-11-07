@@ -128,7 +128,7 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
 org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
   for (var p in this.states_)
   {
-    var s = states_[p];
+    var s = this.states_[p];
     if (s.name == state)
       return true;
   }
