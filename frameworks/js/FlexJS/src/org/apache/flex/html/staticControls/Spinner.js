@@ -124,7 +124,7 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_maximum =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_maximum =
     function(value) {
-  if (value != maximum_) {
+  if (value != this.maximum_) {
     this.maximum_ = value;
     this.dispatchEvent('maximumChanged');
   }
@@ -147,7 +147,7 @@ org.apache.flex.html.staticControls.Spinner.prototype.get_snapInterval =
  */
 org.apache.flex.html.staticControls.Spinner.prototype.set_snapInterval =
     function(value) {
-  if (value != snapInterval) {
+  if (value != this.snapInterval_) {
     this.snapInterval_ = value;
     this.dispatchEvent('snapIntervalChanged');
   }
