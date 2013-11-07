@@ -99,6 +99,6 @@ function(value) {
  * @return {string} value The current selectedIndex.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_selectedIndex =
-function(value) {
+function() {
   return this.get_model().get_selectedIndex();
 };

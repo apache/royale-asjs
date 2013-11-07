@@ -63,8 +63,8 @@ function() {
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.List}
- * Returns an array of objects that make up the actual list (most likely
- * itemRenderers).
+ * @return {Array.<Object>} An array of objects that make up the actual
+ *                          list (most likely itemRenderers).
  */
 org.apache.flex.html.staticControls.List.prototype.internalChildren =
 function() {

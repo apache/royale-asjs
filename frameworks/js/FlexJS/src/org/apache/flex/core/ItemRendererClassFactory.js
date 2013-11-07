@@ -57,6 +57,7 @@ prototype.createItemRenderer = function(parent) {
  * @expose
  * @this {org.apache.flex.core.ItemRendererClassFactory}
  * @param {object} parent The parent of the new item renderer.
+ * @return {object} The new item renderer.
  */
 org.apache.flex.core.ItemRendererClassFactory.
 prototype.createFromClass = function(parent) {

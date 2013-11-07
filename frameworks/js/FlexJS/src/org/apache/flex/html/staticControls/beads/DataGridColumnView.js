@@ -56,7 +56,7 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
- * @param {number} The column index for this grid column.
+ * @param {number} value The column index for this grid column.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
     set_columnIndex = function(value) {
@@ -78,7 +78,7 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.DataGridColumnView}
- * @param {string} The field in the data to use for the column's label.
+ * @param {string} value The field in the data to use for the column's label.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
      set_labelField = function(value) {

@@ -29,6 +29,8 @@ goog.inherits(
 
 /**
  * @expose
+ * @return {boolean} I guess this method is 'old' since we now
+ *                   support regular type checking?
  */
 org.apache.flex.core.IBeadView.prototype.isaView = function() {
   return true;

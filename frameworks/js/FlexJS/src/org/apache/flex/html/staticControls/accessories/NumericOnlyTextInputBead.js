@@ -41,6 +41,10 @@ prototype.set_strand = function(value) {
   }
 };
 
+/**
+ * @expose
+ * @param {Object} event The input to validate?
+ */
 org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.
 prototype.validateInput = function(event) {
 
