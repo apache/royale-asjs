@@ -16,17 +16,19 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.ImageModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel =
-function() {
+    function() {
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.models.ImageModel,
-  org.apache.flex.events.EventDispatcher);
+    org.apache.flex.html.staticControls.beads.models.ImageModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -35,9 +37,10 @@ goog.inherits(
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 };
+
 
 /**
  * @expose
@@ -45,9 +48,10 @@ set_strand = function(value) {
  * @return {Object} value The image source.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
-get_source = function() {
+    get_source = function() {
   return this.source;
 };
+
 
 /**
  * @expose
@@ -55,7 +59,7 @@ get_source = function() {
  * @param {Object} value The image source.
  */
 org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
-set_source = function(value) {
+    set_source = function(value) {
   this.source = value;
   this.dispatchEvent('sourceChanged');
 };

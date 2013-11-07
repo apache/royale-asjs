@@ -65,7 +65,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
 
   // listen for changes to the model so items can be changed in the view
   this.model.addEventListener('titleChange',
-        goog.bind(this.changeHandler, this));
+      goog.bind(this.changeHandler, this));
 };
 
 
@@ -74,7 +74,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
  * @this {org.apache.flex.html.staticControls.TitleBar}
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
-  function() {
+    function() {
 
   this.titleLabel.set_text(this.model.get_title());
 
@@ -85,18 +85,19 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
   }
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.TitleBar}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
-  function(event) {
-    if (event.type == 'titleChange') {
-      this.titleLabel.set_text(this.model.get_title());
-    }
-    else if (event.type == 'htmlTitleChange') {
-      this.titleLabel.set_text(this.model.get_htmlTitle());
-    }
+    function(event) {
+  if (event.type == 'titleChange') {
+    this.titleLabel.set_text(this.model.get_title());
+  }
+  else if (event.type == 'htmlTitleChange') {
+    this.titleLabel.set_text(this.model.get_htmlTitle());
+  }
 };
 
 

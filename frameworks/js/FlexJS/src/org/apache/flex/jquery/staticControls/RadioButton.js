@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.jquery.staticControls.RadioButton');
 
 goog.require('org.apache.flex.core.UIBase');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
@@ -38,12 +40,14 @@ goog.inherits(org.apache.flex.jquery.staticControls.RadioButton,
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.radioGroupName;
 
+
 /**
  * @expose
  * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * Used to provide ids to the radio buttons.
  */
 org.apache.flex.jquery.staticControls.RadioButton.radioCounter = 0;
+
 
 /**
  * @expose
@@ -52,11 +56,13 @@ org.apache.flex.jquery.staticControls.RadioButton.radioCounter = 0;
  */
 org.apache.flex.jquery.staticControls.RadioButton.groups = { };
 
+
 /**
  * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * Flag to make sure the event handler is set only once.
  */
 org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet = false;
+
 
 /**
  * @override
@@ -65,21 +71,22 @@ org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet = false;
 org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
     function() {
 
-    var input = document.createElement('input');
-    input.type = 'radio';
-    input.name = 'radio';
-    input.id = 'radio' +
-        org.apache.flex.jquery.staticControls.RadioButton.radioCounter;
+  var input = document.createElement('input');
+  input.type = 'radio';
+  input.name = 'radio';
+  input.id = 'radio' +
+      org.apache.flex.jquery.staticControls.RadioButton.radioCounter;
 
-    var label = document.createElement('label');
-    label.htmlFor = input.id;
+  var label = document.createElement('label');
+  label.htmlFor = input.id;
 
-    this.element = input;
-    this.labelFor = label;
+  this.element = input;
+  this.labelFor = label;
 
-    this.positioner = this.element;
-    this.flexjs_wrapper = this;
+  this.positioner = this.element;
+  this.flexjs_wrapper = this;
 };
+
 
 /**
  * @override
@@ -88,28 +95,30 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.createElement =
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.setDocument =
     function(doc, id) {
-    if (!org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet)
-    {
-        org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet =
-            true;
-        doc.addEventListener('initComplete',
-                goog.bind(this.initHandler, this));
-    }
+  if (!org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet)
+  {
+    org.apache.flex.jquery.staticControls.RadioButton.groupHandlerSet =
+        true;
+    doc.addEventListener('initComplete',
+        goog.bind(this.initHandler, this));
+  }
 };
+
 
 /**
  * @this {org.apache.flex.jquery.staticControls.RadioButton}
  * @param {Event} event The event.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.initHandler =
-function(event) {
-    var divtags = org.apache.flex.jquery.staticControls.RadioButton.groups;
-    for (var name in divtags)
-    {
-        var div = divtags[name];
-        $(div).buttonset();
-    }
+    function(event) {
+  var divtags = org.apache.flex.jquery.staticControls.RadioButton.groups;
+  for (var name in divtags)
+  {
+    var div = divtags[name];
+    $(div).buttonset();
+  }
 };
+
 
 /**
  * @expose
@@ -128,9 +137,9 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_groupName =
  * @param {string} value The groupName setter.
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_groupName =
-function(value) {
+    function(value) {
 
-/*
+  /*
  * NOTE: Ideally when a RadioButton was created it would be added to an
  * existing set of RadioButtons. This is especially true for RadioButtons
  * added dynamically. However, due to a bug in jQuery
@@ -164,6 +173,7 @@ function(value) {
   this.positioner = div;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.jquery.staticControls.RadioButton}
@@ -171,7 +181,7 @@ function(value) {
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.get_text =
     function() {
-    return this.labelFor.innerHTML;
+  return this.labelFor.innerHTML;
 };
 
 
@@ -182,7 +192,7 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_text =
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_text =
     function(value) {
-   this.labelFor.innerHTML = value;
+  this.labelFor.innerHTML = value;
 };
 
 
@@ -193,7 +203,7 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.set_text =
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.get_selected =
     function() {
-    return this.element.checked;
+  return this.element.checked;
 };
 
 
@@ -204,5 +214,5 @@ org.apache.flex.jquery.staticControls.RadioButton.prototype.get_selected =
  */
 org.apache.flex.jquery.staticControls.RadioButton.prototype.set_selected =
     function(value) {
-    this.element.checked = value;
+  this.element.checked = value;
 };

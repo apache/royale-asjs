@@ -24,25 +24,26 @@ goog.require('org.apache.flex.core.ListBase');
  */
 org.apache.flex.html.staticControls.DropDownList = function() {
   goog.base(this);
-  this.model =
-     new org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
-
+  this.model = new org.apache.flex.html.staticControls.beads.
+      models.ArraySelectionModel();
 };
 goog.inherits(org.apache.flex.html.staticControls.DropDownList,
     org.apache.flex.core.ListBase);
+
 
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.DropDownList}
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
-createElement = function() {
+    createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 1;
   goog.events.listen(this.element, 'change',
-    goog.bind(this.changeHandler, this));
+      goog.bind(this.changeHandler, this));
   this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -50,7 +51,7 @@ createElement = function() {
  * @param {Object} value The new dataProvider.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
-set_dataProvider = function(value) {
+    set_dataProvider = function(value) {
   var dp, i, n, opt;
 
   this.model.set_dataProvider(value);
@@ -70,6 +71,7 @@ set_dataProvider = function(value) {
 
 };
 
+
 /**
  * @protected
  * @this {org.apache.flex.html.staticControls.DropDownList}
@@ -80,16 +82,18 @@ org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
   this.dispatchEvent('change');
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.DropDownList}
  * @param {Number} value The new selected index.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
-set_selectedIndex = function(value) {
-   this.model.set_selectedIndex(value);
-   this.element.selectedIndex = value;
+    set_selectedIndex = function(value) {
+  this.model.set_selectedIndex(value);
+  this.element.selectedIndex = value;
 };
+
 
 /**
  * @expose
@@ -97,7 +101,7 @@ set_selectedIndex = function(value) {
  * @param {Object} value The new selected item.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
-set_selectedItem = function(value) {
-   this.model.set_selectedItem(value);
-   this.element.selectedIndex = this.get_selectedIndex();
+    set_selectedItem = function(value) {
+  this.model.set_selectedItem(value);
+  this.element.selectedIndex = this.get_selectedIndex();
 };

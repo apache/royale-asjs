@@ -22,7 +22,6 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
-
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
@@ -89,14 +88,16 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
   this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.ViewBase}
  * @return {Object} The application model.
  */
 org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
-    return this.applicationModel;
+  return this.applicationModel;
 };
+
 
 /**
  * @expose
@@ -104,8 +105,9 @@ org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
  * @return {Array} The array of State objects.
  */
 org.apache.flex.core.ViewBase.prototype.get_states = function() {
-    return this.states_;
+  return this.states_;
 };
+
 
 /**
  * @expose
@@ -113,13 +115,14 @@ org.apache.flex.core.ViewBase.prototype.get_states = function() {
  * @param {Array} value The array of State objects.
  */
 org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
-    this.states_ = value;
+  this.states_ = value;
 
-    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
-                getValue(this, 'iStatesImpl');
-    // TODO: (aharui) check if bead already exists
-    this.addBead(new impl());
+  var impl = org.apache.flex.core.ValuesManager.valuesImpl.
+      getValue(this, 'iStatesImpl');
+  // TODO: (aharui) check if bead already exists
+  this.addBead(new impl());
 };
+
 
 /**
  * @expose
@@ -128,14 +131,15 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
  * @return {boolean} True if state in states array.
  */
 org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
-    for (var p in this.states_)
-    {
-        var s = states_[p];
-        if (s.name == state)
-            return true;
-    }
-    return false;
+  for (var p in this.states_)
+  {
+    var s = states_[p];
+    if (s.name == state)
+      return true;
+  }
+  return false;
 };
+
 
 /**
  * @expose
@@ -143,8 +147,9 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
  * @return {string} The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
-    return this.currentState_;
+  return this.currentState_;
 };
+
 
 /**
  * @expose
@@ -152,11 +157,12 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
  * @param {string} value The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
-    var event = new org.apache.flex.events.ValueChangeEvent(
-            'currentStateChanged', this.currentState_, value);
-    this.currentState_ = value;
-    this.dispatchEvent(event);
+  var event = new org.apache.flex.events.ValueChangeEvent(
+      'currentStateChanged', this.currentState_, value);
+  this.currentState_ = value;
+  this.dispatchEvent(event);
 };
+
 
 /**
  * @expose
@@ -164,8 +170,9 @@ org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
  * @return {Array} The array of transitions.
  */
 org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
-    return this.transitions_;
+  return this.transitions_;
 };
+
 
 /**
  * @expose
@@ -173,6 +180,6 @@ org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
  * @param {Array} value The array of transitions.
  */
 org.apache.flex.core.ViewBase.prototype.set_transitions = function(value) {
-    this.transitions_ = value;
+  this.transitions_ = value;
 };
 

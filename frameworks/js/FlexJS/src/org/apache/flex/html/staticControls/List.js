@@ -44,12 +44,13 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
   this.set_className('List');
 };
 
+
 /**
  * @override
  * @this {org.apache.flex.html.staticControls.List}
  */
 org.apache.flex.html.staticControls.List.prototype.addedToParent =
-function() {
+    function() {
   goog.base(this, 'addedToParent');
 
   var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
@@ -60,6 +61,7 @@ function() {
   }
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.List}
@@ -67,7 +69,7 @@ function() {
  *                          list (most likely itemRenderers).
  */
 org.apache.flex.html.staticControls.List.prototype.internalChildren =
-function() {
+    function() {
   var listView =
       this.getBeadByType(org.apache.flex.html.staticControls.beads.ListView);
   var dg = listView.get_dataGroup();
@@ -75,24 +77,25 @@ function() {
   return items;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.List}
  * @param {object} event The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.List.prototype.selectedHandler =
-function(event) {
-   var itemRenderer = event.currentTarget;
-   var n = this.renderers.length;
-   var i;
-   for (i = 0; i < n; i++) {
-       var test = this.renderers[i];
-       if (test == itemRenderer) {
-           this.model.set_selectedIndex(i);
-           itemRenderer.set_selected(true);
-       }
-       else {
-          test.set_selected(false);
-       }
-   }
+    function(event) {
+  var itemRenderer = event.currentTarget;
+  var n = this.renderers.length;
+  var i;
+  for (i = 0; i < n; i++) {
+    var test = this.renderers[i];
+    if (test == itemRenderer) {
+      this.model.set_selectedIndex(i);
+      itemRenderer.set_selected(true);
+    }
+    else {
+      test.set_selected(false);
+    }
+  }
 };

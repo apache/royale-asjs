@@ -149,6 +149,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
   }
 };
 
+
 /**
  Hack to allow event.target expressions to work
  * @expose
@@ -159,6 +160,7 @@ Event.prototype.get_target = function() {
   var obj = this.target.flexjs_wrapper;
   return obj;
 };
+
 
 /**
  Hack to allow event.target expressions to work

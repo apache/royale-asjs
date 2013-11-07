@@ -14,11 +14,14 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.SliderTrackView');
 
+
+
 /**
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.SliderTrackView = function() {
 };
+
 
 /**
  * @expose
@@ -26,7 +29,7 @@ org.apache.flex.html.staticControls.beads.SliderTrackView = function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.SliderTrackView.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 
   this.element = document.createElement('div');

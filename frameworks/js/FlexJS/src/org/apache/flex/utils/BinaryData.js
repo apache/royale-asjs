@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.utils.BinaryData');
 
+
+
 /**
  * @constructor
  */
@@ -33,6 +35,7 @@ org.apache.flex.utils.BinaryData = function() {
 
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
@@ -41,6 +44,7 @@ org.apache.flex.utils.BinaryData = function() {
 org.apache.flex.utils.BinaryData.prototype.get_data = function() {
   return this.data_;
 };
+
 
 /**
  * @expose
@@ -57,6 +61,7 @@ org.apache.flex.utils.BinaryData.prototype.writeByte = function(b) {
   this.position_++;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
@@ -72,6 +77,7 @@ org.apache.flex.utils.BinaryData.prototype.writeShort = function(s) {
   this.position_ += 2;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
@@ -86,6 +92,7 @@ org.apache.flex.utils.BinaryData.prototype.writeInt = function(num) {
   view[0] = num;
   this.position_ += 4;
 };
+
 
 /**
  * @expose
@@ -103,6 +110,7 @@ org.apache.flex.utils.BinaryData.prototype.writeUnsignedInt =
   this.position_ += 4;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
@@ -115,6 +123,7 @@ org.apache.flex.utils.BinaryData.prototype.readByte = function() {
   this.position_++;
   return view[0];
 };
+
 
 /**
  * @expose
@@ -129,6 +138,7 @@ org.apache.flex.utils.BinaryData.prototype.readShort = function() {
   return view[0];
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
@@ -141,6 +151,7 @@ org.apache.flex.utils.BinaryData.prototype.readInteger = function() {
   this.position_ += 4;
   return view[0];
 };
+
 
 /**
  * @expose
@@ -156,14 +167,16 @@ org.apache.flex.utils.BinaryData.prototype.readUnsignedInteger =
   return view[0];
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.utils.BinaryData}
  * @return {number} The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.get_position = function() {
-   return this.position_;
+  return this.position_;
 };
+
 
 /**
  * @expose
@@ -171,8 +184,9 @@ org.apache.flex.utils.BinaryData.prototype.get_position = function() {
  * @param {number} value The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.set_position = function(value) {
-   this.position_ = value;
+  this.position_ = value;
 };
+
 
 /**
  * @expose
@@ -180,8 +194,9 @@ org.apache.flex.utils.BinaryData.prototype.set_position = function(value) {
  * @return {number} The offset to write to or read from.
  */
 org.apache.flex.utils.BinaryData.prototype.get_length = function() {
-   return this.data_.byteLength;
+  return this.data_.byteLength;
 };
+
 
 /**
  * @expose
@@ -189,8 +204,9 @@ org.apache.flex.utils.BinaryData.prototype.get_length = function() {
  * @return {number} The number of bytes that can still be read.
  */
 org.apache.flex.utils.BinaryData.prototype.get_bytesAvailable = function() {
-   return this.data_.byteLength - this.position_;
+  return this.data_.byteLength - this.position_;
 };
+
 
 /**
  * @expose
@@ -208,7 +224,7 @@ org.apache.flex.utils.BinaryData.prototype.growBuffer = function(extra) {
     view = new Int8Array(this.data_, 0, n);
     for (i = 0; i < n; i++)
     {
-        newView[i] = view[i];
+      newView[i] = view[i];
     }
     this.data_ = newBuffer;
   }

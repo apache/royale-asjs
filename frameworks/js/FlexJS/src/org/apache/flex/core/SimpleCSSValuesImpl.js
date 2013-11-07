@@ -22,6 +22,7 @@ goog.provide('org.apache.flex.core.SimpleCSSValuesImpl');
 org.apache.flex.core.SimpleCSSValuesImpl = function() {
 };
 
+
 /**
  * @this {org.apache.flex.core.SimpleCSSValuesImpl}
  * @param {Object} thisObject The object to fetch a value for.
@@ -37,8 +38,8 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   while (c != -1)
   {
     valueName = valueName.substr(0, c) +
-    valueName.charAt(c + 1).toUpperCase() +
-    valueName.substr(c + 2);
+        valueName.charAt(c + 1).toUpperCase() +
+        valueName.substr(c + 2);
     c = valueName.indexOf('-');
   }
 
@@ -53,22 +54,22 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     className = thisObject.className;
     if (state)
     {
-        selectorName = className + ':' + state;
-        o = values['.' + selectorName];
-        if (o)
-        {
-            value = o[valueName];
-            if (value !== undefined)
-                return value;
-        }
+      selectorName = className + ':' + state;
+      o = values['.' + selectorName];
+      if (o)
+      {
+        value = o[valueName];
+        if (value !== undefined)
+          return value;
+      }
     }
 
     o = values['.' + className];
     if (o)
     {
-        value = o[valueName];
-        if (value !== undefined)
-            return value;
+      value = o[valueName];
+      if (value !== undefined)
+        return value;
     }
   }
 
@@ -77,26 +78,26 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   {
     if (state)
     {
-        selectorName = className + ':' + state;
-        o = values[selectorName];
-        if (o)
-        {
-            value = o[valueName];
-            if (value !== undefined)
-                return value;
-        }
+      selectorName = className + ':' + state;
+      o = values[selectorName];
+      if (o)
+      {
+        value = o[valueName];
+        if (value !== undefined)
+          return value;
+      }
     }
 
     o = values[className];
     if (o)
     {
-        value = o[valueName];
-        if (value !== undefined)
-            return value;
+      value = o[valueName];
+      if (value !== undefined)
+        return value;
     }
     thisObject = thisObject.__proto__;
     if (thisObject.__proto__ == null)
-        break;
+      break;
     className = this.getQualifiedClassName(thisObject);
   }
   o = values['global'];
@@ -104,11 +105,12 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   {
     value = o[valueName];
     if (value !== undefined)
-       return value;
+      return value;
   }
   o = values['*'];
   return o[valueName];
 };
+
 
 /**
  * @this {org.apache.flex.core.SimpleCSSValuesImpl}
@@ -117,80 +119,81 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.getQualifiedClassName =
     function(thisObject) {
-    // relies on the values parser to populate the package tree
-    var proto = thisObject.__proto__;
-    if (proto.hasOwnProperty('__css__package_parent'))
+  // relies on the values parser to populate the package tree
+  var proto = thisObject.__proto__;
+  if (proto.hasOwnProperty('__css__package_parent'))
+  {
+    var s = proto.__css__name;
+    while (true)
     {
-        var s = proto.__css__name;
-        while (true)
-        {
-            proto = proto.__css__package_parent;
-            if (proto == window || proto == undefined)
-                return s;
-            s = proto.__css__name + '.' + s;
-        }
+      proto = proto.__css__package_parent;
+      if (proto == window || proto == undefined)
+        return s;
+      s = proto.__css__name + '.' + s;
     }
-    return null;
+  }
+  return null;
 };
+
 
 /**
  * @this {org.apache.flex.core.SimpleCSSValuesImpl}
  * @param {Object} mainclass The main class for the application.
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
-    var cssData = mainclass.cssData;
-    var values = this.values;
-    if (values == null)
-        values = {};
+  var cssData = mainclass.cssData;
+  var values = this.values;
+  if (values == null)
+    values = {};
 
-    var n = cssData.length;
-    var i = 0;
-    while (i < n)
+  var n = cssData.length;
+  var i = 0;
+  while (i < n)
+  {
+    var numMQ = cssData[i++];
+    if (numMQ > 0)
     {
-        var numMQ = cssData[i++];
-        if (numMQ > 0)
-        {
-            // skip MediaQuery tests for now
-            i += numMQ;
-        }
-        var numSel = cssData[i++];
-        var props = {};
-        for (var j = 0; j < numSel; j++)
-        {
-            var selName = cssData[i++];
-            if (selName.indexOf('.') != 0 &&
-                selName != '*' && selName != 'global')
-            {
-                // should be a type selector
-                var parts = selName.split('.');
-                var numParts = parts.length;
-                var part = window;
-                for (var k = 0; k < numParts; k++)
-                {
-                    var partName = parts[k];
-                    var subpart = part[partName];
-                    if (subpart == undefined)
-                        break;
-                    // assume last part is ctor func
-                    if (k == numParts - 1)
-                        subpart = subpart.prototype;
-                    subpart.__css__package_parent = part;
-                    subpart.__css__name = partName;
-                    part = subpart;
-                }
-            }
-            if (values[selName])
-                props = values[selName];
-            values[selName] = props;
-        }
-        var numProps = cssData[i++];
-        for (j = 0; j < numProps; j++)
-        {
-            var propName = cssData[i++];
-            var propValue = cssData[i++];
-            props[propName] = propValue;
-        }
+      // skip MediaQuery tests for now
+      i += numMQ;
     }
-    this.values = values;
+    var numSel = cssData[i++];
+    var props = {};
+    for (var j = 0; j < numSel; j++)
+    {
+      var selName = cssData[i++];
+      if (selName.indexOf('.') != 0 &&
+          selName != '*' && selName != 'global')
+      {
+        // should be a type selector
+        var parts = selName.split('.');
+        var numParts = parts.length;
+        var part = window;
+        for (var k = 0; k < numParts; k++)
+        {
+          var partName = parts[k];
+          var subpart = part[partName];
+          if (subpart == undefined)
+            break;
+          // assume last part is ctor func
+          if (k == numParts - 1)
+            subpart = subpart.prototype;
+          subpart.__css__package_parent = part;
+          subpart.__css__name = partName;
+          part = subpart;
+        }
+      }
+      if (values[selName])
+        props = values[selName];
+      values[selName] = props;
+    }
+    var numProps = cssData[i++];
+    for (j = 0; j < numProps; j++)
+    {
+      var propName = cssData[i++];
+      var propValue = cssData[i++];
+      props[propName] = propValue;
+    }
+  }
+  this.values = values;
 };
 

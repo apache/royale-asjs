@@ -24,34 +24,37 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.core.ViewBase = function() {
-    goog.base(this);
+  goog.base(this);
 
-     /**
+  /**
       * @private
       * @type {org.apache.flex.createjs.core.ViewBase}
       */
-      this.currentObject_ = null;
+  this.currentObject_ = null;
 };
 goog.inherits(org.apache.flex.createjs.core.ViewBase,
-  org.apache.flex.createjs.core.UIBase);
+    org.apache.flex.createjs.core.UIBase);
+
 
 /**
  * @expose
  * @return {Object} Returns the application model.
  */
 org.apache.flex.createjs.core.ViewBase.prototype.get_applicationModel =
-  function() {
+    function() {
   return this.applicationModel;
 };
+
 
 /**
  * @expose
  * @param {Object} value The application model.
  */
 org.apache.flex.createjs.core.ViewBase.prototype.set_applicationModel =
-  function(value) {
+    function(value) {
   this.applicationModel = value;
 };
+
 
 /**
  * @expose
@@ -59,20 +62,22 @@ org.apache.flex.createjs.core.ViewBase.prototype.set_applicationModel =
  */
 org.apache.flex.createjs.core.ViewBase.prototype.MXMLProperties = null;
 
+
 /**
  * @expose
  * @type {Array}
  */
 org.apache.flex.createjs.core.ViewBase.prototype.MXMLDescriptor = null;
 
+
 /**
  * @this {org.apache.flex.createjs.core.ViewBase}
  * @param {Object} model The model for this view.
  */
 org.apache.flex.createjs.core.ViewBase.prototype.initUI = function(model) {
-    this.applicationModel = model;
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-            this.get_MXMLProperties());
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
-            this, this.get_MXMLDescriptor());
+  this.applicationModel = model;
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
+      this.get_MXMLProperties());
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
+      this, this.get_MXMLDescriptor());
 };

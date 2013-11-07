@@ -28,11 +28,12 @@ goog.require('org.apache.flex.html.staticControls.beads.models.PanelModel');
  */
 org.apache.flex.html.staticControls.Panel = function() {
   this.model =
-     new org.apache.flex.html.staticControls.beads.models.PanelModel();
+      new org.apache.flex.html.staticControls.beads.models.PanelModel();
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html.staticControls.Panel,
     org.apache.flex.html.staticControls.Container);
+
 
 /**
  * @override
@@ -44,13 +45,14 @@ org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
     this.element.insertBefore(this.titleBar.element, this.contentArea);
   }
   else if (c == this.controlBar) {
-     this.element.appendChild(c.element);
+    this.element.appendChild(c.element);
   }
   else {
     this.contentArea.appendChild(c.element);
   }
   c.addedToParent();
 };
+
 
 /**
  * @override
@@ -59,17 +61,18 @@ org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
  * @param {number} index The index.
  */
 org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
-  function(c, index) {
+    function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
   else
   {
     this.contentArea.insertBefore(c.element,
-            this.getChildAt(index));
+        this.getChildAt(index));
     c.addedToParent();
   }
 };
+
 
 /**
  * @override
@@ -78,16 +81,17 @@ org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
  * @return {number} The index in parent.
  */
 org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
-  function(c) {
+    function(c) {
   var children = this.internalChildren();
   var n = children.length;
   for (i = 0; i < n; i++)
   {
-     if (children[i] == c.element)
-        return i;
+    if (children[i] == c.element)
+      return i;
   }
   return -1;
 };
+
 
 /**
  * @override
@@ -95,9 +99,10 @@ org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
  * @param {Object} c The child element.
  */
 org.apache.flex.html.staticControls.Panel.prototype.removeElement =
-  function(c) {
+    function(c) {
   this.contentArea.removeChild(c.element);
 };
+
 
 /**
  * @override
@@ -147,7 +152,7 @@ org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
  */
 org.apache.flex.html.staticControls.Panel.prototype.set_title =
     function(value) {
-   this.model.set_title(value);
+  this.model.set_title(value);
 };
 
 

@@ -19,12 +19,13 @@ goog.require('org.apache.flex.html.staticControls.beads.ListView');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IBeadController}
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ListSingleSelectionMouseController = function() {
+    ListSingleSelectionMouseController = function() {
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html.staticControls.beads.
@@ -39,17 +40,17 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
  * @param {object} value The strand for this component.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ListSingleSelectionMouseController.prototype.set_strand = function(value) {
+    ListSingleSelectionMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-         org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+      org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
   this.listView = value.getBeadByType(
-        org.apache.flex.html.staticControls.beads.ListView);
+      org.apache.flex.html.staticControls.beads.ListView);
 
   this.dataGroup = this.listView.get_dataGroup();
   this.dataGroup.addEventListener('selected',
-    goog.bind(this.selectedHandler, this));
+      goog.bind(this.selectedHandler, this));
 };
 
 
@@ -60,7 +61,8 @@ ListSingleSelectionMouseController.prototype.set_strand = function(value) {
  * @param {object} event The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ListSingleSelectionMouseController.prototype.selectedHandler = function(event) {
+    ListSingleSelectionMouseController.prototype.selectedHandler =
+        function(event) {
 
   var index = event.target.get_index();
   this.model.set_selectedIndex(index);

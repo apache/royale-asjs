@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.core.ItemRendererClassFactory');
 
 goog.require('org.apache.flex.core.ValuesManager');
 
+
+
 /**
  * @constructor
  */
@@ -24,21 +26,20 @@ org.apache.flex.core.ItemRendererClassFactory = function() {
 };
 
 
-
 /**
  * @expose
  * @this {org.apache.flex.core.ItemRendererClassFactory}
  * @param {object} value The component strand.
  */
 org.apache.flex.core.ItemRendererClassFactory.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.itemRendererClass = org.apache.flex.core.ValuesManager.valuesImpl.
       getValue(this.strand_, 'iItemRenderer');
   if (this.itemRendererClass) {
-     this.createFunction = this.createFromClass;
-   }
+    this.createFunction = this.createFromClass;
+  }
 };
 
 
@@ -49,9 +50,10 @@ prototype.set_strand = function(value) {
  * @return {object} The new item renderer.
  */
 org.apache.flex.core.ItemRendererClassFactory.
-prototype.createItemRenderer = function(parent) {
+    prototype.createItemRenderer = function(parent) {
   return this.createFunction(parent);
 };
+
 
 /**
  * @expose
@@ -60,7 +62,7 @@ prototype.createItemRenderer = function(parent) {
  * @return {object} The new item renderer.
  */
 org.apache.flex.core.ItemRendererClassFactory.
-prototype.createFromClass = function(parent) {
+    prototype.createFromClass = function(parent) {
   var renderer = new this.itemRendererClass();
   parent.addElement(renderer);
   return renderer;

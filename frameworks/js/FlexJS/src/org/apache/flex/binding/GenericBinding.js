@@ -15,6 +15,8 @@
 goog.provide('org.apache.flex.binding.GenericBinding');
 goog.require('org.apache.flex.binding.BindingBase');
 
+
+
 /**
  * @constructor
  */
@@ -30,11 +32,13 @@ goog.inherits(org.apache.flex.binding.GenericBinding,
  */
 org.apache.flex.binding.GenericBinding.prototype.destinationData = null;
 
+
 /**
  * @expose
  * @type {function}
  */
 org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
+
 
 /**
  * @expose
@@ -42,12 +46,13 @@ org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.GenericBinding.prototype.set_strand =
-            function(value) {
+    function(value) {
   this.destination = value;
 
   var val = this.getValueFromSource();
   this.applyValue(val);
 };
+
 
 /**
  * @expose
@@ -55,36 +60,37 @@ org.apache.flex.binding.GenericBinding.prototype.set_strand =
  * @return {Object} The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
-            function() {
-    if (typeof(this.source) == 'object' &&
-        typeof(this.source.slice) == 'function')
+    function() {
+  if (typeof(this.source) == 'object' &&
+      typeof(this.source.slice) == 'function')
+  {
+    var arr = this.source;
+    var n = arr.length;
+    var obj = this.document['get_' + arr[0]]();
+    if (obj == null)
+      return null;
+    for (var i = 1; i < n; i++)
     {
-        var arr = this.source;
-        var n = arr.length;
-        var obj = this.document['get_' + arr[0]]();
-        if (obj == null)
-            return null;
-        for (var i = 1; i < n; i++)
-        {
-            obj = obj['get_' + arr[i]]();
-            if (obj == null)
-                return null;
-        }
-        return obj;
+      obj = obj['get_' + arr[i]]();
+      if (obj == null)
+        return null;
     }
-    else if (typeof(this.source) == 'function')
-    {
-        var fn = this.source;
-        obj = fn.apply(this.document);
-        return obj;
-    }
-    else if (typeof(this.source) == 'string')
-    {
-        obj = this.document['get_' + this.source]();
-        return obj;
-    }
-    return null;
+    return obj;
+  }
+  else if (typeof(this.source) == 'function')
+  {
+    var fn = this.source;
+    obj = fn.apply(this.document);
+    return obj;
+  }
+  else if (typeof(this.source) == 'string')
+  {
+    obj = this.document['get_' + this.source]();
+    return obj;
+  }
+  return null;
 };
+
 
 /**
  * @expose
@@ -92,28 +98,29 @@ org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.applyValue =
-        function(value)
-{
-    if (this.destinationFunction != null)
+    function(value)
     {
-        this.destinationFunction.apply(this.document, [value]);
-    }
-    else if (typeof(this.destinationData) == 'object')
+  if (this.destinationFunction != null)
+  {
+    this.destinationFunction.apply(this.document, [value]);
+  }
+  else if (typeof(this.destinationData) == 'object')
+  {
+    var arr = this.destinationData;
+    var n = arr.length;
+    var obj = this.document['get_' + arr[0]]();
+    if (obj == null)
+      return;
+    for (var i = 1; i < n - 1; i++)
     {
-        var arr = this.destinationData;
-        var n = arr.length;
-        var obj = this.document['get_' + arr[0]]();
-        if (obj == null)
-            return;
-        for (var i = 1; i < n - 1; i++)
-        {
-            obj = obj['get_' + arr[i]]();
-            if (obj == null)
-                return;
-        }
-        obj['set_' + arr[n - 1]](value);
+      obj = obj['get_' + arr[i]]();
+      if (obj == null)
+        return;
     }
+    obj['set_' + arr[n - 1]](value);
+  }
 };
+
 
 /**
  * @expose
@@ -121,9 +128,9 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.valueChanged =
-        function(value)
-{
-    var val = this.getValueFromSource();
-    this.applyValue(val);
+    function(value)
+    {
+  var val = this.getValueFromSource();
+  this.applyValue(val);
 };
 

@@ -23,18 +23,19 @@ goog.require('org.apache.flex.core.HTMLElementWrapper');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.core.UIBase = function() {
-    goog.base(this);
+  goog.base(this);
 
-    /**
+  /**
      * @protected
      * @type {Object}
      */
-    this.positioner = null;
+  this.positioner = null;
 
-    this.createElement();
+  this.createElement();
 };
 goog.inherits(org.apache.flex.createjs.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
+
 
 /**
  * @this {org.apache.flex.createjs.core.UIBase}
@@ -42,18 +43,20 @@ goog.inherits(org.apache.flex.createjs.core.UIBase,
  */
 org.apache.flex.createjs.core.UIBase.prototype.addElement =
     function(c) {
-    this.addChild(c.element);
+  this.addChild(c.element);
 };
+
 
 /**
  * @this {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.core.UIBase.prototype.createElement =
     function() {
-    this.element = new createjs.Container();
+  this.element = new createjs.Container();
 
-    this.positioner = this.element;
+  this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -61,9 +64,10 @@ org.apache.flex.createjs.core.UIBase.prototype.createElement =
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
-    this.positioner.x = pixels;
-    this.element.getStage().update();
+  this.positioner.x = pixels;
+  this.element.getStage().update();
 };
+
 
 /**
  * @expose
@@ -71,9 +75,10 @@ org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
-    this.positioner.y = pixels;
-    this.element.getStage().update();
+  this.positioner.y = pixels;
+  this.element.getStage().update();
 };
+
 
 /**
  * @expose
@@ -81,9 +86,10 @@ org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
-    this.positioner.width = pixels;
-    this.element.getStage().update();
+  this.positioner.width = pixels;
+  this.element.getStage().update();
 };
+
 
 /**
  * @expose
@@ -91,9 +97,10 @@ org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
-    this.positioner.height = pixels;
-    this.element.getStage().update();
+  this.positioner.height = pixels;
+  this.element.getStage().update();
 };
+
 
 /**
  * @expose
@@ -101,14 +108,16 @@ org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
  */
 org.apache.flex.createjs.core.UIBase.prototype.id = null;
 
+
 /**
  * @expose
  * @this {org.apache.flex.createjs.core.UIBase}
  * @return {string} The id.
  */
 org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
-    return this.name;
+  return this.name;
 };
+
 
 /**
  * @expose
@@ -116,13 +125,14 @@ org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
  * @param {object} value The new id.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
-    if (this.name !== value)
-    {
-        this.element.name = value;
-        this.name = value;
-        this.dispatchEvent('idChanged');
-    }
+  if (this.name !== value)
+  {
+    this.element.name = value;
+    this.name = value;
+    this.dispatchEvent('idChanged');
+  }
 };
+
 
 /**
  * @expose
@@ -130,14 +140,16 @@ org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
  */
 org.apache.flex.createjs.core.UIBase.prototype.model = null;
 
+
 /**
  * @expose
  * @this {org.apache.flex.createjs.core.UIBase}
  * @return {object} The model.
  */
 org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
-    return this.model;
+  return this.model;
 };
+
 
 /**
  * @expose
@@ -145,10 +157,10 @@ org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
  * @param {object} value The new model.
  */
 org.apache.flex.createjs.core.UIBase.prototype.set_model = function(value) {
-    if (this.model !== value)
-    {
-        this.addBead(value);
-        this.dispatchEvent('modelChanged');
-    }
+  if (this.model !== value)
+  {
+    this.addBead(value);
+    this.dispatchEvent('modelChanged');
+  }
 };
 

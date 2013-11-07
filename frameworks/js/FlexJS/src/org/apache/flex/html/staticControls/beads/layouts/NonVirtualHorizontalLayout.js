@@ -17,6 +17,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizo
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
+
+
 /**
  * @constructor
  */
@@ -30,6 +32,7 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
         layouts.NonVirtualHorizontalLayout,
     org.apache.flex.core.IBeadLayout);
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.layouts.
@@ -37,7 +40,7 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
-prototype.set_strand =
+    prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -60,7 +63,7 @@ prototype.set_strand =
  * @param {org.apache.flex.events.Event} event The text getter.
  */
 org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
-prototype.changeHandler = function(event) {
+    prototype.changeHandler = function(event) {
   var children, i, n;
 
   children = this.strand_.internalChildren();

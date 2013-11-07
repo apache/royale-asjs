@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.DataGridColumnView');
 
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.beads.ListView}
@@ -25,8 +27,8 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView = function() {
   this.className = 'DataGridColumnView';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.DataGridColumnView,
-  org.apache.flex.html.staticControls.beads.ListView);
+    org.apache.flex.html.staticControls.beads.DataGridColumnView,
+    org.apache.flex.html.staticControls.beads.ListView);
 
 
 /**
@@ -36,9 +38,9 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
     set_strand = function(value) {
-    this.strand_ = value;
+  this.strand_ = value;
 
-    goog.base(this, 'set_strand', value);
+  goog.base(this, 'set_strand', value);
 };
 
 
@@ -81,6 +83,6 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
  * @param {string} value The field in the data to use for the column's label.
  */
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
-     set_labelField = function(value) {
+    set_labelField = function(value) {
   this.labelField_ = value;
 };

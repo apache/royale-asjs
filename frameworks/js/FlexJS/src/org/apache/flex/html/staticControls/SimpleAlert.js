@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.html.staticControls.SimpleAlert');
 goog.require('org.apache.flex.core.UIBase');
 
 
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
@@ -36,5 +37,5 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleAlert,
 org.apache.flex.html.staticControls.SimpleAlert.show =
     function(message, host) {
 
-    alert(message);
+  alert(message);
 };

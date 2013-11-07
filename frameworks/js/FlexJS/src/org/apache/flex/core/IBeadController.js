@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.core.IBeadController');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}

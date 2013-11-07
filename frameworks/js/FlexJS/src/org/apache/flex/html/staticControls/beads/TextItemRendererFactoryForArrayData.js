@@ -18,19 +18,23 @@ goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
-function() {
+    function() {
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData,
-  org.apache.flex.core.IItemRenderer,
-  org.apache.flex.events.EventDispatcher);
-
+    org.apache.flex.html.staticControls.
+        beads.TextItemRendererFactoryForArrayData,
+    org.apache.flex.core.IItemRenderer,
+    org.apache.flex.events.EventDispatcher);
+// TODO (erikdebruin) this 'goog.inherits' doesn't do what you think... We need
+//                    a proper interface here.
 
 
 /**
@@ -40,14 +44,14 @@ goog.inherits(
  * @param {object} value The component strand.
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-          org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+      org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
 
   this.listView = value.getBeadByType(
-          org.apache.flex.html.staticControls.beads.ListView);
+      org.apache.flex.html.staticControls.beads.ListView);
   this.dataGroup = this.listView.get_dataGroup();
 
   this.model.addEventListener('dataProviderChanged',
@@ -64,7 +68,7 @@ prototype.set_strand = function(value) {
  * @param {object} event The event that triggered the dataProvider change.
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
-prototype.dataProviderChangedHandler = function(event) {
+    prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
   dp = this.model.get_dataProvider();

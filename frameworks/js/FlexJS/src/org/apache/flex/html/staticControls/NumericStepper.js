@@ -51,7 +51,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
   this.addElement(this.spinner);
   this.spinner.positioner.style.display = 'inline-block';
   goog.events.listen(this.spinner, 'valueChanged',
-                goog.bind(this.spinnerChange, this));
+      goog.bind(this.spinnerChange, this));
 
   this.element.flexjs_wrapper = this;
   this.set_className('NumericStepper');
@@ -59,17 +59,18 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
   this.input.set_text(String(this.spinner.get_value()));
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.NumericStepper}
  * @param {Object} event The input event.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.spinnerChange =
     function(event)
-{
-   var newValue = this.spinner.get_value();
-   this.set_value(newValue);
-   this.input.set_text(String(this.spinner.get_value()));
-   this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+    {
+  var newValue = this.spinner.get_value();
+  this.set_value(newValue);
+  this.input.set_text(String(this.spinner.get_value()));
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
 
@@ -79,7 +80,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.spinnerChange =
  * @return {Number} The current minimum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_minimum =
-  function() {
+    function() {
   return this.model.get_minimum();
 };
 
@@ -90,7 +91,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_minimum =
  * @param {Number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_minimum =
-  function(value) {
+    function(value) {
   this.model.set_minimum(value);
 };
 
@@ -101,7 +102,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_minimum =
  * @return {Number} The current maximum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_maximum =
-  function() {
+    function() {
   return this.model.get_maximum();
 };
 
@@ -112,7 +113,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_maximum =
  * @param {Number} value The new maximum value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_maximum =
-  function(value) {
+    function(value) {
   this.model.set_maximum(value);
 };
 
@@ -123,7 +124,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_maximum =
  * @return {Number} The current value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_value =
-  function() {
+    function() {
   return this.model.get_value();
 };
 
@@ -134,7 +135,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_value =
  * @param {Number} newValue The new value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_value =
-  function(newValue) {
+    function(newValue) {
   this.model.set_value(newValue);
 };
 
@@ -145,7 +146,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_value =
  * @return {Number} The current snapInterval value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_snapInterval =
-  function() {
+    function() {
   return this.model.get_snapInterval();
 };
 
@@ -156,7 +157,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_snapInterval =
  * @param {Number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_snapInterval =
-  function(value) {
+    function(value) {
   this.model.set_snapInterval(value);
 };
 
@@ -167,7 +168,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.set_snapInterval =
  * @return {Number} The current stepSize value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.get_stepSize =
-  function() {
+    function() {
   return this.model.get_stepSize();
 };
 
@@ -178,7 +179,7 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.get_stepSize =
  * @param {Number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.set_stepSize =
-  function(value) {
+    function(value) {
   this.model.set_stepSize(value);
 };
 

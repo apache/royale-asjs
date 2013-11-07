@@ -17,12 +17,15 @@ goog.provide('org.apache.flex.html.staticControls.beads.controllers.SliderMouseC
 goog.require('org.apache.flex.html.staticControls.beads.SliderThumbView');
 goog.require('org.apache.flex.html.staticControls.beads.SliderTrackView');
 
+
+
 /**
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController =
-function() {
+    function() {
 };
+
 
 /**
  * @expose
@@ -31,13 +34,13 @@ function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.track = this.strand_.getBeadByType(
-        org.apache.flex.html.staticControls.beads.SliderTrackView);
+      org.apache.flex.html.staticControls.beads.SliderTrackView);
   this.thumb = this.strand_.getBeadByType(
-        org.apache.flex.html.staticControls.beads.SliderThumbView);
+      org.apache.flex.html.staticControls.beads.SliderThumbView);
 
   goog.events.listen(this.track.element, goog.events.EventType.CLICK,
                      this.handleTrackClick, false, this);
@@ -54,9 +57,9 @@ prototype.set_strand = function(value) {
  * @return {void} Handles click on track.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.handleTrackClick =
-function(event)
-{
+    prototype.handleTrackClick =
+    function(event)
+    {
   var xloc = event.clientX;
   var p = Math.min(1, xloc / parseInt(this.track.element.style.width, 10));
   var n = p * (this.strand_.get_maximum() - this.strand_.get_minimum()) +
@@ -72,6 +75,7 @@ function(event)
   this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
@@ -79,9 +83,9 @@ function(event)
  * @return {void} Handles mouse-down on the thumb.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.handleThumbDown =
-function(event)
-{
+    prototype.handleThumbDown =
+    function(event)
+    {
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
                      this.handleThumbUp, false, this);
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEMOVE,
@@ -91,6 +95,7 @@ function(event)
   this.position = parseInt(this.thumb.element.style.left, 10);
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
@@ -98,9 +103,9 @@ function(event)
  * @return {void} Handles mouse-up on the thumb.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.handleThumbUp =
-function(event)
-{
+    prototype.handleThumbUp =
+    function(event)
+    {
   goog.events.unlisten(this.strand_.element, goog.events.EventType.MOUSEUP,
                        this.handleThumbUp, false, this);
   goog.events.unlisten(this.strand_.element, goog.events.EventType.MOUSEMOVE,
@@ -111,6 +116,7 @@ function(event)
   this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
@@ -118,13 +124,14 @@ function(event)
  * @return {void} Handles mouse-move on the thumb.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.handleThumbMove =
-function(event)
-{
+    prototype.handleThumbMove =
+    function(event)
+    {
   this.calcValFromMousePosition(event, false);
 
   this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
@@ -135,9 +142,9 @@ function(event)
  * along the slider.
  */
 org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
-prototype.calcValFromMousePosition =
-function(event, useOffset)
-{
+    prototype.calcValFromMousePosition =
+    function(event, useOffset)
+    {
   var deltaX = (useOffset ? event.offsetX : event.clientX) - this.origin;
   var thumbW = parseInt(this.thumb.element.style.width, 10) / 2;
   var newX = this.position + deltaX;
@@ -154,7 +161,7 @@ function(event, useOffset)
   newX = p * parseInt(this.track.element.style.width, 10);
 
   this.thumb.element.style.left = String(newX -
-                     parseInt(this.thumb.element.style.width, 10) / 2) + 'px';
+      parseInt(this.thumb.element.style.width, 10) / 2) + 'px';
 
   this.strand_.set_value(n);
 };

@@ -17,19 +17,21 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
 goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IBeadModel}
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel =
-function() {
+    function() {
   goog.base(this);
   this.className = 'ArraySelectionModel';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.models.ArraySelectionModel,
-  org.apache.flex.core.IBeadModel,
-  org.apache.flex.events.EventDispatcher);
+    org.apache.flex.html.staticControls.beads.models.ArraySelectionModel,
+    org.apache.flex.core.IBeadModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -38,7 +40,7 @@ goog.inherits(
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 };
 
@@ -49,7 +51,7 @@ set_strand = function(value) {
  * @return {Object} value The dataProvider.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-get_dataProvider = function() {
+    get_dataProvider = function() {
   return this.dataProvider_;
 };
 
@@ -60,7 +62,7 @@ get_dataProvider = function() {
  * @param {Object} value The dataProvider.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-set_dataProvider = function(value) {
+    set_dataProvider = function(value) {
   this.dataProvider_ = value;
   this.dispatchEvent('dataProviderChanged');
 };
@@ -72,7 +74,7 @@ set_dataProvider = function(value) {
  * @return {Object} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-get_selectedIndex = function() {
+    get_selectedIndex = function() {
   return this.selectedIndex_;
 };
 
@@ -83,7 +85,7 @@ get_selectedIndex = function() {
  * @param {Object} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-set_selectedIndex = function(value) {
+    set_selectedIndex = function(value) {
   this.selectedIndex_ = value;
   this.dispatchEvent('selectedIndexChanged');
 };
@@ -95,7 +97,7 @@ set_selectedIndex = function(value) {
  * @return {Object} value The selected item.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-get_selectedItem = function() {
+    get_selectedItem = function() {
   var si;
 
   si = this.selectedIndex_;
@@ -115,17 +117,17 @@ get_selectedItem = function() {
  * @param {Object} value The selected item.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-set_selectedItem = function(value) {
+    set_selectedItem = function(value) {
   // find item in dataProvider and set selectedIndex or -1 if not exists
 
   this.selectedIndex_ = -1;
   var n = this.dataProvider_.length;
   for (var i = 0; i < n; i++) {
-     var item = this.dataProvider_[i];
-     if (item == value) {
-       this.selectedIndex_ = i;
-       break;
-     }
+    var item = this.dataProvider_[i];
+    if (item == value) {
+      this.selectedIndex_ = i;
+      break;
+    }
   }
 
   this.dispatchEvent('selectedItemChanged');

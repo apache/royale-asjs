@@ -17,6 +17,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout'
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IBeadLayout}
@@ -28,7 +30,8 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
   this.className = 'ButtonBarLayout';
 };
 goog.inherits(org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout,
-org.apache.flex.core.IBeadLayout);
+    org.apache.flex.core.IBeadLayout);
+
 
 /**
  * @expose
@@ -37,7 +40,7 @@ org.apache.flex.core.IBeadLayout);
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
-prototype.set_strand =
+    prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -56,7 +59,7 @@ prototype.set_strand =
  * @param {org.apache.flex.events.Event} event The text getter.
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
-prototype.changeHandler = function(event) {
+    prototype.changeHandler = function(event) {
   var children, i, n, xpos, useWidth, useHeight;
 
   children = this.strand_.internalChildren();

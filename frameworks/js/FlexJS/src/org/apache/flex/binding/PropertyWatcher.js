@@ -15,6 +15,8 @@
 goog.provide('org.apache.flex.binding.PropertyWatcher');
 goog.require('org.apache.flex.binding.WatcherBase');
 
+
+
 /**
  * @constructor
  * @param {Object} source The source object.
@@ -23,11 +25,11 @@ goog.require('org.apache.flex.binding.WatcherBase');
  * @param {function} getterFunction A function to get the source property.
  */
 org.apache.flex.binding.PropertyWatcher =
-        function(source, propertyName, eventNames, getterFunction) {
-    this.source = source;
-    this.propertyName = propertyName;
-    this.getterFunction = getterFunction;
-    this.eventNames = eventNames;
+    function(source, propertyName, eventNames, getterFunction) {
+  this.source = source;
+  this.propertyName = propertyName;
+  this.getterFunction = getterFunction;
+  this.eventNames = eventNames;
 };
 goog.inherits(org.apache.flex.binding.PropertyWatcher,
     org.apache.flex.binding.WatcherBase);
@@ -38,20 +40,24 @@ goog.inherits(org.apache.flex.binding.PropertyWatcher,
  */
 org.apache.flex.binding.PropertyWatcher.prototype.source;
 
+
 /**
  * @type {string}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.propertyName;
+
 
 /**
  * @type {Object}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.eventNames;
 
+
 /**
  * @type {function}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.getterFunction = null;
+
 
 /**
  * @protected
@@ -59,20 +65,21 @@ org.apache.flex.binding.PropertyWatcher.prototype.getterFunction = null;
  * @param {Object} event The event.
  */
 org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
-        function(event) {
-    if (typeof(event.propertyName) == 'string')
-    {
-        var propName = event.propertyName;
+    function(event) {
+  if (typeof(event.propertyName) == 'string')
+  {
+    var propName = event.propertyName;
 
-        if (propName != this.propertyName)
-            return;
-    }
+    if (propName != this.propertyName)
+      return;
+  }
 
-    this.wrapUpdate(this.updateProperty);
+  this.wrapUpdate(this.updateProperty);
 
-    this.notifyListeners();
+  this.notifyListeners();
 
 };
+
 
 /**
  * @protected
@@ -80,64 +87,67 @@ org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
  * @param {Object} parent The new parent watcher.
  */
 org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
-        function(parent) {
+    function(parent) {
 
-    if (this.source &&
-        typeof(this.source.removeEventListener) == 'function')
-        this.removeEventListeners();
+  if (this.source &&
+      typeof(this.source.removeEventListener) == 'function')
+    this.removeEventListeners();
 
-    this.source = parent;
+  this.source = parent;
 
-    if (this.source)
-        this.addEventListeners();
+  if (this.source)
+    this.addEventListeners();
 
-    // Now get our property.
-    this.wrapUpdate(this.updateProperty);
+  // Now get our property.
+  this.wrapUpdate(this.updateProperty);
 };
+
 
 /**
  * @protected
  * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
-        function() {
-    if (typeof(this.eventNames) == 'string')
-        this.source.addEventListener(this.eventNames,
-            goog.bind(this.changeHandler, this));
-    else if (typeof(this.eventNames) == 'Object')
+    function() {
+  if (typeof(this.eventNames) == 'string')
+    this.source.addEventListener(this.eventNames,
+        goog.bind(this.changeHandler, this));
+  else if (typeof(this.eventNames) == 'Object')
+  {
+    var arr = this.eventNames;
+    var n = arr.length;
+    for (var i = 0; i < n; i++)
     {
-        var arr = this.eventNames;
-        var n = arr.length;
-        for (var i = 0; i < n; i++)
-        {
-            var eventName = this.eventNames[i];
-            this.source.addEventListener(eventName,
-                goog.bind(this.changeHandler, this));
-        }
+      var eventName = this.eventNames[i];
+      this.source.addEventListener(eventName,
+          goog.bind(this.changeHandler, this));
     }
+  }
 };
+
 
 /**
  * @protected
  * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
-        function() {
-    if (typeof(this.eventNames) == 'string')
-        this.source.removeEventListener(this.eventNames,
-                goog.bind(this.changeHandler, this));
-    else if (typeof(this.eventNames) == 'Object')
+    function() {
+  if (typeof(this.eventNames) == 'string')
+    this.source.removeEventListener(this.eventNames,
+        goog.bind(this.changeHandler, this));
+  else if (typeof(this.eventNames) == 'Object')
+  {
+    var arr = this.eventNames;
+    var n = arr.length;
+    for (var i = 0; i < n; i++)
     {
-        var arr = this.eventNames;
-        var n = arr.length;
-        for (var i = 0; i < n; i++)
-        {
-            var eventName = this.eventNames[i];
-            this.source.removeEventListener(eventName,
-                goog.bind(this.changeHandler, this));
-        }
+      var eventName = this.eventNames[i];
+      this.source.removeEventListener(eventName,
+          goog.bind(this.changeHandler, this));
     }
+  }
 };
+
 
 /**
  * @protected
@@ -146,31 +156,31 @@ org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
  * @this {org.apache.flex.binding.PropertyWatcher}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.updateProperty =
-        function() {
+    function() {
 
-    if (this.source)
+  if (this.source)
+  {
+    if (this.propertyName == 'this')
     {
-        if (this.propertyName == 'this')
-        {
-            this.value = this.source;
-        }
-        else
-        {
-            if (this.getterFunction != null)
-            {
-                this.value = this.getterFunction.apply(
-                        this.source, [this.propertyName]);
-            }
-            else
-            {
-                this.value = this.source[this.propertyName];
-            }
-        }
+      this.value = this.source;
     }
     else
     {
-        this.value = null;
+      if (this.getterFunction != null)
+      {
+        this.value = this.getterFunction.apply(
+            this.source, [this.propertyName]);
+      }
+      else
+      {
+        this.value = this.source[this.propertyName];
+      }
     }
+  }
+  else
+  {
+    this.value = null;
+  }
 
-    this.updateChildren();
+  this.updateChildren();
 };

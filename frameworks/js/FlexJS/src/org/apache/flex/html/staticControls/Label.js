@@ -41,6 +41,7 @@ org.apache.flex.html.staticControls.Label.prototype.createElement =
   goog.base(this, 'createElement');
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.Label}

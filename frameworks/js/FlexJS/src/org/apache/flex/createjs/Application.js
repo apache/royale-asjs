@@ -31,15 +31,18 @@ goog.provide('org.apache.flex.createjs.Application');
 goog.require('org.apache.flex.core.HTMLElementWrapper');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.Application = function() {
-    goog.base(this);
+  goog.base(this);
 };
 goog.inherits(org.apache.flex.createjs.Application,
     org.apache.flex.core.HTMLElementWrapper);
+
 
 /**
  * @expose
@@ -47,11 +50,13 @@ goog.inherits(org.apache.flex.createjs.Application,
  */
 org.apache.flex.createjs.Application.prototype.controller = null;
 
+
 /**
  * @expose
  * @type {org.apache.flex.createjs.core.ViewBase}
  */
 org.apache.flex.createjs.Application.prototype.initialView = null;
+
 
 /**
  * @expose
@@ -59,11 +64,13 @@ org.apache.flex.createjs.Application.prototype.initialView = null;
  */
 org.apache.flex.createjs.Application.prototype.stage = null;
 
+
 /**
  * @expose
  * @type {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.createjs.Application.prototype.model = null;
+
 
 /**
  * @expose
@@ -71,36 +78,38 @@ org.apache.flex.createjs.Application.prototype.model = null;
  */
 org.apache.flex.createjs.Application.prototype.valuesImpl = null;
 
+
 /**
  * @expose
  * @this {org.apache.flex.createjs.Application}
  */
 org.apache.flex.createjs.Application.prototype.start = function() {
-    var body;
+  var body;
 
-    // For createjs, the application is the same as the canvas
-    // and it provides convenient access to the stage.
+  // For createjs, the application is the same as the canvas
+  // and it provides convenient access to the stage.
 
-    this.element = document.createElement('canvas');
-    this.element.id = 'flexjsCanvas';
-    this.element.width = 700;
-    this.element.height = 500;
+  this.element = document.createElement('canvas');
+  this.element.id = 'flexjsCanvas';
+  this.element.width = 700;
+  this.element.height = 500;
 
-    body = document.getElementsByTagName('body')[0];
-    body.appendChild(this.element);
+  body = document.getElementsByTagName('body')[0];
+  body.appendChild(this.element);
 
-    this.stage = new createjs.Stage('flexjsCanvas');
+  this.stage = new createjs.Stage('flexjsCanvas');
 
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-            this.get_MXMLProperties());
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
+      this.get_MXMLProperties());
 
-    this.dispatchEvent('initialize');
+  this.dispatchEvent('initialize');
 
-    this.initialView.applicationModel = this.model;
-    this.addElement(this.initialView);
+  this.initialView.applicationModel = this.model;
+  this.addElement(this.initialView);
 
-    this.dispatchEvent('viewChanged');
+  this.dispatchEvent('viewChanged');
 };
+
 
 /**
  * @this {org.apache.flex.createjs.core.Application}
@@ -108,7 +117,7 @@ org.apache.flex.createjs.Application.prototype.start = function() {
  */
 org.apache.flex.createjs.core.Application.prototype.addElement =
     function(c) {
-    this.stage.addChild(c.element);
-    c.addedToParent();
+  this.stage.addChild(c.element);
+  c.addedToParent();
 };
 

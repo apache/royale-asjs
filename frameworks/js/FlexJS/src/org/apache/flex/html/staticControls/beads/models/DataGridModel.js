@@ -16,12 +16,14 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.DataGridModel');
 
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel =
-function() {
+    function() {
   goog.base(this);
 
   this.labelFields_ = [];
@@ -29,8 +31,8 @@ function() {
   this.className = 'DataGridModel';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.models.DataGridModel,
-  org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+    org.apache.flex.html.staticControls.beads.models.DataGridModel,
+    org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
 
 
 /**
@@ -39,7 +41,7 @@ goog.inherits(
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   goog.base(this, 'set_strand', value);
   this.strand_ = value;
 };
@@ -51,9 +53,10 @@ set_strand = function(value) {
  * @param {Array} value Array of label fields.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
-set_labelFields = function(value) {
+    set_labelFields = function(value) {
   this.labelFields_ = value;
 };
+
 
 /**
  * @expose
@@ -61,6 +64,6 @@ set_labelFields = function(value) {
  * @return {Array} Array of label fields.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
-get_labelFields = function() {
+    get_labelFields = function() {
   return this.labelFields_;
 };

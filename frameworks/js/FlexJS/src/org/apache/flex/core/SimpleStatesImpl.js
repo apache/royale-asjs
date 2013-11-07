@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.core.SimpleStatesImpl');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 
+
 /**
  * @constructor
  */
@@ -32,6 +33,7 @@ org.apache.flex.core.SimpleStatesImpl = function() {
 goog.inherits(org.apache.flex.core.SimpleStatesImpl,
     org.apache.flex.events.EventDispatcher);
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.SimpleStatesImpl}
@@ -45,6 +47,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
         goog.bind(this.stateChangeHandler, this));
   }
 };
+
 
 /**
  * @protected
@@ -76,6 +79,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler =
   }
 };
 
+
 /**
  * @protected
  * @this {org.apache.flex.core.SimpleStatesImpl}
@@ -94,9 +98,9 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
         var item = o.items[q];
         var parent;
         if (typeof(o.document['get_' + o.destination]) == 'function')
-            parent = o.document['get_' + o.destination]();
+          parent = o.document['get_' + o.destination]();
         else
-            parent = o.document[o.destination];
+          parent = o.document[o.destination];
         parent.removeElement(item);
         parent.dispatchEvent(
             new org.apache.flex.events.Event('childrenAdded'));
@@ -116,6 +120,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert = function(s) {
     }
   }
 };
+
 
 /**
  * @protected
@@ -143,24 +148,24 @@ org.apache.flex.core.SimpleStatesImpl.prototype.applyState = function(s) {
         var item = o.items[q];
         var parent;
         if (typeof(o.document['get_' + o.destination]) == 'function')
-            parent = o.document['get_' + o.destination]();
+          parent = o.document['get_' + o.destination]();
         else
-            parent = o.document[o.destination];
+          parent = o.document[o.destination];
         if (o.relativeTo != null)
         {
-            var child;
-            if (typeof(o.document['get_' + o.relativeTo]) == 'function')
-                child = o.document['get_' + o.relativeTo]();
-            else
-                child = o.document[o.relativeTo];
-            var index = parent.getElementIndex(child);
-            if (o.position == 'after')
-                index++;
-            parent.addElementAt(item, index);
+          var child;
+          if (typeof(o.document['get_' + o.relativeTo]) == 'function')
+            child = o.document['get_' + o.relativeTo]();
+          else
+            child = o.document[o.relativeTo];
+          var index = parent.getElementIndex(child);
+          if (o.position == 'after')
+            index++;
+          parent.addElementAt(item, index);
         }
         else
         {
-            parent.addElement(item);
+          parent.addElement(item);
         }
         parent.dispatchEvent(
             new org.apache.flex.events.Event('childrenAdded'));

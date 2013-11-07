@@ -47,9 +47,9 @@ goog.inherits(org.apache.flex.core.ListBase,
  * @this {org.apache.flex.core.ListBase}
  */
 org.apache.flex.core.ListBase.prototype.createElement = function() {
-//  this.element = document.createElement('select');
-//  goog.events.listen(this.element, 'change',
-//      goog.bind(this.changeHandler, this));
+  //  this.element = document.createElement('select');
+  //  goog.events.listen(this.element, 'change',
+  //      goog.bind(this.changeHandler, this));
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
   this.element.style.border = 'solid';
@@ -66,7 +66,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
  */
 org.apache.flex.core.ListBase.prototype.get_dataProvider =
     function() {
-   return this.get_model().get_dataProvider();
+  return this.get_model().get_dataProvider();
 };
 
 

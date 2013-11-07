@@ -20,7 +20,7 @@ goog.provide('org.apache.flex.html.staticControls.accessories.NumericOnlyTextInp
  * @constructor
  */
 org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead =
-function() {
+    function() {
 
   /**
    * @private
@@ -29,24 +29,26 @@ function() {
   this.promptElement;
 };
 
+
 /**
  * @expose
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     value.addEventListener('keypress', goog.bind(this.validateInput, this));
   }
 };
 
+
 /**
  * @expose
  * @param {Object} event The input to validate?
  */
 org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.
-prototype.validateInput = function(event) {
+    prototype.validateInput = function(event) {
 
   var code = event.charCode;
 

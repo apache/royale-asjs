@@ -29,12 +29,14 @@ goog.provide('org.apache.flex.jquery.Application');
 
 goog.require('org.apache.flex.core.Application');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.Application}
  */
 org.apache.flex.jquery.Application = function() {
-    goog.base(this);
+  goog.base(this);
 };
 goog.inherits(org.apache.flex.jquery.Application,
     org.apache.flex.core.Application);

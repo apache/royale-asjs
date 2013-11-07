@@ -47,6 +47,7 @@ org.apache.flex.core.UIBase = function() {
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
 
+
 /**
  * @this {org.apache.flex.core.UIBase}
  * @return {Object} The array of children.
@@ -55,6 +56,7 @@ org.apache.flex.core.UIBase.prototype.internalChildren =
     function() {
   return this.element.childNodes;
 };
+
 
 /**
  * @protected
@@ -68,6 +70,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
   return this.element;
 };
 
+
 /**
  * @this {org.apache.flex.core.UIBase}
  * @param {Object} c The child element.
@@ -76,6 +79,7 @@ org.apache.flex.core.UIBase.prototype.addElement = function(c) {
   this.element.appendChild(c.element);
   c.addedToParent();
 };
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
@@ -89,10 +93,11 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
   else
   {
     this.element.insertBefore(c.element,
-            children[index]);
+        children[index]);
     c.addedToParent();
   }
 };
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
@@ -104,11 +109,12 @@ org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
   var n = children.length;
   for (i = 0; i < n; i++)
   {
-     if (children[i] == c.element)
-        return i;
+    if (children[i] == c.element)
+      return i;
   }
   return -1;
 };
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
@@ -117,6 +123,7 @@ org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
 org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
   this.element.removeChild(c.element);
 };
+
 
 /**
  * @this {org.apache.flex.core.UIBase}
@@ -130,9 +137,9 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
         getValue(this, 'iBeadModel');
     if (c)
     {
-        var model = new c();
-        if (model)
-            this.addBead(model);
+      var model = new c();
+      if (model)
+        this.addBead(model);
     }
   }
   if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
@@ -143,7 +150,7 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
     {
       var view = new c();
       if (view)
-          this.addBead(view);
+        this.addBead(view);
     }
   }
   if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
@@ -198,15 +205,15 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
  * @return {Object} The bead of the given type or null.
  */
 org.apache.flex.core.UIBase.prototype.getBeadByType =
-function(classOrInterface) {
+    function(classOrInterface) {
   if (!this.beads_) {
     this.beads_ = new Array();
   }
   for (var i = 0; i < this.beads_.length; i++) {
-      var bead = this.beads_[i];
-      if (bead instanceof classOrInterface) {
-        return bead;
-      }
+    var bead = this.beads_[i];
+    if (bead instanceof classOrInterface) {
+      return bead;
+    }
   }
   return null;
 };
@@ -218,7 +225,7 @@ function(classOrInterface) {
  * @return {Object} The bead that was removed.
  */
 org.apache.flex.core.UIBase.prototype.removeBead =
-function(value) {
+    function(value) {
   if (!this.beads_) return null;
   var n = beads_.length;
   for (var i = 0; i < n; i++) {
@@ -229,6 +236,7 @@ function(value) {
     }
   }
 };
+
 
 /**
  * @expose
@@ -261,6 +269,7 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
   this.positioner.style.width = pixels.toString() + 'px';
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
@@ -281,6 +290,7 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
   this.positioner.style.height = pixels.toString() + 'px';
 };
+
 
 /**
  * @expose
@@ -331,13 +341,14 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
  */
 org.apache.flex.core.UIBase.prototype.className = null;
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
  * @return {string} The className.
  */
 org.apache.flex.core.UIBase.prototype.get_className = function() {
-    return this.className;
+  return this.className;
 };
 
 
@@ -347,12 +358,12 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
  * @param {object} value The new className.
  */
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
-    if (this.className !== value)
-    {
-        this.element.className = value;
-        this.className = value;
-        this.dispatchEvent('classNameChanged');
-    }
+  if (this.className !== value)
+  {
+    this.element.className = value;
+    this.className = value;
+    this.dispatchEvent('classNameChanged');
+  }
 };
 
 
@@ -393,14 +404,16 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
   }
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.core.UIBase}
  * @return {object} True if visible.
  */
 org.apache.flex.core.UIBase.prototype.get_visible = function() {
-    return this.element.style.display !== 'none';
+  return this.element.style.display !== 'none';
 };
+
 
 /**
  * @expose
@@ -408,19 +421,19 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
  * @param {object} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
-    var oldValue = this.element.style.display !== 'none';
-    if (value !== oldValue) {
-        if (!value) {
-            this.lastDisplay_ = this.element.style.display;
-            this.element.style.display = 'none';
-            this.dispatchEvent(new org.apache.flex.events.Event('hide'));
-        } else {
-            if (this.lastDisplay_) {
-              this.element.style.display = this.lastDisplay_;
-            } else {
-              this.element.style.display = 'block';
-            }
-            this.dispatchEvent(new org.apache.flex.events.Event('show'));
-        }
+  var oldValue = this.element.style.display !== 'none';
+  if (value !== oldValue) {
+    if (!value) {
+      this.lastDisplay_ = this.element.style.display;
+      this.element.style.display = 'none';
+      this.dispatchEvent(new org.apache.flex.events.Event('hide'));
+    } else {
+      if (this.lastDisplay_) {
+        this.element.style.display = this.lastDisplay_;
+      } else {
+        this.element.style.display = 'block';
+      }
+      this.dispatchEvent(new org.apache.flex.events.Event('show'));
     }
+  }
 };

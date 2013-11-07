@@ -52,11 +52,13 @@ org.apache.flex.events.ValueChangeEvent.prototype.init = function(type) {
  */
 org.apache.flex.events.ValueChangeEvent.prototype.type = null;
 
+
 /**
  * @expose
  * @type {Object} oldValue The old value.
  */
 org.apache.flex.events.ValueChangeEvent.prototype.oldValue = null;
+
 
 /**
  * @expose
@@ -64,17 +66,20 @@ org.apache.flex.events.ValueChangeEvent.prototype.oldValue = null;
  */
 org.apache.flex.events.ValueChangeEvent.prototype.newValue = null;
 
+
 /**
  * @expose
  * @type {string} propertyName The property that changed.
  */
 org.apache.flex.events.ValueChangeEvent.prototype.propertyName = null;
 
+
 /**
  * @expose
  * @type {Object} source The object that changed.
  */
 org.apache.flex.events.ValueChangeEvent.prototype.source = null;
+
 
 /**
  * @expose
@@ -85,15 +90,16 @@ org.apache.flex.events.ValueChangeEvent.prototype.source = null;
  * @return {Object} An event object.
  */
 org.apache.flex.events.ValueChangeEvent.createUpdateEvent =
-        function(source, name, oldValue, newValue)
-{
-    var event = new org.apache.flex.events.ValueChangeEvent(
-            org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
-            oldValue, newValue);
-    event.propertyName = name;
-    event.source = source;
-    return event;
+    function(source, name, oldValue, newValue)
+    {
+  var event = new org.apache.flex.events.ValueChangeEvent(
+      org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
+      oldValue, newValue);
+  event.propertyName = name;
+  event.source = source;
+  return event;
 };
+
 
 /**
  * @expose

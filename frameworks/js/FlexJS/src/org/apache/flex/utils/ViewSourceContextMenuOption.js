@@ -14,19 +14,22 @@
 
 goog.provide('org.apache.flex.utils.ViewSourceContextMenuOption');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.utils.ViewSourceContextMenuOption = function() {
-    // no implementation in JS since ViewSource is already in menu
+  // no implementation in JS since ViewSource is already in menu
 };
+
 
 /**
  * @this {org.apache.flex.utils.ViewSourceContextMenuOption}
  * @param {object} value The strand (owner) of the bead.
  */
 org.apache.flex.utils.ViewSourceContextMenuOption.prototype.set_strand =
-  function(value) {
+    function(value) {
 };
 

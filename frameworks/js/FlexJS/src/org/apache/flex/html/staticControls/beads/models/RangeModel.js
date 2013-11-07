@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.RangeModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
@@ -33,14 +35,13 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.RangeModel,
     org.apache.flex.events.EventDispatcher);
 
 
-
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.RangeModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 };
 
@@ -51,7 +52,7 @@ set_strand = function(value) {
  * @return {Number} The current minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-get_minimum = function() {
+    get_minimum = function() {
   return this.minimum_;
 };
 
@@ -62,10 +63,10 @@ get_minimum = function() {
  * @param {Number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_minimum = function(value) {
+    set_minimum = function(value) {
   if (this.minimum_ != value) {
-      this.minimum_ = value;
-      this.dispatchEvent('minimumChange');
+    this.minimum_ = value;
+    this.dispatchEvent('minimumChange');
   }
 };
 
@@ -76,7 +77,7 @@ set_minimum = function(value) {
  * @return {Number} The current maximu value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-get_maximum = function() {
+    get_maximum = function() {
   return this.maximum_;
 };
 
@@ -87,10 +88,10 @@ get_maximum = function() {
  * @param {Number} value The new maximum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_maximum = function(value) {
+    set_maximum = function(value) {
   if (this.maximum_ != value) {
-      this.maximum_ = value;
-      this.dispatchEvent('maximumChange');
+    this.maximum_ = value;
+    this.dispatchEvent('maximumChange');
   }
 };
 
@@ -101,7 +102,7 @@ set_maximum = function(value) {
  * @return {Number} The current value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-get_value = function() {
+    get_value = function() {
   return this.value_;
 };
 
@@ -112,7 +113,7 @@ get_value = function() {
  * @param {Number} newValue The new value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_value = function(newValue) {
+    set_value = function(newValue) {
   if (this.value_ != newValue) {
 
     // value must lie within the boundaries of minimum & maximum
@@ -133,7 +134,7 @@ set_value = function(newValue) {
  * @return {Number} The current snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-get_snapInterval = function() {
+    get_snapInterval = function() {
   return this.snapInterval_;
 };
 
@@ -144,10 +145,10 @@ get_snapInterval = function() {
  * @param {Number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_snapInterval = function(value) {
+    set_snapInterval = function(value) {
   if (this.snapInterval_ != value) {
-      this.snapInterval_ = value;
-      this.dispatchEvent('snapIntervalChange');
+    this.snapInterval_ = value;
+    this.dispatchEvent('snapIntervalChange');
   }
 };
 
@@ -158,7 +159,7 @@ set_snapInterval = function(value) {
  * @return {Number} The current stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-get_stepSize = function() {
+    get_stepSize = function() {
   return this.stepSize_;
 };
 
@@ -169,12 +170,13 @@ get_stepSize = function() {
  * @param {Number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-set_stepSize = function(value) {
+    set_stepSize = function(value) {
   if (this.stepSize_ != value) {
-      this.stepSize_ = value;
-      this.dispatchEvent('stepSizeChange');
+    this.stepSize_ = value;
+    this.dispatchEvent('stepSizeChange');
   }
 };
+
 
 /**
  * @expose
@@ -183,7 +185,7 @@ set_stepSize = function(value) {
  * @return {Number} Adjusted value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
-snap = function(value) {
+    snap = function(value) {
   var si = this.snapInterval_;
   var n = Math.round((value - this.minimum_) / si) *
                  si + this.minimum_;

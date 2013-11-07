@@ -23,6 +23,7 @@ org.apache.flex.html.staticControls.beads.PanelView = function() {
 
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.PanelView}
@@ -49,13 +50,14 @@ org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
 
 };
 
+
 /**
  * @this {org.apache.flex.html.staticControls.beads.PanelView}
  * @param {Object} event The event that triggered this handler.
  */
 org.apache.flex.html.staticControls.beads.PanelView.prototype.changeHandler =
-  function(event) {
-    if (event.type == 'titleChange') {
-      this.strand_.titleBar.set_title(this.strand_.model.get_title());
-    }
+    function(event) {
+  if (event.type == 'titleChange') {
+    this.strand_.titleBar.set_title(this.strand_.model.get_title());
+  }
 };

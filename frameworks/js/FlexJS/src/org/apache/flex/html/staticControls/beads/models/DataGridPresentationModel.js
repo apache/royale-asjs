@@ -1,4 +1,4 @@
- /**
+/**
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,19 +16,22 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.DataGridPresentat
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel =
-function() {
+    function() {
   goog.base(this);
 
   this.className = 'DataGridPresentationModel';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel,
-  org.apache.flex.events.EventDispatcher);
+    org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel,
+    org.apache.flex.events.EventDispatcher);
+
 
 /**
  * @expose

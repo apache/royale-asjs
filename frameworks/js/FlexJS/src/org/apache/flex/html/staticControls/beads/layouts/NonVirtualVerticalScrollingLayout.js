@@ -16,9 +16,11 @@ goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualVertic
 
 goog.require('org.apache.flex.core.IBeadLayout');
 
+
+
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadLayout');
+ * @extends {org.apache.flex.core.IBeadLayout');}
  */
 org.apache.flex.html.staticControls.beads.layouts.
     NonVirtualVerticalScrollingLayout = function() {
@@ -29,6 +31,7 @@ org.apache.flex.html.staticControls.beads.layouts.
 goog.inherits(org.apache.flex.html.staticControls.beads.
         layouts.NonVirtualVerticalScrollingLayout,
     org.apache.flex.core.IBeadLayout);
+
 
 /**
  * @expose

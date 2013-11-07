@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.core.IItemRendererParent');
 
+
+
 /**
  * @constructor
  */
@@ -27,5 +29,5 @@ org.apache.flex.core.IItemRendererParent = function() {
  * @param {number} index The selected index.
  */
 org.apache.flex.core.IItemRendererParent.prototype.
-getItemRendererForIndex = function(index) {
+    getItemRendererForIndex = function(index) {
 };

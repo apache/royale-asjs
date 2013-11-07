@@ -41,7 +41,7 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
-    };
+};
 
 
 /**
@@ -49,7 +49,7 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
  * @this {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Container.prototype.addElement =
-function(child) {
+    function(child) {
   goog.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
 };
@@ -65,6 +65,7 @@ org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
 
   this.dispatchEvent('childrenAdded');
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Container}

@@ -28,15 +28,17 @@ org.apache.flex.html.staticControls.accessories.TextPromptBead = function() {
   this.promptElement;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.accessories.TextPromptBead}
  * @return {string} value The new prompt.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
-get_prompt = function() {
-    return this.prompt;
+    get_prompt = function() {
+  return this.prompt;
 };
+
 
 /**
  * @expose
@@ -44,9 +46,10 @@ get_prompt = function() {
  * @param {string} value The new prompt.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
-set_prompt = function(value) {
-    this.prompt = value;
+    set_prompt = function(value) {
+  this.prompt = value;
 };
+
 
 /**
  * @expose
@@ -54,7 +57,7 @@ set_prompt = function(value) {
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     value.element.placeholder = this.prompt;

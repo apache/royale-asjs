@@ -16,33 +16,37 @@ goog.provide('org.apache.flex.createjs.staticControls.Label');
 
 goog.require('org.apache.flex.createjs.core.UIBase');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.staticControls.Label = function() {
-    org.apache.flex.createjs.core.UIBase.call(this);
+  org.apache.flex.createjs.core.UIBase.call(this);
 };
 goog.inherits(org.apache.flex.createjs.staticControls.Label,
-  org.apache.flex.createjs.core.UIBase);
+    org.apache.flex.createjs.core.UIBase);
+
 
 /**
  * @override
  * @this {org.apache.flex.createjs.staticControls.Label}
  */
 org.apache.flex.createjs.staticControls.Label.prototype.createElement =
-  function(p) {
-    goog.base(this, 'createElement');
+    function(p) {
+  goog.base(this, 'createElement');
 
-    this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
-     this.element.x = 0;
-     this.element.y = 20;
-     this.element.textBaseline = 'alphabetic';
-     p.addChild(this.element);
-     p.getStage().update();
+  this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
+  this.element.x = 0;
+  this.element.y = 20;
+  this.element.textBaseline = 'alphabetic';
+  p.addChild(this.element);
+  p.getStage().update();
 
-    this.positioner = this.element;
+  this.positioner = this.element;
 };
+
 
 /**
  * @expose
@@ -50,8 +54,9 @@ org.apache.flex.createjs.staticControls.Label.prototype.createElement =
  * @return {string} The text getter.
  */
 org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
-    return this.element.text;
+  return this.element.text;
 };
+
 
 /**
  * @expose
@@ -59,7 +64,7 @@ org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
  * @param {string} value The text setter.
  */
 org.apache.flex.createjs.staticControls.Label.prototype.set_text =
-  function(value) {
-    this.element.text = value;
-    this.element.getStage().update();
+    function(value) {
+  this.element.text = value;
+  this.element.getStage().update();
 };

@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.core.IBeadModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
@@ -24,5 +26,5 @@ org.apache.flex.core.IBeadModel = function() {
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.core.IBeadModel,
-  org.apache.flex.events.EventDispatcher);
+    org.apache.flex.core.IBeadModel,
+    org.apache.flex.events.EventDispatcher);

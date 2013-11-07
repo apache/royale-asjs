@@ -20,7 +20,7 @@ goog.provide('org.apache.flex.html.staticControls.accessories.PasswordInputBead'
  * @constructor
  */
 org.apache.flex.html.staticControls.accessories.PasswordInputBead =
-function() {
+    function() {
 
   /**
    * @private
@@ -29,13 +29,14 @@ function() {
   this.promptElement;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.accessories.PasswordInputBead}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.accessories.PasswordInputBead.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     value.element.type = 'password';

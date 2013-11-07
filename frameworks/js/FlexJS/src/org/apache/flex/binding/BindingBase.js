@@ -22,6 +22,7 @@ goog.provide('org.apache.flex.binding.BindingBase');
 org.apache.flex.binding.BindingBase = function() {
 };
 
+
 /**
  * @protected
  * @type {Object}
@@ -74,9 +75,9 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   if (this.sourceID != null)
   {
     try {
-        this.source = this.document['get_' + this.sourceID]();
+      this.source = this.document['get_' + this.sourceID]();
     } catch (e) {
-        this.source = this.document[this.sourceID];
+      this.source = this.document[this.sourceID];
     }
   }
   else

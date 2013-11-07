@@ -18,14 +18,15 @@ goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.staticControls.SimpleList = function() {
-  this.model =
-     new org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
   goog.base(this);
+  this.model = new org.apache.flex.html.staticControls.
+      beads.models.ArraySelectionModel();
 };
 goog.inherits(org.apache.flex.html.staticControls.SimpleList,
     org.apache.flex.core.ListBase);
@@ -36,11 +37,11 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleList,
  * @this {org.apache.flex.html.staticControls.SimpleList}
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-createElement = function() {
+    createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 5;
   goog.events.listen(this.element, 'change',
-    goog.bind(this.changeHandler, this));
+      goog.bind(this.changeHandler, this));
   this.positioner = this.element;
   this.set_className('SimpleList');
 };
@@ -52,7 +53,7 @@ createElement = function() {
  * @return {Object} Returns the dataProvider.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-get_dataProvider = function() {
+    get_dataProvider = function() {
   return this.model.get_dataProvider();
 };
 
@@ -63,7 +64,7 @@ get_dataProvider = function() {
  * @param {Object} value The new dataProvider.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-set_dataProvider = function(value) {
+    set_dataProvider = function(value) {
   var dp, i, n, opt;
 
   this.model.set_dataProvider(value);
@@ -90,7 +91,7 @@ set_dataProvider = function(value) {
  * @return {Object} Returns the selected index.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-get_selectedIndex = function() {
+    get_selectedIndex = function() {
   return this.model.get_selectedIndex();
 };
 
@@ -101,8 +102,8 @@ get_selectedIndex = function() {
  * @param {Number} value The new selected index.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-set_selectedIndex = function(value) {
-   this.model.set_selectedIndex(value);
+    set_selectedIndex = function(value) {
+  this.model.set_selectedIndex(value);
 };
 
 
@@ -112,8 +113,8 @@ set_selectedIndex = function(value) {
  * @return {Object} Returns the selectedItem.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-get_selectedItem = function() {
-   return this.model.get_selectedItem();
+    get_selectedItem = function() {
+  return this.model.get_selectedItem();
 };
 
 
@@ -123,7 +124,7 @@ get_selectedItem = function() {
  * @param {Object} value The new selected item.
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
-set_selectedItem = function(value) {
-   this.model.set_selectedItem(value);
+    set_selectedItem = function(value) {
+  this.model.set_selectedItem(value);
 };
 

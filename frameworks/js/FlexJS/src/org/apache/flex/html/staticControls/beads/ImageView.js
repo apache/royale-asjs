@@ -18,6 +18,7 @@ goog.provide('org.apache.flex.html.staticControls.beads.ImageView');
 goog.require('org.apache.flex.html.staticControls.beads.models.ImageModel');
 
 
+
 /**
  * @constructor
  */
@@ -36,9 +37,9 @@ org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-        org.apache.flex.html.staticControls.beads.models.ImageModel);
+      org.apache.flex.html.staticControls.beads.models.ImageModel);
   this.model.addEventListener('sourceChanged',
-    goog.bind(this.sourceChangeHandler, this));
+      goog.bind(this.sourceChangeHandler, this));
 };
 
 
@@ -48,6 +49,6 @@ org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
  * @param {Object} event The event triggered by the source change.
  */
 org.apache.flex.html.staticControls.beads.ImageView.prototype.
-sourceChangeHandler = function(event) {
+    sourceChangeHandler = function(event) {
   this.strand_.element.src = this.model.get_source();
 };

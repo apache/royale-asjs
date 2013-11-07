@@ -22,6 +22,8 @@ goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryF
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IBeadView}
@@ -33,8 +35,9 @@ org.apache.flex.html.staticControls.beads.ListView = function() {
   this.className = 'ListView';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.ListView,
-  org.apache.flex.core.IBeadView);
+    org.apache.flex.html.staticControls.beads.ListView,
+    org.apache.flex.core.IBeadView);
+
 
 /**
  * @expose
@@ -55,7 +58,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
 
   this.model = this.strand_.get_model();
   this.model.addEventListener('selectedIndexChanged',
-    goog.bind(this.selectionChangeHandler, this));
+      goog.bind(this.selectionChangeHandler, this));
 
   this.dataGroup_ = new
       org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup();
@@ -69,9 +72,10 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
  * @return {object} The DataGroup instance.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
-function() {
-    return this.dataGroup_;
+    function() {
+  return this.dataGroup_;
 };
+
 
 /**
  * @expose
@@ -79,14 +83,14 @@ function() {
  * @param {object} value The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.
-selectionChangeHandler = function(value) {
+    selectionChangeHandler = function(value) {
   if (this.lastSelectedIndex != -1) {
     var ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
     if (ir) ir.set_selected(false);
   }
   if (this.model.get_selectedIndex() != -1) {
     ir = this.dataGroup_.getItemRendererForIndex(
-            this.model.get_selectedIndex());
+        this.model.get_selectedIndex());
     if (ir) ir.set_selected(true);
   }
   this.lastSelectedIndex = this.model.get_selectedIndex();

@@ -17,12 +17,14 @@ goog.provide('org.apache.flex.html.staticControls.beads.controllers.SpinnerMouse
 goog.require('org.apache.flex.html.staticControls.TextButton');
 
 
+
 /**
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController =
-function() {
+    function() {
 };
+
 
 /**
  * @expose
@@ -31,18 +33,19 @@ function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.incrementButton = this.strand_.incrementButton;
   this.decrementButton = this.strand_.decrementButton;
 
   goog.events.listen(this.incrementButton.element, goog.events.EventType.CLICK,
-            goog.bind(this.handleIncrementClick, this));
+      goog.bind(this.handleIncrementClick, this));
 
   goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
-            goog.bind(this.handleDecrementClick, this));
+      goog.bind(this.handleDecrementClick, this));
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
@@ -50,13 +53,14 @@ prototype.set_strand = function(value) {
  * @param {Object} event The event object.
  */
 org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
-prototype.handleIncrementClick = function(event)
-{
+    prototype.handleIncrementClick = function(event)
+    {
   var newValue = this.strand_.snap(Math.min(this.strand_.get_maximum(),
-                                this.strand_.get_value() +
-                                this.strand_.get_stepSize()));
+      this.strand_.get_value() +
+      this.strand_.get_stepSize()));
   this.strand_.set_value(newValue);
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.beads.controllers.
@@ -64,11 +68,11 @@ prototype.handleIncrementClick = function(event)
  * @param {event} event The event object.
  */
 org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
-prototype.handleDecrementClick =
+    prototype.handleDecrementClick =
     function(event)
-{
+    {
   var newValue = this.strand_.snap(Math.max(this.strand_.get_minimum(),
-                                this.strand_.get_value() -
-                                this.strand_.get_stepSize()));
+      this.strand_.get_value() -
+      this.strand_.get_stepSize()));
   this.strand_.set_value(newValue);
 };

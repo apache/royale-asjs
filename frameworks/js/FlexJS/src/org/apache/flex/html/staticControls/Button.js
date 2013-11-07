@@ -42,7 +42,7 @@ org.apache.flex.html.staticControls.Button.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   var impl = org.apache.flex.core.ValuesManager.valuesImpl.
-                getValue(this, 'iStatesImpl');
+      getValue(this, 'iStatesImpl');
 
 };
 

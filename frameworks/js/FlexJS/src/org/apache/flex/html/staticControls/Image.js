@@ -49,7 +49,7 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
   this.addBead(this.model);
 
   this.addBead(new
-         org.apache.flex.html.staticControls.beads.ImageView());
+      org.apache.flex.html.staticControls.beads.ImageView());
 };
 
 
@@ -59,7 +59,7 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
  * @return {String} The source identifier for the Image.
  */
 org.apache.flex.html.staticControls.Image.prototype.
-get_source = function() {
+    get_source = function() {
   return this.model.get_source();
 };
 
@@ -70,6 +70,6 @@ get_source = function() {
  * @param {String} value The source identifier for the Image.
  */
 org.apache.flex.html.staticControls.Image.prototype.
-set_source = function(value) {
-   this.model.set_source(value);
+    set_source = function(value) {
+  this.model.set_source(value);
 };

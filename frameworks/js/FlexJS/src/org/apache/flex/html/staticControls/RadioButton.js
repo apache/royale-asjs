@@ -48,20 +48,22 @@ org.apache.flex.html.staticControls.RadioButton.prototype.createElement =
   rb.flexjs_wrapper = this;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.RadioButton}
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.initModel =
-function() {
+    function() {
 };
+
 
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.RadioButton}
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.initSkin =
-function() {
+    function() {
 };
 
 
@@ -130,15 +132,17 @@ org.apache.flex.html.staticControls.RadioButton.prototype.set_selected =
   this.element.childNodes.item(0).checked = value;
 };
 
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.RadioButton}
  * @return {Object} The value getter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.get_value =
-  function() {
-    return this.element.childNodes.item(0).value;
+    function() {
+  return this.element.childNodes.item(0).value;
 };
+
 
 /**
  * @expose
@@ -146,9 +150,10 @@ org.apache.flex.html.staticControls.RadioButton.prototype.get_value =
  * @param {Object} value The value setter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.set_value =
-  function(value) {
-    this.element.childNodes.item(0).value = value;
+    function(value) {
+  this.element.childNodes.item(0).value = value;
 };
+
 
 /**
  * @expose
@@ -156,20 +161,21 @@ org.apache.flex.html.staticControls.RadioButton.prototype.set_value =
  * @return {Object} The value of the selected RadioButton.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.get_selectedValue =
-  function() {
-    var buttons, groupName, i, n;
+    function() {
+  var buttons, groupName, i, n;
 
-    groupName = this.element.childNodes.item(0).name;
-    buttons = document.getElementsByName(groupName);
-    n = buttons.length;
+  groupName = this.element.childNodes.item(0).name;
+  buttons = document.getElementsByName(groupName);
+  n = buttons.length;
 
-    for (i = 0; i < n; i++) {
-        if (buttons[i].checked) {
-            return buttons[i].value;
-        }
+  for (i = 0; i < n; i++) {
+    if (buttons[i].checked) {
+      return buttons[i].value;
     }
-    return null;
+  }
+  return null;
 };
+
 
 /**
  * @expose
@@ -177,16 +183,16 @@ org.apache.flex.html.staticControls.RadioButton.prototype.get_selectedValue =
  * @param {Object} value The value of the selected RadioButton.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.set_selectedValue =
-  function(value) {
-    var buttons, groupName, i, n;
+    function(value) {
+  var buttons, groupName, i, n;
 
-    groupName = this.element.childNodes.item(0).name;
-    buttons = document.getElementsByName(groupName);
-    n = buttons.length;
-    for (i = 0; i < n; i++) {
-        if (buttons[i].value === value) {
-            buttons[i].checked = true;
-            break;
-        }
+  groupName = this.element.childNodes.item(0).name;
+  buttons = document.getElementsByName(groupName);
+  n = buttons.length;
+  for (i = 0; i < n; i++) {
+    if (buttons[i].value === value) {
+      buttons[i].checked = true;
+      break;
     }
+  }
 };

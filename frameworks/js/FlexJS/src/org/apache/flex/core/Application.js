@@ -80,13 +80,14 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.dispatchEvent('viewChanged');
 };
 
+
 /**
  * @this {org.apache.flex.core.Application}
  * @param {Object} c The child element.
  */
 org.apache.flex.core.Application.prototype.addElement =
     function(c) {
-    this.element.appendChild(c.element);
-    c.addedToParent();
+  this.element.appendChild(c.element);
+  c.addedToParent();
 };
 

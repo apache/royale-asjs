@@ -251,7 +251,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
         self.generateMXMLInstances(
             document, comp, children, opt_recursive);
         if (typeof comp.childrenAdded === 'function')
-            comp.childrenAdded();
+          comp.childrenAdded();
       } else {
         comp.setMXMLDescriptor(children);
       }

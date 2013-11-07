@@ -17,17 +17,20 @@ goog.provide('org.apache.flex.html.staticControls.supportClasses.ButtonBarButton
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
 goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer =
-function() {
+    function() {
   goog.base(this);
 };
 goog.inherits(
- org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer,
- org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+    org.apache.flex.html.staticControls.
+        supportClasses.ButtonBarButtonItemRenderer,
+    org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
 
 
 /**
@@ -36,7 +39,7 @@ goog.inherits(
           ButtonBarButtonItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
-prototype.createElement = function() {
+    prototype.createElement = function() {
 
   this.element = document.createElement('div');
   this.positioner = this.element;
@@ -64,7 +67,7 @@ prototype.createElement = function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
 
   this.strand_ = value;
 };
@@ -77,7 +80,7 @@ prototype.set_strand = function(value) {
  * @return {Object} The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
-prototype.get_strand = function() {
+    prototype.get_strand = function() {
   return this.strand_;
 };
 
@@ -89,7 +92,7 @@ prototype.get_strand = function() {
  * @param {Object} value The text to display.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
-prototype.set_data = function(value) {
+    prototype.set_data = function(value) {
 
   goog.base(this, 'set_data', value);
 

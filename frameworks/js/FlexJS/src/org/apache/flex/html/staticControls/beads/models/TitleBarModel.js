@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.models.TitleBarModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
@@ -31,14 +33,13 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.TitleBarModel,
     org.apache.flex.events.EventDispatcher);
 
 
-
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.beads.models.TitleBarModel}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 };
 
@@ -49,7 +50,7 @@ set_strand = function(value) {
  * @return {String} The title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-get_title = function() {
+    get_title = function() {
   return this.title_;
 };
 
@@ -60,10 +61,10 @@ get_title = function() {
  * @param {String} value The title to set.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-set_title = function(value) {
+    set_title = function(value) {
   if (this.title_ != value) {
-      this.title_ = value;
-      this.dispatchEvent('titleChange');
+    this.title_ = value;
+    this.dispatchEvent('titleChange');
   }
 };
 
@@ -74,7 +75,7 @@ set_title = function(value) {
  * @return {String} The HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-get_htmlTitle = function() {
+    get_htmlTitle = function() {
   return this.htmlTitle_;
 };
 
@@ -85,7 +86,7 @@ get_htmlTitle = function() {
  * @param {String} value The new HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-set_htmlTitle = function(value) {
+    set_htmlTitle = function(value) {
   if (this.htmlTitle_ != value) {
     this.htmlTitle_ = value;
     this.dispatchEvent('htmlTitleChange');
@@ -100,7 +101,7 @@ set_htmlTitle = function(value) {
  * the TitleBar.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-get_showCloseButton = function() {
+    get_showCloseButton = function() {
   return this.showCloseButton_;
 };
 
@@ -112,7 +113,7 @@ get_showCloseButton = function() {
  * not (false).
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
-set_showCloseButton = function(value) {
+    set_showCloseButton = function(value) {
   if (this.showCloseButton_ != value) {
     this.showCloseButton_ = value;
     this.dispatchEvent('showCloseButtonChange');

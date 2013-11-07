@@ -21,35 +21,41 @@ goog.require('org.apache.flex.html.staticControls.TextButton');
 goog.require('org.apache.flex.html.staticControls.TitleBar');
 
 
+
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.Container}
  */
 org.apache.flex.html.staticControls.Alert = function() {
   goog.base(this);
- };
+};
 goog.inherits(org.apache.flex.html.staticControls.Alert,
     org.apache.flex.html.staticControls.Container);
+
 
 /**
  * @type {number} The value for the Yes button option.
  */
 org.apache.flex.html.staticControls.Alert.YES = 0x000001;
 
+
 /**
  * @type {number} The value for the No button option.
  */
 org.apache.flex.html.staticControls.Alert.NO = 0x000002;
+
 
 /**
  * @type {number} The value for the OK button option.
  */
 org.apache.flex.html.staticControls.Alert.OK = 0x000004;
 
+
 /**
  * @type {number} The value for the Cancel button option.
  */
 org.apache.flex.html.staticControls.Alert.CANCEL = 0x000008;
+
 
 /**
  * @override
@@ -87,26 +93,28 @@ org.apache.flex.html.staticControls.Alert.prototype.createElement =
 org.apache.flex.html.staticControls.Alert.show =
     function(message, host, title, flags) {
 
-    var a = new org.apache.flex.html.staticControls.Alert();
-    host.addElement(a);
-    a.set_title(title);
-    a.set_text(message);
-    a.set_flags(flags);
+  var a = new org.apache.flex.html.staticControls.Alert();
+  host.addElement(a);
+  a.set_title(title);
+  a.set_text(message);
+  a.set_flags(flags);
 
-    a.positioner.style.position = 'relative';
-    a.positioner.style.width = '200px';
-    a.positioner.style.margin = 'auto';
-    a.positioner.style.top = '100px';
+  a.positioner.style.position = 'relative';
+  a.positioner.style.width = '200px';
+  a.positioner.style.margin = 'auto';
+  a.positioner.style.top = '100px';
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
  * @return {string} The message to be displayed in the title bar.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_title = function()
-{
-    return this.titleBar.get_title();
+    {
+  return this.titleBar.get_title();
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
@@ -114,18 +122,20 @@ org.apache.flex.html.staticControls.Alert.prototype.get_title = function()
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_title =
     function(value)
-{
-    this.titleBar.set_title(value);
+    {
+  this.titleBar.set_title(value);
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
  * @return {string} The message to be displayed.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_text = function()
-{
-    return this.message.get_text();
+    {
+  return this.message.get_text();
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
@@ -133,18 +143,20 @@ org.apache.flex.html.staticControls.Alert.prototype.get_text = function()
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_text =
     function(value)
-{
-    this.message.set_text(value);
+    {
+  this.message.set_text(value);
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
  * @return {number} The button options.
  */
 org.apache.flex.html.staticControls.Alert.prototype.get_flags = function()
-{
-    return this.flags;
+    {
+  return this.flags;
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
@@ -152,8 +164,8 @@ org.apache.flex.html.staticControls.Alert.prototype.get_flags = function()
  */
 org.apache.flex.html.staticControls.Alert.prototype.set_flags =
     function(value)
-{
-    this.flags = value;
+    {
+  this.flags = value;
 
   // add buttons based on flags
   if (this.flags & org.apache.flex.html.staticControls.Alert.OK) {
@@ -161,30 +173,31 @@ org.apache.flex.html.staticControls.Alert.prototype.set_flags =
     this.buttonArea.addElement(ok);
     ok.set_text('OK');
     goog.events.listen(ok.element, 'click',
-                goog.bind(this.dismissAlert, this));
+        goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.CANCEL) {
     var cancel = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(cancel);
     cancel.set_text('Cancel');
     goog.events.listen(cancel.element, 'click',
-                goog.bind(this.dismissAlert, this));
+        goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.YES) {
     var yes = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(yes);
     yes.set_text('YES');
     goog.events.listen(yes.element, 'click',
-                goog.bind(this.dismissAlert, this));
+        goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.NO) {
     var nob = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(nob);
     nob.set_text('NO');
     goog.events.listen(nob.element, 'click',
-                goog.bind(this.dismissAlert, this));
+        goog.bind(this.dismissAlert, this));
   }
 };
+
 
 /**
  * @this {org.apache.flex.html.staticControls.Alert}
@@ -192,6 +205,6 @@ org.apache.flex.html.staticControls.Alert.prototype.set_flags =
  */
 org.apache.flex.html.staticControls.Alert.prototype.dismissAlert =
     function(event)
-{
-    this.element.parentElement.removeChild(this.element);
+    {
+  this.element.parentElement.removeChild(this.element);
 };

@@ -14,11 +14,14 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.SliderThumbView');
 
+
+
 /**
  * @constructor
  */
 org.apache.flex.html.staticControls.beads.SliderThumbView = function() {
 };
+
 
 /**
  * @expose
@@ -26,7 +29,7 @@ org.apache.flex.html.staticControls.beads.SliderThumbView = function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.beads.SliderThumbView.prototype.
-set_strand = function(value) {
+    set_strand = function(value) {
   this.strand_ = value;
 
   this.element = document.createElement('div');

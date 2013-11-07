@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.ButtonBarView');
 
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.beads.ListView}
@@ -27,8 +29,9 @@ org.apache.flex.html.staticControls.beads.ButtonBarView = function() {
   this.className = 'ButtonBarView';
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.beads.ButtonBarView,
-  org.apache.flex.html.staticControls.beads.ListView);
+    org.apache.flex.html.staticControls.beads.ButtonBarView,
+    org.apache.flex.html.staticControls.beads.ListView);
+
 
 /**
  * @expose

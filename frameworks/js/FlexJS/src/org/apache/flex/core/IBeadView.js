@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.core.IBeadView');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
@@ -24,8 +26,9 @@ org.apache.flex.core.IBeadView = function() {
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.core.IBeadView,
-  org.apache.flex.events.EventDispatcher);
+    org.apache.flex.core.IBeadView,
+    org.apache.flex.events.EventDispatcher);
+
 
 /**
  * @expose

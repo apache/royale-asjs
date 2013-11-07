@@ -16,18 +16,19 @@ goog.provide('org.apache.flex.html.staticControls.beads.controllers.ItemRenderer
 
 goog.require('org.apache.flex.core.IBeadController');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.IBeadController}
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController = function() {
+    ItemRendererMouseController = function() {
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html.staticControls.beads.
         controllers.ItemRendererMouseController,
     org.apache.flex.core.IBeadController);
-
 
 
 /**
@@ -37,20 +38,20 @@ goog.inherits(org.apache.flex.html.staticControls.beads.
  * @param {object} value The strand for this component.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController.prototype.set_strand = function(value) {
+    ItemRendererMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
 
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
-            goog.bind(this.handleMouseOver, this));
+      goog.bind(this.handleMouseOver, this));
 
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOUT,
-            goog.bind(this.handleMouseOut, this));
+      goog.bind(this.handleMouseOut, this));
 
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEDOWN,
-            goog.bind(this.handleMouseDown, this));
+      goog.bind(this.handleMouseDown, this));
 
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
-            goog.bind(this.handleMouseUp, this));
+      goog.bind(this.handleMouseUp, this));
 };
 
 
@@ -61,9 +62,9 @@ ItemRendererMouseController.prototype.set_strand = function(value) {
  * @param {object} event The mouse event that triggered the hover.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController.prototype.handleMouseOver = function(event) {
+    ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
-   this.strand_.set_hovered(true);
+  this.strand_.set_hovered(true);
 };
 
 
@@ -74,9 +75,9 @@ ItemRendererMouseController.prototype.handleMouseOver = function(event) {
  * @param {object} event The mouse-out event.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController.prototype.handleMouseOut = function(event) {
+    ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
-   this.strand_.set_hovered(false);
+  this.strand_.set_hovered(false);
 };
 
 
@@ -87,9 +88,9 @@ ItemRendererMouseController.prototype.handleMouseOut = function(event) {
  * @param {object} event The mouse-down event.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController.prototype.handleMouseDown = function(event) {
+    ItemRendererMouseController.prototype.handleMouseDown = function(event) {
 
-   // ??
+  // ??
 };
 
 
@@ -100,18 +101,18 @@ ItemRendererMouseController.prototype.handleMouseDown = function(event) {
  * @param {object} event The mouse-up event that triggers the selection.
  */
 org.apache.flex.html.staticControls.beads.controllers.
-ItemRendererMouseController.prototype.handleMouseUp = function(event) {
+    ItemRendererMouseController.prototype.handleMouseUp = function(event) {
 
-   var newEvent = new goog.events.Event('selected');
+  var newEvent = new goog.events.Event('selected');
 
-   // normally you do not - and should not - change the target of an event,
-   // but these events do not propagate nor bubble up the object tree, so
-   // we have to force the event's target to be this item renderer instance.
+  // normally you do not - and should not - change the target of an event,
+  // but these events do not propagate nor bubble up the object tree, so
+  // we have to force the event's target to be this item renderer instance.
 
-   newEvent.target = this.strand_;
+  newEvent.target = this.strand_;
 
-   // since the event is not going to up the chain, we also have to dispatch
-   // it against its final destination.
+  // since the event is not going to up the chain, we also have to dispatch
+  // it against its final destination.
 
-   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
 };

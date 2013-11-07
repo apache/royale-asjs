@@ -131,4 +131,4 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
   .prototype.FLEXJS_CLASS_INFO =
-      { interfaces: [org.apache.flex.core.IItemRenderer] };
+    { interfaces: [org.apache.flex.core.IItemRenderer] };

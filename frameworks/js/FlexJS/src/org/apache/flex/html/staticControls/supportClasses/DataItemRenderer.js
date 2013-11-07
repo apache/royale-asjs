@@ -17,17 +17,19 @@ goog.provide('org.apache.flex.html.staticControls.supportClasses.DataItemRendere
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer =
-function() {
+    function() {
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.supportClasses.DataItemRenderer,
-  org.apache.flex.core.UIBase);
+    org.apache.flex.html.staticControls.supportClasses.DataItemRenderer,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -35,7 +37,7 @@ goog.inherits(
  * @this {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.createElement = function() {
+    prototype.createElement = function() {
 
   this.element = document.createElement('div');
   this.positioner = this.element;
@@ -59,7 +61,7 @@ prototype.createElement = function() {
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_strand = function(value) {
+    prototype.set_strand = function(value) {
 
   this.strand_ = value;
 };
@@ -71,7 +73,7 @@ prototype.set_strand = function(value) {
  * @return {Object} The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.get_strand = function() {
+    prototype.get_strand = function() {
   return this.strand_;
 };
 
@@ -82,7 +84,7 @@ prototype.get_strand = function() {
  * @return {Object} The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.get_itemRendererParent = function() {
+    prototype.get_itemRendererParent = function() {
   return this.rendererParent_;
 };
 
@@ -93,7 +95,7 @@ prototype.get_itemRendererParent = function() {
  * @param {Object} value The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_itemRendererParent = function(value) {
+    prototype.set_itemRendererParent = function(value) {
   this.rendererParent_ = value;
 };
 
@@ -104,7 +106,7 @@ prototype.set_itemRendererParent = function(value) {
  * @return {Object} The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.get_index = function() {
+    prototype.get_index = function() {
   return this.index_;
 };
 
@@ -115,7 +117,7 @@ prototype.get_index = function() {
  * @param {Object} value The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_index = function(value) {
+    prototype.set_index = function(value) {
   this.index_ = value;
 };
 
@@ -126,7 +128,7 @@ prototype.set_index = function(value) {
  * @param {Object} value The data to display.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_data = function(value) {
+    prototype.set_data = function(value) {
 
   this.data = value;
 };
@@ -138,7 +140,7 @@ prototype.set_data = function(value) {
  * @return {Object} The value being displayed.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.get_data = function() {
+    prototype.get_data = function() {
 
   return this.data;
 };
@@ -150,14 +152,14 @@ prototype.get_data = function() {
  * @param {boolean} value The selection state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_selected = function(value) {
+    prototype.set_selected = function(value) {
   this.selected_ = value;
 
   if (value) {
-     this.backgroundView.style.backgroundColor = '#9C9C9C';
-   } else {
-     this.backgroundView.style.backgroundColor = null;
-   }
+    this.backgroundView.style.backgroundColor = '#9C9C9C';
+  } else {
+    this.backgroundView.style.backgroundColor = null;
+  }
 };
 
 
@@ -167,16 +169,16 @@ prototype.set_selected = function(value) {
  * @param {boolean} value The hovered state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-prototype.set_hovered = function(value) {
+    prototype.set_hovered = function(value) {
   this.hovered_ = value;
 
   if (value) {
-     this.backgroundView.style.backgroundColor = '#ECECEC';
-   } else {
-     if (this.selected_) {
-       this.backgroundView.style.backgroundColor = '#9C9C9C';
-     } else {
-       this.backgroundView.style.backgroundColor = null;
-     }
-   }
+    this.backgroundView.style.backgroundColor = '#ECECEC';
+  } else {
+    if (this.selected_) {
+      this.backgroundView.style.backgroundColor = '#9C9C9C';
+    } else {
+      this.backgroundView.style.backgroundColor = null;
+    }
+  }
 };

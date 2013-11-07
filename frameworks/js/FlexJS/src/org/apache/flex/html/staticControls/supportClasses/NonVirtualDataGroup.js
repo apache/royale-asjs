@@ -16,18 +16,20 @@ goog.provide('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataG
 
 goog.require('org.apache.flex.core.UIBase');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup =
-function() {
+    function() {
   this.renderers = new Array();
   goog.base(this);
 };
 goog.inherits(
-  org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup,
-  org.apache.flex.core.UIBase);
+    org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -37,8 +39,8 @@ goog.inherits(
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
-prototype.set_strand = function(value) {
-    this.strand_ = value;
+    prototype.set_strand = function(value) {
+  this.strand_ = value;
 };
 
 
@@ -48,7 +50,7 @@ prototype.set_strand = function(value) {
  *        NonVirtualDataGroup}
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
-prototype.createElement = function() {
+    prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
   this.set_className('NonVirtualDataGroup');
@@ -62,7 +64,7 @@ prototype.createElement = function() {
  * @param {Object} value The child element being added.
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
-prototype.addElement = function(value) {
+    prototype.addElement = function(value) {
   goog.base(this, 'addElement', value);
 
   value.set_index(this.renderers.length);
@@ -79,6 +81,6 @@ prototype.addElement = function(value) {
  * @return {Object} The itemRenderer that matches the index.
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
-prototype.getItemRendererForIndex = function(index) {
+    prototype.getItemRendererForIndex = function(index) {
   return this.renderers[index];
 };

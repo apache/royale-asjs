@@ -25,9 +25,9 @@ goog.require('org.apache.flex.html.staticControls.beads.models.DataGridModel');
  */
 org.apache.flex.html.staticControls.DataGrid = function() {
 
-//  this.model = new
-//        org.apache.flex.html.staticControls.beads.models.DataGridModel();
-//  this.addBead(this.model);
+  //  this.model = new
+  //        org.apache.flex.html.staticControls.beads.models.DataGridModel();
+  //  this.addBead(this.model);
 
   goog.base(this);
 };
@@ -46,9 +46,10 @@ org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
   this.element.flexjs_wrapper = this;
   this.set_className('DataGrid');
 
- // this.addBead(new
- //       org.apache.flex.html.staticControls.beads.DataGridView());
+  // this.addBead(new
+  //       org.apache.flex.html.staticControls.beads.DataGridView());
 };
+
 
 /**
  * @expose
@@ -56,7 +57,7 @@ org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
  * @return {string} The dataProvider getter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_dataProvider =
-function() {
+    function() {
   return this.get_model().get_dataProvider();
 };
 
@@ -67,7 +68,7 @@ function() {
  * @param {string} value The dataProvider setter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.set_dataProvider =
-function(value) {
+    function(value) {
   this.get_model().set_dataProvider(value);
 };
 
@@ -78,7 +79,7 @@ function(value) {
  * @return {string} The labelFields getter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_labelFields =
-function() {
+    function() {
   return this.get_model().get_labelFields();
 };
 
@@ -89,9 +90,10 @@ function() {
  * @param {string} value The labelFields setter.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.set_labelFields =
-function(value) {
+    function(value) {
   this.get_model().set_labelFields(value);
 };
+
 
 /**
  * @expose
@@ -99,6 +101,6 @@ function(value) {
  * @return {string} value The current selectedIndex.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_selectedIndex =
-function() {
+    function() {
   return this.get_model().get_selectedIndex();
 };
