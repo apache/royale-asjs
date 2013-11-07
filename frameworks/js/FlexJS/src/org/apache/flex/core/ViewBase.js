@@ -16,8 +16,8 @@ goog.provide('org.apache.flex.core.ViewBase');
 
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.events.ValueChangeEvent');
 goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
@@ -77,7 +77,7 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
  * @this {org.apache.flex.core.ViewBase}
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
-      
+
   //goog.base(this,'addedToParent');
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
@@ -116,7 +116,7 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
     this.states_ = value;
 
     var impl = org.apache.flex.core.ValuesManager.valuesImpl.
-                getValue(this, "iStatesImpl");
+                getValue(this, 'iStatesImpl');
     // TODO: (aharui) check if bead already exists
     this.addBead(new impl());
 };

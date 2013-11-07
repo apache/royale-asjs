@@ -65,7 +65,7 @@ org.apache.flex.utils.Language._int = function(value) {
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 	var checkInterfaces;
 
-	checkInterfaces = function (left) {
+	checkInterfaces = function(left) {
 		var i, interfaces;
 
 		interfaces = left.FLEXJS_CLASS_INFO.interfaces;
@@ -81,14 +81,14 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 		}
 
 		return false;
-	}
+	};
 
 	if (leftOperand instanceof rightOperand) {
 		return true;
 	} else if (leftOperand.FLEXJS_CLASS_INFO &&
 	    leftOperand.FLEXJS_CLASS_INFO.interfaces) {
 		return checkInterfaces(leftOperand);
-	} else if (rightOperand === String && typeof leftOperand === "string")
+	} else if (rightOperand === String && typeof leftOperand === 'string')
         return true;
 
 	return false;

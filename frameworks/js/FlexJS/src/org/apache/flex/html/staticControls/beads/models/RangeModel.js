@@ -116,7 +116,7 @@ set_value = function(newValue) {
   if (this.value_ != newValue) {
 
     // value must lie within the boundaries of minimum & maximum
-    // and be on a step interval, so the value is adjusted to 
+    // and be on a step interval, so the value is adjusted to
     // what is coming in.
     newValue = Math.max(this.minimum_, newValue - this.stepSize_);
     newValue = Math.min(this.maximum_, newValue + this.stepSize_);
@@ -196,5 +196,5 @@ snap = function(value) {
   if (value - n > n + si - value)
     return n + si;
   return n;
-}
+};
 

@@ -108,7 +108,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
                         sb.sourcePropertyName = binding.source[1];
                         sb.setDocument(this.strand_);
                         prop = binding.destination[0];
-                        
+
                         if (typeof(this.strand_['get_' +
                                     prop]) == 'function')
                                 destination = this.strand_[

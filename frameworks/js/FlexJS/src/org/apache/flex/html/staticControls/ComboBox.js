@@ -60,7 +60,7 @@ org.apache.flex.html.staticControls.ComboBox.prototype.createElement =
 
   this.positioner = this.element;
 
-  // add a click handler so that a click outside of the combo box can 
+  // add a click handler so that a click outside of the combo box can
   // dismiss the pop-up should it be visible.
   goog.events.listen(document, 'click',
       goog.bind(this.dismissPopup, this));

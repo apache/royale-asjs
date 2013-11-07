@@ -45,11 +45,11 @@ org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
   this.set_className('DataGrid');
-  
+
  // this.addBead(new
  //       org.apache.flex.html.staticControls.beads.DataGridView());
 };
-  
+
 /**
  * @expose
  * @this {org.apache.flex.html.staticControls.DataGrid}

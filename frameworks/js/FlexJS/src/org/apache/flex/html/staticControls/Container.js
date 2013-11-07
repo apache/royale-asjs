@@ -50,7 +50,7 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
  */
 org.apache.flex.html.staticControls.Container.prototype.addElement =
 function(child) {
-  goog.base(this,'addElement',child);
+  goog.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
 };
 

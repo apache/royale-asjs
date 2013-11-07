@@ -137,14 +137,14 @@ function(value) {
  * programmatically. For this version the groups are maintained here in RadioButton and once the
  * application has finished initializing, the groups are given their buttonset().
  */
- 
+
 	this.radioGroupName = value;
 
 	this.element.name = value;
 
 	var div;
 
-	if( org.apache.flex.jquery.staticControls.RadioButton.groups[value] ) {
+	if (org.apache.flex.jquery.staticControls.RadioButton.groups[value]) {
 		div = org.apache.flex.jquery.staticControls.RadioButton.groups[value];
 		div.appendChild(this.element);
 		div.appendChild(this.labelFor);

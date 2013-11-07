@@ -47,7 +47,7 @@ prototype.set_strand =
     this.strand_.addEventListener('elementAdded',
                                   goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
-    
+
     this.changeHandler(null);
   }
 };

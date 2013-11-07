@@ -37,8 +37,8 @@ goog.inherits(
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_strand =
     function(value) {
     this.strand_ = value;
-    
-    goog.base(this,'set_strand',value);
+
+    goog.base(this, 'set_strand', value);
 };
 
 

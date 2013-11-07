@@ -61,11 +61,11 @@ prototype.changeHandler = function(event) {
 
   children = this.strand_.internalChildren();
   n = children.length;
-  
+
   xpos = 0;
   useWidth = this.strand_.get_width() / n;
   useHeight = this.strand_.get_height();
-  
+
   for (i = 0; i < n; i++)
   {
     children[i].set_width(useWidth);
@@ -73,7 +73,7 @@ prototype.changeHandler = function(event) {
     children[i].element.style['vertical-align'] = 'middle';
     children[i].element.style['left-margin'] = 'auto';
     children[i].element.style['right-margin'] = 'auto';
-    
+
     if (children[i].element.style.display == 'none')
       children[i].lastDisplay_ = 'inline-block';
     else

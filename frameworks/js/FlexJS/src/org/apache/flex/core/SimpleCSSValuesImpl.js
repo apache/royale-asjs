@@ -142,7 +142,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
     var values = this.values;
     if (values == null)
         values = {};
-        
+
     var n = cssData.length;
     var i = 0;
     while (i < n)

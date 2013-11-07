@@ -14,10 +14,10 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.ListView');
 
-goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
@@ -29,7 +29,7 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataG
 org.apache.flex.html.staticControls.beads.ListView = function() {
   this.lastSelectedIndex = -1;
   goog.base(this);
-  
+
   this.className = 'ListView';
 };
 goog.inherits(
@@ -45,7 +45,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
-  
+
   /*if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
     var m = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iBeadLayout');
     var c = new m();

@@ -23,7 +23,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel =
 function() {
   goog.base(this);
-  
+
   this.className = 'DataGridPresentationModel';
 };
 goog.inherits(

@@ -38,7 +38,7 @@ org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.
 prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
-    value.addEventListener('keypress',goog.bind(this.validateInput, this));
+    value.addEventListener('keypress', goog.bind(this.validateInput, this));
   }
 };
 
@@ -46,31 +46,31 @@ org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.
 prototype.validateInput = function(event) {
 
   var code = event.charCode;
-  
+
   // backspace or delete
   if (event.keyCode == 8 || event.keyCode == 46) return;
-  
+
   // tab or return/enter
   if (event.keyCode == 9 || event.keyCode == 13) return;
-  
+
   // left or right cursor arrow
   if (event.keyCode == 37 || event.keyCode == 39) return;
-  
-  var key = String.fromCharCode( code );
+
+  var key = String.fromCharCode(code);
 
   var regex = /[0-9]|\./;
-  if( !regex.test(key) ) {
+  if (!regex.test(key)) {
     event.returnValue = false;
-    if(event.preventDefault) event.preventDefault();
+    if (event.preventDefault) event.preventDefault();
     return;
   }
   var cursorStart = event.target.selectionStart;
-  var cursorEnd   = event.target.selectionEnd;
-  var left = event.target.value.substring(0,cursorStart);
+  var cursorEnd = event.target.selectionEnd;
+  var left = event.target.value.substring(0, cursorStart);
   var right = event.target.value.substr(cursorEnd);
   var complete = left + key + right;
   if (isNaN(complete)) {
     event.returnValue = false;
-    if(event.preventDefault) event.preventDefault();
+    if (event.preventDefault) event.preventDefault();
   }
 };

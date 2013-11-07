@@ -23,9 +23,9 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
 org.apache.flex.html.staticControls.beads.models.DataGridModel =
 function() {
   goog.base(this);
-  
+
   this.labelFields_ = [];
-  
+
   this.className = 'DataGridModel';
 };
 goog.inherits(
@@ -40,7 +40,7 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
 set_strand = function(value) {
-  goog.base(this,'set_strand',value);
+  goog.base(this, 'set_strand', value);
   this.strand_ = value;
 };
 

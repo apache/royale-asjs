@@ -14,8 +14,8 @@
 
 goog.provide('org.apache.flex.html.staticControls.List');
 
-goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController');
@@ -50,8 +50,8 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
  */
 org.apache.flex.html.staticControls.List.prototype.addedToParent =
 function() {
-  goog.base(this,'addedToParent');
-  
+  goog.base(this, 'addedToParent');
+
   var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
   if (c == null) {
     this.addBead(new
@@ -72,7 +72,7 @@ function() {
   var dg = listView.get_dataGroup();
   var items = dg.renderers;
   return items;
-}
+};
 
 /**
  * @expose

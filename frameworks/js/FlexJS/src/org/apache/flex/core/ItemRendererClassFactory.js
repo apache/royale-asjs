@@ -33,8 +33,8 @@ org.apache.flex.core.ItemRendererClassFactory = function() {
 org.apache.flex.core.ItemRendererClassFactory.
 prototype.set_strand = function(value) {
   this.strand_ = value;
-  
-  this.itemRendererClass = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRenderer');
+
+  this.itemRendererClass = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
   if (this.itemRendererClass) {
      this.createFunction = this.createFromClass;
    }

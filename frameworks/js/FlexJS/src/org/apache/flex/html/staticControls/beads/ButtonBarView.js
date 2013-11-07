@@ -23,7 +23,7 @@ goog.require('org.apache.flex.html.staticControls.beads.ListView');
 org.apache.flex.html.staticControls.beads.ButtonBarView = function() {
   this.lastSelectedIndex = -1;
   goog.base(this);
-  
+
   this.className = 'ButtonBarView';
 };
 goog.inherits(
@@ -38,6 +38,6 @@ goog.inherits(
 org.apache.flex.html.staticControls.beads.ButtonBarView.prototype.set_strand =
     function(value) {
 
-  goog.base(this,'set_strand',value);
+  goog.base(this, 'set_strand', value);
   this.strand_ = value;
 };
