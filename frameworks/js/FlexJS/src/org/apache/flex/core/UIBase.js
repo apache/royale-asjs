@@ -102,7 +102,7 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
 org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
   var children = this.internalChildren();
   var n = children.length;
-  for (i = 0; i < n; i++)
+  for (var i = 0; i < n; i++)
   {
     if (children[i] == c.element)
       return i;
@@ -217,11 +217,11 @@ org.apache.flex.core.UIBase.prototype.getBeadByType =
 org.apache.flex.core.UIBase.prototype.removeBead =
     function(value) {
   if (!this.beads_) return null;
-  var n = beads_.length;
+  var n = this.beads_.length;
   for (var i = 0; i < n; i++) {
-    var bead = beads_[i];
+    var bead = this.beads_[i];
     if (bead == value) {
-      beads_.splice(i, 1);
+      this.beads_.splice(i, 1);
       return bead;
     }
   }
