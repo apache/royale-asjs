@@ -35,7 +35,6 @@ goog.inherits(
 
 /**
  * @override
-          ButtonBarButtonItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
     prototype.createElement = function() {
@@ -56,12 +55,13 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
   this.controller = new org.apache.flex.html.staticControls.beads.controllers.
       ItemRendererMouseController();
   this.controller.set_strand(this);
+
+  return this.element;
 };
 
 
 /**
  * @expose
-          ButtonBarButtonItemRenderer}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
@@ -73,7 +73,6 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
 
 /**
  * @expose
-          ButtonBarButtonItemRenderer}
  * @return {Object} The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
@@ -84,7 +83,6 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
 
 /**
  * @expose
-          ButtonBarButtonItemRenderer}
  * @param {Object} value The text to display.
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.

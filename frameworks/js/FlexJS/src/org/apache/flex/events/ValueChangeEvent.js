@@ -22,11 +22,11 @@ goog.require('goog.events.Event');
  * @constructor
  * @extends {goog.events.Event}
  * @param {string} type The event type.
- * @param {string} ov The old value.
- * @param {string} nv The new value.
+ * @param {Object} ov The old value.
+ * @param {Object} nv The new value.
  */
 org.apache.flex.events.ValueChangeEvent = function(type, ov, nv) {
-  goog.base(this);
+  goog.base(this, type);
 
   this.type = type;
   this.oldValue = ov;
@@ -49,7 +49,7 @@ org.apache.flex.events.ValueChangeEvent.prototype.init = function(type) {
  * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.ValueChangeEvent.prototype.type = null;
+org.apache.flex.events.ValueChangeEvent.prototype.type = '';
 
 
 /**
@@ -70,7 +70,7 @@ org.apache.flex.events.ValueChangeEvent.prototype.newValue = null;
  * @expose
  * @type {string} propertyName The property that changed.
  */
-org.apache.flex.events.ValueChangeEvent.prototype.propertyName = null;
+org.apache.flex.events.ValueChangeEvent.prototype.propertyName = '';
 
 
 /**

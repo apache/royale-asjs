@@ -33,15 +33,6 @@ goog.inherits(org.apache.flex.html.staticControls.Label,
 
 
 /**
- * @override
- */
-org.apache.flex.html.staticControls.Label.prototype.createElement =
-    function() {
-  goog.base(this, 'createElement');
-};
-
-
-/**
  * @expose
  * @return {string} The text getter.
  */

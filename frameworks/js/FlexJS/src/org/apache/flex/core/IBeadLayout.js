@@ -20,7 +20,7 @@ goog.require('org.apache.flex.core.IBead');
 
 /**
  * @interface
- * @implements {org.apache.flex.core.IBead}
+ * @extends {org.apache.flex.core.IBead}
  */
 org.apache.flex.core.IBeadLayout = function() {
 };
@@ -28,6 +28,7 @@ org.apache.flex.core.IBeadLayout = function() {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IBeadLayout.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IBead] };

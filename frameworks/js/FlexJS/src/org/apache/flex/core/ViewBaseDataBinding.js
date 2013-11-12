@@ -341,13 +341,13 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.deferredBindingsHandler =
     {
       var destination = this.strand_['get_' + p]();
       destination.addBead(this.deferredBindings[p]);
-      delete deferredBindings[p];
+      delete this.deferredBindings[p];
     }
     else if (this.strand_[p] != null)
     {
       var destination = this.strand_[p];
       destination.addBead(this.deferredBindings[p]);
-      delete deferredBindings[p];
+      delete this.deferredBindings[p];
     }
   }
 };

@@ -32,6 +32,7 @@ org.apache.flex.core.IStatesImpl = function() {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IBead,

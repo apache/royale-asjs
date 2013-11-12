@@ -55,7 +55,7 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
 
 /**
  * @expose
- * @return {string} value The input parser.
+ * @return {Object} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
     function() {
@@ -65,7 +65,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
 
 /**
  * @expose
- * @param {string} value The input parser.
+ * @param {Object} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
     function(value) {
@@ -75,7 +75,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
 
 /**
  * @expose
- * @return {string} value The input parser.
+ * @return {Object} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
     function() {
@@ -85,7 +85,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
 
 /**
  * @expose
- * @param {string} value The input parser.
+ * @param {Object} value The input parser.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
     function(value) {
@@ -97,7 +97,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
  * @expose
  * @type {string}
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.id = null;
+org.apache.flex.net.dataConverters.LazyCollection.prototype.id = '';
 
 
 /**
@@ -112,7 +112,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_id =
 
 /**
  * @expose
- * @param {Object} value The new id.
+ * @param {string} value The new id.
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.set_id =
     function(value) {

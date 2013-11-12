@@ -20,17 +20,13 @@ goog.require('org.apache.flex.core.IBeadLayout');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadLayout');}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
 org.apache.flex.html.staticControls.beads.layouts.
     NonVirtualVerticalScrollingLayout = function() {
-  goog.base(this);
   this.strand_ = null;
   this.className = 'NonVirtualVerticalScrollingLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.
-        layouts.NonVirtualVerticalScrollingLayout,
-    org.apache.flex.core.IBeadLayout);
 
 
 /**
@@ -67,3 +63,10 @@ org.apache.flex.html.staticControls.beads.layouts.
 };
 
 
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.
+    NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadLayout] };

@@ -29,7 +29,7 @@ org.apache.flex.core.IBead = function() {
  * set_strand()
  *
  * @expose
- * @param {Object} value The new host.
+ * @param {org.apache.flex.core.IStrand} value The new host.
  */
 org.apache.flex.core.IBead.prototype.set_strand =
     function(value) {};

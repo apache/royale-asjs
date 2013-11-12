@@ -14,17 +14,24 @@
 
 goog.provide('org.apache.flex.core.IBeadModel');
 
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
- * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @interface
+ * @extends {org.apache.flex.core.IBead}
+ * @extends {org.apache.flex.events.IEventDispatcher}
  */
 org.apache.flex.core.IBeadModel = function() {
-  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.core.IBeadModel,
-    org.apache.flex.events.EventDispatcher);
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IBeadModel.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.events.IEventDispatcher] };

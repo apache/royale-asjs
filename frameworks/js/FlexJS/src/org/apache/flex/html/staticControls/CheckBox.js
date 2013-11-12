@@ -33,7 +33,7 @@ goog.inherits(org.apache.flex.html.staticControls.CheckBox,
  * @override
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.createElement =
-    function(p) {
+    function() {
   var cb;
 
   this.element = document.createElement('label');
@@ -45,6 +45,8 @@ org.apache.flex.html.staticControls.CheckBox.prototype.createElement =
 
   this.positioner = this.element;
   cb.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 
@@ -69,7 +71,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.set_text =
 
 /**
  * @expose
- * @return {bool} The selected getter.
+ * @return {boolean} The selected getter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.get_selected =
     function() {
@@ -79,7 +81,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.get_selected =
 
 /**
  * @expose
- * @param {bool} value The selected setter.
+ * @param {boolean} value The selected setter.
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.set_selected =
     function(value) {

@@ -21,16 +21,13 @@ goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
 org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout =
     function() {
-  goog.base(this);
   this.strand_ = null;
   this.className = 'NonVirtualHorizontalLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.
-        layouts.NonVirtualHorizontalLayout,
-    org.apache.flex.core.IBeadLayout);
 
 
 /**
@@ -75,4 +72,10 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
   }
 };
 
-
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
+    prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadLayout] };

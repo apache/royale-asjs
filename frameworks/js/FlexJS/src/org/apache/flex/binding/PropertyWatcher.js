@@ -13,19 +13,23 @@
  */
 
 goog.provide('org.apache.flex.binding.PropertyWatcher');
+
 goog.require('org.apache.flex.binding.WatcherBase');
 
 
 
 /**
  * @constructor
+ * @extends {org.apache.flex.binding.WatcherBase}
  * @param {Object} source The source object.
  * @param {string} propertyName The property in the source.
  * @param {Object} eventNames An array of event names or an event name.
- * @param {function} getterFunction A function to get the source property.
+ * @param {function(?): ?} getterFunction A function to get the source property.
  */
 org.apache.flex.binding.PropertyWatcher =
     function(source, propertyName, eventNames, getterFunction) {
+  goog.base(this);
+
   this.source = source;
   this.propertyName = propertyName;
   this.getterFunction = getterFunction;
@@ -54,7 +58,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.eventNames;
 
 
 /**
- * @type {function}
+ * @type {?function(?): ?}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.getterFunction = null;
 
@@ -81,7 +85,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
 
 
 /**
- * @protected
+ * @expose
  * @param {Object} parent The new parent watcher.
  */
 org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
@@ -109,7 +113,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
   if (typeof(this.eventNames) == 'string')
     this.source.addEventListener(this.eventNames,
         goog.bind(this.changeHandler, this));
-  else if (typeof(this.eventNames) == 'Object')
+  else if (typeof(this.eventNames) == 'object')
   {
     var arr = this.eventNames;
     var n = arr.length;
@@ -131,7 +135,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
   if (typeof(this.eventNames) == 'string')
     this.source.removeEventListener(this.eventNames,
         goog.bind(this.changeHandler, this));
-  else if (typeof(this.eventNames) == 'Object')
+  else if (typeof(this.eventNames) == 'object')
   {
     var arr = this.eventNames;
     var n = arr.length;

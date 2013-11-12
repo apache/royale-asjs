@@ -158,7 +158,7 @@ org.apache.flex.binding.WatcherBase.prototype.valueChanged =
 /**
  *  @protected
  *  @this {org.apache.flex.binding.WatcherBase}
- *  @param {function} wrappedFunction The function to call.
+ *  @param {function(?): ?} wrappedFunction The function to call.
  */
 org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
     function(wrappedFunction) {
@@ -169,10 +169,10 @@ org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
   catch (error)
   {
     var staticClass = org.apache.flex.binding.WatcherBase;
-    var n = this.allowedErrorTypes.length;
+    var n = staticClass.allowedErrorTypes.length;
     for (var i = 0; i < n; i++)
     {
-      if (error.constructor == this.allowedErrorTypes[i].type)
+      if (error.constructor == staticClass.allowedErrorTypes[i].type)
       {
         var handler = staticClass.allowedErrorTypes[i].handler;
         if (handler != null)

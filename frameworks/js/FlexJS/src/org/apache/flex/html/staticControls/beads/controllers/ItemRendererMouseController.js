@@ -20,21 +20,16 @@ goog.require('org.apache.flex.core.IBeadController');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadController}
+ * @implements {org.apache.flex.core.IBeadController}
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController = function() {
-  goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.
-        controllers.ItemRendererMouseController,
-    org.apache.flex.core.IBeadController);
 
 
 /**
  * @expose
- *        ItemRendererMouseController}
- * @param {object} value The strand for this component.
+ * @param {Object} value The strand for this component.
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.set_strand = function(value) {
@@ -56,8 +51,7 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- *        ItemRendererMouseController}
- * @param {object} event The mouse event that triggered the hover.
+ * @param {Object} event The mouse event that triggered the hover.
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOver = function(event) {
@@ -68,8 +62,7 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- *        ItemRendererMouseController}
- * @param {object} event The mouse-out event.
+ * @param {Object} event The mouse-out event.
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOut = function(event) {
@@ -80,8 +73,7 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- *        ItemRendererMouseController}
- * @param {object} event The mouse-down event.
+ * @param {Object} event The mouse-down event.
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseDown = function(event) {
@@ -92,8 +84,7 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 /**
  * @expose
- *        ItemRendererMouseController}
- * @param {object} event The mouse-up event that triggers the selection.
+ * @param {Object} event The mouse-up event that triggers the selection.
  */
 org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseUp = function(event) {
@@ -111,3 +102,12 @@ org.apache.flex.html.staticControls.beads.controllers.
 
   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+    ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadController] };

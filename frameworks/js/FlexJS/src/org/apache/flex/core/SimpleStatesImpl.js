@@ -26,6 +26,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.events.EventDispatcher}
  * @implements {org.apache.flex.core.IBead}
  * @implements {org.apache.flex.core.IStatesImpl}
  */
@@ -50,8 +51,10 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
-    this.strand_.addEventListener('currentStateChanged',
-        goog.bind(this.stateChangeHandler_, this));
+    if (this.strand_.addEventListener) {
+      this.strand_.addEventListener('currentStateChanged',
+          goog.bind(this.stateChangeHandler_, this));
+    }
   }
 };
 
@@ -200,6 +203,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IBead,

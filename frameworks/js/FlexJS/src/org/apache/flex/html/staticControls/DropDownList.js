@@ -41,6 +41,8 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
+
+  return this.element;
 };
 
 
@@ -82,7 +84,7 @@ org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
 
 /**
  * @expose
- * @param {Number} value The new selected index.
+ * @param {number} value The new selected index.
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.
     set_selectedIndex = function(value) {

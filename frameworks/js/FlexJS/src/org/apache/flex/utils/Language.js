@@ -44,7 +44,7 @@ org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
  * int()
  *
  * @expose
- * @param {*} value The value to be cast.
+ * @param {?} value The value to be cast.
  * @return {number}
  */
 org.apache.flex.utils.Language._int = function(value) {
@@ -56,7 +56,7 @@ org.apache.flex.utils.Language._int = function(value) {
  * is()
  *
  * @expose
- * @param {!Object} leftOperand The lefthand operand of the
+ * @param {?Object} leftOperand The lefthand operand of the
  *     binary as operator in AS3.
  * @param {!Object} rightOperand The righthand operand of the
  *     binary operator in AS3.
@@ -102,9 +102,13 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
  * @param {string} value The message to be written to the console.
  */
 org.apache.flex.utils.Language.trace = function(value) {
+  var theConsole;
+
+  theConsole = goog.global['console'];
+
   try {
-    if (console && console.log) {
-      console.log(value);
+    if (theConsole && theConsole.log) {
+      theConsole.log(value);
     }
   } catch (e) {
     // ignore; at least we tried ;-)
@@ -116,7 +120,7 @@ org.apache.flex.utils.Language.trace = function(value) {
  * uint()
  *
  * @expose
- * @param {*} value The value to be cast.
+ * @param {?} value The value to be cast.
  * @return {number}
  */
 org.apache.flex.utils.Language.uint = function(value) {

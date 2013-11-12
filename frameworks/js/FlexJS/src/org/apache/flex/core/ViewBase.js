@@ -43,7 +43,7 @@ org.apache.flex.core.ViewBase = function() {
 
   /**
    * @private
-   * @type {string}
+   * @type {Object}
    */
   this.currentState_ = null;
 
@@ -73,6 +73,7 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
+ * @expose
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
@@ -138,7 +139,7 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
 
 /**
  * @expose
- * @return {string} The name of the current state.
+ * @return {Object} The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
   return this.currentState_;
@@ -147,7 +148,7 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
 
 /**
  * @expose
- * @param {string} value The name of the current state.
+ * @param {Object} value The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
   var event = new org.apache.flex.events.ValueChangeEvent(

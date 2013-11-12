@@ -20,7 +20,7 @@ goog.require('org.apache.flex.html.staticControls.Button');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.html.staticControls.Button}
  */
 org.apache.flex.html.staticControls.TextButton = function() {
   goog.base(this);

@@ -33,13 +33,15 @@ goog.inherits(org.apache.flex.html.staticControls.Container,
  * @override
  */
 org.apache.flex.html.staticControls.Container.prototype.createElement =
-    function(p) {
+    function() {
   var cb;
 
   this.element = document.createElement('div');
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 
@@ -54,22 +56,20 @@ org.apache.flex.html.staticControls.Container.prototype.addElement =
 
 
 /**
- * @override
- * @param {Object} child The element to be added.
+ * @expose
  */
 org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
     function() {
-
   this.dispatchEvent('childrenAdded');
 };
 
 
 /**
+ * @expose
  * @return {Array} the HTML DOM element children.
  */
 org.apache.flex.html.staticControls.Container.prototype.internalChildren =
     function() {
-
   return this.element.children;
 };
 
