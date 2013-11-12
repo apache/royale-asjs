@@ -78,6 +78,7 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
   //goog.base(this,'addedToParent');
+  org.apache.flex.core.ValuesManager.valuesImpl.init(this);
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
       this.get_MXMLProperties());
