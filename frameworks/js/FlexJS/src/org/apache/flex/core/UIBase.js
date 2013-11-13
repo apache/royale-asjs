@@ -65,6 +65,8 @@ org.apache.flex.core.UIBase.prototype.internalChildren =
 org.apache.flex.core.UIBase.prototype.createElement = function() {
   if (this.element == null)
     this.element = document.createElement('div');
+  if (this.positioner == null)
+    this.positioner = this.element;
 
   return this.element;
 };
