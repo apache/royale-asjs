@@ -34,7 +34,7 @@ org.apache.flex.core.UIBase = function() {
    * @private
    * @type {string}
    */
-  this.lastDisplay_ = null;
+  this.lastDisplay_ = '';
 
   /**
    * @protected
@@ -192,7 +192,7 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
 
 
 /**
- * @param {Class} classOrInterface A type or interface.
+ * @param {Object} classOrInterface A type or interface.
  * @return {Object} The bead of the given type or null.
  */
 org.apache.flex.core.UIBase.prototype.getBeadByType =
@@ -225,6 +225,8 @@ org.apache.flex.core.UIBase.prototype.removeBead =
       return bead;
     }
   }
+
+  return null;
 };
 
 
@@ -292,7 +294,7 @@ org.apache.flex.core.UIBase.prototype.get_height = function() {
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.id = null;
+org.apache.flex.core.UIBase.prototype.id = '';
 
 
 /**
@@ -306,7 +308,7 @@ org.apache.flex.core.UIBase.prototype.get_id = function() {
 
 /**
  * @expose
- * @param {Object} value The new id.
+ * @param {string} value The new id.
  */
 org.apache.flex.core.UIBase.prototype.set_id = function(value) {
   if (this.id !== value) {
@@ -321,7 +323,7 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.className = null;
+org.apache.flex.core.UIBase.prototype.className = '';
 
 
 /**
@@ -335,7 +337,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
 
 /**
  * @expose
- * @param {object} value The new className.
+ * @param {string} value The new className.
  */
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
   if (this.className !== value)
@@ -349,7 +351,7 @@ org.apache.flex.core.UIBase.prototype.set_className = function(value) {
 
 /**
  * @expose
- * @type {object}
+ * @type {Object}
  */
 org.apache.flex.core.UIBase.prototype.model = null;
 
@@ -385,7 +387,7 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
 
 /**
  * @expose
- * @return {object} True if visible.
+ * @return {boolean} True if visible.
  */
 org.apache.flex.core.UIBase.prototype.get_visible = function() {
   return this.element.style.display !== 'none';
@@ -394,7 +396,7 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
 
 /**
  * @expose
- * @param {object} value The new model.
+ * @param {boolean} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
   var oldValue = this.element.style.display !== 'none';

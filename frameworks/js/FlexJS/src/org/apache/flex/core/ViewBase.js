@@ -45,7 +45,7 @@ org.apache.flex.core.ViewBase = function() {
    * @private
    * @type {string}
    */
-  this.currentState_ = null;
+  this.currentState_ = '';
 
 };
 goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
@@ -73,6 +73,7 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
+ * @expose
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 

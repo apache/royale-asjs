@@ -34,7 +34,7 @@ org.apache.flex.net.HTTPService = function() {
 
   /**
    * @private
-   * @type {Number}
+   * @type {number}
    */
   this.status_;
 
@@ -64,7 +64,7 @@ org.apache.flex.net.HTTPService = function() {
 
   /**
    * @private
-   * @type {Number}
+   * @type {number}
    */
   this.timeout_ = 0;
 
@@ -169,7 +169,7 @@ org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_headers = function() {
-  if (this.headers_ === 'undefined') {
+  if (!this.headers_ === undefined) {
     this.headers_ = [];
   }
 
@@ -239,7 +239,7 @@ org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
 
 /**
  * @expose
- * @return {Number} value The status.
+ * @return {number} value The status.
  */
 org.apache.flex.net.HTTPService.prototype.get_status = function() {
   return this.status_;
@@ -248,7 +248,7 @@ org.apache.flex.net.HTTPService.prototype.get_status = function() {
 
 /**
  * @expose
- * @return {Number} value The timeout.
+ * @return {number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
   return this.timeout_;
@@ -257,7 +257,7 @@ org.apache.flex.net.HTTPService.prototype.get_timeout = function() {
 
 /**
  * @expose
- * @param {Number} value The timeout.
+ * @param {number} value The timeout.
  */
 org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
   this.timeout_ = value;
@@ -369,7 +369,7 @@ org.apache.flex.net.HTTPService.prototype.get_id = function() {
 
 /**
  * @expose
- * @param {Object} value The new id.
+ * @param {string} value The new id.
  */
 org.apache.flex.net.HTTPService.prototype.set_id = function(value) {
   if (this.id !== value) {

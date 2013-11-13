@@ -51,6 +51,8 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
   this.controller = new org.apache.flex.html.staticControls.beads.controllers.
       ItemRendererMouseController();
   this.controller.set_strand(this);
+
+  return this.element;
 };
 
 

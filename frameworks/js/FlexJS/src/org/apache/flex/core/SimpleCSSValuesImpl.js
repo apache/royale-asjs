@@ -25,8 +25,8 @@ org.apache.flex.core.SimpleCSSValuesImpl = function() {
 
 /**
  * @param {Object} thisObject The object to fetch a value for.
- * @param {String} valueName The name of the value to fetch.
- * @param {String} state The psuedo-state if any for.
+ * @param {string} valueName The name of the value to fetch.
+ * @param {string} state The psuedo-state if any for.
  * @param {Object} attrs The object with name value pairs that
  *                       might make a difference.
  * @return {Object} The value.
@@ -113,7 +113,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
 
 /**
  * @param {Object} thisObject The object to get a name for.
- * @return {string} The CSS selector name or null.
+ * @return {?string} The CSS selector name or null.
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.getQualifiedClassName =
     function(thisObject) {

@@ -13,14 +13,17 @@
  */
 
 goog.provide('org.apache.flex.binding.GenericBinding');
+
 goog.require('org.apache.flex.binding.BindingBase');
 
 
 
 /**
  * @constructor
+ * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.GenericBinding = function() {
+  goog.base(this);
 };
 goog.inherits(org.apache.flex.binding.GenericBinding,
     org.apache.flex.binding.BindingBase);
@@ -35,7 +38,7 @@ org.apache.flex.binding.GenericBinding.prototype.destinationData = null;
 
 /**
  * @expose
- * @type {function}
+ * @type {?function(?): ?}
  */
 org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
 

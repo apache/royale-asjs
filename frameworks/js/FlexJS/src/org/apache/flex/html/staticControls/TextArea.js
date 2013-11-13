@@ -33,11 +33,13 @@ goog.inherits(org.apache.flex.html.staticControls.TextArea,
  * @override
  */
 org.apache.flex.html.staticControls.TextArea.prototype.createElement =
-    function(p) {
+    function() {
 
   this.element = document.createElement('textarea');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 

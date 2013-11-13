@@ -28,7 +28,7 @@ mx.states.SetProperty = function() {
 
 /**
  * @param {Object} document The MXML object.
- * @param {string=} opt_id The id.
+ * @param {?string=} opt_id The id.
  */
 mx.states.SetProperty.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
@@ -47,14 +47,14 @@ mx.states.SetProperty.prototype.document = null;
  * @expose
  * @type {string} name The target property name.
  */
-mx.states.SetProperty.prototype.name = null;
+mx.states.SetProperty.prototype.name = '';
 
 
 /**
  * @expose
  * @type {string} target The id of the object.
  */
-mx.states.SetProperty.prototype.target = null;
+mx.states.SetProperty.prototype.target = '';
 
 
 /**
@@ -89,6 +89,7 @@ mx.states.SetProperty.prototype.initializeFromObject = function(properties) {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 mx.states.SetProperty.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IDocument] };

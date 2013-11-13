@@ -28,7 +28,7 @@ mx.states.AddItems = function() {
 
 /**
  * @param {Object} document The MXML object.
- * @param {string=} opt_id The id.
+ * @param {?string=} opt_id The id.
  */
 mx.states.AddItems.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
@@ -61,28 +61,28 @@ mx.states.AddItems.prototype.itemsDescriptor = null;
  * @expose
  * @type {string} destination The id of the parent.
  */
-mx.states.AddItems.prototype.destination = null;
+mx.states.AddItems.prototype.destination = '';
 
 
 /**
  * @expose
  * @type {string} propertyName The child property name (e.g. mxmlContent).
  */
-mx.states.AddItems.prototype.propertyName = null;
+mx.states.AddItems.prototype.propertyName = '';
 
 
 /**
  * @expose
  * @type {string} position Where the item goes relative to relativeTo.
  */
-mx.states.AddItems.prototype.position = null;
+mx.states.AddItems.prototype.position = '';
 
 
 /**
  * @expose
  * @type {string} relativeTo The id of the child where the item goes.
  */
-mx.states.AddItems.prototype.relativeTo = null;
+mx.states.AddItems.prototype.relativeTo = '';
 
 
 /**
@@ -103,6 +103,7 @@ mx.states.AddItems.prototype.initializeFromObject = function(properties) {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 mx.states.AddItems.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IDocument] };

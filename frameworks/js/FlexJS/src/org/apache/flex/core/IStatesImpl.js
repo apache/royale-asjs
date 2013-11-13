@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IStatesImpl');
 
 goog.require('org.apache.flex.core.IBead');
@@ -32,6 +37,7 @@ org.apache.flex.core.IStatesImpl = function() {
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IBead,

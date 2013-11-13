@@ -12,19 +12,28 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IBeadController');
 
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
- * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @interface
+ * @extends {org.apache.flex.core.IBead}
  */
 org.apache.flex.core.IBeadController = function() {
-  goog.base(this);
 };
-goog.inherits(
-              org.apache.flex.core.IBeadController,
-              org.apache.flex.events.EventDispatcher);
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IBeadController.prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBead] };

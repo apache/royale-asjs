@@ -67,7 +67,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
 
 /**
  * @expose
- * @return {object} The DataGroup instance.
+ * @return {Object} The DataGroup instance.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
     function() {
@@ -77,7 +77,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
 
 /**
  * @expose
- * @param {object} value The event that triggered the selection.
+ * @param {Object} value The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.
     selectionChangeHandler = function(value) {

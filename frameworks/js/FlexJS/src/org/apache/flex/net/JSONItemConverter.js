@@ -26,7 +26,7 @@ org.apache.flex.net.JSONItemConverter = function() {
 /**
  * @expose
  * @param {string} s The input string.
- * @return {Object} The object.
+ * @return {*} The object.
  */
 org.apache.flex.net.JSONItemConverter.prototype.convertItem = function(s) {
   return JSON.parse(s);

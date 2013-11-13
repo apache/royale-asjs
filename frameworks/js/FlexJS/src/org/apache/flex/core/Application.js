@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.Application');
 
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.SimpleValuesImpl');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 

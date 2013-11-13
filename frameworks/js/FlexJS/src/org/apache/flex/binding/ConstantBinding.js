@@ -20,6 +20,7 @@ goog.require('org.apache.flex.binding.BindingBase');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.ConstantBinding = function() {
   goog.base(this);

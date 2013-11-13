@@ -22,7 +22,8 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IItemRenderer}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
     function() {
@@ -31,16 +32,12 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
 goog.inherits(
     org.apache.flex.html.staticControls.
         beads.TextItemRendererFactoryForArrayData,
-    org.apache.flex.core.IItemRenderer,
     org.apache.flex.events.EventDispatcher);
-// TODO (erikdebruin) this 'goog.inherits' doesn't do what you think... We need
-//                    a proper interface here.
 
 
 /**
  * @expose
-          TextItemRendererFactoryForArrayData}
- * @param {object} value The component strand.
+ * @param {Object} value The component strand.
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
     prototype.set_strand = function(value) {
@@ -62,8 +59,7 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
 
 /**
  * @expose
-          TextItemRendererFactoryForArrayData}
- * @param {object} event The event that triggered the dataProvider change.
+ * @param {Object} event The event that triggered the dataProvider change.
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
@@ -81,3 +77,12 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
   var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
+    prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IItemRenderer] };

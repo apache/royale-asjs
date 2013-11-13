@@ -34,7 +34,6 @@ goog.inherits(
 
 /**
  * @expose
- *        NonVirtualDataGroup}
  * @param {Object} value The strand.
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
@@ -45,19 +44,19 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
 
 /**
  * @override
- *        NonVirtualDataGroup}
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
   this.set_className('NonVirtualDataGroup');
+
+  return this.element;
 };
 
 
 /**
  * @override
- *        NonVirtualDataGroup}
  * @param {Object} value The child element being added.
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
@@ -72,7 +71,6 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
 
 /**
  * @expose
- *        NonVirtualDataGroup}
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */

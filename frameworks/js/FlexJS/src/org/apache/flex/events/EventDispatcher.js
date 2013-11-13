@@ -32,12 +32,18 @@ goog.inherits(org.apache.flex.events.EventDispatcher,
 
 /**
  * @override
- * @expose
- * @param {string} type The event type.
- * @param {function(?): ?} fn The event handler.
+ * @param {string} type The type of the event to listen for.
+ * @param {Function|Object} handler The function to handle the event. The
+ *     handler can also be an object that implements the handleEvent method
+ *     which takes the event object as argument.
+ * @param {boolean=} opt_capture In DOM-compliant browsers, this determines
+ *     whether the listener is fired during the capture or bubble phase
+ *     of the event.
+ * @param {Object=} opt_handlerScope Object in whose scope to call
+ *     the listener.
  */
 org.apache.flex.events.EventDispatcher.prototype.addEventListener =
-    function(type, fn) {
+    function(type, handler, opt_capture, opt_handlerScope) {
   var source;
 
   /**
@@ -52,5 +58,5 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
     source = this.element;
   }
 
-  goog.events.listen(source, type, fn);
+  goog.events.listen(source, type, handler);
 };

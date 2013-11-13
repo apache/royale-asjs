@@ -14,7 +14,9 @@
 
 goog.provide('org.apache.flex.core.HTMLElementWrapper');
 
+goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -38,7 +40,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.element = null;
 
 /**
  * @protected
- * @type {Object}
+ * @type {Array.<Object>}
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.strand = null;
 
@@ -54,8 +56,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
 
   this.strand.push(bead);
 
-  if (bead.constructor.$implements !== undefined &&
-      bead.constructor.$implements.IBeadModel !== undefined) {
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel)) {
     this.model = bead;
   }
 
@@ -65,7 +66,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
 
 /**
  * @expose
- * @param {Object} classOrInterface The requested bead type.
+ * @param {!Object} classOrInterface The requested bead type.
  * @return {Object} The bead.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
@@ -76,11 +77,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
   for (i = 0; i < n; i++) {
     bead = this.strand[i];
 
-    if (bead instanceof classOrInterface) {
-      return bead;
-    }
-
-    if (bead.constructor.$implements.hasOwnProperty(classOrInterface)) {
+    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
@@ -134,7 +131,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 /**
  * @expose
- * @param {Object} value The new strand.
+ * @param {Array.<Object>} value The new strand.
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
     function(value) {

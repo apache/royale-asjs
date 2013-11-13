@@ -43,5 +43,6 @@ org.apache.flex.html.staticControls.Button.prototype.createElement =
   var impl = org.apache.flex.core.ValuesManager.valuesImpl.
       getValue(this, 'iStatesImpl');
 
+  return this.element;
 };
 

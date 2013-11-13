@@ -86,7 +86,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
- * @param {Boolean=} opt_recursive Whether to create objects in children.
+ * @param {boolean=} opt_recursive Whether to create objects in children.
  * @return {Array} The generated array.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
@@ -214,7 +214,9 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
         value = generateMXMLObject(document, value);
       }
 
-      comp.setStyle(name, value);
+      if (comp.setStyle) {
+        comp.setStyle(name, value);
+      }
     }
 
     /*
@@ -252,7 +254,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
             document, comp, children, opt_recursive);
         if (typeof comp.childrenAdded === 'function')
           comp.childrenAdded();
-      } else {
+      } else if (comp.setMXMLDescriptor) {
         comp.setMXMLDescriptor(children);
       }
     }
@@ -281,13 +283,13 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
- * @param {Boolean} recursive Whether to create objects in children.
+ * @param {boolean=} opt_recursive Whether to create objects in children.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
-    function(document, parent, data, recursive) {
+    function(document, parent, data, opt_recursive) {
   if (data) {
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
-        document, parent, data, recursive);
+        document, parent, data, opt_recursive);
   }
 };
 

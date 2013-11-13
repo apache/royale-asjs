@@ -20,6 +20,7 @@ goog.require('org.apache.flex.binding.BindingBase');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.SimpleBinding = function() {
   goog.base(this);
@@ -36,6 +37,7 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
 
 /**
+ * @expose
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
   this.destination['set_' + this.destinationPropertyName](
@@ -46,7 +48,6 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 
 /**
  * @override
- * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
   goog.base(this, 'set_strand', value);

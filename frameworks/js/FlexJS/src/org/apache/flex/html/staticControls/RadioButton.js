@@ -45,6 +45,8 @@ org.apache.flex.html.staticControls.RadioButton.prototype.createElement =
 
   this.positioner = this.element;
   rb.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 
@@ -106,7 +108,7 @@ org.apache.flex.html.staticControls.RadioButton.prototype.set_text =
 
 /**
  * @expose
- * @return {bool} The selected getter.
+ * @return {boolean} The selected getter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.get_selected =
     function() {
@@ -116,7 +118,7 @@ org.apache.flex.html.staticControls.RadioButton.prototype.get_selected =
 
 /**
  * @expose
- * @param {bool} value The selected setter.
+ * @param {boolean} value The selected setter.
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.set_selected =
     function(value) {

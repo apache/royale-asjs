@@ -29,7 +29,7 @@ mx.states.State = function(opt_props) {
  * @expose
  * @type {string} name The state name.
  */
-mx.states.State.prototype.name = null;
+mx.states.State.prototype.name = '';
 
 
 /**
