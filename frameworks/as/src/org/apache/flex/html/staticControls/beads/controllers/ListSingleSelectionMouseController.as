@@ -21,11 +21,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.IListView;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.IListView;
 	
 
 	public class ListSingleSelectionMouseController implements IBeadController
@@ -47,12 +48,19 @@ package org.apache.flex.html.staticControls.beads.controllers
 			listView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
             dataGroup.addEventListener("selected", selectedHandler, true);
+            dataGroup.addEventListener("rollover", rolloverHandler, true);
 		}
 		
         private function selectedHandler(event:Event):void
         {
             listModel.selectedIndex = IItemRenderer(event.target).index;
             IEventDispatcher(listView.strand).dispatchEvent(new Event("change"));
+        }
+		
+        private function rolloverHandler(event:Event):void
+        {
+            IRollOverModel(listModel).rollOverIndex = IItemRenderer(event.target).index;
+            IEventDispatcher(listView.strand).dispatchEvent(new Event("rollover"));
         }
 	
 	}

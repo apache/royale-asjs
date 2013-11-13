@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.models
 {
+	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 			
-	public class ArraySelectionModel extends EventDispatcher implements ISelectionModel
+	public class ArraySelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
 	{
 		public function ArraySelectionModel()
 		{
@@ -49,6 +50,7 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 
 		private var _selectedIndex:int = -1;
+		private var _rollOverIndex:int = -1;
 		
 		public function get selectedIndex():int
 		{
@@ -59,6 +61,16 @@ package org.apache.flex.html.staticControls.beads.models
 			_selectedIndex = value;
 			_selectedItem = (value == -1) ? null : (value < _dataProvider.length) ? _dataProvider[value] : null;
 			dispatchEvent(new Event("selectedIndexChanged"));			
+		}
+		
+		public function get rollOverIndex():int
+		{
+			return _rollOverIndex;
+		}
+		public function set rollOverIndex(value:int):void
+		{
+			_rollOverIndex = value;
+			dispatchEvent(new Event("rollOverIndexChanged"));			
 		}
 		
 		private var _selectedItem:Object;

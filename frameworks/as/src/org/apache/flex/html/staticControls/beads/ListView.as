@@ -27,6 +27,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.Strand;
@@ -96,6 +97,7 @@ package org.apache.flex.html.staticControls.beads
             
             listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+            listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 
             _border = new Border();
             _border.model = new SingleLineBorderModel();
@@ -127,6 +129,23 @@ package org.apache.flex.html.staticControls.beads
 	            ir.selected = true;
 			}
             lastSelectedIndex = listModel.selectedIndex;
+		}
+		
+		private var lastRollOverIndex:int = -1;
+		
+		private function rollOverIndexChangeHandler(event:Event):void
+		{
+			if (lastRollOverIndex != -1)
+			{
+				var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IItemRenderer;
+                ir.hovered = false;
+			}
+			if (IRollOverModel(listModel).rollOverIndex != -1)
+			{
+	            ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex);
+	            ir.hovered = true;
+			}
+			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
 			
 		private function createScrollBar():ScrollBar

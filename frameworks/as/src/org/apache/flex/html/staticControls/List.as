@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
+	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	
@@ -55,6 +56,15 @@ package org.apache.flex.html.staticControls
 		public function set selectedIndex(value:int):void
 		{
 			ISelectionModel(model).selectedIndex = value;
+		}
+
+        public function get rollOverIndex():int
+		{
+			return IRollOverModel(model).rollOverIndex;
+		}
+		public function set rollOverIndex(value:int):void
+		{
+			IRollOverModel(model).rollOverIndex = value;
 		}
 		
 		public function get selectedItem():Object
