@@ -74,7 +74,8 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
         return true;
       }
 
-      if (interfaces[i].prototype.FLEXJS_CLASS_INFO &&
+      if (interfaces[i] &&
+          interfaces[i].prototype.FLEXJS_CLASS_INFO &&
           interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
         return checkInterfaces(new interfaces[i]());
       }
