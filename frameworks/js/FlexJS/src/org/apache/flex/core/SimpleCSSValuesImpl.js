@@ -143,54 +143,56 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
   if (values == null)
     values = {};
 
-  var n = cssData.length;
-  var i = 0;
-  while (i < n)
-  {
-    var numMQ = cssData[i++];
-    if (numMQ > 0)
+  if (cssData) {
+    var n = cssData.length;
+    var i = 0;
+    while (i < n)
     {
-      // skip MediaQuery tests for now
-      i += numMQ;
-    }
-    var numSel = cssData[i++];
-    var props = {};
-    for (var j = 0; j < numSel; j++)
-    {
-      var selName = cssData[i++];
-      if (selName.indexOf('.') != 0 &&
-          selName != '*' && selName != 'global')
+      var numMQ = cssData[i++];
+      if (numMQ > 0)
       {
-        // should be a type selector
-        var parts = selName.split('.');
-        var numParts = parts.length;
-        var part = window;
-        for (var k = 0; k < numParts; k++)
-        {
-          var partName = parts[k];
-          var subpart = part[partName];
-          if (subpart == undefined)
-            break;
-          // assume last part is ctor func
-          if (k == numParts - 1)
-            subpart = subpart.prototype;
-          subpart.__css__package_parent = part;
-          subpart.__css__name = partName;
-          part = subpart;
-        }
+        // skip MediaQuery tests for now
+        i += numMQ;
       }
-      if (values[selName])
-        props = values[selName];
-      values[selName] = props;
-    }
-    var numProps = cssData[i++];
-    for (j = 0; j < numProps; j++)
-    {
-      var propName = cssData[i++];
-      var propValue = cssData[i++];
-      props[propName] = propValue;
+      var numSel = cssData[i++];
+      var props = {};
+      for (var j = 0; j < numSel; j++)
+      {
+        var selName = cssData[i++];
+        if (selName.indexOf('.') != 0 &&
+            selName != '*' && selName != 'global')
+        {
+          // should be a type selector
+          var parts = selName.split('.');
+          var numParts = parts.length;
+          var part = window;
+          for (var k = 0; k < numParts; k++)
+          {
+            var partName = parts[k];
+            var subpart = part[partName];
+            if (subpart == undefined)
+              break;
+            // assume last part is ctor func
+            if (k == numParts - 1)
+              subpart = subpart.prototype;
+            subpart.__css__package_parent = part;
+            subpart.__css__name = partName;
+            part = subpart;
+          }
+        }
+        if (values[selName])
+          props = values[selName];
+        values[selName] = props;
+      }
+      var numProps = cssData[i++];
+      for (j = 0; j < numProps; j++)
+      {
+        var propName = cssData[i++];
+        var propValue = cssData[i++];
+        props[propName] = propValue;
+      }
     }
   }
+
   this.values = values;
 };
-
