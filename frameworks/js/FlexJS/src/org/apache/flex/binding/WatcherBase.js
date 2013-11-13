@@ -172,7 +172,7 @@ org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
     var n = staticClass.allowedErrorTypes.length;
     for (var i = 0; i < n; i++)
     {
-      if (error.constructor == staticClass.allowedErrorTypes[i].type)
+      if (org.apache.flex.utils.Language.is(error, staticClass.allowedErrorTypes[i].type))
       {
         var handler = staticClass.allowedErrorTypes[i].handler;
         if (handler != null)
