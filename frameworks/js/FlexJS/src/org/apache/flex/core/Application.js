@@ -70,7 +70,10 @@ org.apache.flex.core.Application.prototype.start = function() {
       this.get_MXMLProperties());
 
   org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
-  this.valuesImpl.init(this);
+
+  // (erikdebruin) there is no method 'init' on the
+  //               class 'org.apache.flex.core.SimpleValuesImpl'
+  //this.valuesImpl.init(this);
 
   this.dispatchEvent('initialize');
 
