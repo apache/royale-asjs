@@ -181,10 +181,10 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
   }
   this.beads_.push(bead);
 
-  if (bead instanceof org.apache.flex.core.IBeadModel)
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel))
     this.model = bead;
 
-  if (bead instanceof org.apache.flex.core.IBeadView) {
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadView)) {
     this.dispatchEvent(new org.apache.flex.events.Event('viewChanged'));
   }
 
@@ -203,7 +203,7 @@ org.apache.flex.core.UIBase.prototype.getBeadByType =
   }
   for (var i = 0; i < this.beads_.length; i++) {
     var bead = this.beads_[i];
-    if (bead instanceof classOrInterface) {
+    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
