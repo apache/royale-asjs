@@ -56,13 +56,13 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
 
   this.model.addEventListener('dataProviderChanged',
       goog.bind(this.dataProviderChangedHandler, this));
-      
+
   if (this.itemRendererFactory_ == null) {
     var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRendererClassFactory');
     this.itemRendererFactory_ = new c;
     this.strand_.addBead(this.itemRendererFactory_);
   }
-      
+
   this.dataProviderChangedHandler(null);
 };
 
@@ -113,3 +113,12 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
   var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+    FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IDataProviderItemRendererMapper] };

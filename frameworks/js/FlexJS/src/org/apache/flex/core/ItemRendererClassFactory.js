@@ -66,3 +66,12 @@ org.apache.flex.core.ItemRendererClassFactory.
   parent.addElement(renderer);
   return renderer;
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ItemRendererClassFactory.
+    prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IItemRendererClassFactory] };

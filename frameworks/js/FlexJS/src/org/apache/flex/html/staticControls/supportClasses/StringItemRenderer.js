@@ -175,3 +175,12 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
     }
   }
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+    prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IItemRenderer] };
