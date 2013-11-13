@@ -49,6 +49,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 			if (target)
 			{
                 target.hovered = true;
+				target.dispatchEvent(new Event("rollover"));
 			}
 		}
 		

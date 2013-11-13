@@ -85,6 +85,7 @@ package org.apache.flex.html.staticControls.beads
 				columns.push(column);
 				
 				column.addEventListener('change',columnListChangeHandler);
+				column.addEventListener('rollover',columnListRollOverHandler);
 			}
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
@@ -138,6 +139,18 @@ package org.apache.flex.html.staticControls.beads
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
+		}
+		
+		private function columnListRollOverHandler(event:Event):void
+		{
+			var list:List = event.target as List;
+			for(var i:int=0; i < columns.length; i++) {
+				if (list != columns[i]) {
+					columns[i].rollOverIndex = list.rollOverIndex;
+				}
+			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
 		}
 	}
 }
