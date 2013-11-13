@@ -12,34 +12,12 @@
  * limitations under the License.
  */
 
-/**
- * @fileoverview
- * @suppress {checkTypes}
- */
-
 goog.provide('org.apache.flex.core.IBeadView');
 
-goog.require('org.apache.flex.events.EventDispatcher');
-
 
 
 /**
- * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @interface
  */
 org.apache.flex.core.IBeadView = function() {
-  goog.base(this);
-};
-goog.inherits(
-    org.apache.flex.core.IBeadView,
-    org.apache.flex.events.EventDispatcher);
-
-
-/**
- * @expose
- * @return {boolean} I guess this method is 'old' since we now
- *                   support regular type checking?
- */
-org.apache.flex.core.IBeadView.prototype.isaView = function() {
-  return true;
 };

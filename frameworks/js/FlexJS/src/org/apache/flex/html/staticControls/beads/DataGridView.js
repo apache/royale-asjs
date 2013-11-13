@@ -32,7 +32,8 @@ goog.require('org.apache.flex.html.staticControls.beads.models.DataGridPresentat
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadView}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IBeadView}
  */
 org.apache.flex.html.staticControls.beads.DataGridView = function() {
   this.lastSelectedIndex = -1;
@@ -40,7 +41,6 @@ org.apache.flex.html.staticControls.beads.DataGridView = function() {
 };
 goog.inherits(
     org.apache.flex.html.staticControls.beads.DataGridView,
-    org.apache.flex.core.IBeadView,
     org.apache.flex.events.EventDispatcher);
 
 
@@ -107,7 +107,7 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
 
 
 /**
- * @param {object} event The selection change event from one of the column
+ * @param {Object} event The selection change event from one of the column
  * lists.
  */
 org.apache.flex.html.staticControls.beads.DataGridView.prototype.
@@ -127,3 +127,11 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.
   }
 };
 
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataGridView.prototype.
+    FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadView] };

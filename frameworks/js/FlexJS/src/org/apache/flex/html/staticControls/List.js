@@ -41,6 +41,8 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
     function() {
   goog.base(this, 'createElement');
   this.set_className('List');
+
+  return this.element;
 };
 
 
@@ -77,7 +79,7 @@ org.apache.flex.html.staticControls.List.prototype.internalChildren =
 
 /**
  * @expose
- * @param {object} event The event that triggered the selection.
+ * @param {Object} event The event that triggered the selection.
  */
 org.apache.flex.html.staticControls.List.prototype.selectedHandler =
     function(event) {

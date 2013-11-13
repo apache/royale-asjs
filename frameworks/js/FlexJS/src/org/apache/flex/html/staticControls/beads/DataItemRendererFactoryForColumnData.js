@@ -20,6 +20,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.staticControls.beads.DataGridColumnView');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer');
+goog.require('org.apache.flex.html.staticControls.supportClasses.StringItemRenderer');
 
 
 
@@ -41,7 +42,7 @@ goog.inherits(
 /**
  * @expose
           DataItemRendererFactoryForColumnData}
- * @param {object} value The component strand.
+ * @param {Object} value The component strand.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     prototype.set_strand = function(value) {
@@ -73,7 +74,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 /**
  * @expose
  *        DataItemRendererFactoryForColumnData}
- * @return {object} The factory class to use for creating item renderers.
+ * @return {Object} The factory class to use for creating item renderers.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     prototype.get_itemRendererFactory = function() {
@@ -84,7 +85,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 /**
  * @expose
  *        DataItemRendererFactoryForColumnData}
- * @param {object} value The factory class to use for creating item renderers.
+ * @param {Object} value The factory class to use for creating item renderers.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     prototype.set_itemRendererFactory = function(value) {
@@ -95,7 +96,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 /**
  * @expose
           DataItemRendererFactoryForColumnData}
- * @param {object} event The event that triggered the dataProvider change.
+ * @param {Object} event The event that triggered the dataProvider change.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     prototype.dataProviderChangedHandler = function(event) {
@@ -124,6 +125,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 
 /**
  * @const
+ * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
   .prototype.FLEXJS_CLASS_INFO =

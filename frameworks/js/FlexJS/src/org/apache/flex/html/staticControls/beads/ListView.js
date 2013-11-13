@@ -26,17 +26,13 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataG
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadView}
+ * @implements {org.apache.flex.core.IBeadView}
  */
 org.apache.flex.html.staticControls.beads.ListView = function() {
   this.lastSelectedIndex = -1;
-  goog.base(this);
 
   this.className = 'ListView';
 };
-goog.inherits(
-    org.apache.flex.html.staticControls.beads.ListView,
-    org.apache.flex.core.IBeadView);
 
 
 /**
@@ -92,3 +88,12 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
   }
   this.lastSelectedIndex = this.model.get_selectedIndex();
 };
+
+
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.
+    FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadView] };

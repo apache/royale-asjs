@@ -21,21 +21,18 @@ goog.require('org.apache.flex.html.staticControls.beads.ListView');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
     function() {
-  goog.base(this);
   this.strand_ = null;
+
   this.className = 'ButtonBarLayout';
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout,
-    org.apache.flex.core.IBeadLayout);
 
 
 /**
  * @expose
-          ButtonBarLayout}
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
@@ -53,7 +50,6 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 
 
 /**
-          ButtonBarLayout}
  * @param {org.apache.flex.events.Event} event The text getter.
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
@@ -83,3 +79,10 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 };
 
 
+/**
+ * @const
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
+    .prototype.FLEXJS_CLASS_INFO =
+    { interfaces: [org.apache.flex.core.IBeadLayout] };

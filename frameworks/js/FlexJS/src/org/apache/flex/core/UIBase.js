@@ -36,16 +36,17 @@ org.apache.flex.core.UIBase = function() {
    */
   this.lastDisplay_ = '';
 
-  /**
-   * @protected
-   * @type {Object}
-   */
-  this.positioner = null;
-
   this.createElement();
 };
 goog.inherits(org.apache.flex.core.UIBase,
     org.apache.flex.core.HTMLElementWrapper);
+
+
+/**
+ * @expose
+ * @type {Object}
+ */
+org.apache.flex.core.UIBase.prototype.positioner = null;
 
 
 /**

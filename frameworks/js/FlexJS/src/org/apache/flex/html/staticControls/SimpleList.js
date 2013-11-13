@@ -43,12 +43,13 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
   this.set_className('SimpleList');
+
+  return this.element;
 };
 
 
 /**
- * @expose
- * @return {Object} Returns the dataProvider.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     get_dataProvider = function() {
@@ -57,8 +58,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 
 /**
- * @expose
- * @param {Object} value The new dataProvider.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     set_dataProvider = function(value) {
@@ -75,7 +75,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
   n = value.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('option');
-    opt.text = value[i];
+    opt.text = value[i].toString();
     dp.add(opt);
   }
 
@@ -83,8 +83,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 
 /**
- * @expose
- * @return {Object} Returns the selected index.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     get_selectedIndex = function() {
@@ -93,8 +92,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 
 /**
- * @expose
- * @param {Number} value The new selected index.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     set_selectedIndex = function(value) {
@@ -103,8 +101,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 
 /**
- * @expose
- * @return {Object} Returns the selectedItem.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     get_selectedItem = function() {
@@ -113,8 +110,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 
 
 /**
- * @expose
- * @param {Object} value The new selected item.
+ * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.
     set_selectedItem = function(value) {

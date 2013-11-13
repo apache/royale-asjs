@@ -47,6 +47,8 @@ org.apache.flex.html.staticControls.DataGrid.prototype.createElement =
 
   // this.addBead(new
   //       org.apache.flex.html.staticControls.beads.DataGridView());
+
+  return this.element;
 };
 
 

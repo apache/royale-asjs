@@ -70,4 +70,6 @@ org.apache.flex.html.staticControls.ButtonBar.prototype.createElement =
   this.positioner = this.element;
 
   this.set_className('ButtonBar');
+
+  return this.element;
 };
