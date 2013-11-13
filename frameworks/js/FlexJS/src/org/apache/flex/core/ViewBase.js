@@ -43,9 +43,9 @@ org.apache.flex.core.ViewBase = function() {
 
   /**
    * @private
-   * @type {Object}
+   * @type {string}
    */
-  this.currentState_ = null;
+  this.currentState_ = '';
 
 };
 goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
@@ -140,7 +140,7 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
 
 /**
  * @expose
- * @return {Object} The name of the current state.
+ * @return {string} The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
   return this.currentState_;
@@ -149,7 +149,7 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
 
 /**
  * @expose
- * @param {Object} value The name of the current state.
+ * @param {string} value The name of the current state.
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
   var event = new org.apache.flex.events.ValueChangeEvent(
