@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IBeadController');
 
 goog.require('org.apache.flex.core.IBead');
@@ -29,7 +34,6 @@ org.apache.flex.core.IBeadController = function() {
 /**
  * @const
  * @type {Object.<string, Array.<Object>>}
- * @suppress {checkTypes}
  */
 org.apache.flex.core.IBeadController.prototype.FLEXJS_CLASS_INFO =
     { interfaces: [org.apache.flex.core.IBead] };
