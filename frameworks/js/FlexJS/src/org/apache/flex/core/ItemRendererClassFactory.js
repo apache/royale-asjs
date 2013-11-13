@@ -14,12 +14,14 @@
 
 goog.provide('org.apache.flex.core.ItemRendererClassFactory');
 
+goog.require('org.apache.flex.core.IItemRendererClassFactory');
 goog.require('org.apache.flex.core.ValuesManager');
 
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IItemRendererClassFactory}
  */
 org.apache.flex.core.ItemRendererClassFactory = function() {
   this.itemRendererClass = null;

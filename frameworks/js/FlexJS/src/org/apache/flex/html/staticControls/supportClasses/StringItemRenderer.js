@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.supportClasses.StringItemRenderer');
 
+goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
 
@@ -22,6 +23,7 @@ goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRenderer
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer =
     function() {

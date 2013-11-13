@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData');
 
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
@@ -23,16 +24,11 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButton
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IDataProviderItemRendererMapper}
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData =
     function() {
-  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.html.staticControls.
-        beads.DataItemRendererFactoryForArrayData,
-    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -60,6 +56,14 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
 
   this.model.addEventListener('dataProviderChanged',
       goog.bind(this.dataProviderChangedHandler, this));
+      
+  if (this.itemRendererFactory_ == null) {
+    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRendererClassFactory');
+    this.itemRendererFactory_ = new c;
+    this.strand_.addBead(this.itemRendererFactory_);
+  }
+      
+  this.dataProviderChangedHandler(null);
 };
 
 
@@ -69,6 +73,12 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
     prototype.get_itemRendererClass = function() {
+  if (this.itemRendererClass_ == null) {
+    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRenderer');
+    if (c) {
+      this.itemRendererClass_ = c;
+    }
+  }
   return this.itemRendererClass_;
 };
 
@@ -94,10 +104,10 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
   dp = this.model.get_dataProvider();
   n = dp.length;
   for (i = 0; i < n; i++) {
-    var expr = 'new ' + String(this.itemRendererClass_) + '()';
-    opt = eval(expr);
-    this.dataGroup.addElement(opt);
-    opt.set_data(dp[i]);
+    var ir = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
+    ir.set_index(i);
+    ir.set_data(dp[i]);
+    this.dataGroup.addElement(ir);
   }
 
   var newEvent = new org.apache.flex.events.Event('itemsCreated');

@@ -14,12 +14,16 @@
 
 goog.provide('org.apache.flex.html.staticControls.List');
 
-goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IItemRendererClassFactory');
+goog.require('org.apache.flex.core.ItemRendererClassFactory');
 goog.require('org.apache.flex.core.ListBase');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
 
 
 
@@ -53,12 +57,24 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
     function() {
   goog.base(this, 'addedToParent');
 
-  var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
+  var c = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
   if (c == null) {
-    this.addBead(new
-                 org.apache.flex.html.staticControls.beads.
-                 TextItemRendererFactoryForArrayData());
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iDataProviderItemRendererMapper');
+    if (c) {
+      var bead = new c;
+      this.addBead(bead);
+    }
   }
+//  var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
+//  if (c == null) {
+//    c = this.getBeadByType(
+//          org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+//    if (c == null) {
+//      this.addBead(new
+//                   org.apache.flex.html.staticControls.beads.
+//                   TextItemRendererFactoryForArrayData());
+//    }
+//  }
 };
 
 

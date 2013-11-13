@@ -14,7 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 
-goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
@@ -27,7 +27,7 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
     function() {
-  goog.base(this);
+    goog.base(this);
 };
 goog.inherits(
     org.apache.flex.html.staticControls.

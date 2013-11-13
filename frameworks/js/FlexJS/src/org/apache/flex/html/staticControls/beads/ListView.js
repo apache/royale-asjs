@@ -57,6 +57,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
 
   this.dataGroup_ = new
       org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup();
+  this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
 };
 
