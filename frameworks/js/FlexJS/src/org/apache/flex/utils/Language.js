@@ -27,11 +27,11 @@ org.apache.flex.utils.Language = function() {
  * as()
  *
  * @expose
- * @param {!Object} leftOperand The lefthand operand of the
+ * @param {*} leftOperand The lefthand operand of the
  *     binary as operator in AS3.
- * @param {!Object} rightOperand The righthand operand of the
+ * @param {*} rightOperand The righthand operand of the
  *     binary operator in AS3.
- * @return {?Object} Returns the lefthand operand if it is
+ * @return {*} Returns the lefthand operand if it is
  *     of the type of the righthand operand, otherwise null.
  */
 org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
@@ -56,9 +56,9 @@ org.apache.flex.utils.Language._int = function(value) {
  * is()
  *
  * @expose
- * @param {?Object} leftOperand The lefthand operand of the
+ * @param {*} leftOperand The lefthand operand of the
  *     binary as operator in AS3.
- * @param {!Object} rightOperand The righthand operand of the
+ * @param {*} rightOperand The righthand operand of the
  *     binary operator in AS3.
  * @return {boolean}
  */
@@ -83,7 +83,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
     return false;
   };
 
-  if (leftOperand instanceof rightOperand) {
+  if (leftOperand instanceof /** @type {Object} */(rightOperand)) {
     return true;
   } else if (leftOperand.FLEXJS_CLASS_INFO &&
       leftOperand.FLEXJS_CLASS_INFO.interfaces) {
