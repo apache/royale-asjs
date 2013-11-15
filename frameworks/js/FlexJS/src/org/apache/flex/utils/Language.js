@@ -100,16 +100,18 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
  * trace()
  *
  * @expose
- * @param {string} value The message to be written to the console.
+ * @param {string=} opt_value The message to be written to the console.
  */
-org.apache.flex.utils.Language.trace = function(value) {
+org.apache.flex.utils.Language.trace = function(opt_value) {
   var theConsole;
+
+  opt_value = (opt_value !== undefined) ? opt_value : '';
 
   theConsole = goog.global['console'];
 
   try {
     if (theConsole && theConsole.log) {
-      theConsole.log(value);
+      theConsole.log(opt_value);
     }
   } catch (e) {
     // ignore; at least we tried ;-)
