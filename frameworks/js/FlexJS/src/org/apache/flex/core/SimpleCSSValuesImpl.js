@@ -55,25 +55,14 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   var values = this.values;
   var value;
   var o;
-  var className;
+  var cName;
   var selectorName;
 
-  if (thisObject.hasOwnProperty('className'))
+  cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
+  if (state)
   {
-    className = thisObject.className;
-    if (state)
-    {
-      selectorName = className + ':' + state;
-      o = values['.' + selectorName];
-      if (o)
-      {
-        value = o[valueName];
-        if (value !== undefined)
-          return value;
-      }
-    }
-
-    o = values['.' + className];
+    selectorName = cName + ':' + state;
+    o = values['.' + selectorName];
     if (o)
     {
       value = o[valueName];
@@ -82,12 +71,19 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     }
   }
 
-  className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
-  while (className != 'Object')
+  o = values['.' + cName];
+  if (o)
+  {
+    value = o[valueName];
+    if (value !== undefined)
+      return value;
+  }
+
+  while (cName != 'Object')
   {
     if (state)
     {
-      selectorName = className + ':' + state;
+      selectorName = cName + ':' + state;
       o = values[selectorName];
       if (o)
       {
@@ -97,7 +93,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
       }
     }
 
-    o = values[className];
+    o = values[cName];
     if (o)
     {
       value = o[valueName];
@@ -108,7 +104,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     if (!thisObject || !thisObject.FLEXJS_CLASS_INFO)
       break;
 
-    className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
+    cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   }
   o = values['global'];
   if (o != undefined)
