@@ -24,6 +24,16 @@ org.apache.flex.net.JSONInputParser = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.JSONInputParser.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'JSONInputParser',
+                qName: 'org.apache.flex.net.JSONInputParser'}] };
+
+
+/**
  * @expose
  * @param {string} s The input string.
  * @return {Array.<string>} The Array of unparsed objects.

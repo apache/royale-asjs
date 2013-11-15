@@ -37,6 +37,16 @@ goog.inherits(org.apache.flex.events.ValueChangeEvent,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.events.ValueChangeEvent.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ValueChangeEvent',
+                qName: 'org.apache.flex.events.ValueChangeEvent' }] };
+
+
+/**
  * @expose
  * @param {string} type The event type.
  */

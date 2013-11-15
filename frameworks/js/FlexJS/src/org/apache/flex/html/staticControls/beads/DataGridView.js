@@ -45,6 +45,18 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataGridView.prototype.
+    FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataGridView',
+                qName: 'org.apache.flex.html.staticControls.beads.DataGridView' }],
+      interfaces: [org.apache.flex.core.IBeadView] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */
@@ -126,12 +138,3 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.
     this.strand_.dispatchEvent(newEvent);
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.DataGridView.prototype.
-    FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadView] };

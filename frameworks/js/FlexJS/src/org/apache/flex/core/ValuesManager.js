@@ -24,6 +24,16 @@ org.apache.flex.core.ValuesManager = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ValuesManager.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ValuesManager',
+                qName: 'org.apache.flex.core.ValuesManager' }] };
+
+
+/**
  * @expose
  * @type {org.apache.flex.core.ValuesManager}
  */

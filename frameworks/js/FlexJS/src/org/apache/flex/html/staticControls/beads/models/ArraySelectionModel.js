@@ -35,6 +35,17 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ArraySelectionModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.ArraySelectionModel' }],
+      interfaces: [org.apache.flex.core.IBeadModel] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */
@@ -126,12 +137,3 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
   this.dispatchEvent('selectedItemChanged');
   this.dispatchEvent('selectedIndexChanged');
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
-    FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadModel] };

@@ -32,6 +32,18 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
+    .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ButtonBarLayout',
+                qName: 'org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */
@@ -77,12 +89,3 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
       children[i].element.style.display = 'inline-block';
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
-    .prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadLayout] };

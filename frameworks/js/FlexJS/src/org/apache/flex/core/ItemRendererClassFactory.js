@@ -29,8 +29,20 @@ org.apache.flex.core.ItemRendererClassFactory = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ItemRendererClassFactory.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ItemRendererClassFactory',
+                qName: 'org.apache.flex.core.ItemRendererClassFactory'}],
+      interfaces: [org.apache.flex.core.IItemRendererClassFactory] };
+
+
+/**
  * @expose
- * @param {object} value The component strand.
+ * @param {Object} value The component strand.
  */
 org.apache.flex.core.ItemRendererClassFactory.
     prototype.set_strand = function(value) {
@@ -46,8 +58,8 @@ org.apache.flex.core.ItemRendererClassFactory.
 
 /**
  * @expose
- * @param {object} parent The display parent of the new item renderer.
- * @return {object} The new item renderer.
+ * @param {Object} parent The display parent of the new item renderer.
+ * @return {Object} The new item renderer.
  */
 org.apache.flex.core.ItemRendererClassFactory.
     prototype.createItemRenderer = function(parent) {
@@ -57,8 +69,8 @@ org.apache.flex.core.ItemRendererClassFactory.
 
 /**
  * @expose
- * @param {object} parent The parent of the new item renderer.
- * @return {object} The new item renderer.
+ * @param {Object} parent The parent of the new item renderer.
+ * @return {Object} The new item renderer.
  */
 org.apache.flex.core.ItemRendererClassFactory.
     prototype.createFromClass = function(parent) {
@@ -66,12 +78,3 @@ org.apache.flex.core.ItemRendererClassFactory.
   parent.addElement(renderer);
   return renderer;
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.core.ItemRendererClassFactory.
-    prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IItemRendererClassFactory] };

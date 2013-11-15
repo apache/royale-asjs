@@ -33,6 +33,16 @@ goog.inherits(org.apache.flex.core.Application,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.Application.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Application',
+                qName: 'org.apache.flex.core.Application' }] };
+
+
+/**
  * @expose
  * @type {Object}
  */

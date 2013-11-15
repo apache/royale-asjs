@@ -24,6 +24,16 @@ org.apache.flex.net.JSONItemConverter = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'JSONItemConverter',
+                qName: 'org.apache.flex.net.JSONItemConverter'}] };
+
+
+/**
  * @expose
  * @param {string} s The input string.
  * @return {*} The object.

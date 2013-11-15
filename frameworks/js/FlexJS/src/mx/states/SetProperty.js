@@ -27,6 +27,17 @@ mx.states.SetProperty = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+mx.states.SetProperty.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SetProperty',
+                qName: 'mx.states.SetProperty' }],
+      interfaces: [org.apache.flex.core.IDocument] };
+
+
+/**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
@@ -85,11 +96,3 @@ mx.states.SetProperty.prototype.initializeFromObject = function(properties) {
 
   return this;
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-mx.states.SetProperty.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IDocument] };

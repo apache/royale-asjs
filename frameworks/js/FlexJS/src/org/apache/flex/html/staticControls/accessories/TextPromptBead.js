@@ -30,6 +30,16 @@ org.apache.flex.html.staticControls.accessories.TextPromptBead = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.accessories.TextPromptBead.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextPromptBead',
+                qName: 'org.apache.flex.html.staticControls.accessories.TextPromptBead' }] };
+
+
+/**
  * @expose
  * @return {string} value The new prompt.
  */

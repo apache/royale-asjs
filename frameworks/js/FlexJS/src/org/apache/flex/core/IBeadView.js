@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IBeadView');
 
 
@@ -21,3 +26,13 @@ goog.provide('org.apache.flex.core.IBeadView');
  */
 org.apache.flex.core.IBeadView = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IBeadView.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IBeadView',
+                qName: 'org.apache.flex.core.IBeadView' }] };

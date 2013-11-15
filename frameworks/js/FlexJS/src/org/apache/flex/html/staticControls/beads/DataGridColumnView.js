@@ -32,6 +32,17 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataGridColumnView.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataGridColumnView',
+                qName: 'org.apache.flex.html.staticControls.beads.DataGridColumnView' }] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

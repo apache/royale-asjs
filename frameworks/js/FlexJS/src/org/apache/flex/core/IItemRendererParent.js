@@ -12,15 +12,30 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IItemRendererParent');
 
 
 
 /**
- * @constructor
+ * @interface
  */
 org.apache.flex.core.IItemRendererParent = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IItemRendererParent.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IItemRendererParent',
+                qName: 'org.apache.flex.core.IItemRendererParent' }] };
 
 
 /**

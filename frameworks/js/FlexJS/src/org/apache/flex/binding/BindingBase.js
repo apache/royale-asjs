@@ -24,6 +24,16 @@ org.apache.flex.binding.BindingBase = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.BindingBase.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'BindingBase',
+                qName: 'org.apache.flex.binding.BindingBase'}] };
+
+
+/**
  * @protected
  * @type {Object}
  */

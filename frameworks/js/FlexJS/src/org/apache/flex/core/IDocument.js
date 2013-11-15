@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IDocument');
 
 
@@ -23,6 +28,16 @@ goog.provide('org.apache.flex.core.IDocument');
  */
 org.apache.flex.core.IDocument = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IDocument.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IDocument',
+                qName: 'org.apache.flex.core.IDocument' }] };
 
 
 /**

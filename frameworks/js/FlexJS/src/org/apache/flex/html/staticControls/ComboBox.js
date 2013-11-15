@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.ComboBox,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.ComboBox.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ComboBox',
+                qName: 'org.apache.flex.html.staticControls.ComboBox'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.createElement =

@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.TextButton,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.TextButton.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextButton',
+                qName: 'org.apache.flex.html.staticControls.TextButton'}] };
+
+
+/**
  * @expose
  * @return {string} The text getter.
  */

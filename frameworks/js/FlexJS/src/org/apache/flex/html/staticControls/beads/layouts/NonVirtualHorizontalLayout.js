@@ -31,6 +31,18 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NonVirtualHorizontalLayout',
+                qName: 'org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
+
+
+/**
  * @expose
           NonVirtualHorizontalLayout}
  * @param {Object} value The new host.
@@ -71,11 +83,3 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
       children[i].style.display = 'inline-block';
   }
 };
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout.
-    prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadLayout] };

@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.TextInput,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.TextInput.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextInput',
+                qName: 'org.apache.flex.html.staticControls.TextInput'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.TextInput.prototype.createElement =

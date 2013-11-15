@@ -31,6 +31,16 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleAlert,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.SimpleAlert.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleAlert',
+                qName: 'org.apache.flex.html.staticControls.SimpleAlert'}] };
+
+
+/**
  * @param {string} message The message to display in the alert.
  * @param {Object} host The host that should display the alert.
  */

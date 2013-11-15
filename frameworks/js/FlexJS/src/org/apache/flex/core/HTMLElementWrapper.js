@@ -32,6 +32,16 @@ goog.inherits(org.apache.flex.core.HTMLElementWrapper,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'HTMLElementWrapper',
+                qName: 'org.apache.flex.core.HTMLElementWrapper' }] };
+
+
+/**
  * @expose
  * @type {Object}
  */

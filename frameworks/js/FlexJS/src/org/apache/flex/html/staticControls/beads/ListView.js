@@ -36,6 +36,18 @@ org.apache.flex.html.staticControls.beads.ListView = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.
+    FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ListView',
+                qName: 'org.apache.flex.html.staticControls.beads.ListView' }],
+      interfaces: [org.apache.flex.core.IBeadView] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */
@@ -89,12 +101,3 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
   }
   this.lastSelectedIndex = this.model.get_selectedIndex();
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.ListView.prototype.
-    FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadView] };

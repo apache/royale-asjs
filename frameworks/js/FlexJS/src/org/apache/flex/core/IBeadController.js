@@ -32,8 +32,11 @@ org.apache.flex.core.IBeadController = function() {
 
 
 /**
- * @const
+ * Metadata
+ *
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IBeadController.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBead] };
+    { names: [{ name: 'IBeadController',
+                qName: 'org.apache.flex.core.IBeadController' }],
+      interfaces: [org.apache.flex.core.IBead] };

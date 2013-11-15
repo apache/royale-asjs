@@ -33,6 +33,16 @@ goog.inherits(org.apache.flex.html.staticControls.Label,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Label.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Label',
+                qName: 'org.apache.flex.html.staticControls.Label' }] };
+
+
+/**
  * @expose
  * @return {string} The text getter.
  */

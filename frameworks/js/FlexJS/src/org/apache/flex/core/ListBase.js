@@ -43,6 +43,16 @@ goog.inherits(org.apache.flex.core.ListBase,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ListBase.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ListBase',
+                qName: 'org.apache.flex.core.ListBase' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.core.ListBase.prototype.createElement = function() {

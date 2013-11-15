@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.TextArea,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.TextArea.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextArea',
+                qName: 'org.apache.flex.html.staticControls.TextArea'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.TextArea.prototype.createElement =

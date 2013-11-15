@@ -36,6 +36,16 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataGridModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.DataGridModel' }] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

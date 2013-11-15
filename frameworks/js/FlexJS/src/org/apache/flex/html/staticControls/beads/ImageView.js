@@ -27,6 +27,17 @@ org.apache.flex.html.staticControls.beads.ImageView = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.ImageView
+  .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ImageView',
+                qName: 'org.apache.flex.html.staticControls.beads.ImageView'}] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

@@ -38,6 +38,16 @@ goog.inherits(org.apache.flex.html.staticControls.Spinner,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Spinner.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Spinner',
+                qName: 'org.apache.flex.html.staticControls.Spinner'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.Spinner.prototype.createElement =

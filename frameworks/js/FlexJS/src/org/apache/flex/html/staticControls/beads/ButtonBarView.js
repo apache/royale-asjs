@@ -34,6 +34,16 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ButtonBarView',
+                qName: 'org.apache.flex.html.staticControls.beads.ButtonBarView' }] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

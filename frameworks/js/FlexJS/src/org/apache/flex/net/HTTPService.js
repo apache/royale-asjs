@@ -92,6 +92,16 @@ goog.inherits(org.apache.flex.net.HTTPService,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.HTTPService.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'HTTPService',
+                qName: 'org.apache.flex.net.HTTPService'}] };
+
+
+/**
  * @expose
  * @type {string}
  */

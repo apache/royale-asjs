@@ -33,6 +33,16 @@ org.apache.flex.net.HTTPHeader = function(opt_name, opt_value) {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.HTTPHeader.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'HTTPHeader',
+                qName: 'org.apache.flex.net.HTTPHeader'}] };
+
+
+/**
  * @expose
  * @type {string}
  */

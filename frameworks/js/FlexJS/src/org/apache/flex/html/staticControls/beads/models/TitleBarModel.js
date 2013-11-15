@@ -34,6 +34,16 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.TitleBarModel,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'RangeModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.TitleBarModel'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

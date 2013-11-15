@@ -27,6 +27,17 @@ mx.states.AddItems = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+mx.states.AddItems.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'AddItems',
+                qName: 'mx.states.AddItems' }],
+      interfaces: [org.apache.flex.core.IDocument] };
+
+
+/**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
@@ -99,11 +110,3 @@ mx.states.AddItems.prototype.initializeFromObject = function(properties) {
 
   return this;
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-mx.states.AddItems.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IDocument] };

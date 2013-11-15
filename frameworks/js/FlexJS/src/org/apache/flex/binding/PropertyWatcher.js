@@ -40,6 +40,16 @@ goog.inherits(org.apache.flex.binding.PropertyWatcher,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.PropertyWatcher.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'PropertyWatcher',
+                qName: 'org.apache.flex.binding.PropertyWatcher'}] };
+
+
+/**
  * @type {Object}
  */
 org.apache.flex.binding.PropertyWatcher.prototype.source;

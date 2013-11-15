@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IDataProviderItemRendererMapper');
 
 
@@ -21,3 +26,13 @@ goog.provide('org.apache.flex.core.IDataProviderItemRendererMapper');
  */
 org.apache.flex.core.IDataProviderItemRendererMapper = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IDataProviderItemRendererMapper.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IDataProviderItemRendererMapper',
+                qName: 'org.apache.flex.core.IDataProviderItemRendererMapper' }] };

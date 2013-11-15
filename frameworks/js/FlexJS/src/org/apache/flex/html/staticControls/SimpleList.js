@@ -33,6 +33,16 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleList,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.SimpleList.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleList',
+                qName: 'org.apache.flex.html.staticControls.SimpleList'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.SimpleList.prototype.

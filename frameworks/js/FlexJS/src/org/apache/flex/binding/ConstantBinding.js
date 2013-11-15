@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.binding.ConstantBinding,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.ConstantBinding.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ConstantBinding',
+                qName: 'org.apache.flex.binding.ConstantBinding'}] };
+
+
+/**
  * @override
  * @param {Object} value The strand (owner) of the bead.
  */

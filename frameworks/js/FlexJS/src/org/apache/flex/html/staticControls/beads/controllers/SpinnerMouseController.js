@@ -27,6 +27,17 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+    SpinnerMouseController.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SpinnerMouseController',
+                qName: 'org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController' }] };
+
+
+/**
  * @expose
  *        SpinnerMouseController}
  * @param {Object} value The strand.

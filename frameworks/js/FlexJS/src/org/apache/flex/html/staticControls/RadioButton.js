@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.RadioButton,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.RadioButton.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'RadioButton',
+                qName: 'org.apache.flex.html.staticControls.RadioButton'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.RadioButton.prototype.createElement =

@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IBead');
 
 
@@ -23,6 +28,16 @@ goog.provide('org.apache.flex.core.IBead');
  */
 org.apache.flex.core.IBead = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IBead.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IBead',
+                qName: 'org.apache.flex.core.IBead' }] };
 
 
 /**

@@ -24,6 +24,16 @@ flash.display.Sprite = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+flash.display.Sprite.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Sprite',
+                qName: 'flash.display.Sprite' }] };
+
+
+/**
  * @expose
  */
 flash.display.Sprite.prototype.start = function() {

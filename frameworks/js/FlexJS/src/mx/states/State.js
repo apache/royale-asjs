@@ -26,6 +26,16 @@ mx.states.State = function(opt_props) {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+mx.states.State.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'State',
+                qName: 'mx.states.State' }] };
+
+
+/**
  * @expose
  * @type {string} name The state name.
  */

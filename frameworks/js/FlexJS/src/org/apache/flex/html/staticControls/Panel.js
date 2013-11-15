@@ -36,6 +36,16 @@ goog.inherits(org.apache.flex.html.staticControls.Panel,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Panel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Panel',
+                qName: 'org.apache.flex.html.staticControls.Panel' }] };
+
+
+/**
  * @override
  * @param {Object} c Element being added.
  */

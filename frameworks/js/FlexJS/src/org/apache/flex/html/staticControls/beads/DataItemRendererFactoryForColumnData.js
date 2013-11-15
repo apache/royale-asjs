@@ -40,6 +40,18 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
+  .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataItemRendererFactoryForColumnData',
+                qName: 'org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData'}],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
+
+
+/**
  * @expose
           DataItemRendererFactoryForColumnData}
  * @param {Object} value The component strand.
@@ -121,12 +133,3 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
   newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData
-  .prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IItemRenderer] };

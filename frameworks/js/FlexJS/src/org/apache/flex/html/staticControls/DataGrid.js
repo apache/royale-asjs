@@ -36,6 +36,16 @@ goog.inherits(org.apache.flex.html.staticControls.DataGrid,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.DataGrid.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataGrid',
+                qName: 'org.apache.flex.html.staticControls.DataGrid' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.createElement =

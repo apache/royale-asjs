@@ -43,6 +43,16 @@ org.apache.flex.core.ViewBaseDataBinding = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ViewBaseDataBinding',
+                qName: 'org.apache.flex.core.ViewBaseDataBinding'}] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

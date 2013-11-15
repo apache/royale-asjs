@@ -25,6 +25,17 @@ org.apache.flex.html.staticControls.beads.PanelView = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.PanelView
+  .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'PanelView',
+                qName: 'org.apache.flex.html.staticControls.beads.PanelView'}] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

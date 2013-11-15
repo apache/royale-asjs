@@ -21,3 +21,13 @@ goog.provide('org.apache.flex.core.SimpleValuesImpl');
  */
 org.apache.flex.core.SimpleValuesImpl = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.SimpleValuesImpl.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleValuesImpl',
+                qName: 'org.apache.flex.core.SimpleValuesImpl' }] };

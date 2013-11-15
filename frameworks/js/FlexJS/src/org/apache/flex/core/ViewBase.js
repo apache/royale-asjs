@@ -52,6 +52,16 @@ goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.ViewBase.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ViewBase',
+                qName: 'org.apache.flex.core.ViewBase' }] };
+
+
+/**
  * @expose
  * @type {Object}
  */

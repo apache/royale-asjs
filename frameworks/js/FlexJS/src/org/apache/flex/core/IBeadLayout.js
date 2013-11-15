@@ -32,8 +32,11 @@ org.apache.flex.core.IBeadLayout = function() {
 
 
 /**
- * @const
+ * Metadata
+ *
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IBeadLayout.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBead] };
+    { names: [{ name: 'IBeadLayout',
+                qName: 'org.apache.flex.core.IBeadLayout' }],
+      interfaces: [org.apache.flex.core.IBead] };

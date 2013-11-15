@@ -33,6 +33,16 @@ goog.inherits(org.apache.flex.events.Event,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.events.Event.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Event',
+                qName: 'org.apache.flex.events.Event' }] };
+
+
+/**
  * @expose
  * @type {string} type The event type.
  */

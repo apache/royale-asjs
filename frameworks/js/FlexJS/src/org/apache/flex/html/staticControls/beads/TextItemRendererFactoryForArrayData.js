@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
@@ -33,6 +34,18 @@ goog.inherits(
     org.apache.flex.html.staticControls.
         beads.TextItemRendererFactoryForArrayData,
     org.apache.flex.events.EventDispatcher);
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextItemRendererFactoryForArrayData',
+                qName: 'org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
 /**
@@ -77,12 +90,3 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
   var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
-    prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IItemRenderer] };

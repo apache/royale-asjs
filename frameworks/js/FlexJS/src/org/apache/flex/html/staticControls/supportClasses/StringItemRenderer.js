@@ -35,6 +35,18 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'StringItemRenderer',
+                qName: 'org.apache.flex.html.staticControls.supportClasses.StringItemRenderer' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -175,12 +187,3 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
     }
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
-    prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IItemRenderer] };

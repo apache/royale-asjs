@@ -37,6 +37,16 @@ org.apache.flex.binding.WatcherBase = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.WatcherBase.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'WatcherBase',
+                qName: 'org.apache.flex.binding.WatcherBase'}] };
+
+
+/**
  *  @expose
  *  The value itself.
  */

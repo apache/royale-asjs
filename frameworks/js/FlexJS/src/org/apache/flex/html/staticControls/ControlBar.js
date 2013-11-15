@@ -31,6 +31,16 @@ goog.inherits(org.apache.flex.html.staticControls.ControlBar,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.ControlBar.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ControlBar',
+                qName: 'org.apache.flex.html.staticControls.ControlBar'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.ControlBar.prototype.createElement =

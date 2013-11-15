@@ -34,9 +34,12 @@ org.apache.flex.core.IBeadModel = function() {
 
 
 /**
- * @const
+ * Metadata
+ *
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IBeadModel.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBead,
+    { names: [{ name: 'IBeadModel',
+                qName: 'org.apache.flex.core.IBeadModel' }],
+      interfaces: [org.apache.flex.core.IBead,
                    org.apache.flex.events.IEventDispatcher] };

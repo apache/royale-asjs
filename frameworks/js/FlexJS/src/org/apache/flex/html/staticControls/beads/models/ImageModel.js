@@ -32,6 +32,16 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ImageModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.ImageModel'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

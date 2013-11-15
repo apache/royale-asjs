@@ -36,9 +36,12 @@ org.apache.flex.core.IStatesImpl = function() {
 
 
 /**
- * @const
+ * Metadata
+ *
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IStatesImpl.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBead,
+    { names: [{ name: 'IStatesImpl',
+                qName: 'org.apache.flex.core.IStatesImpl' }],
+      interfaces: [org.apache.flex.core.IBead,
                    org.apache.flex.events.IEventDispatcher] };

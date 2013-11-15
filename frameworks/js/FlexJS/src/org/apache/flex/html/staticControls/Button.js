@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.Button,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Button.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Button',
+                qName: 'org.apache.flex.html.staticControls.Button'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.Button.prototype.createElement =

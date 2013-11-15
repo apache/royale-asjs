@@ -92,6 +92,16 @@ goog.inherits(org.apache.flex.net.BinaryUploader,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.BinaryUploader.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'BinaryUploader',
+                qName: 'org.apache.flex.net.BinaryUploader'}] };
+
+
+/**
  * @expose
  * @type {string}
  */

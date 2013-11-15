@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.binding.GenericBinding,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.GenericBinding.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'GenericBinding',
+                qName: 'org.apache.flex.binding.GenericBinding'}] };
+
+
+/**
  * @expose
  * @type {Object}
  */

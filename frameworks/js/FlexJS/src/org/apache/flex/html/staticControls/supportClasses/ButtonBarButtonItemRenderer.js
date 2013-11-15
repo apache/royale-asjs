@@ -34,6 +34,16 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ButtonBarButtonItemRenderer',
+                qName: 'org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.

@@ -56,6 +56,16 @@ goog.inherits(org.apache.flex.html.staticControls.ButtonBar,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.ButtonBar.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ButtonBar',
+                qName: 'org.apache.flex.html.staticControls.ButtonBar'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.ButtonBar.prototype.createElement =

@@ -30,6 +30,17 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NonVirtualVerticalLayout',
+                qName: 'org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout'}],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */
@@ -61,11 +72,3 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
     }
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
-    prototype.FLEXJS_CLASS_INFO = { interfaces: [org.apache.flex.core.IBeadLayout] };

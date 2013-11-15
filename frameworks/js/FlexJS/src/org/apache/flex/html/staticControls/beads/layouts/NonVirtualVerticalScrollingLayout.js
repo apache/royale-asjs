@@ -30,6 +30,18 @@ org.apache.flex.html.staticControls.beads.layouts.
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.layouts.
+    NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NonVirtualVerticalScrollingLayout',
+                qName: 'org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */
@@ -61,12 +73,3 @@ org.apache.flex.html.staticControls.beads.layouts.
       children[i].style.display = 'block';
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.layouts.
-    NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadLayout] };

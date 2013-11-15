@@ -44,6 +44,18 @@ goog.inherits(org.apache.flex.core.SimpleStatesImpl,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleStatesImpl',
+                qName: 'org.apache.flex.core.SimpleStatesImpl' }],
+      interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.core.IStatesImpl] };
+
+
+/**
  * @expose
  * @param {org.apache.flex.core.IStrand} value The new host.
  */
@@ -199,12 +211,3 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
     }
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.core.SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBead,
-                   org.apache.flex.core.IStatesImpl] };

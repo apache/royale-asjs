@@ -35,6 +35,18 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataItemRenderer',
+                qName: 'org.apache.flex.html.staticControls.supportClasses.DataItemRenderer' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -175,12 +187,3 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
     }
   }
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IItemRenderer] };

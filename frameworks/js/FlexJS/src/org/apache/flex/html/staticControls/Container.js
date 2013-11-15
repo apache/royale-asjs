@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.Container,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Container.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Container',
+                qName: 'org.apache.flex.html.staticControls.Container' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.Container.prototype.createElement =

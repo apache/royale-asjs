@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.html.staticControls.CheckBox,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.CheckBox.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'CheckBox',
+                qName: 'org.apache.flex.html.staticControls.CheckBox'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.CheckBox.prototype.createElement =

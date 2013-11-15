@@ -24,6 +24,16 @@ org.apache.flex.utils.MXMLDataInterpreter = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.utils.MXMLDataInterpreter.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'MXMLDataInterpreter',
+                qName: 'org.apache.flex.utils.MXMLDataInterpreter'}] };
+
+
+/**
  * @param {Object} document The MXML object.
  * @param {Array} data The data array.
  * @return {Object} The generated object.

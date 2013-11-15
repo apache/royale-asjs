@@ -24,6 +24,17 @@ org.apache.flex.html.staticControls.beads.SliderTrackView = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.SliderTrackView
+  .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SliderTrackView',
+                qName: 'org.apache.flex.html.staticControls.beads.SliderTrackView'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

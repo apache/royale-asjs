@@ -32,6 +32,16 @@ goog.inherits(org.apache.flex.html.staticControls.Image,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Image.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Image',
+                qName: 'org.apache.flex.html.staticControls.Image' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.Image.prototype.createElement =

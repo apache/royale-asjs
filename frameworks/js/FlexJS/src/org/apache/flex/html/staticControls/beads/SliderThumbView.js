@@ -24,6 +24,17 @@ org.apache.flex.html.staticControls.beads.SliderThumbView = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.SliderThumbView
+  .prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SliderThumbView',
+                qName: 'org.apache.flex.html.staticControls.beads.SliderThumbView'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

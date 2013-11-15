@@ -34,6 +34,16 @@ goog.inherits(org.apache.flex.html.staticControls.Alert,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Alert.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Alert',
+                qName: 'org.apache.flex.html.staticControls.Alert'}] };
+
+
+/**
  * @type {number} The value for the Yes button option.
  */
 org.apache.flex.html.staticControls.Alert.YES = 0x000001;

@@ -28,6 +28,17 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+    SliderMouseController.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SliderMouseController',
+                qName: 'org.apache.flex.html.staticControls.beads.controllers.SliderMouseController' }] };
+
+
+/**
  * @expose
  *        SliderMouseController}
  * @param {Object} value The strand.

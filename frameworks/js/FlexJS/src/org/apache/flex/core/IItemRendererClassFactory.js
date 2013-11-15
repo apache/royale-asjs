@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IItemRendererClassFactory');
 
 
@@ -21,3 +26,13 @@ goog.provide('org.apache.flex.core.IItemRendererClassFactory');
  */
 org.apache.flex.core.IItemRendererClassFactory = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IItemRendererClassFactory.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IItemRendererClassFactory',
+                qName: 'org.apache.flex.core.IItemRendererClassFactory' }] };

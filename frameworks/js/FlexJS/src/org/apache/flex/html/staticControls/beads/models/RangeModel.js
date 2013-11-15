@@ -36,6 +36,16 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.RangeModel,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'RangeModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.RangeModel'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

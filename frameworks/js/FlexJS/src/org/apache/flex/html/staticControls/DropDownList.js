@@ -32,6 +32,16 @@ goog.inherits(org.apache.flex.html.staticControls.DropDownList,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.DropDownList.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DropDownList',
+                qName: 'org.apache.flex.html.staticControls.DropDownList'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.DropDownList.prototype.

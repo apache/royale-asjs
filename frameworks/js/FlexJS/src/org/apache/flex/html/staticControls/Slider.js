@@ -36,6 +36,16 @@ goog.inherits(org.apache.flex.html.staticControls.Slider,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.Slider.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Slider',
+                qName: 'org.apache.flex.html.staticControls.Slider'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.Slider.prototype.createElement =

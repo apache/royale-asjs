@@ -35,6 +35,16 @@ goog.inherits(org.apache.flex.html.staticControls.NumericStepper,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.NumericStepper.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NumericStepper',
+                qName: 'org.apache.flex.html.staticControls.NumericStepper' }] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =

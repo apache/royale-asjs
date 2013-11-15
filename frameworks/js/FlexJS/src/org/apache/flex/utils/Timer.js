@@ -54,6 +54,16 @@ goog.inherits(org.apache.flex.utils.Timer,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.utils.Timer.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Timer',
+                qName: 'org.apache.flex.utils.Timer'}] };
+
+
+/**
  * @expose
  * Stops the timer and sets currentCount = 0.
  */

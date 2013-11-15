@@ -34,6 +34,16 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.PanelModel,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'PanelModel',
+                qName: 'org.apache.flex.html.staticControls.beads.models.PanelModel'}] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

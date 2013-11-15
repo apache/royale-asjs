@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.events.IEventDispatcher');
 
 
@@ -23,3 +28,13 @@ goog.provide('org.apache.flex.events.IEventDispatcher');
  */
 org.apache.flex.events.IEventDispatcher = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.events.IEventDispatcher.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IEventDispatcher',
+                qName: 'org.apache.flex.events.IEventDispatcher'}] };

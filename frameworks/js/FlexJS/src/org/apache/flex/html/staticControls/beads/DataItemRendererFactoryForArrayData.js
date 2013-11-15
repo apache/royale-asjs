@@ -32,6 +32,18 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataItemRendererFactoryForArrayData',
+                qName: 'org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData' }],
+      interfaces: [org.apache.flex.core.IDataProviderItemRendererMapper] };
+
+
+/**
  * @expose
  * @type {Object}
  */
@@ -113,12 +125,3 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
   var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
-    FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IDataProviderItemRendererMapper] };

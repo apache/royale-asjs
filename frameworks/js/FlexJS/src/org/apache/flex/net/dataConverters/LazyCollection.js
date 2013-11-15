@@ -54,6 +54,16 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.net.dataConverters.LazyCollection.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'LazyCollection',
+                qName: 'org.apache.flex.net.dataConverters.LazyCollection'}] };
+
+
+/**
  * @expose
  * @return {Object} value The input parser.
  */

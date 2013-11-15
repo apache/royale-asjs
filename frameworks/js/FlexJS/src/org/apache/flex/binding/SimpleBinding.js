@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.binding.SimpleBinding,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.binding.SimpleBinding.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleBinding',
+                qName: 'org.apache.flex.binding.SimpleBinding'}] };
+
+
+/**
  * @expose
  * @type {string}
  */

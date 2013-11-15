@@ -31,6 +31,16 @@ org.apache.flex.html.staticControls.accessories.PasswordInputBead =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.accessories.PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'PasswordInputBead',
+                qName: 'org.apache.flex.html.staticControls.accessories.PasswordInputBead' }] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

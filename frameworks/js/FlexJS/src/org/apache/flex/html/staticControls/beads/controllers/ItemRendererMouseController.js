@@ -28,6 +28,18 @@ org.apache.flex.html.staticControls.beads.controllers.
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.beads.controllers.
+    ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ItemRendererMouseController',
+                qName: 'org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController' }],
+      interfaces: [org.apache.flex.core.IBeadController] };
+
+
+/**
  * @expose
  * @param {Object} value The strand for this component.
  */
@@ -102,12 +114,3 @@ org.apache.flex.html.staticControls.beads.controllers.
 
   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
 };
-
-
-/**
- * @const
- * @type {Object.<string, Array.<Object>>}
- */
-org.apache.flex.html.staticControls.beads.controllers.
-    ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
-    { interfaces: [org.apache.flex.core.IBeadController] };

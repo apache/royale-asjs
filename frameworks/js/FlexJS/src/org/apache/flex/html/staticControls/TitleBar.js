@@ -37,6 +37,16 @@ goog.inherits(org.apache.flex.html.staticControls.TitleBar,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.TitleBar.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TitleBar',
+                qName: 'org.apache.flex.html.staticControls.TitleBar'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.TitleBar.prototype.createElement =

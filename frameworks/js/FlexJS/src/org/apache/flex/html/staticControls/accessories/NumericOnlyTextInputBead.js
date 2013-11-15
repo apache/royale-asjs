@@ -31,6 +31,16 @@ org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead =
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NumericOnlyTextInputBead',
+                qName: 'org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead' }] };
+
+
+/**
  * @expose
  * @param {Object} value The new host.
  */

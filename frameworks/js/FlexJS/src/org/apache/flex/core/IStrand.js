@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.core.IStrand');
 
 
@@ -23,6 +28,16 @@ goog.provide('org.apache.flex.core.IStrand');
  */
 org.apache.flex.core.IStrand = function() {
 };
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.IStrand.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IStrand',
+                qName: 'org.apache.flex.core.IStrand' }] };
 
 
 /**

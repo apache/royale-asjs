@@ -33,6 +33,16 @@ goog.inherits(
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'NonVirtualDataGroup',
+                qName: 'org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup' }] };
+
+
+/**
  * @expose
  * @param {Object} value The strand.
  */

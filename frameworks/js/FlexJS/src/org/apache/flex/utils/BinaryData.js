@@ -37,6 +37,16 @@ org.apache.flex.utils.BinaryData = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.utils.BinaryData.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'BinaryData',
+                qName: 'org.apache.flex.utils.BinaryData'}] };
+
+
+/**
  * @expose
  * @return {Object} The platform-specific data.
  */
