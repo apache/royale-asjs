@@ -91,6 +91,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.utils.Timer; Timer;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     
+    import mx.core.IStateClient2; IStateClient2;
     import mx.states.AddItems; AddItems;
     import mx.states.SetProperty; SetProperty;
     import mx.states.State; State;
