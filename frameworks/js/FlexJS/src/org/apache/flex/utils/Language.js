@@ -24,6 +24,16 @@ org.apache.flex.utils.Language = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.utils.Language.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Language',
+                qName: 'org.apache.flex.utils.Language'}] };
+
+
+/**
  * as()
  *
  * @expose
@@ -120,7 +130,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 
   superClass = leftOperand.constructor.superClass_;
   if (superClass) {
-    while (superClass) {
+    while (superClass && superClass.FLEXJS_CLASS_INFO) {
       if (superClass.FLEXJS_CLASS_INFO.interfaces) {
         if (checkInterfaces(superClass)) {
           return true;
