@@ -24,6 +24,16 @@ org.apache.flex.core.SimpleCSSValuesImpl = function() {
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'SimpleCSSValuesImpl',
+                qName: 'org.apache.flex.core.SimpleCSSValuesImpl'}] };
+
+
+/**
  * @param {Object} thisObject The object to fetch a value for.
  * @param {string} valueName The name of the value to fetch.
  * @param {string} state The psuedo-state if any for.
@@ -72,7 +82,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     }
   }
 
-  className = this.getQualifiedClassName(thisObject);
+  className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   while (className != 'Object')
   {
     if (state)
@@ -94,10 +104,11 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
       if (value !== undefined)
         return value;
     }
-    thisObject = thisObject.__proto__;
-    if (thisObject.__proto__ == null)
+    thisObject = thisObject.constructor.superClass_;
+    if (!thisObject || !thisObject.FLEXJS_CLASS_INFO)
       break;
-    className = this.getQualifiedClassName(thisObject);
+
+    className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   }
   o = values['global'];
   if (o != undefined)
@@ -108,29 +119,6 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   }
   o = values['*'];
   return o[valueName];
-};
-
-
-/**
- * @param {Object} thisObject The object to get a name for.
- * @return {?string} The CSS selector name or null.
- */
-org.apache.flex.core.SimpleCSSValuesImpl.prototype.getQualifiedClassName =
-    function(thisObject) {
-  // relies on the values parser to populate the package tree
-  var proto = thisObject.__proto__;
-  if (proto.hasOwnProperty('__css__package_parent'))
-  {
-    var s = proto.__css__name;
-    while (true)
-    {
-      proto = proto.__css__package_parent;
-      if (proto == window || proto == undefined)
-        return s;
-      s = proto.__css__name + '.' + s;
-    }
-  }
-  return null;
 };
 
 
@@ -159,27 +147,6 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
       for (var j = 0; j < numSel; j++)
       {
         var selName = cssData[i++];
-        if (selName.indexOf('.') != 0 &&
-            selName != '*' && selName != 'global')
-        {
-          // should be a type selector
-          var parts = selName.split('.');
-          var numParts = parts.length;
-          var part = window;
-          for (var k = 0; k < numParts; k++)
-          {
-            var partName = parts[k];
-            var subpart = part[partName];
-            if (subpart == undefined)
-              break;
-            // assume last part is ctor func
-            if (k == numParts - 1)
-              subpart = subpart.prototype;
-            subpart.__css__package_parent = part;
-            subpart.__css__name = partName;
-            part = subpart;
-          }
-        }
         if (values[selName])
           props = values[selName];
         values[selName] = props;
