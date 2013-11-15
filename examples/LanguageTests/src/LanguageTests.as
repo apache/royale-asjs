@@ -10,6 +10,7 @@ import interfaces.IB;
 import interfaces.IC;
 import interfaces.ID;
 import interfaces.IE;
+import interfaces.IF;
 
 public class LanguageTests extends Sprite implements IA, IE
 {
@@ -88,6 +89,35 @@ public class LanguageTests extends Sprite implements IA, IE
 		trace('this as interfaces.ID - [object ...]: ' + testObject.toString());
 		testObject = (this as IE) ? this as IE : 'null';
 		trace('this as interfaces.IE - [object ...]: ' + testObject.toString());
+		trace();
+		try {
+			testObject = Sprite(this);
+			trace('Sprite(this) - [object ...]: ' + testObject.toString());
+		} catch (e:Error) 
+		{
+			trace("This shouldn't show!");
+		}
+		try {
+			testObject = B(this);
+			trace("This shouldn't show!");
+		} catch (e:Error) 
+		{
+			trace('B(this) - exception expected: ' + e.message);
+		}
+		try {
+			testObject = interfaces.IC(b);
+			trace("This shouldn't show!");
+		} catch (e:Error) 
+		{
+			trace('IC(b) - exception expected: ' + e.message);
+		}
+		try {
+			testObject = interfaces.IF(b);
+			trace('IF(b) - [object ...]: ' + testObject.toString());
+		} catch (e:Error) 
+		{
+			trace("This shouldn't show!");
+		}
 	}
 }
 }
