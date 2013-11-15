@@ -28,15 +28,32 @@ org.apache.flex.utils.Language = function() {
  *
  * @expose
  * @param {?} leftOperand The lefthand operand of the
- *     binary as operator in AS3.
+ *                        binary as operator in AS3.
  * @param {?} rightOperand The righthand operand of the
- *     binary operator in AS3.
- * @return {?} Returns the lefthand operand if it is
- *     of the type of the righthand operand, otherwise null.
+ *                         binary operator in AS3.
+ * @param {?=} opt_coercion The cast is a coercion,
+ *                          throw expception if it fails.
+ * @return {?} Returns the lefthand operand if it is of the
+ *             type of the righthand operand, otherwise null.
  */
-org.apache.flex.utils.Language.as = function(leftOperand, rightOperand) {
-  return (org.apache.flex.utils.Language.is(leftOperand, rightOperand)) ?
-      leftOperand : null;
+org.apache.flex.utils.Language.as = function(leftOperand, rightOperand, opt_coercion) {
+  var error, itIs, message;
+
+  opt_coercion = (opt_coercion !== undefined) ? opt_coercion : false;
+
+  itIs = org.apache.flex.utils.Language.is(leftOperand, rightOperand);
+
+  if (!itIs && opt_coercion) {
+    message = 'Type Coercion failed';
+    if (TypeError) {
+      error = new TypeError(message);
+    } else {
+      error = new Error(message);
+    }
+    throw error;
+  }
+
+  return (itIs) ? leftOperand : null;
 };
 
 
