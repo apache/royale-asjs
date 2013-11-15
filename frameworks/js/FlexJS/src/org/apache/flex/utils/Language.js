@@ -63,7 +63,15 @@ org.apache.flex.utils.Language._int = function(value) {
  * @return {boolean}
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
-  var checkInterfaces;
+  var checkInterfaces, superClass;
+
+  // (erikdebruin) we intentionally DON'T do null checks on the
+  //               [class].FLEXJS_CLASS_INFO property, as it MUST be
+  //               declared for every FLEXJS JS (framework) class
+
+  if (leftOperand && !rightOperand) {
+    return false;
+  }
 
   checkInterfaces = function(left) {
     var i, interfaces;
@@ -74,9 +82,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
         return true;
       }
 
-      if (interfaces[i] &&
-          interfaces[i].prototype.FLEXJS_CLASS_INFO &&
-          interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+      if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
         return checkInterfaces(new interfaces[i]());
       }
     }
@@ -84,13 +90,28 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
     return false;
   };
 
-  if (leftOperand instanceof /** @type {Object} */(rightOperand)) {
+  if ((rightOperand === String && typeof leftOperand === 'string') ||
+      (leftOperand instanceof /** @type {Object} */(rightOperand))) {
     return true;
-  } else if (leftOperand.FLEXJS_CLASS_INFO &&
-      leftOperand.FLEXJS_CLASS_INFO.interfaces) {
-    return checkInterfaces(leftOperand);
-  } else if (rightOperand === String && typeof leftOperand === 'string')
-    return true;
+  }
+
+  if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
+    if (checkInterfaces(leftOperand)) {
+      return true;
+    }
+  }
+
+  superClass = leftOperand.constructor.superClass_;
+  if (superClass) {
+    while (superClass) {
+      if (superClass.FLEXJS_CLASS_INFO.interfaces) {
+        if (checkInterfaces(superClass)) {
+          return true;
+        }
+      }
+      superClass = superClass.constructor.superClass_;
+    }
+  }
 
   return false;
 };
