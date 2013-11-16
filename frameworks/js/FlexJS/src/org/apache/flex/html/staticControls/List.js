@@ -68,7 +68,7 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
   goog.base(this, 'addedToParent');
 
   var c = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
-  if (c == null) {
+  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !c) {
     c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iDataProviderItemRendererMapper');
     if (c) {
       var bead = new c;
@@ -98,7 +98,10 @@ org.apache.flex.html.staticControls.List.prototype.internalChildren =
   var listView =
       this.getBeadByType(org.apache.flex.html.staticControls.beads.ListView);
   var dg = listView.get_dataGroup();
-  var items = dg.renderers;
+  var items = null;
+  if (dg.renderers) {
+    items = dg.renderers;
+  }
   return items;
 };
 
@@ -110,16 +113,18 @@ org.apache.flex.html.staticControls.List.prototype.internalChildren =
 org.apache.flex.html.staticControls.List.prototype.selectedHandler =
     function(event) {
   var itemRenderer = event.currentTarget;
-  var n = this.renderers.length;
-  var i;
-  for (i = 0; i < n; i++) {
-    var test = this.renderers[i];
-    if (test == itemRenderer) {
-      this.model.set_selectedIndex(i);
-      itemRenderer.set_selected(true);
-    }
-    else {
-      test.set_selected(false);
+  if (this.renderers) {
+    var n = this.renderers.length;
+    var i;
+    for (i = 0; i < n; i++) {
+      var test = this.renderers[i];
+      if (test == itemRenderer) {
+        this.model.set_selectedIndex(i);
+        itemRenderer.set_selected(true);
+      }
+      else {
+        test.set_selected(false);
+      }
     }
   }
 };
