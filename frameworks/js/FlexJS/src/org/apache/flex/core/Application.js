@@ -80,7 +80,9 @@ org.apache.flex.core.Application.prototype.start = function() {
       this.get_MXMLProperties());
 
   org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
-  this.valuesImpl.init(this);
+  if (this.valuesImpl.init) {
+    this.valuesImpl.init(this);
+  }
 
   this.dispatchEvent('initialize');
 

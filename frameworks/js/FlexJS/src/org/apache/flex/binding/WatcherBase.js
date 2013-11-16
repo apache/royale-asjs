@@ -192,8 +192,9 @@ org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
       }
     }
 
-    if (staticClass.allowedErrors.indexOf(error.errorID) == -1)
+    if (error.errorID && staticClass.allowedErrors.indexOf(error.errorID) == -1) {
       throw error;
+    }
   }
 };
 
