@@ -50,8 +50,10 @@ org.apache.flex.html.staticControls.Button.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  var impl = org.apache.flex.core.ValuesManager.valuesImpl.
-      getValue(this, 'iStatesImpl');
+  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this, 'iStatesImpl');
+  }
 
   return this.element;
 };

@@ -139,46 +139,54 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
   var c;
   if (this.getBeadByType(org.apache.flex.core.IBeadModel) == null)
   {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iBeadModel');
-    if (c)
-    {
-      var model = new c();
-      if (model)
-        this.addBead(model);
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadModel');
+      if (c)
+      {
+        var model = new c();
+        if (model)
+          this.addBead(model);
+      }
     }
   }
   if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
   {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iBeadView');
-    if (c)
-    {
-      var view = new c();
-      if (view)
-        this.addBead(view);
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadView');
+      if (c)
+      {
+        var view = new c();
+        if (view)
+          this.addBead(view);
+      }
     }
   }
   if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
   {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iBeadLayout');
-    if (c)
-    {
-      var layout = new c();
-      if (layout)
-        this.addBead(layout);
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadLayout');
+      if (c)
+      {
+        var layout = new c();
+        if (layout)
+          this.addBead(layout);
+      }
     }
   }
   if (this.getBeadByType(org.apache.flex.core.IBeadController) == null)
   {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iBeadController');
-    if (c)
-    {
-      var controller = new c();
-      if (controller)
-        this.addBead(controller);
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadController');
+      if (c)
+      {
+        var controller = new c();
+        if (controller)
+          this.addBead(controller);
+      }
     }
   }
 };
@@ -377,10 +385,12 @@ org.apache.flex.core.UIBase.prototype.get_model = function() {
   if (this.model == null)
   {
     // addbead will set _model
-    var m = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iBeadModel');
-    var b = new m;
-    this.addBead(b);
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      var m = org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadModel');
+      var b = new m;
+      this.addBead(b);
+    }
   }
   return this.model;
 };
