@@ -17,15 +17,45 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+package mx.styles
+{
+
 /**
  * @private
- * shim the mx classes for states.  This class is used to satisfy old MXML codegen
+ * This class is used to satisfy old MXML codegen
  * for both Falcon and MXML, but in FlexJS with mxml.children-as-data output
  * it isn't needed so there is no JS equivalent
  */
-package mx.core
+public class CSSCondition
 {
-	public interface IStateClient2
-	{
- 	}
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  Constructor.
+     * 
+     *  @param kind The kind of condition. For valid values see the
+     *  CSSConditionKind enumeration.
+     *  @param value The condition value (without CSS syntax).
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */ 
+    public function CSSCondition(kind:String, value:String)
+    {
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+
+}
+
 }

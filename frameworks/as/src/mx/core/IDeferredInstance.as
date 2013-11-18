@@ -17,15 +17,35 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+package mx.core
+{
+
 /**
  * @private
- * shim the mx classes for states.  This class is used to satisfy old MXML codegen
+ * This class is used to satisfy old MXML codegen
  * for both Falcon and MXML, but in FlexJS with mxml.children-as-data output
  * it isn't needed so there is no JS equivalent
  */
-package mx.core
+public interface IDeferredInstance
 {
-	public interface IStateClient2
-	{
- 	}
+    //--------------------------------------------------------------------------
+    //
+    //  Methods
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  Creates an instance Object from a class or function,
+     *  if the instance does not yet exist.
+     *  
+     *  @return The instance Object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function getInstance():Object;
+}
+
 }

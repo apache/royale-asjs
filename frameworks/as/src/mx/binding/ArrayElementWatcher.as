@@ -17,15 +17,61 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+package mx.binding
+{
+
+[ExcludeClass]
+
 /**
  * @private
- * shim the mx classes for states.  This class is used to satisfy old MXML codegen
+ * This class is used to satisfy old MXML codegen
  * for both Falcon and MXML, but in FlexJS with mxml.children-as-data output
  * it isn't needed so there is no JS equivalent
  */
-package mx.core
+public class ArrayElementWatcher extends Watcher
 {
-	public interface IStateClient2
-	{
- 	}
+
+	//--------------------------------------------------------------------------
+	//
+	//  Constructor
+	//
+	//--------------------------------------------------------------------------
+
+    /**
+	 *  @private
+	 *  Constructor
+	 */
+    public function ArrayElementWatcher(document:Object,
+                                        accessorFunc:Function,
+                                        listeners:Array)
+    {
+		super(listeners);
+
+        this.document = document;
+        this.accessorFunc = accessorFunc;
+    }
+
+	//--------------------------------------------------------------------------
+	//
+	//  Variables
+	//
+	//--------------------------------------------------------------------------
+
+    /**
+	 *  @private
+	 */
+	private var document:Object;
+    
+    /**
+	 *  @private
+	 */
+	private var accessorFunc:Function;
+
+    /**
+	 *  @private
+	 */
+    public var arrayWatcher:Watcher;
+
+}
+
 }

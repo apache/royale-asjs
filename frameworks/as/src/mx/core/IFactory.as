@@ -17,15 +17,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+package mx.core
+{
+
 /**
  * @private
- * shim the mx classes for states.  This class is used to satisfy old MXML codegen
+ * This class is used to satisfy old MXML codegen
  * for both Falcon and MXML, but in FlexJS with mxml.children-as-data output
  * it isn't needed so there is no JS equivalent
  */
-package mx.core
+public interface IFactory
 {
-	public interface IStateClient2
-	{
- 	}
+	//--------------------------------------------------------------------------
+	//
+	//  Methods
+	//
+	//--------------------------------------------------------------------------
+
+}
+
 }

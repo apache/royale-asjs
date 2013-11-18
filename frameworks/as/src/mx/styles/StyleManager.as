@@ -19,13 +19,32 @@
 
 /**
  * @private
- * shim the mx classes for states.  This class is used to satisfy old MXML codegen
+ * This class is used to satisfy old MXML codegen
  * for both Falcon and MXML, but in FlexJS with mxml.children-as-data output
  * it isn't needed so there is no JS equivalent
  */
-package mx.core
+package mx.styles
 {
-	public interface IStateClient2
+    import mx.core.IFlexModuleFactory;
+    
+	public class StyleManager
 	{
+        /**
+         *  Returns the style manager for an object.
+         *
+         *  @param moduleFactory The module factory of an object you want the 
+         *  style manager for. If null, the top-level style manager is returned.
+         *
+         *  @return the style manager for the given module factory.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10
+         *  @playerversion AIR 1.5
+         *  @productversion Flex 4
+         */
+        public static function getStyleManager(moduleFactory:IFlexModuleFactory):IStyleManager2
+        {
+            return null;
+        }
  	}
 }
