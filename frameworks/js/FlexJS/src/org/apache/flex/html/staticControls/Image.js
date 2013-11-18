@@ -43,9 +43,11 @@ org.apache.flex.html.staticControls.Image.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @override
+ * @protected
+ * @return {Object} The actual element to be parented.
  */
 org.apache.flex.html.staticControls.Image.prototype.createElement =
-    function(p) {
+    function() {
 
   this.element = document.createElement('img');
 
@@ -59,6 +61,8 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
 
   this.addBead(new
       org.apache.flex.html.staticControls.beads.ImageView());
+      
+  return this.element;
 };
 
 
