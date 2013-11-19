@@ -44,7 +44,7 @@
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
     
-    <property name="kit.prefix" value="apache-flex-sdk-${release.version}"/>
+    <property name="kit.prefix" value="apache-flex-flexjs-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
       
