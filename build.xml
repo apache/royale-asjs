@@ -1,0 +1,1179 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="asjs" default="main" basedir=".">
+
+    <property name="FLEXJS_HOME" location="${basedir}"/>
+    
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+
+    <property name="debug" value="true"/>
+    <property name="strict" value="true"/>
+    <property name="javac.src" value="1.5"/>
+    
+    <property name="kit.prefix" value="apache-flex-sdk-${release.version}"/>
+    <property name="source.kit" value="${kit.prefix}-src"/>
+    <property name="binary.kit" value="${kit.prefix}-bin"/>
+      
+    <!-- 
+        Optional jars but should be in place for a real release build.
+        
+        For <grep> put AntelopeTasks_*.jar in this path.
+        See version-update.
+
+        For <rat> apache-rat-0.8.jar and apache-rat-tasks-0.8.jar should be in classpath.
+        See rat-check.
+    -->
+    <path id="anttask.classpath">
+        <fileset dir="${env.ANT_HOME}/lib">
+           <include name="**/AntelopeTasks_*.jar"/>
+           <include name="**/apache-rat*.jar"/>
+        </fileset>
+        <fileset dir="${user.home}">
+           <include name=".ant/lib/**/AntelopeTasks_*.jar"/>
+           <include name=".ant/lib/**/apache-rat*.jar"/>
+        </fileset>
+    </path>
+    
+    <!--
+        Notes: If you're running the main target, then there is no need to call clean first.
+        Each of the main targets for the modules will call clean themselves before proceeding.
+    -->
+
+    <target name="main" depends="prebuild,frameworks,post-build" description="Full build">
+        <tstamp>
+        	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
+        </tstamp>
+        <echo>ant main target completed on ${build.datetime}</echo>
+    </target>
+
+    <!-- 
+        Can set build.additional-packages to build additional-packages as part of a release.
+        This does not build the docs.  Use doc-packages or asdoc-packages.
+    -->    
+    <target name="release" 
+        depends="check-compile-env,check-runtime-env,check-goog-env,source-release,binary-release,rat-check"
+        description="Creates source and binary kits for Apache FlexJS."/>
+        
+    <target name="source-release" 
+        depends="super-clean,create-description,create-config,source-package" 
+        description="Packages the source release kit which is the official Apache release."/>
+        
+    <target name="binary-release" 
+        depends="setup-binary-release,main,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        description="Builds and packages the binary kit which is provided as a convenience."/>    
+
+    <target name="source-release-noclean" 
+        depends="create-description,create-config,source-package" 
+        description="Packages the source release kit which is the official Apache release."/>
+        
+    <target name="binary-release-noclean" 
+        depends="main,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        description="Builds and packages the binary kit which is provided as a convenience."/>    
+
+    <target name="doc-packages" 
+        depends="asdoc-package,javadocs"
+        description="Build and package the asdocs for the framework clases and the javadocs."/>
+                
+    <target name="additional-packages"
+        depends="ja-locale-samples" 
+        description="Package locale-samples and antTasks."/>
+
+    <target name="help">
+        <echo message="run ant -projecthelp to see the available targets"/>
+    </target>
+    
+    <!-- 
+       To clean these you must call thirdparty-clean or super-clean to clean everything.  
+       clean does not remove these since they don't change often and the downloads take time.
+    -->
+    <target name="thirdparty-downloads" description="Downloads all the required thirdparty code.">
+        <ant dir="${basedir}/frameworks/as" target="thirdparty-downloads"/>        
+        <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/>
+        <!-- don't ask again about these since we just did if these weren't already set -->	    
+	    <property name="build.noprompt" value="set" />
+    </target>
+
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description" 
+        description="Stuff that needs to be done before any builds." />
+
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home"
+        description="Check for the required environment variables for compilation.">
+            <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
+            <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
+            <echo>Java: ${java.version}</echo>
+            <echo>Ant: ${ant.version} Ant Java Version: ${ant.java.version}</echo>
+    </target>
+
+    <target name="check-playerglobal-home" unless="playerglobal.swc.exists"
+        description="Check PLAYERGLOBAL_HOME for both a directory and a swc file">
+
+        <echo message="PLAYERGLOBAL_HOME is ${env.PLAYERGLOBAL_HOME}"/>
+        <echo message="playerglobal.version is ${playerglobal.version}"/>
+
+        <available file="${env.PLAYERGLOBAL_HOME}" 
+            type="dir" 
+            property="PLAYERGLOBAL_HOME.set"/>
+
+        <fail message="The environment variable PLAYERGLOBAL_HOME is not set to a directory" 
+            unless="PLAYERGLOBAL_HOME.set"/>
+
+        <property name="playerglobal.swc" 
+            value="${env.PLAYERGLOBAL_HOME}/${playerglobal.version}/playerglobal.swc"/>
+
+        <available file="${playerglobal.swc}" 
+            type="file" 
+            property="playerglobal.swc.exists"/>
+        
+        <fail message="The file ${playerglobal.swc} does not exist" 
+            unless="playerglobal.swc.exists"/>
+            
+        <echo message="playerglobal.swc is ${playerglobal.swc}"/>
+    </target>
+    
+    <target name="check-air-home" unless="AIR_HOME.set"
+        description="Check that AIR_HOME is a directory">
+        
+        <echo message="AIR_HOME is ${env.AIR_HOME}"/>
+
+        <condition property="AIR_HOME.set">
+            <and>
+                <length string="${env.AIR_HOME}" when="greater" length="0" />
+                <available file="${env.AIR_HOME}" type="dir"/>
+                <!--available file="${env.AIR_HOME}/bin/adt" type="file"/-->
+            </and>
+        </condition>
+        
+        <fail message="The environment variable AIR_HOME must be set to the AIR SDK Kit directory" 
+            unless="AIR_HOME.set"/>
+    </target>
+    
+    <target name="check-flex-home" unless="mxmlc.jar.exists"
+        description="Check FLEX_HOME for both a directory and an exe file">
+
+        <echo message="FLEX_HOME is ${env.FLEX_HOME}"/>
+
+        <available file="${env.FLEX_HOME}" 
+            type="dir" 
+            property="FLEX_HOME.set"/>
+
+        <fail message="The environment variable FLEX_HOME is not set to a directory" 
+            unless="FLEX_HOME.set"/>
+
+        <condition property="mxmlc.jar.exists">
+            <available file="${env.FLEX_HOME}/lib/mxmlc.jar" type="file"/> 
+        </condition>
+        	
+        <fail message="The directory ${env.FLEX_HOME} does not contain mxmlc.jar" 
+            unless="mxmlc.jar.exists"/>
+    </target>
+
+    <target name="check-falcon-home" unless="FALCON_HOME"
+        description="Check TLF_HOME is a directory.">
+        
+        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+
+        <available file="${env.FALCON_HOME}" 
+            type="dir" 
+            property="FALCON_HOME"
+            value="${env.FALCON_HOME}"/>
+
+        <fail message="FALCON_HOME must be set correctly for a release build" 
+            unless="FALCON_HOME"/>
+    	
+    </target>
+
+    <target name="check-goog-env" unless="GOOG_HOME.set"
+        description="Check GOOG_HOME is a directory.">
+        
+        <echo message="GOOG_HOME is ${env.GOOG_HOME}"/>
+
+        <available file="${env.GOOG_HOME}" 
+            type="file" 
+            property="GOOG_HOME.set"/>
+
+        <fail message="GOOG_HOME must be set correctly for a release build" 
+            unless="GOOG_HOME.set"/>
+    </target>
+
+    <target name="create-description" description="Generate flex-sdk-description.xml">
+        <tstamp>
+        	<format property="build.number.date" pattern="yyyyMMdd" />
+        </tstamp>
+        <echo message="build.number is ${build.number.date}"/>
+        <echo file="${basedir}/flex-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;flex-sdk-description&gt;
+&lt;name&gt;${release} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
+&lt;version&gt;${release.version}&lt;/version&gt;
+&lt;build&gt;${build.number.date}&lt;/build&gt;
+&lt;/flex-sdk-description&gt;
+        </echo>
+    </target>
+	
+    <target name="create-config" description="Create flex config file">
+        <ant dir="${basedir}/frameworks" target="flex-config" />
+    </target>
+	
+    <target name="setup-binary-release" depends="thirdparty-clean"
+        description="Set properties needed to turn on features for release sdk">       
+	    <!-- 
+	        For a release build, download everything fresh.  
+	        Build changes to the downloads, might not be caught by the refresh logic.
+	        thirdparty-clean should leave this directory empty but just in case...  
+	    -->
+	    <delete dir="${basedir}/in" failonerror="false" includeEmptyDirs="true" />
+        
+        <!-- generate localized compiler message jars -->
+	    <property name="localized.jars" value="true" />
+    </target>
+    
+    <!--
+        Cleanup
+    -->
+    
+    <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
+
+    <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
+        <ant dir="${basedir}/frameworks/as" target="thirdparty-clean"/>
+        <ant dir="${basedir}/frameworks/js" target="thirdparty-clean"/>
+        <delete dir="${basedir}/in"/>
+        <delete dir="${basedir}/lib"/>
+    </target>
+
+    <target name="clean" depends="examples-clean,frameworks-as-clean,frameworks-js-clean,package-clean,checkintests-clean" 
+        description="Full clean excluding thirdparty downloads">
+        
+        <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
+        <delete file="${basedir}/rat*.report" failonerror="false"/>
+        
+        <delete dir="${basedir}/examples" failonerror="false">
+            <include name="**/*.swc"/>
+            <include name="**/*.swf"/>
+        </delete>
+
+        <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/tempDoc" failonerror="false" includeEmptyDirs="true"/>
+        <ant dir="${basedir}/asdoc" target="clean" />
+        <ant dir="${basedir}/ide/flashbuilder" target="clean" />
+        <ant dir="${basedir}/mustella" target="clean"/>
+    </target>
+
+    <target name="examples-clean">
+        <ant dir="${basedir}/examples" target="clean"/>
+    </target>
+
+    <target name="frameworks-as-clean">
+        <ant dir="${basedir}/frameworks/as" target="clean"/>
+    </target>
+
+	<target name="frameworks-js-clean">
+        <ant dir="${basedir}/frameworks/js" target="clean"/>
+	</target>
+
+    <target name="package-clean">
+        <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
+        <antcall target="clean-temp"/>
+    </target>
+
+    <target name="checkintests-clean" depends="clean-dependencychecker">
+    </target>
+
+    <target name="player-clean">
+        <delete dir="${basedir}/in/player" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+
+    <!--
+        Build Examples
+    -->
+
+    <target name="examples" description="Build the examples">
+        <ant dir="${basedir}/examples"/>
+    </target>
+
+    <!--
+        Build framework SWCs
+    -->
+
+    <target name="frameworks" description="Full build of all framework SWCs, including resource bundles and themes">
+        <ant dir="${basedir}/frameworks/as">
+            <property name="locale" value="${locale}"/>
+        </ant>
+        <ant dir="${basedir}/frameworks/js">
+            <property name="locale" value="${locale}"/>
+        </ant>
+    </target>
+
+    <target name="other.locales" description="Build resource SWCs for additional locales">
+        <ant dir="${basedir}/frameworks" target="other.locales"/>
+    </target>
+    
+    <target name="sample-themes" description="Build the sample themes">
+        <!--<ant dir="${basedir}/samples/themes/zen" target="main" /> -->
+    </target>
+
+    <target name="javadocs"
+        description="Build javadoc for compiler oem interface">
+        <javadoc destdir="${basedir}/javadoc" useexternalfile="yes" maxmemory="128m">
+            <classpath>
+                <fileset dir="${basedir}/lib">
+                    <include name="flex-compiler-oem.jar"/>
+                </fileset>
+            </classpath>
+            <fileset dir="${basedir}/modules/compiler/src/java/flex2/tools/oem">
+                <include name="*.java"/>
+                <exclude name="**/*.properties"/>
+            </fileset>
+        </javadoc>
+        <mkdir dir="${basedir}/out"/>
+        <zip destfile="${basedir}/out/${kit.prefix}-compiler-api-javadocs.zip" basedir="${FLEX_HOME}/javadoc"/>
+        <delete dir="${basedir}/javadoc" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+
+	<target name="ide" description="Build any ide specific files">
+        <!--<ant dir="${basedir}/ide/flashbuilder" />-->
+    </target>
+    
+    <target name="post-build" depends="ide" description="Handle post-build activities" />
+
+    <!--
+        Build the ASDoc html pages.
+    -->
+    <target name="asdoc" description="asdoc">
+        <ant dir="${basedir}/asdoc" />
+    </target>
+
+    <!--
+        Package up the Apache Flex sources.  Do not include empty directories.
+        
+        Note: even if cleaned, this will package up unversioned files that happen
+        to be in the tree.
+        
+        FixMe: clean needs to clean - add code to detect unversioned files
+    -->
+    <target name="source-package" depends="stage-source,source-package-zip,source-package-tgz"
+        description="Package source files required to build in zip and tar-gzip file">
+    </target>
+
+    <!-- 
+        Packages the source distribution with ZIP.
+    -->
+    <target name="source-package-zip" unless="no.zip">
+        <mkdir dir="${basedir}/out"/>
+        <zip destfile="${basedir}/out/${source.kit}.zip" basedir="${basedir}/temp"/>
+    </target>
+
+    <!-- 
+        Packages the source distribution with TAR-GZIP.
+    -->
+    <target name="source-package-tgz" unless="no.zip">
+        <tar-gzip name="${source.kit}" />
+    </target>
+
+    <target name="stage-source"
+        description="Package source files required to build in zip file">
+
+        <antcall target="clean-temp"/>
+        
+        <copy todir="${basedir}/temp" includeEmptyDirs="false">
+            <fileset dir="${basedir}">
+                <include name="build.xml"/>
+                <include name="build.properties"/>
+				<include name="env-template.properties"/>
+                <include name="flex-sdk-description.xml"/>
+                <include name="CHANGES"/>
+                <include name="LICENSE"/>
+                <include name="NOTICE"/>
+                <include name="README"/>
+                <include name="RELEASE_NOTES"/>
+            </fileset>
+        </copy>
+         
+        <!-- frameworks/as -->
+        <antcall target="stage-framework-as"/>
+
+        <!-- frameworks/as -->
+        <antcall target="stage-framework-js"/>
+
+        <!-- asdoc -->
+        <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
+            <fileset dir="${basedir}/asdoc">
+            	<exclude name="test/**" />
+            </fileset>
+        </copy>  
+
+        <!-- ide -->
+        <copy todir="${basedir}/temp/ide">
+            <fileset dir="${basedir}/ide" >
+            	<include name="flashbuilder/**"/>
+            	<include name="*.sh"/>
+            	<include name="*.bat"/>
+            </fileset>
+        </copy>
+
+        <!-- samples -->
+        <copy todir="${basedir}/temp/examples">
+            <fileset dir="${basedir}/examples" >
+                <exclude name="**/*.swc"/>
+                <exclude name="**/*.swf"/>
+            </fileset>
+        </copy>
+        
+        <!-- templates -->
+        <copy todir="${basedir}/temp/templates">
+            <fileset dir="${basedir}/templates" >
+                <include name="swfobject/**"/>
+                <exclude name="**/*.swf"/>
+                <exclude name="**/swfobject.js"/>
+            </fileset>
+        </copy>
+        
+        <!-- 
+             Source files have Windows line endings.  Most UNIX editors can handle
+             either type of line endings but the converse is often not true.             
+             The bin directory is handled in stage-bin.
+        -->
+        <fixcrlf srcdir="${basedir}/temp" eol="crlf" fixlast="false">
+            <exclude name="bin/**"/>
+            <exclude name="**/assets/**"/>
+            <exclude name="**/*.fla"/>
+            <exclude name="**/*.flv"/>
+            <exclude name="**/*.gif"/>
+            <exclude name="**/*.mp3"/>
+            <exclude name="**/*.jpg"/>
+            <exclude name="**/*.pbj"/>
+            <exclude name="**/*.png"/>
+            <exclude name="**/*.sh"/>
+            <exclude name="**/*.swf"/>
+        </fixcrlf>
+               
+        <!-- 
+            Unix shell scripts need the correct line endings. 
+            The bin directory is handled in stage-bin.
+        -->      
+        <fixcrlf srcdir="${basedir}/temp" eol="unix" fixlast="false">  
+            <include name="**.sh"/>
+            <exclude name="bin/**"/>
+        </fixcrlf>
+    </target>
+
+    <!-- frameworks -->
+    <!-- javascript and test directories follow -->
+    <target name="stage-framework-as">
+        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/as">
+                <include name="**"/>
+                <exclude name="**/libs/**"/>
+                <exclude name="**/*.swc"/>
+                <exclude name="**/*.pbj"/>
+                <exclude name="**/*.swf"/>
+                <exclude name="**/*.mxp"/>
+                <exclude name="test*/**"/>
+                <exclude name="javascript/**"/>
+                <exclude name="projects/air/**"/>
+                <exclude name="projects/spark/manifest.xml"/>
+                <exclude name="projects/*/bundles.properties"/>
+                <exclude name="projects/*/.settings/**"/>
+            </fileset>
+        </copy>
+
+        <tstamp>
+        	<format property="build.number.date" pattern="yyyyMMdd" />
+        </tstamp>
+        <property name="build.version" value="${release.version}.${build.number.date}" />
+
+        <!-- now that config xml files are in temp, fix them up for release. -->
+        <echo message="Updating config file air-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/air-config.xml" version="${build.version}" />
+        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/flex-config.xml" version="${build.version}" />
+        
+        <!-- Update all Version.as files in the kit frameworks directory with build.number -->
+        <antcall target="version-update"/>
+    </target>
+    
+    <!-- tlf -->
+    <target name="stage-frameworks-js">
+        <copy todir="${basedir}/temp/frameworks/js" includeEmptyDirs="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS">
+                <include name="src/**"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="stage-falcon">
+        <copy todir="${basedir}/temp/bin" includeEmptyDirs="false">
+            <fileset dir="${basedir}/bin">
+                <include name="*"/>
+                <exclude name="adl*"/>
+                <exclude name="adt*"/>
+            </fileset>
+        </copy>
+        
+        <fixcrlf srcdir="${basedir}/temp/bin" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
+  
+          <!-- Unix shell scripts need the correct line endings. -->      
+        <fixcrlf srcdir="${basedir}/temp/bin" eol="unix" fixlast="false">  
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
+    </target>
+        
+    <target name="stage-falconjx">
+        <!-- modules -->
+        <copy todir="${basedir}/temp/modules" includeEmptyDirs="false">
+            <fileset dir="${basedir}/modules">
+                <include name="**"/>
+                <exclude name="thirdparty/**"/>
+                <exclude name=".metadata/**"/>
+                <exclude name="**/*.jar"/>
+                <exclude name="**/*.vms"/>
+                <exclude name="*/test/**"/>
+                <exclude name="compiler/src/java/velocity.log"/>
+                <exclude name="compiler/**/ParseException.java"/>
+                <exclude name="compiler/**/Parser.java"/>
+                <exclude name="compiler/**/ParserConstants.java"/>
+                <exclude name="compiler/**/Token.java"/>
+                <exclude name="compiler/**/TokenManager.java"/>
+                <exclude name="compiler/**/TokenMgrError.java"/>
+                <exclude name="**/classes/**"/>
+                <exclude name="**/.classpath"/>
+                <exclude name="**/.project"/>
+            </fileset>
+        </copy>  
+
+        <!-- modules/thirdparty -->
+        <copy todir="${basedir}/temp/modules/thirdparty" includeEmptyDirs="true">
+            <fileset dir="${basedir}/modules/thirdparty">
+                <include name="**"/>
+                <exclude name="**/classes/**"/>
+                <exclude name="**/.classpath"/>
+                <exclude name="**/.project"/>
+                <exclude name="*/test*/**"/>
+            </fileset>
+        </copy>  
+    </target>
+    
+    <target name="binary-package"
+        description="Package binary files in zip and tar-gzip file.">
+
+        <antcall target="stage-source"/>
+                
+        <!-- delete any left-over empty directories -->
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/frameworks">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+
+        <!-- these files are in addition to the remaining source files -->
+        
+        <!-- concat the license file with the binary license file for the 3rd party deps -->
+        <!--concat destfile="${basedir}/temp/LICENSE">
+            <filelist dir="${FLEX_HOME}" files="LICENSE,LICENSE.bin"/>
+        </concat-->
+        
+
+        <!-- generated files in frameworks excepts libs and rsls -->
+        <copy todir="${basedir}/temp/frameworks/as">
+            <fileset dir="${basedir}/frameworks/as">
+                <include name="projects/*/bundles.properties"/>
+                <include name="projects/spark/manifest.xml"/>
+                <include name="**/*.pbj"/>
+                <include name="**/*.swc"/>
+                <include name="**/*.swf"/>
+                <exclude name="libs/**"/>
+                <exclude name="rsls/**"/>
+                <exclude name="tests/**"/>
+            </fileset>
+        </copy>
+
+        <!-- frameworks/libs -->
+        <copy todir="${basedir}/temp/frameworks/libs">
+            <fileset dir="${basedir}/frameworks/libs">
+                <include name="FlexJSUI.swc"/>
+                <include name="MXMLCClasses.swc"/>
+            </fileset>
+        </copy>
+
+        <!-- falcon -->
+        <antcall target="stage-falcon"/>
+
+        <!-- falconjx -->
+        <antcall target="stage-falconjx"/>
+        
+        <!-- ide -->
+        <copy todir="${basedir}/temp/ide">
+            <fileset dir="${basedir}/ide" >
+                <include name="flashbuilder/config"/>
+            </fileset>
+        </copy>
+        
+        <!-- sample themes -->
+        <copy todir="${basedir}/temp/samples">
+            <fileset dir="${basedir}/samples" >
+                <include name="**/build.xml"/>
+                <include name="**/*.swc"/>
+                <include name="**/*.swf"/>
+            </fileset>
+        </copy>
+
+        <!-- swfobject templates except for downloaded files -->
+        <copy todir="${basedir}/temp/templates/swfobject">
+            <fileset dir="${basedir}/templates/swfobject">
+                <exclude name="**/expressInstall.swf"/>
+                <exclude name="**/swfobject.js"/>
+            </fileset>
+        </copy>
+                
+        <antcall target="binary-package-zip"/>        
+        <antcall target="binary-package-tgz"/>        
+    </target>
+            
+    <!-- 
+        Packages the binary distribution with ZIP. 
+    -->
+    <target name="binary-package-zip" unless="no.zip"
+        description="Zips up the files in the temp directory into the binary zipfile.">
+        
+        <mkdir dir="${basedir}/out"/>
+        <zip destfile="${basedir}/out/${binary.kit}.zip" basedir="${basedir}/temp"/>
+    </target>
+       
+    <!-- 
+        Packages the binary distribution with TAR-GZIP.         
+    -->
+    <target name="binary-package-tgz" unless="no.zip"
+        description="Tar-Gzip up the files in the temp directory into the binary tgz file.">
+        
+        <tar-gzip name="${binary.kit}" />
+    </target>
+
+    <macrodef name="fix-config-file">
+        <attribute name="file"/>
+        <attribute name="version"/>
+            <sequential>
+                <replace file="@{file}">
+                    <replacefilter
+                        token="&lt;warn-no-explicit-super-call-in-constructor&gt;true"
+                        value="&lt;warn-no-explicit-super-call-in-constructor&gt;false"/>
+                    <replacefilter
+                        token="$${build.number}"
+                        value="@{version}"/>
+                </replace>
+        </sequential>
+    </macrodef>
+
+    <!--
+        tar with gzip compression, the temp directory and put it in the out directory.  
+        The shell scripts in the bin directory (no extension) and other .sh files have 
+        mode set to execute.
+        
+        name - the basename name of the kit in out directory, without the .tar.gz extension
+    -->
+    <macrodef name="tar-gzip">
+        <attribute name="name"/>
+            <sequential>
+                <mkdir dir="${basedir}/out"/>        
+                <tar destfile="${basedir}/out/@{name}.tar.gz" 
+                    compression="gzip"
+                    longfile="gnu">
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}">
+                        <include name="**" />
+                        <exclude name="bin/**" />
+                        <exclude name="**/*.sh" />
+                    </tarfileset>
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}">
+                        <include name="bin/*.bat" />
+                    </tarfileset>
+                    <tarfileset dir="${basedir}/temp" prefix="@{name}" mode="755">
+                        <include name="bin/*" />
+                        <include name="**/*.sh" />
+                        <exclude name="bin/*.bat" />
+                    </tarfileset>
+                </tar>
+        </sequential>
+    </macrodef>	
+    
+	<!--
+	    Update all frameworks Version.as files in the kit stagging area with the 
+	    latest version build number info.
+	    
+	    You need to place the AntelopeTasks_*.jar jar file in the anttask.classpath
+	    in order to do this.  If the jar isn't found, the update is skipped.
+	-->
+	<target name="version-update"
+	    description="Update all frameworks/Version.as files">
+
+        <available property="have.greptask"
+            classname="ise.antelope.tasks.Find" 
+            classpathref="anttask.classpath"/>
+        
+        <antcall target="have-greptask"/>
+        <antcall target="no-greptask"/>
+    </target>
+
+    <target name="have-greptask" if="have.greptask">
+		<taskdef name="grep" classname="ise.antelope.tasks.Find"
+                 classpathref="anttask.classpath"/>                 
+
+        <echo message="Updating all frameworks/projects/**/Version.as files with version ${release.version}.${build.number.date}"/>
+		
+        <!-- Update all Version.as files in the kit frameworks directory-->
+        <replaceregexp>
+            <regexp pattern='"[0-9].[0-9].[0-9].[0-9]";'/>
+            <substitution expression='"${release.version}.${build.number.date}";'/>
+            <fileset dir="${FLEX_HOME}/temp/frameworks/projects">
+                <include name="**/Version.as"/>
+            </fileset>
+        </replaceregexp>		
+    </target>
+
+    <target name="no-greptask" unless="have.greptask">
+        <echo message="Version files not updated."/>
+        <echo message="AntelopeTasks_*.jar not found in anttask.classpath"/>
+    </target>   
+
+    <target name="stage-locales"
+        description="Stage all the locale swc's built">
+        
+        <copy todir="${basedir}/temp/frameworks/locale" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/locale">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+
+        <!-- frameworks/projects -->
+        <!--
+            Remove these files from the binary kit.
+            
+            copylocale looks for bundles and then uses default locale so if there is
+            not a locale sub-directory don't include the bundles directory.
+        -->
+        <delete dir="${basedir}/temp/frameworks/projects" includeEmptyDirs="false">
+            <include name="airspark/bundles/**"/>
+            <include name="automation_air/bundles/**"/>
+            <include name="automation_dmv/bundles/**"/>
+            <include name="automation_flashflexkit/bundles/**"/>
+            <include name="automation_spark/bundles/**"/>
+            <include name="*/bundles/**/empty.properties"/>
+            <include name="*/bundles/**/docs/**"/>
+            <include name="*/bundles/*/*.xml"/>
+            <include name="*/bundles/*/packages.dita"/>
+            <exclude name="*/bundles/${locale}"/>
+        </delete>
+        
+
+        <!-- lib -->
+        <!-- these are built when the compiler is built with localized.jars set -->
+        <copy todir="${basedir}/temp/lib">
+            <fileset dir="${basedir}/lib">
+                <include name="mxmlc_da.jar"/>
+                <include name="mxmlc_de.jar"/>
+                <include name="mxmlc_es.jar"/>
+                <include name="mxmlc_fi.jar"/>
+                <include name="mxmlc_fr.jar"/>
+                <include name="mxmlc_it.jar"/>
+                <include name="mxmlc_ja.jar"/>
+                <include name="mxmlc_ko.jar"/>
+                <include name="mxmlc_nb.jar"/>
+                <include name="mxmlc_nl.jar"/>
+                <include name="mxmlc_pt.jar"/>
+                <include name="mxmlc_ru.jar"/>
+                <include name="mxmlc_sv.jar"/>
+                <include name="mxmlc_zh_CN.jar"/>
+                <include name="mxmlc_zh_TW.jar"/>
+            </fileset>
+        </copy>
+        
+        <!-- FixMe: Apache is missing all these language jars. -->
+        <copy todir="${basedir}/temp/lib">
+            <fileset dir="${basedir}/lib">
+                <include name="batik_da.jar"/>
+                <include name="batik_de.jar"/>
+                <include name="batik_es.jar"/>
+                <include name="batik_fi.jar"/>
+                <include name="batik_fr.jar"/>
+                <include name="batik_it.jar"/>
+                <include name="batik_ko.jar"/>
+                <include name="batik_ja.jar"/>
+                <include name="batik_nb.jar"/>
+                <include name="batik_nl.jar"/>
+                <include name="batik_pt.jar"/>
+                <include name="batik_ru.jar"/>
+                <include name="batik_sv.jar"/>
+                <include name="batik_zh_CN.jar"/>
+                <include name="batik_zh_TW.jar"/>
+                <include name="xercesImpl_da.jar"/>
+                <include name="xercesImpl_de.jar"/>
+                <include name="xercesImpl_es.jar"/>
+                <include name="xercesImpl_fi.jar"/>
+                <include name="xercesImpl_fr.jar"/>
+                <include name="xercesImpl_it.jar"/>
+                <include name="xercesImpl_ko.jar"/>
+                <include name="xercesImpl_ja.jar"/>
+                <include name="xercesImpl_nb.jar"/>
+                <include name="xercesImpl_nl.jar"/>
+                <include name="xercesImpl_pt.jar"/>
+                <include name="xercesImpl_ru.jar"/>
+                <include name="xercesImpl_sv.jar"/>
+                <include name="xercesImpl_zh_CN.jar"/>
+                <include name="xercesImpl_zh_TW.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="ja-locale-samples" if="build.additional-packages">
+        <antcall target="clean-temp"/>
+        <!--
+        <copy todir="${basedir}/temp/samples_ja">
+            <fileset dir="${basedir}/samples/ja_JP">
+                <include name="README_ja.txt"/>
+                <include name="explorer/**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/out"/>
+        <zip file="${basedir}/out/${kit.prefix}-locales.zip" basedir="${basedir}/temp" includes="**"/>
+        -->
+    </target>
+     
+    <target name="asdoc-package" description="Package the asdocs">      
+        <antcall target="clean-temp"/>
+        <antcall target="asdoc"/>
+        
+        <copy todir="${basedir}/temp/asdoc">
+            <fileset dir="${basedir}/asdoc-output"/>
+        </copy>
+        <copy todir="${basedir}/temp/asdoc">
+            <fileset dir="${basedir}">
+                <include name="LICENSE" />
+                <include name="NOTICE" />
+            </fileset>
+        </copy>
+        <zip file="${basedir}/out/${kit.prefix}-asdocs.zip" basedir="${basedir}/temp"/>
+        <antcall target="clean-temp"/>
+    </target>
+
+    
+    <target name="air-installers" description="Copy AIR runtime installers from sdk/in to sdk/out">
+        <mkdir dir="${basedir}/out"/>
+        <copy todir="${basedir}/out">
+            <fileset file="${basedir}/in/air/mac/Adobe AIR.dmg"/>
+            <fileset file="${basedir}/in/air/win/Adobe AIR Installer.exe"/>
+        </copy>
+    </target>
+
+    <target name="clean-temp" unless="noclean.temp">
+        <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+
+    <!-- Builds fat swcs. -->
+    <target name="doc">
+        <ant dir="${basedir}/frameworks" target="doc" />
+    </target>
+
+    <!--
+        Tests: The current checkintests that must be run before every checkin
+    -->
+
+    <!-- FixMe: add dependency checker and mobile tests -->
+    <target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />
+    <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
+    
+    <!--
+        Tests: Mustella checkintests
+    -->
+
+    <target name="basictests-mustella" depends="mustella-setup,basictests"/>
+
+    <target name="mustella-setup" depends="runtime-setup" description="compile mustella java file">
+        <ant dir="${basedir}/mustella" target="makemustellaswc">
+            <property name="use_mustella_framework_dir" value="false"/>
+        </ant>
+        <property name="moreCompilerArgs" value=""/>
+        <!-- compile the results parser -->
+        <javac srcdir="mustella" includes="MustellaResultsParser.java"/>
+    </target>
+
+    <!-- To run the checkintests as well as any mustella tests need AIR for the adl and
+         a flash player content debugger.
+    -->
+    <target name="check-runtime-env" depends="check-air-home"
+        description="Check for the required runtime environment variables for the checkintests">
+        
+        <available file="${env.FLASHPLAYER_DEBUGGER}" property="FLASHPLAYER_DEBUGGER.set"/>
+        <fail message="FLASHPLAYER_DEBUGGER is ${env.FLASHPLAYER_DEBUGGER} which is not an Adobe Flash Player content debugger" 
+            unless="FLASHPLAYER_DEBUGGER.set"/>
+    </target>
+    
+    <target name="runtime-setup" depends="check-runtime-env" unless="runtime.setup"
+        description="Set flash.player and adl properties"> 
+        
+        <!-- Paths to the debug standalone flashplayer. -->
+        <!-- (windows) path to FlashPlayerDebugger.exe -->
+        <!-- (mac) path to Flash Player Debugger.app/Contents/MacOS/Flash Player Debugger -->
+        <!-- (linux) path to flashplayerdebugger -->
+        <property name="flash.player" value="${env.FLASHPLAYER_DEBUGGER}"/>
+    
+        <!-- Paths to the adl. -->
+        <condition property="adl" value="${env.AIR_HOME}/bin/adl.exe">
+            <os family="windows"/>
+        </condition>
+        <condition property="adl" value="${env.AIR_HOME}/bin/adl">
+            <os family="mac"/>
+        </condition>
+        <condition property="adl" value="${env.AIR_HOME}/bin/adl">
+            <os family="unix"/>
+        </condition>
+        
+        <property name="runtime.setup" value="done"/>
+    </target>
+
+    <target name="load-task" depends="runtime-setup">
+        <!-- load the <mxmlc> task; we can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail -->
+        <taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/flexTasks.jar"/>
+    </target>
+
+    <target name="basictests" depends="load-task" description="run basic tests using mustella">
+
+        <!-- compile the basic tests -->
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/BasicTests.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <library-path dir="${basedir}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+        </mxmlc>
+
+        <!-- compile supporting swfs for basic tests -->
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/StyleManagerModuleTest.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/HelloWorld.mxml"
+                     static-rsls="false"
+                     remove-unused-rsls="true" >
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+
+        <!-- run the component smoke  -->
+        <echo message="launching player and swf"/>
+        <exec executable="${flash.player}" dir="${basedir}/frameworks" failonerror="true">
+            <arg value="${basedir}/frameworks/tests/basicTests/BasicTests.swf"/>
+        </exec>
+        <!-- halt if there was an error -->
+        <antcall target="mustellaresultsparser"/>
+    </target>
+
+    <target name="mustellaresultsparser">
+        <java classname="mustella.MustellaResultsParser" failonerror="true">
+            <sysproperty key="APPDATA" value="${env.APPDATA}"/>
+            <classpath>
+                <pathelement location="${basedir}"/>
+            </classpath>
+        </java>
+    </target>
+
+
+    <target name="clean-dependencychecker" description="Clean up the generated java files from dependency checker">
+        <!-- not currently in Apache Flex -->
+        <!--
+        <delete>
+            <fileset dir="${basedir}/tools/dependencychecker" includes="**/*.class"/>
+        </delete>
+        -->
+    </target>
+
+    <target name="setup-dependencychecker" description="Compile dependency checker java files" depends="clean-dependencychecker">
+        <javac srcdir="${basedir}/tools/dependencychecker"/>
+    </target>
+
+    <target name="dependencychecker-framework" description="Run dependency checker on framework.swc" depends="setup-dependencychecker">
+        <!-- need fork b/c running java from another dir -->
+        <java dir="${basedir}/tools/dependencychecker" fork="true" classname="flex.tools.dependencychecker.DependencyChecker" failonerror="true">
+            <classpath>
+                <pathelement location="${basedir}/tools/dependencychecker"/>
+            </classpath>
+            <arg value="${basedir}/frameworks/libs/framework.swc" />
+        	<arg value="frameworkSwcExceptionsList.txt"/>
+        </java>
+    </target>
+   
+	<!--
+	    Run the Apache Rat audit tool against the source in the source kit.
+	    The report is written to rat.report.
+	    
+	    To check a subset of files run with -Drat.dir=<dir>.
+	    
+	    You need to place apache-rat-tasks-0.8.jar and apache-rat-0.8.jar in the 
+	    anttask.classpath in order to do this.  If the jar isn't found, the report
+	    will not be generated.
+	--> 
+    <target name="rat-check" depends="rat-taskdef" if="have.rattasks"
+        description="Report on licenses in source kit.">
+    
+        <property name="rat.dir" value="${basedir}/temp"/>
+        <antcall target="rat-unzip" />
+        
+        <property name="rat.report" value="${basedir}/rat.report"/>
+        <echo message="Checking files at ${rat.dir}, report is ${rat.report}"/>
+             
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
+            <fileset dir="${rat.dir}">
+                <!--          Start of binary files           -->
+                <!-- exclude Flash Professional file used for integration with Flash Professional -->
+                <exclude name="frameworks/projects/flash-integration/FLA/ContentHolder.fla"/>
+                <!-- exclude font embedded in asdoc example -->
+                <exclude name="frameworks/projects/framework/asdoc/en_US/mx/effects/examples/assets/OpenSans-Regular.ttf"/>
+                <!-- exclude media (png, gif, jpg, mp3, flv) -->
+                <exclude name="**/*.png"/>
+                <exclude name="**/*.gif"/>
+                <exclude name="**/*.jpg"/>
+                <exclude name="**/*.mp3"/>
+                <exclude name="**/*.flv"/>
+                <!-- exclude batik icon -->
+                <exclude name="modules/thirdparty/batik/sources/*.icns"/>
+                <!--          End of binary files           -->
+                <!-- exclude batik manifests -->
+                <exclude name="modules/thirdparty/batik/sources/*.mf"/>
+                <!-- exclude text files -->
+                <exclude name="modules/thirdparty/batik/lib/**/LICENSE*.txt"/>
+                <exclude name="modules/thirdparty/batik/lib/**/README*.txt"/>
+                <!-- exclude w3c sources -->
+                <exclude name="modules/thirdparty/batik/resources/org/apache/flex/forks/batik/dom/svg/resources/*.mod"/>
+                <exclude name="modules/thirdparty/batik/resources/org/apache/flex/forks/batik/dom/svg/resources/*.dtd"/>
+                <exclude name="modules/thirdparty/batik/sources/org/w3c/css/sac/LexicalUnit.java"/>
+                <exclude name="modules/thirdparty/batik/sources/org/w3c/flex/forks/css/sac/*.java"/>
+                <exclude name="modules/thirdparty/batik/sources/org/w3c/flex/forks/css/sac/helpers/ParserFactory.java"/>
+                <!-- exclude config files -->
+                <exclude name="modules/thirdparty/batik/svn-revision"/>
+                <exclude name="modules/thirdparty/xerces-patch/src/java/META-INF/services/javax.xml.parsers.SAXParserFactory"/>
+                <exclude name="modules/thirdparty/xerces-patch/src/java/META-INF/services/org.apache.xerces.xni.parser.XMLParserConfiguration"/>
+                <exclude name="modules/thirdparty/xerces-patch/src/java/org/apache/xerces/jaxp/javax.xml.parsers.SAXParserFactory"/>
+            </fileset>
+        </rat:report>
+    </target>
+
+    <target name="rat-unzip" unless="no.zip">
+        <antcall target="clean-temp" />
+        <unzip src="${basedir}/out/${source.kit}.zip" dest="${rat.dir}"/>
+    </target>
+    
+    <target name="rat-taskdef" description="Rat taskdef"> 
+        <available property="have.rattasks" 
+            resource="org/apache/rat/anttasks/antlib.xml" 
+            classpathref="anttask.classpath"/>
+
+        <antcall target="have-rattasks"/>
+        <antcall target="no-rattasks"/>
+    </target>
+
+    <target name="have-rattasks" if="have.rattasks">
+        <typedef resource="org/apache/rat/anttasks/antlib.xml"
+                 uri="antlib:org.apache.rat.anttasks"
+                 classpathref="anttask.classpath"/>                 
+    </target>
+    
+    <target name="no-rattasks" unless="have.rattasks">
+        <echo message="Rat report not generated."/>
+        <echo message="rat jars (apache-rat-*.jar, apache-rat-tasks-*.jar)"/>
+        <echo message="not found in anttask.classpath"/>
+    </target>
+    
+    <target name="rat-check-mustella" depends="rat-taskdef" if="have.rattasks"
+        description="Report on licenses in mustella directory.">
+    
+        <ant dir="${basedir}/mustella" target="clean"/>
+        
+        <property name="rat.mustella.dir" value="${basedir}/mustella"/>
+        <property name="rat.mustella.report" value="rat.mustella.report"/>
+                
+        <echo message="Checking files at ${rat.mustella.dir}, report is ${basedir}/${rat.mustella.report}"/>
+             
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" 
+            reportFile="${basedir}/${rat.mustella.report}">
+            <fileset dir="${rat.mustella.dir}">
+                <!--          Start of binary files           -->
+                <!-- exclude media (png, gif, jpg, mp3, flv) -->
+                <exclude name="assets/**"/>
+                <exclude name="tests/**/*.png"/>
+                <exclude name="tests/**/*.gif"/>
+                <exclude name="tests/**/*.jpg"/>
+                <exclude name="tests/**/*.mp3"/>
+                <exclude name="tests/**/*.flv"/>
+                <!--          End of binary files           -->
+                <exclude name="tests/**/*.compile"/>
+            </fileset>
+        </rat:report>
+    </target>
+	
+	<target name="create-md5" >
+		<echo message="Generating MD5 hashes for release artifacts"/>
+		<checksum algorithm="md5" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes"/>
+		<checksum algorithm="md5" file="${basedir}/out/${binary.kit}.zip" forceOverwrite="yes"/>
+		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
+		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
+	</target>
+	
+</project>

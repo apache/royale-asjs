@@ -27,19 +27,19 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
 
-    <target name="main" depends="clean,compile" description="Clean build of FlexJSUI.swc">
+    <target name="main" depends="clean,compile" description="Clean build of MXMLCClasses.swc">
     </target>
     
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/libs">
-                <include name="FlexJSUI.swc"/>
+                <include name="MXMLCClasses.swc"/>
             </fileset>
         </delete>
     </target>
     
-    <target name="compile" description="Compiles FlexJSUI.swc">
-        <echo message="Compiling libs/FlexJSUI.swc"/>
+    <target name="compile" description="Compiles MXMLCClasses.swc">
+        <echo message="Compiling libs/MXMLCClasses.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
@@ -49,7 +49,7 @@
             Link in the classes (and their dependencies) for the MXML tags
             listed in this project's manifest.xml.
             Also link the additional classes (and their dependencies)
-            listed in FlexJSUIClasses.as,
+            listed in MXMLCClassesClasses.as,
             because these aren't referenced by the manifest classes.
             Keep the standard metadata when compiling.
             Include the appropriate CSS files and assets in the SWC.
@@ -58,7 +58,7 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/libs/FlexJSUI.swc">
+               output="${FLEXJS_HOME}/libs/MXMLCClasses.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
