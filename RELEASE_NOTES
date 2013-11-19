@@ -1,0 +1,20 @@
+Apache FlexJS 0.0.1
+=================
+
+Apache FlexJS is a next-generation Flex SDK that provides the capability
+to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
+in a browser without Flash.
+
+Known Issues
+_____________
+
+Adobe Flash Builder Integration
+
+Flash Builder will not generate a correct MXML when using an Apache FlexJS SDK.
+
+Please report new issues to our bugbase at:
+
+    https://issues.apache.org/jira/browse/FLEX
+
+                                          The Apache Flex Project
+                                          <http://flex.apache.org/>

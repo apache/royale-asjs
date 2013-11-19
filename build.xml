@@ -85,7 +85,7 @@
         This does not build the docs.  Use doc-packages or asdoc-packages.
     -->    
     <target name="release" 
-        depends="check-compile-env,check-runtime-env,check-goog-env,source-release,binary-release,rat-check"
+        depends="check-compile-env,check-runtime-env,check-falcon-home,check-goog-env,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache FlexJS."/>
         
     <target name="source-release" 
@@ -130,7 +130,7 @@
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description" 
         description="Stuff that needs to be done before any builds." />
 
-    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home"
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home"
         description="Check for the required environment variables for compilation.">
             <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
             <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
@@ -202,31 +202,22 @@
     </target>
 
     <target name="check-falcon-home" unless="FALCON_HOME"
-        description="Check TLF_HOME is a directory.">
+        description="Check FALCON_HOME is a directory.">
         
         <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
 
-        <available file="${env.FALCON_HOME}" 
+        <available file="${env.FALCON_HOME}/compiler.jx" 
             type="dir" 
             property="FALCON_HOME"
             value="${env.FALCON_HOME}"/>
+            
+        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" 
+            type="dir" 
+            property="FALCON_HOME"
+            value="${env.FALCON_HOME}/../../../..../"/>
 
-        <fail message="FALCON_HOME must be set correctly for a release build" 
+        <fail message="FALCON_HOME must be set to a flex-falcon repo for a release build or compiler/generated/dist/sdk folder in flex-falcon repo" 
             unless="FALCON_HOME"/>
-    	
-    </target>
-
-    <target name="check-goog-env" unless="GOOG_HOME.set"
-        description="Check GOOG_HOME is a directory.">
-        
-        <echo message="GOOG_HOME is ${env.GOOG_HOME}"/>
-
-        <available file="${env.GOOG_HOME}" 
-            type="file" 
-            property="GOOG_HOME.set"/>
-
-        <fail message="GOOG_HOME must be set correctly for a release build" 
-            unless="GOOG_HOME.set"/>
     </target>
 
     <target name="create-description" description="Generate flex-sdk-description.xml">
@@ -432,11 +423,12 @@
                 <include name="build.properties"/>
 				<include name="env-template.properties"/>
                 <include name="flex-sdk-description.xml"/>
-                <include name="CHANGES"/>
-                <include name="LICENSE"/>
-                <include name="NOTICE"/>
                 <include name="README"/>
                 <include name="RELEASE_NOTES"/>
+            </fileset>
+            <fileset dir="${FLEX_HOME}">
+                <include name="LICENSE"/>
+                <include name="NOTICE"/>
             </fileset>
         </copy>
          
@@ -446,14 +438,15 @@
         <!-- frameworks/as -->
         <antcall target="stage-framework-js"/>
 
-        <!-- asdoc -->
+        <!-- asdoc
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
             <fileset dir="${basedir}/asdoc">
             	<exclude name="test/**" />
             </fileset>
-        </copy>  
+        </copy> 
+        --> 
 
-        <!-- ide -->
+        <!-- ide
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
             	<include name="flashbuilder/**"/>
@@ -461,7 +454,8 @@
             	<include name="*.bat"/>
             </fileset>
         </copy>
-
+        -->
+        
         <!-- samples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
@@ -470,7 +464,7 @@
             </fileset>
         </copy>
         
-        <!-- templates -->
+        <!-- templates
         <copy todir="${basedir}/temp/templates">
             <fileset dir="${basedir}/templates" >
                 <include name="swfobject/**"/>
@@ -478,6 +472,7 @@
                 <exclude name="**/swfobject.js"/>
             </fileset>
         </copy>
+        -->
         
         <!-- 
              Source files have Windows line endings.  Most UNIX editors can handle
@@ -554,7 +549,28 @@
     
     <target name="stage-falcon">
         <copy todir="${basedir}/temp/bin" includeEmptyDirs="false">
-            <fileset dir="${basedir}/bin">
+            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/bin">
+                <include name="*"/>
+                <exclude name="adl*"/>
+                <exclude name="adt*"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/bin-legacy" includeEmptyDirs="false">
+            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/bin-legacy">
+                <include name="*"/>
+                <exclude name="adl*"/>
+                <exclude name="adt*"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/ant/lib" includeEmptyDirs="false">
+            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/ant/lib">
+                <include name="*"/>
+                <exclude name="adl*"/>
+                <exclude name="adt*"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/lib" includeEmptyDirs="false">
+            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk//lib">
                 <include name="*"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
@@ -569,12 +585,21 @@
         <fixcrlf srcdir="${basedir}/temp/bin" eol="unix" fixlast="false">  
             <exclude name="**/*.bat"/>
         </fixcrlf>
+        
+        <fixcrlf srcdir="${basedir}/temp/bin-legacy" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
+  
+          <!-- Unix shell scripts need the correct line endings. -->      
+        <fixcrlf srcdir="${basedir}/temp/bin-legacy" eol="unix" fixlast="false">  
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
     </target>
         
     <target name="stage-falconjx">
         <!-- modules -->
-        <copy todir="${basedir}/temp/modules" includeEmptyDirs="false">
-            <fileset dir="${basedir}/modules">
+        <copy todir="${basedir}/temp/js/bin" includeEmptyDirs="false">
+            <fileset dir="${FALCON_HOME}/compiler.jx/bin">
                 <include name="**"/>
                 <exclude name="thirdparty/**"/>
                 <exclude name=".metadata/**"/>
@@ -592,11 +617,12 @@
                 <exclude name="**/.classpath"/>
                 <exclude name="**/.project"/>
             </fileset>
+            
         </copy>  
 
         <!-- modules/thirdparty -->
-        <copy todir="${basedir}/temp/modules/thirdparty" includeEmptyDirs="true">
-            <fileset dir="${basedir}/modules/thirdparty">
+        <copy todir="${basedir}/temp/js/lib" includeEmptyDirs="true">
+            <fileset dir="${FALCON_HOME}/compiler.jx/lib">
                 <include name="**"/>
                 <exclude name="**/classes/**"/>
                 <exclude name="**/.classpath"/>
@@ -604,6 +630,16 @@
                 <exclude name="*/test*/**"/>
             </fileset>
         </copy>  
+        
+        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
+  
+          <!-- Unix shell scripts need the correct line endings. -->      
+        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="unix" fixlast="false">  
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
+
     </target>
     
     <target name="binary-package"

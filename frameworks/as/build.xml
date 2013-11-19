@@ -129,4 +129,53 @@
         <ant dir="${basedir}/projects/MXMLCClasses"/>
     </target>
 
+	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
+		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/flex-config.xml" overwrite="true">
+			<filterset>
+				<filter token="playerversion" value="${playerglobal.version}"/>
+				<filter token="swfversion" value="${playerglobal.swfversion}"/>
+				<filter token="locale" value="${locale}"/>
+			</filterset>
+		</copy>
+	</target>
+		
+	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the flex config file">
+		<condition property="playerglobal.swfversion" value="11">
+			<equals arg1="${playerglobal.version}" arg2="10.2" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="12">
+			<equals arg1="${playerglobal.version}" arg2="10.3" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="13">
+			<equals arg1="${playerglobal.version}" arg2="11.0" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="14">
+			<equals arg1="${playerglobal.version}" arg2="11.1" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="15">
+			<equals arg1="${playerglobal.version}" arg2="11.2" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="16">
+			<equals arg1="${playerglobal.version}" arg2="11.3" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="17">
+			<equals arg1="${playerglobal.version}" arg2="11.4" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="18">
+			<equals arg1="${playerglobal.version}" arg2="11.5" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="19">
+			<equals arg1="${playerglobal.version}" arg2="11.6" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="20">
+			<equals arg1="${playerglobal.version}" arg2="11.7" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="21">
+			<equals arg1="${playerglobal.version}" arg2="11.8" />
+		</condition>
+		<condition property="playerglobal.swfversion" value="22">
+			<equals arg1="${playerglobal.version}" arg2="11.9" />
+		</condition>
+	</target>	
+
 </project>
