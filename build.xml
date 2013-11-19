@@ -85,7 +85,7 @@
         This does not build the docs.  Use doc-packages or asdoc-packages.
     -->    
     <target name="release" 
-        depends="check-compile-env,check-runtime-env,check-falcon-home,check-goog-env,source-release,binary-release,rat-check"
+        depends="check-compile-env,check-runtime-env,check-falcon-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache FlexJS."/>
         
     <target name="source-release" 
@@ -212,9 +212,9 @@
             value="${env.FALCON_HOME}"/>
             
         <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" 
-            type="dir" 
+            type="file" 
             property="FALCON_HOME"
-            value="${env.FALCON_HOME}/../../../..../"/>
+            value="${env.FALCON_HOME}/../../../.."/>
 
         <fail message="FALCON_HOME must be set to a flex-falcon repo for a release build or compiler/generated/dist/sdk folder in flex-falcon repo" 
             unless="FALCON_HOME"/>
@@ -253,7 +253,7 @@
     </target>
 	
     <target name="create-config" description="Create flex config file">
-        <ant dir="${basedir}/frameworks" target="flex-config" />
+        <ant dir="${basedir}/frameworks/as" target="flex-config" />
     </target>
 	
     <target name="setup-binary-release" depends="thirdparty-clean"
@@ -296,13 +296,15 @@
         <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/tempDoc" failonerror="false" includeEmptyDirs="true"/>
+        <!--
         <ant dir="${basedir}/asdoc" target="clean" />
         <ant dir="${basedir}/ide/flashbuilder" target="clean" />
         <ant dir="${basedir}/mustella" target="clean"/>
+        -->
     </target>
 
     <target name="examples-clean">
-        <ant dir="${basedir}/examples" target="clean"/>
+        <!--<ant dir="${basedir}/examples" target="clean"/>-->
     </target>
 
     <target name="frameworks-as-clean">
@@ -330,7 +332,7 @@
     -->
 
     <target name="examples" description="Build the examples">
-        <ant dir="${basedir}/examples"/>
+        <!--<ant dir="${basedir}/examples"/>-->
     </target>
 
     <!--
@@ -347,7 +349,7 @@
     </target>
 
     <target name="other.locales" description="Build resource SWCs for additional locales">
-        <ant dir="${basedir}/frameworks" target="other.locales"/>
+        <!--<ant dir="${basedir}/frameworks" target="other.locales"/>-->
     </target>
     
     <target name="sample-themes" description="Build the sample themes">
@@ -423,7 +425,7 @@
                 <include name="build.properties"/>
 				<include name="env-template.properties"/>
                 <include name="flex-sdk-description.xml"/>
-                <include name="README"/>
+                <include name="READme"/>
                 <include name="RELEASE_NOTES"/>
             </fileset>
             <fileset dir="${FLEX_HOME}">
@@ -506,8 +508,8 @@
     <!-- frameworks -->
     <!-- javascript and test directories follow -->
     <target name="stage-framework-as">
-        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/as">
+        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/as/projects/FlexJSUI/src">
                 <include name="**"/>
                 <exclude name="**/libs/**"/>
                 <exclude name="**/*.swc"/>
@@ -522,6 +524,23 @@
                 <exclude name="projects/*/.settings/**"/>
             </fileset>
         </copy>
+        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/as/projects/FlexJSUI">
+                <include name="basic-manifest.xml"/>
+                <include name="html5-manifest.xml"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/as">
+                <include name="air-config.xml"/>
+                <include name="flex-config.xml"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
+            <fileset dir="${basedir}">
+                <include name="flex-sdk-description.xml"/>
+            </fileset>
+        </copy>
 
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
@@ -530,19 +549,19 @@
 
         <!-- now that config xml files are in temp, fix them up for release. -->
         <echo message="Updating config file air-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/air-config.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/src/air-config.xml" version="${build.version}" />
         <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/flex-config.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/src/flex-config.xml" version="${build.version}" />
         
         <!-- Update all Version.as files in the kit frameworks directory with build.number -->
-        <antcall target="version-update"/>
+        <!--<antcall target="version-update"/>-->
     </target>
     
     <!-- tlf -->
-    <target name="stage-frameworks-js">
-        <copy todir="${basedir}/temp/frameworks/js" includeEmptyDirs="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS">
-                <include name="src/**"/>
+    <target name="stage-framework-js">
+        <copy todir="${basedir}/temp/js/src" includeEmptyDirs="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/src">
+                <include name="**"/>
             </fileset>
         </copy>
     </target>
@@ -570,8 +589,8 @@
             </fileset>
         </copy>
         <copy todir="${basedir}/temp/lib" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk//lib">
-                <include name="*"/>
+            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/lib">
+                <include name="**"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
             </fileset>
@@ -664,24 +683,9 @@
             <filelist dir="${FLEX_HOME}" files="LICENSE,LICENSE.bin"/>
         </concat-->
         
-
-        <!-- generated files in frameworks excepts libs and rsls -->
-        <copy todir="${basedir}/temp/frameworks/as">
-            <fileset dir="${basedir}/frameworks/as">
-                <include name="projects/*/bundles.properties"/>
-                <include name="projects/spark/manifest.xml"/>
-                <include name="**/*.pbj"/>
-                <include name="**/*.swc"/>
-                <include name="**/*.swf"/>
-                <exclude name="libs/**"/>
-                <exclude name="rsls/**"/>
-                <exclude name="tests/**"/>
-            </fileset>
-        </copy>
-
         <!-- frameworks/libs -->
         <copy todir="${basedir}/temp/frameworks/libs">
-            <fileset dir="${basedir}/frameworks/libs">
+            <fileset dir="${basedir}/frameworks/as/libs">
                 <include name="FlexJSUI.swc"/>
                 <include name="MXMLCClasses.swc"/>
             </fileset>
@@ -693,30 +697,39 @@
         <!-- falconjx -->
         <antcall target="stage-falconjx"/>
         
-        <!-- ide -->
+        <!-- ide
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
                 <include name="flashbuilder/config"/>
             </fileset>
         </copy>
-        
+         -->
+         
         <!-- sample themes -->
-        <copy todir="${basedir}/temp/samples">
-            <fileset dir="${basedir}/samples" >
+        <copy todir="${basedir}/temp/examples">
+            <fileset dir="${basedir}/examples" >
                 <include name="**/build.xml"/>
                 <include name="**/*.swc"/>
                 <include name="**/*.swf"/>
             </fileset>
         </copy>
 
-        <!-- swfobject templates except for downloaded files -->
+        <!-- deploy scripts -->
+        <copy todir="${basedir}/temp/">
+            <fileset dir="${basedir}/scripts" >
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+        
+        <!-- swfobject templates except for downloaded files
         <copy todir="${basedir}/temp/templates/swfobject">
             <fileset dir="${basedir}/templates/swfobject">
                 <exclude name="**/expressInstall.swf"/>
                 <exclude name="**/swfobject.js"/>
             </fileset>
         </copy>
-                
+         -->
+                 
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>        
     </target>
@@ -960,7 +973,7 @@
 
     <!-- Builds fat swcs. -->
     <target name="doc">
-        <ant dir="${basedir}/frameworks" target="doc" />
+        <!--<ant dir="${basedir}/frameworks" target="doc" />-->
     </target>
 
     <!--
@@ -978,12 +991,13 @@
     <target name="basictests-mustella" depends="mustella-setup,basictests"/>
 
     <target name="mustella-setup" depends="runtime-setup" description="compile mustella java file">
+    <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
             <property name="use_mustella_framework_dir" value="false"/>
         </ant>
-        <property name="moreCompilerArgs" value=""/>
+        <property name="moreCompilerArgs" value=""/> -->
         <!-- compile the results parser -->
-        <javac srcdir="mustella" includes="MustellaResultsParser.java"/>
+    <!--<javac srcdir="mustella" includes="MustellaResultsParser.java"/>-->
     </target>
 
     <!-- To run the checkintests as well as any mustella tests need AIR for the adl and
@@ -1028,7 +1042,7 @@
 
     <target name="basictests" depends="load-task" description="run basic tests using mustella">
 
-        <!-- compile the basic tests -->
+        <!-- compile the basic tests
         <mxmlc fork="true"
                file="${basedir}/frameworks/tests/basicTests/BasicTests.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1036,8 +1050,8 @@
                 <include name="mustella/mustella.swc"/>
             </library-path>
         </mxmlc>
-
-        <!-- compile supporting swfs for basic tests -->
+         -->
+        <!-- compile supporting swfs for basic tests
         <mxmlc fork="true"
                file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1052,14 +1066,16 @@
                      remove-unused-rsls="true" >
             <jvmarg line="${mxmlc.jvm.args}"/>
         </mxmlc>
-
-        <!-- run the component smoke  -->
+         -->
+        <!-- run the component smoke
         <echo message="launching player and swf"/>
         <exec executable="${flash.player}" dir="${basedir}/frameworks" failonerror="true">
             <arg value="${basedir}/frameworks/tests/basicTests/BasicTests.swf"/>
         </exec>
-        <!-- halt if there was an error -->
+          -->
+        <!-- halt if there was an error
         <antcall target="mustellaresultsparser"/>
+         -->
     </target>
 
     <target name="mustellaresultsparser">

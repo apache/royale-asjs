@@ -79,6 +79,7 @@
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
          <path-element>libs</path-element>
+         <path-element>libs/as</path-element>
          <path-element>locale/en_US</path-element>
          <path-element>libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
       </library-path>

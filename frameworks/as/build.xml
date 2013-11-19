@@ -98,7 +98,6 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
-        <delete file="${basedir}/flex-config.xml"/>
         <!-- Delete output from SWC projects -->
         <ant dir="${basedir}/projects/FlexJSUI" target="clean"/>
         <ant dir="${basedir}/projects/MXMLCClasses" target="clean"/>
