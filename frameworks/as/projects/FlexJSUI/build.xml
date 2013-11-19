@@ -19,8 +19,8 @@
 -->
 
 
-<project name="framework" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
+<project name="flexjsui" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
@@ -32,7 +32,7 @@
     
     <target name="clean">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/libs">
+            <fileset dir="${FLEXJS_HOME}/frameworks/as/libs">
                 <include name="FlexJSUI.swc"/>
             </fileset>
         </delete>
@@ -58,7 +58,7 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/libs/FlexJSUI.swc">
+               output="${FLEXJS_HOME}/frameworks/as/libs/FlexJSUI.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
