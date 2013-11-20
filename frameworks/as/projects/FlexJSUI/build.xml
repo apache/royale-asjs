@@ -38,13 +38,18 @@
         </delete>
     </target>
     
+    <path id="lib.path">
+      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+    </path>
+
     <target name="compile" description="Compiles FlexJSUI.swc">
         <echo message="Compiling libs/FlexJSUI.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
-        <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/lib/flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <!--
             Link in the classes (and their dependencies) for the MXML tags
             listed in this project's manifest.xml.
@@ -65,5 +70,5 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </compc>
     </target>
-    
+
 </project>

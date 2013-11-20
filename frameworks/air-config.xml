@@ -21,10 +21,10 @@
 
 <flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-   <target-player>@playerversion@</target-player>
+   <target-player>11.1</target-player>
 
     <!-- Specifies the version of the compiled SWF -->
-   <swf-version>@swfversion@</swf-version>
+   <swf-version>14</swf-version>
     
    <compiler>
 
@@ -33,7 +33,7 @@
       
       <!-- Specifies the locales for internationalization. -->
       <locale>
-          <locale-element>@locale@</locale-element>
+          <locale-element>en_US</locale-element>
       </locale>
       
       <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
@@ -77,11 +77,8 @@
       
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-         <path-element>libs</path-element>
-         <path-element>libs/as</path-element>
-         <path-element>libs/air</path-element>
+         <path-element>as/libs</path-element>
          <path-element>{airHome}/frameworks/libs/air</path-element>
-         <path-element>locale/{locale}</path-element>
       </library-path>
      
       <namespaces>
@@ -90,13 +87,13 @@
          <namespace>
             <uri>library://ns.apache.org/flexjs/basic</uri>
             
-            <manifest>basic-manifest.xml</manifest>
+            <manifest>as/projects/FlexJSUI/basic-manifest.xml</manifest>
          
         </namespace>                                                 
          <namespace>
             <uri>library://ns.apache.org/flexjs/html5</uri>
             
-            <manifest>html5-manifest.xml</manifest>
+            <manifest>as/projects/FlexJSUI/html5-manifest.xml</manifest>
          
         </namespace>   
       </namespaces>

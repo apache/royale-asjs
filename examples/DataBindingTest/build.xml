@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="databindingtest" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../.."/>
+    
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+
+    <target name="main" depends="clean,compile" description="Clean build of FlexJSUI.swc">
+    </target>
+    
+    <target name="clean">
+        <delete dir="${basedir}/bin" failonerror="false" />
+        <delete dir="${basedir}/bin-debug" failonerror="false" />
+        <delete dir="${basedir}/bin-release" failonerror="false" />
+    </target>
+
+    <path id="lib.path">
+      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+    </path>
+    
+    <target name="compile" description="Compiles DataBindingTest">
+        <echo message="Compiling DataBindingTest.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+            Link in the classes (and their dependencies) for the MXML tags
+            listed in this project's manifest.xml.
+            Also link the additional classes (and their dependencies)
+            listed in FlexJSUIClasses.as,
+            because these aren't referenced by the manifest classes.
+            Keep the standard metadata when compiling.
+            Include the appropriate CSS files and assets in the SWC.
+            Don't include any resources in the SWC.
+            Write a bundle list of referenced resource bundles
+            into the file bundles.properties in this directory.
+        -->
+        <mxmlc fork="true"
+               file="${basedir}/src/DataBindingTest.mxml"
+               output="${basedir}/bin-debug/DataBindingTest.swf">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="+flexlib=${basedir}/frameworks" />
+            <arg value="-debug" />
+            <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-type=valueChange" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+        
+        <html-wrapper 
+            height="300" 
+            width="400"
+            bgcolor="#ffffff"
+            name="DataBindingTest"
+            versionmajor="11"
+            versionminor="1"
+            versionrevision="0" 
+            output="${basedir}/bin-debug"/> 
+ 
+    </target>
+    
+    <macrodef name="html-wrapper">
+        <attribute name="width"/>
+        <attribute name="height"/>
+        <attribute name="bgcolor"/>
+        <attribute name="name"/>
+        <attribute name="versionmajor"/>
+        <attribute name="versionminor"/>
+        <attribute name="versionrevision"/>
+        <attribute name="output"/>
+            <sequential>
+                <copy toFile="@{output}/@{name}.html" 
+                    file="${FLEXJS_HOME}/templates/swfobject/index.template.html" />
+                <copy toDir="@{output}/history">
+                    <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
+                        <include name="**"/>
+                    </fileset>
+                </copy>
+                <copy toDir="@{output}">
+                    <fileset dir="${FLEXJS_HOME}/templates/swfobject">
+                        <include name="*"/>
+                        <exclude name="index.template.html"/>
+                    </fileset>
+                </copy>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${title}"
+                        value="@{name}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${bgcolor}"
+                        value="@{bgcolor}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${useBrowserHistory}"
+                        value="--"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${version_major}"
+                        value="@{versionmajor}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${version_minor}"
+                        value="@{versionminor}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${version_revision}"
+                        value="@{versionrevision}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${expressInstallSwf}"
+                        value="expressInstall.swf"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${expressInstallSwf}"
+                        value="expressInstall.swf"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${width}"
+                        value="@{width}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${height}"
+                        value="@{height}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${application}"
+                        value="@{name}"/>
+                </replace>
+                <replace file="@{output}/@{name}.html">
+                    <replacefilter
+                        token="$${swf}"
+                        value="@{name}"/>
+                </replace>
+        </sequential>
+    </macrodef>
+    
+    
+</project>

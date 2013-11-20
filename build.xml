@@ -38,7 +38,6 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/local.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
@@ -85,7 +84,7 @@
         This does not build the docs.  Use doc-packages or asdoc-packages.
     -->    
     <target name="release" 
-        depends="check-compile-env,check-runtime-env,check-falcon-home,source-release,binary-release,rat-check"
+        depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache FlexJS."/>
         
     <target name="source-release" 
@@ -127,10 +126,10 @@
 	    <property name="build.noprompt" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description" 
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config" 
         description="Stuff that needs to be done before any builds." />
 
-    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home"
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home,check-falconjx-home"
         description="Check for the required environment variables for compilation.">
             <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
             <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
@@ -188,10 +187,11 @@
 
         <available file="${env.FLEX_HOME}" 
             type="dir" 
-            property="FLEX_HOME.set"/>
+            property="FLEX_SDK_HOME"
+            value="${env.FLEX_HOME}" />
 
         <fail message="The environment variable FLEX_HOME is not set to a directory" 
-            unless="FLEX_HOME.set"/>
+            unless="FLEX_SDK_HOME"/>
 
         <condition property="mxmlc.jar.exists">
             <available file="${env.FLEX_HOME}/lib/mxmlc.jar" type="file"/> 
@@ -206,18 +206,27 @@
         
         <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
 
-        <available file="${env.FALCON_HOME}/compiler.jx" 
-            type="dir" 
-            property="FALCON_HOME"
-            value="${env.FALCON_HOME}"/>
-            
         <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" 
             type="file" 
             property="FALCON_HOME"
-            value="${env.FALCON_HOME}/../../../.."/>
+            value="${env.FALCON_HOME}"/>
 
-        <fail message="FALCON_HOME must be set to a flex-falcon repo for a release build or compiler/generated/dist/sdk folder in flex-falcon repo" 
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler/generated/dist/sdk folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK" 
             unless="FALCON_HOME"/>
+    </target>
+
+    <target name="check-falconjx-home" unless="FALCONJX_HOME"
+        description="Check FALCON_HOME is a directory.">
+        
+        <echo message="FALCONJX_HOME is ${env.FALCONJX_HOME}"/>
+
+        <available file="${env.FALCONJX_HOME}/lib/jsc.jar" 
+            type="file" 
+            property="FALCONJX_HOME"
+            value="${env.FALCONJX_HOME}"/>
+
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK" 
+            unless="FALCONJX_HOME"/>
     </target>
 
     <target name="create-description" description="Generate flex-sdk-description.xml">
@@ -254,6 +263,7 @@
 	
     <target name="create-config" description="Create flex config file">
         <ant dir="${basedir}/frameworks/as" target="flex-config" />
+        <ant dir="${basedir}/frameworks/as" target="air-config" />
     </target>
 	
     <target name="setup-binary-release" depends="thirdparty-clean"
@@ -304,7 +314,7 @@
     </target>
 
     <target name="examples-clean">
-        <!--<ant dir="${basedir}/examples" target="clean"/>-->
+        <ant dir="${basedir}/examples" target="clean"/>
     </target>
 
     <target name="frameworks-as-clean">
@@ -331,8 +341,9 @@
         Build Examples
     -->
 
-    <target name="examples" description="Build the examples">
-        <!--<ant dir="${basedir}/examples"/>-->
+    <target name="examples" description="Build the examples"
+        depends="prebuild">
+        <ant dir="${basedir}/examples"/>
     </target>
 
     <!--
@@ -370,7 +381,7 @@
             </fileset>
         </javadoc>
         <mkdir dir="${basedir}/out"/>
-        <zip destfile="${basedir}/out/${kit.prefix}-compiler-api-javadocs.zip" basedir="${FLEX_HOME}/javadoc"/>
+        <zip destfile="${basedir}/out/${kit.prefix}-compiler-api-javadocs.zip" basedir="${FLEXJS_HOME}/javadoc"/>
         <delete dir="${basedir}/javadoc" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
@@ -428,7 +439,7 @@
                 <include name="READme"/>
                 <include name="RELEASE_NOTES"/>
             </fileset>
-            <fileset dir="${FLEX_HOME}">
+            <fileset dir="${FLEX_SDK_HOME}">
                 <include name="LICENSE"/>
                 <include name="NOTICE"/>
             </fileset>
@@ -568,28 +579,28 @@
     
     <target name="stage-falcon">
         <copy todir="${basedir}/temp/bin" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/bin">
+            <fileset dir="${FALCON_HOME}/bin">
                 <include name="*"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
             </fileset>
         </copy>
         <copy todir="${basedir}/temp/bin-legacy" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/bin-legacy">
+            <fileset dir="${FALCON_HOME}/bin-legacy">
                 <include name="*"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
             </fileset>
         </copy>
         <copy todir="${basedir}/temp/ant/lib" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/ant/lib">
+            <fileset dir="${FALCON_HOME}/ant/lib">
                 <include name="*"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
             </fileset>
         </copy>
         <copy todir="${basedir}/temp/lib" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler/generated/dist/sdk/lib">
+            <fileset dir="${FALCON_HOME}/lib">
                 <include name="**"/>
                 <exclude name="adl*"/>
                 <exclude name="adt*"/>
@@ -618,7 +629,7 @@
     <target name="stage-falconjx">
         <!-- modules -->
         <copy todir="${basedir}/temp/js/bin" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/compiler.jx/bin">
+            <fileset dir="${FALCONJX_HOME}/bin">
                 <include name="**"/>
                 <exclude name="thirdparty/**"/>
                 <exclude name=".metadata/**"/>
@@ -641,7 +652,7 @@
 
         <!-- modules/thirdparty -->
         <copy todir="${basedir}/temp/js/lib" includeEmptyDirs="true">
-            <fileset dir="${FALCON_HOME}/compiler.jx/lib">
+            <fileset dir="${FALCONJX_HOME}/lib">
                 <include name="**"/>
                 <exclude name="**/classes/**"/>
                 <exclude name="**/.classpath"/>
@@ -680,7 +691,7 @@
         
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <!--concat destfile="${basedir}/temp/LICENSE">
-            <filelist dir="${FLEX_HOME}" files="LICENSE,LICENSE.bin"/>
+            <filelist dir="${FLEX_SDK_HOME}" files="LICENSE,LICENSE.bin"/>
         </concat-->
         
         <!-- frameworks/libs -->
@@ -827,7 +838,7 @@
         <replaceregexp>
             <regexp pattern='"[0-9].[0-9].[0-9].[0-9]";'/>
             <substitution expression='"${release.version}.${build.number.date}";'/>
-            <fileset dir="${FLEX_HOME}/temp/frameworks/projects">
+            <fileset dir="${FLEXJS_HOME}/temp/frameworks/projects">
                 <include name="**/Version.as"/>
             </fileset>
         </replaceregexp>		

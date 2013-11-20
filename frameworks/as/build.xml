@@ -71,7 +71,7 @@
     <target name="prepare" depends="thirdparty-downloads"/>
             
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
-        <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
+        <ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>
     </target>
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
@@ -129,7 +129,7 @@
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
-		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/flex-config.xml" overwrite="true">
+		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/../flex-config.xml" overwrite="true">
 			<filterset>
 				<filter token="playerversion" value="${playerglobal.version}"/>
 				<filter token="swfversion" value="${playerglobal.swfversion}"/>
@@ -138,6 +138,16 @@
 		</copy>
 	</target>
 		
+	<target name="air-config" depends="playerglobal-setswfversion" description="Copy the air config template to air-config.xml and inject version numbers">
+		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/../air-config.xml" overwrite="true">
+			<filterset>
+				<filter token="playerversion" value="${playerglobal.version}"/>
+				<filter token="swfversion" value="${playerglobal.swfversion}"/>
+				<filter token="locale" value="${locale}"/>
+			</filterset>
+		</copy>
+	</target>
+
 	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the flex config file">
 		<condition property="playerglobal.swfversion" value="11">
 			<equals arg1="${playerglobal.version}" arg2="10.2" />

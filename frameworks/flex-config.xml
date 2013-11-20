@@ -22,10 +22,10 @@
 
 <flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-   <target-player>@playerversion@</target-player>
+   <target-player>11.1</target-player>
 
     <!-- Specifies the version of the compiled SWF -->
-   <swf-version>@swfversion@</swf-version>
+   <swf-version>14</swf-version>
 
    <compiler>
 
@@ -34,7 +34,7 @@
 
       <!-- Specifies the locales for internationalization. -->
       <locale>
-          <locale-element>@locale@</locale-element>
+          <locale-element>en_US</locale-element>
       </locale>
 
       <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
