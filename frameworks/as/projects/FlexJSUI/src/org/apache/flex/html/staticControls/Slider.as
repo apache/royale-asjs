@@ -73,5 +73,15 @@ package org.apache.flex.html.staticControls
 		{
 			IRangeModel(model).snapInterval = value;
 		}
-	}
+        
+        public function get stepSize():Number
+        {
+            return IRangeModel(model).stepSize;
+        }
+        public function set stepSize(value:Number):void
+        {
+            IRangeModel(model).stepSize = value;
+        }
+
+    }
 }
