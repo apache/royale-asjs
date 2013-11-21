@@ -75,9 +75,7 @@
     
     <target name="compile" description="Compile Examples">
         <ant dir="${basedir}/DataBindingTest"/>
-        <!--
         <ant dir="${basedir}/DataGridExample"/>
-        <ant dir="${basedir}/FlexJSTest_again"/>
         <ant dir="${basedir}/FlexJSTest_basic"/>
         <ant dir="${basedir}/FlexJSTest_createjs"/>
         <ant dir="${basedir}/FlexJSTest_HTML5"/>
@@ -88,7 +86,6 @@
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
-        -->
     </target>
 	   
     <!--
@@ -103,9 +100,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/DataBindingTest" target="clean"/>
-        <!--
         <ant dir="${basedir}/DataGridExample" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_again" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_HTML5" target="clean"/>
@@ -116,7 +111,6 @@
         <ant dir="${basedir}/ListsTest" target="clean"/>
         <ant dir="${basedir}/StatesTest" target="clean"/>
         <ant dir="${basedir}/StockQuote" target="clean"/>
-        -->
     </target>
     
 </project>

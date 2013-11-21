@@ -19,19 +19,17 @@
 -->
 
 
-<project name="databindingtest" default="main" basedir=".">
+<project name="datagridexample" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="DataBindingTest" />
+    <property name="example" value="DataGridExample" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
-    <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
 
     <include file="${basedir}/../build_example.xml" />
-    
+
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
     </target>
     
@@ -39,8 +37,6 @@
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
-    </target>
-
-    
+    </target>    
     
 </project>

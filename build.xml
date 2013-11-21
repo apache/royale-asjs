@@ -180,6 +180,20 @@
             unless="AIR_HOME.set"/>
     </target>
     
+    <target name="check-goog-home" unless="GOOG_HOME"
+        description="Check that GOOG_HOME is a directory">
+        
+        <echo message="GOOG_HOME is ${env.GOOG_HOME}"/>
+
+        <available file="${env.GOOG_HOME}" 
+            type="dir" 
+            property="GOOG_HOME"
+            value="${env.GOOG_HOME}" />
+        
+        <fail message="The environment variable GOOG_HOME must be set to the Google Closure Library folder containg a 'closure' and 'third_party' folder" 
+            unless="GOOG_HOME"/>
+    </target>
+    
     <target name="check-flex-home" unless="mxmlc.jar.exists"
         description="Check FLEX_HOME for both a directory and an exe file">
 
@@ -342,7 +356,7 @@
     -->
 
     <target name="examples" description="Build the examples"
-        depends="prebuild">
+        depends="prebuild,check-goog-home">
         <ant dir="${basedir}/examples"/>
     </target>
 
