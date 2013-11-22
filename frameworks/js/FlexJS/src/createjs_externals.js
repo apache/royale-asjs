@@ -12,8 +12,9 @@
  * limitations under the License.
  */
 
+
 /**
  * This file is used to establish external APIs so the closure-compiler
  * can resolve references and won't minify names
  */
-function createjs() {};
+function createjs() {}

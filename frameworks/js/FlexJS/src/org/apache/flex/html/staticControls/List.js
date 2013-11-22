@@ -69,7 +69,8 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
 
   var c = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !c) {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,'iDataProviderItemRendererMapper');
+    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,
+                            'iDataProviderItemRendererMapper');
     if (c) {
       var bead = new c;
       this.addBead(bead);

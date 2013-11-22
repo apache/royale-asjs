@@ -61,7 +61,7 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
 
   this.addBead(new
       org.apache.flex.html.staticControls.beads.ImageView());
-      
+
   return this.element;
 };
 

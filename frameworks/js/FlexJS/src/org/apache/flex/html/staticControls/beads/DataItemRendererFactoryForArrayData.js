@@ -16,8 +16,8 @@ goog.provide('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryF
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
+goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer');
 
 
@@ -44,7 +44,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
 
 
 /**
- * @expose
+ * @private
  * @type {Object}
  */
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
@@ -70,7 +70,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
       goog.bind(this.dataProviderChangedHandler, this));
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
-    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRendererClassFactory');
+    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRendererClassFactory');
     this.itemRendererFactory_ = new c;
     this.strand_.addBead(this.itemRendererFactory_);
   }
@@ -86,7 +86,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
 org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
     prototype.get_itemRendererClass = function() {
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
-    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,'iItemRenderer');
+    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
     if (c) {
       this.itemRendererClass_ = c;
     }
