@@ -21,6 +21,8 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IItemRenderer;
@@ -100,8 +102,8 @@ package org.apache.flex.html.staticControls.beads
             listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 
             _border = new Border();
-            _border.model = new SingleLineBorderModel();
-            _border.addBead(new SingleLineBorderBead());
+            _border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
+            _border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(_strand).addElement(_border);
             
 			_dataGroup = new NonVirtualDataGroup();

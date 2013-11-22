@@ -20,9 +20,11 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
 	
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -47,8 +49,8 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a border to this
 			_border = new Border();
-			_border.model = new SingleLineBorderModel();
-			_border.addBead(new SingleLineBorderBead());
+			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
+			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(strand).addElement(border);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);

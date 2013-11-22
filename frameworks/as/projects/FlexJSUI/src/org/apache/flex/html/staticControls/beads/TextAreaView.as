@@ -24,11 +24,12 @@ package org.apache.flex.html.staticControls.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
@@ -67,8 +68,8 @@ package org.apache.flex.html.staticControls.beads
 			
 			// add a border to this
 			_border = new Border();
-			_border.model = new SingleLineBorderModel();
-			_border.addBead(new SingleLineBorderBead());
+			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
+			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(strand).addElement(border);
 			
 			var vb:ScrollBar = vScrollBar;

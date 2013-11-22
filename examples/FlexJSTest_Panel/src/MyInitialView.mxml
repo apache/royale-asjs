@@ -84,7 +84,6 @@ limitations under the License.
 			font-weight: bold;
 			text-align: center;
 			background-color: #444444;
-			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
 		}
 		
 		.panel1 {
@@ -92,8 +91,6 @@ limitations under the License.
 			background-color: #EEEEEE;
 			border-color: #000000;
 			border-thickness: 1;
-			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
 		}
 		
 		.numStepper {
@@ -101,10 +98,25 @@ limitations under the License.
 			border-color: #000000;
 			border-thickness: 1;
 			background-color: #FFFFCC;
-			iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-			iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
 		}
 		
+        @media -flex-flash
+        {
+            .TitleBar {
+                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+            }
+            
+            .panel1 {
+                iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+            }
+            
+            .numStepper {
+                iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+            }
+            
+        }
 	</fx:Style>
 	
 	

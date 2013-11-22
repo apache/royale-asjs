@@ -200,6 +200,12 @@ Label
 	iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead");
 }
 
+List
+{
+    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
+}
+
 NumericStepper
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
@@ -276,6 +282,8 @@ TextArea
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextAreaView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
+    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
     width: 135;
     height: 20;
 }
@@ -298,6 +306,8 @@ TextInput
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderView");
     IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
+    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
 	width: 135;
 	height: 20;
 }

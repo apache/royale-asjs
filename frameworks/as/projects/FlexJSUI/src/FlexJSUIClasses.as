@@ -47,6 +47,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.RadioButtonView; RadioButtonView;
     import org.apache.flex.html.staticControls.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.staticControls.beads.SimpleAlertView; SimpleAlertView;
+    import org.apache.flex.html.staticControls.beads.SingleLineBorderBead; SingleLineBorderBead;
 	import org.apache.flex.html.staticControls.beads.SliderView; SliderView;
 	import org.apache.flex.html.staticControls.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.staticControls.beads.SliderTrackView; SliderTrackView;
@@ -66,6 +67,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
+    import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.beads.models.TextModel; TextModel;
     import org.apache.flex.html.staticControls.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.flex.html.staticControls.beads.models.ToggleButtonModel; ToggleButtonModel;
