@@ -74,6 +74,27 @@
     </target>
     
     <target name="compile" description="Validates JS code">
+        <echo>running gjslint</echo>
+        <exec executable="gjslint" dir="${basedir}" failonerror="true">
+            <arg value="--strict" />
+            <arg value="--disable" />
+            <arg value="006,100,214,300" />
+            <!-- 006: wrong indentation -->
+            <!-- 100: cannot have non-primitive value -->
+            <!-- 214: @fileoverview tag missing description -->
+            <!-- 300: missing newline at end of file -->
+            <arg value="--max_line_length" />
+            <arg value="120" />
+            <arg value="-r" />
+            <arg value="FlexJS/src" />
+        </exec>
+        <echo>running jshint</echo>
+        <echo>set failonerror=true when we get this cleaned up</echo>
+        <exec executable="jshint" dir="${basedir}" failonerror="false">
+            <arg value="--config" />
+            <arg value="jshint.properties" />
+            <arg value="FlexJS/src" />
+        </exec>
     </target>
 	   
     <!--
