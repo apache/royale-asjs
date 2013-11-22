@@ -44,7 +44,7 @@
     <!-- swfobject.js (Version 2.2) -->
     <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
     <target name="swfobject-check" description="Checks if SWFObject has been downloaded.">
-        <available file="${basedir}/../templates/swfobject/swfobject.js" property="swfobject.js.present"/>
+        <available file="${FLEXJS_HOME}/templates/swfobject/swfobject.js" property="swfobject.js.present"/>
     </target>
 
     <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present" 
