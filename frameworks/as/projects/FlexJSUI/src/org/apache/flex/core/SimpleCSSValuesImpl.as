@@ -19,12 +19,12 @@
 package org.apache.flex.core
 {
 	import flash.system.ApplicationDomain;
+	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getQualifiedSuperclassName;
-	import flash.utils.getDefinitionByName;
 	
-	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.ValueChangeEvent;
 	
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
 	{
@@ -113,6 +113,18 @@ package org.apache.flex.core
                         }
                     }
                     */
+                    var mq:String = null;
+                    var o:Object;
+                    if (i < n - 2)
+                    {
+                        // peek ahead to see if there is a media query
+                        if (arr[i + 1] == CSSClass.CSSMediaQuery)
+                        {
+                            mq = arr[i + 2];
+                            i += 2;
+                            declarationName = mq + "_" + declarationName;
+                        }
+                    }
                     var finalName:String;
                     var valuesFunction:Function;
                     var valuesObject:Object;
@@ -120,15 +132,16 @@ package org.apache.flex.core
                     {
                         valuesFunction = factoryFunctions[declarationName];
                         valuesObject = new valuesFunction();
-                        finalName = fixNames(declarationName);
-                        values[finalName] = valuesObject;
                     }
                     else
                     {
                         valuesFunction = factoryFunctions[declarationName];
                         valuesObject = new valuesFunction();
-                        var o:Object = values[declarationName];
-                        finalName = fixNames(declarationName);
+                    }
+                    if (isValidStaticMediaQuery(mq))
+                    {
+                        finalName = fixNames(declarationName, mq);
+                        o = values[finalName];
                         if (o == null)
                             values[finalName] = valuesObject;
                         else
@@ -143,8 +156,24 @@ package org.apache.flex.core
             
         }
 
-        private function fixNames(s:String):String
+        private function isValidStaticMediaQuery(mq:String):Boolean
         {
+            if (mq == null)
+                return true;
+            
+            if (mq == "-flex-flash")
+                return true;
+            
+            // TODO: (aharui) other media query
+            
+            return false;
+        }
+        
+        private function fixNames(s:String, mq:String):String
+        {
+            if (mq != null)
+                s = s.substr(mq.length + 1); // 1 more for the hyphen
+            
 			if (s == "")
 				return "*";
 			
@@ -285,6 +314,7 @@ class CSSClass
     public static const CSSSelector:int = 0;
     public static const CSSCondition:int = 1;
     public static const CSSStyleDeclaration:int = 2;
+    public static const CSSMediaQuery:int = 3;
 }
 
 class CSSFactory
