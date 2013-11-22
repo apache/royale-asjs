@@ -87,9 +87,9 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
   // use bind(this) to avoid loose scope
   this.element.onClick = this.clickHandler.bind(this);
 
-  p.addChild(this.element);
-
   this.positioner = this.element;
+
+  return this.element;
 };
 
 
