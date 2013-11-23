@@ -462,7 +462,7 @@
         <!-- frameworks/as -->
         <antcall target="stage-framework-as"/>
 
-        <!-- frameworks/as -->
+        <!-- frameworks/js -->
         <antcall target="stage-framework-js"/>
 
         <!-- asdoc
@@ -486,11 +486,16 @@
         <!-- samples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
+                <exclude name="**/FlexJSTest_again/**" />
+                <exclude name="**/VanillaSDK_POC/**" />
                 <exclude name="**/*.swc"/>
                 <exclude name="**/*.swf"/>
             </fileset>
         </copy>
         
+        <!-- scripts -->
+        <antcall target="stage-scripts"/>
+
         <!-- templates
         <copy todir="${basedir}/temp/templates">
             <fileset dir="${basedir}/templates" >
@@ -533,8 +538,8 @@
     <!-- frameworks -->
     <!-- javascript and test directories follow -->
     <target name="stage-framework-as">
-        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/as/projects/FlexJSUI/src">
+        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/as">
                 <include name="**"/>
                 <exclude name="**/libs/**"/>
                 <exclude name="**/*.swc"/>
@@ -549,21 +554,10 @@
                 <exclude name="projects/*/.settings/**"/>
             </fileset>
         </copy>
-        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/as/projects/FlexJSUI">
-                <include name="basic-manifest.xml"/>
-                <include name="html5-manifest.xml"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
+        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
             <fileset dir="${basedir}/frameworks/as">
-                <include name="air-config.xml"/>
-                <include name="flex-config.xml"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/frameworks/src" includeEmptyDirs="false">
-            <fileset dir="${basedir}">
-                <include name="flex-sdk-description.xml"/>
+                <include name="air-config-template.xml"/>
+                <include name="flex-config-template.xml"/>
             </fileset>
         </copy>
 
@@ -574,9 +568,9 @@
 
         <!-- now that config xml files are in temp, fix them up for release. -->
         <echo message="Updating config file air-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/src/air-config.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/as/air-config-template.xml" version="${build.version}" />
         <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/src/flex-config.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/as/flex-config-template.xml" version="${build.version}" />
         
         <!-- Update all Version.as files in the kit frameworks directory with build.number -->
         <!--<antcall target="version-update"/>-->
@@ -584,9 +578,15 @@
     
     <!-- tlf -->
     <target name="stage-framework-js">
-        <copy todir="${basedir}/temp/js/src" includeEmptyDirs="false">
+        <copy todir="${basedir}/temp/frameworks/js/FlexJS/src" includeEmptyDirs="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/src">
                 <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/frameworks/js" includeEmptyDirs="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/js">
+                <include name="build.xml"/>
+                <include name="jshint.properties"/>
             </fileset>
         </copy>
     </target>
@@ -686,6 +686,15 @@
 
     </target>
     
+    <target name="stage-scripts" description="package ide conversion scripts">
+        <!-- deploy scripts -->
+        <copy todir="${basedir}/temp/scripts">
+            <fileset dir="${basedir}/scripts" >
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
 
@@ -709,19 +718,21 @@
         </concat-->
         
         <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/libs">
+        <copy todir="${basedir}/temp/frameworks/as/libs">
             <fileset dir="${basedir}/frameworks/as/libs">
                 <include name="FlexJSUI.swc"/>
                 <include name="MXMLCClasses.swc"/>
             </fileset>
         </copy>
 
-        <!-- falcon -->
+        <!-- falcon
         <antcall target="stage-falcon"/>
-
-        <!-- falconjx -->
+         -->
+         
+        <!-- falconjx
         <antcall target="stage-falconjx"/>
-        
+         -->
+         
         <!-- ide
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
@@ -730,7 +741,7 @@
         </copy>
          -->
          
-        <!-- sample themes -->
+        <!-- examples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
                 <include name="**/build.xml"/>
@@ -739,13 +750,6 @@
             </fileset>
         </copy>
 
-        <!-- deploy scripts -->
-        <copy todir="${basedir}/temp/">
-            <fileset dir="${basedir}/scripts" >
-                <include name="**/*"/>
-            </fileset>
-        </copy>
-        
         <!-- swfobject templates except for downloaded files
         <copy todir="${basedir}/temp/templates/swfobject">
             <fileset dir="${basedir}/templates/swfobject">
