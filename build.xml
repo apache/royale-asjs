@@ -439,9 +439,13 @@
         <tar-gzip name="${source.kit}" />
     </target>
 
-    <target name="stage-source"
-        description="Package source files required to build in zip file">
-
+    <target name="stage-source" depends="stage-source-no-scripts"
+        description="Package source files required to build in zip file" >
+        <!-- scripts -->
+        <antcall target="stage-scripts"/>
+    </target>
+        
+    <target name="stage-source-no-scripts" >
         <antcall target="clean-temp"/>
         
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
@@ -493,9 +497,6 @@
             </fileset>
         </copy>
         
-        <!-- scripts -->
-        <antcall target="stage-scripts"/>
-
         <!-- templates
         <copy todir="${basedir}/temp/templates">
             <fileset dir="${basedir}/templates" >
@@ -744,6 +745,8 @@
         <!-- examples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
+                <exclude name="**/FlexJSTest_again/**" />
+                <exclude name="**/VanillaSDK_POC/**" />
                 <include name="**/build.xml"/>
                 <include name="**/*.swc"/>
                 <include name="**/*.swf"/>
@@ -761,6 +764,107 @@
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>        
+    </target>
+  
+    <target name="package-sdk" depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home"
+        description="Package falcon and templates into binary package">
+        
+        <antcall target="clean-temp"/>
+
+        <antcall target="stage-source-no-scripts"/>
+                
+        <!-- delete any left-over empty directories -->
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/frameworks">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+
+        <!-- these files are in addition to the remaining source files -->
+        
+        <!-- concat the license file with the binary license file for the 3rd party deps -->
+        <!--concat destfile="${basedir}/temp/LICENSE">
+            <filelist dir="${FLEX_SDK_HOME}" files="LICENSE,LICENSE.bin"/>
+        </concat-->
+        
+        <!-- frameworks/libs -->
+        <copy todir="${basedir}/temp/frameworks/as/libs">
+            <fileset dir="${basedir}/frameworks/as/libs">
+                <include name="FlexJSUI.swc"/>
+                <include name="MXMLCClasses.swc"/>
+            </fileset>
+        </copy>
+
+        <!-- frameworks config files -->
+        <copy todir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/frameworks">
+                <include name="air-config.xml"/>
+                <include name="flex-config.xml"/>
+            </fileset>
+        </copy>
+        <replace file="${basedir}/temp/frameworks/air-config.xml">
+            <replacefilter
+                token="{playerglobalHome}"
+                value="libs/player"/>
+        </replace>
+        <replace file="${basedir}/temp/frameworks/flex-config.xml">
+            <replacefilter
+                token="{playerglobalHome}"
+                value="libs/player"/>
+        </replace>
+        
+        <!-- now that config xml files are in temp, fix them up for release. -->
+        <echo message="Updating config file air-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/air-config.xml" version="${build.version}" />
+        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/flex-config.xml" version="${build.version}" />
+        
+        <!-- falcon -->
+        <antcall target="stage-falcon"/>
+         
+        <!-- falconjx -->
+        <antcall target="stage-falconjx"/>
+         
+        <!-- ide
+        <copy todir="${basedir}/temp/ide">
+            <fileset dir="${basedir}/ide" >
+                <include name="flashbuilder/config"/>
+            </fileset>
+        </copy>
+         -->
+         
+        <!-- examples -->
+        <copy todir="${basedir}/temp/examples">
+            <fileset dir="${basedir}/examples" >
+                <exclude name="**/FlexJSTest_again/**" />
+                <exclude name="**/VanillaSDK_POC/**" />
+                <include name="**/build.xml"/>
+                <include name="**/*.swc"/>
+                <include name="**/*.swf"/>
+            </fileset>
+        </copy>
+
+        <!-- swfobject templates except for downloaded files -->
+        <copy todir="${basedir}/temp/templates/swfobject">
+            <fileset dir="${basedir}/templates/swfobject">
+            </fileset>
+        </copy>
+        
+        <!-- deploy scripts -->
+        <copy todir="${basedir}/temp">
+            <fileset dir="${basedir}/scripts" >
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+                 
+        <chmod dir="${basedir}/temp" includes="**/*.sh" perm="+x" />
+
+        <mkdir dir="${basedir}/out"/>
+        <zip destfile="${basedir}/out/ApacheFlexJS.zip" basedir="${basedir}/temp"/>
+        <tar-gzip name="ApacheFlexJS" />
     </target>
             
     <!-- 
