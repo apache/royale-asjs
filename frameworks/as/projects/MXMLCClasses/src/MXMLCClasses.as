@@ -48,6 +48,7 @@ internal class MXMLCClasses
     import mx.core.IFlexModuleFactory; IFlexModuleFactory;
     import mx.core.IPropertyChangeNotifier; IPropertyChangeNotifier;
     import mx.core.IStateClient2; IStateClient2;
+    import mx.core.mx_internal; use namespace mx_internal;
     import mx.events.PropertyChangeEvent; PropertyChangeEvent;
     import mx.filters.IBitmapFilter; IBitmapFilter;
     import mx.styles.CSSCondition; CSSCondition;
