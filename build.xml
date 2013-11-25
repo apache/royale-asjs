@@ -72,7 +72,14 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="prebuild,frameworks,post-build" description="Full build">
+    <target name="main" depends="prebuild,frameworks-as,frameworks-js,post-build" description="Full build">
+        <tstamp>
+        	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
+        </tstamp>
+        <echo>ant main target completed on ${build.datetime}</echo>
+    </target>
+
+    <target name="main-jenkins" depends="prebuild,frameworks-as,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -87,12 +94,20 @@
         depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache FlexJS."/>
         
+    <target name="release-jenkins" 
+        depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release-jenkins,rat-check"
+        description="Creates source and binary kits for Apache FlexJS."/>
+  
     <target name="source-release" 
         depends="super-clean,create-description,create-config,source-package" 
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release" 
         depends="setup-binary-release,main,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        description="Builds and packages the binary kit which is provided as a convenience."/>    
+
+    <target name="binary-release-jenkins" 
+        depends="setup-binary-release,main-jenkins,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="source-release-noclean" 
@@ -364,10 +379,13 @@
         Build framework SWCs
     -->
 
-    <target name="frameworks" description="Full build of all framework SWCs, including resource bundles and themes">
+    <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes">
         <ant dir="${basedir}/frameworks/as">
             <property name="locale" value="${locale}"/>
         </ant>
+    </target>
+
+    <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint">
         <ant dir="${basedir}/frameworks/js">
             <property name="locale" value="${locale}"/>
         </ant>
