@@ -1,30 +1,22 @@
 @echo off
-rem  Licensed to the Apache Software Foundation (ASF) under one or more
-
-rem  contributor license agreements.  See the NOTICE file distributed with
-
-rem  this work for additional information regarding copyright ownership.
-
-rem  The ASF licenses this file to You under the Apache License, Version 2.0
-
-rem  (the "License"); you may not use this file except in compliance with
-
-rem  the License.  You may obtain a copy of the License at
-
-rem
-rem     http:\\www.apache.org\licenses\LICENSE-2.0
-
-rem
-rem  Unless required by applicable law or agreed to in writing, software
-
-rem  distributed under the License is distributed on an "AS IS" BASIS,
-
-rem  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-rem  See the License for the specific language governing permissions and
-
-rem  limitations under the License.
-
+REM ################################################################################
+REM ##
+REM ##  Licensed to the Apache Software Foundation (ASF) under one or more
+REM ##  contributor license agreements.  See the NOTICE file distributed with
+REM ##  this work for additional information regarding copyright ownership.
+REM ##  The ASF licenses this file to You under the Apache License, Version 2.0
+REM ##  (the "License"); you may not use this file except in compliance with
+REM ##  the License.  You may obtain a copy of the License at
+REM ##
+REM ##      http://www.apache.org/licenses/LICENSE-2.0
+REM ##
+REM ##  Unless required by applicable law or agreed to in writing, software
+REM ##  distributed under the License is distributed on an "AS IS" BASIS,
+REM ##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+REM ##  See the License for the specific language governing permissions and
+REM ##  limitations under the License.
+REM ##
+REM ################################################################################
 
 if "%~1" == "" goto usage
 goto check2
@@ -82,7 +74,7 @@ echo ^<listEntry value='org.eclipse.ui.externaltools.launchGroup'/^> >> "%~1\ide
 echo ^</listAttribute^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='%~2'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
-echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=^&quot;%~1^&quot; -Dflexlib=^&quot;%~1\frameworks^&quot; -jar %~1\js\lib\mxmlc.jar -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=%GOOG_HOME% -sdk-js-lib=%~1\js\src -fb ^&quot;${project_loc}^&quot;'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
+echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=^&quot;%~1^&quot; -Dflexlib=^&quot;%~1\frameworks^&quot; -jar %~1\js\lib\mxmlc.jar -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=%GOOG_HOME% -sdk-js-lib=%~1\frameworks\js\FlexJS\src -fb ^&quot;${project_loc}^&quot;'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^</launchConfiguration^> >> "%~1\ide\flashbuilder\%FILENAME%"
 
 set FILENAME=FlexJS (COMPC).launch
@@ -108,7 +100,7 @@ echo ^<listEntry value='org.eclipse.ui.externaltools.launchGroup'/^> >> "%~1\ide
 echo ^</listAttribute^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='%~2'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
-echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=^&quot;%~1^&quot; -Dflexlib=^&quot;%~1\frameworks^&quot; -jar %~1\js\lib\mxmlc.jar -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=%GOOG_HOME% -sdk-js-lib=%~1\js\src -fb ^&quot;${project_loc}^&quot;'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
+echo ^<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=^&quot;%~1^&quot; -Dflexlib=^&quot;%~1\frameworks^&quot; -jar %~1\js\lib\mxmlc.jar -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=%GOOG_HOME% -sdk-js-lib=%~1\frameworks\js\FlexJS\src -fb ^&quot;${project_loc}^&quot;'/^> >> "%~1\ide\flashbuilder\%FILENAME%"
 echo ^</launchConfiguration^> >> "%~1\ide\flashbuilder\%FILENAME%"
 
 endlocal

@@ -27,12 +27,12 @@ done
 
 if [ "${argv[0]}" = "" ] 
     then
-    echo "Usage: setuplaunches <absolute path to Apache Flex SDK> <absolute path to Java executable>"
+    echo "Usage: setuplaunches <absolute path to Apache FlexJS SDK> <absolute path to Java executable>"
     exit
 fi
 if [ "${argv[1]}" = "" ] 
     then
-    echo "Usage: setuplaunches <absolute path to Apache Flex SDK> <absolute path to Java executable>"
+    echo "Usage: setuplaunches <absolute path to Apache FlexJS SDK> <absolute path to Java executable>"
     exit
 fi
 if [ ! -d "${argv[0]}/frameworks/" ]
@@ -83,7 +83,7 @@ echo "<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>" >> "${argv[
 echo "</listAttribute>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='\${project}'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='${argv[1]}'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
-echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;${argv[0]}&quot; -Dflexlib=&quot;${argv[0]}/frameworks&quot; -jar &quot;${argv[0]}/js/lib/mxmlc.jar&quot; -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=&quot;$GOOG_HOME&quot; -sdk-js-lib=&quot;${argv[0]}/js/src&quot; -fb &quot;\${project_loc}&quot;'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
+echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;${argv[0]}&quot; -Dflexlib=&quot;${argv[0]}/frameworks&quot; -jar &quot;${argv[0]}/js/lib/mxmlc.jar&quot; -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=&quot;$GOOG_HOME&quot; -sdk-js-lib=&quot;${argv[0]}/frameworks/js/FlexJS/src&quot; -fb &quot;\${project_loc}&quot;'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "</launchConfiguration>"  >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 
 FILENAME="FlexJS (COMPC).launch"
@@ -109,5 +109,5 @@ echo "<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>" >> "${argv[
 echo "</listAttribute>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='\${project}'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='${argv[1]}'/>" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
-echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;${argv[0]}&quot; -Dflexlib=&quot;${argv[0]}/frameworks&quot; -jar &quot;${argv[0]}/js/lib/compc.jar&quot; -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=$GOOG_HOME -sdk-js-lib=${argv[0]}/js/src -fb &quot;\${project_loc}&quot;' />" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
+echo "<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;${argv[0]}&quot; -Dflexlib=&quot;${argv[0]}/frameworks&quot; -jar &quot;${argv[0]}/js/lib/compc.jar&quot; -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -closure-lib=$GOOG_HOME -sdk-js-lib=${argv[0]}/frameworks/js/FlexJS/src -fb &quot;\${project_loc}&quot;' />" >> "${argv[0]}/ide/flashbuilder/$FILENAME"
 echo "</launchConfiguration>"  >> "${argv[0]}/ide/flashbuilder/$FILENAME"

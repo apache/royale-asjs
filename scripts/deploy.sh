@@ -18,6 +18,26 @@
 ##
 ################################################################################
 
+# copyFileOrDirectory from ADOBE_FLEX_SDK_DIR to IDE_SDK_DIR
+#   param1 is file or directory to copy
+copyFileOrDirectory()
+{
+    f="$1"
+    
+    dir=`dirname "${BASEDIR}/$f"`
+	
+    echo Copying $f to ${dir}
+    
+    if [ -f "${FLEX_SDK_DIR}/$f" ] ; then
+        mkdir -p "${dir}"
+        cp -p "${FLEX_SDK_DIR}/$f" "${BASEDIR}/$f"
+    fi
+
+    if [ -d "${FLEX_SDK_DIR}/$f" ] ; then
+        rsync --archive --ignore-existing --force "${FLEX_SDK_DIR}/$f" "${dir}"
+    fi
+}
+
 i=0
 argv=()
 for arg in "$@"; do
@@ -27,17 +47,7 @@ done
 
 if [ "${argv[0]}" = "" ] 
     then
-    echo "Usage: deploy.sh <path to existing Apache Flex SDK> <path to new folder>"
-    exit
-fi
-if [ "${argv[1]}" = "" ] 
-    then
-    echo "Usage: deploy.sh <path to existing Apache Flex SDK> <path to new folder>"
-    exit
-fi
-if [ -d "${argv[1]}" ]
-    then
-    echo "Error: folder already exists"
+    echo "Usage: deploy.sh <path to existing Apache Flex SDK>"
     exit
 fi
 if [ "$GOOG_HOME" = "" ]
@@ -50,75 +60,54 @@ if [ "$JAVA_HOME" = "" ]
 	JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
 fi
 
-echo "Copying Apache Flex SDK (be patient, lots of files)..."
-mkdir -pv "${argv[1]}"
-if [ ! -d "${argv[1]}" ]
-    then
-    echo "Error: creating destination folder '${argv[1]}'"
-    exit
+FLEX_SDK_DIR="${argv[0]}"
+RELBASEDIR=$(dirname $0)
+if [ "$RELBASEDIR" = "" ]
+	then
+	echo "Could not determine script folder.  Did you use '. deploy.sh' instead of './deploy.sh'?"
+	exit
 fi
-DESTDIR=`cd "${argv[1]}"; pwd`
-cp -r "${argv[0]}"/* "$DESTDIR"
+BASEDIR=`cd "$RELBASEDIR"; pwd`
 
-BASEDIR=$(dirname $0)
-echo "Installing FlexJS files from $BASEDIR to $DESTDIR"
+echo "Copying AIR and Flash SDK from ${FLEX_SDK_DIR} to ${BASEDIR}"
+files=(
+    "AIR SDK license.pdf" 
+    "AIR SDK Readme.txt" 
+    bin/adl.exe 
+    bin/adt.bat 
+    frameworks/libs/air
+    frameworks/libs/player
+    frameworks/projects/air
+    include
+    install/android
+    lib/adt.jar 
+    lib/android
+    lib/aot
+    lib/nai
+    lib/win
+    runtimes
+    samples/badge
+    samples/descriptor-sample.xml
+    samples/icons
+    templates/air
+    templates/extensions)
+for file in "${files[@]}" 
+do
+    copyFileOrDirectory "$file"
+done
 
-echo "Removing Flex files"
-rm -f "$DESTDIR/ant/lib"/*
-rm "$DESTDIR/bin"/*
-rm "$DESTDIR/lib/asc.jar"
-rm "$DESTDIR/lib/asdoc.jar"
-rm "$DESTDIR/lib/batik-all-flex.jar"
-rm "$DESTDIR/lib/compc.jar"
-rm "$DESTDIR/lib/copylocale.jar"
-rm "$DESTDIR/lib/digest.jar"
-rm "$DESTDIR/lib/fcsh.jar"
-rm "$DESTDIR/lib/fdb.jar"
-rm "$DESTDIR/lib/flex-compiler-oem.jar"
-rm "$DESTDIR/lib/fxgutils.jar"
-rm "$DESTDIR/lib"/mxmlc_*.jar
-rm "$DESTDIR/lib/optimizer.jar"
-rm "$DESTDIR/lib/swcdepends.jar"
-rm "$DESTDIR/lib/swfdump.jar"
-rm "$DESTDIR/lib/swfutils.jar"
-rm "$DESTDIR/lib/velocity-dep-1.4-flex.jar"
-rm -r "$DESTDIR/lib/external"/*
-rmdir "$DESTDIR/lib/external"
-rm "$DESTDIR/flex-sdk-description.xml"
-rm "$DESTDIR/frameworks/flex-config.xml"
-rm "$DESTDIR/frameworks/libs/automation"/*
-rmdir "$DESTDIR/frameworks/libs/automation"
-rm "$DESTDIR/frameworks/libs/mobile"/*
-rmdir "$DESTDIR/frameworks/libs/mobile"
-rm "$DESTDIR/frameworks/libs/mx"/*
-# rmdir "$DESTDIR/frameworks/libs/mx"  FB needs this
-rm "$DESTDIR/frameworks/libs"/*
+copyFileOrDirectory ide/flashbuilder/flashbuilder-config.xml
+copyFileOrDirectory frameworks/mxml-manifest.xml
+copyFileOrDirectory frameworks/spark-manifest.xml
+copyFileOrDirectory frameworks/themes/Halo/halo.swc
+copyFileOrDirectory frameworks/macfonts.ser
+copyFileOrDirectory frameworks/winfonts.ser
+cp frameworks/air-config.xml frameworks/airmobile-config.xml
+mkdir frameworks/locale
+mkdir frameworks/mx
+mkdir frameworks/projects
+mkdir frameworks/rsls
 
-echo "Copying Falcon files"
-mkdir -p "$DESTDIR/ant/lib"
-cp -r "$BASEDIR/ant/lib"/* "$DESTDIR/ant/lib"
-cp -r "$BASEDIR/bin"/* "$DESTDIR/bin"
-mkdir "$DESTDIR/bin-legacy"
-cp -r "$BASEDIR/bin-legacy"/* "$DESTDIR/bin-legacy"
-cp -r "$BASEDIR/lib"/* "$DESTDIR/lib"
 
-echo "Copying FalconJS files"
-mkdir "$DESTDIR/js"
-cp -r "$BASEDIR/js"/* "$DESTDIR/js"
-
-echo "Copying FlexJS files"
-cp -r "$BASEDIR/frameworks/libs"/* "$DESTDIR/frameworks/libs"
-mkdir "$DESTDIR/frameworks/as"
-mkdir "$DESTDIR/frameworks/as/src"
-cp -r "$BASEDIR/frameworks/src"/* "$DESTDIR/frameworks/as/src"
-
-mv "$DESTDIR/frameworks/as/src/basic-manifest.xml" "$DESTDIR/frameworks"
-mv "$DESTDIR/frameworks/as/src/html5-manifest.xml" "$DESTDIR/frameworks"
-mv "$DESTDIR/frameworks/as/src/flex-sdk-description.xml" "$DESTDIR"
-mv "$DESTDIR/frameworks/as/src/flex-config.xml" "$DESTDIR/frameworks"
-
-# needed for AIR apps
-cp "${argv[0]}/bin/adl" "$DESTDIR/bin"
-cp "${argv[0]}/bin/adt" "$DESTDIR/bin"
-
-./setuplaunches.sh "$DESTDIR" $JAVA_HOME/bin/java
+echo "Setting up Launch Configs"
+./setuplaunches.sh "$BASEDIR" $JAVA_HOME/bin/java

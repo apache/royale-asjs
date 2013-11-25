@@ -1,39 +1,31 @@
-rem  Licensed to the Apache Software Foundation (ASF) under one or more
-
-rem  contributor license agreements.  See the NOTICE file distributed with
-
-rem  this work for additional information regarding copyright ownership.
-
-rem  The ASF licenses this file to You under the Apache License, Version 2.0
-
-rem  (the "License"); you may not use this file except in compliance with
-
-rem  the License.  You may obtain a copy of the License at
-
-rem
-rem     http:\\www.apache.org\licenses\LICENSE-2.0
-
-rem
-rem  Unless required by applicable law or agreed to in writing, software
-
-rem  distributed under the License is distributed on an "AS IS" BASIS,
-
-rem  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-rem  See the License for the specific language governing permissions and
-
-rem  limitations under the License.
-
+@echo off
+REM ################################################################################
+REM ##
+REM ##  Licensed to the Apache Software Foundation (ASF) under one or more
+REM ##  contributor license agreements.  See the NOTICE file distributed with
+REM ##  this work for additional information regarding copyright ownership.
+REM ##  The ASF licenses this file to You under the Apache License, Version 2.0
+REM ##  (the "License"); you may not use this file except in compliance with
+REM ##  the License.  You may obtain a copy of the License at
+REM ##
+REM ##      http://www.apache.org/licenses/LICENSE-2.0
+REM ##
+REM ##  Unless required by applicable law or agreed to in writing, software
+REM ##  distributed under the License is distributed on an "AS IS" BASIS,
+REM ##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+REM ##  See the License for the specific language governing permissions and
+REM ##  limitations under the License.
+REM ##
+REM ################################################################################
 
 
 if "%~1" == "" goto error
 goto check2
 :error
-echo Usage: deploy.bat [absolute path to Apache Flex SDK] [absolute path to new folder]
+echo Usage: deploy.bat [absolute path to Apache Flex SDK]
 goto end
 
 :check2
-if "%~2" == "" goto error
 if "%GOOG_HOME%" == "" goto nogoog
 goto checkjava
 
@@ -50,96 +42,82 @@ echo JAVA_HOME environment variable not set.  Set to folder containing bin\java.
 goto end
 
 :copyfiles
-echo "Copying Apache Flex SDK (be patient, lots of files)..."
-md %2
-xcopy /s %1\*.* %2
-
 echo %~d0%~p0
 setlocal
-set BASEDIR=%~d0%~p0
-echo Installing FlexJS files from %BASEDIR% to %2
+set IDE_SDK_DIR=%~d0%~p0
+if "%IDE_SDK_DIR:~-1%"=="\" SET IDE_SDK_DIR=%IDE_SDK_DIR:~0,-1%
+set FLEX_SDK_DIR=%~1
 
-echo removing Flex files
-del /q %2\ant\lib\*.*
-del /q %2\bin\*.*
-del %2\lib\asc.jar
-del %2\lib\asdoc.jar
-del %2\lib\batik-all-flex.jar
-del %2\lib\compc.jar
-del %2\lib\copylocale.jar
-del %2\lib\digest.jar
-del %2\lib\fcsh.jar
-del %2\lib\fdb.jar
-del %2\lib\flex-compiler-oem.jar
-del %2\lib\fxgutils.jar
-del /q %2\lib\mxmlc_*.jar
-del %2\lib\optimizer.jar
-del %2\lib\swcdepends.jar
-del %2\lib\swfdump.jar
-del %2\lib\swfutils.jar
-del %2\lib\velocity-dep-1.4-flex.jar
+REM
+REM     Copy all the AIR SDK files to the IDE SDK.
+REM     Copy files first, then directories with (/s).
+REM
+:copyAdobeAIRSDK
+echo Copying the AIR SDK files from %FLEX_SDK_DIR% to %IDE_SDK_DIR%
+mkdir %IDE_SDK_DIR%\samples
 
-del /q /s %2\lib\external\*.*
-rd /q /s %2\lib\external
-del %2\flex-sdk-description.xml
-del %2\frameworks\flex-config.xml
-del /q %2\frameworks\libs\automation\*.*
-rd /q %2\frameworks\libs\automation
-del /q %2\frameworks\libs\mobile\*.*
-rd /q %2\frameworks\libs\mobile
-del /q %2\frameworks\libs\mx\*.*
-rem rd %2\frameworks\libs\mx  FB needs this
+for %%G in (
+    "AIR SDK license.pdf"
+    "AIR SDK Readme.txt"
+    bin\adl.exe
+    bin\adt.bat
+    lib\adt.jar
+    samples\descriptor-sample.xml) do (
+    
+    if exist %FLEX_SDK_DIR%\%%G (
+        copy /y %FLEX_SDK_DIR%\%%G %IDE_SDK_DIR%\%%G
+    )
+)
 
-del /q %2\frameworks\libs\*.*
-
-
-
-
-
-echo copying Falcon files"
-xcopy /y /s "%BASEDIR%\ant\lib\*.*" %2\ant\lib
-
-xcopy /y /s "%BASEDIR%\bin\*.*" %2\bin
-
-md %2\bin-legacy
-
-xcopy /y /s "%BASEDIR%\bin-legacy\*.*" %2\bin-legacy
-
-xcopy /y /s "%BASEDIR%\lib\*.*" %2\lib
-
-
-echo copying FalconJS files
-
-md %2\js
-
-xcopy /y /s "%BASEDIR%\js\*.*" %2\js
+for %%G in (
+    frameworks\libs\air
+    frameworks\projects\air
+    include
+    install\android
+    lib\android
+    lib\aot
+    lib\nai
+    lib\win
+    runtimes\air\android
+    runtimes\air\mac
+    runtimes\air\win
+    runtimes\air-captive\mac
+    runtimes\air-captive\win
+    samples\badge
+    samples\icons
+    templates\air
+    templates\extensions) do (
+    
+    if exist %FLEX_SDK_DIR%\%%G (
+        REM    Make the directory so it won't prompt for file or directory.
+        if not exist %IDE_SDK_DIR%\%%G mkdir %IDE_SDK_DIR%\%%G
+        xcopy /q /y /e /i /c /r %FLEX_SDK_DIR%\%%G %IDE_SDK_DIR%\%%G
+        if %errorlevel% NEQ 0 GOTO end
+    )
+)
 
 
-echo copying FlexJS files
+mkdir %IDE_SDK_DIR%\frameworks\libs\player
+xcopy /q /y /e /i /c /r %FLEX_SDK_DIR%\frameworks\libs\player %IDE_SDK_DIR%\frameworks\libs\player
+mkdir %IDE_SDK_DIR%\ide
+mkdir %IDE_SDK_DIR%\ide\flashbuilder
+copy /y %FLEX_SDK_DIR%\ide\flashbuilder\flashbuilder-config.xml %IDE_SDK_DIR%\ide\flashbuilder\
+copy /y %FLEX_SDK_DIR%\frameworks\mxml-manifest.xml %IDE_SDK_DIR%\frameworks
+copy /y %FLEX_SDK_DIR%\frameworks\spark-manifest.xml %IDE_SDK_DIR%\frameworks
+mkdir %IDE_SDK_DIR%\frameworks\themes
+mkdir %IDE_SDK_DIR%\frameworks\themes\Halo
+copy /y %FLEX_SDK_DIR%\frameworks\themes\Halo\halo.swc %IDE_SDK_DIR%\frameworks\themes\Halo
+copy /y %FLEX_SDK_DIR%\frameworks\macfonts.ser %IDE_SDK_DIR%\frameworks
+copy /y %FLEX_SDK_DIR%\frameworks\localFonts.ser %IDE_SDK_DIR%\frameworks
+copy /y %FLEX_SDK_DIR%\frameworks\macfonts.ser %IDE_SDK_DIR%\frameworks
+copy /y %IDE_SDK_DIR%\frameworks\air-config.xml %IDE_SDK_DIR%\frameworks\airmobile-config.xml
+mkdir %IDE_SDK_DIR%\frameworks\locale
+mkdir %IDE_SDK_DIR%\frameworks\mx
+mkdir %IDE_SDK_DIR%\frameworks\projects
+mkdir %IDE_SDK_DIR%\frameworks\rsls
 
-xcopy /y /s "%BASEDIR%\frameworks\libs\*.*" %2\frameworks\libs
-
-md %2\frameworks\as
-mkdir %2\frameworks\as\src
-
-xcopy /y /s "%BASEDIR%\frameworks\src\*.*" %2\frameworks\as\src
-
-
-move %2\frameworks\as\src\basic-manifest.xml %2\frameworks
-
-move %2\frameworks\as\src\html5-manifest.xml %2\frameworks
-
-move %2\frameworks\as\src\flex-sdk-description.xml %2
-
-move %2\frameworks\as\src\flex-config.xml %2\frameworks
-
-
-endlocal
-
-copy %1\bin\adl.* %2\bin
-copy %1\bin\adt.* %2\bin
-
-setuplaunches.bat %2 "%JAVA_HOME%\bin\java.exe"
+echo Setting up Launch Configs
+setuplaunches.bat %IDE_SDK_DIR% "%JAVA_HOME%\bin\java.exe"
 
 :end
 
