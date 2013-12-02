@@ -155,6 +155,32 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
+ * @param {Object} value The text to display.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+    prototype.set_data = function(value) {
+
+  if (value.toString) {
+    this.element.innerHTML = value.toString();
+  } else {
+    this.element.innerHTML = String(value);
+  }
+};
+
+
+/**
+ * @expose
+ * @return {Object} The text being displayed.
+ */
+org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+    prototype.get_data = function() {
+
+  return this.element.innerHTML;
+};
+
+
+/**
+ * @expose
  * @param {boolean} value The selection state.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.

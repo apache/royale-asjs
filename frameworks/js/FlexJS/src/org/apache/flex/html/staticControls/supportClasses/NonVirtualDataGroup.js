@@ -81,6 +81,15 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
 
 /**
  * @expose
+ */
+org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+    prototype.removeAllElements = function() {
+    // to do
+};
+
+
+/**
+ * @expose
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */

@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.models.DataGridModel');
 
+goog.require('org.apache.flex.core.IDataGridModel');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
 
@@ -21,6 +22,7 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
 /**
  * @constructor
  * @extends {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @implements {org.apache.flex.core.IDataGridModel}
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel =
     function() {
@@ -42,7 +44,8 @@ goog.inherits(
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataGridModel',
-                qName: 'org.apache.flex.html.staticControls.beads.models.DataGridModel' }] };
+                qName: 'org.apache.flex.html.staticControls.beads.models.DataGridModel' }],
+      interfaces: [org.apache.flex.core.IDataGridModel] };
 
 
 /**

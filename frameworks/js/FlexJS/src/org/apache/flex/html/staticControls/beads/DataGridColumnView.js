@@ -39,7 +39,9 @@ goog.inherits(
 org.apache.flex.html.staticControls.beads.DataGridColumnView.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataGridColumnView',
-                qName: 'org.apache.flex.html.staticControls.beads.DataGridColumnView' }] };
+                qName: 'org.apache.flex.html.staticControls.beads.DataGridColumnView' }],
+      interfaces: [org.apache.flex.html.staticControls.beads.IListView,
+                   org.apache.flex.core.IBeadView]};
 
 
 /**

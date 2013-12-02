@@ -15,12 +15,14 @@
 goog.provide('org.apache.flex.events.EventDispatcher');
 
 goog.require('goog.events.EventTarget');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
  * @constructor
  * @extends {goog.events.EventTarget}
+ * @implements {org.apache.flex.events.IEventDispatcher}
  */
 org.apache.flex.events.EventDispatcher = function() {
   goog.base(this);
@@ -36,7 +38,8 @@ goog.inherits(org.apache.flex.events.EventDispatcher,
  */
 org.apache.flex.events.EventDispatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'EventDispatcher',
-                qName: 'org.apache.flex.events.EventDispatcher'}] };
+                qName: 'org.apache.flex.events.EventDispatcher'}],
+      interfaces: [org.apache.flex.events.IEventDispatcher] };
 
 
 /**

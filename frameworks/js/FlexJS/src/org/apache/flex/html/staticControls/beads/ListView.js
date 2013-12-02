@@ -18,6 +18,7 @@ goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
 goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.html.staticControls.beads.IListView');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
@@ -26,7 +27,7 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataG
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IBeadView}
+ * @implements {org.apache.flex.html.staticControls.beads.IListView}
  */
 org.apache.flex.html.staticControls.beads.ListView = function() {
   this.lastSelectedIndex = -1;
@@ -44,7 +45,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
     FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListView',
                 qName: 'org.apache.flex.html.staticControls.beads.ListView' }],
-      interfaces: [org.apache.flex.core.IBeadView] };
+      interfaces: [org.apache.flex.html.staticControls.beads.IListView] };
 
 
 /**
