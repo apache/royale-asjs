@@ -120,7 +120,7 @@
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
 
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" failonerror="true"
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
@@ -139,7 +139,16 @@
             <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
             <arg value="${basedir}/src/${example}.mxml" />      
         </java>
-        
+        <fail>
+			<condition>
+				<not>
+					<or>
+						<equals arg1="${errorCode}" arg2="0" />
+						<equals arg1="${errorCode}" arg2="2" />
+					</or>
+				</not>
+			</condition>
+		</fail>
     </target>
 
     <target name="compileasjs" description="Cross-compiles ${example}">
@@ -148,7 +157,7 @@
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
 
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
@@ -167,7 +176,16 @@
             <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
             <arg value="${basedir}/src/${example}.as" />      
         </java>
-        
+        <fail>
+			<condition>
+				<not>
+					<or>
+						<equals arg1="${errorCode}" arg2="0" />
+						<equals arg1="${errorCode}" arg2="2" />
+					</or>
+				</not>
+			</condition>
+		</fail>        
     </target>
 
     <macrodef name="html-wrapper">
