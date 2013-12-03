@@ -120,7 +120,7 @@
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
 
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" failonerror="true"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
