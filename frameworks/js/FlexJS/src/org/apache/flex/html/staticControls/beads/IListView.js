@@ -12,20 +12,24 @@
  * limitations under the License.
  */
 
+/**
+ * @fileoverview
+ * @suppress {checkTypes}
+ */
+
 goog.provide('org.apache.flex.html.staticControls.beads.IListView');
 
-goog.require('org.apache.flex.html.staticControls.supportClasses.Border');
-goog.require('org.apache.flex.html.staticControls.supportClasses.ScrollBar');
+goog.require('org.apache.flex.core.IBeadView');
 
 
 
 /**
+ * IListView
+ *
  * @interface
- * @extends {org.apache.flex.core.IBeadView}
  */
 org.apache.flex.html.staticControls.beads.IListView = function() {
 };
-org.apache.flex.html.staticControls.beads.IListView.prototype.border;
 
 
 /**

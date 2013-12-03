@@ -78,7 +78,7 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @return {Object} value The selected index.
+ * @return {number} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
     get_selectedIndex = function() {
@@ -88,7 +88,7 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
 
 /**
  * @expose
- * @param {Object} value The selected index.
+ * @param {number} value The selected index.
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
     set_selectedIndex = function(value) {

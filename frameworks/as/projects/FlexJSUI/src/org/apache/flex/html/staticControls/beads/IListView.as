@@ -20,13 +20,9 @@ package org.apache.flex.html.staticControls.beads
 {	
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
 	public interface IListView
 	{
-        function get border():Border;
-		function get vScrollBar():ScrollBar;
 		function get dataGroup():IItemRendererParent;
 		function get strand():IStrand;
 	}

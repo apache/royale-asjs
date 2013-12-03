@@ -37,24 +37,24 @@ org.apache.flex.core.ValuesManager.prototype.FLEXJS_CLASS_INFO =
  * @expose
  * @return {org.apache.flex.core.ValuesManager}
  */
-org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;
+org.apache.flex.core.ValuesManager.prototype.valuesImpl;
 
 
 /**
  * @expose
  * @this {org.apache.flex.core.ValuesManager}
- * @return {object} The value.
+ * @return {Object} The value.
  */
 org.apache.flex.core.ValuesManager.get_valuesImpl = function() {
-  return this.valuesImpl;
+  return org.apache.flex.core.ValuesManager.valuesImpl;
 };
 
 
 /**
  * @expose
  * @this {org.apache.flex.core.ValuesManager}
- * @param {object} value being set.
+ * @param {Object} value being set.
  */
 org.apache.flex.core.ValuesManager.set_valuesImpl = function(value) {
-  this.valuesImpl = value;
+  org.apache.flex.core.ValuesManager.valuesImpl = value;
 };
