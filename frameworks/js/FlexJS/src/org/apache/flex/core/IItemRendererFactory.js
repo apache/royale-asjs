@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.provide('org.apache.flex.core.IItemRendererFactory');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.IDataProviderItemRendererMapper = function() {
+org.apache.flex.core.IItemRendererFactory = function() {
 };
 
 
@@ -33,6 +33,13 @@ org.apache.flex.core.IDataProviderItemRendererMapper = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IDataProviderItemRendererMapper.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'IDataProviderItemRendererMapper',
-                qName: 'org.apache.flex.core.IDataProviderItemRendererMapper' }] };
+org.apache.flex.core.IItemRendererFactory.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'IItemRendererFactory',
+                qName: 'org.apache.flex.core.IItemRendererFactory' }] };
+
+
+/**
+ * @expose
+ * @return {Object} A new instance of the itemRenderer.
+ */
+org.apache.flex.core.IItemRendererFactory.prototype.newInstance = function() {};

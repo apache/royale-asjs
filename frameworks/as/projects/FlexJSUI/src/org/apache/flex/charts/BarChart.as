@@ -16,55 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.charts
 {
-	import flash.display.Sprite;
-
-	public class DataItemRenderer extends UIItemRendererBase
+	import org.apache.flex.charts.core.IChart;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.html.staticControls.List;
+	
+	public class BarChart extends List implements IChart
 	{
-		public function DataItemRenderer()
+		public function BarChart()
 		{
 			super();
 		}
 		
-		private var _columnIndex:int;
-		public function get columnIndex():int
+		private var _series:Array;
+		public function get series():Array
 		{
-			return _columnIndex;
+			return _series;
 		}
-		public function set columnIndex(value:int):void
+		public function set series(value:Array):void
 		{
-			_columnIndex = value;
-		}
-		
-		private var _rowIndex:int;
-		public function get rowIndex():int
-		{
-			return _rowIndex;
-		}
-		public function set rowIndex(value:int):void
-		{
-			_rowIndex = value;
-		}
-		
-		private var background:Sprite;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			background = new Sprite();
-			addChild(background);
-		}
-		
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
-			background.graphics.drawRect(0, 0, this.width, this.height);
-			background.graphics.endFill();
+			_series = value;
+			dispatchEvent(new Event("seriesChanged"));
 		}
 	}
 }

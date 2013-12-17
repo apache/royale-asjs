@@ -18,26 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
-	public interface IItemRenderer extends IEventDispatcher
+	public interface IItemRendererFactory
 	{
-		function get data():Object;
-		function set data(value:Object):void;
-		
-		function get labelField():String;
-		function set labelField(value:String):void;
-		
-		function get index():int;
-		function set index(value:int):void;
-		
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
-        
-        function get hovered():Boolean;
-        function set hovered(value:Boolean):void;
-
-        function get down():Boolean;
-        function set down(value:Boolean):void;
+		function newInstance():IItemRenderer;
 	}
 }

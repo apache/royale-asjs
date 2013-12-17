@@ -16,55 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.core
 {
-	import flash.display.Sprite;
-
-	public class DataItemRenderer extends UIItemRendererBase
+	import flash.display.Shape;
+	
+	import org.apache.flex.core.UIBase;
+	
+	public class FilledRectangle extends UIBase
 	{
-		public function DataItemRenderer()
+		public function FilledRectangle()
 		{
 			super();
-		}
-		
-		private var _columnIndex:int;
-		public function get columnIndex():int
-		{
-			return _columnIndex;
-		}
-		public function set columnIndex(value:int):void
-		{
-			_columnIndex = value;
-		}
-		
-		private var _rowIndex:int;
-		public function get rowIndex():int
-		{
-			return _rowIndex;
-		}
-		public function set rowIndex(value:int):void
-		{
-			_rowIndex = value;
-		}
-		
-		private var background:Sprite;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
 			
-			background = new Sprite();
-			addChild(background);
+			_shape = new flash.display.Shape();
+			this.addElement(_shape);
 		}
 		
-		override public function updateRenderer():void
+		private var _shape:flash.display.Shape;
+		
+		private var _fillColor:uint = 0x000000;
+		public function get fillColor():uint
 		{
-			super.updateRenderer();
-			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
-			background.graphics.drawRect(0, 0, this.width, this.height);
-			background.graphics.endFill();
+			return _fillColor;
+		}
+		public function set fillColor(value:uint):void
+		{
+			_fillColor = value;
+		}
+		
+		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
+		{
+			_shape.graphics.clear();
+			_shape.graphics.beginFill(_fillColor);
+			_shape.graphics.drawRect(x, y, width, height);
+			_shape.graphics.endFill();
 		}
 	}
 }

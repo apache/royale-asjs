@@ -27,6 +27,12 @@ package
  */
 internal class FlexJSUIClasses
 {
+	import org.apache.flex.charts.beads.BarChartView; BarChartView;
+	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
+	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
+	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
+	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	
 	import org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.staticControls.accessories.TextPromptBead; TextPromptBead;
@@ -87,7 +93,8 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;
     import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
-    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;    
+    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
+	import org.apache.flex.core.FilledRectangle; FilledRectangle;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.utils.Timer; Timer;

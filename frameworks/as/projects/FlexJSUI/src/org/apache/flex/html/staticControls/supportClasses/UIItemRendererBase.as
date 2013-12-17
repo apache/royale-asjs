@@ -19,13 +19,19 @@
 package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererFactory;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	
-	public class UIItemRendererBase extends UIBase implements IItemRenderer
+	public class UIItemRendererBase extends UIBase implements IItemRenderer, IItemRendererFactory
 	{
 		public function UIItemRendererBase()
 		{
+		}
+		
+		public function newInstance():IItemRenderer
+		{
+			return new UIItemRendererBase();
 		}
 		
 		override public function addedToParent():void
@@ -51,6 +57,16 @@ package org.apache.flex.html.staticControls.supportClasses
 		public function set data(value:Object):void
 		{
 			_data = value;
+		}
+		
+		private var _labelField:String = "label";
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+		public function set labelField(value:String):void
+		{
+			_labelField = value;
 		}
 		
 		private var _index:int;

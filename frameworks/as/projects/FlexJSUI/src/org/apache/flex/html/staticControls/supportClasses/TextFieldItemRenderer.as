@@ -105,6 +105,15 @@ package org.apache.flex.html.staticControls.supportClasses
         {
             text = String(value);
         }
+		
+		public function get labelField():String
+		{
+			return null;
+		}
+		public function set labelField(value:String):void
+		{
+			// nothing to do for this
+		}
         
         private var _index:int;
         

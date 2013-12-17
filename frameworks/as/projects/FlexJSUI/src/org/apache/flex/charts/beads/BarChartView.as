@@ -16,28 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.charts.beads
 {
-	import org.apache.flex.events.IEventDispatcher;
-
-	public interface IItemRenderer extends IEventDispatcher
+	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.staticControls.beads.ListView;
+	
+	public class BarChartView extends ListView
 	{
-		function get data():Object;
-		function set data(value:Object):void;
+		public function BarChartView()
+		{
+			super();
+		}
 		
-		function get labelField():String;
-		function set labelField(value:String):void;
+		private var _strand:IStrand;
+		private var listModel:ISelectionModel;
 		
-		function get index():int;
-		function set index(value:int):void;
-		
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
-        
-        function get hovered():Boolean;
-        function set hovered(value:Boolean):void;
-
-        function get down():Boolean;
-        function set down(value:Boolean):void;
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
+		}
 	}
 }

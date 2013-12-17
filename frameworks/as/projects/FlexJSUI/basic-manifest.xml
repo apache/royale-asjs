@@ -70,5 +70,8 @@
     <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.staticControls.accessories.TextPromptBead" />
     <component id="DataGridPresentationModel" class="org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel" />
+    <component id="BarChart" class="org.apache.flex.charts.BarChart" />
+    <component id="BarChartSeries" class="org.apache.flex.charts.supportClasses.BarChartSeries" />
+    <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
 
 </componentPackage>

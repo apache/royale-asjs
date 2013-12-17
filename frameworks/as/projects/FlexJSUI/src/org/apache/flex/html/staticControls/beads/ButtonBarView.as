@@ -21,10 +21,15 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.supportClasses.Border;
 
 	public class ButtonBarView extends ListView
 	{
@@ -33,12 +38,24 @@ package org.apache.flex.html.staticControls.beads
 			super();
 		}
 		
+		private var _border:Border;
+		
+		override public function get border():Border
+		{
+			return _border;
+		}
+		
 		private var _strand:IStrand;
 		
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			super.strand = value;
+			
+			_border = new Border();
+			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
+			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
+			IParent(_strand).addElement(_border);
 		}
 	}
 }

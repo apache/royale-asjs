@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.html.staticControls.beads.ListView');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
+goog.require('org.apache.flex.core.ILayoutParent');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.html.staticControls.beads.IListView');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
@@ -27,6 +28,7 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataG
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.ILayoutParent}
  * @implements {org.apache.flex.html.staticControls.beads.IListView}
  */
 org.apache.flex.html.staticControls.beads.ListView = function() {
@@ -45,7 +47,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
     FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListView',
                 qName: 'org.apache.flex.html.staticControls.beads.ListView' }],
-      interfaces: [org.apache.flex.html.staticControls.beads.IListView] };
+      interfaces: [org.apache.flex.html.staticControls.beads.IListView, org.apache.flex.core.ILayoutParent] };
 
 
 /**
@@ -101,4 +103,48 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
     if (ir) ir.set_selected(true);
   }
   this.lastSelectedIndex = this.model.get_selectedIndex();
+};
+
+
+/**
+ * @expose
+ * @return {Object} The view that contains the layout objects.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.get_contentView = function() {
+  return this;
+};
+
+
+/**
+ * @expose
+ * @return {Object} The border for the layout area.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.get_border = function() {
+  return null;
+};
+
+
+/**
+ * @expose
+ * @return {Object} The vertical scrollbar.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.get_vScrollBar = function() {
+  return null;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The vertical scrollbar.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.set_vScrollBar = function(value) {
+};
+
+
+/**
+ * @expose
+ * @return {Object} The view that can be resized.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.get_resizeableView = function() {
+  return this;
 };

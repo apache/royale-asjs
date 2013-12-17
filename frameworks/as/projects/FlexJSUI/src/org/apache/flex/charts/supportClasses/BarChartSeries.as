@@ -16,55 +16,56 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.charts.supportClasses
 {
-	import flash.display.Sprite;
-
-	public class DataItemRenderer extends UIItemRendererBase
+	import org.apache.flex.core.IItemRendererFactory;
+	
+	import org.apache.flex.charts.core.IChartSeries;
+	
+	public class BarChartSeries implements IChartSeries
 	{
-		public function DataItemRenderer()
+		public function BarChartSeries()
 		{
-			super();
 		}
 		
-		private var _columnIndex:int;
-		public function get columnIndex():int
+		private var _xField:String = "x";
+		public function get xField():String
 		{
-			return _columnIndex;
+			return _xField;
 		}
-		public function set columnIndex(value:int):void
+		public function set xField(value:String):void
 		{
-			_columnIndex = value;
-		}
-		
-		private var _rowIndex:int;
-		public function get rowIndex():int
-		{
-			return _rowIndex;
-		}
-		public function set rowIndex(value:int):void
-		{
-			_rowIndex = value;
+			_xField = value;
 		}
 		
-		private var background:Sprite;
-		
-		override public function addedToParent():void
+		private var _yField:String;
+		public function get yField():String
 		{
-			super.addedToParent();
-			
-			background = new Sprite();
-			addChild(background);
+			return _yField;
+		}
+		public function set yField(value:String):void
+		{
+			_yField = value;
 		}
 		
-		override public function updateRenderer():void
+		private var _fillColor:uint;
+		public function get fillColor():uint
 		{
-			super.updateRenderer();
-			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
-			background.graphics.drawRect(0, 0, this.width, this.height);
-			background.graphics.endFill();
+			return _fillColor;
+		}
+		public function set fillColor(value:uint):void
+		{
+			_fillColor = value;
+		}
+		
+		private var _itemRenderer:IItemRendererFactory;
+		public function get itemRenderer():IItemRendererFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IItemRendererFactory):void
+		{
+			_itemRenderer = value;
 		}
 	}
 }

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.supportClasses
 {
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;

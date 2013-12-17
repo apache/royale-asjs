@@ -29,6 +29,17 @@
     font-size: 12px;
 }
 
+BarChart
+{
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.charts.beads.BarChartView");			
+    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.BarChartLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.ChartItemRendererFactory");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
+}
+
 Button
 {
 	background-color: #d8d8d8;

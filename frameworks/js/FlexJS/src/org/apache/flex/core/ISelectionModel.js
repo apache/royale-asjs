@@ -22,6 +22,8 @@
 
 goog.provide('org.apache.flex.core.ISelectionModel');
 
+goog.require('org.apache.flex.core.IBeadModel');
+
 
 
 /**

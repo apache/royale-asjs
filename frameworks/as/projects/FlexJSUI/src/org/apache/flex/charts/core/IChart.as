@@ -16,28 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.charts.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
-	public interface IItemRenderer extends IEventDispatcher
+	public interface IChart
 	{
-		function get data():Object;
-		function set data(value:Object):void;
-		
-		function get labelField():String;
-		function set labelField(value:String):void;
-		
-		function get index():int;
-		function set index(value:int):void;
-		
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
-        
-        function get hovered():Boolean;
-        function set hovered(value:Boolean):void;
-
-        function get down():Boolean;
-        function set down(value:Boolean):void;
+		function get series():Array;
+		function set series(value:Array):void;
 	}
 }

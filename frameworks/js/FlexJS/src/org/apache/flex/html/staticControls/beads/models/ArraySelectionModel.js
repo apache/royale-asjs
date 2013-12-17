@@ -14,7 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 
-goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.ISelectionModel');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 
@@ -22,7 +22,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IBeadModel}
+ * @implements {org.apache.flex.core.ISelectionModel}
  */
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel =
     function() {
@@ -42,7 +42,7 @@ goog.inherits(
 org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ArraySelectionModel',
                 qName: 'org.apache.flex.html.staticControls.beads.models.ArraySelectionModel' }],
-      interfaces: [org.apache.flex.core.IBeadModel] };
+      interfaces: [org.apache.flex.core.ISelectionModel] };
 
 
 /**
