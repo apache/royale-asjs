@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<launchConfiguration type='org.eclipse.ui.externaltools.ProgramLaunchConfigurationType'>
+<booleanAttribute key='org.eclipse.debug.core.appendEnvironmentVariables' value='false'/>
+<listAttribute key='org.eclipse.debug.ui.favoriteGroups'>
+<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
+</listAttribute>
+<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/>
+<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$JAVA_EXEC'/>
+<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-Xmx384m -Dfile.encoding=UTF8 -Dsun.io.useCanonCaches=false -Dflexcompiler=&quot;$FLEXJS_HOME&quot; -Dflexlib=&quot;$FLEXJS_HOME/frameworks&quot; -jar &quot;$FLEXJS_HOME/js/lib/mxmlc.jar&quot; -compiler.mxml.children-as-data -compiler.binding-value-change-event-type=valueChange -js-output-type=FLEXJS -sdk-js-lib=&quot;$FLEXJS_HOME/frameworks/js/FlexJS/src&quot; -fb &quot;${project_loc}&quot;'/>
+</launchConfiguration>
