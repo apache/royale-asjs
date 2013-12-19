@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="asjs_ide_install" default="install" basedir=".">
+
+    <property name="FLEXJS_HOME" location="${basedir}"/>
+    
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="bundle" value="en_US" />
+    <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
+    <property file="${FLEXJS_HOME}/installer.properties/en_US.properties"/>
+    <property name="download.dir" value="${FLEXJS_HOME}/in"/>
+    
+    <property name="air.sdk.version" value="3.9"/>
+    <property name="flash.sdk.version" value="11.9"/>
+    <property name="flex.sdk.version" value="4.11.0"/>
+    <property name="falcon.version" value="0.0.1"/>
+    
+    <property name="flex.url.path" value="http://archive.apache.org/dist/flex/${flex.sdk.version}/binaries" />
+    <property name="flex.url.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
+
+    <property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />
+    <property name="falcon.url.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
+    
+    <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
+    <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
+    
+    <property name="xml.properties" value="${basedir}/../flex-utilities/installer/src/installer/sdk-installer-config-4.0.xml" />
+    
+    <available file="${xml.properties}" property="xmlexists" value="true" />
+    <xmlproperty file="${xml.properties}" semanticAttributes="true" collapseAttributes="true"/>
+    
+    <condition property="platform" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="platform" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="platform" value="linux">
+        <os family="unix" />
+    </condition>
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+        <os family="unix" />
+    </condition>
+    
+    <condition property="java.home" value="${env.JAVA_HOME}" >
+        <and>
+            <available file="${env.JAVA_HOME}" type="dir" />
+            <not>
+                <equals arg1="" arg2="${env.JAVA_HOME}" />
+            </not>
+        </and>
+    </condition>
+
+    <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
+    <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
+    <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
+    <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
+    <property name="flash.sdk.url.path.ref" value="flash.sdk.path.${flash.sdk.version}" />
+    <property name="flash.sdk.url.path" refid="${flash.sdk.url.path.ref}" />
+    <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
+    <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
+    <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
+    <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
+    
+    <target name="install" depends="find-java,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+        <echo>${basedir} is now an IDE compatible folder</echo>
+    </target>
+    
+    <target name="find-java" depends="find-java-executable-windows,find-java-executable-others,search-java,check-java" description="get path to java executable" />
+    
+    <target name="check-java" description="fail if java doesn't exist">
+        <fail message="${unable.to.find.java}">
+            <condition>
+                <not>
+                    <isset property="java.executable" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="find-java-executable-windows" if="isWindows">
+        <echo>find-java-executable Windows</echo>
+        <condition property="java.executable" value="${java.home}/bin/java.exe" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}/java.exe" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="find-java-executable-others" unless="isWindows">
+        <echo>find-java-executable non-Windows</echo>
+        <condition property="java.executable" value="${java.home}/bin/java" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}" />
+            </and>
+        </condition>
+        <echo>${java.executable}</echo>
+    </target>
+    
+    <target name="search-java" depends="search-java-windows,search-java-others" description="search for java executable" unless="java.home">
+    </target>
+    
+    <target name="search-java-windows" unless="java.home">
+        <echo message="searching for Java on Windows" />
+        <exec executable="where.exe" os="windows" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+    </target>
+    <target name="search-java-others" unless="java.home">
+        <echo message="searching for Java on non-Windows" />
+        <exec executable="which" os="mac,linux" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+        <echo message="got ${java.executable}" />
+    </target>
+    
+    <target name="check-binary" description="Make sure this is a binary package">
+        <fail message="${basedir} is not an FlexJS binary package">
+            <condition>
+                <not>
+                    <available file="${basedir}/frameworks/as/libs/FlexJSUI.swc" />
+                </not>
+            </condition>
+        </fail>
+        <fail message="${basedir} is not an FlexJS binary package and is probably a git repo">
+            <condition>
+                <available file="$[basedir}/.gitignore" />
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="ask-licenses" depends="ask-goog,ask-air,ask-flash,ask-swfobject" description="Ask about the various licenses">
+	</target>
+    
+    <target name="ask-goog" unless="goog.donot.ask"
+        description="Prompt the user before downloading Google Closure Library">
+        
+        <input
+        message="${goog.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.goog.download"/>
+        <condition property="do.goog.install">
+            <equals arg1="${yes}" arg2="${input.goog.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="goog.donot.ask" value="set"/>
+    </target>
+    
+    <target name="ask-air" unless="air.donot.ask"
+        description="Prompt the user before downloading AIR">
+        
+        <input
+        message="${air.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.air.download"/>
+        <condition property="do.air.install">
+            <equals arg1="${yes}" arg2="${input.air.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="air.donot.ask" value="set"/>
+    </target>
+
+    <target name="ask-flash" unless="flash.donot.ask"
+        description="Prompt the user before downloading playerglobal.swc">
+        
+        <input
+        message="${flash.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.flash.download"/>
+        <condition property="do.flash.install">
+            <equals arg1="${yes}" arg2="${input.flash.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="flash.donot.ask" value="set"/>
+    </target>
+
+    <target name="ask-swfobject" unless="swfobject.donot.ask"
+        description="Prompt the user before downloading SWFObject">
+        
+        <input
+        message="${swfobject.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.swfobject.download"/>
+        <condition property="do.swfobject.install">
+            <equals arg1="${yes}" arg2="${input.swfobject.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="swfobject.donot.ask" value="set"/>
+    </target>
+
+    <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
+        description="downloads and installs Falcon compiler">
+        <unzip src="${download.dir}/${falcon.url.file}" dest="${download.dir}/falcon"/>
+        <ant dir="${download.dir}/falcon" antfile="installer.xml" >
+        </ant>
+    </target>
+    <target name="falcon-check" description="Checks if Falcon compiler has been downloaded.">
+        <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" property="falcon.present"/>
+    </target>
+    <target name="falcon-get-check" >
+        <available file="${download.dir}/${falcon.url.file}" property="falcon.downloaded" />
+    </target>
+    <target name="falcon-get" depends="falcon-get-check" unless="falcon.downloaded" >
+        <mkdir dir="${download.dir}"/>
+        <get src="${falcon.url.path}/${falcon.url.file}"
+        dest="${download.dir}/${falcon.url.file}"
+        verbose="false"/>
+    </target>
+    
+    <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
+        description="downloads and installs some pieces of the Flex SDK">
+        <mkdir dir="${download.dir}"/>
+        <get src="${flex.url.path}/${flex.url.file}"
+        dest="${download.dir}/${flex.url.file}"
+        verbose="false"/>
+        <unzip src="${download.dir}/${flex.url.file}" dest="${download.dir}/flex"/>
+        <copy todir="${FLEXJS_HOME}" >
+            <fileset dir="${download.dir}/flex">
+                <include name="bin/**" />
+                <include name="lib/**/**" />
+                <include name="templates/swfobject/**/**" />
+            </fileset>
+        </copy>
+    </target>
+    <target name="flex-check" description="Checks if Flex SDK has been downloaded.">
+        <mkdir dir="${download.dir}"/>
+        <available file="${FLEXJS_HOME}/lib/mxmlc.jar" property="flex.sdk.present"/>
+    </target>
+    <target name="flex-get-check" >
+        <available file="${download.dir}/${flex.url.file}" property="flex.downloaded" />
+    </target>
+    <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
+        <get src="${flex.url.path}/${flex.url.file}"
+        dest="${download.dir}/${flex.url.file}"
+        verbose="false"/>
+    </target>
+    
+    <target name="get-third-party-files" depends="goog-download,air-download,flash-download,swfobject-download" />
+    
+    <!-- Because this requires a network connection it downloads artifacts only if it doesn't already exist. -->
+    <target name="goog-check" description="Checks if Google Closure Library has been downloaded.">
+        <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" property="goog.lib.present"/>
+    </target>
+    
+    <target name="goog-download" depends="goog-check" unless="goog.lib.present"
+        description="Downloads Google Closure Library and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="goog-get" />
+        <unzip src="${download.dir}/${goog.lib.url.file}" dest="${FLEXJS_HOME}/js/lib/google/closure-library" />
+    </target>
+    
+    <target name="goog-get-check" >
+        <available file="${download.dir}/${goog.lib.url.file}" property="goog.downloaded" />
+    </target>
+            
+    <target name="goog-get" depends="goog-get-check" unless="goog.downloaded" >
+        <get src="${goog.lib.url.path}/${goog.lib.url.file}"
+        dest="${download.dir}/${goog.lib.url.file}"
+        verbose="false"/>
+    </target>
+    
+    <target name="air-check" description="Checks if AIR SDK has been downloaded.">
+        <available file="${FLEXJS_HOME}/lib/adt.jar" property="air.jar.present"/>
+    </target>
+    
+    <target name="air-download" depends="air-check" unless="air.jar.present"
+        description="Downloads AIR SDK and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="air-get" />
+
+        <antcall target="air-unzip" />
+        <antcall target="air-untar" />
+        
+        <copy todir="${FLEXJS_HOME}" >
+            <fileset dir="${download.dir}/airsdk">
+                <include name="AIR SDK license.pdf" />
+                <include name="AIR SDK Readme.txt" />
+                <include name="bin/adl.exe" />
+                <include name="bin/adl" />
+                <include name="bin/adl.bat" />
+                <include name="frameworks/libs/air/**" />
+                <include name="frameworks/projects/air/**" />
+                <include name="include/**" />
+                <include name="install/android/**" />
+                <include name="lib/adt.jar" />
+                <include name="lib/android/**" />
+                <include name="lib/aot/**" />
+                <include name="lib/nai/**" />
+                <include name="lib/win/**" />
+                <include name="runtimes/**" />
+                <include name="samples/badge/**" />
+                <include name="samples/descriptor-sample.xml" />
+                <include name="samples/icons/**" />
+                <include name="templates/air/**" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="air-get-check" >
+        <available file="${download.dir}/${air.sdk.url.file}" property="air.downloaded" />
+    </target>
+        
+    <target name="air-get" depends="air-get-check" unless="air.downloaded" >
+        <get src="${air.sdk.url.path}/${air.sdk.url.file}"
+            dest="${download.dir}/${air.sdk.url.file}"
+            verbose="false"/>
+    </target>
+    
+    <target name="air-unzip" if="isWindows">
+        <unzip src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+    </target>
+    <target name="air-untar" unless="isWindows">
+        <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+    </target>
+    
+    <!-- Because this requires a network connection it downloads Flash SDK only if it doesn't already exist. -->
+    <target name="flash-check" description="Checks if Flash SDK has been downloaded.">
+        <available file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" property="flash.swc.present"/>
+    </target>
+    
+    <target name="flash-download" depends="flash-check" unless="flash.swc.present"
+        description="Downloads playerglobal.swc and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}"/>
+        <get src="${flash.sdk.url.path}/${flash.sdk.url.file}"
+        dest="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc"
+        verbose="false"/>
+    </target>
+    
+    <!-- swfobject.js (Version 2.2) -->
+    <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
+    <target name="swfobject-check" description="Checks if SWFObject has been downloaded.">
+        <available file="${basedir}/../templates/swfobject/swfobject.js" property="swfobject.js.present"/>
+    </target>
+    
+    <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present"
+        description="Copies SWFObject from code.google.com">
+        
+        <mkdir dir="${download.dir}"/>
+        <get src="http://swfobject.googlecode.com/files/swfobject_2_2.zip"
+            dest="${download.dir}/swfobject_2_2.zip"
+            verbose="false"/>
+        
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
+            <patternset>
+                <include name="swfobject/expressInstall.swf"/>
+                <include name="swfobject/swfobject.js"/>
+            </patternset>
+        </unzip>
+    </target>
+    
+    <target name="fixup-config-files">
+        <copy file="${FLEXJS_HOME}/frameworks/as/flex-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" />
+        <copy file="${FLEXJS_HOME}/frameworks/as/air-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/air-config.xml" />
+        <replace file="${FLEXJS_HOME}/frameworks/flex-config.xml">
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="@locale@"
+                            value="${bundle}"/>
+            <replacefilter token="{playerglobalHome}"
+                            value="libs/player"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/frameworks/air-config.xml" >
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="@locale@"
+                            value="${bundle}"/>
+            <replacefilter token="{playerglobalHome}"
+                            value="libs/player"/>
+        </replace>
+    </target>
+    
+    <target name="hack-fb-files" description="create files needed by Adobe Flash Builder">
+        <!-- read in flex-sdk-description -->
+        <xmlproperty file="${FLEXJS_HOME}/flex-sdk-description.xml" semanticAttributes="true" collapseAttributes="true"/>
+        <!-- write out new one based on original values -->
+        <echo file="${FLEXJS_HOME}/flex-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;flex-sdk-description&gt;
+&lt;name&gt;${release} FP${flash.sdk.version} AIR${air.sdk.version} ${bundle}&lt;/name&gt;
+&lt;version&gt;${release.version}&lt;/version&gt;
+&lt;build&gt;${flex-sdk-description.build}&lt;/build&gt;
+&lt;/flex-sdk-description&gt;
+</echo>
+
+        <echo file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;flashbuilder-config&gt;
+&lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
+&lt;/flashbuilder-config&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;componentPackage&gt;
+&lt;/componentPackage&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;componentPackage&gt;
+&lt;/componentPackage&gt;
+</echo>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/locale" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/mx" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
+        <copy file="${FLEXJS_HOME}/frameworks/as/libs/MXMLCClasses.swc"
+tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
+        <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
+            tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
+        <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
+    </target>
+    
+    <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (COMPC).launch">
+            <replacefilter
+            token="$JAVA_EXEC"
+            value="${java.executable}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Debug Build).launch">
+            <replacefilter
+            token="$JAVA_EXEC"
+            value="${java.executable}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug and Release Build).launch">
+            <replacefilter
+            token="$JAVA_EXEC"
+            value="${java.executable}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
+            <replacefilter
+            token="$JAVA_EXEC"
+            value="${java.executable}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Release Build).launch">
+            <replacefilter
+            token="$JAVA_EXEC"
+            value="${java.executable}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+
+    </target>
+    
+</project>
