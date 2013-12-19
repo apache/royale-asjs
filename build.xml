@@ -472,6 +472,8 @@
                 <include name="build.properties"/>
 				<include name="env-template.properties"/>
                 <include name="flex-sdk-description.xml"/>
+                <include name="installer.xml"/>
+                <include name="installer.properties/**"/>
                 <include name="READme"/>
                 <include name="RELEASE_NOTES"/>
             </fileset>
@@ -495,15 +497,11 @@
         </copy> 
         --> 
 
-        <!-- ide
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
             	<include name="flashbuilder/**"/>
-            	<include name="*.sh"/>
-            	<include name="*.bat"/>
             </fileset>
         </copy>
-        -->
         
         <!-- samples -->
         <copy todir="${basedir}/temp/examples">
@@ -1285,35 +1283,12 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <!--          Start of binary files           -->
-                <!-- exclude Flash Professional file used for integration with Flash Professional -->
-                <exclude name="frameworks/projects/flash-integration/FLA/ContentHolder.fla"/>
-                <!-- exclude font embedded in asdoc example -->
-                <exclude name="frameworks/projects/framework/asdoc/en_US/mx/effects/examples/assets/OpenSans-Regular.ttf"/>
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
                 <exclude name="**/*.gif"/>
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
-                <!-- exclude batik icon -->
-                <exclude name="modules/thirdparty/batik/sources/*.icns"/>
-                <!--          End of binary files           -->
-                <!-- exclude batik manifests -->
-                <exclude name="modules/thirdparty/batik/sources/*.mf"/>
-                <!-- exclude text files -->
-                <exclude name="modules/thirdparty/batik/lib/**/LICENSE*.txt"/>
-                <exclude name="modules/thirdparty/batik/lib/**/README*.txt"/>
-                <!-- exclude w3c sources -->
-                <exclude name="modules/thirdparty/batik/resources/org/apache/flex/forks/batik/dom/svg/resources/*.mod"/>
-                <exclude name="modules/thirdparty/batik/resources/org/apache/flex/forks/batik/dom/svg/resources/*.dtd"/>
-                <exclude name="modules/thirdparty/batik/sources/org/w3c/css/sac/LexicalUnit.java"/>
-                <exclude name="modules/thirdparty/batik/sources/org/w3c/flex/forks/css/sac/*.java"/>
-                <exclude name="modules/thirdparty/batik/sources/org/w3c/flex/forks/css/sac/helpers/ParserFactory.java"/>
-                <!-- exclude config files -->
-                <exclude name="modules/thirdparty/batik/svn-revision"/>
-                <exclude name="modules/thirdparty/xerces-patch/src/java/META-INF/services/javax.xml.parsers.SAXParserFactory"/>
-                <exclude name="modules/thirdparty/xerces-patch/src/java/META-INF/services/org.apache.xerces.xni.parser.XMLParserConfiguration"/>
-                <exclude name="modules/thirdparty/xerces-patch/src/java/org/apache/xerces/jaxp/javax.xml.parsers.SAXParserFactory"/>
             </fileset>
         </rat:report>
     </target>
