@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
+	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     

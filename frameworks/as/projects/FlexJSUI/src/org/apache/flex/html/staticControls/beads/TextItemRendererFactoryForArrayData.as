@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls.beads
 {
     import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IDataProviderItemRendererMapper;
     import org.apache.flex.core.IItemRendererClassFactory;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ISelectionModel;

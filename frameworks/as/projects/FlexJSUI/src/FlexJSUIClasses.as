@@ -29,6 +29,7 @@ internal class FlexJSUIClasses
 {
 	import org.apache.flex.charts.beads.BarChartView; BarChartView;
 	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
+	import org.apache.flex.charts.beads.XAxisBead; XAxisBead;
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;

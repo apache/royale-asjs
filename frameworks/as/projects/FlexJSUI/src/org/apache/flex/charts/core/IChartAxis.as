@@ -16,46 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.charts.core
 {
-	import flash.display.Shape;
-	
-	import org.apache.flex.core.UIBase;
-	
-	public class FilledRectangle extends UIBase
+	public interface IChartAxis
 	{
-		public function FilledRectangle()
-		{
-			super();
-			
-			_shape = new flash.display.Shape();
-			this.addElement(_shape);
-		}
 		
-		private var _shape:flash.display.Shape;
-		
-		private var _fillColor:uint = 0x000000;
-		public function get fillColor():uint
-		{
-			return _fillColor;
-		}
-		public function set fillColor(value:uint):void
-		{
-			_fillColor = value;
-		}
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			drawRect(0, 0, this.width, this.height);
-		}
-		
-		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
-		{
-			_shape.graphics.clear();
-			_shape.graphics.beginFill(_fillColor);
-			_shape.graphics.drawRect(x, y, width, height);
-			_shape.graphics.endFill();
-		}
 	}
 }

@@ -46,6 +46,15 @@ org.apache.flex.core.FilledRectangle.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
+ * @override
+ */
+org.apache.flex.core.FilledRectangle.prototype.addedToParent = function() {
+  goog.base(this, 'addedToParent');
+  this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+};
+
+
+/**
  * @expose
  * @return {number} The fill color.
  */
@@ -70,6 +79,7 @@ org.apache.flex.core.UIBase.prototype.set_fillColor = function(value) {
  * @param {number} height The height.
  */
 org.apache.flex.core.UIBase.prototype.drawRect = function(x, y, width, height) {
+  this.element.style.position = 'absolute';
   this.element.style.backgroundColor = '#' + this.fillColor_.toString(16);
   if (!isNaN(x)) this.set_x(x);
   if (!isNaN(y)) this.set_y(y);

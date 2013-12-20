@@ -32,6 +32,12 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData =
 
 
 /**
+ * @expose
+ */
+org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}

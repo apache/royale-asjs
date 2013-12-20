@@ -263,11 +263,33 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
 
 /**
  * @expose
+ * @return {number} The pixel count from the left edge.
+ */
+org.apache.flex.core.UIBase.prototype.get_x = function() {
+  var strpixels = this.positioner.style.left;
+  var pixels = parseFloat(strpixels);
+  return pixels;
+};
+
+
+/**
+ * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
   this.positioner.style.position = 'absolute';
   this.positioner.style.top = pixels.toString() + 'px';
+};
+
+
+/**
+ * @expose
+ * @return {number} The pixel count from the top edge.
+ */
+org.apache.flex.core.UIBase.prototype.get_y = function() {
+  var strpixels = this.positioner.style.top;
+  var pixels = parseFloat(strpixels);
+  return pixels;
 };
 
 
