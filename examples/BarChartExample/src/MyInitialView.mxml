@@ -20,7 +20,10 @@ limitations under the License.
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
-				xmlns:models="models.*">
+				xmlns:models="models.*"
+				xmlns:custom="org.apache.flex.html.custom.*"
+				xmlns:customBeads="org.apache.flex.html.custom.beads.*"
+				xmlns:customSup="org.apache.flex.html.custom.supportClasses.*">
 	<fx:Script>
 		<![CDATA[
 			
@@ -28,29 +31,45 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
+	<fx:Style>
+		@namespace custom "org.apache.flex.html.custom.*";
+		
+		custom|BarChart
+		{
+			IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+			IBeadView:  ClassReference("org.apache.flex.html.custom.beads.BarChartView");
+			IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
+			IBeadLayout: ClassReference("org.apache.flex.html.custom.beads.layout.BarChartLayout");
+			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.custom.beads.ChartItemRendererFactory");
+			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+			IItemRenderer: ClassReference("org.apache.flex.html.custom.supportClasses.BoxItemRenderer");
+		}
+	</fx:Style>
+	
 	<basic:Label id="output" x="450" y="30" width="100" />
 	
-	<basic:BarChart id="barChart" x="20" y="20" width="400" height="200">
-		<basic:beads>
+	<custom:BarChart id="barChart" x="20" y="20" width="400" height="200">
+		<custom:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
-		</basic:beads>
-		<basic:series>
-			<basic:BarChartSeries yField="sales" 
+			<customBeads:XAxisBead labelField="title" />
+		</custom:beads>
+		<custom:series>
+			<customSup:BarChartSeries yField="sales" 
 								  fillColor="0xFF964D">
-				<basic:itemRenderer>
-					<basic:BoxItemRenderer />
-				</basic:itemRenderer>
-			</basic:BarChartSeries>
-			<basic:BarChartSeries yField="detail" 
+				<customSup:itemRenderer>
+					<customSup:BoxItemRenderer />
+				</customSup:itemRenderer>
+			</customSup:BarChartSeries>
+			<customSup:BarChartSeries yField="detail" 
 								  fillColor="0x964DFF">
-				<basic:itemRenderer>
-					<basic:BoxItemRenderer />
-				</basic:itemRenderer>
-			</basic:BarChartSeries>
-		</basic:series>
-	</basic:BarChart>
+				<customSup:itemRenderer>
+					<customSup:BoxItemRenderer />
+				</customSup:itemRenderer>
+			</customSup:BarChartSeries>
+		</custom:series>
+	</custom:BarChart>
 	
 </basic:ViewBase>

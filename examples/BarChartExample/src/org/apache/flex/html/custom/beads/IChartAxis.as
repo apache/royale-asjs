@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-This example demonstrates how to construct a BarChart. The example shows a chart
-with two BarSeries on the same axis. 
-
-The sample uses the BarChart source files found in the project, not in the FlexJS
-SDK. This allows you to cross-compile the component to JavaScript and produce an
-HTML chart.
+package org.apache.flex.html.custom.beads
+{
+	public interface IChartAxis
+	{
+		
+	}
+}

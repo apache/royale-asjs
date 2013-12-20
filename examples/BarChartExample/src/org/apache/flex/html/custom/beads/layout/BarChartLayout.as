@@ -19,6 +19,7 @@
 package org.apache.flex.html.custom.beads.layout
 {	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -28,7 +29,6 @@ package org.apache.flex.html.custom.beads.layout
 	import org.apache.flex.html.custom.beads.IChart;
 	import org.apache.flex.html.custom.beads.IChartItemRenderer;
 	import org.apache.flex.html.custom.supportClasses.BarChartSeries;
-	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	
 	public class BarChartLayout implements IBeadLayout
 	{
@@ -111,6 +111,8 @@ package org.apache.flex.html.custom.beads.layout
 				xpos += gap;
 				
 			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

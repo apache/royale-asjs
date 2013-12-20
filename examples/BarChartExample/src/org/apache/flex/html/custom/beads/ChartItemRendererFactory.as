@@ -19,13 +19,13 @@
 package org.apache.flex.html.custom.beads
 {
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper;
 	import org.apache.flex.html.staticControls.beads.IListView;
 	
 	public class ChartItemRendererFactory implements IBead, IDataProviderItemRendererMapper
