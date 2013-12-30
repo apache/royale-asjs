@@ -254,16 +254,18 @@
     
     <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
         description="downloads and installs some pieces of the Flex SDK">
-        <mkdir dir="${download.dir}"/>
-        <get src="${flex.url.path}/${flex.url.file}"
-        dest="${download.dir}/${flex.url.file}"
-        verbose="false"/>
-        <unzip src="${download.dir}/${flex.url.file}" dest="${download.dir}/flex"/>
+        <unzip src="${download.dir}/${flex.url.file}" dest="${download.dir}/flex">
+            <patternset>
+                <include name="bin/**" />
+                <include name="lib/**" />
+                <include name="templates/swfobject/**" />
+            </patternset>
+        </unzip>
         <copy todir="${FLEXJS_HOME}" >
             <fileset dir="${download.dir}/flex">
                 <include name="bin/**" />
-                <include name="lib/**/**" />
-                <include name="templates/swfobject/**/**" />
+                <include name="lib/**" />
+                <include name="templates/swfobject/**" />
             </fileset>
         </copy>
     </target>
