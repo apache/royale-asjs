@@ -317,10 +317,24 @@
         <mkdir dir="${download.dir}"/>
         <antcall target="air-get" />
 
-        <antcall target="air-unzip" />
-        <antcall target="air-untar" />
+        <antcall target="air-setup-win" />
+        <antcall target="air-setup-mac" />
         
-        <copy todir="${FLEXJS_HOME}" >
+    </target>
+
+    <target name="air-get-check" >
+        <available file="${download.dir}/${air.sdk.url.file}" property="air.downloaded" />
+    </target>
+        
+    <target name="air-get" depends="air-get-check" unless="air.downloaded" >
+        <get src="${air.sdk.url.path}/${air.sdk.url.file}"
+            dest="${download.dir}/${air.sdk.url.file}"
+            verbose="false"/>
+    </target>
+    
+    <target name="air-setup-win" if="isWindows">
+        <unzip src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+        <copy todir="${FLEXJS_HOME}" overwrite="true">
             <fileset dir="${download.dir}/airsdk">
                 <include name="AIR SDK license.pdf" />
                 <include name="AIR SDK Readme.txt" />
@@ -344,24 +358,127 @@
             </fileset>
         </copy>
     </target>
+    
+    <target name="air-setup-mac" unless="isWindows">
+        <!--The tbz2 contains symlinks which Ant does not preserve
+        <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />-->
+        <mkdir dir="${download.dir}/airsdk" />
+        <move file="${download.dir}/${air.sdk.url.file}" todir="${download.dir}/airsdk" />
+        <exec executable="bunzip2" dir="${download.dir}/airsdk" >
+            <arg value="${air.sdk.url.file}" />
+        </exec>
+        <echo file="${basedir}/airtar.properties">air.tar.name=${air.sdk.url.file}</echo>
+        <replace file="${basedir}/airtar.properties" token="tbz2" value="tar" />
+        <property file="${basedir}/airtar.properties" />
+        <exec executable="tar" dir="${download.dir}/airsdk" >
+            <arg value="-xvf" />
+            <arg value="${air.tar.name}" />
+        </exec>
+        <delete file="${basedir}/airtar.properties" />
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK license.pdf"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK Readme.txt"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adl"/>
+            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="lib" />
+            <param name="filename" value="adt.jar"/>
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="samples" />
+            <param name="filename" value="descriptor-sample.xml"/>
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/libs/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/libs/air" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/projects/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/projects/air" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="include" />
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir-if-exists">
+            <param name="srcdir" value="install/android" />
+            <param name="destdir" value="${FLEXJS_HOME}/install/android" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/android" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/aot" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/nai" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="runtimes" />
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/badge" />
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/icons" />
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+    </target>
+    
+    <target name="mac-copy-file" description="copies a file">
+        <mkdir dir="${destdir}" />
+        <exec executable="cp" dir="${FLEXJS_HOME}">
+            <arg value="-p" />
+            <arg value="${download.dir}/airsdk/${srcdir}/${filename}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+    
+    <target name="mac-copy-dir" description="copies a directory using exec and cp so that symbolic links are preserved">
+        <exec executable="rsync" dir="${FLEXJS_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${download.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
 
-    <target name="air-get-check" >
-        <available file="${download.dir}/${air.sdk.url.file}" property="air.downloaded" />
-    </target>
-        
-    <target name="air-get" depends="air-get-check" unless="air.downloaded" >
-        <get src="${air.sdk.url.path}/${air.sdk.url.file}"
-            dest="${download.dir}/${air.sdk.url.file}"
-            verbose="false"/>
-    </target>
-    
-    <target name="air-unzip" if="isWindows">
-        <unzip src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
-    </target>
-    <target name="air-untar" unless="isWindows">
-        <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+    <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and cp so that symbolic links are preserved">
+        <exec executable="rsync" dir="${FLEXJS_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${download.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
     </target>
     
+    <target name="mac-check-exists">
+        <available file="${download.dir}/airsdk/${srcdir}" type="dir" property="${srcdir}.exists" />
+    </target>
+
     <!-- Because this requires a network connection it downloads Flash SDK only if it doesn't already exist. -->
     <target name="flash-check" description="Checks if Flash SDK has been downloaded.">
         <available file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" property="flash.swc.present"/>
