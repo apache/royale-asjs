@@ -58,6 +58,30 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   var cName;
   var selectorName;
 
+  if ('className' in thisObject)
+  {
+    cName = thisObject.className;
+    if (state)
+    {
+        selectorName = cName + ':' + state;
+        o = values['.' + selectorName];
+        if (o)
+        {
+            value = o[valueName];
+            if (value !== undefined)
+                return value;
+        }
+    }
+
+    o = values['.' + cName];
+    if (o)
+    {
+        value = o[valueName];
+        if (value !== undefined)
+          return value;
+    }
+  }
+
   cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   if (state)
   {
