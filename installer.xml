@@ -122,7 +122,7 @@
         <condition property="java.executable" value="${java.home}/bin/java.exe" >
             <and>
                 <isset property="java.home" />
-                <available file="${java.home}/java.exe" />
+                <available file="${java.home}/bin/java.exe" />
             </and>
         </condition>
     </target>
