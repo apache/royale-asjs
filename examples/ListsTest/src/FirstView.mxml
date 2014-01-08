@@ -34,7 +34,9 @@ limitations under the License.
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 		@namespace sample "products.*";
 		
-		
+		/* use className="productList" on the List element in place of itemRenderer if you want to specify
+		 * the itemRenderer in a style definition along with other settings.
+		 */
 		.productList {
 			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
 			IItemRenderer: ClassReference("products.ProductItemRenderer");
@@ -47,7 +49,7 @@ limitations under the License.
 		
 	</fx:Style>
 	
-	<basic:List id="productList"  x="20" y="20" width="200" height="150" className="productList" change="handleListChange()">
+	<basic:List id="productList" itemRenderer="products.ProductItemRenderer" x="20" y="20" width="200" height="150" change="handleListChange()">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
