@@ -21,6 +21,8 @@ package org.apache.flex.core
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     
+    import mx.core.ClassFactory;
+    
     import org.apache.flex.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]
@@ -36,9 +38,22 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            itemRendererClass = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
-            if (itemRendererClass)
+			
+			// see if the _strand has an itemRenderer property that isn't empty. if that's
+			// true, use that value instead of pulling it from the the style
+			if (Object(_strand).hasOwnProperty("itemRenderer")) {
+				itemRendererClassFactory = Object(_strand)["itemRenderer"] as ClassFactory;
+				if (itemRendererClassFactory) {
+					createFunction = createFromClass;
+					return;
+				}
+			}
+			
+            var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
+            if (itemRendererClass) {
+				itemRendererClassFactory = new ClassFactory(itemRendererClass);
                 createFunction = createFromClass;
+			}
         }
 
 		public function get MXMLDescriptor():Array
@@ -65,11 +80,11 @@ package org.apache.flex.core
             return MXMLDataInterpreter.generateMXMLArray(document, parent as IParent, MXMLDescriptor, true)[0];
         }
         
-        public var itemRendererClass:Class;
+        public var itemRendererClassFactory:ClassFactory;
         
         public function createFromClass(parent:IItemRendererParent):IItemRenderer
         {
-            var renderer:IItemRenderer = new itemRendererClass();
+            var renderer:IItemRenderer = itemRendererClassFactory.newInstance();
             parent.addElement(renderer);
             return renderer;
         }

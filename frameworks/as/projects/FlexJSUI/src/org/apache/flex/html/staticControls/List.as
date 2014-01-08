@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
+	import mx.core.IFactory;
+	
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
@@ -74,6 +76,16 @@ package org.apache.flex.html.staticControls
 		public function set selectedItem(value:Object):void
 		{
 			ISelectionModel(model).selectedItem = value;
+		}
+		
+		private var _itemRenderer:IFactory;
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
 		}
 		
 		override public function addedToParent():void
