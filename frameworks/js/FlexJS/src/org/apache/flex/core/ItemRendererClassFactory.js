@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.core.ItemRendererClassFactory');
 
+goog.require('mx.core.ClassFactory');
 goog.require('org.apache.flex.core.IItemRendererClassFactory');
 goog.require('org.apache.flex.core.ValuesManager');
 
@@ -48,10 +49,21 @@ org.apache.flex.core.ItemRendererClassFactory.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
+  // see if the _strand has an itemRenderer property that isn't empty. if that's
+  // true, use that value instead of pulling it from the the style
+  if (this.strand_.hasOwnProperty('itemRenderer')) {
+    this.itemRendererClassFactory = this.strand_['itemRenderer'];
+    if (this.itemRendererClassFactory) {
+        this.createFunction = this.createFromClass;
+        return;
+    }
+  }
+
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
     this.itemRendererClass = org.apache.flex.core.ValuesManager.valuesImpl.
         getValue(this.strand_, 'iItemRenderer');
     if (this.itemRendererClass) {
+      this.itemRendererClassFactory = new mx.core.ClassFactory(this.itemRendererClass);
       this.createFunction = this.createFromClass;
     }
   }
@@ -76,7 +88,7 @@ org.apache.flex.core.ItemRendererClassFactory.
  */
 org.apache.flex.core.ItemRendererClassFactory.
     prototype.createFromClass = function(parent) {
-  var renderer = new this.itemRendererClass();
+  var renderer = this.itemRendererClassFactory.newInstance();
   parent.addElement(renderer);
   return renderer;
 };

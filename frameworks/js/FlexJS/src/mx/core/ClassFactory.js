@@ -21,11 +21,13 @@ goog.require('mx.core.IFactory');
 /**
  * @constructor
  * @implements {mx.core.IFactory}
+ * @param {Object} generator The class definition to use for newInstance.
  */
 mx.core.ClassFactory = function(generator) {
   this.generator = generator;
   this.properties = null;
 };
+
 
 /**
  * Metadata
@@ -37,6 +39,7 @@ mx.core.ClassFactory.prototype.
         { names: [{ name: 'ClassFactory',
            qName: 'mx.core.ClassFactory' }],
     interfaces: [mx.core.IFactory] };
+
 
 /**
  * @expose
