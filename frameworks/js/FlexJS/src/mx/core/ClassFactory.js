@@ -22,11 +22,21 @@ goog.require('mx.core.IFactory');
  * @constructor
  * @implements {mx.core.IFactory}
  */
-mx.core.ClassFactory = function() {
-  this.generator = null;
+mx.core.ClassFactory = function(generator) {
+  this.generator = generator;
   this.properties = null;
 };
 
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+mx.core.ClassFactory.prototype.
+    FLEXJS_CLASS_INFO =
+        { names: [{ name: 'ClassFactory',
+           qName: 'mx.core.ClassFactory' }],
+    interfaces: [mx.core.IFactory] };
 
 /**
  * @expose
@@ -34,12 +44,12 @@ mx.core.ClassFactory = function() {
  */
 mx.core.ClassFactory.
     prototype.newInstance = function() {
-  var obj = new generator();
+  var obj = new this.generator();
 
-  if (properties) {
+  if (this.properties) {
     var prop;
-    for each(prop in properties) {
-      obj[prop] = properties[prop];
+    for (prop in this.properties) {
+      obj[prop] = this.properties[prop];
     }
   }
 
