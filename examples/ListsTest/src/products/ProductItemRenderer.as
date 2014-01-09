@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package products
 {	
-	import org.apache.flex.createjs.staticControls.Label;
+	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.Image;
 	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
 
