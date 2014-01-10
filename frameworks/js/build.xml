@@ -73,7 +73,7 @@
         <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
     </target>
     
-    <target name="compile" description="Validates JS code">
+    <target name="compile" description="Validates JS code" unless="no.lint">
         <echo>running gjslint</echo>
         <exec executable="gjslint" dir="${basedir}" failonerror="true">
             <arg value="--strict" />
