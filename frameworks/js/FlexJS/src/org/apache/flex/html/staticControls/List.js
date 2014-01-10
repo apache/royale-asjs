@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.List');
 
+goog.require('mx.core.IFactory');
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.core.IItemRendererClassFactory');
 goog.require('org.apache.flex.core.ItemRendererClassFactory');
@@ -46,6 +47,26 @@ goog.inherits(org.apache.flex.html.staticControls.List,
 org.apache.flex.html.staticControls.List.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'List',
                 qName: 'org.apache.flex.html.staticControls.List' }] };
+
+
+/**
+ * @expose
+ * @return {mx.core.IFactory} The itemRenderer generator.
+ */
+org.apache.flex.html.staticControls.List.prototype.get_itemRenderer =
+function() {
+  return this.itemRenderer_;
+};
+
+
+/**
+ * @expose
+ * @param {mx.core.IFactory} value The itemRenderer generator.
+ */
+org.apache.flex.html.staticControls.List.prototype.set_itemRenderer =
+function(value) {
+  this.itemRenderer_ = value;
+};
 
 
 /**

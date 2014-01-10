@@ -87,10 +87,10 @@ package org.apache.flex.html.staticControls.beads
 			for (var i:int = 0; i < n; i++)
 			{
 				
-				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
+				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
 				tf.index = i;
 				dataGroup.addElement(tf);
-				tf.text = dp[i][view.labelField];
+				tf.data = dp[i];
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

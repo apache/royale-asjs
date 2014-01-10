@@ -124,10 +124,9 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
     fieldName = view.get_labelField();
 
     // todo: grab an itemRenderer from a factory for this column
-    opt = new org.apache.flex.html.staticControls.
-        supportClasses.StringItemRenderer();
+    opt = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
     this.dataGroup.addElement(opt);
-    opt.set_text(dp[i][fieldName]);
+    opt.set_data(dp[i]);
   }
 
   newEvent = new org.apache.flex.events.Event('itemsCreated');

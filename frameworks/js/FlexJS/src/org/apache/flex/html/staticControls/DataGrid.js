@@ -104,6 +104,26 @@ org.apache.flex.html.staticControls.DataGrid.prototype.set_labelFields =
 
 /**
  * @expose
+ * @param {Array} value The DataGridColumn definitions for this DataGrid.
+ */
+org.apache.flex.html.staticControls.DataGrid.prototype.set_columns =
+    function(value) {
+  this.get_model().set_columns(value);
+};
+
+
+/**
+ * @expose
+ * @return {Array} The DataGridColumns in this DataGrid.
+ */
+org.apache.flex.html.staticControls.DataGrid.prototype.get_columns =
+    function() {
+  return this.get_model().get_columns();
+};
+
+
+/**
+ * @expose
  * @return {string} value The current selectedIndex.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.get_selectedIndex =

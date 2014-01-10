@@ -18,13 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.supportClasses
 {
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 
-	public class StringItemRenderer extends UIItemRendererBase implements ITextItemRenderer
+	public class StringItemRenderer extends DataItemRenderer implements ITextItemRenderer
 	{
 		public function StringItemRenderer()
 		{
@@ -32,6 +33,7 @@ package org.apache.flex.html.staticControls.supportClasses
 			
 			textField = new CSSTextField();
 			textField.type = TextFieldType.DYNAMIC;
+			textField.autoSize = TextFieldAutoSize.LEFT;
 			textField.selectable = false;
 		}
 		
@@ -48,10 +50,13 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		override public function adjustSize():void
 		{
+			var cy:Number = this.height/2;
+			
 			textField.x = 0;
-			textField.y = 0;
+			textField.y = cy - textField.height/2;
 			textField.width = this.width;
-			textField.height = this.height;
+			
+			updateRenderer();
 		}
 		
 		public function get text():String

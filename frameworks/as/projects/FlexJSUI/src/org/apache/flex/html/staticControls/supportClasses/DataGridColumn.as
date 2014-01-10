@@ -16,40 +16,54 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.staticControls.supportClasses
 {
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.events.Event;
-	
-	public class DataGridModel extends ArraySelectionModel implements IDataGridModel
+	import mx.core.IFactory;
+
+	public class DataGridColumn
 	{
-		public function DataGridModel()
+		public function DataGridColumn()
 		{
-			super();
 		}
 		
-		private var _labelFields:Object;
-		public function get labelFields():Object
+		private var _itemRenderer:IFactory;
+		public function get itemRenderer():IFactory
 		{
-			return _labelFields;
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
 		}
 		
-		public function set labelFields(value:Object):void
+		private var _columnWidth:Number = 100;
+		public function get columnWidth():Number
 		{
-			if (value != _labelFields) {
-				_labelFields = value;
-				dispatchEvent( new Event("labelFieldsChanged"));
-			}
+			return _columnWidth;
+		}
+		public function set columnWidth(value:Number):void
+		{
+			_columnWidth = value;
 		}
 		
-		private var _columns:Array;
-		public function get columns():Array
+		private var _label:String;
+		public function get label():String
 		{
-			return _columns;
+			return _label;
 		}
-		public function set columns(value:Array):void
+		public function set label(value:String):void
 		{
-			_columns = value;
+			_label = value;
+		}
+		
+		private var _dataField:String;
+		public function get dataField():String
+		{
+			return _dataField;
+		}
+		public function set dataField(value:String):void
+		{
+			_dataField = value;
 		}
 	}
 }

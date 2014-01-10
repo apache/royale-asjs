@@ -73,9 +73,11 @@ package org.apache.flex.html.staticControls.beads
 			
 			columns = new Array();
 			for(var i:int=0; i < pm.columnLabels.length; i++) {
-				var column:List = new SimpleList();
+				var column:List = new List(); // NEW (old:) new SimpleList();
 				var columnView:DataGridColumnView = new DataGridColumnView();
-				columnView.labelField = sharedModel.labelFields[i];
+				//columnView.labelField = sharedModel.labelFields[i];
+				columnView.column = sharedModel.columns[i]; // NEW
+				column.itemRenderer = columnView.column.itemRenderer;
 				var factory:DataItemRendererFactoryForColumnData = new DataItemRendererFactoryForColumnData();
 				columnView.columnIndex = i;
 				column.addBead(sharedModel);

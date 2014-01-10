@@ -30,6 +30,15 @@ package org.apache.flex.html.staticControls
 			super();
 		}
 		
+		public function get columns():Array
+		{
+			return IDataGridModel(model).columns;
+		}
+		public function set columns(value:Array):void
+		{
+			IDataGridModel(model).columns = value;
+		}
+		
 		public function get dataProvider():Object
 		{
 			return IDataGridModel(model).dataProvider;

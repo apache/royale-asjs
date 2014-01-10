@@ -24,8 +24,8 @@ goog.require('mx.core.IFactory');
  * @param {Object} generator The class definition to use for newInstance.
  */
 mx.core.ClassFactory = function(generator) {
-  this.generator = generator;
-  this.properties = null;
+  this.generator_ = generator;
+  this.properties_ = null;
 };
 
 
@@ -47,12 +47,12 @@ mx.core.ClassFactory.prototype.
  */
 mx.core.ClassFactory.
     prototype.newInstance = function() {
-  var obj = new this.generator();
+  var obj = new this.generator_();
 
-  if (this.properties) {
+  if (this.properties_) {
     var prop;
-    for (prop in this.properties) {
-      obj[prop] = this.properties[prop];
+    for (prop in this.properties_) {
+      obj[prop] = this.properties_[prop];
     }
   }
 

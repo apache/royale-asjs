@@ -77,3 +77,23 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
     get_labelFields = function() {
   return this.labelFields_;
 };
+
+
+/**
+ * @expose
+ * @param {Array} value Array of DataGridColumn instances.
+ */
+org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
+    set_columns = function(value) {
+  this.columns_ = value;
+};
+
+
+/**
+ * @expose
+ * @return {Array} Array of DataGridColumn instances.
+ */
+org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
+    get_columns = function() {
+  return this.columns_;
+};

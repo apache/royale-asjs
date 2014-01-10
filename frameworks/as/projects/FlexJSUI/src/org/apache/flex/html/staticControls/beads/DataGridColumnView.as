@@ -19,6 +19,7 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	
 	public class DataGridColumnView extends ListView
 	{
@@ -41,6 +42,16 @@ package org.apache.flex.html.staticControls.beads
 		public function set columnIndex(value:uint):void
 		{
 			_columnIndex = value;
+		}
+		
+		private var _column:DataGridColumn;
+		public function get column():DataGridColumn
+		{
+			return _column;
+		}
+		public function set column(value:DataGridColumn):void
+		{
+			_column = value;
 		}
 		
 		private var _labelField:String;

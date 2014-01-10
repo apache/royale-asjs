@@ -19,7 +19,7 @@ goog.require('org.apache.flex.core.IItemRendererParent');
 goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.html.staticControls.ButtonBar');
 goog.require('org.apache.flex.html.staticControls.Container');
-goog.require('org.apache.flex.html.staticControls.SimpleList');
+goog.require('org.apache.flex.html.staticControls.List');
 goog.require('org.apache.flex.html.staticControls.beads.DataGridColumnView');
 goog.require('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
@@ -27,6 +27,7 @@ goog.require('org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizo
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.beads.models.DataGridModel');
 goog.require('org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel');
+goog.require('org.apache.flex.html.staticControls.supportClasses.DataGridColumn');
 
 
 
@@ -99,11 +100,13 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
         org.apache.flex.html.staticControls.beads.DataGridColumnView();
     columnView.set_columnIndex(i);
     columnView.set_labelField(sharedModel.get_labelFields()[i]);
+    columnView.set_column(sharedModel.get_columns()[i]);
 
     var factory = new org.apache.flex.html.staticControls.beads.
         DataItemRendererFactoryForColumnData();
 
     var column = new org.apache.flex.html.staticControls.List();
+    column.set_itemRenderer(columnView.get_column().get_itemRenderer());
     column.set_dataProvider(this.strand_.get_dataProvider());
     column.set_width(columnWidth);
     column.set_height(columnHeight);

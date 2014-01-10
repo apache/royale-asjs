@@ -17,12 +17,13 @@ goog.provide('org.apache.flex.html.staticControls.supportClasses.StringItemRende
 goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
  * @implements {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer =
@@ -31,7 +32,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer =
 };
 goog.inherits(
     org.apache.flex.html.staticControls.supportClasses.StringItemRenderer,
-    org.apache.flex.core.UIBase);
+    org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
 
 
 /**
@@ -159,6 +160,8 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
     prototype.set_data = function(value) {
+
+  goog.base(this, 'set_data', value);
 
   if (value.toString) {
     this.element.innerHTML = value.toString();

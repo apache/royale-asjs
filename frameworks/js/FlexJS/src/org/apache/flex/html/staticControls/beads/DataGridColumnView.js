@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.staticControls.beads.DataGridColumnView');
 
 goog.require('org.apache.flex.html.staticControls.beads.ListView');
+goog.require('org.apache.flex.html.staticControls.supportClasses.DataGridColumn');
 
 
 
@@ -93,4 +94,24 @@ org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
 org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.
     set_labelField = function(value) {
   this.labelField_ = value;
+};
+
+
+/**
+ * @expose
+ * @return {org.apache.flex.html.staticControls.supportClasses.DataGridColumn} The column data being displayed.
+ */
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.get_column =
+function() {
+  return this.column_;
+};
+
+
+/**
+ * @expose
+ * @param {org.apache.flex.html.staticControls.supportClasses.DataGridColumn} value The column data being displayed.
+ */
+org.apache.flex.html.staticControls.beads.DataGridColumnView.prototype.set_column =
+function(value) {
+  this.column_ = value;
 };
