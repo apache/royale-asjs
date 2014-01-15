@@ -115,11 +115,14 @@
     <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
     
     <target name="install" depends="find-java,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
-        <echo>${basedir} is now an IDE compatible folder</echo>
+        <echo>${install.complete.echo}</echo>
     </target>
     
     <target name="find-java" depends="find-java-executable-windows,find-java-executable-others,search-java,check-java" description="get path to java executable">
-        <echo>Java is ${java.executable}</echo>
+        <echo file="${basedir}/findjava.properties">find.java.echo=${find.java.echo.pattern}</echo>
+        <property file="${basedir}/findjava.properties" />
+        <delete file="${basedir}/findjava.properties" />
+        <echo>${find.java.echo}</echo>
     </target>
     
     <target name="check-java" description="fail if java doesn't exist">
@@ -154,13 +157,11 @@
     </target>
     
     <target name="search-java-windows" unless="java.home">
-        <echo message="Searching for Java on Windows" />
         <exec executable="where.exe" os="windows" outputproperty="java.executable" >
             <arg value="java"/>
         </exec>
     </target>
     <target name="search-java-others" unless="java.home">
-        <echo message="Searching for Java on non-Windows" />
         <exec executable="which" os="mac,linux" outputproperty="java.executable" >
             <arg value="java"/>
         </exec>
@@ -467,6 +468,10 @@
     </target>
     
     <target name="mac-copy-dir" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <delete file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
         <exec executable="rsync" dir="${FLEXJS_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
@@ -477,6 +482,9 @@
     </target>
 
     <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
         <exec executable="rsync" dir="${FLEXJS_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
