@@ -81,6 +81,19 @@
         <os family="unix" />
     </condition>
     
+    <condition property="goog.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    <condition property="air.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    <condition property="flash.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    <condition property="swfobject.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    
     <condition property="java.home" value="${env.JAVA_HOME}" >
         <and>
             <available file="${env.JAVA_HOME}" type="dir" />
@@ -402,11 +415,11 @@
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="frameworks/libs/air" />
-            <param name="destdir" value="${FLEXJS_HOME}/frameworks/libs/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/libs" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="frameworks/projects/air" />
-            <param name="destdir" value="${FLEXJS_HOME}/frameworks/projects/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/projects" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="include" />
@@ -414,7 +427,7 @@
         </antcall>
         <antcall target="mac-copy-dir-if-exists">
             <param name="srcdir" value="install/android" />
-            <param name="destdir" value="${FLEXJS_HOME}/install/android" />
+            <param name="destdir" value="${FLEXJS_HOME}/install" />
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="lib/android" />
@@ -455,7 +468,7 @@
         </exec>
     </target>
     
-    <target name="mac-copy-dir" description="copies a directory using exec and cp so that symbolic links are preserved">
+    <target name="mac-copy-dir" description="copies a directory using exec and rsync so that symbolic links are preserved">
         <exec executable="rsync" dir="${FLEXJS_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
@@ -465,7 +478,7 @@
         </exec>
     </target>
 
-    <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and cp so that symbolic links are preserved">
+    <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and rsync so that symbolic links are preserved">
         <exec executable="rsync" dir="${FLEXJS_HOME}">
             <arg value="--archive" />
             <arg value="--ignore-existing" />
