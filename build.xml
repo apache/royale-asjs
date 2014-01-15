@@ -779,7 +779,8 @@
          -->
                  
         <antcall target="binary-package-zip"/>        
-        <antcall target="binary-package-tgz"/>        
+        <antcall target="binary-package-tgz"/>
+        <copy todir="${basedir}/out" file="${basedir}/installer-config.xml" />
     </target>
   
     <target name="package-sdk" depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home"
@@ -823,8 +824,8 @@
         </copy>
         <replace file="${basedir}/temp/frameworks/air-config.xml">
             <replacefilter
-                token="{playerglobalHome}"
-                value="libs/player"/>
+                token="{airHome}/frameworks/libs"
+                value="libs"/>
         </replace>
         <replace file="${basedir}/temp/frameworks/flex-config.xml">
             <replacefilter
