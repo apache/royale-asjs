@@ -1290,6 +1290,9 @@
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!--          End of binary files           -->
+                <!--          JSHint properties file           -->
+                <exclude name="frameworks/js/jshint.properties"/>
             </fileset>
         </rat:report>
     </target>
