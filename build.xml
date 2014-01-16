@@ -780,7 +780,7 @@
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
-        <copy todir="${basedir}/out" file="${basedir}/installer-config.xml" />
+        <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
     </target>
   
     <target name="package-sdk" depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home"
