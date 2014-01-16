@@ -27,6 +27,9 @@
         </en_US>
     </progressLabels>
      -->
+    <properties>
+        <property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />
+    </properties>
     <strings description="override default installer strings here">
         <string id="INFO_CREATING_FLEX_HOME">
             <el_GR>Δημιουργία αρχικού καταλόγου για το Apache FlexJS</el_GR>
