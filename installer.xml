@@ -57,10 +57,7 @@
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     
-    <property name="xml.properties" value="${basedir}/../flex-utilities/installer/src/installer/sdk-installer-config-4.0.xml" />
-    
-    <available file="${xml.properties}" property="xmlexists" value="true" />
-    <xmlproperty file="${xml.properties}" semanticAttributes="true" collapseAttributes="true"/>
+    <property name="xml.properties" value="https://git-wip-us.apache.org/repos/asf/flex-utilities/repo?p=flex-utilities.git;a=blob_plain;f=installer/src/installer/sdk-installer-config-4.0.xml;hb=develop" />
     
     <condition property="platform" value="mac">
         <os family="mac" />
@@ -103,18 +100,22 @@
         </and>
     </condition>
 
-    <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
-    <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
-    <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
-    <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
-    <property name="flash.sdk.url.path.ref" value="flash.sdk.path.${flash.sdk.version}" />
-    <property name="flash.sdk.url.path" refid="${flash.sdk.url.path.ref}" />
-    <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
-    <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
-    <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
-    <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
+    <target name="get-data" >
+        <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
+        <xmlproperty file="${xml.properties}" semanticAttributes="true" collapseAttributes="true"/>
+        <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
+        <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
+        <property name="flash.sdk.url.path.ref" value="flash.sdk.path.${flash.sdk.version}" />
+        <property name="flash.sdk.url.path" refid="${flash.sdk.url.path.ref}" />
+        <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
+        <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
+        <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
+        <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
+    </target>
     
-    <target name="install" depends="find-java,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
     
