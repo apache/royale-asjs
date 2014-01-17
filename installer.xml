@@ -57,7 +57,7 @@
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     
-    <property name="xml.properties" value="https://git-wip-us.apache.org/repos/asf/flex-utilities/repo?p=flex-utilities.git;a=blob_plain;f=installer/src/installer/sdk-installer-config-4.0.xml;hb=develop" />
+    <property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml" />
     
     <condition property="platform" value="mac">
         <os family="mac" />
