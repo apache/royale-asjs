@@ -102,7 +102,7 @@
 
     <target name="get-data" >
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
-        <xmlproperty file="${xml.properties}" semanticAttributes="true" collapseAttributes="true"/>
+        <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
         <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
         <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
         <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
