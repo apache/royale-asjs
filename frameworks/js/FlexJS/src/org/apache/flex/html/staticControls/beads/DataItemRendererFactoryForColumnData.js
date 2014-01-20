@@ -121,10 +121,11 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData.
 
   view = this.listView;
   for (i = 0; i < n; i++) {
-    fieldName = view.get_labelField();
+    fieldName = view.get_column().get_dataField();
 
     // todo: grab an itemRenderer from a factory for this column
     opt = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
+    opt.set_dataField(fieldName);
     this.dataGroup.addElement(opt);
     opt.set_data(dp[i]);
   }

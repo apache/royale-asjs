@@ -20,6 +20,7 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
@@ -29,6 +30,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
 	
 	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper
@@ -37,14 +39,14 @@ package org.apache.flex.html.staticControls.beads
 		{
 		}
 		
-		private var selectionModel:ISelectionModel;
+		private var selectionModel:IDataGridModel;
 		
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+			selectionModel = value.getBeadByType(IDataGridModel) as IDataGridModel;
 			var listView:IListView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -82,13 +84,13 @@ package org.apache.flex.html.staticControls.beads
 			
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
-			
+						
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
-				
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
 				tf.index = i;
+				tf.labelField = view.column.dataField;
 				dataGroup.addElement(tf);
 				tf.data = dp[i];
 			}

@@ -124,6 +124,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
   for (i = 0; i < n; i++) {
     var ir = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
     ir.set_index(i);
+    ir.set_labelField(this.model.get_labelField());
     ir.set_data(dp[i]);
     this.dataGroup.addElement(ir);
   }

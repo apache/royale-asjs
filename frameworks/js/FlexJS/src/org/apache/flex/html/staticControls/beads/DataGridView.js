@@ -20,13 +20,11 @@ goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.html.staticControls.ButtonBar');
 goog.require('org.apache.flex.html.staticControls.Container');
 goog.require('org.apache.flex.html.staticControls.List');
-goog.require('org.apache.flex.html.staticControls.beads.DataGridColumnView');
 goog.require('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForColumnData');
 goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout');
 goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
 goog.require('org.apache.flex.html.staticControls.beads.models.DataGridModel');
-goog.require('org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel');
 goog.require('org.apache.flex.html.staticControls.supportClasses.DataGridColumn');
 
 
@@ -59,6 +57,16 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.
 
 /**
  * @expose
+ * @return {Array} The columns of this DataGrid.
+ */
+org.apache.flex.html.staticControls.beads.DataGridView.prototype.getColumnLists =
+function() {
+  return this.columns;
+};
+
+
+/**
+ * @expose
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
@@ -66,15 +74,26 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
 
   this.strand_ = value;
 
+  var sharedModel = value.getBeadByType(
+      org.apache.flex.html.staticControls.beads.models.DataGridModel);
+
   // Use the presentation model's columnLabels as the dataProvider for the
   // ButtonBar header.
-  var pm = value.getBeadByType(org.apache.flex.html.staticControls.
-      beads.models.DataGridPresentationModel);
+
+  var columnLabels = new Array();
+  var buttonWidths = new Array();
+  for (var i = 0; i < sharedModel.get_columns().length; i++) {
+    columnLabels.push(sharedModel.get_columns()[i].get_label());
+    buttonWidths.push(sharedModel.get_columns()[i].get_columnWidth());
+  }
+  var bblayout = new org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout();
+  bblayout.set_buttonWidths(buttonWidths);
   this.buttonBarModel = new
       org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
-  this.buttonBarModel.set_dataProvider(pm.get_columnLabels());
+  this.buttonBarModel.set_dataProvider(columnLabels);
   this.buttonBar = new org.apache.flex.html.staticControls.ButtonBar();
   this.buttonBar.addBead(this.buttonBarModel);
+  this.buttonBar.addBead(bblayout);
 
   this.buttonBar.set_height(20);
   this.buttonBar.set_width(this.strand_.get_width());
@@ -88,36 +107,29 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
   this.columnContainer.positioner.style.width =
       this.strand_.positioner.style.width;
 
-  var sharedModel = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.models.DataGridModel);
-  var columnWidth = this.strand_.get_width() / pm.get_columnLabels().length - 2;
+  var columnWidth = this.strand_.get_width() / columnLabels.length - 2;
   var columnHeight = this.strand_.get_height() - this.buttonBar.get_height();
 
   this.columns = new Array();
 
-  for (var i = 0; i < pm.get_columnLabels().length; i++) {
-    var columnView = new
-        org.apache.flex.html.staticControls.beads.DataGridColumnView();
-    columnView.set_columnIndex(i);
-    columnView.set_labelField(sharedModel.get_labelFields()[i]);
-    columnView.set_column(sharedModel.get_columns()[i]);
+  for (var i = 0; i < sharedModel.get_columns().length; i++) {
+     var listModel = new org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
+     listModel.set_dataProvider(sharedModel.get_dataProvider());
 
-    var factory = new org.apache.flex.html.staticControls.beads.
-        DataItemRendererFactoryForColumnData();
+     var dataGridColumn = sharedModel.get_columns()[i];
 
-    var column = new org.apache.flex.html.staticControls.List();
-    column.set_itemRenderer(columnView.get_column().get_itemRenderer());
-    column.set_dataProvider(this.strand_.get_dataProvider());
-    column.set_width(columnWidth);
-    column.set_height(columnHeight);
-    column.addBead(columnView);
-    column.addBead(factory);
-    column.addEventListener('change',
-        goog.bind(this.columnListChangeHandler, this));
-
-    this.columnContainer.addElement(column);
-    this.columns.push(column);
+     var list = new org.apache.flex.html.staticControls.List();
+     list.addBead(listModel);
+     list.set_itemRenderer(dataGridColumn.get_itemRenderer());
+     list.set_labelField(dataGridColumn.get_dataField());
+     list.set_width(dataGridColumn.get_columnWidth()-2);
+     list.set_height(columnHeight);
+     this.columnContainer.addElement(list);
+     this.columns.push(list);
+     list.addEventListener('change', goog.bind(this.columnListChangeHandler, this));
   }
+
+   this.strand_.dispatchEvent(new org.apache.flex.events.Event('layoutComplete'));
 };
 
 

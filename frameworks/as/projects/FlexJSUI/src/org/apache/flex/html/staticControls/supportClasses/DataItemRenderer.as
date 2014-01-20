@@ -47,6 +47,16 @@ package org.apache.flex.html.staticControls.supportClasses
 			_rowIndex = value;
 		}
 		
+		private var _dataField:String;
+		public function get dataField():String
+		{
+			return _dataField;
+		}
+		public function set dataField(value:String):void
+		{
+			_dataField = value;
+		}
+		
 		private var background:Sprite;
 		
 		override public function addedToParent():void

@@ -19,10 +19,7 @@
 package org.apache.flex.core
 {
 	public interface IDataGridModel extends ISelectionModel
-	{
-		function get labelFields():Object;
-		function set labelFields(value:Object):void;
-		
+	{		
 		function get columns():Array;
 		function set columns(value:Array):void;
 	}

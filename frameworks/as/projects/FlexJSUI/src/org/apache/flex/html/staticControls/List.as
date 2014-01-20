@@ -42,6 +42,15 @@ package org.apache.flex.html.staticControls
 			super();
 		}
 		
+		public function get labelField():String
+		{
+			return ISelectionModel(model).labelField;
+		}
+		public function set labelField(value:String):void
+		{
+			ISelectionModel(model).labelField = value;
+		}
+		
         public function get dataProvider():Object
         {
             return ISelectionModel(model).dataProvider;

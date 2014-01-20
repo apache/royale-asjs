@@ -70,6 +70,26 @@ function(value) {
 
 
 /**
+ * @expose
+ * @return {String} The name of the field to use as a label.
+ */
+org.apache.flex.html.staticControls.List.prototype.get_labelField =
+function() {
+  return this.get_model().get_labelField();
+};
+
+
+/**
+ * @expose
+ * @param {String} value The name of the field to use as a label.
+ */
+org.apache.flex.html.staticControls.List.prototype.set_labelField =
+function(value) {
+  this.get_model().set_labelField(value);
+};
+
+
+/**
  * @override
  */
 org.apache.flex.html.staticControls.List.prototype.createElement =

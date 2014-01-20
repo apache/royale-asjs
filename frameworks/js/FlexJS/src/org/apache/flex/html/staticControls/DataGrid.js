@@ -84,26 +84,6 @@ org.apache.flex.html.staticControls.DataGrid.prototype.set_dataProvider =
 
 /**
  * @expose
- * @return {string} The labelFields getter.
- */
-org.apache.flex.html.staticControls.DataGrid.prototype.get_labelFields =
-    function() {
-  return this.get_model().get_labelFields();
-};
-
-
-/**
- * @expose
- * @param {string} value The labelFields setter.
- */
-org.apache.flex.html.staticControls.DataGrid.prototype.set_labelFields =
-    function(value) {
-  this.get_model().set_labelFields(value);
-};
-
-
-/**
- * @expose
  * @param {Array} value The DataGridColumn definitions for this DataGrid.
  */
 org.apache.flex.html.staticControls.DataGrid.prototype.set_columns =

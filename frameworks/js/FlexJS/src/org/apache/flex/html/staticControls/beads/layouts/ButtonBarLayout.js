@@ -45,6 +45,26 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
 
 /**
  * @expose
+ * @param {Array} value A set of widths to use for each button (optional).
+ */
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.prototype.set_buttonWidths =
+function(value) {
+  this.buttonWidths_ = value;
+};
+
+
+/**
+ * @expose
+ * @return {Array} A set of widths to use for each button.
+ */
+org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.prototype.get_buttonWidths =
+function() {
+  return this.buttonWidths_;
+};
+
+
+/**
+ * @expose
  * @param {Object} value The new host.
  */
 org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
@@ -77,9 +97,11 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 
   for (i = 0; i < n; i++)
   {
-    children[i].set_width(useWidth);
     children[i].set_height(useHeight);
+    if (this.buttonWidths_) children[i].set_width(this.buttonWidths_[i]);
+    else children[i].set_width(useWidth);
     children[i].element.style['vertical-align'] = 'middle';
+    children[i].element.style['text-align'] = 'center';
     children[i].element.style['left-margin'] = 'auto';
     children[i].element.style['right-margin'] = 'auto';
 

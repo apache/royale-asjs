@@ -137,3 +137,24 @@ org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.
   this.dispatchEvent('selectedItemChanged');
   this.dispatchEvent('selectedIndexChanged');
 };
+
+
+/**
+ * @expose
+ * @return {String} The name of the field to use as a label.
+ */
+org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.get_labelField =
+function() {
+  return this.labelField_;
+};
+
+
+/**
+ * @expose
+ * @param {String} value The name of the field to use as a label.
+ */
+org.apache.flex.html.staticControls.beads.models.ArraySelectionModel.prototype.set_labelField =
+function(value) {
+  this.labelField_ = value;
+  this.dispatchEvent('labelFieldChanged');
+};

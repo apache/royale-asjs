@@ -83,6 +83,7 @@ package org.apache.flex.html.staticControls.beads
 			{
 				var ir:IItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IItemRenderer;
 				ir.index = i;
+				ir.labelField = selectionModel.labelField;
 				dataGroup.addElement(ir);
 				ir.data = dp[i];
 			}

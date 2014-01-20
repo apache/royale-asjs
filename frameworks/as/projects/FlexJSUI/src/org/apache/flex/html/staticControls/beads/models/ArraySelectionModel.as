@@ -51,6 +51,19 @@ package org.apache.flex.html.staticControls.beads.models
 
 		private var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
+		private var _labelField:String = null;
+		
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+		public function set labelField(value:String):void
+		{
+			if (value != _labelField) {
+				_labelField = value;
+				dispatchEvent(new Event("labelFieldChanged"));
+			}
+		}
 		
 		public function get selectedIndex():int
 		{

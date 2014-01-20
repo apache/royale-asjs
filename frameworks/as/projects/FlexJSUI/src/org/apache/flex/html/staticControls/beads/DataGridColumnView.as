@@ -53,15 +53,5 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_column = value;
 		}
-		
-		private var _labelField:String;
-		public function get labelField():String
-		{
-			return _labelField;
-		}
-		public function set labelField(value:String):void
-		{
-			_labelField = value;
-		}
 	}
 }

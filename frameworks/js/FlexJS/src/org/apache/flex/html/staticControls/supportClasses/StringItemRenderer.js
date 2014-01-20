@@ -114,16 +114,6 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
 /**
  * @expose
- * @return {Object} The renderer's index.
- */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
-    prototype.get_index = function() {
-  return this.index_;
-};
-
-
-/**
- * @expose
  * @param {Object} value The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
@@ -163,7 +153,13 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
 
   goog.base(this, 'set_data', value);
 
-  if (value.toString) {
+  if (this.get_labelField()) {
+    this.element.innerHTML = String(value[this.get_labelField()]);
+  }
+  else if (this.get_dataField()) {
+    this.element.innerHTML = String(value[this.get_dataField()]);
+  }
+  else if (value.toString) {
     this.element.innerHTML = value.toString();
   } else {
     this.element.innerHTML = String(value);
@@ -179,40 +175,4 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
     prototype.get_data = function() {
 
   return this.element.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selection state.
- */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
-    prototype.set_selected = function(value) {
-  this.selected_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#9C9C9C';
-  } else {
-    this.backgroundView.style.backgroundColor = null;
-  }
-};
-
-
-/**
- * @expose
- * @param {boolean} value The hovered state.
- */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
-    prototype.set_hovered = function(value) {
-  this.hovered_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#ECECEC';
-  } else {
-    if (this.selected_) {
-      this.backgroundView.style.backgroundColor = '#9C9C9C';
-    } else {
-      this.backgroundView.style.backgroundColor = null;
-    }
-  }
 };

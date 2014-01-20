@@ -30,5 +30,8 @@ package org.apache.flex.core
 		
 		function get selectedItem():Object;
 		function set selectedItem(value:Object):void;
+		
+		function get labelField():String;
+		function set labelField(value:String):void;
 	}
 }

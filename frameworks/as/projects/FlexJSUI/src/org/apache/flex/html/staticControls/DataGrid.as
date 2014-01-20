@@ -48,15 +48,6 @@ package org.apache.flex.html.staticControls
 			IDataGridModel(model).dataProvider = value;
 		}
 		
-		public function get labelFields():Object
-		{
-			return IDataGridModel(model).labelFields;
-		}
-		public function set labelFields(value:Object):void
-		{
-			IDataGridModel(model).labelFields = value;
-		}
-		
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;

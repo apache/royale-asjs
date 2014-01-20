@@ -15,14 +15,14 @@
 goog.provide('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
 
 goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase}
  * @implements {org.apache.flex.core.IItemRenderer}
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer =
@@ -31,7 +31,7 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer =
 };
 goog.inherits(
     org.apache.flex.html.staticControls.supportClasses.DataItemRenderer,
-    org.apache.flex.core.UIBase);
+    org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase);
 
 
 /**
@@ -72,27 +72,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @param {Object} value The strand.
- */
-org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.set_strand = function(value) {
-
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The strand.
- */
-org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.get_strand = function() {
-  return this.strand_;
-};
-
-
-/**
- * @expose
  * @return {Object} The item renderer's parent.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -113,16 +92,6 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @return {Object} The renderer's index.
- */
-org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.get_index = function() {
-  return this.index_;
-};
-
-
-/**
- * @expose
  * @param {Object} value The renderer's index.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
@@ -133,29 +102,29 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 /**
  * @expose
- * @param {Object} value The data to display.
+ * @param {string} value The name of field to use.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.set_data = function(value) {
+    prototype.set_dataField = function(value) {
 
-  this.data = value;
+  this.dataField_ = value;
 };
 
 
 /**
  * @expose
- * @return {Object} The value being displayed.
+ * @return {string} The name of the field to use.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
-    prototype.get_data = function() {
+    prototype.get_dataField = function() {
 
-  return this.data;
+  return this.dataField_;
 };
 
 
 /**
- * @expose
- * @param {boolean} value The selection state.
+ * @override
+ * @param {Boolean} value The selection state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
     prototype.set_selected = function(value) {
@@ -170,8 +139,8 @@ org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
 
 
 /**
- * @expose
- * @param {boolean} value The hovered state.
+ * @override
+ * @param {Boolean} value The hovered state.
  */
 org.apache.flex.html.staticControls.supportClasses.DataItemRenderer.
     prototype.set_hovered = function(value) {

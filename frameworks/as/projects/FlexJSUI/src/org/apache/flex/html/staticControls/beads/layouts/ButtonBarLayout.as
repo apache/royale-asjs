@@ -44,6 +44,16 @@ package org.apache.flex.html.staticControls.beads.layouts
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 		
+		private var _buttonWidths:Array = null;
+		public function get buttonWidths():Array
+		{
+			return _buttonWidths;
+		}
+		public function set buttonWidths(value:Array):void
+		{
+			_buttonWidths = value;
+		}
+		
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
@@ -59,10 +69,12 @@ package org.apache.flex.html.staticControls.beads.layouts
 				var child:DisplayObject = contentView.getChildAt(i);
 				
 				child.y = 0;
-				child.x = xpos;
-				child.width = useWidth;
 				child.height = useHeight;
-				xpos += useWidth;
+				child.x = xpos;
+				
+				if (buttonWidths) child.width = Number(buttonWidths[i]);
+				else child.width = useWidth;
+				xpos += child.width;
 			}
 		}
 	}

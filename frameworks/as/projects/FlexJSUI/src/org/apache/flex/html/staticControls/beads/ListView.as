@@ -109,7 +109,7 @@ package org.apache.flex.html.staticControls.beads
 			_dataGroup = new NonVirtualDataGroup();
 			IParent(_strand).addElement(_dataGroup);
             
-            if (getBeadByType(IBeadLayout) == null)
+            if (_strand.getBeadByType(IBeadLayout) == null)
             {
                 var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
 				strand.addBead(mapper);

@@ -50,6 +50,8 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
         goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('layoutNeeded',
+        goog.bind(this.changeHandler, this));
   }
 };
 

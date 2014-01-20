@@ -61,26 +61,6 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
 
 /**
  * @expose
- * @param {Array} value Array of label fields.
- */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
-    set_labelFields = function(value) {
-  this.labelFields_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} Array of label fields.
- */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
-    get_labelFields = function() {
-  return this.labelFields_;
-};
-
-
-/**
- * @expose
  * @param {Array} value Array of DataGridColumn instances.
  */
 org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.

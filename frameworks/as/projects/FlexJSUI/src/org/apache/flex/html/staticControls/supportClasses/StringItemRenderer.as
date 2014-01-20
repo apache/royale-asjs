@@ -72,7 +72,9 @@ package org.apache.flex.html.staticControls.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			textField.text = String(value);
+			if (labelField) textField.text = String(value[labelField]);
+			else if (dataField) textField.text = String(value[dataField]);
+			else textField.text = String(value);
 		}
 		
 		override public function updateRenderer():void

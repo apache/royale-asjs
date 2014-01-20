@@ -28,20 +28,6 @@ package org.apache.flex.html.staticControls.beads.models
 			super();
 		}
 		
-		private var _labelFields:Object;
-		public function get labelFields():Object
-		{
-			return _labelFields;
-		}
-		
-		public function set labelFields(value:Object):void
-		{
-			if (value != _labelFields) {
-				_labelFields = value;
-				dispatchEvent( new Event("labelFieldsChanged"));
-			}
-		}
-		
 		private var _columns:Array;
 		public function get columns():Array
 		{
@@ -49,7 +35,10 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		public function set columns(value:Array):void
 		{
-			_columns = value;
+			if (_columns != value) {
+				_columns = value;
+				dispatchEvent( new Event("columnsChanged"));
+			}
 		}
 	}
 }
