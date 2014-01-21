@@ -122,7 +122,7 @@ org.apache.flex.html.staticControls.beads.DataGridView.prototype.set_strand =
      list.addBead(listModel);
      list.set_itemRenderer(dataGridColumn.get_itemRenderer());
      list.set_labelField(dataGridColumn.get_dataField());
-     list.set_width(dataGridColumn.get_columnWidth()-2);
+     list.set_width(dataGridColumn.get_columnWidth() - 2);
      list.set_height(columnHeight);
      this.columnContainer.addElement(list);
      this.columns.push(list);

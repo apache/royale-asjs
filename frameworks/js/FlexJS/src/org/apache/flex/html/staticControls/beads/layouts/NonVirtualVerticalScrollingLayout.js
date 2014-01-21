@@ -51,6 +51,8 @@ org.apache.flex.html.staticControls.beads.layouts.
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
         goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('layoutNeeded',
+        goog.bind(this.changeHandler, this));
   }
 };
 
@@ -65,11 +67,14 @@ org.apache.flex.html.staticControls.beads.layouts.
 
   children = this.strand_.internalChildren();
   n = children.length;
+
   for (i = 0; i < n; i++)
   {
-    if (children[i].style.display == 'none')
+    if (children[i].element.style.display == 'none')
       children[i].lastDisplay_ = 'block';
-    else
-      children[i].style.display = 'block';
+    else {
+      children[i].element.style.display = 'inline-block';
+      children[i].set_width(this.strand_.get_width());
+    }
   }
 };

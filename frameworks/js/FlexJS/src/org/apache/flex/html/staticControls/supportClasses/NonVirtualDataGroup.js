@@ -59,6 +59,8 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
+  this.element.style.display = 'inline-block';
+  this.element.style.position = 'inherit';
   this.set_className('NonVirtualDataGroup');
 
   return this.element;

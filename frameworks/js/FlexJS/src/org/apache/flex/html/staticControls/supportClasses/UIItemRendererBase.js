@@ -28,7 +28,6 @@ goog.require('org.apache.flex.events.Event');
  */
 org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase =
 function() {
-  this.renderers = new Array();
   goog.base(this);
 };
 goog.inherits(
