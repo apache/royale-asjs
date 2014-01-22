@@ -97,5 +97,20 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 			dispatchEvent(new Event("selectedItemChanged"));			
 		}
+		
+		
+		private var _labelField:String;
+		
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+		public function set labelField(value:String):void
+		{
+			if (value != _labelField) {
+				_labelField = value;
+				dispatchEvent(new Event("labelFieldChanged"));
+			}
+		}
 	}
 }
