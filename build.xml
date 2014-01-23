@@ -599,6 +599,10 @@
             <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/src">
                 <include name="**"/>
             </fileset>
+            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+                <include name="**"/>
+                <exclude name="FlexJSJXClasses.js"/>
+            </fileset>
         </copy>
         <copy todir="${basedir}/temp/frameworks/js" includeEmptyDirs="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/js">
