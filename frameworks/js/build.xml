@@ -58,6 +58,7 @@
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all SWCs"/>
@@ -66,14 +67,17 @@
         <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
     </target>
 
-    
+    <path id="lib.path">
+        <fileset dir="${FALCONJX_HOME}/lib" includes="compc.jar"/>
+    </path>
+
     <target name="prepare" depends="thirdparty-downloads"/>
             
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
         <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
     </target>
     
-    <target name="compile" description="Validates JS code" unless="no.lint">
+    <target name="compile" depends="flexjsjx" description="Validates JS code" unless="no.lint">
         <echo>running gjslint</echo>
         <exec executable="gjslint" dir="${basedir}" failonerror="true">
             <arg value="--strict" />
@@ -96,7 +100,25 @@
             <arg value="FlexJS/src" />
         </exec>
     </target>
-	   
+	
+    <target name="flexjsjx" >
+        <echo message="Compiling libs/FlexJSJX.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-output=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-load-config=${FLEXJS_HOME}/frameworks/as/projects/FlexJSJX/compile-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </java>
+    </target>
+    
     <!--
 		Cleanup
 	-->
