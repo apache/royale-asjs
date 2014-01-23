@@ -17,11 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Shape;
-	
+{	
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.ISelectionModel;
@@ -45,7 +41,7 @@ package org.apache.flex.html.staticControls.beads
 		{
 		}
 		
-		private var background:Shape;
+		//private var background:Shape;
 		private var buttonBar:ButtonBar;
 		private var buttonBarModel:ArraySelectionModel;
 		private var columnContainer:Container;
@@ -63,8 +59,8 @@ package org.apache.flex.html.staticControls.beads
 			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			
-			background = new Shape();
-			DisplayObjectContainer(_strand).addChild(background);
+			//background = new Shape();
+			//DisplayObjectContainer(_strand).addChild(background);
 			
 			// create an array of columnLabels for use by the ButtonBar/DataGrid header.
 			var columnLabels:Array = new Array();
@@ -118,17 +114,17 @@ package org.apache.flex.html.staticControls.beads
 		
 		private function handleSizeChange(event:Event):void
 		{
-			var sw:Number = DisplayObject(_strand).width;
-			var sh:Number = DisplayObject(_strand).height;
+			var sw:Number = UIBase(_strand).width;
+			var sh:Number = UIBase(_strand).height;
 			
 			var backgroundColor:Number = 0xDDDDDD;
 			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color");
 			if (value != null) backgroundColor = Number(value);
 			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor);
-			background.graphics.drawRect(0,0,sw,sh);
-			background.graphics.endFill();
+			//background.graphics.clear();
+			//background.graphics.beginFill(backgroundColor);
+			//background.graphics.drawRect(0,0,sw,sh);
+			//background.graphics.endFill();
 			
 			buttonBar.x = 0;
 			buttonBar.y = 0;

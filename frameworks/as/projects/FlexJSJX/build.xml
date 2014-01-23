@@ -19,7 +19,7 @@
 -->
 
 
-<project name="flexjsui" default="main" basedir=".">
+<project name="flexjsjx" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
@@ -28,13 +28,13 @@
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
 
-    <target name="main" depends="clean,compile" description="Clean build of FlexJSUI.swc">
+    <target name="main" depends="clean,compile" description="Clean build of FlexJSJX.swc">
     </target>
     
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/as/libs">
-                <include name="FlexJSUI.swc"/>
+                <include name="FlexJSJX.swc"/>
             </fileset>
         </delete>
     </target>
@@ -43,8 +43,8 @@
       <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
 
-    <target name="compile" description="Compiles FlexJSUI.swc">
-        <echo message="Compiling libs/FlexJSUI.swc"/>
+    <target name="compile" description="Compiles FlexJSJX.swc">
+        <echo message="Compiling libs/FlexJSJX.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
 
@@ -55,7 +55,7 @@
             Link in the classes (and their dependencies) for the MXML tags
             listed in this project's manifest.xml.
             Also link the additional classes (and their dependencies)
-            listed in FlexJSUIClasses.as,
+            listed in FlexJSJXClasses.as,
             because these aren't referenced by the manifest classes.
             Keep the standard metadata when compiling.
             Include the appropriate CSS files and assets in the SWC.
@@ -64,7 +64,7 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/frameworks/as/libs/FlexJSUI.swc">
+               output="${FLEXJS_HOME}/frameworks/as/libs/FlexJSJX.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />

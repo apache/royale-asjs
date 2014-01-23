@@ -77,6 +77,7 @@
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <antcall target="flexjsui"/>
         <antcall target="mxmlcclasses"/>
+        <antcall target="flexjsjx"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -118,6 +119,10 @@
         <delete includeemptydirs="true" failonerror="false">
             <fileset dir="${FLEXJS_HOME}/templates" excludes="**/*" />
         </delete> 
+    </target>
+    
+    <target name="flexjsjx" description="Clean build of FlexJSJX.swc">
+        <ant dir="${basedir}/projects/FlexJSJX"/>
     </target>
     
     <target name="flexjsui" description="Clean build of FlexJSUI.swc">

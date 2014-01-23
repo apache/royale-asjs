@@ -27,12 +27,6 @@ package
  */
 internal class FlexJSUIClasses
 {
-	import org.apache.flex.charts.beads.BarChartView; BarChartView;
-	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
-	import org.apache.flex.charts.beads.XAxisBead; XAxisBead;
-	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
-	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
-	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
 	
 	import org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
@@ -44,8 +38,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.ContainerView; ContainerView;
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
-	import org.apache.flex.html.staticControls.beads.DataGridColumnView; DataGridColumnView;
-	import org.apache.flex.html.staticControls.beads.DataGridView; DataGridView;
     import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
 	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
     import org.apache.flex.html.staticControls.beads.ListView; ListView;
@@ -71,7 +63,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.flex.html.staticControls.beads.models.DataGridModel; DataGridModel;
-	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
     import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel; SingleLineBorderModel;
