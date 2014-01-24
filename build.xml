@@ -335,8 +335,8 @@
         <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/tempDoc" failonerror="false" includeEmptyDirs="true"/>
-        <!--
         <ant dir="${basedir}/asdoc" target="clean" />
+        <!--
         <ant dir="${basedir}/ide/flashbuilder" target="clean" />
         <ant dir="${basedir}/mustella" target="clean"/>
         -->
@@ -489,13 +489,12 @@
         <!-- frameworks/js -->
         <antcall target="stage-framework-js"/>
 
-        <!-- asdoc
+        <!-- asdoc -->
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
             <fileset dir="${basedir}/asdoc">
             	<exclude name="test/**" />
             </fileset>
-        </copy> 
-        --> 
+        </copy>
 
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
