@@ -130,7 +130,7 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
-        <delete>
+        <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
                 <include name="**/**" />
             </fileset>
