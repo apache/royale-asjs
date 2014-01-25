@@ -105,6 +105,7 @@
         <echo message="Compiling libs/FlexJSJX.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
