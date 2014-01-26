@@ -142,7 +142,10 @@
     </target>
 
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config" 
-        description="Stuff that needs to be done before any builds." />
+        description="Stuff that needs to be done before any builds." >
+        <!-- make the js output folder so copy doesn't complain if it isn't there -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+    </target>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home,check-falconjx-home"
         description="Check for the required environment variables for compilation.">
