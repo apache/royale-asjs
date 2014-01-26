@@ -79,7 +79,7 @@
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="prebuild,frameworks-as,post-build" description="Full build">
+    <target name="main-jenkins" depends="prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -385,6 +385,13 @@
         </ant>
     </target>
 
+    <target name="frameworks-js-jenkins" description="Full check of all JavaScript framework files, using gsjlint and jshint">
+        <property name="no.lint" value="true" />
+        <ant dir="${basedir}/frameworks/js">
+            <property name="locale" value="${locale}"/>
+        </ant>
+    </target>
+    
     <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint">
         <ant dir="${basedir}/frameworks/js">
             <property name="locale" value="${locale}"/>
