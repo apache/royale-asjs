@@ -136,12 +136,15 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
+  /**
+   * @type {Function}
+   */
   var c;
   if (this.getBeadByType(org.apache.flex.core.IBeadModel) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = org.apache.flex.core.ValuesManager.valuesImpl.
-          getValue(this, 'iBeadModel');
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadModel'));
       if (c)
       {
         var model = new c();
@@ -153,8 +156,8 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
   if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = org.apache.flex.core.ValuesManager.valuesImpl.
-          getValue(this, 'iBeadView');
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadView'));
       if (c)
       {
         var view = new c();
@@ -166,8 +169,8 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
   if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = org.apache.flex.core.ValuesManager.valuesImpl.
-          getValue(this, 'iBeadLayout');
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadLayout'));
       if (c)
       {
         var layout = new c();
@@ -179,8 +182,8 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
   if (this.getBeadByType(org.apache.flex.core.IBeadController) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = org.apache.flex.core.ValuesManager.valuesImpl.
-          getValue(this, 'iBeadController');
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadController'));
       if (c)
       {
         var controller = new c();
@@ -197,7 +200,7 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
  */
 org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
   if (!this.beads_) {
-    this.beads_ = new Array();
+    this.beads_ = [];
   }
   this.beads_.push(bead);
 
@@ -219,7 +222,7 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
 org.apache.flex.core.UIBase.prototype.getBeadByType =
     function(classOrInterface) {
   if (!this.beads_) {
-    this.beads_ = new Array();
+    this.beads_ = [];
   }
   for (var i = 0; i < this.beads_.length; i++) {
     var bead = this.beads_[i];
@@ -408,9 +411,12 @@ org.apache.flex.core.UIBase.prototype.get_model = function() {
   {
     // addbead will set _model
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      var m = org.apache.flex.core.ValuesManager.valuesImpl.
-          getValue(this, 'iBeadModel');
-      var b = new m;
+      /**
+       * @type {Function}
+       */
+      var m = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+          getValue(this, 'iBeadModel'));
+      var b = new m();
       this.addBead(b);
     }
   }

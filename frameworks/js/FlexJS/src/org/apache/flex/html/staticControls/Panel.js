@@ -76,7 +76,7 @@ org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
   else
   {
     this.contentArea.insertBefore(c.element,
-        this.getChildAt(index));
+        children[index]);
     c.addedToParent();
   }
 };
@@ -127,6 +127,8 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 

@@ -23,10 +23,10 @@ org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead =
     function() {
 
   /**
-   * @private
+   * @protected
    * @type {Object}
    */
-  this.promptElement;
+  this.promptElement = null;
 };
 
 

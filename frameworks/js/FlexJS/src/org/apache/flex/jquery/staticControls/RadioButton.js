@@ -37,7 +37,7 @@ goog.inherits(org.apache.flex.jquery.staticControls.RadioButton,
  * @expose
  * The name of the radioGroup.
  */
-org.apache.flex.jquery.staticControls.RadioButton.prototype.radioGroupName;
+org.apache.flex.jquery.staticControls.RadioButton.prototype.radioGroupName = null;
 
 
 /**

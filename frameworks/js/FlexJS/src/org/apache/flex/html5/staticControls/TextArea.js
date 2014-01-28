@@ -37,6 +37,8 @@ org.apache.flex.html5.staticControls.TextArea.prototype.createElement =
   this.element = document.createElement('textarea');
 
   this.positioner = this.element;
+
+  return this.element;
 };
 
 

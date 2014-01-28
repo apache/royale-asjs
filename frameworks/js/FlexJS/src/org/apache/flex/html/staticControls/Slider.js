@@ -69,12 +69,14 @@ org.apache.flex.html.staticControls.Slider.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this.set_className('Slider');
+
+  return this.element;
 };
 
 
 /**
  * @expose
- * @return {Number} The value getter.
+ * @return {number} The value getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_value =
     function() {
@@ -96,7 +98,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_value =
 
 /**
  * @expose
- * @return {Number} The minimum getter.
+ * @return {number} The minimum getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
     function() {
@@ -117,7 +119,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_minimum =
 
 /**
  * @expose
- * @return {Number} The maximum getter.
+ * @return {number} The maximum getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
     function() {
@@ -138,7 +140,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_maximum =
 
 /**
  * @expose
- * @return {Number} The snapInterval getter.
+ * @return {number} The snapInterval getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
     function() {
@@ -159,7 +161,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_snapInterval =
 
 /**
  * @expose
- * @return {Number} The stepSize getter.
+ * @return {number} The stepSize getter.
  */
 org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
     function() {
@@ -180,7 +182,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_stepSize =
 
 /**
  * @param {Object} value The current value.
- * @return {Number} Calculates the new value based snapInterval and stepSize.
+ * @return {number} Calculates the new value based snapInterval and stepSize.
  */
 org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
     {
@@ -200,7 +202,7 @@ org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
 
 
 /**
- * @param {Number} value The value used to calculate new position of the thumb.
+ * @param {number} value The value used to calculate new position of the thumb.
  * @return {void} Moves the thumb to the corresponding position.
  */
 org.apache.flex.html.staticControls.Slider.prototype.setThumbFromValue =

@@ -21,9 +21,13 @@ goog.require('mx.core.IFactory');
 /**
  * @constructor
  * @implements {mx.core.IFactory}
- * @param {Object} generator The class definition to use for newInstance.
+ * @param {Function} generator The class definition to use for newInstance.
  */
 mx.core.ClassFactory = function(generator) {
+  /**
+   * @private
+   * @type {Function}
+   */
   this.generator_ = generator;
   this.properties_ = null;
 };

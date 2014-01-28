@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.core.ValuesManager');
 
+goog.require('org.apache.flex.core.IValuesImpl');
+
 
 
 /**
@@ -35,15 +37,15 @@ org.apache.flex.core.ValuesManager.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @return {org.apache.flex.core.ValuesManager}
+ * @type {org.apache.flex.core.IValuesImpl}
  */
-org.apache.flex.core.ValuesManager.prototype.valuesImpl;
+org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;
 
 
 /**
  * @expose
  * @this {org.apache.flex.core.ValuesManager}
- * @return {Object} The value.
+ * @return {org.apache.flex.core.IValuesImpl} The value.
  */
 org.apache.flex.core.ValuesManager.get_valuesImpl = function() {
   return org.apache.flex.core.ValuesManager.valuesImpl;
@@ -53,7 +55,7 @@ org.apache.flex.core.ValuesManager.get_valuesImpl = function() {
 /**
  * @expose
  * @this {org.apache.flex.core.ValuesManager}
- * @param {Object} value being set.
+ * @param {org.apache.flex.core.IValuesImpl} value being set.
  */
 org.apache.flex.core.ValuesManager.set_valuesImpl = function(value) {
   org.apache.flex.core.ValuesManager.valuesImpl = value;

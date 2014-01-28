@@ -24,7 +24,7 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup =
     function() {
-  this.renderers = new Array();
+  this.renderers = [];
   goog.base(this);
 };
 goog.inherits(

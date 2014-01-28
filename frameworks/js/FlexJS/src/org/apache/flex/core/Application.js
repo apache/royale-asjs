@@ -51,7 +51,7 @@ org.apache.flex.core.Application.prototype.controller = null;
 
 /**
  * @expose
- * @type {org.apache.flex.core.ViewBase}
+ * @type {Object}
  */
 org.apache.flex.core.Application.prototype.initialView = null;
 

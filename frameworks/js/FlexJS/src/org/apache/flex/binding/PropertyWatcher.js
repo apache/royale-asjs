@@ -52,19 +52,19 @@ org.apache.flex.binding.PropertyWatcher.prototype.FLEXJS_CLASS_INFO =
 /**
  * @type {Object}
  */
-org.apache.flex.binding.PropertyWatcher.prototype.source;
+org.apache.flex.binding.PropertyWatcher.prototype.source = null;
 
 
 /**
- * @type {string}
+ * @type {?string}
  */
-org.apache.flex.binding.PropertyWatcher.prototype.propertyName;
+org.apache.flex.binding.PropertyWatcher.prototype.propertyName = null;
 
 
 /**
  * @type {Object}
  */
-org.apache.flex.binding.PropertyWatcher.prototype.eventNames;
+org.apache.flex.binding.PropertyWatcher.prototype.eventNames = null;
 
 
 /**

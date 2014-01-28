@@ -89,6 +89,8 @@ org.apache.flex.html.staticControls.Alert.prototype.createElement =
   this.buttonArea = new org.apache.flex.html.staticControls.Container();
   this.addElement(this.buttonArea);
   this.buttonArea.element.id = 'buttonArea';
+
+  return this.element;
 };
 
 
@@ -174,28 +176,28 @@ org.apache.flex.html.staticControls.Alert.prototype.set_flags =
     var ok = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(ok);
     ok.set_text('OK');
-    goog.events.listen(ok.element, 'click',
+    goog.events.listen(/** @type {EventTarget} */ (ok.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.CANCEL) {
     var cancel = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(cancel);
     cancel.set_text('Cancel');
-    goog.events.listen(cancel.element, 'click',
+    goog.events.listen(/** @type {EventTarget} */ (cancel.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.YES) {
     var yes = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(yes);
     yes.set_text('YES');
-    goog.events.listen(yes.element, 'click',
+    goog.events.listen(/** @type {EventTarget} */ (yes.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org.apache.flex.html.staticControls.Alert.NO) {
     var nob = new org.apache.flex.html.staticControls.TextButton();
     this.buttonArea.addElement(nob);
     nob.set_text('NO');
-    goog.events.listen(nob.element, 'click',
+    goog.events.listen(/** @type {EventTarget} */ (nob.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
 };

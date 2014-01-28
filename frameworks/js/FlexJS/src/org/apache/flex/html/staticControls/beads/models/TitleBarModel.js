@@ -25,8 +25,20 @@ goog.require('org.apache.flex.events.EventDispatcher');
 org.apache.flex.html.staticControls.beads.models.TitleBarModel = function() {
   goog.base(this);
 
+  /**
+   * @private
+   * @type {string}
+   */
   this.title_ = '';
-  this.htmlTitle = '';
+  /**
+   * @private
+   * @type {string}
+   */
+  this.htmlTitle_ = '';
+  /**
+   * @private
+   * @type {boolean}
+   */
   this.showCloseButton_ = false;
 };
 goog.inherits(org.apache.flex.html.staticControls.beads.models.TitleBarModel,
@@ -55,7 +67,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @return {String} The title.
+ * @return {string} The title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
     get_title = function() {
@@ -65,7 +77,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @param {String} value The title to set.
+ * @param {string} value The title to set.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
     set_title = function(value) {
@@ -78,7 +90,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @return {String} The HTML title.
+ * @return {string} The HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
     get_htmlTitle = function() {
@@ -88,7 +100,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @param {String} value The new HTML title.
+ * @param {string} value The new HTML title.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
     set_htmlTitle = function(value) {
@@ -101,7 +113,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @return {Boolean} Returns true if the close button should appear in
+ * @return {boolean} Returns true if the close button should appear in
  * the TitleBar.
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
@@ -112,7 +124,7 @@ org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.
 
 /**
  * @expose
- * @param {Boolean} value Determines if the close button shows (true) or
+ * @param {boolean} value Determines if the close button shows (true) or
  * not (false).
  */
 org.apache.flex.html.staticControls.beads.models.TitleBarModel.prototype.

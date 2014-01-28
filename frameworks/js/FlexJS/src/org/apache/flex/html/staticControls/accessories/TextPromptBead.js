@@ -22,10 +22,10 @@ goog.provide('org.apache.flex.html.staticControls.accessories.TextPromptBead');
 org.apache.flex.html.staticControls.accessories.TextPromptBead = function() {
 
   /**
-   * @private
+   * @protected
    * @type {Object}
    */
-  this.promptElement;
+  this.promptElement = null;
 };
 
 

@@ -128,8 +128,11 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
   this.states_ = value;
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this, 'iStatesImpl');
+    /**
+     * @type {Function}
+     */
+    var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this, 'iStatesImpl'));
     // TODO: (aharui) check if bead already exists
     this.addBead(new impl());
   }

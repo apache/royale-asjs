@@ -57,7 +57,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @return {Number} The current minimum value.
+ * @return {number} The current minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     get_minimum = function() {
@@ -67,7 +67,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} value The new minimum value.
+ * @param {number} value The new minimum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     set_minimum = function(value) {
@@ -80,7 +80,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @return {Number} The current maximu value.
+ * @return {number} The current maximu value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     get_maximum = function() {
@@ -90,7 +90,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} value The new maximum value.
+ * @param {number} value The new maximum value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     set_maximum = function(value) {
@@ -103,7 +103,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @return {Number} The current value.
+ * @return {number} The current value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     get_value = function() {
@@ -113,7 +113,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} newValue The new value.
+ * @param {number} newValue The new value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     set_value = function(newValue) {
@@ -133,7 +133,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @return {Number} The current snapInterval value.
+ * @return {number} The current snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     get_snapInterval = function() {
@@ -143,7 +143,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} value The new snapInterval value.
+ * @param {number} value The new snapInterval value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     set_snapInterval = function(value) {
@@ -156,7 +156,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @return {Number} The current stepSize value.
+ * @return {number} The current stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     get_stepSize = function() {
@@ -166,7 +166,7 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} value The new stepSize value.
+ * @param {number} value The new stepSize value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     set_stepSize = function(value) {
@@ -179,8 +179,8 @@ org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
 
 /**
  * @expose
- * @param {Number} value The candidate number.
- * @return {Number} Adjusted value.
+ * @param {number} value The candidate number.
+ * @return {number} Adjusted value.
  */
 org.apache.flex.html.staticControls.beads.models.RangeModel.prototype.
     snap = function(value) {

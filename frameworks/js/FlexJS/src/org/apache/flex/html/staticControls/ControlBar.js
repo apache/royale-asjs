@@ -44,7 +44,7 @@ org.apache.flex.html.staticControls.ControlBar.prototype.FLEXJS_CLASS_INFO =
  * @override
  */
 org.apache.flex.html.staticControls.ControlBar.prototype.createElement =
-    function(p) {
+    function() {
 
   this.element = document.createElement('div');
   this.element.className = 'ControlBar';
@@ -52,4 +52,6 @@ org.apache.flex.html.staticControls.ControlBar.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+
+  return this.element;
 };

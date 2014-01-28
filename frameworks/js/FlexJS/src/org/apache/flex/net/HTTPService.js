@@ -27,16 +27,16 @@ org.apache.flex.net.HTTPService = function() {
   goog.base(this);
 
   /**
-   * @protected
-   * @type {string}
+   * @private
+   * @type {?string}
    */
-  this.url_;
+  this.url_ = null;
 
   /**
    * @private
    * @type {number}
    */
-  this.status_;
+  this.status_ = -1;
 
   /**
    * @private
@@ -48,19 +48,19 @@ org.apache.flex.net.HTTPService = function() {
    * @private
    * @type {Array}
    */
-  this.headers_;
+  this.headers_ = null;
 
   /**
    * @private
    * @type {Array}
    */
-  this.responseHeaders_;
+  this.responseHeaders_ = null;
 
   /**
    * @private
-   * @type {string}
+   * @type {?string}
    */
-  this.responseURL_;
+  this.responseURL_ = null;
 
   /**
    * @private
@@ -70,9 +70,9 @@ org.apache.flex.net.HTTPService = function() {
 
   /**
    * @private
-   * @type {string}
+   * @type {?string}
    */
-  this.contentData_;
+  this.contentData_ = null;
 
   /**
    * @private
@@ -140,7 +140,7 @@ org.apache.flex.net.HTTPService.prototype.get_data = function() {
 
 /**
  * @expose
- * @return {string} value The contentData.
+ * @return {?string} value The contentData.
  */
 org.apache.flex.net.HTTPService.prototype.get_contentData = function() {
   return this.contentData_;
@@ -179,7 +179,7 @@ org.apache.flex.net.HTTPService.prototype.set_contentType = function(value) {
  * @return {Array} value The array of HTTPHeaders.
  */
 org.apache.flex.net.HTTPService.prototype.get_headers = function() {
-  if (!this.headers_ === undefined) {
+  if (this.headers_ === undefined) {
     this.headers_ = [];
   }
 
@@ -240,7 +240,7 @@ org.apache.flex.net.HTTPService.prototype.get_responseHeaders = function() {
 
 /**
  * @expose
- * @return {string} value The url.
+ * @return {?string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_responseURL = function() {
   return this.responseURL_;
@@ -276,7 +276,7 @@ org.apache.flex.net.HTTPService.prototype.set_timeout = function(value) {
 
 /**
  * @expose
- * @return {string} value The url.
+ * @return {?string} value The url.
  */
 org.apache.flex.net.HTTPService.prototype.get_url = function() {
   return this.url_;
@@ -363,14 +363,14 @@ org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
 
 /**
  * @expose
- * @type {string}
+ * @type {?string}
  */
-org.apache.flex.net.HTTPService.prototype.id;
+org.apache.flex.net.HTTPService.prototype.id = null;
 
 
 /**
  * @expose
- * @return {string} The id.
+ * @return {?string} The id.
  */
 org.apache.flex.net.HTTPService.prototype.get_id = function() {
   return this.id;

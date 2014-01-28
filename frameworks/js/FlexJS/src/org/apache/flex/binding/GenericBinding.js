@@ -72,12 +72,13 @@ org.apache.flex.binding.GenericBinding.prototype.set_strand =
  */
 org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
     function() {
+  var obj;
   if (typeof(this.source) == 'object' &&
       typeof(this.source.slice) == 'function')
   {
     var arr = this.source;
     var n = arr.length;
-    var obj = this.document['get_' + arr[0]]();
+    obj = this.document['get_' + arr[0]]();
     if (obj == null)
       return null;
     for (var i = 1; i < n; i++)

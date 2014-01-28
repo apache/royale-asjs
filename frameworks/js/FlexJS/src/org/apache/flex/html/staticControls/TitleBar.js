@@ -75,6 +75,8 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
   // listen for changes to the model so items can be changed in the view
   this.model.addEventListener('titleChange',
       goog.bind(this.changeHandler, this));
+
+  return this.element;
 };
 
 

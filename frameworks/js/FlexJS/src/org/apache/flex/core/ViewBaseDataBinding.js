@@ -76,14 +76,16 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
   var prop;
   var fieldWatcher;
   var sb;
-  var bindingData = this.strand_['_bindings'];
+  var bindingData = this.strand_._bindings;
   var n = bindingData[0];
   var bindings = [];
   var i;
+  var binding;
+  var destination;
   var index = 1;
   for (i = 0; i < n; i++)
   {
-    var binding = {};
+    binding = {};
     binding.source = bindingData[index++];
     binding.destFunc = bindingData[index++];
     binding.destination = bindingData[index++];
@@ -102,10 +104,9 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
         if (binding.source.length == 2 &&
             binding.destination.length == 2)
         {
-          var destination;
           // can be simplebinding or constantbinding
           var modelWatcher =
-              watchers.watcherMap['applicationModel'];
+              watchers.watcherMap.applicationModel;
           var childMap = modelWatcher.children.watcherMap;
           fieldWatcher = childMap[binding.source[1]];
           if (typeof(fieldWatcher.eventNames) == 'string')
@@ -345,17 +346,18 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.decodeWatcher =
 org.apache.flex.core.ViewBaseDataBinding.prototype.deferredBindingsHandler =
     function(event) {
   var p;
+  var destination;
   for (p in this.deferredBindings)
   {
     if (typeof(this.strand_['get_' + p]) == 'function')
     {
-      var destination = this.strand_['get_' + p]();
+      destination = this.strand_['get_' + p]();
       destination.addBead(this.deferredBindings[p]);
       delete this.deferredBindings[p];
     }
     else if (this.strand_[p] != null)
     {
-      var destination = this.strand_[p];
+      destination = this.strand_[p];
       destination.addBead(this.deferredBindings[p]);
       delete this.deferredBindings[p];
     }

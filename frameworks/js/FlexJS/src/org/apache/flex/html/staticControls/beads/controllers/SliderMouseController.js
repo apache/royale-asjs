@@ -142,7 +142,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
 /**
  *        SliderMouseController}
  * @param {Event} event The event triggering the function.
- * @param {Boolean} useOffset If true, event.offsetX is used in the calculation.
+ * @param {boolean} useOffset If true, event.offsetX is used in the calculation.
  * @return {void} Determines the new value based on the movement of the mouse
  * along the slider.
  */

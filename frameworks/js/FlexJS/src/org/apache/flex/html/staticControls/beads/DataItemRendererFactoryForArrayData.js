@@ -76,8 +76,12 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
       goog.bind(this.dataProviderChangedHandler, this));
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
-    var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRendererClassFactory');
-    this.itemRendererFactory_ = new c;
+    /**
+     * @type {Function}
+     */
+    var c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,
+            'iItemRendererClassFactory'));
+    this.itemRendererFactory_ = new c();
     this.strand_.addBead(this.itemRendererFactory_);
   }
 

@@ -73,7 +73,7 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
 
 /**
  *        SpinnerMouseController}
- * @param {event} event The event object.
+ * @param {Event} event The event object.
  */
 org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
     prototype.handleDecrementClick =

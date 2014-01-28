@@ -108,12 +108,16 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
     function() {
   goog.base(this, 'addedToParent');
 
-  var c = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
-  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !c) {
-    c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,
-                            'iDataProviderItemRendererMapper');
+  var b = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
+  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !b) {
+    /**
+     * @type {Function}
+     */
+    var c;
+    c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,
+                            'iDataProviderItemRendererMapper'));
     if (c) {
-      var bead = new c;
+      var bead = new c();
       this.addBead(bead);
     }
   }

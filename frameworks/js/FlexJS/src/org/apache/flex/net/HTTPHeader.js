@@ -51,13 +51,13 @@ org.apache.flex.net.HTTPHeader.CONTENT_TYPE = 'Content-type';
 
 /**
  * @expose
- * @type {string}
+ * @type {?string}
  */
-org.apache.flex.net.HTTPHeader.prototype.value;
+org.apache.flex.net.HTTPHeader.prototype.value = null;
 
 
 /**
  * @expose
- * @type {string}
+ * @type {?string}
  */
-org.apache.flex.net.HTTPHeader.prototype.name;
+org.apache.flex.net.HTTPHeader.prototype.name = null;

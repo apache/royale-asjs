@@ -47,6 +47,7 @@ org.apache.flex.core.IDataProviderItemRendererMapper.prototype.itemRendererFacto
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IDataProviderItemRendererMapper.prototype.FLEXJS_CLASS_INFO = {
-   names: [{ name: 'IDataProviderItemRendererMapper',
+  names: [{ name: 'IDataProviderItemRendererMapper',
              qName: 'org.apache.flex.core.IDataProviderItemRendererMapper'}],
-  interfaces: [org.apache.flex.core.IBead] };
+  interfaces: [org.apache.flex.core.IBead]
+};

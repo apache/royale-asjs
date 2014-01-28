@@ -75,12 +75,14 @@ org.apache.flex.html.staticControls.ComboBox.prototype.createElement =
       goog.bind(this.dismissPopup, this));
 
   input.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Object} event The event.
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.selectChanged =
     function(event) {
@@ -99,10 +101,10 @@ org.apache.flex.html.staticControls.ComboBox.prototype.selectChanged =
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Object=} opt_event The event.
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.dismissPopup =
-    function(event) {
+    function(opt_event) {
   // remove the popup if it already exists
   if (this.popup) {
     this.popup.parentNode.removeChild(this.popup);
@@ -113,11 +115,15 @@ org.apache.flex.html.staticControls.ComboBox.prototype.dismissPopup =
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Object} event The event.
  */
 org.apache.flex.html.staticControls.ComboBox.prototype.buttonClicked =
     function(event) {
-  var dp, i, input, left, n, opt, opts, pn, popup, select, si, top, width;
+  /**
+   * @type {Array.<string>}
+   */
+  var dp;
+  var i, input, left, n, opt, opts, pn, popup, select, si, top, width;
 
   event.stopPropagation();
 
@@ -150,7 +156,7 @@ org.apache.flex.html.staticControls.ComboBox.prototype.buttonClicked =
   goog.events.listen(select, 'change', goog.bind(this.selectChanged, this));
   opts = select.options;
 
-  dp = this.get_dataProvider();
+  dp = /** @type {Array.<string>} */ (this.get_dataProvider());
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('option');

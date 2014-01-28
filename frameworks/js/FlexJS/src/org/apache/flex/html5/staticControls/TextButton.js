@@ -38,6 +38,8 @@ org.apache.flex.html5.staticControls.TextButton.prototype.createElement =
   this.element.setAttribute('type', 'button');
 
   this.positioner = this.element;
+
+  return this.element;
 };
 
 

@@ -28,7 +28,7 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
  */
 org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
     function() {
-    goog.base(this);
+  goog.base(this);
 };
 goog.inherits(
     org.apache.flex.html.staticControls.

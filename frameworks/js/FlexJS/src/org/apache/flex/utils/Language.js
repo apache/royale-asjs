@@ -155,7 +155,7 @@ org.apache.flex.utils.Language.trace = function(opt_value) {
 
   opt_value = (opt_value !== undefined) ? opt_value : '';
 
-  theConsole = goog.global['console'];
+  theConsole = goog.global.console;
 
   try {
     if (theConsole && theConsole.log) {

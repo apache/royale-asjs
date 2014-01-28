@@ -110,7 +110,7 @@ org.apache.flex.utils.Timer.prototype.timerHandler =
 
 /**
  * @expose
- * @return {Number} The currentCount.
+ * @return {number} The currentCount.
  */
 org.apache.flex.utils.Timer.prototype.get_currentCount = function() {
   return this._currentCount;
@@ -128,7 +128,7 @@ org.apache.flex.utils.Timer.prototype.get_running = function() {
 
 /**
  * @expose
- * @return {Number} The number of milliseconds between events.
+ * @return {number} The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.get_delay = function() {
   return this._delay;
@@ -137,7 +137,7 @@ org.apache.flex.utils.Timer.prototype.get_delay = function() {
 
 /**
  * @expose
- * @param {Number} value The number of milliseconds between events.
+ * @param {number} value The number of milliseconds between events.
  */
 org.apache.flex.utils.Timer.prototype.set_delay = function(value) {
   this._delay = value;
@@ -146,7 +146,7 @@ org.apache.flex.utils.Timer.prototype.set_delay = function(value) {
 
 /**
  * @expose
- * @return {Number} The repeat count.
+ * @return {number} The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
   return this._repeatCount;
@@ -155,7 +155,7 @@ org.apache.flex.utils.Timer.prototype.get_repeatCount = function() {
 
 /**
  * @expose
- * @param {Number} value The repeat count.
+ * @param {number} value The repeat count.
  */
 org.apache.flex.utils.Timer.prototype.set_repeatCount = function(value) {
   this._repeatCount = value;

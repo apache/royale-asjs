@@ -101,10 +101,10 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
   goog.base(this, 'set_data', value);
 
   if (value.hasOwnProperty('label')) {
-    this.button.innerHTML = value['label'];
+    this.button.innerHTML = value.label;
   }
   else if (value.hasOwnProperty('title')) {
-    this.button.innerHTML = value['title'];
+    this.button.innerHTML = value.title;
   }
   else {
     this.button.innerHHTML = String(value);

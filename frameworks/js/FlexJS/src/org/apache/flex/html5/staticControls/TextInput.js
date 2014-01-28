@@ -38,6 +38,8 @@ org.apache.flex.html5.staticControls.TextInput.prototype.createElement =
   this.element.setAttribute('type', 'input');
 
   this.positioner = this.element;
+
+  return this.element;
 };
 
 

@@ -72,7 +72,7 @@ org.apache.flex.binding.BindingBase.prototype.sourcePropertyName = '';
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.BindingBase.prototype.sourceID;
+org.apache.flex.binding.BindingBase.prototype.sourceID = '';
 
 
 /**

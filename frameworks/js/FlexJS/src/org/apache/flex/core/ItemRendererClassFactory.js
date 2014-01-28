@@ -25,6 +25,9 @@ goog.require('org.apache.flex.core.ValuesManager');
  * @implements {org.apache.flex.core.IItemRendererClassFactory}
  */
 org.apache.flex.core.ItemRendererClassFactory = function() {
+  /**
+   * @type {Function}
+   */
   this.itemRendererClass = null;
 };
 
@@ -54,14 +57,15 @@ org.apache.flex.core.ItemRendererClassFactory.
   if (this.strand_.get_itemRenderer) {
     this.itemRendererClassFactory = this.strand_.get_itemRenderer();
     if (this.itemRendererClassFactory) {
-        this.createFunction = this.createFromClass;
-        return;
+      this.createFunction = this.createFromClass;
+      return;
     }
   }
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-    this.itemRendererClass = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this.strand_, 'iItemRenderer');
+    this.itemRendererClass =
+            /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this.strand_, 'iItemRenderer'));
     if (this.itemRendererClass) {
       this.itemRendererClassFactory = new mx.core.ClassFactory(this.itemRendererClass);
       this.createFunction = this.createFromClass;

@@ -14,13 +14,22 @@
 
 goog.provide('org.apache.flex.core.SimpleCSSValuesImpl');
 
+goog.require('org.apache.flex.core.IValuesImpl');
+
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IValuesImpl};
  */
 org.apache.flex.core.SimpleCSSValuesImpl = function() {
 };
+
+
+/**
+ * @type {string}
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR = 'global';
 
 
 /**
@@ -30,19 +39,20 @@ org.apache.flex.core.SimpleCSSValuesImpl = function() {
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleCSSValuesImpl',
-                qName: 'org.apache.flex.core.SimpleCSSValuesImpl'}] };
+               qName: 'org.apache.flex.core.SimpleCSSValuesImpl'}],
+    interfaces: [org.apache.flex.core.IValuesImpl]};
 
 
 /**
  * @param {Object} thisObject The object to fetch a value for.
  * @param {string} valueName The name of the value to fetch.
- * @param {string} state The psuedo-state if any for.
- * @param {Object} attrs The object with name value pairs that
+ * @param {string=} opt_state The psuedo-state if any for.
+ * @param {Object=} opt_attrs The object with name value pairs that
  *                       might make a difference.
  * @return {Object} The value.
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
-    function(thisObject, valueName, state, attrs) {
+    function(thisObject, valueName, opt_state, opt_attrs) {
   var c = valueName.indexOf('-');
   while (c != -1)
   {
@@ -61,31 +71,31 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   if ('className' in thisObject)
   {
     cName = thisObject.className;
-    if (state)
+    if (opt_state)
     {
-        selectorName = cName + ':' + state;
-        o = values['.' + selectorName];
-        if (o)
-        {
-            value = o[valueName];
-            if (value !== undefined)
-                return value;
-        }
+      selectorName = cName + ':' + opt_state;
+      o = values['.' + selectorName];
+      if (o)
+      {
+        value = o[valueName];
+        if (value !== undefined)
+          return value;
+      }
     }
 
     o = values['.' + cName];
     if (o)
     {
-        value = o[valueName];
-        if (value !== undefined)
-          return value;
+      value = o[valueName];
+      if (value !== undefined)
+        return value;
     }
   }
 
   cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
-  if (state)
+  if (opt_state)
   {
-    selectorName = cName + ':' + state;
+    selectorName = cName + ':' + opt_state;
     o = values['.' + selectorName];
     if (o)
     {
@@ -105,9 +115,9 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
 
   while (cName != 'Object')
   {
-    if (state)
+    if (opt_state)
     {
-      selectorName = cName + ':' + state;
+      selectorName = cName + ':' + opt_state;
       o = values[selectorName];
       if (o)
       {
@@ -130,8 +140,8 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
 
     cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   }
-  o = values['global'];
-  if (o != undefined)
+  o = values[org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR];
+  if (o !== undefined)
   {
     value = o[valueName];
     if (value !== undefined)

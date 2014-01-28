@@ -66,6 +66,8 @@ org.apache.flex.html.staticControls.NumericStepper.prototype.createElement =
   this.set_className('NumericStepper');
 
   this.input.set_text(String(this.spinner.get_value()));
+
+  return this.element;
 };
 
 

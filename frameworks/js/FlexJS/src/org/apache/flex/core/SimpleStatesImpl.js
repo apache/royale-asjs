@@ -20,6 +20,7 @@ goog.require('mx.states.State');
 goog.require('org.apache.flex.core.IBead');
 goog.require('org.apache.flex.core.IStatesImpl');
 goog.require('org.apache.flex.core.IStrand');
+goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 
@@ -104,8 +105,11 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler_ =
  * @param {mx.states.State} s The State to revert.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
-  var arr, item, o, p, parent, q, target;
-
+  var arr, item, o, p, q, target;
+  /**
+   * @type {org.apache.flex.core.UIBase}
+   */
+  var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
@@ -145,8 +149,11 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
  * @param {mx.states.State} s The State to apply.
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
-  var arr, child, index, item, o, p, parent, q, target;
-
+  var arr, child, index, item, o, p, q, target;
+  /**
+   * type {org.apache.flex.core.UIBase}
+   */
+  var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];

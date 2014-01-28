@@ -32,7 +32,7 @@ org.apache.flex.html.staticControls.supportClasses.DataGridColumn =
  */
 org.apache.flex.html.staticControls.supportClasses.DataGridColumn.prototype.get_itemRenderer =
 function() {
-   return this.itemRenderer_;
+  return this.itemRenderer_;
 };
 
 

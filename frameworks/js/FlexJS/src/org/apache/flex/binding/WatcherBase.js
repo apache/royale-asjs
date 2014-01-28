@@ -25,14 +25,15 @@ org.apache.flex.binding.WatcherBase = function() {
      * @protected
      * @type {Object}
      */
-  this.listeners;
+  this.listeners = null;
 
   /**
      * @protected
      * @type {Object}
      * Children of this watcher are watching sub values.
      */
-  this.children;
+  this.children = null;
+
 };
 
 
@@ -48,9 +49,10 @@ org.apache.flex.binding.WatcherBase.prototype.FLEXJS_CLASS_INFO =
 
 /**
  *  @expose
+ *  @type {Object|number|string|boolean}
  *  The value itself.
  */
-org.apache.flex.binding.WatcherBase.prototype.value;
+org.apache.flex.binding.WatcherBase.prototype.value = null;
 
 
 /**
@@ -139,7 +141,7 @@ org.apache.flex.binding.WatcherBase.prototype.valueChanged =
 
   if (valType == 'string')
   {
-    if (oldValue == null && this.value == '')
+    if (oldValue == null && this.value === '')
       return false;
     else
       return oldValue != this.value;
@@ -147,7 +149,7 @@ org.apache.flex.binding.WatcherBase.prototype.valueChanged =
 
   if (valType == 'number')
   {
-    if (oldValue == null && this.value == 0)
+    if (oldValue == null && this.value === 0)
       return false;
     else
       return oldValue != this.value;
@@ -155,7 +157,7 @@ org.apache.flex.binding.WatcherBase.prototype.valueChanged =
 
   if (valType == 'boolean')
   {
-    if (oldValue == null && this.value == false)
+    if (oldValue == null && this.value === false)
       return false;
     else
       return oldValue != this.value;

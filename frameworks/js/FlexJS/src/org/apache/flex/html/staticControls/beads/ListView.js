@@ -93,8 +93,9 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.
     selectionChangeHandler = function(value) {
+  var ir;
   if (this.lastSelectedIndex != -1) {
-    var ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
+    ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
     if (ir) ir.set_selected(false);
   }
   if (this.model.get_selectedIndex() != -1) {

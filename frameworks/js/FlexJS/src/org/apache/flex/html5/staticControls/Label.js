@@ -37,6 +37,8 @@ org.apache.flex.html5.staticControls.Label.prototype.createElement =
   goog.base(this, 'createElement');
 
   this.positioner = this.element;
+
+  return this.element;
 };
 
 

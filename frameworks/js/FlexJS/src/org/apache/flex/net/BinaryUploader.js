@@ -27,16 +27,16 @@ org.apache.flex.net.BinaryUploader = function() {
   goog.base(this);
 
   /**
-   * @protected
+   * @private
    * @type {string}
    */
-  this.url_;
+  this.url_ = null;
 
   /**
    * @private
    * @type {Number}
    */
-  this.status_;
+  this.status_ = -1;
 
   /**
    * @private
@@ -48,19 +48,19 @@ org.apache.flex.net.BinaryUploader = function() {
    * @private
    * @type {Array}
    */
-  this.headers_;
+  this.headers_ = null;
 
   /**
    * @private
    * @type {Array}
    */
-  this.responseHeaders_;
+  this.responseHeaders_ = null;
 
   /**
    * @private
    * @type {string}
    */
-  this.responseURL_;
+  this.responseURL_ = null;
 
   /**
    * @private
@@ -72,7 +72,7 @@ org.apache.flex.net.BinaryUploader = function() {
    * @private
    * @type {string}
    */
-  this.binaryData_;
+  this.binaryData_ = null;
 
   /**
    * @private
@@ -365,7 +365,7 @@ org.apache.flex.net.BinaryUploader.prototype.progressHandler = function() {
  * @expose
  * @type {string}
  */
-org.apache.flex.net.BinaryUploader.prototype.id;
+org.apache.flex.net.BinaryUploader.prototype.id = null;
 
 
 /**

@@ -70,6 +70,8 @@ org.apache.flex.html.staticControls.Spinner.prototype.createElement =
   this.addBead(this.controller);
 
   this.element.flexjs_wrapper = this;
+
+  return this.element;
 };
 
 

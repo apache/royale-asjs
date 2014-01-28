@@ -33,8 +33,10 @@ goog.inherits(org.apache.flex.html5.staticControls.List,
  * @override
  */
 org.apache.flex.html5.staticControls.List.prototype.createElement =
-    function(p) {
+    function() {
   goog.base(this, 'createElement');
 
   this.element.size = 5;
+
+  return this.element;
 };

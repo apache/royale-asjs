@@ -52,7 +52,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
   button.style.height = '20px';
   button.style.margin = '0';
   button.style.border = 'solid #609 1px';
-  button.onclick = goog.bind(this.buttonClicked, this);
+  button.onclick = /** @type {function (Event)} */ (goog.bind(this.buttonClicked, this));
   this.element.appendChild(button);
 
   this.element.style.position = 'relative';
@@ -63,12 +63,14 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
   // dismiss the pop-up should it be visible.
   goog.events.listen(document, 'click',
       goog.bind(this.dismissPopup, this));
+
+  return this.element;
 };
 
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Event} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
     function(event) {
@@ -86,7 +88,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Event} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
     function(event) {
@@ -99,11 +101,15 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
 
 /**
  * @expose
- * @param {string} event The event.
+ * @param {Event} event The event.
  */
 org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
     function(event) {
-  var dp, i, input, left, n, opt, opts, pn, popup, select, si, top, width;
+  /**
+   * @type {Array.<string>}
+   */
+  var dp;
+  var i, input, left, n, opt, opts, pn, popup, select, si, top, width;
 
   event.stopPropagation();
 
@@ -133,10 +139,10 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
 
   select = document.createElement('select');
   select.style.width = width.toString() + 'px';
-  select.onchange = goog.bind(this.selectChanged, this);
+  select.onchange = /** @type {function(Event)} */ (goog.bind(this.selectChanged, this));
   opts = select.options;
 
-  dp = this.get_dataProvider();
+  dp = /** @type {Array.<string>} */ (this.get_dataProvider());
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('option');
