@@ -69,7 +69,7 @@ org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
   this.strand_.set_hovered(true);
-  
+
   var newEvent = new goog.events.Event('rollover');
   newEvent.target = this.strand_;
   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
@@ -84,7 +84,7 @@ org.apache.flex.html.staticControls.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
   this.strand_.set_hovered(false);
-  
+
   var newEvent = new goog.events.Event('rollout');
   newEvent.target = this.strand_;
   this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
