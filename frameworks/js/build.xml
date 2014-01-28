@@ -93,8 +93,7 @@
             <arg value="FlexJS/src" />
         </exec>
         <echo>running jshint</echo>
-        <echo>set failonerror=true when we get this cleaned up</echo>
-        <exec executable="jshint" dir="${basedir}" failonerror="false">
+        <exec executable="jshint" dir="${basedir}" failonerror="true">
             <arg value="--config" />
             <arg value="jshint.properties" />
             <arg value="FlexJS/src" />
