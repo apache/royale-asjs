@@ -85,7 +85,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout; VScrollBarLayout;
     import org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
-	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn; DataGridColumn;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
 	import org.apache.flex.events.CustomEvent; CustomEvent;

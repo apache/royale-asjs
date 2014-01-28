@@ -29,7 +29,6 @@
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
     <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
     <component id="ButtonBar" class="org.apache.flex.html.staticControls.ButtonBar"/>
-    <component id="DataGridColumn" class="org.apache.flex.html.staticControls.supportClasses.DataGridColumn"/>
     <component id="DropDownList" class="org.apache.flex.html.staticControls.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.staticControls.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.staticControls.Image"/>

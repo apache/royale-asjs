@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="DataGrid" class="org.apache.flex.html.staticControls.DataGrid"/>
+    <component id="DataGridColumn" class="org.apache.flex.html.staticControls.supportClasses.DataGridColumn"/>
     <component id="DataGridPresentationModel" class="org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel" />
     <component id="BarChart" class="org.apache.flex.charts.BarChart" />
     <component id="BarChartSeries" class="org.apache.flex.charts.supportClasses.BarChartSeries" />

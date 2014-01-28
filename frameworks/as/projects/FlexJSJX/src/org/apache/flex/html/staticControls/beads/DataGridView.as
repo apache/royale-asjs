@@ -66,8 +66,9 @@ package org.apache.flex.html.staticControls.beads
 			var columnLabels:Array = new Array();
 			var buttonWidths:Array = new Array();
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
-				columnLabels.push(sharedModel.columns[i].label);
-				buttonWidths.push(sharedModel.columns[i].columnWidth);
+				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+				columnLabels.push(dgc.label);
+				buttonWidths.push(dgc.columnWidth);
 			}
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
 			bblayout.buttonWidths = buttonWidths;
@@ -136,12 +137,17 @@ package org.apache.flex.html.staticControls.beads
 			columnContainer.width = sw;
 			columnContainer.height = sh - 25;
 			
+			var colXpos:Number = 0;
+			
 			for(var i:int=0; i < columns.length; i++) {
 				var column:List = columns[i];
 			
 				var cw:Number = sw/(columns.length);
 				column.y = 0;
+				column.x = colXpos;
 				column.height = columnContainer.height; // this will actually be Nitem*rowHeight
+				
+				colXpos += column.width;
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
@@ -155,7 +161,8 @@ package org.apache.flex.html.staticControls.beads
 			
 			for(var i:int=0; i < columns.length; i++) {
 				if (list != columns[i]) {
-					columns[i].selectedIndex = list.selectedIndex;
+					var otherList:List = columns[i] as List;
+					otherList.selectedIndex = list.selectedIndex;
 				}
 			}
 			
@@ -167,7 +174,8 @@ package org.apache.flex.html.staticControls.beads
 			var list:List = event.target as List;
 			for(var i:int=0; i < columns.length; i++) {
 				if (list != columns[i]) {
-					columns[i].rollOverIndex = list.rollOverIndex;
+					var otherList:List = columns[i] as List;
+					otherList.rollOverIndex = list.rollOverIndex;
 				}
 			}
 			

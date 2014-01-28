@@ -33,6 +33,7 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn; DataGridColumn;
 	
 	import org.apache.flex.html.staticControls.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.staticControls.beads.DataGridView; DataGridView;
