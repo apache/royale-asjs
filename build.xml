@@ -751,6 +751,7 @@
         <copy todir="${basedir}/temp/frameworks/as/libs">
             <fileset dir="${basedir}/frameworks/as/libs">
                 <include name="FlexJSUI.swc"/>
+                <include name="FlexJSJX.swc"/>
                 <include name="MXMLCClasses.swc"/>
             </fileset>
         </copy>
@@ -824,6 +825,7 @@
         <copy todir="${basedir}/temp/frameworks/as/libs">
             <fileset dir="${basedir}/frameworks/as/libs">
                 <include name="FlexJSUI.swc"/>
+                <include name="FlexJSJX.swc"/>
                 <include name="MXMLCClasses.swc"/>
             </fileset>
         </copy>
