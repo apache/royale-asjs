@@ -20,9 +20,18 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 
-	/** 
-	 *  Marker interface for models
-	 */
+    /**
+     *  The IBeadModel interface is a "marker" interface for beads that 
+     *  represent the data model for a control.  A marker interface has no addtional APIs.
+     *  It is used to find the model bead on the strand via calls to getBeadByType.
+     * 
+     *  @see org.apache.flex.core.IStrand#getBeadByType
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IBeadModel extends IBead, IEventDispatcher
 	{
 		

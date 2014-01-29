@@ -20,8 +20,26 @@ package org.apache.flex.core
 {
     import flash.geom.Rectangle;
 
+    /**
+     *  The IBorderModel interface is the basic interface for a data model for
+     *  drawing borders.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IBorderModel extends IBead, IBeadModel
 	{
+        /**
+         *  The offsets from the edges of the host component where
+         *  the border should be drawn.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get offsets():Rectangle;
 	}
 }

@@ -18,8 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IDocument interface is the basic interface for objects that can be
+     *  tags in an MXML document and need to know about the host document.  It is
+     *  similar to the IMXMLObject interface in the Flex SDK.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IDocument
 	{
+        /**
+         *  This method is called to notify an instance of what MXML document
+         *  it belongs to, if any, and what its assigned id is in that
+         *  document, if any.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function setDocument(document:Object, id:String = null):void
 	}
 }

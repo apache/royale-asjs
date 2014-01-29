@@ -18,8 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IDataGridModel interface describes the minimum set of properties
+     *  available to an DataGrid control.  More sophisticated DataGrid controls
+     *  could have models that extend IDataGridModel.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IDataGridModel extends ISelectionModel
 	{		
+        /**
+         *  The set of DataGridColumns.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get columns():Array;
 		function set columns(value:Array):void;
 	}

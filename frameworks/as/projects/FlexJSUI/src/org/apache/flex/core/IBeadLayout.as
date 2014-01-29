@@ -18,9 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	/** 
-	 *  Marker interface for Layouts
-	 */
+    /**
+     *  The IBeadLayout interface is a "marker" interface for beads that 
+     *  manage the layout for a control.  A marker interface has no addtional APIs.
+     *  It is used to find the layout bead on the strand via calls to getBeadByType.
+     * 
+     *  @see org.apache.flex.core.IStrand#getBeadByType
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IBeadLayout extends IBead
 	{
 		

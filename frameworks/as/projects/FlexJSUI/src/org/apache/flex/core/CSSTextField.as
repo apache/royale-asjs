@@ -23,18 +23,46 @@ package org.apache.flex.core
 	
 	import org.apache.flex.core.ValuesManager;
 		
+    /**
+     *  The CSSTextField class implements CSS text styles in a TextField.
+     *  Not every CSS text style is currently supported.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class CSSTextField extends TextField
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function CSSTextField()
 		{
 			super();
 		}
 		
-		// if used as the display object in a button, parent is null and
-		// the css lookup doesn't work.  This will be used if parent is 
-		// null.
+        /**
+         *  @private
+         *  The styleParent property is set if the CSSTextField
+         *  is used in a SimpleButton-based instance because
+         *  the parent property is null, defeating CSS lookup.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var styleParent:Object;
 		
+        /**
+         *  @private
+         */
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;

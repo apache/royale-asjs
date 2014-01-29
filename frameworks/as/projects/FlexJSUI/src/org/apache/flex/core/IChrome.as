@@ -18,12 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	/**
-	 * Items that implement IChrome are designating themselves as being attached
-	 * to their parent in a way that's different from normal content. For example,
-	 * to a Container, a child being added that's an IChrome implementor will be
-	 * added outside of the content area.
-	 */
+    /**
+     *  The IChrome interface is a "marker" interface.
+	 *  Items that implement IChrome are designating themselves as being attached
+	 *  to their parent in a way that's different from normal content. For example,
+	 *  to a Container, a child being added that's an IChrome implementor will be
+	 *  added outside of the content area.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IChrome
 	{
 		

@@ -20,8 +20,28 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The IImageModel interface describes the minimum set of properties
+     *  available to an Image control.  More sophisticated Image controls
+     *  could have models that extend IImageModel.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IImageModel extends IEventDispatcher, IBeadModel
 	{
+        /**
+         *  The source URL for the image.  Embedding images is not
+         *  recommended for FlexJS as there is no embedding support
+         *  in the browsers.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get source():String;
 		function set source(value:String):void;
 	}

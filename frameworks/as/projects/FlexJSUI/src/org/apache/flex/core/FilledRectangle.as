@@ -22,8 +22,25 @@ package org.apache.flex.core
 	
 	import org.apache.flex.core.UIBase;
 	
+    /**
+     *  The FilledRectangle class draws a simple filled
+     *  rectangle without a border and with square corners.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class FilledRectangle extends UIBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function FilledRectangle()
 		{
 			super();
@@ -35,21 +52,49 @@ package org.apache.flex.core
 		private var _shape:flash.display.Shape;
 		
 		private var _fillColor:uint = 0x000000;
+        
+        /**
+         *  The color of the rectangle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get fillColor():uint
 		{
 			return _fillColor;
 		}
+        
+        /**
+         *  @private 
+         */
 		public function set fillColor(value:uint):void
 		{
 			_fillColor = value;
 		}
 		
+        /**
+         *  @private 
+         */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
 			drawRect(0, 0, this.width, this.height);
 		}
 		
+        /**
+         *  Draw the rectangle.
+         *  @param Number x The x position of the top-left corner of the rectangle.
+         *  @param Number y The y position of the top-left corner.
+         *  @param Number width The width of the rectangle.
+         *  @param Number height The height of the rectangle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
 			_shape.graphics.clear();

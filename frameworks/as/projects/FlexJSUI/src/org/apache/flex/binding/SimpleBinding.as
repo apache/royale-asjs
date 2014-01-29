@@ -25,21 +25,120 @@ package org.apache.flex.binding
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
 
+    /**
+     *  The SimpleBinding class is lightweight data-binding class that
+     *  is optimized for simple assignments of one object's property to
+     *  another object's property.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SimpleBinding implements IBead, IDocument
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function SimpleBinding()
 		{
 		}
 		
+        /**
+         *  The source object that dispatches an event
+         *  when the property changes
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var source:IEventDispatcher;
-		protected var document:Object;
+
+        /**
+         *  The host mxml document for the source and
+         *  destination objects.  The source object
+         *  is either this document for simple bindings
+         *  like {foo} where foo is a property on
+         *  the mxml documnet, or found as document[sourceID]
+         *  for simple bindings like {someid.someproperty}
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var document:Object;
+
+        /**
+         *  The destination object.  It is always the same
+         *  as the strand.  SimpleBindings are attached to
+         *  the strand of the destination object.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var destination:Object;
 
+        /**
+         *  If not null, the id of the mxml tag who's property
+         *  is being watched for changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var sourceID:String;
-		public var sourcePropertyName:String;
+
+        /**
+         *  If not null, the name of a property on the
+         *  mxml document that is being watched for changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var sourcePropertyName:String;
+        
+        /**
+         *  The event name that is dispatched when the source
+         *  property changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var eventName:String;
+        
+        /**
+         *  The name of the property on the strand that
+         *  is set when the source property changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var destinationPropertyName:String;
 		
+        /**
+         *  @see org.apache.flex.core.IBead#strand
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			destination = value;
@@ -51,6 +150,14 @@ package org.apache.flex.binding
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
 		
+        /**
+         *  @see org.apache.flex.core.IDocument#setDocument
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function setDocument(document:Object, id:String = null):void
 		{
 			this.document = document;

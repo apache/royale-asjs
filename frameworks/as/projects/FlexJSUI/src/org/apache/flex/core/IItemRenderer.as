@@ -20,23 +20,85 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The IItemRenderer interface is the basic interface for item renderers.
+     *  More complex item renderers may implements extensions of this interface.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IItemRenderer extends IEventDispatcher
 	{
+        /**
+         *  The data item to be displayed by the item renderer.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get data():Object;
 		function set data(value:Object):void;
 		
+        /**
+         *  The property on the data item that the item renderer
+         *  should renderer.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get labelField():String;
 		function set labelField(value:String):void;
 		
+        /**
+         *  The index of the data item in the data provider.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get index():int;
 		function set index(value:int):void;
 		
+        /**
+         *  <code>true</code> if the item renderer is rendering
+         *  an item that is selected.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get selected():Boolean;
 		function set selected(value:Boolean):void;
         
+        /**
+         *  <code>true</code> if the item renderer is rendering
+         *  an item that is under the mouse pointer.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get hovered():Boolean;
         function set hovered(value:Boolean):void;
 
+        /**
+         *  <code>true</code> if the item renderer is rendering
+         *  an item that is under the mouse pointer and the
+         *  mouse button is down.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get down():Boolean;
         function set down(value:Boolean):void;
 	}

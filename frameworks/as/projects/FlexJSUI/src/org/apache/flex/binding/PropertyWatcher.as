@@ -22,8 +22,25 @@ package org.apache.flex.binding
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.ValueChangeEvent;
 
+    /**
+     *  The PropertyWatcher class is the data-binding class that watches
+     *  for changes to various properties in objects.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class PropertyWatcher extends WatcherBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function PropertyWatcher(source:Object, propertyName:String, eventNames:Object, 
                                             getterFunction:Function)
 		{
@@ -34,11 +51,58 @@ package org.apache.flex.binding
             
 		}
 		
+        /**
+         *  The object who's property we are watching.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var source:Object;
+        
+        /**
+         *  The name of the property we are watching.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var propertyName:String;
+        
+        /**
+         *  The name or array of names of events that get
+         *  dispatched when the property changes.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */        
         public var eventNames:Object;
+        
+        /**
+         *  A function to call to get the value
+         *  of the property changes if the property is
+         *  not public.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */                
         public var getterFunction:Function;
 		
+        /**
+         *  The event handler that gets called when
+         *  the change events are dispatched.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */                
         protected function changeHandler(event:Event):void
         {
             if (event is ValueChangeEvent)
@@ -62,13 +126,8 @@ package org.apache.flex.binding
         //--------------------------------------------------------------------------
         
         /**
-         *  If the parent has changed we need to update ourselves
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
+         *  @private
+         */                
         override public function parentChanged(parent:Object):void
         {
             if (source && source is IEventDispatcher)
@@ -120,9 +179,9 @@ package org.apache.flex.binding
          *  the Watcher's children appropriately.
          *  
          *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         private function updateProperty():void
         {

@@ -19,7 +19,15 @@
 
 package org.apache.flex.binding
 {
-    
+    /**
+     *  The WatcherBase class is the base class for data-binding classes that watch
+     *  various properties and styles for changes.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class WatcherBase
     {
         //--------------------------------------------------------------------------
@@ -48,21 +56,36 @@ package org.apache.flex.binding
         //--------------------------------------------------------------------------
         
         /**
-         *  @private
          *  The binding objects that are listening to this Watcher.
          *  The standard event mechanism isn't used because it's too heavyweight.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         protected var listeners:Array;
         
         /**
-         *  @private
-         *  Children of this watcher are watching sub values.
+         *  Children of this watcher are watching sub values.  For example, if watching 
+         *  {a.b.c} and this watcher is watching "b", then it is the watchers watching
+         *  "c" and "d" if there is an {a.b.d} being watched.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         protected var children:Array;
         
         /**
-         *  @private
-         *  The value itself.
+         *  The value of whatever it is we are watching.  For example, if watching 
+         *  {a.b.c} and this watcher is watching "b", then it is the value of "a.b".
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public var value:Object;
         
@@ -73,17 +96,29 @@ package org.apache.flex.binding
         //--------------------------------------------------------------------------
         
         /**
-         *  @private
-         *  This is an abstract method that subclasses implement.
+         *  This is an abstract method that subclasses implement.  Implementations
+         *  handle changes in the parent chain.  For example, if watching 
+         *  {a.b.c} and this watcher is watching "b", then handle "a" changing.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function parentChanged(parent:Object):void
         {
         }
         
         /**
-         *  @private
          *  Add a child to this watcher, meaning that the child
-         *  is watching a sub value of ours.
+         *  is watching a sub value of ours.  For example, if watching 
+         *  {a.b.c} and this watcher is watching "b", then this method
+         *  is called to add the watcher watching "c".
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function addChild(child:WatcherBase):void
         {
@@ -96,9 +131,15 @@ package org.apache.flex.binding
         }
         
         /**
-         *  @private
          *  Add a binding to this watcher, meaning that the binding
-         *  is notified when our value changes.
+         *  is notified when our value changes.  Bindings are classes
+         *  that actually perform the change based on changes
+         *  detected to this portion of the chain.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function addBinding(binding:GenericBinding):void
         {
@@ -111,13 +152,14 @@ package org.apache.flex.binding
         }
                 
         /**
-         *  We have probably changed, so go through
-         *  and make sure our children are updated.
+         *  This method is called when the value
+         *  might have changed and goes through
+         *  and makes sure the children are updated.
          *  
          *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function updateChildren():void
         {
@@ -174,7 +216,13 @@ package org.apache.flex.binding
         }
         
         /**
-         *  @private
+         *  Calls a function inside a try catch block to try to
+         *  update the value.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         protected function wrapUpdate(wrappedFunction:Function):void
         {
@@ -202,7 +250,15 @@ package org.apache.flex.binding
             }
         }
         
-        // Certain errors are normal when executing an update, so we swallow them:
+        /**
+         *  Certain errors are normal when executing an update, so we swallow them.
+         *  Feel free to add more errors if needed.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public static var allowedErrors:Array = [
             1006, //   Error #1006: Call attempted on an object that is not a function.
             1009, //   Error #1009: null has no properties.
@@ -212,12 +268,27 @@ package org.apache.flex.binding
             1507 //   Error #1507: - invalid null argument.
             ];
         
+        /**
+         *  Certain errors classes are normal when executing an update, so we swallow all
+         *  errors they represent.  Feel free to add more errors if needed.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public static var allowedErrorTypes:Array = [
             { type: RangeError /*, handler: function(w:WatcherBase, wrappedFunction:Function):Object { return null }*/ }
             ];
         
         /**
-         *  @private
+         *  Notify the various bindings that the value has changed so they can update
+         *  their data binding expressions.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function notifyListeners():void
         {

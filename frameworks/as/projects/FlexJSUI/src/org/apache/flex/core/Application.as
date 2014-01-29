@@ -32,12 +32,52 @@ package org.apache.flex.core
     //--------------------------------------
     
     /**
-     *  Dispatched at startup.
+     *  Dispatched at startup. Attributes and sub-instances of
+     *  the MXML document have been created and assigned.
+     *  The component lifecycle is different
+     *  than the Flex SDK.  There is no creationComplete event.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
     
+    /**
+     *  Dispatched at startup after the initial view has been
+     *  put on the display list.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="viewChanged", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  The Application class the main class and entry point for a FlexJS
+     *  application.  This Application class is different than the
+     *  Flex SDK's mx:Application or spark:Application in that it does not contain
+     *  user interface elements.  Those UI elements go in the views.  This
+     *  Application class expects there to be a main model, a controller, and 
+     *  an initial view.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class Application extends Sprite implements IStrand, IFlexInfo, IParent
     {
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function Application()
         {
             super();
@@ -62,29 +102,114 @@ package org.apache.flex.core
     	    dispatchEvent(new Event("viewChanged"));
         }
 
+        /**
+         *  The org.apache.flex.core.IValuesImpl that will
+         *  determine the default values and other values
+         *  for the application.  The most common choice
+         *  is org.apache.flex.core.SimpleCSSValuesImpl.
+         * 
+         *  @see org.apache.flex.core.SimpleCSSValuesImpl
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var valuesImpl:IValuesImpl;
 
+        /**
+         *  The initial view.
+         * 
+         *  @see org.apache.flex.core.ViewBase
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var initialView:ViewBase;
 
+        /**
+         *  The data model (for the initial view).
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var model:Object;
 
+        /**
+         *  The controller.  The controller typically watches
+         *  the UI for events and updates the model accordingly.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var controller:Object;
 
+        /**
+         *  An array of data that describes the MXML attributes
+         *  and tags in an MXML document.  This data is usually
+         *  decoded by an MXMLDataInterpreter
+         * 
+         *  @see org.apache.flex.utils.MXMLDataInterpreter
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get MXMLDescriptor():Array
         {
             return null;
         }
 
+        /**
+         *  An method called by the compiler's generated
+         *  code to kick off the setting of MXML attribute
+         *  values and instantiation of child tags.
+         * 
+         *  The call has to be made in the generated code
+         *  in order to ensure that the constructors have
+         *  completed first.
+         * 
+         *  @see org.apache.flex.utils.MXMLDataInterpreter
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
     	public function generateMXMLAttributes(data:Array):void
         {
 			MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
         
-        // beads declared in MXML are added to the strand.
-        // from AS, just call addBead()
+        /**
+         *  The array property that is used to add additional
+         *  beads to an MXML tag.  From ActionScript, just
+         *  call addBead directly.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var beads:Array;
         
         private var _beads:Vector.<IBead>;
+        
+        /**
+         *  @see org.apache.flex.core.IStrand#addBead
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function addBead(bead:IBead):void
         {
             if (!_beads)
@@ -93,6 +218,14 @@ package org.apache.flex.core
             bead.strand = this;
         }
         
+        /**
+         *  @see org.apache.flex.core.IStrand#getBeadByType
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function getBeadByType(classOrInterface:Class):IBead
         {
             for each (var bead:IBead in _beads)
@@ -103,6 +236,14 @@ package org.apache.flex.core
             return null;
         }
         
+        /**
+         *  @see org.apache.flex.core.IStrand#removeBead
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function removeBead(value:IBead):IBead	
         {
             var n:int = _beads.length;
@@ -118,11 +259,28 @@ package org.apache.flex.core
             return null;
         }
         
+        /**
+         *  An Object containing information generated
+         *  by the compiler that is useful at startup time.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get info():Object
         {
             return {};           
         }
         
+        /**
+         *  @see org.apache.flex.core.IParent#addElement
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function addElement(c:Object):void
         {
             if (c is IUIBase)
@@ -134,6 +292,14 @@ package org.apache.flex.core
                 addChild(c as DisplayObject);
         }
         
+        /**
+         *  @see org.apache.flex.core.IParent#addElementAt
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function addElementAt(c:Object, index:int):void
         {
             if (c is IUIBase)
@@ -145,6 +311,14 @@ package org.apache.flex.core
                 addChildAt(c as DisplayObject, index);
         }
 
+        /**
+         *  @see org.apache.flex.core.IParent#getElementIndex
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function getElementIndex(c:Object):int
         {
             if (c is IUIBase)
@@ -153,6 +327,14 @@ package org.apache.flex.core
             return getChildIndex(c as DisplayObject);
         }
         
+        /**
+         *  @see org.apache.flex.core.IParent#removeElement
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function removeElement(c:Object):void
         {
             if (c is IUIBase)

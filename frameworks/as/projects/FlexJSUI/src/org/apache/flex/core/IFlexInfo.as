@@ -19,11 +19,25 @@
 package org.apache.flex.core
 {
     /**
-     * An object of various properties and values that are not otherwise
-     * linked in by hard class references, like styles, rsls, mixins.
+     *  The IFlexInfo interface is an interface used to signal to the compiler
+     *  that it should generate a data structure that contains information
+     *  about the application such as its size, mixins, locale, etc.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
      */
 	public interface IFlexInfo
 	{
+        /**
+         *  The compiler overrides this getter to provide the data structure.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get info():Object
 	}
 }
