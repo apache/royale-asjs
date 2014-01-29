@@ -59,9 +59,6 @@ package org.apache.flex.html.staticControls.beads
 			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			
-			//background = new Shape();
-			//DisplayObjectContainer(_strand).addChild(background);
-			
 			// create an array of columnLabels for use by the ButtonBar/DataGrid header.
 			var columnLabels:Array = new Array();
 			var buttonWidths:Array = new Array();
@@ -122,32 +119,19 @@ package org.apache.flex.html.staticControls.beads
 			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color");
 			if (value != null) backgroundColor = Number(value);
 			
-			//background.graphics.clear();
-			//background.graphics.beginFill(backgroundColor);
-			//background.graphics.drawRect(0,0,sw,sh);
-			//background.graphics.endFill();
-			
 			buttonBar.x = 0;
 			buttonBar.y = 0;
-			buttonBar.width = sw;
+			buttonBar.width = sw + (2*columns.length-1);
 			buttonBar.height = 25;
 			
 			columnContainer.x = 0;
 			columnContainer.y = 30;
-			columnContainer.width = sw;
+			columnContainer.width = sw + columns.length*2;
 			columnContainer.height = sh - 25;
-			
-			var colXpos:Number = 0;
 			
 			for(var i:int=0; i < columns.length; i++) {
 				var column:List = columns[i];
-			
-				var cw:Number = sw/(columns.length);
-				column.y = 0;
-				column.x = colXpos;
-				column.height = columnContainer.height; // this will actually be Nitem*rowHeight
-				
-				colXpos += column.width;
+				column.height = columnContainer.height; // this will actually be Nitem*rowHeight eventually
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
@@ -172,6 +156,7 @@ package org.apache.flex.html.staticControls.beads
 		private function columnListRollOverHandler(event:Event):void
 		{
 			var list:List = event.target as List;
+			if (list == null) return;
 			for(var i:int=0; i < columns.length; i++) {
 				if (list != columns[i]) {
 					var otherList:List = columns[i] as List;
