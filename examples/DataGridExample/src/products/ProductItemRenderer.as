@@ -16,17 +16,46 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package products
 {
-	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel;
+	import org.apache.flex.html.staticControls.Image;
+	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
 	
-	public class MyGridPresentation extends DataGridPresentationModel
+	public class ProductItemRenderer extends DataItemRenderer
 	{
-		public function MyGridPresentation()
+		public function ProductItemRenderer()
 		{
 			super();
+		}
+		
+		private var image:Image;
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
 			
-			this.columnLabels = ["ID","Title","Inventory"];
+			// add an image and two labels
+			image = new Image();
+			addElement(image);
+		}
+		
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			
+			image.source = value.image;
+		}
+		
+		override public function adjustSize():void
+		{
+			var cy:Number = this.height/2;
+			
+			image.x = 4;
+			image.y = cy - 16;
+			image.width = 32;
+			image.height = 32;
+			
+			updateRenderer();
 		}
 	}
 }

@@ -20,18 +20,20 @@ package products
 {
 	public class Product
 	{
-		public function Product(id:String,title:String,detail:String,image:String)
+		public function Product(id:String,title:String,detail:Number,sales:Number,image:String)
 		{
 			this.id = id;
 			this.title = title;
 			this.detail = detail;
+			this.sales = sales;
 			this.image = image;
 		}
 		
 		public var id:String;
 		public var title:String;
-		public var detail:String;
+		public var detail:Number;
 		public var image:String;
+		public var sales:Number;
 		
 		public function toString():String
 		{

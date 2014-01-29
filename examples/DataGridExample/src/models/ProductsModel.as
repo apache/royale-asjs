@@ -29,18 +29,18 @@ package models
 		}
 
 		private var _productList:Array = [
-			new Product("ps100","Widgets","44","smallbluerect.jpg"),
-			new Product("tx200","Thingys","out of stock","smallgreenrect.jpg"),
-			new Product("rz300","Sprockets","8,000","smallyellowrect.jpg"),
-			new Product("dh440","Doohickies","out of stock","smallredrect.jpg"),
-			new Product("ps220","Weejets","235","smallorangerect.jpg")
+			new Product("ps100","Widgets",44,200,"smallbluerect.jpg"),
+			new Product("tx200","Thingys",5,285,"smallgreenrect.jpg"),
+			new Product("rz300","Sprockets",80,105,"smallyellowrect.jpg"),
+			new Product("dh440","Doohickies",10,340,"smallredrect.jpg"),
+			new Product("ps220","Weejets",35,190,"smallorangerect.jpg")
 			];
 		public function get productList():Array
 		{
 			return _productList;
 		}
 
-		private var _labelFields:Array = [ "id", "title", "detail" ];
+		private var _labelFields:Array = [ "id", "title", "sales", "detail" ];
 		public function get labelFields():Array
 		{
 			return _labelFields;
