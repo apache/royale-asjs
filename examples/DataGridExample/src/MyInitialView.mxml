@@ -33,19 +33,20 @@ limitations under the License.
     </fx:Script>
 	
 	<basic:Label id="output" x="450" y="30" width="100" />
-	
+		
 	<basic:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" >
 		<basic:beads>
-			<models:MyGridPresentation rowHeight="50" />
 			<basic:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
-			<basic:ConstantBinding
-				sourceID="applicationModel"
-				sourcePropertyName="labelFields"
-				destinationPropertyName="labelFields" />
+			<mybeads:RowHeightBead rowHeight="40" />
 		</basic:beads>
+		<basic:columns>
+			<basic:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
+			<basic:DataGridColumn label="Title" dataField="title" columnWidth="200" />
+			<basic:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+		</basic:columns>
 	</basic:DataGrid>
 
 </basic:ViewBase>
