@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.core.IItemRendererFactory;
-	
+    import mx.core.IFactory;
+    
 	import org.apache.flex.charts.core.IChartSeries;
 	
 	public class BarChartSeries implements IChartSeries
@@ -58,12 +58,12 @@ package org.apache.flex.charts.supportClasses
 			_fillColor = value;
 		}
 		
-		private var _itemRenderer:IItemRendererFactory;
-		public function get itemRenderer():IItemRendererFactory
+		private var _itemRenderer:IFactory;
+		public function get itemRenderer():IFactory
 		{
 			return _itemRenderer;
 		}
-		public function set itemRenderer(value:IItemRendererFactory):void
+		public function set itemRenderer(value:IFactory):void
 		{
 			_itemRenderer = value;
 		}

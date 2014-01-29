@@ -51,8 +51,7 @@ package org.apache.flex.core
 			}
 			else
 			{
-				var className:String = getQualifiedClassName(mainClass);
-				c = ApplicationDomain.currentDomain.getDefinition(className) as Class;
+				c = mainClass.constructor as Class;
 			}
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
         }

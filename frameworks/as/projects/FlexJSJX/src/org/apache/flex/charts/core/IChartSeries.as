@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	import org.apache.flex.core.IItemRendererFactory;
+	import mx.core.IFactory;
 
 	public interface IChartSeries
 	{
@@ -31,7 +31,7 @@ package org.apache.flex.charts.core
 		function get fillColor():uint;
 		function set fillColor(value:uint):void;
 		
-		function get itemRenderer():IItemRendererFactory;
-		function set itemRenderer(value:IItemRendererFactory):void;
+		function get itemRenderer():IFactory;
+		function set itemRenderer(value:IFactory):void;
 	}
 }

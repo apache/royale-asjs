@@ -20,22 +20,16 @@ package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererFactory;
 	import org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	
-	public class BoxItemRenderer extends UIItemRendererBase implements IChartItemRenderer, IItemRendererFactory
+	public class BoxItemRenderer extends UIItemRendererBase implements IChartItemRenderer
 	{
 		public function BoxItemRenderer()
 		{
 			super();
 		}
-		
-		override public function newInstance():IItemRenderer
-		{
-			return new BoxItemRenderer();
-		}
-		
+				
 		private var _itemRendererParent:Object;
 		public function get itemRendererParent():Object
 		{

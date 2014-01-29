@@ -86,6 +86,7 @@
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
+        <ant dir="${basedir}/BarChartExample"/>
     </target>
 	   
     <!--

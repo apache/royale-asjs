@@ -19,9 +19,9 @@
 -->
 
 
-<project name="liststest" default="main" basedir=".">
+<project name="barchartexample" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="ListsTests" />
+    <property name="example" value="BarChartExample" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
@@ -32,7 +32,7 @@
     <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
 
     <include file="${basedir}/../build_example.xml" />
-
+    
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
     </target>
     
@@ -42,4 +42,6 @@
         <delete dir="${basedir}/bin-release" failonerror="false" />
     </target>
 
+    
+    
 </project>

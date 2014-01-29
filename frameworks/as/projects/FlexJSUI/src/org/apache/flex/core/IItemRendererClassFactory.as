@@ -18,8 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IItemRendererClassFactory interface is the basic interface for beads
+     *  that generate instances of IItemRenderers.  Note that this is not the same
+     *  as an mx.core.IFactory which is a lower-level interface for generating
+     *  an instance of just about anything.  IItemRendererClassFactory implementations
+     *  often use IFactory to generate the actual item renderer instance, but
+     *  the IItemRendererClassFactory bead allows for more computation about which 
+     *  renderer to instantiate. For example, the default implementation
+     *  in org.apache.flex.core.ItemRendererClassFactory checks for an itemRenderer
+     *  property on the strand, then looks for a default definition in CSS, but
+     *  also handles the renderer being defined in MXML in sub tags of the
+     *  ItemRendererClassFactory.  Other more advanced implementations could
+     *  return different renderers based on the data item's type.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IItemRendererClassFactory extends IBead
 	{
+        // TODO: add additional parameters like the data item and index
+        /**
+         *  This method is called to generate another instance of an item renderer
+         *  and attach it to the given parent.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function createItemRenderer(parent:IItemRendererParent):IItemRenderer;
 	}
 }

@@ -19,30 +19,47 @@
 package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererFactory;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 	
-	public class UIItemRendererBase extends UIBase implements IItemRenderer, IItemRendererFactory
+	public class UIItemRendererBase extends UIBase implements IItemRenderer
 	{
 		public function UIItemRendererBase()
 		{
-		}
-		
-		public function newInstance():IItemRenderer
-		{
-			return new UIItemRendererBase();
 		}
 		
 		override public function addedToParent():void
 		{
 			super.addedToParent();
 			
-			// very common for item renderers to be resized by their containers,
-			addEventListener("widthChanged", sizeChangeHandler);
-			addEventListener("heightChanged", sizeChangeHandler);
+            // very common for item renderers to be resized by their containers,
+            addEventListener("widthChanged", sizeChangeHandler);
+            addEventListener("heightChanged", sizeChangeHandler);
+
+            // each MXML file can also have styles in fx:Style block
+            ValuesManager.valuesImpl.init(this);
+            
+            MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
+            MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+            
+            dispatchEvent(new Event("initComplete"));
+            
 		}
 		
+        public function get MXMLDescriptor():Array
+        {
+            return null;
+        }
+        
+        private var mxmlProperties:Array ;
+        
+        public function generateMXMLAttributes(data:Array):void
+        {
+            mxmlProperties = data;
+        }
+        
 		public var backgroundColor:uint = 0xFFFFFF;
 		public var highlightColor:uint = 0xCEDBEF;
 		public var selectedColor:uint = 0xA8C6EE;
