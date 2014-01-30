@@ -63,6 +63,8 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
   this.element.style.position = 'inherit';
   this.set_className('NonVirtualDataGroup');
 
+  this.positioner = this.element;
+
   return this.element;
 };
 

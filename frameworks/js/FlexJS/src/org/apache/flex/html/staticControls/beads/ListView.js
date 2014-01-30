@@ -59,6 +59,11 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
 
   this.strand_ = value;
 
+  this.strand_.addEventListener('widthChanged',
+      goog.bind(this.handleSizeChange, this));
+  this.strand_.addEventListener('heightChanged',
+      goog.bind(this.handleSizeChange, this));
+
   /*if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
     var m = org.apache.flex.core.ValuesManager.valuesImpl.
         getValue(this.strand_,'iBeadLayout');
@@ -74,6 +79,8 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
       org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup();
   this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
+
+  this.handleSizeChange(null);
 };
 
 
@@ -148,4 +155,16 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_vScrollBar = fu
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.get_resizeableView = function() {
   return this;
+};
+
+
+/**
+ * @expose
+ * @param {Object} event The event that triggered the resize.
+ */
+org.apache.flex.html.staticControls.beads.ListView.prototype.handleSizeChange = function(event) {
+  this.dataGroup_.set_x(0);
+  this.dataGroup_.set_y(0);
+  this.dataGroup_.set_width(this.strand_.get_width());
+  this.dataGroup_.set_height(this.strand_.get_height());
 };

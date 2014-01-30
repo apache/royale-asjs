@@ -21,9 +21,9 @@ package org.apache.flex.html.staticControls.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
@@ -33,8 +33,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.Strand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
 	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
@@ -96,6 +98,9 @@ package org.apache.flex.html.staticControls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
+			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
             
             listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
@@ -113,7 +118,9 @@ package org.apache.flex.html.staticControls.beads
             {
                 var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
 				strand.addBead(mapper);
-            }            
+            }  
+			
+			handleSizeChange(null);
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -166,6 +173,14 @@ package org.apache.flex.html.staticControls.beads
 			vsb.width = 16;
             IParent(_strand).addElement(vsb);
 			return vsb;
+		}
+		
+		private function handleSizeChange(event:Event):void
+		{
+			UIBase(_dataGroup).x = 0;
+			UIBase(_dataGroup).y = 0;
+			UIBase(_dataGroup).width = UIBase(_strand).width;
+			UIBase(_dataGroup).height = UIBase(_strand).height;
 		}
 				
 	}
