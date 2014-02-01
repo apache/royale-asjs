@@ -22,14 +22,47 @@ package org.apache.flex.core
     import flash.display.DisplayObjectContainer;
     import flash.events.Event;
 
+    /**
+     *  The PopUpManager ensures that children that implement the
+     *  IPopUp interface are layered over the other children.  Unlike
+     *  the Flex SDK, where the PopUpManager had APIs that you had to
+     *  use to add popups to the display list, this PopUpManager
+     *  monitors the children in a container.  It assumes that no
+     *  other container will obscure the container it is monitoring.
+     *  A more sophisticated PopUpManager could handle such a 
+     *  scenario, but most folks don't have overlapping top-level
+     *  "windows" in their user interfaces any more so a simpler
+     *  implementation will suffice for most applications.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class PopUpManager implements IDocument
 	{
-		public function PopUpManager()
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function PopUpManager()
 		{
 		}
 
         private var document:DisplayObjectContainer;
         
+        /**
+         *  @copy org.apache.flex.core.IDocument#setDocument
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function setDocument(document:Object, id:String = null):void
         {
             this.document = document as DisplayObjectContainer;

@@ -25,15 +25,59 @@ package org.apache.flex.core
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched at startup. Attributes and sub-instances of
+     *  the MXML document have been created and assigned.
+     *  The component lifecycle is different
+     *  than the Flex SDK.  There is no creationComplete event.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+    
 	[DefaultProperty("mxmlContent")]
+    
+    /**
+     *  The ViewBase class is the base class for most views in a FlexJS
+     *  application.  It is generally used as the root tag of MXML
+     *  documents and UI controls and containers are added to it.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ViewBase extends UIBase implements IPopUpHost
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ViewBase()
 		{
 			super();
 		}
 		
+        /**
+         *  A ViewBase doesn't create its children until it is added to
+         *  a parent, usually the application.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		override public function addedToParent():void
 		{
 			// each MXML file can also have styles in fx:Style block
@@ -45,6 +89,14 @@ package org.apache.flex.core
 			dispatchEvent(new Event("initComplete"))
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.Application#MXMLDescriptor
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get MXMLDescriptor():Array
 		{
 			return null;
@@ -52,20 +104,51 @@ package org.apache.flex.core
 		
 		private var mxmlProperties:Array ;
 		
+        /**
+         *  @copy org.apache.flex.core.Application#generateMXMLAttributes
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function generateMXMLAttributes(data:Array):void
 		{
 			mxmlProperties = data;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ItemRendererFactory#mxmlContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var mxmlContent:Array;
 		
 		private var _applicationModel:Object;
 		
 		[Bindable("modelChanged")]
+        
+        /**
+         *  A reference to the Application's model.  Usually,
+         *  a view is displaying the main model for an
+         *  application.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get applicationModel():Object
 		{
 			return _applicationModel;
 		}
+        
+        /**
+         *  @private
+         */
         public function set applicationModel(value:Object):void
         {
             _applicationModel = value;
@@ -74,10 +157,23 @@ package org.apache.flex.core
 
         private var _states:Array;
         
+        /**
+         *  The array of view states. These should
+         *  be instances of mx.states.State.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get states():Array
         {
             return _states;
         }
+
+        /**
+         *  @private
+         */
         public function set states(value:Array):void
         {
             _states = value;
@@ -93,6 +189,18 @@ package org.apache.flex.core
             
         }
         
+        /**
+         *  <code>true</code> if the array of states
+         *  contains a state with this name.
+         * 
+         *  @param String state The state namem.
+         *  @return Boolean True if state in state array
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function hasState(state:String):Boolean
         {
             for each (var s:State in _states)
@@ -105,10 +213,22 @@ package org.apache.flex.core
         
         private var _currentState:String;
         
+        /**
+         *  The name of the current state.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get currentState():String
         {
             return _currentState;   
         }
+
+        /**
+         *  @private
+         */
         public function set currentState(value:String):void
         {
             var event:ValueChangeEvent = new ValueChangeEvent("currentStateChanged", false, false, _currentState, value)
@@ -118,10 +238,22 @@ package org.apache.flex.core
         
         private var _transitions:Array;
         
+        /**
+         *  The array of transitions.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get transitions():Array
         {
             return _transitions;   
         }
+        
+        /**
+         *  @private
+         */
         public function set transitions(value:Array):void
         {
             _transitions = value;   

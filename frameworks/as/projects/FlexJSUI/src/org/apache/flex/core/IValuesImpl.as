@@ -18,11 +18,62 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IValuesImpl interface is the basic interface for the subsystem that
+     *  provides default values to components.  The most common implementation implements
+     *  a simple version of CSS and uses data structures compiled from CSS files.
+     *  
+     *  @see org.apache.flex.core.SimpleCSSValuesImpl
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IValuesImpl
 	{
+        /**
+         *  Returns a value for a given object based on a property name,
+         *  and optionally, the current state, and a set of property value pairs.
+         *
+         *  @param Object thisObject The object to get the value for.
+         *  @param String valueName The name of a property. e.g. fontFamily, color, etc.
+         *  @param String state The name of a state. e.g. hovered, visited
+         *  @param Object attrs A map of property value pairs that may affect the returned value.
+         *  @return * A value or undefined
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*;
+
+        /**
+         *  Returns a shared instance, instantiating the shared instance if
+         *  it doesn't exist.  Often used to share "managers"
+         *
+         *  @param String valueName The name of a shared instance.  Often, the fully
+         *  qualified class name is used.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function getInstance(valueName:String):Object;
         
+        /**
+         *  MXML Documents that support &lt;fx:Style&gt; blocks should call
+         *  init to install the styles for each instance.
+         *
+         *  @param Object mainClass An instance that may have styles from an &lt;fx:Style&gt; block.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function init(mainClass:Object):void;
 	}
 }

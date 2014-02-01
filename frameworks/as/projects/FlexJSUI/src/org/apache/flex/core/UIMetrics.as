@@ -18,18 +18,69 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The UIMetrics class is the base class for most composite user interface
+     *  components.  For the Flash Player, Buttons and Text controls may
+     *  have a different base class and therefore may not extend UIBase.
+     *  However all user interface components should implement IUIBase.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class UIMetrics
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function UIMetrics()
 		{
 		}
 		
+        /**
+         *  The offset or position of the top of something.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var top:Number;
 		
+        /**
+         *  The offset or position of the left of something.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var left:Number;
 		
+        /**
+         *  The offset or position of the bottom of something.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var bottom:Number;
 		
+        /**
+         *  The offset or position of the right of something.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var right:Number;
 	}
 }

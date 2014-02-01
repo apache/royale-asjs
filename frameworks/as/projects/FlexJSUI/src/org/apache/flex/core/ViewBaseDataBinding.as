@@ -28,14 +28,44 @@ package org.apache.flex.core
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     
+    /**
+     *  The ViewBaseDataBinding class implements databinding for
+     *  ViewBase instances.  Different classes can have
+     *  different databinding implementation that optimize for
+     *  the different lifecycles.  For example, an item renderer
+     *  databinding implementation can wait to execute databindings
+     *  until the data property is set.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ViewBaseDataBinding implements IBead
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ViewBaseDataBinding()
 		{
 			super();
 		}
         
         private var _strand:IStrand;
+        
+        /**
+         *  @see org.apache.flex.core.IBead#strand.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;

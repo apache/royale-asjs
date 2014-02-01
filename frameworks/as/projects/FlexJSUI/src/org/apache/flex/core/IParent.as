@@ -18,11 +18,65 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IParent interface is the basic interface for a 
+     *  component that contains subcomponents, including the
+     *  application class.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public interface IParent
 	{
+        /**
+         *  Add a component to the parent.
+         * 
+         *  @param Object c The subcomponent to add.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function addElement(c:Object):void;
+
+        /**
+         *  Add a component to the parent.
+         * 
+         *  @param Object c The subcomponent to add.
+         *  @param int c The index where the subcomponent should be added.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function addElementAt(c:Object, index:int):void;
+        
+        /**
+         *  Gets the index of this subcomponent.
+         * 
+         *  @param Object c The subcomponent to add.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function getElementIndex(c:Object):int;
-        function removeElement(c:Object):void;
+
+        /**
+         *  Remove a component from the parent.
+         * 
+         *  @param Object c The subcomponent to remove.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+       function removeElement(c:Object):void;
 	}
 }

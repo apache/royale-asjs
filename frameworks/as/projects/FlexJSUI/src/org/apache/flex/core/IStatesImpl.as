@@ -20,6 +20,17 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The IStatesImpl interface is a "marker" interface for the
+     *  implementation view states in a View like ViewBase.  The 
+     *  implementation watches for the currentState property to
+     *  change and executes changes accordingly.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IStatesImpl extends IEventDispatcher, IBead
 	{
 	}

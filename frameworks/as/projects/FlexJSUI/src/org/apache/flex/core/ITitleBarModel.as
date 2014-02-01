@@ -18,14 +18,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The ITitleBarModel interface describes the minimum set of properties
+     *  available to control that displays a title bar.  More sophisticated controls
+     *  often have models that extend ITitleBarModel.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface ITitleBarModel extends IBeadModel
 	{
-		function get title():String;
-		function set title(value:String):void;
-		
-		function get htmlTitle():String;
-		function set htmlTitle(value:String):void;
-		
+        /**
+         *  The title of the TitleBar.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get title():String;
+        function set title(value:String):void;
+        
+        /**
+         *  The title of the TitleBar as HTML.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get htmlTitle():String;
+        function set htmlTitle(value:String):void;
+        
+        // TODO: Consider making this a bead instead.
+        // Boolean flags should often be replaced by beads.
+        // A different bead would add min/max/restore buttons.
+        /**
+         *  <code>true</code> if a close button
+         *  should also be in the title bar.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get showCloseButton():Boolean;
 		function set showCloseButton(value:Boolean):void;
 	}

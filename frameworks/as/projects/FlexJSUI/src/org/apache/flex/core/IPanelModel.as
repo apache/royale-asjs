@@ -18,6 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IPanelModel interface describes the minimum set of properties
+     *  available to a Panel control.  More sophisticated Panel controls
+     *  could have models that extend IPanelModel.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IPanelModel extends IBeadModel, ITitleBarModel
 	{
 

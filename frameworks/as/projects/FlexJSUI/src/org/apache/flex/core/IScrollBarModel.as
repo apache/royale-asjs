@@ -18,11 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IScrollBarModel interface describes the minimum set of properties
+     *  available to control that let the user select from within a
+     *  range of numbers like ScrollBar.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IScrollBarModel extends IRangeModel
 	{
+        /**
+         *  The size of the page.  This generally is used to compute
+         *  the size of the thumb in the scrollbar.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get pageSize():Number;
 		function set pageSize(value:Number):void;
 
+        /**
+         *  The change in value when clicking on above or below the thumb on
+         *  a scrollbar.  Also used for pageUp/pageDown keys.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get pageStepSize():Number;
 		function set pageStepSize(value:Number):void;
 }

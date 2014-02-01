@@ -18,18 +18,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The ValuesManager class is one of the few Singleton classes in
+     *  FlexJS.  Instances of other things can be shared via IValuesImpl, but
+     *  this class's API is its one static property where you get the
+     *  instance of IValuesImpl by which other instances can be shared.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ValuesManager
 	{
+        /**
+         *  Constructor.  This class should not be instantiated.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ValuesManager()
 		{
 		}
 		
 		private static var _valuesImpl:IValuesImpl;
 		
+        /**
+         *  The implementation of IValuesImpl where you can
+         *  get default values and shared instances.
+         * 
+         *  @see org.apache.flex.core.IValuesImpl
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static function get valuesImpl():IValuesImpl
 		{
 			return _valuesImpl;
 		}
+
+        /**
+         *  @private
+         */
 		public static function set valuesImpl(value:IValuesImpl):void
 		{
 			_valuesImpl = value;

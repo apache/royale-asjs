@@ -26,8 +26,30 @@ package org.apache.flex.core
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
 	
+    /**
+     *  The SimpleCSSValuesImpl class implements a minimal set of
+     *  CSS lookup rules that is sufficient for most applications.
+     *  It does not support attribute selectors or descendant selectors
+     *  or id selectors.  It will filter on a custom -flex-flash
+     *  media query but not other media queries.  It can be
+     *  replaced with other implementations that handle more complex
+     *  selector lookups.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function SimpleCSSValuesImpl()
 		{
 			super();
@@ -37,6 +59,14 @@ package org.apache.flex.core
         
 		private var conditionCombiners:Object;
 
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#init
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function init(mainClass:Object):void
         {
 			var styleClassName:String;
@@ -56,6 +86,15 @@ package org.apache.flex.core
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
         }
         
+        /**
+         *  Process the encoded CSS data into data structures.  Usually not called
+         *  directly by application developers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
 			if (factoryFunctions == null)
@@ -194,8 +233,25 @@ package org.apache.flex.core
             return arr.join(" ");
         }
 
+        /**
+         *  The map of values.  The format is not documented and it is not recommended
+         *  to manipulate this structure directly.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var values:Object;
 		
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#getValue
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
             var c:int = valueName.indexOf("-");
@@ -276,6 +332,21 @@ package org.apache.flex.core
 			return null;
 		}
 		
+        /**
+         *  A method that stores a value to be shared with other objects.
+         *  It is global, not per instance.  Fancier implementations
+         *  may store shared values per-instance.
+         * 
+         *  @param Object thisObject An object associated with this value.  Thiis
+         *                parameter is ignored.
+         *  @param String valueName The name or key of the value being stored.
+         *  @param * The value to be stored.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
             var c:int = valueName.indexOf("-");
@@ -294,6 +365,14 @@ package org.apache.flex.core
 			}
 		}
         
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#getInstance
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function getInstance(valueName:String):Object
         {
             var o:Object = values["global"];

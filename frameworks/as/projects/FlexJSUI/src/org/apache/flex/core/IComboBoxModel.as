@@ -32,6 +32,7 @@ package org.apache.flex.core
      */
 	public interface IComboBoxModel extends IEventDispatcher, IBeadModel
 	{
+        // TODO: should extend ITextModel
         /**
          *  The text displayed in the ComboBox.
          *

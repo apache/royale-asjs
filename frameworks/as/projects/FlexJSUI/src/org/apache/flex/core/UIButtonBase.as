@@ -19,7 +19,6 @@
 package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
 	
@@ -28,15 +27,46 @@ package org.apache.flex.core
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Set a different class for click events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="click", type="org.apache.flex.events.Event")]
 
+    /**
+     *  The UIButtonBase class is the base class for most Buttons in a FlexJS
+     *  application.  In Flash, these buttons extend SimpleButton and therefore
+     *  do not support all of the Sprite APIs.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class UIButtonBase extends SimpleButton implements IStrand, IEventDispatcher, IUIBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
 			super(upState, overState, downState, hitTestState);
@@ -55,6 +85,15 @@ package org.apache.flex.core
 		}
 		
 		private var _width:Number;
+        
+        /**
+         *  @copy org.apache.flex.core.UIBase#width
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		override public function get width():Number
 		{
             if (isNaN(_width))
@@ -66,6 +105,10 @@ package org.apache.flex.core
             }
             return _width;
 		}
+
+        /**
+         *  @private
+         */
 		override public function set width(value:Number):void
 		{
 			if (_width != value)
@@ -74,12 +117,30 @@ package org.apache.flex.core
 				dispatchEvent(new Event("widthChanged"));
 			}
 		}
+
+        /**
+         *  Retrieve the low-level bounding box width.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function get $width():Number
 		{
 			return super.width;
 		}
 		
 		private var _height:Number;
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#width
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		override public function get height():Number
 		{
             if (isNaN(_height))
@@ -92,6 +153,9 @@ package org.apache.flex.core
             return _height;
 		}
         
+        /**
+         *  @private
+         */
 		override public function set height(value:Number):void
 		{
 			if (_height != value)
@@ -100,12 +164,30 @@ package org.apache.flex.core
 				dispatchEvent(new Event("heightChanged"));
 			}
 		}
+        
+        /**
+         *  Retrieve the low-level bounding box height.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function get $height():Number
 		{
 			return super.height;
 		}
 
         private var _model:IBeadModel;
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#model
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get model():IBeadModel
         {
             if (_model == null)
@@ -115,6 +197,10 @@ package org.apache.flex.core
             }
             return _model;
         }
+
+        /**
+         *  @private
+         */
         public function set model(value:IBeadModel):void
         {
             if (_model != value)
@@ -125,10 +211,23 @@ package org.apache.flex.core
         }
 		
 		private var _id:String;
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#id
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get id():String
 		{
 			return _id;
 		}
+
+        /**
+         *  @private
+         */
 		public function set id(value:String):void
 		{
 			if (_id != value)
@@ -139,10 +238,23 @@ package org.apache.flex.core
 		}
 
 		private var _className:String;
-		public function get className():String
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#className
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get className():String
 		{
 			return _className;
 		}
+
+        /**
+         *  @private
+         */
 		public function set className(value:String):void
 		{
 			if (_className != value)
@@ -152,16 +264,39 @@ package org.apache.flex.core
 			}
 		}
         
+        /**
+         *  @copy org.apache.flex.core.UIBase#element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get element():Object
         {
             return this;
         }
 
-        // beads declared in MXML are added to the strand.
-        // from AS, just call addBead()
+        /**
+         *  @copy org.apache.flex.core.UIBase#beads
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var beads:Array;
         
 		private var strand:Vector.<IBead>;
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#addBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function addBead(bead:IBead):void
 		{
 			if (!strand)
@@ -172,6 +307,14 @@ package org.apache.flex.core
 			bead.strand = this;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#getBeadByType
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in strand)
@@ -182,6 +325,14 @@ package org.apache.flex.core
 			return null;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#removeBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = strand.length;
@@ -197,6 +348,14 @@ package org.apache.flex.core
 			return null;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#addToParent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function addedToParent():void
 		{
             var c:Class;
@@ -237,6 +396,14 @@ package org.apache.flex.core
             
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#measurementBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get measurementBead() : IMeasurementBead
 		{
 			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;

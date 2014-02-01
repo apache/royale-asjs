@@ -18,14 +18,49 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IToggleButtonModel interface describes the minimum set of properties
+     *  available to ToggleButton that displays a text label.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IToggleButtonModel extends IBeadModel
 	{
-		function get text():String;
-		function set text(value:String):void;
+        // TODO: Should extend ITextModel?  Or should it
+        // not assume there is a label?
+        /**
+         *  The text displayed in the control.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get text():String;
+        function set text(value:String):void;
+        
+        /**
+         *  The html formatted text displayed in the control.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get html():String;
+        function set html(value:String):void;
 		
-		function get html():String;
-		function set html(value:String):void;
-		
+        /**
+         *  <code>true</code> if the button is selected.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get selected():Boolean;
 		function set selected(value:Boolean):void;
 	}

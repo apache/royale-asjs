@@ -18,10 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IUIBase interface is the basic interface for user interface components.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IUIBase extends IStrand
 	{
+        /**
+         *  Each IUIBase has an element that is actually added to
+         *  the platform's display list DOM.  It may not be the actual
+         *  component itself.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get element():Object;
         
+        /**
+         *  Called by parent components when the component is
+         *  added via a call to addElement or addElementAt.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function addedToParent():void;
 	}
 }

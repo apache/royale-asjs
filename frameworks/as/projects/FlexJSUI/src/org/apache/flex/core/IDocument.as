@@ -35,6 +35,9 @@ package org.apache.flex.core
          *  it belongs to, if any, and what its assigned id is in that
          *  document, if any.
          *
+         *  @param Object document The MXML document that hosts this component.
+         *  @param String id The optional id of the component in the document.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

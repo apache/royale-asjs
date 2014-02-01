@@ -18,14 +18,51 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The IValueToggleButtonModel interface describes the minimum set of properties
+     *  available each ToggleButton in a group of ToggleButtons of which only one 
+     *  can be selected at a time.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IValueToggleButtonModel extends IToggleButtonModel
 	{
+        /**
+         *  A value associated with this instance of the ToggleButton.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get value():Object;
 		function set value(newValue:Object):void;
 		
+        /**
+         *  The name of the group that this ToggleButton belongs to.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get groupName():String;
 		function set groupName(value:String):void;
 		
+        /**
+         *  A value associated with the instance of the ToggleButton
+         *  that is currently selected.  It may not be this ToggleButton.
+         *  This means that you can get the selected value from any
+         *  instance of a ToggleButton in the group.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get selectedValue():Object;
 		function set selectedValue(newValue:Object):void;
 	}

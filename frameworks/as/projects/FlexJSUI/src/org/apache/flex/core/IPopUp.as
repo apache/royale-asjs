@@ -18,7 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    // marker interface to differentiate popups from other objects
+    /**
+     *  The IPopUp interface is a "marker" interface for a component that
+     *  should be floated above other components that aren't an IPopUp.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IPopUp
 	{
 	}

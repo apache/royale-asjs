@@ -22,10 +22,24 @@ package org.apache.flex.core
 	import org.apache.flex.events.EventDispatcher;
 
     /**
-     * Base class for non-display objects implementing a IStrand
+     *  The Strand class is the base class for non-display object
+     *  that implement a strand.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
      */
 	public class Strand extends EventDispatcher implements IStrand
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function Strand()
 		{
 			super();
@@ -33,6 +47,17 @@ package org.apache.flex.core
 		
 		
 		private var _model:IBeadModel;
+                
+        /**
+         *  An IBeadModel that serves as the data model for the component.
+         *  Note that there is no controller or view properties since
+         *  this not a display object.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get model():IBeadModel
 		{
             if (_model == null)
@@ -42,6 +67,10 @@ package org.apache.flex.core
             }
 			return _model;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set model(value:IBeadModel):void
 		{
 			if (_model != value)
@@ -52,6 +81,15 @@ package org.apache.flex.core
 		}
 		
 		private var _id:String;
+
+        /**
+         *  An id property for MXML documents.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get id():String
 		{
 			return _id;
@@ -65,11 +103,26 @@ package org.apache.flex.core
 			}
 		}
 				
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
+        /**
+         *  @copy org.apache.flex.core.Application#beads
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var beads:Array;
 		
 		private var _beads:Vector.<IBead>;
+
+        /**
+         *  @see org.apache.flex.core.IStrand#addBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -80,6 +133,14 @@ package org.apache.flex.core
 			bead.strand = this;
 		}
 		
+        /**
+         *  @see org.apache.flex.core.IStrand#getBeadByType
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -90,6 +151,14 @@ package org.apache.flex.core
 			return null;
 		}
 		
+        /**
+         *  @see org.apache.flex.core.IStrand#removeBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;

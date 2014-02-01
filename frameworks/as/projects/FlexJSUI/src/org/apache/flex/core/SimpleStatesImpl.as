@@ -26,13 +26,30 @@ package org.apache.flex.core
     import mx.states.State;
     
     import org.apache.flex.core.IParent;
-    import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ValueChangeEvent;
     import org.apache.flex.utils.MXMLDataInterpreter;
 	
+    /**
+     *  The SimpleStatesImpl class implements a minimal set of
+     *  view state functionality that is sufficient for most applications.
+     *  It only supports AddItems and SetProperty changes at this time.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SimpleStatesImpl extends EventDispatcher implements IStatesImpl, IBead
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function SimpleStatesImpl()
 		{
 			super();
@@ -40,6 +57,14 @@ package org.apache.flex.core
         
         private var _strand:IStrand;
         
+        /**
+         *  @see org.apache.flex.core.IBead#strand.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;

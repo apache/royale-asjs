@@ -20,8 +20,26 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 	
+    /**
+     *  The IRollOverModel interface describes the minimum set of properties
+     *  available to control that supports rollover highlighting of an item
+     *  within a set of items.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IRollOverModel extends IEventDispatcher, IBeadModel
 	{
+        /**
+         *  The index of the item that is currently under the mouse.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get rollOverIndex():int;
 		function set rollOverIndex(value:int):void;
 	}

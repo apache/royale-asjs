@@ -56,7 +56,7 @@ package org.apache.flex.core
     [Event(name="viewChanged", type="org.apache.flex.events.Event")]
     
     /**
-     *  The Application class the main class and entry point for a FlexJS
+     *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
      *  Flex SDK's mx:Application or spark:Application in that it does not contain
      *  user interface elements.  Those UI elements go in the views.  This

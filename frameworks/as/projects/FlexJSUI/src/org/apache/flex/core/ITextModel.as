@@ -18,12 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    /**
+     *  The ITextModel interface describes the minimum set of properties
+     *  available to control that displays text.  More sophisticated controls
+     *  often have models that extend ITextModel.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface ITextModel extends IBeadModel
 	{
-		function get text():String;
-		function set text(value:String):void;
-		
-		function get html():String;
-		function set html(value:String):void;
+        /**
+         *  The text displayed in the control.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get text():String;
+        function set text(value:String):void;
+        
+        /**
+         *  The html formatted text displayed in the control.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get html():String;
+        function set html(value:String):void;
+        
 	}
 }
