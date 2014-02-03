@@ -27,9 +27,26 @@ package org.apache.flex.events
 	 *  that is dispatched.  In most cases we are dispatching
 	 *  DOMEvents instead, so as long as you don't actually
 	 *  check the typeof(event) it will work
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
 	 */
 	public class Event extends flash.events.Event
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @param String type The name of the event.
+         *  @param Boolean bubbles Whether the event bubbles.
+         *  @param Boolean cancelable Whether the event can be canceled.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function Event(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

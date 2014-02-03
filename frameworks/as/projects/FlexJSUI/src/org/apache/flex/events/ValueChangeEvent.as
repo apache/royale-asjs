@@ -18,8 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
+    
+    /**
+     *  The ValueChangeEvent class replaces the PropertyChangeEvent as
+     *  the default event for property changes used in the databinding
+     *  subsystem.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ValueChangeEvent extends Event
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ValueChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 oldValue:Object = null, newValue:Object = null)
 		{
@@ -28,13 +47,70 @@ package org.apache.flex.events
 			this.newValue = newValue;
 		}
 		
+        /**
+         *  The value of the property before it was changed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var oldValue:Object;
+
+        /**
+         *  The value of the property after it was changed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var newValue:Object;
+
+        /**
+         *  The name of the property.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var propertyName:String;
+
+        /**
+         *  The object that owns the property.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var source:Object;
 		
+        /**
+         *  The default event type.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const VALUE_CHANGE:String = "valueChange";
         
+        /**
+         *  A convenience method to create an instance of the ValueChangeEvent.
+         * 
+         *  @param Object source The source of the object.
+         *  @param String name The name of the event.
+         *  @param Object oldValue The value before it was changed.
+         *  @param Object newValue The value after it was changed.
+         *  @return An instance of the ValueChangeEvent.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public static function createUpdateEvent(source:Object, name:String, oldValue:Object, newValue:Object):ValueChangeEvent
         {
             var event:ValueChangeEvent = new ValueChangeEvent(VALUE_CHANGE, false, false, oldValue, newValue);

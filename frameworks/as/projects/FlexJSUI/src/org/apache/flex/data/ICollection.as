@@ -18,8 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.data
 {
+    /**
+     *  The ICollection interface is the basic interface for an iterable collection
+     *  of data items.  Other extension may offer the ability to modify the collection
+     *  and dispatch change events.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface ICollection
 	{
+        /**
+         *  Get the item at a particular index.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function getItemAt(index:int):Object
 	}
 }

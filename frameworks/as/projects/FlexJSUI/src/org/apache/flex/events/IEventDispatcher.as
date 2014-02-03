@@ -23,6 +23,11 @@ package org.apache.flex.events
 	/**
 	 *  This class simply wraps flash.events.EventDispatcher so that
 	 *  no flash packages are needed on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
 	 */
 	public interface IEventDispatcher extends flash.events.IEventDispatcher
 	{

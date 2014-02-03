@@ -21,13 +21,27 @@ package org.apache.flex.events
 	/**
 	 *  MXML auto-imports flash.events.Event which then requires
 	 *  full qualification to use org.apache.flex.events.Event.
-	 *  Use CustomEvent to skip all that extra typing.  Eventually
-	 *  we should add a flag to strip out the default auto-imports.
-	 *  Like org.apache.flex.events.Event events on the JS side
-	 *  are DOMEvents and not really instances of this class
+	 *  Use CustomEvent to skip all that extra typing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
 	 */
 	public class CustomEvent extends Event
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @param String type The name of the event.
+         *  @param Boolean bubbles Whether the event bubbles.
+         *  @param Boolean cancelable Whether the event can be canceled.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function CustomEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
