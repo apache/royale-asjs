@@ -31,6 +31,18 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IListView;
 	
+	/**
+	 *  The ChartItemRendererFactory class implements IDataProviderItemRendererMapper
+	 *  and creats the itemRenderers for each series in a chart. The itemRenderer class
+	 *  is identified on each series either through a property or through a CSS style.
+	 *  Once all of the itemRenderers are created, an itemsCreated event is dispatched
+	 *  causing the layout associated with the chart to size and position the items. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ChartItemRendererFactory implements IBead, IDataProviderItemRendererMapper
 	{
 		public function ChartItemRendererFactory()
@@ -40,6 +52,14 @@ package org.apache.flex.charts.beads
 		private var selectionModel:ISelectionModel;
 		protected var dataGroup:IItemRendererParent;
 		
+		/**
+		 *  The array of renderers created for each series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _seriesRenderers:Array;
 		public function get seriesRenderers():Array
 		{
@@ -48,6 +68,9 @@ package org.apache.flex.charts.beads
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -91,11 +114,17 @@ package org.apache.flex.charts.beads
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
 			return null;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function set itemRendererFactory(value:IItemRendererClassFactory):void
 		{
 		}

@@ -31,12 +31,31 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.staticControls.Label;
 	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
 	
+	/**
+	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
+	 *  an itemRenderer for a BarChartSeries. This class implements the IChartItemRenderer
+	 *  interface. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class XAxisBead implements IBead, IChartAxis
 	{
 		public function XAxisBead()
 		{
 		}
 		
+		/**
+		 *  The name of field witin the chart data to use to label each of the
+		 *  axis data points.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _labelField:String;
 		public function get labelField():String
 		{
@@ -47,6 +66,9 @@ package org.apache.flex.charts.beads
 			_labelField = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
@@ -56,6 +78,9 @@ package org.apache.flex.charts.beads
 			IEventDispatcher(_strand).addEventListener("layoutComplete",handleItemsCreated);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleItemsCreated(event:Event):void
 		{
 			var charter:ChartItemRendererFactory =

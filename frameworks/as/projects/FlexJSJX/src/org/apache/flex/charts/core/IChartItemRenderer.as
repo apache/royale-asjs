@@ -20,20 +20,95 @@ package org.apache.flex.charts.core
 {
 	import org.apache.flex.core.IItemRenderer;
 	
+	/**
+	 *  The IChartItemRenderer interface is the interface implemented by any
+	 *  class that draws chart graphics.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IChartItemRenderer extends IItemRenderer
 	{
+		/**
+		 *  The name of the field containing the X-axis value found
+		 *  in the data property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get xField():String;
 		function set xField(value:String):void;
 		
+		/**
+		 *  The name of the field containing the Y-axis value found
+		 *  in the data property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get yField():String;
 		function set yField(value:String):void;
 		
+		/**
+		 *  The primary or preferred color to use for the graphics for
+		 *  the type of chart.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get fillColor():uint;
 		function set fillColor(value:uint):void;
 		
+		/**
+		 *  The x display position for the itemRenderer. This is set by
+		 *  the chart's layout manager.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function set x(value:Number):void;
+		
+		/**
+		 *  The y display position for the itemRenderer. This is set by
+		 *  the chart's layout manager.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function set y(value:Number):void;
+		
+		/**
+		 *  The display width for the itemRenderer. This is set by
+		 *  the chart's layout manager.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function set width(value:Number):void;
+		
+		/**
+		 *  The display height for the itemRenderer. This is set by
+		 *  the chart's layout manager.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function set height(value:Number):void;
 	}
 }

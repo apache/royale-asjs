@@ -22,13 +22,40 @@ package org.apache.flex.charts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.List;
 	
+	/**
+	 *  The BarChart class draws a multi-series graph of data using vertical
+	 *  columns. The series property is an array of BarChartSeries instances
+	 *  that represent the data in the model.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class BarChart extends List implements IChart
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function BarChart()
 		{
 			super();
 		}
 		
+		/**
+		 *  The collection of series for the chart. Each element of the
+		 *  series array should be of type BarChartSeries.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _series:Array;
 		public function get series():Array
 		{

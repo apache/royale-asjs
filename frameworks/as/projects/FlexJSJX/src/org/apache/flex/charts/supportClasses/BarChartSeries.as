@@ -22,12 +22,38 @@ package org.apache.flex.charts.supportClasses
     
 	import org.apache.flex.charts.core.IChartSeries;
 	
+	/**
+	 *  The BarChartSeries represents a pair of X and Y values to be drawn
+	 *  within a BarChart. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class BarChartSeries implements IChartSeries
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function BarChartSeries()
 		{
 		}
 		
+		/**
+		 *  The name of the field corresponding to the X or horizontal value
+		 *  for an item in the chart. 
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _xField:String = "x";
 		public function get xField():String
 		{
@@ -38,6 +64,15 @@ package org.apache.flex.charts.supportClasses
 			_xField = value;
 		}
 		
+		/**
+		 *  The name of the field that provides the Y or vertical value for an
+		 *  item in the chart.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _yField:String;
 		public function get yField():String
 		{
@@ -48,6 +83,14 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
+		/**
+		 *  The color to use for all bars in the series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _fillColor:uint;
 		public function get fillColor():uint
 		{
@@ -58,6 +101,15 @@ package org.apache.flex.charts.supportClasses
 			_fillColor = value;
 		}
 		
+		/**
+		 *  The class or class factory to use as the itemRenderer for each X/Y pair. The
+		 *  itemRenderer class must implement the IChartItemRenderer interface.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{

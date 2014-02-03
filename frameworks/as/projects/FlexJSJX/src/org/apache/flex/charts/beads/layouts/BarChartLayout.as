@@ -30,10 +30,22 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.supportClasses.BarChartSeries;
 	
+	/**
+	 *  The BarChartLayout class calculates the size and position of all of the itemRenderers for
+	 *  all of the series in a BarChart. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class BarChartLayout implements IBeadLayout
 	{
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -42,6 +54,16 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 		
+		/**
+		 *  The amount of space to leave between series. If a chart has several series,
+		 *  the bars for an X value are side by side with a gap between the groups of
+		 *  bars.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _gap:Number = 20;
 		public function get gap():Number
 		{
@@ -52,6 +74,9 @@ package org.apache.flex.charts.beads.layouts
 			_gap = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;

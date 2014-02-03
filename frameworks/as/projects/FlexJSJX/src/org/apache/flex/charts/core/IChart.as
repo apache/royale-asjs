@@ -18,8 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
+	/**
+	 *  The IChart interface is the basic interface for every chart component. All
+	 *  charts have a least one "series" - a collection of data values for each
+	 *  axis of the chart (a PieChart follows this pattern, too, since the total
+	 *  number of items in its series represents 100% of the pie and each item
+	 *  contributes some percentage). A Chart then uses a set of beads particular
+	 *  to that chart type.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IChart
 	{
+		/**
+		 *  The collection of series for the chart. Each element of the
+		 *  series array should be of type IChartSeries.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get series():Array;
 		function set series(value:Array):void;
 	}

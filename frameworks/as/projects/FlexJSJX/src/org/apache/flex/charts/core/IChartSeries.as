@@ -20,17 +20,60 @@ package org.apache.flex.charts.core
 {
 	import mx.core.IFactory;
 
+	/**
+	 *  The IChartSeries interface is the basic interface for any type of
+	 *  chart data series. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IChartSeries
 	{
+		/**
+		 *  The name field that represents the X-axis value for the chart series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get xField():String;
 		function set xField(value:String):void;
 		
+		/**
+		 *  The name field that represents the Y-axis value for the chart series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get yField():String;
 		function set yField(value:String):void;
 		
+		/**
+		 *  The preferred color to use for the series renderer.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get fillColor():uint;
 		function set fillColor(value:uint):void;
 		
+		/**
+		 *  The itemRenderer class or factory that produces an instance of that class. This
+		 *  renderer uses the series data and properties to draw the representation for the
+		 *  chart type (e.g., the BarChart draws a bar in the fillColor).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get itemRenderer():IFactory;
 		function set itemRenderer(value:IFactory):void;
 	}

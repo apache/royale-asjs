@@ -18,6 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
+	/**
+	 *  The IChartAxis interface is a marker for any class that draws an axis
+	 *  for a chart. The XAxisBead is an example that implements this interface.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IChartAxis
 	{
 		

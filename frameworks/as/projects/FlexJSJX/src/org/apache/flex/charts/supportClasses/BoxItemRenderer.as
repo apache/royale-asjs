@@ -19,17 +19,43 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.core.FilledRectangle;
-	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	
+	/**
+	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
+	 *  an itemRenderer for a BarChartSeries. This class implements the IChartItemRenderer
+	 *  interface. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class BoxItemRenderer extends UIItemRendererBase implements IChartItemRenderer
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function BoxItemRenderer()
 		{
 			super();
 		}
 				
+		/**
+		 *  The parent component of the itemRenderer instance. This is the container that houses
+		 *  all of the itemRenderers for the series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _itemRendererParent:Object;
 		public function get itemRendererParent():Object
 		{
@@ -42,6 +68,14 @@ package org.apache.flex.charts.supportClasses
 		
 		private var filledRect:FilledRectangle;
 		
+		/**
+		 *  The name of the field containing the value for the Y axis.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _yField:String = "y";
 		public function get yField():String
 		{
@@ -52,6 +86,14 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
+		/**
+		 *  The name of the field containing the value for the X axis.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _xField:String = "x";
 		public function get xField():String
 		{
@@ -62,6 +104,14 @@ package org.apache.flex.charts.supportClasses
 			_xField = value;
 		}
 		
+		/**
+		 *  The color used to fill the interior of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _fillColor:uint;
 		public function get fillColor():uint
 		{
@@ -72,11 +122,14 @@ package org.apache.flex.charts.supportClasses
 			_fillColor = value;
 		}
 		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-		}
-		
+		/**
+		 *  The data being represented.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;		
@@ -87,18 +140,27 @@ package org.apache.flex.charts.supportClasses
 			}	
 		}
 		
+		/**
+		 *  @private
+		 */
 		override public function set width(value:Number):void
 		{
 			super.width = value;
 			drawBar();
 		}
 		
+		/**
+		 *  @private
+		 */
 		override public function set height(value:Number):void
 		{
 			super.height = value;
 			drawBar();
 		}
 		
+		/**
+		 *  @private
+		 */
 		protected function drawBar():void
 		{
 			if (filledRect) {

@@ -22,6 +22,16 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.staticControls.beads.ListView;
 	
+	/**
+	 *  The BarChartView class is the visual bead for a BarChart. This class makes
+	 *  sure all of the necessary parts to make a BarChart are instantiated.
+	 *   
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class BarChartView extends ListView
 	{
 		public function BarChartView()
@@ -32,6 +42,9 @@ package org.apache.flex.charts.beads
 		private var _strand:IStrand;
 		private var listModel:ISelectionModel;
 		
+		/**
+		 * @private
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
