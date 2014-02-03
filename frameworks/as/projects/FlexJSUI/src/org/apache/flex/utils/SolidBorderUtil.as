@@ -18,10 +18,41 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-	import flash.display.Graphics;
+import flash.display.Graphics;
 
+    
+/**
+ *  The SolidBorderUtil class is a utility class that draws a solid color
+ *  border of a specified color, thickness and alpha.  This class is used
+ *  to composite Flash equivalents of JS entities and has no JS
+ *  equivalent.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
 public class SolidBorderUtil
 {
+    /**
+     *  Draw a solid color border as specified.  Will fill with
+     *  the backgroundColor if specified.
+     * 
+     *  @param Graphics g The flash.display.DisplayObject#graphics
+     *  @param Number x The x position
+     *  @param Number y The y position
+     *  @param Number width The width 
+     *  @param Number height The height 
+     *  @param uint color The color
+     *  @param uint backgroundColor The optional fill color
+     *  @param int thickness The thickness of the border
+     *  @param Number alpha The alpha
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public static function drawBorder(g:Graphics, x:Number, y:Number, 
 									  width:Number, height:Number,
 									  color:uint, backgroundColor:Object = null, 

@@ -20,6 +20,16 @@ package org.apache.flex.net
 {
     import org.apache.flex.net.IItemConverter;
     
+    /**
+     *  The JSONItemConverter class parses a JSON structure
+     *  into an ActionScript object.  Other variants
+     *  would return a specific data class instance.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class JSONItemConverter implements IItemConverter
 	{
 		public function convertItem(data:String):Object

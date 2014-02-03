@@ -30,34 +30,137 @@ package org.apache.flex.net
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the request is complete.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="complete", type="org.apache.flex.events.Event")]
 	
+    /**
+     *  Dispatched if an error occurs in the server communication.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="ioError", type="org.apache.flex.events.Event")]
 	
+    /**
+     *  @copy org.apache.flex.net.BinaryUploader#httpStatus.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
 	
+    /**
+     *  @copy org.apache.flex.net.BinaryUploader#httpResponseStatus.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
     
     [DefaultProperty("beads")]
     
+    /**
+     *  The HTTPService class is a class designed to transfer text 
+     *  over HTTP.  Use BinaryUploader for transferring non-text.
+     * 
+     *  @see org.apache.flex.net.BinaryUploader.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class HTTPService extends EventDispatcher implements IStrand, IBead
 	{
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_GET.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const HTTP_METHOD_GET:String = URLRequestMethod.GET;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_POST.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const HTTP_METHOD_POST:String = URLRequestMethod.POST;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_PUT.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const HTTP_METHOD_PUT:String = URLRequestMethod.PUT;
+
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_DELETE.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const HTTP_METHOD_DELETE:String = URLRequestMethod.DELETE;
 		
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function HTTPService()
 		{
 			super();
 		}
 		
 		private var _contentType:String = "application/x-www-form-urlencoded";
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#contentType.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get contentType():String
 		{
 			return _contentType;
 		}
-		public function set contentType(value:String):void
+
+        /**
+         *  @private
+         */
+        public function set contentType(value:String):void
 		{
 			if (_contentType != value)
 			{
@@ -67,10 +170,23 @@ package org.apache.flex.net
 		}
 		
 		private var _contentData:String;
+
+        /**
+         *  The text to send to the server, if any.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get contentData():String
 		{
 			return _contentData;
 		}
+
+        /**
+         *  @private
+         */
 		public function set contentData(value:String):void
 		{
 			if (_contentData != value)
@@ -81,12 +197,25 @@ package org.apache.flex.net
 		}
 
 		private var _headers:Array;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#headers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get headers():Array
 		{
 			if (_headers == null)
 				_headers = [];
 			return _headers;
 		}
+
+        /**
+         *  @private
+         */
 		public function set headers(value:Array):void
 		{
 			if (_headers != value)
@@ -97,10 +226,23 @@ package org.apache.flex.net
 		}
 		
 		private var _method:String = HTTP_METHOD_GET;
+
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#method.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get method():String
 		{
 			return _method;
 		}
+
+        /**
+         *  @private
+         */
 		public function set method(value:String):void
 		{
 			if (_method != value)
@@ -111,6 +253,15 @@ package org.apache.flex.net
 		}
 		
 		private var _responseHeaders:Array;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#responseHeaders.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get responseHeaders():Array
 		{
 			if (_responseHeaders && _responseHeaders.length > 0)
@@ -130,22 +281,53 @@ package org.apache.flex.net
 		}
 		
 		private var _responseURL:String;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#responseURL.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get responseURL():String
 		{
 			return _responseURL;	
 		}
 		
 		private var _status:int;
+
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#status.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get status():int
 		{
 			return _status;
 		}
 		
 		private var _url:String;
+
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#url.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get url():String
 		{
 			return _url;
 		}
+
+        /**
+         *  @private
+         */
 		public function set url(value:String):void
 		{
 			if (_url != value)
@@ -156,10 +338,23 @@ package org.apache.flex.net
 		}
 		
 		private var _timeout:Number = 0;
+        
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#timeout.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get timeout():Number
 		{
 			return _timeout;
 		}
+
+        /**
+         *  @private
+         */
 		public function set timeout(value:Number):void
 		{
 			if (_timeout != value)
@@ -170,10 +365,23 @@ package org.apache.flex.net
 		}
 		
 		private var _id:String;
+        
+        /**
+         *  @copy org.apache.flex.core.UIBase#id.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get id():String
 		{
 			return _id;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set id(value:String):void
 		{
 			if (_id != value)
@@ -185,16 +393,39 @@ package org.apache.flex.net
 		
         private var _strand:IStrand;
         
+        /**
+         *  @copy org.apache.flex.core.UIBase#strand.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;
         }
 
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
+        /**
+         *  @copy org.apache.flex.core.UIBase#id.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var beads:Array;
 		
 		private var _beads:Vector.<IBead>;
+        
+        /**
+         *  @copy org.apache.flex.core.UIBase#addBead.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -203,6 +434,14 @@ package org.apache.flex.net
 			bead.strand = this;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#getBeadByType.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -213,6 +452,14 @@ package org.apache.flex.net
 			return null;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#removeBead.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -230,6 +477,14 @@ package org.apache.flex.net
 
         private var urlLoader:URLLoader;
         
+        /**
+         *  Sends the headers and contentData to the server.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function send():void
         {
             if (!urlLoader)
@@ -276,6 +531,14 @@ package org.apache.flex.net
             urlLoader.load(request);
         }
         
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#statusHandler.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function statusHandler(event:HTTPStatusEvent):void
 		{
 			_status = event.status;
@@ -286,17 +549,41 @@ package org.apache.flex.net
 			dispatchEvent(new Event(event.type));
 		}
 		
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#ioErrorHandler.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function ioErrorHandler(event:IOErrorEvent):void
 		{
 			dispatchEvent(new Event(event.type));
 		}
 		
+        /**
+         *  @copy org.apache.flex.net.BinaryUploader#completeHandler.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         protected function completeHandler(event:flash.events.Event):void
         {
             dispatchEvent(new Event(event.type));
         }
         
-        public function get data():*
+        /**
+         *  The text returned from the server.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get data():String
         {
             return urlLoader.data;
         }

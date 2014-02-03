@@ -18,10 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
+    /**
+     *  The data class for HTTP headers in HTTP server communications.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class HTTPHeader
 	{
+        /**
+         *  The Content-type header.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static const CONTENT_TYPE:String = "Content-type";
 
+        /**
+         *  Constructor.
+         *  
+         *  @param String name The name of the header.
+         *  @param String value The value for that header.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function HTTPHeader(name:String = null, value:String = null)
 		{
 			super();
@@ -29,7 +56,24 @@ package org.apache.flex.net
 			this.value = value;
 		}
 		
+        /**
+         *  The name of the header.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var name:String;
+
+        /**
+         *  The value for the header.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var value:String;
    }
 }

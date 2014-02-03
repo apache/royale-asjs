@@ -23,10 +23,45 @@ import flash.utils.Timer;
 
 import org.apache.flex.events.Event;
 
+//--------------------------------------
+//  Events
+//--------------------------------------
+
+/**
+ *  Dispatched as requested via the delay and
+ *  repeat count parameters in the constructor.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
 [Event(name="timer", type="org.apache.flex.events.Event")]
 
+/**
+ *  The Timer class dispatches events based on a delay
+ *  and repeat count.  
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
 public class Timer extends flash.utils.Timer
 {
+    /**
+     *  Constructor.
+     * 
+     *  @param Number delay The number of milliseconds 
+     *  to wait before dispatching the event.
+     *  @param int repeatCount The number of times to dispatch
+     *  the event.  If 0, keep dispatching forever.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public function Timer(delay:Number, repeatCount:int = 0)
     {
         super(delay, repeatCount);

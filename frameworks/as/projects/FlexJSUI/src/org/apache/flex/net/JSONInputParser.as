@@ -18,8 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
+    /**
+     *  The JSONInputParser class parses a JSON structure
+     *  into an array of JSON sub-structures.  It assumes
+     *  the input JSON format is an array without sub-arrays.
+     *  A more complex parser might be needed for more complex
+     *  JSON structures.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class JSONInputParser implements IInputParser
 	{        
+        /**
+         *  @copy org.apache.flex.net.IInputParser.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */        
 		public function parseItems(s:String):Array
         {
             return s.split("},");

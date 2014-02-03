@@ -29,14 +29,41 @@ import flash.ui.ContextMenuItem;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IStrand;
 
+/**
+ *  The ViewSourceContextMenuOption class is a class that 
+ *  implements the "View Source" option in Flash for a
+ *  FlexJS application.  There is no JS equivalent as
+ *  browsers always display source.    
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
 public class ViewSourceContextMenuOption implements IBead
 {
+    /**
+     *  Constructor.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public function ViewSourceContextMenuOption()
     {
     }
 
 	private var _strand:IStrand;
 	
+    /**
+     *  @copy org.apache.flex.core.UIBase#strand
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public function set strand(value:IStrand):void
 	{
 		_strand = value;

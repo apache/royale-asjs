@@ -18,8 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
+    /**
+     *  The IInputParser interface is the basic interface for parsing
+     *  data from a server or database into an array of items.
+     * 
+     *  This interface is generally used in a LazyCollection.
+     *  @see org.apache.flex.net.dataConverters.LazyCollection.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IInputParser
 	{
+        /**
+         *  Take the input string (could be serialized data set,
+         *  XML, or JSON) and return an array of serialized data
+         *  items.
+         * 
+         *  @param String s Serialized data set, XML or JSON.
+         *  @return Array An Array of serialized data items.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function parseItems(s:String):Array;
 	}
 }

@@ -18,13 +18,34 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIMetrics;
-	import org.apache.flex.core.ValuesManager;
+import org.apache.flex.core.IStrand;
+import org.apache.flex.core.UIMetrics;
+import org.apache.flex.core.ValuesManager;
 
+/**
+ *  The BeadMetrics class is a utility class that computes the offset of the content
+ *  in a container based on border-thickness and padding styles.  
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
 public class BeadMetrics
 {
 	
+    /**
+     *  Compute the offset of the content
+     *  in a container based on border-thickness and padding styles.  
+     *  
+     *  @param IStrand strand The host strand.
+     *  @return UIMetrics The offsets of the content.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public static function getMetrics(strand:IStrand) : UIMetrics
 	{
 		var borderThickness:Object = ValuesManager.valuesImpl.getValue(strand,"border-thickness");

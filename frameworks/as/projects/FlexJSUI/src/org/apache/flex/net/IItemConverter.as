@@ -18,8 +18,32 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
+    /**
+     *  The IItemConverter interface is the basic interface for
+     *  converting a serialized data item to a data class instance.
+     * 
+     *  This interface is generally used in a LazyCollection.
+     *  @see org.apache.flex.net.dataConverters.LazyCollection.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IItemConverter
 	{
+        /**
+         *  Take the input string (could be serialized data set,
+         *  XML, or JSON) and return a data class instance.
+         * 
+         *  @param String s Serialized data item, XML or JSON.
+         *  @return Object An instance of a data class.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function convertItem(data:String):Object
 	}
 }
