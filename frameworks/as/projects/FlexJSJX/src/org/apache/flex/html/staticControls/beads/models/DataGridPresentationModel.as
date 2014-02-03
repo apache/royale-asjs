@@ -23,6 +23,15 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The DataGridPresentationModel class contains the data to label the columns
+	 *  of the DataGrid along with the height of the rows. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGridPresentationModel extends EventDispatcher implements IDataGridPresentationModel
 	{
 		public function DataGridPresentationModel()
@@ -30,6 +39,14 @@ package org.apache.flex.html.staticControls.beads.models
 			super();
 		}
 		
+		/**
+		 *  The labels for each column.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _columnLabels:Array;
 		public function get columnLabels():Array
 		{
@@ -43,6 +60,14 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
+		/**
+		 *  The height of the rows (default is 30 pixels).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _rowHeight:Number = 30;
 		public function get rowHeight():Number
 		{
@@ -56,6 +81,9 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{

@@ -20,6 +20,15 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IBeadView;
 	
+	/**
+	 *  The IDataGridView interface marks as a component as being the bead that
+	 *  can create the visual pieces for a DataGrid. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IDataGridView extends IBeadView
 	{
 		

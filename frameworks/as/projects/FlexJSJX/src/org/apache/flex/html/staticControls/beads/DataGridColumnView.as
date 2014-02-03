@@ -21,12 +21,32 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	
+	/**
+	 *  The DataGridColumnView class extends ListView and provides properties to
+	 *  the List that makes a column in the DataGrid.  
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGridColumnView extends ListView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGridColumnView()
 		{
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _strand:IStrand;
 		override public function set strand(value:IStrand):void
 		{
@@ -34,6 +54,14 @@ package org.apache.flex.html.staticControls.beads
 			_strand = value;
 		}
 		
+		/**
+		 *  The zero-based index for the column.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _columnIndex:uint;
 		public function get columnIndex():uint
 		{
@@ -44,6 +72,15 @@ package org.apache.flex.html.staticControls.beads
 			_columnIndex = value;
 		}
 		
+		/**
+		 *  The DataGridColumn containing information used to present the List as
+		 *  a column in the DataGrid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _column:DataGridColumn;
 		public function get column():DataGridColumn
 		{

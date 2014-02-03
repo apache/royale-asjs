@@ -22,19 +22,33 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
 	
+	/**
+	 *  The DataItemRendererFactoryForColumnData class implents the IDataProviderItemRendererMapper
+	 *  interface and creates the itemRenderers for each cell in the DataGrid.  
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataItemRendererFactoryForColumnData()
 		{
 		}
@@ -43,6 +57,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -62,11 +79,18 @@ package org.apache.flex.html.staticControls.beads
 		
 		public var _itemRendererFactory:IItemRendererClassFactory;
 		
+		/**
+		 *  The factory used to create the itemRenderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
 			return _itemRendererFactory
 		}
-		
 		public function set itemRendererFactory(value:IItemRendererClassFactory):void
 		{
 			_itemRendererFactory = value;
@@ -74,6 +98,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		protected var dataGroup:IItemRendererParent;
 		
+		/**
+		 * @private
+		 */
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;

@@ -23,13 +23,42 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	
+	/**
+	 *  The DataGrid class displays a collection of data using columns and rows. Each
+	 *  column represents a specific field in the data set; each row represents a specific
+	 *  datum. The DataGrid is a composite component built with a ButtonBar for the column
+	 *  headers and a List for each column. The DataGrid's view bead (DataGridView) constructs
+	 *  these parts while itemRenderer factories contruct the elements to display the data
+	 *  in each cell.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGrid extends UIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGrid()
 		{
 			super();
 		}
 		
+		/**
+		 *  The array of DataGridColumns used to describe each column.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get columns():Array
 		{
 			return IDataGridModel(model).columns;
@@ -39,6 +68,14 @@ package org.apache.flex.html.staticControls
 			IDataGridModel(model).columns = value;
 		}
 		
+		/**
+		 *  The object used to provide data to the DataGrid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get dataProvider():Object
 		{
 			return IDataGridModel(model).dataProvider;
@@ -48,6 +85,14 @@ package org.apache.flex.html.staticControls
 			IDataGridModel(model).dataProvider = value;
 		}
 		
+		/**
+		 *  The currently selected row.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;

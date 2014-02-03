@@ -20,11 +20,36 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The IDataGridPresentationModel interfaces defines the data needed to
+	 *  present a DataGrid. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IDataGridPresentationModel extends IEventDispatcher, IBead
 	{
+		/**
+		 *  The labels used for each column.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get columnLabels():Array;
 		function set columnLabels(value:Array):void;
 		
+		/**
+		 *  The height of all of the rows in the DataGrid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get rowHeight():Number;
 		function set rowHeight(value:Number):void;
 	}

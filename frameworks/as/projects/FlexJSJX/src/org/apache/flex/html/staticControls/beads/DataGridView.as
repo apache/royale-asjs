@@ -26,7 +26,6 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.ButtonBar;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.List;
@@ -35,8 +34,26 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
 	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	
+	/**
+	 *  The DataGridView class is the visual bead for the DataGrid. This class constructs
+	 *  the items that make the DataGrid: Lists for each column and a ButtonBar for the
+	 *  column headers.  
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGridView implements IDataGridView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGridView()
 		{
 		}
@@ -47,11 +64,22 @@ package org.apache.flex.html.staticControls.beads
 		private var columnContainer:Container;
 		private var columns:Array;
 		
+		/**
+		 *  The array of DataGridColumn instances.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function getColumnLists():Array
 		{
 			return columns;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
@@ -110,6 +138,9 @@ package org.apache.flex.html.staticControls.beads
 			handleSizeChange(null); // initial sizing
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleSizeChange(event:Event):void
 		{
 			var sw:Number = UIBase(_strand).width;
@@ -137,6 +168,9 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 		
+		/**
+		 * @private
+		 */
 		private function columnListChangeHandler(event:Event):void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
@@ -153,6 +187,9 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 		}
 		
+		/**
+		 * @private
+		 */
 		private function columnListRollOverHandler(event:Event):void
 		{
 			var list:List = event.target as List;

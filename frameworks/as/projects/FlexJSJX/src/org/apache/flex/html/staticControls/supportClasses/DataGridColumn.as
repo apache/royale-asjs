@@ -20,12 +20,40 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import mx.core.IFactory;
 
+	/**
+	 *  The DataGridColumn class is the collection of properties that describe
+	 *  a column of the DataGrid: which renderer to use for each cell in the 
+	 *  column, the width of the column, the label for the column, and the name of
+	 *  the field in the data containing the value to display in the column. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGridColumn
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGridColumn()
 		{
 		}
 		
+		/**
+		 *  The itemRenderer class or factory to use to make instances of itemRenderers for
+		 *  display of data.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{
@@ -36,6 +64,14 @@ package org.apache.flex.html.staticControls.supportClasses
 			_itemRenderer = value;
 		}
 		
+		/**
+		 *  The width of the column (default is 100 pixels).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _columnWidth:Number = 100;
 		public function get columnWidth():Number
 		{
@@ -46,6 +82,14 @@ package org.apache.flex.html.staticControls.supportClasses
 			_columnWidth = value;
 		}
 		
+		/**
+		 *  The label for the column (appears in the header area).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _label:String;
 		public function get label():String
 		{
@@ -56,6 +100,15 @@ package org.apache.flex.html.staticControls.supportClasses
 			_label = value;
 		}
 		
+		/**
+		 *  The name of the field containing the data value presented by the column. This value is used
+		 *  by the itemRenderer is select the property from the data.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _dataField:String;
 		public function get dataField():String
 		{
