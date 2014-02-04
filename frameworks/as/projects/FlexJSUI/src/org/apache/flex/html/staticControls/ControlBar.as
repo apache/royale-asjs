@@ -24,8 +24,34 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ValuesManager;
 
+	/**
+	 *  The ControlBar class is used within a Panel as a place to position
+	 *  additional controls. The ControlBar appears at the bottom of the Panel
+	 *  and is not part of the Panel's scrollable content area. The ControlBar
+	 *  is a Container and implements the IChrome interface, indicating that is
+	 *  outside of the Container's content area. The ControlBar uses the following
+	 *  beads:
+	 * 
+	 *  IBeadModel: the data model for the component.
+	 *  IMeasurementBead: helps determine the overlay size of the ControlBar for layout.
+	 *  IBorderBead: if present, displays a border around the component.
+	 *  IBackgroundBead: if present, displays a solid background below the ControlBar.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ControlBar extends Container implements IContainer, IChrome
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ControlBar()
 		{
 			super();
@@ -33,6 +59,9 @@ package org.apache.flex.html.staticControls
 			className = "ControlBar";
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();	

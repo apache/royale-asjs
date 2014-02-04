@@ -29,19 +29,46 @@ package org.apache.flex.html.staticControls
     [Event(name="change", type="org.apache.flex.events.Event")]
     
 	/**
-	 *  Label probably should extend TextField directly,
-	 *  but the player's APIs for TextLine do not allow
-	 *  direct instantiation, and we might want to allow
-	 *  Labels to be declared and have their actual
-	 *  view be swapped out.
+	 *  The List class is a component that displays multiple data items. The List uses
+	 *  the following bead types:
+	 * 
+	 *  IBeadModel: the data model, which includes the dataProvider, selectedItem, and
+	 *  so forth.
+	 *  IBeadView:  the bead that constructs the visual parts of the list.
+	 *  IBeadController: the bead that handles input and output.
+	 *  IBeadLayout: the bead responsible for the size and position of the itemRenderers.
+	 *  IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
+	 *  IItemRenderer: the class or factory used to display an item in the list.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
 	 */
 	public class List extends UIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function List()
 		{
 			super();
 		}
 		
+		/**
+		 *  The name of field within the data used for display. Each item of the
+		 *  data should have a property with this name.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get labelField():String
 		{
 			return ISelectionModel(model).labelField;
@@ -51,6 +78,14 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).labelField = value;
 		}
 		
+		/**
+		 *  The data being display by the List.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get dataProvider():Object
         {
             return ISelectionModel(model).dataProvider;
@@ -60,6 +95,15 @@ package org.apache.flex.html.staticControls
             ISelectionModel(model).dataProvider = value;
         }
 
+		/**
+		 *  The index of the currently selected item. Changing this value
+		 *  also changes the selectedItem property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
@@ -69,6 +113,14 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedIndex = value;
 		}
 
+		/**
+		 *  The index of the item currently below the pointer.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get rollOverIndex():int
 		{
 			return IRollOverModel(model).rollOverIndex;
@@ -78,6 +130,15 @@ package org.apache.flex.html.staticControls
 			IRollOverModel(model).rollOverIndex = value;
 		}
 		
+		/**
+		 *  The item currently selected. Changing this value also 
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
@@ -87,6 +148,14 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{
@@ -97,6 +166,9 @@ package org.apache.flex.html.staticControls
 			_itemRenderer = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
             super.addedToParent();

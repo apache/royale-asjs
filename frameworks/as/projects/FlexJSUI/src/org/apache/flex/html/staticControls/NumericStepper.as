@@ -21,13 +21,44 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IRangeModel;
 
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
+	
+	/**
+	 *  The NumericStepper class is a component that displays a numeric
+	 *  value and up/down controls (using a Spinner) to increase and decrease the value by
+	 *  specific amounts. The NumericStepper uses the following beads:
+	 * 
+	 *  IBeadModel: the data model for the component of type IRangeModel.
+	 *  IBeadView: constructs the parts of the component.
+	 *  IBeadController: handles the input events.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class NumericStepper extends Container
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function NumericStepper()
 		{
 			super();
 		}
 		
+		/**
+		 *  The current value of the control.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get value():Number
 		{
 			return IRangeModel(model).value;
@@ -37,6 +68,14 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).value = newValue;
 		}
 		
+		/**
+		 *  The minimum value the control will display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get minimum():Number
 		{
 			return IRangeModel(model).minimum;
@@ -46,6 +85,14 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).minimum = value;
 		}
 		
+		/**
+		 *  The maximum value the control will display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get maximum():Number
 		{
 			return IRangeModel(model).maximum;
@@ -55,6 +102,16 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).maximum = value;
 		}
 		
+		/**
+		 *  The amount to increase or descrease the value. The value
+		 *  will not exceed the minimum or maximum value. The final
+		 *  value is affected by the snapInterval.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get stepSize():Number
 		{
 			return IRangeModel(model).stepSize;
@@ -64,6 +121,15 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).stepSize = value;
 		}
 		
+		/**
+		 *  The modulus for the value. If this property is set,
+		 *  the value displayed with a muliple of the snapInterval.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get snapInterval():Number
 		{
 			return IRangeModel(model).snapInterval;

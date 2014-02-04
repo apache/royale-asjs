@@ -28,8 +28,30 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.Label;
 	
+	/**
+	 *  The TitleBar class is a Container component that displays a title and an
+	 *  optional close button. The TitleBar uses the following bead types:
+	 * 
+	 *  IBeadModel: the data model, which includes the title and showCloseButton values.
+	 *  IBeadView:  the bead that constructs the visual parts of the component.
+	 *  IBeadLayout: the bead that handles size and position of the component parts (Label and Button).
+	 *  IMeasurementBead: a bead that helps determine the size of the TitleBar for layout.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TitleBar extends Container implements IChrome
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TitleBar()
 		{
 			super();
@@ -37,6 +59,14 @@ package org.apache.flex.html.staticControls
 			className = "TitleBar";
 		}
 		
+		/**
+		 *  The title string to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get title():String
 		{
 			return ITitleBarModel(model).title;
@@ -46,6 +76,14 @@ package org.apache.flex.html.staticControls
 			ITitleBarModel(model).title = value;
 		}
 		
+		/**
+		 *  The HTML title to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlTitle():String
 		{
 			return ITitleBarModel(model).htmlTitle;
@@ -55,6 +93,15 @@ package org.apache.flex.html.staticControls
 			ITitleBarModel(model).htmlTitle = value;
 		}
 		
+		/**
+		 *  Whether or not to show a Button that indicates the component
+		 *  may be closed.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get showCloseButton():Boolean
 		{
 			return ITitleBarModel(model).showCloseButton;
@@ -64,18 +111,27 @@ package org.apache.flex.html.staticControls
 			ITitleBarModel(model).showCloseButton = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _titleLabel:Label;
 		public function get titleLabel():Label
 		{
 			return _titleLabel;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _closeButton:Button;
 		public function get closeButton():Button
 		{
 			return closeButton;
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -104,6 +160,9 @@ package org.apache.flex.html.staticControls
 			dispatchEvent(new Event("widthChanged"));
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handlePropertyChange(event:Event):void
 		{
 			if( event.type == "showCloseButtonChange" ) {
@@ -123,6 +182,9 @@ package org.apache.flex.html.staticControls
 			dispatchEvent(new Event("widthChanged"));
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function createTitle() : Label
 		{
 			var label:Label = new Label();
@@ -130,6 +192,9 @@ package org.apache.flex.html.staticControls
 			return label;
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function createCloseButton() : Button
 		{
 			var upState:Shape = new Shape();
@@ -164,6 +229,9 @@ package org.apache.flex.html.staticControls
 			return button;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function closeButtonHandler(event:org.apache.flex.events.Event) : void
 		{
 			var newEvent:Event = new Event('close',true);

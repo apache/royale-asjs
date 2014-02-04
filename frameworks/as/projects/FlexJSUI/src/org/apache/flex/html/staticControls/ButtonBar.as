@@ -18,8 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
+	/**
+	 *  The ButtonBar class is a component that displays a set of Buttons. The ButtonBar
+	 *  is actually a List with a default horizontal layout and an itemRenderer that 
+	 *  produces Buttons. The ButtonBar uses the following beads:
+	 * 
+	 *  IBeadModel: the data model for the ButtonBar, including the dataProvider.
+	 *  IBeadView: constructs the parts of the component.
+	 *  IBeadController: handles input events.
+	 *  IBeadLayout: sizes and positions the component parts.
+	 *  IDataProviderItemRendererMapper: produces itemRenderers.
+	 *  IItemRenderer: the class or class factory to use.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ButtonBar extends List
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ButtonBar()
 		{
 			super();

@@ -22,13 +22,45 @@ package org.apache.flex.html.staticControls
 
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
+	/**
+	 *  The Panel class is a Container component capable of parenting other
+	 *  components. The Panel has a TitleBar and an optional ControlBar. The Panel
+	 *  uses the following bead types:
+	 * 
+	 *  IBeadModel: the data model for the Panel that includes the title and whether
+	 *  or not to display the close button.
+	 *  IBeadView: creates the parts of the Panel.
+	 *  IBorderBead: if present, draws a border around the Panel.
+	 *  IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class Panel extends Container
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function Panel()
 		{
 			super();
 		}
 		
+		/**
+		 *  The string to display in the TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get title():String
 		{
 			return IPanelModel(model).title;
@@ -38,6 +70,14 @@ package org.apache.flex.html.staticControls
 			IPanelModel(model).title = value;
 		}
 		
+		/**
+		 *  The HTML string to display in the TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlTitle():String
 		{
 			return IPanelModel(model).htmlTitle;
@@ -47,6 +87,9 @@ package org.apache.flex.html.staticControls
 			IPanelModel(model).htmlTitle = value;
 		}
 		
+		/**
+		 * Whether or not to show a Close button in the TitleBar.
+		 */
 		public function get showCloseButton():Boolean
 		{
 			return IPanelModel(model).showCloseButton;
@@ -56,6 +99,15 @@ package org.apache.flex.html.staticControls
 			IPanelModel(model).showCloseButton = value;
 		}
 		
+		/**
+		 *  The items in the ControlBar. Setting this property automatically
+		 *  causes the ControlBar to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private var _controlBar:Array;
 		public function get controlBar():Array
 		{

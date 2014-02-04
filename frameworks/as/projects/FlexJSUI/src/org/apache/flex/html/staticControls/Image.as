@@ -21,18 +21,45 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.UIBase;
 	
+	/**
+	 *  The Image class is a component that displays a bitmap. The Image uses
+	 *  the following beads:
+	 * 
+	 *  IBeadModel: the data model for the Image, including the source property.
+	 *  IBeadView: constructs the visual elements of the component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class Image extends UIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function Image()
 		{
 			super();
 		}
 		
+		/**
+		 *  The location of the bitmap, usually a URL.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get source():String
 		{
 			return IImageModel(model).source;
 		}
-		
 		public function set source(value:String):void
 		{
 			IImageModel(model).source = value;

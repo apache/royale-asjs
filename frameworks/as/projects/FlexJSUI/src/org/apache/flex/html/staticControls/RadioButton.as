@@ -29,8 +29,29 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
+	/**
+	 *  The RadioButton class is a component that displays a selectable Button. RadioButtons
+	 *  are typically used in groups, identified by the groupName property. RadioButton use
+	 *  the following beads:
+	 * 
+	 *  IBeadModel: the data model, which includes the groupName.
+	 *  IBeadView:  the bead that constructs the visual parts of the RadioButton..
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class RadioButton extends UIButtonBase implements IStrand
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
 			super(upState, overState, downState, hitTestState);
@@ -42,16 +63,31 @@ package org.apache.flex.html.staticControls
 		
 		private var _groupName:String;
 		
+		/**
+		 *  The name of the group. Only one RadioButton in a group is selected.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get groupName() : String
 		{
 			return IValueToggleButtonModel(model).groupName;
 		}
-		
 		public function set groupName(value:String) : void
 		{
 			IValueToggleButtonModel(model).groupName = value;
 		}
 		
+		/**
+		 *  The string used as a label for the RadioButton.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return IValueToggleButtonModel(model).text;
@@ -61,11 +97,20 @@ package org.apache.flex.html.staticControls
 			IValueToggleButtonModel(model).text = value;
 		}
 		
+		/**
+		 *  Whether or not the RadioButton instance is selected. Setting this property
+		 *  causes the currently selected RadioButton in the same group to lose the
+		 *  selection.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selected():Boolean
 		{
 			return IValueToggleButtonModel(model).selected;
 		}
-		
 		public function set selected(selValue:Boolean):void
 		{
 			IValueToggleButtonModel(model).selected = selValue;
@@ -83,21 +128,36 @@ package org.apache.flex.html.staticControls
 			}
 		}
 		
+		/**
+		 *  The value associated with the RadioButton. For example, RadioButtons with labels,
+		 *  "Red", "Green", and "Blue" might have the values 0, 1, and 2 respectively.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get value():Object
 		{
 			return IValueToggleButtonModel(model).value;
 		}
-		
 		public function set value(newValue:Object):void
 		{
 			IValueToggleButtonModel(model).value = newValue;
 		}
 		
+		/**
+		 *  The group's currently selected value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selectedValue():Object 
 		{
 			return IValueToggleButtonModel(model).selectedValue;
 		}
-		
 		public function set selectedValue(newValue:Object):void 
 		{
 			// a radio button is really selected when its value matches that of the group's value
@@ -105,6 +165,9 @@ package org.apache.flex.html.staticControls
 			IValueToggleButtonModel(model).selectedValue = newValue;
 		}
 				
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
             super.addedToParent();
@@ -129,7 +192,10 @@ package org.apache.flex.html.staticControls
 			
 			dict[this] = this;
 		}
-				
+			
+		/**
+		 * @private
+		 */
 		private function internalMouseHandler(event:Event) : void
 		{
 			// prevent radiobutton from being turned off by a click

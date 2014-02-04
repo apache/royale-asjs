@@ -25,8 +25,32 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
+	/**
+	 *  The SimpleAlert class is a component that displays a message and an OK button. The
+	 *  SimpleAlert converts directly to window.alert() for HTML. SimpleAlert uses
+	 *  the following beads:
+	 * 
+	 *  IBeadModel: the data model, which includes the message.
+	 *  IBeadView:  the bead that constructs the visual parts of the Alert.
+	 *  IBeadController: the bead responsible for handling input events.
+	 *  IBorderBead: a bead, if present, that draws a border around the control.
+	 *  IBackgroundBead: a bead, if present, that creates a solid-color background.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class SimpleAlert extends UIBase implements IPopUp
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function SimpleAlert()
 		{
 			super();
@@ -34,6 +58,14 @@ package org.apache.flex.html.staticControls
 			className = "SimpleAlert";
 		}
 		
+		/**
+		 *  The message to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private function get message():String
 		{
 			return IAlertModel(model).message;
@@ -43,6 +75,14 @@ package org.apache.flex.html.staticControls
 			IAlertModel(model).message = value;
 		}
 		
+		/**
+		 *  The HTML message to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		private function get htmlMessage():String
 		{
 			return IAlertModel(model).htmlMessage;
@@ -52,11 +92,28 @@ package org.apache.flex.html.staticControls
 			IAlertModel(model).htmlMessage = value;
 		}
 		
+		/**
+		 *  This function causes the SimpleAlert to appear. The parent is used for ActionScript and
+		 *  identifies the IPopUpParent that manages the alert.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function show(parent:Object) : void
 		{
 			parent.addElement(this);
 		}
 		
+		/**
+		 *  A convenience function to compose and display the alert.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		static public function show(message:String, parent:Object):SimpleAlert
 		{
 			var alert:SimpleAlert = new SimpleAlert();

@@ -23,8 +23,31 @@ package org.apache.flex.html.staticControls
 	
 	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
 	
+	/**
+	 *  The Slider class is a component that displays a range of values using a
+	 *  track and a thumb control. The Slider uses the following bead types:
+	 * 
+	 *  IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
+	 *  IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  IBeadController: the bead that handles input.
+	 *  IThumbValue: the bead responsible for the display of the thumb control.
+	 *  ITrackView: the bead responsible for the display of the track.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class Slider extends UIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function Slider()
 		{
 			super();
@@ -38,6 +61,14 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).snapInterval = 1;
 		}
 		
+		/**
+		 *  The current value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get value():Number
 		{
 			return IRangeModel(model).value;
@@ -47,6 +78,14 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).value = newValue;
 		}
 		
+		/**
+		 *  The minimum value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get minimum():Number
 		{
 			return IRangeModel(model).minimum;
@@ -56,6 +95,14 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).minimum = value;
 		}
 		
+		/**
+		 *  The maximum value of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get maximum():Number
 		{
 			return IRangeModel(model).maximum;
@@ -65,6 +112,15 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).maximum = value;
 		}
 		
+		/**
+		 *  The modulus of the Slider value. The thumb will be positioned
+		 *  at the nearest multiple of this value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get snapInterval():Number
 		{
 			return IRangeModel(model).snapInterval;
@@ -74,6 +130,15 @@ package org.apache.flex.html.staticControls
 			IRangeModel(model).snapInterval = value;
 		}
         
+		/**
+		 *  The amount to move the thumb when the track is selected. This value is
+		 *  adjusted to fit the nearest snapInterval.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get stepSize():Number
         {
             return IRangeModel(model).stepSize;
