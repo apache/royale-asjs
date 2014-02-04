@@ -67,6 +67,11 @@
             versionrevision="0" 
             output="${basedir}/bin-debug"/> 
  
+        <copy todir="${basedir}/bin-debug">
+            <fileset dir="${basedir}/src">
+                <include name="*.png" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="compileas" description="Compiles ${example}">
