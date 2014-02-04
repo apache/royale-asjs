@@ -21,26 +21,67 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	
+    /**
+     *  The TextArea class implements the basic control for
+     *  multi-line text input.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */    
 	public class TextArea extends UIBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextArea()
 		{
 			super();
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return ITextModel(model).text;
 		}
+
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			ITextModel(model).text = value;
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return ITextModel(model).html;
 		}
+
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			ITextModel(model).html = value;

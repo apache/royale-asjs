@@ -20,26 +20,67 @@ package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.ITextModel;
 	
+    /**
+     *  The TextButton class implements a basic button that
+     *  displays text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */    
 	public class TextButton extends Button
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextButton()
 		{
 			super();
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return ITextModel(model).text;
 		}
+
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			ITextModel(model).text = value;
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return ITextModel(model).html;
 		}
+
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			ITextModel(model).html = value;

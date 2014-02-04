@@ -23,44 +23,92 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	/**
+	/*
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
 	 *  direct instantiation, and we might want to allow
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class Label extends UIBase
+
+    /**
+     *  The Label class implements the basic control for labeling
+     *  other controls.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */    
+    public class Label extends UIBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function Label()
 		{
 			super();
 		}
 		
+        /**
+         *  The text to display in the label.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return ITextModel(model).text;
 		}
+
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			ITextModel(model).text = value;
 		}
 		
+        /**
+         *  The html-formatted text to display in the label.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return ITextModel(model).html;
 		}
+
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			ITextModel(model).html = value;
 		}
 				
+        /**
+         *  @private
+         */
 		override public function set width(value:Number):void
 		{
 			super.width = value;
 			IEventDispatcher(model).dispatchEvent( new Event("widthChanged") );
 		}
 		
+        /**
+         *  @private
+         */
 		override public function set height(value:Number):void
 		{
 			super.height = value;
