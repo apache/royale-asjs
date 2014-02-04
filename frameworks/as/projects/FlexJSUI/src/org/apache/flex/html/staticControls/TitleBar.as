@@ -221,7 +221,11 @@ package org.apache.flex.html.staticControls
 			hitArea.graphics.drawRect(0, 0, 11, 11);
 			hitArea.graphics.endFill();
 			
-			var button:Button = new Button(upState, overState, downState, hitArea);
+			var button:Button = new Button();
+            button.upState = upState;
+            button.overState = overState;
+            button.downState = downState;
+            button.hitTestState = hitArea;
 			button.visible = showCloseButton;
 			
 			button.addEventListener('click',closeButtonHandler);

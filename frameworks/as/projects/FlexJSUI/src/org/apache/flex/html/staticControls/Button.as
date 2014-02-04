@@ -25,13 +25,52 @@ package org.apache.flex.html.staticControls
     import org.apache.flex.core.UIButtonBase;
 	import org.apache.flex.events.IEventDispatcher;
 	
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the user clicks on a button.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="click", type="org.apache.flex.events.Event")]
 
+    /**
+     *  The Button class is a simple button.  Use TextButton for
+     *  buttons that should show text.  This is the lightest weight
+     *  button used for non-text buttons like the arrow buttons
+     *  in a Scrollbar or NumericStepper.
+     * 
+     *  The most common view for this button is CSSButtonView that
+     *  allows you to specify a backgroundImage in CSS that defines
+     *  the look of the button.
+     * 
+     *  However, when used in ScrollBar and when composed in many
+     *  other components, it is more common to assign a custom view
+     *  to the button.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
 	{
-		public function Button(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function Button()
 		{
-			super(upState, overState, downState, hitTestState);
+			super();
 		}		
 	}
 }

@@ -123,7 +123,10 @@ package org.apache.flex.html.staticControls.beads
 			downSprite = new Sprite();
 			drawButton( downSprite, "down", 18, 18 );
 			
-			button = new Button( upSprite, overSprite, downSprite );
+			button = new Button();
+            button.upState = upSprite;
+            button.overState = overSprite;
+            button.downState = downSprite;
 			DisplayObjectContainer(strand).addChild(button);
 			button.width = 18;
 			button.height = 18;

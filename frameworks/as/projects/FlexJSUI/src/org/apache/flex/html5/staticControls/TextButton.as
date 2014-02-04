@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import flash.display.DisplayObject;
-	
 	import org.apache.flex.html.staticControls.TextButton;
 	
 	public class TextButton extends org.apache.flex.html.staticControls.TextButton
 	{
-		public function TextButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+		public function TextButton()
 		{
-			super(upState, overState, downState, hitTestState);
+			super();
 		}
 	}
 }
