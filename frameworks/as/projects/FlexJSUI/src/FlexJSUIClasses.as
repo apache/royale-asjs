@@ -37,6 +37,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.ComboBoxView; ComboBoxView;
     import org.apache.flex.html.staticControls.beads.ContainerView; ContainerView;
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
+    import org.apache.flex.html.staticControls.beads.CSSButtonView; CSSButtonView;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
     import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
 	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
