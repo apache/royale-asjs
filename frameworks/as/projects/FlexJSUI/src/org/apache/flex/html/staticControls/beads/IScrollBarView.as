@@ -76,24 +76,5 @@ package org.apache.flex.html.staticControls.beads
          */
 		function get thumb():DisplayObject;
 		
-        /**
-         *  The data model for the view
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function get scrollBarModel():IScrollBarModel;
-        
-        /**
-         *  The ScrollBar itself.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function get strand():IStrand;
 	}
 }

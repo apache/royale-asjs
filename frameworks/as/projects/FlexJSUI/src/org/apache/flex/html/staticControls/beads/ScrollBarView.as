@@ -30,25 +30,28 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 
+    /**
+     *  The ScrollBarView class is the default view for
+     *  the org.apache.flex.html.staticControls.supportClasses.ScrollBar class.
+     *  It implements the classic desktop-like ScrollBar.
+     *  A different view would implement more modern scrollbars that hide themselves
+     *  until hovered over with the mouse.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ScrollBarView extends Strand implements IBeadView, IStrand, IScrollBarView
 	{
 		public function ScrollBarView()
 		{
 		}
-		
-		public function get scrollBarModel():IScrollBarModel
-		{
-			return sbModel;
-		}
-		
+				
 		private var sbModel:IScrollBarModel;
 		
 		private var _strand:IStrand;
 		
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -71,9 +74,9 @@ package org.apache.flex.html.staticControls.beads
             UIBase(value).addChild(_track);
             UIBase(value).addChild(_thumb);
             
-            if( getBeadByType(IBeadLayout) == null ) {
+            if( _strand.getBeadByType(IBeadLayout) == null ) {
                 var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                addBead(layout);
+                _strand.addBead(layout);
             }
             
 		}

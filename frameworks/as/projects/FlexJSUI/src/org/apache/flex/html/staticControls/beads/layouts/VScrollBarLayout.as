@@ -19,12 +19,14 @@
 package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IScrollBarView;
 
 	public class VScrollBarLayout implements IBeadLayout
@@ -41,21 +43,21 @@ package org.apache.flex.html.staticControls.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			sbView = value as IScrollBarView;
-			sbModel = sbView.scrollBarModel;
+			sbView = _strand.getBeadByType(IScrollBarView) as IScrollBarView;
+			sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel;
 			sbModel.addEventListener("maximumChange", changeHandler);
 			sbModel.addEventListener("minimumChange", changeHandler);
 			sbModel.addEventListener("snapIntervalChange", changeHandler);
 			sbModel.addEventListener("stepSizeChange", changeHandler);
             sbModel.addEventListener("pageSizeChange", changeHandler);
 			sbModel.addEventListener("valueChange", changeHandler);
-			IEventDispatcher(sbView.strand).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
 			changeHandler(null);
 		}
 	
 		private function changeHandler(event:Event):void
 		{
-			var h:Number = DisplayObject(sbView.strand).height;
+			var h:Number = DisplayObject(_strand).height;
 			var increment:DisplayObject = sbView.increment;
 			var decrement:DisplayObject = sbView.decrement;
 			var track:DisplayObject = sbView.track;
