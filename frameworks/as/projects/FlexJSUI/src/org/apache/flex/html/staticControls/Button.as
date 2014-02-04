@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import flash.display.DisplayObject;
-	
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIButtonBase;

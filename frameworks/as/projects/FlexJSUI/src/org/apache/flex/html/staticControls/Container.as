@@ -27,26 +27,83 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	
-    [Event(name="change", type="org.apache.flex.events.Event")]
-    
 	[DefaultProperty("mxmlContent")]
+    
+    /**
+     *  The Container class implements a basic container of
+     *  other controls and containers.  The position and size
+     *  of the children are determined by a layout or by
+     *  absolute positioning and sizing.  This Container does
+     *  not have a built-in scrollbar or clipping of content
+     *  exceeds its boundaries.
+     * 
+     *  While the container is relatively lightweight, it should
+     *  generally not be used as the base class for other controls,
+     *  even if those controls are composed of children.  That's
+     *  because the fundamental API of Container is to support
+     *  an arbitrary set of children, and most controls only
+     *  support a specific set of children.
+     * 
+     *  And that's one of the advantages of beads: that functionality
+     *  used in a Container can also be used in a Control as long
+     *  as that bead doesn't assume that its strand is a Container.
+     * 
+     *  For example, even though you can use a Panel to create the
+     *  equivalent of an Alert control, the Alert is a 
+     *  control and not a Container because the Alert does not
+     *  support an arbitrary set of children.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */    
 	public class Container extends UIBase implements IContainer
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function Container()
 		{
 			super();
 			actualParent = this;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ViewBase#mxmlContent.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var mxmlContent:Array;
 
 		private var actualParent:DisplayObjectContainer;
 		
+        /**
+         *  Set a platform-specific object as the actual parent for 
+         *  children.  This must be public so it can be accessed
+         *  by beads.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function setActualParent(parent:DisplayObjectContainer):void
 		{
 			actualParent = parent;	
 		}
 		
+        /**
+         *  @private
+         */
         override public function getElementIndex(c:Object):int
         {
             if (c is IUIBase)
@@ -55,6 +112,9 @@ package org.apache.flex.html.staticControls
                 return actualParent.getChildIndex(c as DisplayObject);
         }
 
+        /**
+         *  @private
+         */
         override public function addElement(c:Object):void
         {
             if (c is IUIBase)
@@ -78,6 +138,9 @@ package org.apache.flex.html.staticControls
 			}
         }
         
+        /**
+         *  @private
+         */
         override public function addElementAt(c:Object, index:int):void
         {
             if (c is IUIBase)
@@ -100,6 +163,9 @@ package org.apache.flex.html.staticControls
 			}
         }
         
+        /**
+         *  @private
+         */
         override public function removeElement(c:Object):void
         {
             if (c is IUIBase)
@@ -108,6 +174,10 @@ package org.apache.flex.html.staticControls
                 actualParent.removeChild(c as DisplayObject);
         }
         
+        /**
+         *  Get the array of children.  To change the children use
+         *  addElement, removeElement.
+         */
         public function getChildren():Array
 		{
 			var children:Array = [];
@@ -117,6 +187,9 @@ package org.apache.flex.html.staticControls
 			return children;
 		}
 
+        /**
+         *  @private
+         */
 		public function childrenAdded():void
 		{
 			dispatchEvent(new Event("childrenAdded"));

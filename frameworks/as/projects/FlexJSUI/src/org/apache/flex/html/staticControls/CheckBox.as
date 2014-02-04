@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls
 {
-	import flash.display.DisplayObject;
     import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IToggleButtonModel;
@@ -26,31 +25,83 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.UIButtonBase;
 	import org.apache.flex.events.Event;
 	
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the user checks or un-checks the CheckBox.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
+    /**
+     *  The CheckBox class implements the common user interface
+     *  control.  The CheckBox includes its text label.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class CheckBox extends UIButtonBase implements IStrand
 	{
-		public function CheckBox(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function CheckBox()
 		{
-			super(upState, overState, downState, hitTestState);
+			super();
 			
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 		
+        /**
+         *  The text label for the CheckBox.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return IToggleButtonModel(model).text;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			IToggleButtonModel(model).text = value;
 		}
 		
+        /**
+         *  <code>true</code> if the check mark is displayed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selected():Boolean
 		{
 			return IToggleButtonModel(model).selected;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set selected(value:Boolean):void
 		{
 			IToggleButtonModel(model).selected = value;
