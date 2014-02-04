@@ -22,9 +22,35 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBead;
 	
+	/**
+	 *  The ISpinnerView interface provides the protocol for any bead that
+	 *  creates the visual parts for a Spinner control.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface ISpinnerView extends IBead
 	{
+		/**
+		 *  The component used to increment the Spinner value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get increment():DisplayObject;
+		
+		/**
+		 *  The component used to decrement the Spinner value.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get decrement():DisplayObject;
 	}
 }

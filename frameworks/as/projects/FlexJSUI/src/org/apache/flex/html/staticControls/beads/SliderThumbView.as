@@ -27,8 +27,25 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The SliderThumbView class creates the draggable input element for the Slider
+	 *  component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class SliderThumbView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function SliderThumbView()
 		{
 			hitArea = new Shape();
@@ -37,6 +54,9 @@ package org.apache.flex.html.staticControls.beads
 			overView = new Shape();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
 			g.clear();
@@ -50,6 +70,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var hitArea:Shape;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -72,6 +95,9 @@ package org.apache.flex.html.staticControls.beads
 		private var downView:Shape;
 		private var overView:Shape;
 		
+		/**
+		 * @private
+		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			drawView(hitArea.graphics, 0xDD0000);

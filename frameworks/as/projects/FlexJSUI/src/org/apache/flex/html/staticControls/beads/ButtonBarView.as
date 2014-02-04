@@ -31,8 +31,25 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 
+	/**
+	 *  The ButtonBarView class creates the visual elements of the ButtonBar component. A ButtonBar is a
+	 *  type of List and ButtonBarView extends the ListView bead, adding a border.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ButtonBarView extends ListView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ButtonBarView()
 		{
 			super();
@@ -40,6 +57,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _border:Border;
 		
+		/**
+		 *  The ButtonBar's border.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function get border():Border
 		{
 			return _border;
@@ -47,6 +72,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;

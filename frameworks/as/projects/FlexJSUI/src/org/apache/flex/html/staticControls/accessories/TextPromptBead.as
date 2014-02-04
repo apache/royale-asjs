@@ -27,13 +27,40 @@ package org.apache.flex.html.staticControls.accessories
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The TextPromptBead class is a specialty bead that can be used with
+	 *  any TextInput control. The bead places a string into the input field
+	 *  when there is no value associated with the text property.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TextPromptBead implements IBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TextPromptBead()
 		{
 		}
 		
 		private var _prompt:String;
+		
+		/**
+		 *  The string to use as the placeholder prompt.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get prompt():String
 		{
 			return _prompt;
@@ -44,6 +71,10 @@ package org.apache.flex.html.staticControls.accessories
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -72,6 +103,9 @@ package org.apache.flex.html.staticControls.accessories
 		private var promptField:CSSTextField;
 		private var promptAdded:Boolean;
 		
+		/**
+		 * @private
+		 */
 		private function handleTextChange( event:Event ):void
 		{	
 			// see what the model currently has to determine if the prompt should be

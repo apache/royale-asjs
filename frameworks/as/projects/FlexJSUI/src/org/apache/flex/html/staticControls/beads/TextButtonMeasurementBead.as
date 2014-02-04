@@ -21,12 +21,36 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
+	/**
+	 *  The TextButtonMeasurementBead class helps measure a TextButton.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TextButtonMeasurementBead implements IMeasurementBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TextButtonMeasurementBead()
 		{
 		}
 		
+		/**
+		 *  The overall width of the TextButton.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredWidth():Number
 		{
 			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
@@ -34,6 +58,9 @@ package org.apache.flex.html.staticControls.beads
 			else return 0;
 		}
 		
+		/**
+		 * The overall height of the TextButton
+		 */
 		public function get measuredHeight():Number
 		{
 			var view:TextButtonView = _strand.getBeadByType(TextButtonView) as TextButtonView;
@@ -42,6 +69,10 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

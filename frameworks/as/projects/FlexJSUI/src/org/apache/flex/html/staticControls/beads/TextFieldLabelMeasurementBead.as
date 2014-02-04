@@ -21,12 +21,36 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
+	/**
+	 *  The TextFieldLabelMeasurementBead class helps to measure TextField components.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TextFieldLabelMeasurementBead implements IMeasurementBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TextFieldLabelMeasurementBead()
 		{
 		}
 		
+		/**
+		 *  The overall width of the TextField.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredWidth():Number
 		{
 			var view:TextFieldView = _strand.getBeadByType(TextFieldView) as TextFieldView;
@@ -34,6 +58,14 @@ package org.apache.flex.html.staticControls.beads
 			else return 0;
 		}
 		
+		/**
+		 *  The overall height of the TextField.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredHeight():Number
 		{
 			var view:TextFieldView = _strand.getBeadByType(TextFieldView) as TextFieldView;
@@ -42,6 +74,10 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

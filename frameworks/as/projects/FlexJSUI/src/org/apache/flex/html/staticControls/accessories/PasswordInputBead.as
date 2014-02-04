@@ -25,14 +25,35 @@ package org.apache.flex.html.staticControls.accessories
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
+	/**
+	 *  The PasswordInput class is a specialty bead that can be used with
+	 *  any TextInput control. The bead secures the text input area by masking
+	 *  the input as it is typed.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class PasswordInputBead implements IBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function PasswordInputBead()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -40,6 +61,9 @@ package org.apache.flex.html.staticControls.accessories
 			IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function viewChangeHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work

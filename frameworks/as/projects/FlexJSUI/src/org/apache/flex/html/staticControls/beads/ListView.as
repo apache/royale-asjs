@@ -43,6 +43,15 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
+	/**
+	 *  The List class creates the visual elements of the List component. A List consists of
+	 *  the area to display the data (in the dataGroup), any scrollbars, and so forth.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ListView extends Strand implements IBeadView, IStrand, IListView, ILayoutParent
 	{
 		public function ListView()
@@ -51,15 +60,31 @@ package org.apache.flex.html.staticControls.beads
 						
 		private var listModel:ISelectionModel;
 		
-        private var _border:Border;
-        
+		private var _border:Border;
+		
+		/**
+		 *  The border surrounding the List.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get border():Border
         {
             return _border;
         }
-
-        private var _dataGroup:IItemRendererParent;
-
+		
+		private var _dataGroup:IItemRendererParent;
+		
+		/**
+		 *  The area holding the itemRenderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get dataGroup():IItemRendererParent
 		{
 			return _dataGroup;
@@ -67,6 +92,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _vScrollBar:ScrollBar;
 		
+		/**
+		 *  The vertical ScrollBar, if needed.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get vScrollBar():ScrollBar
 		{
             if (!_vScrollBar)
@@ -74,23 +107,45 @@ package org.apache.flex.html.staticControls.beads
 			return _vScrollBar;
 		}
 		
+		/**
+		 *  The horizontal ScrollBar, currently null.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get hScrollBar():ScrollBar
 		{
 			return null;
 		}
 		
+		/**
+		 *  The contentArea includes the dataGroup and ScrollBars.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get contentView():DisplayObjectContainer
 		{
 			return _dataGroup as DisplayObjectContainer;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get resizableView():DisplayObject
 		{
 			return _strand as DisplayObject;
 		}
-
+		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function get strand():IStrand
 		{
 			return _strand;
@@ -125,6 +180,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var lastSelectedIndex:int = -1;
 		
+		/**
+		 * @private
+		 */
 		private function selectionChangeHandler(event:Event):void
 		{
 			if (lastSelectedIndex != -1)
@@ -142,6 +200,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var lastRollOverIndex:int = -1;
 		
+		/**
+		 * @private
+		 */
 		private function rollOverIndexChangeHandler(event:Event):void
 		{
 			if (lastRollOverIndex != -1)
@@ -157,6 +218,9 @@ package org.apache.flex.html.staticControls.beads
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
 			
+		/**
+		 * @private
+		 */
 		private function createScrollBar():ScrollBar
 		{
 			var vsb:ScrollBar;
@@ -175,6 +239,9 @@ package org.apache.flex.html.staticControls.beads
 			return vsb;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleSizeChange(event:Event):void
 		{
 			UIBase(_dataGroup).x = 0;

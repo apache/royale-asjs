@@ -33,20 +33,55 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
+	/**
+	 *  The Panel class creates the visual elements of the Panel component. A Panel
+	 *  has a TitleBar, content, and an optional ControlBar.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class PanelView extends ContainerView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function PanelView()
 		{
 			_titleBar = new TitleBar();
 		}
 		
 		private var _titleBar:TitleBar;
+		
+		/**
+		 *  The TitleBar component of the Panel.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get titleBar():TitleBar
 		{
 			return _titleBar;
 		}
 		
 		private var _controlBar:ControlBar;
+		
+		/**
+		 *  The ControlBar for the Panel; may be null.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get controlBar():ControlBar
 		{
 			return _controlBar;
@@ -54,6 +89,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -80,6 +118,9 @@ package org.apache.flex.html.staticControls.beads
             
 		}
 		
+		/**
+		 * @private
+		 */
 		private function changeHandler(event:Event):void
 		{
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);

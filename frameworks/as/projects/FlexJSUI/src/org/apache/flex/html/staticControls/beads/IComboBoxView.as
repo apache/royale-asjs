@@ -21,16 +21,57 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.IStrand;
     
+	/**
+	 *  The IComboBoxView interface provides the protocol for any bead that
+	 *  creates the visual parts for a ComboBox control.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface IComboBoxView extends IBeadView
 	{
+		/**
+		 *  The string appearing in the input area for the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get text():String;
 		function set text(value:String):void;
 		
+		/**
+		 *  The HTML string appearing in the input area for the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get html():String;
 		function set html(value:String):void;
 		
+		/**
+		 *  The component housing the selection list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get popUp():IStrand;
 		
+		/**
+		 *  Determines whether or not the pop-up with the selection list is visible or not.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get popUpVisible():Boolean;
 		function set popUpVisible(value:Boolean):void;
 	}

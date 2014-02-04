@@ -30,8 +30,24 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
+	/**
+	 *  The RadioButtonView class creates the visual elements of the RadioButton component. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class RadioButtonView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function RadioButtonView()
 		{
 			sprites = [ upSprite = new Sprite(),
@@ -65,6 +81,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _toggleButtonModel:IValueToggleButtonModel;
 		
+		/**
+		 *  The model used for the RadioButton.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get toggleButtonModel() : IValueToggleButtonModel
 		{
 			return _toggleButtonModel;
@@ -72,6 +96,9 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -106,12 +133,19 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
+		/**
+		 *  The string label for the RadioButton.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.text;
 		}
-		
 		public function set text(value:String):void
 		{
 			for each( var s:Sprite in sprites )
@@ -123,12 +157,19 @@ package org.apache.flex.html.staticControls.beads
 			layoutControl();
 		}
 		
+		/**
+		 *  The HTML string for the RadioButton.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get html():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.htmlText;
 		}
-		
 		public function set html(value:String):void
 		{
 			for each(var s:Sprite in sprites)
@@ -140,11 +181,17 @@ package org.apache.flex.html.staticControls.beads
 			layoutControl();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function textChangeHandler(event:Event):void
 		{
 			text = toggleButtonModel.text;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function htmlChangeHandler(event:Event):void
 		{
 			html = toggleButtonModel.html;
@@ -152,11 +199,13 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _selected:Boolean;
 		
+		/**
+		 * The selection state of the RadioButton
+		 */
 		public function get selected():Boolean
 		{
 			return _selected;
 		}
-		
 		public function set selected(value:Boolean):void
 		{
 			_selected = value;
@@ -175,11 +224,17 @@ package org.apache.flex.html.staticControls.beads
 			layoutControl();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function selectedValueChangeHandler(event:Event):void
 		{
 			selected = _toggleButtonModel.value == _toggleButtonModel.selectedValue;
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function layoutControl() : void
 		{
 			for each(var s:Sprite in sprites)
@@ -200,6 +255,9 @@ package org.apache.flex.html.staticControls.beads
 			
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function drawRadioButton(icon:Shape) : void
 		{
 			icon.graphics.clear();

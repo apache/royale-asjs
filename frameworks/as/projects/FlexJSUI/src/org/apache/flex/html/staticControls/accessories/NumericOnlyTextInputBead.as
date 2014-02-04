@@ -27,14 +27,35 @@ package org.apache.flex.html.staticControls.accessories
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
+	/**
+	 *  The NumericOnlyTextInputBead class is a specialty bead that can be used with
+	 *  any TextInput control. The bead prevents non-numeric entry into the text input
+	 *  area.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class NumericOnlyTextInputBead implements IBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function NumericOnlyTextInputBead()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -43,6 +64,15 @@ package org.apache.flex.html.staticControls.accessories
 		}
 		
 		private var _decimalSeparator:String = ".";
+		
+		/**
+		 *  The character used to separate the integer and fraction parts of numbers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get decimalSeparator():String
 		{
 			return _decimalSeparator;
@@ -54,6 +84,9 @@ package org.apache.flex.html.staticControls.accessories
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function viewChangeHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work
@@ -71,6 +104,9 @@ package org.apache.flex.html.staticControls.accessories
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleTextInput(event:TextEvent):void
 		{
 			var insert:String = event.text;

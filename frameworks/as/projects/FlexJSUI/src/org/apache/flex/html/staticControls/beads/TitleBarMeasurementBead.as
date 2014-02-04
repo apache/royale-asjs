@@ -23,12 +23,36 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.TitleBar;
 	
+	/**
+	 *  The TitleBarMeasurementBead class measures the overall size of a TitleBar.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TitleBarMeasurementBead implements IMeasurementBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TitleBarMeasurementBead()
 		{
 		}
 		
+		/**
+		 *  The overall width of the TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredWidth():Number
 		{
 			var mwidth:Number = 0;
@@ -42,6 +66,14 @@ package org.apache.flex.html.staticControls.beads
 			return mwidth;
 		}
 		
+		/**
+		 *  The overall height of the TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredHeight():Number
 		{
 			var mheight:Number = 0;
@@ -56,6 +88,10 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

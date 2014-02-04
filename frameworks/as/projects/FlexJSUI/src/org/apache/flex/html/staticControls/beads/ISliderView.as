@@ -22,9 +22,35 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBead;
 	
+	/**
+	 *  The ISliderView interface provides the protocol for any bead that
+	 *  creates the visual parts for a Slider control.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public interface ISliderView extends IBead
 	{
+		/**
+		 *  The component used for the track area of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get track():DisplayObject;
+		
+		/**
+		 *  The component used for the thumb button of the Slider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		function get thumb():DisplayObject;
 	}
 }

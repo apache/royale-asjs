@@ -33,8 +33,24 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.utils.BeadMetrics;
 	
+	/**
+	 *  The SimpleAlertView class creates the visual elements of the SimpleAlert component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class SimpleAlertView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function SimpleAlertView()
 		{
 		}
@@ -43,6 +59,10 @@ package org.apache.flex.html.staticControls.beads
 		private var okButton:TextButton;
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -88,6 +108,9 @@ package org.apache.flex.html.staticControls.beads
 			handleMessageChange(null);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleMessageChange(event:Event):void
 		{
 			var ruler:IMeasurementBead = messageLabel.getBeadByType(IMeasurementBead) as IMeasurementBead;
@@ -109,6 +132,9 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).height = okButton.y + okButton.height + metrics.bottom;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleOK(event:Event):void
 		{
 			var newEvent:Event = new Event("close");

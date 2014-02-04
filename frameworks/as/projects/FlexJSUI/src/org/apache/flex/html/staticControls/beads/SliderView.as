@@ -32,8 +32,25 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.Button;
 	
+	/**
+	 *  The SliderView class creates the visual elements of the Slider component. The Slider
+	 *  has a track and a thumb control which are also created with view beads.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class SliderView implements ISliderView, IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function SliderView()
 		{
 		}
@@ -41,6 +58,10 @@ package org.apache.flex.html.staticControls.beads
 		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -83,16 +104,35 @@ package org.apache.flex.html.staticControls.beads
 		private var _track:DisplayObject;
 		private var _thumb:DisplayObject;
 		
+		/**
+		 *  The track component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get track():DisplayObject
 		{
 			return _track;
 		}
 		
+		/**
+		 *  The thumb component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get thumb():DisplayObject
 		{
 			return _thumb;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			var w:Number = UIBase(_strand).width;
@@ -113,11 +153,17 @@ package org.apache.flex.html.staticControls.beads
 			_track.y = (UIBase(_strand).height - _track.height)/2;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
 			setThumbPositionFromValue(rangeModel.value);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function setThumbPositionFromValue( value:Number ) : void
 		{
 			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);

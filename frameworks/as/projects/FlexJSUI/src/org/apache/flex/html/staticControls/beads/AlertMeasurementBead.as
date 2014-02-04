@@ -21,23 +21,60 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
+	/**
+	 *  The AlertMeasureBead class provides boundary measurements for an Alert
+	 *  component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class AlertMeasurementBead implements IMeasurementBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function AlertMeasurementBead()
 		{
 		}
 		
+		/**
+		 *  Returns the overall width of the Alert component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredWidth():Number
 		{
 			return 0;
 		}
 		
+		/**
+		 *  Returns the overall height of the Alert component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredHeight():Number
 		{
 			return 0;
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

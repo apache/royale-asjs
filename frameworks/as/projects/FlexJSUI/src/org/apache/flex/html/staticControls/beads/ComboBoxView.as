@@ -33,15 +33,42 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.Button;
 	import org.apache.flex.html.staticControls.TextInput;
 	
+	/**
+	 *  The ComboBoxView class creates the visual elements of the ComboBox component. The job of
+	 *  the view bead is to put together the parts of the ComboBox such as the TextInput
+	 *  control and Button to trigger the pop-up.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ComboBoxView implements IBeadView, IComboBoxView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ComboBoxView()
 		{
 		}
 		
 		private var textInput:TextInput;
 		private var button:Button;
+		private var selectionModel:IComboBoxModel;
 		
+		/**
+		 *  The value of the TextInput component of the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return textInput.text;
@@ -51,6 +78,14 @@ package org.apache.flex.html.staticControls.beads
 			textInput.text = value;
 		}
 		
+		/**
+		 *  The HTML value of the TextInput component of the ComboBox.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get html():String
 		{
 			return textInput.html;
@@ -59,15 +94,16 @@ package org.apache.flex.html.staticControls.beads
 		{
 			textInput.html = value;
 		}
+		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function get strand():IStrand
 		{
 			return _strand;
 		}
-		
-		private var selectionModel:IComboBoxModel;
-		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -102,6 +138,9 @@ package org.apache.flex.html.staticControls.beads
 		private var overSprite:Sprite;
 		private var downSprite:Sprite;
 		
+		/**
+		 * @private
+		 */
 		private function drawButton( sprite:Sprite, mode:String, width:Number, height:Number ) : void
 		{
 			sprite.graphics.clear();
@@ -123,6 +162,15 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _popUp:IStrand;
+		
+		/**
+		 *  The pop-up component that holds the selection list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get popUp():IStrand
 		{
 			return _popUp;
@@ -130,11 +178,18 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _popUpVisible:Boolean;
 		
+		/**
+		 *  This property is true if the pop-up selection list is currently visible.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get popUpVisible():Boolean
 		{
 			return _popUpVisible;
 		}
-		
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value != _popUpVisible)
@@ -161,11 +216,17 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function selectionChangeHandler(event:Event):void
 		{
 			text = selectionModel.selectedItem.toString();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function textChangeHandler(event:Event):void
 		{	
 			var newEvent:Event = new Event("change");

@@ -30,8 +30,24 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The ImageView class creates the visual elements of the Image component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ImageView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ImageView()
 		{
 		}
@@ -42,6 +58,9 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		private var _model:IImageModel;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -55,6 +74,9 @@ package org.apache.flex.html.staticControls.beads
 			handleUrlChange(null);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleUrlChange(event:Event):void
 		{
 			if (_model.source) {
@@ -64,6 +86,9 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function onComplete(event:Object):void
 		{
 			if (bitmap) {
@@ -77,6 +102,9 @@ package org.apache.flex.html.staticControls.beads
 			handleSizeChange(null);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleSizeChange(event:Object):void
 		{
 			if (bitmap) {

@@ -36,8 +36,26 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
+	/**
+	 *  The NumericStepperView class creates the visual elements of the NumericStepper component. A
+	 *  NumberStepper consists of a TextInput component to display the value and a Spinner to change
+	 *  the value.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class NumericStepperView implements IBeadView, ILayoutParent
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function NumericStepperView()
 		{
 		}
@@ -48,6 +66,9 @@ package org.apache.flex.html.staticControls.beads
 		private var input:TextInput;
 		private var spinner:Spinner;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -94,6 +115,9 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(value).height = spinner.height;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function sizeChangeHandler(event:Event) : void
 		{
 			input.x = 2;
@@ -103,6 +127,9 @@ package org.apache.flex.html.staticControls.beads
 			spinner.y = 0;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function spinnerValueChanged(event:Event) : void
 		{
 			input.text = String(spinner.value);
@@ -111,6 +138,9 @@ package org.apache.flex.html.staticControls.beads
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function inputChangeHandler(event:Event) : void
 		{
 			var newValue:Number = Number(input.text);
@@ -123,32 +153,55 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
 			var n:Number = IRangeModel(UIBase(_strand).model).value;
 			input.text = String(IRangeModel(UIBase(_strand).model).value);
 		}
 		
+		/**
+		 *  The area containing the TextInput and Spinner controls.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get contentView():DisplayObjectContainer
 		{
 			return _strand as DisplayObjectContainer;
 		}
 		
+		/**
+		 *  @private
+		 */
 		public function get border():Border
 		{
 			return null;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get vScrollBar():ScrollBar
 		{
 			return null;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get hScrollBar():ScrollBar
 		{
 			return null;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get resizableView():DisplayObject
 		{
 			return _strand as DisplayObject;

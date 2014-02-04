@@ -36,8 +36,26 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
+	/**
+	 *  The AlertView class creates the visual elements of the Alert component. The job of
+	 *  the view bead is to put together the parts of the Alert, such as the TitleBar, message,
+	 *  and various buttons, within the space of the Alert component strand.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class AlertView implements IBeadView
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function AlertView()
 		{
 		}
@@ -51,6 +69,10 @@ package org.apache.flex.html.staticControls.beads
 		private var _noButton:TextButton;
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -120,6 +142,9 @@ package org.apache.flex.html.staticControls.beads
 			sizeHandler(null);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function sizeHandler(event:Event):void
 		{
 			var labelMeasure:IMeasurementBead = _label.measurementBead;
@@ -146,6 +171,9 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).height = _controlBar.y + _controlBar.height + metrics.bottom + 2;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleOK(event:Event):void
 		{
 			// create some custom event where the detail value
@@ -153,21 +181,33 @@ package org.apache.flex.html.staticControls.beads
 			dispatchCloseEvent(Alert.OK);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleCancel(event:Event):void
 		{
 			dispatchCloseEvent(Alert.CANCEL);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleYes(event:Event):void
 		{
 			dispatchCloseEvent(Alert.YES);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleNo(event:Event):void
 		{
 			dispatchCloseEvent(Alert.NO);
 		}
 		
+		/**
+		 * @private
+		 */
 		public function dispatchCloseEvent(buttonFlag:uint):void
 		{
 			// TO DO: buttonFlag should be part of the event

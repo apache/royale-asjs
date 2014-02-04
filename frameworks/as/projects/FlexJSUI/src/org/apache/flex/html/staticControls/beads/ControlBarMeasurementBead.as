@@ -25,12 +25,37 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.html.staticControls.Container;
 	
+	/**
+	 *  The ControlBarMeasurementBead class measures the size of a ControlBar
+	 *  component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ControlBarMeasurementBead implements IMeasurementBead
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ControlBarMeasurementBead()
 		{
 		}
 		
+		/**
+		 *  Returns the overall width of the ControlBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredWidth():Number
 		{
 			// Note: the measurement should problably be done by the ControlBar's layout manager bead
@@ -49,6 +74,14 @@ package org.apache.flex.html.staticControls.beads
 			return mwidth;
 		}
 		
+		/**
+		 *  Returns the overall height of the ControlBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get measuredHeight():Number
 		{
 			// Note: the measurement should problably be done by the ControlBar's layout manager bead
@@ -66,6 +99,10 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
