@@ -22,8 +22,25 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.events.Event;
 
+	/**
+	 *  The ValueToggleButtonModel class bead extends the ToggleButtonModel and adds
+	 *  value intended to represent a collection of similar Buttons such as RadioButtons.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ValueToggleButtonModel extends ToggleButtonModel implements IValueToggleButtonModel
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ValueToggleButtonModel()
 		{
 			super();
@@ -31,6 +48,14 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _value:Object;
 		
+		/**
+		 *  The current value of the button collection.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get value():Object
 		{
 			return _value;
@@ -47,6 +72,14 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _groupName:String;
 		
+		/**
+		 *  The name of the collection has shared by all of the buttons in the collection.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get groupName():String
 		{
 			return _groupName;
@@ -63,6 +96,14 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _selectedValue:Object;
 		
+		/**
+		 *  The value that is currently selected.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selectedValue():Object
 		{
 			return _selectedValue;

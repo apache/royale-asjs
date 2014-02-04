@@ -25,8 +25,26 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 
+	/**
+	 *  The ItemRendererMouseController class bead handles mouse events in itemRenderers. This
+	 *  includes roll-overs, mouse down, and mouse up. These platform-specific events are then
+	 *  re-dispatched as FlexJS events.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ItemRendererMouseController implements IBeadController
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ItemRendererMouseController()
 		{
 		}
@@ -34,6 +52,9 @@ package org.apache.flex.html.staticControls.beads.controllers
         private var renderer:IItemRenderer;
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -43,6 +64,9 @@ package org.apache.flex.html.staticControls.beads.controllers
             renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function rollOverHandler(event:MouseEvent):void
 		{
 			var target:IItemRenderer = event.target as IItemRenderer;
@@ -53,6 +77,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function rollOutHandler(event:MouseEvent):void
 		{
 			var target:IItemRenderer = event.target as IItemRenderer;
@@ -63,6 +90,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			}
 		}
 
+		/**
+		 * @private
+		 */
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
 			var target:IItemRenderer = event.currentTarget as IItemRenderer;
@@ -73,6 +103,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
 			var target:IItemRenderer = event.currentTarget as IItemRenderer;

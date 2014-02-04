@@ -20,14 +20,40 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import flash.display.Sprite;
 
+	/**
+	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
+	 *  extends UIItemRendererBase and includes row and column index values.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataItemRenderer extends UIItemRendererBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataItemRenderer()
 		{
 			super();
 		}
 		
 		private var _columnIndex:int;
+		
+		/**
+		 *  The index of the column the itemRenderer represents.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get columnIndex():int
 		{
 			return _columnIndex;
@@ -38,6 +64,15 @@ package org.apache.flex.html.staticControls.supportClasses
 		}
 		
 		private var _rowIndex:int;
+		
+		/**
+		 *  The index of the row the itemRenderer represents.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get rowIndex():int
 		{
 			return _rowIndex;
@@ -48,6 +83,15 @@ package org.apache.flex.html.staticControls.supportClasses
 		}
 		
 		private var _dataField:String;
+		
+		/**
+		 *  The name of the field within the data the itemRenderer should use.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get dataField():String
 		{
 			return _dataField;
@@ -59,6 +103,9 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var background:Sprite;
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -67,6 +114,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			addChild(background);
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function updateRenderer():void
 		{
 			super.updateRenderer();

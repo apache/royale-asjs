@@ -30,8 +30,24 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.events.Event;
     import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 	
+	/**
+	 *  The TextFieldItemRenderer class provides a TextField as an itemRenderer.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TextFieldItemRenderer()
 		{
 			super();
@@ -44,6 +60,10 @@ package org.apache.flex.html.staticControls.supportClasses
         public var downColor:uint = 0x808080;
 
         private var _width:Number;
+		
+		/**
+		 * @private
+		 */
         override public function get width():Number
         {
             if (isNaN(_width))
@@ -65,12 +85,20 @@ package org.apache.flex.html.staticControls.supportClasses
                 dispatchEvent(new Event("widthChanged"));
             }
         }
+		
+		/**
+		 * @private
+		 */
         protected function get $width():Number
         {
             return super.width;
         }
         
         private var _height:Number;
+		
+		/**
+		 * @private
+		 */
         override public function get height():Number
         {
             if (isNaN(_height))
@@ -92,11 +120,23 @@ package org.apache.flex.html.staticControls.supportClasses
                 dispatchEvent(new Event("heightChanged"));
             }
         }
+		
+		/**
+		 * @private
+		 */
         protected function get $height():Number
         {
             return super.height;
         }
 
+		/**
+		 *  The String(data) for the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get data():Object
         {
             return text;
@@ -106,6 +146,9 @@ package org.apache.flex.html.staticControls.supportClasses
             text = String(value);
         }
 		
+		/**
+		 * @private
+		 */
 		public function get labelField():String
 		{
 			return null;
@@ -117,6 +160,14 @@ package org.apache.flex.html.staticControls.supportClasses
         
         private var _index:int;
         
+		/**
+		 *  An index value for the itemRenderer corresponding the data's position with its dataProvider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get index():int
         {
             return _index;
@@ -128,6 +179,14 @@ package org.apache.flex.html.staticControls.supportClasses
         
         private var _hovered:Boolean;
         
+		/**
+		 *  Returns whether or not the itemRenderer is a "hovered" state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get hovered():Boolean
         {
             return _hovered;
@@ -140,6 +199,14 @@ package org.apache.flex.html.staticControls.supportClasses
         
         private var _selected:Boolean;
         
+		/**
+		 *  Whether or not the itemRenderer should be represented in a selected state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get selected():Boolean
         {
             return _selected;
@@ -152,6 +219,14 @@ package org.apache.flex.html.staticControls.supportClasses
 
         private var _down:Boolean;
         
+		/**
+		 *  Whether or not the itemRenderer should be represented in a down (or pre-selected) state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
         public function get down():Boolean
         {
             return _down;
@@ -162,6 +237,9 @@ package org.apache.flex.html.staticControls.supportClasses
             updateRenderer();
         }
         
+		/**
+		 * @private
+		 */
         public function updateRenderer():void
         {
             background = (down || selected || hovered);
@@ -173,6 +251,9 @@ package org.apache.flex.html.staticControls.supportClasses
                 backgroundColor = selectedColor;
         }
         
+		/**
+		 * @private
+		 */
         public function get element():Object
         {
             return this;
@@ -183,6 +264,10 @@ package org.apache.flex.html.staticControls.supportClasses
         public var beads:Array;
         
         private var _beads:Vector.<IBead>;
+		
+		/**
+		 * @private
+		 */
         public function addBead(bead:IBead):void
         {
             if (!_beads)
@@ -191,6 +276,9 @@ package org.apache.flex.html.staticControls.supportClasses
             bead.strand = this;
         }
         
+		/**
+		 * @private
+		 */
         public function getBeadByType(classOrInterface:Class):IBead
         {
             for each (var bead:IBead in _beads)
@@ -201,6 +289,9 @@ package org.apache.flex.html.staticControls.supportClasses
             return null;
         }
         
+		/**
+		 * @private
+		 */
         public function removeBead(value:IBead):IBead	
         {
             var n:int = _beads.length;
@@ -216,6 +307,9 @@ package org.apache.flex.html.staticControls.supportClasses
             return null;
         }
         
+		/**
+		 * @private
+		 */
         public function addedToParent():void
         {
             var c:Class;

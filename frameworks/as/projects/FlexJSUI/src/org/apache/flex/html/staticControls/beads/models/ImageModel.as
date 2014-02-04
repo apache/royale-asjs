@@ -23,8 +23,25 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The ImageModel class bead defines the data associated with an Image
+	 *  component, namely the source of the image.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ImageModel extends EventDispatcher implements IImageModel
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ImageModel()
 		{
 			super();
@@ -32,12 +49,24 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _source:String;
+		
+		/**
+		 *  The source of the image.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get source():String
 		{
 			return _source;

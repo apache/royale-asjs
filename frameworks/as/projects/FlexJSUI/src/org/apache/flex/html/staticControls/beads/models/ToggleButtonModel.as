@@ -24,8 +24,24 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The ToggleButtonModel class bead holds values for Buttons that have a state.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ToggleButtonModel()
 		{
 			super();
@@ -33,12 +49,24 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _text:String;
+		
+		/**
+		 *  The text string for the Button's label.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return _text;
@@ -54,6 +82,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _html:String;
+		
+		/**
+		 *  The HTML string for the Button's label.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get html():String
 		{
 			return _html;
@@ -70,6 +107,14 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _selected:Boolean;
 		
+		/**
+		 *  Whether or not the button is selected.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selected():Boolean
 		{
 			return _selected;

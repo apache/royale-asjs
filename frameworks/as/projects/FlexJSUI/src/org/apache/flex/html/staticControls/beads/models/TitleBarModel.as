@@ -24,6 +24,14 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The TitleBarModel class bead holds the values for the TitleBar's properties.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TitleBarModel extends EventDispatcher implements IBead, ITitleBarModel
 	{
 		public function TitleBarModel()
@@ -33,12 +41,24 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _title:String;
+		
+		/**
+		 *  The string title for the TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get title():String
 		{
 			return _title;
@@ -53,6 +73,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _htmlTitle:String;
+		
+		/**
+		 *  The HTML string for the title.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlTitle():String
 		{
 			return _htmlTitle;
@@ -67,6 +96,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _showCloseButton:Boolean = false;
+		
+		/**
+		 *  Whether or not to show a close button.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get showCloseButton():Boolean
 		{
 			return _showCloseButton;

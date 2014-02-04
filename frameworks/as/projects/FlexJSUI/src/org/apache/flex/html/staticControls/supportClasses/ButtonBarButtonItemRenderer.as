@@ -24,8 +24,25 @@ package org.apache.flex.html.staticControls.supportClasses
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 
+	/**
+	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the ButtonBar component.
+	 *  This class uses a Button to represent the data.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ButtonBarButtonItemRenderer extends UIItemRendererBase implements ITextItemRenderer
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ButtonBarButtonItemRenderer()
 		{
 			super();
@@ -33,16 +50,30 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var textButton:TextButton;
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleClickEvent(event:Event):void
 		{
 			this.dispatchEvent(new Event("selected"));
 		}
 		
+		/**
+		 *  The string version of the data associated with the instance of the itemRenderer.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return data as String;
@@ -52,6 +83,15 @@ package org.apache.flex.html.staticControls.supportClasses
 			data = value;
 		}
 		
+		/**
+		 *  The data to be displayed by the itemRenderer instance. For ButtonBarItemRenderer, the
+		 *  data's string version is used as the label for the Button.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
@@ -80,6 +120,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			if (added) addElement(textButton);
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function adjustSize():void
 		{
 			textButton.width = this.width;

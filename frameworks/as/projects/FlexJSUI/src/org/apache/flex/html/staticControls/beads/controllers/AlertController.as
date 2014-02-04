@@ -25,25 +25,51 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+	/**
+	 *  The AlertControler class bead handles the close event on the Alert by removing the
+	 *  Alert from the display.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
     public class AlertController implements IBeadController
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function AlertController()
 		{
 		}
 		
         private var _strand:IStrand;
         
+		/**
+		 * @private
+		 */
         public function get strand():IStrand
         {
             return _strand;
         }
         
+		/**
+		 * @private
+		 */
         public function set strand(value:IStrand):void
         {
             _strand = value;
             IEventDispatcher(value).addEventListener("close",handleAlertClose);
         }
         
+		/**
+		 * @private
+		 */
         private function handleAlertClose(event:Event):void
         {
             DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));

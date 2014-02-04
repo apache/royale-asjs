@@ -22,13 +22,39 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.events.Event;
 			
+	/**
+	 *  The ComboBoxModel class bead extends ArraySelectionModel and adds the text being
+	 *  displayed by the ComboBox's input field.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ComboBoxModel extends ArraySelectionModel implements IBead, IComboBoxModel
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ComboBoxModel()
 		{
 		}
 
 		private var _text:String;
+		
+		/**
+		 *  The string to display in the ComboBox input field.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return _text;
@@ -44,6 +70,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _html:String;
+		
+		/**
+		 *  The HTML string to display in the ComboBox input field.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get html():String
 		{
 			return _html;

@@ -24,20 +24,50 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The AlertModel class bead implements the IAlertModel and holds the properties
+	 *  for an Alert such the buttons to use and message to display.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class AlertModel extends EventDispatcher implements IAlertModel, IBead
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function AlertModel()
 		{
 			super();
 		}
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _title:String;
+		
+		/**
+		 *  The title for the Alert.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get title():String
 		{
 			return _title;
@@ -51,6 +81,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 
 		private var _htmlTitle:String;
+		
+		/**
+		 *  The HTML title for the Alert.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlTitle():String
 		{
 			return _htmlTitle;
@@ -64,6 +103,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _message:String;
+		
+		/**
+		 *  The message to display.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get message():String
 		{
 			return _message;
@@ -77,6 +125,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _htmlMessage:String;
+		
+		/**
+		 *  The HTML message to display.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlMessage():String
 		{
 			return _htmlMessage;
@@ -91,6 +148,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _flags:uint;
+		
+		/**
+		 *  Which buttons to display (see Alert for details).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get flags():uint
 		{
 			return _flags;
@@ -105,6 +171,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _okLabel:String = "OK";
+		
+		/**
+		 *  The label to use for the OK button.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get okLabel():String
 		{
 			return _okLabel;
@@ -119,6 +194,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _cancelLabel:String = "Cancel";
+		
+		/**
+		 *  The label to use for the Cancel button.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get cancelLabel():String
 		{
 			return _cancelLabel;
@@ -133,6 +217,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _yesLabel:String = "YES";
+		
+		/**
+		 *  The label to use for the Yes button.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get yesLabel():String
 		{
 			return _yesLabel;
@@ -147,6 +240,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _noLabel:String = "NO";
+		
+		/**
+		 *  The label to use for the NO button.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get noLabel():String
 		{
 			return _noLabel;

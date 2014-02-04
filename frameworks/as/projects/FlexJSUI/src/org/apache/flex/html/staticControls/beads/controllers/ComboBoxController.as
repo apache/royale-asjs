@@ -28,20 +28,44 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IComboBoxView;
 
+	/**
+	 *  The ComboBoxController class bead handles mouse events on the elements of
+	 *  the ComboBox. This includes selecting the button to display the selection list
+	 *  pop-up as well as selecting an item from the pop-up list.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ComboBoxController implements IBeadController
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ComboBoxController()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
             IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
+		/**
+		 * @private
+		 */
         private function clickHandler(event:MouseEvent):void
         {
             var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
@@ -57,6 +81,9 @@ package org.apache.flex.html.staticControls.beads.controllers
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
         }
         
+		/**
+		 * @private
+		 */
         private function changeHandler(event:Event):void
         {
             var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;

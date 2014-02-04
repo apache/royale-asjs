@@ -24,20 +24,49 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 			
+	/**
+	 *  The RangeModel class bead defines a set of for a numeric range of values
+	 *  which includes a minimum, maximum, and current value.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class RangeModel extends EventDispatcher implements IBead, IRangeModel
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function RangeModel()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 
 		private var _maximum:Number = 100;
+		
+		/**
+		 *  The maximum value for the range (defaults to 100).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get maximum():Number
 		{
 			return _maximum;
@@ -53,6 +82,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _minimum:Number = 0;
+		
+		/**
+		 *  The minimum value for the range (defaults to 0).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get minimum():Number
 		{
 			return _minimum;
@@ -68,6 +106,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 
 		private var _snapInterval:Number = 1;
+		
+		/**
+		 *  The modulus value for the range. 
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get snapInterval():Number
 		{
 			return _snapInterval;
@@ -83,6 +130,15 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _stepSize:Number = 1;
+		
+		/**
+		 *  The amount to adjust the value either up or down toward the edge of the range.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get stepSize():Number
 		{
 			return _stepSize;
@@ -98,6 +154,17 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _value:Number = 0;
+		
+		/**
+		 *  The current value of the range, between the minimum and maximum values. Attempting
+		 *  to set the value outside of the minimum-maximum range changes the value to still be
+		 *  within the range. Note that the value is adjusted by the stepSize.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get value():Number
 		{
 			return _value;
@@ -117,7 +184,9 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
-		
+		/**
+		 * @private
+		 */
 		protected function snap(value:Number):Number
 		{
 			var si:Number = snapInterval;

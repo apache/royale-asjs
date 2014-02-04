@@ -25,8 +25,25 @@ package org.apache.flex.html.staticControls.supportClasses
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 
+	/**
+	 *  The StringItemRenderer class displays data in string form using the data's toString()
+	 *  function.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class StringItemRenderer extends DataItemRenderer implements ITextItemRenderer
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function StringItemRenderer()
 		{
 			super();
@@ -39,6 +56,9 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		public var textField:CSSTextField;
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -48,6 +68,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			adjustSize();
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function adjustSize():void
 		{
 			var cy:Number = this.height/2;
@@ -59,6 +82,14 @@ package org.apache.flex.html.staticControls.supportClasses
 			updateRenderer();
 		}
 		
+		/**
+		 *  The text currently displayed by the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return textField.text;
@@ -69,6 +100,14 @@ package org.apache.flex.html.staticControls.supportClasses
 			textField.text = value;
 		}
 		
+		/**
+		 *  Sets the data value and uses the String version of the data for display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
@@ -77,6 +116,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			else textField.text = String(value);
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function updateRenderer():void
 		{
 			super.updateRenderer();

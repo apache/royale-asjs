@@ -30,8 +30,27 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.ISliderView;
 	
+	/**
+	 *  The SliderMouseController class bead handles mouse events on the Slider's component
+	 *  parts (thumb and track) and dispatches change events on behalf of the Slider (as well
+	 *  as co-ordinating visual changes (such as moving the thumb when the track has been 
+	 *  tapped or clicked).
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class SliderMouseController implements IBead, IBeadController
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function SliderMouseController()
 		{
 		}
@@ -39,6 +58,10 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -52,6 +75,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function thumbDownHandler( event:MouseEvent ) : void
 		{
 			UIBase(_strand).stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
@@ -63,6 +89,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			thumb = new Point(sliderView.thumb.x,sliderView.thumb.y);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function thumbUpHandler( event:MouseEvent ) : void
 		{
 			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
@@ -74,6 +103,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var origin:Point;
 		private var thumb:Point;
 		
+		/**
+		 * @private
+		 */
 		private function thumbMoveHandler( event:MouseEvent ) : void
 		{
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
@@ -90,6 +122,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
 		}
 		
+		/**
+		 * @private
+		 */
 		private function trackClickHandler( event:MouseEvent ) : void
 		{
 			event.stopImmediatePropagation();

@@ -20,8 +20,26 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.core.UIBase;
 	
+	/**
+	 *  The ScrollBar class represents either a vertical or horizontal control
+	 *  that allows the user to quickly scan through a component that does not
+	 *  wholly fit within its container.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ScrollBar extends UIBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ScrollBar()
 		{
 			super();

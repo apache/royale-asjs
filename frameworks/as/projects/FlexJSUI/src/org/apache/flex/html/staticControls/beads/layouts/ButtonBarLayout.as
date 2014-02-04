@@ -28,14 +28,36 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The ButtonBarLayout class bead sizes and positions the Button elements that
+	 *  make up a ButtonBar. This bead arranges the Buttons horizontally and makes them
+	 *  all the same width unless the buttonWidths property has been set in which case
+	 *  the values stored in that array are used.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ButtonBarLayout implements IBeadLayout
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ButtonBarLayout()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -45,6 +67,16 @@ package org.apache.flex.html.staticControls.beads.layouts
 		}
 		
 		private var _buttonWidths:Array = null;
+		
+		/**
+		 *  An array of widths (Number), one per button. These values supersede the
+		 *  default of equally-sized buttons.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get buttonWidths():Array
 		{
 			return _buttonWidths;
@@ -54,6 +86,9 @@ package org.apache.flex.html.staticControls.beads.layouts
 			_buttonWidths = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;

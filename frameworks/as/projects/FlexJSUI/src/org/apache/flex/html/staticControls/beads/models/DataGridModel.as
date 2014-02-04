@@ -21,14 +21,40 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.events.Event;
 	
+	/**
+	 *  The DataGridModel class bead extends ArraySelectionModel and adds the array
+	 *  of DataGridColumns used to define each of the column in the DataGrid.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class DataGridModel extends ArraySelectionModel implements IDataGridModel
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGridModel()
 		{
 			super();
 		}
 		
 		private var _columns:Array;
+		
+		/**
+		 *  The array of DataGridColumns used to define each column of the DataGrid.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get columns():Array
 		{
 			return _columns;

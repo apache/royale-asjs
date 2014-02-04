@@ -24,12 +24,33 @@ package org.apache.flex.html.staticControls.supportClasses
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	
+	/**
+	 *  The UIItemRendererBase class is the base class for all itemRenderers. An itemRenderer is used to
+	 *  display a single datum within a collection of data. Components such as a List use itemRenderers to 
+	 *  show their dataProviders.
+	 *
+ 	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class UIItemRendererBase extends UIBase implements IItemRenderer
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function UIItemRendererBase()
 		{
 		}
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -48,6 +69,9 @@ package org.apache.flex.html.staticControls.supportClasses
             
 		}
 		
+		/**
+		 * @private
+		 */
         public function get MXMLDescriptor():Array
         {
             return null;
@@ -55,6 +79,9 @@ package org.apache.flex.html.staticControls.supportClasses
         
         private var mxmlProperties:Array ;
         
+		/**
+		 * @private
+		 */
         public function generateMXMLAttributes(data:Array):void
         {
             mxmlProperties = data;
@@ -67,6 +94,15 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var _data:Object;
 		
+		/**
+		 *  The data being represented by this itemRenderer. This can be something simple like a String or
+		 *  a Number or something very complex.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get data():Object
 		{
 			return _data;
@@ -77,6 +113,12 @@ package org.apache.flex.html.staticControls.supportClasses
 		}
 		
 		private var _labelField:String = "label";
+		
+		/**
+		 * The name of the field within the data to use as a label. Some itemRenderers use this field to
+		 * identify the value they should show while other itemRenderers ignore this if they are showing
+		 * complex information.
+		 */
 		public function get labelField():String
 		{
 			return _labelField;
@@ -88,6 +130,14 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var _index:int;
 		
+		/**
+		 *  The position with the dataProvider being shown by the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get index():int
 		{
 			return _index;
@@ -99,6 +149,14 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var _hovered:Boolean;
 		
+		/**
+		 *  Whether or not the itemRenderer is in a hovered state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get hovered():Boolean
 		{
 			return _hovered;
@@ -111,6 +169,14 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var _selected:Boolean;
 		
+		/**
+		 *  Whether or not the itemRenderer is in a selected state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get selected():Boolean
 		{
 			return _selected;
@@ -123,6 +189,14 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		private var _down:Boolean;
 		
+		/**
+		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get down():Boolean
 		{
 			return _down;
@@ -133,6 +207,9 @@ package org.apache.flex.html.staticControls.supportClasses
 			updateRenderer();
 		}
 		
+		/**
+		 * @private
+		 */
 		public function updateRenderer():void
 		{
 			if (down)
@@ -143,11 +220,23 @@ package org.apache.flex.html.staticControls.supportClasses
 				backgroundColor = selectedColor;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function sizeChangeHandler(event:Event):void
 		{
 			adjustSize();
 		}
 		
+		/**
+		 *  This function is called whenever the itemRenderer changes size. Sub-classes should override
+		 *  this method an handle the size change.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function adjustSize():void
 		{
 			// handle in subclass

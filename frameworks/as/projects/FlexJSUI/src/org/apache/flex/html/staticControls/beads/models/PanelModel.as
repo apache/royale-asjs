@@ -24,25 +24,54 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	
+	/**
+	 *  The PanelModel bead class holds the values for a Panel, such as its
+	 *  title.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class PanelModel extends EventDispatcher implements IBead, IPanelModel
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function PanelModel()
 		{
 			super();
 		}
+		
 		private var _strand:IStrand;
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _title:String;
+		
+		/**
+		 *  The title string for the Panel.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get title():String
 		{
 			return _title;
 		}
-		
 		public function set title(value:String):void
 		{
 			if( value != _title ) {
@@ -52,11 +81,19 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _htmlTitle:String;
+		
+		/**
+		 *  The HTML string for the title.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get htmlTitle():String
 		{
 			return _htmlTitle;
 		}
-		
 		public function set htmlTitle(value:String):void
 		{
 			if( value != _htmlTitle ) {
@@ -66,11 +103,19 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _showCloseButton:Boolean = false;
+		
+		/**
+		 *  Indicates whether or not there is a Close button for the Panel.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get showCloseButton():Boolean
 		{
 			return _showCloseButton;
 		}
-		
 		public function set showCloseButton(value:Boolean):void
 		{
 			if( value != _showCloseButton ) {

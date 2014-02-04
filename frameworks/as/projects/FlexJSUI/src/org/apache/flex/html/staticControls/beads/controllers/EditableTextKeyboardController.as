@@ -26,8 +26,25 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.staticControls.beads.ITextFieldView;
 	
+	/**
+	 *  The EditableTextKeyboardController class bead intercepts keyboard events on the
+	 *  component's text field and emits change events.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class EditableTextKeyboardController implements IBead, IBeadController
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function EditableTextKeyboardController()
 		{
 		}
@@ -36,6 +53,10 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var textField:CSSTextField;
 		
 		private var _strand:IStrand;
+		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -47,6 +68,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 			textField.addEventListener("change", inputChangeHandler);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function inputChangeHandler( event:Object ) : void
 		{
 			model.text = textField.text;
