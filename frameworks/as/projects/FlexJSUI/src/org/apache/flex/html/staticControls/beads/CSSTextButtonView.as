@@ -37,8 +37,29 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.SolidBorderUtil;
 
+    /**
+     *  The CSSTextButtonView class is the default view for
+     *  the org.apache.flex.html.staticControls.TextButton class.
+     *  It allows the look of the button to be expressed
+     *  in CSS via the background-image style and displays
+     *  a text label.  This view does not support right-to-left
+     *  text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class CSSTextButtonView implements IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function CSSTextButtonView()
 		{
 			upSprite = new Sprite();
@@ -67,6 +88,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var shape:Shape;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -174,10 +203,22 @@ package org.apache.flex.html.staticControls.beads
 		private var downSprite:Sprite;
 		private var overSprite:Sprite;
 		
+        /**
+         *  The text to be displayed in the button
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return upTextField.text;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			upTextField.text = value;
@@ -195,11 +236,22 @@ package org.apache.flex.html.staticControls.beads
 			
 		}
 		
+        /**
+         *  The html-formatted text to be displayed in the button
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return upTextField.htmlText;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			upTextField.htmlText = value;

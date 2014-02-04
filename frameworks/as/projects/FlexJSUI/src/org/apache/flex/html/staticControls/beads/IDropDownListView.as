@@ -21,10 +21,36 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.IStrand;
 
+    /**
+     *  The IDropDownListView interface is the interface for views for
+     *  the org.apache.flex.html.staticControls.DropDownList.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IDropDownListView extends IBeadView
 	{
+        
+        /**
+         *  @copy org.apache.flex.html.staticControls.DropDownList#popup
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get popUp():IStrand;
         
+        /**
+         *  @copy org.apache.flex.html.staticControls.DropDownList#popupVisible
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get popUpVisible():Boolean;
         function set popUpVisible(value:Boolean):void;
 	}

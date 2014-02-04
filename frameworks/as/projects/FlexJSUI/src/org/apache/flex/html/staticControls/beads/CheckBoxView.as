@@ -30,8 +30,33 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
 	
+    /**
+     *  The CheckBoxView class is the default view for
+     *  the org.apache.flex.html.staticControls.CheckBox class.
+     *  It displays a simple checkbox with an 'x' if checked,
+     *  and a label on the right.  There are no styles or
+     *  properties to configure the look of the 'x' or the
+     *  position of the label relative to the checkbox as
+     *  there are no equivalents in the standard HTML checkbox.
+     * 
+     *  A more complex CheckBox could implement more view
+     *  configuration.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class CheckBoxView implements IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function CheckBoxView()
 		{
 			sprites = [ upSprite = new Sprite(),
@@ -64,14 +89,23 @@ package org.apache.flex.html.staticControls.beads
 		private var sprites:Array;
 		
 		private var _toggleButtonModel:IToggleButtonModel;
-		
-		public function get toggleButtonModel() : IToggleButtonModel
+
+        // TODO: Can we remove this?
+		private function get toggleButtonModel() : IToggleButtonModel
 		{
 			return _toggleButtonModel;
 		}
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -101,12 +135,23 @@ package org.apache.flex.html.staticControls.beads
 				html = toggleButtonModel.html;
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.text;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			for each( var s:Sprite in sprites )
@@ -118,12 +163,23 @@ package org.apache.flex.html.staticControls.beads
 			layoutControl();
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.Label#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.htmlText;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			for each(var s:Sprite in sprites)
@@ -147,11 +203,22 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _selected:Boolean;
 		
+        /**
+         *  @copy org.apache.flex.core.IToggleButtonModel#selected
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selected():Boolean
 		{
 			return _selected;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set selected(value:Boolean):void
 		{
 			_selected = value;
@@ -175,6 +242,14 @@ package org.apache.flex.html.staticControls.beads
 			selected = toggleButtonModel.selected;
 		}
 		
+        /**
+         *  Display the icon and text label
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function layoutControl() : void
 		{
 			for each(var s:Sprite in sprites)
@@ -195,6 +270,14 @@ package org.apache.flex.html.staticControls.beads
 			
 		}
 		
+        /**
+         *  Draw the checkbox
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected function drawCheckBox(icon:Shape) : void
 		{
 			icon.graphics.clear();

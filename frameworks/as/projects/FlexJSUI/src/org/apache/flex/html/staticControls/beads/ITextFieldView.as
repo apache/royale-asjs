@@ -20,8 +20,25 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.CSSTextField;
 
+    /**
+     *  The ITextFieldView interface is the interface for views for
+     *  the use a CSSTextField to display text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface ITextFieldView
 	{
+        /**
+         *  The org.apache.flex.core.CSSTextField used to display text.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get textField():CSSTextField;
 	}
 }

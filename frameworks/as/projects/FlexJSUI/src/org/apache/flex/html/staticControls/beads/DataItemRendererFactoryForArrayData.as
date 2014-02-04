@@ -29,8 +29,28 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+    /**
+     *  The DataItemRendererFactoryForArrayData class reads an
+     *  array of data and creates an item renderer for every
+     *  item in the array.  Other implementations of
+     *  IDataProviderItemRendererMapper map different data 
+     *  structures or manage a virtual set of renderers.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class DataItemRendererFactoryForArrayData implements IBead, IDataProviderItemRendererMapper
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function DataItemRendererFactoryForArrayData()
 		{
 		}
@@ -39,6 +59,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -56,18 +84,39 @@ package org.apache.flex.html.staticControls.beads
 			dataProviderChangeHandler(null);
 		}
 		
-		public var _itemRendererFactory:IItemRendererClassFactory;
+		private var _itemRendererFactory:IItemRendererClassFactory;
 		
+        /**
+         *  The org.apache.flex.core.IItemRendererClassFactory used 
+         *  to generate instances of item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
-			return _itemRendererFactory
+			return _itemRendererFactory;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set itemRendererFactory(value:IItemRendererClassFactory):void
 		{
 			_itemRendererFactory = value;
 		}
 		
+        /**
+         *  The org.apache.flex.core.IItemRendererParent that will
+         *  parent the item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var dataGroup:IItemRendererParent;
 		
 		private function dataProviderChangeHandler(event:Event):void

@@ -26,15 +26,34 @@ package org.apache.flex.html.staticControls.beads
 	import flash.net.URLRequest;
 	
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.SolidBorderUtil;
 
+    /**
+     *  The CSSButtonView class is the default view for
+     *  the org.apache.flex.html.staticControls.Button class.
+     *  It allows the look of the button to be expressed
+     *  in CSS via the background-image style.  This view
+     *  does not display text.  Use CSSTextButtonView and
+     *  TextButton instead.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class CSSButtonView implements IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function CSSButtonView()
 		{
 			upSprite = new Sprite();
@@ -48,6 +67,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var shape:Shape;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

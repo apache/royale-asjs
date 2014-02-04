@@ -20,6 +20,15 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IBead;
 
+    /**
+     *  The IBackgroundBead interface is a marker interface for beads
+     *  that draw backgrounds.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IBackgroundBead extends IBead
 	{
 	}

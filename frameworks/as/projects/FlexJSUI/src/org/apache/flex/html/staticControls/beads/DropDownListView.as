@@ -36,8 +36,28 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The DropDownListView class is the default view for
+     *  the org.apache.flex.html.staticControls.DropDownList class.
+     *  It displays a simple text label with what appears to be a
+     *  down arrow button on the right, but really, the entire
+     *  view is the button that will display or dismiss the dropdown.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class DropDownListView implements IDropDownListView, IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function DropDownListView()
 		{
             upSprite = new Sprite();
@@ -111,6 +131,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var shape:Shape;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -165,11 +193,22 @@ package org.apache.flex.html.staticControls.beads
         private var downArrows:Shape;
         private var overArrows:Shape;
 		
+        /**
+         *  The text that is displayed in the view.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return upTextField.text;
 		}
         
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
             var ww:Number = DisplayObject(_strand).width;
@@ -181,6 +220,15 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
         private var _popUp:IStrand;
+        
+        /**
+         *  The dropdown/popup that displays the set of choices.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get popUp():IStrand
         {
             return _popUp;
@@ -188,11 +236,23 @@ package org.apache.flex.html.staticControls.beads
         
         private var _popUpVisible:Boolean;
         
+        /**
+         *  A flag that indicates whether the dropdown/popup is
+         *  visible.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get popUpVisible():Boolean
         {
             return _popUpVisible;
         }
         
+        /**
+         *  @private
+         */
         public function set popUpVisible(value:Boolean):void
         {
             if (value != _popUpVisible)

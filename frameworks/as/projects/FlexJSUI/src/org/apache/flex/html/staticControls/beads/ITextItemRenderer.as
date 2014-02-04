@@ -20,8 +20,25 @@ package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IItemRenderer;
 
+    /**
+     *  The ITextItemRenderer interface is the interface for
+     *  for org.apache.flex.core.IItemRenderer that display text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface ITextItemRenderer extends IItemRenderer
 	{
+        /**
+         *  The text to be displayed in the item renderer.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get text():String;
         function set text(value:String):void;
 	}

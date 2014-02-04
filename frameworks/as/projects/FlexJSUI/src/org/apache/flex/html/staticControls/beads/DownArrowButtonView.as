@@ -25,8 +25,25 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IBeadView;
 	
+    /**
+     *  The DownArrowButtonView class is the view for
+     *  the down arrow button in a ScrollBar and other controls.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class DownArrowButtonView implements IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function DownArrowButtonView()
 		{
 			upView = new Shape();
@@ -57,6 +74,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var shape:Shape;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

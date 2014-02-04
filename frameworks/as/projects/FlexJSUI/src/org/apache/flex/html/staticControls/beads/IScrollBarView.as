@@ -23,14 +23,77 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 
+    /**
+     *  The IScrollBarView interface is the interface for views for
+     *  the org.apache.flex.html.staticControls.supportClasses.ScrollBar.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IScrollBarView
 	{
+        /**
+         *  The down arrow button in a vertical ScrollBar or right arrow
+         *  button in a horizontal ScrollBar
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get increment():DisplayObject;
+        
+        /**
+         *  The up arrow button in a vertical ScrollBar or left arrow
+         *  button in a horizontal ScrollBar
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get decrement():DisplayObject;
+
+        /**
+         *  The track in a ScrollBar
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get track():DisplayObject;
+        
+        /**
+         *  The thumb in a ScrollBar
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get thumb():DisplayObject;
 		
+        /**
+         *  The data model for the view
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get scrollBarModel():IScrollBarModel;
+        
+        /**
+         *  The ScrollBar itself.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function get strand():IStrand;
 	}
 }

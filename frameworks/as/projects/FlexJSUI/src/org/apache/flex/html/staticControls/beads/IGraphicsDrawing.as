@@ -18,6 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
+    /**
+     *  The IGraphicsDrawing interface is a marker interface for beads
+     *  that draw into the graphics layer.  This helps a bead determine
+     *  if it is the first of many graphics drawing beads so it can
+     *  know whether or not to clear the graphics layer before drawing.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IGraphicsDrawing
 	{
 		

@@ -20,29 +20,62 @@ package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
     import org.apache.flex.html.staticControls.supportClasses.ContainerContentArea;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
+    /**
+     *  The ContainerView class is the default view for
+     *  the org.apache.flex.html.staticControls.Container class.
+     *  It lets you use some CSS styles to manage the border, background
+     *  and padding around the content area.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ContainerView implements IBeadView, ILayoutParent
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ContainerView()
 		{
 		}
 		
+        /**
+         *  The actual parent that parents the children.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */        
 		protected var actualParent:DisplayObjectContainer;
 				
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -115,26 +148,66 @@ package org.apache.flex.html.staticControls.beads
 			}
 		}
 		
+        /**
+         *  The parent of the children.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get contentView():DisplayObjectContainer
 		{
 			return actualParent;
 		}
 		
+        /**
+         *  The border.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get border():Border
 		{
 			return null;
 		}
 		
+        /**
+         *  The host component, which can resize to different slots.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get resizableView():DisplayObject
 		{
 			return _strand as DisplayObject;
 		}
 		
+        /**
+         *  The vertical ScrollBar, if it exists.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get vScrollBar():ScrollBar
 		{
 			return null;
 		}
 		
+        /**
+         *  The horizontal ScrollBar, if it exists.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get hScrollBar():ScrollBar
 		{
 			return null;
