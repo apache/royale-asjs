@@ -163,8 +163,6 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_resizeableView 
  * @param {Object} event The event that triggered the resize.
  */
 org.apache.flex.html.staticControls.beads.ListView.prototype.handleSizeChange = function(event) {
-  this.dataGroup_.set_x(0);
-  this.dataGroup_.set_y(0);
   this.dataGroup_.set_width(this.strand_.get_width());
   this.dataGroup_.set_height(this.strand_.get_height());
 };

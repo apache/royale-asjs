@@ -63,7 +63,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
-	import org.apache.flex.html.staticControls.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
     import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel; SingleLineBorderModel;

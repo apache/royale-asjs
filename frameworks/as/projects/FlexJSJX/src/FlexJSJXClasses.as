@@ -37,6 +37,7 @@ internal class FlexJSJXClasses
 	
 	import org.apache.flex.html.staticControls.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.staticControls.beads.DataGridView; DataGridView;
+	import org.apache.flex.html.staticControls.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 }
 
