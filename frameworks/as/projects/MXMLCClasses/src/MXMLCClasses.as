@@ -40,11 +40,9 @@ internal class MXMLCClasses
     import mx.binding.StaticPropertyWatcher; StaticPropertyWatcher;
     import mx.binding.Watcher; Watcher;
     import mx.binding.XMLWatcher; XMLWatcher;
-    import mx.core.ClassFactory; ClassFactory;
     import mx.core.DeferredInstanceFromClass; DeferredInstanceFromClass;
     import mx.core.DeferredInstanceFromFunction; DeferredInstanceFromFunction;
     import mx.core.IDeferredInstance; IDeferredInstance;
-    import mx.core.IFactory; IFactory;
     import mx.core.IFlexModuleFactory; IFlexModuleFactory;
     import mx.core.IPropertyChangeNotifier; IPropertyChangeNotifier;
     import mx.core.IStateClient2; IStateClient2;
