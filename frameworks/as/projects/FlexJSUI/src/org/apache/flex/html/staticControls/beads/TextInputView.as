@@ -18,16 +18,35 @@
 package org.apache.flex.html.staticControls.beads
 {
 	import flash.display.DisplayObject;
-	import flash.events.IOErrorEvent;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+    /**
+     *  The TextInputView class is the view for
+     *  the org.apache.flex.html.staticControls.TextInput in
+     *  a ComboBox and other controls 
+     *  because it does not display a border.
+     *  It displays text using a TextField, so there is no
+     *  right-to-left text support in this view.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextInputView extends TextFieldViewBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextInputView()
 		{
 			super();
@@ -39,6 +58,9 @@ package org.apache.flex.html.staticControls.beads
 			textField.wordWrap = false;
 		}
 		
+        /**
+         *  @private
+         */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;

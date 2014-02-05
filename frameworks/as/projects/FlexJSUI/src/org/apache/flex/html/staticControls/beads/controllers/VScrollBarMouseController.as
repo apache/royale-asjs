@@ -24,12 +24,33 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+    /**
+     *  The VScrollBarMouseController class is the controller for
+     *  org.apache.flex.html.staticControls.supportClasses.ScrollBar
+     *  that acts as the Vertical ScrollBar.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class VScrollBarMouseController extends ScrollBarMouseControllerBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function VScrollBarMouseController()
 		{
 		}
 		
+        /**
+         *  @private
+         */
 		override protected function trackClickHandler(event:MouseEvent):void
 		{
 			if (sbView.thumb.visible)
@@ -50,6 +71,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var thumbDownY:Number;
 		private var lastThumbY:Number;
 		
+        /**
+         *  @private
+         */
 		override protected function thumbMouseDownHandler(event:MouseEvent):void
 		{
 			sbView.thumb.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);

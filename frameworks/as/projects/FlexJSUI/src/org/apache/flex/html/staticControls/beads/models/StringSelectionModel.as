@@ -24,33 +24,87 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 		
+    /**
+     *  The StringSelectionModel class is a selection model for
+     *  selecting a single string from a vector of strings. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class StringSelectionModel extends EventDispatcher implements ISelectionModel
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function StringSelectionModel()
 		{
 		}
 
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 		
 		private var _strings:Vector.<String>;
+
+        /**
+         *  The vector of strings.  This is the same
+         *  as the dataProvider property but is
+         *  strongly typed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get strings():Vector.<String>
 		{
 			return _strings;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set strings(value:Vector.<String>):void
 		{
 			_strings = value;
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
+
+        /**
+         *  The dataProvider, which is a
+         *  Vector.<String>.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get dataProvider():Object
 		{
 			return _strings;
 		}
+
+        /**
+         *  @private
+         */
 		public function set dataProvider(value:Object):void
 		{
 			_strings = value as Vector.<String>;
@@ -59,10 +113,22 @@ package org.apache.flex.html.staticControls.beads.models
 
 		private var _selectedIndex:int = -1;
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedIndex():int
 		{
 			return _selectedIndex;
 		}
+
+        /**
+         *  @private
+         */
 		public function set selectedIndex(value:int):void
 		{
 			_selectedIndex = value;
@@ -71,18 +137,44 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		private var _selectedString:String;
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedItem():Object
 		{
 			return _selectedString;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set selectedItem(value:Object):void
 		{
 			selectedString = String(value);	
 		}
+
+        /**
+         *  The selected string.  This is the same as the
+         *  selectedItem, but is strongly-typed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedString():String
 		{
 			return _selectedString;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set selectedString(value:String):void
 		{
 			_selectedString = value;
@@ -101,10 +193,23 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _labelField:String;
 		
+        /**
+         *  The labelField, which is not used in this
+         *  implementation.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get labelField():String
 		{
 			return _labelField;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set labelField(value:String):void
 		{
 			if (value != _labelField) {

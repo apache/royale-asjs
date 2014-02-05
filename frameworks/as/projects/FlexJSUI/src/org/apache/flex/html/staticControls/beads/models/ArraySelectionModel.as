@@ -24,14 +24,42 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 			
+    /**
+     *  The ArraySelectionModel class is a selection model for
+     *  a dataProvider that is an array. It assumes that items
+     *  can be fetched from the dataProvider
+     *  dataProvider[index].  Other selection models
+     *  would support other kinds of data providers.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ArraySelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ArraySelectionModel()
 		{
 		}
 
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -39,10 +67,22 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _dataProvider:Object;
         
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#dataProvider
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get dataProvider():Object
 		{
 			return _dataProvider;
 		}
+
+        /**
+         *  @private
+         */
 		public function set dataProvider(value:Object):void
 		{
             _dataProvider = value;
@@ -53,10 +93,22 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _rollOverIndex:int = -1;
 		private var _labelField:String = null;
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#labelField
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get labelField():String
 		{
 			return _labelField;
 		}
+
+        /**
+         *  @private
+         */
 		public function set labelField(value:String):void
 		{
 			if (value != _labelField) {
@@ -65,10 +117,22 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedIndex():int
 		{
 			return _selectedIndex;
 		}
+
+        /**
+         *  @private
+         */
 		public function set selectedIndex(value:int):void
 		{
 			_selectedIndex = value;
@@ -76,10 +140,22 @@ package org.apache.flex.html.staticControls.beads.models
 			dispatchEvent(new Event("selectedIndexChanged"));			
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#rollOverIndex
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get rollOverIndex():int
 		{
 			return _rollOverIndex;
 		}
+
+        /**
+         *  @private
+         */
 		public function set rollOverIndex(value:int):void
 		{
 			_rollOverIndex = value;
@@ -88,10 +164,22 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _selectedItem:Object;
 		
+        /**
+         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedItem():Object
 		{
 			return _selectedItem;
 		}
+
+        /**
+         *  @private
+         */
 		public function set selectedItem(value:Object):void
 		{
 			_selectedItem = value;	
@@ -110,10 +198,23 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		private var _selectedString:String;
 		
+        /**
+         *  An alternative to selectedItem for strongly typing the
+         *  the selectedItem if the Array is an Array of Strings.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get selectedString():String
 		{
 			return String(_selectedItem);
 		}
+
+        /**
+         *  @private
+         */
 		public function set selectedString(value:String):void
 		{
 			_selectedString = value;

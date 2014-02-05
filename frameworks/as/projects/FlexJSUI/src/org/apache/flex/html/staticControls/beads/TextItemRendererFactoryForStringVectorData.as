@@ -18,27 +18,53 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
 {
-    import flash.display.DisplayObject;
     
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IItemRendererClassFactory;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 
+    /**
+     *  The TextItemRendererFactoryForStringVectorData class is the 
+     *  IDataProviderItemRendererMapper for creating 
+     *  ITextItemRenderers and assigning them data from an vector
+     *  of Strings.  Other IDataProviderItemRendererMapper implementations
+     *  assign specific array or vector types to item
+     *  renderers expecting those types.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextItemRendererFactoryForStringVectorData implements IBead
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextItemRendererFactoryForStringVectorData()
 		{
-
 		}
 		
 		private var selectionModel:ISelectionModel;
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -49,9 +75,38 @@ package org.apache.flex.html.staticControls.beads
 			dataProviderChangeHandler(null);
 		}
 		
-        public var itemRendererFactory:IItemRendererClassFactory;
+        private var _itemRendererFactory:IItemRendererClassFactory;
         
-		public var dataGroup:IItemRendererParent;
+        /**
+         *  An IItemRendererClassFactory that should generate ITextItemRenderers
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get itemRendererFactory():IItemRendererClassFactory
+        {
+            return _itemRendererFactory
+        }
+        
+        /**
+         *  @private
+         */
+        public function set itemRendererFactory(value:IItemRendererClassFactory):void
+        {
+            _itemRendererFactory = value;
+        }
+        
+        /**
+         *  The IItemRendererParent that should parent the ITextItemRenderers
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var dataGroup:IItemRendererParent;
 		
 		private function dataProviderChangeHandler(event:Event):void
 		{

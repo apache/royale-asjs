@@ -22,18 +22,51 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.UIBase;
 
+    /**
+     *  The NonVirtualDataGroup class is the IItemRendererParent used internally
+     *  by org.apache.flex.html.staticControls.List class.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class NonVirtualDataGroup extends UIBase implements IItemRendererParent
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function NonVirtualDataGroup()
 		{
 			super();
 		}
 
+        /**
+         *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {
             return getChildAt(index) as IItemRenderer;
         }
 		
+        /**
+         *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function removeAllElements():void
 		{
 			this.removeChildren(0);

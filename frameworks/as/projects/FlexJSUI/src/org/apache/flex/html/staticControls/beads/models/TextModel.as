@@ -24,25 +24,65 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 		
+    /**
+     *  The TextModel class is most basic data model for a
+     *  component that displays text.  All FlexJS components
+     *  that display text should also support HTML, although
+     *  the Flash Player implementations may only support
+     *  a subset of HTML. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextModel extends EventDispatcher implements IBead, ITextModel
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextModel()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}
 
 		private var _text:String;
-		public function get text():String
+
+        /**
+         *  @copy org.apache.flex.core.ITextModel#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get text():String
 		{
 			return _text;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			if (value != _text)
@@ -53,11 +93,23 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
 		private var _html:String;
+        
+        /**
+         *  @copy org.apache.flex.core.ITextModel#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return _html;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			if (value != _html)

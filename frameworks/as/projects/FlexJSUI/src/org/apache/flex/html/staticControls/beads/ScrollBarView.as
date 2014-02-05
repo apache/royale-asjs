@@ -44,6 +44,14 @@ package org.apache.flex.html.staticControls.beads
      */
 	public class ScrollBarView extends Strand implements IBeadView, IStrand, IScrollBarView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ScrollBarView()
 		{
 		}
@@ -52,6 +60,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -86,18 +102,53 @@ package org.apache.flex.html.staticControls.beads
 		private var _track:DisplayObject;
 		private var _thumb:DisplayObject;
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.IScrollBarView#decrement
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get decrement():DisplayObject
 		{
 			return _decrement;
 		}
+
+        /**
+         *  @copy org.apache.flex.html.staticControls.IScrollBarView#increment
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get increment():DisplayObject
 		{
 			return _increment;
 		}
+        
+        /**
+         *  @copy org.apache.flex.html.staticControls.IScrollBarView#track
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get track():DisplayObject
 		{
 			return _track;
 		}
+        
+        /**
+         *  @copy org.apache.flex.html.staticControls.IScrollBarView#thumb
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get thumb():DisplayObject
 		{
 			return _thumb;

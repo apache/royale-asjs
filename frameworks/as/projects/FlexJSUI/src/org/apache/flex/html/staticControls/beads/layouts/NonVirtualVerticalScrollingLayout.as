@@ -32,8 +32,28 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
+    /**
+     *  The NonVirtualVerticalScrollingLayout class is a layout
+     *  bead that displays a set of children vertically in one row, 
+     *  separating them according to CSS layout rules for margin and 
+     *  vertical-align styles and lays out a vertical ScrollBar
+     *  to the right of the children.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class NonVirtualVerticalScrollingLayout implements IBeadLayout
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function NonVirtualVerticalScrollingLayout()
 		{
 		}
@@ -42,6 +62,14 @@ package org.apache.flex.html.staticControls.beads.layouts
 
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

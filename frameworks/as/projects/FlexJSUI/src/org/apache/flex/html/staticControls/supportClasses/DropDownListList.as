@@ -19,19 +19,50 @@
 package org.apache.flex.html.staticControls.supportClasses
 {
     import org.apache.flex.core.IPopUp;
-    import org.apache.flex.html.staticControls.List;
     import org.apache.flex.html.staticControls.SimpleList;
     import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
     
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  @copy org.apache.flex.core.ISelectionModel#change
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
+    /**
+     *  The DropDownListList class is the List class used internally
+     *  by DropDownList as the dropdown/popup.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class DropDownListList extends SimpleList implements IPopUp
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function DropDownListList()
 		{
 			super();
 		}
 		
+        /**
+         *  @private
+         */
 		override public function addedToParent():void
 		{
 			super.addedToParent();

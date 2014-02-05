@@ -27,22 +27,67 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IScrollBarView;
 
+    /**
+     *  The ScrollBarMouseControllerBase class is the base class
+     *  for ScrollBarMouseControllers such as VScrollBarMouseController.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ScrollBarMouseControllerBase implements IBeadController
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ScrollBarMouseControllerBase()
 		{
 		}
 		
+        /**
+         *  The data model
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var sbModel:IScrollBarModel;
+
+        /**
+         *  The view
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var sbView:IScrollBarView;
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @private
+         */
 		public function get strand():IStrand
 		{
 			return _strand;
 		}
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -56,7 +101,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 			sbView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbMouseDownHandler);
 		}
 		
-	
+        /**
+         *  Returns the input number "snapped" to the snapInterval.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */	
 		protected function snap(value:Number):Number
 		{
 			var si:Number = sbModel.snapInterval;
@@ -73,22 +125,55 @@ package org.apache.flex.html.staticControls.beads.controllers
 			return n;
 		}
 		
+        /**
+         *  Updates the model when the decrement button is clicked.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */	
 		protected function decrementClickHandler(event:Event):void
 		{
 			sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.stepSize));
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
 		}
 		
+        /**
+         *  Updates the model when the increment button is clicked.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */	
 		protected function incrementClickHandler(event:Event):void
 		{
 			sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.stepSize));	
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
 		}
 		
+        /**
+         *  Handles a click in the track.  Must be overridden.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */	
 		protected function trackClickHandler(event:MouseEvent):void
 		{
 		}
 		
+        /**
+         *  Handles a mouse down on the thumb.  Must be overridden.
+         *  Subclasses process the mouseMove and mouseUp events.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */	
 		protected function thumbMouseDownHandler(event:MouseEvent):void
 		{
 		}

@@ -33,8 +33,27 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
+    /**
+     *  The TextAreaView class is the default view for
+     *  the org.apache.flex.html.staticControls.TextArea class.
+     *  It implements the classic desktop-like TextArea with
+     *  a border and scrollbars.  It does not support right-to-left text.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextAreaView extends TextFieldViewBase implements IStrand
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextAreaView()
 		{
 			super();
@@ -48,6 +67,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _border:Border;
 		
+        /**
+         *  The border.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get border():Border
 		{
 			return _border;
@@ -55,6 +82,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _vScrollBar:ScrollBar;
 		
+        /**
+         *  The vertical ScrollBar.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get vScrollBar():ScrollBar
 		{
 			if (!_vScrollBar)
@@ -62,6 +97,9 @@ package org.apache.flex.html.staticControls.beads
 			return _vScrollBar;
 		}
 		
+        /**
+         *  @private
+         */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -148,11 +186,26 @@ package org.apache.flex.html.staticControls.beads
 			textField.scrollV = vpos;
 		}
 		
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
+        /**
+         *  @copy org.apache.flex.core.UIBase#beads.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var beads:Array;
 		
 		private var _beads:Vector.<IBead>;
+
+        /**
+         *  @copy org.apache.flex.core.UIBase#addBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -161,6 +214,14 @@ package org.apache.flex.html.staticControls.beads
 			bead.strand = this;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#getBeadByType
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -171,6 +232,14 @@ package org.apache.flex.html.staticControls.beads
 			return null;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.UIBase#removeBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;

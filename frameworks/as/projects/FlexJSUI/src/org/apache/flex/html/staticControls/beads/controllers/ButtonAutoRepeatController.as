@@ -30,26 +30,71 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The ButtonAutoRepeatController class adds autorepeat
+     *  functionality to a button.  This version is simply waits
+     *  a specified amount of time (default is 250ms), then repeats the button
+     *  event at a specified interval, which defaults to
+     *  125 milliseconds.  Alternate implementations could
+     *  have non-linear repeat timing, look for keyboard modifiers to choose
+     *  different rates, etc.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class ButtonAutoRepeatController implements IBead, IBeadController
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ButtonAutoRepeatController()
 		{
 		}
 		
         private var _strand:IStrand;
         
-        public function get strand():IStrand
-        {
-            return _strand;
-        }
-        
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;
             IEventDispatcher(value).addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
         }
         
+        /**
+         *  The number of milliseconds to wait before repeating the event
+         *  for the first time.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var delay:int = 250;
+        
+        /**
+         *  The number of milliseconds to wait before repeating the event
+         *  after the first time.  This value is not checked for
+         *  changes after the events start repeating.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public var interval:int = 100;
         
         private var timeout:uint;

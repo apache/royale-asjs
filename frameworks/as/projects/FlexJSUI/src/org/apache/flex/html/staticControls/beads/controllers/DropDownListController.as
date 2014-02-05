@@ -29,14 +29,44 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.IDropDownListView;
 
+    /**
+     *  The DropDownListController class is the controller for
+     *  org.apache.flex.html.staticControls.DropDownList.  Controllers
+     *  watch for events from the interactive portions of a View and
+     *  update the data model or dispatch a semantic event.
+     *  This controller watches for the click event and displays the
+     *  dropdown/popup, and watches the dropdown/popup for change events
+     *  and updates the selection model accordingly.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class DropDownListController implements IBead, IBeadController
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function DropDownListController()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

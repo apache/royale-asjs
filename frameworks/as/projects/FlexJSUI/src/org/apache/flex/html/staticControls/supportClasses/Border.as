@@ -20,8 +20,26 @@ package org.apache.flex.html.staticControls.supportClasses
 {
 	import org.apache.flex.core.UIBase;
 	
+    /**
+     *  The Border class is a class used internally by many
+     *  controls to draw a border.  The border actually drawn
+     *  is dictated by the IBeadView in the CSS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class Border extends UIBase
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function Border()
 		{
 			super();

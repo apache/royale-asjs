@@ -30,8 +30,25 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The TextButtonView class is the default view for
+     *  the org.apache.flex.html.staticControls.TextButton class.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextButtonView implements IBeadView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextButtonView()
 		{
 			upTextField = new CSSTextField();
@@ -67,6 +84,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var shape:Shape;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -109,14 +134,52 @@ package org.apache.flex.html.staticControls.beads
 			upTextField.height= downTextField.height= overTextField.height= DisplayObject(_strand).height;
 		}
 		
+        /**
+         *  The CSSTextField in the up state
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var upTextField:CSSTextField;
+
+        /**
+         *  The CSSTextField in the down state
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var downTextField:CSSTextField;
+
+        /**
+         *  The CSSTextField in the over state
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public var overTextField:CSSTextField;
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.ITextModel#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return upTextField.text;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set text(value:String):void
 		{
 			upTextField.text = value;
@@ -129,11 +192,22 @@ package org.apache.flex.html.staticControls.beads
 			
 		}
 		
+        /**
+         *  @copy org.apache.flex.html.staticControls.ITextModel#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return upTextField.htmlText;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set html(value:String):void
 		{
 			upTextField.htmlText = value;

@@ -28,14 +28,41 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The NonVirtualVerticalLayout class is a simple layout
+     *  bead.  It takes the set of children and lays them out
+     *  vertically in one column, separating them according to
+     *  CSS layout rules for margin and horizontal-align styles.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class NonVirtualVerticalLayout implements IBead
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function NonVirtualVerticalLayout()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

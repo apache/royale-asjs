@@ -27,8 +27,27 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	
+    /**
+     *  The TextFieldViewBase class is the base class for
+     *  the components that display text.
+     *  It displays text using a TextField, so there is no
+     *  right-to-left text support in this view.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextFieldViewBase implements IBeadView, ITextFieldView
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function TextFieldViewBase()
 		{
 			_textField = new CSSTextField();
@@ -36,6 +55,14 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _textField:CSSTextField;
 		
+        /**
+         *  @copy org.apache.flex.core.ITextModel#textField
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get textField() : CSSTextField
 		{
 			return _textField;
@@ -43,63 +70,92 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _textModel:ITextModel;
 		
-		public function get textModel() : ITextModel
-		{
-			return _textModel;
-		}
-		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			_textModel = value.getBeadByType(ITextModel) as ITextModel;
-			textModel.addEventListener("textChange", textChangeHandler);
-			textModel.addEventListener("htmlChange", htmlChangeHandler);
-			textModel.addEventListener("widthChanged", sizeChangeHandler);
-			textModel.addEventListener("heightChanged", sizeChangeHandler);
+            _textModel.addEventListener("textChange", textChangeHandler);
+            _textModel.addEventListener("htmlChange", htmlChangeHandler);
+            _textModel.addEventListener("widthChanged", sizeChangeHandler);
+            _textModel.addEventListener("heightChanged", sizeChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
 			sizeChangeHandler(null);
-			if (textModel.text !== null)
-				text = textModel.text;
-			if (textModel.html !== null)
-				html = textModel.html;
+			if (_textModel.text !== null)
+				text = _textModel.text;
+			if (_textModel.html !== null)
+				html = _textModel.html;
 		}
-        
+
+        /**
+         *  @private
+         */
 		public function get strand() : IStrand
 		{
 			return _strand;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ITextModel#text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
 			return _textField.text;
 		}
-		public function set text(value:String):void
+
+        /**
+         *  @private
+         */
+        public function set text(value:String):void
 		{
             if (value == null)
                 value = "";
 			_textField.text = value;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ITextModel#html
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get html():String
 		{
 			return _textField.htmlText;
 		}
 		
-		public function set html(value:String):void
+        /**
+         *  @private
+         */
+        public function set html(value:String):void
 		{
 			_textField.htmlText = value;
 		}
 		
 		private function textChangeHandler(event:Event):void
 		{
-			text = textModel.text;
+			text = _textModel.text;
 		}
 		
 		private function htmlChangeHandler(event:Event):void
 		{
-			html = textModel.html;
+			html = _textModel.html;
 		}
 		
 		private function sizeChangeHandler(event:Event):void

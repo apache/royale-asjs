@@ -29,6 +29,17 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The TextInputWithBorderView class is the default view for
+     *  the org.apache.flex.html.staticControls.TextInput.
+     *  It displays text using a TextField, so there is no
+     *  right-to-left text support in this view.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class TextInputWithBorderView extends TextInputView
 	{
 		public function TextInputWithBorderView()
@@ -37,12 +48,10 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		private var _border:Border;
-		
-		public function get border():Border
-		{
-			return _border;
-		}
-		
+				
+        /**
+         *  @private
+         */        
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -51,7 +60,7 @@ package org.apache.flex.html.staticControls.beads
 			_border = new Border();
 			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
 			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-            IParent(strand).addElement(border);
+            IParent(strand).addElement(_border);
 			
 			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);

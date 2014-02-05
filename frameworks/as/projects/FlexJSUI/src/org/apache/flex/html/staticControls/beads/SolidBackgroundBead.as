@@ -27,18 +27,39 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The SolidBackgroundBead class draws a solid filled background.
+     *  The color and opacity can be specified in CSS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SolidBackgroundBead implements IBead, IBackgroundBead, IGraphicsDrawing
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function SolidBackgroundBead()
 		{
 		}
 				
 		private var _strand:IStrand;
 		
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -58,10 +79,22 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _backgroundColor:uint;
 		
+        /**
+         *  The background color
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get backgroundColor():uint
 		{
 			return _backgroundColor;
 		}
+        
+        /**
+         *  @private
+         */
 		public function set backgroundColor(value:uint):void
 		{
 			_backgroundColor = value;
@@ -71,11 +104,22 @@ package org.apache.flex.html.staticControls.beads
 		
 		private var _opacity:Number = 1.0;
 		
+        /**
+         *  The opacity (alpha).
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get opacity():Number
 		{
 			return _opacity;
 		}
 		
+        /**
+         *  @private
+         */
 		public function set opacity(value:Number):void
 		{
 			_opacity = value;
@@ -90,7 +134,7 @@ package org.apache.flex.html.staticControls.beads
             var w:Number = host.width;
             var h:Number = host.height;
 			
-			var gd:IGraphicsDrawing = strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
+			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
 
             g.beginFill(backgroundColor,opacity);

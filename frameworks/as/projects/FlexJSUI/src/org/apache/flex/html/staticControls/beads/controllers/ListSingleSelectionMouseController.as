@@ -29,8 +29,31 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.html.staticControls.beads.IListView;
 	
 
+    /**
+     *  The ListSingleSelectionMouseController class is a controller for
+     *  org.apache.flex.html.staticControls.List.  Controllers
+     *  watch for events from the interactive portions of a View and
+     *  update the data model or dispatch a semantic event.
+     *  This controller watches for events from the item renderers
+     *  and updates an ISelectionModel (which only supports single
+     *  selection).  Other controller/model pairs would support
+     *  various kinds of multiple selection.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ListSingleSelectionMouseController implements IBeadController
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function ListSingleSelectionMouseController()
 		{
 		}
@@ -41,6 +64,14 @@ package org.apache.flex.html.staticControls.beads.controllers
 
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

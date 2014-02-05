@@ -20,20 +20,38 @@ package org.apache.flex.html.staticControls.beads.layouts
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
+    /**
+     *  The NonVirtualHorizontalScrollingLayout class is a layout
+     *  bead that displays a set of children horizontally in one row, 
+     *  separating them according to CSS layout rules for margin and 
+     *  vertical-align styles and lays out a horizontal ScrollBar
+     *  below the children.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class NonVirtualHorizontalScrollingLayout implements IBeadLayout
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function NonVirtualHorizontalScrollingLayout()
 		{
 		}
@@ -42,6 +60,14 @@ package org.apache.flex.html.staticControls.beads.layouts
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

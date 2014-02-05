@@ -25,14 +25,41 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.EventDispatcher;
 		
+    /**
+     *  The SingleLineBorderModel class is a data model for
+     *  a single line border. This model is very simple,
+     *  it only stores the offsets from the edges of the
+     *  component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SingleLineBorderModel extends EventDispatcher implements IBead, IBorderModel
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function SingleLineBorderModel()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  @see org.apache.flex.core.IBead
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -40,6 +67,15 @@ package org.apache.flex.html.staticControls.beads.models
 
         static private var rect:Rectangle = new Rectangle(1, 1, 1, 1);
         
+        /**
+         *  The offsets of the border from the edges of the
+         *  component.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get offsets():Rectangle
         {
             return rect;
