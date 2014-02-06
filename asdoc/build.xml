@@ -76,6 +76,10 @@
 			<!-- namespaces to include in asdoc -->
  			<doc-namespaces uri="library://ns.apache.org/flexjs/basic"/>
  			<doc-namespaces uri="library://ns.apache.org/flexjs/mx"/>
+            
+			<!-- classes to include in asdoc -->
+ 			<doc-sources path-element="${project_home}/FlexJSUI/src"/>
+ 			<doc-sources path-element="${project_home}/FlexJSJX/src"/>
  			
 			<!-- namespace declaration for asdoc -->
             <namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/FlexJSUI/basic-manifest.xml" />
