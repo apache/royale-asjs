@@ -20,15 +20,53 @@
 // shim the mx classes for states
 package mx.states
 {
+    /**
+     *  The State class is one of the classes in the
+     *  view states subsystem.  It is used to declare a 
+     *  view state in an MXML document.  This is one of the
+     *  few classes in FlexJS that use the same name as
+     *  a Flex SDK class because some of the IDEs and
+     *  compilers are hard-coded to assume this name.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class State
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @param properties This parameter is not used in FlexJS and exists to make legacy compilers happy.
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public function State(properties:Object = null)
 		{
 			super();
 		}
 		
+        /**
+         *  The name of the state.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public var name:String;
         
+        /**
+         *  The array of overrides.  This is normally set by the compiler.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
         public var overrides:Array;
 	}
 }

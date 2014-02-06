@@ -18,8 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.core
 {
+    /**
+     *  The IFactory interface is the basic interface used as the 
+     *  type for properties that specify a factory for item renderers
+     *  and other scenarios where multiple copies of a custom
+     *  class are generated.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public interface IFactory
 	{
+        /**
+         *  This method is called to generate a new instance of
+         *  an item renderer or other custom class.
+         * 
+         *  @return A new instance of an item renderer or other custom class.
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		function newInstance():*;
 	}
 }

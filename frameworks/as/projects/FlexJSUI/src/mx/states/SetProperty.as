@@ -21,8 +21,29 @@ package mx.states
 {
     import org.apache.flex.core.IDocument;
     
+    [ExcludeClass]
+    
+    /**
+     *  The SetProperty class is one of the classes in the
+     *  view states subsystem.  Note that the FlexJS
+     *  versions are simply data structures interpreted
+     *  by a central States implementation.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class SetProperty implements IDocument
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public function SetProperty()
 		{
 			super();

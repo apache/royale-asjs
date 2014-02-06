@@ -20,16 +20,59 @@ package mx.core
 {
 	import mx.core.IFactory;
 	
+    /**
+     *  The ClassFactory class is the basic implementation
+     *  of an IFactory that will generate multiple
+     *  instances of item renderers or custom classes.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ClassFactory implements IFactory
 	{
+        /**
+         *  The class to instantiate.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public var generator:Class;
+
+        /**
+         *  Initial properties assigned to each instance.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public var properties:Object;
 		
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public function ClassFactory(generator:Class=null)
 		{
 			this.generator = generator;
 		}
 		
+        /**
+         *  @copy mx.core.IFactory#newInstance
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
 		public function newInstance():*
 		{
 			var obj:* = new generator();
