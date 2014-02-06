@@ -118,7 +118,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.ItemRendererFactory#mxmlContent
+         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

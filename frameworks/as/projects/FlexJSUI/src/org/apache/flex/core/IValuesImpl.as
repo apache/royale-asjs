@@ -55,6 +55,7 @@ package org.apache.flex.core
          *
          *  @param valueName The name of a shared instance.  Often, the fully
          *  qualified class name is used.
+         *  @return The shared instance.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

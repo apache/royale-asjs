@@ -59,7 +59,7 @@ package org.apache.flex.core
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand.
+         *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

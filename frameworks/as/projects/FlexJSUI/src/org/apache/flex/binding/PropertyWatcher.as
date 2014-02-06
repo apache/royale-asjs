@@ -36,6 +36,13 @@ package org.apache.flex.binding
         /**
          *  Constructor.
          *  
+         *  @param source The object who's property we are watching.
+         *  @param proeprtyName The name of the property we are watching.
+         *  @param eventNames The name or array of names of events that get
+         *  dispatched when the property changes.
+         *  @param getterFunction  A function to call to get the value
+         *  of the property changes if the property is not public.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -97,7 +104,9 @@ package org.apache.flex.binding
         /**
          *  The event handler that gets called when
          *  the change events are dispatched.
-         *
+         *  
+         *  @param event The event that was dispatched to notify of a value change.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
