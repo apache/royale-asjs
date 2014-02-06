@@ -203,7 +203,7 @@ package org.apache.flex.core
         private var _beads:Vector.<IBead>;
         
         /**
-         *  @see org.apache.flex.core.IStrand#addBead
+         *  @copy org.apache.flex.core.IStrand#addBead
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -219,7 +219,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @see org.apache.flex.core.IStrand#getBeadByType
+         *  @copy org.apache.flex.core.IStrand#getBeadByType
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -237,7 +237,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @see org.apache.flex.core.IStrand#removeBead
+         *  @copy org.apache.flex.core.IStrand#removeBead
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -274,7 +274,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @see org.apache.flex.core.IParent#addElement
+         *  @copy org.apache.flex.core.IParent#addElement
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -293,7 +293,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @see org.apache.flex.core.IParent#addElementAt
+         *  @copy org.apache.flex.core.IParent#addElementAt
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -312,7 +312,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @see org.apache.flex.core.IParent#getElementIndex
+         *  @copy org.apache.flex.core.IParent#getElementIndex
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -328,7 +328,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @see org.apache.flex.core.IParent#removeElement
+         *  @copy org.apache.flex.core.IParent#removeElement
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

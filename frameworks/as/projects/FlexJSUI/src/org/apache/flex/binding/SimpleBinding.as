@@ -132,7 +132,7 @@ package org.apache.flex.binding
 		public var destinationPropertyName:String;
 		
         /**
-         *  @see org.apache.flex.core.IBead#strand
+         *  @copy org.apache.flex.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -151,7 +151,7 @@ package org.apache.flex.binding
 		}
 		
         /**
-         *  @see org.apache.flex.core.IDocument#setDocument
+         *  @copy org.apache.flex.core.IDocument#setDocument
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

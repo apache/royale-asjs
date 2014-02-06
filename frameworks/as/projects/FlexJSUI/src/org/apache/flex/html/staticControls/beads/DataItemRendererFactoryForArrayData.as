@@ -60,7 +60,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
         /**
-         *  @see org.apache.flex.core.IBead
+         *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
