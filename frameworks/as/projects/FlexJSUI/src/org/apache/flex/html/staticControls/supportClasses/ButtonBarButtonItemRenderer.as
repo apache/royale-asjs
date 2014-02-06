@@ -25,8 +25,9 @@ package org.apache.flex.html.staticControls.supportClasses
 	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 
 	/**
-	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the ButtonBar component.
-	 *  This class uses a Button to represent the data.
+	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the 
+	 *  org.apache.flex.html.staticControls.ButtonBar component. This class uses a 
+	 *  org.apache.flex.html.staticControls.Button to represent the data.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

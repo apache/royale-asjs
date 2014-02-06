@@ -23,8 +23,8 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 		
 	/**
-	 *  The ScrollBarModel class bead extends the RangeModel and added page size
-	 *  and page step sizes.
+	 *  The ScrollBarModel class bead extends the org.apache.flex.html.staticControls.beads.models.RangeModel 
+	 *  and adds page size and page step sizes.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -48,7 +48,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _pageSize:Number;
 		
 		/**
-		 *  The amount represented by the thumb control of the ScrollBar.
+		 *  The amount represented by the thumb control of the org.apache.flex.html.staticControls.ScrollBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -72,7 +72,8 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _pageStepSize:Number;
 		
 		/**
-		 *  The amount to adjust the ScrollBar if the scroll bar's track area is selected.
+		 *  The amount to adjust the org.apache.flex.html.staticControls.ScrollBar if the scroll bar's 
+		 *  track area is selected.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

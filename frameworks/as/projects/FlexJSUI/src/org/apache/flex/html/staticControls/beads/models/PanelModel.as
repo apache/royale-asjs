@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The PanelModel bead class holds the values for a Panel, such as its
+	 *  The PanelModel bead class holds the values for a org.apache.flex.html.staticControls.Panel, such as its
 	 *  title.
 	 *
 	 *  @langversion 3.0
@@ -51,7 +51,12 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -61,7 +66,9 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _title:String;
 		
 		/**
-		 *  The title string for the Panel.
+		 *  The title string for the org.apache.flex.html.staticControls.Panel.
+		 * 
+		 *  @copy org.apache.flex.core.ITitleBarModel#title
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -84,6 +91,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The HTML string for the title.
+		 * 
+		 *  @copy org.apache.flex.core.ITitleBarModel#htmlTitle
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -105,7 +114,9 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _showCloseButton:Boolean = false;
 		
 		/**
-		 *  Indicates whether or not there is a Close button for the Panel.
+		 *  Indicates whether or not there is a Close button for the org.apache.flex.html.staticControls.Panel.
+		 * 
+		 *  @copy org.apache.flex.core.ITitleBarModel#showCloseButton
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

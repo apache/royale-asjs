@@ -24,7 +24,7 @@ package org.apache.flex.charts.supportClasses
 	
 	/**
 	 *  The BarChartSeries represents a pair of X and Y values to be drawn
-	 *  within a BarChart. 
+	 *  within a org.apache.flex.charts.BarChart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

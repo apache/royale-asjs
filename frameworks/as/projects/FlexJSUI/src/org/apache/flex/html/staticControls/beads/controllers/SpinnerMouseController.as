@@ -29,8 +29,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.html.staticControls.beads.ISpinnerView;
 	
 	/**
-	 *  The SpinnerMouseController class bead handles mouse events on the Spinner's
-	 *  component buttons, changing the value of the Spinner.
+	 *  The SpinnerMouseController class bead handles mouse events on the 
+	 *  org.apache.flex.html.staticControls.Spinner's component buttons, changing the 
+	 *  value of the Spinner.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -56,7 +57,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

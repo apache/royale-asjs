@@ -25,8 +25,8 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The AlertModel class bead implements the IAlertModel and holds the properties
-	 *  for an Alert such the buttons to use and message to display.
+	 *  The AlertModel class bead implements the org.apache.flex.core.IAlertModel and holds the properties
+	 *  for an org.apache.flex.html.staticControls.Alert such the buttons to use and message to display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +51,12 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -62,6 +67,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The title for the Alert.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#title
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -84,6 +91,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The HTML title for the Alert.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#htmlTitle
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -106,6 +115,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The message to display.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#message
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -128,6 +139,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The HTML message to display.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#htmlMessage
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -151,6 +164,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  Which buttons to display (see Alert for details).
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#flags
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -174,6 +189,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The label to use for the OK button.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#okLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -197,6 +214,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The label to use for the Cancel button.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#cancelLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -220,6 +239,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The label to use for the Yes button.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#yesLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -243,6 +264,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The label to use for the NO button.
+		 * 
+		 *  @copy org.apache.flex.core.IAlertModel#noLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

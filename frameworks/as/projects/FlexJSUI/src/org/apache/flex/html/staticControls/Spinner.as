@@ -25,12 +25,12 @@ package org.apache.flex.html.staticControls
 	
 	/**
 	 *  The Spinner class is a component that displays a control for incrementing a value
-	 *  and a control for decrementing a value. The NumericStepper uses a Spinner as part
-	 *  of the component. Spinner uses the following beads:
+	 *  and a control for decrementing a value. The org.apache.flex.html.staticControls.NumericStepper 
+	 *  uses a Spinner as part of the component. Spinner uses the following beads:
 	 * 
-	 *  IBeadModel: an IRangeModel to hold the properties.
-	 *  IBeadView:  the bead that constructs the visual parts of the Spinner.
-	 *  IBeadController: a bead that handles the input events.
+	 *  org.apache.flex.core.IBeadModel: an IRangeModel to hold the properties.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Spinner.
+	 *  org.apache.flex.core.IBeadController: a bead that handles the input events.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

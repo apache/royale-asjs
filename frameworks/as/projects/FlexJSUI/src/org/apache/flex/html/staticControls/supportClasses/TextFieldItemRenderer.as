@@ -31,7 +31,7 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
 	
 	/**
-	 *  The TextFieldItemRenderer class provides a TextField as an itemRenderer.
+	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.staticControls.TextField as an itemRenderer.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

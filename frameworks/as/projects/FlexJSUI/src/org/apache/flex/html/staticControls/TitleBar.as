@@ -32,10 +32,12 @@ package org.apache.flex.html.staticControls
 	 *  The TitleBar class is a Container component that displays a title and an
 	 *  optional close button. The TitleBar uses the following bead types:
 	 * 
-	 *  IBeadModel: the data model, which includes the title and showCloseButton values.
-	 *  IBeadView:  the bead that constructs the visual parts of the component.
-	 *  IBeadLayout: the bead that handles size and position of the component parts (Label and Button).
-	 *  IMeasurementBead: a bead that helps determine the size of the TitleBar for layout.
+	 *  org.apache.flex.core.IBeadModel: the data model, which includes the title and showCloseButton values.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
+	 *  org.apache.flex.core.IBeadLayout: the bead that handles size and position of the component parts 
+	 *  (org.apache.flex.html.staticControls.Label and org.apache.flex.html.staticControls.Button).
+	 *  org.apache.flex.core.IMeasurementBead: a bead that helps determine the size of the 
+	 *  org.apache.flex.html.staticControls.TitleBar for layout.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -94,7 +96,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  Whether or not to show a Button that indicates the component
+		 *  Whether or not to show a org.apache.flex.html.staticControls.Button that indicates the component
 		 *  may be closed.
 		 *
 		 *  @langversion 3.0

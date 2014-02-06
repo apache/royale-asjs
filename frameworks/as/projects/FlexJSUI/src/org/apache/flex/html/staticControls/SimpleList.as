@@ -20,8 +20,8 @@ package org.apache.flex.html.staticControls
 {
 	/**
 	 *  The SimpleList class is a component that displays data in a vertical column. This
-	 *  component differs from List in that it displays only string values and converts to
-	 *  the &lt;select&gt; HTML element.
+	 *  component differs from org.apache.flex.html.staticControls.List in that it displays 
+	 *  only string values and maps to the &lt;select&gt; HTML element.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

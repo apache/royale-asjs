@@ -18,13 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.core.FilledRectangle;
-	import org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase;
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.core.FilledRectangle;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase;
 	
 	/**
 	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
-	 *  an itemRenderer for a BarChartSeries. This class implements the IChartItemRenderer
+	 *  an itemRenderer for a BarChartSeries. This class implements the 
+	 *  org.apache.flex.charts.core.IChartItemRenderer
 	 *  interface. 
 	 *  
 	 *  @langversion 3.0
@@ -127,7 +129,7 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		/**
-		 *  The data being represented.
+		 *  @copy org.apache.flex.staticControls.supportClasses.UIItemRendererBase#data
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -145,7 +147,12 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		/**
-		 *  @private
+		 *  @copy org.apache.flex.core.UIBase#width
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		override public function set width(value:Number):void
 		{
@@ -154,7 +161,12 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		/**
-		 *  @private
+		 *  @copy org.apache.flex.core.UIBase#height
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		override public function set height(value:Number):void
 		{

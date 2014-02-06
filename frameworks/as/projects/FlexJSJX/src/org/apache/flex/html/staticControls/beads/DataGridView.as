@@ -35,9 +35,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
 	
 	/**
-	 *  The DataGridView class is the visual bead for the DataGrid. This class constructs
-	 *  the items that make the DataGrid: Lists for each column and a ButtonBar for the
-	 *  column headers.  
+	 *  The DataGridView class is the visual bead for the org.apache.flex.html.staticControls.DataGrid. 
+	 *  This class constructs the items that make the DataGrid: Lists for each column and a 
+	 *  org.apache.flex.html.staticControls.ButtonBar for the column headers.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -65,7 +65,7 @@ package org.apache.flex.html.staticControls.beads
 		private var columns:Array;
 		
 		/**
-		 *  The array of DataGridColumn instances.
+		 *  The array of org.apache.flex.html.staticControls.supportClasses.DataGridColumn instances.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -80,7 +80,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

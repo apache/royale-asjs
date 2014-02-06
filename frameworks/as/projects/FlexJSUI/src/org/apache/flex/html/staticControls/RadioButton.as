@@ -34,8 +34,8 @@ package org.apache.flex.html.staticControls
 	 *  are typically used in groups, identified by the groupName property. RadioButton use
 	 *  the following beads:
 	 * 
-	 *  IBeadModel: the data model, which includes the groupName.
-	 *  IBeadView:  the bead that constructs the visual parts of the RadioButton..
+	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

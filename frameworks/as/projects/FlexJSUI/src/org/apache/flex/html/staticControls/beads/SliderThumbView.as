@@ -28,8 +28,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The SliderThumbView class creates the draggable input element for the Slider
-	 *  component.
+	 *  The SliderThumbView class creates the draggable input element for the 
+	 *  org.apache.flex.html.staticControls.Slider component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -71,7 +71,12 @@ package org.apache.flex.html.staticControls.beads
 		private var hitArea:Shape;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

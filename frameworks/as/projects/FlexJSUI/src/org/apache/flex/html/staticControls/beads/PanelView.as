@@ -34,8 +34,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
-	 *  The Panel class creates the visual elements of the Panel component. A Panel
-	 *  has a TitleBar, content, and an optional ControlBar.
+	 *  The Panel class creates the visual elements of the org.apache.flex.html.staticControls.Panel 
+	 *  component. A Panel has a org.apache.flex.html.staticControls.TitleBar, content, and an 
+	 *  optional org.apache.flex.html.staticControls.ControlBar.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -60,7 +61,8 @@ package org.apache.flex.html.staticControls.beads
 		private var _titleBar:TitleBar;
 		
 		/**
-		 *  The TitleBar component of the Panel.
+		 *  The org.apache.flex.html.staticControls.TitleBar component of the 
+		 *  org.apache.flex.html.staticControls.Panel.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -75,7 +77,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _controlBar:ControlBar;
 		
 		/**
-		 *  The ControlBar for the Panel; may be null.
+		 *  The org.apache.flex.html.staticControls.ControlBar for the Panel; may be null.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -90,7 +92,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		override public function set strand(value:IStrand):void
 		{

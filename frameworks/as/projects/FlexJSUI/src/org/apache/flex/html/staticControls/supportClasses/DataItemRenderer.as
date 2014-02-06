@@ -22,7 +22,8 @@ package org.apache.flex.html.staticControls.supportClasses
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
-	 *  extends UIItemRendererBase and includes row and column index values.
+	 *  extends org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase and 
+	 *  includes row and column index values.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

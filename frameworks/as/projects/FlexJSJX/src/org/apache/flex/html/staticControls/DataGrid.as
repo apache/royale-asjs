@@ -26,10 +26,10 @@ package org.apache.flex.html.staticControls
 	/**
 	 *  The DataGrid class displays a collection of data using columns and rows. Each
 	 *  column represents a specific field in the data set; each row represents a specific
-	 *  datum. The DataGrid is a composite component built with a ButtonBar for the column
-	 *  headers and a List for each column. The DataGrid's view bead (DataGridView) constructs
-	 *  these parts while itemRenderer factories contruct the elements to display the data
-	 *  in each cell.
+	 *  datum. The DataGrid is a composite component built with a org.apache.flex.html.staticControls.ButtonBar 
+	 *  for the column headers and a org.apache.flex.html.staticControls.List for each column. The DataGrid's 
+	 *  view bead (usually org.apache.flex.html.staticControls.beads.DataGridView) constructs these parts while 
+	 *  itemRenderer factories contruct the elements to display the data in each cell.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -52,7 +52,8 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The array of DataGridColumns used to describe each column.
+		 *  The array of org.apache.flex.html.staticControls.supportClasses.DataGridColumns used to 
+		 *  describe each column.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -69,7 +70,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The object used to provide data to the DataGrid.
+		 *  The object used to provide data to the org.apache.flex.html.staticControls.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

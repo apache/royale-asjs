@@ -102,6 +102,8 @@ package org.apache.flex.html.staticControls.supportClasses
 		
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
+		 * 
+		 *  @param Object data The object being displayed by the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

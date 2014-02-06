@@ -32,13 +32,13 @@ package org.apache.flex.html.staticControls
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
 	 * 
-	 *  IBeadModel: the data model, which includes the dataProvider, selectedItem, and
+	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
-	 *  IBeadView:  the bead that constructs the visual parts of the list.
-	 *  IBeadController: the bead that handles input and output.
-	 *  IBeadLayout: the bead responsible for the size and position of the itemRenderers.
-	 *  IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
+	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
+	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
+	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
+	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -148,6 +148,8 @@ package org.apache.flex.html.staticControls
 			ISelectionModel(model).selectedItem = value;
 		}
 		
+		private var _itemRenderer:IFactory;
+		
 		/**
 		 *  The class or factory used to display each item.
 		 *
@@ -156,7 +158,6 @@ package org.apache.flex.html.staticControls
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{
 			return _itemRenderer;

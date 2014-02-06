@@ -23,12 +23,12 @@ package org.apache.flex.html.staticControls
 	 *  is actually a List with a default horizontal layout and an itemRenderer that 
 	 *  produces Buttons. The ButtonBar uses the following beads:
 	 * 
-	 *  IBeadModel: the data model for the ButtonBar, including the dataProvider.
-	 *  IBeadView: constructs the parts of the component.
-	 *  IBeadController: handles input events.
-	 *  IBeadLayout: sizes and positions the component parts.
-	 *  IDataProviderItemRendererMapper: produces itemRenderers.
-	 *  IItemRenderer: the class or class factory to use.
+	 *  org.apache.flex.core.IBeadModel: the data model for the ButtonBar, including the dataProvider.
+	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
+	 *  org.apache.flex.core.IBeadController: handles input events.
+	 *  org.apache.flex.core.IBeadLayout: sizes and positions the component parts.
+	 *  org.apache.flex.core.IDataProviderItemRendererMapper: produces itemRenderers.
+	 *  org.apache.flex.core.IItemRenderer: the class or class factory to use.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

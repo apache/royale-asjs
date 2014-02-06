@@ -24,14 +24,14 @@ package org.apache.flex.html.staticControls
 	
 	/**
 	 *  The Panel class is a Container component capable of parenting other
-	 *  components. The Panel has a TitleBar and an optional ControlBar. The Panel
-	 *  uses the following bead types:
+	 *  components. The Panel has a TitleBar and an optional org.apache.flex.html.staticControls.ControlBar. 
+	 *  The Panel uses the following bead types:
 	 * 
-	 *  IBeadModel: the data model for the Panel that includes the title and whether
+	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
 	 *  or not to display the close button.
-	 *  IBeadView: creates the parts of the Panel.
-	 *  IBorderBead: if present, draws a border around the Panel.
-	 *  IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  org.apache.flex.core.IBeadView: creates the parts of the Panel.
+	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
+	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -54,7 +54,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The string to display in the TitleBar.
+		 *  The string to display in the org.apache.flex.html.staticControls.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -71,7 +71,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The HTML string to display in the TitleBar.
+		 *  The HTML string to display in the org.apache.flex.html.staticControls.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -88,7 +88,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 * Whether or not to show a Close button in the TitleBar.
+		 * Whether or not to show a Close button in the org.apache.flex.html.staticControls.TitleBar.
 		 */
 		public function get showCloseButton():Boolean
 		{
@@ -99,8 +99,10 @@ package org.apache.flex.html.staticControls
 			IPanelModel(model).showCloseButton = value;
 		}
 		
+		private var _controlBar:Array;
+		
 		/**
-		 *  The items in the ControlBar. Setting this property automatically
+		 *  The items in the org.apache.flex.html.staticControls.ControlBar. Setting this property automatically
 		 *  causes the ControlBar to display.
 		 *
 		 *  @langversion 3.0
@@ -108,7 +110,6 @@ package org.apache.flex.html.staticControls
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _controlBar:Array;
 		public function get controlBar():Array
 		{
 			return _controlBar;

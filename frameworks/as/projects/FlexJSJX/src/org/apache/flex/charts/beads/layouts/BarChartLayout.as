@@ -44,7 +44,12 @@ package org.apache.flex.charts.beads.layouts
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -53,6 +58,8 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
+		
+		private var _gap:Number = 20;
 		
 		/**
 		 *  The amount of space to leave between series. If a chart has several series,
@@ -64,7 +71,6 @@ package org.apache.flex.charts.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _gap:Number = 20;
 		public function get gap():Number
 		{
 			return _gap;

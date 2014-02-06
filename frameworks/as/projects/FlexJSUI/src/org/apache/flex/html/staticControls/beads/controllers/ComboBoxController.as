@@ -30,8 +30,9 @@ package org.apache.flex.html.staticControls.beads.controllers
 
 	/**
 	 *  The ComboBoxController class bead handles mouse events on the elements of
-	 *  the ComboBox. This includes selecting the button to display the selection list
-	 *  pop-up as well as selecting an item from the pop-up list.
+	 *  the org.apache.flex.html.staticControls.ComboBox. This includes selecting the 
+	 *  button to display the selection list pop-up as well as selecting an item from the 
+	 *  pop-up list.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -55,7 +56,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

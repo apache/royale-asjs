@@ -29,11 +29,11 @@ package org.apache.flex.html.staticControls
 	 *  of buttons configured through the flag property of its show() static function.
 	 *  The Alert component uses the following beads:
 	 * 
-	 *  IBeadModel: the data model for the Alert.
-	 *  IBeadView: the bead used to create the parts of the Alert.
-	 *  IBeadController: the bead used to handle input events.
-	 *  IBorderBead: if present, draws a border around the Alert.
-	 *  IBackgroundBead: if present, places a solid color background below the Alert.
+	 *  org.apache.flex.core.IBeadModel: the data model for the Alert.
+	 *  org.apache.flex.core.IBeadView: the bead used to create the parts of the Alert.
+	 *  org.apache.flex.core.IBeadController: the bead used to handle input events.
+	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Alert.
+	 *  org.apache.flex.core.IBackgroundBead: if present, places a solid color background below the Alert.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -103,6 +103,11 @@ package org.apache.flex.html.staticControls
 		/**
 		 *  This static method is a convenience function to quickly create and display an Alert. The
 		 *  text and parent paramters are required, the others will default.
+		 * 
+		 *  @param String text The message content of the Alert.
+		 *  @param Object parent The object that hosts the pop-up.
+		 *  @param String title An optional title for the Alert.
+		 *  @param uint flags Identifies which buttons to display in the alert.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -122,6 +127,8 @@ package org.apache.flex.html.staticControls
 		/**
 		 *  Shows the Alert anchored to the given parent object which is usally a root component such
 		 *  as a UIView..
+		 * 
+		 *  @param Object parent The object that hosts the pop-up.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -37,9 +37,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
 	/**
-	 *  The NumericStepperView class creates the visual elements of the NumericStepper component. A
-	 *  NumberStepper consists of a TextInput component to display the value and a Spinner to change
-	 *  the value.
+	 *  The NumericStepperView class creates the visual elements of the 
+	 *  org.apache.flex.html.staticControls.NumericStepper component. A NumberStepper consists of a 
+	 *  org.apache.flex.html.staticControls.TextInput component to display the value and a 
+	 *  org.apache.flex.html.staticControls.Spinner to change the value.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -67,7 +68,12 @@ package org.apache.flex.html.staticControls.beads
 		private var spinner:Spinner;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

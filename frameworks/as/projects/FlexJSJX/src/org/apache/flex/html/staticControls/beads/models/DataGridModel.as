@@ -20,10 +20,12 @@ package org.apache.flex.html.staticControls.beads.models
 {
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.staticControls.beads.models;
 	
 	/**
-	 *  The DataGridModel class bead extends ArraySelectionModel and adds the array
-	 *  of DataGridColumns used to define each of the column in the DataGrid.
+	 *  The DataGridModel class bead extends org.apache.flex.html.staticControls.beads.modelsArraySelectionModel 
+	 *  and adds the array of org.apache.flex.html.staticControls.supportClasses.DataGridColumns used to define 
+	 *  each of the column in the DataGrid.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -48,7 +50,8 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _columns:Array;
 		
 		/**
-		 *  The array of DataGridColumns used to define each column of the DataGrid.
+		 *  The array of org.apache.flex.html.staticControls.supportClasses.DataGridColumns used to 
+		 *  define each column of the org.apache.flex.html.staticControls.DataGrid.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

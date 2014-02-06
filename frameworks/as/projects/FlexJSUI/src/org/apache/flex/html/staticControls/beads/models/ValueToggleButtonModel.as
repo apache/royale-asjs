@@ -23,8 +23,10 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.Event;
 
 	/**
-	 *  The ValueToggleButtonModel class bead extends the ToggleButtonModel and adds
-	 *  value intended to represent a collection of similar Buttons such as RadioButtons.
+	 *  The ValueToggleButtonModel class bead extends the 
+	 *  org.apache.flex.html.staticControls.beads.models.ToggleButtonModel and adds
+	 *  value intended to represent a collection of similar org.apache.flex.html.staticControls.Buttons 
+	 *  such as org.apache.flex.html.staticControls.RadioButtons.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

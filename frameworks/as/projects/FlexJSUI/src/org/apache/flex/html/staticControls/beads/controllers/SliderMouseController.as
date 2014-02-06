@@ -31,10 +31,10 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.html.staticControls.beads.ISliderView;
 	
 	/**
-	 *  The SliderMouseController class bead handles mouse events on the Slider's component
-	 *  parts (thumb and track) and dispatches change events on behalf of the Slider (as well
-	 *  as co-ordinating visual changes (such as moving the thumb when the track has been 
-	 *  tapped or clicked).
+	 *  The SliderMouseController class bead handles mouse events on the 
+	 *  org.apache.flex.html.staticControls.Slider's component parts (thumb and track) and 
+	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
+	 *  changes (such as moving the thumb when the track has been tapped or clicked).
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -60,7 +60,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

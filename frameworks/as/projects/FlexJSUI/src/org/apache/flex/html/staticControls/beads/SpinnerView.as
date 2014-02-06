@@ -31,7 +31,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
 	
 	/**
-	 *  The SpinnerView class creates the visual elements of the Spinner component.
+	 *  The SpinnerView class creates the visual elements of the org.apache.flex.html.staticControls.Spinner 
+	 *  component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -57,7 +58,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -87,7 +93,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _increment:DisplayObject;
 		
 		/**
-		 *  The component for decrementing the Spinner value.
+		 *  The component for decrementing the org.apache.flex.html.staticControls.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -100,7 +106,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The component for incrementing the Spinner value.
+		 *  The component for incrementing the org.apache.flex.html.staticControls.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

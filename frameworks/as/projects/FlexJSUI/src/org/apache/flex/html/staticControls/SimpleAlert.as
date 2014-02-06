@@ -30,11 +30,11 @@ package org.apache.flex.html.staticControls
 	 *  SimpleAlert converts directly to window.alert() for HTML. SimpleAlert uses
 	 *  the following beads:
 	 * 
-	 *  IBeadModel: the data model, which includes the message.
-	 *  IBeadView:  the bead that constructs the visual parts of the Alert.
-	 *  IBeadController: the bead responsible for handling input events.
-	 *  IBorderBead: a bead, if present, that draws a border around the control.
-	 *  IBackgroundBead: a bead, if present, that creates a solid-color background.
+	 *  org.apache.flex.core.IBeadModel: the data model, which includes the message.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Alert.
+	 *  org.apache.flex.core.IBeadController: the bead responsible for handling input events.
+	 *  org.apache.flex.core.IBorderBead: a bead, if present, that draws a border around the control.
+	 *  org.apache.flex.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -95,6 +95,8 @@ package org.apache.flex.html.staticControls
 		/**
 		 *  This function causes the SimpleAlert to appear. The parent is used for ActionScript and
 		 *  identifies the IPopUpParent that manages the alert.
+		 * 
+		 *  @param Object parent The object that hosts the pop-up.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -108,6 +110,9 @@ package org.apache.flex.html.staticControls
 		
 		/**
 		 *  A convenience function to compose and display the alert.
+		 * 
+		 *  @param String message The content to display in the SimpleAlert.
+		 *  @param Object parent The object that hosts the pop-up.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

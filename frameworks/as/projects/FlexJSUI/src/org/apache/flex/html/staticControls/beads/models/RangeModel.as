@@ -50,7 +50,12 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -61,6 +66,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The maximum value for the range (defaults to 100).
+		 * 
+		 *  @copy org.apache.flex.core.IRangeModel#maximum
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -85,6 +92,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The minimum value for the range (defaults to 0).
+		 * 
+		 *  @copy org.apache.flex.core.IRangeModel#minimum
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -109,6 +118,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The modulus value for the range. 
+		 * 
+		 *  @copy org.apache.flex.core.IRangeModel#snapInterval
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -133,6 +144,8 @@ package org.apache.flex.html.staticControls.beads.models
 		
 		/**
 		 *  The amount to adjust the value either up or down toward the edge of the range.
+		 * 
+		 *  @copy org.apache.flex.core.IRangeModel#stepSize
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -159,6 +172,8 @@ package org.apache.flex.html.staticControls.beads.models
 		 *  The current value of the range, between the minimum and maximum values. Attempting
 		 *  to set the value outside of the minimum-maximum range changes the value to still be
 		 *  within the range. Note that the value is adjusted by the stepSize.
+		 * 
+		 *  @copy org.apache.flex.core.IRangeModel#value
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -31,7 +31,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	
 	/**
-	 *  The RadioButtonView class creates the visual elements of the RadioButton component. 
+	 *  The RadioButtonView class creates the visual elements of the org.apache.flex.html.staticControls.RadioButton 
+	 *  component. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -97,7 +98,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -134,7 +140,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The string label for the RadioButton.
+		 *  The string label for the org.apache.flex.html.staticControls.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -158,7 +164,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The HTML string for the RadioButton.
+		 *  The HTML string for the org.apache.flex.html.staticControls.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

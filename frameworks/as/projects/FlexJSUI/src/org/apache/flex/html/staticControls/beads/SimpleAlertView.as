@@ -34,7 +34,8 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
-	 *  The SimpleAlertView class creates the visual elements of the SimpleAlert component.
+	 *  The SimpleAlertView class creates the visual elements of the 
+	 *  org.apache.flex.html.staticControls.SimpleAlert component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -61,7 +62,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

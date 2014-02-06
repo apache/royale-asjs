@@ -29,9 +29,9 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The ButtonBarLayout class bead sizes and positions the Button elements that
-	 *  make up a ButtonBar. This bead arranges the Buttons horizontally and makes them
-	 *  all the same width unless the buttonWidths property has been set in which case
+	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.staticControls.Button 
+	 *  elements that make up a org.apache.flex.html.staticControls.ButtonBar. This bead arranges the Buttons 
+	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
 	 *  
 	 *  @langversion 3.0
@@ -56,7 +56,12 @@ package org.apache.flex.html.staticControls.beads.layouts
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

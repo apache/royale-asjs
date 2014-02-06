@@ -44,8 +44,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 
 	/**
-	 *  The List class creates the visual elements of the List component. A List consists of
-	 *  the area to display the data (in the dataGroup), any scrollbars, and so forth.
+	 *  The List class creates the visual elements of the org.apache.flex.html.staticControls.List 
+	 *  component. A List consists of the area to display the data (in the dataGroup), any 
+	 *  scrollbars, and so forth.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -63,7 +64,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _border:Border;
 		
 		/**
-		 *  The border surrounding the List.
+		 *  The border surrounding the org.apache.flex.html.staticControls.List.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -93,7 +94,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _vScrollBar:ScrollBar;
 		
 		/**
-		 *  The vertical ScrollBar, if needed.
+		 *  The vertical org.apache.flex.html.staticControls.ScrollBar, if needed.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -108,7 +109,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The horizontal ScrollBar, currently null.
+		 *  The horizontal org.apache.flex.html.staticControls.ScrollBar, currently null.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -121,7 +122,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The contentArea includes the dataGroup and ScrollBars.
+		 *  The contentArea includes the dataGroup and scrollBars.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -144,7 +145,12 @@ package org.apache.flex.html.staticControls.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function get strand():IStrand
 		{

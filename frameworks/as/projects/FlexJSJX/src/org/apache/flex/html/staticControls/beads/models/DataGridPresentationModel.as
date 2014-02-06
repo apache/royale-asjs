@@ -22,10 +22,11 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.html.staticControls.beads.models;
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns
-	 *  of the DataGrid along with the height of the rows. 
+	 *  of the org.apache.flex.html.staticControls.DataGrid along with the height of the rows. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -94,7 +95,12 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		public function set strand(value:IStrand):void
 		{

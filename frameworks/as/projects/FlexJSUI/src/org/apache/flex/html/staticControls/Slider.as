@@ -27,11 +27,11 @@ package org.apache.flex.html.staticControls
 	 *  The Slider class is a component that displays a range of values using a
 	 *  track and a thumb control. The Slider uses the following bead types:
 	 * 
-	 *  IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
-	 *  IBeadView:  the bead that constructs the visual parts of the Slider.
-	 *  IBeadController: the bead that handles input.
-	 *  IThumbValue: the bead responsible for the display of the thumb control.
-	 *  ITrackView: the bead responsible for the display of the track.
+	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  org.apache.flex.core.IBeadController: the bead that handles input.
+	 *  org.apache.flex.core.IThumbValue: the bead responsible for the display of the thumb control.
+	 *  org.apache.flex.core.ITrackView: the bead responsible for the display of the track.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

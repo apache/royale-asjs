@@ -23,7 +23,7 @@ package org.apache.flex.html.staticControls.beads
 
 	/**
 	 *  The IListView interface provides the protocol for any bead that
-	 *  creates the visual parts for a List control.
+	 *  creates the visual parts for a org.apache.flex.html.staticControls.List control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

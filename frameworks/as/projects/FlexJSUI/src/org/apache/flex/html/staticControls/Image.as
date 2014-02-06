@@ -25,8 +25,8 @@ package org.apache.flex.html.staticControls
 	 *  The Image class is a component that displays a bitmap. The Image uses
 	 *  the following beads:
 	 * 
-	 *  IBeadModel: the data model for the Image, including the source property.
-	 *  IBeadView: constructs the visual elements of the component.
+	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the source property.
+	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

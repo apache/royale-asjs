@@ -26,8 +26,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 
 	/**
-	 *  The AlertControler class bead handles the close event on the Alert by removing the
-	 *  Alert from the display.
+	 *  The AlertControler class bead handles the close event on the org.apache.flex.html.staticControls.Alert 
+	 *  by removing the org.apache.flex.html.staticControls.Alert from the display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +51,12 @@ package org.apache.flex.html.staticControls.beads.controllers
         private var _strand:IStrand;
         
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
         public function get strand():IStrand
         {
@@ -59,7 +64,12 @@ package org.apache.flex.html.staticControls.beads.controllers
         }
         
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
         public function set strand(value:IStrand):void
         {

@@ -29,13 +29,13 @@ package org.apache.flex.html.staticControls
 	 *  places that item into the input field of the ComboBox. The ComboBox
 	 *  uses the following bead types:
 	 * 
-	 *  IBeadModel: the data model, which includes the dataProvider, selectedItem, and
+	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
-	 *  IBeadView:  the bead that constructs the visual parts of the component.
-	 *  IBeadController: the bead that handles input and output.
-	 *  IPopUp: the bead responsible for displaying the selection list.
-	 *  IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  IItemRenderer: the class or factory used to display an item in the component.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
+	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
+	 *  org.apache.flex.core.IPopUp: the bead responsible for displaying the selection list.
+	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
+	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the component.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
