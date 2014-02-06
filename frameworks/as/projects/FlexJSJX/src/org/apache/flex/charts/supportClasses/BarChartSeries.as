@@ -45,6 +45,8 @@ package org.apache.flex.charts.supportClasses
 		{
 		}
 		
+		private var _xField:String = "x";
+		
 		/**
 		 *  The name of the field corresponding to the X or horizontal value
 		 *  for an item in the chart. 
@@ -54,7 +56,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _xField:String = "x";
 		public function get xField():String
 		{
 			return _xField;
@@ -63,6 +64,8 @@ package org.apache.flex.charts.supportClasses
 		{
 			_xField = value;
 		}
+		
+		private var _yField:String;
 		
 		/**
 		 *  The name of the field that provides the Y or vertical value for an
@@ -73,7 +76,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _yField:String;
 		public function get yField():String
 		{
 			return _yField;
@@ -83,6 +85,8 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
+		private var _fillColor:uint;
+		
 		/**
 		 *  The color to use for all bars in the series.
 		 *
@@ -91,7 +95,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _fillColor:uint;
 		public function get fillColor():uint
 		{
 			return _fillColor;
@@ -100,6 +103,8 @@ package org.apache.flex.charts.supportClasses
 		{
 			_fillColor = value;
 		}
+		
+		private var _itemRenderer:IFactory;
 		
 		/**
 		 *  The class or class factory to use as the itemRenderer for each X/Y pair. The
@@ -110,7 +115,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{
 			return _itemRenderer;

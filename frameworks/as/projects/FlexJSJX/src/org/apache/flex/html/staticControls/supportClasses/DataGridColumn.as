@@ -45,6 +45,8 @@ package org.apache.flex.html.staticControls.supportClasses
 		{
 		}
 		
+		private var _itemRenderer:IFactory;
+		
 		/**
 		 *  The itemRenderer class or factory to use to make instances of itemRenderers for
 		 *  display of data.
@@ -54,7 +56,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _itemRenderer:IFactory;
 		public function get itemRenderer():IFactory
 		{
 			return _itemRenderer;
@@ -64,6 +65,8 @@ package org.apache.flex.html.staticControls.supportClasses
 			_itemRenderer = value;
 		}
 		
+		private var _columnWidth:Number = 100;
+		
 		/**
 		 *  The width of the column (default is 100 pixels).
 		 *
@@ -72,7 +75,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _columnWidth:Number = 100;
 		public function get columnWidth():Number
 		{
 			return _columnWidth;
@@ -82,6 +84,8 @@ package org.apache.flex.html.staticControls.supportClasses
 			_columnWidth = value;
 		}
 		
+		private var _label:String;
+		
 		/**
 		 *  The label for the column (appears in the header area).
 		 *
@@ -90,7 +94,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _label:String;
 		public function get label():String
 		{
 			return _label;
@@ -99,6 +102,8 @@ package org.apache.flex.html.staticControls.supportClasses
 		{
 			_label = value;
 		}
+		
+		private var _dataField:String;
 		
 		/**
 		 *  The name of the field containing the data value presented by the column. This value is used
@@ -109,7 +114,6 @@ package org.apache.flex.html.staticControls.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _dataField:String;
 		public function get dataField():String
 		{
 			return _dataField;

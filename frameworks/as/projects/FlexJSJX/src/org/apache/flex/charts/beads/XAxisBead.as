@@ -47,6 +47,8 @@ package org.apache.flex.charts.beads
 		{
 		}
 		
+		private var _labelField:String;
+		
 		/**
 		 *  The name of field witin the chart data to use to label each of the
 		 *  axis data points.
@@ -56,7 +58,6 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _labelField:String;
 		public function get labelField():String
 		{
 			return _labelField;
@@ -66,10 +67,11 @@ package org.apache.flex.charts.beads
 			_labelField = value;
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 * @private
 		 */
-		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

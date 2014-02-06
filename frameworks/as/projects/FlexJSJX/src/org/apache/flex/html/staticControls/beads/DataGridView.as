@@ -77,10 +77,11 @@ package org.apache.flex.html.staticControls.beads
 			return columns;
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 * @private
 		 */
-		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

@@ -46,7 +46,9 @@ package org.apache.flex.charts.supportClasses
 		{
 			super();
 		}
-				
+		
+		private var _itemRendererParent:Object;
+		
 		/**
 		 *  The parent component of the itemRenderer instance. This is the container that houses
 		 *  all of the itemRenderers for the series.
@@ -56,7 +58,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _itemRendererParent:Object;
 		public function get itemRendererParent():Object
 		{
 			return _itemRendererParent;
@@ -68,6 +69,8 @@ package org.apache.flex.charts.supportClasses
 		
 		private var filledRect:FilledRectangle;
 		
+		private var _yField:String = "y";
+		
 		/**
 		 *  The name of the field containing the value for the Y axis.
 		 *
@@ -76,7 +79,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _yField:String = "y";
 		public function get yField():String
 		{
 			return _yField;
@@ -86,6 +88,8 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
+		private var _xField:String = "x";
+		
 		/**
 		 *  The name of the field containing the value for the X axis.
 		 *
@@ -94,7 +98,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _xField:String = "x";
 		public function get xField():String
 		{
 			return _xField;
@@ -104,6 +107,8 @@ package org.apache.flex.charts.supportClasses
 			_xField = value;
 		}
 		
+		private var _fillColor:uint;
+		
 		/**
 		 *  The color used to fill the interior of the box.
 		 *
@@ -112,7 +117,6 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _fillColor:uint;
 		public function get fillColor():uint
 		{
 			return _fillColor;

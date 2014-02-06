@@ -34,10 +34,20 @@ package org.apache.flex.html.staticControls.beads.models
 	 */
 	public class DataGridPresentationModel extends EventDispatcher implements IDataGridPresentationModel
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function DataGridPresentationModel()
 		{
 			super();
 		}
+		
+		private var _columnLabels:Array;
 		
 		/**
 		 *  The labels for each column.
@@ -47,7 +57,6 @@ package org.apache.flex.html.staticControls.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _columnLabels:Array;
 		public function get columnLabels():Array
 		{
 			return _columnLabels;
@@ -60,6 +69,8 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
+		private var _rowHeight:Number = 30;
+		
 		/**
 		 *  The height of the rows (default is 30 pixels).
 		 *
@@ -68,7 +79,6 @@ package org.apache.flex.html.staticControls.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _rowHeight:Number = 30;
 		public function get rowHeight():Number
 		{
 			return _rowHeight;
@@ -81,10 +91,11 @@ package org.apache.flex.html.staticControls.beads.models
 			}
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 * @private
 		 */
-		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

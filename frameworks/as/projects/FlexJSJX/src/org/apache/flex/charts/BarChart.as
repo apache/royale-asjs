@@ -47,6 +47,8 @@ package org.apache.flex.charts
 			super();
 		}
 		
+		private var _series:Array;
+		
 		/**
 		 *  The collection of series for the chart. Each element of the
 		 *  series array should be of type BarChartSeries.
@@ -56,7 +58,6 @@ package org.apache.flex.charts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _series:Array;
 		public function get series():Array
 		{
 			return _series;

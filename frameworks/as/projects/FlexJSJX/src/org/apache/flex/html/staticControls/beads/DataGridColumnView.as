@@ -44,15 +44,18 @@ package org.apache.flex.html.staticControls.beads
 		{
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 * @private
 		 */
-		private var _strand:IStrand;
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 			_strand = value;
 		}
+		
+		private var _columnIndex:uint;
 		
 		/**
 		 *  The zero-based index for the column.
@@ -62,7 +65,6 @@ package org.apache.flex.html.staticControls.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _columnIndex:uint;
 		public function get columnIndex():uint
 		{
 			return _columnIndex;
@@ -71,6 +73,8 @@ package org.apache.flex.html.staticControls.beads
 		{
 			_columnIndex = value;
 		}
+		
+		private var _column:DataGridColumn;
 		
 		/**
 		 *  The DataGridColumn containing information used to present the List as
@@ -81,7 +85,6 @@ package org.apache.flex.html.staticControls.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _column:DataGridColumn;
 		public function get column():DataGridColumn
 		{
 			return _column;

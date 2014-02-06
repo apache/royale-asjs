@@ -77,7 +77,7 @@ package org.apache.flex.html.staticControls.beads
 			dataProviderChangeHandler(null);
 		}
 		
-		public var _itemRendererFactory:IItemRendererClassFactory;
+		private var _itemRendererFactory:IItemRendererClassFactory;
 		
 		/**
 		 *  The factory used to create the itemRenderers.
@@ -96,6 +96,14 @@ package org.apache.flex.html.staticControls.beads
 			_itemRendererFactory = value;
 		}
 		
+		/**
+		 *  The dataGroup that is the pareent for the itemRenderers
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected var dataGroup:IItemRendererParent;
 		
 		/**

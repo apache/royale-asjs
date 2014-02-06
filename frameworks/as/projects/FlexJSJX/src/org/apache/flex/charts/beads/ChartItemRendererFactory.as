@@ -52,6 +52,8 @@ package org.apache.flex.charts.beads
 		private var selectionModel:ISelectionModel;
 		protected var dataGroup:IItemRendererParent;
 		
+		private var _seriesRenderers:Array;
+		
 		/**
 		 *  The array of renderers created for each series.
 		 *
@@ -60,7 +62,6 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		private var _seriesRenderers:Array;
 		public function get seriesRenderers():Array
 		{
 			return _seriesRenderers;
