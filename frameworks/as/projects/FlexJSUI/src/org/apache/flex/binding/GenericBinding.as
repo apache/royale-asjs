@@ -195,6 +195,8 @@ package org.apache.flex.binding
          *  The method that gets called by the watcher when the value
          *  may have changed.
          *
+         *  @param value The new value.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

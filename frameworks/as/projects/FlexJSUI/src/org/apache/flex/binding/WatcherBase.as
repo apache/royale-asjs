@@ -100,6 +100,8 @@ package org.apache.flex.binding
          *  handle changes in the parent chain.  For example, if watching 
          *  {a.b.c} and this watcher is watching "b", then handle "a" changing.
          *
+         *  @param parent The new parent.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -115,6 +117,8 @@ package org.apache.flex.binding
          *  {a.b.c} and this watcher is watching "b", then this method
          *  is called to add the watcher watching "c".
          *
+         *  @param child The new child
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -136,6 +140,8 @@ package org.apache.flex.binding
          *  that actually perform the change based on changes
          *  detected to this portion of the chain.
          *
+         *  @param binding The new binding.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -219,6 +225,8 @@ package org.apache.flex.binding
          *  Calls a function inside a try catch block to try to
          *  update the value.
          *
+         *  @param wrappedFunction The function to call.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
