@@ -36,11 +36,11 @@ package org.apache.flex.core
          *  Returns a value for a given object based on a property name,
          *  and optionally, the current state, and a set of property value pairs.
          *
-         *  @param Object thisObject The object to get the value for.
-         *  @param String valueName The name of a property. e.g. fontFamily, color, etc.
-         *  @param String state The name of a state. e.g. hovered, visited
-         *  @param Object attrs A map of property value pairs that may affect the returned value.
-         *  @return * A value or undefined
+         *  @param thisObject The object to get the value for.
+         *  @param valueName The name of a property. e.g. fontFamily, color, etc.
+         *  @param state The name of a state. e.g. hovered, visited
+         *  @param attrs A map of property value pairs that may affect the returned value.
+         *  @return A value or undefined
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -53,7 +53,7 @@ package org.apache.flex.core
          *  Returns a shared instance, instantiating the shared instance if
          *  it doesn't exist.  Often used to share "managers"
          *
-         *  @param String valueName The name of a shared instance.  Often, the fully
+         *  @param valueName The name of a shared instance.  Often, the fully
          *  qualified class name is used.
          * 
          *  @langversion 3.0
@@ -67,7 +67,7 @@ package org.apache.flex.core
          *  MXML Documents that support &lt;fx:Style&gt; blocks should call
          *  init to install the styles for each instance.
          *
-         *  @param Object mainClass An instance that may have styles from an &lt;fx:Style&gt; block.
+         *  @param mainClass An instance that may have styles from an &lt;fx:Style&gt; block.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

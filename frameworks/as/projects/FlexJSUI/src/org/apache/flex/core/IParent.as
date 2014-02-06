@@ -33,7 +33,7 @@ package org.apache.flex.core
         /**
          *  Add a component to the parent.
          * 
-         *  @param Object c The subcomponent to add.
+         *  @param c The subcomponent to add.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -45,8 +45,8 @@ package org.apache.flex.core
         /**
          *  Add a component to the parent.
          * 
-         *  @param Object c The subcomponent to add.
-         *  @param int c The index where the subcomponent should be added.
+         *  @param c The subcomponent to add.
+         *  @param c The index where the subcomponent should be added.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -58,7 +58,8 @@ package org.apache.flex.core
         /**
          *  Gets the index of this subcomponent.
          * 
-         *  @param Object c The subcomponent to add.
+         *  @param c The subcomponent to add.
+         *  @return The index (zero-based).
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -70,7 +71,7 @@ package org.apache.flex.core
         /**
          *  Remove a component from the parent.
          * 
-         *  @param Object c The subcomponent to remove.
+         *  @param c The subcomponent to remove.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

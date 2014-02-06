@@ -41,8 +41,8 @@ package org.apache.flex.net
         /**
          *  Constructor.
          *  
-         *  @param String name The name of the header.
-         *  @param String value The value for that header.
+         *  @param name The name of the header.
+         *  @param value The value for that header.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

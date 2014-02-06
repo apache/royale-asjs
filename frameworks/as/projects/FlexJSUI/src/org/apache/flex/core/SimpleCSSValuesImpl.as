@@ -337,10 +337,10 @@ package org.apache.flex.core
          *  It is global, not per instance.  Fancier implementations
          *  may store shared values per-instance.
          * 
-         *  @param Object thisObject An object associated with this value.  Thiis
+         *  @param thisObject An object associated with this value.  Thiis
          *                parameter is ignored.
-         *  @param String valueName The name or key of the value being stored.
-         *  @param * The value to be stored.
+         *  @param valueName The name or key of the value being stored.
+         *  @param The value to be stored.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

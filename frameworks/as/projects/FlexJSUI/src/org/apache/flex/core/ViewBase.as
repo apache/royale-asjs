@@ -193,8 +193,8 @@ package org.apache.flex.core
          *  <code>true</code> if the array of states
          *  contains a state with this name.
          * 
-         *  @param String state The state namem.
-         *  @return Boolean True if state in state array
+         *  @param state The state namem.
+         *  @return True if state in state array
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

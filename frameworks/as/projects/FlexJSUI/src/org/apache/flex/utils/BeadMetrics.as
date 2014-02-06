@@ -38,8 +38,8 @@ public class BeadMetrics
      *  Compute the offset of the content
      *  in a container based on border-thickness and padding styles.  
      *  
-     *  @param IStrand strand The host strand.
-     *  @return UIMetrics The offsets of the content.
+     *  @param strand The host strand.
+     *  @return The offsets of the content.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2

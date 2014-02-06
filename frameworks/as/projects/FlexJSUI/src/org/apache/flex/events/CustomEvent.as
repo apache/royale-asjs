@@ -33,9 +33,9 @@ package org.apache.flex.events
         /**
          *  Constructor.
          *  
-         *  @param String type The name of the event.
-         *  @param Boolean bubbles Whether the event bubbles.
-         *  @param Boolean cancelable Whether the event can be canceled.
+         *  @param type The name of the event.
+         *  @param bubbles Whether the event bubbles.
+         *  @param cancelable Whether the event can be canceled.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

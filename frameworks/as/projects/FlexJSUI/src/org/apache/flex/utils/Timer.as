@@ -52,9 +52,9 @@ public class Timer extends flash.utils.Timer
     /**
      *  Constructor.
      * 
-     *  @param Number delay The number of milliseconds 
+     *  @param delay The number of milliseconds 
      *  to wait before dispatching the event.
-     *  @param int repeatCount The number of times to dispatch
+     *  @param repeatCount The number of times to dispatch
      *  the event.  If 0, keep dispatching forever.
      *  
      *  @langversion 3.0

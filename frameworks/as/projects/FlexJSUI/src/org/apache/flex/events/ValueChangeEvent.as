@@ -100,10 +100,10 @@ package org.apache.flex.events
         /**
          *  A convenience method to create an instance of the ValueChangeEvent.
          * 
-         *  @param Object source The source of the object.
-         *  @param String name The name of the event.
-         *  @param Object oldValue The value before it was changed.
-         *  @param Object newValue The value after it was changed.
+         *  @param source The source of the object.
+         *  @param name The name of the event.
+         *  @param oldValue The value before it was changed.
+         *  @param newValue The value after it was changed.
          *  @return An instance of the ValueChangeEvent.
          *  
          *  @langversion 3.0

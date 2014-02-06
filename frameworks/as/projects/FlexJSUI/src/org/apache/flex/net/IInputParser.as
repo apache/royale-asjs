@@ -37,8 +37,8 @@ package org.apache.flex.net
          *  XML, or JSON) and return an array of serialized data
          *  items.
          * 
-         *  @param String s Serialized data set, XML or JSON.
-         *  @return Array An Array of serialized data items.
+         *  @param s Serialized data set, XML or JSON.
+         *  @return An Array of serialized data items.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

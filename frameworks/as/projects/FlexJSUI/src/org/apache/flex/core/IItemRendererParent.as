@@ -35,8 +35,8 @@ package org.apache.flex.core
          *  The IItemRendererParent interface is the basic interface for the 
          *  container that parents item renderers.
          * 
-         *  @param int index The index of the data item.
-         *  @return org.apache.flex.core.IItemRenderer The item renderer for the data item.
+         *  @param index The index of the data item.
+         *  @return The item renderer for the data item.
          * 
          *  @see org.apache.flex.core.IItemRenderer
          * 

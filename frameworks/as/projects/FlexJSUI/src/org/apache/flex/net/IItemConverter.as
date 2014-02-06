@@ -36,8 +36,8 @@ package org.apache.flex.net
          *  Take the input string (could be serialized data set,
          *  XML, or JSON) and return a data class instance.
          * 
-         *  @param String s Serialized data item, XML or JSON.
-         *  @return Object An instance of a data class.
+         *  @param s Serialized data item, XML or JSON.
+         *  @return An instance of a data class.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

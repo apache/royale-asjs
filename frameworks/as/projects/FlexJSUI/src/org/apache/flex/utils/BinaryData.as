@@ -221,7 +221,7 @@ public class BinaryData
      *  and resizing in large chunks in generally more
      *  efficient anyway.
      * 
-     *  @param int extra The number of additional bytes.
+     *  @param extra The number of additional bytes.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

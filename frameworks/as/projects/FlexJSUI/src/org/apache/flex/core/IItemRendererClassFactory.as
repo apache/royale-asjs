@@ -44,8 +44,8 @@ package org.apache.flex.core
          *  This method is called to generate another instance of an item renderer
          *  and attach it to the given parent.
          * 
-         *  @param org.apache.flex.core.IItemRendererParent parent The parent of the item renderer.
-         *  @return org.apache.flex.core.IItemRenderer The item renderer.
+         *  @param parent The parent of the item renderer.
+         *  @return The item renderer.
          * 
          *  @see org.apache.flex.core.IItemRendererParent
          *  @see org.apache.flex.core.IItemRenderer

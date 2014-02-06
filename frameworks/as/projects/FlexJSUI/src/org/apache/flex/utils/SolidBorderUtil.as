@@ -38,15 +38,15 @@ public class SolidBorderUtil
      *  Draw a solid color border as specified.  Will fill with
      *  the backgroundColor if specified.
      * 
-     *  @param Graphics g The flash.display.DisplayObject#graphics
-     *  @param Number x The x position
-     *  @param Number y The y position
-     *  @param Number width The width 
-     *  @param Number height The height 
-     *  @param uint color The color
-     *  @param uint backgroundColor The optional fill color
-     *  @param int thickness The thickness of the border
-     *  @param Number alpha The alpha
+     *  @param g The flash.display.DisplayObject#graphics
+     *  @param x The x position
+     *  @param y The y position
+     *  @param width The width 
+     *  @param height The height 
+     *  @param color The color
+     *  @param backgroundColor The optional fill color
+     *  @param thickness The thickness of the border
+     *  @param alpha The alpha
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

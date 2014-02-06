@@ -85,10 +85,10 @@ package org.apache.flex.core
 		
         /**
          *  Draw the rectangle.
-         *  @param Number x The x position of the top-left corner of the rectangle.
-         *  @param Number y The y position of the top-left corner.
-         *  @param Number width The width of the rectangle.
-         *  @param Number height The height of the rectangle.
+         *  @param x The x position of the top-left corner of the rectangle.
+         *  @param y The y position of the top-left corner.
+         *  @param width The width of the rectangle.
+         *  @param height The height of the rectangle.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

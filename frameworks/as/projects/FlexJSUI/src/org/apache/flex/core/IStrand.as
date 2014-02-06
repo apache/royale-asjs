@@ -39,7 +39,7 @@ package org.apache.flex.core
         /**
          *  Add a bead to the strand.
          *
-         *  @param IBead bead The bead to be added.
+         *  @param bead The bead to be added.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -51,8 +51,9 @@ package org.apache.flex.core
         /**
          *  Find a bead on the strand.
          *
-         *  @param Class classOrInterface The class or interface to use
+         *  @param classOrInterface The class or interface to use
          *                                to search for the bead
+         *  @return The bead.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

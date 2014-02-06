@@ -54,10 +54,10 @@ public class MXMLDataInterpreter
     /**
      *  Generates an object based on the encoded data.
      *  
-     *  @param Object document The MXML document.  If the object has an id
+     *  @param document The MXML document.  If the object has an id
      *  it will be assigned in this document in this method.
-     *  @param Array data The encoded data.
-     *  @return Object The object.
+     *  @param data The encoded data.
+     *  @return The object.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -108,12 +108,12 @@ public class MXMLDataInterpreter
     /**
      *  Generates an Array of objects based on the encoded data.
      *  
-     *  @param Object document The MXML document.  If the object has an id
+     *  @param document The MXML document.  If the object has an id
      *  it will be assigned in this document in this method.
-     *  @param Array parent The parent for any display objects encoded in the array.
-     *  @param Array data The encoded data.
-     *  @param Boolean recursive Whether to interpret a child's array of encoded data.
-     *  @return Array The Array.
+     *  @param parent The parent for any display objects encoded in the array.
+     *  @param data The encoded data.
+     *  @param recursive Whether to interpret a child's array of encoded data.
+     *  @return The Array.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -266,11 +266,11 @@ public class MXMLDataInterpreter
     /**
      *  Generates the instances of objects in an MXML document based on the encoded data.
      *  
-     *  @param Object document The MXML document.  If the object has an id
+     *  @param document The MXML document.  If the object has an id
      *  it will be assigned in this document in this method.
-     *  @param Array parent The parent for any display objects encoded in the array.
-     *  @param Array data The encoded data.
-     *  @param Boolean recursive Whether to interpret a child's array of encoded data.
+     *  @param parent The parent for any display objects encoded in the array.
+     *  @param data The encoded data.
+     *  @param recursive Whether to interpret a child's array of encoded data.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -289,9 +289,9 @@ public class MXMLDataInterpreter
      *  based on the encoded data.  This basically means setting the attributes
      *  found on the tag and child tags that aren't in the default property.
      *  
-     *  @param Object host The MXML document.  If the object has an id
+     *  @param host The MXML document.  If the object has an id
      *  it will be assigned in this document in this method.
-     *  @param Array data The encoded data.
+     *  @param data The encoded data.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
