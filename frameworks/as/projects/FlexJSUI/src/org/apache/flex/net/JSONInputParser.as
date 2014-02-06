@@ -33,7 +33,7 @@ package org.apache.flex.net
 	public class JSONInputParser implements IInputParser
 	{        
         /**
-         *  @copy org.apache.flex.net.IInputParser.
+         *  @copy org.apache.flex.net.IInputParser#parseItems
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

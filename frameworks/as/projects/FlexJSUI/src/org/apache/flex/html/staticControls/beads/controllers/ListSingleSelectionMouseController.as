@@ -58,9 +58,35 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 		}
 		
+        /**
+         *  The model.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		protected var listModel:ISelectionModel;
-		protected var listView:IListView;
-		protected var dataGroup:IItemRendererParent;
+
+        /**
+         *  The view.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var listView:IListView;
+
+        /**
+         *  The parent of the item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var dataGroup:IItemRendererParent;
 
 		private var _strand:IStrand;
 		

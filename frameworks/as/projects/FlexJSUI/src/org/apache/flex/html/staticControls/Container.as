@@ -75,7 +75,7 @@ package org.apache.flex.html.staticControls
 		}
 		
         /**
-         *  @copy org.apache.flex.core.ViewBase#mxmlContent.
+         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

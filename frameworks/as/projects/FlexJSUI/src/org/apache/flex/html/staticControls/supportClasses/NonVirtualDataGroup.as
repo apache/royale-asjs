@@ -47,7 +47,7 @@ package org.apache.flex.html.staticControls.supportClasses
 		}
 
         /**
-         *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex.
+         *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.html.staticControls.supportClasses
         }
 		
         /**
-         *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements
+         *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

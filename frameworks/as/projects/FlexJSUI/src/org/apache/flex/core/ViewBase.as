@@ -105,7 +105,7 @@ package org.apache.flex.core
 		private var mxmlProperties:Array ;
 		
         /**
-         *  @copy org.apache.flex.core.Application#generateMXMLAttributes
+         *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

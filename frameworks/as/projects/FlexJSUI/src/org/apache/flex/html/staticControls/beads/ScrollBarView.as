@@ -103,7 +103,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _thumb:DisplayObject;
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.IScrollBarView#decrement
+         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#decrement
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -116,7 +116,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 
         /**
-         *  @copy org.apache.flex.html.staticControls.IScrollBarView#increment
+         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#increment
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -129,7 +129,7 @@ package org.apache.flex.html.staticControls.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.staticControls.IScrollBarView#track
+         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#track
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -142,7 +142,7 @@ package org.apache.flex.html.staticControls.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.staticControls.IScrollBarView#thumb
+         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#thumb
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

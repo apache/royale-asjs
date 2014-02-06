@@ -179,7 +179,7 @@ package org.apache.flex.binding
         }
 		
         /**
-         *  @copy org.apache.flex.core.IDocument#setDocument
+         *  @copy org.apache.flex.core.IDocument#setDocument()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -83,9 +83,9 @@ public class BinaryData
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeShort(byte:int):void
+	public function writeShort(short:int):void
 	{
-		ba.writeShort(byte);
+		ba.writeShort(short);
 	}
 	
     /**
@@ -96,9 +96,9 @@ public class BinaryData
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeUnsignedInt(byte:uint):void
+	public function writeUnsignedInt(unsigned:uint):void
 	{
-		ba.writeUnsignedInt(byte);
+		ba.writeUnsignedInt(unsigned);
 	}
 
     /**
@@ -109,9 +109,9 @@ public class BinaryData
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeInt(byte:uint):void
+	public function writeInt(integer:uint):void
 	{
-		ba.writeInt(byte);
+		ba.writeInt(integer);
 	}
 
     /**

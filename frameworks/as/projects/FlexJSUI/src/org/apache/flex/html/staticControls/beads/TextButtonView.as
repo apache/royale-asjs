@@ -165,7 +165,7 @@ package org.apache.flex.html.staticControls.beads
 		public var overTextField:CSSTextField;
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.ITextModel#text
+         *  @copy org.apache.flex.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -193,7 +193,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.ITextModel#text
+         *  @copy org.apache.flex.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

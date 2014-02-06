@@ -430,7 +430,7 @@ package org.apache.flex.net
 		private var _beads:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead
+         *  @copy org.apache.flex.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -446,7 +446,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType
+         *  @copy org.apache.flex.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -464,7 +464,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead
+         *  @copy org.apache.flex.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -176,6 +176,9 @@ package org.apache.flex.core
          *  in order to ensure that the constructors have
          *  completed first.
          * 
+         *  @param data The encoded data representing the
+         *  MXML attributes.
+         * 
          *  @see org.apache.flex.utils.MXMLDataInterpreter
          * 
          *  @langversion 3.0
@@ -203,7 +206,7 @@ package org.apache.flex.core
         private var _beads:Vector.<IBead>;
         
         /**
-         *  @copy org.apache.flex.core.IStrand#addBead
+         *  @copy org.apache.flex.core.IStrand#addBead()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -219,7 +222,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType
+         *  @copy org.apache.flex.core.IStrand#getBeadByType()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -237,7 +240,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IStrand#removeBead
+         *  @copy org.apache.flex.core.IStrand#removeBead()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -274,7 +277,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IParent#addElement
+         *  @copy org.apache.flex.core.IParent#addElement()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -293,7 +296,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IParent#addElementAt
+         *  @copy org.apache.flex.core.IParent#addElementAt()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -312,7 +315,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#getElementIndex
+         *  @copy org.apache.flex.core.IParent#getElementIndex()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -328,7 +331,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IParent#removeElement
+         *  @copy org.apache.flex.core.IParent#removeElement()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

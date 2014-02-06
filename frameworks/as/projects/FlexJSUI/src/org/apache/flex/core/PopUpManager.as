@@ -56,7 +56,7 @@ package org.apache.flex.core
         private var document:DisplayObjectContainer;
         
         /**
-         *  @copy org.apache.flex.core.IDocument#setDocument
+         *  @copy org.apache.flex.core.IDocument#setDocument()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

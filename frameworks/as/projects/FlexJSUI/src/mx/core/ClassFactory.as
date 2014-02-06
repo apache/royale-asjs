@@ -66,7 +66,7 @@ package mx.core
 		}
 		
         /**
-         *  @copy mx.core.IFactory#newInstance
+         *  @copy mx.core.IFactory#newInstance()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 9

@@ -51,7 +51,7 @@ package org.apache.flex.core
 		public var values:Object;
 		
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#getValue
+         *  @copy org.apache.flex.core.IValuesImpl#getValue()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -89,7 +89,7 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#getInstance
+         *  @copy org.apache.flex.core.IValuesImpl#getInstance()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -102,7 +102,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#init
+         *  @copy org.apache.flex.core.IValuesImpl#init()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

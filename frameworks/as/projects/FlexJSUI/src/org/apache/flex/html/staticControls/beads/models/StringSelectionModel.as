@@ -90,7 +90,7 @@ package org.apache.flex.html.staticControls.beads.models
 
         /**
          *  The dataProvider, which is a
-         *  Vector.<String>.
+         *  Vector.&lt;String&gt;.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

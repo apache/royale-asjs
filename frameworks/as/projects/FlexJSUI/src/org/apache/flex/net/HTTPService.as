@@ -55,7 +55,7 @@ package org.apache.flex.net
 	[Event(name="ioError", type="org.apache.flex.events.Event")]
 	
     /**
-     *  @copy org.apache.flex.net.BinaryUploader#httpStatus.
+     *  Dispatched when an httpStatus code is received from the server.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -65,8 +65,14 @@ package org.apache.flex.net
 	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
 	
     /**
-     *  @copy org.apache.flex.net.BinaryUploader#httpResponseStatus.
-     *  
+     *  Dispatched if Adobe AIR is able to detect and return the status 
+     *  code for the request.  Unlike the httpStatus event, the httpResponseStatus 
+     *  event is delivered before any response data. Also, the httpResponseStatus 
+     *  event includes values for the responseHeaders and responseURL properties 
+     *  (which are undefined for an httpStatus event. Note that the 
+     *  httpResponseStatus event (if any) will be sent before 
+     *  (and in addition to) any complete or error event.
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -90,7 +96,7 @@ package org.apache.flex.net
 	public class HTTPService extends EventDispatcher implements IStrand, IBead
 	{
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_GET.
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_GET
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -100,7 +106,7 @@ package org.apache.flex.net
 		public static const HTTP_METHOD_GET:String = URLRequestMethod.GET;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_POST.
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_POST
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -110,7 +116,7 @@ package org.apache.flex.net
 		public static const HTTP_METHOD_POST:String = URLRequestMethod.POST;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_PUT.
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_PUT
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -120,7 +126,7 @@ package org.apache.flex.net
 		public static const HTTP_METHOD_PUT:String = URLRequestMethod.PUT;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_DELETE.
+         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_DELETE
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -145,7 +151,7 @@ package org.apache.flex.net
 		private var _contentType:String = "application/x-www-form-urlencoded";
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#contentType.
+         *  @copy org.apache.flex.net.BinaryUploader#contentType
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -199,7 +205,7 @@ package org.apache.flex.net
 		private var _headers:Array;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#headers.
+         *  @copy org.apache.flex.net.BinaryUploader#headers
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -228,7 +234,7 @@ package org.apache.flex.net
 		private var _method:String = HTTP_METHOD_GET;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#method.
+         *  @copy org.apache.flex.net.BinaryUploader#method
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -255,7 +261,7 @@ package org.apache.flex.net
 		private var _responseHeaders:Array;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#responseHeaders.
+         *  @copy org.apache.flex.net.BinaryUploader#responseHeaders
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -283,7 +289,7 @@ package org.apache.flex.net
 		private var _responseURL:String;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#responseURL.
+         *  @copy org.apache.flex.net.BinaryUploader#responseURL
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -298,7 +304,7 @@ package org.apache.flex.net
 		private var _status:int;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#status.
+         *  @copy org.apache.flex.net.BinaryUploader#status
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -313,7 +319,7 @@ package org.apache.flex.net
 		private var _url:String;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#url.
+         *  @copy org.apache.flex.net.BinaryUploader#url
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -340,7 +346,7 @@ package org.apache.flex.net
 		private var _timeout:Number = 0;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#timeout.
+         *  @copy org.apache.flex.net.BinaryUploader#timeout
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -367,7 +373,7 @@ package org.apache.flex.net
 		private var _id:String;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#id.
+         *  @copy org.apache.flex.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -394,7 +400,7 @@ package org.apache.flex.net
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#strand.
+         *  @copy org.apache.flex.core.UIBase#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -407,7 +413,7 @@ package org.apache.flex.net
         }
 
         /**
-         *  @copy org.apache.flex.core.UIBase#id.
+         *  @copy org.apache.flex.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -419,7 +425,7 @@ package org.apache.flex.net
 		private var _beads:Vector.<IBead>;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead.
+         *  @copy org.apache.flex.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -435,7 +441,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType.
+         *  @copy org.apache.flex.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -453,7 +459,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead.
+         *  @copy org.apache.flex.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -532,7 +538,7 @@ package org.apache.flex.net
         }
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#statusHandler.
+         *  @copy org.apache.flex.net.BinaryUploader#statusHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -550,7 +556,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#ioErrorHandler.
+         *  @copy org.apache.flex.net.BinaryUploader#ioErrorHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -563,7 +569,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#completeHandler.
+         *  @copy org.apache.flex.net.BinaryUploader#completeHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
