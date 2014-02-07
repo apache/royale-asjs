@@ -22,7 +22,6 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.html.staticControls.beads.models;
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns

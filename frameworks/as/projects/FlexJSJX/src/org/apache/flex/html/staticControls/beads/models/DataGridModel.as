@@ -20,7 +20,6 @@ package org.apache.flex.html.staticControls.beads.models
 {
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.models;
 	
 	/**
 	 *  The DataGridModel class bead extends org.apache.flex.html.staticControls.beads.modelsArraySelectionModel 
