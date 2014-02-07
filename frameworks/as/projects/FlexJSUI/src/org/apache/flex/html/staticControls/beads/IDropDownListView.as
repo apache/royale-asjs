@@ -34,7 +34,7 @@ package org.apache.flex.html.staticControls.beads
 	{
         
         /**
-         *  @copy org.apache.flex.html.staticControls.DropDownListView#popup
+         *  @copy org.apache.flex.html.staticControls.beads.DropDownListView#popup
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads
         function get popUp():IStrand;
         
         /**
-         *  @copy org.apache.flex.html.staticControls.DropDownListView#popupVisible
+         *  @copy org.apache.flex.html.staticControls.beads.DropDownListView#popupVisible
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

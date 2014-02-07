@@ -102,8 +102,11 @@ package org.apache.flex.html.staticControls.beads.controllers
 		}
 		
         /**
-         *  Returns the input number "snapped" to the snapInterval.
+         *  Force the input number to be "snapped" to the snapInterval.
          *  
+         *  @param value The input number.
+         *  @return The input number "snapped" to the snapInterval.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

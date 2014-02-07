@@ -141,7 +141,7 @@ package org.apache.flex.html.staticControls.beads.models
 		}
 		
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#rollOverIndex
+         *  @copy org.apache.flex.core.IRollOverModel#rollOverIndex
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
