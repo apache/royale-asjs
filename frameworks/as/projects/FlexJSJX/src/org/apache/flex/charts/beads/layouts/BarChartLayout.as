@@ -80,6 +80,25 @@ package org.apache.flex.charts.beads.layouts
 			_gap = value;
 		}
 		
+		private var _xAxisHeight:Number = 30;
+		
+		/**
+		 *  The height of the x-axis. Assumes a default of 30.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get xAxisHeight():Number
+		{
+			return _xAxisHeight;
+		}
+		public function set xAxisHeight(value:Number):void
+		{
+			_xAxisHeight = value;
+		}
+		
 		/**
 		 * @private
 		 */
@@ -92,7 +111,7 @@ package org.apache.flex.charts.beads.layouts
 			
 			var xpos:Number = 0;
 			var useWidth:Number = (UIBase(_strand).width / n) - gap;
-			var useHeight:Number = UIBase(_strand).height;
+			var useHeight:Number = UIBase(_strand).height - xAxisHeight;
 			
 			var maxYValue:Number = 0;
 			var series:Array = IChart(_strand).series;

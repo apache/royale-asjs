@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads
 {	
+	import org.apache.flex.charts.beads.layouts.BarChartLayout;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IChartAxis;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -110,13 +112,15 @@ package org.apache.flex.charts.beads
 			var series:Array = IChart(_strand).series;
 					
 			var xpos:Number = 0;
+			var barChartLayout:BarChartLayout = _strand.getBeadByType(IBeadLayout) as BarChartLayout; 
+			var xAxisHeightOffset:Number = barChartLayout.xAxisHeight;
 			var useWidth:Number = UIBase(_strand).width / renderers.length;
 			
 			// draw the horzontal axis
 			var horzLine:FilledRectangle = new FilledRectangle();
 			horzLine.fillColor = 0x111111;
 			horzLine.x = 0;
-			horzLine.y = UIBase(_strand).height;
+			horzLine.y = UIBase(_strand).height - xAxisHeightOffset;
 			horzLine.height = 1;
 			horzLine.width = UIBase(_strand).width;
 			UIBase(_strand).addElement(horzLine);
@@ -128,7 +132,7 @@ package org.apache.flex.charts.beads
 				var label:Label = new Label();
 				label.text = items[i][labelField];
 				label.x = xpos;
-				label.y = labelY;
+				label.y = labelY - xAxisHeightOffset;
 				
 				UIBase(_strand).addElement(label);
 				
@@ -136,7 +140,7 @@ package org.apache.flex.charts.beads
 				var tick:FilledRectangle = new FilledRectangle();
 				tick.fillColor = 0x111111;
 				tick.x = xpos + useWidth/2;
-				tick.y = UIBase(_strand).height;
+				tick.y = UIBase(_strand).height - xAxisHeightOffset;
 				tick.width = 1;
 				tick.height = 5;
 				UIBase(_strand).addElement(tick);
