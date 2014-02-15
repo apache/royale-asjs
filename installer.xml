@@ -78,6 +78,11 @@
         <os family="unix" />
     </condition>
     
+    <condition property="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_WINDOWS}">
+        <os family="windows" />
+    </condition>
+    <property name="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_MAC}" />
+
     <condition property="goog.donot.ask" value="true">
         <isset property="installer" />
     </condition>
@@ -248,6 +253,7 @@
 
     <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
         description="downloads and installs Falcon compiler">
+        <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.url.file}</echo>
         <unzip src="${download.dir}/${falcon.url.file}" dest="${download.dir}/falcon"/>
         <ant dir="${download.dir}/falcon" antfile="installer.xml" >
         </ant>
@@ -260,6 +266,7 @@
     </target>
     <target name="falcon-get" depends="falcon-get-check" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
+        <echo>${INFO_INSTALLING_FALCON} ${falcon.url.path}/${falcon.url.file}</echo>
         <get src="${falcon.url.path}/${falcon.url.file}"
         dest="${download.dir}/${falcon.url.file}"
         verbose="false"/>
@@ -267,6 +274,7 @@
     
     <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
         description="downloads and installs some pieces of the Flex SDK">
+        <echo>${INFO_UNZIPPING} ${download.dir}/${flex.url.file}</echo>
         <unzip src="${download.dir}/${flex.url.file}" dest="${download.dir}/flex">
             <patternset>
                 <include name="bin/**" />
@@ -290,6 +298,7 @@
         <available file="${download.dir}/${flex.url.file}" property="flex.downloaded" />
     </target>
     <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
+        <echo>${INFO_INSTALLING_FLEX} ${flex.url.path}/${flex.url.file}</echo>
         <get src="${flex.url.path}/${flex.url.file}"
         dest="${download.dir}/${flex.url.file}"
         verbose="false"/>
@@ -315,6 +324,7 @@
     </target>
             
     <target name="goog-get" depends="goog-get-check" unless="goog.downloaded" >
+        <echo>${INFO_INSTALLING_GOOG} ${goog.lib.url.path}/${goog.lib.url.file}</echo>
         <get src="${goog.lib.url.path}/${goog.lib.url.file}"
         dest="${download.dir}/${goog.lib.url.file}"
         verbose="false"/>
@@ -340,6 +350,7 @@
     </target>
         
     <target name="air-get" depends="air-get-check" unless="air.downloaded" >
+        <echo>${AIRDownloadEcho} ${air.sdk.url.path}/${air.sdk.url.file}</echo>
         <get src="${air.sdk.url.path}/${air.sdk.url.file}"
             dest="${download.dir}/${air.sdk.url.file}"
             verbose="false"/>
@@ -347,6 +358,7 @@
     
     <target name="air-setup-win" if="isWindows">
         <unzip src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+        <echo>${INFO_FINISHED_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
         <copy todir="${FLEXJS_HOME}" overwrite="true">
             <fileset dir="${download.dir}/airsdk">
                 <include name="AIR SDK license.pdf" />
@@ -387,6 +399,7 @@
             <arg value="-xvf" />
             <arg value="${air.tar.name}" />
         </exec>
+        <echo>${INFO_FINISHED_UNTARING} ${download.dir}/airsdk/${air.tar.name}</echo>
         <delete file="${basedir}/airtar.properties" />
         <antcall target="mac-copy-file">
             <param name="srcdir" value="." />
@@ -509,6 +522,7 @@
         
         <mkdir dir="${download.dir}"/>
         <mkdir dir="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}"/>
+        <echo>${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.path}/${flash.sdk.url.file}</echo>
         <get src="${flash.sdk.url.path}/${flash.sdk.url.file}"
         dest="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc"
         verbose="false"/>
@@ -523,11 +537,19 @@
     <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present"
         description="Copies SWFObject from code.google.com">
         
+        <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
+        <replace file="${basedir}/swfobject.properties" token="{0}" value="swfobject_2_2.zip" />
+        <replace file="${basedir}/swfobject.properties" token="{1}" value="http://swfobject.googlecode.com/files" />
+        <property file="${basedir}/swfobject.properties" />
+        <delete file="${basedir}/swfobject.properties" />
+        <echo>${swfobject.echo}</echo>
+
         <mkdir dir="${download.dir}"/>
         <get src="http://swfobject.googlecode.com/files/swfobject_2_2.zip"
             dest="${download.dir}/swfobject_2_2.zip"
             verbose="false"/>
         
+        <echo>${INFO_DOWNLOADED}</echo>
         <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
             <patternset>
                 <include name="swfobject/expressInstall.swf"/>
@@ -537,6 +559,7 @@
     </target>
     
     <target name="fixup-config-files">
+        <echo>${INFO_INSTALLING_CONFIG_FILES}</echo>
         <copy file="${FLEXJS_HOME}/frameworks/as/flex-config-template.xml"
             tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" />
         <copy file="${FLEXJS_HOME}/frameworks/as/air-config-template.xml"
@@ -675,6 +698,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     </target>
     
     <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
+        <echo>${INFO_INSTALLING_LAUNCH_CONFIG_FILES}</echo>
         <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (COMPC).launch">
             <replacefilter
             token="$JAVA_EXEC"
