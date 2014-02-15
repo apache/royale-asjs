@@ -581,6 +581,9 @@
                 <exclude name="projects/spark/manifest.xml"/>
                 <exclude name="projects/*/bundles.properties"/>
                 <exclude name="projects/*/.settings/**"/>
+                <exclude name="projects/**/*.actionScriptProperties"/>
+                <exclude name="projects/**/*.flexLibProperties"/>
+                <exclude name="projects/**/*.DS_Store"/>
             </fileset>
         </copy>
         <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
