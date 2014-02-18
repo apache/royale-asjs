@@ -26,14 +26,41 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
+	 *  The size of each element is determined either by setting TileLayout's columnWidth and rowHeight
+	 *  properties, or having the tile size determined by factoring the numColumns into the area assigned
+	 *  for the layout.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class TileLayout implements IBeadLayout
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function TileLayout()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -46,6 +73,14 @@ package org.apache.flex.html.staticControls.beads.layouts
 		private var _columnWidth:Number = Number.NaN;
 		private var _rowHeight:Number = Number.NaN;
 		
+		/**
+		 *  The number of tiles to fit horizontally into the layout.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get numColumns():Number
 		{
 			return _numColumns;
@@ -53,9 +88,18 @@ package org.apache.flex.html.staticControls.beads.layouts
 		public function set numColumns(value:Number):void
 		{
 			_numColumns = value;
-//			updateLayout();
 		}
 		
+		/**
+		 *  The width of each column, in pixels. If left unspecified, the
+		 *  columnWidth is determined by dividing the numColumns into the
+		 *  strand's bounding box width.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get columnWidth():Number
 		{
 			return _columnWidth;
@@ -63,9 +107,18 @@ package org.apache.flex.html.staticControls.beads.layouts
 		public function set columnWidth(value:Number):void
 		{
 			_columnWidth = value;
-//			updateLayout();
 		}
 		
+		/**
+		 *  The height of each row, in pixels. If left unspecified, the
+		 *  rowHeight is determine by dividing the possible number of rows
+		 *  into the strand's bounding box height.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get rowHeight():Number
 		{
 			return _rowHeight;
@@ -73,17 +126,21 @@ package org.apache.flex.html.staticControls.beads.layouts
 		public function set rowHeight(value:Number):void
 		{
 			_rowHeight = value;
-//			updateLayout();
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleCreated(event:Event):void
 		{
 			// this is where we know the strand has things in it and we want to
 			// get the part of the strand that holds the items for the layout
-			trace("TileLayout.itemsCreated");
 			updateLayout();
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function updateLayout():void
 		{
 			// this is where the layout is calculated
