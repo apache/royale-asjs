@@ -1,0 +1,127 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+package org.apache.flex.html.staticControls.beads.layouts
+{	
+	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+	
+	public class TileLayout implements IBeadLayout
+	{
+		public function TileLayout()
+		{
+		}
+		
+		private var _strand:IStrand;
+		
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			
+			IEventDispatcher(_strand).addEventListener("itemsCreated",handleCreated);
+			IEventDispatcher(_strand).addEventListener("childrenAdded",handleCreated);
+		}
+		
+		private var _numColumns:Number = 4;
+		private var _columnWidth:Number = Number.NaN;
+		private var _rowHeight:Number = Number.NaN;
+		
+		public function get numColumns():Number
+		{
+			return _numColumns;
+		}
+		public function set numColumns(value:Number):void
+		{
+			_numColumns = value;
+//			updateLayout();
+		}
+		
+		public function get columnWidth():Number
+		{
+			return _columnWidth;
+		}
+		public function set columnWidth(value:Number):void
+		{
+			_columnWidth = value;
+//			updateLayout();
+		}
+		
+		public function get rowHeight():Number
+		{
+			return _rowHeight;
+		}
+		public function set rowHeight(value:Number):void
+		{
+			_rowHeight = value;
+//			updateLayout();
+		}
+		
+		private function handleCreated(event:Event):void
+		{
+			// this is where we know the strand has things in it and we want to
+			// get the part of the strand that holds the items for the layout
+			trace("TileLayout.itemsCreated");
+			updateLayout();
+		}
+		
+		protected function updateLayout():void
+		{
+			// this is where the layout is calculated
+			var p:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var area:UIBase = p.contentView as UIBase;
+			if (area == null) return;
+			
+			var xpos:Number = 0;
+			var ypos:Number = 0;
+			var useWidth:Number = columnWidth;
+			var useHeight:Number = rowHeight;
+			var n:Number = area.numChildren;
+			if (n == 0) return;
+			
+			if (isNaN(useWidth)) useWidth = Math.floor(area.width / numColumns); // + gap
+			if (isNaN(useHeight)) {
+				// given the width and total number of items, how many rows?
+				var numRows:Number = Math.floor(n/numColumns);
+				useHeight = Math.floor(area.height / numRows);
+			}
+			
+			for(var i:int=0; i < n; i++)
+			{
+				var child:IUIBase = area.getChildAt(i) as IUIBase;
+				child.width = useWidth;
+				child.height = useHeight;
+				child.x = xpos;
+				child.y = ypos;
+				
+				xpos += useWidth;
+				
+				var test:Number = (i+1)%numColumns;
+				
+				if (test == 0) {
+					xpos = 0;
+					ypos += useHeight;
+				} 
+			}
+		}
+	}
+}

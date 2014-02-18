@@ -50,5 +50,44 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
 		function addedToParent():void;
+		
+		/**
+		 *  The x co-ordinate or left side position of the bounding box.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get x():Number;
+		function set x(value:Number):void;
+		
+		/**
+		 *  The y co-ordinate or top position of the bounding box.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get y():Number;
+		function set y(value:Number):void;
+		
+		/**
+		 *  The width of the bounding box.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get width():Number;
+		function set width(value:Number):void;
+		
+		/**
+		 * The height of the bounding box.
+		 */
+		function get height():Number;
+		function set height(value:Number):void;
 	}
 }
