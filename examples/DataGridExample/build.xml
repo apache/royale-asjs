@@ -27,7 +27,10 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-
+    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
+    
     <include file="${basedir}/../build_example.xml" />
 
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
