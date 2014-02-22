@@ -46,7 +46,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.FLEXJS_CL
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   get_numColumns = function() {
-      return this._numColumns;
+  return this._numColumns;
 };
 
 
@@ -56,7 +56,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   set_numColumns = function(value) {
-      this._numColumns = value;
+  this._numColumns = value;
 };
 
 
@@ -66,7 +66,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   get_columnWidth = function() {
-      return this._columnWidth;
+  return this._columnWidth;
 };
 
 
@@ -76,7 +76,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   set_columnWidth = function(value) {
-      this._columnWidth = value;
+  this._columnWidth = value;
 };
 
 
@@ -86,7 +86,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   get_rowHeight = function() {
-      return this._rowHeight;
+  return this._rowHeight;
 };
 
 
@@ -96,7 +96,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  */
 org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
   set_rowHeight = function(value) {
-      this._rowHeight = value;
+  this._rowHeight = value;
 };
 
 
@@ -104,8 +104,8 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.
-    prototype.set_strand = function(value) {
+org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+  set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
@@ -126,7 +126,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.
 
   children = this.strand_.internalChildren();
   n = children.length;
-  if (n == 0) return;
+  if (n === 0) return;
 
   xpos = 0;
   ypos = 0;
@@ -150,7 +150,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.
 
     xpos += useWidth;
 
-    if (((i + 1) % this.get_numColumns()) == 0) {
+    if (((i + 1) % this.get_numColumns()) === 0) {
       xpos = 0;
       ypos += useHeight;
     }
