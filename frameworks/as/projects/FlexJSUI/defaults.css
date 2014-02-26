@@ -21,6 +21,7 @@
 @namespace h5 "library://ns.apache.org/flexjs/html5";
 @namespace jq "library://ns.apache.org/flexjs/jquery";
 @namespace createjs "library://ns.apache.org/flexjs/createjs";
+@namespace svg "library://ns.apache.org/flexjs/svg";
 
 /* Global style declaration */
 *
@@ -386,6 +387,15 @@ createjs|TextButton
 createjs|CheckBox
 {
     IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxView");
+}
+
+/* SVG */
+
+svg|TextButton
+{
+    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonView");
+    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead");
 }
 
 }

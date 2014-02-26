@@ -22,7 +22,7 @@ limitations under the License.
 				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
 				   xmlns:models="models.*" 
 				   xmlns:controllers="controllers.*"
-				   initialize="MyModel(model).labelText='Hello HTML5'"
+				   initialize="MyModel(model).labelText='Hello SVG'"
 				   >
 	<basic:valuesImpl>
 		<basic:SimpleCSSValuesImpl />
@@ -36,16 +36,4 @@ limitations under the License.
 	<basic:controller>
 		<controllers:MyController />
 	</basic:controller>
-    <basic:beads>
-        <basic:HTTPService id="service">
-            <basic:LazyCollection id="collection">
-                <basic:inputParser>
-                    <basic:JSONInputParser />
-                </basic:inputParser>
-                <basic:itemConverter>
-                    <local:StockDataJSONItemConverter />
-                </basic:itemConverter> 
-            </basic:LazyCollection>
-        </basic:HTTPService>
-    </basic:beads>
 </basic:Application>

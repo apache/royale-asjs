@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
+	import models.MyModel;
+	
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.events.Event;
-	
-    
-    import models.MyModel;
     	
 	public class MyController implements IDocument
 	{
@@ -31,60 +30,21 @@ package controllers
 		{
 			if (app)
 			{
-				this.app = app as FlexJSTest_again;
+				this.app = app as FlexJSTest_SVG;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
-        private var queryBegin:String = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
-        private var queryEnd:String = "%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json";
-		private var app:FlexJSTest_again;
+		private var app:FlexJSTest_SVG;
 		
 		private function viewChangeHandler(event:Event):void
 		{
-			app.initialView.addEventListener("buttonClicked", buttonClickHandler);
-            app.initialView.addEventListener("listChanged", listChangedHandler);
-			app.initialView.addEventListener("cityListChanged", cityListChangeHandler);
-            app.initialView.addEventListener("transferClicked", transferClickHandler);
-			app.initialView.addEventListener("comboBoxChanged", comboBoxChangeHandler);
 		}
 		
-        private function buttonClickHandler(event:Event):void
-        {
-            var sym:String = MyInitialView(app.initialView).symbol;
-            app.service.url = queryBegin + sym + queryEnd;
-            app.service.send();
-            app.service.addEventListener("complete", completeHandler);
-        }
-        
-        private function completeHandler(event:Event):void
-        {
-            MyModel(app.model).labelText = app.collection.getItemAt(0) as String;
-        }
-        
-        private function listChangedHandler(event:Event):void
-        {
-            MyModel(app.model).labelText = MyInitialView(app.initialView).symbol;
-        }
-		
-		private function cityListChangeHandler(event:Event):void
-		{
-			MyModel(app.model).labelText = MyInitialView(app.initialView).city;
-		}
-        
-        private function transferClickHandler(event:Event):void
-        {
-        	MyModel(app.model).labelText = MyInitialView(app.initialView).inputText;
-        }
-		
-		private function comboBoxChangeHandler(event:Event):void
-		{
-			MyModel(app.model).labelText = MyInitialView(app.initialView).comboBoxValue;
-		}
         
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as FlexJSTest_again;
+			this.app = document as FlexJSTest_SVG;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

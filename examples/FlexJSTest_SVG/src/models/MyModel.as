@@ -42,18 +42,6 @@ package models
 				dispatchEvent(new Event("labelTextChanged"));
 			}
 		}
-        
-        private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
-        public function get strings():Array
-        {
-            return _strings;
-        }
-		
-		private var _cities:Array = ["London", "Miami", "Paris", "Sydney", "Tokyo"];
-		public function get cities():Array
-		{
-			return _cities;
-		}
 
 	}
 }

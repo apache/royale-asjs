@@ -50,6 +50,10 @@
                 <uri>library://ns.apache.org/flexjs/createjs</uri>
                 <manifest>createjs-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/svg</uri>
+                <manifest>svg-manifest.xml</manifest>
+            </namespace>			
         </namespaces>
         
         <source-path>
@@ -74,6 +78,7 @@
         <uri>library://ns.apache.org/flexjs/html5</uri>
         <uri>library://ns.apache.org/flexjs/jquery</uri>
         <uri>library://ns.apache.org/flexjs/createjs</uri>
+		<uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>

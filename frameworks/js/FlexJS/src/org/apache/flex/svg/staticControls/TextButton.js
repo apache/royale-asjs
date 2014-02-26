@@ -23,26 +23,23 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.svg.staticControls.TextButton = function() {
-  org.apache.flex.core.UIBase.call(this);
+  goog.base(this);
 };
-goog.inherits(
-    org.apache.flex.svg.staticControls.TextButton, org.apache.flex.core.UIBase
-);
+goog.inherits(org.apache.flex.svg.staticControls.TextButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
- * @param {Object} p The parent element.
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
-    function(p) {
+org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
+    function() {
   this.element = document.createElement('embed');
-  this.element.setAttribute('src', 'skins/TextButtonSkin.svg');
-  this.element.setAttribute('type', 'button');
-
-  p.appendChild(this.element);
+  this.element.setAttribute('src', 'org/apache/flex/svg/staticControls/skins/TextButtonSkin.svg');
 
   this.positioner = this.element;
+
+  return this.element;
 };
 
 
@@ -50,7 +47,8 @@ org.apache.flex.svg.staticControls.TextButton.prototype.addToParent =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.get_text = function() {
+org.apache.flex.svg.staticControls.TextButton.prototype.get_text =
+    function() {
   return this.element.getAttribute('label');
 };
 

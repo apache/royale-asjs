@@ -96,6 +96,12 @@
             
             <manifest>as/projects/FlexJSUI/html5-manifest.xml</manifest>
          
+        </namespace>
+		<namespace>
+            <uri>library://ns.apache.org/flexjs/svg</uri>
+            
+            <manifest>as/projects/FlexJSUI/svg-manifest.xml</manifest>
+         
         </namespace>   
       </namespaces>
 

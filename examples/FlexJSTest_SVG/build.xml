@@ -21,7 +21,7 @@
 
 <project name="flexjstest_SVG" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="FlexJSTest_again" />
+    <property name="example" value="FlexJSTest_SVG" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
