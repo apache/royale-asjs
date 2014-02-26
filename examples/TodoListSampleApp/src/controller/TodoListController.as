@@ -17,29 +17,27 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package controller {
+    import model.TodoListModel;
 
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.events.Event;
-	
-	import model.TodoListModel;
-    	
-	public class TodoListController implements IDocument {
-		private var app:TodoListSampleApp;
-		private var model:TodoListModel;
-		
-		public function TodoListController(app:Application = null) {
-			if (app != null) {
-				app = app as TodoListSampleApp;
-			}
-		}
-		
-		/**
-		 * 
-		 */
-		public function setDocument(document:Object, id:String = null):void {
-			this.app = document as TodoListSampleApp;
-		}
-		
-	}
+    import org.apache.flex.core.Application;
+    import org.apache.flex.core.IDocument;
+
+    public class TodoListController implements IDocument {
+        private var app:TodoListSampleApp;
+        private var todoListModel:TodoListModel;
+
+        public function TodoListController(app:Application = null) {
+            if (app != null) {
+                app = app as TodoListSampleApp;
+            }
+        }
+
+        /**
+         *
+         */
+        public function setDocument(document:Object, id:String = null):void {
+            app = document as TodoListSampleApp;
+        }
+
+    }
 }

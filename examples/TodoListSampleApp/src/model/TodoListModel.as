@@ -17,24 +17,24 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package model {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	
-	public class TodoListModel extends EventDispatcher {
-		public function TodoListModel() {
-			super();
-		}
-		
-		private var _todos:Array = [
-			{title:"Get something", selected:true},
-			{title:"Do this", selected:true},
-			{title:"Do that", selected:false}
-		];
-		public function get todos():Array {
-			return _todos;
-		}
-		public function set todos(value:Array):void {
-			_todos = value;
-		}
-	}
+    import org.apache.flex.events.EventDispatcher;
+
+    public class TodoListModel extends EventDispatcher {
+        public function TodoListModel() {
+            super();
+        }
+
+        private var _todos:Array = [
+            {title: "Get something", selected: true},
+            {title: "Do this", selected: true},
+            {title: "Do that", selected: false}
+        ];
+        public function get todos():Array {
+            return _todos;
+        }
+
+        public function set todos(value:Array):void {
+            _todos = value;
+        }
+    }
 }

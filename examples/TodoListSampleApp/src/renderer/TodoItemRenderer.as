@@ -16,46 +16,54 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package renderer {	
-	import org.apache.flex.html.staticControls.Label;
-	import org.apache.flex.html.staticControls.CheckBox;
-	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
+package renderer {
+    import org.apache.flex.html.staticControls.Button;
+    import org.apache.flex.html.staticControls.CheckBox;
+    import org.apache.flex.html.staticControls.Label;
+    import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
 
-	public class TodoItemRenderer extends DataItemRenderer {
-		public function TodoItemRenderer() {
-			super();
-		}
-		
-		private var checkbox:CheckBox;
-		private var title:Label;
-		
-		override public function addedToParent():void {
-			super.addedToParent();
-			
-			checkbox = new CheckBox();
-			addElement(checkbox);
-			
-			title = new Label();
-			addElement(title);
-		}
-		
-		override public function set data(value:Object):void {
-			super.data = value;
-			
-			checkbox.selected = data.selected;
-			title.text = data.title;
-		}
-		
-		override public function adjustSize():void {
-			var cy:Number = this.height/2;
-			
-			checkbox.x = 10;
-			checkbox.y = cy;
-			
-			title.x = 60;
-			title.y = cy;
-			
-			updateRenderer();
-		}
-	}
+    public class TodoItemRenderer extends DataItemRenderer {
+        public function TodoItemRenderer() {
+            super();
+        }
+
+        private var checkbox:CheckBox;
+        private var title:Label;
+        private var removeButton:Button;
+
+        override public function addedToParent():void {
+            super.addedToParent();
+
+            checkbox = new CheckBox();
+            addElement(checkbox);
+
+            title = new Label();
+            addElement(title);
+
+            removeButton = new Button();
+            addElement(removeButton);
+        }
+
+        override public function set data(value:Object):void {
+            super.data = value;
+
+            checkbox.selected = data.selected;
+            title.text = data.title;
+        }
+
+        override public function adjustSize():void {
+            var cy:Number = this.height / 2;
+
+            checkbox.x = 10;
+            checkbox.y = cy;
+
+            title.x = 60;
+            title.y = cy;
+
+            removeButton.x = 300;
+            removeButton.y = cy
+
+            updateRenderer();
+        }
+    }
 }

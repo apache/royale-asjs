@@ -18,48 +18,48 @@ limitations under the License.
 
 -->
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic" >
-	<fx:Script>
+                xmlns:basic="library://ns.apache.org/flexjs/basic">
+    <fx:Script>
 		<![CDATA[
-			
-		]]>
+
+        ]]>
 	</fx:Script>
-	
-	<basic:Panel title="FlexJS TODO List" width="600">
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
-		
-		<basic:TextInput width="300"/>
-		
-		<basic:List id="todoList" 
-					itemRenderer="renderer.TodoItemRenderer"
-					width="300" height="400">
-			<basic:beads>
-				<basic:ConstantBinding sourceID="applicationModel"
-				  					   sourcePropertyName="todos"
-									   destinationPropertyName="dataProvider"/>
-			</basic:beads>
-		</basic:List>
-		
-	</basic:Panel>
-	
-	<fx:Style>
-		@namespace basic "library://ns.apache.org/flexjs/basic";
-		@namespace renderer "renderer.*";
-		
-		/* use className="todoList" on the List element in place of itemRenderer if you want to specify
-		 * the itemRenderer in a style definition along with other settings.
-		 */
-		.todoList {
-			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
-			IItemRenderer: ClassReference("renderer.TodoItemRenderer");
-		}
-		
-		renderer|TodoItemRenderer {
-			height: 40;
-			IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
-		}		
-	</fx:Style>
-	
+
+    <basic:Panel title="FlexJS TODO List" width="600">
+        <basic:beads>
+            <basic:NonVirtualVerticalLayout/>
+        </basic:beads>
+
+        <basic:TextInput width="300"/>
+
+        <basic:List id="todoList"
+                    itemRenderer="renderer.TodoItemRenderer"
+                    width="300" height="400">
+            <basic:beads>
+                <basic:ConstantBinding sourceID="applicationModel"
+                                       sourcePropertyName="todos"
+                                       destinationPropertyName="dataProvider"/>
+            </basic:beads>
+        </basic:List>
+
+    </basic:Panel>
+
+    <fx:Style>
+        @namespace basic "library://ns.apache.org/flexjs/basic";
+        @namespace renderer "renderer.*";
+
+        /* use className="todoList" on the List element in place of itemRenderer if you want to specify
+         * the itemRenderer in a style definition along with other settings.
+         */
+        .todoList {
+            IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
+            IItemRenderer: ClassReference("renderer.TodoItemRenderer");
+        }
+
+        renderer|TodoItemRenderer {
+            height: 40;
+            IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
+        }
+    </fx:Style>
+
 </basic:ViewBase>
