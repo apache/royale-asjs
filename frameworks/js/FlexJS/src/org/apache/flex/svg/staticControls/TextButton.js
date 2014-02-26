@@ -30,6 +30,16 @@ goog.inherits(org.apache.flex.svg.staticControls.TextButton,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.svg.staticControls.TextButton.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'TextButton',
+                qName: 'org.apache.flex.svg.staticControls.TextButton'}] };
+
+
+/**
  * @override
  */
 org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
