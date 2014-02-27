@@ -48,7 +48,7 @@
 			labelElement.firstChild.nodeValue = labelStr;
 			
 			//Store callbacks
-			clickHandler = window.frameElement.attributes["onclick"].value;
+			clickHandler = window.frameElement.clickHandler;
 		}
 	
 		function handleMouseOver(event)
@@ -81,7 +81,7 @@
 		
 		function handleOnClick(evt)
 		{
-			top[clickHandler](evt,this);
+			clickHandler(evt,this);
 		}
 
 	]]></script>

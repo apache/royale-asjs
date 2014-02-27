@@ -54,6 +54,23 @@ org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
 
 
 /**
+ * @override
+ */
+org.apache.flex.svg.staticControls.TextButton.prototype.finalizeElement =
+    function() {
+  var listenersArray;
+  if (goog.events.hasListener(this.element, goog.events.EventType.CLICK)) {
+    listenersArray = goog.events.getListeners(this.element, goog.events.EventType.CLICK, false);
+
+    /* As we are assigning an actual function object instead of just the name,
+       make sure to use a unique name ('clickHandler') instead of a native 
+       name, like 'click' or 'onclick'. */
+    this.element.clickHandler = listenersArray[0].listener;
+  }
+};
+
+
+/**
  * @expose
  * @return {string} The text getter.
  */
