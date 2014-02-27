@@ -1151,7 +1151,6 @@
         Tests: The current checkintests that must be run before every checkin
     -->
 
-    <!-- FixMe: add dependency checker and mobile tests -->
     <target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />
     <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
     
@@ -1161,7 +1160,7 @@
 
     <target name="basictests-mustella" depends="mustella-setup,basictests"/>
 
-    <target name="mustella-setup" depends="runtime-setup" description="compile mustella java file">
+    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file">
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
             <property name="use_mustella_framework_dir" value="false"/>
@@ -1208,20 +1207,20 @@
     <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${FALCON_HOME}/lib/falcon-flexTasks.jar"/>
     </target>
 
     <target name="basictests" depends="load-task" description="run basic tests using mustella">
 
-        <!-- compile the basic tests
+        <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true"
-               file="${basedir}/frameworks/tests/basicTests/BasicTests.mxml">
+               file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg line="-compiler.mxml.children-as-data=true" />
             <library-path dir="${basedir}" append="true">
-                <include name="mustella/mustella.swc"/>
+                <include name="${FLEX_SDK_HOME}/mustella/mustella.swc"/>
             </library-path>
         </mxmlc>
-         -->
         <!-- compile supporting swfs for basic tests
         <mxmlc fork="true"
                file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
@@ -1238,22 +1237,20 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
         </mxmlc>
          -->
-        <!-- run the component smoke
+        <!-- run the component smoke -->
         <echo message="launching player and swf"/>
-        <exec executable="${flash.player}" dir="${basedir}/frameworks" failonerror="true">
-            <arg value="${basedir}/frameworks/tests/basicTests/BasicTests.swf"/>
+        <exec executable="${flash.player}" dir="${basedir}/mustella/tests/basicTests" failonerror="true">
+            <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         </exec>
-          -->
-        <!-- halt if there was an error
+        <!-- halt if there was an error -->
         <antcall target="mustellaresultsparser"/>
-         -->
     </target>
 
     <target name="mustellaresultsparser">
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
-                <pathelement location="${basedir}"/>
+                <pathelement location="${FLEX_SDK_HOME}"/>
             </classpath>
         </java>
     </target>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:SkinnableContainer
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	width="930" height="800">
+    <s:states> 
+        <s:State name="s1"/> 
+        <s:State name="s2"/> 
+    </s:states> 
+    <s:transitions> 
+        <s:Transition> 
+            <s:Parallel duration="250">
+                <s:Animate targets="{[b1,b2,b3]}">
+                    <s:SimpleMotionPath property="left"/>
+                    <s:SimpleMotionPath property="right"/>
+                </s:Animate>
+                <s:Animate targets="{[b3a]}">
+                    <s:SimpleMotionPath property="left"/>
+                </s:Animate>
+                <s:Animate targets="{[b3b]}">
+                    <s:SimpleMotionPath property="right"/>
+                </s:Animate>
+                <s:Animate targets="{[b4,b5,b6]}">
+                    <s:SimpleMotionPath property="top"/>
+                    <s:SimpleMotionPath property="bottom"/>
+                </s:Animate>
+                <s:Animate targets="{[b6a]}">
+                    <s:SimpleMotionPath property="top"/>
+                </s:Animate>
+                <s:Animate targets="{[b6b]}">
+                    <s:SimpleMotionPath property="bottom"/>
+                </s:Animate>
+                <s:Animate targets="{[b7,b8,b9]}">
+                    <s:SimpleMotionPath property="left"/>
+                    <s:SimpleMotionPath property="horizontalCenter"/>
+                </s:Animate>
+                <s:Animate targets="{[b10,b11]}">
+                    <s:SimpleMotionPath property="verticalCenter"/>
+                </s:Animate>
+                <s:Animate targets="{[b12]}">
+                    <s:SimpleMotionPath property="verticalCenter"/>
+                    <s:SimpleMotionPath property="bottom"/>
+                </s:Animate>
+                <s:Animate targets="{[b13,b14]}">
+                    <s:SimpleMotionPath property="percentWidth"/>
+                </s:Animate>
+                <s:Animate targets="{[b15]}">
+                    <s:SimpleMotionPath property="percentWidth"/>
+                    <s:SimpleMotionPath property="width"/>
+                </s:Animate>
+                <s:Animate targets="{[b16,b17]}">
+                    <s:SimpleMotionPath property="height"/>
+                </s:Animate>
+                <s:Animate targets="{[b18]}">
+                    <s:SimpleMotionPath property="height"/>
+                </s:Animate>
+            </s:Parallel> 
+        </s:Transition> 
+    </s:transitions> 
+    <s:VGroup top="50" width="100%">        
+        <s:HGroup width="100%" height="380">
+            <!-- left/right -->
+            <s:Group width="300" height="100%">
+                <s:Rect left="0" right="0" top="0" bottom="0">
+                    <s:stroke>
+                        <s:SolidColorStroke color="black"/>
+                    </s:stroke>
+                </s:Rect>
+                <s:Button id="b1" y="100" left="10" left.s2="{NaN}" right.s2="10" label="Left->Right"/>
+                <s:Button id="b2" y="150" right="10" right.s2="{NaN}" left.s2="10" label="Right->Left"/>
+                <s:Button id="b3" y="200" left="10" left.s2="{NaN}" right="10" right.s2="{NaN}" label="LeftRight"/>        
+                <s:Button id="b3a" y="250" left="10" left.s2="100" label="Left"/>
+                <s:Button id="b3b" y="300" right="10" right.s2="100" label="Right"/>
+            </s:Group>
+            <!-- top/bottom -->
+            <s:Group width="300" height="100%">
+                <s:Rect left="0" right="0" top="0" bottom="0">
+                    <s:stroke>
+                        <s:SolidColorStroke color="black"/>
+                    </s:stroke>
+                </s:Rect>
+                <s:Button id="b4" x="0" top="100" top.s2="{NaN}" bottom.s2="100" label="Top->Bottom"/>
+                <s:Button id="b5" x="100" bottom="100" bottom.s2="{NaN}" top.s2="100" label="Bottom->Top"/>
+                <s:Button id="b6" x="200" top="100" top.s2="{NaN}" bottom="100" bottom.s2="{NaN}" label="TopBottom"/>
+                <s:Button id="b6a" x="200" top="0" top.s2="50" label="Top"/>
+                <s:Button id="b6b" x="200" bottom="0" bottom.s2="50" label="Bottom"/>
+            </s:Group>
+            <!-- horizontalCenter -->
+            <s:Group width="300" height="100%">
+                <s:Rect left="0" right="0" top="0" bottom="0">
+                    <s:stroke>
+                        <s:SolidColorStroke color="black"/>
+                    </s:stroke>
+                </s:Rect>
+                <s:Button id="b7" top="50" horizontalCenter="0" horizontalCenter.s2="50" label="HorCtr"/>
+                <s:Button id="b8" top="80" horizontalCenter="0" horizontalCenter.s2="-50" label="HorCtr"/>
+                <s:Button id="b9" top="110" horizontalCenter="0" horizontalCenter.s2="{NaN}" left.s2="10" label="Hor->Left"/>
+                <s:Button id="b10" left="0" verticalCenter="0" verticalCenter.s2="50" label="VertCtr"/>
+                <s:Button id="b11" left="100" verticalCenter="0" verticalCenter.s2="-50" label="VertCtr"/>
+                <s:Button id="b12" left="200" verticalCenter="0" verticalCenter.s2="{NaN}" bottom.s2="100" label="Vert->Bottom"/>
+            </s:Group>
+        </s:HGroup>
+        <s:HGroup width="100%" height="370">
+            <s:Group width="300" height="100%">
+                <s:Rect left="0" right="0" top="0" bottom="0">
+                    <s:stroke>
+                        <s:SolidColorStroke color="black"/>
+                    </s:stroke>
+                </s:Rect>
+                <s:Button id="b13" top="50" width="50%" width.s2="100%" label="%Width"/>
+                <s:Button id="b14" top="80" width="100%" width.s2="50%" horizontalCenter="0" label="%Width"/>
+                <s:Button id="b15" top="110" width="50%" width.s2="200" label="%Width->width"/>
+            </s:Group>
+            <s:Group width="300" height="100%">
+                <s:Rect left="0" right="0" top="0" bottom="0">
+                    <s:stroke>
+                        <s:SolidColorStroke color="black"/>
+                    </s:stroke>
+                </s:Rect>
+                <s:Button id="b16" height="10%" height.s2="50%" label="%Height"/>
+                <s:Button id="b17" left="80" height="100%" height.s2="50%" verticalCenter="0" label="%Height"/>
+                <s:Button id="b18" left="160" height="50%" height.s2="300" label="%Height->height"/>
+            </s:Group>
+        </s:HGroup>
+    </s:VGroup>
+</s:SkinnableContainer>

@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.events.Event;
 	
 	[DefaultProperty("mxmlContent")]
@@ -58,7 +58,7 @@ package org.apache.flex.html.staticControls
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends UIBase implements IContainer
+	public class Container extends ContainerBase implements IContainer
 	{
         /**
          *  Constructor.
@@ -74,16 +74,6 @@ package org.apache.flex.html.staticControls
 			actualParent = this;
 		}
 		
-        /**
-         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public var mxmlContent:Array;
-
 		private var actualParent:DisplayObjectContainer;
 		
         /**

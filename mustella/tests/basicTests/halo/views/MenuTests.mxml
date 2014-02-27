@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"                >
+
+<fx:Script>
+<![CDATA[
+
+    import mx.collections.*;
+    import mx.controls.*;
+    import mx.events.*;
+    import mx.managers.*;
+
+    public var menuDP:Object = {label: "top", children: [
+                                                            {label: "File", children: [
+                                                                    {label: "Open"},
+                                                                    {label: "New File"}     ]},
+                                                            {label: "Edit", children: [
+                                                                    {label: "Copy"},
+                                                                    {label: "Paste"},
+                                                                    {label: "Send"} ]},
+                                                            {label: "Window"} ]};
+
+    public var testMenu:Menu;
+
+    public function createAndShowMenu():void
+    {
+            var menu:Menu = Menu.createMenu(null, menuDP, false);
+            testMenu = menu;
+            var point:Point = new Point(testMenuButton.width, testMenuButton.height);
+            point = testMenuButton.localToGlobal(point);
+            menu.show(point.x, point.y);
+            menu.addEventListener("itemClick", menuChanged);
+    }
+
+    public function menuChanged(event:Event):void
+    {
+            testMenuLabel.text = MenuEvent(event).item.label;
+    }
+]]>
+</fx:Script>
+
+    <mx:Button id="testMenuButton" label="Create and Show Menu" click="createAndShowMenu()" />
+    <mx:HBox width="250">
+            <mx:Label text="Menu Choice: " />
+            <mx:Label id="testMenuLabel" width="100%" />
+    </mx:HBox>
+
+</mx:VBox>

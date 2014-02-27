@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void {}
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+
+    <mx:Script>
+        <![CDATA[
+            import mx.core.mx_internal;
+            use namespace mx_internal;
+        ]]>
+    </mx:Script>
+
+	<testCases>
+<!--
+-->
+        <TestCase testID="SetupSparkLayoutDirectionTestRTL">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkLayoutDirectionTest" 
+                    waitEvent="updateComplete" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.testGroup" propertyName="width" value="300" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image" propertyName="width" value="143" />
+            </body>
+        </TestCase>
+		<TestCase testID="SparkLayoutDirectionTestRTL_testGroup">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.testGroup" 
+                    styleName="layoutDirection" value="rtl" />
+                <AssertStyleValue target="sparkLayoutDirectionTests.testGroup" 
+                    styleName="direction" value="rtl" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.testGroup.computedMatrix" 
+                    propertyName="a" value="-1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.testGroup.computedMatrix" 
+                    propertyName="tx" value="300" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestRTL_mx_datechooser">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.mx_datechooser" 
+                    styleName="layoutDirection" value="rtl" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.mx_datechooser.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.mx_datechooser.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestRTL_spark_textinput">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_textinput" 
+                    styleName="layoutDirection" value="rtl" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.computedMatrix" 
+                    propertyName="tx" value="0" />
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_textinput.textDisplay" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.textDisplay.computedMatrix" 
+                    propertyName="a" value="-1" />
+            </body>
+        </TestCase>
+        <TestCase testID="SparkLayoutDirectionTestRTL_spark_button">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_button" 
+                    styleName="layoutDirection" value="rtl" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_button.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_button.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestRTL_spark_checkbox">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_checkbox" 
+                    styleName="layoutDirection" value="rtl" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_checkbox.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_checkbox.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>
+        <TestCase testID="SparkLayoutDirectionTestRTL_spark_image">
+            <body>
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image" 
+                    propertyName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image.displayObject.transform.matrix" 
+                    propertyName="a" value="-1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image.displayObject.transform.matrix" 
+                    propertyName="tx" value="143" />
+			</body>
+		</TestCase>
+        <TestCase testID="SetupSparkLayoutDirectionTestLTR">
+            <body>
+                <SetStyle target="sparkLayoutDirectionTests.testGroup" styleName="direction" value="ltr"/>
+                <SetStyle target="sparkLayoutDirectionTests.testGroup" styleName="layoutDirection" value="ltr" 
+                    waitEvent="updateComplete" waitTarget="sparkLayoutDirectionTests.testGroup"/>
+            </body>
+        </TestCase>
+        <TestCase testID="SparkLayoutDirectionTestLTR_testGroup">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.testGroup" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertStyleValue target="sparkLayoutDirectionTests.testGroup" 
+                    styleName="direction" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.testGroup.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.testGroup.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestLTR_mx_datechooser">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.mx_datechooser" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.mx_datechooser.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.mx_datechooser.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestLTR_spark_textinput">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_textinput" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.computedMatrix" 
+                    propertyName="tx" value="0" />
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_textinput.textDisplay" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_textinput.textDisplay.computedMatrix" 
+                    propertyName="a" value="1" />
+            </body>
+        </TestCase>
+        <TestCase testID="SparkLayoutDirectionTestLTR_spark_button">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_button" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_button.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_button.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>               
+        <TestCase testID="SparkLayoutDirectionTestLTR_spark_checkbox">
+            <body>
+                <AssertStyleValue target="sparkLayoutDirectionTests.spark_checkbox" 
+                    styleName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_checkbox.computedMatrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_checkbox.computedMatrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>
+        <TestCase testID="SparkLayoutDirectionTestLTR_spark_image">
+            <body>
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image" 
+                    propertyName="layoutDirection" value="ltr" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image.displayObject.transform.matrix" 
+                    propertyName="a" value="1" />
+                <AssertPropertyValue target="sparkLayoutDirectionTests.spark_image.displayObject.transform.matrix" 
+                    propertyName="tx" value="0" />
+            </body>
+        </TestCase>
+	</testCases>
+</UnitTester>

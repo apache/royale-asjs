@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+    
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void
+            {
+            }
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+    <mx:Script>
+        <![CDATA[
+           
+            import flash.globalization.NumberFormatter;
+            import flash.globalization.NumberParseResult;
+            import flash.globalization.LastOperationStatus;
+            import spark.validators.NumberValidator;
+            import mx.events.ValidationResultEvent;
+            public var flashNF:flash.globalization.NumberFormatter;
+            
+            
+            public var nfParseResult:Number;
+            public var flashParseResult:Number;
+            
+            
+            private function doCheck(objFlash:flash.globalization.NumberFormatter,objVal:spark.validators.NumberValidator):Boolean
+            {
+                var los:String = objFlash.lastOperationStatus;
+                var event:ValidationResultEvent = objVal.validate();
+                var currentControlIsValid:Boolean = (event.type == ValidationResultEvent.VALID);
+                var res:Boolean;
+                if(los==flash.globalization.LastOperationStatus.NO_ERROR)
+                {
+                    if(currentControlIsValid==true) // valide format
+                        res=true;
+                    else
+                        res=false;
+                }
+                else if(los==flash.globalization.LastOperationStatus.PARSE_ERROR)
+                {
+                    if(currentControlIsValid==false) // invalide format
+                        res=true;
+                    else
+                        res=false;
+                }
+                return res;
+            }
+        ]]>
+    </mx:Script>
+    
+    <testCases>
+        <TestCase testID="SetupNumberValidatorTest">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkNumberValidatorTest" 
+                             waitEvent="updateComplete" />
+            </body>
+        </TestCase>
+        <TestCase testID="validate_Number_test1">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('en')" />
+                <RunCode code="flashParseResult=flashNF.parseNumber('123')" />
+                <ResetComponent target="sparkNumberValidatorTests.tb1" className="spark.components.TextInput" waitEvent="updateComplete" />
+                <SetProperty target="sparkNumberValidatorTests.tb1" propertyName="text" value="123" />
+             </setup>
+            <body>
+                <AssertMethodValue method="value=doCheck(flashNF,application.sparkNumberValidatorTests.nv)" value="true" />
+            </body>
+        </TestCase>
+        <TestCase testID="validate_Number_test2">
+            <setup>
+                <RunCode code="flashNF=new flash.globalization.NumberFormatter('en')" />
+                <RunCode code="flashParseResult=flashNF.parseNumber('$123x')" />
+                <ResetComponent target="sparkNumberValidatorTests.tb1" className="spark.components.TextInput" waitEvent="updateComplete" />
+                <SetProperty target="sparkNumberValidatorTests.tb1" propertyName="text" value="$123x" />
+            </setup>
+            <body>
+                <AssertMethodValue method="value=doCheck(flashNF,application.sparkNumberValidatorTests.nv)" value="true" />
+            </body>
+        </TestCase>
+    </testCases>
+</UnitTester>
