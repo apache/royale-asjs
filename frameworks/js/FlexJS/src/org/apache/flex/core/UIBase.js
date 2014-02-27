@@ -84,8 +84,9 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
 
 /**
  * @protected
+ * @type {?function()}
  */
-org.apache.flex.core.UIBase.prototype.finalizeElement = goog.nullFunction();
+org.apache.flex.core.UIBase.prototype.finalizeElement = null;
 
 
 /**
