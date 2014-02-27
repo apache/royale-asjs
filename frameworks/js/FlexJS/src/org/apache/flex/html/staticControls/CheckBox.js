@@ -51,7 +51,7 @@ org.apache.flex.html.staticControls.CheckBox.prototype.createElement =
   cb = document.createElement('input');
   cb.type = 'checkbox';
   this.element.appendChild(cb);
-  this.element.appendChild(document.createTextNode('check box'));
+  this.element.appendChild(document.createTextNode(''));
 
   this.positioner = this.element;
   cb.flexjs_wrapper = this;
