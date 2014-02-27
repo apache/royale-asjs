@@ -29,6 +29,8 @@ package model {
             {title: "Do this", selected: true},
             {title: "Do that", selected: false}
         ];
+
+        [Bindable]
         public function get todos():Array {
             return _todos;
         }

@@ -35,6 +35,7 @@ limitations under the License.
         <basic:List id="todoList"
                     itemRenderer="renderer.TodoItemRenderer"
                     width="300" height="400">
+            <!-- dataProvider="{TodoListModel(applicationModel).todos}" -->
             <basic:beads>
                 <basic:ConstantBinding sourceID="applicationModel"
                                        sourcePropertyName="todos"
@@ -42,6 +43,15 @@ limitations under the License.
             </basic:beads>
         </basic:List>
 
+        <basic:Container>
+            <basic:beads>
+                <basic:NonVirtualHorizontalLayout/>
+            </basic:beads>
+            <basic:Label text="2 items left"/>
+            <basic:TextButton text="all"/>
+            <basic:TextButton text="active"/>
+            <basic:TextButton text="completed"/>
+        </basic:Container>
     </basic:Panel>
 
     <fx:Style>
