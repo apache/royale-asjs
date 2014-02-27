@@ -83,6 +83,12 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
 
 
 /**
+ * @protected
+ */
+org.apache.flex.core.UIBase.prototype.finalizeElement = goog.nullFunction();
+
+
+/**
  * @param {Object} c The child element.
  */
 org.apache.flex.core.UIBase.prototype.addElement = function(c) {

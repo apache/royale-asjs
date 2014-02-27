@@ -281,6 +281,10 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
       comp.setDocument(document, id);
     }
 
+    if (goog.isFunction(comp.finalizeElement)) {
+      comp.finalizeElement();
+    }
+
     comps.push(comp);
   }
 
