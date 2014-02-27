@@ -63,11 +63,11 @@ org.apache.flex.svg.staticControls.TextButton.prototype.finalizeElement =
     listenersArray = goog.events.getListeners(this.element, goog.events.EventType.CLICK, false);
 
     /* As we are assigning an actual function object instead of just the name,
-       make sure to use a unique name ('clickHandler') instead of a native 
-       name, like 'click' or 'onclick'. 
-       
+       make sure to use a unique name ('clickHandler') instead of a native
+       name, like 'click' or 'onclick'.
+
        Note: use array notation for property assignment so the compiler doesn't
-             rename the property ;-) 
+             rename the property ;-)
     */
     this.element['clickHandler'] = listenersArray[0].listener;
   }

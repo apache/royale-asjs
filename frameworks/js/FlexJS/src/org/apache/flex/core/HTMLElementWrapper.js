@@ -153,7 +153,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
 
 /**
  * Hack to allow event.target expressions to work
- * 
+ *
  * @expose
  * @return {Object} The wrapping object.
  */
@@ -165,7 +165,7 @@ Event.prototype.get_target = function() {
 
 /**
  * Hack to allow event.target expressions to work
- * 
+ *
  * @expose
  * @return {Object} The wrapping object.
  */
