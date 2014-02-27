@@ -45,7 +45,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('embed');
-  this.element.setAttribute('src', 'org/apache/flex/svg/staticControls/skins/TextButtonSkin.svg');
+  this.element.setAttribute('src', 'org/apache/flex/svg/staticControls/assets/TextButton_Skin.svg');
 
   this.positioner = this.element;
 
@@ -64,8 +64,12 @@ org.apache.flex.svg.staticControls.TextButton.prototype.finalizeElement =
 
     /* As we are assigning an actual function object instead of just the name,
        make sure to use a unique name ('clickHandler') instead of a native 
-       name, like 'click' or 'onclick'. */
-    this.element.clickHandler = listenersArray[0].listener;
+       name, like 'click' or 'onclick'. 
+       
+       Note: use array notation for property assignment so the compiler doesn't
+             rename the property ;-) 
+    */
+    this.element['clickHandler'] = listenersArray[0].listener;
   }
 };
 
