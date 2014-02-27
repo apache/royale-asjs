@@ -43,7 +43,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @type {Object}
+ * @type {EventTarget}
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.element = null;
 
@@ -152,7 +152,8 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
 
 
 /**
- Hack to allow event.target expressions to work
+ * Hack to allow event.target expressions to work
+ * 
  * @expose
  * @return {Object} The wrapping object.
  */
