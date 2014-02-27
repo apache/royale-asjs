@@ -158,13 +158,14 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
  * @return {Object} The wrapping object.
  */
 Event.prototype.get_target = function() {
-  var obj = this.target.flexjs_wrapper;
+  var obj = this.target['flexjs_wrapper'];
   return obj;
 };
 
 
 /**
- Hack to allow event.target expressions to work
+ * Hack to allow event.target expressions to work
+ * 
  * @expose
  * @return {Object} The wrapping object.
  */
