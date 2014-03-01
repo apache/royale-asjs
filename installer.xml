@@ -51,7 +51,8 @@
     <property name="flex.url.path" value="http://archive.apache.org/dist/flex/${flex.sdk.version}/binaries" />
     <property name="flex.url.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
 
-    <property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />
+    <property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />
+    <!--<property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />-->
     <property name="falcon.url.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
@@ -105,7 +106,8 @@
         </and>
     </condition>
 
-    <target name="get-data" >
+    <target name="get-data">
+        <property name="do-not-cache-next-get" value="true" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
         <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
