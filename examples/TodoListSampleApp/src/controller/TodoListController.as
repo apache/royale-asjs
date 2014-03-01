@@ -17,10 +17,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package controller {
+    import event.TodoListEvent;
+
     import model.TodoListModel;
 
     import org.apache.flex.core.Application;
     import org.apache.flex.core.IDocument;
+    import org.apache.flex.events.Event;
 
     public class TodoListController implements IDocument {
         private var app:TodoListSampleApp;
@@ -37,6 +40,23 @@ package controller {
          */
         public function setDocument(document:Object, id:String = null):void {
             app = document as TodoListSampleApp;
+            app.addEventListener("viewChanged", viewChangeHandler);
+        }
+
+        /**
+         *
+         * @param event
+         */
+        private function viewChangeHandler(event:Event):void {
+            app.initialView.addEventListener(TodoListEvent.LOG_TODO, logTodo);
+        }
+
+        /**
+         * log todo
+         * @param event
+         */
+        public function logTodo(evt:TodoListEvent):void {
+            //todoListModel.todos = []; //{title: evt.todo, selected: false};
         }
 
     }
