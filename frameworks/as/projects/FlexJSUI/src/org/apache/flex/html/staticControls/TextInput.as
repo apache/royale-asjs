@@ -19,7 +19,19 @@ package org.apache.flex.html.staticControls
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IStrand;	
+	import org.apache.flex.events.Event;
 	
+	/**
+     *  Dispatched when the user changes the text.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
     /**
      *  The TextInput class implements the basic control for
      *  single-line text input.
@@ -86,5 +98,37 @@ package org.apache.flex.html.staticControls
 			ITextModel(model).html = value;
 		}
 		
+		private var _strand:IStrand;
+
+        /**
+         *  @copy org.apache.flex.core.IBead#strand
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+
+	        // this is not working as expected
+            model = UIBase(_strand).model as ITextModel;
+            model.addEventListener("textChange", textChangeHandler);
+        }
+
+		/**
+		 * @dispatch change event in response to a textChange event
+		 *
+		 *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+            // this is not working as expected
+			dispatchEvent(new Event("change"));
+		}
 	}
 }
