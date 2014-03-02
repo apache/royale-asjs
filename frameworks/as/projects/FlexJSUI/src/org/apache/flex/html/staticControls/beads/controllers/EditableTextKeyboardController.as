@@ -78,6 +78,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 		 */
 		private function inputChangeHandler( event:Object ) : void
 		{
+            // this will otherwise bubble an event of flash.events.Event
+            event.stopImmediatePropagation();
 			model.text = textField.text;
 		}
 	}
