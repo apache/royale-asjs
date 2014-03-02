@@ -23,6 +23,8 @@ package org.apache.flex.core
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.IOErrorEvent;
+    import flash.system.ApplicationDomain;
+    import flash.utils.getQualifiedClassName;
     
     import org.apache.flex.events.Event;
     import org.apache.flex.utils.MXMLDataInterpreter;
@@ -262,6 +264,8 @@ package org.apache.flex.core
             return null;
         }
         
+        private var _info:Object;
+        
         /**
          *  An Object containing information generated
          *  by the compiler that is useful at startup time.
@@ -273,7 +277,14 @@ package org.apache.flex.core
          */
         public function get info():Object
         {
-            return {};           
+            if (!_info)
+            {
+                var mainClassName:String = getQualifiedClassName(this);
+                var initClassName:String = "_" + mainClassName + "_FlexInit";
+                var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
+                _info = c.info();
+            }
+            return _info;
         }
         
         /**

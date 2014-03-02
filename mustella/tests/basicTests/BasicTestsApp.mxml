@@ -35,8 +35,11 @@ limitations under the License.
     </basic:model>
     <basic:controller>
         <controllers:MyController />
-    </basic:controller>
+    </basic:controller>    
+    -->
     <basic:beads>
+        <basic:MixinManager />
+        <!--
         <basic:HTTPService id="service">
             <basic:LazyCollection id="collection">
                 <basic:inputParser>
@@ -47,7 +50,7 @@ limitations under the License.
                 </basic:itemConverter> 
             </basic:LazyCollection>
         </basic:HTTPService>
-        <basic:ViewSourceContextMenuOption />
-    </basic:beads>
+        <basic:ViewSourceContextMenuOption />    
     -->
+    </basic:beads>
 </basic:Application>

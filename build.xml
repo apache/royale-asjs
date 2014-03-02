@@ -1213,7 +1213,7 @@
     <target name="basictests" depends="load-task" description="run basic tests using mustella">
 
         <property name="FLEX_HOME" value="${basedir}" />
-        <mxmlc fork="true"
+        <mxmlc fork="true" debug="true"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="-compiler.mxml.children-as-data=true" />

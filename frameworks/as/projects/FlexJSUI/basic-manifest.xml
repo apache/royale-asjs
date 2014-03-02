@@ -71,5 +71,6 @@
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.staticControls.accessories.TextPromptBead" />
+    <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
 
 </componentPackage>
