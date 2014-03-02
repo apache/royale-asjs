@@ -35,6 +35,8 @@ package org.apache.flex.events
 	 */
 	public class Event extends flash.events.Event
 	{
+		public static const CHANGE:String = "change";
+
         /**
          *  Constructor.
          *  
