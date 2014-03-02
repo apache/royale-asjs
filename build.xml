@@ -1151,7 +1151,8 @@
         Tests: The current checkintests that must be run before every checkin
     -->
 
-    <target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />
+    <target name="checkintests"  description="Run these tests before every checkin" />
+    <!--<target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />-->
     <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
     
     <!--
@@ -1217,8 +1218,8 @@
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="-compiler.mxml.children-as-data=true" />
-            <library-path dir="${basedir}" append="true">
-                <include name="${FLEX_SDK_HOME}/mustella/mustella.swc"/>
+            <library-path dir="${FLEX_SDK_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
             </library-path>
         </mxmlc>
         <!-- compile supporting swfs for basic tests
