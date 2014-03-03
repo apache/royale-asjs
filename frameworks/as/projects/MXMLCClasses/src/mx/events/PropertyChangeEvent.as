@@ -73,6 +73,78 @@ public class PropertyChangeEvent extends Event
         super(type, bubbles, cancelable);
     }
 
+    //----------------------------------
+    //  kind
+    //----------------------------------
+    
+    /**
+     *  Specifies the kind of change.
+     *  The possible values are <code>PropertyChangeEventKind.UPDATE</code>,
+     *  <code>PropertyChangeEventKind.DELETE</code>, and <code>null</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var kind:String;
+    
+    //----------------------------------
+    //  newValue
+    //----------------------------------
+    
+    /**
+     *  The value of the property after the change.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var newValue:Object;
+    
+    //----------------------------------
+    //  oldValue
+    //----------------------------------
+    
+    /**
+     *  The value of the property before the change.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var oldValue:Object;
+    
+    //----------------------------------
+    //  property
+    //----------------------------------
+    
+    /**
+     *  A String, QName, or int specifying the property that changed.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var property:Object;
+    
+    //----------------------------------
+    //  source
+    //----------------------------------
+    
+    /**
+     *  The object that the change occured on.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var source:Object;
+    
 }
 
 }

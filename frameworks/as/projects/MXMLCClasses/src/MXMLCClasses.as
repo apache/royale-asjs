@@ -42,8 +42,10 @@ internal class MXMLCClasses
     import mx.binding.XMLWatcher; XMLWatcher;
     import mx.core.DeferredInstanceFromClass; DeferredInstanceFromClass;
     import mx.core.DeferredInstanceFromFunction; DeferredInstanceFromFunction;
+    import mx.core.FlexGlobals; FlexGlobals;
     import mx.core.IDeferredInstance; IDeferredInstance;
     import mx.core.IFlexModuleFactory; IFlexModuleFactory;
+    import mx.core.IMXMLObject; IMXMLObject;
     import mx.core.IPropertyChangeNotifier; IPropertyChangeNotifier;
     import mx.core.IStateClient2; IStateClient2;
     import mx.core.mx_internal; use namespace mx_internal;
@@ -54,6 +56,8 @@ internal class MXMLCClasses
     import mx.styles.CSSStyleDeclaration; CSSStyleDeclaration;
     import mx.styles.IStyleManager2; IStyleManager2;
     import mx.styles.StyleManager; StyleManager;    
+    import mx.utils.ObjectUtil; ObjectUtil;
+    import mx.utils.StringUtil; StringUtil;
 }
 
 }
