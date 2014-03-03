@@ -38,6 +38,6 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get info():Object
+		function info():Object
 	}
 }

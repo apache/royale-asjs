@@ -67,8 +67,8 @@ public class MixinManager implements IBead
         var app:IFlexInfo = value as IFlexInfo;
         if (app)
         {
-            var mixins:Array = app.info.mixins;
-            var domain:ApplicationDomain = app.info.currentDomain;
+            var mixins:Array = app.info().mixins;
+            var domain:ApplicationDomain = app.info().currentDomain;
             for each (var mixin:String in mixins)
             {
                 var mixinClass:Object = domain.getDefinition(mixin); 

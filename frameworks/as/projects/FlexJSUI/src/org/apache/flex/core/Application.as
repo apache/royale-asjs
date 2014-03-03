@@ -92,6 +92,19 @@ package org.apache.flex.core
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
         }
 
+        
+        /**
+         *  The document property is used to provide
+         *  a property lookup context for non-display objects.
+         *  For Application, it points to itself.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var document:Object = this;
+        
         private function initHandler(event:flash.events.Event):void
         {
             ValuesManager.valuesImpl = valuesImpl;
@@ -102,6 +115,7 @@ package org.apache.flex.core
             initialView.applicationModel =  model;
     	    this.addElement(initialView);
     	    dispatchEvent(new Event("viewChanged"));
+            dispatchEvent(new Event("applicationComplete"));
         }
 
         /**
@@ -275,7 +289,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get info():Object
+        public function info():Object
         {
             if (!_info)
             {
@@ -359,5 +373,17 @@ package org.apache.flex.core
                 removeChild(c as DisplayObject);
         }
         
+        /**
+         *  @copy org.apache.flex.core.IParent#numElements
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get numElements():int
+        {
+            return numChildren;
+        }
     }
 }

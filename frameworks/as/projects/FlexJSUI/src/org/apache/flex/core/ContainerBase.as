@@ -134,6 +134,8 @@ package org.apache.flex.core
         public function set states(value:Array):void
         {
             _states = value;
+            _currentState = _states[0].name;
+            
 			try{
 				if (getBeadByType(IStatesImpl) == null)
 					addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);

@@ -157,8 +157,8 @@ public class MXMLDataInterpreter
                     IStrand(comp).addBead(value as IBead);
             }
             var beadOffset:int = i + (m - 1) * 3;
-            if (beadOffset >= -1)
-                trace(beadOffset, data[beadOffset]);
+            //if (beadOffset >= -1)
+            //    trace(beadOffset, data[beadOffset]);
             if (m > 0 && data[beadOffset] == "beads")
             {
                 m--;
@@ -321,8 +321,8 @@ public class MXMLDataInterpreter
         
         m = data[i++]; // num props
         var beadOffset:int = i + (m - 1) * 3;
-        if (beadOffset >= -1)
-            trace(beadOffset, data[beadOffset]);
+        //if (beadOffset >= -1)
+        //      (beadOffset, data[beadOffset]);
         if (m > 0 && data[beadOffset] == "beads")
         {
             m--;

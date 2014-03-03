@@ -104,7 +104,9 @@ package org.apache.flex.core
                     var ai:AddItems = AddItems(o);
                     for each (var item:DisplayObject in ai.items)
                     {
-                        var parent:IParent = ai.document[ai.destination] as IParent;
+                        var parent:IParent = ai.document as IParent;
+                        if (ai.destination != null)
+                            parent = parent[ai.destination] as IParent;
                         parent.removeElement(item);
                     }
                     if (parent is IContainer)
@@ -133,13 +135,19 @@ package org.apache.flex.core
                     }
                     for each (var item:DisplayObject in ai.items)
                     {
-                        var parent:IParent = ai.document[ai.destination] as IParent;
+                        var parent:IParent = ai.document as IParent;
+                        if (ai.destination != null)
+                            parent = parent[ai.destination] as IParent;
                         if (ai.relativeTo != null)
                         {
-                            var child:Object = ai.document[ai.relativeTo];
-                            var index:int = parent.getElementIndex(child);
-                            if (ai.position == "after")
-                                index++;
+                            var index:int = parent.numElements;
+                            if (ai.relativeTo != null)
+                            {
+                                var child:Object = ai.document[ai.relativeTo];
+                                index = parent.getElementIndex(child);
+                                if (ai.position == "after")
+                                    index++;
+                            }
                             parent.addElementAt(item, index);
                         }
                         else

@@ -79,5 +79,15 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
        function removeElement(c:Object):void;
+       
+       /**
+        *  The number of elements in the parent.
+        * 
+        *  @langversion 3.0
+        *  @playerversion Flash 10.2
+        *  @playerversion AIR 2.6
+        *  @productversion FlexJS 0.0
+        */
+       function get numElements():int;
 	}
 }

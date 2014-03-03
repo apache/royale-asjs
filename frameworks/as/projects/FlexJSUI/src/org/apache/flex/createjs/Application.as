@@ -127,7 +127,7 @@ package org.apache.flex.createjs
 			return null;
 		}
 		
-		public function get info():Object
+		public function info():Object
 		{
 			return {};           
 		}

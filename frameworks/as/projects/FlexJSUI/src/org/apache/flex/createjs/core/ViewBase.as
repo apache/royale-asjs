@@ -81,6 +81,10 @@ package org.apache.flex.createjs.core
             removeChild(c as DisplayObject);
         }
         
+        public function get numElements():int
+        {
+            return numChildren;
+        }
 
 	}
 }
