@@ -26,25 +26,37 @@
     -->
         <symbol>halo.scripts.ButtonTestScript</symbol>
         <symbol>halo.scripts.CheckBoxTestScript</symbol>
+    <!-- temporarily
         <symbol>halo.scripts.RadioButtonTestScript</symbol>
         <symbol>halo.scripts.TextInputTestScript</symbol>
         <symbol>halo.scripts.TextAreaTestScript</symbol>
         <symbol>halo.scripts.ComboBoxTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.ColorPickerTestScript</symbol>-->
+    <!-- temporarily
         <symbol>halo.scripts.NumericStepperTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.DateFieldTestScript</symbol>-->
         <!--<symbol>halo.scripts.MenuTestScript</symbol>-->
         <!--<symbol>halo.scripts.MenuBarTestScript</symbol>-->
         <!--<symbol>halo.scripts.FocusManagerTestScript</symbol>-->
+    <!-- temporarily
         <symbol>halo.scripts.ListAndDataGridTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.TreeTestScript</symbol>-->
+    <!-- temporarily
         <symbol>halo.scripts.ImageTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.SWFLoaderTestScript</symbol>-->
+    <!-- temporarily
         <symbol>halo.scripts.TextTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.FTETextTestScript</symbol>-->
         <!--<symbol>halo.scripts.ProgressBarTestScript</symbol>-->
+    <!-- temporarily
         <symbol>halo.scripts.SliderTestScript</symbol>
         <symbol>halo.scripts.AlertTestScript</symbol>
+    -->
         <!--<symbol>halo.scripts.TabNavigatorTestScript</symbol>-->
         <!--<symbol>halo.scripts.AccordionTestScript</symbol>-->
         <!--<symbol>halo.scripts.RPCDataBindingTestScript</symbol>-->
@@ -79,7 +91,9 @@
 	    <!--<symbol>spark.scripts.FXG2RuntimeTestScript</symbol>-->
 	    <!--<symbol>dmv.scripts.ADGTestScript</symbol>-->
 	    <!--<symbol>dmv.scripts.ODGTestScript</symbol>-->
-	    <symbol>dmv.scripts.ChartsTestScript</symbol>	
+    <!-- temporarily
+	    <symbol>dmv.scripts.ChartsTestScript</symbol>
+    -->
         <!--<symbol>spark.scripts.AnimateConstraintsTestScript</symbol>-->
         <!--<symbol>spark.scripts.ImageTestScript</symbol>-->
         <!--<symbol>spark.scripts.DateTimeFormatterTestScript</symbol>-->
@@ -98,5 +112,6 @@
         <symbol>ExitWhenDone</symbol>
         <symbol>SetShowRTE</symbol>
         <symbol>SendFormattedResultsToLog</symbol>
+        <symbol>FlexJSContext</symbol>
     </includes>
 </flex-config>

@@ -45,8 +45,8 @@
 		<TestCase testID="SetupButtonTest">
 			<body>
 				<SetProperty target="" propertyName="currentState" value="haloButtonTest" 
-                    waitEvent="updateComplete" />
-				<AssertPropertyValue target="haloButtonTests.testButton" propertyName="label" value="test button" />
+                    waitEvent="enterFrame" />
+				<AssertPropertyValue target="haloButtonTests.testButton" propertyName="text" value="test button" />
 				<AssertPropertyValue target="haloButtonTests.testLabel" propertyName="text" value="test" />
 			</body>
 		</TestCase>

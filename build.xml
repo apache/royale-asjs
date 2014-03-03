@@ -1151,8 +1151,8 @@
         Tests: The current checkintests that must be run before every checkin
     -->
 
-    <target name="checkintests"  description="Run these tests before every checkin" />
-    <!--<target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />-->
+    <!--<target name="checkintests"  description="Run these tests before every checkin" />-->
+    <target name="checkintests" depends="basictests-mustella" description="Run these tests before every checkin" />
     <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
     
     <!--

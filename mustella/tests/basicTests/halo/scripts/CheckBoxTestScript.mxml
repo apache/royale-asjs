@@ -45,8 +45,8 @@
 		<TestCase testID="SetupCheckBoxTest">
 			<body>
 				<SetProperty target="" propertyName="currentState" value="haloCheckBoxTest" 
-                    waitEvent="updateComplete" />
-				<AssertPropertyValue target="haloCheckBoxTests.testCheckBox" propertyName="label" value="test CheckBox" />
+                    waitEvent="enterFrame" />
+				<AssertPropertyValue target="haloCheckBoxTests.testCheckBox" propertyName="text" value="test CheckBox" />
 			</body>
 		</TestCase>
 		<TestCase testID="CheckBoxTest1">
