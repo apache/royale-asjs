@@ -43,6 +43,15 @@ org.apache.flex.events.Event.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
+ * Enum type for the events fired by the FlexJS Event
+ * @enum {string}
+ */
+org.apache.flex.events.Event.EventType = {
+    CHANGE: 'change'
+  };
+
+
+/**
  * @expose
  * @type {string} type The event type.
  */

@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.staticControls.TextInput');
 
+goog.require('goog.events.InputHandler');
 goog.require('org.apache.flex.core.UIBase');
 
 
@@ -47,6 +48,10 @@ org.apache.flex.html.staticControls.TextInput.prototype.createElement =
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
 
+  //attach input handler to dispatch flexjs change event when user write in textinput
+  var ih = new goog.events.InputHandler(this.element);
+  goog.events.listen(ih, goog.events.InputHandler.EventType.INPUT, goog.bind(this.inputChangeHandler, this));
+
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
@@ -71,3 +76,13 @@ org.apache.flex.html.staticControls.TextInput.prototype.set_text =
     function(value) {
   this.element.value = value;
 };
+
+
+/**
+ * @expose
+ * @param {Object} event The event.
+ */
+org.apache.flex.html.staticControls.TextInput.prototype.inputChangeHandler =
+    function(event) {
+        this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));
+      };
