@@ -17,47 +17,47 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package controller {
-    import event.TodoListEvent;
+	import event.TodoListEvent;
 
-    import model.TodoListModel;
+	import model.TodoListModel;
 
-    import org.apache.flex.core.Application;
-    import org.apache.flex.core.IDocument;
-    import org.apache.flex.events.Event;
+	import org.apache.flex.core.Application;
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.events.Event;
 
-    public class TodoListController implements IDocument {
-        private var app:TodoListSampleApp;
-        private var todoListModel:TodoListModel;
+	public class TodoListController implements IDocument {
+		private var app:TodoListSampleApp;
 
-        public function TodoListController(app:Application = null) {
-            if (app != null) {
-                app = app as TodoListSampleApp;
-            }
-        }
+		public function TodoListController(app:Application = null) {
+			if (app != null) {
+				app = app as TodoListSampleApp;
+			}
+		}
 
-        /**
-         *
-         */
-        public function setDocument(document:Object, id:String = null):void {
-            app = document as TodoListSampleApp;
-            app.addEventListener("viewChanged", viewChangeHandler);
-        }
+		/**
+		 *
+		 */
+		public function setDocument(document:Object, id:String = null):void {
+			app = document as TodoListSampleApp;
+			app.addEventListener("viewChanged", viewChangeHandler);
+		}
 
-        /**
-         *
-         * @param event
-         */
-        private function viewChangeHandler(event:Event):void {
-            app.initialView.addEventListener(TodoListEvent.LOG_TODO, logTodo);
-        }
+		/**
+		 *
+		 * @param event
+		 */
+		private function viewChangeHandler(event:Event):void {
+			app.initialView.addEventListener(TodoListEvent.LOG_TODO, logTodo);
+		}
 
-        /**
-         * log todo
-         * @param event
-         */
-        public function logTodo(evt:TodoListEvent):void {
-            //todoListModel.todos = []; //{title: evt.todo, selected: false};
-        }
-
-    }
+		/**
+		 * log todo
+		 * @param event
+		 */
+		public function logTodo(evt:TodoListEvent):void {
+			// still need to change model a view get the changes
+			var todoModel:TodoListModel = app.model as TodoListModel;
+			//todoModel.todos.push({title: evt.todo, selected: false});
+		}
+	}
 }

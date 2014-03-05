@@ -61,7 +61,7 @@ package renderer {
             title.y = cy;
 
             removeButton.x = 300;
-            removeButton.y = cy
+            removeButton.y = cy;
 
             updateRenderer();
         }
