@@ -42,7 +42,9 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
 	import org.apache.flex.html.staticControls.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.staticControls.beads.DateFieldView; DateFieldView;
-    import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
+	import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
+	import org.apache.flex.html.staticControls.beads.FormatableLabelView; FormatableLabelView;
+	import org.apache.flex.html.staticControls.beads.FormatableTextInputView; FormatableTextInputView;
 	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
     import org.apache.flex.html.staticControls.beads.ListView; ListView;
     import org.apache.flex.html.staticControls.beads.NumericStepperView; NumericStepperView;

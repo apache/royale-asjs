@@ -23,6 +23,7 @@ package org.apache.flex.html.staticControls.beads
 	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDateChooserModel;
+	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
@@ -106,14 +107,25 @@ package org.apache.flex.html.staticControls.beads
 			_textInput.width = 100;
 			_textInput.height = 18;
 			
-			
 			_button = new TextButton();
 			_button.text = "M";
 			IParent(_strand).addElement(_button);
 			_button.x = _textInput.width;
 			_button.y = _textInput.y;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("viewChanged"));
+			IEventDispatcher(_strand).addEventListener("beadsAdded",handleBeadsAdded);
+		}
+		
+		private function handleBeadsAdded(event:Event):void
+		{
+			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
+			formatter.addEventListener("formatChanged",handleFormatChanged);
+		}
+		
+		private function handleFormatChanged(event:Event):void
+		{
+			var formatter:IFormatBead = event.target as IFormatBead;
+			_textInput.text = formatter.formattedString;
 		}
 		
 		private var _popUp:IStrand;

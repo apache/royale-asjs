@@ -33,6 +33,8 @@
     <component id="DateField" class="org.apache.flex.html.staticControls.DateField"/>
     <component id="DropDownList" class="org.apache.flex.html.staticControls.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.staticControls.supportClasses.DropDownListList"/>
+    <component id="FormatableLabelView" class="org.apache.flex.html.staticControls.beads.FormatableLabelView"/>
+    <component id="FormatableTextInputView" class="org.apache.flex.html.staticControls.beads.FormatableTextInputView"/>
     <component id="Image" class="org.apache.flex.html.staticControls.Image"/>
     <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
     <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>

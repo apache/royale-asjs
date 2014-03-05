@@ -19,11 +19,13 @@
 package org.apache.flex.utils
 {
 
-import org.apache.flex.core.IStrand;
 import org.apache.flex.core.IBead;
+import org.apache.flex.core.IContainer;
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IParent;
-import org.apache.flex.core.IContainer;
+import org.apache.flex.core.IStrand;
+import org.apache.flex.events.Event;
+import org.apache.flex.events.IEventDispatcher;
 
 /**
  *  The MXMLDataInterpreter class is the class that interprets the
@@ -137,6 +139,7 @@ public class MXMLDataInterpreter
             var simple:*;
             var value:Object;
             var id:String = null;
+			var dispatchBeadsAdded:Boolean = false;
             
             m = data[i++]; // num props
             if (m > 0 && data[0] == "model")
@@ -197,6 +200,7 @@ public class MXMLDataInterpreter
                 {
                     var bead:IBead = beads[k] as IBead;
                     IStrand(comp).addBead(bead);
+					dispatchBeadsAdded = true;
                 }
             }
             m = data[i++]; // num styles
@@ -236,6 +240,7 @@ public class MXMLDataInterpreter
             if (parent)
             {
                 parent.addElement(comp);
+				dispatchBeadsAdded = true;
             }
 
             var children:Array = data[i++];
@@ -259,6 +264,10 @@ public class MXMLDataInterpreter
             if (comp is IDocument)
                 comp.setDocument(document, id);
             comps.push(comp);
+			
+			if (dispatchBeadsAdded) {
+				IEventDispatcher(comp).dispatchEvent(new Event("beadsAdded"));
+			}
         }
         return comps;
     }
@@ -355,6 +364,10 @@ public class MXMLDataInterpreter
                 IStrand(host).addBead(bead);
                 bead.strand = host as IStrand;
             }
+			
+			if (l>0) {
+				IEventDispatcher(host).dispatchEvent(new Event("beadsAdded"));
+			}
         }
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)

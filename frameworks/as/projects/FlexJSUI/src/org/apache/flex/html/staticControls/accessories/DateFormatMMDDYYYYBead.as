@@ -20,8 +20,10 @@ package org.apache.flex.html.staticControls.accessories
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDateChooserModel;
+	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.html.staticControls.TextInput;
 	import org.apache.flex.html.staticControls.beads.DateFieldView;
 	
@@ -33,7 +35,7 @@ package org.apache.flex.html.staticControls.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateFormatMMDDYYYYBead implements IBead
+	public class DateFormatMMDDYYYYBead extends EventDispatcher implements IBead, IFormatBead
 	{
 		/**
 		 * constructor.
@@ -45,6 +47,65 @@ package org.apache.flex.html.staticControls.accessories
 		 */
 		public function DateFormatMMDDYYYYBead()
 		{
+		}
+		
+		private var _propertyName:String;
+		private var _eventName:String;
+		private var _formattedResult:String;
+		
+		/**
+		 *  The name of the property on the model holding the value to be formatted.
+		 *  The default is selectedDate.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get propertyName():String
+		{
+			if (_propertyName == null) {
+				return "selectedDate";
+			}
+			return _propertyName;
+		}
+		public function set propertyName(value:String):void
+		{
+			_propertyName = value;
+		}
+		
+		/**
+		 *  The name of the event dispatched when the property changes. The
+		 *  default is selectedDateChanged.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get eventName():String
+		{
+			if (_eventName == null) {
+				return _propertyName+"Changed";
+			}
+			return _eventName;
+		}
+		public function set eventName(value:String):void
+		{
+			_eventName = value;
+		}
+		
+		/**
+		 *  The formatted result.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get formattedString():String
+		{
+			return _formattedResult;
 		}
 		
 		private var _strand:IStrand;
@@ -71,8 +132,8 @@ package org.apache.flex.html.staticControls.accessories
 		private function handleTextChange(event:Event):void
 		{
 			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
-			var view:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
-			var input:TextInput = view.textInput;
+			/*var view:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
+			var input:TextInput = view.textInput;*/
 			
 			var d:Date = model.selectedDate;
 			var month:String = String(d.getMonth()+1);
@@ -80,7 +141,10 @@ package org.apache.flex.html.staticControls.accessories
 			var date:String = String(d.getDate());
 			if (Number(date)<10) date = "0"+date;
 			var fmt:String = month+"/"+date+"/"+String(d.getFullYear());
-			input.text = fmt;
+			/*input.text = fmt;*/
+			_formattedResult = month+"/"+date+"/"+String(d.getFullYear());
+			
+			dispatchEvent( new Event("formatChanged") );
 		}
 		
 	}
