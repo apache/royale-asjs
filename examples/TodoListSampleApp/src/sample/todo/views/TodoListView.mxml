@@ -90,7 +90,7 @@ limitations under the License.
 
     <fx:Style>
         @namespace basic "library://ns.apache.org/flexjs/basic";
-        @namespace renderer "renderer.*";
+        @namespace renderers "sample.todo.renderers.*";
 
         /* use className="todoList" on the List element in place of itemRenderer if you want to specify
          * the itemRenderer in a style definition along with other settings.
@@ -100,7 +100,7 @@ limitations under the License.
             IItemRenderer: ClassReference("sample.todo.renderers.TodoItemRenderer");
         }
 
-        renderer|TodoItemRenderer {
+        renderers|TodoItemRenderer {
             height: 40;
             IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
         }
