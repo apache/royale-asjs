@@ -14,7 +14,6 @@
 
 goog.provide('org.apache.flex.html.staticControls.TextInput');
 
-goog.require('goog.events.InputHandler');
 goog.require('org.apache.flex.core.UIBase');
 
 
@@ -43,14 +42,13 @@ org.apache.flex.html.staticControls.TextInput.prototype.FLEXJS_CLASS_INFO =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.TextInput.prototype.createElement =
-    function() {
+org.apache.flex.html.staticControls.TextInput.prototype.createElement = function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
 
   //attach input handler to dispatch flexjs change event when user write in textinput
-  var ih = new goog.events.InputHandler(this.element);
-  goog.events.listen(ih, goog.events.InputHandler.EventType.INPUT, goog.bind(this.inputChangeHandler_, this));
+  //goog.events.listen(this.element, 'change', goog.bind(this.killChangeHandler, this));
+  goog.events.listen(this.element, 'input', goog.bind(this.inputChangeHandler_, this));
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -72,19 +70,26 @@ org.apache.flex.html.staticControls.TextInput.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.set_text =
-    function(value) {
+org.apache.flex.html.staticControls.TextInput.prototype.set_text = function(value) {
   this.element.value = value;
 };
+
+
+/**
+ * @expose
+ * @param {Object} event The event.
+ */
+/*org.apache.flex.html.staticControls.TextInput.prototype.killChangeHandler = function(event) {
+    //event.preventDefault();
+};*/
 
 
 /**
  * @private
  * @param {Object} event The event.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.inputChangeHandler_ =
-    function(event) {
-        event.stopPropagation();
-        
-        this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));
-      };
+org.apache.flex.html.staticControls.TextInput.prototype.inputChangeHandler_ = function(event) {
+  event.stopPropagation();
+
+  this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));
+};
