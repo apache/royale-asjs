@@ -23,7 +23,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-        import event.TodoListEvent;
+        import sample.todo.events.TodoListEvent;
 
         /**
          * add to the list the text entered by the user, in the text box,
@@ -67,7 +67,7 @@ limitations under the License.
                          change="logTodo()"/>
 
         <basic:List id="todoList"
-                    itemRenderer="renderer.TodoItemRenderer"
+                    itemRenderer="sample.todo.renderers.TodoItemRenderer"
                     width="300" height="400">
             <!-- dataProvider="{TodoListModel(applicationModel).todos}" -->
             <basic:beads>
@@ -97,7 +97,7 @@ limitations under the License.
          */
         .todoList {
             IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
-            IItemRenderer: ClassReference("renderer.TodoItemRenderer");
+            IItemRenderer: ClassReference("sample.todo.renderers.TodoItemRenderer");
         }
 
         renderer|TodoItemRenderer {

@@ -16,20 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package event {
-    import org.apache.flex.events.Event;
+package sample.todo.models {
+    import org.apache.flex.events.EventDispatcher;
 
-    public class TodoListEvent extends Event {
+    public class TodoListModel extends EventDispatcher {
+        public function TodoListModel() {
+            super();
+        }
 
-        public static const LOG_TODO:String = "logTodoEvent";
+        private var _todos:Array = [
+            {title: "Get something", selected: true},
+            {title: "Do this", selected: true},
+            {title: "Do that", selected: false}
+        ];
 
-        /**
-         * the todo to log
-         */
-        public var todo:String = null;
+        [Bindable]
+        public function get todos():Array {
+            return _todos;
+        }
 
-        public function TodoListEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
-            super(type, bubbles, cancelable);
+        public function set todos(value:Array):void {
+            _todos = value;
         }
     }
 }

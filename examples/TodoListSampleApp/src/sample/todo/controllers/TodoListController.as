@@ -16,10 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package controller {
-	import event.TodoListEvent;
-
-	import model.TodoListModel;
+package sample.todo.controllers {
+	import sample.todo.events.TodoListEvent;
+	import sample.todo.models.TodoListModel;
 
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;

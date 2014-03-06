@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package renderer {
+package sample.todo.renderers {
     import org.apache.flex.html.staticControls.Button;
     import org.apache.flex.html.staticControls.CheckBox;
     import org.apache.flex.html.staticControls.Label;
