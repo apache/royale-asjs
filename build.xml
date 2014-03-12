@@ -79,13 +79,26 @@
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
+    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
+    <target name="dump-config" >
+        <echo>env.USERNAME is: ${env.USERNAME}</echo>
+        <condition property="FLASHLOG">
+            <available file="c:/Documents and Settings/${env.USERNAME}/Application Data/Macromedia/Flash Player/Logs/flashlog.txt"
+                type="file"/>
+        </condition>
+        <condition property="FLASHLOG">
+            <available file="c:/Users/${env.USERNAME}/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt"
+                type="file"/>
+        </condition>
+        <echo>copying last flashlog.txt from ${FLASHLOG}</echo>
+        <copy file="${FLASHLOG}" tofile="${basedir}/lastflashlog.txt" />
+    </target>
     <!-- 
         Can set build.additional-packages to build additional-packages as part of a release.
         This does not build the docs.  Use doc-packages or asdoc-packages.
@@ -107,7 +120,7 @@
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
-        depends="setup-binary-release,main-jenkins,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        depends="setup-binary-release,main-jenkins,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="source-release-noclean" 
