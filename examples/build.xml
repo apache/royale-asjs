@@ -88,6 +88,7 @@
         <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
         <ant dir="${basedir}/BarChartExample"/>
+        <ant dir="${basedir}/TodoListSampleApp"/>
     </target>
 	   
     <!--
@@ -115,6 +116,7 @@
         <ant dir="${basedir}/StatesTest" target="clean"/>
         <ant dir="${basedir}/StockQuote" target="clean"/>
         <ant dir="${basedir}/BarChartExample" target="clean"/>
+        <ant dir="${basedir}/TodoListSampleApp" target="clean"/>
     </target>
     
 </project>
