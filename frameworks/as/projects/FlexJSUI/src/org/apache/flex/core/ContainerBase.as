@@ -72,6 +72,7 @@ package org.apache.flex.core
             super.addedToParent();
             
 			dispatchEvent(new Event("initComplete"))
+			dispatchEvent( new Event("childrenAdded") );
 		}
 		
         /**
