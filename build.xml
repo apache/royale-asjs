@@ -107,7 +107,7 @@
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
-        depends="setup-binary-release,main-jenkins,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        depends="setup-binary-release,main-jenkins,sample-themes,doc,other.locales,binary-package,additional-packages" 
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="source-release-noclean" 
