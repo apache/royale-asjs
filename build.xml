@@ -88,11 +88,13 @@
 
     <target name="dump-config" >
         <echo>env.USERNAME is: ${env.USERNAME}</echo>
-        <condition property="FLASHLOG">
+        <condition property="FLASHLOG"
+            value="c:/Documents and Settings/${env.USERNAME}/Application Data/Macromedia/Flash Player/Logs/flashlog.txt">
             <available file="c:/Documents and Settings/${env.USERNAME}/Application Data/Macromedia/Flash Player/Logs/flashlog.txt"
                 type="file"/>
         </condition>
-        <condition property="FLASHLOG">
+        <condition property="FLASHLOG"
+            value="c:/Users/${env.USERNAME}/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt">
             <available file="c:/Users/${env.USERNAME}/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt"
                 type="file"/>
         </condition>
