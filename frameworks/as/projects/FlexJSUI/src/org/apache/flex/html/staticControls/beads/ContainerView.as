@@ -25,10 +25,11 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.supportClasses.Border;
-    import org.apache.flex.html.staticControls.supportClasses.ContainerContentArea;
+	import org.apache.flex.html.staticControls.supportClasses.ContainerContentArea;
 	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
 	
     /**
@@ -104,9 +105,39 @@ package org.apache.flex.html.staticControls.beads
 					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
 			}
 			
+			var padding:Object = determinePadding();
+			
+			if (contentAreaNeeded())
+			{
+				actualParent = new ContainerContentArea();
+				DisplayObjectContainer(value).addChild(actualParent);
+				Container(value).setActualParent(actualParent);
+				actualParent.x = padding.paddingLeft;
+				actualParent.y = padding.paddingTop;
+			}
+			else
+			{
+				actualParent = value as UIBase;
+			}
+		}
+		
+		/**
+		 *  Determines the top and left padding values, if any, as set by
+		 *  padding style values. This includes "padding" for all padding values
+		 *  as well as "padding-left" and "padding-top".
+		 * 
+		 *  Returns an object with paddingLeft and paddingTop properties.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function determinePadding():Object
+		{
 			var paddingLeft:Object;
 			var paddingTop:Object;
-			var padding:Object = ValuesManager.valuesImpl.getValue(value, "padding");
+			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
 			if (padding is Array)
 			{
 				if (padding.length == 1)
@@ -124,8 +155,8 @@ package org.apache.flex.html.staticControls.beads
 			}
 			else if (padding == null)
 			{
-				paddingLeft = ValuesManager.valuesImpl.getValue(value, "padding-left");
-				paddingTop = ValuesManager.valuesImpl.getValue(value, "padding-top");
+				paddingLeft = ValuesManager.valuesImpl.getValue(_strand, "padding-left");
+				paddingTop = ValuesManager.valuesImpl.getValue(_strand, "padding-top");
 			}
 			else
 			{
@@ -133,19 +164,24 @@ package org.apache.flex.html.staticControls.beads
 			}
 			var pl:Number = Number(paddingLeft);
 			var pt:Number = Number(paddingTop);
-			if ((!isNaN(pl) && pl > 0 ||
-				!isNaN(pt) && pt > 0))
-			{
-				actualParent = new ContainerContentArea();
-				DisplayObjectContainer(value).addChild(actualParent);
-				Container(value).setActualParent(actualParent);
-				actualParent.x = pl;
-				actualParent.y = pt;
-			}
-			else
-			{
-				actualParent = value as DisplayObjectContainer;
-			}
+			
+			return {paddingLeft:pl, paddingTop:pt};
+		}
+		
+		/**
+		 *  Returns true if container to create a separate ContainerContentArea.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function contentAreaNeeded():Boolean
+		{
+			var padding:Object = determinePadding();
+			
+			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
+				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
 		}
 		
         /**

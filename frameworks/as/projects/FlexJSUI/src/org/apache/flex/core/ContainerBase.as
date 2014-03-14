@@ -67,12 +67,13 @@ package org.apache.flex.core
 			ValuesManager.valuesImpl.init(this);
 			
 			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
+			
+			super.addedToParent();
+			
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 			
-            super.addedToParent();
-            
 			dispatchEvent(new Event("initComplete"))
-			dispatchEvent( new Event("childrenAdded") );
+			dispatchEvent(new Event("childrenAdded"));
 		}
 		
         /**

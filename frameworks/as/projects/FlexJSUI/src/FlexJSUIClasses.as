@@ -56,6 +56,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.SliderView; SliderView;
 	import org.apache.flex.html.staticControls.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.staticControls.beads.SliderTrackView; SliderTrackView;
+	import org.apache.flex.html.staticControls.beads.SolidBackgroundBead; SolidBackgroundBead;
     import org.apache.flex.html.staticControls.beads.SpinnerView; SpinnerView;
     import org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 	import org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
@@ -99,6 +100,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.utils.Timer; Timer;
+	import org.apache.flex.utils.UIUtils; UIUtils;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     
 	import mx.core.ClassFactory; ClassFactory;

@@ -121,8 +121,21 @@ package org.apache.flex.html.staticControls.beads
 				Container(_strand).addElement(controlBar);
 			}
 			
-			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);
-            
+			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
+		}
+		
+		/**
+		 *  Always returns true because Panel's content is separate from its chrome
+		 *  elements such as the title bar and optional control bar.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override protected function contentAreaNeeded():Boolean
+		{
+			return true;
 		}
 		
 		/**
