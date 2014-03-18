@@ -14,19 +14,19 @@
 
 goog.provide('org.apache.flex.html.staticControls.Container');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ContainerBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.core.ContainerBase}
  */
 org.apache.flex.html.staticControls.Container = function() {
   goog.base(this);
 };
 goog.inherits(org.apache.flex.html.staticControls.Container,
-    org.apache.flex.core.UIBase);
+    org.apache.flex.core.ContainerBase);
 
 
 /**

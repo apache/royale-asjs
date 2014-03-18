@@ -74,3 +74,12 @@ org.apache.flex.events.Event.prototype.init = function(type) {
 org.apache.flex.events.Event.prototype.get_target = function() {
   return this.target;
 };
+
+
+/**
+ * @expose
+ * @return {Object|undefined} The event currentTarget.
+ */
+org.apache.flex.events.Event.prototype.get_currentTarget = function() {
+  return this.currentTarget;
+};

@@ -137,7 +137,7 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
  */
 org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
     function() {
-
+  goog.base(this, 'addedToParent');
 };
 
 
