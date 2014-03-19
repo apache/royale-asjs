@@ -15,6 +15,8 @@
 goog.provide('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.utils.Language');
+goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
 
 
 
@@ -61,6 +63,7 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
   this.element.style.overflow = 'auto';
   this.element.style.display = 'inline-block';
   this.element.style.position = 'inherit';
+  this.element.flexjs_wrapper = this;
   this.set_className('NonVirtualDataGroup');
 
   this.positioner = this.element;
@@ -77,8 +80,9 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
     prototype.addElement = function(value) {
   goog.base(this, 'addElement', value);
 
-  value.set_index(this.renderers.length);
-  value.set_itemRendererParent(this);
+  var itemRenderer = org.apache.flex.utils.Language.as(value,org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+  itemRenderer.set_index(this.renderers.length);
+  itemRenderer.set_itemRendererParent(this);
   this.renderers.push(value);
 };
 

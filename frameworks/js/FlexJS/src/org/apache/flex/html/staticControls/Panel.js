@@ -120,6 +120,7 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
   this.element.className = 'Panel';
 
   this.contentArea = document.createElement('div');
+  this.contentArea.flexjs_wrapper = this;
   this.element.appendChild(this.contentArea);
 
   this.panelView = new org.apache.flex.html.staticControls.beads.PanelView();

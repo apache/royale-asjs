@@ -65,6 +65,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
   this.element.style.borderWidth = '1px';
   this.element.style.borderColor = '#333333';
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 
   return this.element;
 };

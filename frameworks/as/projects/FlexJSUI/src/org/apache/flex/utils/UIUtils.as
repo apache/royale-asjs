@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
+	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.UIBase;
 
 	/**
@@ -42,6 +43,9 @@ package org.apache.flex.utils
 		/**
 		 *  Centers the given item relative to another item. Typically the item being centered is
 		 *  a child or sibling of the second item. 
+		 * 
+		 *  @param item The component item being centered.
+		 *  @param relativeTo The component used as reference for the centering.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -55,6 +59,45 @@ package org.apache.flex.utils
 			
 			item.x = xpos;
 			item.y = ypos;
+		}
+		
+		/**
+		 *  Given a component starting point, this function walks up the parent chain
+		 *  looking for a component that implements the IPopUpHost interface. The function
+		 *  either returns that component or null if no IPopUpHost can be found. 
+		 * 
+		 *  @param start A component to start the search.
+		 *  @return A component that implements IPopUpHost or null.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static function findPopUpHost(start:UIBase):IPopUpHost
+		{
+			while( start != null && !(start is IPopUpHost) ) {
+				start = start.parent as UIBase;
+			}
+			
+			return start as IPopUpHost;
+		}
+		
+		/**
+		 *  Removes the given component from the IPopUpHost. 
+		 * 
+		 *  @param start A component to start the search.
+		 *  @return A component that implements IPopUpHost or null.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static function removePopUp(popUp:UIBase):void
+		{
+			var host:IPopUpHost = popUp.parent as IPopUpHost;
+			host.removeElement(popUp);
 		}
 	}
 }

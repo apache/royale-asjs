@@ -365,9 +365,9 @@ public class MXMLDataInterpreter
                 bead.strand = host as IStrand;
             }
 			
-			if (l>0) {
-				IEventDispatcher(host).dispatchEvent(new Event("beadsAdded"));
-			}
+//			if (l>0) {
+//				IEventDispatcher(host).dispatchEvent(new Event("beadsAdded"));
+//			}
         }
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)

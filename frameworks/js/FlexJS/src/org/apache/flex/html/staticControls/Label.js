@@ -27,6 +27,7 @@ org.apache.flex.html.staticControls.Label = function() {
 
   this.element = document.createElement('div');
   this.positioner = this.element;
+  this.element.flexjs_wrapper = this;
 };
 goog.inherits(org.apache.flex.html.staticControls.Label,
     org.apache.flex.core.UIBase);
