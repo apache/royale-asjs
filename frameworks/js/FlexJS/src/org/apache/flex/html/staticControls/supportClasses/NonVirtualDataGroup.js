@@ -15,8 +15,8 @@
 goog.provide('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.utils.Language');
 goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -80,7 +80,8 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
     prototype.addElement = function(value) {
   goog.base(this, 'addElement', value);
 
-  var itemRenderer = org.apache.flex.utils.Language.as(value,org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+  var itemRenderer = org.apache.flex.utils.Language.as(value,
+                           org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
   itemRenderer.set_index(this.renderers.length);
   itemRenderer.set_itemRendererParent(this);
   this.renderers.push(value);
