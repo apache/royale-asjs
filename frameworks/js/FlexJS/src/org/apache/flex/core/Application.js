@@ -75,6 +75,7 @@ org.apache.flex.core.Application.prototype.valuesImpl = null;
  */
 org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
+  this.element.flexjs_wrapper = this;
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
       this.get_MXMLProperties());
