@@ -32,8 +32,9 @@
             selenium (2.32.0) - Apache 2.0
 	-->
 	
-    <property name="selenium2.jar.name" value="selenium-java-2.32.0"/>
-    <property name="selenium2.dir.name" value="selenium-2.32.0"/>
+    <property name="selenium2.jar.dir.name" value="2.40"/>
+    <property name="selenium2.jar.name" value="selenium-java-2.40.0"/>
+    <property name="selenium2.dir.name" value="selenium-2.40.0"/>
 	
     <!-- 
         Because the downloads requires a network connection and the JARs don't change very often, 
@@ -177,7 +178,7 @@
 	    description="Copies the selenium build jars.">
 		<mkdir dir="${lib.dir}/selenium" />
 	    <antcall target="download-zip">
-	      <param name="srcUrl" value="https://selenium.googlecode.com/files"/>
+	      <param name="srcUrl" value="http://selenium-release.storage.googleapis.com/${selenium2.jar.dir.name}"/>
 	      <param name="zipFile" value="${selenium2.jar.name}.zip"/>
 	    </antcall>
 	    <get src="http://www.apache.org/licenses/LICENSE-2.0" dest="${lib.dir}/selenium/selenium-LICENSE.txt"/>
