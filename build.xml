@@ -1193,6 +1193,7 @@
 		    <arg value="url=file://${basedir}/mustella/tests/bin/js-debug/index.html" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
+		    <!--<arg value="showSteps=true" />-->
             <classpath>
             	<pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.40.0.jar"/>
             	<pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
