@@ -47,7 +47,7 @@ function(value) {
 
   if (value)
   {
-    if (typeof(value.info) == "function")
+    if (typeof(value.info) == 'function')
     {
       var mixins = value.info()['mixins'];
       if (mixins)
