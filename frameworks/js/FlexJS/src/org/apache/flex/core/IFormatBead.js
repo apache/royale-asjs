@@ -66,6 +66,6 @@ org.apache.flex.core.IFormatBead.prototype.get_formattedString = function() {};
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IFormatBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IFormatBead', qName: 'org.apache.flex.core.IFormatBead'}],
-    interfaces: [org.apache.flex.core.IBead, org.apache.flex.events.IEventDispatcher]
+  names: [{ name: 'IFormatBead', qName: 'org.apache.flex.core.IFormatBead'}],
+  interfaces: [org.apache.flex.core.IBead, org.apache.flex.events.IEventDispatcher]
 };

@@ -63,5 +63,5 @@ org.apache.flex.core.IParent.prototype.removeElement = function(c) {};
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IParent.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IParent', qName: 'org.apache.flex.core.IParent'}]
+  names: [{ name: 'IParent', qName: 'org.apache.flex.core.IParent'}]
 };

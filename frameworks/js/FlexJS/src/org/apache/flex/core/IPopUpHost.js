@@ -22,6 +22,8 @@
 
 goog.provide('org.apache.flex.core.IPopUpHost');
 
+goog.require('org.apache.flex.core.IParent');
+
 
 
 /**
@@ -38,6 +40,6 @@ org.apache.flex.core.IPopUpHost = function() {
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.core.IPopUpHost.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IPopUpHost', qName: 'org.apache.flex.core.IPopUpHost'}],
-    interfaces: [org.apache.flex.core.IParent]
+  names: [{ name: 'IPopUpHost', qName: 'org.apache.flex.core.IPopUpHost'}],
+  interfaces: [org.apache.flex.core.IParent]
 };
