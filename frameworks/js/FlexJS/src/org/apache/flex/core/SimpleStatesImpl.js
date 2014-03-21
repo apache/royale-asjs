@@ -117,10 +117,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
       for (q in o.items) {
         item = o.items[q];
 
-        if (typeof(o.document['get_' + o.destination]) === 'function') {
-          parent = o.document['get_' + o.destination]();
-        } else {
-          parent = o.document[o.destination];
+        parent = o.document;
+        if (o.destination) {
+          if (typeof(o.document['get_' + o.destination]) === 'function') {
+            parent = o.document['get_' + o.destination]();
+          } else {
+            parent = o.document[o.destination];
+          }
         }
 
         parent.removeElement(item);
