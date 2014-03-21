@@ -23,7 +23,12 @@
 
     <component id="DataGrid" class="org.apache.flex.html.staticControls.DataGrid"/>
     <component id="DataGridColumn" class="org.apache.flex.html.staticControls.supportClasses.DataGridColumn"/>
+    <component id="FormatableLabelView" class="org.apache.flex.html.staticControls.beads.FormatableLabelView"/>
+    <component id="FormatableTextInputView" class="org.apache.flex.html.staticControls.beads.FormatableTextInputView"/>
     <component id="DataGridPresentationModel" class="org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel" />
+
+    <component id="DateChooser" class="org.apache.flex.html.staticControls.DateChooser"/>
+    <component id="DateField" class="org.apache.flex.html.staticControls.DateField"/>
     <component id="BarChart" class="org.apache.flex.charts.BarChart" />
     <component id="BarChartSeries" class="org.apache.flex.charts.supportClasses.BarChartSeries" />
     <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />

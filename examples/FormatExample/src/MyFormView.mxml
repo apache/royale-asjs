@@ -31,6 +31,33 @@ limitations under the License.
 
 	</fx:Style>
 	
+	<fx:Script>
+		<![CDATA[
+			import dialogs.LoginDialog;
+			
+			import org.apache.flex.core.IPopUpHost;
+			import org.apache.flex.events.Event;
+			import org.apache.flex.utils.UIUtils;
+			
+			
+			private function showLogin():void
+			{
+				var dialog:LoginDialog = new LoginDialog();
+				var host:IPopUpHost = UIUtils.findPopUpHost(this);
+				host.addElement(dialog);
+				UIUtils.center(dialog,this);
+				
+				dialog.addEventListener("close",closeDialog);
+			}
+			
+			private function closeDialog(event:org.apache.flex.events.Event):void
+			{
+				var dialog:LoginDialog = event.currentTarget as LoginDialog;
+				UIUtils.removePopUp(dialog);
+			}
+		]]>
+	</fx:Script>
+	
 	<basic:Container width="600" height="700" x="50" y="50">
 		<basic:beads>
 			<basic:NonVirtualVerticalLayout />
@@ -92,6 +119,13 @@ limitations under the License.
 					<acc:NumberFormatter />
 				</basic:beads>
 			</basic:TextInput>
+		</basic:Container>
+		
+		<basic:Container width="500">
+			<basic:beads>
+				<basic:NonVirtualHorizontalLayout />
+			</basic:beads>
+			<basic:TextButton text="Login" click="showLogin()" />
 		</basic:Container>
 		
 	</basic:Container>

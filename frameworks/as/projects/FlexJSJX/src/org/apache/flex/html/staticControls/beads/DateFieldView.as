@@ -17,10 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDateChooserModel;
 	import org.apache.flex.core.IFormatBead;
@@ -31,6 +28,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.UIUtils;
 	import org.apache.flex.html.staticControls.DateChooser;
 	import org.apache.flex.html.staticControls.TextButton;
 	import org.apache.flex.html.staticControls.TextInput;
@@ -103,13 +101,13 @@ package org.apache.flex.html.staticControls.beads
 			_strand = value;
 			
 			_textInput = new TextInput();
-			IParent(_strand).addElement(_textInput);
+			UIBase(_strand).addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;
 			
 			_button = new TextButton();
 			_button.text = "M";
-			IParent(_strand).addElement(_button);
+			UIBase(_strand).addElement(_button);
 			_button.x = _textInput.width;
 			_button.y = _textInput.y;
 			
@@ -128,7 +126,7 @@ package org.apache.flex.html.staticControls.beads
 			_textInput.text = formatter.formattedString;
 		}
 		
-		private var _popUp:IStrand;
+		private var _popUp:DateChooser;
 		
 		/**
 		 *  The pop-up component that holds the selection list.
@@ -138,7 +136,7 @@ package org.apache.flex.html.staticControls.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get popUp():IStrand
+		public function get popUp():DateChooser
 		{
 			return _popUp;
 		}
@@ -166,25 +164,22 @@ package org.apache.flex.html.staticControls.beads
 				{
 					if (!_popUp)
 					{
-						var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-						_popUp = new popUpClass() as IStrand;
-						UIBase(_popUp).width = 210;
-						UIBase(_popUp).height = 220;
+						_popUp = new DateChooser();
+						_popUp.width = 210;
+						_popUp.height = 220;
+						_popUp.x = UIBase(_strand).x;
+						_popUp.y = UIBase(_strand).y + 30;
 					}
 					
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
-					DateChooser(_popUp).selectedDate = model.selectedDate;
+					_popUp.selectedDate = model.selectedDate;
 					
-					var root:Object = DisplayObject(_strand).root;
-					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
-					while (host && !(host is IPopUpHost))
-						host = host.parent;
-					if (host)
-						IPopUpHost(host).addElement(popUp);
+					var host:IPopUpHost = UIUtils.findPopUpHost(UIBase(_strand));
+					host.addElement(_popUp);
 				}
 				else
 				{
-					DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
+					UIUtils.removePopUp(_popUp);
 				}
 			}
 		}

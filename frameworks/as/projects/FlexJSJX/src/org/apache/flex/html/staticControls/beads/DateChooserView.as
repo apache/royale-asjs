@@ -28,9 +28,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.staticControls.beads.layouts.TileLayout;
 	import org.apache.flex.html.staticControls.Container;
 	import org.apache.flex.html.staticControls.TextButton;
-	import org.apache.flex.html.staticControls.beads.layouts.TileLayout;
 	
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class
@@ -154,8 +154,12 @@ package org.apache.flex.html.staticControls.beads
 			tileLayout.numColumns = 7;
 			dayContainer.x = 0;
 			dayContainer.y = monthLabel.y + monthLabel.height + 5;
-			dayContainer.width = UIBase(_strand).width;
-			dayContainer.height = UIBase(_strand).height - (monthLabel.height+5);
+			
+			var sw:Number = UIBase(_strand).width;
+			var sh:Number = UIBase(_strand).height;
+			trace("Strand's width x height is "+sw+" x "+sh);
+			dayContainer.width = sw;
+			dayContainer.height = sh - (monthLabel.height+5);
 			
 			// the calendar has 7 columns with 6 rows, the first row are the day names
 			for(var i:int=0; i < 7; i++) {

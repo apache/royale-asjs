@@ -17,12 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.staticControls.beads.controllers
-{
-	import flash.display.DisplayObject;
-	
+{	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IDateChooserModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.staticControls.beads.DateFieldView;
@@ -76,8 +75,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 		{
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
-			DisplayObject(viewBead.popUp).x = DisplayObject(_strand).x + DisplayObject(_strand).width - 20;
-			DisplayObject(viewBead.popUp).y = DisplayObject(_strand).y + DisplayObject(_strand).height;			
+			UIBase(viewBead.popUp).x = UIBase(_strand).x + UIBase(_strand).width - 20;
+			UIBase(viewBead.popUp).y = UIBase(_strand).y + UIBase(_strand).height;			
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
 		}
 		

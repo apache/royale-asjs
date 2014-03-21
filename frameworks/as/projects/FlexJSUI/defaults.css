@@ -161,22 +161,6 @@ ControlBar
     border-thickness: 1;
 }
 
-DateChooser {
-    IBeadView:   ClassReference("org.apache.flex.html.staticControls.beads.DateChooserView");
-    IBeadModel:  ClassReference("org.apache.flex.html.staticControls.beads.models.DateChooserModel");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.DateChooserMouseController");
-    width:  280px;
-    height: 240px;
-}
-
-DateField {
-    IBeadView:   ClassReference("org.apache.flex.html.staticControls.beads.DateFieldView");
-    IBeadModel:  ClassReference("org.apache.flex.html.staticControls.beads.models.DateChooserModel");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.DateFieldMouseController");
-    IPopUp:      ClassReference("org.apache.flex.html.staticControls.DateChooser");
-    IFormatBead: ClassReference("org.apache.flex.html.staticControls.accessories.DateFormatMMDDYYYYBead");
-}
-
 DropDownList
 {
     IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");

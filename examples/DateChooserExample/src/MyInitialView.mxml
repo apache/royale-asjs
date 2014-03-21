@@ -20,8 +20,7 @@ limitations under the License.
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
-				xmlns:models="models.*" 
-				xmlns:staticControls1="org.apache.flex.html.staticControls.*">
+				xmlns:models="models.*">
 	<fx:Script>
 		<![CDATA[
 			
@@ -30,22 +29,16 @@ limitations under the License.
 			{
 				trace("Selected date: "+dateChooser.selectedDate);
 				output.text = String(dateChooser.selectedDate);
+				
+				dateField.selectedDate = dateChooser.selectedDate;
 			}
 		]]>
 	</fx:Script>
 	
-	<fx:Style>
-		@namespace staticControls1 "org.apache.flex.html.staticControls.*";
-		
-		staticControls1|DateChooser {
-			IBeadView:   ClassReference("org.apache.flex.html.staticControls.beads.DateChooserView");
-			IBeadModel:  ClassReference("org.apache.flex.html.staticControls.beads.models.DateChooserModel");
-			IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.DateChooserMouseController");
-		}
-	</fx:Style>
-	
 	<basic:Label id="output" x="450" y="30" width="100" />
 	
-	<staticControls1:DateChooser id="dateChooser" x="20" y="30" change="dateChanged()" />
+	<basic:DateChooser id="dateChooser" x="20" y="30" width="280" height="240" change="dateChanged()" />
+	
+	<basic:DateField id="dateField" x="450" y="90" />
 	
 </basic:ViewBase>

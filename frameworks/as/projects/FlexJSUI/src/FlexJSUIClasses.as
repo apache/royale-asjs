@@ -28,7 +28,6 @@ package
 internal class FlexJSUIClasses
 {
 	
-	import org.apache.flex.html.staticControls.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
 	import org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.staticControls.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.staticControls.accessories.TextPromptBead; TextPromptBead;
@@ -40,11 +39,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
     import org.apache.flex.html.staticControls.beads.CSSButtonView; CSSButtonView;
 	import org.apache.flex.html.staticControls.beads.CSSTextButtonView; CSSTextButtonView;
-	import org.apache.flex.html.staticControls.beads.DateChooserView; DateChooserView;
-	import org.apache.flex.html.staticControls.beads.DateFieldView; DateFieldView;
 	import org.apache.flex.html.staticControls.beads.DropDownListView; DropDownListView;
-	import org.apache.flex.html.staticControls.beads.FormatableLabelView; FormatableLabelView;
-	import org.apache.flex.html.staticControls.beads.FormatableTextInputView; FormatableTextInputView;
 	import org.apache.flex.html.staticControls.beads.ImageView; ImageView;
     import org.apache.flex.html.staticControls.beads.ListView; ListView;
     import org.apache.flex.html.staticControls.beads.NumericStepperView; NumericStepperView;
@@ -69,7 +64,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.staticControls.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.staticControls.beads.models.ComboBoxModel; ComboBoxModel;
-	import org.apache.flex.html.staticControls.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.staticControls.beads.models.ImageModel; ImageModel;
 	import org.apache.flex.html.staticControls.beads.models.PanelModel; PanelModel;
     import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel; SingleLineBorderModel;
@@ -79,8 +73,6 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
     import org.apache.flex.html.staticControls.beads.controllers.AlertController; AlertController;
 	import org.apache.flex.html.staticControls.beads.controllers.ComboBoxController; ComboBoxController;
-	import org.apache.flex.html.staticControls.beads.controllers.DateChooserMouseController; DateChooserMouseController;
-	import org.apache.flex.html.staticControls.beads.controllers.DateFieldMouseController; DateFieldMouseController;
     import org.apache.flex.html.staticControls.beads.controllers.DropDownListController; DropDownListController;
 	import org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
     import org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;

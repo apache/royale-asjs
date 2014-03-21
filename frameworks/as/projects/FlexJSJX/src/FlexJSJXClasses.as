@@ -33,12 +33,21 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
-	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn; DataGridColumn;
 	
+	import org.apache.flex.html.staticControls.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
 	import org.apache.flex.html.staticControls.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.staticControls.beads.DataGridView; DataGridView;
+	import org.apache.flex.html.staticControls.beads.DateChooserView; DateChooserView;
+	import org.apache.flex.html.staticControls.beads.DateFieldView; DateFieldView;
+	import org.apache.flex.html.staticControls.beads.FormatableLabelView; FormatableLabelView;
+	import org.apache.flex.html.staticControls.beads.FormatableTextInputView; FormatableTextInputView;
 	import org.apache.flex.html.staticControls.beads.models.DataGridModel; DataGridModel;
+	import org.apache.flex.html.staticControls.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
+	import org.apache.flex.html.staticControls.beads.controllers.DateChooserMouseController; DateChooserMouseController;
+	import org.apache.flex.html.staticControls.beads.controllers.DateFieldMouseController; DateFieldMouseController;
+	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn; DataGridColumn;
+	import org.apache.flex.html.staticControls.supportClasses.DateChooserButton; DateChooserButton;
 }
 
 }

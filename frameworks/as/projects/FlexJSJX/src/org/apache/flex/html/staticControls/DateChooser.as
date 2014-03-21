@@ -50,8 +50,8 @@ package org.apache.flex.html.staticControls
 			className = "DateChooser";
 			
 			// fix the DateChooser's size
-//			width = 350;
-//			height = 225;
+//			width = 280;
+//			height = 240;
 		}
 		
 		/**

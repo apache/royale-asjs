@@ -63,7 +63,8 @@ package org.apache.flex.html.staticControls
 		{
 			super.addedToParent();
 			
-			var bead:IBead = new (ValuesManager.valuesImpl.getValue(this,"iFormatBead"))() as IBead;
+			var klass:* = ValuesManager.valuesImpl.getValue(this,"iFormatBead");
+			var bead:IBead = new klass() as IBead;
 			if (bead) {
 				addBead(bead);
 			}
