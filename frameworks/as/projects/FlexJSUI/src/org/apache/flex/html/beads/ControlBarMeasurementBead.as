@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.html.staticControls.Container;
+	import org.apache.flex.html.Container;
 	
 	/**
-	 *  The ControlBarMeasurementBead class measures the size of a org.apache.flex.html.staticControls.ControlBar
+	 *  The ControlBarMeasurementBead class measures the size of a org.apache.flex.html.ControlBar
 	 *  component.
 	 *  
 	 *  @langversion 3.0

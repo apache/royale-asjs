@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase');
+goog.provide('org.apache.flex.html.supportClasses.UIItemRendererBase');
 
 goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.IItemRendererFactory');
@@ -26,12 +26,12 @@ goog.require('org.apache.flex.events.Event');
  * @extends {org.apache.flex.core.UIBase}
  * @implements {org.apache.flex.core.IItemRenderer}
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase =
+org.apache.flex.html.supportClasses.UIItemRendererBase =
 function() {
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase,
+    org.apache.flex.html.supportClasses.UIItemRendererBase,
     org.apache.flex.core.UIBase);
 
 
@@ -40,16 +40,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIItemRendererBase',
-                qName: 'org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase' }],
+                qName: 'org.apache.flex.html.supportClasses.UIItemRendererBase' }],
       interfaces: ['org.apache.flex.core.IItemRenderer, org.apache.flex.core.IItemRendererFactory']};
 
 
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.addedToParent =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.addedToParent =
 function() {
   goog.base(this, 'addedToParent');
 };
@@ -59,7 +59,7 @@ function() {
  * @expose
  * @return {Object} The data being used for the itemRenderer.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_data =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_data =
 function() {
   return this.data_;
 };
@@ -69,7 +69,7 @@ function() {
  * @expose
  * @param {Object} value The data to use for the itemRenderer.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_data =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_data =
 function(value) {
   this.data_ = value;
 };
@@ -79,7 +79,7 @@ function(value) {
  * @expose
  * @return {String} The name of the field being used to display the label.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_labelField =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_labelField =
 function() {
   return this.labelField_;
 };
@@ -89,7 +89,7 @@ function() {
  * @expose
  * @param {String} value The name of the field to use for the label.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_labelField =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_labelField =
 function(value) {
   this.labelField_ = value;
 };
@@ -99,7 +99,7 @@ function(value) {
  * @expose
  * @return {Number} The index value set for this itemRenderer.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_index =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_index =
 function() {
   return this.index_;
 };
@@ -109,7 +109,7 @@ function() {
  * @expose
  * @param {Number} value The row index for this itemRenderer.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_index =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_index =
 function(value) {
   this.index_ = value;
 };
@@ -119,7 +119,7 @@ function(value) {
  * @expose
  * @return {Boolean} The current value of the hovered state.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_hovered =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_hovered =
 function() {
   return this.hovered_;
 };
@@ -129,7 +129,7 @@ function() {
  * @expose
  * @param {Boolean} value Set to true if the itemRenderer should go into hovered state.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_hovered =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_hovered =
 function(value) {
   this.hovered_ = value;
 };
@@ -139,7 +139,7 @@ function(value) {
  * @expose
  * @return {Boolean} Whether or not the itemRenderer is selected.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_selected =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_selected =
 function() {
   return this.selected_;
 };
@@ -149,7 +149,7 @@ function() {
  * @expose
  * @param {Boolean} value True if this itemRenderer instance is selected.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_selected =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_selected =
 function(value) {
   this.selected_ = value;
 };
@@ -159,7 +159,7 @@ function(value) {
  * @expose
  * @return {Boolean} The value of the down selection.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.get_down =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.get_down =
 function() {
   return this.down_;
 };
@@ -169,7 +169,7 @@ function() {
  * @expose
  * @param {Boolean} value True if the mouse is in the down position.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.set_down =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.set_down =
 function(value) {
   this.down_ = value;
 };
@@ -178,7 +178,7 @@ function(value) {
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.updateRenderer =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.updateRenderer =
 function() {
   if (this.get_down()) {
   }
@@ -193,7 +193,7 @@ function() {
  * @expose
  * @param {Event} value The event that triggered the size change.
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.sizeChangeHandler =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.sizeChangeHandler =
 function(value) {
   //this.adjustSize();
 };
@@ -202,7 +202,7 @@ function(value) {
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase.prototype.adjustSize =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.adjustSize =
 function() {
   // handle in sub-class
 };

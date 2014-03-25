@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {	
-	import org.apache.flex.html.staticControls.beads.DateChooserView;
-	import org.apache.flex.html.staticControls.beads.models.DateChooserModel;
-	import org.apache.flex.html.staticControls.supportClasses.DateChooserButton;
+	import org.apache.flex.html.beads.DateChooserView;
+	import org.apache.flex.html.beads.models.DateChooserModel;
+	import org.apache.flex.html.supportClasses.DateChooserButton;
 	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IBeadModel;

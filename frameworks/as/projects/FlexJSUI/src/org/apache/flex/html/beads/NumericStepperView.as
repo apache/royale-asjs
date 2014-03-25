@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -30,17 +30,17 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Spinner;
-	import org.apache.flex.html.staticControls.TextInput;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.Spinner;
+	import org.apache.flex.html.TextInput;
+	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
-	 *  org.apache.flex.html.staticControls.NumericStepper component. A NumberStepper consists of a 
-	 *  org.apache.flex.html.staticControls.TextInput component to display the value and a 
-	 *  org.apache.flex.html.staticControls.Spinner to change the value.
+	 *  org.apache.flex.html.NumericStepper component. A NumberStepper consists of a 
+	 *  org.apache.flex.html.TextInput component to display the value and a 
+	 *  org.apache.flex.html.Spinner to change the value.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

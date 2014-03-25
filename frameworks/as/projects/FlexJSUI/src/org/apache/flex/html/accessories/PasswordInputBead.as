@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.accessories
+package org.apache.flex.html.accessories
 {
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.ITextFieldView;
+	import org.apache.flex.html.beads.ITextFieldView;
 	
 	/**
 	 *  The PasswordInput class is a specialty bead that can be used with

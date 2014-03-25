@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.text.TextFieldType;
 	
     /**
      *  The TextFieldView class is the default view for
-     *  the org.apache.flex.html.staticControls.Label class.
+     *  the org.apache.flex.html.Label class.
      *  It displays text using a TextField, so there is no
      *  right-to-left text support in this view.
      *  

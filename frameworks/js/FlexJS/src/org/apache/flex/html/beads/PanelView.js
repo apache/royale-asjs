@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.PanelView');
+goog.provide('org.apache.flex.html.beads.PanelView');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.PanelView = function() {
+org.apache.flex.html.beads.PanelView = function() {
 
 };
 
@@ -29,28 +29,28 @@ org.apache.flex.html.staticControls.beads.PanelView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.PanelView
+org.apache.flex.html.beads.PanelView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelView',
-                qName: 'org.apache.flex.html.staticControls.beads.PanelView'}] };
+                qName: 'org.apache.flex.html.beads.PanelView'}] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
+org.apache.flex.html.beads.PanelView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
 
-  this.strand_.titleBar = new org.apache.flex.html.staticControls.TitleBar();
+  this.strand_.titleBar = new org.apache.flex.html.TitleBar();
   this.strand_.titleBar.addedToParent();
   this.strand_.titleBar.element.id = 'titleBar';
   this.strand_.addElement(this.strand_.titleBar);
 
   this.strand_.controlBar =
-      new org.apache.flex.html.staticControls.ControlBar();
+      new org.apache.flex.html.ControlBar();
   this.strand_.addElement(this.strand_.controlBar);
 
   // listen for changes to the strand's model so items can be changed
@@ -64,7 +64,7 @@ org.apache.flex.html.staticControls.beads.PanelView.prototype.set_strand =
 /**
  * @param {Object} event The event that triggered this handler.
  */
-org.apache.flex.html.staticControls.beads.PanelView.prototype.changeHandler =
+org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
   if (event.type == 'titleChange') {
     this.strand_.titleBar.set_title(this.strand_.model.get_title());

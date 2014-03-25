@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;

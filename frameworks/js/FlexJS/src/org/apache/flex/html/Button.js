@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.Button');
+goog.provide('org.apache.flex.html.Button');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.Button = function() {
+org.apache.flex.html.Button = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.Button,
+goog.inherits(org.apache.flex.html.Button,
     org.apache.flex.core.UIBase);
 
 
@@ -34,15 +34,15 @@ goog.inherits(org.apache.flex.html.staticControls.Button,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.Button.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Button.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Button',
-                qName: 'org.apache.flex.html.staticControls.Button'}] };
+                qName: 'org.apache.flex.html.Button'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Button.prototype.createElement =
+org.apache.flex.html.Button.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');

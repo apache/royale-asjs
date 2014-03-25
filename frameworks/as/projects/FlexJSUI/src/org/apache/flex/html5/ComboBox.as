@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.ComboBox;
+	import org.apache.flex.html.ComboBox;
 	
-	public class ComboBox extends org.apache.flex.html.staticControls.ComboBox
+	public class ComboBox extends org.apache.flex.html.ComboBox
 	{
 	}
 }

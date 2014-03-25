@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {
 	import flash.events.MouseEvent;
 	
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IScrollBarView;
+	import org.apache.flex.html.beads.IScrollBarView;
 
     /**
      *  The ScrollBarMouseControllerBase class is the base class

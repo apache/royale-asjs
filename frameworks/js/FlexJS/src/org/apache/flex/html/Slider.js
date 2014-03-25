@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.Slider');
+goog.provide('org.apache.flex.html.Slider');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.beads.SliderThumbView');
-goog.require('org.apache.flex.html.staticControls.beads.SliderTrackView');
-goog.require('org.apache.flex.html.staticControls.beads.controllers.SliderMouseController');
-goog.require('org.apache.flex.html.staticControls.beads.models.RangeModel');
+goog.require('org.apache.flex.html.beads.SliderThumbView');
+goog.require('org.apache.flex.html.beads.SliderTrackView');
+goog.require('org.apache.flex.html.beads.controllers.SliderMouseController');
+goog.require('org.apache.flex.html.beads.models.RangeModel');
 
 
 
@@ -26,12 +26,12 @@ goog.require('org.apache.flex.html.staticControls.beads.models.RangeModel');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.Slider = function() {
+org.apache.flex.html.Slider = function() {
   this.model =
-      new org.apache.flex.html.staticControls.beads.models.RangeModel();
+      new org.apache.flex.html.beads.models.RangeModel();
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.Slider,
+goog.inherits(org.apache.flex.html.Slider,
     org.apache.flex.core.UIBase);
 
 
@@ -40,28 +40,28 @@ goog.inherits(org.apache.flex.html.staticControls.Slider,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.Slider.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Slider.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Slider',
-                qName: 'org.apache.flex.html.staticControls.Slider'}] };
+                qName: 'org.apache.flex.html.Slider'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Slider.prototype.createElement =
+org.apache.flex.html.Slider.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
   this.element.style.width = '200px';
   this.element.style.height = '30px';
 
-  this.track = new org.apache.flex.html.staticControls.beads.SliderTrackView();
+  this.track = new org.apache.flex.html.beads.SliderTrackView();
   this.addBead(this.track);
 
-  this.thumb = new org.apache.flex.html.staticControls.beads.SliderThumbView();
+  this.thumb = new org.apache.flex.html.beads.SliderThumbView();
   this.addBead(this.thumb);
 
-  this.controller = new org.apache.flex.html.staticControls.beads.controllers.
+  this.controller = new org.apache.flex.html.beads.controllers.
                     SliderMouseController();
   this.addBead(this.controller);
 
@@ -78,7 +78,7 @@ org.apache.flex.html.staticControls.Slider.prototype.createElement =
  * @expose
  * @return {number} The value getter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.get_value =
+org.apache.flex.html.Slider.prototype.get_value =
     function() {
   return this.model.get_value();
 };
@@ -89,7 +89,7 @@ org.apache.flex.html.staticControls.Slider.prototype.get_value =
  * @param {Object} newValue The new value.
  * @return {void} The value setter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.set_value =
+org.apache.flex.html.Slider.prototype.set_value =
     function(newValue) {
   this.model.set_value(newValue);
   this.setThumbFromValue(this.model.get_value());
@@ -100,7 +100,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_value =
  * @expose
  * @return {number} The minimum getter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
+org.apache.flex.html.Slider.prototype.get_minimum =
     function() {
   return this.model.get_minimum();
 };
@@ -111,7 +111,7 @@ org.apache.flex.html.staticControls.Slider.prototype.get_minimum =
  * @param {Object} value The new minimum value.
  * @return {void} The minimum setter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.set_minimum =
+org.apache.flex.html.Slider.prototype.set_minimum =
     function(value) {
   this.model.set_minimum(value);
 };
@@ -121,7 +121,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_minimum =
  * @expose
  * @return {number} The maximum getter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
+org.apache.flex.html.Slider.prototype.get_maximum =
     function() {
   return this.model.get_maximum();
 };
@@ -132,7 +132,7 @@ org.apache.flex.html.staticControls.Slider.prototype.get_maximum =
  * @param {Object} value The new maximum value.
  * @return {void} The maximum setter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.set_maximum =
+org.apache.flex.html.Slider.prototype.set_maximum =
     function(value) {
   this.model.set_maximum(value);
 };
@@ -142,7 +142,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_maximum =
  * @expose
  * @return {number} The snapInterval getter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
+org.apache.flex.html.Slider.prototype.get_snapInterval =
     function() {
   return this.model.get_snapInterval();
 };
@@ -153,7 +153,7 @@ org.apache.flex.html.staticControls.Slider.prototype.get_snapInterval =
  * @param {Object} value The new snapInterval value.
  * @return {void} The snapInterval setter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.set_snapInterval =
+org.apache.flex.html.Slider.prototype.set_snapInterval =
     function(value) {
   this.model.set_snapInterval(value);
 };
@@ -163,7 +163,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_snapInterval =
  * @expose
  * @return {number} The stepSize getter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
+org.apache.flex.html.Slider.prototype.get_stepSize =
     function() {
   return this.model.get_stepSize();
 };
@@ -174,7 +174,7 @@ org.apache.flex.html.staticControls.Slider.prototype.get_stepSize =
  * @param {Object} value The new stepSize value.
  * @return {void} The stepSize setter.
  */
-org.apache.flex.html.staticControls.Slider.prototype.set_stepSize =
+org.apache.flex.html.Slider.prototype.set_stepSize =
     function(value) {
   this.model.set_stepSize(value);
 };
@@ -184,7 +184,7 @@ org.apache.flex.html.staticControls.Slider.prototype.set_stepSize =
  * @param {Object} value The current value.
  * @return {number} Calculates the new value based snapInterval and stepSize.
  */
-org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
+org.apache.flex.html.Slider.prototype.snap = function(value)
     {
   var si = this.get_snapInterval();
   var n = Math.round((value - this.get_minimum()) / si) *
@@ -205,7 +205,7 @@ org.apache.flex.html.staticControls.Slider.prototype.snap = function(value)
  * @param {number} value The value used to calculate new position of the thumb.
  * @return {void} Moves the thumb to the corresponding position.
  */
-org.apache.flex.html.staticControls.Slider.prototype.setThumbFromValue =
+org.apache.flex.html.Slider.prototype.setThumbFromValue =
     function(value)
     {
   var min = this.model.get_minimum();

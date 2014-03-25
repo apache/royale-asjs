@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.accessories.PasswordInputBead');
+goog.provide('org.apache.flex.html.accessories.PasswordInputBead');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.accessories.PasswordInputBead =
+org.apache.flex.html.accessories.PasswordInputBead =
     function() {
 
   /**
@@ -35,16 +35,16 @@ org.apache.flex.html.staticControls.accessories.PasswordInputBead =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.accessories.PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.accessories.PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PasswordInputBead',
-                qName: 'org.apache.flex.html.staticControls.accessories.PasswordInputBead' }] };
+                qName: 'org.apache.flex.html.accessories.PasswordInputBead' }] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.accessories.PasswordInputBead.
+org.apache.flex.html.accessories.PasswordInputBead.
     prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;

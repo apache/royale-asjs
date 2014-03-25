@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
 	/**
-	 *  The TextFieldLabelMeasurementBead class helps to measure org.apache.flex.html.staticControls.Label 
+	 *  The TextFieldLabelMeasurementBead class helps to measure org.apache.flex.html.Label 
 	 *  components.
 	 *  
 	 *  @langversion 3.0
@@ -45,7 +45,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The overall width of the org.apache.flex.html.staticControls.Label.
+		 *  The overall width of the org.apache.flex.html.Label.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The overall height of the org.apache.flex.html.staticControls.Label.
+		 *  The overall height of the org.apache.flex.html.Label.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

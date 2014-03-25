@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.SimpleList');
+goog.provide('org.apache.flex.html.SimpleList');
 
 goog.require('org.apache.flex.core.ListBase');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
@@ -23,12 +23,12 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html.staticControls.SimpleList = function() {
+org.apache.flex.html.SimpleList = function() {
   goog.base(this);
-  this.model = new org.apache.flex.html.staticControls.
+  this.model = new org.apache.flex.html.
       beads.models.ArraySelectionModel();
 };
-goog.inherits(org.apache.flex.html.staticControls.SimpleList,
+goog.inherits(org.apache.flex.html.SimpleList,
     org.apache.flex.core.ListBase);
 
 
@@ -37,15 +37,15 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleList,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.SimpleList.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleList',
-                qName: 'org.apache.flex.html.staticControls.SimpleList'}] };
+                qName: 'org.apache.flex.html.SimpleList'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 5;
@@ -61,7 +61,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     get_dataProvider = function() {
   return this.model.get_dataProvider();
 };
@@ -70,7 +70,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     set_dataProvider = function(value) {
   var dp, i, n, opt;
 
@@ -95,7 +95,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     get_selectedIndex = function() {
   return this.model.get_selectedIndex();
 };
@@ -104,7 +104,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     set_selectedIndex = function(value) {
   this.model.set_selectedIndex(value);
 };
@@ -113,7 +113,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     get_selectedItem = function() {
   return this.model.get_selectedItem();
 };
@@ -122,7 +122,7 @@ org.apache.flex.html.staticControls.SimpleList.prototype.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     set_selectedItem = function(value) {
   this.model.set_selectedItem(value);
 };

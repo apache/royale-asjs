@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
+	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
-	 *  The DataGridColumnView class extends org.apache.flex.html.staticControls.beads.ListView and 
-	 *  provides properties to the org.apache.flex.html.staticControls.List that makes a column in 
-	 *  the org.apache.flex.html.staticControls.DataGrid.  
+	 *  The DataGridColumnView class extends org.apache.flex.html.beads.ListView and 
+	 *  provides properties to the org.apache.flex.html.List that makes a column in 
+	 *  the org.apache.flex.html.DataGrid.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -83,9 +83,9 @@ package org.apache.flex.html.staticControls.beads
 		private var _column:DataGridColumn;
 		
 		/**
-		 *  The org.apache.flex.html.staticControls.support.DataGridColumn containing information used to 
-		 *  present the org.apache.flex.html.staticControls.List as a column in the 
-		 *  org.apache.flex.html.staticControls.DataGrid.
+		 *  The org.apache.flex.html.support.DataGridColumn containing information used to 
+		 *  present the org.apache.flex.html.List as a column in the 
+		 *  org.apache.flex.html.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

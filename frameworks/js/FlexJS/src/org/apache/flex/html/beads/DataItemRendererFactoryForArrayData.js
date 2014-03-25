@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData');
+goog.provide('org.apache.flex.html.beads.DataItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.html.staticControls.beads.ListView');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
-goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
 
 
@@ -26,7 +26,7 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButton
  * @constructor
  * @implements {org.apache.flex.core.IDataProviderItemRendererMapper}
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData =
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData =
     function() {
 };
 
@@ -34,7 +34,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData =
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
 
 
 /**
@@ -42,10 +42,10 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.pr
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataItemRendererFactoryForArrayData',
-                qName: 'org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData' }],
+                qName: 'org.apache.flex.html.beads.DataItemRendererFactoryForArrayData' }],
       interfaces: [org.apache.flex.core.IDataProviderItemRendererMapper] };
 
 
@@ -53,7 +53,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  * @private
  * @type {Object}
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.itemRendererClass_ = null;
 
 
@@ -61,15 +61,15 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} value The component strand.
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+      org.apache.flex.html.beads.models.ArraySelectionModel);
 
   this.listView = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.ListView);
+      org.apache.flex.html.beads.ListView);
   this.dataGroup = this.listView.get_dataGroup();
 
   this.model.addEventListener('dataProviderChanged',
@@ -93,7 +93,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  * @expose
  * @return {Object} The itemRenderer.
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.get_itemRendererClass = function() {
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
     var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
@@ -109,7 +109,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} value class to use for the item renderer.
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.set_itemRendererClass = function(value) {
   this.itemRendererClass_ = value;
 };
@@ -119,7 +119,7 @@ org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} event The event that triggered the dataProvider change.
  */
-org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 

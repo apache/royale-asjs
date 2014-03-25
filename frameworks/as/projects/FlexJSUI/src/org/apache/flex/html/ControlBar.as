@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	
 	import org.apache.flex.core.IBeadLayout;
@@ -27,7 +27,7 @@ package org.apache.flex.html.staticControls
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position
 	 *  additional controls. The ControlBar appears at the bottom of the 
-	 *  org.apache.flex.html.staticControls.Panel
+	 *  org.apache.flex.html.Panel
 	 *  and is not part of the Panel's scrollable content area. The ControlBar
 	 *  is a Container and implements the org.apache.flex.core.IChrome interface, indicating that is
 	 *  outside of the Container's content area. The ControlBar uses the following

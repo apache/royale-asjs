@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
+	import org.apache.flex.html.beads.ITextItemRenderer;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()

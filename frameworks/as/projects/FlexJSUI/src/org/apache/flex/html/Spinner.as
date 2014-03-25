@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls
 	
 	/**
 	 *  The Spinner class is a component that displays a control for incrementing a value
-	 *  and a control for decrementing a value. The org.apache.flex.html.staticControls.NumericStepper 
+	 *  and a control for decrementing a value. The org.apache.flex.html.NumericStepper 
 	 *  uses a Spinner as part of the component. Spinner uses the following beads:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: an IRangeModel to hold the properties.

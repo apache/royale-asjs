@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.UIBase;

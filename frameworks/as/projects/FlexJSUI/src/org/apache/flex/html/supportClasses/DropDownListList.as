@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
     import org.apache.flex.core.IPopUp;
-    import org.apache.flex.html.staticControls.SimpleList;
-    import org.apache.flex.html.staticControls.beads.SolidBackgroundBead;
+    import org.apache.flex.html.SimpleList;
+    import org.apache.flex.html.beads.SolidBackgroundBead;
     
     //--------------------------------------
     //  Events

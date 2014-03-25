@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	/**
 	 *  The SimpleList class is a component that displays data in a vertical column. This
-	 *  component differs from org.apache.flex.html.staticControls.List in that it displays 
+	 *  component differs from org.apache.flex.html.List in that it displays 
 	 *  only string values and maps to the &lt;select&gt; HTML element.
 	 *  
 	 *  @langversion 3.0

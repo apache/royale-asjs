@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -30,13 +30,13 @@ package org.apache.flex.html.staticControls.beads
     import org.apache.flex.core.IParent;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Button;
-	import org.apache.flex.html.staticControls.TextInput;
+	import org.apache.flex.html.Button;
+	import org.apache.flex.html.TextInput;
 	
 	/**
-	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.staticControls.ComboBox 
+	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.ComboBox 
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
-	 *  control and org.apache.flex.html.staticControls.Button to trigger the pop-up.
+	 *  control and org.apache.flex.html.Button to trigger the pop-up.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -64,7 +64,7 @@ package org.apache.flex.html.staticControls.beads
 		/**
 		 *  The value of the TextInput component of the ComboBox.
 		 * 
-		 *  @copy org.apache.flex.html.staticControls.beads.IComboBoxView#text
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -83,7 +83,7 @@ package org.apache.flex.html.staticControls.beads
 		/**
 		 *  The HTML value of the TextInput component of the ComboBox.
 		 * 
-		 *  @copy org.apache.flex.html.staticControls.beads.IComboBoxView#html
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#html
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

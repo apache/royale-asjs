@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads
 	
 	/**
 	 *  The ISpinnerView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.flex.html.staticControls.Spinner control.
+	 *  creates the visual parts for a org.apache.flex.html.Spinner control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -34,7 +34,7 @@ package org.apache.flex.html.staticControls.beads
 	public interface ISpinnerView extends IBead
 	{
 		/**
-		 *  The component used to increment the org.apache.flex.html.staticControls.Spinner value.
+		 *  The component used to increment the org.apache.flex.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads
 		function get increment():DisplayObject;
 		
 		/**
-		 *  The component used to decrement the org.apache.flex.html.staticControls.Spinner value.
+		 *  The component used to decrement the org.apache.flex.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

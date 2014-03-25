@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout');
+goog.provide('org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 
@@ -22,7 +22,7 @@ goog.require('org.apache.flex.core.IBeadLayout');
  * @constructor
  * @implements {org.apache.flex.core.IBeadLayout}
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout =
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout =
     function() {
   this.strand_ = null;
   this.className = 'NonVirtualVerticalLayout';
@@ -34,9 +34,9 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NonVirtualVerticalLayout',
-                qName: 'org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout'}],
+                qName: 'org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout'}],
       interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
@@ -44,7 +44,7 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.proto
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
     prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -59,7 +59,7 @@ org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
 /**
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout.
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
     prototype.changeHandler = function(event) {
   var children, i, n;
 

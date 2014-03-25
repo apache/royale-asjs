@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {	
-	import org.apache.flex.html.staticControls.beads.models.DateChooserModel;
-	import org.apache.flex.html.staticControls.supportClasses.DateChooserButton;
+	import org.apache.flex.html.beads.models.DateChooserModel;
+	import org.apache.flex.html.supportClasses.DateChooserButton;
 	
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
@@ -28,9 +28,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.layouts.TileLayout;
-	import org.apache.flex.html.staticControls.Container;
-	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.beads.layouts.TileLayout;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.TextButton;
 	
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class

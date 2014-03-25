@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
+goog.provide('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
@@ -26,12 +26,12 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
  * @extends {org.apache.flex.events.EventDispatcher}
  * @implements {org.apache.flex.core.IItemRenderer}
  */
-org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData =
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData =
     function() {
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.
+    org.apache.flex.html.
         beads.TextItemRendererFactoryForArrayData,
     org.apache.flex.events.EventDispatcher);
 
@@ -41,10 +41,10 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextItemRendererFactoryForArrayData',
-                qName: 'org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData' }],
+                qName: 'org.apache.flex.html.beads.TextItemRendererFactoryForArrayData' }],
       interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
@@ -52,15 +52,15 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} value The component strand.
  */
-org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+      org.apache.flex.html.beads.models.ArraySelectionModel);
 
   this.listView = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.ListView);
+      org.apache.flex.html.beads.ListView);
   this.dataGroup = this.listView.get_dataGroup();
 
   this.model.addEventListener('dataProviderChanged',
@@ -74,7 +74,7 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} event The event that triggered the dataProvider change.
  */
-org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
@@ -82,7 +82,7 @@ org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData.
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = new
-        org.apache.flex.html.staticControls.supportClasses.StringItemRenderer();
+        org.apache.flex.html.supportClasses.StringItemRenderer();
     this.dataGroup.addElement(opt);
     opt.set_text(dp[i]);
   }

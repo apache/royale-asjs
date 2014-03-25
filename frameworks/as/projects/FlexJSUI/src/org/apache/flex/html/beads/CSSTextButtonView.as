@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -39,7 +39,7 @@ package org.apache.flex.html.staticControls.beads
 
     /**
      *  The CSSTextButtonView class is the default view for
-     *  the org.apache.flex.html.staticControls.TextButton class.
+     *  the org.apache.flex.html.TextButton class.
      *  It allows the look of the button to be expressed
      *  in CSS via the background-image style and displays
      *  a text label.  This view does not support right-to-left

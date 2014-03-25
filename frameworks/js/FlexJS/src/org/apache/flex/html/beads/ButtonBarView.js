@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.ButtonBarView');
+goog.provide('org.apache.flex.html.beads.ButtonBarView');
 
-goog.require('org.apache.flex.html.staticControls.beads.ListView');
+goog.require('org.apache.flex.html.beads.ListView');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.beads.ListView}
+ * @extends {org.apache.flex.html.beads.ListView}
  */
-org.apache.flex.html.staticControls.beads.ButtonBarView = function() {
+org.apache.flex.html.beads.ButtonBarView = function() {
   this.lastSelectedIndex = -1;
   goog.base(this);
 
   this.className = 'ButtonBarView';
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.ButtonBarView,
-    org.apache.flex.html.staticControls.beads.ListView);
+    org.apache.flex.html.beads.ButtonBarView,
+    org.apache.flex.html.beads.ListView);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarView',
-                qName: 'org.apache.flex.html.staticControls.beads.ButtonBarView' }] };
+                qName: 'org.apache.flex.html.beads.ButtonBarView' }] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.ButtonBarView.prototype.set_strand =
+org.apache.flex.html.beads.ButtonBarView.prototype.set_strand =
     function(value) {
 
   goog.base(this, 'set_strand', value);

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.layouts
+package org.apache.flex.html.beads.layouts
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -29,8 +29,8 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.staticControls.Button 
-	 *  elements that make up a org.apache.flex.html.staticControls.ButtonBar. This bead arranges the Buttons 
+	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
+	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons 
 	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
 	 *  

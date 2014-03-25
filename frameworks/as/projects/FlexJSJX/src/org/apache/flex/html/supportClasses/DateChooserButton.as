@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.TextButton;
 	
 	/**
 	 *  The DateChooserButton class is used for each button in the DateChooser. The

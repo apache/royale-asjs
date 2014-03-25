@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.IListView');
+goog.provide('org.apache.flex.html.beads.IListView');
 
 goog.require('org.apache.flex.core.IBeadView');
 
@@ -28,7 +28,7 @@ goog.require('org.apache.flex.core.IBeadView');
  *
  * @interface
  */
-org.apache.flex.html.staticControls.beads.IListView = function() {
+org.apache.flex.html.beads.IListView = function() {
 };
 
 
@@ -37,7 +37,7 @@ org.apache.flex.html.staticControls.beads.IListView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.IListView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.IListView.prototype.FLEXJS_CLASS_INFO =
 { names: [{ name: 'IListView',
-            qName: 'org.apache.flex.html.staticControls.beads.IListView'}],
+            qName: 'org.apache.flex.html.beads.IListView'}],
   interfaces: [org.apache.flex.core.IBeadView] };

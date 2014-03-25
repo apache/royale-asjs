@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
+goog.provide('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
 
 goog.require('org.apache.flex.core.IBeadController');
 
@@ -22,7 +22,7 @@ goog.require('org.apache.flex.core.IBeadController');
  * @constructor
  * @implements {org.apache.flex.core.IBeadController}
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController = function() {
 };
 
@@ -32,10 +32,10 @@ org.apache.flex.html.staticControls.beads.controllers.
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ItemRendererMouseController',
-                qName: 'org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController' }],
+                qName: 'org.apache.flex.html.beads.controllers.ItemRendererMouseController' }],
       interfaces: [org.apache.flex.core.IBeadController] };
 
 
@@ -43,7 +43,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  * @expose
  * @param {Object} value The strand for this component.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
 
@@ -65,7 +65,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  * @expose
  * @param {Object} event The mouse event that triggered the hover.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
   this.strand_.set_hovered(true);
@@ -80,7 +80,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  * @expose
  * @param {Object} event The mouse-out event.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
   this.strand_.set_hovered(false);
@@ -95,7 +95,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  * @expose
  * @param {Object} event The mouse-down event.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseDown = function(event) {
 
   // ??
@@ -106,7 +106,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  * @expose
  * @param {Object} event The mouse-up event that triggers the selection.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ItemRendererMouseController.prototype.handleMouseUp = function(event) {
 
   var newEvent = new goog.events.Event('selected');

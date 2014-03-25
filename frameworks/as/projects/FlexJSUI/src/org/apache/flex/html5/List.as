@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.List;
+	import org.apache.flex.html.List;
 	
     /**
 	 *  Label probably should extend TextField directly,
@@ -27,7 +27,7 @@ package org.apache.flex.html5.staticControls
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class List extends org.apache.flex.html.staticControls.List
+	public class List extends org.apache.flex.html.List
 	{
 	}
 }

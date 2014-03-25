@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {	
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IDataGridModel;
@@ -26,18 +26,18 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.ButtonBar;
-	import org.apache.flex.html.staticControls.Container;
-	import org.apache.flex.html.staticControls.List;
-	import org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
-	import org.apache.flex.html.staticControls.supportClasses.DataGridColumn;
+	import org.apache.flex.html.ButtonBar;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.List;
+	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
+	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
-	 *  The DataGridView class is the visual bead for the org.apache.flex.html.staticControls.DataGrid. 
+	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid. 
 	 *  This class constructs the items that make the DataGrid: Lists for each column and a 
-	 *  org.apache.flex.html.staticControls.ButtonBar for the column headers.  
+	 *  org.apache.flex.html.ButtonBar for the column headers.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -65,7 +65,7 @@ package org.apache.flex.html.staticControls.beads
 		private var columns:Array;
 		
 		/**
-		 *  The array of org.apache.flex.html.staticControls.supportClasses.DataGridColumn instances.
+		 *  The array of org.apache.flex.html.supportClasses.DataGridColumn instances.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

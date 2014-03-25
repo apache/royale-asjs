@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout');
+goog.provide('org.apache.flex.html.beads.layouts.ButtonBarLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.html.staticControls.beads.ListView');
+goog.require('org.apache.flex.html.beads.ListView');
 
 
 
@@ -23,7 +23,7 @@ goog.require('org.apache.flex.html.staticControls.beads.ListView');
  * @constructor
  * @implements {org.apache.flex.core.IBeadLayout}
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
+org.apache.flex.html.beads.layouts.ButtonBarLayout =
     function() {
   this.strand_ = null;
 
@@ -36,10 +36,10 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
+org.apache.flex.html.beads.layouts.ButtonBarLayout
     .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarLayout',
-                qName: 'org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout' }],
+                qName: 'org.apache.flex.html.beads.layouts.ButtonBarLayout' }],
       interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
@@ -47,7 +47,7 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout
  * @expose
  * @param {Array} value A set of widths to use for each button (optional).
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.prototype.set_buttonWidths =
+org.apache.flex.html.beads.layouts.ButtonBarLayout.prototype.set_buttonWidths =
 function(value) {
   this.buttonWidths_ = value;
 };
@@ -57,7 +57,7 @@ function(value) {
  * @expose
  * @return {Array} A set of widths to use for each button.
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.prototype.get_buttonWidths =
+org.apache.flex.html.beads.layouts.ButtonBarLayout.prototype.get_buttonWidths =
 function() {
   return this.buttonWidths_;
 };
@@ -67,7 +67,7 @@ function() {
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
+org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
@@ -84,7 +84,7 @@ org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
 /**
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout.
+org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.changeHandler = function(event) {
   var children, i, n, xpos, useWidth, useHeight;
 

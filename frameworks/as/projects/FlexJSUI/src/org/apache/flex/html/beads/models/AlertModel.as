@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads.models
 	
 	/**
 	 *  The AlertModel class bead implements the org.apache.flex.core.IAlertModel and holds the properties
-	 *  for an org.apache.flex.html.staticControls.Alert such the buttons to use and message to display.
+	 *  for an org.apache.flex.html.Alert such the buttons to use and message to display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

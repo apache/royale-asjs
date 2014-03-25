@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
 	/**
 	 *  The AlertMeasureBead class provides boundary measurements for an 
-	 *  org.apache.flex.html.staticControls.Alert component.
+	 *  org.apache.flex.html.Alert component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -45,7 +45,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  Returns the overall width of the org.apache.flex.html.staticControls.Alert component.
+		 *  Returns the overall width of the org.apache.flex.html.Alert component.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -58,7 +58,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  Returns the overall height of the org.apache.flex.html.staticControls.Alert component.
+		 *  Returns the overall height of the org.apache.flex.html.Alert component.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

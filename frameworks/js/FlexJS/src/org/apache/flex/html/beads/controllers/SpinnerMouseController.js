@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController');
+goog.provide('org.apache.flex.html.beads.controllers.SpinnerMouseController');
 
-goog.require('org.apache.flex.html.staticControls.TextButton');
+goog.require('org.apache.flex.html.TextButton');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController =
+org.apache.flex.html.beads.controllers.SpinnerMouseController =
     function() {
 };
 
@@ -31,10 +31,10 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     SpinnerMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SpinnerMouseController',
-                qName: 'org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController' }] };
+                qName: 'org.apache.flex.html.beads.controllers.SpinnerMouseController' }] };
 
 
 /**
@@ -42,7 +42,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  *        SpinnerMouseController}
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
+org.apache.flex.html.beads.controllers.SpinnerMouseController.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
@@ -61,7 +61,7 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
  *        SpinnerMouseController}
  * @param {Object} event The event object.
  */
-org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
+org.apache.flex.html.beads.controllers.SpinnerMouseController.
     prototype.handleIncrementClick = function(event)
     {
   var newValue = this.strand_.snap(Math.min(this.strand_.get_maximum(),
@@ -75,7 +75,7 @@ org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
  *        SpinnerMouseController}
  * @param {Event} event The event object.
  */
-org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController.
+org.apache.flex.html.beads.controllers.SpinnerMouseController.
     prototype.handleDecrementClick =
     function(event)
     {

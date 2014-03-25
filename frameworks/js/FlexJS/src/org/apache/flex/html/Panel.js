@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.Panel');
+goog.provide('org.apache.flex.html.Panel');
 
-goog.require('org.apache.flex.html.staticControls.Container');
-goog.require('org.apache.flex.html.staticControls.ControlBar');
-goog.require('org.apache.flex.html.staticControls.TitleBar');
-goog.require('org.apache.flex.html.staticControls.beads.PanelView');
-goog.require('org.apache.flex.html.staticControls.beads.models.PanelModel');
+goog.require('org.apache.flex.html.Container');
+goog.require('org.apache.flex.html.ControlBar');
+goog.require('org.apache.flex.html.TitleBar');
+goog.require('org.apache.flex.html.beads.PanelView');
+goog.require('org.apache.flex.html.beads.models.PanelModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.Container}
+ * @extends {org.apache.flex.html.Container}
  */
-org.apache.flex.html.staticControls.Panel = function() {
+org.apache.flex.html.Panel = function() {
   this.model =
-      new org.apache.flex.html.staticControls.beads.models.PanelModel();
+      new org.apache.flex.html.beads.models.PanelModel();
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.Panel,
-    org.apache.flex.html.staticControls.Container);
+goog.inherits(org.apache.flex.html.Panel,
+    org.apache.flex.html.Container);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(org.apache.flex.html.staticControls.Panel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.Panel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Panel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Panel',
-                qName: 'org.apache.flex.html.staticControls.Panel' }] };
+                qName: 'org.apache.flex.html.Panel' }] };
 
 
 /**
  * @override
  * @param {Object} c Element being added.
  */
-org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
+org.apache.flex.html.Panel.prototype.addElement = function(c) {
   if (c == this.titleBar) {
     this.element.insertBefore(this.titleBar.element, this.contentArea);
   }
@@ -68,7 +68,7 @@ org.apache.flex.html.staticControls.Panel.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
+org.apache.flex.html.Panel.prototype.addElementAt =
     function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
@@ -87,7 +87,7 @@ org.apache.flex.html.staticControls.Panel.prototype.addElementAt =
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
+org.apache.flex.html.Panel.prototype.getElementIndex =
     function(c) {
   var children = this.internalChildren();
   var n = children.length;
@@ -104,7 +104,7 @@ org.apache.flex.html.staticControls.Panel.prototype.getElementIndex =
  * @override
  * @param {Object} c The child element.
  */
-org.apache.flex.html.staticControls.Panel.prototype.removeElement =
+org.apache.flex.html.Panel.prototype.removeElement =
     function(c) {
   this.contentArea.removeChild(c.element);
 };
@@ -113,7 +113,7 @@ org.apache.flex.html.staticControls.Panel.prototype.removeElement =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Panel.prototype.createElement =
+org.apache.flex.html.Panel.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -123,7 +123,7 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
   this.contentArea.flexjs_wrapper = this;
   this.element.appendChild(this.contentArea);
 
-  this.panelView = new org.apache.flex.html.staticControls.beads.PanelView();
+  this.panelView = new org.apache.flex.html.beads.PanelView();
   this.panelView.set_strand(this);
 
   this.positioner = this.element;
@@ -136,7 +136,7 @@ org.apache.flex.html.staticControls.Panel.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
+org.apache.flex.html.Panel.prototype.addedToParent =
     function() {
   goog.base(this, 'addedToParent');
 };
@@ -146,7 +146,7 @@ org.apache.flex.html.staticControls.Panel.prototype.addedToParent =
  * @expose
  * @return {string} The title getter.
  */
-org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
+org.apache.flex.html.Panel.prototype.get_title = function() {
   return this.model.get_title();
 };
 
@@ -155,7 +155,7 @@ org.apache.flex.html.staticControls.Panel.prototype.get_title = function() {
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.staticControls.Panel.prototype.set_title =
+org.apache.flex.html.Panel.prototype.set_title =
     function(value) {
   this.model.set_title(value);
 };
@@ -165,7 +165,7 @@ org.apache.flex.html.staticControls.Panel.prototype.set_title =
  * @expose
  * @return {Array} The controlBar getter.
  */
-org.apache.flex.html.staticControls.Panel.prototype.get_controlBar =
+org.apache.flex.html.Panel.prototype.get_controlBar =
     function() {
   return this.controlBarChildren;
 };
@@ -175,7 +175,7 @@ org.apache.flex.html.staticControls.Panel.prototype.get_controlBar =
  * @expose
  * @param {Array} value The controlBar setter.
  */
-org.apache.flex.html.staticControls.Panel.prototype.set_controlBar =
+org.apache.flex.html.Panel.prototype.set_controlBar =
     function(value) {
   this.controlBarChildren = value;
 

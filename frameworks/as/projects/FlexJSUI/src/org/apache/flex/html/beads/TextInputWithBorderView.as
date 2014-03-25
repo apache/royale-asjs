@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -25,13 +25,13 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
     import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
     /**
      *  The TextInputWithBorderView class is the default view for
-     *  the org.apache.flex.html.staticControls.TextInput.
+     *  the org.apache.flex.html.TextInput.
      *  It displays text using a TextField, so there is no
      *  right-to-left text support in this view.
      *  

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.events.Event;
 			
 	/**
-	 *  The ComboBoxModel class bead extends org.apache.flex.html.staticControls.beads.models.ArraySelectionModel 
-	 *  and adds the text being displayed by the org.apache.flex.html.staticControls.ComboBox's input field.
+	 *  The ComboBoxModel class bead extends org.apache.flex.html.beads.models.ArraySelectionModel 
+	 *  and adds the text being displayed by the org.apache.flex.html.ComboBox's input field.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -48,7 +48,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _text:String;
 		
 		/**
-		 *  The string to display in the org.apache.flex.html.staticControls.ComboBox input field.
+		 *  The string to display in the org.apache.flex.html.ComboBox input field.
 		 * 
 		 *  @copy org.apache.flex.core.IComboBoxModel#text
 		 *  
@@ -74,7 +74,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _html:String;
 		
 		/**
-		 *  The HTML string to display in the org.apache.flex.html.staticControls.ComboBox input field.
+		 *  The HTML string to display in the org.apache.flex.html.ComboBox input field.
 		 * 
 		 *  @copy org.apache.flex.core.IComboBoxModel#html
 		 *  

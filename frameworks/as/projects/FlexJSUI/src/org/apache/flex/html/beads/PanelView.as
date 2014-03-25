@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Sprite;
 	
@@ -27,16 +27,16 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Container;
-	import org.apache.flex.html.staticControls.ControlBar;
-	import org.apache.flex.html.staticControls.Panel;
-	import org.apache.flex.html.staticControls.TitleBar;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.ControlBar;
+	import org.apache.flex.html.Panel;
+	import org.apache.flex.html.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
-	 *  The Panel class creates the visual elements of the org.apache.flex.html.staticControls.Panel 
-	 *  component. A Panel has a org.apache.flex.html.staticControls.TitleBar, content, and an 
-	 *  optional org.apache.flex.html.staticControls.ControlBar.
+	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
+	 *  component. A Panel has a org.apache.flex.html.TitleBar, content, and an 
+	 *  optional org.apache.flex.html.ControlBar.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -61,8 +61,8 @@ package org.apache.flex.html.staticControls.beads
 		private var _titleBar:TitleBar;
 		
 		/**
-		 *  The org.apache.flex.html.staticControls.TitleBar component of the 
-		 *  org.apache.flex.html.staticControls.Panel.
+		 *  The org.apache.flex.html.TitleBar component of the 
+		 *  org.apache.flex.html.Panel.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -77,7 +77,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _controlBar:ControlBar;
 		
 		/**
-		 *  The org.apache.flex.html.staticControls.ControlBar for the Panel; may be null.
+		 *  The org.apache.flex.html.ControlBar for the Panel; may be null.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.ImageView');
+goog.provide('org.apache.flex.html.beads.ImageView');
 
 
-goog.require('org.apache.flex.html.staticControls.beads.models.ImageModel');
+goog.require('org.apache.flex.html.beads.models.ImageModel');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.ImageView = function() {
+org.apache.flex.html.beads.ImageView = function() {
 };
 
 
@@ -31,23 +31,23 @@ org.apache.flex.html.staticControls.beads.ImageView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.ImageView
+org.apache.flex.html.beads.ImageView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageView',
-                qName: 'org.apache.flex.html.staticControls.beads.ImageView'}] };
+                qName: 'org.apache.flex.html.beads.ImageView'}] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
+org.apache.flex.html.beads.ImageView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.models.ImageModel);
+      org.apache.flex.html.beads.models.ImageModel);
   this.model.addEventListener('sourceChanged',
       goog.bind(this.sourceChangeHandler, this));
 };
@@ -57,7 +57,7 @@ org.apache.flex.html.staticControls.beads.ImageView.prototype.set_strand =
  * @expose
  * @param {Object} event The event triggered by the source change.
  */
-org.apache.flex.html.staticControls.beads.ImageView.prototype.
+org.apache.flex.html.beads.ImageView.prototype.
     sourceChangeHandler = function(event) {
   this.strand_.element.src = this.model.get_source();
 };

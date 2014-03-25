@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IPanelModel;
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The PanelModel bead class holds the values for a org.apache.flex.html.staticControls.Panel, such as its
+	 *  The PanelModel bead class holds the values for a org.apache.flex.html.Panel, such as its
 	 *  title.
 	 *
 	 *  @langversion 3.0
@@ -66,7 +66,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _title:String;
 		
 		/**
-		 *  The title string for the org.apache.flex.html.staticControls.Panel.
+		 *  The title string for the org.apache.flex.html.Panel.
 		 * 
 		 *  @copy org.apache.flex.core.ITitleBarModel#title
 		 *
@@ -114,7 +114,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _showCloseButton:Boolean = false;
 		
 		/**
-		 *  Indicates whether or not there is a Close button for the org.apache.flex.html.staticControls.Panel.
+		 *  Indicates whether or not there is a Close button for the org.apache.flex.html.Panel.
 		 * 
 		 *  @copy org.apache.flex.core.ITitleBarModel#showCloseButton
 		 *

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -29,13 +29,13 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IParent;
     import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.beads.models.ScrollBarModel;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 
     /**
      *  The TextAreaView class is the default view for
-     *  the org.apache.flex.html.staticControls.TextArea class.
+     *  the org.apache.flex.html.TextArea class.
      *  It implements the classic desktop-like TextArea with
      *  a border and scrollbars.  It does not support right-to-left text.
      *  

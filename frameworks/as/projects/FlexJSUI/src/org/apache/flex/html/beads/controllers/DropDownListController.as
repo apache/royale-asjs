@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
@@ -27,11 +27,11 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IDropDownListView;
+	import org.apache.flex.html.beads.IDropDownListView;
 
     /**
      *  The DropDownListController class is the controller for
-     *  org.apache.flex.html.staticControls.DropDownList.  Controllers
+     *  org.apache.flex.html.DropDownList.  Controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for the click event and displays the

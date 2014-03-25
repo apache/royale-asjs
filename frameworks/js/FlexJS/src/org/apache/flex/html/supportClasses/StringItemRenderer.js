@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.supportClasses.StringItemRenderer');
+goog.provide('org.apache.flex.html.supportClasses.StringItemRenderer');
 
 goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
-goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
+ * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
  * @implements {org.apache.flex.core.IItemRenderer}
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer =
+org.apache.flex.html.supportClasses.StringItemRenderer =
     function() {
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.supportClasses.StringItemRenderer,
-    org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+    org.apache.flex.html.supportClasses.StringItemRenderer,
+    org.apache.flex.html.supportClasses.DataItemRenderer);
 
 
 /**
@@ -40,17 +40,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'StringItemRenderer',
-                qName: 'org.apache.flex.html.staticControls.supportClasses.StringItemRenderer' }],
+                qName: 'org.apache.flex.html.supportClasses.StringItemRenderer' }],
       interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -63,7 +63,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org.apache.flex.html.staticControls.beads.controllers.
+  this.controller = new org.apache.flex.html.beads.controllers.
       ItemRendererMouseController();
   this.controller.set_strand(this);
 
@@ -75,7 +75,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_strand = function(value) {
 
   this.strand_ = value;
@@ -86,7 +86,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The strand.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.get_strand = function() {
   return this.strand_;
 };
@@ -96,7 +96,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The item renderer's parent.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.get_itemRendererParent = function() {
   return this.rendererParent_;
 };
@@ -106,7 +106,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The item renderer's parent.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_itemRendererParent = function(value) {
   this.rendererParent_ = value;
 };
@@ -116,7 +116,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The renderer's index.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_index = function(value) {
   this.index_ = value;
 };
@@ -126,7 +126,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_text = function(value) {
 
   this.element.innerHTML = value;
@@ -137,7 +137,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The text being displayed.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.get_text = function() {
 
   return this.element.innerHTML;
@@ -148,7 +148,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_data = function(value) {
 
   goog.base(this, 'set_data', value);
@@ -171,7 +171,7 @@ org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The text being displayed.
  */
-org.apache.flex.html.staticControls.supportClasses.StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.get_data = function() {
 
   return this.element.innerHTML;

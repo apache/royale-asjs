@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer');
+goog.provide('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
-goog.require('org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController');
-goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.supportClasses.DataItemRenderer}
+ * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer =
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer =
     function() {
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.
+    org.apache.flex.html.
         supportClasses.ButtonBarButtonItemRenderer,
-    org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+    org.apache.flex.html.supportClasses.DataItemRenderer);
 
 
 /**
@@ -38,15 +38,15 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarButtonItemRenderer',
-                qName: 'org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer' }] };
+                qName: 'org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -62,7 +62,7 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org.apache.flex.html.staticControls.beads.controllers.
+  this.controller = new org.apache.flex.html.beads.controllers.
       ItemRendererMouseController();
   this.controller.set_strand(this);
 
@@ -74,7 +74,7 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     prototype.set_strand = function(value) {
 
   this.strand_ = value;
@@ -85,7 +85,7 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @return {Object} The strand.
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     prototype.get_strand = function() {
   return this.strand_;
 };
@@ -95,7 +95,7 @@ org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer.
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     prototype.set_data = function(value) {
 
   goog.base(this, 'set_data', value);

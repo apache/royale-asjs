@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls
 	
 	/**
 	 *  The NumericStepper class is a component that displays a numeric
-	 *  value and up/down controls (using a org.apache.flex.html.staticControls.Spinner) to 
+	 *  value and up/down controls (using a org.apache.flex.html.Spinner) to 
 	 *  increase and decrease the value by specific amounts. The NumericStepper uses the following beads:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model for the component of type org.apache.flex.core.IRangeModel.

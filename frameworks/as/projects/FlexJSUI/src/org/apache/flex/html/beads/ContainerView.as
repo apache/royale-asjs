@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -27,14 +27,14 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.Container;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ContainerContentArea;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.ContainerContentArea;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 	
     /**
      *  The ContainerView class is the default view for
-     *  the org.apache.flex.html.staticControls.Container class.
+     *  the org.apache.flex.html.Container class.
      *  It lets you use some CSS styles to manage the border, background
      *  and padding around the content area.
      *  

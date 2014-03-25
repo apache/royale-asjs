@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.Button;
+	import org.apache.flex.html.Button;
 	
-	public class Button extends org.apache.flex.html.staticControls.Button
+	public class Button extends org.apache.flex.html.Button
 	{
 	}
 }

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -37,14 +37,14 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.models.ScrollBarModel;
-	import org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.beads.models.ScrollBarModel;
+	import org.apache.flex.html.beads.models.SingleLineBorderModel;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 
 	/**
-	 *  The List class creates the visual elements of the org.apache.flex.html.staticControls.List 
+	 *  The List class creates the visual elements of the org.apache.flex.html.List 
 	 *  component. A List consists of the area to display the data (in the dataGroup), any 
 	 *  scrollbars, and so forth.
 	 *  
@@ -64,7 +64,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _border:Border;
 		
 		/**
-		 *  The border surrounding the org.apache.flex.html.staticControls.List.
+		 *  The border surrounding the org.apache.flex.html.List.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -94,7 +94,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _vScrollBar:ScrollBar;
 		
 		/**
-		 *  The vertical org.apache.flex.html.staticControls.ScrollBar, if needed.
+		 *  The vertical org.apache.flex.html.ScrollBar, if needed.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -109,7 +109,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The horizontal org.apache.flex.html.staticControls.ScrollBar, currently null.
+		 *  The horizontal org.apache.flex.html.ScrollBar, currently null.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

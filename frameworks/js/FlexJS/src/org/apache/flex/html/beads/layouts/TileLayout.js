@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.layouts.TileLayout');
+goog.provide('org.apache.flex.html.beads.layouts.TileLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 
@@ -22,7 +22,7 @@ goog.require('org.apache.flex.core.IBeadLayout');
  * @constructor
  * @implements {org.apache.flex.core.IBeadLayout}
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout =
+org.apache.flex.html.beads.layouts.TileLayout =
     function() {
   this.strand_ = null;
   this.className = 'TileLayout';
@@ -34,9 +34,9 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.TileLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TileLayout',
-                qName: 'org.apache.flex.html.staticControls.beads.layouts.TileLayout'}],
+                qName: 'org.apache.flex.html.beads.layouts.TileLayout'}],
       interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
@@ -44,7 +44,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.FLEXJS_CL
  * @expose
  * @return {number} The number of columns wide for the layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   get_numColumns = function() {
   return this._numColumns;
 };
@@ -54,7 +54,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @param {number} value The number of columns wide for the layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   set_numColumns = function(value) {
   this._numColumns = value;
 };
@@ -64,7 +64,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @return {number} The width of each column in the layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   get_columnWidth = function() {
   return this._columnWidth;
 };
@@ -74,7 +74,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @param {number} value The width of each column in the layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   set_columnWidth = function(value) {
   this._columnWidth = value;
 };
@@ -84,7 +84,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @return {number} The height of each row of the layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   get_rowHeight = function() {
   return this._rowHeight;
 };
@@ -94,7 +94,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @param {number} value The height of each row of the Tile layout.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   set_rowHeight = function(value) {
   this._rowHeight = value;
 };
@@ -104,7 +104,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
+org.apache.flex.html.beads.layouts.TileLayout.prototype.
   set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -119,7 +119,7 @@ org.apache.flex.html.staticControls.beads.layouts.TileLayout.prototype.
 /**
  * @param {org.apache.flex.events.Event} event The text getter.
  */
-org.apache.flex.html.staticControls.beads.layouts.TileLayout.
+org.apache.flex.html.beads.layouts.TileLayout.
     prototype.changeHandler = function(event) {
   var children, i, n;
   var xpos, ypos, useWidth, useHeight;

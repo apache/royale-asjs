@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.IStrand;
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.models
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns
-	 *  of the org.apache.flex.html.staticControls.DataGrid along with the height of the rows. 
+	 *  of the org.apache.flex.html.DataGrid along with the height of the rows. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

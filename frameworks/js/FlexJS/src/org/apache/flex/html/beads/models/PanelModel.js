@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.models.PanelModel');
+goog.provide('org.apache.flex.html.beads.models.PanelModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
@@ -22,7 +22,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel = function() {
+org.apache.flex.html.beads.models.PanelModel = function() {
   goog.base(this);
 
   /**
@@ -41,7 +41,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel = function() {
    */
   this.showCloseButton_ = false;
 };
-goog.inherits(org.apache.flex.html.staticControls.beads.models.PanelModel,
+goog.inherits(org.apache.flex.html.beads.models.PanelModel,
     org.apache.flex.events.EventDispatcher);
 
 
@@ -50,16 +50,16 @@ goog.inherits(org.apache.flex.html.staticControls.beads.models.PanelModel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.PanelModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelModel',
-                qName: 'org.apache.flex.html.staticControls.beads.models.PanelModel'}] };
+                qName: 'org.apache.flex.html.beads.models.PanelModel'}] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -69,7 +69,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @expose
  * @return {string} The title.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     get_title = function() {
   return this.title_;
 };
@@ -79,7 +79,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @expose
  * @param {string} value The title to set.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     set_title = function(value) {
   if (this.title_ != value) {
     this.title_ = value;
@@ -92,7 +92,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @expose
  * @return {string} The HTML title.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     get_htmlTitle = function() {
   return this.htmlTitle_;
 };
@@ -102,7 +102,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @expose
  * @param {string} value The new HTML title.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     set_htmlTitle = function(value) {
   if (this.htmlTitle_ != value) {
     this.htmlTitle_ = value;
@@ -116,7 +116,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @return {boolean} Returns true if the close button should appear in
  * the TitleBar.
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     get_showCloseButton = function() {
   return this.showCloseButton_;
 };
@@ -127,7 +127,7 @@ org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
  * @param {boolean} value Determines if the close button shows (true) or
  * not (false).
  */
-org.apache.flex.html.staticControls.beads.models.PanelModel.prototype.
+org.apache.flex.html.beads.models.PanelModel.prototype.
     set_showCloseButton = function(value) {
   if (this.showCloseButton_ != value) {
     this.showCloseButton_ = value;

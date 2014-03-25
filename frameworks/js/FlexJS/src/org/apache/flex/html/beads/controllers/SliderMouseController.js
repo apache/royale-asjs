@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.controllers.SliderMouseController');
+goog.provide('org.apache.flex.html.beads.controllers.SliderMouseController');
 
-goog.require('org.apache.flex.html.staticControls.beads.SliderThumbView');
-goog.require('org.apache.flex.html.staticControls.beads.SliderTrackView');
+goog.require('org.apache.flex.html.beads.SliderThumbView');
+goog.require('org.apache.flex.html.beads.SliderTrackView');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController =
+org.apache.flex.html.beads.controllers.SliderMouseController =
     function() {
 };
 
@@ -32,10 +32,10 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     SliderMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SliderMouseController',
-                qName: 'org.apache.flex.html.staticControls.beads.controllers.SliderMouseController' }] };
+                qName: 'org.apache.flex.html.beads.controllers.SliderMouseController' }] };
 
 
 /**
@@ -43,14 +43,14 @@ org.apache.flex.html.staticControls.beads.controllers.
  *        SliderMouseController}
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.track = this.strand_.getBeadByType(
-      org.apache.flex.html.staticControls.beads.SliderTrackView);
+      org.apache.flex.html.beads.SliderTrackView);
   this.thumb = this.strand_.getBeadByType(
-      org.apache.flex.html.staticControls.beads.SliderThumbView);
+      org.apache.flex.html.beads.SliderThumbView);
 
   goog.events.listen(this.track.element, goog.events.EventType.CLICK,
                      this.handleTrackClick, false, this);
@@ -65,7 +65,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles click on track.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleTrackClick =
     function(event)
     {
@@ -90,7 +90,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-down on the thumb.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbDown =
     function(event)
     {
@@ -109,7 +109,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-up on the thumb.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbUp =
     function(event)
     {
@@ -129,7 +129,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-move on the thumb.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbMove =
     function(event)
     {
@@ -146,7 +146,7 @@ org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
  * @return {void} Determines the new value based on the movement of the mouse
  * along the slider.
  */
-org.apache.flex.html.staticControls.beads.controllers.SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.calcValFromMousePosition =
     function(event, useOffset)
     {

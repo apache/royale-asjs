@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {	
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.supportClasses
 
     /**
      *  The NonVirtualDataGroup class is the IItemRendererParent used internally
-     *  by org.apache.flex.html.staticControls.List class.
+     *  by org.apache.flex.html.List class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

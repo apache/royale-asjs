@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDateChooserModel;
@@ -29,9 +29,9 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.UIUtils;
-	import org.apache.flex.html.staticControls.DateChooser;
-	import org.apache.flex.html.staticControls.TextButton;
-	import org.apache.flex.html.staticControls.TextInput;
+	import org.apache.flex.html.DateChooser;
+	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.TextInput;
 	
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the

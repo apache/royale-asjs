@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.Image');
+goog.provide('org.apache.flex.html.Image');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.beads.ImageView');
-goog.require('org.apache.flex.html.staticControls.beads.models.ImageModel');
+goog.require('org.apache.flex.html.beads.ImageView');
+goog.require('org.apache.flex.html.beads.models.ImageModel');
 
 
 
@@ -24,10 +24,10 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ImageModel');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.Image = function() {
+org.apache.flex.html.Image = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.Image,
+goog.inherits(org.apache.flex.html.Image,
     org.apache.flex.core.UIBase);
 
 
@@ -36,9 +36,9 @@ goog.inherits(org.apache.flex.html.staticControls.Image,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.Image.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Image.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Image',
-                qName: 'org.apache.flex.html.staticControls.Image' }] };
+                qName: 'org.apache.flex.html.Image' }] };
 
 
 /**
@@ -46,7 +46,7 @@ org.apache.flex.html.staticControls.Image.prototype.FLEXJS_CLASS_INFO =
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org.apache.flex.html.staticControls.Image.prototype.createElement =
+org.apache.flex.html.Image.prototype.createElement =
     function() {
 
   this.element = document.createElement('img');
@@ -55,12 +55,12 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this.model = new
-          org.apache.flex.html.staticControls.beads.models.ImageModel();
+          org.apache.flex.html.beads.models.ImageModel();
 
   this.addBead(this.model);
 
   this.addBead(new
-      org.apache.flex.html.staticControls.beads.ImageView());
+      org.apache.flex.html.beads.ImageView());
 
   return this.element;
 };
@@ -70,7 +70,7 @@ org.apache.flex.html.staticControls.Image.prototype.createElement =
  * @expose
  * @return {String} The source identifier for the Image.
  */
-org.apache.flex.html.staticControls.Image.prototype.
+org.apache.flex.html.Image.prototype.
     get_source = function() {
   return this.model.get_source();
 };
@@ -80,7 +80,7 @@ org.apache.flex.html.staticControls.Image.prototype.
  * @expose
  * @param {String} value The source identifier for the Image.
  */
-org.apache.flex.html.staticControls.Image.prototype.
+org.apache.flex.html.Image.prototype.
     set_source = function(value) {
   this.model.set_source(value);
 };

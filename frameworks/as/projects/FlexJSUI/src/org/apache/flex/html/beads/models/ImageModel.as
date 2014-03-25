@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.IStrand;
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.staticControls.Image
+	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.Image
 	 *  component, namely the source of the image.
 	 *
 	 *  @langversion 3.0

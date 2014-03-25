@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
@@ -28,12 +28,12 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The DataItemRendererFactoryForColumnData class implents the 
 	 *  org.apache.flex.core.IDataProviderItemRendererMapper interface and creates the itemRenderers 
-	 *  for each cell in the org.apache.flex.html.staticControls.DataGrid.  
+	 *  for each cell in the org.apache.flex.html.DataGrid.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

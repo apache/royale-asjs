@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController');
+goog.provide('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
 
 goog.require('org.apache.flex.core.IBeadController');
-goog.require('org.apache.flex.html.staticControls.beads.ListView');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
@@ -24,7 +24,7 @@ goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionMod
  * @constructor
  * @implements {org.apache.flex.core.IBeadController}
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ListSingleSelectionMouseController = function() {
 };
 
@@ -34,9 +34,9 @@ org.apache.flex.html.staticControls.beads.controllers.
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListSingleSelectionMouseController',
-                qName: 'org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController' }],
+                qName: 'org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController' }],
       interfaces: [org.apache.flex.core.IBeadController] };
 
 
@@ -45,14 +45,14 @@ org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseCo
  *        ListSingleSelectionMouseController}
  * @param {Object} value The strand for this component.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ListSingleSelectionMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+      org.apache.flex.html.beads.models.ArraySelectionModel);
   this.listView = value.getBeadByType(
-      org.apache.flex.html.staticControls.beads.ListView);
+      org.apache.flex.html.beads.ListView);
 
   this.dataGroup = this.listView.get_dataGroup();
   this.dataGroup.addEventListener('selected',
@@ -65,7 +65,7 @@ org.apache.flex.html.staticControls.beads.controllers.
  *        ListSingleSelectionMouseController}
  * @param {Object} event The event that triggered the selection.
  */
-org.apache.flex.html.staticControls.beads.controllers.
+org.apache.flex.html.beads.controllers.
     ListSingleSelectionMouseController.prototype.selectedHandler =
         function(event) {
 

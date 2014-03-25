@@ -15,7 +15,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
@@ -58,7 +58,7 @@ package org.apache.flex.html.staticControls
 		}
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.Label#text
+         *  @copy org.apache.flex.html.Label#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -79,7 +79,7 @@ package org.apache.flex.html.staticControls
 		}
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.Label#html
+         *  @copy org.apache.flex.html.Label#html
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	import org.apache.flex.core.IPanelModel;
 
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls
 	
 	/**
 	 *  The Panel class is a Container component capable of parenting other
-	 *  components. The Panel has a TitleBar and an optional org.apache.flex.html.staticControls.ControlBar. 
+	 *  components. The Panel has a TitleBar and an optional org.apache.flex.html.ControlBar. 
 	 *  The Panel uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
@@ -54,7 +54,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The string to display in the org.apache.flex.html.staticControls.TitleBar.
+		 *  The string to display in the org.apache.flex.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -71,7 +71,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 *  The HTML string to display in the org.apache.flex.html.staticControls.TitleBar.
+		 *  The HTML string to display in the org.apache.flex.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -88,7 +88,7 @@ package org.apache.flex.html.staticControls
 		}
 		
 		/**
-		 * Whether or not to show a Close button in the org.apache.flex.html.staticControls.TitleBar.
+		 * Whether or not to show a Close button in the org.apache.flex.html.TitleBar.
 		 */
 		public function get showCloseButton():Boolean
 		{
@@ -102,7 +102,7 @@ package org.apache.flex.html.staticControls
 		private var _controlBar:Array;
 		
 		/**
-		 *  The items in the org.apache.flex.html.staticControls.ControlBar. Setting this property automatically
+		 *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
 		 *  causes the ControlBar to display.
 		 *
 		 *  @langversion 3.0

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.SimpleAlert');
+goog.provide('org.apache.flex.html.SimpleAlert');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,11 +22,11 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.SimpleAlert = function() {
+org.apache.flex.html.SimpleAlert = function() {
   goog.base(this);
 
 };
-goog.inherits(org.apache.flex.html.staticControls.SimpleAlert,
+goog.inherits(org.apache.flex.html.SimpleAlert,
     org.apache.flex.core.UIBase);
 
 
@@ -35,16 +35,16 @@ goog.inherits(org.apache.flex.html.staticControls.SimpleAlert,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.SimpleAlert.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.SimpleAlert.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleAlert',
-                qName: 'org.apache.flex.html.staticControls.SimpleAlert'}] };
+                qName: 'org.apache.flex.html.SimpleAlert'}] };
 
 
 /**
  * @param {string} message The message to display in the alert.
  * @param {Object} host The host that should display the alert.
  */
-org.apache.flex.html.staticControls.SimpleAlert.show =
+org.apache.flex.html.SimpleAlert.show =
     function(message, host) {
 
   alert(message);

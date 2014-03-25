@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
     import flash.text.TextFieldType;
     
@@ -28,10 +28,10 @@ package org.apache.flex.html.staticControls.supportClasses
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
-    import org.apache.flex.html.staticControls.beads.ITextItemRenderer;
+    import org.apache.flex.html.beads.ITextItemRenderer;
 	
 	/**
-	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.staticControls.TextField as an itemRenderer.
+	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

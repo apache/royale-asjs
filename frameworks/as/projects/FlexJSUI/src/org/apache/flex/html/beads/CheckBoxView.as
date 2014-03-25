@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -32,7 +32,7 @@ package org.apache.flex.html.staticControls.beads
 	
     /**
      *  The CheckBoxView class is the default view for
-     *  the org.apache.flex.html.staticControls.CheckBox class.
+     *  the org.apache.flex.html.CheckBox class.
      *  It displays a simple checkbox with an 'x' if checked,
      *  and a label on the right.  There are no styles or
      *  properties to configure the look of the 'x' or the
@@ -136,7 +136,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.Label#text
+         *  @copy org.apache.flex.html.Label#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -164,7 +164,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.Label#html
+         *  @copy org.apache.flex.html.Label#html
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

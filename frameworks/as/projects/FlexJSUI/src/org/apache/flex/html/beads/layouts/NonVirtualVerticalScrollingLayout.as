@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.layouts
+package org.apache.flex.html.beads.layouts
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -29,8 +29,8 @@ package org.apache.flex.html.staticControls.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 
     /**
      *  The NonVirtualVerticalScrollingLayout class is a layout

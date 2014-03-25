@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.TextArea;
+	import org.apache.flex.html.TextArea;
 
-	public class TextArea extends org.apache.flex.html.staticControls.TextArea
+	public class TextArea extends org.apache.flex.html.TextArea
 	{
 	}
 }

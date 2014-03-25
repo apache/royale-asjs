@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Loader;
 	import flash.display.Shape;
@@ -33,7 +33,7 @@ package org.apache.flex.html.staticControls.beads
 
     /**
      *  The CSSButtonView class is the default view for
-     *  the org.apache.flex.html.staticControls.Button class.
+     *  the org.apache.flex.html.Button class.
      *  It allows the look of the button to be expressed
      *  in CSS via the background-image style.  This view
      *  does not display text.  Use CSSTextButtonView and

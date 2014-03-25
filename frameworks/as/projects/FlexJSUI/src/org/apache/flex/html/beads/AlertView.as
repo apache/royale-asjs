@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
@@ -30,14 +30,14 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.createjs.staticControls.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Alert;
-	import org.apache.flex.html.staticControls.ControlBar;
-	import org.apache.flex.html.staticControls.TextButton;
-	import org.apache.flex.html.staticControls.TitleBar;
+	import org.apache.flex.html.Alert;
+	import org.apache.flex.html.ControlBar;
+	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.TitleBar;
 	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
-	 *  The AlertView class creates the visual elements of the org.apache.flex.html.staticControls.Alert
+	 *  The AlertView class creates the visual elements of the org.apache.flex.html.Alert
 	 *  component. The job of the view bead is to put together the parts of the Alert, such as the 
 	 *  title bar, message, and various buttons, within the space of the Alert component strand.
 	 *  

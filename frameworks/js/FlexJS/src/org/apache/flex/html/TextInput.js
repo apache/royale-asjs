@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.TextInput');
+goog.provide('org.apache.flex.html.TextInput');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.TextInput = function() {
+org.apache.flex.html.TextInput = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.TextInput,
+goog.inherits(org.apache.flex.html.TextInput,
     org.apache.flex.core.UIBase);
 
 
@@ -34,15 +34,15 @@ goog.inherits(org.apache.flex.html.staticControls.TextInput,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.TextInput.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TextInput.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextInput',
-                qName: 'org.apache.flex.html.staticControls.TextInput'}] };
+                qName: 'org.apache.flex.html.TextInput'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.TextInput.prototype.createElement = function() {
+org.apache.flex.html.TextInput.prototype.createElement = function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
 
@@ -61,7 +61,7 @@ org.apache.flex.html.staticControls.TextInput.prototype.createElement = function
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.get_text = function() {
+org.apache.flex.html.TextInput.prototype.get_text = function() {
   return this.element.value;
 };
 
@@ -70,7 +70,7 @@ org.apache.flex.html.staticControls.TextInput.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.set_text = function(value) {
+org.apache.flex.html.TextInput.prototype.set_text = function(value) {
   this.element.value = value;
 };
 
@@ -79,7 +79,7 @@ org.apache.flex.html.staticControls.TextInput.prototype.set_text = function(valu
  * @expose
  * @param {Object} event The event.
  */
-/*org.apache.flex.html.staticControls.TextInput.prototype.killChangeHandler = function(event) {
+/*org.apache.flex.html.TextInput.prototype.killChangeHandler = function(event) {
     //event.preventDefault();
 };*/
 
@@ -88,7 +88,7 @@ org.apache.flex.html.staticControls.TextInput.prototype.set_text = function(valu
  * @private
  * @param {Object} event The event.
  */
-org.apache.flex.html.staticControls.TextInput.prototype.inputChangeHandler_ = function(event) {
+org.apache.flex.html.TextInput.prototype.inputChangeHandler_ = function(event) {
   event.stopPropagation();
 
   this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));

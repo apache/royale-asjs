@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	
 	/**
-	 *  The TextButtonMeasurementBead class helps measure a org.apache.flex.html.staticControls.TextButton.
+	 *  The TextButtonMeasurementBead class helps measure a org.apache.flex.html.TextButton.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The overall width of the org.apache.flex.html.staticControls.TextButton.
+		 *  The overall width of the org.apache.flex.html.TextButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -59,7 +59,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 * The overall height of the org.apache.flex.html.staticControls.TextButton
+		 * The overall height of the org.apache.flex.html.TextButton
 		 */
 		public function get measuredHeight():Number
 		{

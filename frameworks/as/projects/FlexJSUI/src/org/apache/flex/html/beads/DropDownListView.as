@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -38,7 +38,7 @@ package org.apache.flex.html.staticControls.beads
 
     /**
      *  The DropDownListView class is the default view for
-     *  the org.apache.flex.html.staticControls.DropDownList class.
+     *  the org.apache.flex.html.DropDownList class.
      *  It displays a simple text label with what appears to be a
      *  down arrow button on the right, but really, the entire
      *  view is the button that will display or dismiss the dropdown.

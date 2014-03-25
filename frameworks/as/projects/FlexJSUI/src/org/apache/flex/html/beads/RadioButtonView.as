@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -31,7 +31,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.Event;
 	
 	/**
-	 *  The RadioButtonView class creates the visual elements of the org.apache.flex.html.staticControls.RadioButton 
+	 *  The RadioButtonView class creates the visual elements of the org.apache.flex.html.RadioButton 
 	 *  component. 
 	 *  
 	 *  @langversion 3.0
@@ -140,7 +140,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The string label for the org.apache.flex.html.staticControls.RadioButton.
+		 *  The string label for the org.apache.flex.html.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -164,7 +164,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The HTML string for the org.apache.flex.html.staticControls.RadioButton.
+		 *  The HTML string for the org.apache.flex.html.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.accessories
+package org.apache.flex.html.accessories
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDateChooserModel;
@@ -24,8 +24,8 @@ package org.apache.flex.html.staticControls.accessories
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.html.staticControls.TextInput;
-	import org.apache.flex.html.staticControls.beads.DateFieldView;
+	import org.apache.flex.html.TextInput;
+	import org.apache.flex.html.beads.DateFieldView;
 	
 	/**
 	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.

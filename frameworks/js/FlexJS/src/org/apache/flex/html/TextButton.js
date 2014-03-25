@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.TextButton');
+goog.provide('org.apache.flex.html.TextButton');
 
-goog.require('org.apache.flex.html.staticControls.Button');
+goog.require('org.apache.flex.html.Button');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.Button}
+ * @extends {org.apache.flex.html.Button}
  */
-org.apache.flex.html.staticControls.TextButton = function() {
+org.apache.flex.html.TextButton = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.TextButton,
-    org.apache.flex.html.staticControls.Button);
+goog.inherits(org.apache.flex.html.TextButton,
+    org.apache.flex.html.Button);
 
 
 /**
@@ -34,16 +34,16 @@ goog.inherits(org.apache.flex.html.staticControls.TextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.TextButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextButton',
-                qName: 'org.apache.flex.html.staticControls.TextButton'}] };
+                qName: 'org.apache.flex.html.TextButton'}] };
 
 
 /**
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
+org.apache.flex.html.TextButton.prototype.get_text = function() {
   return this.element.innerHTML;
 };
 
@@ -52,7 +52,7 @@ org.apache.flex.html.staticControls.TextButton.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.staticControls.TextButton.prototype.set_text =
+org.apache.flex.html.TextButton.prototype.set_text =
     function(value) {
   this.element.innerHTML = value;
 };

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -27,12 +27,12 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.Button;
-	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
+	import org.apache.flex.html.Button;
+	import org.apache.flex.html.beads.controllers.ButtonAutoRepeatController;
 
     /**
      *  The ScrollBarView class is the default view for
-     *  the org.apache.flex.html.staticControls.supportClasses.ScrollBar class.
+     *  the org.apache.flex.html.supportClasses.ScrollBar class.
      *  It implements the classic desktop-like ScrollBar.
      *  A different view would implement more modern scrollbars that hide themselves
      *  until hovered over with the mouse.
@@ -103,7 +103,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _thumb:DisplayObject;
 		
         /**
-         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#decrement
+         *  @copy org.apache.flex.html.beads.IScrollBarView#decrement
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -116,7 +116,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 
         /**
-         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#increment
+         *  @copy org.apache.flex.html.beads.IScrollBarView#increment
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -129,7 +129,7 @@ package org.apache.flex.html.staticControls.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#track
+         *  @copy org.apache.flex.html.beads.IScrollBarView#track
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -142,7 +142,7 @@ package org.apache.flex.html.staticControls.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.staticControls.beads.IScrollBarView#thumb
+         *  @copy org.apache.flex.html.beads.IScrollBarView#thumb
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

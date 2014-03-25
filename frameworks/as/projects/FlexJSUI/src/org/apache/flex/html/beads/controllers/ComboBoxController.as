@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
@@ -26,11 +26,11 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IComboBoxView;
+	import org.apache.flex.html.beads.IComboBoxView;
 
 	/**
 	 *  The ComboBoxController class bead handles mouse events on the elements of
-	 *  the org.apache.flex.html.staticControls.ComboBox. This includes selecting the 
+	 *  the org.apache.flex.html.ComboBox. This includes selecting the 
 	 *  button to display the selection list pop-up as well as selecting an item from the 
 	 *  pop-up list.
 	 *  

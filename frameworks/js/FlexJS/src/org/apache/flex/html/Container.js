@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.Container');
+goog.provide('org.apache.flex.html.Container');
 
 goog.require('org.apache.flex.core.ContainerBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.core.ContainerBase');
  * @constructor
  * @extends {org.apache.flex.core.ContainerBase}
  */
-org.apache.flex.html.staticControls.Container = function() {
+org.apache.flex.html.Container = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.Container,
+goog.inherits(org.apache.flex.html.Container,
     org.apache.flex.core.ContainerBase);
 
 
@@ -34,15 +34,15 @@ goog.inherits(org.apache.flex.html.staticControls.Container,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.Container.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Container.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Container',
-                qName: 'org.apache.flex.html.staticControls.Container' }] };
+                qName: 'org.apache.flex.html.Container' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Container.prototype.createElement =
+org.apache.flex.html.Container.prototype.createElement =
     function() {
   var cb;
 
@@ -58,7 +58,7 @@ org.apache.flex.html.staticControls.Container.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.Container.prototype.addElement =
+org.apache.flex.html.Container.prototype.addElement =
     function(child) {
   goog.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
@@ -68,7 +68,7 @@ org.apache.flex.html.staticControls.Container.prototype.addElement =
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
+org.apache.flex.html.Container.prototype.childrenAdded =
     function() {
   this.dispatchEvent('childrenAdded');
 };
@@ -78,7 +78,7 @@ org.apache.flex.html.staticControls.Container.prototype.childrenAdded =
  * @expose
  * @return {Array} the HTML DOM element children.
  */
-org.apache.flex.html.staticControls.Container.prototype.internalChildren =
+org.apache.flex.html.Container.prototype.internalChildren =
     function() {
   return this.element.children;
 };

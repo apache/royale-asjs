@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The TitleBarModel class bead holds the values for the org.apache.flex.html.staticControls.TitleBar's 
+	 *  The TitleBarModel class bead holds the values for the org.apache.flex.html.TitleBar's 
 	 *  properties.
 	 *
 	 *  @langversion 3.0
@@ -58,7 +58,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _title:String;
 		
 		/**
-		 *  The string title for the org.apache.flex.html.staticControls.TitleBar.
+		 *  The string title for the org.apache.flex.html.TitleBar.
 		 * 
 		 *  @copy org.apache.flex.core.ITitleBarModel#title
 		 *

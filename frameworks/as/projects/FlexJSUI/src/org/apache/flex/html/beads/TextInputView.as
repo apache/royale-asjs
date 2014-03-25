@@ -15,7 +15,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldType;
@@ -26,7 +26,7 @@ package org.apache.flex.html.staticControls.beads
 	
     /**
      *  The TextInputView class is the view for
-     *  the org.apache.flex.html.staticControls.TextInput in
+     *  the org.apache.flex.html.TextInput in
      *  a ComboBox and other controls 
      *  because it does not display a border.
      *  It displays text using a TextField, so there is no

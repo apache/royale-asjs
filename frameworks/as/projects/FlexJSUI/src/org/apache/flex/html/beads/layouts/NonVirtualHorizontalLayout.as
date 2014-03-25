@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.layouts
+package org.apache.flex.html.beads.layouts
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;

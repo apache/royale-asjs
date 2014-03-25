@@ -12,47 +12,47 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.ButtonBar');
+goog.provide('org.apache.flex.html.ButtonBar');
 
 goog.require('org.apache.flex.core.ListBase');
-goog.require('org.apache.flex.html.staticControls.List');
-goog.require('org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData');
-goog.require('org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout');
-goog.require('org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer');
+goog.require('org.apache.flex.html.List');
+goog.require('org.apache.flex.html.beads.DataItemRendererFactoryForArrayData');
+goog.require('org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout');
+goog.require('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.List}
+ * @extends {org.apache.flex.html.List}
  */
-org.apache.flex.html.staticControls.ButtonBar = function() {
+org.apache.flex.html.ButtonBar = function() {
 
   //  this.model = new
-  //        org.apache.flex.html.staticControls.beads.models.ArraySelectionModel();
+  //        org.apache.flex.html.beads.models.ArraySelectionModel();
   //  this.addBead(this.model);
 
   goog.base(this);
 
   //  this.addBead(new
-  //        org.apache.flex.html.staticControls.beads.ListView());
+  //        org.apache.flex.html.beads.ListView());
 
   //  this.addBead(new
-  //org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout());
+  //org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout());
 
   //  this.itemRendererFactory = new
-  //        org.apache.flex.html.staticControls.beads.
+  //        org.apache.flex.html.beads.
   //        DataItemRendererFactoryForArrayData();
   //  this.itemRendererFactory.set_itemRendererClass('org.apache.flex.html.' +
   //        'staticControls.supportClasses.ButtonBarButtonItemRenderer');
   //  this.addBead(this.itemRendererFactory);
 
   //  this.addBead(new
-  //        org.apache.flex.html.staticControls.beads.controllers.
+  //        org.apache.flex.html.beads.controllers.
   //        ListSingleSelectionMouseController());
 };
-goog.inherits(org.apache.flex.html.staticControls.ButtonBar,
-    org.apache.flex.html.staticControls.List);
+goog.inherits(org.apache.flex.html.ButtonBar,
+    org.apache.flex.html.List);
 
 
 /**
@@ -60,15 +60,15 @@ goog.inherits(org.apache.flex.html.staticControls.ButtonBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.ButtonBar.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ButtonBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBar',
-                qName: 'org.apache.flex.html.staticControls.ButtonBar'}] };
+                qName: 'org.apache.flex.html.ButtonBar'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.ButtonBar.prototype.createElement =
+org.apache.flex.html.ButtonBar.prototype.createElement =
     function() {
   //goog.base(this, 'createElement');
 

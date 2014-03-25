@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -32,7 +32,7 @@ package org.apache.flex.html.staticControls.beads
 
     /**
      *  The TextButtonView class is the default view for
-     *  the org.apache.flex.html.staticControls.TextButton class.
+     *  the org.apache.flex.html.TextButton class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

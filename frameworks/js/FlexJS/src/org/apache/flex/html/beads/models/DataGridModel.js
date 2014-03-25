@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.models.DataGridModel');
+goog.provide('org.apache.flex.html.beads.models.DataGridModel');
 
 goog.require('org.apache.flex.core.IDataGridModel');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.beads.models.ArraySelectionModel}
+ * @extends {org.apache.flex.html.beads.models.ArraySelectionModel}
  * @implements {org.apache.flex.core.IDataGridModel}
  */
-org.apache.flex.html.staticControls.beads.models.DataGridModel =
+org.apache.flex.html.beads.models.DataGridModel =
     function() {
   goog.base(this);
 
@@ -33,8 +33,8 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel =
   this.className = 'DataGridModel';
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.models.DataGridModel,
-    org.apache.flex.html.staticControls.beads.models.ArraySelectionModel);
+    org.apache.flex.html.beads.models.DataGridModel,
+    org.apache.flex.html.beads.models.ArraySelectionModel);
 
 
 /**
@@ -42,9 +42,9 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataGridModel',
-                qName: 'org.apache.flex.html.staticControls.beads.models.DataGridModel' }],
+                qName: 'org.apache.flex.html.beads.models.DataGridModel' }],
       interfaces: [org.apache.flex.core.IDataGridModel] };
 
 
@@ -52,7 +52,7 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.FLEXJS_
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
+org.apache.flex.html.beads.models.DataGridModel.prototype.
     set_strand = function(value) {
   goog.base(this, 'set_strand', value);
   this.strand_ = value;
@@ -63,7 +63,7 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
  * @expose
  * @param {Array} value Array of DataGridColumn instances.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
+org.apache.flex.html.beads.models.DataGridModel.prototype.
     set_columns = function(value) {
   this.columns_ = value;
 };
@@ -73,7 +73,7 @@ org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
  * @expose
  * @return {Array} Array of DataGridColumn instances.
  */
-org.apache.flex.html.staticControls.beads.models.DataGridModel.prototype.
+org.apache.flex.html.beads.models.DataGridModel.prototype.
     get_columns = function() {
   return this.columns_;
 };

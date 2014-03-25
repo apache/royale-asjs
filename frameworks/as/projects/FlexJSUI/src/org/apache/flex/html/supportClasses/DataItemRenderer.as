@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
 	import flash.display.Sprite;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
-	 *  extends org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase and 
+	 *  extends org.apache.flex.html.supportClasses.UIItemRendererBase and 
 	 *  includes row and column index values.
 	 *
 	 *  @langversion 3.0

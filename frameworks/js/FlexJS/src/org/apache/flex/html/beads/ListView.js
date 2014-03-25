@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.ListView');
+goog.provide('org.apache.flex.html.beads.ListView');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
 goog.require('org.apache.flex.core.ILayoutParent');
 goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.html.staticControls.beads.IListView');
-goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
-goog.require('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
+goog.require('org.apache.flex.html.beads.IListView');
+goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.supportClasses.NonVirtualDataGroup');
 
 
 
 /**
  * @constructor
  * @implements {org.apache.flex.core.ILayoutParent}
- * @implements {org.apache.flex.html.staticControls.beads.IListView}
+ * @implements {org.apache.flex.html.beads.IListView}
  */
-org.apache.flex.html.staticControls.beads.ListView = function() {
+org.apache.flex.html.beads.ListView = function() {
   this.lastSelectedIndex = -1;
 
   this.className = 'ListView';
@@ -43,18 +43,18 @@ org.apache.flex.html.staticControls.beads.ListView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.
+org.apache.flex.html.beads.ListView.prototype.
     FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListView',
-                qName: 'org.apache.flex.html.staticControls.beads.ListView' }],
-      interfaces: [org.apache.flex.html.staticControls.beads.IListView, org.apache.flex.core.ILayoutParent] };
+                qName: 'org.apache.flex.html.beads.ListView' }],
+      interfaces: [org.apache.flex.html.beads.IListView, org.apache.flex.core.ILayoutParent] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
+org.apache.flex.html.beads.ListView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
@@ -76,7 +76,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
       goog.bind(this.selectionChangeHandler, this));
 
   this.dataGroup_ = new
-      org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup();
+      org.apache.flex.html.supportClasses.NonVirtualDataGroup();
   this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
 
@@ -88,7 +88,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_strand =
  * @expose
  * @return {Object} The DataGroup instance.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
+org.apache.flex.html.beads.ListView.prototype.get_dataGroup =
     function() {
   return this.dataGroup_;
 };
@@ -98,7 +98,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_dataGroup =
  * @expose
  * @param {Object} value The event that triggered the selection.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.
+org.apache.flex.html.beads.ListView.prototype.
     selectionChangeHandler = function(value) {
   var ir;
   if (this.lastSelectedIndex != -1) {
@@ -118,7 +118,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.
  * @expose
  * @return {Object} The view that contains the layout objects.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.get_contentView = function() {
+org.apache.flex.html.beads.ListView.prototype.get_contentView = function() {
   return this;
 };
 
@@ -127,7 +127,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_contentView = f
  * @expose
  * @return {Object} The border for the layout area.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.get_border = function() {
+org.apache.flex.html.beads.ListView.prototype.get_border = function() {
   return null;
 };
 
@@ -136,7 +136,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_border = functi
  * @expose
  * @return {Object} The vertical scrollbar.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.get_vScrollBar = function() {
+org.apache.flex.html.beads.ListView.prototype.get_vScrollBar = function() {
   return null;
 };
 
@@ -145,7 +145,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_vScrollBar = fu
  * @expose
  * @param {Object} value The vertical scrollbar.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.set_vScrollBar = function(value) {
+org.apache.flex.html.beads.ListView.prototype.set_vScrollBar = function(value) {
 };
 
 
@@ -153,7 +153,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.set_vScrollBar = fu
  * @expose
  * @return {Object} The view that can be resized.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.get_resizeableView = function() {
+org.apache.flex.html.beads.ListView.prototype.get_resizeableView = function() {
   return this;
 };
 
@@ -162,7 +162,7 @@ org.apache.flex.html.staticControls.beads.ListView.prototype.get_resizeableView 
  * @expose
  * @param {Object} event The event that triggered the resize.
  */
-org.apache.flex.html.staticControls.beads.ListView.prototype.handleSizeChange = function(event) {
+org.apache.flex.html.beads.ListView.prototype.handleSizeChange = function(event) {
   this.dataGroup_.set_width(this.strand_.get_width());
   this.dataGroup_.set_height(this.strand_.get_height());
 };

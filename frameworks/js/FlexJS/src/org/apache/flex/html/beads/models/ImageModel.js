@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.beads.models.ImageModel');
+goog.provide('org.apache.flex.html.beads.models.ImageModel');
 
 goog.require('org.apache.flex.events.EventDispatcher');
 
@@ -22,12 +22,12 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
  */
-org.apache.flex.html.staticControls.beads.models.ImageModel =
+org.apache.flex.html.beads.models.ImageModel =
     function() {
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.beads.models.ImageModel,
+    org.apache.flex.html.beads.models.ImageModel,
     org.apache.flex.events.EventDispatcher);
 
 
@@ -36,16 +36,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.ImageModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageModel',
-                qName: 'org.apache.flex.html.staticControls.beads.models.ImageModel'}] };
+                qName: 'org.apache.flex.html.beads.models.ImageModel'}] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
+org.apache.flex.html.beads.models.ImageModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -55,7 +55,7 @@ org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
  * @expose
  * @return {Object} value The image source.
  */
-org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
+org.apache.flex.html.beads.models.ImageModel.prototype.
     get_source = function() {
   return this.source;
 };
@@ -65,7 +65,7 @@ org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
  * @expose
  * @param {Object} value The image source.
  */
-org.apache.flex.html.staticControls.beads.models.ImageModel.prototype.
+org.apache.flex.html.beads.models.ImageModel.prototype.
     set_source = function(value) {
   this.source = value;
   this.dispatchEvent('sourceChanged');

@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup');
+goog.provide('org.apache.flex.html.supportClasses.NonVirtualDataGroup');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 goog.require('org.apache.flex.utils.Language');
 
 
@@ -24,13 +24,13 @@ goog.require('org.apache.flex.utils.Language');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup =
+org.apache.flex.html.supportClasses.NonVirtualDataGroup =
     function() {
   this.renderers = [];
   goog.base(this);
 };
 goog.inherits(
-    org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup,
+    org.apache.flex.html.supportClasses.NonVirtualDataGroup,
     org.apache.flex.core.UIBase);
 
 
@@ -39,16 +39,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NonVirtualDataGroup',
-                qName: 'org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup' }] };
+                qName: 'org.apache.flex.html.supportClasses.NonVirtualDataGroup' }] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 };
@@ -57,7 +57,7 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
 /**
  * @override
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
@@ -76,12 +76,12 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
  * @override
  * @param {Object} value The child element being added.
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.addElement = function(value) {
   goog.base(this, 'addElement', value);
 
   var itemRenderer = org.apache.flex.utils.Language.as(value,
-                           org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+                           org.apache.flex.html.supportClasses.DataItemRenderer);
   itemRenderer.set_index(this.renderers.length);
   itemRenderer.set_itemRendererParent(this);
   this.renderers.push(value);
@@ -91,7 +91,7 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
 /**
  * @expose
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.removeAllElements = function() {
     // to do
 };
@@ -102,7 +102,7 @@ org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */
-org.apache.flex.html.staticControls.supportClasses.NonVirtualDataGroup.
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.getItemRendererForIndex = function(index) {
   return this.renderers[index];
 };

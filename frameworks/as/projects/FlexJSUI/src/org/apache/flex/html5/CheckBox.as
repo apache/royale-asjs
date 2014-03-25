@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.CheckBox;
+	import org.apache.flex.html.CheckBox;
 	
-	public class CheckBox extends org.apache.flex.html.staticControls.CheckBox 
+	public class CheckBox extends org.apache.flex.html.CheckBox 
 	{
 	}
 }

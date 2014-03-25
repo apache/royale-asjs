@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
@@ -29,7 +29,7 @@ package org.apache.flex.html.staticControls.beads
 	
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
-	 *  org.apache.flex.html.staticControls.Slider component.
+	 *  org.apache.flex.html.Slider component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -12,28 +12,28 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.TitleBar');
+goog.provide('org.apache.flex.html.TitleBar');
 
-goog.require('org.apache.flex.html.staticControls.Container');
-goog.require('org.apache.flex.html.staticControls.Label');
-goog.require('org.apache.flex.html.staticControls.TextButton');
-goog.require('org.apache.flex.html.staticControls.beads.models.TitleBarModel');
+goog.require('org.apache.flex.html.Container');
+goog.require('org.apache.flex.html.Label');
+goog.require('org.apache.flex.html.TextButton');
+goog.require('org.apache.flex.html.beads.models.TitleBarModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.staticControls.Container}
+ * @extends {org.apache.flex.html.Container}
  */
-org.apache.flex.html.staticControls.TitleBar = function() {
+org.apache.flex.html.TitleBar = function() {
 
   this.model =
-      new org.apache.flex.html.staticControls.beads.models.TitleBarModel();
+      new org.apache.flex.html.beads.models.TitleBarModel();
 
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.TitleBar,
-    org.apache.flex.html.staticControls.Container);
+goog.inherits(org.apache.flex.html.TitleBar,
+    org.apache.flex.html.Container);
 
 
 /**
@@ -41,26 +41,26 @@ goog.inherits(org.apache.flex.html.staticControls.TitleBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TitleBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TitleBar',
-                qName: 'org.apache.flex.html.staticControls.TitleBar'}] };
+                qName: 'org.apache.flex.html.TitleBar'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
+org.apache.flex.html.TitleBar.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
 
-  this.titleLabel = new org.apache.flex.html.staticControls.Label();
+  this.titleLabel = new org.apache.flex.html.Label();
   this.addElement(this.titleLabel);
   this.titleLabel.element.id = 'title';
   this.titleLabel.positioner.style.display = 'inline-block';
   this.titleLabel.set_className('TitleBarLabel');
 
-  this.titleButton = new org.apache.flex.html.staticControls.TextButton();
+  this.titleButton = new org.apache.flex.html.TextButton();
   this.addElement(this.titleButton);
   this.titleButton.element.id = 'closeButton';
   this.titleButton.text = 'Close';
@@ -83,7 +83,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
+org.apache.flex.html.TitleBar.prototype.addedToParent =
     function() {
 
   this.titleLabel.set_text(this.model.get_title());
@@ -99,7 +99,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.addedToParent =
 /**
  * @param {Object} event The event that triggered this handler.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
+org.apache.flex.html.TitleBar.prototype.changeHandler =
     function(event) {
   if (event.type == 'titleChange') {
     this.titleLabel.set_text(this.model.get_title());
@@ -114,7 +114,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.changeHandler =
  * @expose
  * @return {string} The title getter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
+org.apache.flex.html.TitleBar.prototype.get_title =
     function() {
   return this.model.get_title();
 };
@@ -124,7 +124,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_title =
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
+org.apache.flex.html.TitleBar.prototype.set_title =
     function(value) {
   this.model.set_title(value);
 };
@@ -134,7 +134,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.set_title =
  * @expose
  * @return {string} The showCloseButton getter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
+org.apache.flex.html.TitleBar.prototype.get_showCloseButton =
     function() {
   return this.model.get_showCloseButton();
 };
@@ -144,7 +144,7 @@ org.apache.flex.html.staticControls.TitleBar.prototype.get_showCloseButton =
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.staticControls.TitleBar.prototype.set_showCloseButton =
+org.apache.flex.html.TitleBar.prototype.set_showCloseButton =
     function(value) {
   this.model.set_showCloseButton(value);
 };

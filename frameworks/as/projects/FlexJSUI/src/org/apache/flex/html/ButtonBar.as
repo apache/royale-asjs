@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls
+package org.apache.flex.html
 {
 	/**
 	 *  The ButtonBar class is a component that displays a set of Buttons. The ButtonBar

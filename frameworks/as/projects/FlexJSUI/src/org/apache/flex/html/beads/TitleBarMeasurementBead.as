@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.staticControls.TitleBar;
+	import org.apache.flex.html.TitleBar;
 	
 	/**
 	 *  The TitleBarMeasurementBead class measures the overall size of a 
-	 *  org.apache.flex.html.staticControls.TitleBar.
+	 *  org.apache.flex.html.TitleBar.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -47,7 +47,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The overall width of the org.apache.flex.html.staticControls.TitleBar.
+		 *  The overall width of the org.apache.flex.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -68,7 +68,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The overall height of the org.apache.flex.html.staticControls.TitleBar.
+		 *  The overall height of the org.apache.flex.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

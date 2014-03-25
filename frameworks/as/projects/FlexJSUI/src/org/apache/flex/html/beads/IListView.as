@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {	
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 
 	/**
 	 *  The IListView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.flex.html.staticControls.List control.
+	 *  creates the visual parts for a org.apache.flex.html.List control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.List');
+goog.provide('org.apache.flex.html.List');
 
 goog.require('mx.core.IFactory');
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
@@ -20,11 +20,11 @@ goog.require('org.apache.flex.core.IItemRendererClassFactory');
 goog.require('org.apache.flex.core.ItemRendererClassFactory');
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.html.staticControls.beads.ListView');
-goog.require('org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData');
-goog.require('org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController');
-goog.require('org.apache.flex.html.staticControls.beads.models.ArraySelectionModel');
-goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
+goog.require('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 
 
 
@@ -32,10 +32,10 @@ goog.require('org.apache.flex.html.staticControls.supportClasses.DataItemRendere
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html.staticControls.List = function() {
+org.apache.flex.html.List = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html.staticControls.List,
+goog.inherits(org.apache.flex.html.List,
     org.apache.flex.core.ListBase);
 
 
@@ -44,16 +44,16 @@ goog.inherits(org.apache.flex.html.staticControls.List,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.List.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.List.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'List',
-                qName: 'org.apache.flex.html.staticControls.List' }] };
+                qName: 'org.apache.flex.html.List' }] };
 
 
 /**
  * @expose
  * @return {mx.core.IFactory} The itemRenderer generator.
  */
-org.apache.flex.html.staticControls.List.prototype.get_itemRenderer =
+org.apache.flex.html.List.prototype.get_itemRenderer =
 function() {
   return this.itemRenderer_;
 };
@@ -63,7 +63,7 @@ function() {
  * @expose
  * @param {mx.core.IFactory} value The itemRenderer generator.
  */
-org.apache.flex.html.staticControls.List.prototype.set_itemRenderer =
+org.apache.flex.html.List.prototype.set_itemRenderer =
 function(value) {
   this.itemRenderer_ = value;
 };
@@ -73,7 +73,7 @@ function(value) {
  * @expose
  * @return {String} The name of the field to use as a label.
  */
-org.apache.flex.html.staticControls.List.prototype.get_labelField =
+org.apache.flex.html.List.prototype.get_labelField =
 function() {
   return this.get_model().get_labelField();
 };
@@ -83,7 +83,7 @@ function() {
  * @expose
  * @param {String} value The name of the field to use as a label.
  */
-org.apache.flex.html.staticControls.List.prototype.set_labelField =
+org.apache.flex.html.List.prototype.set_labelField =
 function(value) {
   this.get_model().set_labelField(value);
 };
@@ -92,7 +92,7 @@ function(value) {
 /**
  * @override
  */
-org.apache.flex.html.staticControls.List.prototype.createElement =
+org.apache.flex.html.List.prototype.createElement =
     function() {
   goog.base(this, 'createElement');
   this.set_className('List');
@@ -104,7 +104,7 @@ org.apache.flex.html.staticControls.List.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.staticControls.List.prototype.addedToParent =
+org.apache.flex.html.List.prototype.addedToParent =
     function() {
   goog.base(this, 'addedToParent');
 
@@ -124,10 +124,10 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
 //  var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
 //  if (c == null) {
 //    c = this.getBeadByType(
-//          org.apache.flex.html.staticControls.supportClasses.DataItemRenderer);
+//          org.apache.flex.html.supportClasses.DataItemRenderer);
 //    if (c == null) {
 //      this.addBead(new
-//                   org.apache.flex.html.staticControls.beads.
+//                   org.apache.flex.html.beads.
 //                   TextItemRendererFactoryForArrayData());
 //    }
 //  }
@@ -139,10 +139,10 @@ org.apache.flex.html.staticControls.List.prototype.addedToParent =
  * @return {Array.<Object>} An array of objects that make up the actual
  *                          list (most likely itemRenderers).
  */
-org.apache.flex.html.staticControls.List.prototype.internalChildren =
+org.apache.flex.html.List.prototype.internalChildren =
     function() {
   var listView =
-      this.getBeadByType(org.apache.flex.html.staticControls.beads.ListView);
+      this.getBeadByType(org.apache.flex.html.beads.ListView);
   var dg = listView.get_dataGroup();
   var items = null;
   if (dg.renderers) {
@@ -156,7 +156,7 @@ org.apache.flex.html.staticControls.List.prototype.internalChildren =
  * @expose
  * @param {Object} event The event that triggered the selection.
  */
-org.apache.flex.html.staticControls.List.prototype.selectedHandler =
+org.apache.flex.html.List.prototype.selectedHandler =
     function(event) {
   var itemRenderer = event.currentTarget;
   if (this.renderers) {

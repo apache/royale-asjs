@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
@@ -28,7 +28,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The SliderTrackView class creates the track area for the org.apache.flex.html.staticControls.Slider
+	 *  The SliderTrackView class creates the track area for the org.apache.flex.html.Slider
 	 *  component.
 	 *  
 	 *  @langversion 3.0

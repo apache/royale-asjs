@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IItemRenderer;
@@ -26,12 +26,12 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IListView;
+	import org.apache.flex.html.beads.IListView;
 	
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
-     *  org.apache.flex.html.staticControls.List.  Controllers
+     *  org.apache.flex.html.List.  Controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for events from the item renderers

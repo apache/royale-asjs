@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IDateChooserModel;
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.DateFieldView;
+	import org.apache.flex.html.beads.DateFieldView;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring

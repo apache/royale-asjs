@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.supportClasses
+package org.apache.flex.html.supportClasses
 {
 	import mx.core.IFactory;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe
-	 *  a column of the org.apache.flex.html.staticControls.DataGrid: which renderer 
+	 *  a column of the org.apache.flex.html.DataGrid: which renderer 
 	 *  to use for each cell in the column, the width of the column, the label for the 
 	 *  column, and the name of the field in the data containing the value to display 
 	 *  in the column. 

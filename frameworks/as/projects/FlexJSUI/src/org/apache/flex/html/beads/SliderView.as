@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -30,10 +30,10 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Button;
+	import org.apache.flex.html.Button;
 	
 	/**
-	 *  The SliderView class creates the visual elements of the org.apache.flex.html.staticControls.Slider 
+	 *  The SliderView class creates the visual elements of the org.apache.flex.html.Slider 
 	 *  component. The Slider has a track and a thumb control which are also created with view beads.
 	 *  
 	 *  @langversion 3.0

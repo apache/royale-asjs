@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -31,7 +31,7 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.staticControls.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

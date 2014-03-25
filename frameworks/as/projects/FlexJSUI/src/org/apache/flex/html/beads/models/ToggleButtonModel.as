@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.models
+package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads.models
 	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The ToggleButtonModel class bead holds values for org.apache.flex.html.staticControls.Buttons 
+	 *  The ToggleButtonModel class bead holds values for org.apache.flex.html.Buttons 
 	 *  that have a state.
 	 *
 	 *  @langversion 3.0
@@ -66,7 +66,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _text:String;
 		
 		/**
-		 *  The text string for the org.apache.flex.html.staticControls.Button's label.
+		 *  The text string for the org.apache.flex.html.Button's label.
 		 * 
 		 *  @copy org.apache.flex.core.IToggleButtonModel#text
 		 *
@@ -118,7 +118,7 @@ package org.apache.flex.html.staticControls.beads.models
 		private var _selected:Boolean;
 		
 		/**
-		 *  Whether or not the org.apache.flex.html.staticControls.Button is selected.
+		 *  Whether or not the org.apache.flex.html.Button is selected.
 		 * 
 		 *  @copy org.apache.flex.core.IToggleButtonModel#selected
 		 *

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -27,11 +27,11 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Button;
-	import org.apache.flex.html.staticControls.beads.controllers.ButtonAutoRepeatController;
+	import org.apache.flex.html.Button;
+	import org.apache.flex.html.beads.controllers.ButtonAutoRepeatController;
 	
 	/**
-	 *  The SpinnerView class creates the visual elements of the org.apache.flex.html.staticControls.Spinner 
+	 *  The SpinnerView class creates the visual elements of the org.apache.flex.html.Spinner 
 	 *  component.
 	 *  
 	 *  @langversion 3.0
@@ -93,7 +93,7 @@ package org.apache.flex.html.staticControls.beads
 		private var _increment:DisplayObject;
 		
 		/**
-		 *  The component for decrementing the org.apache.flex.html.staticControls.Spinner value.
+		 *  The component for decrementing the org.apache.flex.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -106,7 +106,7 @@ package org.apache.flex.html.staticControls.beads
 		}
 		
 		/**
-		 *  The component for incrementing the org.apache.flex.html.staticControls.Spinner value.
+		 *  The component for incrementing the org.apache.flex.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

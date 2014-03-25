@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.staticControls.DropDownList');
+goog.provide('org.apache.flex.html.DropDownList');
 
 goog.require('org.apache.flex.core.ListBase');
 
@@ -22,12 +22,12 @@ goog.require('org.apache.flex.core.ListBase');
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html.staticControls.DropDownList = function() {
+org.apache.flex.html.DropDownList = function() {
   goog.base(this);
-  this.model = new org.apache.flex.html.staticControls.beads.
+  this.model = new org.apache.flex.html.beads.
       models.ArraySelectionModel();
 };
-goog.inherits(org.apache.flex.html.staticControls.DropDownList,
+goog.inherits(org.apache.flex.html.DropDownList,
     org.apache.flex.core.ListBase);
 
 
@@ -36,15 +36,15 @@ goog.inherits(org.apache.flex.html.staticControls.DropDownList,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.DropDownList.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DropDownList',
-                qName: 'org.apache.flex.html.staticControls.DropDownList'}] };
+                qName: 'org.apache.flex.html.DropDownList'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.
+org.apache.flex.html.DropDownList.prototype.
     createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 1;
@@ -60,7 +60,7 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
  * @expose
  * @param {Object} value The new dataProvider.
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.
+org.apache.flex.html.DropDownList.prototype.
     set_dataProvider = function(value) {
   var dp, i, n, opt;
 
@@ -85,7 +85,7 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
 /**
  * @protected
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
+org.apache.flex.html.DropDownList.prototype.changeHandler =
     function() {
   this.model.set_selectedIndex(this.element.selectedIndex);
   this.dispatchEvent('change');
@@ -96,7 +96,7 @@ org.apache.flex.html.staticControls.DropDownList.prototype.changeHandler =
  * @expose
  * @param {number} value The new selected index.
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.
+org.apache.flex.html.DropDownList.prototype.
     set_selectedIndex = function(value) {
   this.model.set_selectedIndex(value);
   this.element.selectedIndex = value;
@@ -107,7 +107,7 @@ org.apache.flex.html.staticControls.DropDownList.prototype.
  * @expose
  * @param {Object} value The new selected item.
  */
-org.apache.flex.html.staticControls.DropDownList.prototype.
+org.apache.flex.html.DropDownList.prototype.
     set_selectedItem = function(value) {
   this.model.set_selectedItem(value);
   this.element.selectedIndex = this.get_selectedIndex();

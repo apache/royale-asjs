@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
@@ -24,7 +24,7 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.staticControls.beads.ITextFieldView;
+	import org.apache.flex.html.beads.ITextFieldView;
 	
 	/**
 	 *  The EditableTextKeyboardController class bead intercepts keyboard events on the

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads.controllers
+package org.apache.flex.html.beads.controllers
 {	
     import flash.display.DisplayObject;
     
@@ -26,8 +26,8 @@ package org.apache.flex.html.staticControls.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 
 	/**
-	 *  The AlertControler class bead handles the close event on the org.apache.flex.html.staticControls.Alert 
-	 *  by removing the org.apache.flex.html.staticControls.Alert from the display.
+	 *  The AlertControler class bead handles the close event on the org.apache.flex.html.Alert 
+	 *  by removing the org.apache.flex.html.Alert from the display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

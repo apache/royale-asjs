@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
@@ -29,13 +29,13 @@ package org.apache.flex.html.staticControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.Label;
-	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.Label;
+	import org.apache.flex.html.TextButton;
 	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 
-	 *  org.apache.flex.html.staticControls.SimpleAlert component.
+	 *  org.apache.flex.html.SimpleAlert component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

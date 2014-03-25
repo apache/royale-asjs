@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -25,7 +25,7 @@ package org.apache.flex.html.staticControls.beads
 
     /**
      *  The IScrollBarView interface is the interface for views for
-     *  the org.apache.flex.html.staticControls.supportClasses.ScrollBar.
+     *  the org.apache.flex.html.supportClasses.ScrollBar.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

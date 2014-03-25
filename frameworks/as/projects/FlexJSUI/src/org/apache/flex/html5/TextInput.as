@@ -17,9 +17,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html5.staticControls
 {
-	import org.apache.flex.html.staticControls.TextInput;
+	import org.apache.flex.html.TextInput;
 	
-	public class TextInput extends org.apache.flex.html.staticControls.TextInput
+	public class TextInput extends org.apache.flex.html.TextInput
 	{
 	}
 }
