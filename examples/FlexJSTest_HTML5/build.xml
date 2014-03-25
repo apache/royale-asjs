@@ -21,7 +21,7 @@
 
 <project name="flexjstest_HTML5" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="FlexJSTest_again" />
+    <property name="example" value="FlexJSTest_HTML5" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
