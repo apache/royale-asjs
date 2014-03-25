@@ -20,7 +20,7 @@ package org.apache.flex.charts.beads
 {
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.ListView;
+	import org.apache.flex.html.beads.ListView;
 	
 	/**
 	 *  The BarChartView class is the visual bead for a BarChart. This class makes

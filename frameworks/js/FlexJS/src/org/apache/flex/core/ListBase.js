@@ -15,7 +15,7 @@
 goog.provide('org.apache.flex.core.ListBase');
 
 goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.staticControls.supportClasses.StringItemRenderer');
+goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 
 
 

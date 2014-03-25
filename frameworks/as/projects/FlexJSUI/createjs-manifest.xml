@@ -24,8 +24,8 @@
     <component id="Application" class="org.apache.flex.createjs.Application"/>
     <component id="UIBase" class="org.apache.flex.createjs.core.UIBase"/>
     <component id="ViewBase" class="org.apache.flex.createjs.core.ViewBase"/>
-    <component id="Label" class="org.apache.flex.createjs.staticControls.Label"/>
-    <component id="TextButton" class="org.apache.flex.createjs.staticControls.TextButton"/>
-    <component id="CheckBox" class="org.apache.flex.createjs.staticControls.CheckBox"/>
+    <component id="Label" class="org.apache.flex.createjs.Label"/>
+    <component id="TextButton" class="org.apache.flex.createjs.TextButton"/>
+    <component id="CheckBox" class="org.apache.flex.createjs.CheckBox"/>
 
 </componentPackage>

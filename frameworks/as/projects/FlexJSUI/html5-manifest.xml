@@ -22,14 +22,14 @@
 <componentPackage>
 
     
-    <component id="Label" class="org.apache.flex.html5.staticControls.Label"/>
-    <component id="TextButton" class="org.apache.flex.html5.staticControls.TextButton"/>
-    <component id="TextInput" class="org.apache.flex.html5.staticControls.TextInput"/>
-    <component id="TextArea" class="org.apache.flex.html5.staticControls.TextArea"/>
-    <component id="CheckBox" class="org.apache.flex.html5.staticControls.CheckBox"/>
-    <component id="RadioButton" class="org.apache.flex.html5.staticControls.RadioButton"/>
-    <component id="List" class="org.apache.flex.html5.staticControls.List"/>
-    <component id="DropDownList" class="org.apache.flex.html5.staticControls.DropDownList"/>
-    <component id="ComboBox" class="org.apache.flex.html5.staticControls.ComboBox"/>
+    <component id="Label" class="org.apache.flex.html5.Label"/>
+    <component id="TextButton" class="org.apache.flex.html5.TextButton"/>
+    <component id="TextInput" class="org.apache.flex.html5.TextInput"/>
+    <component id="TextArea" class="org.apache.flex.html5.TextArea"/>
+    <component id="CheckBox" class="org.apache.flex.html5.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.html5.RadioButton"/>
+    <component id="List" class="org.apache.flex.html5.List"/>
+    <component id="DropDownList" class="org.apache.flex.html5.DropDownList"/>
+    <component id="ComboBox" class="org.apache.flex.html5.ComboBox"/>
 
 </componentPackage>

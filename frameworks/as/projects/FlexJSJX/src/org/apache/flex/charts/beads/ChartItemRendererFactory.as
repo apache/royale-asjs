@@ -29,7 +29,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.beads.IListView;
+	import org.apache.flex.html.beads.IListView;
 	
 	/**
 	 *  The ChartItemRendererFactory class implements IDataProviderItemRendererMapper

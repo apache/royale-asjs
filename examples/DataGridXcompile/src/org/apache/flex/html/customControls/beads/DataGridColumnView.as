@@ -19,7 +19,7 @@
 package org.apache.flex.html.customControls.beads
 {
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.ListView;
+	import org.apache.flex.html.beads.ListView;
 	
 	public class DataGridColumnView extends ListView
 	{

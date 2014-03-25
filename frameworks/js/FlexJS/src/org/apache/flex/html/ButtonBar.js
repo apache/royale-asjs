@@ -44,7 +44,7 @@ org.apache.flex.html.ButtonBar = function() {
   //        org.apache.flex.html.beads.
   //        DataItemRendererFactoryForArrayData();
   //  this.itemRendererFactory.set_itemRendererClass('org.apache.flex.html.' +
-  //        'staticControls.supportClasses.ButtonBarButtonItemRenderer');
+  //        'supportClasses.ButtonBarButtonItemRenderer');
   //  this.addBead(this.itemRendererFactory);
 
   //  this.addBead(new

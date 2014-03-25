@@ -20,7 +20,7 @@ package org.apache.flex.charts
 {
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.staticControls.List;
+	import org.apache.flex.html.List;
 	
 	/**
 	 *  The BarChart class draws a multi-series graph of data using vertical

@@ -155,7 +155,7 @@ TextInput {
 */
 
 my|VBox {
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout");
 }
 
 /*

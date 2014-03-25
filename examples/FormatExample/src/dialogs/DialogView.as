@@ -19,7 +19,7 @@
 package dialogs
 {
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.staticControls.beads.PanelView;
+	import org.apache.flex.html.beads.PanelView;
 	
 	public class DialogView extends PanelView
 	{

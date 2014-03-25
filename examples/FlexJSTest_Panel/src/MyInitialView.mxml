@@ -22,8 +22,8 @@ limitations under the License.
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
-			import org.apache.flex.html.staticControls.Alert;
-			import org.apache.flex.html.staticControls.SimpleAlert;
+			import org.apache.flex.html.Alert;
+			import org.apache.flex.html.SimpleAlert;
 			
 			private function initControls():void
 			{
@@ -103,17 +103,17 @@ limitations under the License.
         @media -flex-flash
         {
             .TitleBar {
-                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
             }
             
             .panel1 {
-                iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+                iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
             }
             
             .numStepper {
-                iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-                iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+                iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
             }
             
         }

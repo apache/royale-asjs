@@ -21,8 +21,8 @@ package org.apache.flex.core
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.html.staticControls.supportClasses.Border;
-	import org.apache.flex.html.staticControls.supportClasses.ScrollBar;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 
     /**
      *  The ILayoutParent interface is the basic interface for the 

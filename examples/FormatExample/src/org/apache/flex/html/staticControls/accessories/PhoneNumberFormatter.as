@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.accessories
+package org.apache.flex.html.accessories
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;

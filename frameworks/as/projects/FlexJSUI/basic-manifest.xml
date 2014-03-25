@@ -27,49 +27,49 @@
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
-    <component id="Button" class="org.apache.flex.html.staticControls.Button"/>
-    <component id="ButtonBar" class="org.apache.flex.html.staticControls.ButtonBar"/>
-    <component id="DropDownList" class="org.apache.flex.html.staticControls.DropDownList"/>
-    <component id="DropDownListList" class="org.apache.flex.html.staticControls.supportClasses.DropDownListList"/>
-    <component id="Image" class="org.apache.flex.html.staticControls.Image"/>
-    <component id="Label" class="org.apache.flex.html.staticControls.Label"/>
-    <component id="TextButton" class="org.apache.flex.html.staticControls.TextButton"/>
-    <component id="TextInput" class="org.apache.flex.html.staticControls.TextInput"/>
-    <component id="TextArea" class="org.apache.flex.html.staticControls.TextArea"/>
-    <component id="List" class="org.apache.flex.html.staticControls.List"/>
-    <component id="SimpleList" class="org.apache.flex.html.staticControls.SimpleList"/>
-    <component id="CheckBox" class="org.apache.flex.html.staticControls.CheckBox"/>
-    <component id="RadioButton" class="org.apache.flex.html.staticControls.RadioButton"/>
-    <component id="ComboBox" class="org.apache.flex.html.staticControls.ComboBox"/>
+    <component id="Button" class="org.apache.flex.html.Button"/>
+    <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"/>
+    <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
+    <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
+    <component id="Image" class="org.apache.flex.html.Image"/>
+    <component id="Label" class="org.apache.flex.html.Label"/>
+    <component id="TextButton" class="org.apache.flex.html.TextButton"/>
+    <component id="TextInput" class="org.apache.flex.html.TextInput"/>
+    <component id="TextArea" class="org.apache.flex.html.TextArea"/>
+    <component id="List" class="org.apache.flex.html.List"/>
+    <component id="SimpleList" class="org.apache.flex.html.SimpleList"/>
+    <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
+    <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
     <component id="LazyCollection" class="org.apache.flex.net.dataConverters.LazyCollection"/>
     <component id="JSONInputParser" class="org.apache.flex.net.JSONInputParser"/>
     <component id="JSONItemConverter" class="org.apache.flex.net.JSONItemConverter"/>
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption"/>
     <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
-    <component id="Container" class="org.apache.flex.html.staticControls.Container"/>
-    <component id="Panel" class="org.apache.flex.html.staticControls.Panel"/>
-    <component id="ControlBar" class="org.apache.flex.html.staticControls.ControlBar"/>
-    <component id="TitleBar" class="org.apache.flex.html.staticControls.TitleBar"/>
-    <component id="TitleBarModel" class="org.apache.flex.html.staticControls.beads.models.TitleBarModel"/>
-    <component id="NonVirtualVerticalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalLayout"/>
-    <component id="NonVirtualHorizontalLayout" class="org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout"/>
-    <component id="TileLayout" class="org.apache.flex.html.staticControls.beads.layouts.TileLayout"/>
-    <component id="SimpleAlert" class="org.apache.flex.html.staticControls.SimpleAlert"/>
-    <component id="Alert" class="org.apache.flex.html.staticControls.Alert"/>
-    <component id="Spinner" class="org.apache.flex.html.staticControls.Spinner"/>
-    <component id="Slider" class="org.apache.flex.html.staticControls.Slider"/>
-    <component id="SolidBackgroundBead" class="org.apache.flex.html.staticControls.beads.SolidBackgroundBead"/>
+    <component id="Container" class="org.apache.flex.html.Container"/>
+    <component id="Panel" class="org.apache.flex.html.Panel"/>
+    <component id="ControlBar" class="org.apache.flex.html.ControlBar"/>
+    <component id="TitleBar" class="org.apache.flex.html.TitleBar"/>
+    <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>
+    <component id="NonVirtualVerticalLayout" class="org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout"/>
+    <component id="NonVirtualHorizontalLayout" class="org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout"/>
+    <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
+    <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
+    <component id="Alert" class="org.apache.flex.html.Alert"/>
+    <component id="Spinner" class="org.apache.flex.html.Spinner"/>
+    <component id="Slider" class="org.apache.flex.html.Slider"/>
+    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead"/>
     <component id="ViewBaseDataBinding" class="org.apache.flex.core.ViewBaseDataBinding"/>
-    <component id="NumericStepper" class="org.apache.flex.html.staticControls.NumericStepper" />
-    <component id="TextFieldItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.TextFieldItemRenderer"/>
-    <component id="StringItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.StringItemRenderer"/>
-    <component id="DataItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.DataItemRenderer"/>
-    <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer"/>
-    <component id="ScrollBar" class="org.apache.flex.html.staticControls.supportClasses.ScrollBar"/>
-    <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.staticControls.accessories.NumericOnlyTextInputBead" />
-    <component id="PasswordInputBead" class="org.apache.flex.html.staticControls.accessories.PasswordInputBead" />
-    <component id="TextPromptBead" class="org.apache.flex.html.staticControls.accessories.TextPromptBead" />
+    <component id="NumericStepper" class="org.apache.flex.html.NumericStepper" />
+    <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
+    <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
+    <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
+    <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
+    <component id="ScrollBar" class="org.apache.flex.html.supportClasses.ScrollBar"/>
+    <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
+    <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
+    <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
 
 </componentPackage>

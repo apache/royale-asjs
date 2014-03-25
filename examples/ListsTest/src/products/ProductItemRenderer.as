@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package products
 {	
-	import org.apache.flex.html.staticControls.Label;
-	import org.apache.flex.html.staticControls.Image;
-	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
+	import org.apache.flex.html.Label;
+	import org.apache.flex.html.Image;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 
 	public class ProductItemRenderer extends DataItemRenderer
 	{

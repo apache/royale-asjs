@@ -25,8 +25,8 @@ limitations under the License.
         <![CDATA[            
 			import org.apache.flex.events.CustomEvent;
 			import org.apache.flex.events.Event;
-			import org.apache.flex.html.staticControls.Label;
-			import org.apache.flex.html.staticControls.TextButton;
+			import org.apache.flex.html.Label;
+			import org.apache.flex.html.TextButton;
 			import org.apache.flex.utils.Timer;
 			
 			private var timer:org.apache.flex.utils.Timer;

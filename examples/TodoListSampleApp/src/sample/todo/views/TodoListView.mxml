@@ -96,13 +96,13 @@ limitations under the License.
          * the itemRenderer in a style definition along with other settings.
          */
         .todoList {
-            IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
+            IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
             IItemRenderer: ClassReference("sample.todo.renderers.TodoItemRenderer");
         }
 
         renderers|TodoItemRenderer {
             height: 40;
-            IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
+            IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
         }
     </fx:Style>
 

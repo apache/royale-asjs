@@ -45,7 +45,7 @@ org.apache.flex.svg.TextButton.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.svg.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('embed');
-  this.element.setAttribute('src', 'org/apache/flex/svg/staticControls/assets/TextButton_Skin.svg');
+  this.element.setAttribute('src', 'org/apache/flex/svg/assets/TextButton_Skin.svg');
 
   this.positioner = this.element;
 

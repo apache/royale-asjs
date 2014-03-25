@@ -27,7 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.createjs.staticControls.Label;
+	import org.apache.flex.createjs.Label;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Spinner;

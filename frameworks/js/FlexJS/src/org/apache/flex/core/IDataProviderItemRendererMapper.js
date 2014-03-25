@@ -13,7 +13,7 @@
  */
 
 /**
- * org.apache.flex.html.staticControls.beads.IDataProviderItemRendererMapper
+ * org.apache.flex.html.beads.IDataProviderItemRendererMapper
  *
  * @fileoverview
  *

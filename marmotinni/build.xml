@@ -19,8 +19,8 @@
 -->
 <project name="marmotinni" default="main" basedir=".">
 
-	<property name="test.file" value="FlexJS/framework/org/apache/flex/html/staticControls/TextButton/TextButton.mxml" />
-	<property name="test.class" value="org.apache.flex.html.staticControls.textButton.TextButton" />
+	<property name="test.file" value="FlexJS/framework/org/apache/flex/html/TextButton/TextButton.mxml" />
+	<property name="test.class" value="org.apache.flex.html.textButton.TextButton" />
 	
 	<property file="build.properties" />
 	
@@ -152,7 +152,7 @@
     </target>
 
     <target name="test_compile" depends="test_prepare">
-        <javac srcdir="${basedir}/java/src/org/apache/flex/html/staticControls/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
+        <javac srcdir="${basedir}/java/src/org/apache/flex/html/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
             <classpath>
             	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.32.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>

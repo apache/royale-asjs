@@ -21,7 +21,7 @@ package shim
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.html.staticControls.Container;
+	import org.apache.flex.html.Container;
 	
 	[DefaultProperty("mxmlContent")]
     

@@ -43,7 +43,7 @@ package org.apache.flex.core
 		function set columnLabels(value:Array):void;
 		
 		/**
-		 *  The height of all of the rows in the org.apache.flex.html.staticControls.DataGrid.
+		 *  The height of all of the rows in the org.apache.flex.html.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

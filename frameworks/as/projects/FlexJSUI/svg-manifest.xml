@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <component id="TextButton" class="org.apache.flex.svg.staticControls.TextButton"/>
+    <component id="TextButton" class="org.apache.flex.svg.TextButton"/>
 
 </componentPackage>

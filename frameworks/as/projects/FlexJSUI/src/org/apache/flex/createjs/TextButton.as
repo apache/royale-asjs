@@ -19,7 +19,7 @@
 package org.apache.flex.createjs
 {
 	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.html.staticControls.Button;
+	import org.apache.flex.html.Button;
 	
 	public class TextButton extends Button
 	{

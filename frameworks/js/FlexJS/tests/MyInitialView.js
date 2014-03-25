@@ -17,8 +17,8 @@ goog.provide('MyInitialView');
 goog.require('org.apache.flex.FlexGlobal');
 
 goog.require('org.apache.flex.core.ViewBase');
-goog.require('org.apache.flex.html.staticControls.Label');
-goog.require('org.apache.flex.html.staticControls.TextButton');
+goog.require('org.apache.flex.html.Label');
+goog.require('org.apache.flex.html.TextButton');
 
 /**
  * @constructor
@@ -36,14 +36,14 @@ goog.inherits(MyInitialView, org.apache.flex.core.ViewBase);
  */
 MyInitialView.prototype.get_uiDescriptors = function() {
     return [
-        org.apache.flex.html.staticControls.Label,
+        org.apache.flex.html.Label,
             null,
             'lbl',
             2, 'x', 100, 'y', 25,
             0,
             0,
             1, 'text', 0, 'model', 'labelText', 'labelTextChanged',
-        org.apache.flex.html.staticControls.TextButton,
+        org.apache.flex.html.TextButton,
             null,
             null,
             3, 'text', 'OK', 'x', 100, 'y', 75,

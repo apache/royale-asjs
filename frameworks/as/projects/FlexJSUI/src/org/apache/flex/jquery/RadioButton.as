@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.jquery
 {
-	import org.apache.flex.html.staticControls.RadioButton;
+	import org.apache.flex.html.RadioButton;
 	
-	public class RadioButton extends org.apache.flex.html.staticControls.RadioButton
+	public class RadioButton extends org.apache.flex.html.RadioButton
 	{
 	}
 }

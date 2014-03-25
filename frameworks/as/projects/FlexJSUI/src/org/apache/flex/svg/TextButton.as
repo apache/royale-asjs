@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
-	import org.apache.flex.html.staticControls.TextButton;
+	import org.apache.flex.html.TextButton;
 	
-	public class TextButton extends org.apache.flex.html.staticControls.TextButton
+	public class TextButton extends org.apache.flex.html.TextButton
 	{
 		public function TextButton()
 		{

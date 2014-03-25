@@ -28,9 +28,9 @@ package mybeads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.List;
-	import org.apache.flex.html.staticControls.beads.DataGridView;
-	import org.apache.flex.html.staticControls.beads.IListView;
+	import org.apache.flex.html.List;
+	import org.apache.flex.html.beads.DataGridView;
+	import org.apache.flex.html.beads.IListView;
 	
 	public class RowHeightBead implements IBead
 	{

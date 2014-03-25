@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-	import org.apache.flex.html.staticControls.Label;
+	import org.apache.flex.html.Label;
 	
-	public class Label extends org.apache.flex.html.staticControls.Label
+	public class Label extends org.apache.flex.html.Label
 	{
 		
 	}

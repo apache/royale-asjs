@@ -22,7 +22,7 @@
 				   xmlns:local="*"
 				   xmlns:models="models.*"
 				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
-				   xmlns:staticControls="org.apache.flex.html.staticControls.*"
+				   xmlns:staticControls="org.apache.flex.html.*"
 				   >
 	
 	<basic:valuesImpl>

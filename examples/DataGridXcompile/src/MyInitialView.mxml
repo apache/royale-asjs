@@ -31,16 +31,16 @@ limitations under the License.
 		
 		.boxGrid {
 			background-color: #FF0000;
-			IBeadView: ClassReference('org.apache.flex.html.staticControls.beads.BoxGridView');
+			IBeadView: ClassReference('org.apache.flex.html.beads.BoxGridView');
 		}
 		
 		custom|DataGrid
 		{
-			IDataGridPresentationModel: ClassReference("org.apache.flex.html.staticControls.beads.models.DataGridPresentationModel");
+			IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");
 			IBeadView: ClassReference("org.apache.flex.html.customControls.beads.DataGridView");
-			IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.DataGridModel");
+			IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
 			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-			IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
+			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 			
 			background-color: #FFFFFF;
 		}

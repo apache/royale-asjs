@@ -17,7 +17,7 @@
  *
  */
 
-package org.apache.flex.html.staticControls.textButton;
+package org.apache.flex.html.textButton;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -53,13 +53,13 @@ Button:active
 
 ButtonBar
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ButtonBarView");			
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.ButtonBarLayout");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ButtonBarView");			
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.ButtonBarLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.ButtonBarButtonItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer");
 
     border-style: none;
 }
@@ -72,29 +72,29 @@ ButtonBarButtonItemRenderer
 
 List
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ListView");			
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.DataItemRendererFactoryForArrayData");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 }
 
 SimpleList
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ListView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ListSingleSelectionMouseController");
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualVerticalScrollingLayout");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 }
 
 StringItemRenderer
 {
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
 
@@ -109,11 +109,11 @@ global
 
 Alert
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.AlertView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.AlertController");
-    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
-    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.AlertModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.AlertView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.AlertController");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
     
     background-color: #FFFFFF;
     border-style: solid;
@@ -123,37 +123,37 @@ Alert
 
 Button
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSButtonView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSButtonView");
 }
 
 CheckBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
 }
 
 ComboBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ComboBoxController");
-    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ComboBoxController");
+    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 }
 
 Container
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.ContainerView")
+    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView")
 }
 
 ControlBar
 {
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
-    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.ControlBarMeasurementBead");
-    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
-    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
+    iMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
     
     background-color: #CECECE;
     border-style: solid;
@@ -163,63 +163,63 @@ ControlBar
 
 DropDownList
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.DropDownListView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.DropDownListController");
-    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.DropDownListView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DropDownListController");
+    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
 }
 
 DropDownListList
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.staticControls.beads.TextItemRendererFactoryForArrayData");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.staticControls.supportClasses.StringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 }
 
 Image
 {
     width: 64;
     height: 64;
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ImageModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.ImageView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
 Label
 {
 	width: 95;
 	height: 18;
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldView");
-	iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextFieldLabelMeasurementBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextFieldView");
+	iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextFieldLabelMeasurementBead");
 }
 
 List
 {
-    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
+    iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
 }
 
 NumericStepper
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.NumericStepperView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
     
     padding: 0px;
     border-style: solid;
     border-color: #000000;
     border-thickness: 1;
     background-color: #FFFFFF;
-    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-    iBackgroundBead: ClassReference('org.apache.flex.html.staticControls.beads.SolidBackgroundBead');
+    iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+    iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 }
 
 Panel
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.PanelModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.PanelView");
-    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
-    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.PanelView");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     
     background-color: #FFFFFF;
     border-style: solid;
@@ -229,25 +229,25 @@ Panel
 
 RadioButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
 }
 
 ScrollBar
 {
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.VScrollBarLayout");
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ScrollBarModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.ScrollBarView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.VScrollBarMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VScrollBarLayout");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ScrollBarModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.ScrollBarView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.VScrollBarMouseController");
 }
 
 SimpleAlert
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.AlertModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SimpleAlertView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.AlertController");
-    iBorderBead: ClassReference("org.apache.flex.html.staticControls.beads.SingleLineBorderBead");
-    iBackgroundBead: ClassReference("org.apache.flex.html.staticControls.beads.SolidBackgroundBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.AlertModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.SimpleAlertView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.AlertController");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     
     background-color: #FFFFFF;
     border-style: solid;
@@ -257,145 +257,145 @@ SimpleAlert
 
 Slider
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
-    iBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SliderView");
-    iBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SliderMouseController");
-    iThumbView: ClassReference("org.apache.flex.html.staticControls.beads.SliderThumbView");
-    iTrackView: ClassReference("org.apache.flex.html.staticControls.beads.SliderTrackView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+    iBeadView:  ClassReference("org.apache.flex.html.beads.SliderView");
+    iBeadController: ClassReference("org.apache.flex.html.beads.controllers.SliderMouseController");
+    iThumbView: ClassReference("org.apache.flex.html.beads.SliderThumbView");
+    iTrackView: ClassReference("org.apache.flex.html.beads.SliderTrackView");
 }
 
 Spinner
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.RangeModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.SpinnerView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.SpinnerMouseController");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.SpinnerMouseController");
 }
 
 TextArea
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextAreaView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
-    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextAreaView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");
+    iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
     width: 135;
     height: 20;
 }
 
 TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonView");
-    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
+    iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
 }
 
 TextFieldItemRenderer
 {
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.ItemRendererMouseController");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
 
 TextInput
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderView");
-    IBeadController: ClassReference("org.apache.flex.html.staticControls.beads.controllers.EditableTextKeyboardController");
-    iBorderBead: ClassReference('org.apache.flex.html.staticControls.beads.SingleLineBorderBead');
-    iBorderModel: ClassReference('org.apache.flex.html.staticControls.beads.models.SingleLineBorderModel');
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");
+    iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+    iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
 	width: 135;
 	height: 20;
 }
 
 TitleBar
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TitleBarModel");
-    IBeadLayout: ClassReference("org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout");
-    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TitleBarMeasurementBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TitleBarModel");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
+    iMeasurementBead: ClassReference("org.apache.flex.html.beads.TitleBarMeasurementBead");
 }
 
 /* HTML5 */
 
 h5|TextButton
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
 }
 
 h5|TextInput
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextInputWithBorderView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
 }
 
 h5|CheckBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
 }
 
 h5|RadioButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
 }
 
 h5|List
 {
-	IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
 }
 
 h5|DropDownList
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ArraySelectionModel");
-    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
 }
 
 h5|ComboBox
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.ComboBoxView");
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ComboBoxModel");
-    IPopUp: ClassReference("org.apache.flex.html.staticControls.supportClasses.DropDownListList");
+    IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
+    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
 }
 
 /* jQuery */
 
 jq|TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
 }
 
 
 jq|CheckBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
 }
 
 jq|RadioButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.staticControls.beads.RadioButtonView");			
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
 }
 
 /* createjs */
 
 createjs|TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
 }
 
 createjs|CheckBox
 {
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CheckBoxView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CheckBoxView");
 }
 
 /* SVG */
 
 svg|TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.staticControls.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.staticControls.beads.CSSTextButtonView");
-    iMeasurementBead: ClassReference("org.apache.flex.html.staticControls.beads.TextButtonMeasurementBead");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
+    iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
 }
 
 }

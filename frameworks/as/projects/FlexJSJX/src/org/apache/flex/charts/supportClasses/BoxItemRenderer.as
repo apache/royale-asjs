@@ -21,7 +21,7 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.staticControls.supportClasses.UIItemRendererBase;
+	import org.apache.flex.html.supportClasses.UIItemRendererBase;
 	
 	/**
 	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
@@ -129,7 +129,7 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		/**
-		 *  @copy org.apache.flex.staticControls.supportClasses.UIItemRendererBase#data
+		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -30,12 +30,12 @@ package org.apache.flex.html.customControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.ButtonBar;
-	import org.apache.flex.html.staticControls.Container;
-	import org.apache.flex.html.staticControls.List;
-	import org.apache.flex.html.staticControls.SimpleList;
-	import org.apache.flex.html.staticControls.beads.layouts.NonVirtualHorizontalLayout;
-	import org.apache.flex.html.staticControls.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.ButtonBar;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.List;
+	import org.apache.flex.html.SimpleList;
+	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	public class DataGridView implements IDataGridView
 	{

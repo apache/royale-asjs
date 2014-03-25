@@ -28,8 +28,8 @@ package org.apache.flex.html.customControls.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.staticControls.supportClasses.DataItemRenderer;
-	import org.apache.flex.html.staticControls.beads.IListView;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.html.beads.IListView;
 	
 	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper
 	{

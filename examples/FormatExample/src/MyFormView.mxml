@@ -21,7 +21,7 @@ limitations under the License.
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
-				xmlns:acc="org.apache.flex.html.staticControls.accessories.*">
+				xmlns:acc="org.apache.flex.html.accessories.*">
 	
 	<fx:Style>
 		.title {
