@@ -87,6 +87,7 @@
     </target>
 
     <target name="dump-config" >
+        <property name="is.jenkins" value="true" />
         <echo>env.USERNAME is: ${env.USERNAME}</echo>
         <condition property="FLASHLOG"
             value="c:/Documents and Settings/${env.USERNAME}/Application Data/Macromedia/Flash Player/Logs/flashlog.txt">
