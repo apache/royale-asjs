@@ -58,6 +58,17 @@ package org.apache.flex.core
     [Event(name="viewChanged", type="org.apache.flex.events.Event")]
     
     /**
+     *  Dispatched at startup after the initial view has been
+     *  put on the display list.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+
+    /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
      *  Flex SDK's mx:Application or spark:Application in that it does not contain
@@ -112,9 +123,12 @@ package org.apache.flex.core
 
             dispatchEvent(new Event("initialize"));
 
-            initialView.applicationModel =  model;
-    	    this.addElement(initialView);
-    	    dispatchEvent(new Event("viewChanged"));
+            if (initialView)
+            {
+                initialView.applicationModel =  model;
+        	    this.addElement(initialView);
+                dispatchEvent(new Event("viewChanged"));
+            }
             dispatchEvent(new Event("applicationComplete"));
         }
 
