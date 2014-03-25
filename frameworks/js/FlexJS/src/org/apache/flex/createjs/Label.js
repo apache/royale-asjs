@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.staticControls.Label');
+goog.provide('org.apache.flex.createjs.Label');
 
 goog.require('org.apache.flex.createjs.core.UIBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.createjs.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org.apache.flex.createjs.staticControls.Label = function() {
+org.apache.flex.createjs.Label = function() {
   org.apache.flex.createjs.core.UIBase.call(this);
 };
-goog.inherits(org.apache.flex.createjs.staticControls.Label,
+goog.inherits(org.apache.flex.createjs.Label,
     org.apache.flex.createjs.core.UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.createjs.staticControls.Label.prototype.createElement =
+org.apache.flex.createjs.Label.prototype.createElement =
     function(p) {
   goog.base(this, 'createElement');
 
@@ -51,7 +51,7 @@ org.apache.flex.createjs.staticControls.Label.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
+org.apache.flex.createjs.Label.prototype.get_text = function() {
   return this.element.text;
 };
 
@@ -60,7 +60,7 @@ org.apache.flex.createjs.staticControls.Label.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.createjs.staticControls.Label.prototype.set_text =
+org.apache.flex.createjs.Label.prototype.set_text =
     function(value) {
   this.element.text = value;
   this.element.getStage().update();

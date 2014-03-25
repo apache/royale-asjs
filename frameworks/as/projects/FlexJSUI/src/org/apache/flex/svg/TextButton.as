@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg.staticControls
+package org.apache.flex.svg
 {
 	import org.apache.flex.html.staticControls.TextButton;
 	

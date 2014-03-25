@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.staticControls.TextButton');
+goog.provide('org.apache.flex.createjs.TextButton');
 
 goog.require('org.apache.flex.createjs.core.UIBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.createjs.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org.apache.flex.createjs.staticControls.TextButton = function() {
+org.apache.flex.createjs.TextButton = function() {
   org.apache.flex.createjs.core.UIBase.call(this);
 };
-goog.inherits(org.apache.flex.createjs.staticControls.TextButton,
+goog.inherits(org.apache.flex.createjs.TextButton,
     org.apache.flex.createjs.core.UIBase);
 
 
@@ -33,21 +33,21 @@ goog.inherits(org.apache.flex.createjs.staticControls.TextButton,
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.buttonLabel = null;
+org.apache.flex.createjs.TextButton.prototype.buttonLabel = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.buttonBackground =
+org.apache.flex.createjs.TextButton.prototype.buttonBackground =
     null;
 
 
 /**
  * @override
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
+org.apache.flex.createjs.TextButton.prototype.createElement =
     function(p) {
 
   this.buttonBackground = new createjs.Shape();
@@ -79,7 +79,7 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.get_text =
+org.apache.flex.createjs.TextButton.prototype.get_text =
     function() {
   return this.buttonLabel.text;
 };
@@ -89,7 +89,7 @@ org.apache.flex.createjs.staticControls.TextButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.createjs.staticControls.TextButton.prototype.set_text =
+org.apache.flex.createjs.TextButton.prototype.set_text =
     function(value) {
   this.buttonLabel.text = value;
 };

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.jquery.staticControls
+package org.apache.flex.jquery
 {
 	import org.apache.flex.html.staticControls.TextButton;
 	

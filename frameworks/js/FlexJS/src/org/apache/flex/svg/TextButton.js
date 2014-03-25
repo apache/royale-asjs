@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.svg.staticControls.TextButton');
+goog.provide('org.apache.flex.svg.TextButton');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.svg.staticControls.TextButton = function() {
+org.apache.flex.svg.TextButton = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.svg.staticControls.TextButton,
+goog.inherits(org.apache.flex.svg.TextButton,
     org.apache.flex.core.UIBase);
 
 
@@ -34,15 +34,15 @@ goog.inherits(org.apache.flex.svg.staticControls.TextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.svg.TextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextButton',
-                qName: 'org.apache.flex.svg.staticControls.TextButton'}] };
+                qName: 'org.apache.flex.svg.TextButton'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
+org.apache.flex.svg.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('embed');
   this.element.setAttribute('src', 'org/apache/flex/svg/staticControls/assets/TextButton_Skin.svg');
@@ -56,7 +56,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.finalizeElement =
+org.apache.flex.svg.TextButton.prototype.finalizeElement =
     function() {
   var listenersArray;
   if (goog.events.hasListener(this.element, goog.events.EventType.CLICK)) {
@@ -78,7 +78,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.finalizeElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.get_text =
+org.apache.flex.svg.TextButton.prototype.get_text =
     function() {
   return this.element.getAttribute('label');
 };
@@ -88,7 +88,7 @@ org.apache.flex.svg.staticControls.TextButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.svg.staticControls.TextButton.prototype.set_text =
+org.apache.flex.svg.TextButton.prototype.set_text =
     function(value) {
   this.element.setAttribute('label', value);
 };

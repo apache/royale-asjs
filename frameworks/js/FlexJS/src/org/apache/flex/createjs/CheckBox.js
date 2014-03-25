@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.staticControls.CheckBox');
+goog.provide('org.apache.flex.createjs.CheckBox');
 
 goog.require('org.apache.flex.createjs.core.UIBase');
 
@@ -22,10 +22,10 @@ goog.require('org.apache.flex.createjs.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org.apache.flex.createjs.staticControls.CheckBox = function() {
+org.apache.flex.createjs.CheckBox = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.createjs.staticControls.CheckBox,
+goog.inherits(org.apache.flex.createjs.CheckBox,
     org.apache.flex.createjs.core.UIBase);
 
 
@@ -33,14 +33,14 @@ goog.inherits(org.apache.flex.createjs.staticControls.CheckBox,
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMark = null;
+org.apache.flex.createjs.CheckBox.prototype.checkMark = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMarkBackground =
+org.apache.flex.createjs.CheckBox.prototype.checkMarkBackground =
     null;
 
 
@@ -48,13 +48,13 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.checkMarkBackground =
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.checkBoxLabel = null;
+org.apache.flex.createjs.CheckBox.prototype.checkBoxLabel = null;
 
 
 /**
  * @override
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
+org.apache.flex.createjs.CheckBox.prototype.createElement =
     function() {
   this.checkMarkBackground = new createjs.Shape();
   this.checkMarkBackground.name = 'checkmarkbackground';
@@ -97,7 +97,7 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.get_text =
+org.apache.flex.createjs.CheckBox.prototype.get_text =
     function() {
   return this.checkBoxLabel.text;
 };
@@ -107,7 +107,7 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.set_text =
+org.apache.flex.createjs.CheckBox.prototype.set_text =
     function(value) {
   this.checkBoxLabel.text = value;
 };
@@ -117,7 +117,7 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.set_text =
  * @expose
  * @return {bool} The selected getter.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.get_selected =
+org.apache.flex.createjs.CheckBox.prototype.get_selected =
     function() {
   return this.selected;
 };
@@ -127,7 +127,7 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.get_selected =
  * @expose
  * @param {bool} value The selected setter.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.set_selected =
+org.apache.flex.createjs.CheckBox.prototype.set_selected =
     function(value) {
   this.checkMark.visible = this.selected = value;
   this.element.getStage().update();
@@ -138,7 +138,7 @@ org.apache.flex.createjs.staticControls.CheckBox.prototype.set_selected =
  * @expose
  * @param {string|Object|goog.events.Event} event The event.
  */
-org.apache.flex.createjs.staticControls.CheckBox.prototype.clickHandler =
+org.apache.flex.createjs.CheckBox.prototype.clickHandler =
     function(event) {
   this.set_selected(!this.get_selected());
 };

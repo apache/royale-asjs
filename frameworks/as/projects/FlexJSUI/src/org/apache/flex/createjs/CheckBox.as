@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.staticControls
+package org.apache.flex.createjs
 {
 	import org.apache.flex.html.staticControls.CheckBox;
 	
