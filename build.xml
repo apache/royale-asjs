@@ -353,8 +353,8 @@
         <ant dir="${basedir}/asdoc" target="clean" />
         <!--
         <ant dir="${basedir}/ide/flashbuilder" target="clean" />
-        <ant dir="${basedir}/mustella" target="clean"/>
-        -->
+         -->
+        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="examples-clean">
