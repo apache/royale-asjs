@@ -29,6 +29,7 @@
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
 
     <target name="main" depends="clean,compile" description="Clean build of FlexJSUI.swc">
+        <ant dir="tests" />
     </target>
     
     <target name="clean">

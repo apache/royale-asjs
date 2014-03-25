@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This is an auto generated file and is not intended for modification. -->
+
+<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                   applicationComplete="runTests()"
+                   >
+    <fx:Script>
+        <![CDATA[
+            import flexUnitTests.DataGridColumnTesterTest;
+            import flexUnitTests.DataGridColumnTester;
+            
+            import org.flexunit.listeners.CIListener;
+            import org.flexunit.runner.FlexUnitCore;
+            
+            public function runTests() : void
+            {
+                var core : FlexUnitCore = new FlexUnitCore();
+                core.addListener(new CIListener());
+                core.run(DataGridColumnTester);
+            }
+            
+        ]]>
+    </fx:Script>
+    <basic:valuesImpl>
+        <basic:SimpleValuesImpl />
+    </basic:valuesImpl>
+
+</basic:Application>
