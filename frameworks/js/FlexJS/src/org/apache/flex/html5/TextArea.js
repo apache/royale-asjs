@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.TextArea');
+goog.provide('org.apache.flex.html5.TextArea');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html5.staticControls.TextArea = function() {
+org.apache.flex.html5.TextArea = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.TextArea,
+goog.inherits(org.apache.flex.html5.TextArea,
     org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.staticControls.TextArea.prototype.createElement =
+org.apache.flex.html5.TextArea.prototype.createElement =
     function() {
   this.element = document.createElement('textarea');
 
@@ -46,7 +46,7 @@ org.apache.flex.html5.staticControls.TextArea.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.staticControls.TextArea.prototype.get_text = function() {
+org.apache.flex.html5.TextArea.prototype.get_text = function() {
   return this.element.value;
 };
 
@@ -55,7 +55,7 @@ org.apache.flex.html5.staticControls.TextArea.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.staticControls.TextArea.prototype.set_text =
+org.apache.flex.html5.TextArea.prototype.set_text =
     function(value) {
   this.element.value = value;
 };

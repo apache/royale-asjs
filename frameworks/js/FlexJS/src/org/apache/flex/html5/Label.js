@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.Label');
+goog.provide('org.apache.flex.html5.Label');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html5.staticControls.Label = function() {
+org.apache.flex.html5.Label = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.Label,
+goog.inherits(org.apache.flex.html5.Label,
     org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.staticControls.Label.prototype.createElement =
+org.apache.flex.html5.Label.prototype.createElement =
     function() {
   goog.base(this, 'createElement');
 
@@ -46,7 +46,7 @@ org.apache.flex.html5.staticControls.Label.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.staticControls.Label.prototype.get_text = function() {
+org.apache.flex.html5.Label.prototype.get_text = function() {
   return this.element.innerHTML;
 };
 
@@ -55,7 +55,7 @@ org.apache.flex.html5.staticControls.Label.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.staticControls.Label.prototype.set_text =
+org.apache.flex.html5.Label.prototype.set_text =
     function(value) {
   this.element.innerHTML = value;
 };

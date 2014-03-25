@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.TextInput');
+goog.provide('org.apache.flex.html5.TextInput');
 
 goog.require('org.apache.flex.core.UIBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.core.UIBase');
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
-org.apache.flex.html5.staticControls.TextInput = function() {
+org.apache.flex.html5.TextInput = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.TextInput,
+goog.inherits(org.apache.flex.html5.TextInput,
     org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.staticControls.TextInput.prototype.createElement =
+org.apache.flex.html5.TextInput.prototype.createElement =
     function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
@@ -47,7 +47,7 @@ org.apache.flex.html5.staticControls.TextInput.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.staticControls.TextInput.prototype.get_text = function() {
+org.apache.flex.html5.TextInput.prototype.get_text = function() {
   return this.element.value;
 };
 
@@ -56,7 +56,7 @@ org.apache.flex.html5.staticControls.TextInput.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.staticControls.TextInput.prototype.set_text =
+org.apache.flex.html5.TextInput.prototype.set_text =
     function(value) {
   this.element.value = value;
 };

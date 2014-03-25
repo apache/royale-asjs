@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.List');
+goog.provide('org.apache.flex.html5.List');
 
 goog.require('org.apache.flex.core.ListBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.core.ListBase');
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html5.staticControls.List = function() {
+org.apache.flex.html5.List = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.List,
+goog.inherits(org.apache.flex.html5.List,
     org.apache.flex.core.ListBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.staticControls.List.prototype.createElement =
+org.apache.flex.html5.List.prototype.createElement =
     function() {
   goog.base(this, 'createElement');
 

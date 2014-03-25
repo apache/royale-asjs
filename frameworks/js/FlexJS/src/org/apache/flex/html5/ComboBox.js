@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.ComboBox');
+goog.provide('org.apache.flex.html5.ComboBox');
 
 goog.require('org.apache.flex.core.ListBase');
 
@@ -22,17 +22,17 @@ goog.require('org.apache.flex.core.ListBase');
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html5.staticControls.ComboBox = function() {
+org.apache.flex.html5.ComboBox = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.ComboBox,
+goog.inherits(org.apache.flex.html5.ComboBox,
     org.apache.flex.core.ListBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
+org.apache.flex.html5.ComboBox.prototype.createElement =
     function() {
   var button, input;
 
@@ -72,7 +72,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.createElement =
  * @expose
  * @param {Event} event The event.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
+org.apache.flex.html5.ComboBox.prototype.selectChanged =
     function(event) {
   var select;
 
@@ -90,7 +90,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.selectChanged =
  * @expose
  * @param {Event} event The event.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
+org.apache.flex.html5.ComboBox.prototype.dismissPopup =
     function(event) {
   if (this.popup) {
     this.popup.parentNode.removeChild(this.popup);
@@ -103,7 +103,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.dismissPopup =
  * @expose
  * @param {Event} event The event.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
+org.apache.flex.html5.ComboBox.prototype.buttonClicked =
     function(event) {
   /**
    * @type {Array.<string>}
@@ -171,7 +171,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.buttonClicked =
  * @expose
  * @param {Array.<Object>} value The collection of data.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.set_dataProvider =
+org.apache.flex.html5.ComboBox.prototype.set_dataProvider =
     function(value) {
   this.dataProvider = value;
 };
@@ -181,7 +181,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.set_dataProvider =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.get_text = function() {
+org.apache.flex.html5.ComboBox.prototype.get_text = function() {
   return this.element.childNodes.item(0).value;
 };
 
@@ -190,7 +190,7 @@ org.apache.flex.html5.staticControls.ComboBox.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.staticControls.ComboBox.prototype.set_text =
+org.apache.flex.html5.ComboBox.prototype.set_text =
     function(value) {
   this.element.childNodes.item(0).value = value;
 };

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.staticControls.DropDownList');
+goog.provide('org.apache.flex.html5.DropDownList');
 
 goog.require('org.apache.flex.core.ListBase');
 
@@ -22,8 +22,8 @@ goog.require('org.apache.flex.core.ListBase');
  * @constructor
  * @extends {org.apache.flex.core.ListBase}
  */
-org.apache.flex.html5.staticControls.DropDownList = function() {
+org.apache.flex.html5.DropDownList = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.html5.staticControls.DropDownList,
+goog.inherits(org.apache.flex.html5.DropDownList,
     org.apache.flex.core.ListBase);

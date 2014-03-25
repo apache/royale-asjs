@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5.staticControls
+package org.apache.flex.html5
 {
 	import org.apache.flex.html.Button;
 	
