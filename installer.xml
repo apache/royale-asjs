@@ -614,8 +614,8 @@
 
 --&gt;
 &lt;flex-sdk-description&gt;
-&lt;name&gt;${release} FP${flash.sdk.version} AIR${air.sdk.version} ${bundle}&lt;/name&gt;
-&lt;version&gt;${release.version}&lt;/version&gt;
+&lt;name&gt;${release.name} ${release.version} FP${flash.sdk.version} AIR${air.sdk.version} ${bundle}&lt;/name&gt;
+&lt;version&gt;${fb.release.version}&lt;/version&gt;
 &lt;build&gt;${flex-sdk-description.build}&lt;/build&gt;
 &lt;/flex-sdk-description&gt;
 </echo>

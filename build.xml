@@ -299,8 +299,8 @@
 
 --&gt;
 &lt;flex-sdk-description&gt;
-&lt;name&gt;${release} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
-&lt;version&gt;${release.version}&lt;/version&gt;
+&lt;name&gt;${release.name} ${release.version} FP${playerglobal.version} AIR${air.version} ${locale}&lt;/name&gt;
+&lt;version&gt;${fb.release.version}&lt;/version&gt;
 &lt;build&gt;${build.number.date}&lt;/build&gt;
 &lt;/flex-sdk-description&gt;
         </echo>
