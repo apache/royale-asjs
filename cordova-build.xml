@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="createproject" default="main" basedir=".">
+
+    <property name="target.dir" value="${TARGET_DIR}" />
+    <property name="project.name" value="${PROJECT_NAME}" />
+    <property name="project.dir" value="${PROJECT_DIR}" />
+    <property name="app.dir" value="${target.dir}/${project.name}" />
+    
+    <target name="dir.check">
+   		<condition property="dir.exists">
+	   		<available file="${app.dir}" type="dir" />
+		</condition>
+    </target>
+    
+    <target name="bin.check">
+    	<condition property="bin.exists">
+    		<available file="${project.dir}/bin/js-debug" type="dir" />
+    	</condition>
+    </target>
+    
+    <target name="create" depends="dir.check" unless="dir.exists">
+    	<!-- create the project -->
+		<exec executable="cordova" dir="${target.dir}">
+			<arg value="create" />
+			<arg value="${project.name}" />
+			<arg value="org.apache.flex.mobile" />
+			<arg value="${project.name}" />
+		</exec>
+
+		<!-- add in the platforms -->
+		<exec executable="cordova" dir="${app.dir}">
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="android" />
+		</exec>
+    </target>
+    
+    <target name="copyfiles" depends="create,bin.check" if="bin.exists">
+    	<echo message="Removing www directory contents" />
+    	<delete includeEmptyDirs="true">
+    		<fileset dir="${app.dir}/www" includes="**/*" />
+    	</delete>
+    	<echo message="Copying files from project" />
+    	<copy todir="${app.dir}/www">
+    		<fileset dir="${project.dir}/bin/js-debug" />
+    	</copy>
+    </target>
+    
+    <target name="build" depends="copyfiles">
+		<!-- build the app -->
+		<exec executable="cordova" dir="${app.dir}">
+			<arg value="build" />
+		</exec>
+    </target>
+    
+    <target name="main" depends="build">
+    	<echo message="App = ${app.dir} and basedir = ${basedir}" />
+    </target>
+    
+    <target name="help">
+    	<echo message="ant -f cordova-build.xml -DPROJECT=name -DPROJECT_DIR=FlexJSProjectDirectory -DTARGET_DIR=PhoneGapProjectDirectory" />
+    	<echo message="PhoneGap project is created inside of PhoneGapProjectDirectory with the PROJECT name and all files are copied" />
+    	<echo message="from FlexJSProjectDirectory/bin/js-debug into the PhoneGap project." />
+    </target>
+    
+</project>
+
