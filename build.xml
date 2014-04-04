@@ -597,6 +597,7 @@
                 <exclude name="projects/spark/manifest.xml"/>
                 <exclude name="projects/*/bundles.properties"/>
                 <exclude name="projects/*/.settings/**"/>
+                <exclude name="projects/*/tests/out/**"/>
                 <exclude name="projects/**/*.actionScriptProperties"/>
                 <exclude name="projects/**/*.flexLibProperties"/>
                 <exclude name="projects/**/*.DS_Store"/>

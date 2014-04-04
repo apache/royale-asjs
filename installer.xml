@@ -123,57 +123,8 @@
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
     </target>
     
-    <target name="install" depends="get-data,find-java,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
-    </target>
-    
-    <target name="find-java" depends="find-java-executable-windows,find-java-executable-others,search-java,check-java" description="get path to java executable">
-        <echo file="${basedir}/findjava.properties">find.java.echo=${find.java.echo.pattern}</echo>
-        <property file="${basedir}/findjava.properties" />
-        <delete file="${basedir}/findjava.properties" />
-        <echo>${find.java.echo}</echo>
-    </target>
-    
-    <target name="check-java" description="fail if java doesn't exist">
-        <fail message="${unable.to.find.java}">
-            <condition>
-                <not>
-                    <isset property="java.executable" />
-                </not>
-            </condition>
-        </fail>
-    </target>
-    
-    <target name="find-java-executable-windows" if="isWindows">
-        <condition property="java.executable" value="${java.home}/bin/java.exe" >
-            <and>
-                <isset property="java.home" />
-                <available file="${java.home}/bin/java.exe" />
-            </and>
-        </condition>
-    </target>
-
-    <target name="find-java-executable-others" unless="isWindows">
-        <condition property="java.executable" value="${java.home}/bin/java" >
-            <and>
-                <isset property="java.home" />
-                <available file="${java.home}" />
-            </and>
-        </condition>
-    </target>
-    
-    <target name="search-java" depends="search-java-windows,search-java-others" description="search for java executable" unless="java.home">
-    </target>
-    
-    <target name="search-java-windows" unless="java.home">
-        <exec executable="where.exe" os="windows" outputproperty="java.executable" >
-            <arg value="java"/>
-        </exec>
-    </target>
-    <target name="search-java-others" unless="java.home">
-        <exec executable="which" os="mac,linux" outputproperty="java.executable" >
-            <arg value="java"/>
-        </exec>
     </target>
     
     <target name="check-binary" description="Make sure this is a binary package">
@@ -573,8 +524,6 @@
                             value="${flash.sdk.version}"/>
             <replacefilter token="@swfversion@"
                             value="${flash.sdk.swfversion}"/>
-            <replacefilter token="@locale@"
-                            value="${bundle}"/>
             <replacefilter token="{playerglobalHome}"
                             value="libs/player"/>
         </replace>
@@ -583,8 +532,6 @@
                             value="${flash.sdk.version}"/>
             <replacefilter token="@swfversion@"
                             value="${flash.sdk.swfversion}"/>
-            <replacefilter token="@locale@"
-                            value="${bundle}"/>
             <replacefilter token="{airHome}/frameworks/libs"
                             value="libs"/>
         </replace>
@@ -614,7 +561,7 @@
 
 --&gt;
 &lt;flex-sdk-description&gt;
-&lt;name&gt;${release.name} ${release.version} FP${flash.sdk.version} AIR${air.sdk.version} ${bundle}&lt;/name&gt;
+&lt;name&gt;${release.name} ${release.version} FP${flash.sdk.version} AIR${air.sdk.version} en_US&lt;/name&gt;
 &lt;version&gt;${fb.release.version}&lt;/version&gt;
 &lt;build&gt;${flex-sdk-description.build}&lt;/build&gt;
 &lt;/flex-sdk-description&gt;
@@ -700,51 +647,6 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
         <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
         <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
-    </target>
-    
-    <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
-        <echo>${INFO_INSTALLING_LAUNCH_CONFIG_FILES}</echo>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (COMPC).launch">
-            <replacefilter
-            token="$JAVA_EXEC"
-            value="${java.executable}"/>
-            <replacefilter
-            token="$FLEXJS_HOME"
-            value="${FLEXJS_HOME}"/>
-        </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Debug Build).launch">
-            <replacefilter
-            token="$JAVA_EXEC"
-            value="${java.executable}"/>
-            <replacefilter
-            token="$FLEXJS_HOME"
-            value="${FLEXJS_HOME}"/>
-        </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug and Release Build).launch">
-            <replacefilter
-            token="$JAVA_EXEC"
-            value="${java.executable}"/>
-            <replacefilter
-            token="$FLEXJS_HOME"
-            value="${FLEXJS_HOME}"/>
-        </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
-            <replacefilter
-            token="$JAVA_EXEC"
-            value="${java.executable}"/>
-            <replacefilter
-            token="$FLEXJS_HOME"
-            value="${FLEXJS_HOME}"/>
-        </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Release Build).launch">
-            <replacefilter
-            token="$JAVA_EXEC"
-            value="${java.executable}"/>
-            <replacefilter
-            token="$FLEXJS_HOME"
-            value="${FLEXJS_HOME}"/>
-        </replace>
-
     </target>
     
 </project>
