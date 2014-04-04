@@ -81,7 +81,14 @@
          <path-element>{airHome}/frameworks/libs/air</path-element>
       </library-path>
      
-      <namespaces>
+     <mxml>
+         <children-as-data>true</children-as-data>
+     </mxml>
+     <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+     <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+     <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+     <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
       <!-- elements.                                                                -->
          <namespace>
