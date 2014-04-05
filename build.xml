@@ -531,6 +531,23 @@
             </fileset>
         </copy>
         
+        <copy todir="${basedir}/temp/js/bin">
+            <fileset dir="${basedir}/js/bin" >
+            	<include name="**"/>
+            </fileset>
+        </copy>
+        
+        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
+        
+        <!-- Unix shell scripts need the correct line endings. -->
+        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="unix" fixlast="false">
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
+        
+        <chmod dir="${basedir}/temp/js/bin" excludes="**/*.bat" perm="+x" />
+        
         <!-- samples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
@@ -554,9 +571,8 @@
         <!-- 
              Source files have Windows line endings.  Most UNIX editors can handle
              either type of line endings but the converse is often not true.             
-             The bin directory is handled in stage-bin.
         -->
-        <fixcrlf srcdir="${basedir}/temp" eol="crlf" fixlast="false">
+        <fixcrlf srcdir="${basedir}/temp/frameworks" eol="crlf" fixlast="false">
             <exclude name="bin/**"/>
             <exclude name="**/assets/**"/>
             <exclude name="**/*.fla"/>
@@ -691,28 +707,17 @@
         <fixcrlf srcdir="${basedir}/temp/bin-legacy" eol="unix" fixlast="false">  
             <exclude name="**/*.bat"/>
         </fixcrlf>
+
+        <chmod dir="${basedir}/temp/bin" excludes="**/*.bat" perm="+x" />
+        <chmod dir="${basedir}/temp/bin-legacy" excludes="**/*.bat" perm="+x" />
+
     </target>
         
     <target name="stage-falconjx">
         <!-- modules -->
         <copy todir="${basedir}/temp/js/bin" includeEmptyDirs="false">
-            <fileset dir="${FALCONJX_HOME}/bin">
+            <fileset dir="${basedir}/js/bin">
                 <include name="**"/>
-                <exclude name="thirdparty/**"/>
-                <exclude name=".metadata/**"/>
-                <exclude name="**/*.jar"/>
-                <exclude name="**/*.vms"/>
-                <exclude name="*/test/**"/>
-                <exclude name="compiler/src/java/velocity.log"/>
-                <exclude name="compiler/**/ParseException.java"/>
-                <exclude name="compiler/**/Parser.java"/>
-                <exclude name="compiler/**/ParserConstants.java"/>
-                <exclude name="compiler/**/Token.java"/>
-                <exclude name="compiler/**/TokenManager.java"/>
-                <exclude name="compiler/**/TokenMgrError.java"/>
-                <exclude name="**/classes/**"/>
-                <exclude name="**/.classpath"/>
-                <exclude name="**/.project"/>
             </fileset>
             
         </copy>  
@@ -736,6 +741,8 @@
         <fixcrlf srcdir="${basedir}/temp/js/bin" eol="unix" fixlast="false">  
             <exclude name="**/*.bat"/>
         </fixcrlf>
+
+        <chmod dir="${basedir}/temp/js/bin" excludes="**/*.bat" perm="+x" />
 
     </target>
     

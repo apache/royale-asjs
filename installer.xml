@@ -98,6 +98,15 @@
         <isset property="installer" />
     </condition>
     
+    <condition property="COMPC" value="compc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="COMPC" value="compc" />
+    <condition property="MXMLC" value="mxmlc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="MXMLC" value="mxmlc" />
+    
     <condition property="java.home" value="${env.JAVA_HOME}" >
         <and>
             <available file="${env.JAVA_HOME}" type="dir" />
@@ -123,7 +132,7 @@
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
     </target>
     
-    <target name="install" depends="get-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
     
@@ -649,4 +658,25 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
     </target>
     
+    <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
+        <echo>${INFO_INSTALLING_LAUNCH_CONFIG_FILES}</echo>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug and Release Build).launch">
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
+            <replacefilter
+            token="$COMPC"
+            value="${COMPC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        
+    </target>
+
 </project>
