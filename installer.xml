@@ -214,12 +214,24 @@
         <property name="swfobject.donot.ask" value="set"/>
     </target>
 
+    <target name="mac-chmod" description="makes some scripts executable" unless="isWindows">
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/mxmlc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/compc"/>
+        </exec>
+    </target>
+
     <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
         description="downloads and installs Falcon compiler">
         <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.url.file}</echo>
         <unzip src="${download.dir}/${falcon.url.file}" dest="${download.dir}/falcon"/>
         <ant dir="${download.dir}/falcon" antfile="installer.xml" >
         </ant>
+        <antcall target="mac-chmod" />
     </target>
     <target name="falcon-check" description="Checks if Falcon compiler has been downloaded.">
         <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" property="falcon.present"/>
