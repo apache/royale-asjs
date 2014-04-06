@@ -32,6 +32,9 @@ bin-release
 binjs-debug
 binjs-release
 examples/FlexJSTest_again/html-template
+examples/FlexJSTest_again/bin
+rat.report
+mustella/tests/bin
 
 #Apache Flex Projects
 lib/
@@ -85,7 +88,6 @@ flex-sdk-description.xml
 *.sdf
 ipch/
 obj/
-[Bb]in
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
