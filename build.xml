@@ -502,8 +502,6 @@
                 <include name="installer.properties/**"/>
                 <include name="READme"/>
                 <include name="RELEASE_NOTES"/>
-            </fileset>
-            <fileset dir="${FLEX_SDK_HOME}">
                 <include name="LICENSE"/>
                 <include name="NOTICE"/>
             </fileset>

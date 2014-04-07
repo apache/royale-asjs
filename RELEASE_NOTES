@@ -10,7 +10,9 @@ _____________
 
 Adobe Flash Builder Integration
 
-Flash Builder will not generate a correct MXML when using an Apache FlexJS SDK.
+Flash Builder will not generate correct MXML when generating a new Flex Project
+that uses an Apache FlexJS SDK.  It is recommended that you copy an the MXML
+for the main application from one of the FlexJS example applications.
 
 Please report new issues to our bugbase at:
 
