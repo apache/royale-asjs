@@ -59,6 +59,7 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all SWCs"/>
@@ -102,7 +103,6 @@
 	
     <target name="flexjsjx" >
         <echo message="Compiling libs/FlexJSJX.swc"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
@@ -110,7 +110,7 @@
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
             <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-output=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="-load-config=${FLEXJS_HOME}/frameworks/as/projects/FlexJSJX/compile-config.xml" />
