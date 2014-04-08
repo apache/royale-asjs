@@ -165,9 +165,7 @@ Install Prerequisites
         repository, set 
              FALCONJX_HOME=<repo-path>/compiler.jx
 
-    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release.  When using the
-        flex-flexunit repository, set 
-             FLEXUNIT_HOME=<repo-path>/compiler.jx
+    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  
 
 Software Dependencies
 ---------------------
