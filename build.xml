@@ -1553,5 +1553,39 @@
 		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
 		<checksum algorithm="md5" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
 	</target>
-	
+
+    <target name="sign" >
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/${source.kit}.zip.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/${source.kit}.zip" />
+        </exec>
+        
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/${source.kit}.tar.gz.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/${source.kit}.tar.gz" />
+        </exec>
+        
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/${binary.kit}.zip.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/${binary.kit}.zip" />
+        </exec>
+        
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/${binary.kit}.tar.gz.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/${binary.kit}.tar.gz" />
+        </exec>
+    </target>
+        
 </project>
