@@ -20,24 +20,34 @@
 
 <project name="createproject" default="main" basedir=".">
 
+    <condition property="project.name.specified" value="true">
+            <isset property="PROJECT_NAME" />
+    </condition>
+    <fail message="PROJECT_NAME not specified. Should specify desired name of cordova project" unless="project.name.specified"/>
+
+    <condition property="target.dir.specified" value="true">
+        <isset property="TARGET_DIR" />
+    </condition>
+    <fail message="TARGET_DIR not specified. Should specify folder to contain cordova project folder" unless="target.dir.specified"/>
+
+    <condition property="project.dir.specified" value="true">
+        <isset property="PROJECT_DIR" />
+    </condition>
+    <fail message="PROJECT_DIR not specified. Should specify folder that contains the bin/js-debug output of a FlexJS project" unless="project.dir.specified"/>
+
     <property name="target.dir" value="${TARGET_DIR}" />
     <property name="project.name" value="${PROJECT_NAME}" />
     <property name="project.dir" value="${PROJECT_DIR}" />
+
     <property name="app.dir" value="${target.dir}/${project.name}" />
+    <available file="${app.dir}" type="dir" property="app.dir.exists"/>
+
+    <available file="${target.dir}" type="dir" property="target.dir.exists"/>
+    <fail message="${target.dir} does not exist" unless="target.dir.exists"/>
+    <available file="${project.dir}/bin/js-debug" type="dir" property="project.dir.exists"/>
+    <fail message="${project.dir}/bin/js-debug does not exist" unless="project.dir.exists"/>
     
-    <target name="dir.check">
-   		<condition property="dir.exists">
-	   		<available file="${app.dir}" type="dir" />
-		</condition>
-    </target>
-    
-    <target name="bin.check">
-    	<condition property="bin.exists">
-    		<available file="${project.dir}/bin/js-debug" type="dir" />
-    	</condition>
-    </target>
-    
-    <target name="create" depends="dir.check" unless="dir.exists">
+    <target name="create" unless="app.dir.exists">
     	<!-- create the project -->
 		<exec executable="cordova" dir="${target.dir}">
 			<arg value="create" />
@@ -54,7 +64,7 @@
 		</exec>
     </target>
     
-    <target name="copyfiles" depends="create,bin.check" if="bin.exists">
+    <target name="copyfiles" depends="create">
     	<echo message="Removing www directory contents" />
     	<delete includeEmptyDirs="true">
     		<fileset dir="${app.dir}/www" includes="**/*" />
@@ -77,7 +87,7 @@
     </target>
     
     <target name="help">
-    	<echo message="ant -f cordova-build.xml -DPROJECT=name -DPROJECT_DIR=FlexJSProjectDirectory -DTARGET_DIR=PhoneGapProjectDirectory" />
+    	<echo message="ant -f cordova-build.xml -DPROJECT_NAME=name -DPROJECT_DIR=FlexJSProjectDirectory -DTARGET_DIR=PhoneGapProjectDirectory" />
     	<echo message="PhoneGap project is created inside of PhoneGapProjectDirectory with the PROJECT name and all files are copied" />
     	<echo message="from FlexJSProjectDirectory/bin/js-debug into the PhoneGap project." />
     </target>

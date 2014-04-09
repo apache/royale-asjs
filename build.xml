@@ -496,6 +496,7 @@
             <fileset dir="${basedir}">
                 <include name="build.xml"/>
                 <include name="build.properties"/>
+                <include name="cordova-build.xml"/>
 				<include name="env-template.properties"/>
                 <include name="flex-sdk-description.xml"/>
                 <include name="installer.xml"/>
