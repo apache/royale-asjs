@@ -28,7 +28,7 @@
     </progressLabels>
      -->
     <properties>
-        <property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />
+        <property name="falcon.url.path" value="https://dist.apache.org/repos/dist/dev/flex/falcon/0.0.1/rc1/binaries/" />
     </properties>
     <strings description="override default installer strings here">
         <string id="INFO_CREATING_FLEX_HOME">
