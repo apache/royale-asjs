@@ -28,6 +28,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.List;
 	
     /**
      *  The DataItemRendererFactoryForArrayData class reads an
@@ -57,6 +58,8 @@ package org.apache.flex.html.beads
 		
 		private var selectionModel:ISelectionModel;
 		
+		private var labelField:String;
+		
 		private var _strand:IStrand;
 		
         /**
@@ -74,6 +77,8 @@ package org.apache.flex.html.beads
 			var listView:IListView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			
+			labelField = (listView.strand as List).labelField;
 			
 			if (!itemRendererFactory)
 			{
@@ -132,7 +137,7 @@ package org.apache.flex.html.beads
 			{
 				var ir:IItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IItemRenderer;
 				ir.index = i;
-				ir.labelField = selectionModel.labelField;
+				ir.labelField = labelField;
 				dataGroup.addElement(ir);
 				ir.data = dp[i];
 			}

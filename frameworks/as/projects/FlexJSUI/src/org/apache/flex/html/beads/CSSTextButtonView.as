@@ -35,6 +35,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.TextButton;
 	import org.apache.flex.utils.SolidBorderUtil;
 
     /**
@@ -151,11 +152,19 @@ package org.apache.flex.html.beads
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
 			if (borderStyle == "solid")
 			{
+				var useWidth:Number = Math.max(sw,textField.textWidth);
+				var useHeight:Number = Math.max(sh,textField.textHeight);
+				
+				if ((useWidth-2*Number(padding)-2*borderThickness) < textField.textWidth) 
+					useWidth = textField.textWidth+2*Number(padding)+2*borderThickness;
+				if ((useHeight-2*Number(padding)-2*borderThickness) < textField.textHeight) 
+					useHeight = textField.textHeight+2*Number(padding)+2*borderThickness;
+				
 				SolidBorderUtil.drawBorder(sprite.graphics, 
-					0, 0, sw, textField.textHeight + Number(padding) * 2,
+					0, 0, useWidth, useHeight,
 					borderColor, backgroundColor, borderThickness);
-				textField.y = (sprite.height - textField.height) / 2;
-				textField.x = (sprite.width - textField.width) / 2;
+				textField.y = (useHeight - textField.textHeight) / 2;
+				textField.x = (useWidth - textField.textWidth) / 2;
 			}			
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
 			if (backgroundImage)
@@ -165,8 +174,16 @@ package org.apache.flex.html.beads
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
-					textField.y = (sh - textField.height) / 2;
-					textField.x = (sw - textField.width) / 2;
+					var useWidth:Number = Math.max(sw,textField.textWidth);
+					var useHeight:Number = Math.max(sh,textField.textHeight);
+					
+					if ((useWidth-2*Number(padding)-2*borderThickness) < textField.textWidth) 
+						useWidth = textField.textWidth+2*Number(padding)+2*borderThickness;
+					if ((useHeight-2*Number(padding)-2*borderThickness) < textField.textHeight) 
+						useHeight = textField.textHeight+2*Number(padding)+2*borderThickness;
+					
+					textField.y = (useHeight - textField.height) / 2;
+					textField.x = (useWidth - textField.width) / 2;
 					updateHitArea();
 				});
 			}
@@ -229,9 +246,18 @@ package org.apache.flex.html.beads
 		
 		private function updateHitArea():void
 		{
+			var useWidth:uint = Math.max(DisplayObject(_strand).width, upTextField.textWidth);
+			var useHeight:uint = Math.max(DisplayObject(_strand).height, upTextField.textHeight);
+			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
+			
+			if ((useWidth-2*Number(padding)) < upTextField.textWidth) 
+				useWidth = upTextField.textWidth+2*Number(padding);
+			if ((useHeight-2*Number(padding)) < upTextField.textHeight) 
+				useHeight = upTextField.textHeight+2*Number(padding);
+			
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, upSprite.width, upSprite.height);
+			shape.graphics.drawRect(0, 0, useWidth, useHeight);
 			shape.graphics.endFill();
 			
 		}

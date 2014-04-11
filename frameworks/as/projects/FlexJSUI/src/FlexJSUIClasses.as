@@ -40,6 +40,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.beads.CSSButtonView; CSSButtonView;
 	import org.apache.flex.html.beads.CSSTextButtonView; CSSTextButtonView;
 	import org.apache.flex.html.beads.DropDownListView; DropDownListView;
+	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ImageView; ImageView;
     import org.apache.flex.html.beads.ListView; ListView;
     import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;

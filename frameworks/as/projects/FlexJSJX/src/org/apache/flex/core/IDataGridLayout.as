@@ -18,41 +18,38 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    /**
-     *  The IContainer interface is used to mark certain components as Containers.
-     *  While most components are containers in the sense that they are composited
-     *  from a set of child components, the term Container is commonly used in Flex
-     *  to denote components that take an arbitrary set or sets of children and do
-     *  not try to abstract away that fact. 
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    public interface IContainer extends IParent
+	/**
+	 *  The IDataGridLayout interface provides the features necessary to lay
+	 *  out the components of a DataGrid: the size and position of its column
+	 *  headers and the size and position of each column.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public interface IDataGridLayout extends IBeadLayout
 	{
 		/**
-		 *  This method returns an array of the content children
-		 *  of the container.
+		 *  The component used as the column header.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function getChildren():Array;
+		function get header():IUIBase;
+		function set header(value:IUIBase):void;
 		
-        /**
-         *  This method is called after children have been
-         *  added to the container so the container doesn't
-         *  have to re-layout as each child is added.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function childrenAdded():void;
+		/**
+		 *  The set of components used for the columns of the DataGrid.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get columns():Array;
+		function set columns(value:Array):void;
 	}
 }

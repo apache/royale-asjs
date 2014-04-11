@@ -37,6 +37,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.html.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.supportClasses.Border;
@@ -166,6 +167,7 @@ package org.apache.flex.html.beads
             listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
             _border = new Border();
             _border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
@@ -185,6 +187,14 @@ package org.apache.flex.html.beads
 		}
 		
 		private var lastSelectedIndex:int = -1;
+		
+		/**
+		 * @private
+		 */
+		protected function dataProviderChangeHandler(event:Event):void
+		{
+			// override if needed
+		}
 		
 		/**
 		 * @private

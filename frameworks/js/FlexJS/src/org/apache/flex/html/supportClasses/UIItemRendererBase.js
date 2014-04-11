@@ -43,7 +43,7 @@ goog.inherits(
 org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIItemRendererBase',
                 qName: 'org.apache.flex.html.supportClasses.UIItemRendererBase' }],
-      interfaces: ['org.apache.flex.core.IItemRenderer, org.apache.flex.core.IItemRendererFactory']};
+      interfaces: [org.apache.flex.core.IItemRenderer, org.apache.flex.core.IItemRendererFactory]};
 
 
 /**

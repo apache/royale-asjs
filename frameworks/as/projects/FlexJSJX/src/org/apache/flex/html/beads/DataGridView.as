@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {	
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IDataGridLayout;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -30,7 +32,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
-	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.layouts.DataGridLayout;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
@@ -92,6 +94,7 @@ package org.apache.flex.html.beads
 			_strand = value;
 			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",onDataProviderChanged);
 			
 			// create an array of columnLabels for use by the ButtonBar/DataGrid header.
 			var columnLabels:Array = new Array();
@@ -102,7 +105,6 @@ package org.apache.flex.html.beads
 				buttonWidths.push(dgc.columnWidth);
 			}
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
-			bblayout.buttonWidths = buttonWidths;
 			
 			buttonBarModel = new ArraySelectionModel();
 			buttonBarModel.dataProvider = columnLabels;
@@ -112,66 +114,67 @@ package org.apache.flex.html.beads
 			buttonBar.addBead(bblayout);
 			UIBase(_strand).addElement(buttonBar);
 			
-			columnContainer = new Container();
-			var layout:NonVirtualHorizontalLayout = new NonVirtualHorizontalLayout();
-			columnContainer.addBead(layout);
-			UIBase(_strand).addElement(columnContainer);
-			
+			// Create a List for each column, storing a reference to each List in
+			// the columns property.
 			columns = new Array();
-			for(i=0; i < sharedModel.columns.length; i++) {
+			for(i=0; i < sharedModel.columns.length; i++) 
+			{
+				// Each list shares the same dataProvider but needs its own model to
+				// keep track of its own data.
 				var listModel:ISelectionModel = new ArraySelectionModel();
 				listModel.dataProvider = sharedModel.dataProvider;
 				
 				var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				
 				var list:List = new List();
-				list.addBead(listModel);
+				list.addBead(listModel); 
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;
 				
 				var colWidth:Number = dataGridColumn.columnWidth;
 				if (!isNaN(colWidth)) list.width = colWidth;
 
-				columnContainer.addElement(list);
+				UIBase(_strand).addElement(list);
 				columns.push(list);
 				list.addEventListener('change',columnListChangeHandler);
 				list.addEventListener('rollover',columnListRollOverHandler);
 			}
 			
-			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
-			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
+			// TODO: allow a developer to specify their own DataGridLayout
+			// possibly by seeing if a bead already exists
 			
-			handleSizeChange(null); // initial sizing
+			var bead:IBead = _strand.getBeadByType(IDataGridLayout);
+			var layout:IDataGridLayout;
+			if (bead == null) {
+				// NOTE: the following line will not cross-compile correctly into JavaScript
+				// so it has been commented and the class hard-coded.
+				//layout = new ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IDataGridLayout;
+				layout = new DataGridLayout();
+				_strand.addBead(layout);
+			} else {
+				layout = bead as IDataGridLayout;
+			}
+			layout.header = buttonBar;
+			layout.columns = columns;
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 		
 		/**
 		 * @private
+		 * When the dataProvider is changed for the DataGrid, this updates each List (column)
+		 * with the new (or changed) dataProvider.
 		 */
-		private function handleSizeChange(event:Event):void
+		private function onDataProviderChanged(event:Event):void
 		{
-			var sw:Number = UIBase(_strand).width;
-			var sh:Number = UIBase(_strand).height;
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			
-			var backgroundColor:Number = 0xDDDDDD;
-			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color");
-			if (value != null) backgroundColor = Number(value);
-			
-			buttonBar.x = 0;
-			buttonBar.y = 0;
-			buttonBar.width = sw + (2*columns.length-1);
-			buttonBar.height = 25;
-			
-			columnContainer.x = 0;
-			columnContainer.y = 30;
-			columnContainer.width = sw + columns.length*2;
-			columnContainer.height = sh - 25;
-			
-			for(var i:int=0; i < columns.length; i++) {
-				var column:List = columns[i];
-				column.height = columnContainer.height; // this will actually be Nitem*rowHeight eventually
+			for (var i:int=0; i < columns.length; i++)
+			{
+				var list:List = columns[i] as List;
+				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
+				listModel.dataProvider = sharedModel.dataProvider;
 			}
-			
-			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 		
 		/**

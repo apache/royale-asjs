@@ -30,6 +30,24 @@
     font-size: 12px;
 }
 
+*:active
+{
+    font-family: "Arial";
+    font-size: 12px;
+}
+
+*:hover
+{
+    font-family: "Arial";
+    font-size: 12px;
+}
+
+.flexjs *, . flexjs *:before, . flexjs *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 Button
 {
 	background-color: #d8d8d8;
@@ -145,7 +163,8 @@ ComboBox
 
 Container
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView")
+    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 }
 
 ControlBar

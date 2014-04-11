@@ -17,39 +17,38 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IDataGridLayout;
+	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
-	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
-	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons 
-	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
-	 *  the values stored in that array are used.
+	 * DataGridLayout is a class that handles the size and positioning of the
+	 * elements of a DataGrid. This includes the ButtonBar used for the column
+	 * headers and the Lists that are the columns.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonBarLayout implements IBeadLayout
+	public class DataGridLayout implements IBeadLayout, IDataGridLayout
 	{
 		/**
-		 *  constructor.
+		 *  constructor
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ButtonBarLayout()
+		public function DataGridLayout()
 		{
 		}
 		
@@ -70,53 +69,86 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("elementAdded", changeHandler);
 		}
 		
-		private var _buttonWidths:Array = null;
+		private var _header:UIBase;
 		
 		/**
-		 *  An array of widths (Number), one per button. These values supersede the
-		 *  default of equally-sized buttons.
+		 * The element that is the header for the DataGrid
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get buttonWidths():Array
+		public function get header():IUIBase
 		{
-			return _buttonWidths;
+			return _header;
 		}
-		public function set buttonWidths(value:Array):void
+		public function set header(value:IUIBase):void
 		{
-			_buttonWidths = value;
+			_header = UIBase(value);
+		}
+		
+		
+		private var _columns:Array;
+		
+		/**
+		 * The array of column elements.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get columns():Array
+		{
+			return _columns;
+		}
+		public function set columns(value:Array):void
+		{
+			_columns = value;
 		}
 		
 		/**
 		 * @private
 		 */
 		private function changeHandler(event:Event):void
-		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+		{			
+			var sw:Number = UIBase(_strand).width;
+			var sh:Number = UIBase(_strand).height;
 			
-			var n:int = contentView.numChildren;
+			header.x = 0;
+			header.y = 0;
+			header.width = sw;
+			header.height = 25;
+			
+			var columnHeight:Number = sh - header.height;
+			var columnWidth:Number  = sw / columns.length;
+			
 			var xpos:Number = 0;
-			var useWidth:Number = DisplayObject(_strand).width / n;
-			var useHeight:Number = DisplayObject(_strand).height;
+			var ypos:Number = header.height;
 			
-			for (var i:int = 0; i < n; i++)
-			{
-				var child:DisplayObject = contentView.getChildAt(i);
+			// TODO: change the layout so that the model's DataGridColumn.columnWidth
+			// isn't used blindly, but is considered in the overall width. In other words,
+			// right now the width could exceed the strand's width.
+			var model:IDataGridModel = _strand.getBeadByType(IDataGridModel) as IDataGridModel;
+			
+			for(var i:int=0; i < columns.length; i++) {
+				var column:UIBase = columns[i] as UIBase;
+				column.x = xpos;
+				column.y = ypos;
+				column.height = columnHeight;
 				
-				child.y = 0;
-				child.height = useHeight;
-				child.x = xpos;
+				var dgc:DataGridColumn = model.columns[i];
+				if (!isNaN(dgc.columnWidth)) column.width = dgc.columnWidth;
+				else column.width  = columnWidth;
 				
-				if (buttonWidths) child.width = Number(buttonWidths[i]);
-				else child.width = useWidth;
-				xpos += child.width;
+				xpos += column.width;
 			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

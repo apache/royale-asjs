@@ -93,7 +93,10 @@ org.apache.flex.html.supportClasses.NonVirtualDataGroup.
  */
 org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.removeAllElements = function() {
-    // to do
+
+  while (this.element.hasChildNodes()) {
+    this.element.removeChild(this.element.lastChild);
+  }
 };
 
 

@@ -21,10 +21,10 @@ package org.apache.flex.html
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.events.Event;
 	
 	[DefaultProperty("mxmlContent")]

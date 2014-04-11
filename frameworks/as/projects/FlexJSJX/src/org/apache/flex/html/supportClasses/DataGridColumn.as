@@ -66,7 +66,7 @@ package org.apache.flex.html.supportClasses
 			_itemRenderer = value;
 		}
 		
-		private var _columnWidth:Number = 100;
+		private var _columnWidth:Number = Number.NaN;
 		
 		/**
 		 *  The width of the column (default is 100 pixels).

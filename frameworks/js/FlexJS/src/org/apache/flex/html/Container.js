@@ -15,11 +15,13 @@
 goog.provide('org.apache.flex.html.Container');
 
 goog.require('org.apache.flex.core.ContainerBase');
+goog.require('org.apache.flex.core.IContainer');
 
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IContainer}
  * @extends {org.apache.flex.core.ContainerBase}
  */
 org.apache.flex.html.Container = function() {
@@ -36,7 +38,8 @@ goog.inherits(org.apache.flex.html.Container,
  */
 org.apache.flex.html.Container.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Container',
-                qName: 'org.apache.flex.html.Container' }] };
+                qName: 'org.apache.flex.html.Container' }],
+      interfaces: [org.apache.flex.core.IContainer] };
 
 
 /**
@@ -82,5 +85,20 @@ org.apache.flex.html.Container.prototype.internalChildren =
     function() {
   return this.element.children;
 };
+
+
+/**
+ * @return {Array} All of the children of the container.
+ */
+org.apache.flex.html.Container.prototype.getChildren = function() {
+  return this.element.children;
+};
+
+
+/**
+ * Called after all of the children have been added to the container.
+ * @return {void}
+ */
+org.apache.flex.html.Container.prototype.childrenAdded = function() {};
 
 

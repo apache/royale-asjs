@@ -20,8 +20,7 @@ package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.core.FilledRectangle;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.supportClasses.UIItemRendererBase;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
@@ -34,7 +33,7 @@ package org.apache.flex.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BoxItemRenderer extends UIItemRendererBase implements IChartItemRenderer
+	public class BoxItemRenderer extends DataItemRenderer implements IChartItemRenderer
 	{
 		/**
 		 *  constructor.

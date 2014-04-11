@@ -123,6 +123,8 @@ org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
+  this.dataGroup.removeAllElements();
+
   dp = this.model.get_dataProvider();
   n = dp.length;
   for (i = 0; i < n; i++) {

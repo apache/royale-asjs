@@ -62,6 +62,8 @@ package org.apache.flex.core
 		public function ViewBase()
 		{
 			super();
+			
+			className = "flexjs";
 		}
 		
 		private var _applicationModel:Object;
