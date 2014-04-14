@@ -80,6 +80,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
     this.element = document.createElement('div');
   if (this.positioner == null)
     this.positioner = this.element;
+  this.positioner.style.display = 'block';
 
   this.element['flexjs_wrapper'] = this;
 
@@ -324,6 +325,7 @@ org.apache.flex.core.UIBase.prototype.get_y = function() {
  */
 org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
   this.positioner.style.width = pixels.toString() + 'px';
+  this.dispatchEvent('widthChanged');
 };
 
 
@@ -344,6 +346,7 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
  */
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
   this.positioner.style.height = pixels.toString() + 'px';
+  this.dispatchEvent('heightChanged');
 };
 
 
