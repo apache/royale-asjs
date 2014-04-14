@@ -76,6 +76,10 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
         goog.bind(this.changeHandler, this));
     this.strand_.addEventListener('itemsCreated',
         goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('widthChanged',
+        goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('heightChanged',
+        goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
   }
 };
@@ -98,7 +102,7 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
   for (i = 0; i < n; i++)
   {
     children[i].set_height(useHeight);
-    if (this.buttonWidths_) children[i].set_width(this.buttonWidths_[i]);
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) children[i].set_width(this.buttonWidths_[i]);
     else children[i].set_width(useWidth);
     children[i].element.style['vertical-align'] = 'middle';
     children[i].element.style['text-align'] = 'center';
