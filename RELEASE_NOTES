@@ -17,6 +17,12 @@ Flash Builder will not generate correct MXML when generating a new Flex Project
 that uses an Apache FlexJS SDK.  It is recommended that you copy an the MXML
 for the main application from one of the FlexJS example applications.
 
+Examples and Compiler Warnings
+
+Several of the Exammples will have compiler warnings in the output and return
+an exit code of 2.  But they still be operational.
+
+
 Please report new issues to our bugbase at:
 
     https://issues.apache.org/jira/browse/FLEX
