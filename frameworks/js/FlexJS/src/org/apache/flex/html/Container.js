@@ -94,11 +94,3 @@ org.apache.flex.html.Container.prototype.getChildren = function() {
   return this.element.children;
 };
 
-
-/**
- * Called after all of the children have been added to the container.
- * @return {void}
- */
-org.apache.flex.html.Container.prototype.childrenAdded = function() {};
-
-
