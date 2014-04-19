@@ -148,7 +148,7 @@ Install Prerequisites
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_9.swc
             http://download.macromedia.com/get/flashplayer/updaters/12/playerglobal12_0.swc
 
-        These can be used with Apache Flex but not all have not been fully
+        These can be used with Apache FlexJS but not all have not been fully
         tested.
 
     *6) The JSHint utility installed by following the instructions here:
