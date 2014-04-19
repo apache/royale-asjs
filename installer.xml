@@ -45,15 +45,15 @@
     
     <property name="air.sdk.version" value="3.9"/>
     <property name="flash.sdk.version" value="11.9"/>
-    <property name="flex.sdk.version" value="4.11.0"/>
+    <property name="flex.sdk.version" value="4.12.0"/>
     <property name="falcon.version" value="0.0.1"/>
     
     <property name="flex.url.path" value="http://archive.apache.org/dist/flex/${flex.sdk.version}/binaries" />
     <property name="flex.url.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
 
     <!-- don't forget to re-enable caching in the falcon-get task -->
-    <property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />
-    <!--<property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />-->
+    <!--<property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />-->
+    <property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />
     <property name="falcon.url.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
@@ -242,7 +242,7 @@
     <target name="falcon-get" depends="falcon-get-check" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
         <echo>${INFO_INSTALLING_FALCON} ${falcon.url.path}/${falcon.url.file}</echo>
-        <property name="do-not-cache-next-get" value="true" />
+        <!--<property name="do-not-cache-next-get" value="true" />-->
         <get src="${falcon.url.path}/${falcon.url.file}"
         dest="${download.dir}/${falcon.url.file}"
         verbose="false"/>
