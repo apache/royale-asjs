@@ -1589,4 +1589,19 @@
         </exec>
     </target>
         
+	<target name="doc-create-md5" >
+		<echo message="Generating MD5 hashes for doc artifacts"/>
+		<checksum algorithm="md5" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes"/>
+	</target>
+	
+    <target name="doc-sign" >
+        <exec executable="gpg">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${basedir}/out/${kit.prefix}-asdocs.zip.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${basedir}/out/${kit.prefix}-asdocs.zip" />
+        </exec>
+	</target>
+	
 </project>
