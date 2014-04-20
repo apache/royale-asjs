@@ -22,6 +22,14 @@ Examples and Compiler Warnings
 Several of the Exammples will have compiler warnings in the output and return
 an exit code of 2.  But they still be operational.
 
+Building the Examples
+
+There are several examples in the "examples" folder.  Use "ant examples" from the
+SDK's build.xml to build them.  Building them individually may result in errors.
+The DataBindingTest is the most up-to-date example and should allow both the SWF
+version and cross-compiled version to select one of the stock symbols from
+the drop down and hit a button to get a stock price.  Some of other the examples 
+may not cross-compile or work correctly.
 
 Please report new issues to our bugbase at:
 
