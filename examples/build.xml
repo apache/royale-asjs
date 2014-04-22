@@ -85,6 +85,7 @@
         <ant dir="${basedir}/FormatExample"/>
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
+        <ant dir="${basedir}/MobileTrader"/>
         <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
         <ant dir="${basedir}/BarChartExample"/>
