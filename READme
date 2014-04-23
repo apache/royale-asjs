@@ -123,7 +123,8 @@ Install Prerequisites
 
         Follow the instructions here to install it.  It should automatically
         make the linter available.  No need to change paths or environment
-        variables.
+        variables.  Some folks on OSX had permission issues after the install.
+        See their support channels for assistance.
 
     *5) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
@@ -155,7 +156,8 @@ Install Prerequisites
             http://www.jshint.com/install/
 
         JSHint will also be automatically available.  No need to change paths or
-        environment variables.
+        environment variables.  On OSX some folks had permission issues after
+        the install.  See their documentation on using -g and sudo.
 
     *7) Set FALCON_HOME to the root of its SDK.  When using the flex-falcon
         repository, set 
