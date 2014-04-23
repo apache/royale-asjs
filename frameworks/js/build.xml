@@ -60,6 +60,8 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+	<property name="gjslint" value="gjslint" />
+	<property name="jshint" value="jshint" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all SWCs"/>
@@ -80,7 +82,7 @@
     
     <target name="compile" depends="flexjsjx" description="Validates JS code" unless="no.lint">
         <echo>running gjslint</echo>
-        <exec executable="gjslint" dir="${basedir}" failonerror="true">
+        <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
             <arg value="--strict" />
             <arg value="--disable" />
             <arg value="006,100,214,300" />
@@ -94,7 +96,7 @@
             <arg value="FlexJS/src" />
         </exec>
         <echo>running jshint</echo>
-        <exec executable="jshint" dir="${basedir}" failonerror="true">
+        <exec executable="${jshint}" dir="${basedir}" failonerror="true">
             <arg value="--config" />
             <arg value="jshint.properties" />
             <arg value="FlexJS/src" />
