@@ -409,9 +409,6 @@
     </target>
     
     <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint">
-        <condition property="no.lint" value="true">
-			<os family="windows"/>
-        </condition>
         <ant dir="${basedir}/frameworks/js">
             <property name="locale" value="${locale}"/>
         </ant>
