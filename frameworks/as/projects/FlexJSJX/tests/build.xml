@@ -65,6 +65,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
+        <echo message="playerglobal.version: ${playerglobal.version}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
