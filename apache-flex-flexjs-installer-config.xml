@@ -28,7 +28,11 @@
     </progressLabels>
      -->
     <properties>
-        <property name="falcon.url.path" value="https://dist.apache.org/repos/dist/dev/flex/falcon/0.0.1/rc3/binaries/" />
+        <!-- use this pattern during RCs 
+		<property name="falcon.url.path" value="https://dist.apache.org/repos/dist/dev/flex/falcon/0.0.1/rc3/binaries/" />
+		-->
+		<!-- use this pattern for nightly builds -->
+        <property name="falcon.url.path" value="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />
     </properties>
     <strings description="override default installer strings here">
         <string id="INFO_CREATING_FLEX_HOME">
