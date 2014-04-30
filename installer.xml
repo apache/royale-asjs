@@ -47,8 +47,8 @@
     <property name="air.sdk.version" value="3.9"/>
     <property name="flash.sdk.version" value="11.9"/>
     <property name="flex.sdk.version" value="4.12.0"/>
-    <property name="flexjs.version" value="0.0.1"/>
-    <property name="falcon.version" value="0.0.1"/>
+    <property name="flexjs.version" value="0.0.2"/>
+    <property name="falcon.version" value="0.0.2"/>
     
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
