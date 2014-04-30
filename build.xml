@@ -750,6 +750,10 @@
             </fileset>
         </copy>
     </target>
+    
+    <target name="stage-nightly" if="nightly" description="add nightly.properties if nightly build">
+        <copy todir="${basedir}/temp" file="${basedir}/nightly.properties" />
+    </target>
 
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
@@ -766,6 +770,8 @@
             </fileset>
         </delete>
 
+        <antcall target="stage-nightly" />
+        
         <!-- these files are in addition to the remaining source files -->
         
         <!-- concat the license file with the binary license file for the 3rd party deps -->

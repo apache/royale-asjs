@@ -37,6 +37,7 @@
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/local.properties"/>
+    <property file="${FLEXJS_HOME}/nightly.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="bundle" value="en_US" />
     <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
@@ -46,15 +47,8 @@
     <property name="air.sdk.version" value="3.9"/>
     <property name="flash.sdk.version" value="11.9"/>
     <property name="flex.sdk.version" value="4.12.0"/>
+    <property name="flexjs.version" value="0.0.1"/>
     <property name="falcon.version" value="0.0.1"/>
-    
-    <property name="flex.url.path" value="http://archive.apache.org/dist/flex/${flex.sdk.version}/binaries" />
-    <property name="flex.url.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
-
-    <!-- don't forget to re-enable caching in the falcon-get task -->
-    <!--<property name="falcon.url.path" value="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" />-->
-    <property name="falcon.url.path" value="http://archive.apache.org/dist/flex/falcon/${falcon.version}/binaries" />
-    <property name="falcon.url.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
@@ -130,6 +124,54 @@
         <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
         <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
+        
+        <property name="latest.sdk.version" value="${config.products.ApacheFlexSDK.latestVersion}" />
+        <condition property="flex.server.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" >
+            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
+        </condition>
+        <condition property="flex.folder" value="flex/${latest.sdk.version}/binaries" >
+            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
+        </condition>
+        <condition property="flex.uses.mirror" value="true" >
+            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
+        </condition>
+        <property name="flex.server.url" value="http://archive.apache.org/dist" />
+        <property name="flex.folder" value="flex/${flex.sdk.version}/binaries" />
+        <property name="flex.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
+        
+        <property name="flexjs.dev.version" value="${config.products.ApacheFlexJS.developmentVersion}" />
+        <property name="falcon.dev.version" value="${config.products.ApacheFlexFalconJX.developmentVersion}" />
+        <property name="falcon.latest.version" value="${config.products.ApacheFlexFalconJX.latestVersion}" />
+        <property name="falcon.rc" value="${config.products.ApacheFlexFalconJX.rc}" />
+        <!-- if both flexjs and falcon are development versions, then get falcon from the rc server -->
+        <!-- for nightly builds, we package a nightly.properties that sets these values to the nightly falcon builds -->
+        <condition property="falcon.server.url" value="https://dist.apache.org/repos/dist/dev" >
+            <and>
+                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
+            </and>
+        </condition>
+        <condition property="falcon.folder" value="flex/falcon/${falcon.version}/${falcon.rc}/binaries" >
+            <and>
+                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
+            </and>
+        </condition>
+        <!-- otherwise, pull the specified version -->
+         <condition property="falcon.server.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" >
+             <equals arg1="${falcon.version}" arg2="${falcon.latest.version}" />
+         </condition>
+         <condition property="falcon.uses.mirror" value="true" >
+             <and>
+                 <not>
+                     <isset property="nightly" />
+                 </not>
+                 <equals arg1="${falcon.version}" arg2="${falcon.latest.version}" />
+             </and>
+         </condition>
+        <property name="falcon.server.url" value="http://archive.apache.org/dist" />
+        <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
+        <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
     
     <target name="install" depends="get-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
@@ -227,8 +269,8 @@
 
     <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
         description="downloads and installs Falcon compiler">
-        <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.url.file}</echo>
-        <unzip src="${download.dir}/${falcon.url.file}" dest="${download.dir}/falcon"/>
+        <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.file}</echo>
+        <unzip src="${download.dir}/${falcon.file}" dest="${download.dir}/falcon"/>
         <ant dir="${download.dir}/falcon" antfile="installer.xml" >
         </ant>
         <antcall target="mac-chmod" />
@@ -237,21 +279,50 @@
         <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" property="falcon.present"/>
     </target>
     <target name="falcon-get-check" >
-        <available file="${download.dir}/${falcon.url.file}" property="falcon.downloaded" />
+        <available file="${download.dir}/${falcon.file}" property="falcon.downloaded" />
     </target>
     <target name="falcon-get" depends="falcon-get-check" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
-        <echo>${INFO_INSTALLING_FALCON} ${falcon.url.path}/${falcon.url.file}</echo>
-        <!--<property name="do-not-cache-next-get" value="true" />-->
-        <get src="${falcon.url.path}/${falcon.url.file}"
-        dest="${download.dir}/${falcon.url.file}"
-        verbose="false"/>
+        <echo>${INFO_INSTALLING_FALCON} ${falcon.server.url}/${falcon.folder}/${falcon.file}</echo>
+        <condition property="do-not-cache-next-get" value="true" >
+            <isset property="nightly" />
+        </condition>
+        <antcall target="falcon_get_from_mirror" >
+            <param name="server" value="${falcon.server.url}" />
+            <param name="folder" value="${falcon.folder}" />
+            <param name="file" value="${falcon.file}" />
+            <param name="dest" value="${download.dir}/${falcon.file}" />
+        </antcall>
+        <antcall target="falcon_get_download" >
+            <param name="server" value="${falcon.server.url}" />
+            <param name="folder" value="${falcon.folder}" />
+            <param name="file" value="${falcon.file}" />
+            <param name="dest" value="${download.dir}/${falcon.file}" />
+        </antcall>
     </target>
-    
+
+    <target name="falcon_get_from_mirror" if="falcon.uses.mirror" >
+        <antcall target="download_using_mirror" >
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+    </target>
+
+    <target name="falcon_get_download" unless="falcon.uses.mirror" >
+        <antcall target="download_using_get" >
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+    </target>
+
     <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
         description="downloads and installs some pieces of the Flex SDK">
-        <echo>${INFO_UNZIPPING} ${download.dir}/${flex.url.file}</echo>
-        <unzip src="${download.dir}/${flex.url.file}" dest="${download.dir}/flex">
+        <echo>${INFO_UNZIPPING} ${download.dir}/${flex.file}</echo>
+        <unzip src="${download.dir}/${flex.file}" dest="${download.dir}/flex">
             <patternset>
                 <include name="bin/**" />
                 <include name="lib/**" />
@@ -271,15 +342,42 @@
         <available file="${FLEXJS_HOME}/lib/mxmlc.jar" property="flex.sdk.present"/>
     </target>
     <target name="flex-get-check" >
-        <available file="${download.dir}/${flex.url.file}" property="flex.downloaded" />
+        <available file="${download.dir}/${flex.file}" property="flex.downloaded" />
     </target>
     <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
-        <echo>${INFO_INSTALLING_FLEX} ${flex.url.path}/${flex.url.file}</echo>
-        <get src="${flex.url.path}/${flex.url.file}"
-        dest="${download.dir}/${flex.url.file}"
-        verbose="false"/>
+        <echo>${INFO_INSTALLING_FLEX} ${flex.server.url}/${flex.folder}/${flex.file}</echo>
+        <antcall target="flex_get_from_mirror" >
+            <param name="server" value="${flex.server.url}" />
+            <param name="folder" value="${flex.folder}" />
+            <param name="file" value="${flex.file}" />
+            <param name="dest" value="${download.dir}/${flex.file}" />
+        </antcall>
+        <antcall target="flex_get_download" >
+            <param name="server" value="${flex.server.url}" />
+            <param name="folder" value="${flex.folder}" />
+            <param name="file" value="${flex.file}" />
+            <param name="dest" value="${download.dir}/${flex.file}" />
+        </antcall>
     </target>
-    
+
+    <target name="flex_get_from_mirror" if="flex.uses.mirror" >
+        <antcall target="download_using_mirror" >
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+    </target>
+
+    <target name="flex_get_download" unless="flex.uses.mirror" >
+        <antcall target="download_using_get" >
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+    </target>
+
     <target name="get-third-party-files" depends="goog-download,air-download,flash-download,swfobject-download" />
     
     <!-- Because this requires a network connection it downloads artifacts only if it doesn't already exist. -->
@@ -690,5 +788,25 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         </replace>
         
     </target>
+
+    <target name="download_using_mirror" >
+        <property name="do-not-cache-next-get" value="true" />
+        <get src="${server}/${folder}/${file}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="&quot;"
+            value="" />
+            <replacefilter token=": "
+            value="=" />
+        </replace>
+        <property file="${basedir}/mirror.json" />
+        <delete file="${basedir}/mirror.json" />
+        <echo>Using mirror: ${preferred}</echo>
+        <get src="${preferred}${folder}/${file}" dest="${dest}" />
+    </target>
+
+    <target name="download_using_get" >
+        <get src="${server}/${folder}/${file}" dest="${dest}" />
+    </target>
+
 
 </project>
