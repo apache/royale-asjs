@@ -12,18 +12,17 @@
  * limitations under the License.
  */
 
-// ------------------------------------------------------------------
-// jquery
-// ------------------------------------------------------------------
-
-// <link rel="stylesheet"
-// href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-//  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-//  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-// ------------------------------------------------------------------
-// end jquery
-// ------------------------------------------------------------------
+/*
+FalconJX will inject html into the index.html file.  Surround with
+"inject_html" tag as follows:
+ 
+<inject_html>
+<link rel="stylesheet"
+    href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+</inject_html>
+*/
 
 goog.provide('org.apache.flex.jquery.Application');
 
