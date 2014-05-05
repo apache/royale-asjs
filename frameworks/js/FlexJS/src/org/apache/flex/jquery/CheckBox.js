@@ -54,6 +54,7 @@ org.apache.flex.jquery.CheckBox.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+  return this.element;
 };
 
 
@@ -78,7 +79,7 @@ org.apache.flex.jquery.CheckBox.prototype.set_text =
 
 /**
  * @expose
- * @return {bool} The selected getter.
+ * @return {boolean} The selected getter.
  */
 org.apache.flex.jquery.CheckBox.prototype.get_selected =
     function() {
@@ -88,7 +89,7 @@ org.apache.flex.jquery.CheckBox.prototype.get_selected =
 
 /**
  * @expose
- * @param {bool} value The selected setter.
+ * @param {boolean} value The selected setter.
  */
 org.apache.flex.jquery.CheckBox.prototype.set_selected =
     function(value) {

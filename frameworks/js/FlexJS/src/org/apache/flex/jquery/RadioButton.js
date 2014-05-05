@@ -35,6 +35,7 @@ goog.inherits(org.apache.flex.jquery.RadioButton,
 
 /**
  * @expose
+ * @type {string|null}
  * The name of the radioGroup.
  */
 org.apache.flex.jquery.RadioButton.prototype.radioGroupName = null;
@@ -80,11 +81,11 @@ org.apache.flex.jquery.RadioButton.prototype.createElement =
 
   this.positioner = this.element;
   this.flexjs_wrapper = this;
+  return this.element;
 };
 
 
 /**
- * @override
  * @param {Object} doc the document for this item.
  */
 org.apache.flex.jquery.RadioButton.prototype.setDocument =
@@ -115,7 +116,7 @@ org.apache.flex.jquery.RadioButton.prototype.initHandler =
 
 /**
  * @expose
- * @return {string} The groupName getter.
+ * @return {string|null} The groupName getter.
  */
 org.apache.flex.jquery.RadioButton.prototype.get_groupName =
     function() {
@@ -187,7 +188,7 @@ org.apache.flex.jquery.RadioButton.prototype.set_text =
 
 /**
  * @expose
- * @return {bool} The selected getter.
+ * @return {boolean} The selected getter.
  */
 org.apache.flex.jquery.RadioButton.prototype.get_selected =
     function() {
@@ -197,7 +198,7 @@ org.apache.flex.jquery.RadioButton.prototype.get_selected =
 
 /**
  * @expose
- * @param {bool} value The selected setter.
+ * @param {boolean} value The selected setter.
  */
 org.apache.flex.jquery.RadioButton.prototype.set_selected =
     function(value) {

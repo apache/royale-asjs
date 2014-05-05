@@ -40,6 +40,7 @@ org.apache.flex.jquery.TextButton.prototype.createElement =
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+  return this.element;
 };
 
 
