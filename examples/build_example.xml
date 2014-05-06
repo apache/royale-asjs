@@ -74,6 +74,54 @@
         </copy>
     </target>
     
+    <target name="compileair" description="Compiles ${example}">
+        <echo message="Compiling ${example}.swf"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+         Link in the classes (and their dependencies) for the MXML tags
+         listed in this project's manifest.xml.
+         Also link the additional classes (and their dependencies)
+         listed in FlexJSUIClasses.as,
+         because these aren't referenced by the manifest classes.
+         Keep the standard metadata when compiling.
+         Include the appropriate CSS files and assets in the SWC.
+         Don't include any resources in the SWC.
+         Write a bundle list of referenced resource bundles
+         into the file bundles.properties in this directory.
+         -->
+        <mxmlc fork="true"
+            file="${basedir}/src/${example}.mxml"
+            output="${basedir}/bin-debug/${example}.swf">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="+flexlib=${basedir}/frameworks" />
+            <arg value="+configname=air" />
+            <arg value="-debug" />
+            <arg value="-target-player=${playerglobal.version}" />
+            <arg value="-swf-version=${swf.version}" />
+            <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-type=valueChange" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+        
+        <copy todir="${basedir}/bin-debug">
+            <fileset dir="${basedir}/src">
+                <include name="*.png" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin-debug">
+            <fileset dir="${basedir}">
+                <include name="*-app.xml" />
+            </fileset>
+        </copy>
+    </target>
+    
     <target name="compileas" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
@@ -155,6 +203,45 @@
 				</not>
 			</condition>
 		</fail>
+    </target>
+
+    <target name="compilejsair" description="Cross-compiles ${example}">
+        <echo message="Compiling ${example}.js"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+configname=air" />
+            <arg value="-debug" />
+            <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
+            <arg value="-compiler.binding-value-change-event-type=valueChange" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
+            <arg value="${basedir}/src/${example}.mxml" />
+        </java>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${errorCode}" arg2="0" />
+                        <equals arg1="${errorCode}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
 
     <target name="compileasjs" description="Cross-compiles ${example}">

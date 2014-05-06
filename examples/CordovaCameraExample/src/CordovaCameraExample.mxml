@@ -30,4 +30,7 @@
 	<basic:initialView>
 		<local:MyInitialView />
 	</basic:initialView>
+	<basic:beads>
+		<basic:MixinManager />
+	</basic:beads>
 </basic:Application>

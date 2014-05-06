@@ -60,7 +60,7 @@ limitations under the License.
 	<basic:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
 	<basic:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
 	
-	<basic:Label id="output" x="20" y="110" />
+	<basic:Label id="output" x="20" y="110" width="400"/>
 	
 	<basic:Image id="image" x="20" y="200" width="200" height="200" />
 
