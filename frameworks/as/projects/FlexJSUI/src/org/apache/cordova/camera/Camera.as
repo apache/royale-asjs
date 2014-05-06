@@ -18,6 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.cordova.camera
 {
+	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
+	import flash.events.ActivityEvent;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
+	import flash.geom.Rectangle;
+	import flash.media.Camera;
+	import flash.media.Video;
+	import flash.ui.Keyboard;
+	import flash.utils.ByteArray;
+	
+	import org.apache.flex.utils.PNGEncoder;
+
+	[Mixin]
 	public class Camera
 	{
 		public static var DestinationType:Object = {
@@ -48,13 +67,20 @@ package org.apache.cordova.camera
 			FRONT : 1      // Use the front-facing camera
 		};
 
+		private static var root:DisplayObjectContainer;
+		
+		public static function init(r:DisplayObjectContainer):void
+		{
+			root = r;		
+		}
+		
 		public function Camera()
 		{
-			pictureSourceType = Camera.PictureSourceType.PHOTOLIBRARY;
-			destinationType = Camera.DestinationType.DATA_URL;
-			mediaType = Camera.MediaType.PICTURE;
-			encodingType = Camera.EncodingType.JPEG;
-			direction = Camera.Direction.BACK;
+			pictureSourceType = org.apache.cordova.camera.Camera.PictureSourceType.PHOTOLIBRARY;
+			destinationType = org.apache.cordova.camera.Camera.DestinationType.DATA_URL;
+			mediaType = org.apache.cordova.camera.Camera.MediaType.PICTURE;
+			encodingType = org.apache.cordova.camera.Camera.EncodingType.JPEG;
+			direction = org.apache.cordova.camera.Camera.Direction.BACK;
 		}
 		
 		public var pictureSourceType:int;
@@ -63,14 +89,69 @@ package org.apache.cordova.camera
 		public var encodingType:int;
 		public var direction:int;
 		
+		private var cameraSuccess:Function;
+		private var cameraError:Function;
+		private var ui:Sprite;
+		private var camera:flash.media.Camera;
+		
 		public function getPicture( cameraSuccess:Function, cameraError:Function, cameraOptions:Object ) : void
 		{
-			// stub for JavaScript version
+			this.cameraSuccess = cameraSuccess;
+			this.cameraError = cameraError;
+			
+			camera = flash.media.Camera.getCamera();
+			
+			if (camera != null) {
+				ui = new Sprite();
+				var video:Video = new Video(camera.width * 2, camera.height * 2);
+				video.attachCamera(camera);
+				ui.addChild(video);
+				root.addChild(ui);
+				ui.addEventListener(MouseEvent.CLICK, mouseClickHandler);
+				ui.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			} else {
+				trace("You need a camera.");
+			}
+		}
+		
+		private function mouseClickHandler(event:MouseEvent):void
+		{
+			savePicture();
+			root.removeChild(ui);
+		}
+		
+		private function keyDownHandler(event:KeyboardEvent):void
+		{
+			if (event.keyCode == Keyboard.ESCAPE)
+				root.removeChild(ui);
+			else if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.SPACE)
+			{
+				savePicture();
+				root.removeChild(ui);
+			}
+		}
+
+		private function savePicture():void
+		{
+			var f:File = File.createTempFile();
+			var bd:BitmapData = new BitmapData(camera.width, camera.height, false);
+			var pix:ByteArray = new ByteArray();
+			var rect:Rectangle = new Rectangle(0, 0, camera.width, camera.height);
+			camera.copyToByteArray(rect, pix);
+			pix.position = 0;
+			bd.setPixels(rect, pix);
+			var png:PNGEncoder = new PNGEncoder();
+			var ba:ByteArray = png.encode(bd);
+			var fs:FileStream = new FileStream();
+			fs.open(f, FileMode.WRITE);
+			fs.writeBytes(ba);
+			fs.close();
+			cameraSuccess(f.url);
 		}
 		
 		public function cleanup( cameraSuccess:Function, cameraError:Function ) : void
 		{
-			// stub for JavaScript version
+			// no cleanup required in Flash
 		}
 	}
 }

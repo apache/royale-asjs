@@ -69,7 +69,7 @@ public class ViewSourceContextMenuOption implements IBead
 		_strand = value;
 		
 		var menuHost:InteractiveObject = InteractiveObject(value);
-		var cm:ContextMenu = menuHost.contextMenu;
+		var cm:ContextMenu = ContextMenu(menuHost.contextMenu);
 		if (!cm)
 		{
 			cm = new ContextMenu();

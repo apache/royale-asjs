@@ -72,7 +72,7 @@
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
         </compc>
     </target>
 

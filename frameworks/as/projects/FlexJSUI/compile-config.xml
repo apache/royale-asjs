@@ -22,7 +22,7 @@
         <accessible>false</accessible>
         
         <external-library-path>
-            <path-element>${env.PLAYERGLOBAL_HOME}/${playerglobal.version}/playerglobal.swc</path-element>
+            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
         </external-library-path>
         
         <locale/>
