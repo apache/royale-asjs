@@ -35,7 +35,7 @@ goog.inherits(org.apache.flex.jquery.RadioButton,
 
 /**
  * @expose
- * @type {string|null}
+ * @type {?string}
  * The name of the radioGroup.
  */
 org.apache.flex.jquery.RadioButton.prototype.radioGroupName = null;
@@ -87,6 +87,7 @@ org.apache.flex.jquery.RadioButton.prototype.createElement =
 
 /**
  * @param {Object} doc the document for this item.
+ * @param {string} id the id in the document for this item.
  */
 org.apache.flex.jquery.RadioButton.prototype.setDocument =
     function(doc, id) {
@@ -116,7 +117,7 @@ org.apache.flex.jquery.RadioButton.prototype.initHandler =
 
 /**
  * @expose
- * @return {string|null} The groupName getter.
+ * @return {?string} The groupName getter.
  */
 org.apache.flex.jquery.RadioButton.prototype.get_groupName =
     function() {
