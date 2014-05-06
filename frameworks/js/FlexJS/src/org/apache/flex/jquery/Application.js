@@ -15,7 +15,7 @@
 /*
 FalconJX will inject html into the index.html file.  Surround with
 "inject_html" tag as follows:
- 
+
 <inject_html>
 <link rel="stylesheet"
     href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />

@@ -15,7 +15,7 @@
 /*
  FalconJX will inject html into the index.html file.  Surround with
  "inject_html" tag as follows:
- 
+
  <inject_html>
     <script type="text/javascript" src="cordova.js"></script>
  </inject_html>
