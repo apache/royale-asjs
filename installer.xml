@@ -281,12 +281,9 @@
     <target name="falcon-get-check" >
         <available file="${download.dir}/${falcon.file}" property="falcon.downloaded" />
     </target>
-    <target name="falcon-get" depends="falcon-get-check" unless="falcon.downloaded" >
+    <target name="falcon-get" depends="falcon-get-check,set-falcon-cache-flag" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
         <echo>${INFO_INSTALLING_FALCON} ${falcon.server.url}/${falcon.folder}/${falcon.file}</echo>
-        <condition property="do-not-cache-next-get" value="true" >
-            <isset property="nightly" />
-        </condition>
         <antcall target="falcon_get_from_mirror" >
             <param name="server" value="${falcon.server.url}" />
             <param name="folder" value="${falcon.folder}" />
@@ -319,6 +316,10 @@
         </antcall>
     </target>
 
+    <target name="set-falcon-cache-flag" if="nightly" >
+        <property name="do-not-cache-next-get" value="true" />
+    </target>
+    
     <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
         description="downloads and installs some pieces of the Flex SDK">
         <echo>${INFO_UNZIPPING} ${download.dir}/${flex.file}</echo>
