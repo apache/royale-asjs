@@ -51,6 +51,10 @@
                 <manifest>createjs-manifest.xml</manifest>
             </namespace>
             <namespace>
+                <uri>library://ns.apache.org/flexjs/cordova</uri>
+                <manifest>cordova-manifest.xml</manifest>
+            </namespace>
+            <namespace>
                 <uri>library://ns.apache.org/flexjs/svg</uri>
                 <manifest>svg-manifest.xml</manifest>
             </namespace>			
@@ -77,6 +81,7 @@
         <uri>library://ns.adobe.com/flex/mx</uri>
         <uri>library://ns.apache.org/flexjs/html5</uri>
         <uri>library://ns.apache.org/flexjs/jquery</uri>
+        <uri>library://ns.apache.org/flexjs/cordova</uri>
         <uri>library://ns.apache.org/flexjs/createjs</uri>
 		<uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>  

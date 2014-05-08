@@ -28,6 +28,8 @@ package
 internal class FlexJSUIClasses
 {
 	import org.apache.cordova.camera.Camera; Camera;
+	import org.apache.cordova.Application; Application;
+	import org.apache.cordova.Weinre; Weinre;
 	
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;

@@ -18,19 +18,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<cordova:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
 				   xmlns:models="models.*"
 				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+				   xmlns:cordova="library://ns.apache.org/flexjs/cordova" 
+				   deviceready="MyInitialView(initialView).ready = true"
 				   >
 	
-	<basic:valuesImpl>
+	<cordova:valuesImpl>
 		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	<basic:initialView>
+	</cordova:valuesImpl>
+	<cordova:initialView>
 		<local:MyInitialView />
-	</basic:initialView>
-	<basic:beads>
+	</cordova:initialView>
+	<cordova:beads>
 		<basic:MixinManager />
-	</basic:beads>
-</basic:Application>
+		<cordova:Weinre guid="aharui" />
+	</cordova:beads>
+</cordova:Application>
