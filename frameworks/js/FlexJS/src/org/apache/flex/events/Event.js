@@ -11,10 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// EventHandler and ErrorHandler are not listed as deps for
+// some of the event classes because they would cause
+// circularities so we force them in here.
 goog.provide('org.apache.flex.events.Event');
 
+goog.require('goog.debug.ErrorHandler');
 goog.require('goog.events.Event');
+goog.require('goog.events.EventHandler');
 
 
 
