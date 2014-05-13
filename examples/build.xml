@@ -77,6 +77,7 @@
         <ant dir="${basedir}/CordovaCameraExample"/>
         <ant dir="${basedir}/DataBindingTest"/>
         <ant dir="${basedir}/DataGridExample"/>
+        <ant dir="${basedir}/DesktopMap"/>
         <ant dir="${basedir}/FlexJSTest_basic"/>
         <ant dir="${basedir}/FlexJSTest_createjs"/>
         <ant dir="${basedir}/FlexJSTest_HTML5"/>
@@ -107,6 +108,7 @@
         <ant dir="${basedir}/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/DataBindingTest" target="clean"/>
         <ant dir="${basedir}/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/DesktopMap" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_HTML5" target="clean"/>
