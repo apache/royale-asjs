@@ -27,6 +27,7 @@ goog.provide('org.apache.flex.maps.google.Map');
  */
 org.apache.flex.maps.google.Map = function() {
   goog.base(this);
+  this.initialized = false;
 };
 goog.inherits(org.apache.flex.maps.google.Map,
     org.apache.flex.core.UIBase);
@@ -54,8 +55,23 @@ org.apache.flex.maps.google.Map.prototype.createElement =
  * @param {String} value Google API dev token.
  */
 org.apache.flex.maps.google.Map.prototype.set_token = function(value) {
-  // not used in JavaScript version as Google API token is processed
-  // in the main HTML index file.
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + value + '&sensor=false' +
+              '&callback=mapInit';
+  window.mapView = this;
+  window.mapInit = function() {
+      this.mapView.finishInitalization();
+    };
+  document.body.appendChild(script);
+};
+
+
+/**
+ */
+org.apache.flex.maps.google.Map.prototype.finishInitalization = function() {
+  this.initialized = true;
+  this.dispatchEvent('ready');
 };
 
 
@@ -67,9 +83,11 @@ org.apache.flex.maps.google.Map.prototype.set_token = function(value) {
  */
 org.apache.flex.maps.google.Map.prototype.loadMap =
     function(centerLat, centerLong, zoom) {
-  var mapOptions = {
-    center: new google.maps.LatLng(centerLat, centerLong),
-    zoom: zoom
-  };
-  this.map = new google.maps.Map(this.element, mapOptions);
+  if (this.initialized) {
+    var mapOptions = {
+      center: new google.maps.LatLng(centerLat, centerLong),
+      zoom: zoom
+    };
+    this.map = new google.maps.Map(this.element, mapOptions);
+  }
 };

@@ -23,6 +23,8 @@ package org.apache.flex.maps.google
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.maps.google.beads.MapView;
 	
+	[Event(name="ready", type="org.apache.flex.events.Event")]
+	
 	/**
 	 *  The Map class displays a Google Map centered on lat/lng coordinates. The Map uses
 	 *  the following bead type:

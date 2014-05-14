@@ -78,6 +78,7 @@ package org.apache.flex.maps.google.beads
 			
 			if (page) {
 				_loader.loadString(page);
+				IEventDispatcher(_strand).dispatchEvent(new Event("ready"));
 			}
 		}
 		
@@ -100,6 +101,7 @@ package org.apache.flex.maps.google.beads
 			
 			if (_loader) {
 				_loader.loadString(page);
+				IEventDispatcher(_strand).dispatchEvent(new Event("ready"));
 			}
 		}
 		
