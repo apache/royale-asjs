@@ -134,7 +134,7 @@
 	<!-- (i.e., to only mobile devices) then add this element and list -->
 	<!-- only the profiles which your application does support. -->
 	<!-- <supportedProfiles>desktop extendedDesktop mobileDevice extendedMobileDevice</supportedProfiles> -->
-	<supportedProfiles>extendedDesktop desktop mobileDevice</supportedProfiles>
+	<supportedProfiles>extendedDesktop desktop</supportedProfiles>
 
 	<!-- The subpath of the standard default installation location to use. Optional. -->
 	<installFolder>Apache Flex</installFolder>

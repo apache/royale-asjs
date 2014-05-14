@@ -69,14 +69,8 @@
         <exec executable="${AIR_HOME}/bin/${adl}" dir="${basedir}/bin-debug" failonerror="true">
             <arg value="-runtime" />
             <arg value="${AIR_HOME}/runtimes/air/${runtime}" />
-            <arg value="-screensize" />
-            <arg value="640x960:640x960" />
             <arg value="-profile" />
-            <arg value="mobileDevice" />
-            <arg value="-XscreenDPI" />
-            <arg value="240" />
-            <arg value="-XversionPlatform" />
-            <arg value="AND" />
+            <arg value="extendedDesktop" />
             <arg value="${basedir}/bin-debug/${example}-app.xml" />
         </exec>
     </target>
