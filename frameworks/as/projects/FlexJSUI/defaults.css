@@ -99,6 +99,11 @@ List
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 }
 
+Map
+{
+    IBeadView: ClassReference("org.apache.flex.maps.google.beads.MapView");
+}
+
 SimpleList
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");

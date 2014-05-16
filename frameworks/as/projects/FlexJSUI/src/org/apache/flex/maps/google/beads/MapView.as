@@ -26,6 +26,7 @@ package org.apache.flex.maps.google.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.maps.google.Map;
 	
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
@@ -76,35 +77,19 @@ package org.apache.flex.maps.google.beads
 						
 			(_strand as UIBase).addChild(_loader);
 			
+			var token:String = Map(_strand).token;
+			if (token)
+				page = pageTemplateStart + "&key=" + token + pageTemplateEnd;
+			else
+				page = pageTemplateStart + pageTemplateEnd;
+			
 			if (page) {
 				_loader.loadString(page);
+				_loader.addEventListener(Event.COMPLETE, completeHandler);
 				IEventDispatcher(_strand).dispatchEvent(new Event("ready"));
 			}
 		}
-		
-		private var _token:String;
-		
-		/**
-		 *  Sets the API token and modifies the pageTemplate so that a proper
-		 *  HTML DOM can be constructed to house the Google Map.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set token(value:String):void
-		{
-			_token = value;
-			
-			page = pageTemplate.replace("{Your-Google-Token-Here}",_token);
-			
-			if (_loader) {
-				_loader.loadString(page);
-				IEventDispatcher(_strand).dispatchEvent(new Event("ready"));
-			}
-		}
-		
+				
 		private var page:String;
 		
 		/**
@@ -136,7 +121,7 @@ package org.apache.flex.maps.google.beads
 		 * This page definition is used with HTMLLoader to bring in the Google Maps
 		 * API (a Google APP token is required).
 		 */
-		private static var pageTemplate:String = '<!DOCTYPE html>'+
+		private static var pageTemplateStart:String = '<!DOCTYPE html>'+
 			'<html>'+
 			'  <head>'+
 			'    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />'+
@@ -146,7 +131,9 @@ package org.apache.flex.maps.google.beads
 			'      #map-canvas { height: 100% }'+
 			'    </style>'+
 			'    <script type="text/javascript"'+
-			'      src="https://maps.googleapis.com/maps/api/js?key={Your-Google-Token-Here}&sensor=false">'+
+			'      src="https://maps.googleapis.com/maps/api/js?v=3.exp';
+		
+		private static var pageTemplateEnd:String = '&sensor=false">'+
 			'    </script>'+
 			'    <script type="text/javascript">'+
 			'      function mapit(lat, lng, zoomLevel) {'+
@@ -167,5 +154,11 @@ package org.apache.flex.maps.google.beads
 			'    <div id="map-canvas"/>'+
 			'  </body>'+
 			'</html>';
+		
+		private function completeHandler(event:Event):void
+		{
+			trace("htmlLoader complete");
+		}
 	}
+	
 }

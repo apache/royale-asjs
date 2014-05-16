@@ -97,6 +97,6 @@ limitations under the License.
 							dataProvider="{MyModel(applicationModel).cities}" />
 	</basic:Container>
 
-	<basic:Map id="map" x="150" y="25" width="300" height="300" token="--put your Google API dev token here--" />
+	<basic:Map id="map" x="150" y="25" width="300" height="300" />
 
 </basic:ViewBase>

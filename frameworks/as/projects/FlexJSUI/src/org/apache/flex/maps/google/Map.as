@@ -64,13 +64,13 @@ package org.apache.flex.maps.google
 		public function set token(value:String):void
 		{
 			_token = value; 
-			
-			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
-			if (viewBead == null) {
-				viewBead = new MapView();
-				viewBead.token = value;
-				addBead(viewBead);
-			}
+		}
+		/**
+		 * @private
+		 */
+		public function get token():String
+		{
+			return _token; 
 		}
 		
 		/**
@@ -85,10 +85,6 @@ package org.apache.flex.maps.google
 		public function loadMap( centerLat:Number, centerLong:Number, zoom:Number ) : void
 		{
 			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
-			if (viewBead == null) {
-				viewBead = new MapView();
-				addBead(viewBead);
-			}
 			if (viewBead) {
 				viewBead.mapit(centerLat, centerLong, zoom);
 			}

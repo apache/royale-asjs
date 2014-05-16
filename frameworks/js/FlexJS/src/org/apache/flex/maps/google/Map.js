@@ -34,6 +34,18 @@ goog.inherits(org.apache.flex.maps.google.Map,
 
 
 /**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.maps.google.Map.prototype.
+FLEXJS_CLASS_INFO =
+{ names: [{ name: 'Map',
+           qName: 'org.apache.flex.maps.google.Map' }],
+    interfaces: [] };
+
+
+/**
  * @override
  * @protected
  * @return {Object} The actual element to be parented.
@@ -42,6 +54,7 @@ org.apache.flex.maps.google.Map.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
+  this.set_className('Map');
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -55,15 +68,7 @@ org.apache.flex.maps.google.Map.prototype.createElement =
  * @param {String} value Google API dev token.
  */
 org.apache.flex.maps.google.Map.prototype.set_token = function(value) {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + value + '&sensor=false' +
-              '&callback=mapInit';
-  window.mapView = this;
-  window.mapInit = function() {
-      this.mapView.finishInitalization();
-    };
-  document.body.appendChild(script);
+  this.token = value;
 };
 
 
@@ -84,10 +89,9 @@ org.apache.flex.maps.google.Map.prototype.finishInitalization = function() {
 org.apache.flex.maps.google.Map.prototype.loadMap =
     function(centerLat, centerLong, zoom) {
   if (this.initialized) {
-    var mapOptions = {
-      center: new google.maps.LatLng(centerLat, centerLong),
-      zoom: zoom
-    };
-    this.map = new google.maps.Map(this.element, mapOptions);
+    var mapOptions = {};
+    mapOptions['center'] = new window['google']['maps']['LatLng'](centerLat, centerLong);
+    mapOptions['zoom'] = zoom;
+    this.map = new window['google']['maps']['Map'](this.element, mapOptions);
   }
 };
