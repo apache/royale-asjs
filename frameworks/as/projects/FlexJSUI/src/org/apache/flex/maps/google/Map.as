@@ -89,5 +89,39 @@ package org.apache.flex.maps.google
 				viewBead.mapit(centerLat, centerLong, zoom);
 			}
 		}
+		
+		/**
+		 *  Sets the magnification level on the map with 1 being the lowest level
+		 *  (essentially the entire world) and 14 being very zoomed.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function setZoom( zoom:Number ) : void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.setZoom(zoom);
+			}
+		}
+		
+		/**
+		 *  Translates the given address into a geo-location, moves the map to
+		 *  that location, and places a marker on that location.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function markAddress( address:String ) : void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.geoCodeAndMarkAddress(address);
+			}
+		}
 	}
 }

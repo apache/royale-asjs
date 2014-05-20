@@ -107,6 +107,20 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 		
+		public function geoCodeAndMarkAddress(address:String):void
+		{
+			if (_loader && page) {
+				_loader.window.codeaddress(address);
+			}
+		}
+		
+		public function setZoom(zoom:Number):void
+		{
+			if (_loader && page) {
+				_loader.window.map.setZoom(zoom);
+			}
+		}
+		
 		/**
 		 * @private
 		 */
@@ -136,14 +150,30 @@ package org.apache.flex.maps.google.beads
 		private static var pageTemplateEnd:String = '&sensor=false">'+
 			'    </script>'+
 			'    <script type="text/javascript">'+
+			'      var map;'+
+			'      var geocoder;'+
 			'      function mapit(lat, lng, zoomLevel) {'+
 			'        var mapOptions = {'+
 			'          center: new google.maps.LatLng(lat, lng),'+
 			'          zoom: zoomLevel'+
 			'        };'+
-			'        var map = new google.maps.Map(document.getElementById("map-canvas"),'+
+			'        map = new google.maps.Map(document.getElementById("map-canvas"),'+
 			'            mapOptions);'+
 			'      };'+
+			'      function codeaddress(address) {'+
+			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
+		    '        geocoder.geocode( { "address": address}, function(results, status) {'+
+			'           if (status == google.maps.GeocoderStatus.OK) {'+
+			'             map.setCenter(results[0].geometry.location);'+
+			'             var marker = new google.maps.Marker({'+
+			'                map: map,'+
+			'                position: results[0].geometry.location,'+
+			'            });'+
+			'            } else {'+
+			'                alert("Geocode was not successful for the following reason: " + status);'+
+			'            }'+
+			'        });'+
+		    '      };'+
 			'      function initialize() {'+
 			'        mapit(-34.397, 150.644, 8);'+
 			'      };'+

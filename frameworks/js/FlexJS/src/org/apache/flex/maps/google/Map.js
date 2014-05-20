@@ -93,5 +93,49 @@ org.apache.flex.maps.google.Map.prototype.loadMap =
     mapOptions['center'] = new window['google']['maps']['LatLng'](centerLat, centerLong);
     mapOptions['zoom'] = zoom;
     this.map = new window['google']['maps']['Map'](this.element, mapOptions);
+    this.geocoder = null;
+  }
+};
+
+
+/**
+ * @expose
+ * @param {Number} zoomLevel The level of magnification.
+ */
+org.apache.flex.maps.google.Map.prototype.setZoom =
+    function(zoomLevel) {
+  if (this.initialized) {
+    this.map.setZoom(zoomLevel);
+  }
+};
+
+
+/**
+ * @expose
+ * @param {string} address The address to locate and mark on the map.
+ */
+org.apache.flex.maps.google.Map.prototype.markAddress =
+    function(address) {
+  if (this.initialized) {
+    if (!this.geocoder) this.geocoder = new window['google']['maps']['Geocoder']();
+    this.geocoder.geocode({ 'address': address}, goog.bind(this.geoCodeHandler, this));
+  }
+};
+
+
+/**
+ * @param {Array} results The found location(s).
+ * @param {string} status Status of the call.
+ */
+org.apache.flex.maps.google.Map.prototype.geoCodeHandler =
+    function(results, status) {
+  if (status == window['google']['maps']['GeocoderStatus']['OK']) {
+    this.map['setCenter'](results[0]['geometry']['location']);
+    var marker = new window['google']['maps']['Marker']({
+      map: this.map,
+      position: results[0]['geometry']['location']
+    });
+  } else {
+    alert('Geocode was not successful for the following reason: ' + status);
   }
 };
