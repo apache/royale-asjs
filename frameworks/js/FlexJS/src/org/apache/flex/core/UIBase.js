@@ -334,8 +334,11 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
  * @return {number} The width of the object in pixels.
  */
 org.apache.flex.core.UIBase.prototype.get_width = function() {
+  var pixels;
   var strpixels = this.positioner.style.width;
-  var pixels = parseFloat(strpixels);
+  pixels = parseFloat(strpixels);
+  if (isNaN(pixels))
+    pixels = this.positioner.offsetWidth;
   return pixels;
 };
 
@@ -355,8 +358,11 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
  * @return {number} The height of the object in pixels.
  */
 org.apache.flex.core.UIBase.prototype.get_height = function() {
+  var pixels;
   var strpixels = this.positioner.style.height;
-  var pixels = parseFloat(strpixels);
+  pixels = parseFloat(strpixels);
+  if (isNaN(pixels))
+    pixels = this.positioner.offsetHeight;
   return pixels;
 };
 

@@ -25,7 +25,7 @@ goog.require('org.apache.flex.core.UIBase');
 org.apache.flex.html.Label = function() {
   goog.base(this);
 
-  this.element = document.createElement('div');
+  this.element = document.createElement('span');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };

@@ -52,6 +52,11 @@ org.apache.flex.html.Container.prototype.createElement =
   this.element = document.createElement('div');
 
   this.positioner = this.element;
+  // absolute positioned children need a non-null
+  // position value in the parent.  It might
+  // get set to 'absolute' if the container is
+  // also absolutely positioned
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   return this.element;
@@ -91,6 +96,13 @@ org.apache.flex.html.Container.prototype.internalChildren =
  * @return {Array} All of the children of the container.
  */
 org.apache.flex.html.Container.prototype.getChildren = function() {
-  return this.element.children;
+  var arr = this.element.children;
+  var comparr = [];
+  var n = arr.length;
+  for (var i = 0; i < n; i++)
+  {
+    comparr.push(arr[i].flexjs_wrapper);
+  }
+  return comparr;
 };
 
