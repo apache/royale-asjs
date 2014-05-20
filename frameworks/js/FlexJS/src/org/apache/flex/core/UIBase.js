@@ -82,7 +82,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
     this.positioner = this.element;
   this.positioner.style.display = 'block';
 
-  this.element['flexjs_wrapper'] = this;
+  this.element.flexjs_wrapper = this;
 
   return this.element;
 };
@@ -150,7 +150,7 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
  */
 org.apache.flex.core.UIBase.prototype.get_parent = function() {
   var p = this.element.parentNode;
-  var wrapper = p['flexjs_wrapper'];
+  var wrapper = p.flexjs_wrapper;
   return wrapper;
 };
 

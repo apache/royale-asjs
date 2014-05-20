@@ -158,9 +158,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
  * @return {Object} The wrapping object.
  */
 Event.prototype.get_target = function() {
-  /* Use array notation for property assignment so the compiler doesn't
-     complain (warn) about the property not being defined */
-  var obj = this.target['flexjs_wrapper'];
+  var obj = this.target.flexjs_wrapper;
   return obj;
 };
 
