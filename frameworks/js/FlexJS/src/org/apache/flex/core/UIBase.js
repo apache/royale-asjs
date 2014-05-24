@@ -279,6 +279,26 @@ org.apache.flex.core.UIBase.prototype.removeBead =
 
 /**
  * @expose
+ * @param {number} alpha The alpha or opacity.
+ */
+org.apache.flex.core.UIBase.prototype.set_alpha = function(alpha) {
+  this.positioner.style.opacity = alpha;
+};
+
+
+/**
+ * @expose
+ * @return {number} The alpha or opacity.
+ */
+org.apache.flex.core.UIBase.prototype.get_alpha = function() {
+  var stralpha = this.positioner.style.opacity;
+  var alpha = parseFloat(stralpha);
+  return alpha;
+};
+
+
+/**
+ * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {

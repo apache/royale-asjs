@@ -52,6 +52,17 @@ package org.apache.flex.core
 		function addedToParent():void;
 		
 		/**
+		 *  The alpha or opacity in the range of 0 to 1.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get alpha():Number;
+		function set alpha(value:Number):void;
+		
+		/**
 		 *  The x co-ordinate or left side position of the bounding box.
 		 *  
 		 *  @langversion 3.0
