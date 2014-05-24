@@ -33,6 +33,9 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	import org.apache.flex.effects.Tween; Tween;
+	import org.apache.flex.effects.Move; Move;
+	import org.apache.flex.effects.Fade; Fade;
 	
 	import org.apache.flex.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;

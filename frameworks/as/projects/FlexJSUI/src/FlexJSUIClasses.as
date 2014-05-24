@@ -96,6 +96,8 @@ internal class FlexJSUIClasses
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
+	import org.apache.flex.events.ValueEvent; ValueEvent;
+	import org.apache.flex.utils.EffectTimer; EffectTimer;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;

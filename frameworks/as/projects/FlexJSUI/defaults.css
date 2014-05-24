@@ -125,6 +125,8 @@ StringItemRenderer
 global
 {
     IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
+    IEffectTimer: ClassReference("org.apache.flex.utils.EffectTimer");
+    effectTimerInterval: 10;
 }
 
 @media -flex-flash
