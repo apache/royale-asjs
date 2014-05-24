@@ -63,6 +63,22 @@ package org.apache.flex.core
 			return values[valueName];
 		}
 		
+		/**
+		 *  @copy org.apache.flex.core.IValuesImpl#newInstance()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function newInstance(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
+		{
+			var c:Class = values[valueName];
+			if (c)
+				return new c();
+			return null;
+		}
+		
         /**
          *  A method that stores a value to be shared with other objects.
          *  It is global, not per instance.  Fancier implementations

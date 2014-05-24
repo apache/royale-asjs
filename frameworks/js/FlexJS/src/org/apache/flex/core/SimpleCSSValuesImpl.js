@@ -153,6 +153,23 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
 
 
 /**
+ * @param {Object} thisObject The object to fetch a value for.
+ * @param {string} valueName The name of the value to fetch.
+ * @param {string=} opt_state The psuedo-state if any for.
+ * @param {Object=} opt_attrs The object with name value pairs that
+ *                       might make a difference.
+ * @return {Object} The value.
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.newInstance =
+function(thisObject, valueName, opt_state, opt_attrs) {
+  var f = this.getValue(thisObject, valueName, opt_state, opt_attrs);
+  if (f)
+    return new f();
+  return null;
+};
+
+
+/**
  * @param {Object} mainclass The main class for the application.
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {

@@ -55,6 +55,19 @@ org.apache.flex.core.IValuesImpl.prototype.getValue =
 
 /**
  * @expose
+ * @param {Object} thisObject The object to fetch a value for.
+ * @param {string} valueName The name of the value to fetch.
+ * @param {string=} opt_state The psuedo-state if any for.
+ * @param {Object=} opt_attrs The object with name value pairs that
+ *                       might make a difference.
+ * @return {Object} The new instance.
+ */
+org.apache.flex.core.IValuesImpl.prototype.newInstance =
+function(thisObject, valueName, opt_state, opt_attrs) {};
+
+
+/**
+ * @expose
  * @param {Object} mainclass The main class for the application.
  */
 org.apache.flex.core.IValuesImpl.prototype.init = function(mainclass) {};

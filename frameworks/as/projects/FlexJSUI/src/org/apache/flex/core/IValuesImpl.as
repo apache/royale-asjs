@@ -49,7 +49,25 @@ package org.apache.flex.core
          */
 		function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*;
 
-        /**
+		/**
+		 *  Returns a new instance based on the value for a given object based on a property name,
+		 *  and optionally, the current state, and a set of property value pairs.  This is a way
+		 *  to avoid using the Class type in AS code.
+		 *
+		 *  @param thisObject The object to get the value for.
+		 *  @param valueName The name of a property. e.g. fontFamily, color, etc.
+		 *  @param state The name of a state. e.g. hovered, visited
+		 *  @param attrs A map of property value pairs that may affect the returned value.
+		 *  @return A value or undefined
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function newInstance(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*;
+
+		/**
          *  Returns a shared instance, instantiating the shared instance if
          *  it doesn't exist.  Often used to share "managers"
          *
