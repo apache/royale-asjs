@@ -121,6 +121,10 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
       (leftOperand instanceof /** @type {Object} */(rightOperand))) {
     return true;
   }
+  if ((rightOperand === Number && typeof leftOperand === 'number') ||
+    (leftOperand instanceof /** @type {Object} */(rightOperand))) {
+    return true;
+  }
 
   if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
     if (checkInterfaces(leftOperand)) {
