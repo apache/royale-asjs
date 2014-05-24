@@ -15,7 +15,6 @@
 goog.provide('org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.html.beads.ListView');
 
 
 
