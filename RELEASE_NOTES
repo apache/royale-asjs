@@ -1,11 +1,11 @@
-Apache FlexJS 0.0.1
+Apache FlexJS 0.0.2
 =================
 
 Apache FlexJS is a next-generation Flex SDK that provides the capability
 to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
 in a browser without Flash.
 
-This is the initial release of Apache FlexJS.  It is an 'alpha' type of release.
+This is the second release of Apache FlexJS.  It is an 'alpha' type of release.
 Expect to find lots of bugs and missing features.
 
 Known Issues
@@ -15,7 +15,9 @@ Adobe Flash Builder Integration
 
 Flash Builder will not generate correct MXML when generating a new Flex Project
 that uses an Apache FlexJS SDK.  It is recommended that you copy an the MXML
-for the main application from one of the FlexJS example applications.
+for the main application from one of the FlexJS example applications.  More details
+can be found on the Apache Flex Wiki at: 
+https://cwiki.apache.org/confluence/display/FLEX/Using+FlexJS+with+Adobe+Flash+Builder
 
 Examples and Compiler Warnings
 
@@ -30,6 +32,18 @@ The DataBindingTest is the most up-to-date example and should allow both the SWF
 version and cross-compiled version to select one of the stock symbols from
 the drop down and hit a button to get a stock price.  Some of other the examples 
 may not cross-compile or work correctly.
+
+Differences from Apache FlexJS 0.0.1 include:
+
+New Features
+------------
+-support for Move and Fade effects
+-example using Google Maps
+-support for Cordova Application, Camera, and Weinre
+
+Bug Fixes
+---------
+-FLEX-34258 Error cross-compiling on Windows
 
 Please report new issues to our bugbase at:
 
