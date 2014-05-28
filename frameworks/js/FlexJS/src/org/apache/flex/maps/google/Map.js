@@ -116,14 +116,14 @@ org.apache.flex.maps.google.Map.prototype.setZoom =
  */
 org.apache.flex.maps.google.Map.prototype.centerOnAddress = function(address) {
   if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
-  this.geocoder.geocode( { "address": address}, goog.bind(this.positionHandler, this));
+  this.geocoder.geocode({ 'address': address}, goog.bind(this.positionHandler, this));
 };
 
 
 /**
  * @expose
  */
-org.apache.flex.maps.google.Map.prototypemarkcurrentlocation = function() {
+org.apache.flex.maps.google.Map.prototype.markcurrentlocation = function() {
   var marker = new google.maps.Marker({
     map: this.map,
     position: this.currentCenter
@@ -153,7 +153,7 @@ org.apache.flex.maps.google.Map.prototype.positionHandler =
   if (status == window['google']['maps']['GeocoderStatus']['OK']) {
     this.currentCenter = results[0]['geometry']['location'];
     this.map['setCenter'](this.currentCenter);
-    window.dispatchEvent("mapCentered");
+    window.dispatchEvent('mapCentered');
   } else {
     alert('Geocode was not successful for the following reason: ' + status);
   }

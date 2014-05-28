@@ -69,7 +69,7 @@ org.apache.flex.utils.EffectTimer.prototype.stop = function() {
 /**
  * @expose
  * Starts the timer.
- * @return {number} The start time
+ * @return {number} The start time.
  */
 org.apache.flex.utils.EffectTimer.prototype.start = function() {
   this.timerInterval =
