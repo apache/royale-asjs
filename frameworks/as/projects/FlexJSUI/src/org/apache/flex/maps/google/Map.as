@@ -108,6 +108,71 @@ package org.apache.flex.maps.google
 		}
 		
 		/**
+		 * Centers the map on the address given.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function centerOnAddress( address:String ) : void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.centerOnAddress(address);
+			}
+		}
+		
+		/**
+		 * Marks the current center of the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function markCurrentLocation() : void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.markCurrentLocation();
+			}
+		}
+		
+		/**
+		 * Performs a search near the center of map. The result is a set of
+		 * markers displayed on the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function nearbySearch(placeName:String):void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.nearbySearch(placeName);
+			}
+		}
+		
+		/**
+		 * Clears the search result markers from the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function clearSearchResults():void
+		{
+			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
+			if (viewBead) {
+				viewBead.clearSearchResults();
+			}
+		}
+		
+		/**
 		 *  Translates the given address into a geo-location, moves the map to
 		 *  that location, and places a marker on that location.
 		 *

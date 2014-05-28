@@ -112,6 +112,27 @@ org.apache.flex.maps.google.Map.prototype.setZoom =
 
 /**
  * @expose
+ * @param {string} address The new center of the map.
+ */
+org.apache.flex.maps.google.Map.prototype.centerOnAddress = function(address) {
+  if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+  this.geocoder.geocode( { "address": address}, goog.bind(this.positionHandler, this));
+};
+
+
+/**
+ * @expose
+ */
+org.apache.flex.maps.google.Map.prototypemarkcurrentlocation = function() {
+  var marker = new google.maps.Marker({
+    map: this.map,
+    position: this.currentCenter
+  });
+};
+
+
+/**
+ * @expose
  * @param {string} address The address to locate and mark on the map.
  */
 org.apache.flex.maps.google.Map.prototype.markAddress =
@@ -127,13 +148,30 @@ org.apache.flex.maps.google.Map.prototype.markAddress =
  * @param {Array} results The found location(s).
  * @param {string} status Status of the call.
  */
+org.apache.flex.maps.google.Map.prototype.positionHandler =
+    function(results, status) {
+  if (status == window['google']['maps']['GeocoderStatus']['OK']) {
+    this.currentCenter = results[0]['geometry']['location'];
+    this.map['setCenter'](this.currentCenter);
+    window.dispatchEvent("mapCentered");
+  } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+  }
+};
+
+
+/**
+ * @param {Array} results The found location(s).
+ * @param {string} status Status of the call.
+ */
 org.apache.flex.maps.google.Map.prototype.geoCodeHandler =
     function(results, status) {
   if (status == window['google']['maps']['GeocoderStatus']['OK']) {
-    this.map['setCenter'](results[0]['geometry']['location']);
+    this.currentCenter = results[0]['geometry']['location'];
+    this.map['setCenter'](this.currentCenter);
     var marker = new window['google']['maps']['Marker']({
       map: this.map,
-      position: results[0]['geometry']['location']
+      position: this.currentCenter
     });
   } else {
     alert('Geocode was not successful for the following reason: ' + status);

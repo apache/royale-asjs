@@ -107,13 +107,89 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 		
-		public function geoCodeAndMarkAddress(address:String):void
+		/**
+		 * @private
+		 * This function may be dropped.
+		 */
+		private function geoCodeAndMarkAddress(address:String):void
 		{
 			if (_loader && page) {
 				_loader.window.codeaddress(address);
 			}
 		}
 		
+		/**
+		 * Centers the map on the address given.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function centerOnAddress(address:String):void
+		{
+			if (_loader && page) {
+				//_loader.window.addEventListener("mapCentered",onMapCentered);
+				_loader.window.map.center_changed = onMapCentered;
+				_loader.window.centeronaddress(address);
+			}
+		}
+		
+		/**
+		 * Marks the current center of the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function markCurrentLocation():void
+		{
+			if (_loader && page) {
+				_loader.window.markcurrentlocation();
+			}
+		}
+		
+		/**
+		 * Performs a search near the center of map. The result is a set of
+		 * markers displayed on the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function nearbySearch(placeName:String):void
+		{
+			if (_loader && page) {
+				_loader.window.addEventListener("searchResults",onSearchResults);
+				_loader.window.nearbysearch(placeName);
+			}
+		}
+		
+		/**
+		 * Clears the search result markers from the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function clearSearchResults():void
+		{
+			if (_loader && page) {
+				_loader.window.clearmarkers();
+			}
+		}
+		
+		/**
+		 * Sets the zoom factor of the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function setZoom(zoom:Number):void
 		{
 			if (_loader && page) {
@@ -128,6 +204,22 @@ package org.apache.flex.maps.google.beads
 		{
 			_loader.width = UIBase(_strand).width;
 			_loader.height = UIBase(_strand).height;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onMapCentered():void
+		{
+			trace("The map has been centered");
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onSearchResults(event:*):void
+		{
+			trace("We have results");
 		}
 		
 		/**
@@ -147,11 +239,15 @@ package org.apache.flex.maps.google.beads
 			'    <script type="text/javascript"'+
 			'      src="https://maps.googleapis.com/maps/api/js?v=3.exp';
 		
-		private static var pageTemplateEnd:String = '&sensor=false">'+
+		private static var pageTemplateEnd:String = '&libraries=places&sensor=false">'+
 			'    </script>'+
 			'    <script type="text/javascript">'+
 			'      var map;'+
 			'      var geocoder;'+
+			'      var currentCenter;' +
+			'      var service;' +
+			'      var places;' +
+			'      var markers;'+
 			'      function mapit(lat, lng, zoomLevel) {'+
 			'        var mapOptions = {'+
 			'          center: new google.maps.LatLng(lat, lng),'+
@@ -164,16 +260,64 @@ package org.apache.flex.maps.google.beads
 			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
 		    '        geocoder.geocode( { "address": address}, function(results, status) {'+
 			'           if (status == google.maps.GeocoderStatus.OK) {'+
-			'             map.setCenter(results[0].geometry.location);'+
+			'             currentCenter = results[0].geometry.location;'+
+			'             map.setCenter(currentCenter);'+
 			'             var marker = new google.maps.Marker({'+
 			'                map: map,'+
-			'                position: results[0].geometry.location,'+
+			'                position: currentCenter,'+
 			'            });'+
 			'            } else {'+
 			'                alert("Geocode was not successful for the following reason: " + status);'+
 			'            }'+
 			'        });'+
 		    '      };'+
+			'      function centeronaddress(address) {'+
+			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
+			'        geocoder.geocode( { "address": address}, function(results, status) {'+
+			'          if (status == google.maps.GeocoderStatus.OK) {'+
+			'             currentCenter = results[0].geometry.location;'+
+			'             map.setCenter(currentCenter);' +
+			'          } else {'+
+			'                alert("Geocode was not successful for the following reason: " + status);'+
+			'          }'+
+			'        });'+
+			'      };'+
+			'      function markcurrentlocation() {'+
+			'         createMarker(currentCenter);'+
+			'      };' +
+			'      function createMarker(location) {' +
+			'         var marker = new google.maps.Marker({'+
+			'            map: map,'+
+			'            position: location,'+
+			'         });' +
+			'         return marker;'+
+			'      };' +
+			'      function clearmarkers() {' +
+			'        if (markers) {' +
+			'          for(var i=0; i < markers.length; i++) {' +
+			'             markers[i].setMap(null);' +
+			'          }' +
+			'          markers = null;' +
+			'        }' +
+			'      };'+
+			'      function nearbysearch(placename) {' +
+			'         if (markers == null) markers = [];' +
+			'         service = new google.maps.places.PlacesService(map);'+
+		    '         service.nearbySearch({"location": currentCenter,' +
+			'           "radius": 5000,' +
+			'           "name": placename}, function(results, status) {' +
+			'              places = results;' +
+			'              if (status == google.maps.places.PlacesServiceStatus.OK) {' +
+			'                 for(var i=0; i < results.length; i++) {' +
+			'                    var place = results[i];' +
+			'                    markers.push(createMarker(place.geometry.location));' +
+			'                 }' +
+			'                 var event = document.createEvent("Event");'+
+            '                 event.initEvent("searchResults", true, true);' +
+			'                 window.dispatchEvent(event);' +
+			'              }' +
+			'          });'+
+			'      };'+
 			'      function initialize() {'+
 			'        mapit(-34.397, 150.644, 8);'+
 			'      };'+
