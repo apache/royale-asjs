@@ -108,10 +108,15 @@ package org.apache.flex.maps.google.beads
 		}
 		
 		/**
-		 * @private
-		 * This function may be dropped.
+		 *  Finds the given address and places a marker on it. This function may be dropped
+		 *  since centerOnAddress + markCurrentLocation does the same thing.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
-		private function geoCodeAndMarkAddress(address:String):void
+		public function geoCodeAndMarkAddress(address:String):void
 		{
 			if (_loader && page) {
 				_loader.window.codeaddress(address);
@@ -312,7 +317,8 @@ package org.apache.flex.maps.google.beads
 			'                    var place = results[i];' +
 			'                    markers.push(createMarker(place.geometry.location));' +
 			'                 }' +
-			'                 var event = document.createEvent("Event");'+
+			'                 var event = document.createEvent("Event");' +
+			'                 event.results = markers;'+
             '                 event.initEvent("searchResults", true, true);' +
 			'                 window.dispatchEvent(event);' +
 			'              }' +
