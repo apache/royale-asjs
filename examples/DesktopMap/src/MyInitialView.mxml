@@ -63,6 +63,29 @@ limitations under the License.
 				longInput.text = String(latlng.lng);
 			}
 			
+			private function codeAddress() : void
+			{
+				map.markAddress(mapLocation.text);
+				map.setZoom(12);
+			}
+			
+			private function searchOnMap() : void
+			{
+				map.nearbySearch(search.text);
+				map.setZoom(12);
+			}
+			
+			private function clearSearchResults() : void
+			{
+				map.clearSearchResults();
+			}
+			
+			private function orientMap() : void
+			{
+				map.centerOnAddress(mapLocation.text);
+				map.setZoom(12);
+			}
+			
 		]]>
     </fx:Script>
 	
@@ -81,6 +104,34 @@ limitations under the License.
 			<basic:NonVirtualVerticalLayout />
 		</basic:beads>
 		
+		<basic:Container>
+			<basic:beads>
+				<basic:NonVirtualHorizontalLayout />
+			</basic:beads>
+			<basic:Label text="Location:" />
+			<basic:TextInput id="mapLocation" />
+			<basic:TextButton text="Go" click="orientMap()" />
+		</basic:Container>
+		
+		<basic:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+		
+		<basic:Container>
+			<basic:beads>
+				<basic:NonVirtualHorizontalLayout />
+			</basic:beads>
+			<basic:Label text="Search on Map:" />
+			<basic:TextInput id="search" />
+			<basic:TextButton text="Find" click="searchOnMap()" />
+			<basic:TextButton text="Clear" click="clearSearchResults()" />
+		</basic:Container>
+		
+		<basic:Label text="History:" />
+		
+		<!--<basic:List id="historyList" />-->
+		<basic:DropDownList id="list" width="100" height="17"
+							change="changeCity(event)"
+							dataProvider="{MyModel(applicationModel).cities}" />
+		
 		<basic:Label text="Lat:" />
 		<basic:TextInput id="latInput" text="-34.397" />
 		
@@ -91,12 +142,6 @@ limitations under the License.
 		<basic:TextInput id="zoomInput" text="8" />
 		
 		<basic:TextButton text="MapIt" click="mapIt()" />
-		
-		<basic:DropDownList id="list" width="100" height="17"
-							change="changeCity(event)"
-							dataProvider="{MyModel(applicationModel).cities}" />
 	</basic:Container>
-
-	<basic:Map id="map" x="150" y="25" width="300" height="300" />
 
 </basic:ViewBase>
