@@ -44,14 +44,15 @@
     <property file="${FLEXJS_HOME}/installer.properties/en_US.properties"/>
     <property name="download.dir" value="${FLEXJS_HOME}/in"/>
     
-    <property name="air.sdk.version" value="3.9"/>
-    <property name="flash.sdk.version" value="11.9"/>
-    <property name="flex.sdk.version" value="4.12.0"/>
+    <property name="air.sdk.version" value="13.0"/>
+    <property name="flash.sdk.version" value="13.0"/>
+    <property name="flex.sdk.version" value="4.12.1"/>
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
     
     <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
+    <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
     
     <property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml" />
     
@@ -110,6 +111,15 @@
         </and>
     </condition>
 
+    <target name="get-md5-data" depends="get-air-md5-data,get-flash-md5-data">
+	</target>
+	<target name="get-air-md5-data" if="air-has-md5">
+        <property name="air.sdk.url.md5" refid="${air.sdk.url.md5.ref}" />	
+	</target>
+	<target name="get-flash-md5-data" if="flash-has-md5">
+        <property name="flash.sdk.url.md5" refid="${flash.sdk.url.md5.ref}" />	
+	</target>
+	
     <target name="get-data">
         <property name="do-not-cache-next-get" value="true" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
@@ -118,10 +128,18 @@
         <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
         <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
         <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
+        <property name="air.sdk.url.md5.ref" value="air.sdk.md5.${platform}.${air.sdk.version}" />
+		<condition property="air-has-md5">
+			<isreference refid="${air.sdk.url.md5.ref}" />
+		</condition>
         <property name="flash.sdk.url.path.ref" value="flash.sdk.path.${flash.sdk.version}" />
         <property name="flash.sdk.url.path" refid="${flash.sdk.url.path.ref}" />
         <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
         <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
+        <property name="flash.sdk.url.md5.ref" value="flash.sdk.md5.${flash.sdk.version}" />
+		<condition property="flash-has-md5">
+			<isreference refid="${flash.sdk.url.md5.ref}" />
+		</condition>
         <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
         
@@ -135,7 +153,11 @@
         <condition property="flex.uses.mirror" value="true" >
             <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
         </condition>
+        <condition property="flex.md5.server.url" value="https://dist.apache.org/repos/dist/release" >
+            <equals arg1="${flex.uses.mirror}" arg2="true" />
+        </condition>
         <property name="flex.server.url" value="http://archive.apache.org/dist" />
+        <property name="flex.md5.server.url" value="http://archive.apache.org/dist" />
         <property name="flex.folder" value="flex/${flex.sdk.version}/binaries" />
         <property name="flex.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
         
@@ -169,12 +191,15 @@
                  <equals arg1="${falcon.version}" arg2="${falcon.latest.version}" />
              </and>
          </condition>
+        <condition property="falcon.md5.server.url" value="https://dist.apache.org/repos/dist/release" >
+            <equals arg1="${falcon.uses.mirror}" arg2="true" />
+        </condition>
         <property name="falcon.server.url" value="http://archive.apache.org/dist" />
         <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
     
-    <target name="install" depends="get-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
     
@@ -289,6 +314,7 @@
             <param name="folder" value="${falcon.folder}" />
             <param name="file" value="${falcon.file}" />
             <param name="dest" value="${download.dir}/${falcon.file}" />
+			<param name="message" value="${INFO_INSTALLING_FALCON}" />
         </antcall>
         <antcall target="falcon_get_download" >
             <param name="server" value="${falcon.server.url}" />
@@ -296,6 +322,14 @@
             <param name="file" value="${falcon.file}" />
             <param name="dest" value="${download.dir}/${falcon.file}" />
         </antcall>
+		<get src="${falcon.md5.server.url}/${falcon.folder}/${falcon.file}.md5" verbose="true" dest="${download.dir}/${falcon.file}.md5" />
+        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${falcon.file}</echo>
+		<checksum file="${download.dir}/${falcon.file}" algorithm="MD5" verifyproperty="falcon.ok"/>
+        <fail message="FalconJX download failed">
+            <condition>
+				<equals arg1="falcon.ok" arg2="false" />
+            </condition>
+        </fail>
     </target>
 
     <target name="falcon_get_from_mirror" if="falcon.uses.mirror" >
@@ -304,6 +338,7 @@
             <param name="folder" value="${folder}" />
             <param name="file" value="${file}" />
             <param name="dest" value="${dest}" />
+            <param name="message" value="${message}" />
         </antcall>
     </target>
 
@@ -352,6 +387,7 @@
             <param name="folder" value="${flex.folder}" />
             <param name="file" value="${flex.file}" />
             <param name="dest" value="${download.dir}/${flex.file}" />
+			<param name="message" value="${INFO_INSTALLING_FLEX}" />
         </antcall>
         <antcall target="flex_get_download" >
             <param name="server" value="${flex.server.url}" />
@@ -359,6 +395,14 @@
             <param name="file" value="${flex.file}" />
             <param name="dest" value="${download.dir}/${flex.file}" />
         </antcall>
+		<get src="${flex.md5.server.url}/${flex.folder}/${flex.file}.md5" verbose="true" dest="${download.dir}/${flex.file}.md5" />
+        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${flex.file}</echo>
+		<checksum file="${download.dir}/${flex.file}" algorithm="MD5" verifyproperty="flex.ok"/>
+        <fail message="Flex SDK download failed">
+            <condition>
+				<equals arg1="flex.ok" arg2="false"/>
+            </condition>
+        </fail>
     </target>
 
     <target name="flex_get_from_mirror" if="flex.uses.mirror" >
@@ -367,6 +411,7 @@
             <param name="folder" value="${folder}" />
             <param name="file" value="${file}" />
             <param name="dest" value="${dest}" />
+            <param name="message" value="${message}" />
         </antcall>
     </target>
 
@@ -403,6 +448,13 @@
         <get src="${goog.lib.url.path}/${goog.lib.url.file}"
         dest="${download.dir}/${goog.lib.url.file}"
         verbose="false"/>
+        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${goog.lib.url.file}</echo>
+		<checksum file="${download.dir}/${goog.lib.url.file}" algorithm="MD5" property="${goog.lib.md5}" verifyproperty="goog.ok"/>
+        <fail message="Flex SDK download failed">
+            <condition>
+				<equals arg1="${goog.ok}" arg2="false" />
+            </condition>
+        </fail>
     </target>
     
     <target name="air-check" description="Checks if AIR SDK has been downloaded.">
@@ -429,6 +481,18 @@
         <get src="${air.sdk.url.path}/${air.sdk.url.file}"
             dest="${download.dir}/${air.sdk.url.file}"
             verbose="false"/>
+        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${air.sdk.url.file}</echo>
+		<checksum file="${download.dir}/${air.sdk.url.file}" algorithm="MD5" property="${air.sdk.url.md5}" verifyproperty="air.ok"/>
+        <fail message="AIR SDK download failed">
+            <condition>
+				<and>
+					<equals arg1="${air.ok}" arg2="false" />
+					<not>
+						<equals arg1="${air.sdk.url.md5}" arg2="" />
+					</not>
+				</and>
+            </condition>
+        </fail>
     </target>
     
     <target name="air-setup-win" if="isWindows">
@@ -487,8 +551,18 @@
             <param name="destdir" value="${FLEXJS_HOME}" />
         </antcall>
         <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="airsdk.xml"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
             <param name="srcdir" value="bin" />
             <param name="filename" value="adl"/>
+            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adt"/>
             <param name="destdir" value="${FLEXJS_HOME}/bin" />
         </antcall>
         <antcall target="mac-copy-file">
@@ -543,6 +617,14 @@
         </antcall>
         <antcall target="mac-copy-dir">
             <param name="srcdir" value="templates/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/extensions" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/sdk" />
             <param name="destdir" value="${FLEXJS_HOME}/templates" />
         </antcall>
     </target>
@@ -601,6 +683,18 @@
         <get src="${flash.sdk.url.path}/${flash.sdk.url.file}"
         dest="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc"
         verbose="false"/>
+        <echo>${INFO_VALIDATING_FILE} ${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc</echo>
+		<checksum file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" algorithm="MD5" property="${flash.sdk.url.md5}" verifyproperty="flash.ok"/>
+        <fail message="Flash SDK download failed">
+			<condition>
+				<and>
+					<equals arg1="${flash.ok}" arg2="false" />
+					<not>
+						<equals arg1="${flash.sdk.url.md5}" arg2="" />
+					</not>
+				</and>
+			</condition>
+        </fail>
     </target>
     
     <!-- swfobject.js (Version 2.2) -->
@@ -623,6 +717,13 @@
         <get src="http://swfobject.googlecode.com/files/swfobject_2_2.zip"
             dest="${download.dir}/swfobject_2_2.zip"
             verbose="false"/>
+        <echo>${INFO_VALIDATING_FILE} ${download.dir}/swfobject_2_2.zip</echo>
+		<checksum file="${download.dir}/swfobject_2_2.zip" algorithm="MD5" property="dec4b83b3e73f3f0011a075cd5385b9c" verifyproperty="swfobject.ok"/>
+        <fail message="SWFObject download failed">
+            <condition>
+				<equals arg1="${swfobject.ok}" arg2="false" />
+            </condition>
+        </fail>
         
         <echo>${INFO_DOWNLOADED}</echo>
         <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
@@ -802,7 +903,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         </replace>
         <property file="${basedir}/mirror.json" />
         <delete file="${basedir}/mirror.json" />
-        <echo>Using mirror: ${preferred}</echo>
+        <echo>${message} ${preferred}${folder}/${file}</echo>
         <get src="${preferred}${folder}/${file}" dest="${dest}" />
     </target>
 
