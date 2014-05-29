@@ -78,6 +78,7 @@
         <ant dir="${basedir}/DataBindingTest"/>
         <ant dir="${basedir}/DataGridExample"/>
         <ant dir="${basedir}/DesktopMap"/>
+        <ant dir="${basedir}/EffectsExample"/>
         <ant dir="${basedir}/FlexJSTest_basic"/>
         <ant dir="${basedir}/FlexJSTest_createjs"/>
         <ant dir="${basedir}/FlexJSTest_HTML5"/>
@@ -85,6 +86,7 @@
         <ant dir="${basedir}/FlexJSTest_Panel"/>
         <ant dir="${basedir}/FlexJSTest_SVG"/>
         <ant dir="${basedir}/FormatExample"/>
+        <ant dir="${basedir}/FormExample"/>
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/MobileTrader"/>
@@ -109,6 +111,7 @@
         <ant dir="${basedir}/DataBindingTest" target="clean"/>
         <ant dir="${basedir}/DataGridExample" target="clean"/>
         <ant dir="${basedir}/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/EffectsExample" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_HTML5" target="clean"/>
@@ -116,6 +119,7 @@
         <ant dir="${basedir}/FlexJSTest_Panel" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_SVG" target="clean"/>
         <ant dir="${basedir}/FormatExample" target="clean"/>
+        <ant dir="${basedir}/FormExample" target="clean"/>
         <ant dir="${basedir}/LanguageTests" target="clean"/>
         <ant dir="${basedir}/ListsTest" target="clean"/>
         <ant dir="${basedir}/StatesTest" target="clean"/>
