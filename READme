@@ -189,6 +189,14 @@ Using the Binary Distribution
 
     Another option is to use the InstallApacheFlex (version 3.0 or higher).
 
+    Other Ant targets, such as the examples target, expect certain environment
+    variables to be set as described earlier in this README.  However, because
+    the installer copies various SDKs into an IDE compatible SDK, you can set
+    PLAYERGLOBAL_HOME to the absolute path of the distribution's 
+    frameworks/libs/player folder, set FALCON_HOME to the SDK's root folder,
+    set FALCONJX_HOME to the SDK's js folder, and set GOOG_HOME to the SDK's
+    js/lib/google/closure-library folder. 
+
 Building the Source in the Source Distribution
 ----------------------------------------------
 
