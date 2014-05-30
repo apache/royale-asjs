@@ -22,6 +22,13 @@
 
     <property name="FLEXJS_HOME" location="${basedir}"/>
     
+	<!-- this script supports the usingDownloadCache property and
+	     downloadCacheFolder property to cache downloads in the
+		 folder specified by downloadCacheFolder.  This can make
+		 a huge difference in future runs although there is some
+		 risk around caching bad downloads and/or needing to
+		 clean up the cache -->
+
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
     <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
@@ -50,7 +57,8 @@
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
     
-    <property name="goog.lib.url.path" value="https://closure-library.googlecode.com/files" />
+    <property name="goog.lib.url.server" value="https://closure-library.googlecode.com" />
+    <property name="goog.lib.url.folder" value="files" />
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
     
@@ -124,16 +132,20 @@
         <property name="do-not-cache-next-get" value="true" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
-        <property name="air.sdk.url.path.ref" value="air.sdk.path.${platform}.${air.sdk.version}" />
-        <property name="air.sdk.url.path" refid="${air.sdk.url.path.ref}" />
+        <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.server" refid="${air.sdk.url.server.ref}" />
+        <property name="air.sdk.url.folder.ref" value="air.sdk.folder.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.folder" refid="${air.sdk.url.folder.ref}" />
         <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
         <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
         <property name="air.sdk.url.md5.ref" value="air.sdk.md5.${platform}.${air.sdk.version}" />
 		<condition property="air-has-md5">
 			<isreference refid="${air.sdk.url.md5.ref}" />
 		</condition>
-        <property name="flash.sdk.url.path.ref" value="flash.sdk.path.${flash.sdk.version}" />
-        <property name="flash.sdk.url.path" refid="${flash.sdk.url.path.ref}" />
+        <property name="flash.sdk.url.server.ref" value="flash.sdk.server.${flash.sdk.version}" />
+        <property name="flash.sdk.url.server" refid="${flash.sdk.url.server.ref}" />
+        <property name="flash.sdk.url.folder.ref" value="flash.sdk.folder.${flash.sdk.version}" />
+        <property name="flash.sdk.url.folder" refid="${flash.sdk.url.folder.ref}" />
         <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
         <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
         <property name="flash.sdk.url.md5.ref" value="flash.sdk.md5.${flash.sdk.version}" />
@@ -308,51 +320,48 @@
     </target>
     <target name="falcon-get" depends="falcon-get-check,set-falcon-cache-flag" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
+		<get src="${falcon.md5.server.url}/${falcon.folder}/${falcon.file}.md5" verbose="true" dest="${download.dir}/${falcon.file}.md5" />
         <echo>${INFO_INSTALLING_FALCON} ${falcon.server.url}/${falcon.folder}/${falcon.file}</echo>
         <antcall target="falcon_get_from_mirror" >
             <param name="server" value="${falcon.server.url}" />
+            <param name="md5server" value="${falcon.md5.server.url}" />
             <param name="folder" value="${falcon.folder}" />
             <param name="file" value="${falcon.file}" />
             <param name="dest" value="${download.dir}/${falcon.file}" />
 			<param name="message" value="${INFO_INSTALLING_FALCON}" />
+			<param name="failmessage" value="FalconJX download failed" />
         </antcall>
         <antcall target="falcon_get_download" >
             <param name="server" value="${falcon.server.url}" />
+            <param name="md5server" value="${falcon.md5.server.url}" />
             <param name="folder" value="${falcon.folder}" />
             <param name="file" value="${falcon.file}" />
             <param name="dest" value="${download.dir}/${falcon.file}" />
+			<param name="message" value="${INFO_INSTALLING_FALCON}" />
+			<param name="failmessage" value="FalconJX download failed" />
         </antcall>
-		<get src="${falcon.md5.server.url}/${falcon.folder}/${falcon.file}.md5" verbose="true" dest="${download.dir}/${falcon.file}.md5" />
-        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${falcon.file}</echo>
-		<checksum file="${download.dir}/${falcon.file}" algorithm="MD5" verifyproperty="falcon.ok"/>
-        <fail message="FalconJX download failed">
-            <condition>
-				<equals arg1="falcon.ok" arg2="false" />
-            </condition>
-        </fail>
     </target>
 
     <target name="falcon_get_from_mirror" if="falcon.uses.mirror" >
         <antcall target="download_using_mirror" >
-            <param name="server" value="${server}" />
-            <param name="folder" value="${folder}" />
-            <param name="file" value="${file}" />
-            <param name="dest" value="${dest}" />
-            <param name="message" value="${message}" />
+            <param name="srcMD5Domain" value="${md5server}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
         </antcall>
     </target>
 
     <target name="falcon_get_download" unless="falcon.uses.mirror" >
         <antcall target="download_using_get" >
-            <param name="server" value="${server}" />
-            <param name="folder" value="${folder}" />
-            <param name="file" value="${file}" />
-            <param name="dest" value="${dest}" />
+            <param name="srcMD5Domain" value="${md5server}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
         </antcall>
     </target>
 
     <target name="set-falcon-cache-flag" if="nightly" >
-        <property name="do-not-cache-next-get" value="true" />
+        <property name="skipCache" value="true" />
     </target>
     
     <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
@@ -381,6 +390,7 @@
         <available file="${download.dir}/${flex.file}" property="flex.downloaded" />
     </target>
     <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
+		<get src="${flex.md5.server.url}/${flex.folder}/${flex.file}.md5" verbose="true" dest="${download.dir}/${flex.file}.md5" />
         <echo>${INFO_INSTALLING_FLEX} ${flex.server.url}/${flex.folder}/${flex.file}</echo>
         <antcall target="flex_get_from_mirror" >
             <param name="server" value="${flex.server.url}" />
@@ -388,38 +398,32 @@
             <param name="file" value="${flex.file}" />
             <param name="dest" value="${download.dir}/${flex.file}" />
 			<param name="message" value="${INFO_INSTALLING_FLEX}" />
+			<param name="failmessage" value="Flex SDK download failed" />
         </antcall>
         <antcall target="flex_get_download" >
             <param name="server" value="${flex.server.url}" />
             <param name="folder" value="${flex.folder}" />
             <param name="file" value="${flex.file}" />
             <param name="dest" value="${download.dir}/${flex.file}" />
+			<param name="message" value="${INFO_INSTALLING_FLEX}" />
+			<param name="failmessage" value="Flex SDK download failed" />
         </antcall>
-		<get src="${flex.md5.server.url}/${flex.folder}/${flex.file}.md5" verbose="true" dest="${download.dir}/${flex.file}.md5" />
-        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${flex.file}</echo>
-		<checksum file="${download.dir}/${flex.file}" algorithm="MD5" verifyproperty="flex.ok"/>
-        <fail message="Flex SDK download failed">
-            <condition>
-				<equals arg1="flex.ok" arg2="false"/>
-            </condition>
-        </fail>
     </target>
 
     <target name="flex_get_from_mirror" if="flex.uses.mirror" >
         <antcall target="download_using_mirror" >
-            <param name="server" value="${server}" />
-            <param name="folder" value="${folder}" />
-            <param name="file" value="${file}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
             <param name="dest" value="${dest}" />
-            <param name="message" value="${message}" />
         </antcall>
     </target>
 
     <target name="flex_get_download" unless="flex.uses.mirror" >
         <antcall target="download_using_get" >
-            <param name="server" value="${server}" />
-            <param name="folder" value="${folder}" />
-            <param name="file" value="${file}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
             <param name="dest" value="${dest}" />
         </antcall>
     </target>
@@ -444,17 +448,15 @@
     </target>
             
     <target name="goog-get" depends="goog-get-check" unless="goog.downloaded" >
-        <echo>${INFO_INSTALLING_GOOG} ${goog.lib.url.path}/${goog.lib.url.file}</echo>
-        <get src="${goog.lib.url.path}/${goog.lib.url.file}"
-        dest="${download.dir}/${goog.lib.url.file}"
-        verbose="false"/>
-        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${goog.lib.url.file}</echo>
-		<checksum file="${download.dir}/${goog.lib.url.file}" algorithm="MD5" property="${goog.lib.md5}" verifyproperty="goog.ok"/>
-        <fail message="Flex SDK download failed">
-            <condition>
-				<equals arg1="${goog.ok}" arg2="false" />
-            </condition>
-        </fail>
+        <echo>${INFO_INSTALLING_GOOG} ${goog.lib.url.server}/${goog.lib.url.folder}/${goog.lib.url.file}</echo>
+        <antcall target="download_using_get" >
+            <param name="srcDomain" value="${goog.lib.url.server}" />
+            <param name="srcFolder" value="${goog.lib.url.folder}" />
+            <param name="srcFile" value="${goog.lib.url.file}" />
+            <param name="dest" value="${download.dir}/${goog.lib.url.file}" />
+			<param name="failmessage" value="Google Closure Library download failed" />
+			<param name="md5" value="${goog.lib.md5}" />
+        </antcall>
     </target>
     
     <target name="air-check" description="Checks if AIR SDK has been downloaded.">
@@ -477,22 +479,22 @@
     </target>
         
     <target name="air-get" depends="air-get-check" unless="air.downloaded" >
-        <echo>${AIRDownloadEcho} ${air.sdk.url.path}/${air.sdk.url.file}</echo>
-        <get src="${air.sdk.url.path}/${air.sdk.url.file}"
-            dest="${download.dir}/${air.sdk.url.file}"
-            verbose="false"/>
-        <echo>${INFO_VALIDATING_FILE} ${download.dir}/${air.sdk.url.file}</echo>
-		<checksum file="${download.dir}/${air.sdk.url.file}" algorithm="MD5" property="${air.sdk.url.md5}" verifyproperty="air.ok"/>
-        <fail message="AIR SDK download failed">
-            <condition>
-				<and>
-					<equals arg1="${air.ok}" arg2="false" />
-					<not>
-						<equals arg1="${air.sdk.url.md5}" arg2="" />
-					</not>
-				</and>
-            </condition>
-        </fail>
+		<echo>${AIRDownloadEcho} ${air.sdk.url.server}/${air.sdk.url.folder}/${air.sdk.url.file}</echo>
+        <antcall target="download_file" >
+            <param name="srcDomain" value="${air.sdk.url.server}" />
+            <param name="srcFolder" value="${air.sdk.url.folder}" />
+            <param name="srcFile" value="${air.sdk.url.file}" />
+            <param name="dest" value="${download.dir}/${air.sdk.url.file}" />
+			<param name="failmessage" value="AIR SDK download failed" />
+        </antcall>
+        <antcall target="download_file_with_md5" >
+            <param name="srcDomain" value="${air.sdk.url.server}" />
+            <param name="srcFolder" value="${air.sdk.url.folder}" />
+            <param name="srcFile" value="${air.sdk.url.file}" />
+            <param name="dest" value="${download.dir}/${air.sdk.url.file}" />
+			<param name="failmessage" value="AIR SDK download failed" />
+			<param name="md5" value="${air.sdk.url.md5}" />
+        </antcall>
     </target>
     
     <target name="air-setup-win" if="isWindows">
@@ -679,22 +681,24 @@
         
         <mkdir dir="${download.dir}"/>
         <mkdir dir="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}"/>
-        <echo>${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.path}/${flash.sdk.url.file}</echo>
-        <get src="${flash.sdk.url.path}/${flash.sdk.url.file}"
-        dest="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc"
-        verbose="false"/>
-        <echo>${INFO_VALIDATING_FILE} ${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc</echo>
-		<checksum file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" algorithm="MD5" property="${flash.sdk.url.md5}" verifyproperty="flash.ok"/>
-        <fail message="Flash SDK download failed">
-			<condition>
-				<and>
-					<equals arg1="${flash.ok}" arg2="false" />
-					<not>
-						<equals arg1="${flash.sdk.url.md5}" arg2="" />
-					</not>
-				</and>
-			</condition>
-        </fail>
+        <echo>${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}</echo>
+        <antcall target="download_file" >
+            <param name="srcDomain" value="${flash.sdk.url.server}" />
+            <param name="srcFolder" value="${flash.sdk.url.folder}" />
+            <param name="srcFile" value="${flash.sdk.url.file}" />
+            <param name="dest" value="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" />
+			<param name="message" value="${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}" />
+			<param name="failmessage" value="Flash SDK download failed" />
+        </antcall>
+        <antcall target="download_file_with_md5" >
+            <param name="srcDomain" value="${flash.sdk.url.server}" />
+            <param name="srcFolder" value="${flash.sdk.url.folder}" />
+            <param name="srcFile" value="${flash.sdk.url.file}" />
+            <param name="dest" value="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" />
+			<param name="message" value="${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}" />
+			<param name="failmessage" value="Flash SDK download failed" />
+			<param name="md5" value="${flash.sdk.url.md5}" />
+        </antcall>
     </target>
     
     <!-- swfobject.js (Version 2.2) -->
@@ -711,20 +715,16 @@
         <replace file="${basedir}/swfobject.properties" token="{1}" value="http://swfobject.googlecode.com/files" />
         <property file="${basedir}/swfobject.properties" />
         <delete file="${basedir}/swfobject.properties" />
-        <echo>${swfobject.echo}</echo>
 
+		<echo>${swfobject.echo}</echo>
         <mkdir dir="${download.dir}"/>
-        <get src="http://swfobject.googlecode.com/files/swfobject_2_2.zip"
-            dest="${download.dir}/swfobject_2_2.zip"
-            verbose="false"/>
-        <echo>${INFO_VALIDATING_FILE} ${download.dir}/swfobject_2_2.zip</echo>
-		<checksum file="${download.dir}/swfobject_2_2.zip" algorithm="MD5" property="dec4b83b3e73f3f0011a075cd5385b9c" verifyproperty="swfobject.ok"/>
-        <fail message="SWFObject download failed">
-            <condition>
-				<equals arg1="${swfobject.ok}" arg2="false" />
-            </condition>
-        </fail>
-        
+        <antcall target="download_file" >
+            <param name="srcDomain" value="http://swfobject.googlecode.com" />
+            <param name="srcFolder" value="files" />
+            <param name="srcFile" value="swfobject_2_2.zip" />
+            <param name="dest" value="${download.dir}/swfobject_2_2.zip" />
+			<param name="failmessage" value="SWFObject download failed" />
+        </antcall>        
         <echo>${INFO_DOWNLOADED}</echo>
         <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
             <patternset>
@@ -892,9 +892,15 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         
     </target>
 
-    <target name="download_using_mirror" >
-        <property name="do-not-cache-next-get" value="true" />
-        <get src="${server}/${folder}/${file}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
+    <target name="download_using_mirror" depends="check-cache,get-preferred">
+        <antcall target="get-if-not-cached">
+			<param name="srcDomain" value="${preferred}"/>
+		</antcall>
+		<antcall target="copy-if-cached">
+		</antcall>
+    </target>
+    <target name="get-preferred" unless="found-in-cache">
+        <get src="${srcDomain}/${srcFolder}/${srcFile}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
         <replace file="${basedir}/mirror.json">
             <replacefilter token="&quot;"
             value="" />
@@ -903,13 +909,85 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         </replace>
         <property file="${basedir}/mirror.json" />
         <delete file="${basedir}/mirror.json" />
-        <echo>${message} ${preferred}${folder}/${file}</echo>
-        <get src="${preferred}${folder}/${file}" dest="${dest}" />
-    </target>
+        <echo>${message} ${preferred}${srcFolder}/${srcFile}</echo>
+	</target>
 
-    <target name="download_using_get" >
-        <get src="${server}/${folder}/${file}" dest="${dest}" />
+	<target name="download_file" unless="md5">
+		<antcall target="download_using_get" />
+	</target>
+	<target name="download_file_with_md5" if="md5">
+		<antcall target="download_using_get" />		
+	</target>
+	
+    <!--
+        Download a file and optionally verify the checksum.
+        If the checksum fails, this script fails.  This
+		target uses the cache, if desired.
+        
+        Params are:
+            srcDomain
+			srcFolder
+            srcFile
+            dest
+            [md5]
+			[srcMD5Domain]
+    -->
+    <target name="download_using_get" depends="check-cache"
+        description="Downloads file, and optionally verifies checksum.">                
+     
+        <antcall target="get-if-not-cached">
+		</antcall>
+		<antcall target="copy-if-cached">
+		</antcall>
     </target>
-
+    
+    <target name="get-if-not-cached" unless="found-in-cache"> 
+        <get src="${srcDomain}/${srcFolder}/${srcFile}" dest="${dest}"/>
+        <antcall target="check-sum" />
+        <antcall target="check-sum-from-file" />
+		<condition property="skipCache">
+			<not>
+				<isset property="usingDownloadCache" />
+			</not>
+		</condition>
+		<antcall target="put-in-cache" />
+	</target>
+	
+    <target name="copy-if-cached" if="found-in-cache">
+		<copy file="${downloadCacheFolder}/${srcFolder}/${srcFile}" tofile="${dest}" overwrite="true" />
+	</target> 
+	
+    <target name="check-cache" if="usingDownloadCache">
+		<available file="${downloadCacheFolder}/${srcFolder}/${srcFile}" property="found-in-cache" />
+	</target> 
+	
+    <target name="put-in-cache" unless="skipCache">
+		<copy tofile="${downloadCacheFolder}/${srcFolder}/${srcFile}" file="${dest}" />
+	</target> 
+	
+    <target name="check-sum" if="md5" 
+        description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        
+        <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
+        <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" property="${md5}" />
+        <fail message="${failmessage}">
+			<condition>
+				<equals arg1="${we.failed}" arg2="false" />
+			</condition>
+		</fail>
+    </target>
+	
+    <target name="check-sum-from-file" if="srcMD5Domain" 
+        description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        
+        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5" dest="${dest}.md5"/>
+        <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
+        <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" />
+        <fail message="${failmessage}">
+			<condition>
+				<equals arg1="${we.failed}" arg2="false" />
+			</condition>
+		</fail>
+    </target>
 
 </project>
