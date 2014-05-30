@@ -62,8 +62,6 @@
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
     
-    <property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml" />
-    
     <condition property="platform" value="mac">
         <os family="mac" />
     </condition>
@@ -127,9 +125,10 @@
 	<target name="get-flash-md5-data" if="flash-has-md5">
         <property name="flash.sdk.url.md5" refid="${flash.sdk.url.md5.ref}" />	
 	</target>
-	
+		
     <target name="get-data">
-        <property name="do-not-cache-next-get" value="true" />
+		<tstamp />
+		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${DSTAMP}" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
         <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version}" />
@@ -320,7 +319,6 @@
     </target>
     <target name="falcon-get" depends="falcon-get-check,set-falcon-cache-flag" unless="falcon.downloaded" >
         <mkdir dir="${download.dir}"/>
-		<get src="${falcon.md5.server.url}/${falcon.folder}/${falcon.file}.md5" verbose="true" dest="${download.dir}/${falcon.file}.md5" />
         <echo>${INFO_INSTALLING_FALCON} ${falcon.server.url}/${falcon.folder}/${falcon.file}</echo>
         <antcall target="falcon_get_from_mirror" >
             <param name="server" value="${falcon.server.url}" />
@@ -390,9 +388,9 @@
         <available file="${download.dir}/${flex.file}" property="flex.downloaded" />
     </target>
     <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
-		<get src="${flex.md5.server.url}/${flex.folder}/${flex.file}.md5" verbose="true" dest="${download.dir}/${flex.file}.md5" />
         <echo>${INFO_INSTALLING_FLEX} ${flex.server.url}/${flex.folder}/${flex.file}</echo>
         <antcall target="flex_get_from_mirror" >
+            <param name="md5server" value="${flex.md5.server.url}" />
             <param name="server" value="${flex.server.url}" />
             <param name="folder" value="${flex.folder}" />
             <param name="file" value="${flex.file}" />
@@ -401,6 +399,7 @@
 			<param name="failmessage" value="Flex SDK download failed" />
         </antcall>
         <antcall target="flex_get_download" >
+            <param name="md5server" value="${flex.md5.server.url}" />
             <param name="server" value="${flex.server.url}" />
             <param name="folder" value="${flex.folder}" />
             <param name="file" value="${flex.file}" />
@@ -412,19 +411,19 @@
 
     <target name="flex_get_from_mirror" if="flex.uses.mirror" >
         <antcall target="download_using_mirror" >
+            <param name="srcMD5Domain" value="${md5server}" />
             <param name="srcDomain" value="${server}" />
             <param name="srcFolder" value="${folder}" />
             <param name="srcFile" value="${file}" />
-            <param name="dest" value="${dest}" />
         </antcall>
     </target>
 
     <target name="flex_get_download" unless="flex.uses.mirror" >
         <antcall target="download_using_get" >
+            <param name="srcMD5Domain" value="${md5server}" />
             <param name="srcDomain" value="${server}" />
             <param name="srcFolder" value="${folder}" />
             <param name="srcFile" value="${file}" />
-            <param name="dest" value="${dest}" />
         </antcall>
     </target>
 
@@ -942,7 +941,9 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     </target>
     
     <target name="get-if-not-cached" unless="found-in-cache"> 
-        <get src="${srcDomain}/${srcFolder}/${srcFile}" dest="${dest}"/>
+		<antcall target="get-with-no-params" />
+		<antcall target="get-with-params" />
+		<antcall target="get-local" />
         <antcall target="check-sum" />
         <antcall target="check-sum-from-file" />
 		<condition property="skipCache">
@@ -951,6 +952,40 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
 			</not>
 		</condition>
 		<antcall target="put-in-cache" />
+	</target>
+	
+	<target name="check-params" >
+		<condition property="has-params">
+			<and>
+				<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="?" />
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+				</not>
+			</and>
+		</condition>
+		<condition property="is-local">
+			<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+		</condition>
+		<condition property="not-local-no-params">
+			<and>
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+				</not>
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="?" />
+				</not>
+			</and>
+		</condition>
+	</target>
+	
+	<target name="get-local" depends="check-params" if="is-local" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}" dest="${dest}"/>
+	</target>
+	<target name="get-with-no-params" depends="check-params" if="not-local-no-params" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}?ts=${DSTAMP}" dest="${dest}"/>
+	</target>
+	<target name="get-with-params" depends="check-params" if="has-params" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}&amp;ts=${DSTAMP}" dest="${dest}"/>
 	</target>
 	
     <target name="copy-if-cached" if="found-in-cache">
@@ -980,7 +1015,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     <target name="check-sum-from-file" if="srcMD5Domain" 
         description="Verifies MD5 checksum, and fails if checksum doesn't match">
         
-        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5" dest="${dest}.md5"/>
+        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5?ts=${DSTAMP}" dest="${dest}.md5"/>
         <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
         <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" />
         <fail message="${failmessage}">
