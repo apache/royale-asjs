@@ -25,8 +25,10 @@ package org.apache.flex.maps.google.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.maps.google.Map;
+	import org.apache.flex.maps.google.Place;
 	
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
@@ -85,9 +87,25 @@ package org.apache.flex.maps.google.beads
 			
 			if (page) {
 				_loader.loadString(page);
-				_loader.addEventListener(Event.COMPLETE, completeHandler);
-				IEventDispatcher(_strand).dispatchEvent(new Event("ready"));
+				_loader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
 			}
+		}
+		
+		private function completeHandler(event:flash.events.Event):void
+		{
+			trace("htmlLoader complete");
+			
+			if (_loader && page) {
+				_loader.window.map.center_changed = onMapCentered;
+				_loader.window.map.bounds_changed = onMapBoundsChanged;
+				_loader.window.map.zoom_changed   = onMapZoomChanged;
+				_loader.window.map.dragend        = onMapDragEnd;
+				
+				// custom event handlers
+				_loader.window.addEventListener("searchResults",onSearchResults);
+			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
 		}
 				
 		private var page:String;
@@ -134,8 +152,6 @@ package org.apache.flex.maps.google.beads
 		public function centerOnAddress(address:String):void
 		{
 			if (_loader && page) {
-				//_loader.window.addEventListener("mapCentered",onMapCentered);
-				_loader.window.map.center_changed = onMapCentered;
 				_loader.window.centeronaddress(address);
 			}
 		}
@@ -167,7 +183,6 @@ package org.apache.flex.maps.google.beads
 		public function nearbySearch(placeName:String):void
 		{
 			if (_loader && page) {
-				_loader.window.addEventListener("searchResults",onSearchResults);
 				_loader.window.nearbysearch(placeName);
 			}
 		}
@@ -205,7 +220,7 @@ package org.apache.flex.maps.google.beads
 		/**
 		 * @private
 		 */
-		private function handleSizeChange(event:Event):void
+		private function handleSizeChange(event:org.apache.flex.events.Event):void
 		{
 			_loader.width = UIBase(_strand).width;
 			_loader.height = UIBase(_strand).height;
@@ -216,7 +231,31 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapCentered():void
 		{
-			trace("The map has been centered");
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("centered") );
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onMapBoundsChanged():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("boundsChanged") );
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onMapZoomChanged():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("zoomChanged") );
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onMapDragEnd():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("dragEnd") );
 		}
 		
 		/**
@@ -224,7 +263,21 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onSearchResults(event:*):void
 		{
-			trace("We have results");
+			var results:Array = [];
+			for(var i:int=0; i < event.results.length; i++) {
+				var result:Place = new Place();
+				result.geometry.location.lat = event.results[i].geometry.location.lat();
+				result.geometry.location.lng = event.results[i].geometry.location.lng();
+				result.icon = event.results[i].icon;
+				result.id = event.results[i].id;
+				result.name = event.results[i].name;
+				result.reference = event.results[i].reference;
+				result.vicinity = event.results[i].vicinity;
+				results.push(result);
+			}
+			
+			Map(_strand).searchResults = results;
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("searchResult"));
 		}
 		
 		/**
@@ -253,13 +306,23 @@ package org.apache.flex.maps.google.beads
 			'      var service;' +
 			'      var places;' +
 			'      var markers;'+
-			'      function mapit(lat, lng, zoomLevel) {'+
-			'        var mapOptions = {'+
-			'          center: new google.maps.LatLng(lat, lng),'+
-			'          zoom: zoomLevel'+
-			'        };'+
-			'        map = new google.maps.Map(document.getElementById("map-canvas"),'+
-			'            mapOptions);'+
+			'      function mapit(lat, lng, zoomLevel) {' +
+			'        currentCenter = new google.maps.LatLng(lat, lng);'+
+			'        if (map == null) {' +
+			'            var mapOptions = {'+
+			'              center: currentCenter,'+
+			'              zoom: zoomLevel'+
+			'            };'+
+			'            map = new google.maps.Map(document.getElementById("map-canvas"),'+
+			'              mapOptions);' +
+			'        }' +
+			'        map.addEventListener("center_changed", function() {' +
+			'            currentCenter = map.getCenter();' +
+			'        });' +
+			'        map.addEventListener("bounds_changed", function() {' +
+			'            currentCenter = map.getCenter();' +
+			'        });' +
+			'        map.setCenter(currentCenter);'+
 			'      };'+
 			'      function codeaddress(address) {'+
 			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
@@ -318,27 +381,22 @@ package org.apache.flex.maps.google.beads
 			'                    markers.push(createMarker(place.geometry.location));' +
 			'                 }' +
 			'                 var event = document.createEvent("Event");' +
-			'                 event.results = markers;'+
+			'                 event.results = places;'+
             '                 event.initEvent("searchResults", true, true);' +
 			'                 window.dispatchEvent(event);' +
 			'              }' +
 			'          });'+
 			'      };'+
 			'      function initialize() {'+
-			'        mapit(-34.397, 150.644, 8);'+
+			'        mapit(37.333, -121.900, 12);'+
 			'      };'+
 			'      google.maps.event.addDomListener(window, "load", initialize);'+
 			'    </script>'+
 			'  </head>'+
 			'  <body>'+
-			'    <div id="map-canvas"/>'+
+			'    <div id="map-canvas"></div>'+
 			'  </body>'+
 			'</html>';
-		
-		private function completeHandler(event:Event):void
-		{
-			trace("htmlLoader complete");
-		}
 	}
 	
 }

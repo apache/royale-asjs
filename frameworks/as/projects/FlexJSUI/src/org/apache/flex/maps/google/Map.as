@@ -24,6 +24,11 @@ package org.apache.flex.maps.google
 	import org.apache.flex.maps.google.beads.MapView;
 	
 	[Event(name="ready", type="org.apache.flex.events.Event")]
+	[Event(name="centered", type="org.apache.flex.events.Event")]
+	[Event(name="boundsChanged", type="org.apache.flex.events.Event")]
+	[Event(name="zoomChanged", type="org.apache.flex.events.Event")]
+	[Event(name="dragEnd", type="org.apache.flex.events.Event")]
+	[Event(name="searchResult", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The Map class displays a Google Map centered on lat/lng coordinates. The Map uses
@@ -72,6 +77,8 @@ package org.apache.flex.maps.google
 		{
 			return _token; 
 		}
+		
+		public var searchResults:Array;
 		
 		/**
 		 *  Loads a map centered on the given latitude and longitude coodinates at the

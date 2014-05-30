@@ -50,7 +50,7 @@ function(value) {
   var src = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
   if (token)
     src += '&key=' + token;
-  src += '&sensor=false&callback=mapInit';
+  src += '&libraries=places&sensor=false&callback=mapInit';
 
   var script = document.createElement('script');
   script.type = 'text/javascript';
@@ -58,16 +58,8 @@ function(value) {
 
   window.mapView = this;
   window['mapInit'] = function() {
-      this.mapView.finishInitalization();
+      this.mapView.strand_.finishInitalization();
     };
-  document.body.appendChild(script);
-};
-
-
-/**
- */
-org.apache.flex.maps.google.beads.MapView.prototype.finishInitalization = function() {
-  this.strand_.initialized = true;
-  this.strand_.dispatchEvent('ready');
+  document.head.appendChild(script);
 };
 
