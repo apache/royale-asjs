@@ -14,6 +14,10 @@
 
 goog.provide('org.apache.flex.maps.google.Map');
 
+goog.require('org.apache.flex.maps.google.Geometry');
+goog.require('org.apache.flex.maps.google.LatLng');
+goog.require('org.apache.flex.maps.google.Place');
+
 
 // IMPORTANT:
 // In order to use this class, the Google MAP API must be downloaded
@@ -242,16 +246,27 @@ org.apache.flex.maps.google.Map.prototype.geoCodeHandler =
  */
 org.apache.flex.maps.google.Map.prototype.searchResultHandler =
 function(results, status) {
-  this.places = results;
+  this.searchResults = [];
   if (status == window['google']['maps']['places']['PlacesServiceStatus']['OK']) {
     for (var i = 0; i < results.length; i++) {
-      var place = results[i];
-      this.markers.push(this.createMarker(place['geometry']['location']));
+      var place = new org.apache.flex.maps.google.Place();
+      place.geometry.location.lat = results[i]['geometry']['location']['lat'];
+      place.geometry.location.lng = results[i]['geometry']['location']['lng'];
+      place.icon = results[i]['icon'];
+      place.id = results[i]['id'];
+      place.name = results[i]['name'];
+      place.reference = results[i]['reference'];
+      place.vicinity = results[i]['vicinity'];
+      this.searchResults.push(place);
+
+      this.markers.push(this.createMarker(results[i]['geometry']['location']));
     }
-    var event = document.createEvent('Event');
-    event.results = this.places;
-    event.initEvent('searchResults', true, true);
-    window.dispatchEvent(event);
+    //var event = document.createEvent('Event');
+    //event.results = this.places;
+    //event.initEvent('searchResults', true, true);
+    //window.dispatchEvent(event);
+    var event = new org.apache.flex.events.Event('searchResult');
+    this.dispatchEvent(event);
   }
 };
 
