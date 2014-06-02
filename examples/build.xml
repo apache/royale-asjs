@@ -89,6 +89,7 @@
         <ant dir="${basedir}/FormExample"/>
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
+        <ant dir="${basedir}/MapSearch"/>
         <ant dir="${basedir}/MobileTrader"/>
         <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
@@ -122,6 +123,7 @@
         <ant dir="${basedir}/FormExample" target="clean"/>
         <ant dir="${basedir}/LanguageTests" target="clean"/>
         <ant dir="${basedir}/ListsTest" target="clean"/>
+        <ant dir="${basedir}/MapSearch" target="clean"/>
         <ant dir="${basedir}/StatesTest" target="clean"/>
         <ant dir="${basedir}/StockQuote" target="clean"/>
         <ant dir="${basedir}/BarChartExample" target="clean"/>

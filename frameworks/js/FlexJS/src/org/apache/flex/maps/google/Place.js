@@ -80,9 +80,13 @@ org.apache.flex.maps.google.Place.prototype.vicinity = null;
 
 
 /**
- * @return {String} A description of the area of the place.
+ * @override
+ * @return {string} A description of the area of the place.
  */
 org.apache.flex.maps.google.Place.prototype.toString = function() {
-  return this.name;
+  var results = '';
+  if (this.name) results = this.name;
+  if (this.vicinity) results += ' ' + this.vicinity;
+  return results;
 };
 

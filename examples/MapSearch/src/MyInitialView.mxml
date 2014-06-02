@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:basic="library://ns.apache.org/flexjs/basic"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:local="*"
+				initComplete="initControls()">
+    <fx:Script>
+        <![CDATA[			
+			import models.MyModel;
+			
+			import org.apache.flex.events.Event;
+			import org.apache.flex.maps.google.Place;
+									
+			private function initControls() : void
+			{
+				
+			}
+			
+			private function onMapReady() : void
+			{
+				map.addEventListener("searchResult",onSearchResults);
+				map.addEventListener("centered", onMapCenteredOrChanged);
+				map.addEventListener("boundsChanged", onMapCenteredOrChanged);
+				map.addEventListener("zoomChanged", onMapCenteredOrChanged);
+				map.addEventListener("dragEnd", onMapCenteredOrChanged);
+			}
+			
+			/**
+			 * Take the values from the input field and have the map
+			 * display that coordinate.
+			 */
+			private function mapIt() : void
+			{
+//				var lat:Number = Number(latInput.text);
+//				var lng:Number = Number(longInput.text);
+//				var zoom:Number = Number(zoomInput.text);
+				
+//				map.loadMap(lat, lng, zoom);
+			}
+			
+			private var selectedCity:String;
+			
+			/**
+			 * Triggered by a change in the drop list with a new city selected. This
+			 * will also update the input fields.
+			 */
+			private function changeCity(event:org.apache.flex.events.Event) : void
+			{
+				var index:int = list.selectedIndex;
+				
+				var latlng:Object = MyModel(applicationModel).coordinates[index];
+				map.loadMap(latlng.lat, latlng.lng, 10);
+			}
+			
+			private function codeAddress() : void
+			{
+				map.markAddress(mapLocation.text);
+				//map.setZoom(12);
+			}
+			
+			private function searchOnMap() : void
+			{
+				map.nearbySearch(search.text);
+				//map.setZoom(12);
+			}
+			
+			private function clearSearchResults() : void
+			{
+				map.clearSearchResults();
+				MyModel(applicationModel).searchResults = new Array();
+			}
+			
+			private function orientMap() : void
+			{
+				map.centerOnAddress(mapLocation.text);
+				//map.setZoom(12);
+			}
+			
+			private function onMapCenteredOrChanged(event:org.apache.flex.events.Event):void
+			{
+				trace("Returned event of type: "+event.type);
+				clearSearchResults();
+				if (search.text) searchOnMap();
+			}
+			
+			private function onSearchResults(event:org.apache.flex.events.Event):void
+			{
+				trace("Received search results!");
+				MyModel(applicationModel).searchResults = map.searchResults;
+				trace("--- there are "+MyModel(applicationModel).searchResults.length+" results");
+				for(var i:int=0; i < MyModel(applicationModel).searchResults.length; i++) {
+					var place:Place = MyModel(applicationModel).searchResults[i] as Place;
+					trace(place.name+" @ "+place.vicinity);
+				}
+			}
+			
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+	
+	</fx:Style>
+	
+	<basic:beads>
+		<basic:ViewBaseDataBinding />
+	</basic:beads>
+	
+	
+	<basic:Container x="5" y="5" className="topContainer" >
+		<basic:beads>
+			<basic:NonVirtualVerticalLayout />
+		</basic:beads>
+		
+		<basic:Container>
+			<basic:beads>
+				<basic:NonVirtualHorizontalLayout />
+			</basic:beads>
+			<basic:Label text="Location:" />
+			<basic:TextInput id="mapLocation" />
+			<basic:TextButton text="Go" click="orientMap()" />
+			
+			<basic:DropDownList id="list" width="100" height="17"
+								change="changeCity(event)"
+								dataProvider="{MyModel(applicationModel).cities}" />
+		</basic:Container>
+		
+		<basic:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" ready="onMapReady()"/>
+		
+		<basic:Container>
+			<basic:beads>
+				<basic:NonVirtualHorizontalLayout />
+			</basic:beads>
+			<basic:Label text="Search on Map:" />
+			<basic:TextInput id="search" />
+			<basic:TextButton text="Find" click="searchOnMap()" />
+			<basic:TextButton text="Clear" click="clearSearchResults()" />
+		</basic:Container>
+		
+		<basic:List id="resultsList" width="450" height="200">
+			<basic:beads>
+				<basic:SimpleBinding
+					sourceID="applicationModel"
+					sourcePropertyName="searchResults"
+					eventName="searchResultsChanged"
+					destinationPropertyName="dataProvider" />
+			</basic:beads>
+		</basic:List>
+				
+<!--		<basic:Label text="Lat:" />
+		<basic:TextInput id="latInput" text="-34.397" />
+		
+		<basic:Label text="Long:" />
+		<basic:TextInput id="longInput" text="150.644" />
+		
+		<basic:Label text="Zoom:" />
+		<basic:TextInput id="zoomInput" text="8" />
+		
+		<basic:TextButton text="MapIt" click="mapIt()" /> -->
+		
+	</basic:Container>
+
+</basic:ViewBase>
