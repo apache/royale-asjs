@@ -43,19 +43,6 @@ limitations under the License.
 				map.addEventListener("dragEnd", onMapCenteredOrChanged);
 			}
 			
-			/**
-			 * Take the values from the input field and have the map
-			 * display that coordinate.
-			 */
-			private function mapIt() : void
-			{
-//				var lat:Number = Number(latInput.text);
-//				var lng:Number = Number(longInput.text);
-//				var zoom:Number = Number(zoomInput.text);
-				
-//				map.loadMap(lat, lng, zoom);
-			}
-			
 			private var selectedCity:String;
 			
 			/**
@@ -65,21 +52,18 @@ limitations under the License.
 			private function changeCity(event:org.apache.flex.events.Event) : void
 			{
 				var index:int = list.selectedIndex;
-				
-				var latlng:Object = MyModel(applicationModel).coordinates[index];
-				map.loadMap(latlng.lat, latlng.lng, 10);
+				mapLocation.text = MyModel(applicationModel).cities[index];
+				codeAddress();
 			}
 			
 			private function codeAddress() : void
 			{
 				map.markAddress(mapLocation.text);
-				//map.setZoom(12);
 			}
 			
 			private function searchOnMap() : void
 			{
 				map.nearbySearch(search.text);
-				//map.setZoom(12);
 			}
 			
 			private function clearSearchResults() : void
@@ -91,7 +75,6 @@ limitations under the License.
 			private function orientMap() : void
 			{
 				map.centerOnAddress(mapLocation.text);
-				//map.setZoom(12);
 			}
 			
 			private function onMapCenteredOrChanged(event:org.apache.flex.events.Event):void
@@ -118,6 +101,36 @@ limitations under the License.
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 	
+		.FormLabel {
+			font-weight: bold;
+			font-size: 12;
+			margin-left: 8px;
+			margin-right: 8px;
+		}
+		
+		.FormButton {
+			font-weight: bold;
+			font-size: 12;
+			color: #000000;
+			background-color: #FFFFFF;
+			border-style: solid;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+		
+		.FormInput {
+			font-weight: normal;
+			font-size: 12;
+			color: #0000DE;
+			padding: 6px;
+		}
+		
+		.InnerBox {
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
 	</fx:Style>
 	
 	<basic:beads>
@@ -130,29 +143,31 @@ limitations under the License.
 			<basic:NonVirtualVerticalLayout />
 		</basic:beads>
 		
-		<basic:Container>
+		<basic:Container className="InnerBox">
 			<basic:beads>
 				<basic:NonVirtualHorizontalLayout />
 			</basic:beads>
-			<basic:Label text="Location:" />
-			<basic:TextInput id="mapLocation" />
-			<basic:TextButton text="Go" click="orientMap()" />
+			<basic:Label text="Location:" className="FormLabel" />
+			<basic:TextInput id="mapLocation" className="FormInput" />
+			<basic:TextButton text="Go" click="orientMap()" className="FormButton" />
 			
 			<basic:DropDownList id="list" width="100" height="17"
 								change="changeCity(event)"
 								dataProvider="{MyModel(applicationModel).cities}" />
 		</basic:Container>
 		
-		<basic:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" ready="onMapReady()"/>
+		<basic:Map id="map" width="450" height="300" className="MainMap"
+				   token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
+				   ready="onMapReady()"/>
 		
-		<basic:Container>
+		<basic:Container className="InnerBox">
 			<basic:beads>
 				<basic:NonVirtualHorizontalLayout />
 			</basic:beads>
-			<basic:Label text="Search on Map:" />
-			<basic:TextInput id="search" />
-			<basic:TextButton text="Find" click="searchOnMap()" />
-			<basic:TextButton text="Clear" click="clearSearchResults()" />
+			<basic:Label text="Search on Map:" className="FormLabel" />
+			<basic:TextInput id="search" className="FormInput" />
+			<basic:TextButton text="Find" click="searchOnMap()" className="FormButton" />
+			<basic:TextButton text="Clear" click="clearSearchResults()" className="FormButton" />
 		</basic:Container>
 		
 		<basic:List id="resultsList" width="450" height="200">
@@ -164,17 +179,6 @@ limitations under the License.
 					destinationPropertyName="dataProvider" />
 			</basic:beads>
 		</basic:List>
-				
-<!--		<basic:Label text="Lat:" />
-		<basic:TextInput id="latInput" text="-34.397" />
-		
-		<basic:Label text="Long:" />
-		<basic:TextInput id="longInput" text="150.644" />
-		
-		<basic:Label text="Zoom:" />
-		<basic:TextInput id="zoomInput" text="8" />
-		
-		<basic:TextButton text="MapIt" click="mapIt()" /> -->
 		
 	</basic:Container>
 
