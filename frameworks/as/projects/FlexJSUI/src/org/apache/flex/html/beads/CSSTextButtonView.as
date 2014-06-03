@@ -149,16 +149,24 @@ package org.apache.flex.html.beads
 			if (value != null)
 				borderThickness = value as uint;
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
+			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
+			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
+			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
+			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
+			if (paddingLeft == null) paddingLeft = padding;
+			if (paddingRight == null) paddingRight = padding;
+			if (paddingTop == null) paddingTop = padding;
+			if (paddingBottom == null) paddingBottom = padding;
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
 			if (borderStyle == "solid")
 			{
 				var useWidth:Number = Math.max(sw,textField.textWidth);
 				var useHeight:Number = Math.max(sh,textField.textHeight);
 				
-				if ((useWidth-2*Number(padding)-2*borderThickness) < textField.textWidth) 
-					useWidth = textField.textWidth+2*Number(padding)+2*borderThickness;
-				if ((useHeight-2*Number(padding)-2*borderThickness) < textField.textHeight) 
-					useHeight = textField.textHeight+2*Number(padding)+2*borderThickness;
+				if ((useWidth-Number(paddingLeft)-Number(paddingRight)-2*borderThickness) < textField.textWidth) 
+					useWidth = textField.textWidth+Number(paddingLeft)+Number(paddingRight)+2*borderThickness;
+				if ((useHeight-Number(paddingTop)-Number(paddingBottom)-2*borderThickness) < textField.textHeight) 
+					useHeight = textField.textHeight+Number(paddingTop)+Number(paddingBottom)+2*borderThickness;
 				
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, useWidth, useHeight,
