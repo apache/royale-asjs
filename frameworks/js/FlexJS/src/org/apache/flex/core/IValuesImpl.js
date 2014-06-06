@@ -47,7 +47,7 @@ org.apache.flex.core.IValuesImpl.prototype.FLEXJS_CLASS_INFO =
  * @param {string=} opt_state The psuedo-state if any for.
  * @param {Object=} opt_attrs The object with name value pairs that
  *                       might make a difference.
- * @return {Object} The value.
+ * @return {?Object} The value.
  */
 org.apache.flex.core.IValuesImpl.prototype.getValue =
   function(thisObject, valueName, opt_state, opt_attrs) {};

@@ -24,6 +24,7 @@ goog.require('org.apache.flex.events.ValueEvent');
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
+ * @suppress {checkTypes}
  */
 org.apache.flex.utils.EffectTimer = function() {
   goog.base(this);

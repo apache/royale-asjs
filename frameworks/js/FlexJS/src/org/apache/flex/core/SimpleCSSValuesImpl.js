@@ -159,6 +159,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
  * @param {Object=} opt_attrs The object with name value pairs that
  *                       might make a difference.
  * @return {Object} The value.
+ * @suppress {checkTypes}
  */
 org.apache.flex.core.SimpleCSSValuesImpl.prototype.newInstance =
 function(thisObject, valueName, opt_state, opt_attrs) {
