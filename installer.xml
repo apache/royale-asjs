@@ -62,6 +62,10 @@
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
     
+    <property name="swfobject.url.server" value="http://swfobject.googlecode.com" />
+    <property name="swfobject.url.folder" value="files" />
+    <property name="swfobject.url.file" value="swfobject_2_2.zip" />
+    
     <condition property="platform" value="mac">
         <os family="mac" />
     </condition>
@@ -210,10 +214,59 @@
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
     
-    <target name="install" depends="get-data,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
-    
+
+    <target name="find-java" depends="find-java-executable-windows,find-java-executable-others,search-java,check-java" description="get path to java executable">
+        <echo file="${basedir}/findjava.properties">find.java.echo=${find.java.echo.pattern}</echo>
+        <property file="${basedir}/findjava.properties" />
+        <delete file="${basedir}/findjava.properties" />
+        <echo>${find.java.echo}</echo>
+    </target>
+
+    <target name="check-java" description="fail if java doesn't exist">
+        <fail message="${unable.to.find.java}">
+            <condition>
+                <not>
+                    <isset property="java.executable" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+
+    <target name="find-java-executable-windows" if="isWindows">
+        <condition property="java.executable" value="${java.home}/bin/java.exe" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}/bin/java.exe" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="find-java-executable-others" unless="isWindows">
+        <condition property="java.executable" value="${java.home}/bin/java" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="search-java" depends="search-java-windows,search-java-others" description="search for java executable" unless="java.home">
+    </target>
+
+    <target name="search-java-windows" unless="java.home">
+        <exec executable="where.exe" os="windows" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+    </target>
+    <target name="search-java-others" unless="java.home">
+        <exec executable="which" os="mac,linux" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+    </target>
+
     <target name="check-binary" description="Make sure this is a binary package">
         <fail message="${basedir} is not an FlexJS binary package">
             <condition>
@@ -468,6 +521,8 @@
         <mkdir dir="${download.dir}"/>
         <antcall target="air-get" />
 
+        <echo>${INFO_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
+        
         <antcall target="air-setup-win" />
         <antcall target="air-setup-mac" />
         
@@ -710,17 +765,17 @@
         description="Copies SWFObject from code.google.com">
         
         <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
-        <replace file="${basedir}/swfobject.properties" token="{0}" value="swfobject_2_2.zip" />
-        <replace file="${basedir}/swfobject.properties" token="{1}" value="http://swfobject.googlecode.com/files" />
+        <replace file="${basedir}/swfobject.properties" token="{0}" value="${swfobject.url.file}" />
+        <replace file="${basedir}/swfobject.properties" token="{1}" value="${swfobject.url.server}/${swfoject.url.folder}" />
         <property file="${basedir}/swfobject.properties" />
         <delete file="${basedir}/swfobject.properties" />
 
 		<echo>${swfobject.echo}</echo>
         <mkdir dir="${download.dir}"/>
         <antcall target="download_using_get" >
-            <param name="srcDomain" value="http://swfobject.googlecode.com" />
-            <param name="srcFolder" value="files" />
-            <param name="srcFile" value="swfobject_2_2.zip" />
+            <param name="srcDomain" value="${swfobject.url.server}" />
+            <param name="srcFolder" value="${swfobject.url.folder}" />
+            <param name="srcFile" value="${swfobject.url.file}" />
             <param name="dest" value="${download.dir}/swfobject_2_2.zip" />
 			<param name="failmessage" value="SWFObject download failed" />
         </antcall>        
@@ -888,7 +943,16 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        
+        <replace file="${FLEXJS_HOME}/js/bin/mxmlc.bat">
+            <replacefilter
+            token="@java"
+            value="${java.executable}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/js/bin/compc.bat">
+            <replacefilter
+            token="@java"
+            value="${java.executable}"/>
+        </replace>
     </target>
 
     <target name="download_using_mirror" depends="check-cache,get-preferred">
