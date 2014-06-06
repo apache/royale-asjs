@@ -21,7 +21,7 @@ https://cwiki.apache.org/confluence/display/FLEX/Using+FlexJS+with+Adobe+Flash+B
 
 Examples and Compiler Warnings
 
-Several of the Exammples will have compiler warnings in the output and return
+Several of the Examples will have compiler warnings in the output and return
 an exit code of 2.  But they still be operational.
 
 Building the Examples
@@ -32,6 +32,26 @@ The DataBindingTest is the most up-to-date example and should allow both the SWF
 version and cross-compiled version to select one of the stock symbols from
 the drop down and hit a button to get a stock price.  Some of other the examples 
 may not cross-compile or work correctly.
+
+Java Version Mismatch
+
+If you get an error: Exception in thread "main" java.lang.UnsupportedClassVersionError:
+org/apache/flex/compiler/clients/MXMLJSC : Unsupported major.minor version 51.0 (or a
+larger number), this indicates that FlexJS is trying to use Java 6 to compile cross-
+compile the application.  Check the path to Java specified in the js/bin/mxmlc or 
+js/bin/mxmlc.bat file.  You may have to modify it to point to a Java 7 JDK.  If the
+error occurred when using one of the Flash Builder launch configurations, try
+running the js/bin/mxmlc or js/bin/mxmlc.bat file from the command line.
+
+"${project_loc}" Error
+
+You may get the following error using one of the Flash Builder launch configurations:
+    
+    Variable references empty selection: ${project_loc}
+
+This indicates that Flash Builder cannot determine which project in the workspace is
+the active project.  Click on the project in the Package Explorer, or on a file in the
+editor that belongs to that project before using the launch configuration.
 
 Differences from Apache FlexJS 0.0.1 include:
 
