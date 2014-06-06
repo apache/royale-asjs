@@ -479,14 +479,14 @@
         
     <target name="air-get" depends="air-get-check" unless="air.downloaded" >
 		<echo>${AIRDownloadEcho} ${air.sdk.url.server}/${air.sdk.url.folder}/${air.sdk.url.file}</echo>
-        <antcall target="download_file" >
+        <antcall target="download_air" >
             <param name="srcDomain" value="${air.sdk.url.server}" />
             <param name="srcFolder" value="${air.sdk.url.folder}" />
             <param name="srcFile" value="${air.sdk.url.file}" />
             <param name="dest" value="${download.dir}/${air.sdk.url.file}" />
 			<param name="failmessage" value="AIR SDK download failed" />
         </antcall>
-        <antcall target="download_file_with_md5" >
+        <antcall target="download_air_with_md5" >
             <param name="srcDomain" value="${air.sdk.url.server}" />
             <param name="srcFolder" value="${air.sdk.url.folder}" />
             <param name="srcFile" value="${air.sdk.url.file}" />
@@ -681,7 +681,7 @@
         <mkdir dir="${download.dir}"/>
         <mkdir dir="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}"/>
         <echo>${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}</echo>
-        <antcall target="download_file" >
+        <antcall target="download_flash" >
             <param name="srcDomain" value="${flash.sdk.url.server}" />
             <param name="srcFolder" value="${flash.sdk.url.folder}" />
             <param name="srcFile" value="${flash.sdk.url.file}" />
@@ -689,7 +689,7 @@
 			<param name="message" value="${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}" />
 			<param name="failmessage" value="Flash SDK download failed" />
         </antcall>
-        <antcall target="download_file_with_md5" >
+        <antcall target="download_flash_with_md5" >
             <param name="srcDomain" value="${flash.sdk.url.server}" />
             <param name="srcFolder" value="${flash.sdk.url.folder}" />
             <param name="srcFile" value="${flash.sdk.url.file}" />
@@ -717,7 +717,7 @@
 
 		<echo>${swfobject.echo}</echo>
         <mkdir dir="${download.dir}"/>
-        <antcall target="download_file" >
+        <antcall target="download_using_get" >
             <param name="srcDomain" value="http://swfobject.googlecode.com" />
             <param name="srcFolder" value="files" />
             <param name="srcFile" value="swfobject_2_2.zip" />
@@ -911,11 +911,17 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <echo>${message} ${preferred}${srcFolder}/${srcFile}</echo>
 	</target>
 
-	<target name="download_file" unless="md5">
+	<target name="download_air" unless="air-has-md5">
 		<antcall target="download_using_get" />
 	</target>
-	<target name="download_file_with_md5" if="md5">
+	<target name="download_air_with_md5" if="air-has-md5">
 		<antcall target="download_using_get" />		
+	</target>
+	<target name="download_flash" unless="flash-has-md5">
+		<antcall target="download_using_get" />
+	</target>
+	<target name="download_flash_with_md5" if="flash-has-md5">
+		<antcall target="download_using_get" />
 	</target>
 	
     <!--
