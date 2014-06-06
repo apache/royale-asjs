@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.utils.EffectTimer');
 goog.require('org.apache.flex.core.IEffectTimer');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.events.ValueEvent');
 
 
 
