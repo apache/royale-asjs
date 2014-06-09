@@ -213,8 +213,6 @@ Image
 
 Label
 {
-	width: 95;
-	height: 18;
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.TextFieldView");
 	iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextFieldLabelMeasurementBead");

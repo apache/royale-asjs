@@ -48,6 +48,7 @@ package org.apache.flex.html.beads
 			textField.selectable = false;
 			textField.type = TextFieldType.DYNAMIC;
 			textField.mouseEnabled = false;
+			textField.autoSize = "left";
 		}
 	}
 }

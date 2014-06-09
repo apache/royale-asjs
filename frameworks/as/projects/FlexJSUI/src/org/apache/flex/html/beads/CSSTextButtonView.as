@@ -129,6 +129,9 @@ package org.apache.flex.html.beads
 			var sw:uint = DisplayObject(_strand).width;
 			var sh:uint = DisplayObject(_strand).height;
 			
+			textField.defaultTextFormat.leftMargin = 0;
+			textField.defaultTextFormat.rightMargin = 0;
+			
 			var borderColor:uint;
 			var borderThickness:uint;
 			var borderStyle:String;
@@ -256,12 +259,21 @@ package org.apache.flex.html.beads
 		{
 			var useWidth:uint = Math.max(DisplayObject(_strand).width, upTextField.textWidth);
 			var useHeight:uint = Math.max(DisplayObject(_strand).height, upTextField.textHeight);
+			var borderThickness:Object = ValuesManager.valuesImpl.getValue(_strand, "border-thickness");
+			if (borderThickness == null) borderThickness = 0;
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
-			
-			if ((useWidth-2*Number(padding)) < upTextField.textWidth) 
-				useWidth = upTextField.textWidth+2*Number(padding);
-			if ((useHeight-2*Number(padding)) < upTextField.textHeight) 
-				useHeight = upTextField.textHeight+2*Number(padding);
+			if (padding == null) padding = 0;
+			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left");
+			if (paddingLeft == null) paddingLeft = padding;
+			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-right");
+			if (paddingRight == null) paddingRight = padding;
+			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-top");
+			if (paddingTop == null) paddingTop = padding;
+			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-bottom");
+			if (paddingBottom == null) paddingBottom = padding;
+
+			useWidth = paddingLeft + paddingRight + 2*Number(borderThickness) + upTextField.textWidth;
+			useHeight = paddingTop + paddingBottom + 2*Number(borderThickness) + upTextField.textHeight;
 			
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);

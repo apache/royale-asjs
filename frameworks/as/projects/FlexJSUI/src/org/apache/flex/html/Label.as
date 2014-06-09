@@ -20,6 +20,7 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -113,6 +114,30 @@ package org.apache.flex.html
 		{
 			super.height = value;
 			IEventDispatcher(model).dispatchEvent( new Event("heightChanged") );
+		}
+		
+		/**
+		 *  @private
+		 *  Override height to provide top and bottom padding.
+		 */
+		override public function get height():Number
+		{
+			var useHeight:Number;
+			if (isNaN(this.explicitHeight)) {
+				var padding:Object = ValuesManager.valuesImpl.getValue(this,"padding");
+				if (padding == null) padding = 0;
+				var borderThickness:Object = ValuesManager.valuesImpl.getValue(this,"border-thickness");
+				if (borderThickness == null) borderThickness = 0;
+				var paddingTop:Object = ValuesManager.valuesImpl.getValue(this,"padding-top");
+				if (paddingTop == null) paddingTop = padding;
+				var paddingBottom:Object = ValuesManager.valuesImpl.getValue(this,"padding-bottom");
+				if (paddingBottom == null) paddingBottom = padding;
+				useHeight = super.height + paddingTop + paddingBottom + 2*Number(borderThickness);
+			}
+			else {
+				useHeight = this.explicitHeight;
+			}
+			return useHeight;
 		}
 	}
 }

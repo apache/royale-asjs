@@ -75,11 +75,14 @@ package org.apache.flex.core
 			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight") == "bold";
 			tf.color = ValuesManager.valuesImpl.getValue(sp, "color");
 			var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
-			if (padding != null)
-			{
-				tf.leftMargin = padding;
-				tf.rightMargin = padding;
-			}
+			if (padding == null) padding = 0;
+			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left");
+			if (paddingLeft == null) paddingLeft = padding;
+			var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right");
+			if (paddingRight == null) paddingRight = padding;
+			tf.leftMargin = paddingLeft;
+			tf.rightMargin = paddingRight;
+
 			defaultTextFormat = tf;
 			super.text = value;
 		}
