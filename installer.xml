@@ -946,12 +946,12 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <replace file="${FLEXJS_HOME}/js/bin/mxmlc.bat">
             <replacefilter
             token="@java"
-            value="${java.executable}"/>
+            value="&quot;${java.executable}&quot;"/>
         </replace>
         <replace file="${FLEXJS_HOME}/js/bin/compc.bat">
             <replacefilter
             token="@java"
-            value="${java.executable}"/>
+            value="&quot;${java.executable}&quot;"/>
         </replace>
     </target>
 
