@@ -48,7 +48,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="bundle" value="en_US" />
 
-	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/sdk/${bundle}.properties" />
+	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/flexjs/${bundle}.properties" />
 	<get src="${flex.properties.url}" dest="${basedir}/${bundle}.properties" ignoreerrors="true" />
     <property file="${basedir}/${bundle}.properties"/>
     <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
