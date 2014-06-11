@@ -47,6 +47,10 @@
     <property file="${FLEXJS_HOME}/nightly.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="bundle" value="en_US" />
+
+	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/sdk/${bundle}.properties" />
+	<get src="${flex.properties.url}" dest="${basedir}/${bundle}.properties" ignoreerrors="true" />
+    <property file="${basedir}/${bundle}.properties"/>
     <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
     <property file="${FLEXJS_HOME}/installer.properties/en_US.properties"/>
     <property name="download.dir" value="${FLEXJS_HOME}/in"/>
@@ -62,10 +66,10 @@
     <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
     <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
     
-    <property name="swfobject.url.server" value="http://swfobject.googlecode.com" />
-    <property name="swfobject.url.folder" value="files" />
-    <property name="swfobject.url.file" value="swfobject_2_2.zip" />
-    
+    <property name="swfobject.url.server" value="https://github.com" />
+    <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
+    <property name="swfobject.url.file" value="2.2.zip" />
+	
     <condition property="platform" value="mac">
         <os family="mac" />
     </condition>
@@ -766,7 +770,7 @@
         
         <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
         <replace file="${basedir}/swfobject.properties" token="{0}" value="${swfobject.url.file}" />
-        <replace file="${basedir}/swfobject.properties" token="{1}" value="${swfobject.url.server}/${swfoject.url.folder}" />
+        <replace file="${basedir}/swfobject.properties" token="{1}" value="${swfobject.url.server}/${swfobject.url.folder}" />
         <property file="${basedir}/swfobject.properties" />
         <delete file="${basedir}/swfobject.properties" />
 
@@ -780,12 +784,18 @@
 			<param name="failmessage" value="SWFObject download failed" />
         </antcall>        
         <echo>${INFO_DOWNLOADED}</echo>
-        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
+        <mkdir dir="${download.dir}/swfobject"/>
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${download.dir}/swfobject">
             <patternset>
-                <include name="swfobject/expressInstall.swf"/>
-                <include name="swfobject/swfobject.js"/>
+                <include name="swfobject-2.2/swfobject/expressInstall.swf"/>
+                <include name="swfobject-2.2/swfobject/swfobject.js"/>
             </patternset>
         </unzip>
+        <mkdir dir="${FLEXJS_HOME}/templates/swfobject"/>
+		<copy file="${download.dir}/swfobject/swfobject-2.2/swfobject/expressInstall.swf"
+			tofile="${FLEXJS_HOME}/templates/swfobject/expressInstall.swf" />
+		<copy file="${download.dir}/swfobject/swfobject-2.2/swfobject/swfobject.js"
+			tofile="${FLEXJS_HOME}/templates/swfobject/swfobject.js" />
     </target>
     
     <target name="fixup-config-files">
