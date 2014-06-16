@@ -14,9 +14,12 @@
 
 goog.provide('org.apache.flex.maps.google.Map');
 
+goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.maps.google.Geometry');
 goog.require('org.apache.flex.maps.google.LatLng');
+goog.require('org.apache.flex.maps.google.Marker');
 goog.require('org.apache.flex.maps.google.Place');
+goog.require('org.apache.flex.maps.google.models.MapModel');
 
 
 // IMPORTANT:
@@ -63,6 +66,9 @@ org.apache.flex.maps.google.Map.prototype.searchResults = null;
 org.apache.flex.maps.google.Map.prototype.createElement =
     function() {
 
+  var model = new org.apache.flex.maps.google.models.MapModel();
+  this.addBead(model);
+
   this.element = document.createElement('div');
   this.set_className('Map');
 
@@ -79,6 +85,16 @@ org.apache.flex.maps.google.Map.prototype.createElement =
  */
 org.apache.flex.maps.google.Map.prototype.set_token = function(value) {
   this.token = value;
+};
+
+
+/**
+ * @expose
+ * @return {Object} The marker that was last selected.
+ */
+org.apache.flex.maps.google.Map.prototype.get_selectedMarker =
+function() {
+  return this._selectedMarker;
 };
 
 
@@ -106,9 +122,9 @@ org.apache.flex.maps.google.Map.prototype.loadMap =
     mapOptions['zoom'] = zoom;
     this.map = new window['google']['maps']['Map'](this.element, mapOptions);
     this.geocoder = null;
-    this.map.center_changed = goog.bind(this.centerChangeHandler, this);
-    this.map.bounds_changed = goog.bind(this.boundsChangeHandler, this);
-    this.map.zoom_changed = goog.bind(this.zoomChangeHandler, this);
+    google.maps.event.addListener(this.map, 'center_changed', goog.bind(this.centerChangeHandler, this));
+    google.maps.event.addListener(this.map, 'bounds_changed', goog.bind(this.boundsChangeHandler, this));
+    google.maps.event.addListener(this.map, 'zoom_changed', goog.bind(this.zoomChangeHandler, this));
   }
 };
 
@@ -137,12 +153,19 @@ org.apache.flex.maps.google.Map.prototype.centerOnAddress = function(address) {
 
 /**
  * @expose
+ * @param {Object} location The new center of the map.
+ */
+org.apache.flex.maps.google.Map.prototype.setCenter = function(location) {
+  this.currentCenter = new window['google']['maps']['LatLng'](location.lat, location.lng);
+  this.map.setCenter(this.currentCenter);
+};
+
+
+/**
+ * @expose
  */
 org.apache.flex.maps.google.Map.prototype.markCurrentLocation = function() {
-  var marker = new window['google']['maps']['Marker']({
-    map: this.map,
-    position: this.currentCenter
-  });
+  this.createMarker(this.currentCenter);
 };
 
 
@@ -170,6 +193,7 @@ org.apache.flex.maps.google.Map.prototype.createMarker =
     map: this.map,
     position: location
   });
+  google.maps.event.addListener(marker, 'click', goog.bind(this.markerClicked, this, marker));
   return marker;
 };
 
@@ -199,6 +223,26 @@ function() {
     }
     this.markers = null;
   }
+};
+
+
+/**
+ * @param {Object} marker The marker that was clicked.
+ * @param {Object} event The mouse event for the marker click.
+ */
+org.apache.flex.maps.google.Map.prototype.markerClicked =
+function(marker, event) {
+  var newMarker = new org.apache.flex.maps.google.Marker();
+  newMarker.position.lat = marker.position.lat();
+  newMarker.position.lng = marker.position.lng();
+  newMarker.title = marker.title;
+  newMarker.map = this;
+
+  this._selectedMarker = newMarker;
+
+  var newEvent = new org.apache.flex.events.Event('markerClicked');
+  newEvent.marker = newMarker;
+  this.dispatchEvent(newEvent);
 };
 
 
@@ -259,14 +303,13 @@ function(results, status) {
       place.vicinity = results[i]['vicinity'];
       this.searchResults.push(place);
 
-      this.markers.push(this.createMarker(results[i]['geometry']['location']));
+      var marker = this.createMarker(results[i]['geometry']['location']);
+      marker.title = place.name;
+
+      this.markers.push(marker);
     }
-    //var event = document.createEvent('Event');
-    //event.results = this.places;
-    //event.initEvent('searchResults', true, true);
-    //window.dispatchEvent(event);
-    var event = new org.apache.flex.events.Event('searchResult');
-    this.dispatchEvent(event);
+    var model = this.model;
+    model.set_searchResults(this.searchResults);
   }
 };
 

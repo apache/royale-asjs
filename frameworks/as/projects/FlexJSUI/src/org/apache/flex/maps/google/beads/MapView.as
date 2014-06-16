@@ -22,13 +22,17 @@ package org.apache.flex.maps.google.beads
 	import flash.html.HTMLLoader;
 	import flash.net.URLRequest;
 	
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.maps.google.LatLng;
 	import org.apache.flex.maps.google.Map;
+	import org.apache.flex.maps.google.Marker;
 	import org.apache.flex.maps.google.Place;
+	import org.apache.flex.maps.google.models.MapModel;
 	
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
@@ -41,7 +45,7 @@ package org.apache.flex.maps.google.beads
 	public class MapView implements IBeadView
 	{
 		/**
-		 *  constructor.
+		 *  Constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -76,6 +80,10 @@ package org.apache.flex.maps.google.beads
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
+			
+			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			model.addEventListener("zoomChanged", handleZoomChange);
+			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
 						
 			(_strand as UIBase).addChild(_loader);
 			
@@ -103,9 +111,26 @@ package org.apache.flex.maps.google.beads
 				
 				// custom event handlers
 				_loader.window.addEventListener("searchResults",onSearchResults);
+				_loader.window.addEventListener("markerClicked",onMarkerClicked);
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
+		}
+		
+		private function handleZoomChange(event:org.apache.flex.events.Event):void
+		{
+			if (_loader && page) {
+				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				setZoom(model.zoom);
+			}
+		}
+		
+		private function handleCurrentLocationChange(event:org.apache.flex.events.Event):void
+		{
+			if (_loader && page) {
+				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				setCenter(model.currentLocation.location);
+			}
 		}
 				
 		private var page:String;
@@ -188,14 +213,14 @@ package org.apache.flex.maps.google.beads
 		}
 		
 		/**
-		 * Clears the search result markers from the map.
+		 * Removes all of the markers from the map
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function clearSearchResults():void
+		public function removeAllMarkers():void
 		{
 			if (_loader && page) {
 				_loader.window.clearmarkers();
@@ -214,6 +239,21 @@ package org.apache.flex.maps.google.beads
 		{
 			if (_loader && page) {
 				_loader.window.map.setZoom(zoom);
+			}
+		}
+		
+		/**
+		 * Sets the center of the map.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function setCenter( location:LatLng ):void
+		{
+			if (_loader && page) {
+				_loader.window.setCenter(location.lat, location.lng);
 			}
 		}
 		
@@ -276,8 +316,25 @@ package org.apache.flex.maps.google.beads
 				results.push(result);
 			}
 			
-			Map(_strand).searchResults = results;
-			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("searchResult"));
+			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			model.searchResults = results;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function onMarkerClicked(event:*):void
+		{
+			var marker:Marker = new Marker();
+			marker.position.lat = event.marker.position.lat();
+			marker.position.lng = event.marker.position.lng();
+			marker.title = event.marker.title;
+			marker.map = Map(_strand);
+			
+			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			model.selectedMarker = marker;
+			
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("markerClicked"));
 		}
 		
 		/**
@@ -316,13 +373,17 @@ package org.apache.flex.maps.google.beads
 			'            map = new google.maps.Map(document.getElementById("map-canvas"),'+
 			'              mapOptions);' +
 			'        }' +
-			'        map.addEventListener("center_changed", function() {' +
+			'        google.maps.event.addListener(map, "center_changed", function() {' +
 			'            currentCenter = map.getCenter();' +
 			'        });' +
-			'        map.addEventListener("bounds_changed", function() {' +
+			'        google.maps.event.addListener(map, "bounds_changed", function() {' +
 			'            currentCenter = map.getCenter();' +
 			'        });' +
 			'        map.setCenter(currentCenter);'+
+			'      };' +
+			'      function setCenter(lat, lng) {' +
+			'          currentCenter = new google.maps.LatLng(lat,lng);' +
+			'          map.setCenter(currentCenter);' +
 			'      };'+
 			'      function codeaddress(address) {'+
 			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
@@ -358,6 +419,9 @@ package org.apache.flex.maps.google.beads
 			'            map: map,'+
 			'            position: location,'+
 			'         });' +
+			'         google.maps.event.addListener(marker, "click", function() {' +
+			'             markerClicked(marker);' +
+			'         });'+
 			'         return marker;'+
 			'      };' +
 			'      function clearmarkers() {' +
@@ -378,7 +442,9 @@ package org.apache.flex.maps.google.beads
 			'              if (status == google.maps.places.PlacesServiceStatus.OK) {' +
 			'                 for(var i=0; i < results.length; i++) {' +
 			'                    var place = results[i];' +
-			'                    markers.push(createMarker(place.geometry.location));' +
+			'                    var marker = createMarker(place.geometry.location);' +
+			'                    marker.title = place.name;' +
+			'                    markers.push(marker);' +
 			'                 }' +
 			'                 var event = document.createEvent("Event");' +
 			'                 event.results = places;'+
@@ -386,6 +452,12 @@ package org.apache.flex.maps.google.beads
 			'                 window.dispatchEvent(event);' +
 			'              }' +
 			'          });'+
+			'      };' +
+			'      function markerClicked(marker) {' +
+			'         var newEvent = document.createEvent("Event");' +
+			'         newEvent.marker = marker;' +
+			'         newEvent.initEvent("markerClicked", true, true);' +
+			'         window.dispatchEvent(newEvent);' +
 			'      };'+
 			'      function initialize() {'+
 			'        mapit(37.333, -121.900, 12);'+

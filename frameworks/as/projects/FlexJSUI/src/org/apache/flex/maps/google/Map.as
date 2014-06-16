@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.maps.google
 {
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.maps.google.beads.MapView;
+	import org.apache.flex.maps.google.models.MapModel;
 	
 	[Event(name="ready", type="org.apache.flex.events.Event")]
 	[Event(name="centered", type="org.apache.flex.events.Event")]
@@ -54,6 +56,12 @@ package org.apache.flex.maps.google
 		public function Map()
 		{
 			super();
+			
+			var model:IBeadModel = getBeadByType(IBeadModel) as IBeadModel;
+			if (model == null) {
+				model = new MapModel();
+				addBead(model);
+			}
 		}
 		
 		private var _token:String;
@@ -79,6 +87,19 @@ package org.apache.flex.maps.google
 		}
 		
 		public var searchResults:Array;
+				
+		/**
+		 *  The marker last selected.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get selectedMarker():Marker
+		{
+			return MapModel(model).selectedMarker;
+		}
 		
 		/**
 		 *  Loads a map centered on the given latitude and longitude coodinates at the
@@ -108,10 +129,7 @@ package org.apache.flex.maps.google
 		 */
 		public function setZoom( zoom:Number ) : void
 		{
-			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
-			if (viewBead) {
-				viewBead.setZoom(zoom);
-			}
+			MapModel(model).zoom = zoom;
 		}
 		
 		/**
@@ -128,6 +146,21 @@ package org.apache.flex.maps.google
 			if (viewBead) {
 				viewBead.centerOnAddress(address);
 			}
+		}
+		
+		/**
+		 * Centers the map on a specific location.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function setCenter( location:LatLng ) : void
+		{
+			var geo:Geometry = new Geometry();
+			geo.location = location;
+			MapModel(model).currentLocation = geo;
 		}
 		
 		/**
@@ -175,8 +208,9 @@ package org.apache.flex.maps.google
 		{
 			var viewBead:MapView = getBeadByType(IBeadView) as MapView;
 			if (viewBead) {
-				viewBead.clearSearchResults();
+				viewBead.removeAllMarkers();
 			}
+			MapModel(model).searchResults = [];
 		}
 		
 		/**
