@@ -65,7 +65,19 @@
     <property environment="env"/>
 
     <property name="build.target" value="main" />
+	
+	<available file="${env.APPDATA}/npm/jshint.cmd" 
+		type="file" 
+		property="jshint" value="${env.APPDATA}/npm/jshint.cmd" />
+	<property name="jshint" value="jshint" />
     
+	<available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" 
+		type="file" 
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+	<available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe" 
+		type="file" 
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+
 	<condition property="do.copy.downloads" >
 		<isset property="download.cache.dir" /> 
 	</condition>
