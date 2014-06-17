@@ -22,25 +22,34 @@ limitations under the License.
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:local="*"
 				initComplete="initControls()">
-    <fx:Script>
-        <![CDATA[			
+	<fx:Script>
+		<![CDATA[			
+			import org.apache.flex.maps.google.models.MapModel;
 			import models.MyModel;
 			
 			import org.apache.flex.events.Event;
 			import org.apache.flex.maps.google.Place;
-									
+			import org.apache.flex.maps.google.Marker;
+			
 			private function initControls() : void
 			{
 				
 			}
 			
+			/**
+			 * Called when the map is ready for use. This function adds a variety of event
+			 * listners, some of which will trigger a new search.
+			 */
 			private function onMapReady() : void
 			{
-				map.addEventListener("searchResult",onSearchResults);
 				map.addEventListener("centered", onMapCenteredOrChanged);
 				map.addEventListener("boundsChanged", onMapCenteredOrChanged);
 				map.addEventListener("zoomChanged", onMapCenteredOrChanged);
 				map.addEventListener("dragEnd", onMapCenteredOrChanged);
+				map.addEventListener("markerClicked", onMarkerClicked);
+				
+				// Listen for changes to the search results on the map's model.
+				map.model.addEventListener("searchResultsChanged", onSearchResults);
 			}
 			
 			private var selectedCity:String;
@@ -69,7 +78,6 @@ limitations under the License.
 			private function clearSearchResults() : void
 			{
 				map.clearSearchResults();
-				MyModel(applicationModel).searchResults = new Array();
 			}
 			
 			private function orientMap() : void
@@ -77,35 +85,53 @@ limitations under the License.
 				map.centerOnAddress(mapLocation.text);
 			}
 			
+			/**
+			 * Called when the map has been re-centered or moved. The search results are
+			 * cleared and a new search is triggered.
+			 */
 			private function onMapCenteredOrChanged(event:org.apache.flex.events.Event):void
 			{
-				trace("Returned event of type: "+event.type);
 				clearSearchResults();
 				if (search.text) searchOnMap();
 			}
 			
+			/**
+			 * Called when search results are available in the map's model. This function
+			 * transfers those results to the application's model which is bound to the
+			 * List component.
+			 */
 			private function onSearchResults(event:org.apache.flex.events.Event):void
 			{
-				trace("Received search results!");
-				MyModel(applicationModel).searchResults = map.searchResults;
-				trace("--- there are "+MyModel(applicationModel).searchResults.length+" results");
-				for(var i:int=0; i < MyModel(applicationModel).searchResults.length; i++) {
-					var place:Place = MyModel(applicationModel).searchResults[i] as Place;
-					trace(place.name+" @ "+place.vicinity);
-				}
+				var searchResults:Array = MapModel(map.model).searchResults;
+				MyModel(applicationModel).searchResults = searchResults;
+			}
+			
+			/**
+			 * Called when a marker on the map has been selected. This function centers
+			 * the map on the marker and, if necessary, zooms the map in for closer
+			 * inspection.
+			 */
+			private function onMarkerClicked(event:org.apache.flex.events.Event):void
+			{
+				var marker:Marker = map.selectedMarker;
+				map.setZoom(12);
+				map.setCenter(marker.position);
 			}
 			
 		]]>
-    </fx:Script>
+	</fx:Script>
 	
-	<fx:Style>
+		<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
-	
+		
 		.FormLabel {
 			font-weight: bold;
 			font-size: 12;
-			margin-left: 8px;
-			margin-right: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			height: 22px;
 		}
 		
 		.FormButton {
@@ -114,22 +140,23 @@ limitations under the License.
 			color: #000000;
 			background-color: #FFFFFF;
 			border-style: solid;
-			padding-top: 2px;
-			padding-bottom: 2px;
-			padding-left: 8px;
-			padding-right: 8px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 5px;
+			padding-right: 5px;
 		}
 		
 		.FormInput {
 			font-weight: normal;
 			font-size: 12;
 			color: #0000DE;
-			padding: 6px;
+			padding: 0px;
+			height: 20px;
 		}
 		
 		.InnerBox {
-			margin-top: 10px;
-			margin-bottom: 5px;
+			margin-top: 11px;
+			margin-bottom: 10px;
 		}
 	</fx:Style>
 	
@@ -147,11 +174,11 @@ limitations under the License.
 			<basic:beads>
 				<basic:NonVirtualHorizontalLayout />
 			</basic:beads>
-			<basic:Label text="Location:" className="FormLabel" />
-			<basic:TextInput id="mapLocation" className="FormInput" />
-			<basic:TextButton text="Go" click="orientMap()" className="FormButton" />
+			<basic:Label id="label1" text="Location:" className="FormLabel"  />
+			<basic:TextInput id="mapLocation" />
+			<basic:TextButton text="Go" id="goButton" click="orientMap()" className="FormButton" />
 			
-			<basic:DropDownList id="list" width="100" height="17"
+			<basic:DropDownList id="list" width="100" height="20"
 								change="changeCity(event)"
 								dataProvider="{MyModel(applicationModel).cities}" />
 		</basic:Container>
@@ -164,10 +191,10 @@ limitations under the License.
 			<basic:beads>
 				<basic:NonVirtualHorizontalLayout />
 			</basic:beads>
-			<basic:Label text="Search on Map:" className="FormLabel" />
-			<basic:TextInput id="search" className="FormInput" />
+			<basic:Label id="label2" text="Search on Map:" className="FormLabel" />
+			<basic:TextInput id="search" />
 			<basic:TextButton text="Find" click="searchOnMap()" className="FormButton" />
-			<basic:TextButton text="Clear" click="clearSearchResults()" className="FormButton" />
+			<basic:TextButton text="Clear"click="clearSearchResults()" className="FormButton" />
 		</basic:Container>
 		
 		<basic:List id="resultsList" width="450" height="200">
@@ -181,5 +208,5 @@ limitations under the License.
 		</basic:List>
 		
 	</basic:Container>
-
+	
 </basic:ViewBase>
