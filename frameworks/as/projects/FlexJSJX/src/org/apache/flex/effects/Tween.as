@@ -35,7 +35,7 @@ import org.apache.flex.events.EventDispatcher;
  *  Zoom effects; a change in visibility, as performed by the Fade or
  *  Dissolve effects; or other types of animations.
  *
- *  A Tween instance accepts the <code>startValue</code>,
+ *  <p>A Tween instance accepts the <code>startValue</code>,
  *  <code>endValue</code>, and <code>duration</code> properties, 
  *  and an optional easing function to define the animation.</p> 
  *
