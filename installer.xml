@@ -215,6 +215,7 @@
             <equals arg1="${falcon.uses.mirror}" arg2="true" />
         </condition>
         <property name="falcon.server.url" value="http://archive.apache.org/dist" />
+        <property name="falcon.md5.server.url" value="${falcon.server.url}" />
         <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
