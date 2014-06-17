@@ -136,7 +136,8 @@
 		
     <target name="get-data">
 		<tstamp />
-		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${DSTAMP}" />
+		<property name="ts" value="${DSTAMP}${TSTAMP}" />
+		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${ts}" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
         <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version}" />
@@ -1062,13 +1063,14 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <get src="${srcDomain}/${srcFolder}/${srcFile}" dest="${dest}"/>
 	</target>
 	<target name="get-with-no-params" depends="check-params" if="not-local-no-params" >
-        <get src="${srcDomain}/${srcFolder}/${srcFile}?ts=${DSTAMP}" dest="${dest}"/>
+        <get src="${srcDomain}/${srcFolder}/${srcFile}?ts=${ts}" dest="${dest}"/>
 	</target>
 	<target name="get-with-params" depends="check-params" if="has-params" >
-        <get src="${srcDomain}/${srcFolder}/${srcFile}&amp;ts=${DSTAMP}" dest="${dest}"/>
+        <get src="${srcDomain}/${srcFolder}/${srcFile}&amp;ts=${ts}" dest="${dest}"/>
 	</target>
 	
     <target name="copy-if-cached" if="found-in-cache">
+		<echo>${INFO_USING_CACHED_FILE} ${downloadCacheFolder}/${srcFolder}/${srcFile}</echo>
 		<copy file="${downloadCacheFolder}/${srcFolder}/${srcFile}" tofile="${dest}" overwrite="true" />
 	</target> 
 	
@@ -1095,7 +1097,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     <target name="check-sum-from-file" if="srcMD5Domain" 
         description="Verifies MD5 checksum, and fails if checksum doesn't match">
         
-        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5?ts=${DSTAMP}" dest="${dest}.md5"/>
+        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5?ts=${ts}" dest="${dest}.md5"/>
         <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
         <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" />
         <fail message="${failmessage}">
