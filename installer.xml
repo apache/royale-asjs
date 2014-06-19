@@ -61,11 +61,11 @@
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
     
-    <property name="goog.lib.url.server" value="https://closure-library.googlecode.com" />
-    <property name="goog.lib.url.folder" value="files" />
-    <property name="goog.lib.url.file" value="closure-library-20130212-95c19e7f0f5f.zip" />
-    <property name="goog.lib.md5" value="7891ce8200dedf50c811017a0d76bcdc" />
-    
+    <property name="goog.lib.url.server" value="https://github.com" />
+    <property name="goog.lib.url.folder" value="google/closure-library/archive" />
+    <property name="goog.lib.url.file" value="master.zip" />
+    <property name="goog.lib.md5" value="9711bb32b35550f8cc49d7aac6b2c41c" />
+
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
     <property name="swfobject.url.file" value="2.2.zip" />
