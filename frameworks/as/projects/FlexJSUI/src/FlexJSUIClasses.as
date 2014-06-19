@@ -27,6 +27,8 @@ package
  */
 internal class FlexJSUIClasses
 {
+	import google.maps.MarkerOptions; MarkerOptions;
+	
 	import org.apache.cordova.camera.Camera; Camera;
 	import org.apache.cordova.Application; Application;
 	import org.apache.cordova.Weinre; Weinre;
