@@ -23,7 +23,9 @@ limitations under the License.
 				xmlns:local="*"
 				initComplete="initControls()">
 	<fx:Script>
-		<![CDATA[			
+		<![CDATA[		
+			import google.maps.MarkerOptions;
+
 			import org.apache.flex.maps.google.models.MapModel;
 			import models.MyModel;
 			
@@ -33,7 +35,9 @@ limitations under the License.
 			
 			private function initControls() : void
 			{
-				
+				var mo:MarkerOptions = new MarkerOptions();
+				mo.opacity = 0.5;
+				trace("Set opacity to "+mo.opacity);
 			}
 			
 			/**
