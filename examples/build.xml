@@ -124,6 +124,7 @@
         <ant dir="${basedir}/LanguageTests" target="clean"/>
         <ant dir="${basedir}/ListsTest" target="clean"/>
         <ant dir="${basedir}/MapSearch" target="clean"/>
+        <ant dir="${basedir}/MobileTrader" target="clean"/>
         <ant dir="${basedir}/StatesTest" target="clean"/>
         <ant dir="${basedir}/StockQuote" target="clean"/>
         <ant dir="${basedir}/BarChartExample" target="clean"/>
