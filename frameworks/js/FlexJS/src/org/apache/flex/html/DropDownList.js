@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.ListBase');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.DropDownList = function() {
-  goog.base(this);
+  org.apache.flex.html.DropDownList.base(this, 'constructor');
   this.model = new org.apache.flex.html.beads.
       models.ArraySelectionModel();
 };

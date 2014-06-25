@@ -25,7 +25,7 @@ goog.require('org.apache.flex.core.IContainer');
  * @extends {org.apache.flex.core.ContainerBase}
  */
 org.apache.flex.html.Container = function() {
-  goog.base(this);
+  org.apache.flex.html.Container.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Container,
     org.apache.flex.core.ContainerBase);
@@ -68,7 +68,7 @@ org.apache.flex.html.Container.prototype.createElement =
  */
 org.apache.flex.html.Container.prototype.addElement =
     function(child) {
-  goog.base(this, 'addElement', child);
+  org.apache.flex.html.Container.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
 };
 

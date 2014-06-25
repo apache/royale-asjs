@@ -24,7 +24,7 @@ goog.require('org.apache.flex.net.HTTPHeader');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.net.BinaryUploader = function() {
-  goog.base(this);
+  org.apache.flex.net.BinaryUploader .base(this, 'constructor');
 
   /**
    * @private

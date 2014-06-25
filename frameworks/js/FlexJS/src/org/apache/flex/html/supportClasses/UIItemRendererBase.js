@@ -28,7 +28,7 @@ goog.require('org.apache.flex.events.Event');
  */
 org.apache.flex.html.supportClasses.UIItemRendererBase =
 function() {
-  goog.base(this);
+  org.apache.flex.html.supportClasses.UIItemRendererBase.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.html.supportClasses.UIItemRendererBase,
@@ -51,7 +51,7 @@ org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_IN
  */
 org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.addedToParent =
 function() {
-  goog.base(this, 'addedToParent');
+  org.apache.flex.html.supportClasses.UIItemRendererBase.base(this, 'addedToParent');
 };
 
 

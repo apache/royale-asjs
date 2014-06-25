@@ -28,7 +28,7 @@ goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
  */
 org.apache.flex.html.supportClasses.StringItemRenderer =
     function() {
-  goog.base(this);
+  org.apache.flex.html.supportClasses.StringItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.html.supportClasses.StringItemRenderer,
@@ -151,7 +151,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
 org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.set_data = function(value) {
 
-  goog.base(this, 'set_data', value);
+  org.apache.flex.html.supportClasses.StringItemRenderer.base(this, 'set_data', value);
 
   if (this.get_labelField()) {
     this.element.innerHTML = String(value[this.get_labelField()]);

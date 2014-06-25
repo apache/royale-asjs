@@ -33,7 +33,7 @@ goog.require('org.apache.flex.maps.google.models.MapModel');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.maps.google.Map = function() {
-  goog.base(this);
+  org.apache.flex.maps.google.Map.base(this, 'constructor');
   this.initialized = false;
 };
 goog.inherits(org.apache.flex.maps.google.Map,

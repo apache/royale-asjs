@@ -24,7 +24,7 @@ goog.require('org.apache.flex.html.beads.ListView');
  */
 org.apache.flex.html.beads.ButtonBarView = function() {
   this.lastSelectedIndex = -1;
-  goog.base(this);
+  org.apache.flex.html.beads.ButtonBarView.base(this, 'constructor');
 
   this.className = 'ButtonBarView';
 };
@@ -50,6 +50,6 @@ org.apache.flex.html.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.html.beads.ButtonBarView.prototype.set_strand =
     function(value) {
 
-  goog.base(this, 'set_strand', value);
+  org.apache.flex.html.beads.ButtonBarView.base(this, 'set_strand', value);
   this.strand_ = value;
 };

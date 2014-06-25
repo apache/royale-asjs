@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.ListBase');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html5.DropDownList = function() {
-  goog.base(this);
+  org.apache.flex.html5.DropDownList.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html5.DropDownList,
     org.apache.flex.core.ListBase);

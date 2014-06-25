@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.HTMLElementWrapper');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.core.UIBase = function() {
-  goog.base(this);
+  org.apache.flex.createjs.core.UIBase.base(this, 'constructor');
 
   /**
      * @protected

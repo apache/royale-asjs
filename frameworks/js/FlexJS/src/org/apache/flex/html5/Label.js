@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html5.Label = function() {
-  goog.base(this);
+  org.apache.flex.html5.Label.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html5.Label,
     org.apache.flex.core.UIBase);
@@ -34,7 +34,7 @@ goog.inherits(org.apache.flex.html5.Label,
  */
 org.apache.flex.html5.Label.prototype.createElement =
     function() {
-  goog.base(this, 'createElement');
+  org.apache.flex.html5.Label.base(this, 'createElement');
 
   this.positioner = this.element;
 

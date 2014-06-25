@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.ListBase');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.ComboBox = function() {
-  goog.base(this);
+  org.apache.flex.html.ComboBox.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.ComboBox,
     org.apache.flex.core.ListBase);

@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.svg.TextButton = function() {
-  goog.base(this);
+  org.apache.flex.svg.TextButton.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.svg.TextButton,
     org.apache.flex.core.UIBase);

@@ -26,7 +26,7 @@ goog.require('goog.events.Event');
  * @param {*} nv The new value.
  */
 org.apache.flex.events.ValueChangeEvent = function(type, ov, nv) {
-  goog.base(this, type);
+  org.apache.flex.events.ValueChangeEvent.base(this, 'constructor', type);
 
   this.type = type;
   this.oldValue = ov;

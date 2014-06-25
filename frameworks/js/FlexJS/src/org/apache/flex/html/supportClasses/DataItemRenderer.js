@@ -27,7 +27,7 @@ goog.require('org.apache.flex.html.supportClasses.UIItemRendererBase');
  */
 org.apache.flex.html.supportClasses.DataItemRenderer =
     function() {
-  goog.base(this);
+  org.apache.flex.html.supportClasses.DataItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.html.supportClasses.DataItemRenderer,

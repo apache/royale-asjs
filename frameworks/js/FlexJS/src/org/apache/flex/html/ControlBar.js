@@ -23,7 +23,7 @@ goog.require('org.apache.flex.html.Container');
  * @extends {org.apache.flex.html.Container}
  */
 org.apache.flex.html.ControlBar = function() {
-  goog.base(this);
+  org.apache.flex.html.ControlBar.base(this, 'constructor');
 
 };
 goog.inherits(org.apache.flex.html.ControlBar,

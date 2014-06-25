@@ -24,7 +24,7 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.jquery.RadioButton = function() {
 
-  goog.base(this);
+  org.apache.flex.jquery.RadioButton.base(this, 'constructor');
 
   org.apache.flex.core.UIBase.call(this);
   org.apache.flex.jquery.RadioButton.radioCounter++;

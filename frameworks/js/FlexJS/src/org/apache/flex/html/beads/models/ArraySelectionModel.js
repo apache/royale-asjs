@@ -26,7 +26,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  */
 org.apache.flex.html.beads.models.ArraySelectionModel =
     function() {
-  goog.base(this);
+  org.apache.flex.html.beads.models.ArraySelectionModel.base(this, 'constructor');
   this.className = 'ArraySelectionModel';
 };
 goog.inherits(

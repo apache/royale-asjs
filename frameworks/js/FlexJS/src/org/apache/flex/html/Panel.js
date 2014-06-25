@@ -29,7 +29,7 @@ goog.require('org.apache.flex.html.beads.models.PanelModel');
 org.apache.flex.html.Panel = function() {
   this.model =
       new org.apache.flex.html.beads.models.PanelModel();
-  goog.base(this);
+  org.apache.flex.html.Panel.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Panel,
     org.apache.flex.html.Container);
@@ -138,7 +138,7 @@ org.apache.flex.html.Panel.prototype.createElement =
  */
 org.apache.flex.html.Panel.prototype.addedToParent =
     function() {
-  goog.base(this, 'addedToParent');
+  org.apache.flex.html.Panel.base(this, 'addedToParent');
 };
 
 

@@ -25,7 +25,7 @@ goog.require('org.apache.flex.utils.Language');
  * @extends {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.core.HTMLElementWrapper = function() {
-  goog.base(this);
+  org.apache.flex.core.HTMLElementWrapper.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.core.HTMLElementWrapper,
     org.apache.flex.events.EventDispatcher);

@@ -32,7 +32,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @implements {org.apache.flex.core.IStatesImpl}
  */
 org.apache.flex.core.SimpleStatesImpl = function() {
-  goog.base(this);
+  org.apache.flex.core.SimpleStatesImpl.base(this, 'constructor');
 
   /**
    * @private

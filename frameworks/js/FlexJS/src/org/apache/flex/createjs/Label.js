@@ -34,7 +34,7 @@ goog.inherits(org.apache.flex.createjs.Label,
  */
 org.apache.flex.createjs.Label.prototype.createElement =
     function(p) {
-  goog.base(this, 'createElement');
+  org.apache.flex.createjs.Label.base(this, 'createElement');
 
   this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
   this.element.x = 0;

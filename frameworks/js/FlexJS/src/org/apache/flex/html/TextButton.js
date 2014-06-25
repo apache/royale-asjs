@@ -23,7 +23,7 @@ goog.require('org.apache.flex.html.Button');
  * @extends {org.apache.flex.html.Button}
  */
 org.apache.flex.html.TextButton = function() {
-  goog.base(this);
+  org.apache.flex.html.TextButton.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.TextButton,
     org.apache.flex.html.Button);

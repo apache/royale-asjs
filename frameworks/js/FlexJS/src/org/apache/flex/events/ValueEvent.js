@@ -25,7 +25,7 @@ goog.require('goog.events.Event');
  * @param {*} v The value.
  */
 org.apache.flex.events.ValueEvent = function(type, v) {
-  goog.base(this, type);
+  org.apache.flex.events.ValueEvent.base(this, 'constructor', type);
 
   this.type = type;
   this.value = v;

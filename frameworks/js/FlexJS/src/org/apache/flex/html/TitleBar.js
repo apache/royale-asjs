@@ -30,7 +30,7 @@ org.apache.flex.html.TitleBar = function() {
   this.model =
       new org.apache.flex.html.beads.models.TitleBarModel();
 
-  goog.base(this);
+  org.apache.flex.html.TitleBar.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.TitleBar,
     org.apache.flex.html.Container);

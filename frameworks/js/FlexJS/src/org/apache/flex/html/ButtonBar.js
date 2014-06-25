@@ -32,7 +32,7 @@ org.apache.flex.html.ButtonBar = function() {
   //        org.apache.flex.html.beads.models.ArraySelectionModel();
   //  this.addBead(this.model);
 
-  goog.base(this);
+  org.apache.flex.html.ButtonBar.base(this, 'constructor');
 
   //  this.addBead(new
   //        org.apache.flex.html.beads.ListView());
@@ -70,7 +70,7 @@ org.apache.flex.html.ButtonBar.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.html.ButtonBar.prototype.createElement =
     function() {
-  //goog.base(this, 'createElement');
+  //org.apache.flex.html.ButtonBar.base(this, 'createElement');
 
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';

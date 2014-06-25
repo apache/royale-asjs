@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.ListBase');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html5.List = function() {
-  goog.base(this);
+  org.apache.flex.html5.List.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html5.List,
     org.apache.flex.core.ListBase);
@@ -34,7 +34,7 @@ goog.inherits(org.apache.flex.html5.List,
  */
 org.apache.flex.html5.List.prototype.createElement =
     function() {
-  goog.base(this, 'createElement');
+  org.apache.flex.html5.List.base(this, 'createElement');
 
   this.element.size = 5;
 

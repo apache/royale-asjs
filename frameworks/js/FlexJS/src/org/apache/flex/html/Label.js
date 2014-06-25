@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.Label = function() {
-  goog.base(this);
+  org.apache.flex.html.Label.base(this, 'constructor');
 
   this.element = document.createElement('span');
   this.positioner = this.element;

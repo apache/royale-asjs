@@ -33,7 +33,7 @@ goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.List = function() {
-  goog.base(this);
+  org.apache.flex.html.List.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.List,
     org.apache.flex.core.ListBase);
@@ -94,7 +94,7 @@ function(value) {
  */
 org.apache.flex.html.List.prototype.createElement =
     function() {
-  goog.base(this, 'createElement');
+  org.apache.flex.html.List.base(this, 'createElement');
   this.set_className('List');
 
   return this.element;
@@ -106,7 +106,7 @@ org.apache.flex.html.List.prototype.createElement =
  */
 org.apache.flex.html.List.prototype.addedToParent =
     function() {
-  goog.base(this, 'addedToParent');
+  org.apache.flex.html.List.base(this, 'addedToParent');
 
   var b = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !b) {

@@ -32,7 +32,7 @@ goog.require('org.apache.flex.core.Application');
  * @extends {org.apache.flex.core.Application}
  */
 org.apache.cordova.Application = function() {
-  goog.base(this);
+  org.apache.cordova.Application.base(this, 'constructor');
 
   document.addEventListener('deviceready',
                              goog.bind(this.devicereadyredispatcher, this),

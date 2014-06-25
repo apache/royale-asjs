@@ -30,7 +30,7 @@ goog.require('org.apache.flex.core.ValuesManager');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.UIBase = function() {
-  goog.base(this);
+  org.apache.flex.core.UIBase.base(this, 'constructor');
 
   /**
    * @private

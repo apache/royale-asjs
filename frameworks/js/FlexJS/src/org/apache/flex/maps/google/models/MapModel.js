@@ -30,7 +30,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @implements {org.apache.flex.core.IBeadModel}
  */
 org.apache.flex.maps.google.models.MapModel = function() {
-  goog.base(this);
+  org.apache.flex.maps.google.models.MapModel.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.maps.google.models.MapModel,

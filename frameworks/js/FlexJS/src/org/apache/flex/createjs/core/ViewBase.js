@@ -24,7 +24,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.core.ViewBase = function() {
-  goog.base(this);
+  org.apache.flex.createjs.core.ViewBase.base(this, 'constructor');
 
   /**
       * @private

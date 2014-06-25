@@ -27,7 +27,7 @@ goog.require('org.apache.flex.utils.Language');
 org.apache.flex.html.supportClasses.NonVirtualDataGroup =
     function() {
   this.renderers = [];
-  goog.base(this);
+  org.apache.flex.html.supportClasses.NonVirtualDataGroup.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.html.supportClasses.NonVirtualDataGroup,
@@ -78,7 +78,7 @@ org.apache.flex.html.supportClasses.NonVirtualDataGroup.
  */
 org.apache.flex.html.supportClasses.NonVirtualDataGroup.
     prototype.addElement = function(value) {
-  goog.base(this, 'addElement', value);
+  org.apache.flex.html.supportClasses.NonVirtualDataGroup.base(this, 'addElement', value);
 
   var itemRenderer = org.apache.flex.utils.Language.as(value,
                            org.apache.flex.html.supportClasses.DataItemRenderer);

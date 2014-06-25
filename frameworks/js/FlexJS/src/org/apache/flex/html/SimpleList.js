@@ -24,7 +24,7 @@ goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
  * @extends {org.apache.flex.core.ListBase}
  */
 org.apache.flex.html.SimpleList = function() {
-  goog.base(this);
+  org.apache.flex.html.SimpleList.base(this, 'constructor');
   this.model = new org.apache.flex.html.
       beads.models.ArraySelectionModel();
 };

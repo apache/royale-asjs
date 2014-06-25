@@ -25,7 +25,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @param {number=} opt_repeatCount The repeatCount.
  */
 org.apache.flex.utils.Timer = function(delay, opt_repeatCount) {
-  goog.base(this);
+  org.apache.flex.utils.Timer.base(this, 'constructor');
 
   if (opt_repeatCount !== undefined) {
     this._repeatCount = opt_repeatCount;

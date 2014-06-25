@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.Button = function() {
-  goog.base(this);
+  org.apache.flex.html.Button.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Button,
     org.apache.flex.core.UIBase);

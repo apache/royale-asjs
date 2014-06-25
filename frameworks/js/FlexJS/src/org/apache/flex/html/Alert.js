@@ -27,7 +27,7 @@ goog.require('org.apache.flex.html.TitleBar');
  * @extends {org.apache.flex.html.Container}
  */
 org.apache.flex.html.Alert = function() {
-  goog.base(this);
+  org.apache.flex.html.Alert.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Alert,
     org.apache.flex.html.Container);
@@ -72,7 +72,7 @@ org.apache.flex.html.Alert.CANCEL = 0x000008;
  */
 org.apache.flex.html.Alert.prototype.createElement =
     function() {
-  goog.base(this, 'createElement');
+  org.apache.flex.html.Alert.base(this, 'createElement');
 
   this.element.className = 'Alert';
 

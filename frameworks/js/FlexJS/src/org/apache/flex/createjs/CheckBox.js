@@ -23,7 +23,7 @@ goog.require('org.apache.flex.createjs.core.UIBase');
  * @extends {org.apache.flex.createjs.core.UIBase}
  */
 org.apache.flex.createjs.CheckBox = function() {
-  goog.base(this);
+  org.apache.flex.createjs.CheckBox.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.createjs.CheckBox,
     org.apache.flex.createjs.core.UIBase);

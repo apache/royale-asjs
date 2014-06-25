@@ -25,7 +25,7 @@ goog.require('org.apache.flex.html.beads.models.ImageModel');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.Image = function() {
-  goog.base(this);
+  org.apache.flex.html.Image.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Image,
     org.apache.flex.core.UIBase);

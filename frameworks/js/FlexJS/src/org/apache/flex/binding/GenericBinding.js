@@ -23,7 +23,7 @@ goog.require('org.apache.flex.binding.BindingBase');
  * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.GenericBinding = function() {
-  goog.base(this);
+  org.apache.flex.binding.GenericBinding.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.binding.GenericBinding,
     org.apache.flex.binding.BindingBase);

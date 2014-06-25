@@ -28,7 +28,7 @@ goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
  */
 org.apache.flex.html.beads.TextItemRendererFactoryForArrayData =
     function() {
-  goog.base(this);
+  org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.base(this, 'constructor');
 };
 goog.inherits(
     org.apache.flex.html.

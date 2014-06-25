@@ -38,7 +38,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.createjs.Application = function() {
-  goog.base(this);
+  org.apache.flex.createjs.Application.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.createjs.Application,
     org.apache.flex.core.HTMLElementWrapper);

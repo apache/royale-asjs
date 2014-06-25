@@ -26,7 +26,7 @@ goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
  */
 org.apache.flex.html.beads.models.DataGridModel =
     function() {
-  goog.base(this);
+  org.apache.flex.html.beads.models.DataGridModel.base(this, 'constructor');
 
   this.labelFields_ = [];
 
@@ -54,7 +54,7 @@ org.apache.flex.html.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.html.beads.models.DataGridModel.prototype.
     set_strand = function(value) {
-  goog.base(this, 'set_strand', value);
+  org.apache.flex.html.beads.models.DataGridModel.base(this, 'set_strand', value);
   this.strand_ = value;
 };
 

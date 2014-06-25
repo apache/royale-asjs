@@ -24,7 +24,7 @@ goog.require('goog.events.Event');
  * @param {string} type The event type.
  */
 org.apache.flex.events.CustomEvent = function(type) {
-  goog.base(this, type);
+  org.apache.flex.events.CustomEvent.base(this, 'constructor', type);
 
   this.type = type;
 };

@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.FilledRectangle = function() {
-  goog.base(this);
+  org.apache.flex.core.FilledRectangle.base(this, 'constructor');
 
   /**
    * @private
@@ -49,7 +49,7 @@ org.apache.flex.core.FilledRectangle.prototype.FLEXJS_CLASS_INFO =
  * @override
  */
 org.apache.flex.core.FilledRectangle.prototype.addedToParent = function() {
-  goog.base(this, 'addedToParent');
+  org.apache.flex.core.FilledRectangle.base(this, 'addedToParent');
   this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
 };
 

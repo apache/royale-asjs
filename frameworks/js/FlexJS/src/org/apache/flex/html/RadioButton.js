@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.RadioButton = function() {
-  goog.base(this);
+  org.apache.flex.html.RadioButton.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.RadioButton,
     org.apache.flex.core.UIBase);

@@ -24,7 +24,7 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.core.ContainerBase = function() {
   this.mxmlProperties = null;
-  goog.base(this);
+  org.apache.flex.core.ContainerBase.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.core.ContainerBase,
     org.apache.flex.core.UIBase);
@@ -65,7 +65,7 @@ org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, this.get_MXMLProperties());
-  goog.base(this, 'addedToParent');
+  org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
 
   this.dispatchEvent('initComplete');

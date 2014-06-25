@@ -25,7 +25,7 @@ goog.require('org.apache.flex.html.beads.controllers.SpinnerMouseController');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html.Spinner = function() {
-  goog.base(this);
+  org.apache.flex.html.Spinner.base(this, 'constructor');
 
   this.minimum_ = 0;
   this.maximum_ = 100;

@@ -28,7 +28,7 @@ goog.require('org.apache.flex.binding.WatcherBase');
  */
 org.apache.flex.binding.PropertyWatcher =
     function(source, propertyName, eventNames, getterFunction) {
-  goog.base(this);
+  org.apache.flex.binding.PropertyWatcher.base(this, 'constructor');
 
   this.source = source;
   this.propertyName = propertyName;

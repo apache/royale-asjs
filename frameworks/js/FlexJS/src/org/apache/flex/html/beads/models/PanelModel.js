@@ -23,7 +23,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @extends {org.apache.flex.events.EventDispatcher}
  */
 org.apache.flex.html.beads.models.PanelModel = function() {
-  goog.base(this);
+  org.apache.flex.html.beads.models.PanelModel.base(this, 'constructor');
 
   /**
    * @private

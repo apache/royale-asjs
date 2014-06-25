@@ -23,7 +23,7 @@ goog.require('org.apache.flex.binding.BindingBase');
  * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.ConstantBinding = function() {
-  goog.base(this);
+  org.apache.flex.binding.ConstantBinding.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.binding.ConstantBinding,
     org.apache.flex.binding.BindingBase);
@@ -44,7 +44,7 @@ org.apache.flex.binding.ConstantBinding.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.ConstantBinding.prototype.set_strand = function(value) {
-  goog.base(this, 'set_strand', value);
+  org.apache.flex.binding.ConstantBinding.base(this, 'set_strand', value);
 
   this.destination['set_' + this.destinationPropertyName](
       this.source['get_' + this.sourcePropertyName]()

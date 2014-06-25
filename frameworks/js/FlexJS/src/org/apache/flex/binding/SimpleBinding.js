@@ -23,7 +23,7 @@ goog.require('org.apache.flex.binding.BindingBase');
  * @extends {org.apache.flex.binding.BindingBase}
  */
 org.apache.flex.binding.SimpleBinding = function() {
-  goog.base(this);
+  org.apache.flex.binding.SimpleBinding.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.binding.SimpleBinding,
     org.apache.flex.binding.BindingBase);
@@ -60,7 +60,7 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
  * @override
  */
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
-  goog.base(this, 'set_strand', value);
+  org.apache.flex.binding.SimpleBinding.base(this, 'set_strand', value);
 
   this.source.addEventListener(this.eventName,
       goog.bind(this.changeHandler, this));

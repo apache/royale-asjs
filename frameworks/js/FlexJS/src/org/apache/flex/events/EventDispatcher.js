@@ -25,7 +25,7 @@ goog.require('org.apache.flex.events.IEventDispatcher');
  * @implements {org.apache.flex.events.IEventDispatcher}
  */
 org.apache.flex.events.EventDispatcher = function() {
-  goog.base(this);
+  org.apache.flex.events.EventDispatcher.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.events.EventDispatcher,
     goog.events.EventTarget);

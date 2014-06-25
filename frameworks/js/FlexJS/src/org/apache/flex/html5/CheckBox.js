@@ -23,7 +23,7 @@ goog.require('org.apache.flex.core.UIBase');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.html5.CheckBox = function() {
-  goog.base(this);
+  org.apache.flex.html5.CheckBox.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html5.CheckBox,
     org.apache.flex.core.UIBase);

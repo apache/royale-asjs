@@ -24,7 +24,7 @@ goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.ListBase = function() {
-  goog.base(this);
+  org.apache.flex.core.ListBase.base(this, 'constructor');
 
   /**
    * @protected

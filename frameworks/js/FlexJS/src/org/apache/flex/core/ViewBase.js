@@ -29,7 +29,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.ViewBase = function() {
-  goog.base(this);
+  org.apache.flex.core.ViewBase.base(this, 'constructor');
 
   /**
    * @private
@@ -90,7 +90,7 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
-  //goog.base(this,'addedToParent');
+  //org.apache.flex.core.ViewBase.base(this,'addedToParent');
   this.element.flexjs_wrapper = this;
   if (org.apache.flex.core.ValuesManager.valuesImpl.init) {
     org.apache.flex.core.ValuesManager.valuesImpl.init(this);
