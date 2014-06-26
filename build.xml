@@ -754,15 +754,6 @@
     <target name="stage-nightly" if="nightly" description="add nightly.properties if nightly build">
         <copy todir="${basedir}/temp" file="${basedir}/nightly.properties" />
     </target>
-    
-    <target name="stage-goog" description="add google closure library to binary package">
-        <mkdir dir="${basedir}/temp/js/lib/google/closure-library" />
-        <copy todir="${basedir}/temp/js/lib/google/closure-library" >
-            <fileset dir="${GOOG_HOME}" >
-                <include name="**/*"/>
-            </fileset>
-        </copy>
-    </target>
 
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
@@ -832,10 +823,8 @@
             </fileset>
         </copy>
          -->
-        
-        <antcall target="stage-goog" />
-        
-        <antcall target="binary-package-zip"/>
+                 
+        <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
         <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
     </target>

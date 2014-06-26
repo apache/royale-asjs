@@ -61,6 +61,11 @@
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
     
+    <property name="goog.lib.url.server" value="https://github.com" />
+    <property name="goog.lib.url.folder" value="google/closure-library/archive" />
+    <property name="goog.lib.url.file" value="master.zip" />
+    <property name="goog.lib.md5" value="9711bb32b35550f8cc49d7aac6b2c41c" />
+
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
     <property name="swfobject.url.file" value="2.2.zip" />
@@ -89,6 +94,9 @@
     </condition>
     <property name="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_MAC}" />
 
+    <condition property="goog.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
     <condition property="air.donot.ask" value="true">
         <isset property="installer" />
     </condition>
@@ -280,8 +288,23 @@
         </fail>
     </target>
     
-    <target name="ask-licenses" depends="ask-air,ask-flash,ask-swfobject" description="Ask about the various licenses">
+    <target name="ask-licenses" depends="ask-goog,ask-air,ask-flash,ask-swfobject" description="Ask about the various licenses">
 	</target>
+    
+    <target name="ask-goog" unless="goog.donot.ask"
+        description="Prompt the user before downloading Google Closure Library">
+        
+        <input
+        message="${goog.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.goog.download"/>
+        <condition property="do.goog.install">
+            <equals arg1="${yes}" arg2="${input.goog.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="goog.donot.ask" value="set"/>
+    </target>
     
     <target name="ask-air" unless="air.donot.ask"
         description="Prompt the user before downloading AIR">
@@ -463,7 +486,36 @@
         </antcall>
     </target>
 
-    <target name="get-third-party-files" depends="air-download,flash-download,swfobject-download" />
+    <target name="get-third-party-files" depends="goog-download,air-download,flash-download,swfobject-download" />
+    
+    <!-- Because this requires a network connection it downloads artifacts only if it doesn't already exist. -->
+    <target name="goog-check" description="Checks if Google Closure Library has been downloaded.">
+        <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" property="goog.lib.present"/>
+    </target>
+    
+    <target name="goog-download" depends="goog-check" unless="goog.lib.present"
+        description="Downloads Google Closure Library and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="goog-get" />
+        <unzip src="${download.dir}/${goog.lib.url.file}" dest="${FLEXJS_HOME}/js/lib/google/closure-library" />
+    </target>
+    
+    <target name="goog-get-check" >
+        <available file="${download.dir}/${goog.lib.url.file}" property="goog.downloaded" />
+    </target>
+            
+    <target name="goog-get" depends="goog-get-check" unless="goog.downloaded" >
+        <echo>${INFO_INSTALLING_GOOG} ${goog.lib.url.server}/${goog.lib.url.folder}/${goog.lib.url.file}</echo>
+        <antcall target="download_using_get" >
+            <param name="srcDomain" value="${goog.lib.url.server}" />
+            <param name="srcFolder" value="${goog.lib.url.folder}" />
+            <param name="srcFile" value="${goog.lib.url.file}" />
+            <param name="dest" value="${download.dir}/${goog.lib.url.file}" />
+			<param name="failmessage" value="Google Closure Library download failed" />
+			<param name="md5" value="${goog.lib.md5}" />
+        </antcall>
+    </target>
     
     <target name="air-check" description="Checks if AIR SDK has been downloaded.">
         <available file="${FLEXJS_HOME}/lib/adt.jar" property="air.jar.present"/>
@@ -716,7 +768,7 @@
     </target>
     
     <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present"
-        description="Copies SWFObject from github.com">
+        description="Copies SWFObject from code.google.com">
         
         <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
         <replace file="${basedir}/swfobject.properties" token="{0}" value="${swfobject.url.file}" />
