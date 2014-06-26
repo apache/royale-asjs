@@ -152,6 +152,12 @@
 			<zh_CN>拷贝 FalconJX SDK 文件</zh_CN>
 			<zh_TW>拷貝 FalconJX SDK 檔案</zh_TW>
 		</step>
+		<step id="goog-download" property="do.goog.install">
+			<el_GR>Λήψη Google Closure Library</el_GR>
+			<en_US>Google Closure Library jar (Required)</en_US>
+			<zh_CN>Google Closure Library jar (必须的)</zh_CN>
+			<zh_TW>Google Closure Library jar (必須的)</zh_TW>
+		</step>
 		<step id="air-download" property="do.air.install">
 			<el_GR>Αποσυμπίεση του Adobe AIR Runtime Kit</el_GR>
 			<en_US>Adobe AIR SDK (Required)</en_US>
