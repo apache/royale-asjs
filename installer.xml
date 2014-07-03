@@ -55,8 +55,8 @@
     <property file="${FLEXJS_HOME}/installer.properties/en_US.properties"/>
     <property name="download.dir" value="${FLEXJS_HOME}/in"/>
     
-    <property name="air.sdk.version" value="13.0"/>
-    <property name="flash.sdk.version" value="13.0"/>
+    <property name="air.sdk.version" value="14.0"/>
+    <property name="flash.sdk.version" value="14.0"/>
     <property name="flex.sdk.version" value="4.12.1"/>
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
@@ -134,33 +134,42 @@
         <property name="flash.sdk.url.md5" refid="${flash.sdk.url.md5.ref}" />	
 	</target>
 		
+    <condition property="air.sdk.version.ref" value="${air.sdk.versionID}" >
+        <isset property="air.sdk.versionID" />
+    </condition>
+    <property name="air.sdk.version.ref" value="${air.sdk.version}" />
+    <condition property="flash.sdk.version.ref" value="${flash.sdk.versionID}" >
+        <isset property="flash.sdk.versionID" />
+    </condition>
+    <property name="flash.sdk.version.ref" value="${flash.sdk.version}" />
+    
     <target name="get-data">
 		<tstamp />
 		<property name="ts" value="${DSTAMP}${TSTAMP}" />
 		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${ts}" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
-        <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version.ref}" />
         <property name="air.sdk.url.server" refid="${air.sdk.url.server.ref}" />
-        <property name="air.sdk.url.folder.ref" value="air.sdk.folder.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.folder.ref" value="air.sdk.folder.${platform}.${air.sdk.version.ref}" />
         <property name="air.sdk.url.folder" refid="${air.sdk.url.folder.ref}" />
-        <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version.ref}" />
         <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
-        <property name="air.sdk.url.md5.ref" value="air.sdk.md5.${platform}.${air.sdk.version}" />
+        <property name="air.sdk.url.md5.ref" value="air.sdk.md5.${platform}.${air.sdk.version.ref}" />
 		<condition property="air-has-md5">
 			<isreference refid="${air.sdk.url.md5.ref}" />
 		</condition>
-        <property name="flash.sdk.url.server.ref" value="flash.sdk.server.${flash.sdk.version}" />
+        <property name="flash.sdk.url.server.ref" value="flash.sdk.server.${flash.sdk.version.ref}" />
         <property name="flash.sdk.url.server" refid="${flash.sdk.url.server.ref}" />
-        <property name="flash.sdk.url.folder.ref" value="flash.sdk.folder.${flash.sdk.version}" />
+        <property name="flash.sdk.url.folder.ref" value="flash.sdk.folder.${flash.sdk.version.ref}" />
         <property name="flash.sdk.url.folder" refid="${flash.sdk.url.folder.ref}" />
-        <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version}" />
+        <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version.ref}" />
         <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
-        <property name="flash.sdk.url.md5.ref" value="flash.sdk.md5.${flash.sdk.version}" />
+        <property name="flash.sdk.url.md5.ref" value="flash.sdk.md5.${flash.sdk.version.ref}" />
 		<condition property="flash-has-md5">
 			<isreference refid="${flash.sdk.url.md5.ref}" />
 		</condition>
-        <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version}" />
+        <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version.ref}" />
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
         
         <property name="latest.sdk.version" value="${config.products.ApacheFlexSDK.latestVersion}" />
