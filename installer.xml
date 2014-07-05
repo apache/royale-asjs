@@ -61,11 +61,6 @@
     <property name="flexjs.version" value="0.0.2"/>
     <property name="falcon.version" value="0.0.2"/>
     
-    <property name="goog.lib.url.server" value="https://github.com" />
-    <property name="goog.lib.url.folder" value="google/closure-library/archive" />
-    <property name="goog.lib.url.file" value="master.zip" />
-    <property name="goog.lib.md5" value="9711bb32b35550f8cc49d7aac6b2c41c" />
-
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
     <property name="swfobject.url.file" value="2.2.zip" />
@@ -134,21 +129,31 @@
         <property name="flash.sdk.url.md5" refid="${flash.sdk.url.md5.ref}" />	
 	</target>
 		
-    <condition property="air.sdk.version.ref" value="${air.sdk.versionID}" >
-        <isset property="air.sdk.versionID" />
-    </condition>
-    <property name="air.sdk.version.ref" value="${air.sdk.version}" />
-    <condition property="flash.sdk.version.ref" value="${flash.sdk.versionID}" >
-        <isset property="flash.sdk.versionID" />
-    </condition>
-    <property name="flash.sdk.version.ref" value="${flash.sdk.version}" />
-    
     <target name="get-data">
 		<tstamp />
 		<property name="ts" value="${DSTAMP}${TSTAMP}" />
 		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${ts}" />
         <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
         <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
+        <condition property="air.sdk.version" value="${config.airsdk.linux.versions.default}">
+            <equals arg1="${platform}" arg2="linux" />
+        </condition>
+        <condition property="air.sdk.version" value="${config.airsdk.windows.versions.default}">
+            <equals arg1="${platform}" arg2="windows" />
+        </condition>
+        <condition property="air.sdk.version" value="${config.airsdk.mac.versions.default}">
+            <equals arg1="${platform}" arg2="mac" />
+        </condition>
+        <property name="flash.sdk.version" value="${config.flashsdk.versions.default}"/>
+        <condition property="air.sdk.version.ref" value="${air.sdk.versionID}" >
+            <isset property="air.sdk.versionID" />
+        </condition>
+        <property name="air.sdk.version.ref" value="${air.sdk.version}" />
+        <condition property="flash.sdk.version.ref" value="${flash.sdk.versionID}" >
+            <isset property="flash.sdk.versionID" />
+        </condition>
+        <property name="flash.sdk.version.ref" value="${flash.sdk.version}" />
+        
         <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version.ref}" />
         <property name="air.sdk.url.server" refid="${air.sdk.url.server.ref}" />
         <property name="air.sdk.url.folder.ref" value="air.sdk.folder.${platform}.${air.sdk.version.ref}" />
@@ -227,6 +232,10 @@
         <property name="falcon.md5.server.url" value="${falcon.server.url}" />
         <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
+        <property name="goog.lib.url.server" value="${config.google-closure-library.server}" />
+        <property name="goog.lib.url.folder" value="${config.google-closure-library.folder}" />
+        <property name="goog.lib.url.file" value="${config.google-closure-library.file}" />
+        <property name="goog.lib.md5" value="${config.google-closure-library.md5}" />
     </target>
     
     <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
