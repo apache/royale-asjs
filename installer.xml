@@ -516,7 +516,12 @@
         
         <mkdir dir="${download.dir}"/>
         <antcall target="goog-get" />
-        <unzip src="${download.dir}/${goog.lib.url.file}" dest="${FLEXJS_HOME}/js/lib/google/closure-library" />
+        <unzip src="${download.dir}/${goog.lib.url.file}" dest="${download.dir}/temp" />
+        <copy todir="${FLEXJS_HOME}/js/lib/google/closure-library">
+            <fileset dir="${download.dir}/temp/closure-library-master">
+                <include name="**" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="goog-get-check" >
