@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
@@ -36,7 +37,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class VScrollBarTrackView implements IBeadView
+	public class VScrollBarTrackView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -81,8 +82,6 @@ package org.apache.flex.html.beads
 			
 		}
 		
-		private var _strand:IStrand;
-		
 		private var shape:Shape;
 		
         /**
@@ -93,9 +92,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			SimpleButton(value).addEventListener("heightChanged", heightChangeHandler);
 			shape = new Shape();
 			SimpleButton(value).upState = upView;

@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
@@ -47,7 +48,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class NumericStepperView implements IBeadView, ILayoutParent
+	public class NumericStepperView extends BeadViewBase implements IBeadView, ILayoutParent
 	{
 		/**
 		 *  constructor.
@@ -61,8 +62,6 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		private var label:Label;
 		private var input:TextInput;
 		private var spinner:Spinner;
@@ -75,9 +74,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			// add a horizontal layout bead
 			value.addBead(new NonVirtualHorizontalLayout());

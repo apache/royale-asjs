@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.models.DateChooserModel;
 	import org.apache.flex.html.supportClasses.DateChooserButton;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -38,7 +39,7 @@ package org.apache.flex.html.beads
 	 * months, the labels for the days of the week, and the buttons for each day
 	 * of the month.
 	 */
-	public class DateChooserView implements IBeadView
+	public class DateChooserView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor
@@ -52,8 +53,6 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -62,9 +61,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			// make sure there is a model.
 			model = _strand.getBeadByType(IBeadModel) as DateChooserModel;

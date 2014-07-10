@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -41,7 +42,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageButtonView implements IBeadView, IBead
+	public class ImageButtonView extends BeadViewBase implements IBeadView, IBead
 	{
 		/**
 		 *  Constructor.
@@ -58,8 +59,6 @@ package org.apache.flex.html.beads
 			overSprite = new Sprite();
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -68,9 +67,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);

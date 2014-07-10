@@ -22,6 +22,7 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IPopUpHost;
@@ -43,7 +44,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ComboBoxView implements IBeadView, IComboBoxView
+	public class ComboBoxView extends BeadViewBase implements IBeadView, IComboBoxView
 	{
 		/**
 		 *  constructor.
@@ -99,8 +100,6 @@ package org.apache.flex.html.beads
 			textInput.html = value;
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -113,9 +112,9 @@ package org.apache.flex.html.beads
 		{
 			return _strand;
 		}
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
         
 			selectionModel = value.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);

@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
@@ -266,5 +267,32 @@ package org.apache.flex.html.beads
 			UIBase(_dataGroup).height = UIBase(_strand).height;
 		}
 				
+        /**
+         *  @copy org.apache.flex.core.IBeadView#viewHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get viewHeight():Number
+        {
+            // don't want to put $height in an interface
+            return _strand["$height"];
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.IBeadView#viewWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get viewWidth():Number
+        {
+            // don't want to put $width in an interface
+            return _strand["$width"];
+        }
 	}
 }

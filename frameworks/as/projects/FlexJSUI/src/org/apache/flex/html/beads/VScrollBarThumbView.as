@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.SimpleButton;
     import flash.display.DisplayObject;
 
+    import org.apache.flex.core.BeadViewBase;
     import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
@@ -37,7 +38,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class VScrollBarThumbView implements IBeadView
+	public class VScrollBarThumbView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -68,8 +69,6 @@ package org.apache.flex.html.beads
 			g.lineTo(12, hh + 4);
 		}
 		
-		private var _strand:IStrand;
-		
 		private var shape:Shape;
 		
         /**
@@ -80,9 +79,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
             
             upView = new Shape();
             downView = new Shape();

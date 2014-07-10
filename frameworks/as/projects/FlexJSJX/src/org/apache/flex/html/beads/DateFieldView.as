@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDateChooserModel;
 	import org.apache.flex.core.IFormatBead;
@@ -43,7 +44,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateFieldView implements IBeadView
+	public class DateFieldView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -56,8 +57,6 @@ package org.apache.flex.html.beads
 		public function DateFieldView()
 		{
 		}
-		
-		private var _strand:IStrand;
 		
 		private var _textInput:TextInput;
 		private var _button:TextButton;
@@ -96,9 +95,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
-			_strand = value;
+			super.strand = value;
 			
 			_textInput = new TextInput();
 			UIBase(_strand).addElement(_textInput);

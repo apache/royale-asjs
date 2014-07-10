@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	
     /**
@@ -163,5 +164,40 @@ package org.apache.flex.html.beads
 			textField.width = DisplayObject(_strand).width;
 			textField.height = DisplayObject(_strand).height;
 		}
-	}
+
+        /**
+         *  @copy org.apache.flex.core.IBeadView#viewHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get viewHeight():Number
+        {
+            // textfields with autosize collapse if no text
+            if (_textField.text == "" && _textField.autoSize != "none")
+                return ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
+
+            return _textField.height;
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.IBeadView#viewWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get viewWidth():Number
+        {
+            // textfields with autosize collapse if no text
+            if (_textField.text == "" && _textField.autoSize != "none")
+                return 0;
+            
+            return _textField.width;
+        }
+
+    }
 }

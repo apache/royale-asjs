@@ -20,8 +20,8 @@ package org.apache.flex.core
 {
 
     /**
-     *  The IBeadView interface is a "marker" interface for beads that 
-     *  represent the view for a control.  A marker interface has no addtional APIs.
+     *  The IBeadView interface is the interface for beads that 
+     *  represent the view for a control.  
      *  It is used to find the view bead on the strand via calls to getBeadByType.
      * 
      *  @see org.apache.flex.core.IStrand#getBeadByType
@@ -33,5 +33,24 @@ package org.apache.flex.core
      */
 	public interface IBeadView extends IBead
 	{
+        /**
+         *  The width of the view. 
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get viewWidth():Number;
+        
+        /**
+         *  The height of the view. 
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get viewHeight():Number;
 	}
 }

@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -47,7 +48,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class CheckBoxView implements IBeadView
+	public class CheckBoxView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -106,9 +107,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
             
 			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);

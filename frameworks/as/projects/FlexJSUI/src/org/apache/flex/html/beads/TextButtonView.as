@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.SimpleButton;
 	import flash.text.TextFieldType;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -39,7 +40,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class TextButtonView implements IBeadView
+	public class TextButtonView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -80,8 +81,6 @@ package org.apache.flex.html.beads
 		
 		private var textModel:ITextModel;
 		
-		private var _strand:IStrand;
-		
 		private var shape:Shape;
 		
         /**
@@ -92,9 +91,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			textModel = value.getBeadByType(ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);

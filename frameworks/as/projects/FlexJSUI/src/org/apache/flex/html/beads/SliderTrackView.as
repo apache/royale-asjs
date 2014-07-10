@@ -22,6 +22,7 @@ package org.apache.flex.html.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
@@ -36,7 +37,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SliderTrackView implements IBeadView
+	public class SliderTrackView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -66,8 +67,6 @@ package org.apache.flex.html.beads
 			g.endFill();
 		}
 		
-		private var _strand:IStrand;
-		
 		private var hitArea:Shape;
 		
 		/**
@@ -78,9 +77,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			drawView(hitArea.graphics, 0xDD0000);
 			drawView(upView.graphics, 0xCCCCCC);

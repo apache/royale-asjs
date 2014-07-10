@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
@@ -42,7 +43,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SimpleAlertView implements IBeadView
+	public class SimpleAlertView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -59,8 +60,6 @@ package org.apache.flex.html.beads
 		private var messageLabel:Label;
 		private var okButton:TextButton;
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -69,9 +68,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
             
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");

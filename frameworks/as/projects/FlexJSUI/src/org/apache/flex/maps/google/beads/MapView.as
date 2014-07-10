@@ -22,6 +22,7 @@ package org.apache.flex.maps.google.beads
 	import flash.html.HTMLLoader;
 	import flash.net.URLRequest;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -42,7 +43,7 @@ package org.apache.flex.maps.google.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class MapView implements IBeadView
+	public class MapView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  Constructor.
@@ -68,9 +69,9 @@ package org.apache.flex.maps.google.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			_loader = new HTMLLoader();
 			_loader.x = 0;

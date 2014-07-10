@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.LoaderInfo;
 	import flash.net.URLRequest;
 	
+    import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.IStrand;
@@ -38,7 +39,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageView implements IBeadView
+	public class ImageView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -55,7 +56,6 @@ package org.apache.flex.html.beads
 		private var bitmap:Bitmap;
 		private var loader:Loader;
 		
-		private var _strand:IStrand;
 		private var _model:IImageModel;
 		
 		/**
@@ -66,9 +66,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);

@@ -230,7 +230,11 @@ package org.apache.flex.core
             {
                 var value:* = ValuesManager.valuesImpl.getValue(this, "width");
                 if (value === undefined)
+                {
+                    if (view)
+                        return view.viewWidth;
                     return $width;
+                }
 				_width = Number(value);
             }
 			return _width;
@@ -255,13 +259,14 @@ package org.apache.flex.core
 
         /**
          *  Retrieve the low-level bounding box width.
+         *  Not implemented in JS.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		protected function get $width():Number
+		public function get $width():Number
 		{
 			return super.width;
 		}
@@ -285,7 +290,11 @@ package org.apache.flex.core
             {
                 var value:* = ValuesManager.valuesImpl.getValue(this, "height");
                 if (value === undefined)
+                {
+                    if (view)
+                        return view.viewHeight;
                     return $height;
+                }
   	            _height = Number(value);
             }
 			return _height;
@@ -310,13 +319,14 @@ package org.apache.flex.core
         
         /**
          *  Retrieve the low-level bounding box height.
+         *  Not implemented in JS.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		protected function get $height():Number
+		public function get $height():Number
 		{
 			return super.height;
 		}
@@ -353,7 +363,46 @@ package org.apache.flex.core
 			}
 		}
 		
-		private var _id:String;
+        private var _view:IBeadView;
+        
+        /**
+         *  An IBeadView that serves as the view for the component.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get view():IBeadView
+        {
+            if (_view == null)
+            {
+                var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
+                if (c)
+                {
+                    if (c)
+                    {
+                        _view = (new c()) as IBeadView;
+                        addBead(_view);
+                    }
+                }
+            }
+            return _view;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set view(value:IBeadView):void
+        {
+            if (_view != value)
+            {
+                addBead(value as IBead);
+                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+            }
+        }
+
+        private var _id:String;
 
         /**
          *  An id property for MXML documents.
@@ -448,6 +497,8 @@ package org.apache.flex.core
 			_beads.push(bead);
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
+            else if (bead is IBeadView)
+                _view = bead as IBeadView;
 			bead.strand = this;
 			
 			if (bead is IBeadView) {
