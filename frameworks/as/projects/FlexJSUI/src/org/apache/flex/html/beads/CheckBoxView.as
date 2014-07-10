@@ -97,8 +97,6 @@ package org.apache.flex.html.beads
 			return _toggleButtonModel;
 		}
 		
-		private var _strand:IStrand;
-		
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  

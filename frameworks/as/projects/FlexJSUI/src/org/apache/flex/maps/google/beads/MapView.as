@@ -59,8 +59,6 @@ package org.apache.flex.maps.google.beads
 		
 		private var _loader:HTMLLoader;
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  

@@ -89,8 +89,6 @@ package org.apache.flex.html.beads
 			return _controlBar;
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -102,7 +100,6 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_strand = value;
 			
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
