@@ -111,12 +111,11 @@ Install Prerequisites
          version as 1.6 so the JVM args for the data model (-d32/-d64) will not
          be set correctly and you will get compile errors.
 
-    *3) The Google Closure Library can be downloaded from:
-           https://closure-library.googlecode.com/files/closure-library-20130212-95c19e7f0f5f.zip
+    *3) The Google Closure Library can be downloaded or cloned from GitHub:
+           https://github.com/google/closure-library
 
-        Download the Google Closure Library and unzip it. Set GOOG_HOME to the
-        absolute path of the folder that contains the third_party and closure
-        sub-folders.
+        Set GOOG_HOME to the absolute path of the folder that contains the 
+        third_party and closure sub-folders.
 
     *4) The Google Closure Linter can be found here:
             http://code.google.com/p/closure-linter/downloads/list
