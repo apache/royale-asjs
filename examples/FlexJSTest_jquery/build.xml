@@ -23,7 +23,6 @@
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="jQuerySample" />
     
-    <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
