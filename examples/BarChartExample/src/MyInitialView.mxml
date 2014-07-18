@@ -21,7 +21,7 @@ limitations under the License.
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*"
->
+				>
 	<fx:Script>
 		<![CDATA[
 			
@@ -43,20 +43,38 @@ limitations under the License.
 			<basic:BarChartSeries yField="sales" 
 								  fillColor="0xFF964D">
 				<basic:itemRenderer>
-                    <fx:Component>
-                        <basic:BoxItemRenderer />                        
-                    </fx:Component>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarChartSeries>
 			<basic:BarChartSeries yField="detail" 
 								  fillColor="0x964DFF">
 				<basic:itemRenderer>
-                    <fx:Component>
-                        <basic:BoxItemRenderer />                        
-                    </fx:Component>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarChartSeries>
 		</basic:series>
 	</basic:BarChart>
+	
+	<basic:PieChart id="pieChart" x="20" y="300" width="300" height="300">
+		<basic:beads>
+			<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+		</basic:beads>
+		<basic:series>
+			<basic:PieChartSeries dataField="sales">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:WedgeItemRenderer />
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:PieChartSeries>
+		</basic:series>
+	</basic:PieChart>
 	
 </basic:ViewBase>
