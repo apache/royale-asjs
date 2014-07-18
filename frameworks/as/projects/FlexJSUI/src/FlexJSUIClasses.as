@@ -30,6 +30,13 @@ internal class FlexJSUIClasses
 	import org.apache.cordova.camera.Camera; Camera;
 	import org.apache.cordova.Application; Application;
 	import org.apache.cordova.Weinre; Weinre;
+	
+	import org.apache.flex.charts.core.IChart; IChart;
+	import org.apache.flex.charts.core.IChartSeries; IChartSeries;
+	import org.apache.flex.charts.core.IChartAxis; IChartAxis;
+	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
+	import org.apache.flex.charts.ChartDataGroup; ChartDataGroup;
+	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
 	import org.apache.flex.maps.google.Map; Map;
 	
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
@@ -92,6 +99,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
+	import org.apache.flex.html.supportClasses.NonVirtualDataGroup; NonVirtualDataGroup;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
 	import org.apache.flex.events.CustomEvent; CustomEvent;

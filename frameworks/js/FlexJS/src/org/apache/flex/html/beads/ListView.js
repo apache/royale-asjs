@@ -75,8 +75,11 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
   this.model.addEventListener('selectedIndexChanged',
       goog.bind(this.selectionChangeHandler, this));
 
-  this.dataGroup_ = new
-      org.apache.flex.html.supportClasses.NonVirtualDataGroup();
+  if (this.dataGroup_ == null) {
+    var m2 = org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this.strand_, 'iDataGroup');
+    this.dataGroup_ = new m2();
+  }
   this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
 
@@ -91,6 +94,16 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
 org.apache.flex.html.beads.ListView.prototype.get_dataGroup =
     function() {
   return this.dataGroup_;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The DataGroup instance.
+ */
+org.apache.flex.html.beads.ListView.prototype.set_dataGroup =
+    function(value) {
+  this.dataGroup_ = value;
 };
 
 
@@ -119,7 +132,7 @@ org.apache.flex.html.beads.ListView.prototype.
  * @return {Object} The view that contains the layout objects.
  */
 org.apache.flex.html.beads.ListView.prototype.get_contentView = function() {
-  return this;
+  return this.dataGroup_;
 };
 
 

@@ -72,6 +72,8 @@
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
 
+    <component id="WedgeItemRenderer" class="org.apache.flex.charts.supportClasses.WedgeItemRenderer" />
+
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
 </componentPackage>

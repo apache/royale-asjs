@@ -21,7 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
@@ -91,6 +91,10 @@ package org.apache.flex.html.beads
 		public function get dataGroup():IItemRendererParent
 		{
 			return _dataGroup;
+		}
+		public function set dataGroup(value:IItemRendererParent):void
+		{
+			_dataGroup = value;
 		}
 		
 		private var _vScrollBar:ScrollBar;
@@ -175,7 +179,9 @@ package org.apache.flex.html.beads
             _border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(_strand).addElement(_border);
             
-			_dataGroup = new NonVirtualDataGroup();
+			if (_dataGroup == null) {
+				_dataGroup = new (ValuesManager.valuesImpl.getValue(value, "iDataGroup")) as IItemRendererParent;
+			}
 			IParent(_strand).addElement(_dataGroup);
             
             if (_strand.getBeadByType(IBeadLayout) == null)

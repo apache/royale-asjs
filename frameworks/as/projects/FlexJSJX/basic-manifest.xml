@@ -33,6 +33,8 @@
     <component id="BarChart" class="org.apache.flex.charts.BarChart" />
     <component id="BarChartSeries" class="org.apache.flex.charts.supportClasses.BarChartSeries" />
     <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
+    <component id="PieChart" class="org.apache.flex.charts.PieChart" />
+    <component id="PieChartSeries" class="org.apache.flex.charts.supportClasses.PieChartSeries" />
     <component id="XAxisBead" class="org.apache.flex.charts.beads.XAxisBead" />
     
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
