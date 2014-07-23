@@ -19,23 +19,29 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The FlexJSTest_basic demonstrates a number of the common components in the FlexJS
+SDK (listed below).
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
+This Flex application may be run either as an ActionScript SWF or cross-compiled
+into JavsScript/HTML using the Falcon JX compiler and run without using the
+Flash Player.
 
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+This application also uses the same financial data as the DataBindingTest,
+accessed using HTTPService, although it uses the ConstantBinding bead to
+display the remote data instead of data binding.
 
 COMPONENTS and BEADS
 
-- Container
+- CheckBox
+- ComboBox
 - DropDownList
 - Label
+- List
+- RadioButton
+- TextArea
 - TextButton
-- TextInput
+
+NOTES
+
+In ActionScript, the hit area for radio and check boxes is limited to the
+radio or check itself and not the label.

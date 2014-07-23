@@ -19,23 +19,27 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The FlexJSTest_Panel application demonstrates some FlexJS common components,
+incuding Panel. The application uses a Panel to contain a sub-set of FlexJS
+components, listed below.
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
-
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
 
 COMPONENTS and BEADS
 
-- Container
-- DropDownList
 - Label
+- NumericStepper
+- Panel
+- Slider
 - TextButton
-- TextInput
+
+- NonVirtualVerticalLayout
+
+NOTES
+
+Changing the Slider updates a Label. Changing the NumericStepper changes another Label.
+
+The ActionScript version has some layout issues, chiefly the Panel background is not being
+displayed. The JavaScript version is not updating the Labels when either the Slider or
+NumericStepper is changed.

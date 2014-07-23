@@ -19,23 +19,34 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The DataBindingTest example shows a Flex application that can communicate with
+a third-party data source (in this case, yahoo.finance) and display the values
+returned using data binding. 
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
 
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+The DataBindingTest example also shows how the model-view-controller (MVC) pattern
+can be used to separate the parts of the application. This is facilitated by
+the use of FlexJS beads added to the main application that provide the
+data connection (via HTTPService) and interacting with the rest of the application
+via events.
 
 COMPONENTS and BEADS
 
+- Button
+- CheckBox
+- ComboBox
 - Container
-- DropDownList
 - Label
-- TextButton
+- RadioButton
+- TextArea
 - TextInput
+
+- Data binding: the text properties of TextArea and Label are linked with results
+from the remote server calls.
+
+NOTES
+
+The cross-compilation to JavaScript often results in non-fatal warnings. Some of these warnings
+should be addressed in future releases of the Falcon JX compiler.

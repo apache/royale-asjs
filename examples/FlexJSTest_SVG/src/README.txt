@@ -19,23 +19,27 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The FlexJSTest_SVG example shows how to use SVG to skin components when run in
+the HTML/JavaScript environment.
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
 
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+The FlexJSTest_SVG application may be run in ActionScript, which uses standard Flash
+drawing to produce the button skin. When run in JavaScript however, SVG is used to
+make the skin.
+
+To make the skin, a new classification of TextButton was created in the 
+org.apache.flex.svg package. On the ActionScript side, the svg.TextButton simply
+extends the normal TextButton. On the JavaScript side, the svg.TextButton class
+uses an SVG file (svg.assets.TextButton_skin.svg).
 
 COMPONENTS and BEADS
 
-- Container
-- DropDownList
 - Label
 - TextButton
-- TextInput
+
+NOTES
+
+Maybe a more standard or common way or place to specify skins could be developed so
+specialized packages would not always be needed.

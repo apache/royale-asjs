@@ -19,23 +19,28 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The DataGridExample demonstrates the FlexJS DataGrid which is a composite
+component that is built from a set of List components; each List is a column
+in the DataGrid. The header is provided by the ButtonBar component.
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
 
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+The data for the DataGrid is found in the application's model and is connected
+using a ConstantBinding bead which ties a property of a model to a property
+in a component, in this case, the DataGrid's dataProvider property.
 
 COMPONENTS and BEADS
 
-- Container
-- DropDownList
-- Label
-- TextButton
-- TextInput
+- DataGrid
+- List
+- ButtonBar
+
+- ConstantBinding
+
+NOTES
+
+The column headers - buttons in a ButtonBar - do not align correctly over each
+column.
+
+The columns scroll independently.

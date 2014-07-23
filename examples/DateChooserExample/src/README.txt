@@ -19,23 +19,25 @@
 
 DESCRIPTION
 
-This sample FlexJS application shows how you can integrate a 3rd party library, such as Google Maps, into the
-world of FlexJS.
+The DateChooserExample demonstrates the DateChooser and DateField components. The
+DataChooser displays a calendar in place while the DateField displays a calendar
+in a pop-up.
 
-The ActionScript side is an AIR app that uses HTMLLoader to bring in the Google MAP JavaScript API. You could
-also try to use an iFrame with a web application (there are examples of iFrame and Flex scattered around the web).
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
 
-You can also cross-compile this sample into JavaScript. This is possible because there is a JavaScript version of the
-ActionScript Map class. The JavaScript Map class loads the Google MAP API asynchronously and dispatches a "ready" 
-event when the load and initialization of the API is complete.
-    
-You will need a Google API developer key. When you have it, replace --put your Google API dev token here-- with 
-your developer token in the MyInitialView.mxml <basic:Map> tag.
+Selecting a date from the DateChooser sets the date in the DateField.
 
 COMPONENTS and BEADS
 
-- Container
-- DropDownList
+- DateChooser
+- DateField
 - Label
-- TextButton
-- TextInput
+
+NOTES
+
+In the ActionScript/SWF version, each button/date in the DateChooser has a hit area
+that's smaller than the button itself.
+
+In the ActionScript/SWF version, the last-selected date in the DateField pop-up
+calendar may remain selected.
