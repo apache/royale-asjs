@@ -58,10 +58,11 @@ package org.apache.flex.html.beads
 		{
 			var mwidth:Number = 0;
 			var titleBar:TitleBar = _strand as TitleBar;
-			var labelMeasure:IMeasurementBead = titleBar.titleLabel.measurementBead;
+			var titleView:TitleBarView = _strand.getBeadByType(TitleBarView) as TitleBarView;
+			var labelMeasure:IMeasurementBead = titleView.titleLabel.measurementBead;
 			mwidth = labelMeasure.measuredWidth;
 			if( titleBar.showCloseButton ) {
-				var buttonMeasure:IMeasurementBead = titleBar.closeButton.measurementBead;
+				var buttonMeasure:IMeasurementBead = titleView.closeButton.measurementBead;
 				mwidth += buttonMeasure.measuredWidth;
 			}
 			return mwidth;
@@ -79,10 +80,11 @@ package org.apache.flex.html.beads
 		{
 			var mheight:Number = 0;
 			var titleBar:TitleBar = _strand as TitleBar;
-			var labelMeasure:IMeasurementBead = titleBar.titleLabel.measurementBead;
+			var titleView:TitleBarView = _strand.getBeadByType(TitleBarView) as TitleBarView;
+			var labelMeasure:IMeasurementBead = titleView.titleLabel.measurementBead;
 			mheight = labelMeasure.measuredHeight;
 			if( titleBar.showCloseButton ) {
-				var buttonMeasure:IMeasurementBead = titleBar.closeButton.measurementBead;
+				var buttonMeasure:IMeasurementBead = titleView.closeButton.measurementBead;
 				mheight = Math.max(mheight,buttonMeasure.measuredHeight);
 			}
 			return mheight;

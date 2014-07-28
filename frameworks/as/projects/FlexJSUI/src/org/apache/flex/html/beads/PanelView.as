@@ -118,6 +118,8 @@ package org.apache.flex.html.beads
 				Container(_strand).addElement(controlBar);
 			}
 			
+			layoutChromeElements();
+			
 			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
 		}
 		
@@ -138,7 +140,45 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
+		private function layoutChromeElements():void
+		{
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+						
+			titleBar.x = 0;
+			titleBar.y = 0;
+			titleBar.width = UIBase(_strand).width;
+			
+			var ypos:Number = titleBar.y + titleBar.height;
+			
+			actualParent.x = 0;
+			actualParent.y = ypos;
+			
+			ypos = actualParent.y + actualParent.height;
+			trace("ypos is "+ypos+" because actualParent.height is "+actualParent.height);
+			
+			if (controlBar) {
+				controlBar.x = 0;
+				controlBar.width = UIBase(_strand).width;
+				
+				var expHeight:Number = UIBase(_strand).explicitHeight;
+				if (isNaN(expHeight)) {
+					controlBar.y = ypos;
+				} else {
+					controlBar.y = expHeight - controlBar.height;
+				}
+			}
+			
+			UIBase(_strand).dispatchEvent(new Event("widthChanged"));
+		}
+		
+		/**
+		 * @private
+		 */
 		private function changeHandler(event:Event):void
+		{
+			layoutChromeElements();
+		}
+		private function changeHandlerOLD(event:Event):void
 		{
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			

@@ -80,6 +80,21 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+			var padding:Object = determinePadding();
+			
+			if (contentAreaNeeded())
+			{
+				actualParent = new ContainerContentArea();
+				DisplayObjectContainer(value).addChild(actualParent);
+				Container(value).setActualParent(actualParent);
+				actualParent.x = padding.paddingLeft;
+				actualParent.y = padding.paddingTop;
+			}
+			else
+			{
+				actualParent = value as UIBase;
+			}
+			
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
@@ -102,21 +117,6 @@ package org.apache.flex.html.beads
 			{
 				if (value.getBeadByType(IBorderBead) == null)
 					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
-			}
-			
-			var padding:Object = determinePadding();
-			
-			if (contentAreaNeeded())
-			{
-				actualParent = new ContainerContentArea();
-				DisplayObjectContainer(value).addChild(actualParent);
-				Container(value).setActualParent(actualParent);
-				actualParent.x = padding.paddingLeft;
-				actualParent.y = padding.paddingTop;
-			}
-			else
-			{
-				actualParent = value as UIBase;
 			}
 		}
 		
