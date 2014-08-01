@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  
+  <script src="/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/library/closure/goog/base.js"></script>
+
+  <script src="/Users/erik/Documents/eclipse (kepler)/.metadata/.closure/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/library.js"></script>
+
+  <script src="/Users/erik/Documents/eclipse (kepler)/.metadata/.closure/Users/erik/Documents/ApacheFlex/git/flex-asjs/frameworks/js/VF2JS/src.js"></script>
+
+  <script>
+    goog.require('vf2js_s.components.Button');
+  </script>
+
+</head>
+<body onload="init();">
+
+  <script>
+    
+    function init() {
+      var /** @type {vf2js_s.components.Button} */ button;
+    
+      button = new vf2js_s.components.Button();
+      button.id = 'myBtn';
+      button.label = 'helloWorld';
+      button.render();
+    }
+    
+  </script>
+
+</body>
+</html>

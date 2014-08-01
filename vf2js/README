@@ -1,0 +1,11 @@
+Hello World
+
+1. Take any Flex SDK install
+2. add FalconJX
+3. add VF2JS SWCs
+4. add VF2JS JS framework
+5. add Launch script
+6. 
+
+- add builds to build machine (for nightlies)
+- add script to installer

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="vf2js_s" default="main" basedir=".">
+    
+    <property file="../../build.properties"/>
+
+    <property environment="env"/>
+    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
+    <property name="VF2JS_HOME" location="${env.VF2JS_HOME}"/>
+
+    <target name="main" depends="clean,compile" description="Clean build of vf2js_s.swc">
+    </target>
+
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${VF2JS_HOME}/frameworks/as/libs">
+                <include name="vf2js_s.swc"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <path id="lib.path">
+      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+    </path>
+
+    <target name="compile" description="Compiles vf2js_s.swc">
+        <echo message="Compiling '${VF2JS_HOME}/frameworks/as/libs/vf2js_s.swc'"/>
+
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="VF2JS_HOME: ${VF2JS_HOME}"/>
+
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+
+        <compc fork="true" output="${VF2JS_HOME}/frameworks/as/libs/vf2js_s.swc">
+            <jvmarg line="${jvm.args}"/>
+            <load-config filename="compile-config.xml" />
+            <arg value="+PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+FLEX_HOME=${FLEX_HOME}" />
+        </compc>
+    </target>
+
+</project>
