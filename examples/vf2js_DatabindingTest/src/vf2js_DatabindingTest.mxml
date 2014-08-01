@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               xmlns:local="*"
+               xmlns:models="models.*"
+			   creationComplete="init();">
+
+    <fx:Style>
+		
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		.leftSide {
+			/* Implemented as properties, not styles */
+			/*vertical-align: top;
+			margin-right: 10px;*/
+		}
+		
+		.output {
+			font-size: 20;
+		}
+		
+		.quoteButton {
+			/* No applicable styles or properties available in Spark Button */
+			/*margin-top: 10px;
+			margin-bottom: 10px;*/
+		}
+		
+		.rightSide {
+			/* Implemented as properties, not styles */
+			/*vertical-align: top;
+			margin-left: 10px;
+			padding-left: 10px;*/
+		}
+		
+		.topContainer {
+			/* Implemented as properties, not styles */
+			/*padding: 10px;*/
+		}
+		
+	</fx:Style>
+
+    <fx:Script><![CDATA[
+		
+		import mx.rpc.events.ResultEvent;
+
+		//----------------------------------------------------------------------
+		//
+		//   Properties 
+		//
+		//----------------------------------------------------------------------
+		
+        //--------------------------------------
+        // fieldText 
+        //--------------------------------------
+        
+        [Bindable]
+        public var fieldText:String;
+        
+        //--------------------------------------
+        // requestedField 
+        //--------------------------------------
+        
+        public function get requestedField():String
+        {
+            return group1.selectedValue as String;
+        }
+        
+        //--------------------------------------
+        // symbol 
+        //--------------------------------------
+        
+        private var _symbol:String;
+        
+        public function get symbol():String
+        {
+            return _symbol;
+        }
+        
+        //--------------------------------------
+        // _queryBegin 
+        //--------------------------------------
+        
+        private var _queryBegin:String = 
+			"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20" +
+			"yahoo.finance.quotes%20where%20symbol%20in%20(%22";
+        
+        //--------------------------------------
+        // _queryEnd 
+        //--------------------------------------
+        
+        private var _queryEnd:String = 
+			"%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&" +
+			"format=json";
+        
+        //----------------------------------------------------------------------
+        //
+        //   Methods 
+        //
+        //----------------------------------------------------------------------
+        
+        //--------------------------------------
+        //   buttonClickHandler
+        //--------------------------------------
+        
+        private function buttonClickHandler(event:Event):void
+        {
+            service.url = _queryBegin + symbol + _queryEnd;
+            service.send();
+            service.addEventListener("result", completeHandler);
+        }
+		
+		//--------------------------------------
+		//   completeHandler
+		//--------------------------------------
+       
+        private function completeHandler(event:ResultEvent):void
+        {
+            myModel.responseData = collection.getItemAt(0);
+        }
+		
+		//--------------------------------------
+		//   init
+		//--------------------------------------
+       
+        private function init():void
+        {
+            addEventListener("buttonClicked", buttonClickHandler);
+            addEventListener("radioClicked", radioClickHandler);
+            addEventListener("listChanged", listChangedHandler);
+            
+            myModel.stockSymbol = 'ADBE';
+            
+            list.selectedItem = myModel.stockSymbol;
+            
+            group1.selectedValue = myModel.requestedField;
+            
+            radio1.selected = true;
+            
+            fieldText = radio1.label;
+        }
+		
+		//--------------------------------------
+		//   listChangedHandler
+		//--------------------------------------
+        
+        private function listChangedHandler(event:Event):void
+        {
+            myModel.stockSymbol = symbol;
+        }
+		
+		//--------------------------------------
+		//   radioChanged
+		//--------------------------------------
+        
+        private function radioChanged(e:Event):void
+        {
+            dispatchEvent(new Event("radioClicked"));
+            fieldText = RadioButton(e.target).label;
+        }
+		
+		//--------------------------------------
+		//   radioClickHandler
+		//--------------------------------------
+       
+        private function radioClickHandler(event:Event):void
+        {
+            var field:String = requestedField;
+            
+            myModel.requestedField = field;
+        }
+		
+		//--------------------------------------
+		//   setState
+		//--------------------------------------
+       
+        private function setState():void
+        {
+            currentState = showAllData.selected ? "showAll" : "hideAll";
+        }
+
+    ]]></fx:Script>
+
+    <fx:Declarations>
+
+        <s:HTTPService id="service">
+
+            <s:serializationFilter>
+
+                <local:StockDataJSONItemConverter id="collection" />
+
+            </s:serializationFilter>
+
+        </s:HTTPService>
+
+        <models:MyModel id="myModel" />
+
+        <s:RadioButtonGroup id="group1" />
+
+    </fx:Declarations>
+
+    <s:states>
+
+        <s:State name="hideAll" />
+
+        <s:State name="showAll" />
+
+    </s:states>
+
+    <s:VGroup>
+
+        <s:Label 
+                 width="300"
+                 text="Enter Stock Symbol or choose from list:" />
+
+        <s:HGroup 
+                  paddingBottom="10"
+                  paddingLeft="10"
+                  paddingRight="10"
+                  paddingTop="10"
+                  styleName="topContainer">
+
+            <s:VGroup 
+                      paddingRight="10"
+                      verticalAlign="top"
+                      styleName="leftSide">
+
+                <s:TextInput id="symbolTI"
+                             text="{myModel.stockSymbol}" />
+
+                <s:Button 
+                          label="Get Quote"
+                          styleName="quoteButton"
+                          click="_symbol = symbolTI.text; dispatchEvent(new Event('buttonClicked'));" />
+
+                <s:Label id="field"
+                         text="{fieldText}" />
+
+                <s:Label 
+                         height="24"
+                         styleName="output"
+                         text="{myModel.responseText}" />
+
+            </s:VGroup>
+
+            <s:VGroup 
+                      paddingLeft="20"
+                      styleName="rightSide">
+
+                <s:DropDownList id="list"
+                                width="100" height="17"
+                                dataProvider="{myModel.strings}"
+                                change="_symbol = list.selectedItem as String; dispatchEvent(new Event('listChanged'))" />
+
+                <s:RadioButton id="radio1"
+                               label="Price"
+                               value="Ask"
+                               click="radioChanged(event);"
+                               group="{group1}" />
+
+                <s:RadioButton id="radio2"
+                               label="Change"
+                               value="Change"
+                               click="radioChanged(event);"
+                               group="{group1}" />
+
+                <s:RadioButton id="radio3"
+                               label="Day's High"
+                               value="DaysHigh"
+                               click="radioChanged(event);"
+                               group="{group1}" />
+
+                <s:RadioButton id="radio4"
+                               label="Day's Low"
+                               value="DaysLow"
+                               click="radioChanged(event);"
+                               group="{group1}" />
+
+                <s:CheckBox id="showAllData"
+                            label="Show All Data"
+                            change="setState();" />
+
+            </s:VGroup>
+
+        </s:HGroup>
+
+        <s:Label id="bindtest"
+                 text="{fieldText + ' expression binding'}" />
+
+        <s:Label 
+                 width="300"
+                 text.showAll="110"
+                 includeIn="showAll" />
+
+        <s:TextArea id="ta"
+                    width="300" height="100" height.showAll="110"
+                    text="{myModel.allData}"
+                    includeIn="showAll" />
+
+    </s:VGroup>
+
+</s:Application>
