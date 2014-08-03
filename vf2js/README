@@ -1,11 +1,17 @@
-Hello World
+Vanilla Flex to Javascript
 
 1. Take any Flex SDK install
 2. add FalconJX
 3. add VF2JS SWCs
 4. add VF2JS JS framework
 5. add Launch script
-6. 
+6. ...
+7. profit!
 
+;-)
+
+ToDo:
 - add builds to build machine (for nightlies)
 - add script to installer
+  - copy falcon lib to js/vf2js
+- lots and lots... please contribute!
