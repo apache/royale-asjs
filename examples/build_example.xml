@@ -75,41 +75,6 @@
         </copy>
     </target>
     
-    <target name="compile_vf2js" description="Compiles ${example} (VF2JS style)">
-        <echo message="Compiling ${example}.swf"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-
-        <mxmlc fork="true"
-               file="${basedir}/src/${example}.mxml"
-               output="${basedir}/bin-debug/${example}.swf">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
-            <arg value="-debug" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-        </mxmlc>
-        
-        <html-wrapper 
-            height="300" 
-            width="400"
-            bgcolor="#ffffff"
-            name="${example}"
-            versionmajor="11"
-            versionminor="1"
-            versionrevision="0" 
-            output="${basedir}/bin-debug"/> 
- 
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src">
-                <include name="*.png" />
-                <include name="*.jpg" />
-            </fileset>
-        </copy>
-    </target>
-    
     <target name="compileair" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
@@ -227,38 +192,6 @@
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
             <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
-            <arg value="${basedir}/src/${example}.mxml" />      
-        </java>
-        <fail>
-			<condition>
-				<not>
-					<or>
-						<equals arg1="${errorCode}" arg2="0" />
-						<equals arg1="${errorCode}" arg2="2" />
-					</or>
-				</not>
-			</condition>
-		</fail>
-    </target>
-
-    <target name="compilejs_vf2js" description="Cross-compiles ${example} (VF2JS style)">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FLEXJS_HOME: ${FLEXJS_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEX_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-js-output-type=VF2JS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/vf2js/frameworks/js/src" />
-            <arg value="-output=${basedir}" />
             <arg value="${basedir}/src/${example}.mxml" />      
         </java>
         <fail>
