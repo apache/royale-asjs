@@ -23,7 +23,7 @@
 
   <property environment="env" />
 
-  <property name="FLEXJS_HOME" location="../.." />
+  <property name="FLEXJS_HOME" location="../../.." />
   <property file="${FLEXJS_HOME}/env.properties" />
   <property file="${FLEXJS_HOME}/build.properties" />
 
