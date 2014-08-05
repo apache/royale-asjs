@@ -25,8 +25,9 @@
 # In Windows Command Prompt, use mxmlc.bat instead.
 #
 
-FLEX_HOME=`dirname $0`/../../../..
-FALCON_HOME=$FLEX_HOME/js/vf2js
+SCRIPT_HOME=$(dirname "$0")
+FLEX_HOME=${SCRIPT_HOME}/../../../..
+FALCON_HOME=${FLEX_HOME}/js/vf2js
 
 echo Using Flex SDK: $FLEX_HOME
 echo Using Falcon compiler: $FALCON_HOME
@@ -59,4 +60,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 -Dflexcompiler="$FALCON_HOME" -jar "$FLEX_HOME/js/vf2js/falconjx/lib/mxmlc.jar" -load-config="$FLEX_HOME/frameworks/flex-config.xml" -js-output-type=VF2JS -sdk-js-lib="$FLEX_HOME/frameworks/js/src" "$@"
+java $VMARGS $D32 -Dflexcompiler="$FALCON_HOME" -jar "$FLEX_HOME/js/vf2js/falconjx/lib/mxmlc.jar" -load-config="$FLEX_HOME/frameworks/flex-config.xml" -js-output-type=VF2JS "$@"
