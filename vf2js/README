@@ -1,7 +1,43 @@
-Vanilla Flex to Javascript
+Vanilla Flex to Javascript (VF2JS)
+==================================
 
-Create VF2JS SDK
-1. Take any Flex SDK install
+
+
+Install prerequisits
+____________________
+
+- a clean, fully functional Flex SDK
+- environment variables:
+  - FLEX_HOME
+
+
+
+Using the source distribution
+_____________________________
+
+- get flex-falcon
+- build using 'ant wipe-all all'
+- point env var to 'flex-falcon'
+
+
+
+Using the binary distribution
+_____________________________
+
+- install using ant install -Dflex.sdk.loc=[]
+
+(put various licenses in proper places)
+
+
+
+Publishing with VF2JS
+_____________________
+
+- import launch config
+- 
+
+
+
 2. add FalconJX
   - download binary release
   - extract
