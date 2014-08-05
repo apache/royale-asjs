@@ -29,6 +29,7 @@
   </target>
 
   <target name="clean" description="Cleans all artefacts">
+    <ant dir="${basedir}/projects/vf2js_mx" target="clean" />
     <ant dir="${basedir}/projects/vf2js_s" target="clean" />
     
     <delete dir="${basedir}/libs" />
