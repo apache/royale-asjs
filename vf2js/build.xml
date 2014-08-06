@@ -46,7 +46,7 @@
     Primary targets
   ============= -->
 
-  <target name="build.release" depends="" description="Build release artefacts" />
+  <target name="build.release" depends="release.zip,release.md5" description="Build release artefacts" />
 
   <target name="download.deps" depends="falconjx.overlay" description="Download VF2JS dependencies" />
 
@@ -62,6 +62,53 @@
     Secondary targets
   ============= -->
 
+  <target name="release.zip" depends="" description="Create release zip file">
+    <defaultexcludes add="**/.actionScriptProperties" />
+    <defaultexcludes add="**/.flexProperties" />
+    <defaultexcludes add="**/.project" />
+    <zip destfile="${basedir}/out/apache-flex-vf2js-0.0.1-src.zip">
+      <zipfileset dir="${basedir}/examples/vf2js_DatabindingTest/src" prefix="examples/vf2js_DatabindingTest/src" />
+      <zipfileset dir="${basedir}/examples/vf2js_DatabindingTest" prefix="examples/vf2js_DatabindingTest">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/examples/vf2js_SimpleTest/src" prefix="examples/vf2js_SimpleTest/src" />
+      <zipfileset dir="${basedir}/examples/vf2js_SimpleTest" prefix="examples/vf2js_SimpleTest">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/examples" prefix="examples">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_mx/src" prefix="frameworks/as/projects/vf2js_mx/src" />
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_mx" prefix="frameworks/as/projects/vf2js_mx">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_s/src" prefix="frameworks/as/projects/vf2js_s/src" />
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_s" prefix="frameworks/as/projects/vf2js_s">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as" prefix="frameworks/as">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/js/vf2js/src" prefix="frameworks/js/vf2js/src" />
+      <zipfileset dir="${basedir}/ide" prefix="ide" />
+      <zipfileset dir="${basedir}/js" prefix="js" />
+      <zipfileset dir="${basedir}">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+    </zip>
+  </target>
+    
+  <target name="release.md5" depends="" description="Create MD5 for release zip file">
+    <checksum file="${basedir}/out/apache-flex-vf2js-0.0.1-src.zip" forceOverwrite="yes"/>
+  </target>
+    
   <target name="build.as.frameworks" depends="" description="Build SWCs from AS source">
     <ant dir="${basedir}/frameworks/as" />
   </target>
