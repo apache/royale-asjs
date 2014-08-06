@@ -20,7 +20,7 @@
 <flex-config>
   <compiler>
     <external-library-path>
-      <path-element>${PLAYERGLOBAL_HOME}/${playerglobal.version}/playerglobal.swc</path-element>
+      <path-element>${playerglobal.home}/${playerglobal.version}/playerglobal.swc</path-element>
     </external-library-path>
     <namespaces>
       <namespace>

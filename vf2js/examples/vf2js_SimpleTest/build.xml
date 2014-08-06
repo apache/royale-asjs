@@ -21,17 +21,6 @@
 
   <property name="example" value="vf2js_SimpleTest" />
 
-  <property environment="env" />
-
-  <property name="FLEXJS_HOME" location="../../.." />
-  <property file="${FLEXJS_HOME}/env.properties" />
-  <property file="${FLEXJS_HOME}/build.properties" />
-
-  <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
-  <property name="FALCON_HOME" value="${env.FALCON_HOME}" />
-  <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
-  <property name="GOOG_HOME" value="${env.GOOG_HOME}" />
-
   <include file="${basedir}/../build_example.xml"/>
 
   <target name="main" depends="clean,build_example.compile_vf2js,build_example.compilejs_vf2js" description="Clean build of ${example}" />

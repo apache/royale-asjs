@@ -19,7 +19,7 @@
 -->
 <project name="vf2js-frameworks-as" default="main" basedir=".">
 
-  <property environment="env"/>
+  <property name="flex.sdk.loc" value="${basedir}/.." />
 
   <target name="main" depends="clean,compile" description="Clean build of all SWCs" />
 
@@ -43,9 +43,9 @@
     <ant dir="${basedir}/projects/vf2js_s" />
   </target>
 
-  <target name="copy-to-sdk" description="Copy SWCs to SDK">
-    <copy todir="${env.FLEX_HOME}/frameworks/libs">
-      <fileset dir="${env.VF2JS_HOME}/frameworks/as/libs" />
+  <target name="copy.to.sdk" description="Copy SWCs to SDK">
+    <copy todir="${flex.sdk.loc}/frameworks/libs">
+      <fileset dir="./libs" />
     </copy>
   </target>
 

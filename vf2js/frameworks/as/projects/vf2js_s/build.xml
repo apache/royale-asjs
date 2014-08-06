@@ -17,48 +17,49 @@
   limitations under the License.
 
 -->
+<project name="vf2js_mx" default="main" basedir=".">
 
+  <property environment="env" />
+  <property name="FLEX_HOME" value="${env.FLEX_HOME}" /> <!-- must exist for compc task -->
+  <property name="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
+  <property name="playerglobal.version" value="14.0" />
 
-<project name="vf2js_s" default="main" basedir=".">
-    
-    <property file="../../build.properties"/>
+  <property name="vf2js.home" location="${basedir}/../../../.." />
 
-    <property environment="env"/>
-    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
-    <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
-    <property name="VF2JS_HOME" location="${env.VF2JS_HOME}"/>
+  <target name="main" depends="clean,compile" description="Clean build of vf2js_s.swc" />
 
-    <target name="main" depends="clean,compile" description="Clean build of vf2js_s.swc">
-    </target>
+  <path id="lib.path">
+    <fileset dir="${FLEX_HOME}/ant/lib" includes="flexTasks.jar" />
+  </path>
 
-    <target name="clean">
-        <delete failonerror="false">
-            <fileset dir="${VF2JS_HOME}/frameworks/as/libs">
-                <include name="vf2js_s.swc"/>
-            </fileset>
-        </delete>
-    </target>
-    
-    <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
-    </path>
+  <condition property="local.d32" value="-d32" else="">
+    <and>
+      <os family="mac" />
+      <matches pattern="1.6.*" string="${java.version}" />
+      <equals arg1="${sun.arch.data.model}" arg2="64" />
+      <equals arg1="${os.arch}" arg2="x86_64" />
+    </and>
+  </condition>
 
-    <target name="compile" description="Compiles vf2js_s.swc">
-        <echo message="Compiling '${VF2JS_HOME}/frameworks/as/libs/vf2js_s.swc'"/>
+  <target name="compile" description="Compiles vf2js_s.swc">
+    <echo message="Compiling '${vf2js.home}/frameworks/as/libs/vf2js_s.swc'" />
+    <echo message="FLEX_HOME: ${FLEX_HOME}" />
+    <echo message="vf2js.home: ${vf2js.home}" />
+    <taskdef resource="flexTasks.tasks" classpathref="lib.path" />
+    <compc fork="true" output="${vf2js.home}/frameworks/as/libs/vf2js_s.swc">
+      <jvmarg line="${local.d32} -Xms64m -Xmx384m -ea -Dapple.awt.UIElement=true" />
+      <load-config filename="compile-config.xml" />
+      <arg value="+playerglobal.home=${PLAYERGLOBAL_HOME}" />
+      <arg value="+playerglobal.version=${playerglobal.version}" />
+    </compc>
+  </target>
 
-        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="VF2JS_HOME: ${VF2JS_HOME}"/>
-
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-
-        <compc fork="true" output="${VF2JS_HOME}/frameworks/as/libs/vf2js_s.swc">
-            <jvmarg line="${jvm.args}"/>
-            <load-config filename="compile-config.xml" />
-            <arg value="+PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+FLEX_HOME=${FLEX_HOME}" />
-        </compc>
-    </target>
+  <target name="clean">
+    <delete failonerror="false">
+      <fileset dir="${vf2js.home}/frameworks/as/libs">
+        <include name="vf2js_s.swc" />
+      </fileset>
+    </delete>
+  </target>
 
 </project>
