@@ -6,27 +6,17 @@ Vanilla Flex to Javascript (VF2JS)
 Install prerequisits
 ____________________
 
-- a clean, fully functional Flex SDK
+- ant and git
+- a release version of the Flex SDK (use Installer) in directory [sdk.directory]
 - environment variables:
-  - FLEX_HOME
+  - PLAYERGLOBAL_HOME (point to '[sdk.directory]/frameworks/libs/player')
 
 
 
 Using the source distribution
 _____________________________
 
-- get flex-falcon
-- build using 'ant wipe-all all'
-- point env var to 'flex-falcon'
-
-
-
-Using the binary distribution
-_____________________________
-
-- install using ant install -Dflex.sdk.loc=[]
-
-(put various licenses in proper places)
+- ant install -Dflex.sdk.loc="[sdk.directory]"
 
 
 
@@ -34,21 +24,10 @@ Publishing with VF2JS
 _____________________
 
 - import launch config
-- 
+- open Flex project, select SDK with overlay
+- choose 'Run/External Tool/VF2JS (Debug and Release Build)'
 
 
-
-2. add FalconJX
-  - download binary release
-  - extract
-  - copy '/js/lib' to '/js/vf2js/falconjx/lib'
-  - copy '/compiler/generated/dist/sdk/lib' to '/js/vf2js/lib'
-3. add VF2JS
-  - download xxx
-  - copy '' to '' # SWCs
-  - copy '' to '' # JS framework
-  - copy '' to '' # lauch config
-    - replace tokens in launch config
 
 ToDo:
 - add builds to build machine (for nightlies)
