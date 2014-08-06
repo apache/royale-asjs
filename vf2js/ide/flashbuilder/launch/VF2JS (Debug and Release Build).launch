@@ -23,6 +23,6 @@
 <listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
 </listAttribute>
 <stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/>
-<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$FLEX_HOME/js/vf2js/falconjx/bin/$MXMLC'/>
+<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$flex_sdk_loc/js/vf2js/falconjx/bin/mxmlc'/>
 <stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-fb &quot;${project_loc}&quot;'/>
 </launchConfiguration>
