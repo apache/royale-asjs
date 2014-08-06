@@ -70,7 +70,7 @@
     <ant dir="${flex.sdk.loc}/examples/vf2js">
       <property name="FLEX_HOME" value="${flex.sdk.loc}" />
       <property name="GOOG_HOME" value="${flex.sdk.loc}/js/vf2js/falconjx/lib/google/closure-library" />
-      <property name="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
+      <property name="PLAYERGLOBAL_HOME" value="${flex.sdk.loc}/frameworks/libs/player" />
       <property name="playerglobal.version" value="14.0" />
     </ant>
   </target>
