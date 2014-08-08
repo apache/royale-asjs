@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.models
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
 		
     /**
      *  The TextModel class is most basic data model for a
@@ -88,7 +89,7 @@ package org.apache.flex.html.beads.models
 			if (value != _text)
 			{
 				_text = value;
-				dispatchEvent(new Event("textChange"));
+				IEventDispatcher(_strand).dispatchEvent(new Event("textChanged"));
 			}
 		}
 		
@@ -115,7 +116,7 @@ package org.apache.flex.html.beads.models
 			if (value != _html)
 			{
 				_html = value;
-				dispatchEvent(new Event("htmlChange"));
+				IEventDispatcher(_strand).dispatchEvent(new Event("htmlChanged"));
 			}
 		}
 	}

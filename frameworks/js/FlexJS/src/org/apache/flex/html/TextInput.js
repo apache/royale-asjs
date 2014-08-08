@@ -72,6 +72,7 @@ org.apache.flex.html.TextInput.prototype.get_text = function() {
  */
 org.apache.flex.html.TextInput.prototype.set_text = function(value) {
   this.element.value = value;
+  this.dispatchEvent(new org.apache.flex.events.Event('textChanged'));
 };
 
 
@@ -92,4 +93,5 @@ org.apache.flex.html.TextInput.prototype.inputChangeHandler_ = function(event) {
   event.stopPropagation();
 
   this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));
+  this.dispatchEvent(new org.apache.flex.events.Event('textChanged'));
 };

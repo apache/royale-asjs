@@ -103,6 +103,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.supportClasses.NonVirtualDataGroup; NonVirtualDataGroup;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
+	import org.apache.flex.core.FormatBase; FormatBase;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.events.ValueEvent; ValueEvent;

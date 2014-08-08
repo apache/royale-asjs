@@ -89,7 +89,7 @@ package org.apache.flex.html.accessories
 			if (!model.hasOwnProperty("text")) {
 				throw new Error("Model requires a text property when used with TextPromptBead");
 			}
-			IEventDispatcher(model).addEventListener("textChange",handleTextChange);
+			IEventDispatcher(_strand).addEventListener("textChanged",handleTextChange);
 			
 			// create a TextField that displays the prompt - it shows
 			// and hides based on the model's content

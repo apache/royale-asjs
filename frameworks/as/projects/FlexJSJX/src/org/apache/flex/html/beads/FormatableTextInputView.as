@@ -71,7 +71,9 @@ package org.apache.flex.html.beads
 		private function handleBeadsAdded(event:Event):void
 		{
 			_formatter = strand.getBeadByType(IFormatBead) as IFormatBead;
-			_formatter.addEventListener("formatChanged",formatChangedHandler);
+			if (_formatter) {
+				_formatter.addEventListener("formatChanged",formatChangedHandler);
+			}
 		}
 		
 		/**
