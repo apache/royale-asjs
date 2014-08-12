@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="CreateFlexJSReleaseCandidate" default="main" basedir=".">
+
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+		<and>
+			<os family="unix" />
+			<not>
+				<isset property="isMac" />
+			</not>
+		</and>
+    </condition>
+	
+	<property name="rat.report" value="${basedir}/rat-report.txt"/>
+	<property name="apache.rat.jar" value="apache-rat-0.8.jar" />
+	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.8.jar" />
+	<property name="apache.rat.url" value="http://people.apache.org/~aharui/rat" />
+    
+	<property file="${basedir}/local.properties" />
+	<property file="${basedir}/build.properties" />
+	   
+    <property environment="env"/>
+    
+	<condition property="do.copy.downloads" >
+		<isset property="download.cache.dir" /> 
+	</condition>
+	
+    <condition property="CRLF" value="%0D%0A">
+        <isset property="isWindows" />
+    </condition>
+    <property name="CRLF" value="%0A" />
+    
+    <fail message="The my.name property is not set to the RM's name"
+    unless="my.name"/>
+    
+    <fail message="The ANT_HOME environment variable is not set."
+        unless="env.ANT_HOME"/>
+		
+	<available file="${svn.dist.dev}"
+		type="dir" 
+		property="dist.dev" value="${svn.dist.dev}" />
+    
+	<fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
+        unless="dist.dev"/>
+				
+	<available file="${svn.site}"
+		type="dir" 
+		property="site" value="${svn.site}" />
+    
+	<fail message="The svn.site property is not set to the working copy for https://flex.apache.org."
+        unless="site"/>
+				
+	<available file="${env.AIR_HOME}"
+		type="dir" 
+		property="AIR_HOME" value="${env.AIR_HOME}" />
+
+    <fail message="The AIR_HOME property is not set in environment or command-line."
+        unless="AIR_HOME"/>
+		
+    <available file="${env.PLAYERGLOBAL_HOME}"
+        type="dir"
+        property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
+    
+    <fail message="The PLAYERGLOBAL_HOME property is not set in environment or command-line."
+        unless="PLAYERGLOBAL_HOME"/>
+    
+    <available file="${env.FLASHPLAYER_DEBUGGER}"
+        type="dir"
+        property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
+    
+    <available file="${env.FLASHPLAYER_DEBUGGER}"
+        type="file"
+        property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
+    
+    <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
+        unless="FLASHPLAYER_DEBUGGER"/>
+        
+    <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"
+		type="file"
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+    <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"
+		type="file"
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+    <available file="/Applications/Firefox.app/Contents/MacOS/firefox"
+		type="file"
+		property="browser" value="/Applications/Firefox.app/Contents/MacOS/firefox" />
+        
+    <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
+        type="file"
+        property="apache.rat.found"/>
+    <available file="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"
+        type="file"
+        property="apache.rat.tasks.found"/>
+		
+    <fail message="Could not locate Firefox.  Please specify a browser with
+    -Dbrowser=&lt;path-to-browser&gt;"
+        unless="browser"/>
+        
+    <available file="${env.ProgramFiles}/SlikSVN/bin/svn.exe"
+		type="file"
+		property="svn" value="${env.ProgramFiles}/SlikSVN/bin/svn.exe" />
+    <available file="${env.ProgramFiles(x86)}/SlikSVN/bin/svn.exe"
+		type="file"
+		property="svn" value="${env.ProgramFiles}/SlikSVN/bin/svn.exe" />
+    <available file="/opt/subversion/bin/svn"
+		type="file"
+		property="svn" value="/opt/subversion/bin/svn" />
+    <fail message="Could not locate SVN command-line.  Please specify the path to SVN with
+    -Dsvn=&lt;path-to-svn&gt;"
+        unless="svn"/>
+                
+    <available file="${env.ProgramFiles}/Git/bin/git.exe"
+		type="file"
+		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
+    <available file="${env.ProgramFiles(x86)}/Git/bin/git.exe"
+		type="file"
+		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
+    <available file="/usr/local/git/bin/git"
+		type="file"
+		property="git" value="/usr/local/git/bin/git" />
+    <fail message="Could not locate Git command-line.  Please specify the path to Git with
+    -Dgit=&lt;path-to-git&gt;"
+        unless="git"/>
+        
+    <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
+        type="file"
+        property="apache.rat.found"/>
+    <available file="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"
+        type="file"
+        property="apache.rat.tasks.found"/>
+		
+    <fail message="Could not locate Firefox.  Please specify a browser with
+    -Dbrowser=&lt;path-to-browser&gt;"
+        unless="browser"/>
+    <fail message="The release candidate number is not set.  Specify -Drc=&lt;rc number (e.g. 1, 2, 3, etc)&gt;"
+    unless="rc"/>
+	
+	<xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
+	<property name="release.installer" value="${config.version.latest}" />
+	<!-- clip build number from version -->
+	<echo file="${basedir}/installerv.properties">latest.installer=${release.installer}</echo>
+	<replaceregexp byline="true">
+		<regexp pattern="\.[0-9]*$"/>
+		<substitution expression=""/>
+		<fileset dir="${basedir}">
+			<include name="installerv.properties"/>
+		</fileset>
+	</replaceregexp>
+	<property file="installerv.properties" />
+	<echo>latest installer is ${latest.installer}</echo>
+	<delete file="installerv.properties" />
+	
+	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
+	<target name="install-rat.jar" unless="apache.rat.found">
+		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
+	</target>
+	<target name="install-rat.tasks.jar" unless="apache.rat.tasks.found">
+		<get src="${apache.rat.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
+	</target>
+	
+    <target name="rat-taskdef" description="Rat taskdef">
+        <typedef resource="org/apache/rat/anttasks/antlib.xml"
+        uri="antlib:org.apache.rat.anttasks"
+        classpathref="anttask.classpath"/>
+    </target>
+
+    <target name="main" depends="install-rat,credentials" description="Perform required release approval steps">
+		<antcall target="check-new-version" />
+		<exec executable="${git}" dir="${basedir}" failonerror="true" >
+			<arg value="pull" />
+			<arg value="--rebase" />
+		</exec>
+		<antcall target="stage.rc" />
+		<antcall target="push.rc" />
+	</target>
+	
+	<target name="stage.rc" >
+		<ant antfile="build.xml" target="release" />
+		<ant antfile="build.xml" target="asdoc-package" />
+		<ant antfile="build.xml" target="create-md5" />
+		<ant antfile="build.xml" target="sign" />
+		<ant antfile="build.xml" target="doc-create-md5" />
+		<ant antfile="build.xml" target="doc-sign" />
+		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" />
+		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />
+		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" >
+			<fileset dir="${basedir}/out" >
+				<include name="apache-flex-flexjs-${release.version}-src*" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" >
+			<fileset dir="${basedir}/out" >
+				<include name="apache-flex-flexjs-${release.version}-bin*" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
+			<fileset dir="${basedir}/out" >
+				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
+			</fileset>
+		</copy>
+		<copy file="${basedir}/README" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/READme" />
+		<copy file="${basedir}/ApproveFlexJS.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml" />
+		<copy file="${basedir}/apache-flex-flexjs-installer-config.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries/apache-flex-flexjs-installer-config.xml" />
+	</target>
+	
+	<target name="push.rc" >
+		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+			<arg value="add" />
+			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
+		</exec>
+		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+			<arg value="commit" />
+			<arg value="--username" />
+			<arg value="${apache.username}" />
+			<arg value="--password" />
+			<arg value="${apache.password}" />
+			<arg value="-m" />
+			<arg value="rc${rc} of Apache FlexJS ${release.version}" />
+		</exec>
+		<exec executable="${git}" dir="${basedir}" failonerror="true" >
+			<arg value="tag" />
+			<arg value="-a" />
+			<arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
+			<arg value="-m" />
+			<arg value="&quot;rc${rc} of apache-flex-flexjs-${release.version}&quot;" />
+		</exec>
+		<exec executable="${git}" dir="${basedir}" failonerror="true" >
+			<arg value="push" />
+			<arg value="--tags" />
+		</exec>
+		<antcall target="update-installer-config" />
+		<antcall target="mail" />
+    </target>
+
+	<target name="credentials" depends="get-username,get-password">
+		<echo>${apache.username}</echo>
+		<echo>${apache.password}</echo>
+	</target>
+	<target name="get-username" unless="apache.username" >
+        <input
+        message="Enter Apache account username:"
+        addproperty="apache.username"/>
+        <condition property="have.username">
+			<not>
+				<equals trim="true" arg1="" arg2="${apache.username}"/>
+			</not>
+        </condition>
+		<fail message="The apache.username property is not set.  It should be the username for Apache SVN and Git."
+			unless="have.username"/>
+	</target>
+	<target name="get-password" unless="apache.password" >
+        <input
+        message="Enter Apache account password:"
+        addproperty="apache.password"/>
+        <condition property="have.password">
+			<not>
+				<equals trim="true" arg1="" arg2="${apache.password}"/>
+			</not>
+        </condition>
+		<fail message="The apache.password property is not set.  It should be the password for Apache SVN and Git."
+			unless="have.password"/>
+	</target>
+	
+	<target name="update-installer-config" >
+		<exec executable="${svn}" dir="${site}" failonerror="true" >
+			<arg value="update" />
+			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
+		</exec>
+        <replaceregexp byline="true">
+            <regexp pattern="rc id=&quot;FlexJSRC&quot; version=&quot;.*&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/.*/binaries/&quot; file=&quot;apache-flex-flexjs-.*-bin&quot; dev=&quot;true&quot;"/>
+            <substitution expression="rc id=&quot;FlexJSRC&quot; version=&quot;${release.version} RC${rc}&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; dev=&quot;true&quot;"/>
+            <fileset dir="${site}/trunk/content/installer">
+                <include name="sdk-installer-config-4.0.xml"/>
+            </fileset>
+        </replaceregexp>
+		<!-- un-comment if needed -->
+        <replaceregexp byline="true">
+            <regexp pattern="&lt;!--&lt;rc id=&quot;FlexJSRC&quot;(.*)&gt;--&gt;"/>
+            <substitution expression="&lt;rc id=&quot;FlexJSRC&quot;\1&gt;"/>
+            <fileset dir="${site}/trunk/content/installer">
+                <include name="sdk-installer-config-4.0.xml"/>
+            </fileset>
+        </replaceregexp>
+		<exec executable="${svn}" dir="${site}" failonerror="true" >
+			<arg value="commit" />
+			<arg value="--username" />
+			<arg value="${apache.username}" />
+			<arg value="--password" />
+			<arg value="${apache.password}" />
+			<arg value="-m" />
+			<arg value="&quot;update sdk-installer-config-4.0 for flexjs ${release.version} rc${rc}&quot;" />
+		</exec>
+		<!-- pause to give buildbot chance to react -->
+		<sleep seconds="5" />
+		<get src="https://cms.apache.org/flex/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
+		<delete file="${basedir}/getresult.txt" />
+	</target>
+	
+	<target name="check-new-version" description="check if svn folder needs to be added" >
+		<condition property="version.folder" value="${dist.dev}/flex/flexjs/${release.version}" >
+			<not>
+				<available file="${dist.dev}/flex/flexjs/${release.version}" />
+			</not>
+		</condition>
+		<antcall target="add-version-folder" />
+	</target>
+    
+	<target name="add-version-folder" description="adds svn folder if needed" if="version.folder" >
+		<mkdir dir="${version.folder}" />
+		<exec executable="${svn}" dir="${dist.dev}/flex/flexjs" failonerror="true" >
+			<arg value="add" />
+			<arg value="${version.folder}" />
+		</exec>
+	</target>
+		
+    <target name="mail" >
+        <!-- try to set line breaks before the vertical line            | -->
+        <echo file="${basedir}/discussthread.properties">discuss.thread.body=This is the discussion thread.\n\
+\n\
+Changes in this RC include:\n\
+\n\
+\n\
+Thanks,\n\
+${my.name}
+</echo>
+        <replace file="${basedir}/discussthread.properties">
+            <replacefilter token=" " value="%20" />
+            <replacefilter token="\n" value="${CRLF}" />
+        </replace>
+        <property file="${basedir}/discussthread.properties" />
+
+        <!-- try to set line breaks before the vertical line            | -->
+        <echo file="${basedir}/votethread.properties">vote.thread.body=Hi,\n\
+\n\
+This is vote for the ${release.version} release of Apache FlexJS.\n\
+\n\
+The release candidate can be found here;\n\
+https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/\n\
+\n\
+Before voting please review the section,'What are the ASF requirements on\n\
+approving a release?', at:\n\
+http://www.apache.org/dev/release.html#approving-a-release\n\
+\n\
+At a minimum you would be expected to check that:\n\
+- MD5 and signed packages are correct\n\
+- README, RELEASE_NOTES, NOTICE and LICENSE files are all fine\n\
+- That the build script completes successfully\n\
+- That you can compile and cross-compile a simple example using the SDK.\n\
+\n\
+The source package is set up the same way as the repo.  This means that\n\
+the results of the build are not the same as an IDE-compatible SDK.  The\n\
+compiled source package can be used in combination with the FalconJX\n\
+source package to compile some of the sample applications.\n\
+\n\
+The most convenient way to use the binary package is to install it via Ant\n\
+or the Installer.  To use an Installer you must use InstallApacheFlex\n\
+version 3.1 or later.  You can get InstallApacheFlex here:\n\
+http://www.apache.org/dyn/closer.cgi?path=/flex/installer/${latest.installer}/binaries/\n\
+\n\
+Please vote to approve this release:\n\
++1 Approve the release\n\
+-1 Veto the release (please provide specific comments to why)\n\
+\n\
+This vote will be open for 72 hours or until a result can be called.\n\
+\n\
+The vote passes if there is:\n\
+- At least 3 +1 votes from the PMC\n\
+- More positive votes than negative votes\n\
+\n\
+Remember that this is an initial 'alpha-quality' release so I expect there\n\
+will be many bugs found.  IMO the goal is not to try to find and fix bugs\n\
+in the RC, but to make sure we have the packaging right, and enough\n\
+functionality that folks will have some success trying to use it.\n\
+\n\
+People who are not in PMC are also encouraged to test out the release and\n\
+vote, although their votes will not be binding, they can influence how the\n\
+PMC votes.\n\
+\n\
+When voting please indicate what OS, IDE, Flash Player version and AIR\n\
+version you tested with.\n\
+\n\
+For your convenience, there is an ant script that automates the common\n\
+steps to validate a release.  Instead of individually downloading the\n\
+package and signature files, unzipping, etc, you can instead:\n\
+1) create an empty folder,\n\
+2) download into that folder this file:\n\
+https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml\n\
+3) run the script: ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
+\n\
+You are not required to use this script, and more testing of the packages\n\
+and build results are always encouraged.\n\
+\n\
+\n\
+You will have to install Google Closure Linter and JSHint prior to running\n\
+the script.\n\
+\n\
+Please put all discussion about this release in the DISCUSSION thread not\n\
+this VOTE thread.\n\
+\n\
+Thanks,\n\
+${my.name}
+</echo>
+        <replace file="${basedir}/votethread.properties">
+            <replacefilter token=" " value="%20" />
+            <replacefilter token="\n" value="${CRLF}" />
+        </replace>
+        <property file="${basedir}/votethread.properties" />
+        <echo file="${basedir}/votethread.html">&lt;html&gt;&lt;body&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[DISCUSS]%20Discuss%20Release%20Apache%20FlexJS%20${release.version}%20RC${rc}&amp;body=${discuss.thread.body}&quot;&gt;Click here to review discuss thread&lt;/a&gt;&lt;br/&gt;&lt;a href=&quot;mailto:dev@flex.apache.org?subject=[VOTE]%20Release%20Apache%20FlexJS%20${release.version}%20RC${rc}&amp;body=${vote.thread.body}&quot;&gt;Click here to review vote thread&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</echo>
+        <makeurl file="${basedir}/votethread.html" property="vote.thread.url" />
+        <exec executable="${browser}">
+            <arg value="${vote.thread.url}" />
+        </exec>
+		<delete file="${basedir}/votethread.properties" />
+		<delete file="${basedir}/votethread.html" />
+		<delete file="${basedir}/discussthread.properties" />
+    </target>
+	
+</project>
