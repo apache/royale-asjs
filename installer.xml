@@ -587,9 +587,9 @@
             <fileset dir="${download.dir}/airsdk">
                 <include name="AIR SDK license.pdf" />
                 <include name="AIR SDK Readme.txt" />
+                <include name="airsdk.xml" />
                 <include name="bin/adl.exe" />
-                <include name="bin/adl" />
-                <include name="bin/adl.bat" />
+                <include name="bin/adt.bat" />
                 <include name="frameworks/libs/air/**" />
                 <include name="frameworks/projects/air/**" />
                 <include name="include/**" />
@@ -604,6 +604,8 @@
                 <include name="samples/descriptor-sample.xml" />
                 <include name="samples/icons/**" />
                 <include name="templates/air/**" />
+                <include name="templates/extensions/**" />
+                <include name="templates/sdk/**" />
             </fileset>
         </copy>
     </target>
