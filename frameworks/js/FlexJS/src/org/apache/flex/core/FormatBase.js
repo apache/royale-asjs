@@ -86,8 +86,7 @@ org.apache.flex.core.FormatBase.prototype._formattedResult = '';
  * @return {Object}
  */
 org.apache.flex.core.FormatBase.prototype.get_propertyValue = function() {
-  var statement = 'this.strand_.get_' + this.get_propertyName() + '()';
-  var value = eval(statement);
+  var value = this.strand_['get_' + this.get_propertyName()]();
   return value;
 };
 
