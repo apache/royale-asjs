@@ -53,8 +53,6 @@ package org.apache.flex.html.beads
 			return closeButton;
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -66,7 +64,6 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_strand = value;
 			
 			// add the label for the title and the button for the close
 			_titleLabel = createTitle();
