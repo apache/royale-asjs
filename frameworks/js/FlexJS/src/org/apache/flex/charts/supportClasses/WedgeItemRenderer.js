@@ -159,7 +159,6 @@ org.apache.flex.charts.supportClasses.WedgeItemRenderer.prototype.FLEXJS_CLASS_I
 
 /**
  * @expose
- * @param {Object} chartArea The element into which the wedge will be drawn.
  * @param {number} x The center of the pie.
  * @param {number} y The center of the pie.
  * @param {number} startAngle The starting angle of the wedge.
@@ -169,10 +168,11 @@ org.apache.flex.charts.supportClasses.WedgeItemRenderer.prototype.FLEXJS_CLASS_I
  * @param {bool} continueFlag Continue drawing from that position.
  */
 org.apache.flex.charts.supportClasses.WedgeItemRenderer.prototype.drawWedge =
-function(chartArea, x, y,
+function(x, y,
          startAngle, arc,
          radius, yRadius,
 		continueFlag) {
+  var chartArea = this.get_itemRendererParent();
   var color = Number(this.get_fillColor()).toString(16);
   if (color.length == 2) color = '00' + color;
   if (color.length == 4) color = '00' + color;

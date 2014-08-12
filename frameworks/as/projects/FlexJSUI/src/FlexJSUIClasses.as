@@ -36,6 +36,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.charts.core.IChartAxis; IChartAxis;
 	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
 	import org.apache.flex.charts.ChartDataGroup; ChartDataGroup;
+	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
 	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
 	import org.apache.flex.maps.google.Map; Map;
 	

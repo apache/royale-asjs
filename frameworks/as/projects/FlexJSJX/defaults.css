@@ -25,7 +25,7 @@ BarChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.BarChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.BarChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.html.supportClasses.NonVirtualDataGroup");
+    IDataGroup: ClassReference("org.apache.flex.charts.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.ChartItemRendererFactory");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");

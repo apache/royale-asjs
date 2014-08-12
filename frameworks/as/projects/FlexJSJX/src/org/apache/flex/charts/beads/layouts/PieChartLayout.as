@@ -60,9 +60,7 @@ package org.apache.flex.charts.beads.layouts
 		 */
 		private function changeHandler(event:Event):void
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var chartArea:UIBase = layoutParent.contentView as UIBase;
-			
+			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;			
 			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
 			var n:int = factory.seriesRenderers.length;
 			
@@ -119,7 +117,7 @@ package org.apache.flex.charts.beads.layouts
 					var arc:Number = 360.0 * obj.percent;
 					trace("Draw arc from "+start+" to "+(start+arc));
 					renderer.fillColor = colors[i];
-					renderer.drawWedge(chartArea,centerX, centerY, start*Math.PI/180, arc*Math.PI/180, radius);
+					renderer.drawWedge(centerX, centerY, start*Math.PI/180, arc*Math.PI/180, radius);
 					
 					start += arc;
 				}

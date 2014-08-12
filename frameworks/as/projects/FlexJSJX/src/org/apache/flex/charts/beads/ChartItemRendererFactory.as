@@ -111,6 +111,7 @@ package org.apache.flex.charts.beads
 				{
 					var s:IChartSeries = series[i] as IChartSeries;
 					var k:IChartItemRenderer = s.itemRenderer.newInstance() as IChartItemRenderer;
+					k.itemRendererParent = dataGroup;
 					k.xField = s.xField;
 					k.yField = s.yField;
 					k.fillColor = s.fillColor;

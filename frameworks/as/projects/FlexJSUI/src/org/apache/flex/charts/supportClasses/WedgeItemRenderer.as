@@ -23,6 +23,7 @@ package org.apache.flex.charts.supportClasses
 	
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
@@ -31,6 +32,26 @@ package org.apache.flex.charts.supportClasses
 		public function WedgeItemRenderer()
 		{
 			super();
+		}
+		
+		private var _itemRendererParent:Object;
+		
+		/**
+		 *  The parent component of the itemRenderer instance. This is the container that houses
+		 *  all of the itemRenderers for the series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRendererParent():Object
+		{
+			return _itemRendererParent;
+		}
+		public function set itemRendererParent(value:Object):void
+		{
+			_itemRendererParent = value;
 		}
 		
 		private var _fillColor:uint = 0xFF0000;
@@ -57,12 +78,12 @@ package org.apache.flex.charts.supportClasses
 		 * @param continueFlag  if true, uses a moveTo call to start drawing at the start point of the circle; else continues drawing using only lineTo and curveTo
 		 * 
 		 */		
-		public function drawWedge(chartArea:UIBase, x:Number, y:Number,
+		public function drawWedge(x:Number, y:Number,
 							      startAngle:Number, arc:Number,
 								  radius:Number, yRadius:Number = NaN,
 								  continueFlag:Boolean = false):void
 		{
-			
+			var chartArea:UIBase = this.itemRendererParent as UIBase;
 			var g:Graphics = chartArea.graphics;
 			
 			if (isNaN(yRadius))
