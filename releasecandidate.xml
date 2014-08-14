@@ -333,6 +333,85 @@
 		<delete file="${basedir}/getresult.txt" />
 	</target>
 	
+	<target name="update-installer-config-release" >
+		<exec executable="${svn}" dir="${site}" failonerror="true" >
+			<arg value="update" />
+			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
+		</exec>
+		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />	
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="ApacheFlexJS(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
+            <substitution expression="ApacheFlexJS\1latestVersion=&quot;${release.version}&quot;\2"/>
+            <fileset dir="${site}/trunk/content/installer">
+                <include name="sdk-installer-config-4.0.xml"/>
+            </fileset>
+        </replaceregexp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="path=&quot;flex/flexjs/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
+            <substitution expression="path=&quot;http://archive.apache.org/dist/flex/flexjs${latest.release}/binaries&quot;\1"/>
+            <fileset dir="${site}/trunk/content/installer">
+                <include name="sdk-installer-config-4.0.xml"/>
+            </fileset>
+        </replaceregexp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="&lt;rc id=&quot;FlexJSRC&quot;(.*)"/>
+            <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;flex/flexjs/${release.version}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;FlexJSRC&quot;\1"/>
+            <fileset dir="${site}/trunk/content/installer">
+                <include name="sdk-installer-config-4.0.xml"/>
+            </fileset>
+        </replaceregexp>
+		<tstamp>
+			<format pattern="yyyy-MM-dd" property="release.date" />
+		</tstamp>
+		<tstamp>
+			<format pattern="MMMM yyyy" property="release.date.month" />
+		</tstamp>
+		<tstamp>
+			<format pattern="dd MMMM yyyy" property="release.date.full" />
+		</tstamp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="${latest.release}"/>
+            <substitution expression="${release.version}"/>
+            <fileset dir="${site}/trunk/content">
+                <include name="download-flexjs.cmsPage"/>
+            </fileset>
+        </replaceregexp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="this release, available as of .*\.  (.*)"/>
+            <substitution expression="this release, available as of ${release.date.full}.  \1"/>
+            <fileset dir="${site}/trunk/content">
+                <include name="download-flexjs.cmsPage"/>
+            </fileset>
+        </replaceregexp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="binaries were published on .*\."/>
+            <substitution expression="binaries were published on ${release.date.full}."/>
+            <fileset dir="${site}/trunk/content">
+                <include name="download-flexjs.cmsPage"/>
+            </fileset>
+        </replaceregexp>
+        <replaceregexp byline="true" flags="g">
+            <regexp pattern="${latest.release}(.*)\)"/>
+            <substitution expression="${release.version} (${release.date.month})"/>
+            <fileset dir="${site}/trunk/templates">
+                <include name="flex-v2-footer.html"/>
+            </fileset>
+        </replaceregexp>
+		<exec executable="${svn}" dir="${site}" failonerror="true" >
+			<arg value="commit" />
+			<arg value="--username" />
+			<arg value="${apache.username}" />
+			<arg value="--password" />
+			<arg value="${apache.password}" />
+			<arg value="-m" />
+			<arg value="&quot;update sdk-installer-config-4.0 and other files for flexjs ${release.version} rc${rc}&quot;" />
+		</exec>
+		<!-- pause to give buildbot chance to react -->
+		<sleep seconds="5" />
+		<get src="https://cms.apache.org/flex/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
+		<delete file="${basedir}/getresult.txt" />
+	</target>
+
 	<target name="check-new-version" description="check if svn folder needs to be added" >
 		<condition property="version.folder" value="${dist.dev}/flex/flexjs/${release.version}" >
 			<not>
@@ -451,5 +530,63 @@ ${my.name}
 		<delete file="${basedir}/votethread.html" />
 		<delete file="${basedir}/discussthread.properties" />
     </target>
+
+	<target name="release" >
+		<available file="${svn.dist.release}"
+			type="dir" 
+			property="dist.release" value="${svn.dist.release}" />
+    
+		<fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
+			unless="dist.release"/>
+				
+		<exec executable="${svn}" dir="${dist.release}/flex" failonerror="true" >
+			<arg value="update" />
+		</exec>
+		<mkdir dir="${dist.release}/flex/flexjs/${release.version}" />
+		<mkdir dir="${dist.release}/flex/flexjs/${release.version}/binaries" />
+		<mkdir dir="${dist.release}/flex/flexjs/${release.version}/doc" />
+		<copy todir="${dist.release}/flex/flexjs/${release.version}/doc" >
+			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}/doc" >
+				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.release}/flex/flexjs/${release.version}/binaries" >
+			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}/binaries" >
+				<include name="apache-flex-flexjs-${release.version}-bin*" />
+				<include name="apache-flex-flexjs-installer-config.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.release}/flex/flexjs/${release.version}" >
+			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}" >
+				<include name="READme" />
+				<include name="apache-flex-flexjs-${release.version}-src*" />
+			</fileset>
+		</copy>
+		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+			<arg value="add" />
+			<arg value="${release.version}" />
+		</exec>
+		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+			<arg value="commit" />
+			<arg value="--username" />
+			<arg value="${apache.username}" />
+			<arg value="--password" />
+			<arg value="${apache.password}" />
+			<arg value="-m" />
+			<arg value="Apache FlexJS ${release.version}" />
+		</exec>
+		<exec executable="${git}" dir="${basedir}" failonerror="true" >
+			<arg value="tag" />
+			<arg value="-a" />
+			<arg value="apache-flex-flexjs-${release.version}" />
+			<arg value="-m" />
+			<arg value="&quot;Official release of apache-flex-flexjs-${release.version}&quot;" />
+		</exec>
+		<exec executable="${git}" dir="${basedir}" failonerror="true" >
+			<arg value="push" />
+			<arg value="--tags" />
+		</exec>
+		<echo>Wait at least 24 hours before running update-installer-config-release target</echo>
+	</target>
 	
 </project>
