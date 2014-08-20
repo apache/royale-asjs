@@ -16,35 +16,62 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
+package org.apache.flex.charts.core
 {
-	import org.apache.flex.charts.core.ChartBase;
-	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.List;
 	
 	/**
-	 *  The BarChart class draws a multi-series graph of data using vertical
-	 *  columns. The series property is an array of BarChartSeries instances
-	 *  that represent the data in the model.
+	 *  The ChartBase class contains all of the properties common to most
+	 *  charts. Some charts may not make any or full use of the properties
+	 *  however.
+	 * 
+	 *  A chart is based on List which provides data and item renderers to
+	 *  draw the chart graphics. Charts are essentially lists with a
+	 *  different visualization.
+	 * 
+	 *  Similar to a List, the chart's layout provides the structure of
+	 *  chart while the itemRenderers take care of the actual drawing.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BarChart extends ChartBase implements IChart
+	public class ChartBase extends List implements IChart
 	{
 		/**
-		 *  constructor.
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function ChartBase()
+		{
+			super();
+		}
+		
+		private var _series:Array;
+		
+		/**
+		 *  The collection of series for the chart. Each element of the
+		 *  series array should be of type IChartSeries.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function BarChart()
+		public function get series():Array
 		{
-			super();
+			return _series;
+		}
+		public function set series(value:Array):void
+		{
+			_series = value;
+			dispatchEvent(new Event("seriesChanged"));
 		}
 	}
 }

@@ -31,10 +31,15 @@ internal class FlexJSUIClasses
 	import org.apache.cordova.Application; Application;
 	import org.apache.cordova.Weinre; Weinre;
 	
+	import org.apache.flex.charts.core.CartesianChart; CartesianChart;
+	import org.apache.flex.charts.core.ChartBase; ChartBase;
 	import org.apache.flex.charts.core.IChart; IChart;
+	import org.apache.flex.charts.core.ICartesianChartLayout; ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChartSeries; IChartSeries;
-	import org.apache.flex.charts.core.IChartAxis; IChartAxis;
+	import org.apache.flex.charts.core.IHorizontalAxisBead; IHorizontalAxisBead;
+	import org.apache.flex.charts.core.IVerticalAxisBead; IVerticalAxisBead;
 	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
+	import org.apache.flex.charts.core.PolarChart; PolarChart;
 	import org.apache.flex.charts.ChartDataGroup; ChartDataGroup;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
 	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;

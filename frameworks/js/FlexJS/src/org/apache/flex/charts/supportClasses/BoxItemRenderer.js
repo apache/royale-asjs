@@ -193,7 +193,7 @@ function(x, y, width, height) {
   if (color.length == 2) color = '00' + color;
   if (color.length == 4) color = '00' + color;
 
-  var style = 'fill:#' + String(color) + ';stroke:black;stroke-width:1';
+  var style = 'fill:#' + String(color) + ';stroke:black;stroke-width:0';
 
   var pathString = 'M' + x + ' ' + y +
                    ' l' + width + ' ' + '0' +

@@ -77,6 +77,7 @@ package org.apache.flex.charts.core
 		 *  @productversion FlexJS 0.0
 		 */
 		function set x(value:Number):void;
+		function get x():Number;
 		
 		/**
 		 *  The y display position for the itemRenderer. This is set by
@@ -88,6 +89,7 @@ package org.apache.flex.charts.core
 		 *  @productversion FlexJS 0.0
 		 */
 		function set y(value:Number):void;
+		function get y():Number;
 		
 		/**
 		 *  The display width for the itemRenderer. This is set by

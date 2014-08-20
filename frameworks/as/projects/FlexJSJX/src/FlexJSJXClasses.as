@@ -31,8 +31,10 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
 	import org.apache.flex.charts.beads.PieChartView; PieChartView;
 	import org.apache.flex.charts.beads.XAxisBead; XAxisBead;
+	import org.apache.flex.charts.beads.YAxisBead; YAxisBead;
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.beads.layouts.PieChartLayout; PieChartLayout;
+	import org.apache.flex.charts.beads.layouts.StackedChartLayout; StackedChartLayout;
 	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
 	import org.apache.flex.charts.supportClasses.PieChartSeries; PieChartSeries;
 	

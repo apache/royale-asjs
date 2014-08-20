@@ -23,8 +23,25 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.beads.ListView;
 	
+	/**
+	 *  The PieChartView class provides the graphical space for
+	 *  the display of a PieChart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class PieChartView extends ListView
 	{
+		/**
+		 *  constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function PieChartView()
 		{
 			super();
@@ -44,7 +61,6 @@ package org.apache.flex.charts.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-//			this.dataGroup = new ChartDataGroup();
 			super.strand = value;
 		}
 	}

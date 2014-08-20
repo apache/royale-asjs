@@ -17,12 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
-{	
+{
 	import org.apache.flex.charts.beads.ChartItemRendererFactory;
+	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.supportClasses.PieChartSeries;
-	import org.apache.flex.charts.supportClasses.WedgeItemRenderer;
+	import org.apache.flex.charts.core.IHorizontalAxisBead;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.charts.supportClasses.BarChartSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ILayoutParent;
@@ -32,25 +34,25 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The PieChartLayout class calculates the size and position of all of the itemRenderers for
-	 *  a PieChart. 
+	 *  The StackChartLayout class calculates the size and position of all of the itemRenderers for
+	 *  all of the series in a StackedChart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PieChartLayout implements IBeadLayout
+	public class StackedChartLayout implements IBeadLayout, ICartesianChartLayout
 	{
 		/**
-		 *  constructor.
+		 *  constructor
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function PieChartLayout()
+		public function StackedChartLayout()
 		{
 		}
 		
@@ -72,120 +74,96 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 		
+		private var _gap:Number = 20;
+		
+		/**
+		 *  The amount of space to leave between series. If a chart has several series,
+		 *  the bars for an X value are side by side with a gap between the groups of
+		 *  bars.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get gap():Number
+		{
+			return _gap;
+		}
+		public function set gap(value:Number):void
+		{
+			_gap = value;
+		}
+		
 		/**
 		 * @private
 		 */
 		private function changeHandler(event:Event):void
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;			
+			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			
 			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
 			var n:int = factory.seriesRenderers.length;
 			
-			var xpos:Number = 0;
-			var useWidth:Number = UIBase(_strand).width;
-			var useHeight:Number = UIBase(_strand).height;
+			var xAxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
+			var yAxis:IVerticalAxisBead   = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
+			
+			var xpos:Number = yAxisOffset;
+			var ypos:Number = 0;
+			var useWidth:Number = (UIBase(_strand).width / n) - gap - yAxisOffset;
+			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
 			
 			var maxYValue:Number = 0;
 			var series:Array = IChart(_strand).series;
 			trace("There are "+series.length+" series in this chart");
-			var seriesMaxes:Array = [];
-			var colors:Array = [0xFF0000, 0xFF9900, 0x00FF00, 0x00FFcc, 0x0000FF, 0xcc00FF, 0xFF00cc, 0x888888, 0x333333, 0xFFcc99];
 			
-			// determine the total value by adding up the dataField values.
-			for (var s:int = 0; s < series.length; s++)
+			var barValues:Array = [];
+			var maxValue:Number = 0;
+			var scaleFactor:Number = 1;
+			
+			for (var i:int=0; i < n; i++)
 			{
-				var pcs:PieChartSeries = series[s] as PieChartSeries;
+				barValues.push({totalValue:0, scaleFactor:0});
 				
-				for (var i:int = 0; i < n; i++)
+				for (var s:int = 0; s < series.length; s++)
 				{
-					var m:Array = factory.seriesRenderers[i] as Array;
-					var item:IChartItemRenderer = m[s] as IChartItemRenderer;
-					var data:Object = item.data;
-					var field:String = pcs.dataField;
-					
-					var yValue:Number = Number(data[field]);
-					maxYValue += yValue;
-					
-					seriesMaxes.push( {yValue:yValue, percent:0, arc:0} );
-				}
-				
-				for (i=0; i < n; i++)
-				{
-					var obj:Object = seriesMaxes[i];
-					obj.percent = obj.yValue / maxYValue;
-					obj.arc = 360.0*obj.percent;
-					
-					trace("dataPoint "+i+": value="+obj.yValue+"; percent="+obj.percent+"; arc="+obj.arc);
-				}
-				
-				var start:Number = 0;
-				var end:Number = 0;
-				var radius:Number = Math.min(useWidth,useHeight)/2;
-				var centerX:Number = useWidth/2;
-				var centerY:Number = useHeight/2;
-								
-				for (i=0; i < n; i++)
-				{
-					obj = seriesMaxes[i];
-					m = factory.seriesRenderers[i] as Array;
-					var renderer:WedgeItemRenderer = m[s] as WedgeItemRenderer;
-					
-					end = start + (360.0 * obj.percent);
-					var arc:Number = 360.0 * obj.percent;
-					trace("Draw arc from "+start+" to "+(start+arc));
-					renderer.fillColor = colors[i];
-					renderer.drawWedge(centerX, centerY, start*Math.PI/180, arc*Math.PI/180, radius);
-					
-					start += arc;
-				}
-			}
-			// for each value, determine its %
-			// use that % to determine the arc of the wedge
-			
-			// tell each wedge the data it needs so it can draw itself
-			
-			/*var pcs:PieChartSeries = series[0] as PieChartSeries;
-			var m:WedgeItemRenderer = (factory.seriesRenderers[0] as Array)[0] as WedgeItemRenderer;
-			
-			for (var s:int = 0; s < series.length; s++)
-			{
-				var pcs:PieChartSeries = series[s] as PieChartSeries;
-				seriesMaxes.push({maxValue:0,scaleFactor:0});
-				
-				for (var i:int = 0; i < n; i++)
-				{
+					var bcs:BarChartSeries = series[s] as BarChartSeries;
 					var m:Array = factory.seriesRenderers[i] as Array;
 					var item:IChartItemRenderer = m[s] as IChartItemRenderer;
 					var data:Object = item.data;
 					var field:String = bcs.yField;
 					
 					var yValue:Number = Number(data[field]);
-					seriesMaxes[s].maxValue = Math.max(seriesMaxes[s].maxValue,yValue);
+					barValues[i].totalValue += yValue;
 				}
 				
-				seriesMaxes[s].scaleFactor = useHeight/seriesMaxes[s].maxValue;
+				maxValue = Math.max(maxValue, barValues[i].totalValue);
 			}
 			
-			for (i = 0; i < n; i++)
+			scaleFactor = useHeight/maxValue;
+			
+			for (i=0; i < n; i++)
 			{
 				m = factory.seriesRenderers[i] as Array;
+				ypos = useHeight;
 				for (s=0; s < m.length; s++)
 				{
-					var seriesWidth:Number = useWidth/series.length;
 					var child:IChartItemRenderer = m[s] as IChartItemRenderer;
 					data = child.data
 					yValue = Number(data[child.yField]);
 					
-					child.y = useHeight - yValue*seriesMaxes[s].scaleFactor;
 					child.x = xpos;
-					child.width = seriesWidth;
-					child.height = yValue*seriesMaxes[s].scaleFactor;
-					xpos += seriesWidth;
+					child.width = useWidth;
+					child.y = ypos - yValue*scaleFactor;
+					child.height = yValue*scaleFactor;
+					
+					ypos = child.y;
 				}
 				
-				xpos += gap;
-				
-			}*/
+				xpos += gap + useWidth;
+			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}

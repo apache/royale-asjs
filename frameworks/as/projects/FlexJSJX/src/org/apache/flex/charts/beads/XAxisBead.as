@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads
 {	
-	import org.apache.flex.charts.beads.layouts.BarChartLayout;
 	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.charts.core.IChartAxis;
+	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -34,16 +32,15 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
-	 *  The BoxItemRenderer displays a colored rectangular area suitable for use as
-	 *  an itemRenderer for a BarChartSeries. This class implements the IChartItemRenderer
-	 *  interface. 
+	 *  The XAxisBead displays a linear value axis horizontally for
+	 *  a Cartesian-style chart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class XAxisBead implements IBead, IChartAxis
+	public class XAxisBead implements IBead, IHorizontalAxisBead
 	{
 		/**
 		 *  constructor.
@@ -55,6 +52,25 @@ package org.apache.flex.charts.beads
 		 */
 		public function XAxisBead()
 		{
+		}
+		
+		private var _axisHeight:Number = 30;
+		
+		/**
+		 *  The height of the horizontal axis.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get axisHeight():Number
+		{
+			return _axisHeight;
+		}
+		public function set axisHeight(value:Number):void
+		{
+			_axisHeight = value;
 		}
 		
 		private var _labelField:String;
@@ -112,8 +128,7 @@ package org.apache.flex.charts.beads
 			var series:Array = IChart(_strand).series;
 					
 			var xpos:Number = 0;
-			var barChartLayout:BarChartLayout = _strand.getBeadByType(IBeadLayout) as BarChartLayout; 
-			var xAxisHeightOffset:Number = barChartLayout.xAxisHeight;
+			var xAxisHeightOffset:Number = axisHeight;
 			var useWidth:Number = UIBase(_strand).width / renderers.length;
 			
 			// draw the horzontal axis

@@ -16,35 +16,68 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
+package org.apache.flex.charts.beads
 {
-	import org.apache.flex.charts.core.ChartBase;
-	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.events.Event;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
 	
 	/**
-	 *  The BarChart class draws a multi-series graph of data using vertical
-	 *  columns. The series property is an array of BarChartSeries instances
-	 *  that represent the data in the model.
+	 *  The YAxisBead displays a linear value axis vertically for
+	 *  a Cartesian-style chart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BarChart extends ChartBase implements IChart
+	public class YAxisBead implements IBead, IVerticalAxisBead
 	{
 		/**
 		 *  constructor.
-		 *
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function BarChart()
+		public function YAxisBead()
 		{
-			super();
+		}
+		
+		private var _strand:IStrand;
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+		}
+		
+		private var _axisWidth:Number = 0;
+		
+		/**
+		 *  The overall width of the axis.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get axisWidth():Number
+		{
+			return _axisWidth;
+		}
+		
+		public function set axisWidth(value:Number):void
+		{
+			_axisWidth = value;
 		}
 	}
 }

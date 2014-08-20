@@ -18,21 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+	import org.apache.flex.charts.core.ChartBase;
+	import org.apache.flex.charts.core.IChart;
 	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The StackedChart displays a histogram chart where each series in
+	 *  the chart is stack on top of each other. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IItemRendererParent
+	public class StackedChart extends ChartBase implements IChart
 	{
-		public function ChartDataGroup()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function StackedChart()
 		{
 			super();
 		}

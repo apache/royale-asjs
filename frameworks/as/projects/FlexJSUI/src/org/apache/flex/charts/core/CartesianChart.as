@@ -16,35 +16,70 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
-{
-	import org.apache.flex.charts.core.ChartBase;
-	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.events.Event;
-	
+package org.apache.flex.charts.core
+{	
 	/**
-	 *  The BarChart class draws a multi-series graph of data using vertical
-	 *  columns. The series property is an array of BarChartSeries instances
-	 *  that represent the data in the model.
+	 *  This class provides the basis for standard X-Y plots and anything
+	 *  the requires a two-dimensional function graph. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BarChart extends ChartBase implements IChart
+	public class CartesianChart extends ChartBase
 	{
 		/**
-		 *  constructor.
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function CartesianChart()
+		{
+			super();
+		}
+		
+		private var _xAxis:IHorizontalAxisBead;
+		
+		/**
+		 *  The X Axis is typically the horizontal axis for a Cartesian chart.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function BarChart()
+		public function get xAxis():IHorizontalAxisBead
 		{
-			super();
+			return _xAxis;
+		}
+		
+		public function set xAxis(value:IHorizontalAxisBead):void
+		{
+			_xAxis = value;
+		}
+		
+		private var _yAxis:IHorizontalAxisBead;
+		
+		/**
+		 *  The Y Axis is typically the vertical axis for a Cartesian chart.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get yAxis():IHorizontalAxisBead
+		{
+			return _yAxis;
+		}
+		
+		public function set yAxis(value:IHorizontalAxisBead):void
+		{
+			_yAxis = value;
 		}
 	}
 }

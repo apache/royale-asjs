@@ -185,7 +185,7 @@ function(x, y,
   var pathString = 'M' + x + ' ' + y + ' L' + x1 + ' ' + y1 + ' A' + radius + ' ' + radius +
                    ' 0 0 1 ' + x2 + ' ' + y2 + ' z';
 
-  var style = 'fill:#' + String(color) + ';stroke:black;stroke-width:1';
+  var style = 'fill:#' + String(color) + ';stroke:black;stroke-width:0';
 
   var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.setAttribute('style', style);

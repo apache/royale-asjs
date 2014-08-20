@@ -18,6 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {
+	import org.apache.flex.charts.beads.ChartItemRendererFactory;
+	import org.apache.flex.charts.core.ICartesianChartLayout;
+	import org.apache.flex.charts.core.IChart;
+	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.charts.core.IHorizontalAxisBead;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.charts.supportClasses.BarChartSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ILayoutParent;
@@ -25,10 +32,6 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.charts.beads.ChartItemRendererFactory;
-	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.supportClasses.BarChartSeries;
 	
 	/**
 	 *  The BarChartLayout class calculates the size and position of all of the itemRenderers for
@@ -39,7 +42,7 @@ package org.apache.flex.charts.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BarChartLayout implements IBeadLayout
+	public class BarChartLayout implements IBeadLayout, ICartesianChartLayout
 	{
 		private var _strand:IStrand;
 		
@@ -80,25 +83,6 @@ package org.apache.flex.charts.beads.layouts
 			_gap = value;
 		}
 		
-		private var _xAxisHeight:Number = 30;
-		
-		/**
-		 *  The height of the x-axis. Assumes a default of 30.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get xAxisHeight():Number
-		{
-			return _xAxisHeight;
-		}
-		public function set xAxisHeight(value:Number):void
-		{
-			_xAxisHeight = value;
-		}
-		
 		/**
 		 * @private
 		 */
@@ -109,9 +93,14 @@ package org.apache.flex.charts.beads.layouts
 			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
 			var n:int = factory.seriesRenderers.length;
 			
-			var xpos:Number = 0;
-			var useWidth:Number = (UIBase(_strand).width / n) - gap;
-			var useHeight:Number = UIBase(_strand).height - xAxisHeight;
+			var xAxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
+			var yAxis:IVerticalAxisBead   = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
+			
+			var xpos:Number = yAxisOffset;
+			var useWidth:Number = (UIBase(_strand).width / n) - gap - yAxisOffset;
+			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
 			
 			var maxYValue:Number = 0;
 			var series:Array = IChart(_strand).series;

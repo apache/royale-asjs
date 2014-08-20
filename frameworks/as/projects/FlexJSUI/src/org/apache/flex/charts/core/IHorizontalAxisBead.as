@@ -16,25 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
+package org.apache.flex.charts.core
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
-	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The IHorizontalAxisBead interface is a marker for any class that draws a
+	 *  horizontal axis. The XAxisBead is an example that implements this interface.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IItemRendererParent
+	public interface IHorizontalAxisBead
 	{
-		public function ChartDataGroup()
-		{
-			super();
-		}
+		/**
+		 *  The overall height of the axis, including its labels.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get axisHeight():Number;
+		function set axisHeight(value:Number):void;
 	}
 }

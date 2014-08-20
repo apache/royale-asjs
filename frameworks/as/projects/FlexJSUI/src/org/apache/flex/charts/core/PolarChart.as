@@ -16,25 +16,51 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
-{
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
-	
+package org.apache.flex.charts.core
+{	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  This class provides the basis for circular, or polar, charts. These types
+	 *  of charts, which include PieCharts, may be zero or more radial axes (or
+	 *  'radii'). 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IItemRendererParent
+	public class PolarChart extends ChartBase
 	{
-		public function ChartDataGroup()
+		/**
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function PolarChart()
 		{
 			super();
+		}
+		
+		private var _radii:Array
+		
+		/**
+		 *  The radii are the 'axes' for polar or circular charts. There are can be 
+		 *  zero or more radii.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get radii():Array
+		{
+			return _radii;
+		}
+		public function set radii(value:Array):void
+		{
+			_radii = value;
 		}
 	}
 }
