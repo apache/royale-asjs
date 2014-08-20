@@ -59,6 +59,35 @@ limitations under the License.
 		</basic:series>
 	</basic:BarChart>
 	
+	<basic:StackedChart id="stackedChart" x="500" y="20" width="400" height="200">
+		<basic:beads>
+			<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+			<basic:XAxisBead labelField="title" />
+			<basic:YAxisBead />
+		</basic:beads>
+		<basic:series>
+			<basic:BarChartSeries yField="sales" 
+								  fillColor="0xFF964D">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:BarChartSeries>
+			<basic:BarChartSeries yField="detail" 
+								  fillColor="0x964DFF">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:BarChartSeries>
+		</basic:series>
+	</basic:StackedChart>
+	
 	<basic:PieChart id="pieChart" x="20" y="300" width="300" height="300">
 		<basic:beads>
 			<basic:ConstantBinding
