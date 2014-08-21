@@ -93,6 +93,27 @@ package org.apache.flex.charts.beads
 			_labelField = value;
 		}
 		
+		private var _gap:Number = 20;
+		
+		/**
+		 *  The amount of space to leave between series. If a chart has several series,
+		 *  the bars for an X value are side by side with a gap between the groups of
+		 *  bars.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get gap():Number
+		{
+			return _gap;
+		}
+		public function set gap(value:Number):void
+		{
+			_gap = value;
+		}
+		
 		private var _strand:IStrand;
 		
 		/**
@@ -154,7 +175,7 @@ package org.apache.flex.charts.beads
 				// add a tick mark, too
 				var tick:FilledRectangle = new FilledRectangle();
 				tick.fillColor = 0x111111;
-				tick.x = xpos + useWidth/2;
+				tick.x = xpos + useWidth/2 - gap;
 				tick.y = UIBase(_strand).height - xAxisHeightOffset;
 				tick.width = 1;
 				tick.height = 5;

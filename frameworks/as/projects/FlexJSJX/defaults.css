@@ -31,6 +31,18 @@ BarChart
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
 }
 
+ColumnChart
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.charts.beads.BarChartView");			
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.ColumnChartLayout");
+    IDataGroup: ClassReference("org.apache.flex.charts.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.ChartItemRendererFactory");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
+}
+
 DataGrid
 {
     IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");

@@ -33,18 +33,11 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	/**
-	 *  The BarChartLayout class calculates the size and position of all of the itemRenderers for
-	 *  all of the series in a BarChart. 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class BarChartLayout implements IBeadLayout, ICartesianChartLayout
+	public class ColumnChartLayout implements IBeadLayout, ICartesianChartLayout
 	{
-		private var _strand:IStrand;
+		public function ColumnChartLayout()
+		{
+		}private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -83,9 +76,6 @@ package org.apache.flex.charts.beads.layouts
 			_gap = value;
 		}
 		
-		/**
-		 * @private
-		 */
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
@@ -93,21 +83,19 @@ package org.apache.flex.charts.beads.layouts
 			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
 			var n:int = factory.seriesRenderers.length;
 			
-			var maxXValue:Number = 0;
-			var series:Array = IChart(_strand).series;
-			trace("There are "+series.length+" series in this chart");
-			var seriesMaxes:Array = [];
-			
 			var xAxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
 			var yAxis:IVerticalAxisBead   = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
 			
-			var useWidth:Number = UIBase(_strand).width - yAxisOffset;
-			var useHeight:Number = (UIBase(_strand).height / n) - gap - xAxisOffset;
-			var seriesHeight:Number = useHeight/series.length;
-			var xpos:Number = 0;
-			var ypos:Number = UIBase(_strand).height - xAxisOffset - seriesHeight;
+			var xpos:Number = yAxisOffset;
+			var useWidth:Number = (UIBase(_strand).width / n) - gap - yAxisOffset;
+			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
+			
+			var maxYValue:Number = 0;
+			var series:Array = IChart(_strand).series;
+			trace("There are "+series.length+" series in this chart");
+			var seriesMaxes:Array = [];
 			
 			for (var s:int = 0; s < series.length; s++)
 			{
@@ -125,7 +113,7 @@ package org.apache.flex.charts.beads.layouts
 					seriesMaxes[s].maxValue = Math.max(seriesMaxes[s].maxValue,yValue);
 				}
 				
-				seriesMaxes[s].scaleFactor = useWidth/seriesMaxes[s].maxValue;
+				seriesMaxes[s].scaleFactor = useHeight/seriesMaxes[s].maxValue;
 			}
 			
 			for (i = 0; i < n; i++)
@@ -133,18 +121,19 @@ package org.apache.flex.charts.beads.layouts
 				m = factory.seriesRenderers[i] as Array;
 				for (s=0; s < m.length; s++)
 				{
+					var seriesWidth:Number = useWidth/series.length;
 					var child:IChartItemRenderer = m[s] as IChartItemRenderer;
 					data = child.data
 					yValue = Number(data[child.yField]);
 					
-					child.x = yAxisOffset;
-					child.y = ypos;
-					child.width = yValue*seriesMaxes[s].scaleFactor;
-					child.height = seriesHeight;
-					ypos -= seriesHeight;
+					child.y = useHeight - yValue*seriesMaxes[s].scaleFactor;
+					child.x = xpos;
+					child.width = seriesWidth;
+					child.height = yValue*seriesMaxes[s].scaleFactor;
+					xpos += seriesWidth;
 				}
 				
-				ypos -= gap;
+				xpos += gap;
 				
 			}
 			
