@@ -105,9 +105,11 @@ package org.apache.flex.charts.beads.layouts
 			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
 			var n:int = factory.seriesRenderers.length;
 			
-			var xAxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			var xAxis:IHorizontalAxisBead;
+			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
-			var yAxis:IVerticalAxisBead   = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+			var yAxis:IVerticalAxisBead;
+			if (_strand.getBeadByType(IVerticalAxisBead)) yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
 			
 			var xpos:Number = yAxisOffset;

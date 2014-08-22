@@ -98,9 +98,11 @@ package org.apache.flex.charts.beads.layouts
 			trace("There are "+series.length+" series in this chart");
 			var seriesMaxes:Array = [];
 			
-			var xAxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			var xAxis:IHorizontalAxisBead;
+			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
-			var yAxis:IVerticalAxisBead   = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+			var yAxis:IVerticalAxisBead;
+			if (_strand.getBeadByType(IVerticalAxisBead)) yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
 			
 			var useWidth:Number = UIBase(_strand).width - yAxisOffset;
