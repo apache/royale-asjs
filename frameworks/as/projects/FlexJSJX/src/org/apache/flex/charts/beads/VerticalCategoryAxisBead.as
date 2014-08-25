@@ -32,15 +32,17 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
-	 *  The YAxisBead displays a linear value axis vertically for
-	 *  a Cartesian-style chart. 
+	 *  The VerticalCategoryAxisBead displays a vertical axis with
+	 *  tick marks corresponding to data points identified by the
+	 *  categoryField property. This type of axis is useful for non-numeric
+	 *  plots. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class YAxisBead implements IBead, IVerticalAxisBead
+	public class VerticalCategoryAxisBead implements IBead, IVerticalAxisBead
 	{
 		/**
 		 *  constructor.
@@ -50,7 +52,7 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function YAxisBead()
+		public function VerticalCategoryAxisBead()
 		{
 		}
 		
@@ -72,10 +74,10 @@ package org.apache.flex.charts.beads
 			IEventDispatcher(_strand).addEventListener("layoutComplete",handleItemsCreated);
 		}
 		
-		private var _labelField:String;
+		private var _categoryField:String;
 		
 		/**
-		 *  The name of field witin the chart data to use to label each of the
+		 *  The name of field within the chart data to used to categorize each of the
 		 *  axis data points.
 		 *
 		 *  @langversion 3.0
@@ -83,13 +85,13 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get labelField():String
+		public function get categoryField():String
 		{
-			return _labelField;
+			return _categoryField;
 		}
-		public function set labelField(value:String):void
+		public function set categoryField(value:String):void
 		{
-			_labelField = value;
+			_categoryField = value;
 		}
 		
 		private var _axisWidth:Number = 100;
@@ -169,9 +171,9 @@ package org.apache.flex.charts.beads
 			
 			for(var i:int=0; i < items.length; i++) {				
 				var label:Label = new Label();
-				label.text = items[i][labelField];
+				label.text = items[i][categoryField];
 				label.x = 0;
-				label.y = ypos;
+				label.y = (ypos + useHeight/2) - label.height/2;
 				label.width = yAxisWidthOffset;
 				
 				UIBase(_strand).addElement(label);
