@@ -22,15 +22,15 @@ package org.apache.flex.charts
 	import org.apache.flex.charts.core.IChart;
 	
 	/**
-	 *  The StackedChart displays a histogram chart where each series in
-	 *  the chart is stack on top of each other. 
+	 *  The StackedBarChart displays a histogram chart where each series in
+	 *  the chart is stack next to each other. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class StackedChart extends ChartBase implements IChart
+	public class StackedBarChart extends ChartBase implements IChart
 	{
 		/**
 		 *  constructor.
@@ -40,7 +40,7 @@ package org.apache.flex.charts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function StackedChart()
+		public function StackedBarChart()
 		{
 			super();
 		}
