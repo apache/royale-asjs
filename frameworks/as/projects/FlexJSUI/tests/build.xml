@@ -27,7 +27,14 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
-    <property name="browser" value="/Applications/Safari.app/Contents/MacOS/Safari" />
+ 	
+	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
+		<os family="windows"/>
+    </condition>
+    <condition property="browser" value="/Applications/Safari.app/Contents/MacOS/Safari">
+        <os family="mac"/>
+    </condition>
+	
     <property name="report.dir" value="${basedir}/out" />
     
     <available file="${FLEXJS_HOME}/../flex-flexunit"

@@ -62,6 +62,9 @@
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 	<property name="gjslint" value="gjslint" />
 	<property name="jshint" value="jshint" />
+	<condition property="no.lint" value="true">
+		<os family="windows"/>
+	</condition>
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all SWCs"/>
