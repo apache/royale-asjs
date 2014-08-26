@@ -114,7 +114,7 @@ package org.apache.flex.charts.beads.layouts
 			
 			var xpos:Number = yAxisOffset;
 			var ypos:Number = 0;
-			var useWidth:Number = (UIBase(_strand).width / n) - gap - yAxisOffset;
+			var useWidth:Number = ((UIBase(_strand).width-yAxisOffset) / n) - gap;
 			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
 			
 			var maxYValue:Number = 0;

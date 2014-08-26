@@ -38,7 +38,9 @@
     <component id="StackedColumnChart" class="org.apache.flex.charts.StackedColumnChart" />
     <component id="StackedBarChart" class="org.apache.flex.charts.StackedBarChart" />
     <component id="HorizontalCategoryAxisBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisBead" />
+    <component id="HorizontalLinearAxisBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisBead" />
     <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />
+    <component id="VerticalLinearAxisBead" class="org.apache.flex.charts.beads.VerticalLinearAxisBead" />
     
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 

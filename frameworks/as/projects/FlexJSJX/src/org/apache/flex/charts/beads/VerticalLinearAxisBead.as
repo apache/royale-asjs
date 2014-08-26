@@ -33,27 +33,17 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
-	 *  The VerticalCategoryAxisBead displays a vertical axis with
-	 *  tick marks corresponding to data points identified by the
-	 *  categoryField property. This type of axis is useful for non-numeric
-	 *  plots. 
+	 *  The VerticalLinearAxisBead class provides a vertical axis that uses a numeric
+	 *  range. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class VerticalCategoryAxisBead implements IBead, IVerticalAxisBead
+	public class VerticalLinearAxisBead implements IBead, IVerticalAxisBead
 	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function VerticalCategoryAxisBead()
+		public function VerticalLinearAxisBead()
 		{
 		}
 		
@@ -75,44 +65,76 @@ package org.apache.flex.charts.beads
 			IEventDispatcher(_strand).addEventListener("layoutComplete",handleItemsCreated);
 		}
 		
-		private var _categoryField:String;
+		private var _axisWidth:Number = 50;
+		
+		public function get axisWidth():Number
+		{
+			return _axisWidth;
+		}
+		public function set axisWidth(value:Number):void
+		{
+			_axisWidth = value;
+		}
+		
+		private var _valueField:String;
 		
 		/**
-		 *  The name of field within the chart data to used to categorize each of the
-		 *  axis data points.
+		 *  The name of field within the chart data the holds the value being mapped
+		 *  to this axis. If values should fall within minValue and maxValue but if
+		 *  not, they will be fixed to the closest value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get categoryField():String
+		public function get valueField():String
 		{
-			return _categoryField;
+			return _valueField;
 		}
-		public function set categoryField(value:String):void
+		public function set valueField(value:String):void
 		{
-			_categoryField = value;
+			_valueField = value;
 		}
 		
-		private var _axisWidth:Number = 100;
+		private var _minValue:Number = Number.NaN;
 		
 		/**
-		 *  The overall width of the axis.
-		 *  
+		 *  The minimun value to be represented on this axis. If minValue is NaN,
+		 *  the value is calculated from the data.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get axisWidth():Number
+		public function get minValue():Number
 		{
-			return _axisWidth;
+			return _minValue;
+		}
+		public function set minValue(value:Number):void
+		{
+			_minValue = value;
 		}
 		
-		public function set axisWidth(value:Number):void
+		private var _maxValue:Number = Number.NaN;
+		
+		/**
+		 *  The maximum value to be represented on this axis. If maxValue is NaN,
+		 *  the value is calculated from the data.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get maxValue():Number
 		{
-			_axisWidth = value;
+			return _maxValue;
+		}
+		public function set maxValue(value:Number):void
+		{
+			_maxValue = value;
 		}
 		
 		private var _gap:Number = 20;
@@ -139,6 +161,29 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		private function formatLabel(n:Number):String
+		{
+			var sign:Number = n < 0 ? -1 : 1;
+			n = Math.abs(n);
+			
+			var i:int;
+			
+			if (0 <= n && n <= 1) {
+				i = Math.round(n * 100);
+				n = i / 100.0;
+			}
+			else {
+				i = Math.round(n);
+				n = i;
+			}
+			
+			var result:String = String(sign*n);
+			return result;
+		}
+		
+		/**
+		 * @private
+		 */
 		private function handleItemsCreated(event:Event):void
 		{
 			var charter:ChartItemRendererFactory =
@@ -157,44 +202,70 @@ package org.apache.flex.charts.beads
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
 			
 			var yAxisWidthOffset:Number = axisWidth;
-			var useHeight:Number = (UIBase(_strand).height-xAxisOffset) / renderers.length;
-			var seriesHeight:Number = useHeight/series.length;
+			var useHeight:Number = UIBase(_strand).height-xAxisOffset;
 			var xpos:Number = yAxisWidthOffset;
-			var ypos:Number = UIBase(_strand).height - xAxisOffset - seriesHeight - gap;
+			var ypos:Number = useHeight;
 			
 			// draw the vertical axis
 			var horzLine:FilledRectangle = new FilledRectangle();
 			horzLine.fillColor = 0x111111;
 			horzLine.x = yAxisWidthOffset;
 			horzLine.y = 0;
-			horzLine.height = UIBase(_strand).height - xAxisOffset;
+			horzLine.height = useHeight;
 			horzLine.width = 1;
 			UIBase(_strand).addElement(horzLine);
 			
-			// place the labels left of the axis enough to account for the tick marks
-			var labelX:Number = 0;
+			// place the labels below the axis enough to account for the tick marks
+			var labelY:Number = UIBase(_strand).height + 8;
 			
-			for(var i:int=0; i < items.length; i++) {				
+			// determine minimum and maximum values, if needed
+			if (isNaN(minValue)) {
+				minValue = Number.MAX_VALUE;
+				for(var i:int=0; i < items.length; i++) {
+					var value:Number = Number(items[i][valueField]);
+					if (!isNaN(value)) minValue = Math.min(minValue,value);
+					else minValue = Math.min(minValue,0);
+				}
+			}
+			if (isNaN(maxValue)) {
+				maxValue = Number.MIN_VALUE;
+				for(i=0; i < items.length; i++) {
+					value = Number(items[i][valueField]);
+					if (!isNaN(value)) maxValue = Math.max(maxValue,value);
+					else maxValue = Math.max(maxValue,0);
+				}
+			}
+			
+			var numTicks:Number = 10; // should determine this some other way, I think
+			var tickStep:Number = (maxValue - minValue)/numTicks;
+			var tickSpacing:Number = useHeight/numTicks;
+			var tickValue:Number = minValue;
+			
+			// adjust ypos to the first tick position
+			ypos = useHeight - tickSpacing;
+			
+			for(i=0; i < numTicks; i++) {				
 				var label:Label = new Label();
-				label.text = items[i][categoryField];
+				label.text = formatLabel(tickValue);
 				label.x = 0;
-				label.y = (ypos + useHeight/2) - label.height/2;
-				label.width = yAxisWidthOffset;
+				label.y = ypos - label.height/2;
 				
 				UIBase(_strand).addElement(label);
 				
 				// add a tick mark, too
 				var tick:FilledRectangle = new FilledRectangle();
 				tick.fillColor = 0x111111;
-				tick.x = yAxisWidthOffset - 5;
-				tick.y = ypos + useHeight/2;
+				tick.x = xpos - 5;
+				tick.y = ypos;
 				tick.width = 5;
 				tick.height = 1;
 				UIBase(_strand).addElement(tick);
 				
-				var r:UIBase = UIBase(renderers[i][0]);
-				ypos -= useHeight;
+				ypos -= tickSpacing;
+				tickValue += tickStep;
 			}
+			
 		}
+		
 	}
 }

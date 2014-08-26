@@ -33,17 +33,15 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
-	 *  The HorizontalCategoryAxisBead displays a horizontal axis with
-	 *  tick marks corresponding to data points identified by the
-	 *  categoryField property. This type of axis is useful for non-numeric
-	 *  plots. 
+	 *  The HorizontalLinearAxisBead class provides a horizontal axis that uses a numeric
+	 *  range. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class HorizontalCategoryAxisBead implements IBead, IHorizontalAxisBead
+	public class HorizontalLinearAxisBead implements IBead, IHorizontalAxisBead
 	{
 		/**
 		 *  constructor.
@@ -53,7 +51,7 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function HorizontalCategoryAxisBead()
+		public function HorizontalLinearAxisBead()
 		{
 		}
 		
@@ -76,24 +74,65 @@ package org.apache.flex.charts.beads
 			_axisHeight = value;
 		}
 		
-		private var _categoryField:String;
+		private var _valueField:String;
 		
 		/**
-		 *  The name of field within the chart data to used to categorize each of the
-		 *  axis data points.
+		 *  The name of field within the chart data the holds the value being mapped
+		 *  to this axis. If values should fall within minValue and maxValue but if
+		 *  not, they will be fixed to the closest value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get categoryField():String
+		public function get valueField():String
 		{
-			return _categoryField;
+			return _valueField;
 		}
-		public function set categoryField(value:String):void
+		public function set valueField(value:String):void
 		{
-			_categoryField = value;
+			_valueField = value;
+		}
+		
+		private var _minValue:Number = Number.NaN;
+		
+		/**
+		 *  The minimun value to be represented on this axis. If minValue is NaN,
+		 *  the value is calculated from the data.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get minValue():Number
+		{
+			return _minValue;
+		}
+		public function set minValue(value:Number):void
+		{
+			_minValue = value;
+		}
+		
+		private var _maxValue:Number = Number.NaN;
+		
+		/**
+		 *  The maximum value to be represented on this axis. If maxValue is NaN,
+		 *  the value is calculated from the data.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get maxValue():Number
+		{
+			return _maxValue;
+		}
+		public function set maxValue(value:Number):void
+		{
+			_maxValue = value;
 		}
 		
 		private var _gap:Number = 20;
@@ -138,6 +177,29 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		private function formatLabel(n:Number):String
+		{
+			var sign:Number = n < 0 ? -1 : 1;
+			n = Math.abs(n);
+			
+			var i:int;
+			
+			if (0 <= n && n <= 1) {
+				i = Math.round(n * 100);
+				n = i / 100.0;
+			}
+			else {
+				i = Math.round(n);
+				n = i;
+			}
+			
+			var result:String = String(sign*n);
+			return result;
+		}
+		
+		/**
+		 * @private
+		 */
 		private function handleItemsCreated(event:Event):void
 		{
 			var charter:ChartItemRendererFactory =
@@ -157,7 +219,7 @@ package org.apache.flex.charts.beads
 			
 			var xpos:Number = yAxisOffset;
 			var xAxisHeightOffset:Number = axisHeight;
-			var useWidth:Number = (UIBase(_strand).width-yAxisOffset) / renderers.length;
+			var useWidth:Number = UIBase(_strand).width - yAxisOffset;
 			
 			// draw the horzontal axis
 			var horzLine:FilledRectangle = new FilledRectangle();
@@ -165,16 +227,42 @@ package org.apache.flex.charts.beads
 			horzLine.x = xpos;
 			horzLine.y = UIBase(_strand).height - xAxisHeightOffset;
 			horzLine.height = 1;
-			horzLine.width = UIBase(_strand).width - yAxisOffset;
+			horzLine.width = useWidth;
 			UIBase(_strand).addElement(horzLine);
 			
 			// place the labels below the axis enough to account for the tick marks
 			var labelY:Number = UIBase(_strand).height + 8;
 			
-			for(var i:int=0; i < items.length; i++) {				
+			// determine minimum and maximum values, if needed
+			if (isNaN(minValue)) {
+				minValue = Number.MAX_VALUE;
+				for(var i:int=0; i < items.length; i++) {
+					var value:Number = Number(items[i][valueField]);
+					if (!isNaN(value)) minValue = Math.min(minValue,value);
+					else minValue = Math.min(minValue,0);
+				}
+			}
+			if (isNaN(maxValue)) {
+				maxValue = Number.MIN_VALUE;
+				for(i=0; i < items.length; i++) {
+					value = Number(items[i][valueField]);
+					if (!isNaN(value)) maxValue = Math.max(maxValue,value);
+					else maxValue = Math.max(maxValue,0);
+				}
+			}
+			
+			var numTicks:Number = 10; // should determine this some other way, I think
+			var tickStep:Number = (maxValue - minValue)/numTicks;
+			var tickSpacing:Number = useWidth/numTicks;
+			var tickValue:Number = minValue;
+			
+			// adjust xpos to the first tick position
+			xpos += tickSpacing;
+			
+			for(i=0; i < numTicks; i++) {				
 				var label:Label = new Label();
-				label.text = items[i][categoryField];
-				label.x = xpos;
+				label.text = formatLabel(tickValue);
+				label.x = xpos - label.width/2;
 				label.y = labelY - xAxisHeightOffset;
 				
 				UIBase(_strand).addElement(label);
@@ -182,14 +270,14 @@ package org.apache.flex.charts.beads
 				// add a tick mark, too
 				var tick:FilledRectangle = new FilledRectangle();
 				tick.fillColor = 0x111111;
-				tick.x = xpos + useWidth/2 - gap;
+				tick.x = xpos;
 				tick.y = UIBase(_strand).height - xAxisHeightOffset;
 				tick.width = 1;
 				tick.height = 5;
 				UIBase(_strand).addElement(tick);
 				
-				var r:UIBase = UIBase(renderers[i][0]);
-				xpos += useWidth;
+				xpos += tickSpacing;
+				tickValue += tickStep;
 			}
 		}
 	}
