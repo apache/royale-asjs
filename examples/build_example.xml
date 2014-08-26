@@ -58,8 +58,8 @@
         </mxmlc>
         
         <html-wrapper 
-            height="300" 
-            width="400"
+            height="100%" 
+            width="100%"
             bgcolor="#ffffff"
             name="${example}"
             versionmajor="11"
