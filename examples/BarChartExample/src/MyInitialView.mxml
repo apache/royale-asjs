@@ -38,6 +38,7 @@ limitations under the License.
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 			<basic:HorizontalCategoryAxisBead categoryField="title" />
+			<basic:VerticalLinearAxisBead valueField="sales" />
 		</basic:beads>
 		<basic:series>
 			<basic:BarChartSeries yField="sales" 
@@ -66,6 +67,7 @@ limitations under the License.
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 			<basic:VerticalCategoryAxisBead categoryField="title" />
+			<basic:HorizontalLinearAxisBead valueField="sales" />
 		</basic:beads>
 		<basic:series>
 			<basic:BarChartSeries yField="sales" 
