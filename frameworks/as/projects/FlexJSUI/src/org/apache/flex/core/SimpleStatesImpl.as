@@ -19,14 +19,15 @@
 package org.apache.flex.core
 {
     import flash.display.DisplayObject;
-    import flash.events.IEventDispatcher;
     
     import mx.states.AddItems;
     import mx.states.SetProperty;
     import mx.states.State;
     
     import org.apache.flex.core.IParent;
+    import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.ValueChangeEvent;
     import org.apache.flex.utils.MXMLDataInterpreter;
 	
@@ -91,7 +92,7 @@ package org.apache.flex.core
                     break;
                 }
             }
-            
+            doc.dispatchEvent(new Event("stateChangeComplete"));
         }
         
         private function revert(s:State):void

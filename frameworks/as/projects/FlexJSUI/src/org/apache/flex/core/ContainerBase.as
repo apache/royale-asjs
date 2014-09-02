@@ -25,6 +25,21 @@ package org.apache.flex.core
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
+    /**
+     *  Indicates that the state change has completed.  All properties
+     *  that need to change have been changed, and all transitinos
+     *  that need to run have completed.  However, any deferred work
+     *  may not be completed, and the screen may not be updated until
+     *  code stops executing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
+    
+    
 	[DefaultProperty("mxmlContent")]
     
     /**
