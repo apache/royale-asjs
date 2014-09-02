@@ -254,6 +254,19 @@ Panel
     border-thickness: 1;
 }
 
+PanelWithControlBar
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.PanelWithControlBarView");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
+}
+
 RadioButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");

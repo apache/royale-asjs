@@ -63,7 +63,27 @@ package org.apache.flex.html.beads.models
 			_strand = value;
 		}
 		
-		private var _title:String;
+        private var _controlBar:Array;
+        
+        /**
+         *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+         *  causes the ControlBar to display if you are using a View bead that supports it.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get controlBar():Array
+        {
+            return _controlBar;
+        }
+        public function set controlBar(value:Array):void
+        {
+            _controlBar = value;
+        }
+
+        private var _title:String;
 		
 		/**
 		 *  The title string for the org.apache.flex.html.Panel.

@@ -30,6 +30,16 @@ package org.apache.flex.core
      */
 	public interface IPanelModel extends IBeadModel, ITitleBarModel
 	{
-
+        /**
+         *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+		 *  causes the ControlBar to display if you are using a View bead that supports it.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get controlBar():Array;
+        function set controlBar(value:Array):void;
 	}
 }

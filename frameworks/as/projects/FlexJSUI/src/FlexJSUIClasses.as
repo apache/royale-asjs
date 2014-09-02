@@ -61,6 +61,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.beads.ListView; ListView;
     import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
     import org.apache.flex.html.beads.PanelView; PanelView;
+    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
     import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;

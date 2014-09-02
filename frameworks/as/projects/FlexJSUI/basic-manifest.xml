@@ -49,6 +49,7 @@
     <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
     <component id="Panel" class="org.apache.flex.html.Panel"/>
+    <component id="PanelWithControlBar" class="org.apache.flex.html.PanelWithControlBar"/>
     <component id="ControlBar" class="org.apache.flex.html.ControlBar"/>
     <component id="TitleBar" class="org.apache.flex.html.TitleBar"/>
     <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>

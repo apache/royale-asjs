@@ -24,9 +24,7 @@ package org.apache.flex.html
 	
 	/**
 	 *  The Panel class is a Container component capable of parenting other
-	 *  components. The Panel has a TitleBar.  If you want to a Panel with
-     *  a ControlBar, use org.apache.flex.hmlt.PanelWithControlBar which
-     *  will instantiate, by default, an org.apache.flex.html.ControlBar. 
+	 *  components. The Panel has a TitleBar and an optional org.apache.flex.html.ControlBar. 
 	 *  The Panel uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
@@ -40,7 +38,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Panel extends Container
+	public class PanelWithControlBar extends Container
 	{
 		/**
 		 *  constructor.
@@ -50,7 +48,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Panel()
+		public function PanelWithControlBar()
 		{
 			super();
 		}
@@ -100,6 +98,24 @@ package org.apache.flex.html
 		{
 			IPanelModel(model).showCloseButton = value;
 		}
-				
+		
+		/**
+		 *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+		 *  causes the ControlBar to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get controlBar():Array
+		{
+			return IPanelModel(model).controlBar;
+		}
+		public function set controlBar(value:Array):void
+		{
+            IPanelModel(model).controlBar = value;
+		}
+		
 	}
 }
