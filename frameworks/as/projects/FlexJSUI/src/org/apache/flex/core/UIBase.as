@@ -213,6 +213,7 @@ package org.apache.flex.core
 		
 		private var _width:Number;
 
+        [PercentProxy("percentWidth")]
         /**
          *  The width of the component.  If no width has been previously
          *  set the default width may be specified in the IValuesImpl
@@ -273,6 +274,7 @@ package org.apache.flex.core
 		
 		private var _height:Number;
 
+        [PercentProxy("percentHeight")]
         /**
          *  The height of the component.  If no height has been previously
          *  set the default height may be specified in the IValuesImpl

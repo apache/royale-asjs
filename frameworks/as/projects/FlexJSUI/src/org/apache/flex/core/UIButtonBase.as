@@ -316,6 +316,7 @@ package org.apache.flex.core
 		
 		private var _width:Number;
         
+        [PercentProxy("percentWidth")]
         /**
          *  @copy org.apache.flex.core.UIBase#width
          *  
@@ -373,6 +374,7 @@ package org.apache.flex.core
 		
 		private var _height:Number;
 
+        [PercentProxy("percentHeight")]
         /**
          *  @copy org.apache.flex.core.UIBase#width
          *  
