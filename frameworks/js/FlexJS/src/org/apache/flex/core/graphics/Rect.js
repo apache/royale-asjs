@@ -61,7 +61,7 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
 	if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
 	if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
 
-	var style = 'fill:#' + String(color) + ';stroke:'+ String(strokeColor) + ';stroke-width:' + String(this.get_stroke().get_weight());
+	var style = 'fill:#' + String(color) + ';stroke:#'+ String(strokeColor) + ';stroke-width:' + String(this.get_stroke().get_weight());
 
 	var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 	rect.setAttribute('style', style);
@@ -69,5 +69,6 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
 	rect.setAttribute('y', String(y));
 	rect.setAttribute('width', String(width));
 	rect.setAttribute('height', String(height));
+	rect.setAttribute('fill-opacity', String(this.get_fill().get_alpha()));
 	this.element.appendChild(rect);
 };
