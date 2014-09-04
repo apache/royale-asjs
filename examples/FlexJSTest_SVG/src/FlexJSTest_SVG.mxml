@@ -28,7 +28,7 @@ limitations under the License.
 		<basic:SimpleCSSValuesImpl />
 	</basic:valuesImpl>
 	<basic:initialView>
-		<local:MyInitialView />
+		<local:GraphicsView />
 	</basic:initialView>
 	<basic:model>
 		<models:MyModel />
