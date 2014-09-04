@@ -22,9 +22,9 @@ package org.apache.flex.charts.supportClasses
 	
 	import org.apache.flex.charts.core.IChartSeries;
 	
-	public class PieChartSeries implements IChartSeries
+	public class PieSeries implements IChartSeries
 	{
-		public function PieChartSeries()
+		public function PieSeries()
 		{
 		}
 		

@@ -21,10 +21,13 @@ package org.apache.flex.html
 	import mx.core.IFactory;
 	
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
+	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -174,11 +177,18 @@ package org.apache.flex.html
 		{
             super.addedToParent();
             
-            if (getBeadByType(IDataProviderItemRendererMapper) == null)
-            {
-                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
-                addBead(mapper);
-            }
+//            if (getBeadByType(IDataProviderItemRendererMapper) == null)
+//            {
+//                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
+//                addBead(mapper);
+//            }
+			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (!itemRendererFactory)
+			{
+				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+				addBead(itemRendererFactory);
+			}
+			IEventDispatcher(this).dispatchEvent(new Event("layoutNeeded"));
 		}
         
 	}

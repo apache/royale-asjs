@@ -31,10 +31,13 @@
     <component id="DateChooser" class="org.apache.flex.html.DateChooser"/>
     <component id="DateField" class="org.apache.flex.html.DateField"/>
     <component id="BarChart" class="org.apache.flex.charts.BarChart" />
-    <component id="BarChartSeries" class="org.apache.flex.charts.supportClasses.BarChartSeries" />
+    <component id="BarSeries" class="org.apache.flex.charts.supportClasses.BarSeries" />
     <component id="ColumnChart" class="org.apache.flex.charts.ColumnChart" />
+    <component id="ColumnSeries" class="org.apache.flex.charts.supportClasses.ColumnSeries" />
+    <component id="LineChart" class="org.apache.flex.charts.LineChart" />
+    <component id="LineSeries" class="org.apache.flex.charts.supportClasses.LineSeries" />
     <component id="PieChart" class="org.apache.flex.charts.PieChart" />
-    <component id="PieChartSeries" class="org.apache.flex.charts.supportClasses.PieChartSeries" />
+    <component id="PieSeries" class="org.apache.flex.charts.supportClasses.PieSeries" />
     <component id="StackedColumnChart" class="org.apache.flex.charts.StackedColumnChart" />
     <component id="StackedBarChart" class="org.apache.flex.charts.StackedBarChart" />
     <component id="HorizontalCategoryAxisBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisBead" />
@@ -42,6 +45,8 @@
     <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />
     <component id="VerticalLinearAxisBead" class="org.apache.flex.charts.beads.VerticalLinearAxisBead" />
     
+    <component id="LineChartCategoryVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout" />
+    <component id="LineChartLinearVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout" />
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 
 </componentPackage>

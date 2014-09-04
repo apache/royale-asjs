@@ -23,15 +23,16 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartSeries;
 	
 	/**
-	 *  The BarChartSeries represents a pair of X and Y values to be drawn
-	 *  within a org.apache.flex.charts.BarChart. 
+	 *  The BarSeries defines what field is being plotted from
+	 *  the chart's dataProvider. For BarChartSeries, only the xField
+	 *  is used. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BarChartSeries implements IChartSeries
+	public class BarSeries implements IChartSeries
 	{
 		/**
 		 *  constructor.
@@ -41,7 +42,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function BarChartSeries()
+		public function BarSeries()
 		{
 		}
 		
@@ -68,21 +69,15 @@ package org.apache.flex.charts.supportClasses
 		private var _yField:String;
 		
 		/**
-		 *  The name of the field that provides the Y or vertical value for an
-		 *  item in the chart.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @private
 		 */
 		public function get yField():String
 		{
-			return _yField;
+			return null;
 		}
 		public function set yField(value:String):void
 		{
-			_yField = value;
+			// not used
 		}
 		
 		private var _fillColor:uint;

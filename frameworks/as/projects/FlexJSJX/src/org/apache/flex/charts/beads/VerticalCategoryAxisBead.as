@@ -23,7 +23,6 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -140,16 +139,12 @@ package org.apache.flex.charts.beads
 		 * @private
 		 */
 		private function handleItemsCreated(event:Event):void
-		{
-			var charter:ChartItemRendererFactory =
-				_strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
-			
+		{	
 			var model:ArraySelectionModel = _strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
 			
-			var renderers:Array = charter.seriesRenderers;
 			var series:Array = IChart(_strand).series;
 			
 			var xAxis:IHorizontalAxisBead;
@@ -157,7 +152,7 @@ package org.apache.flex.charts.beads
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
 			
 			var yAxisWidthOffset:Number = axisWidth;
-			var useHeight:Number = (UIBase(_strand).height-xAxisOffset) / renderers.length;
+			var useHeight:Number = (UIBase(_strand).height-xAxisOffset) / items.length;
 			var seriesHeight:Number = useHeight/series.length;
 			var xpos:Number = yAxisWidthOffset;
 			var ypos:Number = UIBase(_strand).height - xAxisOffset - seriesHeight - gap;
@@ -192,7 +187,6 @@ package org.apache.flex.charts.beads
 				tick.height = 1;
 				UIBase(_strand).addElement(tick);
 				
-				var r:UIBase = UIBase(renderers[i][0]);
 				ypos -= useHeight;
 			}
 		}

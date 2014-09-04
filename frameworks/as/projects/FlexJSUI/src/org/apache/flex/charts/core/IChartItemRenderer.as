@@ -112,17 +112,5 @@ package org.apache.flex.charts.core
 		 *  @productversion FlexJS 0.0
 		 */
 		function set height(value:Number):void;
-		
-		/**
-		 *  The parent component of the itemRenderer instance. This is the container that houses
-		 *  all of the itemRenderers for the series.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get itemRendererParent():Object;
-		function set itemRendererParent(value:Object):void;
 	}
 }

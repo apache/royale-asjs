@@ -101,5 +101,17 @@ package org.apache.flex.core
          */
         function get down():Boolean;
         function set down(value:Boolean):void;
+		
+		/**
+		 *  The parent component of the itemRenderer instance. This is the container that houses
+		 *  all of the itemRenderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get itemRendererParent():Object;
+		function set itemRendererParent(value:Object):void;
 	}
 }

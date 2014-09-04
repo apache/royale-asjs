@@ -236,6 +236,26 @@ package org.apache.flex.html.supportClasses
             _down = value;
             updateRenderer();
         }
+		
+		private var _itemRendererParent:Object;
+		
+		/**
+		 *  The parent component of the itemRenderer instance. This is the container that houses
+		 *  all of the itemRenderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRendererParent():Object
+		{
+			return _itemRendererParent;
+		}
+		public function set itemRendererParent(value:Object):void
+		{
+			_itemRendererParent = value;
+		}
         
 		/**
 		 * @private

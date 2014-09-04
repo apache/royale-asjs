@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {	
+    import org.apache.flex.core.IContentView;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.UIBase;
@@ -31,7 +32,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualDataGroup extends UIBase implements IItemRendererParent
+	public class NonVirtualDataGroup extends UIBase implements IItemRendererParent, IContentView
 	{
         /**
          *  Constructor.
@@ -56,6 +57,7 @@ package org.apache.flex.html.supportClasses
          */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {
+			if (index < 0 || index >= numChildren) return null;
             return getChildAt(index) as IItemRenderer;
         }
 		

@@ -24,11 +24,18 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
+	import org.apache.flex.core.IContentView;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IScrollBarModel;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.List;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
@@ -79,36 +86,56 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
-	
+		
 		private function changeHandler(event:Event):void
 		{            
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IContentView = layoutParent.contentView as IContentView;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;
 			
-            var ww:Number = DisplayObject(layoutParent.resizableView).width;
-            var hh:Number = DisplayObject(layoutParent.resizableView).height;
-            border.width = ww;
-            border.height = hh;
-           
+			var ww:Number = DisplayObject(layoutParent.resizableView).width;
+			var hh:Number = DisplayObject(layoutParent.resizableView).height;
+			border.width = ww;
+			border.height = hh;
+			
 			contentView.width = ww - borderModel.offsets.left - borderModel.offsets.right;
 			contentView.height = hh - borderModel.offsets.top - borderModel.offsets.bottom;
 			contentView.x = borderModel.offsets.left;
 			contentView.y = borderModel.offsets.top;
 			
-			var n:int = contentView.numChildren;
+			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var dp:Array = selectionModel.dataProvider as Array;
+			if (!dp)
+				return;
+			
+			var itemRendererFactory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			
+			var n:int = dp.length;
 			var yy:Number = 0;
+			var defaultHeight:Number = 30;
+			
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:DisplayObject = contentView.getChildAt(i);
-				ir.y = yy;
-				ir.width = contentView.width;
-				yy += ir.height;			
+				var needsAdd:Boolean = false;
+				var ir:IItemRenderer = IItemRendererParent(contentView).getItemRendererForIndex(i);
+				if (ir == null) {
+					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as IItemRenderer;
+					needsAdd = true;
+				}
+				ir.itemRendererParent = contentView;
+				ir.index = i;
+				ir.labelField = (_strand as List).labelField;
+				ir.data = dp[i];
+				if (needsAdd) UIBase(contentView).addElement(ir);
+				UIBase(ir).y = yy;
+				UIBase(ir).width = contentView.width;
+//				if (UIBase(ir).height == 0) UIBase(ir).height = defaultHeight;
+				yy += UIBase(ir).height;			
 			}
 			if (yy > contentView.height)
 			{
-                vScrollBar = layoutParent.vScrollBar;
+				vScrollBar = layoutParent.vScrollBar;
 				contentView.width -= vScrollBar.width;
 				IScrollBarModel(vScrollBar.model).maximum = yy;
 				IScrollBarModel(vScrollBar.model).pageSize = contentView.height;
@@ -117,13 +144,13 @@ package org.apache.flex.html.beads.layouts
 				vScrollBar.height = contentView.height;
 				vScrollBar.y = contentView.y;
 				vScrollBar.x = contentView.width;
-                var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-				contentView.scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
-                vScrollBar.addEventListener("scroll", scrollHandler);
+				var vpos:Number = IScrollBarModel(vScrollBar.model).value;
+				DisplayObjectContainer(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
+				vScrollBar.addEventListener("scroll", scrollHandler);
 			}
 			else if (vScrollBar)
 			{
-				contentView.scrollRect = null;
+				DisplayObjectContainer(contentView).scrollRect = null;
 				vScrollBar.visible = false;
 			}
 		}

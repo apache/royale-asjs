@@ -23,7 +23,6 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -135,27 +134,6 @@ package org.apache.flex.charts.beads
 			_maxValue = value;
 		}
 		
-		private var _gap:Number = 20;
-		
-		/**
-		 *  The amount of space to leave between series. If a chart has several series,
-		 *  the bars for an X value are side by side with a gap between the groups of
-		 *  bars.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get gap():Number
-		{
-			return _gap;
-		}
-		public function set gap(value:Number):void
-		{
-			_gap = value;
-		}
-		
 		private var _strand:IStrand;
 		
 		/**
@@ -201,16 +179,12 @@ package org.apache.flex.charts.beads
 		 * @private
 		 */
 		private function handleItemsCreated(event:Event):void
-		{
-			var charter:ChartItemRendererFactory =
-				_strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
-			
+		{	
 			var model:ArraySelectionModel = _strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
 			
-			var renderers:Array = charter.seriesRenderers;
 			var series:Array = IChart(_strand).series;
 			
 			var yAxis:IVerticalAxisBead;
@@ -257,9 +231,9 @@ package org.apache.flex.charts.beads
 			var tickValue:Number = minValue;
 			
 			// adjust xpos to the first tick position
-			xpos += tickSpacing;
+//			xpos += tickSpacing;
 			
-			for(i=0; i < numTicks; i++) {				
+			for(i=0; i < numTicks+1; i++) {				
 				var label:Label = new Label();
 				label.text = formatLabel(tickValue);
 				label.x = xpos - label.width/2;

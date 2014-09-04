@@ -18,26 +18,38 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {
-	import org.apache.flex.charts.beads.ChartItemRendererFactory;
 	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.charts.supportClasses.BarChartSeries;
+	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
+	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	/**
+	 *  The ColumnChartLayout arranges the graphics in vertical columns (or whatever shape
+	 *  the renderer uses) using a category axis horizontally and a linear axis vertically. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ColumnChartLayout implements IBeadLayout, ICartesianChartLayout
 	{
 		public function ColumnChartLayout()
 		{
-		}private var _strand:IStrand;
+		}
+		
+		private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -53,6 +65,7 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _gap:Number = 20;
@@ -76,12 +89,22 @@ package org.apache.flex.charts.beads.layouts
 			_gap = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:IContentView = layoutParent.contentView as IContentView;
 			
-			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
-			var n:int = factory.seriesRenderers.length;
+			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var dp:Array = selectionModel.dataProvider as Array;
+			if (!dp)
+				return;
+			
+			var series:Array = IChart(_strand).series;
+			var n:int = dp.length;
+			trace("There are "+series.length+" series in this chart");
 			
 			var xAxis:IHorizontalAxisBead;
 			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
@@ -91,24 +114,22 @@ package org.apache.flex.charts.beads.layouts
 			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
 			
 			var xpos:Number = yAxisOffset;
-			var useWidth:Number = ((UIBase(_strand).width-yAxisOffset) / n) - gap;
+			var useWidth:Number = UIBase(_strand).width-yAxisOffset;;
 			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
+			var itemWidth:Number =  (useWidth - gap*(dp.length-1))/dp.length;
+			var seriesWidth:Number = itemWidth/series.length;
 			
 			var maxYValue:Number = 0;
-			var series:Array = IChart(_strand).series;
-			trace("There are "+series.length+" series in this chart");
 			var seriesMaxes:Array = [];
 			
 			for (var s:int = 0; s < series.length; s++)
 			{
-				var bcs:BarChartSeries = series[s] as BarChartSeries;
+				var bcs:ColumnSeries = series[s] as ColumnSeries;
 				seriesMaxes.push({maxValue:0,scaleFactor:0});
 				
 				for (var i:int = 0; i < n; i++)
 				{
-					var m:Array = factory.seriesRenderers[i] as Array;
-					var item:IChartItemRenderer = m[s] as IChartItemRenderer;
-					var data:Object = item.data;
+					var data:Object = dp[i];
 					var field:String = bcs.yField;
 					
 					var yValue:Number = Number(data[field]);
@@ -120,23 +141,28 @@ package org.apache.flex.charts.beads.layouts
 			
 			for (i = 0; i < n; i++)
 			{
-				m = factory.seriesRenderers[i] as Array;
-				for (s=0; s < m.length; s++)
+				data = dp[i];
+				
+				for (s=0; s < series.length; s++)
 				{
-					var seriesWidth:Number = useWidth/series.length;
-					var child:IChartItemRenderer = m[s] as IChartItemRenderer;
-					data = child.data
-					yValue = Number(data[child.yField]);
+					bcs = series[s] as ColumnSeries;
+					
+					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
+					child.itemRendererParent = contentView;
+					child.data = data;
+					child.fillColor = bcs.fillColor;
+					yValue = Number(data[bcs.yField]);
 					
 					child.y = useHeight - yValue*seriesMaxes[s].scaleFactor;
 					child.x = xpos;
 					child.width = seriesWidth;
 					child.height = yValue*seriesMaxes[s].scaleFactor;
 					xpos += seriesWidth;
+					
+					contentView.addElement(child);
 				}
 				
 				xpos += gap;
-				
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));

@@ -17,13 +17,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
-{	
+{
+	import org.apache.flex.charts.beads.ChartItemRendererFactory;
+	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChart;
+	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.charts.supportClasses.PieSeries;
-	import org.apache.flex.charts.supportClasses.WedgeItemRenderer;
+	import org.apache.flex.charts.core.IConnectedItemRenderer;
+	import org.apache.flex.charts.core.IHorizontalAxisBead;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer;
+	import org.apache.flex.charts.supportClasses.LineSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContentView;
+	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -32,25 +39,17 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The PieChartLayout class calculates the size and position of all of the itemRenderers for
-	 *  a PieChart. 
+	 *  The LineChartCategoryVsLinearLayout displays a line graph of plot points
+	 *  where the horizontal axis is category value and the vertical axis is numeric. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PieChartLayout implements IBeadLayout
+	public class LineChartCategoryVsLinearLayout implements IBeadLayout, ICartesianChartLayout
 	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function PieChartLayout()
+		public function LineChartCategoryVsLinearLayout()
 		{
 		}
 		
@@ -91,59 +90,88 @@ package org.apache.flex.charts.beads.layouts
 			var n:int = dp.length;
 			trace("There are "+series.length+" series in this chart");
 			
-			var xpos:Number = 0;
-			var useWidth:Number = UIBase(_strand).width;
-			var useHeight:Number = UIBase(_strand).height;
+			var xAxis:IHorizontalAxisBead;
+			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
+			var yAxis:IVerticalAxisBead;
+			if (_strand.getBeadByType(IVerticalAxisBead)) yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
+			
+			var xpos:Number = yAxisOffset;
+			var useWidth:Number = UIBase(_strand).width-yAxisOffset;;
+			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
+			var itemWidth:Number =  useWidth/dp.length;
 			
 			var maxYValue:Number = 0;
 			var seriesMaxes:Array = [];
-			var colors:Array = [0xFF0000, 0xFF9900, 0xFFFF00, 0x00FF00, 0x00FFcc, 0x0000FF, 0xcc00FF, 0xFF00cc, 0x888888, 0x333333, 0xFFcc99];
 			
 			for (var s:int = 0; s < series.length; s++)
 			{
-				var pcs:PieSeries = series[s] as PieSeries;
+				var aseries:IChartSeries = series[s] as IChartSeries;
+				seriesMaxes.push({maxValue:0,scaleFactor:0,points:[]});
 				
 				for (var i:int = 0; i < n; i++)
 				{
 					var data:Object = dp[i];
-					var field:String = pcs.dataField;
+					var field:String = aseries.yField;
 					
 					var yValue:Number = Number(data[field]);
-					maxYValue += yValue;
-					
-					seriesMaxes.push( {yValue:yValue, percent:0, arc:0} );
+					seriesMaxes[s].maxValue = Math.max(seriesMaxes[s].maxValue,yValue);
 				}
+				
+				seriesMaxes[s].scaleFactor = useHeight/seriesMaxes[s].maxValue;
+			}
+			
+			// draw the itemRenderers at each vertex and build the points array for the
+			// line segment.
+			
+			for (s=0; s < series.length; s++)
+			{
+				aseries = series[s] as IChartSeries;
+				
+				xpos = yAxisOffset + itemWidth/2;
 				
 				for (i=0; i < n; i++)
 				{
-					var obj:Object = seriesMaxes[i];
-					obj.percent = obj.yValue / maxYValue;
-					obj.arc = 360.0*obj.percent;					
-				}
-				
-				var start:Number = 0;
-				var end:Number = 0;
-				var radius:Number = Math.min(useWidth,useHeight)/2;
-				var centerX:Number = useWidth/2;
-				var centerY:Number = useHeight/2;
-								
-				for (i=0; i < n; i++)
-				{
-					obj = seriesMaxes[i];
 					data = dp[i];
+					yValue = Number(data[aseries.yField]);
 					
-					var child:WedgeItemRenderer = (series[s] as IChartSeries).itemRenderer.newInstance() as WedgeItemRenderer;
-					child.itemRendererParent = contentView;
-					child.data = data;
-					child.fillColor = colors[i];
-					contentView.addElement(child);
+					var childX:Number = xpos;
+					var childY:Number = useHeight - yValue*seriesMaxes[s].scaleFactor;
 					
-					end = start + (360.0 * obj.percent);
-					var arc:Number = 360.0 * obj.percent;
-					trace("Draw arc from "+start+" to "+(start+arc));
-					child.drawWedge(centerX, centerY, start*Math.PI/180, arc*Math.PI/180, radius);
+					seriesMaxes[s].points.push( {x:childX, y:childY} );
 					
-					start += arc;
+					if (aseries.itemRenderer) {
+						var child:IChartItemRenderer = aseries.itemRenderer.newInstance() as IChartItemRenderer;
+						child.itemRendererParent = contentView;
+						child.data = data;
+						child.fillColor = aseries.fillColor;
+						child.x = childX - 5;
+						child.y = childY - 5;
+						child.width = 10;
+						child.height = 10;
+						contentView.addElement(child);
+					}
+					
+					xpos += itemWidth;
+				}
+			}
+			
+			// draw the line segment
+			
+			for (s=0; s < series.length; s++)
+			{
+				var lcs:LineSeries = series[s] as LineSeries;
+				
+				if (lcs.lineSegmentRenderer)
+				{
+					var renderer:LineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as LineSegmentItemRenderer;
+					renderer.lineColor = lcs.lineColor;
+					renderer.lineThickness = lcs.lineThickness;
+					renderer.data = lcs;
+					renderer.points = seriesMaxes[s].points;
+					renderer.itemRendererParent = contentView;
+					contentView.addElement(renderer);
 				}
 			}
 			

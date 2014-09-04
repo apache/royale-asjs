@@ -39,9 +39,11 @@ internal class FlexJSUIClasses
 	import org.apache.flex.charts.core.IHorizontalAxisBead; IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead; IVerticalAxisBead;
 	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
+	import org.apache.flex.charts.core.IConnectedItemRenderer; IConnectedItemRenderer;
 	import org.apache.flex.charts.core.PolarChart; PolarChart;
 	import org.apache.flex.charts.ChartDataGroup; ChartDataGroup;
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer; LineSegmentItemRenderer;
 	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
 	import org.apache.flex.maps.google.Map; Map;
 	

@@ -19,11 +19,8 @@
 package org.apache.flex.charts.supportClasses
 {
 	import flash.display.Graphics;
-	import flash.geom.Point;
 	
 	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
@@ -32,26 +29,6 @@ package org.apache.flex.charts.supportClasses
 		public function WedgeItemRenderer()
 		{
 			super();
-		}
-		
-		private var _itemRendererParent:Object;
-		
-		/**
-		 *  The parent component of the itemRenderer instance. This is the container that houses
-		 *  all of the itemRenderers for the series.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get itemRendererParent():Object
-		{
-			return _itemRendererParent;
-		}
-		public function set itemRendererParent(value:Object):void
-		{
-			_itemRendererParent = value;
 		}
 		
 		private var _fillColor:uint = 0xFF0000;

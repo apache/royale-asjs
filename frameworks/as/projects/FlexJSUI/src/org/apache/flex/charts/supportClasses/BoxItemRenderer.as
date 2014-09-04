@@ -48,26 +48,6 @@ package org.apache.flex.charts.supportClasses
 			super();
 		}
 		
-		private var _itemRendererParent:Object;
-		
-		/**
-		 *  The parent component of the itemRenderer instance. This is the container that houses
-		 *  all of the itemRenderers for the series.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get itemRendererParent():Object
-		{
-			return _itemRendererParent;
-		}
-		public function set itemRendererParent(value:Object):void
-		{
-			_itemRendererParent = value;
-		}
-		
 		private var filledRect:FilledRectangle;
 		
 		private var _yField:String = "y";

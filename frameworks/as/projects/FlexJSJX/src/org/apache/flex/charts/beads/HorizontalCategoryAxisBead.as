@@ -23,7 +23,6 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -101,7 +100,7 @@ package org.apache.flex.charts.beads
 		/**
 		 *  The amount of space to leave between series. If a chart has several series,
 		 *  the bars for an X value are side by side with a gap between the groups of
-		 *  bars.
+		 *  bars. The default is 20.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -140,16 +139,10 @@ package org.apache.flex.charts.beads
 		 */
 		private function handleItemsCreated(event:Event):void
 		{
-			var charter:ChartItemRendererFactory =
-				_strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
-			
 			var model:ArraySelectionModel = _strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
-			
-			var renderers:Array = charter.seriesRenderers;
-			var series:Array = IChart(_strand).series;
 			
 			var yAxis:IVerticalAxisBead;
 			if (_strand.getBeadByType(IVerticalAxisBead)) yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
@@ -157,7 +150,7 @@ package org.apache.flex.charts.beads
 			
 			var xpos:Number = yAxisOffset;
 			var xAxisHeightOffset:Number = axisHeight;
-			var useWidth:Number = (UIBase(_strand).width-yAxisOffset) / renderers.length;
+			var useWidth:Number = UIBase(_strand).width-yAxisOffset;
 			
 			// draw the horzontal axis
 			var horzLine:FilledRectangle = new FilledRectangle();
@@ -165,11 +158,17 @@ package org.apache.flex.charts.beads
 			horzLine.x = xpos;
 			horzLine.y = UIBase(_strand).height - xAxisHeightOffset;
 			horzLine.height = 1;
-			horzLine.width = UIBase(_strand).width - yAxisOffset;
+			horzLine.width = useWidth;
 			UIBase(_strand).addElement(horzLine);
 			
 			// place the labels below the axis enough to account for the tick marks
 			var labelY:Number = UIBase(_strand).height + 8;
+			var itemWidth:Number = (useWidth - gap*(items.length-1))/items.length;
+			
+			trace("strand width: "+UIBase(_strand).width);
+			trace(items.length+" items = itemWidth: "+itemWidth);
+			trace("yAxisOffset: "+yAxisOffset+" gap: "+gap+" = useWidth: "+useWidth);
+			trace("xpos: "+xpos);
 			
 			for(var i:int=0; i < items.length; i++) {				
 				var label:Label = new Label();
@@ -182,15 +181,18 @@ package org.apache.flex.charts.beads
 				// add a tick mark, too
 				var tick:FilledRectangle = new FilledRectangle();
 				tick.fillColor = 0x111111;
-				tick.x = xpos + useWidth/2 - gap;
+				tick.x = xpos + itemWidth/2;
 				tick.y = UIBase(_strand).height - xAxisHeightOffset;
 				tick.width = 1;
 				tick.height = 5;
 				UIBase(_strand).addElement(tick);
 				
-				var r:UIBase = UIBase(renderers[i][0]);
-				xpos += useWidth;
+				xpos += itemWidth + gap;
+				
+				trace(" -- xpos is now: "+xpos);
 			}
+			
+			trace(" ");
 		}
 	}
 }

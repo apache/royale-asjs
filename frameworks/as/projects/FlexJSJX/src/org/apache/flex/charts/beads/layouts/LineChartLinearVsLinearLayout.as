@@ -24,7 +24,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.charts.supportClasses.ColumnSeries;
+	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer;
+	import org.apache.flex.charts.supportClasses.LineSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.ILayoutParent;
@@ -35,25 +36,17 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
-	 *  The StackedColumnChartLayout class calculates the size and position of all of the itemRenderers for
-	 *  all of the series in a StackedColumnChart. 
+	 *  The LineChartLinearVsLinearLayout displays a line graph of plot points
+	 *  where both axes are numeric values. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class StackedColumnChartLayout implements IBeadLayout, ICartesianChartLayout
+	public class LineChartLinearVsLinearLayout implements IBeadLayout, ICartesianChartLayout
 	{
-		/**
-		 *  constructor
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function StackedColumnChartLayout()
+		public function LineChartLinearVsLinearLayout()
 		{
 		}
 		
@@ -76,27 +69,6 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
-		private var _gap:Number = 20;
-		
-		/**
-		 *  The amount of space to leave between series. If a chart has several series,
-		 *  the bars for an X value are side by side with a gap between the groups of
-		 *  bars.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get gap():Number
-		{
-			return _gap;
-		}
-		public function set gap(value:Number):void
-		{
-			_gap = value;
-		}
-		
 		/**
 		 * @private
 		 */
@@ -104,6 +76,7 @@ package org.apache.flex.charts.beads.layouts
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IContentView = layoutParent.contentView as IContentView;
+			contentView.removeAllElements();
 			
 			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
@@ -122,62 +95,86 @@ package org.apache.flex.charts.beads.layouts
 			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
 			
 			var xpos:Number = yAxisOffset;
-			var ypos:Number = 0;
-			var useWidth:Number = UIBase(_strand).width-yAxisOffset;
+			var ypos:Number = xAxisOffset;
+			var useWidth:Number = UIBase(_strand).width - yAxisOffset;;
 			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
-			var itemWidth:Number = (useWidth - gap*(dp.length-1))/dp.length;
+			var itemWidth:Number =  useWidth/dp.length;
 			
-			var maxYValue:Number = 0;
+			var seriesMaxes:Array = [];
 			
-			var barValues:Array = [];
-			var maxValue:Number = 0;
-			var scaleFactor:Number = 1;
-			
-			for (var i:int=0; i < n; i++)
+			for (var s:int = 0; s < series.length; s++)
 			{
-				barValues.push({totalValue:0, scaleFactor:0});
-				var data:Object = dp[i];
+				var aseries:IChartSeries = series[s] as IChartSeries;
+				seriesMaxes.push({minX:Number.MAX_VALUE,maxX:Number.MIN_VALUE,
+					              minY:Number.MAX_VALUE,maxY:Number.MIN_VALUE,
+								  scaleX:0,scaleY:0,points:[]});
 				
-				for (var s:int = 0; s < series.length; s++)
+				for (var i:int = 0; i < n; i++)
 				{
-					var bcs:ColumnSeries = series[s] as ColumnSeries;
-					var field:String = bcs.yField;
+					var data:Object = dp[i];
+					var xfield:String = aseries.xField;
+					var yfield:String = aseries.yField;
 					
-					var yValue:Number = Number(data[field]);
-					barValues[i].totalValue += yValue;
+					var xValue:Number = Number(data[xfield]);
+					seriesMaxes[s].minX = Math.min(seriesMaxes[s].minX,xValue);
+					seriesMaxes[s].maxX = Math.max(seriesMaxes[s].maxX,xValue);
+					var yValue:Number = Number(data[yfield]);
+					seriesMaxes[s].minY = Math.min(seriesMaxes[s].minY,yValue);
+					seriesMaxes[s].maxY = Math.max(seriesMaxes[s].maxY,yValue);
 				}
 				
-				maxValue = Math.max(maxValue, barValues[i].totalValue);
+				seriesMaxes[s].scaleX = useWidth/(seriesMaxes[s].maxX - seriesMaxes[s].minX);
+				seriesMaxes[s].scaleY = useHeight/(seriesMaxes[s].maxY - seriesMaxes[s].minY);
 			}
 			
-			scaleFactor = useHeight/maxValue;
+			// draw the itemRenderers at each vertex and build the points array for the
+			// line segment.
 			
-			for (i=0; i < n; i++)
+			for (s=0; s < series.length; s++)
 			{
-				data = dp[i];
-				ypos = useHeight;
+				aseries = series[s] as IChartSeries;
 				
-				for (s=0; s < series.length; s++)
+				for (i=0; i < n; i++)
 				{
-					bcs = series[s] as ColumnSeries;
-
-					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
-					child.itemRendererParent = contentView;
-					child.data = data;
-					child.fillColor = bcs.fillColor;
-					yValue = Number(data[bcs.yField]);
+					data = dp[i];
+					xValue = Number(data[aseries.xField]);
+					yValue = Number(data[aseries.yField]);
 					
-					child.x = xpos;
-					child.width = itemWidth;
-					child.y = ypos - yValue*scaleFactor;
-					child.height = yValue*scaleFactor;
+					var childX:Number = (xValue-seriesMaxes[s].minX)*seriesMaxes[s].scaleX + yAxisOffset;
+					var childY:Number = useHeight - (yValue-seriesMaxes[s].minY)*seriesMaxes[s].scaleY;
 					
-					ypos = child.y;
+					seriesMaxes[s].points.push( {x:childX, y:childY} );
 					
-					contentView.addElement(child);
+					if (aseries.itemRenderer) {
+						var child:IChartItemRenderer = aseries.itemRenderer.newInstance() as IChartItemRenderer;
+						child.itemRendererParent = contentView;
+						child.data = data;
+						child.fillColor = aseries.fillColor;
+						child.x = childX - 5;
+						child.y = childY - 5;
+						child.width = 10;
+						child.height = 10;
+						contentView.addElement(child);
+					}
 				}
+			}
+			
+			// draw the line segment
+			
+			for (s=0; s < series.length; s++)
+			{
+				var lcs:LineSeries = series[s] as LineSeries;
 				
-				xpos += gap + itemWidth;
+				if (lcs.lineSegmentRenderer)
+				{
+					var renderer:LineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as LineSegmentItemRenderer;
+					renderer.lineColor = lcs.lineColor;
+					renderer.lineThickness = lcs.lineThickness;
+					renderer.data = lcs;
+					renderer.points = seriesMaxes[s].points;
+					renderer.itemRendererParent = contentView;
+					contentView.addElement(renderer);
+				}
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));

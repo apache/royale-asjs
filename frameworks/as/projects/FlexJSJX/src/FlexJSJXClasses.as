@@ -36,11 +36,14 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.VerticalLinearAxisBead; VerticalLinearAxisBead;
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.beads.layouts.ColumnChartLayout; ColumnChartLayout;
+	import org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout; LineChartCategoryVsLinearLayout;
+	import org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout; LineChartLinearVsLinearLayout;
 	import org.apache.flex.charts.beads.layouts.PieChartLayout; PieChartLayout;
 	import org.apache.flex.charts.beads.layouts.StackedBarChartLayout; StackedBarChartLayout;
 	import org.apache.flex.charts.beads.layouts.StackedColumnChartLayout; StackedColumnChartLayout;
-	import org.apache.flex.charts.supportClasses.BarChartSeries; BarChartSeries;
-	import org.apache.flex.charts.supportClasses.PieChartSeries; PieChartSeries;
+	import org.apache.flex.charts.supportClasses.BarSeries; BarSeries;
+	import org.apache.flex.charts.supportClasses.LineSeries; LineSeries;
+	import org.apache.flex.charts.supportClasses.PieSeries; PieSeries;
 	
 	import org.apache.flex.effects.Tween; Tween;
 	import org.apache.flex.effects.Move; Move;

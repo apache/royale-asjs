@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {
-	import org.apache.flex.charts.beads.ChartItemRendererFactory;
 	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.charts.supportClasses.BarChartSeries;
+	import org.apache.flex.charts.supportClasses.BarSeries;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
+	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
@@ -72,6 +73,7 @@ package org.apache.flex.charts.beads.layouts
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _gap:Number = 20;
@@ -101,13 +103,18 @@ package org.apache.flex.charts.beads.layouts
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:IContentView = layoutParent.contentView as IContentView;
 			
-			var factory:ChartItemRendererFactory = _strand.getBeadByType(IDataProviderItemRendererMapper) as ChartItemRendererFactory;
-			var n:int = factory.seriesRenderers.length;
+			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var dp:Array = selectionModel.dataProvider as Array;
+			if (!dp)
+				return;
+			
+			var series:Array = IChart(_strand).series;
+			var n:int = dp.length;
+			trace("There are "+series.length+" series in this chart");
 			
 			var maxXValue:Number = 0;
-			var series:Array = IChart(_strand).series;
-			trace("There are "+series.length+" series in this chart");
 			var seriesMaxes:Array = [];
 			
 			var xAxis:IHorizontalAxisBead;
@@ -131,16 +138,15 @@ package org.apache.flex.charts.beads.layouts
 			{
 				barValues.push({totalValue:0, scaleFactor:0});
 				
+				var data:Object = dp[i];
+				
 				for (var s:int = 0; s < series.length; s++)
 				{
-					var bcs:BarChartSeries = series[s] as BarChartSeries;
-					var m:Array = factory.seriesRenderers[i] as Array;
-					var item:IChartItemRenderer = m[s] as IChartItemRenderer;
-					var data:Object = item.data;
-					var field:String = bcs.yField;
+					var bcs:BarSeries = series[s] as BarSeries;
+					var field:String = bcs.xField;
 					
-					var yValue:Number = Number(data[field]);
-					barValues[i].totalValue += yValue;
+					var xValue:Number = Number(data[field]);
+					barValues[i].totalValue += xValue;
 				}
 				
 				maxValue = Math.max(maxValue, barValues[i].totalValue);
@@ -150,20 +156,27 @@ package org.apache.flex.charts.beads.layouts
 			
 			for (i=0; i < n; i++)
 			{
-				m = factory.seriesRenderers[i] as Array;
+				data = dp[i];
 				xpos = yAxisOffset;
-				for (s=0; s < m.length; s++)
+				
+				for (s=0; s < series.length; s++)
 				{
-					var child:IChartItemRenderer = m[s] as IChartItemRenderer;
-					data = child.data
-					yValue = Number(data[child.yField]);
+					bcs = series[s] as BarSeries;
+					
+					var child:IChartItemRenderer = (series[s] as IChartSeries).itemRenderer.newInstance() as IChartItemRenderer;
+					child.itemRendererParent = contentView;
+					child.data = data;
+					child.fillColor = bcs.fillColor;
+					xValue = Number(data[bcs.xField]);
 					
 					child.x = xpos;
-					child.width = yValue*scaleFactor;
+					child.width = xValue*scaleFactor;
 					child.y = ypos;
 					child.height = seriesHeight;
 					
-					xpos += yValue*scaleFactor;
+					xpos += xValue*scaleFactor;
+					
+					contentView.addElement(child);
 				}
 				
 				ypos -= gap + seriesHeight;

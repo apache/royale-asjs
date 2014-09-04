@@ -74,6 +74,7 @@
 
     <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
     <component id="WedgeItemRenderer" class="org.apache.flex.charts.supportClasses.WedgeItemRenderer" />
+    <component id="LineSegmentItemRenderer" class="org.apache.flex.charts.supportClasses.LineSegmentItemRenderer" />
 
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
