@@ -29,67 +29,67 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Label id="output" x="450" y="30" width="100" />
-
-    <basic:ColumnChart id="columnChart" x="20" y="20" width="400" height="200">
+	<basic:Label id="output" x="51" y="30" width="100" />
+	
+	<basic:ColumnChart id="columnChart" x="20" y="20" width="400" height="200">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 			<basic:HorizontalCategoryAxisBead categoryField="title" />
-			<basic:VerticalLinearAxisBead valueField="sales" />
+			<basic:VerticalLinearAxisBead valueField="sales2013" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarChartSeries yField="sales" 
-								  fillColor="0xFF964D">
+			<basic:ColumnSeries yField="sales2013" 
+						        fillColor="0xFF964D">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
-			<basic:BarChartSeries yField="detail" 
-								  fillColor="0x964DFF">
+			</basic:ColumnSeries>
+			<basic:ColumnSeries yField="sales2014" 
+							    fillColor="0x964DFF">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
+			</basic:ColumnSeries>
 		</basic:series>
 	</basic:ColumnChart>
-
-    <basic:BarChart id="barChart" x="500" y="20" width="400" height="300">
+	
+	<basic:BarChart id="barChart" x="500" y="20" width="400" height="300">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 			<basic:VerticalCategoryAxisBead categoryField="title" />
-			<basic:HorizontalLinearAxisBead valueField="sales" />
+			<basic:HorizontalLinearAxisBead valueField="sales2013" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarChartSeries yField="sales" 
-								  fillColor="0xFF964D">
+			<basic:BarSeries xField="sales2013" 
+						     fillColor="0xFF964D">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
-			<basic:BarChartSeries yField="detail" 
-								  fillColor="0x964DFF">
+			</basic:BarSeries>
+			<basic:BarSeries xField="sales2014" 
+							 fillColor="0x964DFF">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
+			</basic:BarSeries>
 		</basic:series>
 	</basic:BarChart>
-
-    <basic:StackedColumnChart id="stackedChart" x="20" y="300" width="400" height="200">
+	
+	<basic:StackedColumnChart id="stackedChart" x="20" y="300" width="400" height="200">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
@@ -98,26 +98,26 @@ limitations under the License.
 			<basic:HorizontalCategoryAxisBead categoryField="title" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarChartSeries yField="sales" 
-								  fillColor="0xFF964D">
+			<basic:ColumnSeries yField="sales2013" 
+								fillColor="0xFF964D">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
-			<basic:BarChartSeries yField="detail" 
-								  fillColor="0x964DFF">
+			</basic:ColumnSeries>
+			<basic:ColumnSeries yField="sales2014" 
+								fillColor="0x964DFF">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
+			</basic:ColumnSeries>
 		</basic:series>
 	</basic:StackedColumnChart>
-
-    <basic:StackedBarChart id="stackedBarChart" x="500" y="400" width="400" height="300">
+	
+	<basic:StackedBarChart id="stackedBarChart" x="500" y="400" width="400" height="300">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
@@ -126,25 +126,25 @@ limitations under the License.
 			<basic:VerticalCategoryAxisBead categoryField="title" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarChartSeries yField="sales" 
-								  fillColor="0xFF964D">
+			<basic:BarSeries xField="sales2013" 
+							 fillColor="0xFF964D">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
-			<basic:BarChartSeries yField="detail" 
-								  fillColor="0x964DFF">
+			</basic:BarSeries>
+			<basic:BarSeries xField="sales2014" 
+							 fillColor="0x964DFF">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:BoxItemRenderer />                        
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:BarChartSeries>
+			</basic:BarSeries>
 		</basic:series>
 	</basic:StackedBarChart>
-
+	
 	<basic:PieChart id="pieChart" x="20" y="550" width="300" height="300">
 		<basic:beads>
 			<basic:ConstantBinding
@@ -153,14 +153,52 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</basic:beads>
 		<basic:series>
-			<basic:PieChartSeries dataField="sales">
+			<basic:PieSeries dataField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
 						<basic:WedgeItemRenderer />
 					</fx:Component>
 				</basic:itemRenderer>
-			</basic:PieChartSeries>
+			</basic:PieSeries>
 		</basic:series>
 	</basic:PieChart>
+	
+	<basic:LineChart id="lineChart" x="500" y="750" width="400" height="200">
+		<basic:beads>
+			<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+			<basic:HorizontalLinearAxisBead valueField="detail" />
+			<basic:VerticalLinearAxisBead valueField="sales2013" />
+			<basic:LineChartLinearVsLinearLayout />
+		</basic:beads>
+		<basic:series>
+			<basic:LineSeries xField="detail" yField="sales2013" fillColor="0xFF964D" lineColor="0x994107" lineThickness="2">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
+				</basic:itemRenderer>
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:LineSegmentItemRenderer />                       
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+			<basic:LineSeries xField="detail" yField="sales2014" fillColor="0x964DFF" lineColor="0x410799" lineThickness="2">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:BoxItemRenderer />                        
+					</fx:Component>
+				</basic:itemRenderer>
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:LineSegmentItemRenderer />                       
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+		</basic:series>
+	</basic:LineChart>
 	
 </basic:ViewBase>

@@ -16,34 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package products
 {
-	import org.apache.flex.events.EventDispatcher;
-	
-	import products.Product;
-	
-	public class ProductsModel extends EventDispatcher
+	public class Product
 	{
-		public function ProductsModel()
+		public function Product(id:String,title:String,detail:Number,sales2013:Number, sales2014 ,image:String)
 		{
+			this.id = id;
+			this.title = title;
+			this.detail = detail;
+			this.sales2013 = sales2013;
+			this.sales2014 = sales2014;
+			this.image = image;
 		}
-
-		private var _productList:Array = [
-			new Product("ps100","Widgets",44,200,"smallbluerect.jpg"),
-			new Product("tx200","Thingys",5,285,"smallgreenrect.jpg"),
-			new Product("rz300","Sprockets",80,105,"smallyellowrect.jpg"),
-			new Product("dh440","Doohickies",10,340,"smallredrect.jpg"),
-			new Product("ps220","Weejets",35,190,"smallorangerect.jpg")
-			];
-		public function get productList():Array
+		
+		public var id:String;
+		public var title:String;
+		public var detail:Number;
+		public var image:String;
+		public var sales2013:Number;
+		public var sales2014:Number;
+		
+		public function toString():String
 		{
-			return _productList;
-		}
-
-		private var _labelFields:Array = [ "id", "title", "sales", "detail" ];
-		public function get labelFields():Array
-		{
-			return _labelFields;
+			return title;
 		}
 	}
 }

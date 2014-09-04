@@ -19,9 +19,9 @@
 -->
 
 
-<project name="barchartexample" default="main" basedir=".">
+<project name="chartexample" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="BarChartExample" />
+    <property name="example" value="ChartExample" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
@@ -33,7 +33,8 @@
 
     <include file="${basedir}/../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+<!-- temp remove build_example.compilejs -->
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
