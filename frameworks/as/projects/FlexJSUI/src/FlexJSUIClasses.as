@@ -117,6 +117,10 @@ internal class FlexJSUIClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
+	import org.apache.flex.core.graphics.GraphicShape; GraphicShape;
+	import org.apache.flex.core.graphics.Rect; Rect;
+	import org.apache.flex.core.graphics.SolidColor; SolidColor;
+	import org.apache.flex.core.graphics.SolidColorStroke; SolidColorStroke;
     
 	import mx.core.ClassFactory; ClassFactory;
     import mx.states.AddItems; AddItems;
