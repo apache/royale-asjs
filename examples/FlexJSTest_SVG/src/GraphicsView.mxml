@@ -45,7 +45,7 @@ limitations under the License.
 				rect.stroke = stroke;
 				rect.drawRect(200,200,200,200);
 				
-				this.addChild(rect);
+				this.addElement(rect);
 			}
 			
 		]]>
