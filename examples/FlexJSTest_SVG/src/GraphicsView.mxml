@@ -36,7 +36,7 @@ limitations under the License.
 				fill.alpha = 0.5;
 				
 				var stroke:SolidColorStroke = new SolidColorStroke();
-				stroke.weight = 2;
+				stroke.weight = 10;
 				stroke.color = 0x00FF00;
 				stroke.alpha = 0.9;
 				
@@ -49,29 +49,37 @@ limitations under the License.
 				var rect2:Rect = new Rect();
 				fill.color = 0xCC9900;
 				rect2.fill = fill;
+				stroke.color = 0x333333;
+				stroke.weight = 5;
 				rect2.stroke = stroke;
-				rect2.drawRect(200,200,100,300);
+				rect2.drawRect(100,200,100,300);
 				this.addElement(rect2);
 				
 				var rect3:Rect = new Rect();
-				fill.color = 0x99CC99;
+				fill.color = 0xCCCC11;
 				rect3.fill = fill;
+				stroke.color = 0x0000CC;
+				stroke.weight = 1;
 				rect3.stroke = stroke;
-				rect3.drawRect(200,500,200,200);
+				rect3.drawRect(400,600,200,200);
 				this.addElement(rect3);
 				
 				var rect4:Rect = new Rect();
 				fill.color = 0xAA33EE;
 				rect4.fill = fill;
+				stroke.color = 0x11C309;
+				stroke.weight = 2;
 				rect4.stroke = stroke;
-				rect4.drawRect(200,700,200,100);
+				rect4.drawRect(500,700,200,100);
 				this.addElement(rect4);
 				
 				var rect5:Rect = new Rect();
 				fill.color = 0x11CC44;
 				rect5.fill = fill;
+				stroke.color = 0x830011;
+				stroke.weight = 3;
 				rect5.stroke = stroke;
-				rect5.drawRect(200,750,50,200);
+				rect5.drawRect(0,750,50,200);
 				this.addElement(rect5);
 				
 				
