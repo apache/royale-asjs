@@ -21,8 +21,25 @@ package org.apache.flex.charts
 	import org.apache.flex.charts.core.ChartBase;
 	import org.apache.flex.charts.core.IChart;
 	
+	/**
+	 *  The ColumnChart displays a histogram chart where each series in
+	 *  in the chart is a vertical column placed side by side. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ColumnChart extends ChartBase implements IChart
 	{
+		/**
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ColumnChart()
 		{
 			super();

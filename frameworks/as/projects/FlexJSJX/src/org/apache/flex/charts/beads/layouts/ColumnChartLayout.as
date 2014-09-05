@@ -19,18 +19,10 @@
 package org.apache.flex.charts.beads.layouts
 {
 	import org.apache.flex.charts.core.ICartesianChartLayout;
-	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -43,29 +35,10 @@ package org.apache.flex.charts.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ColumnChartLayout implements IBeadLayout, ICartesianChartLayout
+	public class ColumnChartLayout extends ChartBaseLayout implements IBeadLayout, ICartesianChartLayout
 	{
 		public function ColumnChartLayout()
 		{
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
-			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _gap:Number = 20;
@@ -92,39 +65,29 @@ package org.apache.flex.charts.beads.layouts
 		/**
 		 * @private
 		 */
-		private function changeHandler(event:Event):void
+		override protected function performLayout():void
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IContentView = layoutParent.contentView as IContentView;
-			
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = chart.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
-			var series:Array = IChart(_strand).series;
-			var n:int = dp.length;
-			trace("There are "+series.length+" series in this chart");
-			
-			var xAxis:IHorizontalAxisBead;
-			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
-			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
-			var yAxis:IVerticalAxisBead;
-			if (_strand.getBeadByType(IVerticalAxisBead)) yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
-			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
+			var n:int = dp.length;			
+			var xAxisOffset:Number = horizontalAxisBead == null ? 0 : horizontalAxisBead.axisHeight;
+			var yAxisOffset:Number = verticalAxisBead == null ? 0 : verticalAxisBead.axisWidth;
 			
 			var xpos:Number = yAxisOffset;
-			var useWidth:Number = UIBase(_strand).width-yAxisOffset;;
-			var useHeight:Number = UIBase(_strand).height - xAxisOffset;
+			var useWidth:Number = chart.width-yAxisOffset;;
+			var useHeight:Number = chart.height - xAxisOffset;
 			var itemWidth:Number =  (useWidth - gap*(dp.length-1))/dp.length;
-			var seriesWidth:Number = itemWidth/series.length;
+			var seriesWidth:Number = itemWidth/chart.series.length;
 			
 			var maxYValue:Number = 0;
 			var seriesMaxes:Array = [];
 			
-			for (var s:int = 0; s < series.length; s++)
+			for (var s:int = 0; s < chart.series.length; s++)
 			{
-				var bcs:ColumnSeries = series[s] as ColumnSeries;
+				var bcs:ColumnSeries = chart.series[s] as ColumnSeries;
 				seriesMaxes.push({maxValue:0,scaleFactor:0});
 				
 				for (var i:int = 0; i < n; i++)
@@ -143,12 +106,12 @@ package org.apache.flex.charts.beads.layouts
 			{
 				data = dp[i];
 				
-				for (s=0; s < series.length; s++)
+				for (s=0; s < chart.series.length; s++)
 				{
-					bcs = series[s] as ColumnSeries;
+					bcs = chart.series[s] as ColumnSeries;
 					
 					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
-					child.itemRendererParent = contentView;
+					child.itemRendererParent = chartDataGroup;
 					child.data = data;
 					child.fillColor = bcs.fillColor;
 					yValue = Number(data[bcs.yField]);
@@ -159,13 +122,13 @@ package org.apache.flex.charts.beads.layouts
 					child.height = yValue*seriesMaxes[s].scaleFactor;
 					xpos += seriesWidth;
 					
-					contentView.addElement(child);
+					chartDataGroup.addElement(child);
 				}
 				
 				xpos += gap;
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
+			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

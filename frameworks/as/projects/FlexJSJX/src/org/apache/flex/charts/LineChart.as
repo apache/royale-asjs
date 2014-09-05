@@ -21,8 +21,25 @@ package org.apache.flex.charts
 	import org.apache.flex.charts.core.ChartBase;
 	import org.apache.flex.charts.core.IChart;
 	
+	/**
+	 *  The LineChart displays a series of line graphs with optional
+	 *  graphics at each vertex. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class LineChart extends ChartBase implements IChart
 	{
+		/**
+		 *  constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function LineChart()
 		{
 			super();

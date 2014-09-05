@@ -18,36 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts
 {
+	import org.apache.flex.charts.core.ChartBase;
 	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.List;
 	
-	public class PieChart extends List implements IChart
+	/**
+	 *  The PieChart displays data as a percentage of pie. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class PieChart extends ChartBase implements IChart
 	{
-		public function PieChart()
-		{
-			super();
-		}
-		
-		private var _series:Array;
-		
 		/**
-		 *  The collection of series for the chart. Each element of the
-		 *  series array should be of type BarChartSeries.
-		 *
+		 *  constructor. 
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get series():Array
+		public function PieChart()
 		{
-			return _series;
-		}
-		public function set series(value:Array):void
-		{
-			_series = value;
-			dispatchEvent(new Event("seriesChanged"));
+			super();
 		}
 	}
 }
