@@ -177,6 +177,20 @@ Container
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 }
 
+HContainer
+{
+    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
+}
+
+VContainer
+{
+    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout");
+}
+
 ControlBar
 {
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
