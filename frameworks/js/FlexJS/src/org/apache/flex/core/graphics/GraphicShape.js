@@ -100,6 +100,6 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x,y,w,h) {
   this.element.setAttribute("width", String(w) + "px");
   this.element.setAttribute("height", String(h) + "px");
-  this.element.setAttribute("style", "position:absolute; left:" + String(x) + "; top:" + String(y) + ";");
+  this.element.setAttribute("style", "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;");
 };
 
