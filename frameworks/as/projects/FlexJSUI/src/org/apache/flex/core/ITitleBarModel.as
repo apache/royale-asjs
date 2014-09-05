@@ -30,6 +30,7 @@ package org.apache.flex.core
      */
 	public interface ITitleBarModel extends IBeadModel
 	{
+        [Bindable("titleChange")]
         /**
          *  The title of the TitleBar.
          *
@@ -41,6 +42,7 @@ package org.apache.flex.core
         function get title():String;
         function set title(value:String):void;
         
+        [Bindable("htmlTitleChange")]
         /**
          *  The title of the TitleBar as HTML.
          *
@@ -55,6 +57,7 @@ package org.apache.flex.core
         // TODO: Consider making this a bead instead.
         // Boolean flags should often be replaced by beads.
         // A different bead would add min/max/restore buttons.
+        [Bindable("showCloseButtonChange")]
         /**
          *  <code>true</code> if a close button
          *  should also be in the title bar.

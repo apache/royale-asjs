@@ -25,6 +25,13 @@
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
         </external-library-path>
         
+		<mxml>
+			<children-as-data>true</children-as-data>
+		</mxml>
+		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
         <locale/>
         
         <library-path/>
@@ -87,4 +94,6 @@
     </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>
+	
+
 </flex-config>

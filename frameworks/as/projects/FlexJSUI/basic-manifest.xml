@@ -24,10 +24,12 @@
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
+    <component id="MXMLBeadViewBase" class="org.apache.flex.core.MXMLBeadViewBase"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
     <component id="Button" class="org.apache.flex.html.Button"/>
+    <component id="CloseButton" class="org.apache.flex.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"/>
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>

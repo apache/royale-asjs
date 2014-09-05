@@ -57,6 +57,7 @@ package org.apache.flex.html.beads.models
 		
 		private var _title:String;
 		
+        [Bindable("titleChange")]
 		/**
 		 *  The string title for the org.apache.flex.html.TitleBar.
 		 * 
@@ -82,6 +83,7 @@ package org.apache.flex.html.beads.models
 		
 		private var _htmlTitle:String;
 		
+        [Bindable("htmlTitleChange")]
 		/**
 		 *  The HTML string for the title.
 		 * 
@@ -107,6 +109,7 @@ package org.apache.flex.html.beads.models
 		
 		private var _showCloseButton:Boolean = false;
 		
+        [Bindable("showCloseButtonChange")]
 		/**
 		 *  Whether or not to show a close button.
 		 * 

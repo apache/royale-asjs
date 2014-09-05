@@ -16,21 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.html.beads
 {
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.SimpleButton;
+	
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.EventDispatcher;
-    
+	import org.apache.flex.html.Button;
+	import org.apache.flex.html.TitleBar;
+	
     /**
-     *  The BeadViewBase class is the base class for most view beads.
+     *  The CloseButtonView class is the view for
+     *  the down arrow button in a ScrollBar and other controls.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class BeadViewBase extends EventDispatcher implements IBeadView
+	public class CloseButtonView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -40,25 +47,27 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function BeadViewBase()
+		public function CloseButtonView()
 		{
-			super();
+			upView = new Shape();
+			downView = new Shape();
+			overView = new Shape();
+
+			drawView(upView.graphics, 0xCCCCCC);
+			drawView(downView.graphics, 0x666666);
+			drawView(overView.graphics, 0x999999);
 		}
 		
+		private function drawView(g:Graphics, bgColor:uint):void
+		{
+			g.beginFill(bgColor);
+			g.drawRect(0, 0, 11, 11);
+			g.endFill();
+		}
+		
+		private var shape:Shape;
+		
         /**
-         *  The strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected var _strand:IStrand;
-        
-        /**
-         *  Override this for whatever else you need to do when
-         *  being hooked to the Strand
-         * 
          *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
@@ -66,37 +75,22 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-            _strand = value;
+			super.strand = value;
+			shape = new Shape();
+			shape.graphics.beginFill(0xCCCCCC);
+			shape.graphics.drawRect(0, 0, 11, 11);
+			shape.graphics.endFill();
+			SimpleButton(value).upState = upView;
+			SimpleButton(value).downState = downView;
+			SimpleButton(value).overState = overView;
+			SimpleButton(value).hitTestState = shape;
 		}
-		
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get viewHeight():Number
-		{
-            // don't want to put $height in an interface
-			return _strand["$height"];
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewWidth():Number
-        {
-            // don't want to put $width in an interface
-            return _strand["$width"];
-        }
-   }
+				
+		private var upView:Shape;
+		private var downView:Shape;
+		private var overView:Shape;
+        
+	}
 }

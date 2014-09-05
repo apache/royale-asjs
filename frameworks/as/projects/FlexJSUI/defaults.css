@@ -160,6 +160,11 @@ CheckBox
     IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
 }
 
+CloseButton
+{
+    IBeadView: ClassReference("org.apache.flex.html.beads.CloseButtonView");
+}
+
 ComboBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
