@@ -12,20 +12,17 @@
  * limitations under the License.
  */
 
+//TODO Should implment IUIBase
 goog.provide('org.apache.flex.core.graphics.GraphicShape');
 
-goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
 
-
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.graphics.GraphicShape = function() {
-  org.apache.flex.core.graphics.GraphicShape.base(this, 'constructor');
 
   /**
    * @private
@@ -39,23 +36,12 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    */
   this.stroke_ = null;
   
-};
-goog.inherits(org.apache.flex.core.graphics.GraphicShape,
-    org.apache.flex.core.UIBase);
-
-/**
- * @override
- */
-org.apache.flex.core.graphics.GraphicShape.prototype.createElement =
-    function() {
-
+    /**
+   * @expose
+   */
   this.element = document.createElementNS("http://www.w3.org/2000/svg","svg");
-  this.element.setAttribute('width',1000);
-  this.element.setAttribute('height',1000);
 
-  this.positioner = this.element;
-
-  return this.element;
+  
 };
 
 /**
@@ -92,10 +78,28 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
   return this.stroke_;
 };
 
-
 /**
+ * @expose
  * @param {org.apache.flex.core.graphics.SolidColorStroke} value The stroke object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value) {
   this.stroke_ = value;
 };
+
+org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
+  //Don't do anything
+};
+
+/**
+ * @expose
+ * @param {number} x X position
+ * @param {number} y Y position
+ * @param {number} w Width
+ * @param {number} h Height
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x,y,w,h) {
+  this.element.setAttribute("width", String(w) + "px");
+  this.element.setAttribute("height", String(h) + "px");
+  this.element.setAttribute("style", "position:absolute; left:" + String(x) + "; top:" + String(y) + ";");
+};
+
