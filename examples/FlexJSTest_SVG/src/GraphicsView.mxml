@@ -24,6 +24,7 @@ limitations under the License.
 			   >
     <fx:Script>
         <![CDATA[            
+			import org.apache.flex.core.graphics.Ellipse;
 			import org.apache.flex.core.graphics.Rect;
 			import org.apache.flex.core.graphics.SolidColor;
 			import org.apache.flex.core.graphics.SolidColorStroke;
@@ -82,7 +83,32 @@ limitations under the License.
 				rect5.drawRect(0,750,50,200);
 				this.addElement(rect5);
 				
+				var ellipse1:Ellipse = new Ellipse();
+				fill.color = 0x290149;
+				ellipse1.fill = fill;
+				stroke.color = 0x830011;
+				stroke.weight = 3;
+				ellipse1.stroke = stroke;
+				ellipse1.drawEllipse(300,300,50,200);
+				this.addElement(ellipse1);
 				
+				var ellipse2:Ellipse = new Ellipse();
+				fill.color = 0x2222CC;
+				ellipse2.fill = fill;
+				stroke.color = 0xabcdef;
+				stroke.weight = 5;
+				ellipse2.stroke = stroke;
+				ellipse2.drawEllipse(100,100,500,200);
+				this.addElement(ellipse2);
+				
+				var ellipse3:Ellipse = new Ellipse();
+				fill.color = 0xfedcba;
+				ellipse3.fill = fill;
+				stroke.color = 0x123456;
+				stroke.weight = 2;
+				ellipse3.stroke = stroke;
+				ellipse3.drawEllipse(250,150,300,250);
+				this.addElement(ellipse3);
 			}
 			
 		]]>
