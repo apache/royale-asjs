@@ -9,11 +9,6 @@ package org.apache.flex.core.graphics
 		private var _width:Number;
 		private var _height:Number;
 		
-		public function Rect()
-		{
-			super();
-		}
-		
 		/**
 		 *  Draw the rectangle.
 		 *  @param x The x position of the top-left corner of the rectangle.

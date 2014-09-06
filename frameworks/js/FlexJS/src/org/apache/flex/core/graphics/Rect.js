@@ -25,11 +25,6 @@ goog.require('org.apache.flex.core.graphics.GraphicShape');
 org.apache.flex.core.graphics.Rect = function() {
   org.apache.flex.core.graphics.Rect.base(this, 'constructor');
 
-  /**
-   * @private
-   * @type {number}
-   */
-  this.fillColor_ = 0;
 };
 goog.inherits(org.apache.flex.core.graphics.Rect,
     org.apache.flex.core.graphics.GraphicShape);
@@ -53,16 +48,7 @@ org.apache.flex.core.graphics.Rect.prototype.FLEXJS_CLASS_INFO =
  * @param {number} height The height of the rectangle.
  */
 org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, height) {
-	var color = Number(this.get_fill().get_color()).toString(16);
-	if (color.length == 2) color = '00' + color;
-	if (color.length == 4) color = '00' + color;
-	
-	var strokeColor = Number(this.get_stroke().get_color()).toString(16);
-	if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
-	if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-
-	var style = 'fill:#' + String(color) + ';stroke:#'+ String(strokeColor) + ';stroke-width:' + String(this.get_stroke().get_weight());
-
+	var style = this.getStyleStr();
 	var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 	rect.setAttribute('style', style);
 	rect.setAttribute('x', String(this.get_stroke().get_weight()));
