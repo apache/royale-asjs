@@ -19,7 +19,7 @@
 package org.apache.flex.maps.google.beads
 {
 	import flash.events.Event;
-	import flash.html.HTMLLoader;
+/*	import flash.html.HTMLLoader;*/
 	import flash.net.URLRequest;
 	
     import org.apache.flex.core.BeadViewBase;
@@ -57,7 +57,7 @@ package org.apache.flex.maps.google.beads
 		{
 		}
 		
-		private var _loader:HTMLLoader;
+		private var _loader:Object;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -71,7 +71,7 @@ package org.apache.flex.maps.google.beads
 		{
 			super.strand = value;
 			
-			_loader = new HTMLLoader();
+/*			_loader = new HTMLLoader();*/
 			_loader.x = 0;
 			_loader.y = 0;
 			_loader.width = UIBase(value).width;
@@ -84,7 +84,7 @@ package org.apache.flex.maps.google.beads
 			model.addEventListener("zoomChanged", handleZoomChange);
 			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
 						
-			(_strand as UIBase).addChild(_loader);
+/*			(_strand as UIBase).addChild(_loader);*/
 			
 			var token:String = Map(_strand).token;
 			if (token)
