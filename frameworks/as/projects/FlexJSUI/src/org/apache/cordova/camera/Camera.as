@@ -25,9 +25,9 @@ package org.apache.cordova.camera
 	import flash.events.ActivityEvent;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
-/*	import flash.filesystem.File;
+	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
-	import flash.filesystem.FileStream;*/
+	import flash.filesystem.FileStream;
 	import flash.geom.Rectangle;
 	import flash.media.Camera;
 	import flash.media.Video;
@@ -133,7 +133,7 @@ package org.apache.cordova.camera
 
 		private function savePicture():void
 		{
-/*			var f:File = File.createTempFile();
+			var f:File = File.createTempFile();
 			var bd:BitmapData = new BitmapData(camera.width, camera.height, false);
 			var pix:ByteArray = new ByteArray();
 			var rect:Rectangle = new Rectangle(0, 0, camera.width, camera.height);
@@ -143,10 +143,10 @@ package org.apache.cordova.camera
 			var png:PNGEncoder = new PNGEncoder();
 			var ba:ByteArray = png.encode(bd);
 			var fs:FileStream = new FileStream();
-			fs.open(f, FileMod.WRITE);
+			fs.open(f, FileMode.WRITE);
 			fs.writeBytes(ba);
 			fs.close();
-			cameraSuccess(f.url);*/
+			cameraSuccess(f.url);
 		}
 		
 		public function cleanup( cameraSuccess:Function, cameraError:Function ) : void
