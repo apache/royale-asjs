@@ -71,6 +71,13 @@ package org.apache.flex.html.beads
 		{
 			return _titleBar;
 		}
+        /**
+         *  @private
+         */
+        public function set titleBar(value:TitleBar):void
+        {
+            _titleBar = value;
+        }
 				
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -84,7 +91,8 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-            _titleBar = new TitleBar();
+            if (!_titleBar)
+                _titleBar = new TitleBar();
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
