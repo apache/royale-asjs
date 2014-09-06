@@ -90,6 +90,22 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
   //Don't do anything
 };
 
+
+/**
+ * @expose
+ * return {String} The style attribute
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
+  var color = Number(this.get_fill().get_color()).toString(16);
+  if (color.length == 2) color = '00' + color;
+  if (color.length == 4) color = '00' + color;
+  var strokeColor = Number(this.get_stroke().get_color()).toString(16);
+  if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
+  if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
+
+  return 'fill:#' + String(color) + ';stroke:#'+ String(strokeColor) + ';stroke-width:' + String(this.get_stroke().get_weight()) + ';fill-opacity:' + String(this.get_fill().get_alpha()) ;
+};
+
 /**
  * @expose
  * @param {number} x X position
