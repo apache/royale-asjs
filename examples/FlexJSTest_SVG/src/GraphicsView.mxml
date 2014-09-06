@@ -24,6 +24,7 @@ limitations under the License.
 			   >
     <fx:Script>
         <![CDATA[            
+			import org.apache.flex.core.graphics.Circle;
 			import org.apache.flex.core.graphics.Ellipse;
 			import org.apache.flex.core.graphics.Rect;
 			import org.apache.flex.core.graphics.SolidColor;
@@ -109,6 +110,25 @@ limitations under the License.
 				ellipse3.stroke = stroke;
 				ellipse3.drawEllipse(250,150,300,250);
 				this.addElement(ellipse3);
+				
+				var circle1:Circle = new Circle();
+				fill.color = 0xee11bb;
+				circle1.fill = fill;
+				stroke.color = 0x123456;
+				stroke.weight = 2;
+				circle1.stroke = stroke;
+				circle1.drawCircle(700,300,200);
+				this.addElement(circle1);
+				
+				var circle2:Circle = new Circle();
+				fill.color = 0xabbaab;
+				fill.alpha = 0.8;
+				circle2.fill = fill;
+				stroke.color = 0xccff11;
+				stroke.weight = 5;
+				circle2.stroke = stroke;
+				circle2.drawCircle(100,700,100);
+				this.addElement(circle2);
 			}
 			
 		]]>
