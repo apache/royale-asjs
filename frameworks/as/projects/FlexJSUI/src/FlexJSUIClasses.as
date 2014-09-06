@@ -121,6 +121,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
 	import org.apache.flex.core.graphics.GraphicShape; GraphicShape;
 	import org.apache.flex.core.graphics.Rect; Rect;
+	import org.apache.flex.core.graphics.Ellipse; Ellipse;
 	import org.apache.flex.core.graphics.SolidColor; SolidColor;
 	import org.apache.flex.core.graphics.SolidColorStroke; SolidColorStroke;
     
