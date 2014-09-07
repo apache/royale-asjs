@@ -56,5 +56,5 @@ org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, wid
 	ellipse.setAttribute('rx', String(width/2));
 	ellipse.setAttribute('ry', String(height/2));
 	this.element.appendChild(ellipse);
-	this.resize(x,y,width+this.get_stroke().get_weight()*2,height+this.get_stroke().get_weight()*2);
+	this.setPosition(x+this.get_stroke().get_weight(),y+this.get_stroke().get_weight());
 };

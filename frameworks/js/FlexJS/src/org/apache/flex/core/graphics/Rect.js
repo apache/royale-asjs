@@ -51,10 +51,10 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
 	var style = this.getStyleStr();
 	var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 	rect.setAttribute('style', style);
-	rect.setAttribute('x', String(this.get_stroke().get_weight()));
-	rect.setAttribute('y', String(this.get_stroke().get_weight()));
+	rect.setAttribute('x', String(this.get_stroke().get_weight()/2));
+	rect.setAttribute('y', String(this.get_stroke().get_weight()/2));
 	rect.setAttribute('width', String(width));
 	rect.setAttribute('height', String(height));
 	this.element.appendChild(rect);
-	this.resize(x,y,width+this.get_stroke().get_weight()*2,height+this.get_stroke().get_weight()*2);
+	this.setPosition(x+this.get_stroke().get_weight(),y+this.get_stroke().get_weight());
 };

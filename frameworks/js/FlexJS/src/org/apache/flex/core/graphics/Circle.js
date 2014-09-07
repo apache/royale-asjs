@@ -43,7 +43,7 @@ org.apache.flex.core.graphics.Circle.prototype.FLEXJS_CLASS_INFO =
 /**
  * @expose
  * @param {number} x The x location of the center of the circle
- * @param {number} y The x location of the center of the circle
+ * @param {number} y The y location of the center of the circle
  * @param {number} radius The radius of the circle.
  */
 org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radius) {
@@ -55,5 +55,6 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
 	circle.setAttribute('rx', String(radius));
 	circle.setAttribute('ry', String(radius));
 	this.element.appendChild(circle);
-	this.resize(x-radius,y-radius,radius*2+this.get_stroke().get_weight()*2,radius*2+this.get_stroke().get_weight()*2);
+//	this.resize(x-radius,y-radius,radius*2+this.get_stroke().get_weight()*2,radius*2+this.get_stroke().get_weight()*2);
+	this.setPosition(x-radius+this.get_stroke().get_weight(),y-radius+this.get_stroke().get_weight());
 };

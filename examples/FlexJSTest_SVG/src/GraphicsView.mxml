@@ -26,6 +26,7 @@ limitations under the License.
         <![CDATA[            
 			import org.apache.flex.core.graphics.Circle;
 			import org.apache.flex.core.graphics.Ellipse;
+			import org.apache.flex.core.graphics.Path;
 			import org.apache.flex.core.graphics.Rect;
 			import org.apache.flex.core.graphics.SolidColor;
 			import org.apache.flex.core.graphics.SolidColorStroke;
@@ -45,7 +46,7 @@ limitations under the License.
 				var rect1:Rect = new Rect();
 				rect1.fill = fill;
 				rect1.stroke = stroke;
-				rect1.drawRect(200,50,100,100);
+				rect1.drawRect(200,50,250,250);
 				this.addElement(rect1);
 				
 				var rect2:Rect = new Rect();
@@ -129,6 +130,37 @@ limitations under the License.
 				circle2.stroke = stroke;
 				circle2.drawCircle(100,700,100);
 				this.addElement(circle2);
+				
+				var path1:Path = new Path();
+				fill.color = 0x33B5E5;
+				fill.alpha = 0.8;
+				path1.fill = fill;
+				stroke.color = 0x000000;
+				stroke.weight = 1;
+				path1.stroke = stroke;
+				path1.drawPath(50,50,"M14.165 0 16.3838 2.21924 5.24023 13.3232 0 8.52441 2.18164 6.11719 5.37305 9.06348 14.165 0Z");
+				this.addElement(path1);
+				
+				var path2:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path2.fill = fill;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path2.stroke = stroke;
+				path2.drawPath(250,500,"M150 0 L75 200 L225 200 Z");
+				this.addElement(path2);
+				
+				var path3:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path3.fill = fill;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path3.stroke = stroke;
+				path3.drawPath(250,500,"M 100 350 q 150 -300 300 0");
+				this.addElement(path3);
+				
 			}
 			
 		]]>

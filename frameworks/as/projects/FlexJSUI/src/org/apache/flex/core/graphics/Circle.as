@@ -4,11 +4,6 @@ package org.apache.flex.core.graphics
 	public class Circle extends GraphicShape
 	{
 		
-		private var _x:Number;
-		private var _y:Number;
-		private var _width:Number;
-		private var _height:Number;
-		
 		/**
 		 *  Draw the circle.
 		 *  @param x The x location of the center of the circle

@@ -36,8 +36,21 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    */
   this.stroke_ = null;
   
+   /**
+   * @private
+   * @type {number}
+   */
+  this.x_ = 0;
+  
+  /**
+   * @private
+   * @type {number}
+   */
+  this.y_ = 0;
+  
     /**
    * @expose
+   * @type {SVGElement}
    */
   this.element = document.createElementNS("http://www.w3.org/2000/svg","svg");
 
@@ -87,7 +100,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
 };
 
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
-  //Don't do anything
+  var bbox = this.element.getBBox();
+  this.resize(this.x_,this.y_,bbox.width+this.x_*2,bbox.height+this.y_*2);
 };
 
 
@@ -117,5 +131,15 @@ org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x,y,w,h) 
   this.element.setAttribute("width", String(w) + "px");
   this.element.setAttribute("height", String(h) + "px");
   this.element.setAttribute("style", "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;");
+};
+
+/**
+ * @expose
+ * @param {number} x X position
+ * @param {number} y Y position
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.setPosition = function(x,y) {
+  this.x_ = x;
+  this.y_ = y;
 };
 

@@ -4,11 +4,6 @@ package org.apache.flex.core.graphics
 	public class Rect extends GraphicShape
 	{
 		
-		private var _x:Number;
-		private var _y:Number;
-		private var _width:Number;
-		private var _height:Number;
-		
 		/**
 		 *  Draw the rectangle.
 		 *  @param x The x position of the top-left corner of the rectangle.
