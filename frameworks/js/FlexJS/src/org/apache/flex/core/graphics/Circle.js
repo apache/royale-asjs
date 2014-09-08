@@ -57,4 +57,4 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
     this.element.appendChild(circle);
 //  this.resize(x-radius,y-radius,radius*2+this.get_stroke().get_weight()*2,radius*2+this.get_stroke().get_weight()*2);
     this.setPosition(x - radius + this.get_stroke().get_weight(), y - radius + this.get_stroke().get_weight());
-};
+  };
