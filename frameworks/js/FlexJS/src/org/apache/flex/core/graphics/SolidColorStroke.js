@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.graphics.SolidColorStroke');
 
 
+
 /**
  * @constructor
  */
@@ -25,20 +26,21 @@ org.apache.flex.core.graphics.SolidColorStroke = function() {
    * @type {number}
    */
   this.alpha_ = 1.0;
-  
+
   /**
    * @private
    * @type {number}
    */
   this.color_ = 1.0;
-  
+
   /**
    * @private
    * @type {number}
    */
   this.weight_ = 1.0;
-    
+
 };
+
 
 /**
  * Metadata
@@ -52,7 +54,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @return {number} color
+ * @return {number} color.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.get_color = function() {
   return this.color_;
@@ -60,7 +62,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_color = function() 
 
 
 /**
- * @param {number} value color
+ * @param {number} value color.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.set_color = function(value) {
   this.color_ = value;
@@ -69,7 +71,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.set_color = function(va
 
 /**
  * @expose
- * @return {number} alpha
+ * @return {number} alpha.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.get_alpha = function() {
   return this.alpha_;
@@ -77,15 +79,16 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_alpha = function() 
 
 
 /**
- * @param {number} value alpha
+ * @param {number} value alpha.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.set_alpha = function(value) {
   this.alpha_ = value;
 };
 
+
 /**
  * @expose
- * @return {number} weight
+ * @return {number} weight.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.get_weight = function() {
   return this.weight_;
@@ -93,7 +96,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_weight = function()
 
 
 /**
- * @param {number} value weight
+ * @param {number} value weight.
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.set_weight = function(value) {
   this.weight_ = value;

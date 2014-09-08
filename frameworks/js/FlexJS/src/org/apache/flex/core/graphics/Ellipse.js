@@ -48,13 +48,13 @@ org.apache.flex.core.graphics.Ellipse.prototype.FLEXJS_CLASS_INFO =
  * @param {number} height The height of the ellipse.
  */
 org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, width, height) {
-	var style = this.getStyleStr();
-	var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
-	ellipse.setAttribute('style', style);
-	ellipse.setAttribute('cx', String(width/2 + this.get_stroke().get_weight() ));
-	ellipse.setAttribute('cy', String(height/2 + this.get_stroke().get_weight() ));
-	ellipse.setAttribute('rx', String(width/2));
-	ellipse.setAttribute('ry', String(height/2));
-	this.element.appendChild(ellipse);
-	this.setPosition(x+this.get_stroke().get_weight(),y+this.get_stroke().get_weight());
+    var style = this.getStyleStr();
+    var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+    ellipse.setAttribute('style', style);
+    ellipse.setAttribute('cx', String(width / 2 + this.get_stroke().get_weight()));
+    ellipse.setAttribute('cy', String(height / 2 + this.get_stroke().get_weight()));
+    ellipse.setAttribute('rx', String(width / 2));
+    ellipse.setAttribute('ry', String(height / 2));
+    this.element.appendChild(ellipse);
+    this.setPosition(x + this.get_stroke().get_weight(), y + this.get_stroke().get_weight());
 };

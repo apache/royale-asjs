@@ -42,21 +42,21 @@ org.apache.flex.core.graphics.Path.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @param {number} x The x location of the center of the Path
- * @param {number} y The y location of the center of the Path
+ * @param {number} x The x location of the center of the Path.
+ * @param {number} y The y location of the center of the Path.
  * @param {string} data A string containing a compact represention of the path segments.
  *  The value is a space-delimited string describing each path segment. Each
  *  segment entry has a single character which denotes the segment type and
  *  two or more segment parameters.
- * 
+ *
  *  If the segment command is upper-case, the parameters are absolute values.
  *  If the segment command is lower-case, the parameters are relative values.
  */
 org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
-	var style = this.getStyleStr();
-	var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-	path.setAttribute('style', style);
-	path.setAttribute('d', data);
-	this.element.appendChild(path);
-	this.setPosition(x+this.get_stroke().get_weight(),y+this.get_stroke().get_weight());
+    var style = this.getStyleStr();
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('style', style);
+    path.setAttribute('d', data);
+    this.element.appendChild(path);
+    this.setPosition(x + this.get_stroke().get_weight(), y + this.get_stroke().get_weight());
 };

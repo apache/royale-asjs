@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.graphics.SolidColor');
 
 
+
 /**
  * @constructor
  */
@@ -25,14 +26,15 @@ org.apache.flex.core.graphics.SolidColor = function() {
    * @type {number}
    */
   this.alpha_ = 1.0;
-  
+
     /**
    * @private
    * @type {number}
    */
   this.color_ = 1.0;
-  
+
 };
+
 
 /**
  * Metadata
@@ -46,7 +48,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @return {number} color
+ * @return {number} color.
  */
 org.apache.flex.core.graphics.SolidColor.prototype.get_color = function() {
   return this.color_;
@@ -54,7 +56,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_color = function() {
 
 
 /**
- * @param {number} value color
+ * @param {number} value color.
  */
 org.apache.flex.core.graphics.SolidColor.prototype.set_color = function(value) {
   this.color_ = value;
@@ -63,7 +65,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.set_color = function(value) {
 
 /**
  * @expose
- * @return {number} alpha
+ * @return {number} alpha.
  */
 org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
   return this.alpha_;
@@ -71,7 +73,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
 
 
 /**
- * @param {number} value alpha
+ * @param {number} value alpha.
  */
 org.apache.flex.core.graphics.SolidColor.prototype.set_alpha = function(value) {
   this.alpha_ = value;

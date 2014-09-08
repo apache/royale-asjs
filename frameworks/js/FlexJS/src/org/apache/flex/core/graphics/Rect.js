@@ -48,13 +48,13 @@ org.apache.flex.core.graphics.Rect.prototype.FLEXJS_CLASS_INFO =
  * @param {number} height The height of the rectangle.
  */
 org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, height) {
-	var style = this.getStyleStr();
-	var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-	rect.setAttribute('style', style);
-	rect.setAttribute('x', String(this.get_stroke().get_weight()/2));
-	rect.setAttribute('y', String(this.get_stroke().get_weight()/2));
-	rect.setAttribute('width', String(width));
-	rect.setAttribute('height', String(height));
-	this.element.appendChild(rect);
-	this.setPosition(x+this.get_stroke().get_weight(),y+this.get_stroke().get_weight());
+    var style = this.getStyleStr();
+    var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('style', style);
+    rect.setAttribute('x', String(this.get_stroke().get_weight() / 2));
+    rect.setAttribute('y', String(this.get_stroke().get_weight() / 2));
+    rect.setAttribute('width', String(width));
+    rect.setAttribute('height', String(height));
+    this.element.appendChild(rect);
+    this.setPosition(x + this.get_stroke().get_weight(), y + this.get_stroke().get_weight());
 };
