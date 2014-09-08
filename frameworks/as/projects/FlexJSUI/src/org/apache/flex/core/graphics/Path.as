@@ -37,14 +37,7 @@ package org.apache.flex.core.graphics
 			}
 			segments = new PathSegmentsCollection(data);
 			if (segments)
-			{
-				var rcBounds:Rectangle = segments.getBounds()
-				var sx:Number = rcBounds.width == 0 ? 1 : width / rcBounds.width;
-				var sy:Number = rcBounds.height == 0 ? 1 : height / rcBounds.height;
-				segments.generateGraphicsPath(graphicsPath, x, y, sx, sy);
-			}
-			if (segments)
-				segments.generateGraphicsPath(graphicsPath, x, y, sx, sy);
+				segments.generateGraphicsPath(graphicsPath, x, y, 1, 1);
 			
 			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
 			graphics.endFill();
