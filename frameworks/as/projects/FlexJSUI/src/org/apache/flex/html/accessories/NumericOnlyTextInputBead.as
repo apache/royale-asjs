@@ -89,7 +89,28 @@ package org.apache.flex.html.accessories
 			}
 		}
 		
-		/**
+        private var _maxChars:int = 0;
+        
+        /**
+         *  The character used to separate the integer and fraction parts of numbers.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get maxChars():int
+        {
+            return _maxChars;
+        }
+        public function set maxChars(value:int):void
+        {
+            if (_maxChars != value) {
+                _maxChars = value;
+            }
+        }
+
+        /**
 		 * @private
 		 */
 		private function viewChangeHandler(event:Event):void
@@ -99,7 +120,7 @@ package org.apache.flex.html.accessories
 			if (textView) {
 				var textField:CSSTextField = textView.textField;
 				textField.restrict = "0-9" + decimalSeparator;
-				
+				textField.maxChars = maxChars;
 				// listen for changes to this textField and prevent non-numeric values, such
 				// as 34.09.94
 				textField.addEventListener(TextEvent.TEXT_INPUT, handleTextInput);
