@@ -23,6 +23,7 @@
 
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
+    <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="MXMLBeadViewBase" class="org.apache.flex.core.MXMLBeadViewBase"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
@@ -78,6 +79,10 @@
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
+    <component id="Transition" class="org.apache.flex.states.Transition" />
+    <component id="HRule" class="org.apache.flex.html.HRule" />
+    <component id="Spacer" class="org.apache.flex.html.Spacer" />
+    <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" />
 
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
