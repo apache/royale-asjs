@@ -124,9 +124,9 @@ class PathSegmentsCollection
 				c = prevIdentifier;
 				_charPos--;
 			}
-			else if (c >= 0x41 && c <= 0x56) // Between 'C' and 'V' 
+			else if (c >= 0x41 && c <= 0x56) // Between 'A' and 'V' 
 				useRelative = false;
-			else if (c >= 0x61 && c <= 0x7A) // Between 'c' and 'v'
+			else if (c >= 0x61 && c <= 0x7A) // Between 'a' and 'v'
 				useRelative = true;
 			
 			switch(c)
@@ -266,7 +266,20 @@ class PathSegmentsCollection
 					prevIdentifier = 0x73;
 					
 					break;
-				
+				case 0x61:	//a
+				case 0x41:	//A
+					var rx:Number = getNumber(useRelative, prevX, value);
+					var ry:Number = getNumber(useRelative, prevY, value);
+					var angle:Number = getNumber(useRelative, prevY, value);
+					var largeArcFlag:Boolean = getNumber(useRelative, prevY, value) == 1 ? true:false;
+					var sweepFlag:Boolean = getNumber(useRelative, prevY, value) == 1 ? true:false;
+					var endX:Number = getNumber(useRelative, prevX, value);
+					var endY:Number = getNumber(useRelative, prevY, value);
+					newSegments.push(new EllipticalArcSegment(rx,ry,angle,largeArcFlag,sweepFlag,endX,endY));
+					prevX = endX;
+					prevY = endY;
+					prevIdentifier = 0x41;
+					break;
 				case 0x7A:  // z
 				case 0x5A:  // Z
 					x = lastMoveX;
@@ -1458,3 +1471,251 @@ class QuadraticBezierSegment extends PathSegment
 			control1X, control1Y, x, y, sx, sy, m, rect);
 	}
 }
+
+
+/**
+ *  The EllipticalArcSegment draws an arc from the current point to a specified point. 
+ *  The arc command begins with the x and y radius and ends with the ending point of the arc. 
+ *  Between these are three other values: x axis rotation, large arc flag and sweep flag. 
+ *  The x axis rotation is used to rotate the ellipse that the arc is created from. 
+ *  This rotation maintains the start and end points, whereas a rotation with the transform 
+ *  attribute (outside the path description) would cause the entire path, including the start 
+ *  and end points, to be rotated. The large arc flag and sweep flag control which part of 
+ *  the ellipse is used to cut the arc. These are needed because there's more than one way 
+ *  to place an ellipse so that it includes the start and end points.
+ *
+ *  
+ *  Derieved from the svgweb library
+ *  Original found here https://code.google.com/p/svgweb/source/browse/trunk/src/org/svgweb/utils/EllipticalArc.as?r=1251
+ *  
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+class EllipticalArcSegment extends PathSegment
+{
+	
+	private var _rx:Number;
+	private var _ry:Number;
+	private var _angle:Number;
+	private var _largeArcFlag:Boolean;
+	private var _sweepFlag:Boolean;
+	private var _endX:Number;
+	private var _endY:Number;
+	
+	/**
+	 *  Constructor.
+	 *  
+	 * 
+     * @param rx x radius
+     *
+     * @param ry y radius
+     *
+     * @param angle angle of rotation from the x-axis
+     *
+     * @param largeArcFlag true if arc is greater than 180 degrees
+     *
+     * @param sweepFlag determines if the arc proceeds in a postitive or negative radial direction
+     *
+     * @param x arc end x value
+     *
+     * @param y arc end y value
+     *
+     * @param LastPointX starting x value of arc
+     *
+     * @param LastPointY starting y value of arc
+	 * 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10
+	 *  @playerversion AIR 1.5
+	 *  @productversion Flex 4
+	 */
+	public function EllipticalArcSegment(rx:Number, ry:Number, angle:Number, largeArcFlag:Boolean, sweepFlag:Boolean, endX:Number, endY:Number)
+	{
+		_rx = rx;
+		_ry = ry;
+		_angle = angle;
+		_largeArcFlag = largeArcFlag;
+		_sweepFlag = sweepFlag;
+		_endX = endX;
+		_endY = endY;
+	}
+	
+	override public function draw(graphicsPath:GraphicsPath, dx:Number, dy:Number, sx:Number, sy:Number, prev:PathSegment):void
+	{
+		var ellipticalArc:Object = computeSvgArc(_rx, _ry, _angle, _largeArcFlag, _sweepFlag, dx + _endX, dy + _endY, dx + prev.x , dy + prev.y);    
+		drawEllipticalArc(ellipticalArc.cx, ellipticalArc.cy, ellipticalArc.startAngle, ellipticalArc.arc, ellipticalArc.radius, ellipticalArc.yRadius, ellipticalArc.xAxisRotation, graphicsPath);
+	}
+	
+	/**
+	 * @private
+	 * Create quadratic circle graphics commands from an elliptical arc
+	 **/
+	private static function drawEllipticalArc(x:Number, y:Number, startAngle:Number, arc:Number,
+											  radius:Number, yRadius:Number, xAxisRotation:Number, path:GraphicsPath):void
+	{
+		// Circumvent drawing more than is needed
+		if (Math.abs(arc)>360)
+		{
+			arc = 360;
+		}          
+		
+		// Draw in a maximum of 45 degree segments. First we calculate how many
+		// segments are needed for our arc.
+		var segs:Number = Math.ceil(Math.abs(arc)/45);          
+		
+		// Now calculate the sweep of each segment
+		var segAngle:Number = arc/segs;        
+		
+		var theta:Number = degreesToRadians(segAngle);
+		var angle:Number = degreesToRadians(startAngle);
+		
+		// Draw as 45 degree segments
+		if (segs>0)
+		{                
+			var beta:Number = degreesToRadians(xAxisRotation);
+			var sinbeta:Number = Math.sin(beta);
+			var cosbeta:Number = Math.cos(beta);
+			
+			var cx:Number;
+			var cy:Number;
+			var x1:Number;
+			var y1:Number;
+			
+			// Loop for drawing arc segments
+			for (var i:int = 0; i<segs; i++) {
+				
+				angle += theta;
+				
+				var sinangle:Number = Math.sin(angle-(theta/2));
+				var cosangle:Number = Math.cos(angle-(theta/2));
+				
+				var div:Number = Math.cos(theta/2);
+				cx = x + (radius * cosangle * cosbeta - yRadius * sinangle * sinbeta)/div; //Why divide by Math.cos(theta/2)? - FIX THIS
+				cy = y + (radius * cosangle * sinbeta + yRadius * sinangle * cosbeta)/div; //Why divide by Math.cos(theta/2)? - FIX THIS                    
+				
+				sinangle = Math.sin(angle);
+				cosangle = Math.cos(angle);                
+				
+				x1 = x + (radius * cosangle * cosbeta - yRadius * sinangle * sinbeta);
+				y1 = y + (radius * cosangle * sinbeta + yRadius * sinangle * cosbeta);
+				
+				path.curveTo(cx, cy, x1, y1);
+			}
+		}
+	}
+
+	
+	private function computeSvgArc(rx:Number, ry:Number,angle:Number,largeArcFlag:Boolean,sweepFlag:Boolean,
+										 x:Number,y:Number,LastPointX:Number, LastPointY:Number):Object {
+		//store before we do anything with it    
+		var xAxisRotation:Number = angle;    
+		
+		// Compute the half distance between the current and the final point
+		var dx2:Number = (LastPointX - x) / 2.0;
+		var dy2:Number = (LastPointY - y) / 2.0;
+		
+		// Convert angle from degrees to radians
+		angle = degreesToRadians(angle);
+		var cosAngle:Number = Math.cos(angle);
+		var sinAngle:Number = Math.sin(angle);
+		
+		
+		//Compute (x1, y1)
+		var x1:Number = (cosAngle * dx2 + sinAngle * dy2);
+		var y1:Number = (-sinAngle * dx2 + cosAngle * dy2);
+		
+		// Ensure radii are large enough
+		rx = Math.abs(rx);
+		ry = Math.abs(ry);
+		var Prx:Number = rx * rx;
+		var Pry:Number = ry * ry;
+		var Px1:Number = x1 * x1;
+		var Py1:Number = y1 * y1;
+		
+		// check that radii are large enough
+		var radiiCheck:Number = Px1/Prx + Py1/Pry;
+		if (radiiCheck > 1) {
+			rx = Math.sqrt(radiiCheck) * rx;
+			ry = Math.sqrt(radiiCheck) * ry;
+			Prx = rx * rx;
+			Pry = ry * ry;
+		}
+		
+		
+		//Compute (cx1, cy1)
+		var sign:Number = (largeArcFlag == sweepFlag) ? -1 : 1;
+		var sq:Number = ((Prx*Pry)-(Prx*Py1)-(Pry*Px1)) / ((Prx*Py1)+(Pry*Px1));
+		sq = (sq < 0) ? 0 : sq;
+		var coef:Number = (sign * Math.sqrt(sq));
+		var cx1:Number = coef * ((rx * y1) / ry);
+		var cy1:Number = coef * -((ry * x1) / rx);
+		
+		
+		//Compute (cx, cy) from (cx1, cy1)
+		var sx2:Number = (LastPointX + x) / 2.0;
+		var sy2:Number = (LastPointY + y) / 2.0;
+		var cx:Number = sx2 + (cosAngle * cx1 - sinAngle * cy1);
+		var cy:Number = sy2 + (sinAngle * cx1 + cosAngle * cy1);
+		
+		
+		//Compute the angleStart (angle1) and the angleExtent (dangle)
+		var ux:Number = (x1 - cx1) / rx;
+		var uy:Number = (y1 - cy1) / ry;
+		var vx:Number = (-x1 - cx1) / rx;
+		var vy:Number = (-y1 - cy1) / ry;
+		var p:Number
+		var n:Number
+		
+		//Compute the angle start
+		n = Math.sqrt((ux * ux) + (uy * uy));
+		p = ux;
+		
+		sign = (uy < 0) ? -1.0 : 1.0;
+		
+		var angleStart:Number = radiansToDegrees(sign * Math.acos(p / n));
+		
+		// Compute the angle extent
+		n = Math.sqrt((ux * ux + uy * uy) * (vx * vx + vy * vy));
+		p = ux * vx + uy * vy;
+		sign = (ux * vy - uy * vx < 0) ? -1.0 : 1.0;
+		var angleExtent:Number = radiansToDegrees(sign * Math.acos(p / n));
+		
+		if(!sweepFlag && angleExtent > 0)
+		{
+			angleExtent -= 360;
+		}
+		else if (sweepFlag && angleExtent < 0)
+		{
+			angleExtent += 360;
+		}
+		
+		angleExtent %= 360;
+		angleStart %= 360;
+		
+		//return Object({x:LastPointX,y:LastPointY,startAngle:angleStart,arc:angleExtent,radius:rx,yRadius:ry,xAxisRotation:xAxisRotation});        
+		return Object({x:LastPointX,y:LastPointY,startAngle:angleStart,arc:angleExtent,radius:rx,yRadius:ry,xAxisRotation:xAxisRotation, cx:cx,cy:cy});
+	}
+
+	/**
+	 * @private
+	 * Convert degrees to radians
+	 **/
+	private static function degreesToRadians(angle:Number):Number{
+		return angle*(Math.PI/180);
+	}
+	
+	/**
+	 * @private
+	 * Convert radiansToDegrees
+	 **/
+	private static function radiansToDegrees(angle:Number):Number{
+		return angle*(180/Math.PI);
+	}
+
+	
+}
+

@@ -161,6 +161,16 @@ limitations under the License.
 				path3.drawPath(250,500,"M 100 350 q 150 -300 300 0");
 				this.addElement(path3);
 				
+				var path4:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path4.fill = fill;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path4.stroke = stroke;
+				path4.drawPath(250,500,"M 50 50 L 100 50 A 50 50 0 0 0 50 0 Z");
+				this.addElement(path4);
+				
 			}
 			
 		]]>
