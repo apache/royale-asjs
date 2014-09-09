@@ -39,6 +39,25 @@ package org.apache.flex.core
      */
     [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
     
+    /**
+     *  Indicates that the initialization of the container is complete.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="initComplete", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Indicates that the children of the container is have been added.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
 	[DefaultProperty("mxmlContent")]
     
