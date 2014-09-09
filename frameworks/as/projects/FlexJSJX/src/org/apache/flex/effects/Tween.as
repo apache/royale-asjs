@@ -23,6 +23,7 @@ package org.apache.flex.effects
 import org.apache.flex.core.IEffectTimer;
 import org.apache.flex.core.ValuesManager;
 import org.apache.flex.events.ValueEvent;
+import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
 
 /**
@@ -45,7 +46,7 @@ import org.apache.flex.events.EventDispatcher;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class Tween extends EventDispatcher
+public class Tween extends Effect
 {
 	//--------------------------------------------------------------------------
 	//
@@ -311,20 +312,6 @@ public class Tween extends EventDispatcher
     //  Properties
     //
     //--------------------------------------------------------------------------
-
-    //----------------------------------
-    //  duration
-    //----------------------------------
-
-    /**
-     *  Duration of the animation, in milliseconds. 
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public var duration:Number = 3000;
     
     //----------------------------------
     //  listener
@@ -455,10 +442,12 @@ public class Tween extends EventDispatcher
 
         event.value = value;
         
-        dispatchEvent(event); 
+        dispatchEvent(event);
         
         listener.onTweenEnd(value);
 
+        dispatchEvent(new Event(Effect.EFFECT_END));
+        
         // If tween has been added, id >= 0
         // but if duration = 0, this might not be the case.
         if (id >= 0) {
@@ -591,7 +580,7 @@ public class Tween extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function reverse():void
+    override public function reverse():void
     {
         if (_isPlaying)
         {
@@ -613,7 +602,7 @@ public class Tween extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function pause():void
+    override public function pause():void
     {
         _isPlaying = false;
     }
@@ -627,7 +616,7 @@ public class Tween extends EventDispatcher
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function play():void
+    override public function play():void
 	{
 		if (userEquation == null)
 			userEquation = defaultEasingFunction;
@@ -643,7 +632,7 @@ public class Tween extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function stop():void
+    override public function stop():void
     {
         if (id >= 0) {
             Tween.removeTween(this);
@@ -660,7 +649,7 @@ public class Tween extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function resume():void
+    override public function resume():void
     {
         _isPlaying = true;
         

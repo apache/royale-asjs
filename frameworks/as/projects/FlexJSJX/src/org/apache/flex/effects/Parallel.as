@@ -22,16 +22,20 @@ package org.apache.flex.effects
 
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
+import org.apache.flex.events.Event;
+
+[DefaultProperty("children")]
 
 /**
- *  The Move effect animates a UI component's x or y position.
+ *  The Parallel effect animates set of effects at the
+ *  same time.
  * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class Move extends Tween implements IDocument
+public class Parallel extends Effect implements IDocument
 {
 
     //--------------------------------------------------------------------------
@@ -43,23 +47,14 @@ public class Move extends Tween implements IDocument
     /**
      *  Constructor.
      *
-     *  @param target Object ID or reference to an object that will
-	 *  have its x and/or y property animated.
-     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function Move(target:IUIBase = null)
+    public function Parallel()
     {
         super();
-
-		this.target = target;
-		startValue = 0;
-		endValue = 1;
-		
-		listener = this;
     }
 
     //--------------------------------------------------------------------------
@@ -81,46 +76,10 @@ public class Move extends Tween implements IDocument
 	private var target:IUIBase;
     
 	/**
-	 *  The change in x.
+	 *  The children.
 	 */
-	public var xBy:Number;
+	public var children:Array;
 	
-	/**
-	 *  The change in y.
-	 */
-	public var yBy:Number;
-	
-	/**
-	 *  @private
-	 *  The starting x.
-	 */
-	private var xStart:Number;
-	
-	/**
-	 *  @private
-	 *  The staring y.
-	 */
-	private var yStart:Number;
-
-	/**
-	 *  Starting x value.  If NaN, the current x value is used
-     */
-    public var xFrom:Number;
-    
-	/**
-	 *  Ending x value.  If NaN, the current x value is not changed
-	 */
-	public var xTo:Number;
-	
-	/**
-	 *  Starting y value.  If NaN, the current y value is used
-	 */
-	public var yFrom:Number;
-	
-	/**
-	 *  Ending y value.  If NaN, the current y value is not changed
-	 */
-	public var yTo:Number;
 	
     
     //--------------------------------------------------------------------------
@@ -129,6 +88,18 @@ public class Move extends Tween implements IDocument
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @private
+     */
+    override public function set duration(value:Number):void
+    {
+        var n:int = children.length;
+        for (var i:int = 0; i < 0; i++)
+        {
+            children[i].duration = value;
+        }
+        super.duration = value;
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -141,51 +112,41 @@ public class Move extends Tween implements IDocument
 		this.document = document;	
 	}
 	
+    public function addChild(child:IEffect):void
+    {
+        if (!children)
+            children = [ child ];
+        else
+            children.push(child);    
+    }
+    
 	/**
 	 *  @private
 	 */
 	override public function play():void
 	{
-		if (target is String)
-			target = document[target];
-		
-		if (isNaN(xFrom))
-			xStart = target.x;
-        if (isNaN(xBy))
-        {
-    		if (isNaN(xTo))
-    			xBy = 0;
-    		else
-    			xBy = xTo - xStart;
-        }
-        
-		if (isNaN(yFrom))
-			yStart = target.y;
-        if (isNaN(yBy))
-        {
-    		if (isNaN(yTo))
-    			yBy = 0;
-    		else
-    			yBy = yTo - yStart;
-        }			
-		super.play();
+        dispatchEvent(new Event(Effect.EFFECT_START));
+        current = 0;
+        var n:int = children.length;
+        for (var i:int = 0; i < n; i++)          
+            playChildEffect(i);
 	}
-
-	public function onTweenUpdate(value:Number):void
-	{
-		if (xBy)
-			target.x = xStart + value * xBy;
-		if (yBy)
-			target.y = yStart + value * yBy;
-	}
-	
-	public function onTweenEnd(value:Number):void
-	{
-		if (xBy)
-			target.x = xStart + xBy;
-		if (yBy)
-			target.y = yStart + yBy;
-	}
+    
+    private var current:int;
+    
+    private function playChildEffect(index:int):void
+    {
+        var child:IEffect = children[index];
+        child.addEventListener(Effect.EFFECT_END, effectEndHandler);
+        child.play();   
+    }
+    
+    private function effectEndHandler(event:Event):void
+    {
+        current++;
+        if (current >= children.length)
+            dispatchEvent(new Event(Effect.EFFECT_END));
+    }
 }
 
 }

@@ -53,4 +53,13 @@
     <component id="LineChartLinearVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout" />
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 
+    <component id="Fade" class="org.apache.flex.effects.Fade"/>
+    <component id="Move" class="org.apache.flex.effects.Move"/>
+    <component id="Wipe" class="org.apache.flex.effects.Wipe"/>
+    <component id="Sequence" class="org.apache.flex.effects.Sequence"/>
+    <component id="Parallel" class="org.apache.flex.effects.Parallel"/>
+    
+    <component id="NumberFormatter" class="org.apache.flex.html.accessories.NumberFormatter"/>
+    <component id="CurrencyFormatter" class="org.apache.flex.html.accessories.CurrencyFormatter"/>
+
 </componentPackage>

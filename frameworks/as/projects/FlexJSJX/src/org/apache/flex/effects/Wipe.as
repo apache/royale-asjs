@@ -20,18 +20,20 @@
 package org.apache.flex.effects
 {
 
+import flash.geom.Rectangle;
+
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
 
 /**
- *  The Move effect animates a UI component's x or y position.
+ *  The Fade effect animates a UI component's alpha or opacity.
  * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class Move extends Tween implements IDocument
+public class Wipe extends Tween implements IDocument
 {
 
     //--------------------------------------------------------------------------
@@ -51,14 +53,12 @@ public class Move extends Tween implements IDocument
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function Move(target:IUIBase = null)
+    public function Wipe(target:IUIBase = null)
     {
         super();
 
 		this.target = target;
-		startValue = 0;
-		endValue = 1;
-		
+        
 		listener = this;
     }
 
@@ -81,47 +81,12 @@ public class Move extends Tween implements IDocument
 	private var target:IUIBase;
     
 	/**
-	 *  The change in x.
-	 */
-	public var xBy:Number;
-	
-	/**
-	 *  The change in y.
-	 */
-	public var yBy:Number;
-	
-	/**
-	 *  @private
-	 *  The starting x.
-	 */
-	private var xStart:Number;
-	
-	/**
-	 *  @private
-	 *  The staring y.
-	 */
-	private var yStart:Number;
-
-	/**
-	 *  Starting x value.  If NaN, the current x value is used
+	 *  The direction of the Wipe.  "up" means the top will be the last
+     *  part to disappear. "down" will reveal from the top down.
      */
-    public var xFrom:Number;
-    
-	/**
-	 *  Ending x value.  If NaN, the current x value is not changed
-	 */
-	public var xTo:Number;
-	
-	/**
-	 *  Starting y value.  If NaN, the current y value is used
-	 */
-	public var yFrom:Number;
-	
-	/**
-	 *  Ending y value.  If NaN, the current y value is not changed
-	 */
-	public var yTo:Number;
-	
+    public var direction:String;
+    	
+    private var wiper:PlatformWiper;	
     
     //--------------------------------------------------------------------------
     //
@@ -149,42 +114,30 @@ public class Move extends Tween implements IDocument
 		if (target is String)
 			target = document[target];
 		
-		if (isNaN(xFrom))
-			xStart = target.x;
-        if (isNaN(xBy))
+        wiper.target = target;
+        if (direction == "up")
         {
-    		if (isNaN(xTo))
-    			xBy = 0;
-    		else
-    			xBy = xTo - xStart;
+            startValue = target.height;
+            endValue = 0;
+        }
+        else
+        {
+            startValue = 0;
+            endValue = target.height;
+            wiper.visibleRect = new Rectangle(0, 0, target.width, 0);
         }
         
-		if (isNaN(yFrom))
-			yStart = target.y;
-        if (isNaN(yBy))
-        {
-    		if (isNaN(yTo))
-    			yBy = 0;
-    		else
-    			yBy = yTo - yStart;
-        }			
 		super.play();
 	}
 
 	public function onTweenUpdate(value:Number):void
 	{
-		if (xBy)
-			target.x = xStart + value * xBy;
-		if (yBy)
-			target.y = yStart + value * yBy;
+		wiper.visibleRect = new Rectangle(0, 0, target.width, value);
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
-		if (xBy)
-			target.x = xStart + xBy;
-		if (yBy)
-			target.y = yStart + yBy;
+        wiper.target = null;
 	}
 }
 
