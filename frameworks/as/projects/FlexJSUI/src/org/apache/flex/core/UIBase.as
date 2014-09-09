@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase, IParent
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase, IParent, IStyleableObject
 	{
         /**
          *  Constructor.
@@ -431,7 +431,41 @@ package org.apache.flex.core
 			}
 		}
 		
-		private var _className:String;
+        private var _styles:Object;
+        
+        /**
+         *  The object that contains
+         *  "styles" and other associated
+         *  name-value pairs.  You can
+         *  also specify a string in
+         *  HTML style attribute format.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get style():Object
+        {
+            return _styles;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set style(value:Object):void
+        {
+            if (_styles != value)
+            {
+                if (value is String)
+                    _styles = JSON.parse("{" + value + "}");                
+                else
+                    _styles = value;
+                dispatchEvent(new org.apache.flex.events.Event("stylesChanged"));
+            }
+        }
+        
+        private var _className:String;
 
         /**
          *  The classname.  Often used for CSS

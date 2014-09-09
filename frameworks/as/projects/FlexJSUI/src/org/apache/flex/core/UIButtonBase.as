@@ -57,7 +57,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIButtonBase extends SimpleButton implements IStrand, IEventDispatcher, IUIBase
+	public class UIButtonBase extends SimpleButton implements IStrand, IEventDispatcher, IUIBase, IStyleableObject
 	{
         /**
          *  Constructor.
@@ -525,6 +525,55 @@ package org.apache.flex.core
 			}
 		}
 
+        private var _styles:Object;
+        
+        /**
+         *  The object that contains
+         *  "styles" and other associated
+         *  name-value pairs.  You can
+         *  also specify a string in
+         *  HTML style attribute format.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get style():Object
+        {
+            return _styles;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set style(value:Object):void
+        {
+            if (value is String)
+                _styles = JSON.parse("{" + value + "}");                
+            else
+                _styles = value;
+            dispatchEvent(new org.apache.flex.events.Event("stylesChanged"));
+        }
+        
+        /**
+         *  The styles for this object formatted
+         *  as an HTML style attribute.  While this
+         *  may be a convenient and less verbose
+         *  way of specifying styles than using
+         *  the style object, you run the risk of
+         *  having a typo.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function set styleString(value:String):void
+        {
+            _styles = JSON.parse("{" + value + "}");
+        }
+        
 		private var _className:String;
 
         /**
