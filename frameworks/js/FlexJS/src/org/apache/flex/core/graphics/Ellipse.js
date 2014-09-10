@@ -51,10 +51,19 @@ org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, wid
     var style = this.getStyleStr();
     var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     ellipse.setAttribute('style', style);
-    ellipse.setAttribute('cx', String(width / 2 + this.get_stroke().get_weight()));
-    ellipse.setAttribute('cy', String(height / 2 + this.get_stroke().get_weight()));
+	if(this.get_stroke())
+	{
+	  ellipse.setAttribute('cx', String(width / 2 + this.get_stroke().get_weight()));
+      ellipse.setAttribute('cy', String(height / 2 + this.get_stroke().get_weight()));
+	  this.setPosition(x, y, this.get_stroke().get_weight()*2, this.get_stroke().get_weight()*2);
+	}
+	else
+	{
+	  ellipse.setAttribute('cx', String(width / 2));
+      ellipse.setAttribute('cy', String(height / 2));
+	  this.setPosition(x, y, 0, 0);
+	}
     ellipse.setAttribute('rx', String(width / 2));
     ellipse.setAttribute('ry', String(height / 2));
     this.element.appendChild(ellipse);
-	this.setPosition(x, y, this.get_stroke().get_weight()*2, this.get_stroke().get_weight()*2);
   };

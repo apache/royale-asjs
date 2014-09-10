@@ -62,7 +62,7 @@ org.apache.flex.core.graphics.GraphicShape = function() {
   
     /**
    * @expose
-   * @type {SVGElement}
+   * @type {Object}
    */
   this.element = document.createElementNS("http://www.w3.org/2000/svg","svg");
 
@@ -121,15 +121,37 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
  * @return {string} The style attribute.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
-  var color = Number(this.get_fill().get_color()).toString(16);
-  if (color.length == 2) color = '00' + color;
-  if (color.length == 4) color = '00' + color;
-  var strokeColor = Number(this.get_stroke().get_color()).toString(16);
-  if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
-  if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
+  var fillStr;
+  if(this.get_fill())
+  {
+    var color = Number(this.get_fill().get_color()).toString(16);
+    if (color.length == 1) color = '00' + color;
+	if (color.length == 2) color = '00' + color;
+    if (color.length == 4) color = '00' + color;
+	fillStr = 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_fill().get_alpha());
+  }
+  else
+  {
+    fillStr = 'fill:none';
+  }
 
-  return 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_fill().get_alpha()) + ';stroke:#' + String(strokeColor) + ';stroke-width:' +
-         String(this.get_stroke().get_weight()) + ';stroke-opacity:' + String(this.get_stroke().get_alpha()) ;
+  var strokeStr;
+  if(this.get_stroke())
+  {
+    var strokeColor = Number(this.get_stroke().get_color()).toString(16);
+    if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
+    if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
+    if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
+	strokeStr = 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+         String(this.get_stroke().get_weight()) + ';stroke-opacity:' + String(this.get_stroke().get_alpha())
+  }
+  else
+  {
+    strokeStr = 'stroke:none';
+  }
+  
+
+  return fillStr + ';' + strokeStr ;
 };
 
 /**
