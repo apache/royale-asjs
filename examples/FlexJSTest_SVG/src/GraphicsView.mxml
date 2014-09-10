@@ -140,7 +140,7 @@ limitations under the License.
 				path1.stroke = stroke;
 				path1.drawPath(50,50,"M14.165 0 16.3838 2.21924 5.24023 13.3232 0 8.52441 2.18164 6.11719 5.37305 9.06348 14.165 0Z");
 				this.addElement(path1);
-				
+			
 				var path2:Path = new Path();
 				fill.color = 0x00FF00;
 				fill.alpha = 0.5;
@@ -150,7 +150,7 @@ limitations under the License.
 				path2.stroke = stroke;
 				path2.drawPath(250,500,"M150 0 L75 200 L225 200 Z");
 				this.addElement(path2);
-				
+
 				var path3:Path = new Path();
 				fill.color = 0x00FF00;
 				fill.alpha = 0.5;

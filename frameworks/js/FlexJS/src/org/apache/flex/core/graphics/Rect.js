@@ -56,5 +56,5 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
     rect.setAttribute('width', String(width));
     rect.setAttribute('height', String(height));
     this.element.appendChild(rect);
-    this.setPosition(x + this.get_stroke().get_weight(), y + this.get_stroke().get_weight());
+	this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
   };
