@@ -1,5 +1,7 @@
 package org.apache.flex.core.graphics
 {
+	import flash.display.CapsStyle;
+	import flash.display.JointStyle;
 
 	public class Ellipse extends GraphicShape
 	{
@@ -21,7 +23,7 @@ package org.apache.flex.core.graphics
 			graphics.clear();
 			if(stroke)
 			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha);
+				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
 			}
 			if(fill)
 			{
