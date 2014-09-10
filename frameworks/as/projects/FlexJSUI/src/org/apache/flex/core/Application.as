@@ -21,6 +21,7 @@ package org.apache.flex.core
     import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.display.StageAlign;
+    import flash.display.StageQuality;
     import flash.display.StageScaleMode;
     import flash.events.IOErrorEvent;
     import flash.system.ApplicationDomain;
@@ -98,6 +99,8 @@ package org.apache.flex.core
 			{
 				stage.align = StageAlign.TOP_LEFT;
 				stage.scaleMode = StageScaleMode.NO_SCALE;
+				stage.quality = StageQuality.HIGH_16X16_LINEAR;
+				trace("working");
 			}
 			
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
