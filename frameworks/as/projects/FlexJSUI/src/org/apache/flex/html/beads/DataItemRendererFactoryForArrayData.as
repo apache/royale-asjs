@@ -20,7 +20,7 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ISelectionModel;
@@ -135,7 +135,7 @@ package org.apache.flex.html.beads
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:IItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IItemRenderer;
+				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				ir.index = i;
 				ir.labelField = labelField;
 				dataGroup.addElement(ir);

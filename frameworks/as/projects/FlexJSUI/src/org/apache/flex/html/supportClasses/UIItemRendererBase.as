@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -34,7 +34,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class UIItemRendererBase extends UIBase implements IItemRenderer
+	public class UIItemRendererBase extends UIBase implements ISelectableItemRenderer
 	{
 		/**
 		 *  constructor.

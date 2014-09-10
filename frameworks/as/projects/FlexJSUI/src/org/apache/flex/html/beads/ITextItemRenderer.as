@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 
     /**
      *  The ITextItemRenderer interface is the interface for
@@ -29,7 +29,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface ITextItemRenderer extends IItemRenderer
+	public interface ITextItemRenderer extends ISelectableItemRenderer
 	{
         /**
          *  The text to be displayed in the item renderer.

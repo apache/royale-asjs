@@ -52,6 +52,7 @@
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption"/>
     <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
+    <component id="ScrollingContainerView" class="org.apache.flex.html.beads.ScrollingContainerView"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>
     <component id="VContainer" class="org.apache.flex.html.VContainer"/>
     <component id="Panel" class="org.apache.flex.html.Panel"/>
@@ -62,6 +63,8 @@
     <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>
     <component id="NonVirtualVerticalLayout" class="org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout"/>
     <component id="NonVirtualHorizontalLayout" class="org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout"/>
+    <component id="NonVirtualVerticalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout"/>
+    <component id="NonVirtualHorizontalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualHorizontalScrollingLayout"/>
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.Alert"/>

@@ -26,7 +26,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
@@ -210,12 +210,12 @@ package org.apache.flex.html.beads
 		{
 			if (lastSelectedIndex != -1)
 			{
-				var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
+				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
                 ir.selected = false;
 			}
 			if (listModel.selectedIndex != -1)
 			{
-	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex);
+	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
 	            ir.selected = true;
 			}
             lastSelectedIndex = listModel.selectedIndex;
@@ -230,12 +230,12 @@ package org.apache.flex.html.beads
 		{
 			if (lastRollOverIndex != -1)
 			{
-				var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IItemRenderer;
+				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
                 ir.hovered = false;
 			}
 			if (IRollOverModel(listModel).rollOverIndex != -1)
 			{
-	            ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex);
+	            ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
 	            ir.hovered = true;
 			}
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;

@@ -19,7 +19,7 @@
 package org.apache.flex.html.beads.controllers
 {
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
@@ -110,13 +110,13 @@ package org.apache.flex.html.beads.controllers
 		
         private function selectedHandler(event:Event):void
         {
-            listModel.selectedIndex = IItemRenderer(event.target).index;
+            listModel.selectedIndex = ISelectableItemRenderer(event.target).index;
             IEventDispatcher(listView.strand).dispatchEvent(new Event("change"));
         }
 		
         private function rolloverHandler(event:Event):void
         {
-            IRollOverModel(listModel).rollOverIndex = IItemRenderer(event.target).index;
+            IRollOverModel(listModel).rollOverIndex = ISelectableItemRenderer(event.target).index;
             IEventDispatcher(listView.strand).dispatchEvent(new Event("rollover"));
         }
 	

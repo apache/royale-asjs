@@ -21,7 +21,7 @@ package org.apache.flex.html.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 
@@ -49,7 +49,7 @@ package org.apache.flex.html.beads.controllers
 		{
 		}
 		
-        private var renderer:IItemRenderer;
+        private var renderer:ISelectableItemRenderer;
 		private var _strand:IStrand;
 		
 		/**
@@ -63,7 +63,7 @@ package org.apache.flex.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            renderer = value as IItemRenderer;
+            renderer = value as ISelectableItemRenderer;
             renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
             renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
             renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads.controllers
 		 */
 		protected function rollOverHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.target as IItemRenderer;
+			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target)
 			{
                 target.hovered = true;
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads.controllers
 		 */
 		protected function rollOutHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.target as IItemRenderer;
+			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target)
 			{
                 target.hovered = false;
@@ -100,7 +100,7 @@ package org.apache.flex.html.beads.controllers
 		 */
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.currentTarget as IItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
                 target.down = true;
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads.controllers
 		 */
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
-			var target:IItemRenderer = event.currentTarget as IItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
                 target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
