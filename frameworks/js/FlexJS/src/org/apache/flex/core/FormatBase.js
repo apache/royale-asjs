@@ -72,7 +72,7 @@ org.apache.flex.core.FormatBase.prototype._propertyName = 'text';
 /**
  * @type {string}
  */
-org.apache.flex.core.FormatBase.prototype._eventName = 'textChanged';
+org.apache.flex.core.FormatBase.prototype._eventName = 'textChange';
 
 
 /**
@@ -118,7 +118,7 @@ org.apache.flex.core.FormatBase.prototype.set_propertyName = function(value) {
  */
 org.apache.flex.core.FormatBase.prototype.get_eventName = function() {
   if (this._eventName == null) {
-    return this._propertyName + 'Changed';
+    return this._propertyName + 'Change';
   }
   return this._eventName;
 };

@@ -72,5 +72,5 @@ org.apache.flex.html.beads.models.TextModel.prototype.
 org.apache.flex.html.beads.models.TextModel.prototype.
     set_text = function(value) {
   this.text_ = value;
-  this.dispatchEvent('textChanged');
+  this.dispatchEvent('textChange');
 };

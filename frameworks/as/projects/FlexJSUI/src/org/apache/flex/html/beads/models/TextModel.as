@@ -89,7 +89,7 @@ package org.apache.flex.html.beads.models
 			if (value != _text)
 			{
 				_text = value;
-				IEventDispatcher(_strand).dispatchEvent(new Event("textChanged"));
+				dispatchEvent(new Event("textChange"));
 			}
 		}
 		
@@ -116,7 +116,7 @@ package org.apache.flex.html.beads.models
 			if (value != _html)
 			{
 				_html = value;
-				IEventDispatcher(_strand).dispatchEvent(new Event("htmlChanged"));
+				dispatchEvent(new Event("htmlChange"));
 			}
 		}
 	}
