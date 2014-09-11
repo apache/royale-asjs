@@ -30,7 +30,7 @@ import org.apache.flex.events.EventDispatcher;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class Effect extends EventDispatcher
+public class Effect extends EventDispatcher implements IEffect
 {
 	//--------------------------------------------------------------------------
 	//
