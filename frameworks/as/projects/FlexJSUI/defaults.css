@@ -233,6 +233,11 @@ Image
     IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
+ImageButton
+{
+    IBeadView: ClassReference("org.apache.flex.html.beads.ImageButtonView");
+}
+
 Label
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");

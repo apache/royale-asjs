@@ -35,6 +35,7 @@
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.Image"/>
+    <component id="ImageButton" class="org.apache.flex.html.ImageButton"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
     <component id="TextButton" class="org.apache.flex.html.TextButton"/>
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"/>
@@ -86,6 +87,11 @@
     <component id="HRule" class="org.apache.flex.html.HRule" />
     <component id="Spacer" class="org.apache.flex.html.Spacer" />
     <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" />
+    <component id="DragMouseController" class="org.apache.flex.html.beads.controllers.DragMouseController" />
+    <component id="DropMouseController" class="org.apache.flex.html.beads.controllers.DropMouseController" />
+    <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
+    <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
+    <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
 
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
