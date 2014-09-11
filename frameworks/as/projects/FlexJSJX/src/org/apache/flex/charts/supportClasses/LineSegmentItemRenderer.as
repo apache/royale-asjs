@@ -17,23 +17,36 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
-{
-	import flash.display.Shape;
-	
-	import org.apache.flex.core.FilledRectangle;
+{	
+	import org.apache.flex.core.graphics.Path;
+	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
-	public class LineSegmentItemRenderer extends DataItemRenderer
+	/**
+	 *  The LineSegmentItemRenderer class draws a line between the vertices of a LineSeries. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class LineSegmentItemRenderer extends DataItemRenderer implements ILineSegmentItemRenderer
 	{
 		public function LineSegmentItemRenderer()
 		{
 			super();
 		}
-		
-		private var filledRect:FilledRectangle;
-		
+				
 		private var _points:Array;
 		
+		/**
+		 *  The points of the vertices. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get points():Array
 		{
 			return _points;
@@ -41,16 +54,10 @@ package org.apache.flex.charts.supportClasses
 		public function set points(value:Array):void
 		{
 			_points = value;
-			
-			if (shape == null) {
-				shape = new Shape();
-				addElement(shape);
-			}
-			
 			drawLine();
 		}
 		
-		private var shape:Shape;
+		private var path:Path;
 		
 		private var _lineColor:uint = 0xFF0000;
 		
@@ -100,16 +107,58 @@ package org.apache.flex.charts.supportClasses
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;		
-			
-			if (shape == null) {
-				shape = new Shape();
-				addElement(shape);
-			}	
-//			if (filledRect == null) {
-//				filledRect = new FilledRectangle();
-//				addElement(filledRect);
-//			}
+			super.data = value;	
+		}
+		
+		/**
+		 *  The name of the field containing the value for the Y axis. This is not implemented by this class.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get yField():String
+		{
+			return null;
+		}
+		public function set yField(value:String):void
+		{
+		}
+		
+		/**
+		 *  The name of the field containing the value for the X axis. This is not implemented by this class.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get xField():String
+		{
+			return null;
+		}
+		public function set xField(value:String):void
+		{
+		}
+		
+		private var _fillColor:uint;
+		
+		/**
+		 *  The color used to fill the interior of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fillColor():uint
+		{
+			return _fillColor;
+		}
+		public function set fillColor(value:uint):void
+		{
+			_fillColor = value;
 		}
 		
 		/**
@@ -117,25 +166,33 @@ package org.apache.flex.charts.supportClasses
 		 */
 		protected function drawLine():void
 		{
-//			if (filledRect) {
-//				filledRect.fillColor = fillColor;
-//				filledRect.drawRect(0,0,this.width,this.height);
-//			}
-//			if (shape && (!isNaN(x)) && (!isNaN(y)) && (!isNaN(x2)) && (!isNaN(y2))) {
-//				shape.graphics.clear();
-//				shape.graphics.lineStyle(1,fillColor,1);
-//				shape.graphics.moveTo(0,0);
-//				shape.graphics.lineTo(x2-x,y2-y);
-//			}
-			if (shape != null && points != null)
+			var needsAddElement:Boolean = false;
+			
+			if (points != null)
 			{
-				shape.graphics.clear();
-				shape.graphics.lineStyle(lineThickness,lineColor,1);
+				if (path == null) {
+					path = new Path();
+					needsAddElement = true;
+				}
+				
+				var stroke:SolidColorStroke = new SolidColorStroke();
+				stroke.color = lineColor;
+				stroke.weight = lineThickness;
+				path.stroke = stroke;
+				path.fill = null;
+				
+				var pathString:String = "";
 				
 				for (var i:int=0; i < points.length; i++) {
 					var point:Object = points[i];
-					if (i == 0) shape.graphics.moveTo(point.x,point.y);
-					else shape.graphics.lineTo(point.x,point.y);
+					if (i == 0) pathString += "M "+point.x+" "+point.y+" ";
+					else pathString += "L "+point.x+" "+point.y+" ";
+				}
+				
+				path.drawPath(0, 0, pathString);
+				
+				if (needsAddElement) {
+					addElement(path);
 				}
 			}
 		}

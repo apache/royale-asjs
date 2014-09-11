@@ -16,25 +16,52 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
+package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+	import org.apache.flex.charts.core.IChartItemRenderer;
 	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The ILineSegmentItemRenderer interface must be implemented by any class that
+	 *  will become an line segment itemRenderer for a LineSeries. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IItemRendererParent
+	public interface ILineSegmentItemRenderer extends IChartItemRenderer
 	{
-		public function ChartDataGroup()
-		{
-			super();
-		}
+		/**
+		 *  The points that define the vertices of the line segment. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get points():Array;
+		function set points(value:Array):void;
+		
+		/**
+		 *  The color of the line. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get lineColor():uint;
+		function set lineColor(value:uint):void;
+		
+		/**
+		 *  The thickness (weight) of the line. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get lineThickness():int;
+		function set lineThickness(value:int):void;
 	}
 }

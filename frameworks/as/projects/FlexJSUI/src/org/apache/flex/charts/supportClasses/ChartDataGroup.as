@@ -16,52 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.charts.supportClasses.ChartDataGroup;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.beads.ListView;
+	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
 	
 	/**
-	 *  The PieChartView class provides the graphical space for
-	 *  the display of a PieChart.
+	 *  The ChartDataGroup class provides the actual space for rendering the
+	 *  chart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PieChartView extends ListView
+	public class ChartDataGroup extends NonVirtualDataGroup implements IItemRendererParent
 	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function PieChartView()
+		public function ChartDataGroup()
 		{
 			super();
-		}
-		
-		private var _strand:IStrand;
-		private var listModel:ISelectionModel;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
 		}
 	}
 }

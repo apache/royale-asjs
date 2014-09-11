@@ -19,8 +19,8 @@
 package org.apache.flex.charts.beads.layouts
 {	
 	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.charts.supportClasses.IWedgeItemRenderer;
 	import org.apache.flex.charts.supportClasses.PieSeries;
-	import org.apache.flex.charts.supportClasses.WedgeItemRenderer;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.events.Event;
@@ -102,16 +102,20 @@ package org.apache.flex.charts.beads.layouts
 					obj = seriesMaxes[i];
 					data = dp[i];
 					
-					var child:WedgeItemRenderer = (chart.series[s] as IChartSeries).itemRenderer.newInstance() as WedgeItemRenderer;
+					var child:IWedgeItemRenderer = (chart.series[s] as IChartSeries).itemRenderer.newInstance() as IWedgeItemRenderer;
+					chartDataGroup.addElement(child);
 					child.itemRendererParent = chartDataGroup;
 					child.data = data;
 					child.fillColor = colors[i%colors.length];
-					chartDataGroup.addElement(child);
 					
 					end = start + (360.0 * obj.percent);
 					var arc:Number = 360.0 * obj.percent;
-//					trace("Draw arc from "+start+" to "+(start+arc));
-					child.drawWedge(centerX, centerY, start*Math.PI/180, arc*Math.PI/180, radius);
+					
+					child.centerX = centerX;
+					child.centerY = centerY;
+					child.startAngle = start*Math.PI/180;
+					child.arc = arc*Math.PI/180;
+					child.radius = radius;
 					
 					start += arc;
 				}

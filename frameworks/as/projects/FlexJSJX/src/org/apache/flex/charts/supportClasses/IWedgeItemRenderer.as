@@ -16,52 +16,74 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.charts.supportClasses.ChartDataGroup;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.beads.ListView;
-	
+	import org.apache.flex.charts.core.IChartItemRenderer;
+
 	/**
-	 *  The PieChartView class provides the graphical space for
-	 *  the display of a PieChart.
+	 *  The IWedgeItemRenderer interface must be implemented by any class that
+	 *  is used as an itemRenderer for a PieSeries. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PieChartView extends ListView
+	public interface IWedgeItemRenderer extends IChartItemRenderer
 	{
 		/**
-		 *  constructor.
+		 *  The X coordinate of the center point of the pie. 
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function PieChartView()
-		{
-			super();
-		}
-		
-		private var _strand:IStrand;
-		private var listModel:ISelectionModel;
+		function get centerX():Number;
+		function set centerX(value:Number):void;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  The Y coordinate of the center of the pie.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
+		function get centerY():Number;
+		function set centerY(value:Number):void;
+		
+		/**
+		 *  The angle (radians) at which the wedge begins. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get startAngle():Number;
+		function set startAngle(value:Number):void;
+		
+		/**
+		 *  The sweep (radians) of the wedge relative to the startAngle. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get arc():Number;
+		function set arc(value:Number):void;
+		
+		/**
+		 *  The radius of the pie. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get radius():Number;
+		function set radius(value:Number):void;
 	}
 }

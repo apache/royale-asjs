@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.charts.ChartDataGroup');
+goog.provide('org.apache.flex.charts.supportClasses.ChartDataGroup');
 
 goog.require('org.apache.flex.html.supportClasses.NonVirtualDataGroup');
 
@@ -22,12 +22,12 @@ goog.require('org.apache.flex.html.supportClasses.NonVirtualDataGroup');
  * @constructor
  * @extends {org.apache.flex.html.supportClasses.NonVirtualDataGroup}
  */
-org.apache.flex.charts.ChartDataGroup =
+org.apache.flex.charts.supportClasses.ChartDataGroup =
     function() {
-  org.apache.flex.charts.ChartDataGroup.base(this, 'constructor');
+  org.apache.flex.charts.supportClasses.ChartDataGroup.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.charts.ChartDataGroup,
+    org.apache.flex.charts.supportClasses.ChartDataGroup,
     org.apache.flex.html.supportClasses.NonVirtualDataGroup);
 
 
@@ -36,18 +36,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.ChartDataGroup.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.charts.supportClasses.ChartDataGroup.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ChartDataGroup',
-                qName: 'org.apache.flex.charts.ChartDataGroup' }] };
+                qName: 'org.apache.flex.charts.supportClasses.ChartDataGroup' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.charts.ChartDataGroup.
+org.apache.flex.charts.supportClasses.ChartDataGroup.
     prototype.createElement = function() {
-  this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  this.element.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
+  this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
   this.set_className('ChartDataGroup');
 

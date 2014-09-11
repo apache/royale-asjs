@@ -44,6 +44,9 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.supportClasses.BarSeries; BarSeries;
 	import org.apache.flex.charts.supportClasses.LineSeries; LineSeries;
 	import org.apache.flex.charts.supportClasses.PieSeries; PieSeries;
+	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer; LineSegmentItemRenderer;
+	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
 	
 	import org.apache.flex.effects.Tween; Tween;
 	import org.apache.flex.effects.Move; Move;

@@ -44,6 +44,10 @@
     <component id="HorizontalLinearAxisBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisBead" />
     <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />
     <component id="VerticalLinearAxisBead" class="org.apache.flex.charts.beads.VerticalLinearAxisBead" />
+
+    <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
+    <component id="WedgeItemRenderer" class="org.apache.flex.charts.supportClasses.WedgeItemRenderer" />
+    <component id="LineSegmentItemRenderer" class="org.apache.flex.charts.supportClasses.LineSegmentItemRenderer" />
     
     <component id="LineChartCategoryVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout" />
     <component id="LineChartLinearVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout" />

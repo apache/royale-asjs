@@ -21,7 +21,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer;
+	import org.apache.flex.charts.supportClasses.ILineSegmentItemRenderer;
 	import org.apache.flex.charts.supportClasses.LineSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
@@ -110,6 +110,7 @@ package org.apache.flex.charts.beads.layouts
 					
 					if (aseries.itemRenderer) {
 						var child:IChartItemRenderer = aseries.itemRenderer.newInstance() as IChartItemRenderer;
+						chartDataGroup.addElement(child);
 						child.itemRendererParent = chartDataGroup;
 						child.data = data;
 						child.fillColor = aseries.fillColor;
@@ -117,7 +118,6 @@ package org.apache.flex.charts.beads.layouts
 						child.y = childY - 5;
 						child.width = 10;
 						child.height = 10;
-						chartDataGroup.addElement(child);
 					}
 				}
 			}
@@ -130,13 +130,13 @@ package org.apache.flex.charts.beads.layouts
 				
 				if (lcs.lineSegmentRenderer)
 				{
-					var renderer:LineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as LineSegmentItemRenderer;
+					var renderer:ILineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as ILineSegmentItemRenderer;
+					chartDataGroup.addElement(renderer);
+					renderer.itemRendererParent = chartDataGroup;
 					renderer.lineColor = lcs.lineColor;
 					renderer.lineThickness = lcs.lineThickness;
 					renderer.data = lcs;
 					renderer.points = seriesMaxes[s].points;
-					renderer.itemRendererParent = chartDataGroup;
-					chartDataGroup.addElement(renderer);
 				}
 			}
 			

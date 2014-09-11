@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {
-	import org.apache.flex.charts.ChartDataGroup;
+	import org.apache.flex.charts.supportClasses.ChartDataGroup;
 	import org.apache.flex.charts.core.ChartBase;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;

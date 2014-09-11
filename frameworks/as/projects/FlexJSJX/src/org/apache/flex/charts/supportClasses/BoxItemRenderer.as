@@ -19,7 +19,9 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.core.FilledRectangle;
+	import org.apache.flex.core.graphics.Rect;
+	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -48,7 +50,7 @@ package org.apache.flex.charts.supportClasses
 			super();
 		}
 		
-		private var filledRect:FilledRectangle;
+		private var filledRect:Rect;
 		
 		private var _yField:String = "y";
 		
@@ -105,6 +107,7 @@ package org.apache.flex.charts.supportClasses
 		public function set fillColor(value:uint):void
 		{
 			_fillColor = value;
+			drawBar();
 		}
 		
 		/**
@@ -117,12 +120,8 @@ package org.apache.flex.charts.supportClasses
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;		
-			
-			if (filledRect == null) {
-				filledRect = new FilledRectangle();
-				addElement(filledRect);
-			}	
+			super.data = value;	
+			drawBar();
 		}
 		
 		/**
@@ -158,9 +157,27 @@ package org.apache.flex.charts.supportClasses
 		 */
 		protected function drawBar():void
 		{
-			if (filledRect) {
-				filledRect.fillColor = fillColor;
+			if ((this.width > 0) && (this.height > 0))
+			{
+				var needsAdd:Boolean = false;
+				
+				if (filledRect == null) {
+					filledRect = new Rect();
+					needsAdd = true;
+				}
+				
+				var solidColor:SolidColor = new SolidColor();
+				solidColor.color = fillColor;
+				var solidStroke:SolidColorStroke = new SolidColorStroke();
+				solidStroke.color = fillColor;
+				solidStroke.weight = 1;
+				filledRect.fill = solidColor;
+				filledRect.stroke = solidStroke;
 				filledRect.drawRect(0,0,this.width,this.height);
+				
+				if (needsAdd) {
+					addElement(filledRect);
+				}
 			}
 		}
 	}

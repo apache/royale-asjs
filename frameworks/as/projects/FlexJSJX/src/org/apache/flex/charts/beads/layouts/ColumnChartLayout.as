@@ -111,6 +111,7 @@ package org.apache.flex.charts.beads.layouts
 					bcs = chart.series[s] as ColumnSeries;
 					
 					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
+					chartDataGroup.addElement(child);
 					child.itemRendererParent = chartDataGroup;
 					child.data = data;
 					child.fillColor = bcs.fillColor;
@@ -121,8 +122,6 @@ package org.apache.flex.charts.beads.layouts
 					child.width = seriesWidth;
 					child.height = yValue*seriesMaxes[s].scaleFactor;
 					xpos += seriesWidth;
-					
-					chartDataGroup.addElement(child);
 				}
 				
 				xpos += gap;
