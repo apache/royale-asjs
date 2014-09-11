@@ -28,9 +28,11 @@ package org.apache.flex.html.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.BeadViewBase;
+    import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	
 	/**
@@ -44,7 +46,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageButtonView extends BeadViewBase implements IBeadView, IBead
+	public class ImageAndTextButtonView extends BeadViewBase implements IBeadView, IBead
 	{
 		/**
 		 *  Constructor.
@@ -54,7 +56,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ImageButtonView()
+		public function ImageAndTextButtonView()
 		{
 			upSprite = new Sprite();
 			downSprite = new Sprite();
@@ -106,8 +108,10 @@ package org.apache.flex.html.beads
 		private var downSprite:Sprite;
 		private var overSprite:Sprite;
 		private var shape:Shape;
+        
+        private var textModel:ITextModel;
 		
-        private var _icon:String;
+        private var _image:String;
         
         /**
          *  The URL of an icon to use in the button
@@ -117,25 +121,25 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get icon():String
+        public function get image():String
         {
-            return _icon;
+            return _image;
         }
         
         /**
          *  @private
          */
-        public function set text(value:String):void
+        public function set image(value:String):void
         {
-            _icon = value;
+            _image = value;
         }
         
 		/**
 		 * @private
 		 */
-		private function setupBackground(sprite:Sprite, textField:TextField, color:uint, state:String):void
+		private function setupBackground(sprite:Sprite, textField:TextField, color:uint, state:String = null):void
 		{
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
+			var backgroundImage:Object = image;
 			if (backgroundImage)
 			{
 				var loader:Loader = new Loader();
