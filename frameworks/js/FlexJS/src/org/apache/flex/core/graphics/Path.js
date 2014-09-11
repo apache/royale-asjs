@@ -58,12 +58,12 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
     path.setAttribute('style', style);
     path.setAttribute('d', data);
     this.element.appendChild(path);
-	if(this.get_stroke())
-	{
-	  this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
-	}
+    if (this.get_stroke())
+    {
+      this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+    }
     else
-	{
-	  this.setPosition(x, y, 0, 0);
-	}
+    {
+      this.setPosition(x, y, 0, 0);
+    }
   };

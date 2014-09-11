@@ -19,6 +19,7 @@ goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
 
+
 /**
  * @constructor
  */
@@ -53,21 +54,22 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    * @type {number}
    */
   this.xOffset_ = 0;
-  
+
   /**
    * @private
    * @type {number}
    */
   this.yOffset_ = 0;
-  
+
     /**
    * @expose
    * @type {Object}
    */
-  this.element = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
 };
+
 
 /**
  * Metadata
@@ -87,12 +89,14 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_fill = function() {
   return this.fill_;
 };
 
+
 /**
  * @param {org.apache.flex.core.graphics.SolidColor} value The fill object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_fill = function(value) {
   this.fill_ = value;
 };
+
 
 /**
  * @expose
@@ -102,6 +106,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
   return this.stroke_;
 };
 
+
 /**
  * @expose
  * @param {org.apache.flex.core.graphics.SolidColorStroke} value The stroke object.
@@ -110,6 +115,10 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
   this.stroke_ = value;
 };
 
+
+/**
+ * @expose
+ */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   var bbox = this.element.getBBox();
   this.resize(this.x_, this.y_, bbox);
@@ -122,13 +131,13 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   var fillStr;
-  if(this.get_fill())
+  if (this.get_fill())
   {
     var color = Number(this.get_fill().get_color()).toString(16);
     if (color.length == 1) color = '00' + color;
-	if (color.length == 2) color = '00' + color;
+    if (color.length == 2) color = '00' + color;
     if (color.length == 4) color = '00' + color;
-	fillStr = 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_fill().get_alpha());
+    fillStr = 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_fill().get_alpha());
   }
   else
   {
@@ -136,23 +145,24 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   }
 
   var strokeStr;
-  if(this.get_stroke())
+  if (this.get_stroke())
   {
     var strokeColor = Number(this.get_stroke().get_color()).toString(16);
     if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-	strokeStr = 'stroke:#' + String(strokeColor) + ';stroke-width:' +
-         String(this.get_stroke().get_weight()) + ';stroke-opacity:' + String(this.get_stroke().get_alpha())
+    strokeStr = 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+        String(this.get_stroke().get_weight()) + ';stroke-opacity:' + String(this.get_stroke().get_alpha());
   }
   else
   {
     strokeStr = 'stroke:none';
   }
-  
 
-  return fillStr + ';' + strokeStr ;
+
+  return fillStr + ';' + strokeStr;
 };
+
 
 /**
  * @expose
@@ -161,17 +171,20 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
  * @param {Object} bbox The bounding box of the svg element.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
-  this.element.setAttribute('width', String(bbox.width + bbox.x +  this.xOffset_) + 'px');
+  this.element.setAttribute('width', String(bbox.width + bbox.x + this.xOffset_) + 'px');
   this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
   this.element.setAttribute('style', 'position:absolute; left:' + String(x) + 'px; top:' + String(y) + 'px;');
-  //this.element.setAttribute('viewBox', String(bbox.x - this.xOffset_) + ' ' + String(bbox.y - this.yOffset_) + 
+  //this.element.setAttribute('viewBox', String(bbox.x - this.xOffset_) + ' ' + String(bbox.y - this.yOffset_) +
   //        ' ' + String(bbox.x + this.xOffset_) + ' ' + String(bbox.y + this.yOffset_));
 };
+
 
 /**
  * @expose
  * @param {number} x X position.
  * @param {number} y Y position.
+ * @param {number} xOffset offset from x position.
+ * @param {number} yOffset offset from y position.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.setPosition = function(x, y, xOffset, yOffset) {
   this.x_ = x;

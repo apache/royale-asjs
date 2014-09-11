@@ -50,21 +50,20 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
     var style = this.getStyleStr();
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     circle.setAttribute('style', style);
-	if(this.get_stroke())
-	{
-	  circle.setAttribute('cx', String(radius + this.get_stroke().get_weight()));
+    if (this.get_stroke())
+    {
+      circle.setAttribute('cx', String(radius + this.get_stroke().get_weight()));
       circle.setAttribute('cy', String(radius + this.get_stroke().get_weight()));
-	  this.setPosition(x-radius, y-radius, this.get_stroke().get_weight(), this.get_stroke().get_weight());
-	}
-	else
-	{
-	  circle.setAttribute('cx', String(radius));
+      this.setPosition(x - radius, y - radius, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+    }
+    else
+    {
+      circle.setAttribute('cx', String(radius));
       circle.setAttribute('cy', String(radius));
-	  this.setPosition(x-radius, y-radius, 0, 0);
-	}
+      this.setPosition(x - radius, y - radius, 0, 0);
+    }
 
     circle.setAttribute('rx', String(radius));
     circle.setAttribute('ry', String(radius));
     this.element.appendChild(circle);
-    
   };
