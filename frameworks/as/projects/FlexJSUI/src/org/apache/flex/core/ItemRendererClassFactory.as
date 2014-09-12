@@ -174,6 +174,7 @@ package org.apache.flex.core
         public function createFromClass(parent:IItemRendererParent):IItemRenderer
         {
             var renderer:IItemRenderer = itemRendererFactory.newInstance();
+			renderer.itemRendererParent = parent;
             parent.addElement(renderer);
             return renderer;
         }

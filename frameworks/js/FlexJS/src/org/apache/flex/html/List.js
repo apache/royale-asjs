@@ -108,29 +108,15 @@ org.apache.flex.html.List.prototype.addedToParent =
     function() {
   org.apache.flex.html.List.base(this, 'addedToParent');
 
-  var b = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
-  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !b) {
-    /**
-     * @type {Function}
-     */
-    var c;
-    c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,
-                            'iDataProviderItemRendererMapper'));
-    if (c) {
-      var bead = new c();
-      this.addBead(bead);
-    }
+  var itemRendererFactory = this.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
+  if (itemRendererFactory == null) {
+    var m2 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iItemRendererClassFactory');
+    itemRendererFactory = new m2();
+    this.addBead(itemRendererFactory);
   }
-//  var c = this.getBeadByType(org.apache.flex.core.IItemRenderer);
-//  if (c == null) {
-//    c = this.getBeadByType(
-//          org.apache.flex.html.supportClasses.DataItemRenderer);
-//    if (c == null) {
-//      this.addBead(new
-//                   org.apache.flex.html.beads.
-//                   TextItemRendererFactoryForArrayData());
-//    }
-//  }
+
+  var newEvent = new org.apache.flex.events.Event('layoutNeeded');
+  this.dispatchEvent(newEvent);
 };
 
 

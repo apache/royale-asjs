@@ -36,5 +36,10 @@ package org.apache.flex.charts.supportClasses
 		{
 			super();
 		}
+		
+		override public function addElement(c:Object):void
+		{
+			super.addElement(c);
+		}
 	}
 }

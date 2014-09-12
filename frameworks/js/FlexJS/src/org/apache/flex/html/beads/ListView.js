@@ -64,13 +64,6 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
   this.strand_.addEventListener('heightChanged',
       goog.bind(this.handleSizeChange, this));
 
-  /*if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
-    var m = org.apache.flex.core.ValuesManager.valuesImpl.
-        getValue(this.strand_,'iBeadLayout');
-    var c = new m();
-    this.strand_.addBead(c);
-  }*/
-
   this.model = this.strand_.get_model();
   this.model.addEventListener('selectedIndexChanged',
       goog.bind(this.selectionChangeHandler, this));
@@ -82,6 +75,12 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
   }
   this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
+
+  if (this.layout_ == null) {
+    var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+    this.layout_ = new m3();
+  }
+  this.layout_.set_strand(this.strand_);
 
   this.handleSizeChange(null);
 };

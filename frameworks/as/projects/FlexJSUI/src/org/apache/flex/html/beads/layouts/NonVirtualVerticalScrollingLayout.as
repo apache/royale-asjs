@@ -113,7 +113,6 @@ package org.apache.flex.html.beads.layouts
 			
 			var n:int = dp.length;
 			var yy:Number = 0;
-			var defaultHeight:Number = 30;
 			
 			for (var i:int = 0; i < n; i++)
 			{
@@ -121,16 +120,13 @@ package org.apache.flex.html.beads.layouts
 				var ir:IItemRenderer = IItemRendererParent(contentView).getItemRendererForIndex(i);
 				if (ir == null) {
 					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as IItemRenderer;
-					needsAdd = true;
 				}
-				ir.itemRendererParent = contentView;
 				ir.index = i;
-				ir.labelField = (_strand as List).labelField;
 				ir.data = dp[i];
-				if (needsAdd) UIBase(contentView).addElement(ir);
+				ir.labelField = (_strand as List).labelField;
 				UIBase(ir).y = yy;
+				UIBase(ir).x = 0;
 				UIBase(ir).width = contentView.width;
-//				if (UIBase(ir).height == 0) UIBase(ir).height = defaultHeight;
 				yy += UIBase(ir).height;			
 			}
 			if (yy > contentView.height)

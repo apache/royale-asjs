@@ -63,18 +63,29 @@ org.apache.flex.html.beads.layouts.
 org.apache.flex.html.beads.layouts.
     NonVirtualVerticalScrollingLayout.prototype.changeHandler =
         function(event) {
-  var children, i, n;
+  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var contentView = layoutParent.get_contentView();
+  var selectionModel = this.strand_.get_model();
+  var dp = selectionModel.get_dataProvider();
 
-  children = this.strand_.internalChildren();
-  n = children.length;
+  var itemRendererFactory = this.strand_.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
 
-  for (i = 0; i < n; i++)
+  var n = dp.length;
+  var yy = 0;
+  var defaultWidth = contentView.get_width();
+
+  for (var i = 0; i < n; i++)
   {
-    if (children[i].element.style.display == 'none')
-      children[i].lastDisplay_ = 'block';
-    else {
-      children[i].element.style.display = 'inline-block';
-      children[i].set_width(this.strand_.get_width());
+    var ir = contentView.getItemRendererForIndex(i);
+    if (ir == null) {
+      ir = itemRendererFactory.createItemRenderer(contentView);
     }
+    ir.set_index(i);
+    ir.set_labelField(this.strand_.get_labelField());
+    ir.set_y(yy);
+    ir.set_x(0);
+    ir.set_width(defaultWidth);
+    ir.set_data(dp[i]);
+    yy += ir.get_height();
   }
 };

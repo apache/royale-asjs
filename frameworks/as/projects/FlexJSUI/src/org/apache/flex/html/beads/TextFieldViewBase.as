@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ITextModel;
     import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
     /**
      *  The TextFieldViewBase class is the base class for
@@ -85,10 +86,10 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			_textModel = value.getBeadByType(ITextModel) as ITextModel;
-            _textModel.addEventListener("textChange", textChangeHandler);
-            _textModel.addEventListener("htmlChange", htmlChangeHandler);
-            _textModel.addEventListener("widthChanged", sizeChangeHandler);
-            _textModel.addEventListener("heightChanged", sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("textChanged", textChangeHandler);
+			IEventDispatcher(value).addEventListener("htmlChanged", htmlChangeHandler);
+			IEventDispatcher(value).addEventListener("widthChanged", sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged", sizeChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
 			sizeChangeHandler(null);
 			if (_textModel.text !== null)
@@ -152,6 +153,7 @@ package org.apache.flex.html.beads
 		private function textChangeHandler(event:Event):void
 		{
 			text = _textModel.text;
+			sizeChangeHandler(event);
 		}
 		
 		private function htmlChangeHandler(event:Event):void
