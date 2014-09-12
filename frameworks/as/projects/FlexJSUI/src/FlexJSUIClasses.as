@@ -123,6 +123,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.core.graphics.Path; Path;
 	import org.apache.flex.core.graphics.SolidColor; SolidColor;
 	import org.apache.flex.core.graphics.SolidColorStroke; SolidColorStroke;
+	import org.apache.flex.core.graphics.GraphicsContainer; GraphicsContainer;
     
 	import mx.core.ClassFactory; ClassFactory;
     import mx.states.AddItems; AddItems;

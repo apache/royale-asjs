@@ -19,7 +19,6 @@ goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
 
-
 /**
  * @constructor
  */
@@ -63,13 +62,12 @@ org.apache.flex.core.graphics.GraphicShape = function() {
 
     /**
    * @expose
-   * @type {Object}
+   * @type {svg}
    */
   this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
 };
-
 
 /**
  * Metadata
@@ -89,14 +87,12 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_fill = function() {
   return this.fill_;
 };
 
-
 /**
  * @param {org.apache.flex.core.graphics.SolidColor} value The fill object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_fill = function(value) {
   this.fill_ = value;
 };
-
 
 /**
  * @expose
@@ -106,7 +102,6 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
   return this.stroke_;
 };
 
-
 /**
  * @expose
  * @param {org.apache.flex.core.graphics.SolidColorStroke} value The stroke object.
@@ -114,7 +109,6 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
 org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value) {
   this.stroke_ = value;
 };
-
 
 /**
  * @expose
@@ -159,10 +153,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
     strokeStr = 'stroke:none';
   }
 
-
-  return fillStr + ';' + strokeStr;
+  return fillStr + ';' + strokeStr ;
 };
-
 
 /**
  * @expose
@@ -173,11 +165,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
   this.element.setAttribute('width', String(bbox.width + bbox.x + this.xOffset_) + 'px');
   this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
-  this.element.setAttribute('style', 'position:absolute; left:' + String(x) + 'px; top:' + String(y) + 'px;');
-  //this.element.setAttribute('viewBox', String(bbox.x - this.xOffset_) + ' ' + String(bbox.y - this.yOffset_) +
-  //        ' ' + String(bbox.x + this.xOffset_) + ' ' + String(bbox.y + this.yOffset_));
+  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' + String(x) + 'px; top:' + String(y));
 };
-
 
 /**
  * @expose
