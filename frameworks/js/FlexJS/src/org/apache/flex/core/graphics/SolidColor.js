@@ -13,11 +13,12 @@
  */
 
 goog.provide('org.apache.flex.core.graphics.SolidColor');
-
+goog.require('org.apache.flex.core.graphics.IFill');
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.graphics.IFill}
  */
 org.apache.flex.core.graphics.SolidColor = function() {
 
@@ -78,3 +79,19 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
 org.apache.flex.core.graphics.SolidColor.prototype.set_alpha = function(value) {
   this.alpha_ = value;
 };
+
+/**
+ * addFillAttrib()
+ *
+ * @expose
+ * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the fill must be added.
+ * @return {string}
+ */
+org.apache.flex.core.graphics.SolidColor.prototype.addFillAttrib = function(value) {
+  var color = Number(this.get_color()).toString(16);
+  if (color.length == 1) color = '00' + color;
+  if (color.length == 2) color = '00' + color;
+  if (color.length == 4) color = '00' + color;
+  return 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_alpha());
+};
+

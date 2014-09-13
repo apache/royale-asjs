@@ -44,16 +44,10 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill();
 			graphics.drawRect(x, y, width, height);
-			graphics.endFill();
+			endFill();
 		}
 		
 		/**
@@ -70,16 +64,10 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
 		{
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill();
 			graphics.drawEllipse(x,y,width,height);
-			graphics.endFill();
+			endFill();
 		}
 		
 		/**
@@ -95,16 +83,10 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill();
 			graphics.drawCircle(x,y,radius);
-			graphics.endFill();
+			endFill();
 		}
 		
 		/**
@@ -124,17 +106,11 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawPath(data:String):void
 		{
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill();
 			var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
 			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-			graphics.endFill();
+			endFill();
 		}
 		
 		public function drawLine():void

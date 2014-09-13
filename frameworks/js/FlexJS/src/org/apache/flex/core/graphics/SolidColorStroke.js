@@ -13,11 +13,14 @@
  */
 
 goog.provide('org.apache.flex.core.graphics.SolidColorStroke');
+goog.require('org.apache.flex.core.graphics.IStroke');
 
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.graphics.IStroke}
+ 
  */
 org.apache.flex.core.graphics.SolidColorStroke = function() {
 
@@ -100,4 +103,20 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_weight = function()
  */
 org.apache.flex.core.graphics.SolidColorStroke.prototype.set_weight = function(value) {
   this.weight_ = value;
+};
+
+/**
+ * addStrokeAttrib()
+ *
+ * @expose
+ * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the stroke must be added.
+ * @return {string}
+ */
+org.apache.flex.core.graphics.SolidColorStroke.prototype.addStrokeAttrib = function(value) {
+    var strokeColor = Number(this.get_color()).toString(16);
+    if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
+    if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
+    if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
+	return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+         String(this.get_weight()) + ';stroke-opacity:' + String(this.get_alpha())
 };
