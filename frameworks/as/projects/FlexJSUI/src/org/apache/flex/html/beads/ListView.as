@@ -33,6 +33,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -148,6 +149,14 @@ package org.apache.flex.html.beads
 			return _strand as DisplayObject;
 		}
 		
+        /**
+         * @private
+         */
+        public function get host():IUIBase
+        {
+            return _strand as IUIBase;
+        }
+        
 		private var _strand:IStrand;
 		
 		/**
@@ -158,10 +167,6 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;

@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -60,6 +61,19 @@ package org.apache.flex.html.beads
 		
 		private var _strand:IStrand;
 		
+        /**
+         *  The host component. 
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get host():IUIBase
+        {
+            return _strand as IUIBase;
+        }
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  

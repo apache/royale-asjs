@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {	
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 
@@ -30,7 +31,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IListView
+	public interface IListView extends IBeadView
 	{
 		/**
 		 *  The component which parents all of the itemRenderers for each
@@ -43,14 +44,5 @@ package org.apache.flex.html.beads
 		 */
 		function get dataGroup():IItemRendererParent;
 		
-		/**
-		 *  The host component.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get strand():IStrand;
 	}
 }

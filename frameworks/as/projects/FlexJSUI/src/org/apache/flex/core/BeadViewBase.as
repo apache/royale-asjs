@@ -56,6 +56,8 @@ package org.apache.flex.core
         protected var _strand:IStrand;
         
         /**
+         *  Get the strand for this bead
+         * 
          *  Override this for whatever else you need to do when
          *  being hooked to the Strand
          * 
@@ -70,6 +72,19 @@ package org.apache.flex.core
 		{
             _strand = value;
 		}
+        
+        /**
+         *  The host component. 
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get host():IUIBase
+        {
+            return _strand as IUIBase;
+        }
 		
         /**
          *  @copy org.apache.flex.core.IBeadView#viewHeight

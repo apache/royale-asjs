@@ -60,19 +60,19 @@ package org.apache.flex.html.beads
 			_border = new Border();
 			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
 			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-            IParent(strand).addElement(_border);
+            IParent(host).addElement(_border);
 			
-			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
-			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
 		}
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(strand).width;
+			var ww:Number = DisplayObject(host).width;
 			_border.width = ww;
 			
-			var hh:Number = DisplayObject(strand).height;
+			var hh:Number = DisplayObject(host).height;
 			_border.height = hh;
 		}
 	}

@@ -197,19 +197,6 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  The border.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get border():Border
-		{
-			return null;
-		}
-		
-        /**
          *  The host component, which can resize to different slots.
          *  
          *  @langversion 3.0
@@ -221,32 +208,6 @@ package org.apache.flex.html.beads
 		{
 			return _strand as DisplayObject;
 		}
-		
-        /**
-         *  The vertical ScrollBar, if it exists.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get vScrollBar():ScrollBar
-		{
-			return null;
-		}
-		
-        /**
-         *  The horizontal ScrollBar, if it exists.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get hScrollBar():ScrollBar
-		{
-			return null;
-		}
-		
+				
 	}
 }

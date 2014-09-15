@@ -108,22 +108,22 @@ package org.apache.flex.html.beads
 			_border = new Border();
 			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
 			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-            IParent(strand).addElement(border);
+            IParent(host).addElement(border);
 			
 			var vb:ScrollBar = vScrollBar;
 			
 			// Default size
-			var ww:Number = DisplayObject(strand).width;
-			if( isNaN(ww) || ww == 0 ) DisplayObject(strand).width = 100;
-			var hh:Number = DisplayObject(strand).height;
-			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 42;
+			var ww:Number = DisplayObject(host).width;
+			if( isNaN(ww) || ww == 0 ) DisplayObject(host).width = 100;
+			var hh:Number = DisplayObject(host).height;
+			if( isNaN(hh) || hh == 0 ) DisplayObject(host).height = 42;
 			
 			// for input, listen for changes to the _textField and update
 			// the model
 			textField.addEventListener(Event.SCROLL, textScrollHandler);
 			
-			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
-			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
 		}
 				

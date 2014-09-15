@@ -66,22 +66,22 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			
 			// Default size
-			var ww:Number = DisplayObject(strand).width;
-			if( isNaN(ww) || ww == 0 ) DisplayObject(strand).width = 100;
-			var hh:Number = DisplayObject(strand).height;
-			if( isNaN(hh) || hh == 0 ) DisplayObject(strand).height = 18;
+			var ww:Number = DisplayObject(host).width;
+			if( isNaN(ww) || ww == 0 ) DisplayObject(host).width = 100;
+			var hh:Number = DisplayObject(host).height;
+			if( isNaN(hh) || hh == 0 ) DisplayObject(host).height = 18;
 			
-			IEventDispatcher(strand).addEventListener("widthChanged", sizeChangedHandler);
-			IEventDispatcher(strand).addEventListener("heightChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
+			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
 			sizeChangedHandler(null);
 		}
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(strand).width;
+			var ww:Number = DisplayObject(host).width;
 			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
 			
-			var hh:Number = DisplayObject(strand).height;
+			var hh:Number = DisplayObject(host).height;
 			if( !isNaN(hh) && hh > 0 ) textField.height = hh;
 		}
 	}

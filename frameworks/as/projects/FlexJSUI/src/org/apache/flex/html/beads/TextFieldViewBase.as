@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+    import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -101,9 +102,9 @@ package org.apache.flex.html.beads
         /**
          *  @private
          */
-		public function get strand() : IStrand
+		public function get host() : IUIBase
 		{
-			return _strand;
+			return _strand as IUIBase;
 		}
 		
         /**

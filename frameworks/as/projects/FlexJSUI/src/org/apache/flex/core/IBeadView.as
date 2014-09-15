@@ -34,6 +34,16 @@ package org.apache.flex.core
 	public interface IBeadView extends IBead
 	{
         /**
+         *  The host component. 
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get host():IUIBase
+
+        /**
          *  The width of the view. 
          * 
          *  @langversion 3.0

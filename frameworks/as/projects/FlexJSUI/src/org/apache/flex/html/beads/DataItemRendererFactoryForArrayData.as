@@ -78,7 +78,7 @@ package org.apache.flex.html.beads
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
-			labelField = (listView.strand as List).labelField;
+			labelField = (listView.host as List).labelField;
 			
 			if (!itemRendererFactory)
 			{

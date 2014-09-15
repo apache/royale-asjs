@@ -111,13 +111,13 @@ package org.apache.flex.html.beads.controllers
         private function selectedHandler(event:Event):void
         {
             listModel.selectedIndex = ISelectableItemRenderer(event.target).index;
-            IEventDispatcher(listView.strand).dispatchEvent(new Event("change"));
+            listView.host.dispatchEvent(new Event("change"));
         }
 		
         private function rolloverHandler(event:Event):void
         {
             IRollOverModel(listModel).rollOverIndex = ISelectableItemRenderer(event.target).index;
-            IEventDispatcher(listView.strand).dispatchEvent(new Event("rollover"));
+            listView.host.dispatchEvent(new Event("rollover"));
         }
 	
 	}
