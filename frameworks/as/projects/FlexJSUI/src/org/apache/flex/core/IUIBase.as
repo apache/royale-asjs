@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import org.apache.flex.events.IEventDispatcher;
+
     /**
      *  The IUIBase interface is the basic interface for user interface components.
      *  
@@ -26,7 +28,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IUIBase extends IStrand
+	public interface IUIBase extends IStrand, IEventDispatcher
 	{
         /**
          *  Each IUIBase has an element that is actually added to
