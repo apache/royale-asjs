@@ -58,7 +58,7 @@
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
-    <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}" />
  
     <target name="main" depends="check-compile-env,clean,prepare,compile" 
         description="Clean build of all SWCs"/>
