@@ -15,14 +15,16 @@
 package org.apache.flex.core.graphics
 {
 	
+	import flash.geom.Rectangle;
+	
 	import org.apache.flex.core.UIBase;
 	
 	public class GraphicShape extends UIBase
 	{
-		private var _fill:SolidColor;
-		private var _stroke:SolidColorStroke;
+		private var _fill:IFill;
+		private var _stroke:IStroke;
 		
-		public function get stroke():SolidColorStroke
+		public function get stroke():IStroke
 		{
 			return _stroke;
 		}
@@ -35,12 +37,12 @@ package org.apache.flex.core.graphics
 		 *  @playerversion AIR 1.1
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set stroke(value:SolidColorStroke):void
+		public function set stroke(value:IStroke):void
 		{
 			_stroke = value;
 		}
 		
-		public function get fill():SolidColor
+		public function get fill():IFill
 		{
 			return _fill;
 		}
@@ -52,7 +54,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion AIR 1.1
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set fill(value:SolidColor):void
+		public function set fill(value:IFill):void
 		{
 			_fill = value;
 		}
@@ -65,11 +67,11 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
-		protected function beginFill():void
+		protected function beginFill(targetBounds:Rectangle):void
 		{
 			if(fill)
 			{
-				fill.begin(this);
+				fill.begin(this, targetBounds);
 			}
 		}
 		

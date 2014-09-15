@@ -26,7 +26,9 @@ limitations under the License.
         <![CDATA[            
 			import org.apache.flex.core.graphics.Circle;
 			import org.apache.flex.core.graphics.Ellipse;
+			import org.apache.flex.core.graphics.GradientEntry;
 			import org.apache.flex.core.graphics.GraphicsContainer;
+			import org.apache.flex.core.graphics.LinearGradient;
 			import org.apache.flex.core.graphics.Path;
 			import org.apache.flex.core.graphics.Rect;
 			import org.apache.flex.core.graphics.SolidColor;
@@ -195,21 +197,40 @@ limitations under the License.
 				var container:GraphicsContainer = new GraphicsContainer();
 				container.fill = fill;
 				container.stroke = stroke;
+				//Circle
 				container.drawCircle(300,300,200);
 				fill.color = 0x00FF00;
 				stroke.color = 0x0000FF;
+				//Rect
 				container.drawRect(0,400,500,200);
 				fill.color = 0x00FFFF;
 				stroke.color = 0xFF00FF;
+				//Ellipse
 				container.drawEllipse(600,300,200,300);
 				fill.color = 0xCCCC00;
 				stroke.color = 0x000000;
+				//Path
 				container.drawPath("M 100 350 q 150 -300 300 0");
 				fill.color = 0x00CCCC;
 				stroke.color = 0x0CCCC0C;
 				stroke.weight = 5;
 				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");
 				
+				//LinearGradient Fill
+				var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFFFFFF,0), new GradientEntry(1,0x000000,1)];
+				lg.scaleX = 1;
+				lg.rotation = 0;
+				container.fill = lg;
+				container.drawRect(20,20,200,100);
+				this.addElement(container);
+
+				var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(0.5,0xFFFFFF,0), new GradientEntry(0.9,0x000000,1)];
+				lg.scaleX = 2;
+				lg.rotation = 90;
+				container.fill = lg;
+				container.drawCircle(400, 400, 300);
 				this.addElement(container);
 			}
 			

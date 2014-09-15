@@ -1,7 +1,6 @@
 package org.apache.flex.core.graphics
 {
-	import flash.display.CapsStyle;
-	import flash.display.JointStyle;
+	import flash.geom.Rectangle;
 
 	public class Circle extends GraphicShape
 	{
@@ -20,16 +19,10 @@ package org.apache.flex.core.graphics
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
 			graphics.clear();
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill(new Rectangle(x, y, radius*2, radius*2));
 			graphics.drawCircle(x,y,radius);
-			graphics.endFill();
+			endFill();
 		}
 		
 	}

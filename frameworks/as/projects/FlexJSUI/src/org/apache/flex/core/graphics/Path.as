@@ -29,22 +29,15 @@ package org.apache.flex.core.graphics
 		public function drawPath(x:Number,y:Number,data:String):void
 		{
 			graphics.clear();
-			if(stroke)
-			{
-				graphics.lineStyle(stroke.weight,stroke.color,stroke.alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
-			}
-			if(fill)
-			{
-				graphics.beginFill(fill.color,fill.alpha);
-			}
+			applyStroke();
+			beginFill(new Rectangle());
 			segments = new PathSegmentsCollection(data);
 			if (segments)
 				segments.generateGraphicsPath(graphicsPath, x, y, 1, 1);
 			
 			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-			graphics.endFill();
+			endFill();
 		}
-		
 	}
 }
 
