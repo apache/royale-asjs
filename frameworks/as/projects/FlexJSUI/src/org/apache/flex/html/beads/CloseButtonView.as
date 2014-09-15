@@ -63,6 +63,11 @@ package org.apache.flex.html.beads
 			g.beginFill(bgColor);
 			g.drawRect(0, 0, 11, 11);
 			g.endFill();
+            g.lineStyle(2);
+            g.moveTo(3,3);
+            g.lineTo(8,8);
+            g.moveTo(3,8);
+            g.lineTo(8,3);
 		}
 		
 		private var shape:Shape;
