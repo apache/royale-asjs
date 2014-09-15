@@ -129,5 +129,24 @@ package org.apache.flex.core
         {
             // do nothing
         }
+        
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#convertColor()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function convertColor(value:Object):uint
+        {
+            if (!(value is String))
+                return uint(value);
+            
+            var stringValue:String = value as String;
+            if (stringValue.charAt(0) == '#')
+                return uint(stringValue.substr(1));
+            return uint(stringValue);
+        }
 	}
 }

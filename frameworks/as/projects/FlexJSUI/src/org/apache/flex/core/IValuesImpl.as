@@ -94,5 +94,19 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function init(mainClass:Object):void;
-	}
+
+        /**
+         *  Converts a color value into a uint.
+         *
+         *  @param value A string for a color.  Typically it is
+         *  a color value like #ffffff or "red" in some cases.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function convertColor(value:Object):uint;
+
+    }
 }

@@ -293,6 +293,7 @@ package org.apache.flex.core
 			}
 			
 			className = getQualifiedClassName(thisObject);
+            var thisInstance:Object = thisObject;
 			while (className != "Object")
 			{
 				if (state)
@@ -314,9 +315,18 @@ package org.apache.flex.core
 	                if (value !== undefined)
 	                    return value;
 	            }
-				className = getQualifiedSuperclassName(thisObject);
-				thisObject = getDefinitionByName(className);
+				className = getQualifiedSuperclassName(thisInstance);
+				thisInstance = getDefinitionByName(className);
 			}
+            
+            if (inheritingStyles[valueName] != null && 
+                thisObject is IChild)
+            {
+                var parentObject:Object = IChild(thisObject).parent;
+                if (parentObject)
+                    return getValue(parentObject, valueName, state, attrs);
+            }
+            
             o = values["global"];
             if (o)
             {
@@ -400,6 +410,41 @@ package org.apache.flex.core
             }
             return o[valueName];
         }
+        
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#convertColor()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function convertColor(value:Object):uint
+        {
+            if (!(value is String))
+                return uint(value);
+            
+            var stringValue:String = value as String;
+            if (stringValue.charAt(0) == '#')
+                return uint(stringValue.substr(1));
+            return uint(stringValue);
+        }
+        
+        /**
+         *  A map of inheriting styles 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var inheritingStyles:Object = { 
+            "color" : 1,
+            "fontFamily" : 1,
+            "fontSize" : 1,
+            "fontStyle" : 1
+        }
+                                                        
 	}
 }
 
