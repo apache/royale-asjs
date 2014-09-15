@@ -24,7 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IParent;
 	import org.apache.flex.core.UIBase;
@@ -46,7 +46,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ScrollingContainerView extends BeadViewBase implements IBeadView, ILayoutParent
+	public class ScrollingContainerView extends BeadViewBase implements IBeadView, IScrollingLayoutParent
 	{
         /**
          *  Constructor.

@@ -23,7 +23,7 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -79,7 +79,8 @@ package org.apache.flex.html.beads.layouts
 		
 		private function changeHandler(event:Event):void
 		{            
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var layoutParent:IScrollingLayoutParent = 
+                        _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
 			var contentView:DisplayObjectContainer = layoutParent.contentView;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;

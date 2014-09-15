@@ -24,11 +24,18 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
+<<<<<<< HEAD
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
+||||||| merged common ancestors
+	import org.apache.flex.core.ILayoutParent;
+=======
+	import org.apache.flex.core.IScrollingLayoutParent;
+    import org.apache.flex.core.ILayoutParent;
+>>>>>>> refactor ILayoutParent into IScrollingLayoutParent
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -89,8 +96,9 @@ package org.apache.flex.html.beads.layouts
 		
 		private function changeHandler(event:Event):void
 		{            
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IContentView = layoutParent.contentView as IContentView;
+            var layoutParent:IScrollingLayoutParent = 
+                _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
+            var contentView:IContentView = layoutParent.contentView as IContentView;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;
 			

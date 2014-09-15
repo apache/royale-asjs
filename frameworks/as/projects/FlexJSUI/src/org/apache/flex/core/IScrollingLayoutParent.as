@@ -25,8 +25,8 @@ package org.apache.flex.core
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
     /**
-     *  The ILayoutParent interface is the basic interface for the 
-     *  container that have an IBeadLayout.  The layout implementation
+     *  The IScrollingLayoutParent interface is an ILayoutParent
+     *  that has traditional scrollbars.  The layout implementation
      *  often needs to know certain things about other objects in
      *  the component.
      * 
@@ -35,28 +35,37 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface ILayoutParent
+	public interface IScrollingLayoutParent extends ILayoutParent
 	{
         /**
-         *  The container that parents all of the content.
+         *  The border.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get contentView():DisplayObjectContainer;
+		function get border():Border;
 		
         /**
-         *  The container whose size changes
-         *  imply the need for another layout pass.  This
-         *  is normally the host component.
+         *  The vertical ScrollBar.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get resizableView():DisplayObject;
+		function get vScrollBar():ScrollBar;
+        
+        /**
+         *  The horizontal ScrollBar.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		function get hScrollBar():ScrollBar;
+		
 	}
 }
