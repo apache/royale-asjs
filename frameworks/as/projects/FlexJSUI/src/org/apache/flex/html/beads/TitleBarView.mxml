@@ -42,7 +42,11 @@ limitations under the License.
     </basic:beads>
 
     <basic:Label id="titleLabel" text="{ITitleBarModel(model).title}" 
-                                 html="{ITitleBarModel(model).htmlTitle}" />
+                                 html="{ITitleBarModel(model).htmlTitle}" >
+        <basic:style>
+            <basic:SimpleCSSStyles fontWeight="inherit" />
+        </basic:style>
+    </basic:Label>
     <basic:CloseButton id="closeButton" click="clickHandler()"
                        visible="{ITitleBarModel(model).showCloseButton}";
 />
