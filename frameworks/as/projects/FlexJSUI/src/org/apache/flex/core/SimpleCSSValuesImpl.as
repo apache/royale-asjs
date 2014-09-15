@@ -268,9 +268,23 @@ package org.apache.flex.core
 			var className:String;
 			var selectorName:String;
 			
-			if ("className" in thisObject)
+			if (thisObject is IStyleableObject)
 			{
-				className = thisObject.className;
+                var styleable:IStyleableObject = IStyleableObject(thisObject);
+                if (styleable.style != null)
+                {
+                    try {
+                        value = styleable.style[valueName];
+                    }
+                    catch (e:Error) {
+                        value = undefined;
+                    }
+                    if (value == "inherit")
+                        return getInheritingValue(thisObject, valueName, state, attrs);
+                    if (value !== undefined)
+                        return value;
+                }
+				className = styleable.className;
 				if (state)
 				{
 					selectorName = className + ":" + state;
@@ -278,6 +292,8 @@ package org.apache.flex.core
 					if (o)
 					{
 						value = o[valueName];
+                        if (value == "inherit")
+                            return getInheritingValue(thisObject, valueName, state, attrs);
 						if (value !== undefined)
 							return value;
 					}
@@ -287,6 +303,8 @@ package org.apache.flex.core
 				if (o)
 				{
 					value = o[valueName];
+                    if (value == "inherit")
+                        return getInheritingValue(thisObject, valueName, state, attrs);
 					if (value !== undefined)
 						return value;
 				}
@@ -303,6 +321,8 @@ package org.apache.flex.core
 					if (o)
 					{
 						value = o[valueName];
+                        if (value == "inherit")
+                            return getInheritingValue(thisObject, valueName, state, attrs);
 						if (value !== undefined)
 							return value;
 					}
@@ -312,6 +332,8 @@ package org.apache.flex.core
 	            if (o)
 	            {
 	                value = o[valueName];
+                    if (value == "inherit")
+                        return getInheritingValue(thisObject, valueName, state, attrs);
 	                if (value !== undefined)
 	                    return value;
 	            }
@@ -339,9 +361,27 @@ package org.apache.flex.core
 			{
 				return o[valueName];
 			}
-			return null;
+			return undefined;
 		}
 		
+        private function getInheritingValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
+        {
+            var value:*;
+            if (thisObject is IChild)
+            {
+                var parentObject:Object = IChild(thisObject).parent;
+                if (parentObject)
+                {
+                    value = getValue(parentObject, valueName, state, attrs);
+                    if (value == "inherit" || value === undefined)
+                        return getInheritingValue(parentObject, valueName, state, attrs);
+                    if (value !== undefined)
+                        return value;
+                }
+            }
+            return "inherit";
+        }
+        
         /**
          *  A method that stores a value to be shared with other objects.
          *  It is global, not per instance.  Fancier implementations
