@@ -103,6 +103,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
     import org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;  
 	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalScrollingLayout; NonVirtualHorizontalScrollingLayout;
+    import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
     import org.apache.flex.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;

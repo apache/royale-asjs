@@ -26,6 +26,7 @@
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="MXMLBeadViewBase" class="org.apache.flex.core.MXMLBeadViewBase"/>
+    <component id="MXMLBeadViewBaseDataBinding" class="org.apache.flex.core.MXMLBeadViewBaseDataBinding"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
@@ -67,6 +68,8 @@
     <component id="NonVirtualVerticalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout"/>
     <component id="NonVirtualHorizontalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualHorizontalScrollingLayout"/>
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
+    <component id="LayoutChangeNotifier" class="org.apache.flex.html.beads.layouts.LayoutChangeNotifier"/>
+    
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.Alert"/>
     <component id="Spinner" class="org.apache.flex.html.Spinner"/>
