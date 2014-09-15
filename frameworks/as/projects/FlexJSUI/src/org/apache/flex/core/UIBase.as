@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase, IParent, IStyleableObject
+	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IUIBase, IParent, IStyleableObject, IChild
 	{
         /**
          *  Constructor.
