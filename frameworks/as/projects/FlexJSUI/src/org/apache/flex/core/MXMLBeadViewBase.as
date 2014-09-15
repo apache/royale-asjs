@@ -18,14 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	
 	import mx.states.State;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 
     [DefaultProperty("mxmlContent")]
     
@@ -66,12 +69,12 @@ package org.apache.flex.core
          */
         override public function set strand(value:IStrand):void
         {
+            super.strand = value;
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
             
             MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
             
-            super.strand = value;
             dispatchEvent(new Event("strandChanged"));            
             MXMLDataInterpreter.generateMXMLInstances(this, IParent(value), MXMLDescriptor);
             
@@ -83,7 +86,7 @@ package org.apache.flex.core
          *  @private
          *  Needed for databinding expressions
          */
-        protected function get strand():IStrand
+        public function get strand():IStrand
         {
             return _strand;
         }
@@ -92,7 +95,7 @@ package org.apache.flex.core
         /**
          *  The model object.
          */
-        protected function get model():Object
+        public function get model():Object
         {
             return _strand["model"];
         }
@@ -310,5 +313,31 @@ package org.apache.flex.core
             return null;
         }
 
-   }
+        /**
+         *  The parent of the children.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get contentView():DisplayObjectContainer
+        {
+            return _strand as DisplayObjectContainer;
+        }
+        
+        /**
+         *  The host component, which can resize to different slots.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get resizableView():DisplayObject
+        {
+            return _strand as DisplayObject;
+        }
+        
+    }
 }
