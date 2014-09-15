@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+    import flash.display.Sprite;
 	import flash.display.Graphics;
 	
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -52,6 +54,8 @@ package org.apache.flex.html.beads
 				
 		private var _strand:IStrand;
 		
+        private var host:IUIBase;
+        
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -63,15 +67,20 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+            if (value is IUIBase)
+                host = IUIBase(value);
+            else if (value is IBeadView)
+                host = IUIBase(IBeadView(value).host);
+            
+            IEventDispatcher(host).addEventListener("heightChanged", changeHandler);
+            IEventDispatcher(host).addEventListener("widthChanged", changeHandler);
 			
-			var bgColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			if( bgColor != null ) {
-				backgroundColor = uint(bgColor);
+				backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
 			}
 			
-			var bgAlpha:Object = ValuesManager.valuesImpl.getValue(value, "opacity");
+			var bgAlpha:Object = ValuesManager.valuesImpl.getValue(host, "opacity");
 			if( bgAlpha != null ) {
 				opacity = Number(bgAlpha);
 			}
@@ -129,8 +138,7 @@ package org.apache.flex.html.beads
 		
 		private function changeHandler(event:Event):void
 		{
-            var host:UIBase = UIBase(_strand);
-            var g:Graphics = host.graphics;
+            var g:Graphics = Sprite(host).graphics;
             var w:Number = host.width;
             var h:Number = host.height;
 			
