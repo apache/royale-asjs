@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.IFill');
 
 
+
 /**
  * @constructor
  * @implements {org.apache.flex.core.graphics.IFill}
@@ -79,6 +80,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
 org.apache.flex.core.graphics.SolidColor.prototype.set_alpha = function(value) {
   this.alpha_ = value;
 };
+
 
 /**
  * addFillAttrib()

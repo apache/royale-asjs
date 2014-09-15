@@ -42,22 +42,23 @@ org.apache.flex.core.graphics.Line.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- *  @param {number} x1 The x1 attribute defines the start of the line on the x-axis
- *  @param {number} y1 The y1 attribute defines the start of the line on the y-axis
- *  @param {number} x2 The x2 attribute defines the end of the line on the x-axis
- *  @param {number} y2 The y2 attribute defines the end of the line on the y-axis
+ *  @param {number} x1 The x1 attribute defines the start of the line on the x-axis.
+ *  @param {number} y1 The y1 attribute defines the start of the line on the y-axis.
+ *  @param {number} x2 The x2 attribute defines the end of the line on the x-axis.
+ *  @param {number} y2 The y2 attribute defines the end of the line on the y-axis.
  */
 org.apache.flex.core.graphics.Line.prototype.drawLine = function(x1, y1, x2, y2) {
     var style = this.getStyleStr();
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('style', style);
     line.setAttribute('x1', 0);
-	line.setAttribute('y1', y1);
-	line.setAttribute('x2', x2-x1);
-	line.setAttribute('y2', y2);
-	this.setPosition(x1,y2,this.get_stroke().get_weight(),this.get_stroke().get_weight());
+    line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2 - x1);
+    line.setAttribute('y2', y2);
+    this.setPosition(x1, y2, this.get_stroke().get_weight(), this.get_stroke().get_weight());
     this.element.appendChild(line);
   };
+
 
 /**
  * @override
@@ -70,5 +71,6 @@ org.apache.flex.core.graphics.Line.prototype.resize = function(x, y, bbox) {
   this.element.setAttribute('width', String(bbox.width) + 'px');
   this.element.setAttribute('height', String(bbox.height) + 'px');
 
-  this.element.setAttribute('style', 'position:absolute; left:' + String(x + bbox.x - this.xOffset_) + 'px; top:' + String(bbox.y - this.yOffset_) + 'px;');
+  this.element.setAttribute('style', 'position:absolute; left:' + String(x + bbox.x - this.xOffset_) +
+      'px; top:' + String(bbox.y - this.yOffset_) + 'px;');
 };

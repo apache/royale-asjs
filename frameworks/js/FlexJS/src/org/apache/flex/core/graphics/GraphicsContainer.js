@@ -11,10 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 goog.provide('org.apache.flex.core.graphics.GraphicsContainer');
 
 goog.require('org.apache.flex.core.graphics.GraphicShape');
+
+
 
 /**
  * @constructor
@@ -31,9 +33,9 @@ goog.inherits(org.apache.flex.core.graphics.GraphicsContainer, org.apache.flex.c
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.FLEXJS_CLASS_INFO = 
-    { names: [{ name: 'GraphicsContainer', 
-	            qName: 'org.apache.flex.core.graphics.GraphicsContainer'}] };
+org.apache.flex.core.graphics.GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'GraphicsContainer',
+      qName: 'org.apache.flex.core.graphics.GraphicsContainer'}] };
 
 
 /**
@@ -66,8 +68,8 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function
   var style = this.getStyleStr();
   var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
   ellipse.setAttribute('style', style);
-  ellipse.setAttribute('cx', String(x + width/2));
-  ellipse.setAttribute('cy', String(y + height/2));
+  ellipse.setAttribute('cx', String(x + width / 2));
+  ellipse.setAttribute('cy', String(y + height / 2));
   ellipse.setAttribute('rx', String(width / 2));
   ellipse.setAttribute('ry', String(height / 2));
   this.element.appendChild(ellipse);

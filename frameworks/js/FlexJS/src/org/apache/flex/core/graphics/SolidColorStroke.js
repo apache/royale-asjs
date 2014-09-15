@@ -20,7 +20,7 @@ goog.require('org.apache.flex.core.graphics.IStroke');
 /**
  * @constructor
  * @implements {org.apache.flex.core.graphics.IStroke}
- 
+ *
  */
 org.apache.flex.core.graphics.SolidColorStroke = function() {
 
@@ -105,6 +105,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.set_weight = function(v
   this.weight_ = value;
 };
 
+
 /**
  * addStrokeAttrib()
  *
@@ -117,6 +118,6 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.addStrokeAttrib = funct
     if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-	return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
-         String(this.get_weight()) + ';stroke-opacity:' + String(this.get_alpha())
-};
+    return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+         String(this.get_weight()) + ';stroke-opacity:' + String(this.get_alpha());
+  };

@@ -49,7 +49,7 @@ goog.inherits(
 org.apache.flex.charts.core.ChartBase.prototype.FLEXJS_CLASS_INFO = {
     names: [{ name: 'ChartBase', qName: 'org.apache.flex.charts.core.ChartBase'}]
   };
-  
+
 
 /**
  * @override
@@ -58,7 +58,7 @@ org.apache.flex.charts.core.ChartBase.prototype.createElement = function() {
     org.apache.flex.charts.core.ChartBase.base(this, 'createElement');
     this.element.style.border = 'none';
     this.element.style.overflow = 'visible';
-};
+  };
 
 
 /**

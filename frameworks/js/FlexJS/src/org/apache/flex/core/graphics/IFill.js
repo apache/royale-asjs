@@ -19,6 +19,8 @@
 
 goog.provide('org.apache.flex.core.graphics.IFill');
 
+
+
 /**
  * IFill
  *
@@ -43,7 +45,7 @@ org.apache.flex.core.graphics.IFill.prototype.FLEXJS_CLASS_INFO =
  *
  * @expose
  * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the fill must be added.
- * @return {string} The fill style attribute 
+ * @return {string} The fill style attribute.
  */
 org.apache.flex.core.graphics.IFill.prototype.addFillAttrib =
     function(value) {};

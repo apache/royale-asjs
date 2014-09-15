@@ -19,6 +19,7 @@ goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
 
+
 /**
  * @constructor
  */
@@ -53,21 +54,22 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    * @type {number}
    */
   this.xOffset_ = 0;
-  
+
   /**
    * @private
    * @type {number}
    */
   this.yOffset_ = 0;
-  
+
     /**
    * @expose
    * @type {SVGElement}
    */
-  this.element = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
 };
+
 
 /**
  * Metadata
@@ -87,12 +89,14 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_fill = function() {
   return this.fill_;
 };
 
+
 /**
  * @param {org.apache.flex.core.graphics.SolidColor} value The fill object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_fill = function(value) {
   this.fill_ = value;
 };
+
 
 /**
  * @expose
@@ -102,6 +106,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
   return this.stroke_;
 };
 
+
 /**
  * @expose
  * @param {org.apache.flex.core.graphics.SolidColorStroke} value The stroke object.
@@ -110,6 +115,10 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
   this.stroke_ = value;
 };
 
+
+/**
+ * @override
+ */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   var bbox = this.element.getBBox();
   this.resize(this.x_, this.y_, bbox);
@@ -122,9 +131,9 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   var fillStr;
-  if(this.get_fill())
+  if (this.get_fill())
   {
-	fillStr = this.get_fill().addFillAttrib(this);
+    fillStr = this.get_fill().addFillAttrib(this);
   }
   else
   {
@@ -132,7 +141,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   }
 
   var strokeStr;
-  if(this.get_stroke())
+  if (this.get_stroke())
   {
     strokeStr = this.get_stroke().addStrokeAttrib(this);
   }
@@ -140,10 +149,11 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   {
     strokeStr = 'stroke:none';
   }
-  
 
-  return fillStr + ';' + strokeStr ;
+
+  return fillStr + ';' + strokeStr;
 };
+
 
 /**
  * @expose
@@ -156,6 +166,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbo
   this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
   this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' + String(x) + 'px; top:' + String(y));
 };
+
 
 /**
  * @expose

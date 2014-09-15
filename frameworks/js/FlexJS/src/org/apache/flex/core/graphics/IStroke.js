@@ -19,6 +19,8 @@
 
 goog.provide('org.apache.flex.core.graphics.IStroke');
 
+
+
 /**
  * IStroke
  *
@@ -43,7 +45,7 @@ org.apache.flex.core.graphics.IStroke.prototype.FLEXJS_CLASS_INFO =
  *
  * @expose
  * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the stroke must be added.
- * @return {string} The stroke style attribute
+ * @return {string} The stroke style attribute.
  */
 org.apache.flex.core.graphics.IStroke.prototype.addStrokeAttrib =
     function(value) {};
