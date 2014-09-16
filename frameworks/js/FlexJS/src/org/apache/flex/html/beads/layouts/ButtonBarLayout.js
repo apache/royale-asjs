@@ -80,6 +80,8 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
         goog.bind(this.changeHandler, this));
     this.strand_.addEventListener('heightChanged',
         goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('layoutNeeded',
+        goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
   }
 };
@@ -90,28 +92,40 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
  */
 org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.changeHandler = function(event) {
-  var children, i, n, xpos, useWidth, useHeight;
+  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var contentView = layoutParent.get_contentView();
+  var selectionModel = this.strand_.get_model();
+  var dp = selectionModel.get_dataProvider();
 
-  children = this.strand_.internalChildren();
-  n = children.length;
+  var itemRendererFactory = this.strand_.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
 
-  xpos = 0;
-  useWidth = this.strand_.get_width() / n;
-  useHeight = this.strand_.get_height();
+  var n = dp.length;
 
-  for (i = 0; i < n; i++)
+  var xpos = 0;
+  var useWidth = this.strand_.get_width() / n;
+  var useHeight = this.strand_.get_height();
+
+  for (var i = 0; i < n; i++)
   {
-    children[i].set_height(useHeight);
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) children[i].set_width(this.buttonWidths_[i]);
-    else children[i].set_width(useWidth);
-    children[i].element.style['vertical-align'] = 'middle';
-    children[i].element.style['text-align'] = 'center';
-    children[i].element.style['left-margin'] = 'auto';
-    children[i].element.style['right-margin'] = 'auto';
+    var ir = contentView.getItemRendererForIndex(i);
+    if (ir == null) {
+      ir = itemRendererFactory.createItemRenderer(contentView);
+    }
+    ir.set_index(i);
+    ir.set_labelField(this.strand_.get_labelField());
+    ir.set_data(dp[i]);
+    ir.element.style['vertical-align'] = 'middle';
+    ir.element.style['text-align'] = 'center';
+    ir.element.style['left-margin'] = 'auto';
+    ir.element.style['right-margin'] = 'auto';
+  
+    ir.set_height(useHeight);
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.set_width(this.buttonWidths_[i]);
+    else ir.set_width(useWidth);
 
-    if (children[i].element.style.display == 'none')
-      children[i].lastDisplay_ = 'inline-block';
+    if (ir.element.style.display == 'none')
+      ir.lastDisplay_ = 'inline-block';
     else
-      children[i].element.style.display = 'inline-block';
+      ir.element.style.display = 'inline-block';
   }
 };

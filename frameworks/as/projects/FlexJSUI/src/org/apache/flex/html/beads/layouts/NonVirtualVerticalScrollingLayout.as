@@ -122,8 +122,8 @@ package org.apache.flex.html.beads.layouts
 					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as IItemRenderer;
 				}
 				ir.index = i;
-				ir.data = dp[i];
 				ir.labelField = (_strand as List).labelField;
+				ir.data = dp[i];
 				UIBase(ir).y = yy;
 				UIBase(ir).x = 0;
 				UIBase(ir).width = contentView.width;

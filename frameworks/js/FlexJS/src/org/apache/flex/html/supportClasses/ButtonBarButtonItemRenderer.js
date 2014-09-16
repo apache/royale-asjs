@@ -53,6 +53,8 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
   this.positioner = this.element;
 
   this.button = document.createElement('button');
+  this.button.style.width = '100%';
+  this.button.style.height = '100%';
   this.element.appendChild(this.button);
 
   this.element.flexjs_wrapper = this;
@@ -107,6 +109,6 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     this.button.innerHTML = value.title;
   }
   else {
-    this.button.innerHHTML = String(value);
+    this.button.innerHTML = value
   }
 };

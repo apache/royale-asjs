@@ -22,11 +22,17 @@ package org.apache.flex.html.beads.layouts
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.List;
 	
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
@@ -70,6 +76,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _buttonWidths:Array = null;
@@ -100,22 +107,34 @@ package org.apache.flex.html.beads.layouts
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:DisplayObjectContainer = layoutParent.contentView;
 			
-			var n:int = contentView.numChildren;
+			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var dp:Array = selectionModel.dataProvider as Array;
+			if (!dp)
+				return;
+			
+			var itemRendererFactory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			
+			var n:int = dp.length;
 			var xpos:Number = 0;
 			var useWidth:Number = DisplayObject(_strand).width / n;
 			var useHeight:Number = DisplayObject(_strand).height;
 			
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:DisplayObject = contentView.getChildAt(i);
+				var ir:IItemRenderer = IItemRendererParent(contentView).getItemRendererForIndex(i);
+				if (ir == null) {
+					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as IItemRenderer;
+				}
+				ir.index = i;
+				ir.labelField = (_strand as List).labelField;
+				ir.data = dp[i];
+				UIBase(ir).y = 0;
+				UIBase(ir).height = useHeight;
+				UIBase(ir).x = xpos;
 				
-				child.y = 0;
-				child.height = useHeight;
-				child.x = xpos;
-				
-				if (buttonWidths) child.width = Number(buttonWidths[i]);
-				else child.width = useWidth;
-				xpos += child.width;
+				if (buttonWidths) UIBase(ir).width = Number(buttonWidths[i]);
+				else UIBase(ir).width = useWidth;
+				xpos += UIBase(ir).width;
 			}
 		}
 	}

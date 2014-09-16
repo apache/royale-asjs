@@ -104,6 +104,7 @@ package org.apache.flex.html.beads
 				buttonWidths.push(dgc.columnWidth);
 			}
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
+			bblayout.buttonWidths = buttonWidths;
 			
 			buttonBarModel = new ArraySelectionModel();
 			buttonBarModel.dataProvider = columnLabels;
