@@ -81,7 +81,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        protected var destination:Object;
+        public var destination:Object;
 
         /**
          *  If not null, the id of the mxml tag who's property
@@ -126,7 +126,9 @@ package org.apache.flex.binding
          */
 		public function set strand(value:IStrand):void
 		{
-			destination = value;
+            if (destination == null)
+                destination = value;
+            
 			source = document[sourceID];
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
