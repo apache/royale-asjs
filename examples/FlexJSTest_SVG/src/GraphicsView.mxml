@@ -37,9 +37,8 @@ limitations under the License.
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
-				//var d:Dummy = new Dummy();
-				//drawIndividualShapes();
-				drawOnGraphicsContainer();
+				drawIndividualShapes();
+				//drawOnGraphicsContainer();
 			}
 			
 			private function drawIndividualShapes():void
@@ -47,6 +46,18 @@ limitations under the License.
 				var fill:SolidColor = new SolidColor();
 				fill.color = 0xFF0000;
 				fill.alpha = 0.5;
+				
+				//LinearGradient Fill
+				var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFFFFFF,0), new GradientEntry(1,0x000000,1)];
+				lg.scaleX = 1;
+				lg.rotation = 0;
+				
+				var lg1:LinearGradient = new LinearGradient();
+				lg1.entries = [new GradientEntry(1,0xFF0000,0.33),new GradientEntry(1,0x00FF00,0.66), new GradientEntry(1,0x0000FF,0.99)];
+				lg1.scaleX = 1;
+				lg1.rotation = 90;
+				//container.fill = lg;
 				
 				var stroke:SolidColorStroke = new SolidColorStroke();
 				stroke.weight = 10;
@@ -61,7 +72,7 @@ limitations under the License.
 				
 				var rect2:Rect = new Rect();
 				fill.color = 0xCC9900;
-				rect2.fill = fill;
+				rect2.fill = lg1;
 				stroke.color = 0x333333;
 				stroke.weight = 5;
 				rect2.stroke = stroke;
@@ -70,7 +81,7 @@ limitations under the License.
 				
 				var rect3:Rect = new Rect();
 				fill.color = 0xCCCC11;
-				rect3.fill = fill;
+				rect3.fill = lg1;
 				stroke.color = 0x0000CC;
 				stroke.weight = 1;
 				rect3.stroke = stroke;
@@ -88,7 +99,7 @@ limitations under the License.
 				
 				var rect5:Rect = new Rect();
 				fill.color = 0x11CC44;
-				rect5.fill = fill;
+				rect5.fill = lg;
 				stroke.color = 0x830011;
 				stroke.weight = 3;
 				rect5.stroke = stroke;
@@ -97,7 +108,7 @@ limitations under the License.
 				
 				var ellipse1:Ellipse = new Ellipse();
 				fill.color = 0x290149;
-				ellipse1.fill = fill;
+				ellipse1.fill = lg;
 				stroke.color = 0x830011;
 				stroke.weight = 3;
 				ellipse1.stroke = stroke;
@@ -106,7 +117,7 @@ limitations under the License.
 				
 				var ellipse2:Ellipse = new Ellipse();
 				fill.color = 0x2222CC;
-				ellipse2.fill = fill;
+				ellipse2.fill = lg1;
 				stroke.color = 0xabcdef;
 				stroke.weight = 5;
 				ellipse2.stroke = stroke;
@@ -124,7 +135,7 @@ limitations under the License.
 				
 				var circle1:Circle = new Circle();
 				fill.color = 0xee11bb;
-				circle1.fill = fill;
+				circle1.fill = lg1;
 				stroke.color = 0x123456;
 				stroke.weight = 2;
 				circle1.stroke = stroke;
@@ -154,7 +165,7 @@ limitations under the License.
 				var path2:Path = new Path();
 				fill.color = 0x00FF00;
 				fill.alpha = 0.5;
-				path2.fill = fill;
+				path2.fill = lg;
 				stroke.color = 0x0000FF;
 				stroke.weight = 3;
 				path2.stroke = stroke;
@@ -164,7 +175,7 @@ limitations under the License.
 				var path3:Path = new Path();
 				fill.color = 0x00FF00;
 				fill.alpha = 0.5;
-				path3.fill = fill;
+				path3.fill = lg1;
 				stroke.color = 0x0000FF;
 				stroke.weight = 3;
 				path3.stroke = stroke;
@@ -174,18 +185,19 @@ limitations under the License.
 				var path4:Path = new Path();
 				fill.color = 0x00FF00;
 				fill.alpha = 0.5;
-				path4.fill = fill;
+				path4.fill = lg1;
 				stroke.color = 0x0000FF;
 				stroke.weight = 3;
 				path4.stroke = stroke;
 				path4.drawPath(250,500,"M 50 50 L 100 50 A 50 50 0 0 0 50 0 Z");
 				this.addElement(path4);
-				
 			}
 			
 			private function drawOnGraphicsContainer():void
 			{
-				var fill:SolidColor = new SolidColor();
+				var container:GraphicsContainer = new GraphicsContainer();
+				
+/*				var fill:SolidColor = new SolidColor();
 				fill.color = 0xFF0000;
 				fill.alpha = 0.5;
 				
@@ -194,7 +206,6 @@ limitations under the License.
 				stroke.color = 0x00FF00;
 				stroke.alpha = 0.9;
 				
-				var container:GraphicsContainer = new GraphicsContainer();
 				container.fill = fill;
 				container.stroke = stroke;
 				//Circle
@@ -214,7 +225,7 @@ limitations under the License.
 				fill.color = 0x00CCCC;
 				stroke.color = 0x0CCCC0C;
 				stroke.weight = 5;
-				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");
+				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");*/
 				
 				//LinearGradient Fill
 				var lg:LinearGradient = new LinearGradient();
@@ -222,15 +233,19 @@ limitations under the License.
 				lg.scaleX = 1;
 				lg.rotation = 0;
 				container.fill = lg;
-				container.drawRect(20,20,200,100);
-				this.addElement(container);
+				//container.drawRect(20,20,200,100);
 
-				var lg:LinearGradient = new LinearGradient();
-				lg.entries = [new GradientEntry(0.5,0xFFFFFF,0), new GradientEntry(0.9,0x000000,1)];
-				lg.scaleX = 2;
-				lg.rotation = 90;
-				container.fill = lg;
+				//var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFF0000,0.33),new GradientEntry(1,0x00FF00,0.66), new GradientEntry(1,0x0000FF,0.99)];
+				lg.scaleX = 1;
+				lg.rotation = 45;
 				container.drawCircle(400, 400, 300);
+				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");
+				container.drawPath("M 100 350 q 150 -300 300 0");
+				container.drawPath("M 100 100 L 200 100 200 200 100 200 Z");
+				
+				
+				
 				this.addElement(container);
 			}
 			
