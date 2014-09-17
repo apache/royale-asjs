@@ -37,8 +37,8 @@ limitations under the License.
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
-				drawIndividualShapes();
-				//drawOnGraphicsContainer();
+				//drawIndividualShapes();
+				drawOnGraphicsContainer();
 			}
 			
 			private function drawIndividualShapes():void
@@ -238,7 +238,7 @@ limitations under the License.
 				//var lg:LinearGradient = new LinearGradient();
 				lg.entries = [new GradientEntry(1,0xFF0000,0.33),new GradientEntry(1,0x00FF00,0.66), new GradientEntry(1,0x0000FF,0.99)];
 				lg.scaleX = 1;
-				lg.rotation = 45;
+				lg.rotation = 90;
 				container.drawCircle(400, 400, 300);
 				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");
 				container.drawPath("M 100 350 q 150 -300 300 0");

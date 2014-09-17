@@ -158,7 +158,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_y = function() {
  * @return {string} A new gradient id value.
  */
 org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function() {
-  return String(Math.floor((Math.random() * 100000) + 1));
+  return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
 };
 
 
