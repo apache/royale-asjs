@@ -100,7 +100,6 @@ package org.apache.flex.core
 				stage.align = StageAlign.TOP_LEFT;
 				stage.scaleMode = StageScaleMode.NO_SCALE;
 				stage.quality = StageQuality.HIGH_16X16_LINEAR;
-				trace("working");
 			}
 			
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
