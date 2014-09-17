@@ -76,11 +76,12 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
   this.dataGroup_.set_strand(this);
   this.strand_.addElement(this.dataGroup_);
 
-  if (this.layout_ == null) {
+  if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
     var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
     this.layout_ = new m3();
+    this.strand_.addBead(this.layout_);
+    //this.layout_.set_strand(this.strand_);
   }
-  this.layout_.set_strand(this.strand_);
 
   this.handleSizeChange(null);
 };
