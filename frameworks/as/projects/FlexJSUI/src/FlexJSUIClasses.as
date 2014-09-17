@@ -79,8 +79,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.beads.TextFieldView; TextFieldView;
     import org.apache.flex.html.beads.TextInputView; TextInputView;
     import org.apache.flex.html.beads.TextInputWithBorderView; TextInputWithBorderView;
-    import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
-	import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.models.AlertModel; AlertModel;
     import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;

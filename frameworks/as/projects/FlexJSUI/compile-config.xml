@@ -32,6 +32,14 @@
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
+        <keep-as3-metadata>
+          <name>Bindable</name>
+          <name>Managed</name>
+          <name>ChangeEvent</name>
+          <name>NonCommittingChangeEvent</name>
+          <name>Transient</name>
+        </keep-as3-metadata>
+	  
         <locale/>
         
         <library-path/>

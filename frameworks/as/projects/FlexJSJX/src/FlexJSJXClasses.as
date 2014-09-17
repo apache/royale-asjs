@@ -67,6 +67,10 @@ internal class FlexJSJXClasses
 	import org.apache.flex.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
+    
+    import org.apache.flex.html.beads.TitleBarView; TitleBarView;
+    import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
+
 }
 
 }
