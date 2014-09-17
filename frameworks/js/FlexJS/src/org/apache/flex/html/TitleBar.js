@@ -27,9 +27,6 @@ goog.require('org.apache.flex.html.beads.models.TitleBarModel');
  */
 org.apache.flex.html.TitleBar = function() {
 
-  this.model =
-      new org.apache.flex.html.beads.models.TitleBarModel();
-
   org.apache.flex.html.TitleBar.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.TitleBar,
@@ -54,59 +51,12 @@ org.apache.flex.html.TitleBar.prototype.createElement =
 
   this.element = document.createElement('div');
 
-  this.titleLabel = new org.apache.flex.html.Label();
-  this.addElement(this.titleLabel);
-  this.titleLabel.element.id = 'title';
-  this.titleLabel.positioner.style.display = 'inline-block';
-  this.titleLabel.set_className('TitleBarLabel');
-
-  this.titleButton = new org.apache.flex.html.TextButton();
-  this.addElement(this.titleButton);
-  this.titleButton.element.id = 'closeButton';
-  this.titleButton.text = 'Close';
-  this.titleButton.positioner.style.position = 'absolute';
-  this.titleButton.positioner.style.right = '0px';
-
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
   this.set_className('TitleBar');
 
-  // listen for changes to the model so items can be changed in the view
-  this.model.addEventListener('titleChange',
-      goog.bind(this.changeHandler, this));
-
   return this.element;
-};
-
-
-/**
- * @override
- */
-org.apache.flex.html.TitleBar.prototype.addedToParent =
-    function() {
-
-  this.titleLabel.set_text(this.model.get_title());
-
-  if (this.model.showCloseButton) {
-    this.titleButton.positioner.style.display = 'inline-block';
-  } else {
-    this.titleButton.positioner.style.display = 'none';
-  }
-};
-
-
-/**
- * @param {Object} event The event that triggered this handler.
- */
-org.apache.flex.html.TitleBar.prototype.changeHandler =
-    function(event) {
-  if (event.type == 'titleChange') {
-    this.titleLabel.set_text(this.model.get_title());
-  }
-  else if (event.type == 'htmlTitleChange') {
-    this.titleLabel.set_text(this.model.get_htmlTitle());
-  }
 };
 
 
