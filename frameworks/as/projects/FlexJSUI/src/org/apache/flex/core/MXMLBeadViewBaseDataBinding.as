@@ -147,7 +147,7 @@ package org.apache.flex.core
                                 {
                                     if (destObject)
                                     {
-                                        sb.destination = destObject;
+                                        cb.destination = destObject;
                                         _strand.addBead(sb);
                                     }
                                     else
