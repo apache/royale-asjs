@@ -53,17 +53,17 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
     rect.setAttribute('style', style);
     if (this.get_stroke())
     {
-      rect.setAttribute('x', String(this.get_stroke().get_weight() / 2));
-      rect.setAttribute('y', String(this.get_stroke().get_weight() / 2));
+      rect.setAttribute('x', String(this.get_stroke().get_weight() / 2) + 'px');
+      rect.setAttribute('y', String(this.get_stroke().get_weight() / 2) + 'px');
       this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
     }
     else
     {
-      rect.setAttribute('x', '0');
-      rect.setAttribute('y', '0');
+      rect.setAttribute('x', '0' + 'px');
+      rect.setAttribute('y', '0' + 'px');
       this.setPosition(x, y, 0, 0);
     }
-    rect.setAttribute('width', String(width));
-    rect.setAttribute('height', String(height));
+    rect.setAttribute('width', String(width) + 'px');
+    rect.setAttribute('height', String(height) + 'px');
     this.element.appendChild(rect);
   };

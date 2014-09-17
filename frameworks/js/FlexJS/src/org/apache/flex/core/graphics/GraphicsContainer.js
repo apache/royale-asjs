@@ -49,10 +49,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x,
   var style = this.getStyleStr();
   var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
   rect.setAttribute('style', style);
-  rect.setAttribute('x', String(x));
-  rect.setAttribute('y', String(y));
-  rect.setAttribute('width', String(width));
-  rect.setAttribute('height', String(height));
+  rect.setAttribute('x', String(x) + 'px');
+  rect.setAttribute('y', String(y) + 'px');
+  rect.setAttribute('width', String(width) + 'px');
+  rect.setAttribute('height', String(height) + 'px');
   this.element.appendChild(rect);
 };
 
