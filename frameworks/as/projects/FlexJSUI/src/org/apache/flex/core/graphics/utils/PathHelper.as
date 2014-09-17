@@ -15,17 +15,24 @@
 package org.apache.flex.core.graphics.utils
 {
 	import flash.display.GraphicsPath;
+	import flash.geom.Rectangle;
 
 	public class PathHelper
 	{
 		private static var segments:PathSegmentsCollection;
 		private static var graphicsPath:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
 		
-		public static function getSegments(data:String):GraphicsPath
+		public static function getSegments(data:String, x:Number=0, y:Number=0):GraphicsPath
 		{
 			segments = new PathSegmentsCollection(data);
-			segments.generateGraphicsPath(graphicsPath, 0, 0, 1, 1);
+			segments.generateGraphicsPath(graphicsPath, x, y, 1, 1);
 			return graphicsPath;	
+		}
+		
+		public static function getBounds(data:String):Rectangle
+		{
+			segments = new PathSegmentsCollection(data);
+			return segments.getBounds();
 		}
 	}
 }

@@ -15,6 +15,7 @@
 package org.apache.flex.core.graphics
 {
 	
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.UIBase;
@@ -67,11 +68,11 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
-		protected function beginFill(targetBounds:Rectangle):void
+		protected function beginFill(targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			if(fill)
 			{
-				fill.begin(this, targetBounds);
+				fill.begin(this, targetBounds,targetOrigin);
 			}
 		}
 		

@@ -45,7 +45,7 @@ org.apache.flex.core.graphics.SolidColor = function() {
  */
 org.apache.flex.core.graphics.SolidColor.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SolidColor',
-                qName: 'org.apache.flex.core.graphics.SolidColor' }] };
+                qName: 'org.apache.flex.core.graphics.SolidColor' }], interfaces: [org.apache.flex.core.graphics.IFill] };
 
 
 /**

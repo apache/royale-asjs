@@ -14,6 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
 	public class SolidColor implements IFill
@@ -77,7 +78,7 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
-		public function begin(s:GraphicShape,targetBounds:Rectangle):void
+		public function begin(s:GraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			s.graphics.beginFill(color,alpha);
 		}

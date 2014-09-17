@@ -14,11 +14,12 @@
 
 package org.apache.flex.core.graphics
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
 	public interface IFill
 	{
-		function begin(s:GraphicShape,targetBounds:Rectangle):void;
+		function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
 		function end(s:GraphicShape):void;
 	}
 }

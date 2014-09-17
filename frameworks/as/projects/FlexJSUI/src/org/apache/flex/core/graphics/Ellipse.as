@@ -2,6 +2,7 @@ package org.apache.flex.core.graphics
 {
 	import flash.display.CapsStyle;
 	import flash.display.JointStyle;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
 	public class Ellipse extends GraphicShape
@@ -23,7 +24,7 @@ package org.apache.flex.core.graphics
 		{
 			graphics.clear();
 			applyStroke();
-			beginFill(new Rectangle(x, y, width, height));
+			beginFill(new Rectangle(x, y, width, height), new Point(x,y));
 			graphics.drawEllipse(x,y,width,height);
 			endFill();
 		}

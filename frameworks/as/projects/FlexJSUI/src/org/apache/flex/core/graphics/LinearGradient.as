@@ -18,6 +18,7 @@ package org.apache.flex.core.graphics
 	import flash.display.InterpolationMethod;
 	import flash.display.SpreadMethod;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	public class LinearGradient extends GradientBase implements IFill
@@ -39,13 +40,14 @@ package org.apache.flex.core.graphics
 			_scaleX = value;
 		}
 		
-		public function begin(s:GraphicShape,targetBounds:Rectangle):void
+		public function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
 		{
 			commonMatrix.identity();
-			commonMatrix.createGradientBox(targetBounds.width,targetBounds.height,toRad(this.rotation));
+			commonMatrix.createGradientBox(targetBounds.width,targetBounds.height,toRad(this.rotation),targetOrigin.x, targetOrigin.y);
 			
 			s.graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios,
 				commonMatrix, SpreadMethod.PAD, InterpolationMethod.RGB);
+			
 		}
 		
 		public function end(s:GraphicShape):void

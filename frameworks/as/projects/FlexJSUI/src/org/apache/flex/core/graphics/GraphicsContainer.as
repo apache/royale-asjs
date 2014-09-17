@@ -15,6 +15,7 @@
 package org.apache.flex.core.graphics
 {
 	import flash.display.GraphicsPath;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.graphics.utils.PathHelper;
@@ -44,7 +45,7 @@ package org.apache.flex.core.graphics
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
 			applyStroke();
-			beginFill(new Rectangle(x, y, width, height));
+			beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
 			graphics.drawRect(x, y, width, height);
 			endFill();
 		}
@@ -64,7 +65,7 @@ package org.apache.flex.core.graphics
 		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
 		{
 			applyStroke();
-			beginFill(new Rectangle(x,y,width,height));
+			beginFill(new Rectangle(x,y,width,height), new Point(x,y));
 			graphics.drawEllipse(x,y,width,height);
 			endFill();
 		}
@@ -83,7 +84,7 @@ package org.apache.flex.core.graphics
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
 			applyStroke();
-			beginFill(new Rectangle(x,y,radius*2, radius*2));
+			beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
 			graphics.drawCircle(x,y,radius);
 			endFill();
 		}
@@ -106,7 +107,8 @@ package org.apache.flex.core.graphics
 		public function drawPath(data:String):void
 		{
 			applyStroke();
-			beginFill(new Rectangle());
+			var bounds:Rectangle = PathHelper.getBounds(data);
+			beginFill(bounds,bounds.topLeft);
 			var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
 			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
 			endFill();

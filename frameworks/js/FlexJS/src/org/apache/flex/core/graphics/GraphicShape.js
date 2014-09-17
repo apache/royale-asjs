@@ -27,13 +27,13 @@ org.apache.flex.core.graphics.GraphicShape = function() {
 
   /**
    * @private
-   * @type {org.apache.flex.core.graphics.SolidColor}
+   * @type {org.apache.flex.core.graphics.IFill}
    */
   this.fill_ = null;
 
   /**
    * @private
-   * @type {org.apache.flex.core.graphics.SolidColorStroke}
+   * @type {org.apache.flex.core.graphics.IStroke}
    */
   this.stroke_ = null;
 
@@ -83,7 +83,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @return {org.apache.flex.core.graphics.SolidColor} The fill object.
+ * @return {org.apache.flex.core.graphics.IFill} The fill object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.get_fill = function() {
   return this.fill_;
@@ -91,7 +91,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_fill = function() {
 
 
 /**
- * @param {org.apache.flex.core.graphics.SolidColor} value The fill object.
+ * @param {org.apache.flex.core.graphics.IFill} value The fill object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_fill = function(value) {
   this.fill_ = value;
@@ -100,7 +100,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_fill = function(value) 
 
 /**
  * @expose
- * @return {org.apache.flex.core.graphics.SolidColorStroke} The stroke object.
+ * @return {org.apache.flex.core.graphics.IStroke} The stroke object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
   return this.stroke_;
@@ -109,7 +109,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.get_stroke = function() {
 
 /**
  * @expose
- * @param {org.apache.flex.core.graphics.SolidColorStroke} value The stroke object.
+ * @param {org.apache.flex.core.graphics.IStroke} value The stroke object.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value) {
   this.stroke_ = value;
@@ -117,7 +117,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
 
 
 /**
- * @override
+ * 
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   var bbox = this.element.getBBox();
@@ -164,7 +164,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
   this.element.setAttribute('width', String(bbox.width + bbox.x + this.xOffset_) + 'px');
   this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
-  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' + String(x) + 'px; top:' + String(y));
+  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' + String(x) + 'px; top:' + String(y) + 'px');
 };
 
 

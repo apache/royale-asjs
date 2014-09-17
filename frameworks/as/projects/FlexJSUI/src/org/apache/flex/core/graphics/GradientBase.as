@@ -14,6 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
+	import org.apache.flex.core.graphics.utils.CompoundTransform;
 
 	public class GradientBase
 	{
@@ -24,6 +25,55 @@ package org.apache.flex.core.graphics
 		
 		protected var alphas:Array /* of Number */ = [];
 		
+		/**
+		 *  Holds the matrix and the convenience transform properties (<code>x</code>, <code>y</code>, and <code>rotation</code>).
+		 *  The compoundTransform is only created when the <code>matrix</code> property is set. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 */
+		protected var compoundTransform:CompoundTransform;
+		
+		/**
+		 *  Value of the width and height of the untransformed gradient
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10
+		 *  @playerversion AIR 1.5
+		 */ 
+		public static const GRADIENT_DIMENSION:Number = 1638.4;
+		
+		/**
+		 *  Storage for the angle property.
+		 */
+		private var _angle:Number;
+		
+		/**
+		 *  By default, the LinearGradientStroke defines a transition
+		 *  from left to right across the control. 
+		 *  Use the <code>angle</code> property to control the transition direction. 
+		 *  For example, a value of 180.0 causes the transition
+		 *  to occur from right to left, rather than from left to right.
+		 *
+		 *  @default 0.0
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 */
+		public function get angle():Number
+		{
+			return _angle / Math.PI * 180;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set angle(value:Number):void
+		{
+			_angle = value / 180 * Math.PI;
+		}  
 
 		/**
 		 *  Storage for the entries property.
@@ -122,6 +172,12 @@ package org.apache.flex.core.graphics
 		
 		protected function toRad(a:Number):Number {
 			return a*Math.PI/180;
+		}
+		
+		
+		protected function get rotationInRadians():Number
+		{
+			return rotation / 180 * Math.PI;
 		}
 		
 		/**
