@@ -19,6 +19,8 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.IStroke;
 
 	/**
 	 *  The IWedgeItemRenderer interface must be implemented by any class that
@@ -85,5 +87,27 @@ package org.apache.flex.charts.supportClasses
 		 */
 		function get radius():Number;
 		function set radius(value:Number):void;
+		
+		/**
+		 *  The color of the wedge. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get fill():IFill;
+		function set fill(value:IFill):void;
+		
+		/**
+		 *  The color of the outline of the wedge. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get stroke():IStroke;
+		function set stroke(value:IStroke):void;
 	}
 }

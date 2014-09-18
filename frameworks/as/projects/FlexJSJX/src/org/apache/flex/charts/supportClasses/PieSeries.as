@@ -81,14 +81,5 @@ package org.apache.flex.charts.supportClasses
 		public function set yField(value:String):void
 		{
 		}
-		
-		public function get fillColor():uint
-		{
-			return 0;
-		}
-		
-		public function set fillColor(value:uint):void
-		{
-		}
 	}
 }

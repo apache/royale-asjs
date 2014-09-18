@@ -70,25 +70,6 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
-		private var _fillColor:uint;
-		
-		/**
-		 *  The color to use for all bars in the series.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get fillColor():uint
-		{
-			return _fillColor;
-		}
-		public function set fillColor(value:uint):void
-		{
-			_fillColor = value;
-		}
-		
 		private var _itemRenderer:IFactory;
 		
 		/**

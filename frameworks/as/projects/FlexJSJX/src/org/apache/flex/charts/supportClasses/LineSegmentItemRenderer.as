@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {	
+	import org.apache.flex.core.graphics.IStroke;
 	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -57,45 +57,19 @@ package org.apache.flex.charts.supportClasses
 			drawLine();
 		}
 		
+		private var _stroke:IStroke;
+		
+		public function get stroke():IStroke
+		{
+			return _stroke;
+		}
+		public function set stroke(value:IStroke):void
+		{
+			_stroke = value;
+			drawLine();
+		}
+		
 		private var path:Path;
-		
-		private var _lineColor:uint = 0xFF0000;
-		
-		/**
-		 *  The color used to draw the line segments
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get lineColor():uint
-		{
-			return _lineColor;
-		}
-		public function set lineColor(value:uint):void
-		{
-			_lineColor = value;
-		}
-		
-		private var _lineThickness:int = 1;
-		
-		/**
-		 *  The thickness or weight of the line segments
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get lineThickness():int
-		{
-			return _lineThickness;
-		}
-		public function set lineThickness(value:int):void
-		{
-			_lineThickness = value;
-		}
 		
 		/**
 		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
@@ -175,9 +149,6 @@ package org.apache.flex.charts.supportClasses
 					needsAddElement = true;
 				}
 				
-				var stroke:SolidColorStroke = new SolidColorStroke();
-				stroke.color = lineColor;
-				stroke.weight = lineThickness;
 				path.stroke = stroke;
 				path.fill = null;
 				

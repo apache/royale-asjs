@@ -105,7 +105,6 @@ package org.apache.flex.charts.beads.layouts
 						var child:IChartItemRenderer = aseries.itemRenderer.newInstance() as IChartItemRenderer;
 						child.itemRendererParent = chartDataGroup;
 						child.data = data;
-						child.fillColor = aseries.fillColor;
 						child.x = childX - 5;
 						child.y = childY - 5;
 						child.width = 10;
@@ -128,8 +127,6 @@ package org.apache.flex.charts.beads.layouts
 					var renderer:ILineSegmentItemRenderer = lcs.lineSegmentRenderer.newInstance() as ILineSegmentItemRenderer;
 					chartDataGroup.addElement(renderer);
 					renderer.itemRendererParent = chartDataGroup;
-					renderer.lineColor = lcs.lineColor;
-					renderer.lineThickness = lcs.lineThickness;
 					renderer.data = lcs;
 					renderer.points = seriesMaxes[s].points;
 				}

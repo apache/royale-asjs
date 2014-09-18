@@ -54,17 +54,6 @@ package org.apache.flex.charts.core
 		function set yField(value:String):void;
 		
 		/**
-		 *  The preferred color to use for the series renderer.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get fillColor():uint;
-		function set fillColor(value:uint):void;
-		
-		/**
 		 *  The itemRenderer class or factory that produces an instance of that class. This
 		 *  renderer uses the series data and properties to draw the representation for the
 		 *  chart type (e.g., the BarChart draws a bar in the fillColor).

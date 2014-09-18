@@ -19,6 +19,7 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.core.graphics.IStroke;
 	
 	/**
 	 *  The ILineSegmentItemRenderer interface must be implemented by any class that
@@ -43,25 +44,14 @@ package org.apache.flex.charts.supportClasses
 		function set points(value:Array):void;
 		
 		/**
-		 *  The color of the line. 
+		 *  The characteristics of the line. 
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get lineColor():uint;
-		function set lineColor(value:uint):void;
-		
-		/**
-		 *  The thickness (weight) of the line. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get lineThickness():int;
-		function set lineThickness(value:int):void;
+		function get stroke():IStroke;
+		function set stroke(value:IStroke):void;
 	}
 }

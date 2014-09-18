@@ -77,39 +77,6 @@ package org.apache.flex.charts.supportClasses
 			_yField = value;
 		}
 		
-		private var _fillColor:uint = 0xFF0000;
-		
-		public function get fillColor():uint
-		{
-			return _fillColor;
-		}
-		public function set fillColor(value:uint):void
-		{
-			_fillColor = value;
-		}
-		
-		private var _lineColor:uint = 0xFF0000;
-		
-		public function get lineColor():uint
-		{
-			return _lineColor;
-		}
-		public function set lineColor(value:uint):void
-		{
-			_lineColor = value;
-		}
-		
-		private var _lineThickness:uint;
-		
-		public function get lineThickness():uint
-		{
-			return _lineThickness;
-		}
-		public function set lineThickness(value:uint):void
-		{
-			_lineThickness = value;
-		}
-		
 		private var _itemRenderer:IFactory;
 		
 		/**

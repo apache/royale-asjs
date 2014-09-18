@@ -19,9 +19,9 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.IStroke;
 	import org.apache.flex.core.graphics.Rect;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -51,7 +51,7 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		private var filledRect:Rect;
-		
+				
 		private var _yField:String = "y";
 		
 		/**
@@ -90,7 +90,7 @@ package org.apache.flex.charts.supportClasses
 			_xField = value;
 		}
 		
-		private var _fillColor:uint;
+		private var _fill:IFill;
 		
 		/**
 		 *  The color used to fill the interior of the box.
@@ -100,14 +100,32 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get fillColor():uint
+		public function get fill():IFill
 		{
-			return _fillColor;
+			return _fill;
 		}
-		public function set fillColor(value:uint):void
+		public function set fill(value:IFill):void
 		{
-			_fillColor = value;
-			drawBar();
+			_fill = value;
+		}
+		
+		private var _stroke:IStroke;
+		
+		/**
+		 *  The outline of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get stroke():IStroke
+		{
+			return _stroke;
+		}
+		public function set stroke(value:IStroke):void
+		{
+			_stroke = value;
 		}
 		
 		/**
@@ -166,13 +184,8 @@ package org.apache.flex.charts.supportClasses
 					needsAdd = true;
 				}
 				
-				var solidColor:SolidColor = new SolidColor();
-				solidColor.color = fillColor;
-				var solidStroke:SolidColorStroke = new SolidColorStroke();
-				solidStroke.color = fillColor;
-				solidStroke.weight = 1;
-				filledRect.fill = solidColor;
-				filledRect.stroke = solidStroke;
+				filledRect.fill = fill;
+				filledRect.stroke = stroke;
 				filledRect.drawRect(0,0,this.width,this.height);
 				
 				if (needsAdd) {

@@ -23,6 +23,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.PieSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -102,11 +104,15 @@ package org.apache.flex.charts.beads.layouts
 					obj = seriesMaxes[i];
 					data = dp[i];
 					
+					var fill:SolidColor = new SolidColor();
+					fill.color = colors[i%colors.length];
+					fill.alpha = 1.0;
+					
 					var child:IWedgeItemRenderer = (chart.series[s] as IChartSeries).itemRenderer.newInstance() as IWedgeItemRenderer;
 					chartDataGroup.addElement(child);
 					child.itemRendererParent = chartDataGroup;
 					child.data = data;
-					child.fillColor = colors[i%colors.length];
+					child.fill = fill;
 					
 					end = start + (360.0 * obj.percent);
 					var arc:Number = 360.0 * obj.percent;

@@ -56,18 +56,6 @@ package org.apache.flex.charts.core
 		function set yField(value:String):void;
 		
 		/**
-		 *  The primary or preferred color to use for the graphics for
-		 *  the type of chart.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get fillColor():uint;
-		function set fillColor(value:uint):void;
-		
-		/**
 		 *  The x display position for the itemRenderer. This is set by
 		 *  the chart's layout manager.
 		 *

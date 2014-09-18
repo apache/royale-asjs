@@ -131,7 +131,6 @@ package org.apache.flex.charts.beads.layouts
 					chartDataGroup.addElement(child);
 					child.itemRendererParent = chartDataGroup;
 					child.data = data;
-					child.fillColor = bcs.fillColor;
 					xValue = Number(data[bcs.xField]);
 					
 					child.x = xpos;

@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {	
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.IStroke;
 	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -35,27 +36,6 @@ package org.apache.flex.charts.supportClasses
 		public function WedgeItemRenderer()
 		{
 			super();
-		}
-		
-		private var _fillColor:uint = 0xFF0000;
-		
-		/**
-		 *  The color of the wedge. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get fillColor():uint
-		{
-			return _fillColor;
-		}
-		
-		public function set fillColor(value:uint):void
-		{
-			_fillColor = value;
-			drawWedgeInternal();
 		}
 		
 		private var _centerX:Number;
@@ -158,6 +138,44 @@ package org.apache.flex.charts.supportClasses
 			drawWedgeInternal();
 		}
 		
+		private var _fill:IFill;
+		
+		/**
+		 *  The color used to fill the interior of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fill():IFill
+		{
+			return _fill;
+		}
+		public function set fill(value:IFill):void
+		{
+			_fill = value;
+		}
+		
+		private var _stroke:IStroke;
+		
+		/**
+		 *  The outline of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get stroke():IStroke
+		{
+			return _stroke;
+		}
+		public function set stroke(value:IStroke):void
+		{
+			_stroke = value;
+		}
+		
 		/**
 		 * @private
 		 */
@@ -187,9 +205,6 @@ package org.apache.flex.charts.supportClasses
 								  radius:Number, yRadius:Number = NaN,
 								  continueFlag:Boolean = false):void
 		{			
-			var color:SolidColor = new SolidColor();
-			color.color = fillColor;
-			
 			var x1:Number = x + radius * Math.cos(startAngle);
 			var y1:Number = y + radius * Math.sin(startAngle);
 			var x2:Number = x + radius * Math.cos(startAngle + arc);
@@ -199,7 +214,8 @@ package org.apache.flex.charts.supportClasses
 				' 0 0 1 ' + x2 + ' ' + y2 + ' z';
 			
 			var path:Path = new Path();
-			path.fill = color;
+			path.fill = fill;
+			path.stroke = stroke;
 			path.drawPath(0, 0, pathString);
 			addElement(path);
 		}

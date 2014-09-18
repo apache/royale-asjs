@@ -74,4 +74,9 @@
 
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
+    <component id="GradientEntry" class="org.apache.flex.core.graphics.GradientEntry" />
+    <component id="LinearGradient" class="org.apache.flex.core.graphics.LinearGradient" />
+    <component id="SolidColor" class="org.apache.flex.core.graphics.SolidColor" />
+    <component id="SolidColorStroke" class="org.apache.flex.core.graphics.SolidColorStroke" />
+
 </componentPackage>
