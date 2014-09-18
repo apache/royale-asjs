@@ -71,6 +71,11 @@ package org.apache.flex.createjs.core
             addChildAt(c as DisplayObject, index);
         }
         
+        public function getElementAt(index:int):Object
+        {
+            return getChildAt(index);
+        }
+        
         public function getElementIndex(c:Object):int
         {
             return getChildIndex(c as DisplayObject);

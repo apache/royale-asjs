@@ -17,10 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
@@ -28,7 +25,8 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -105,19 +103,12 @@ package org.apache.flex.html.beads.layouts
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IParent = layoutParent.contentView;
 			
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			var dp:Array = selectionModel.dataProvider as Array;
-			if (!dp)
-				return;
-			
-			var itemRendererFactory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			
-			var n:int = dp.length;
+			var n:int = contentView.numElements;
 			var xpos:Number = 0;
-			var useWidth:Number = DisplayObject(_strand).width / n;
-			var useHeight:Number = DisplayObject(_strand).height;
+			var useWidth:Number = IUIBase(_strand).width / n;
+			var useHeight:Number = IUIBase(_strand).height;
 			
 			for (var i:int = 0; i < n; i++)
 			{

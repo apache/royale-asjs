@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.createjs.Label;
 	import org.apache.flex.events.Event;
@@ -175,9 +174,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get contentView():DisplayObjectContainer
+		public function get contentView():IParentIUIBase
 		{
-			return _strand as DisplayObjectContainer;
+			return _strand as IParentIUIBase;
 		}
 		
 		/**
@@ -207,9 +206,9 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function get resizableView():DisplayObject
+		public function get resizableView():IUIBase
 		{
-			return _strand as DisplayObject;
+			return _strand as IUIBase;
 		}
 	}
 }

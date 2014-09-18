@@ -356,6 +356,19 @@ package org.apache.flex.core
         }
 
         /**
+         *  @copy org.apache.flex.core.IParent#getElementAt()
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function getElementAt(index:int):Object
+        {
+            return getChildAt(index);
+        }
+        
+        /**
          *  @copy org.apache.flex.core.IParent#getElementIndex()
          * 
          *  @langversion 3.0

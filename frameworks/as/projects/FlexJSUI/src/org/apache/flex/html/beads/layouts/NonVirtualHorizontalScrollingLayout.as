@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IScrollingLayoutParent;
-	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.supportClasses.Border;
@@ -81,7 +80,7 @@ package org.apache.flex.html.beads.layouts
 		{            
 			var layoutParent:IScrollingLayoutParent = 
                         _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;
 			
@@ -95,11 +94,11 @@ package org.apache.flex.html.beads.layouts
 			contentView.x = borderModel.offsets.left;
 			contentView.y = borderModel.offsets.top;
 			
-			var n:int = contentView.numChildren;
+			var n:int = contentView.numElements;
 			var xx:Number = 0;
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:DisplayObject = contentView.getChildAt(i);
+				var ir:IUIBase = contentView.getElementAt(i) as IUIBase;
 				ir.x = xx;
 				ir.height = contentView.height;
 				xx += ir.width;			

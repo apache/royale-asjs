@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.IParentIUIBase;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -76,9 +74,9 @@ package org.apache.flex.html.beads.layouts
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView;
 			
-			var n:int = contentView.numChildren;
+			var n:int = contentView.numElements;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
@@ -89,7 +87,7 @@ package org.apache.flex.html.beads.layouts
 			
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:DisplayObject = contentView.getChildAt(i);
+				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -161,7 +159,7 @@ package org.apache.flex.html.beads.layouts
 			for (i = 0; i < n; i++)
 			{
 				var obj:Object = verticalMargins[0]
-				child = contentView.getChildAt(i);
+				child = contentView.getElementAt(i) as IUIBase;
 				if (obj.valign == "middle")
 					child.y = maxHeight - child.height / 2;
 				else if (valign == "bottom")

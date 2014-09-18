@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {	
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
@@ -30,6 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -136,17 +134,17 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get contentView():DisplayObjectContainer
+		public function get contentView():IParentIUIBase
 		{
-			return _dataGroup as DisplayObjectContainer;
+			return _dataGroup as IParentIUIBase;
 		}
 		
 		/**
 		 * @private
 		 */
-		public function get resizableView():DisplayObject
+		public function get resizableView():IUIBase
 		{
-			return _strand as DisplayObject;
+			return _strand as IUIBase;
 		}
 		
         /**

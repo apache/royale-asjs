@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.supportClasses.Border;
@@ -66,7 +65,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
-		protected var actualParent:DisplayObjectContainer;
+		protected var actualParent:UIBase;
 				
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -85,7 +84,7 @@ package org.apache.flex.html.beads
 			if (contentAreaNeeded())
 			{
 				actualParent = new ContainerContentArea();
-				DisplayObjectContainer(value).addChild(actualParent);
+				UIBase(value).addElement(actualParent);
 				Container(value).setActualParent(actualParent);
 				actualParent.x = padding.paddingLeft;
 				actualParent.y = padding.paddingTop;
@@ -191,7 +190,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get contentView():DisplayObjectContainer
+		public function get contentView():IParentIUIBase
 		{
 			return actualParent;
 		}
@@ -204,9 +203,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get resizableView():DisplayObject
+		public function get resizableView():IUIBase
 		{
-			return _strand as DisplayObject;
+			return _strand as IUIBase;
 		}
 				
 	}

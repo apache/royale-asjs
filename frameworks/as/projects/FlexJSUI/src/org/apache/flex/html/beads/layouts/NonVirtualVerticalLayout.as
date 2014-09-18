@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -75,9 +75,9 @@ package org.apache.flex.html.beads.layouts
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView;
 			
-			var n:int = contentView.numChildren;
+			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
 			var flexibleHorizontalMargins:Array = [];
 			var marginLeft:Object;
@@ -88,7 +88,7 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:DisplayObject = contentView.getChildAt(i);
+				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -178,7 +178,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				for (i = 0; i < n; i++)
 				{
-					child = contentView.getChildAt(i);
+					child = contentView.getElementAt(i) as IUIBase;
 					var obj:Object = flexibleHorizontalMargins[i];
 					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
 						child.x = maxWidth - child.width / 2;

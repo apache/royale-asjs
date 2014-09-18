@@ -19,8 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.geom.Rectangle;
+    import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
@@ -35,11 +34,21 @@ package org.apache.flex.html.beads.layouts
 =======
 	import org.apache.flex.core.IScrollingLayoutParent;
     import org.apache.flex.core.ILayoutParent;
+<<<<<<< HEAD
 >>>>>>> refactor ILayoutParent into IScrollingLayoutParent
+||||||| merged common ancestors
+=======
+    import org.apache.flex.core.IParentIUIBase;
+>>>>>>> get rid of DisplayObject and DisplayObjectContainer dependencies in ILayoutParent
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+<<<<<<< HEAD
 	import org.apache.flex.core.UIBase;
+||||||| merged common ancestors
+=======
+    import org.apache.flex.core.IUIBase;
+>>>>>>> get rid of DisplayObject and DisplayObjectContainer dependencies in ILayoutParent
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
@@ -96,46 +105,32 @@ package org.apache.flex.html.beads.layouts
 		
 		private function changeHandler(event:Event):void
 		{            
+<<<<<<< HEAD
             var layoutParent:IScrollingLayoutParent = 
                 _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
             var contentView:IContentView = layoutParent.contentView as IContentView;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;
 			
-			var ww:Number = DisplayObject(layoutParent.resizableView).width;
-			var hh:Number = DisplayObject(layoutParent.resizableView).height;
-			border.width = ww;
-			border.height = hh;
-			
+            var ww:Number = layoutParent.resizableView.width;
+            var hh:Number = layoutParent.resizableView.height;
+            border.width = ww;
+            border.height = hh;
+           
 			contentView.width = ww - borderModel.offsets.left - borderModel.offsets.right;
 			contentView.height = hh - borderModel.offsets.top - borderModel.offsets.bottom;
 			contentView.x = borderModel.offsets.left;
 			contentView.y = borderModel.offsets.top;
 			
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			var dp:Array = selectionModel.dataProvider as Array;
-			if (!dp)
-				return;
-			
-			var itemRendererFactory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			
-			var n:int = dp.length;
+			var n:int = contentView.numElements;
 			var yy:Number = 0;
 			
 			for (var i:int = 0; i < n; i++)
 			{
-				var needsAdd:Boolean = false;
-				var ir:IItemRenderer = IItemRendererParent(contentView).getItemRendererForIndex(i);
-				if (ir == null) {
-					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as IItemRenderer;
-				}
-				ir.index = i;
-				ir.labelField = (_strand as List).labelField;
-				ir.data = dp[i];
-				UIBase(ir).y = yy;
-				UIBase(ir).x = 0;
-				UIBase(ir).width = contentView.width;
-				yy += UIBase(ir).height;			
+				var ir:IUIBase = contentView.getElementAt(i) as IUIBase;
+				ir.y = yy;
+				ir.width = contentView.width;
+				yy += ir.height;			
 			}
 			if (yy > contentView.height)
 			{
@@ -148,13 +143,13 @@ package org.apache.flex.html.beads.layouts
 				vScrollBar.height = contentView.height;
 				vScrollBar.y = contentView.y;
 				vScrollBar.x = contentView.width;
-				var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-				DisplayObjectContainer(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
-				vScrollBar.addEventListener("scroll", scrollHandler);
+                var vpos:Number = IScrollBarModel(vScrollBar.model).value;
+                DisplayObject(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
+                vScrollBar.addEventListener("scroll", scrollHandler);
 			}
 			else if (vScrollBar)
 			{
-				DisplayObjectContainer(contentView).scrollRect = null;
+                DisplayObject(contentView).scrollRect = null;
 				vScrollBar.visible = false;
 			}
 		}
@@ -162,10 +157,10 @@ package org.apache.flex.html.beads.layouts
         private function scrollHandler(event:Event):void
         {
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:DisplayObjectContainer = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView;
 			
             var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-			contentView.scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
+			DisplayObject(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
         }
 	}
 }

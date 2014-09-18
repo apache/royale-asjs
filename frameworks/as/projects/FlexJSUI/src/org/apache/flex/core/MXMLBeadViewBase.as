@@ -24,6 +24,7 @@ package org.apache.flex.core
 	import mx.states.State;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -42,7 +43,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBase extends BeadViewBase implements IStrand
+	public class MXMLBeadViewBase extends BeadViewBase implements IStrand, ILayoutParent
 	{
         /**
          *  Constructor.
@@ -321,9 +322,9 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get contentView():DisplayObjectContainer
+        public function get contentView():IParentIUIBase
         {
-            return _strand as DisplayObjectContainer;
+            return _strand as IParentIUIBase;
         }
         
         /**
@@ -334,9 +335,9 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get resizableView():DisplayObject
+        public function get resizableView():IUIBase
         {
-            return _strand as DisplayObject;
+            return _strand as IUIBase;
         }
         
     }

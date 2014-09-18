@@ -89,5 +89,18 @@ package org.apache.flex.core
         *  @productversion FlexJS 0.0
         */
        function get numElements():int;
-	}
+
+       /**
+        *  Get a component from the parent.
+        * 
+        *  @param c The index of the subcomponent.
+        * 
+        *  @langversion 3.0
+        *  @playerversion Flash 10.2
+        *  @playerversion AIR 2.6
+        *  @productversion FlexJS 0.0
+        */
+       function getElementAt(index:int):Object;
+
+    }
 }
