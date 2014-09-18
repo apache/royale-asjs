@@ -26,6 +26,7 @@ package models
 	{
 		public function ProductsModel()
 		{
+			generateWaves(360);
 		}
 
 		private var _productList:Array = [
@@ -44,6 +45,30 @@ package models
 		public function get labelFields():Array
 		{
 			return _labelFields;
+		}
+		
+		private var _wave:Array;
+		
+		private function generateWaves(numPoints:int):void
+		{
+			_wave = [];
+			
+			var angleIncr:Number = 360/numPoints;
+			var angle:Number = 0;
+			
+			for (var i:int=0; i < numPoints; i++)
+			{
+				var p:Object = {x:i, 
+					sin:Math.sin(Math.PI/180*angle),
+						cos:Math.cos(Math.PI/180*angle)};
+				angle += angleIncr;
+				_wave.push(p);
+			}
+		}
+		
+		public function get wave():Array
+		{
+			return _wave;
 		}
 	}
 }

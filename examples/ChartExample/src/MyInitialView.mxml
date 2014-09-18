@@ -29,7 +29,7 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Label id="output" x="51" y="30" width="100" />
+	<basic:Label id="output" x="50" y="30" width="100" />
 	
 	<basic:ColumnChart id="columnChart" x="20" y="20" width="400" height="200">
 		<basic:beads>
@@ -41,19 +41,25 @@ limitations under the License.
 			<basic:VerticalLinearAxisBead valueField="sales2013" />
 		</basic:beads>
 		<basic:series>
-			<basic:ColumnSeries yField="sales2013" 
-						        fillColor="0xFF964D">
+			<basic:ColumnSeries yField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF964D" alpha="1.0" />
+							</basic:fill>
+						</basic:BoxItemRenderer>                      
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:ColumnSeries>
-			<basic:ColumnSeries yField="sales2014" 
-							    fillColor="0x964DFF">
+			<basic:ColumnSeries yField="sales2014">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#964DFF" alpha="1.0" />
+							</basic:fill>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:ColumnSeries>
@@ -70,19 +76,25 @@ limitations under the License.
 			<basic:HorizontalLinearAxisBead valueField="sales2013" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarSeries xField="sales2013" 
-						     fillColor="0xFF964D">
+			<basic:BarSeries xField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF964D" alpha="1.0" />
+							</basic:fill>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarSeries>
-			<basic:BarSeries xField="sales2014" 
-							 fillColor="0x964DFF">
+			<basic:BarSeries xField="sales2014">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#964DFF" alpha="1.0" />
+							</basic:fill>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarSeries>
@@ -98,19 +110,31 @@ limitations under the License.
 			<basic:HorizontalCategoryAxisBead categoryField="title" />
 		</basic:beads>
 		<basic:series>
-			<basic:ColumnSeries yField="sales2013" 
-								fillColor="0xFF964D">
+			<basic:ColumnSeries yField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF964D" alpha="0.5" />
+							</basic:fill>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#FF964D" weight="2" />
+							</basic:stroke>
+						</basic:BoxItemRenderer>                       
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:ColumnSeries>
-			<basic:ColumnSeries yField="sales2014" 
-								fillColor="0x964DFF">
+			<basic:ColumnSeries yField="sales2014">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#964DFF" alpha="0.5" />
+							</basic:fill>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#964DFF" weight="2" />
+							</basic:stroke>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:ColumnSeries>
@@ -126,26 +150,38 @@ limitations under the License.
 			<basic:VerticalCategoryAxisBead categoryField="title" />
 		</basic:beads>
 		<basic:series>
-			<basic:BarSeries xField="sales2013" 
-							 fillColor="0xFF964D">
+			<basic:BarSeries xField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF964D" alpha="0.5" />
+							</basic:fill>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#FF964D" weight="2" />
+							</basic:stroke>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarSeries>
-			<basic:BarSeries xField="sales2014" 
-							 fillColor="0x964DFF">
+			<basic:BarSeries xField="sales2014">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#964DFF" alpha="0.5" />
+							</basic:fill>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#964DFF" weight="2" />
+							</basic:stroke>
+						</basic:BoxItemRenderer>                        
 					</fx:Component>
 				</basic:itemRenderer>
 			</basic:BarSeries>
 		</basic:series>
 	</basic:StackedBarChart>
 	
-	<basic:PieChart id="pieChart" x="20" y="550" width="300" height="300">
+	<basic:PieChart id="pieChart" x="20" y="550" width="200" height="200">
 		<basic:beads>
 			<basic:ConstantBinding
 				sourceID="applicationModel"
@@ -174,27 +210,79 @@ limitations under the License.
 			<basic:LineChartLinearVsLinearLayout />
 		</basic:beads>
 		<basic:series>
-			<basic:LineSeries xField="detail" yField="sales2013" fillColor="0xFF964D" lineColor="0x994107" lineThickness="2">
+			<basic:LineSeries xField="detail" yField="sales2013">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF964D" alpha="1" />
+							</basic:fill>  
+						</basic:BoxItemRenderer>
 					</fx:Component>
 				</basic:itemRenderer>
 				<basic:lineSegmentRenderer>
 					<fx:Component>
-						<basic:LineSegmentItemRenderer />                       
+						<basic:LineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#FF964D" weight="3" alpha="0.8" />
+							</basic:stroke>
+						</basic:LineSegmentItemRenderer>                      
 					</fx:Component>
 				</basic:lineSegmentRenderer>
 			</basic:LineSeries>
-			<basic:LineSeries xField="detail" yField="sales2014" fillColor="0x964DFF" lineColor="0x410799" lineThickness="2">
+			<basic:LineSeries xField="detail" yField="sales2014">
 				<basic:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer />                        
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#964DFF" alpha="1" />
+							</basic:fill>  
+						</basic:BoxItemRenderer>
 					</fx:Component>
 				</basic:itemRenderer>
 				<basic:lineSegmentRenderer>
 					<fx:Component>
-						<basic:LineSegmentItemRenderer />                       
+						<basic:LineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#964DFF" weight="3" alpha="0.8" />
+							</basic:stroke>
+						</basic:LineSegmentItemRenderer>                      
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+		</basic:series>
+	</basic:LineChart>
+	
+	<basic:LineChart id="waveChart" x="20" y="800" width="400" height="200">
+		<basic:beads>
+			<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="wave"
+				destinationPropertyName="dataProvider" />
+			<basic:HorizontalLinearAxisBead valueField="x" />
+			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:LineChartLinearVsLinearLayout />
+		</basic:beads>
+		<basic:series>
+			<basic:LineSeries xField="x" yField="sin">
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:LineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#964DFF" weight="5" alpha="1" />
+							</basic:stroke>
+						</basic:LineSegmentItemRenderer>                        
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+			<basic:LineSeries xField="x" yField="cos">
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:LineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#FF964D" weight="5" alpha="1" />
+							</basic:stroke>
+						</basic:LineSegmentItemRenderer>                        
 					</fx:Component>
 				</basic:lineSegmentRenderer>
 			</basic:LineSeries>
