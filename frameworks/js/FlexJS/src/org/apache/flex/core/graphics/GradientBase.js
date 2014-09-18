@@ -23,6 +23,7 @@
 goog.provide('org.apache.flex.core.graphics.GradientBase');
 
 
+
 /**
  * @constructor
  */
@@ -52,14 +53,12 @@ org.apache.flex.core.graphics.GradientBase.prototype.alphas = [];
 
 
 /**
- * @private
  * @type {Array}
  */
 org.apache.flex.core.graphics.GradientBase.prototype._entries = [];
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientBase.prototype._rotation = 0.0;
@@ -86,10 +85,10 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_entries = function(valu
 /**
  * @expose
  *  By default, the LinearGradientStroke defines a transition
- *  from left to right across the control. 
- *  Use the <code>rotation</code> property to control the transition direction. 
+ *  from left to right across the control.
+ *  Use the <code>rotation</code> property to control the transition direction.
  *  For example, a value of 180.0 causes the transition
- *  to occur from right to left, rather than from left to right. 
+ *  to occur from right to left, rather than from left to right.
  * @return {number}
  */
 org.apache.flex.core.graphics.GradientBase.prototype.get_rotation = function() {
@@ -107,7 +106,6 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_rotation = function(val
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientBase.prototype._x = 0;
@@ -132,7 +130,6 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_x = function(value) {
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientBase.prototype._y = 0;
@@ -158,9 +155,9 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_y = function() {
 
 /**
  * @expose
- * @return {string} A new gradient id value
+ * @return {string} A new gradient id value.
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function(value) {
+org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function() {
   return String(Math.floor((Math.random() * 100000) + 1));
 };
 
@@ -170,4 +167,6 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function(value)
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.FLEXJS_CLASS_INFO = { names: [{ name: 'GradientBase', qName: 'org.apache.flex.core.graphics.GradientBase'}] };
+org.apache.flex.core.graphics.GradientBase.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'GradientBase', qName: 'org.apache.flex.core.graphics.GradientBase'}]
+  };

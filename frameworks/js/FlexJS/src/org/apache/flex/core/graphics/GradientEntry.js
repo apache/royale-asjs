@@ -23,6 +23,7 @@
 goog.provide('org.apache.flex.core.graphics.GradientEntry');
 
 
+
 /**
  * @constructor
  * @param {number} alpha
@@ -37,21 +38,18 @@ org.apache.flex.core.graphics.GradientEntry = function(alpha, color, ratio) {
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientEntry.prototype._alpha = 1.0;
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientEntry.prototype._color = 0x000000;
 
 
 /**
- * @private
  * @type {number}
  */
 org.apache.flex.core.graphics.GradientEntry.prototype._ratio = 0x000000;
@@ -140,4 +138,6 @@ org.apache.flex.core.graphics.GradientEntry.prototype.end = function(s) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.FLEXJS_CLASS_INFO = { names: [{ name: 'GradientEntry', qName: 'org.apache.flex.core.graphics.GradientEntry'}] };
+org.apache.flex.core.graphics.GradientEntry.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'GradientEntry', qName: 'org.apache.flex.core.graphics.GradientEntry'}]
+  };

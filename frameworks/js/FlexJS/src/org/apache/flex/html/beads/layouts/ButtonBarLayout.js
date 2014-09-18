@@ -118,7 +118,7 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
     ir.element.style['text-align'] = 'center';
     ir.element.style['left-margin'] = 'auto';
     ir.element.style['right-margin'] = 'auto';
-  
+
     ir.set_height(useHeight);
     if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.set_width(this.buttonWidths_[i]);
     else ir.set_width(useWidth);

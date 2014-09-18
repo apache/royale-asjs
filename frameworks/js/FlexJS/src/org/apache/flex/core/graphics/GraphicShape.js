@@ -117,7 +117,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
 
 
 /**
- * 
+ *
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   var bbox = this.element.getBBox();
@@ -164,7 +164,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
   this.element.setAttribute('width', String(bbox.width + bbox.x + this.xOffset_) + 'px');
   this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
-  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' + String(x) + 'px; top:' + String(y) + 'px');
+  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' +
+      String(x) + 'px; top:' + String(y) + 'px');
 };
 
 

@@ -109,6 +109,6 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     this.button.innerHTML = value.title;
   }
   else {
-    this.button.innerHTML = value
+    this.button.innerHTML = value;
   }
 };
