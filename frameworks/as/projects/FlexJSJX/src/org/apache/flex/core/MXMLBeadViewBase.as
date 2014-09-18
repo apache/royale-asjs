@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import mx.states.State;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
@@ -43,7 +41,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBase extends BeadViewBase implements IStrand, ILayoutParent
+	public class MXMLBeadViewBase extends ContainerView implements IStrand, ILayoutParent
 	{
         /**
          *  Constructor.
@@ -255,7 +253,7 @@ package org.apache.flex.core
          */
         public var beads:Array;
         
-        private var _beads:Vector.<IBead>;
+        private var _beads:Array;
         
         /**
          *  @copy org.apache.flex.core.IStrand#addBead()
@@ -268,7 +266,7 @@ package org.apache.flex.core
         public function addBead(bead:IBead):void
         {
             if (!_beads)
-                _beads = new Vector.<IBead>;
+                _beads = [];
             _beads.push(bead);
             bead.strand = this;            
         }
@@ -314,31 +312,5 @@ package org.apache.flex.core
             return null;
         }
 
-        /**
-         *  The parent of the children.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get contentView():IParentIUIBase
-        {
-            return _strand as IParentIUIBase;
-        }
-        
-        /**
-         *  The host component, which can resize to different slots.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get resizableView():IUIBase
-        {
-            return _strand as IUIBase;
-        }
-        
     }
 }

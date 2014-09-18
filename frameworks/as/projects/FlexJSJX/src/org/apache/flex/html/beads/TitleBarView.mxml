@@ -38,7 +38,6 @@ limitations under the License.
     <basic:beads>
         <basic:MXMLBeadViewBaseDataBinding />
         <basic:LayoutChangeNotifier watchedProperty="{ITitleBarModel(model).title}" />
-        <basic:SolidBackgroundBead />
     </basic:beads>
 
     <basic:Label id="titleLabel" text="{ITitleBarModel(model).title}" 

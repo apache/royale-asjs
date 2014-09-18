@@ -23,10 +23,7 @@
 
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
-    <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
-    <component id="MXMLBeadViewBase" class="org.apache.flex.core.MXMLBeadViewBase"/>
-    <component id="MXMLBeadViewBaseDataBinding" class="org.apache.flex.core.MXMLBeadViewBaseDataBinding"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
@@ -36,7 +33,6 @@
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.Image"/>
-    <component id="ImageButton" class="org.apache.flex.html.ImageButton"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
     <component id="TextButton" class="org.apache.flex.html.TextButton"/>
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"/>
@@ -68,7 +64,6 @@
     <component id="NonVirtualVerticalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout"/>
     <component id="NonVirtualHorizontalScrollingLayout" class="org.apache.flex.html.beads.layouts.NonVirtualHorizontalScrollingLayout"/>
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
-    <component id="LayoutChangeNotifier" class="org.apache.flex.html.beads.layouts.LayoutChangeNotifier"/>
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.Alert"/>

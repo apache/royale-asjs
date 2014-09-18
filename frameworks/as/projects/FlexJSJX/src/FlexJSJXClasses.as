@@ -60,6 +60,7 @@ internal class FlexJSJXClasses
 	import org.apache.flex.html.beads.FormatableLabelView; FormatableLabelView;
 	import org.apache.flex.html.beads.FormatableTextInputView; FormatableTextInputView;
 	import org.apache.flex.html.beads.layouts.DataGridLayout; DataGridLayout;
+    import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.flex.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;

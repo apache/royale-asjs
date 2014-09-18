@@ -379,6 +379,13 @@ TextInput
 	height: 20;
 }
 
+TitleBar
+{
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    background-color: #FFFFFF;
+}
+
 ToggleTextButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
