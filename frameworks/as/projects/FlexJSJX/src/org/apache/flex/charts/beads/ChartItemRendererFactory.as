@@ -114,7 +114,7 @@ package org.apache.flex.charts.beads
 					k.itemRendererParent = dataGroup;
 					k.xField = s.xField;
 					k.yField = s.yField;
-					k.fillColor = s.fillColor;
+					//k.fillColor = s.fillColor;
 					k.data = dp[j];
 					k.index = j;
 					
