@@ -27,8 +27,6 @@ goog.require('org.apache.flex.html.beads.models.PanelModel');
  * @extends {org.apache.flex.html.Container}
  */
 org.apache.flex.html.Panel = function() {
-  this.model =
-      new org.apache.flex.html.beads.models.PanelModel();
   org.apache.flex.html.Panel.base(this, 'constructor');
 };
 goog.inherits(org.apache.flex.html.Panel,
@@ -123,9 +121,6 @@ org.apache.flex.html.Panel.prototype.createElement =
   this.contentArea.flexjs_wrapper = this;
   this.element.appendChild(this.contentArea);
 
-  this.panelView = new org.apache.flex.html.beads.PanelView();
-  this.panelView.set_strand(this);
-
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
@@ -144,10 +139,29 @@ org.apache.flex.html.Panel.prototype.addedToParent =
 
 /**
  * @expose
+ * @return {boolean} The showCloseButton getter.
+ */
+org.apache.flex.html.Panel.prototype.get_showCloseButton = function() {
+  return this.model.get_showCloseButton();
+};
+
+
+/**
+ * @expose
+ * @param {boolean} value The showCloseButton setter.
+ */
+org.apache.flex.html.Panel.prototype.set_showCloseButton =
+    function(value) {
+  this.model.set_showCloseButton(value);
+};
+
+
+/**
+ * @expose
  * @return {string} The title getter.
  */
 org.apache.flex.html.Panel.prototype.get_title = function() {
-  return this.model.get_title();
+    return this.model.get_title();
 };
 
 
@@ -156,8 +170,8 @@ org.apache.flex.html.Panel.prototype.get_title = function() {
  * @param {string} value The title setter.
  */
 org.apache.flex.html.Panel.prototype.set_title =
-    function(value) {
-  this.model.set_title(value);
+function(value) {
+    this.model.set_title(value);
 };
 
 
