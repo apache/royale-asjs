@@ -160,7 +160,7 @@ package org.apache.flex.html.beads.layouts
 				xx -= child.width + mr + ml;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-				verticalMargins.push({ marginTop: marginTop, marginBottom: marginBottom, valign: valign });
+				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
 			}
 			for (i = 0; i < n; i++)
 			{
