@@ -15,15 +15,21 @@
 goog.provide('org.apache.flex.core.BeadViewBase');
 
 goog.require('org.apache.flex.core.IBeadView');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
+ * @extends {org.apache.flex.events.EventDispatcher}
  * @implements {org.apache.flex.core.IBeadView}
  */
 org.apache.flex.core.BeadViewBase = function() {
-};
+    org.apache.flex.core.BeadViewBase.base(this, 'constructor');
+  };
+goog.inherits(
+              org.apache.flex.core.BeadViewBase,
+              org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -53,4 +59,14 @@ function(value) {
   if (this._strand !== value) {
     this._strand = value;
   }
+};
+
+
+/**
+ * @expose
+ * @return {Object} value The strand.
+ */
+org.apache.flex.core.BeadViewBase.prototype.get_host =
+function() {
+  return this._strand;
 };
