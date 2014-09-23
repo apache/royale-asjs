@@ -80,7 +80,8 @@ org.apache.flex.binding.BindingBase.prototype.sourceID = null;
  * @param {Object} value The strand (owner) of the bead.
  */
 org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
-  this.destination = value;
+  if (this.destination == null)
+    this.destination = value;
 
   if (this.sourceID != null)
   {
