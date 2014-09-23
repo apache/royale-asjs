@@ -122,6 +122,16 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
 
 
 /**
+ * @param {number} index The index in parent.
+ * @return {Object} The child element.
+ */
+org.apache.flex.core.UIBase.prototype.getElementAt = function(index) {
+  var children = this.internalChildren();
+  return children[index].flexjs_wrapper;
+};
+
+
+/**
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
@@ -142,6 +152,15 @@ org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
  */
 org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
   this.element.removeChild(c.element);
+};
+
+
+/**
+ * @return {number} The number of child elements.
+ */
+org.apache.flex.core.UIBase.prototype.get_numElements = function() {
+  var children = this.internalChildren();
+  return children.length;
 };
 
 
