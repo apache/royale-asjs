@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -76,7 +77,7 @@ package org.apache.flex.html.beads.layouts
 			if (_value !== value)
             {
                 _value = value;
-                IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+                IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
             }
 		}
 		
