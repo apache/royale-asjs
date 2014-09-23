@@ -82,6 +82,11 @@ package org.apache.flex.core
 			if (paddingRight == null) paddingRight = padding;
 			tf.leftMargin = paddingLeft;
 			tf.rightMargin = paddingRight;
+            var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align");
+            if (align == "center")
+                tf.align = "center";
+            else if (align == "right")
+                tf.align = "right";
 
 			defaultTextFormat = tf;
 			super.text = value;
