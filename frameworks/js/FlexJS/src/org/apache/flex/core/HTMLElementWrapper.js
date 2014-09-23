@@ -108,16 +108,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLDescriptor =
 
 /**
  * @expose
- * @return {Array} The array of properties.
- */
-org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLProperties =
-    function() {
-  return null;
-};
-
-
-/**
- * @expose
  * @param {Object} bead The bead to remove.
  * @return {Object} The bead.
  */

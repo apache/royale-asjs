@@ -73,9 +73,11 @@ org.apache.flex.core.ViewBase.prototype.applicationModel = null;
 
 /**
  * @expose
- * @type {Array}
+ * @param {Array} data The data for the attributes.
  */
-org.apache.flex.core.ViewBase.prototype.MXMLProperties = null;
+org.apache.flex.core.ViewBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
+};
 
 
 /**
@@ -95,9 +97,6 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
   if (org.apache.flex.core.ValuesManager.valuesImpl.init) {
     org.apache.flex.core.ValuesManager.valuesImpl.init(this);
   }
-
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
       this, this.get_MXMLDescriptor());

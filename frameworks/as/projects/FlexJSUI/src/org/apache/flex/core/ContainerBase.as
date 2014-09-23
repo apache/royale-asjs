@@ -100,8 +100,6 @@ package org.apache.flex.core
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 			
-			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
-			
 			super.addedToParent();
 			
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
@@ -123,8 +121,6 @@ package org.apache.flex.core
 			return null;
 		}
 		
-		private var mxmlProperties:Array ;
-		
         /**
          *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
          *  
@@ -135,7 +131,7 @@ package org.apache.flex.core
          */
 		public function generateMXMLAttributes(data:Array):void
 		{
-			mxmlProperties = data;
+            MXMLDataInterpreter.generateMXMLProperties(this, data);
 		}
 		
         /**

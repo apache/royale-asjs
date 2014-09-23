@@ -77,9 +77,6 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
 
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
-
   org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
   if (this.valuesImpl.init) {
     this.valuesImpl.init(this);
@@ -91,6 +88,15 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.addElement(this.initialView);
 
   this.dispatchEvent('viewChanged');
+};
+
+
+/**
+ * @expose
+ * @param {Array} data The data for the attributes.
+ */
+org.apache.flex.core.Application.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 

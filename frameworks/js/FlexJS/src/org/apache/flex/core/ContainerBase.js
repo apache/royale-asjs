@@ -40,13 +40,6 @@ org.apache.flex.core.ContainerBase.prototype.mxmlContent = null;
  * @expose
  * @type {Array}
  */
-org.apache.flex.core.ContainerBase.prototype.mxmlProperties = null;
-
-
-/**
- * @expose
- * @type {Array}
- */
 org.apache.flex.core.ContainerBase.prototype.mxmlDescriptor = null;
 
 
@@ -64,7 +57,6 @@ org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
  * @override
  */
 org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, this.get_MXMLProperties());
   org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
 
@@ -75,10 +67,10 @@ org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
 
 /**
  * @expose
- * @return {Array} An array of properties.
+ * @param {Array} data The data for the attributes.
  */
-org.apache.flex.core.ContainerBase.prototype.get_MXMLProperties = function() {
-  return this.mxmlProperties;
+org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
@@ -88,13 +80,4 @@ org.apache.flex.core.ContainerBase.prototype.get_MXMLProperties = function() {
  */
 org.apache.flex.core.ContainerBase.prototype.get_MXMLDescriptor = function() {
   return this.mxmlDescriptor;
-};
-
-
-/**
- * @expose
- * @param {Array} data Property name/value pairs for this instance.
- */
-org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(data) {
-  this.mxmlProperties = data;
 };
