@@ -87,12 +87,13 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			_textModel = value.getBeadByType(ITextModel) as ITextModel;
-			IEventDispatcher(value).addEventListener("textChanged", textChangeHandler);
-			IEventDispatcher(value).addEventListener("htmlChanged", htmlChangeHandler);
-			IEventDispatcher(value).addEventListener("widthChanged", sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged", sizeChangeHandler);
+            _textModel.addEventListener("textChange", textChangeHandler);
+            _textModel.addEventListener("htmlChange", htmlChangeHandler);
+            _textModel.addEventListener("widthChanged", widthChangeHandler);
+            _textModel.addEventListener("heightChanged", heightChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
-			sizeChangeHandler(null);
+            textField.width = DisplayObject(_strand).width;
+            textField.height = DisplayObject(_strand).height;
 			if (_textModel.text !== null)
 				text = _textModel.text;
 			if (_textModel.html !== null)
@@ -162,12 +163,31 @@ package org.apache.flex.html.beads
 			html = _textModel.html;
 		}
 		
-		private function sizeChangeHandler(event:Event):void
+        private var autoHeight:Boolean = true;
+        private var autoWidth:Boolean = true;
+        
+		private function widthChangeHandler(event:Event):void
 		{
+            textField.autoSize = "none";
+            autoWidth = false;
 			textField.width = DisplayObject(_strand).width;
-			textField.height = DisplayObject(_strand).height;
+            if (autoHeight)
+    			textField.height = textField.textHeight + 4;
+            else
+                textField.height = DisplayObject(_strand).height;
 		}
 
+        private function heightChangeHandler(event:Event):void
+        {
+            textField.autoSize = "none";
+            autoHeight = false;
+            textField.height = DisplayObject(_strand).height;
+            if (autoWidth)
+                textField.width = textField.textWidth + 4;
+            else
+                textField.width = DisplayObject(_strand).width;
+        }
+        
         /**
          *  @copy org.apache.flex.core.IBeadView#viewHeight
          *  
