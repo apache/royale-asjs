@@ -106,6 +106,28 @@ Map
     IBeadView: ClassReference("org.apache.flex.maps.google.beads.MapView");
 }
 
+Panel
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.PanelView");
+    
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
+}
+
+PanelWithControlBar
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.PanelWithControlBarView");
+    
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #000000;
+    border-thickness: 1;
+}
+
 SimpleList
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
@@ -276,28 +298,14 @@ NumericStepper
 
 Panel
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.PanelView");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
-    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-    
-    background-color: #FFFFFF;
-    border-style: solid;
-    border-color: #000000;
-    border-thickness: 1;
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");    
 }
 
 PanelWithControlBar
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.PanelModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.PanelWithControlBarView");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-    
-    background-color: #FFFFFF;
-    border-style: solid;
-    border-color: #000000;
-    border-thickness: 1;
 }
 
 RadioButton
