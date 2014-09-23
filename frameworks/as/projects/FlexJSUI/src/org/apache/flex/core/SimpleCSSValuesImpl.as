@@ -482,7 +482,8 @@ package org.apache.flex.core
             "color" : 1,
             "fontFamily" : 1,
             "fontSize" : 1,
-            "fontStyle" : 1
+            "fontStyle" : 1,
+            "textAlign" : 1
         }
                                                         
 	}
