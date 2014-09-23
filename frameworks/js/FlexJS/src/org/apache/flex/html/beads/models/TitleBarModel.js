@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.html.beads.models.TitleBarModel');
 
+goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 
@@ -21,6 +22,7 @@ goog.require('org.apache.flex.events.EventDispatcher');
 /**
  * @constructor
  * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IBeadModel}
  */
 org.apache.flex.html.beads.models.TitleBarModel = function() {
   org.apache.flex.html.beads.models.TitleBarModel.base(this, 'constructor');
@@ -52,7 +54,9 @@ goog.inherits(org.apache.flex.html.beads.models.TitleBarModel,
  */
 org.apache.flex.html.beads.models.TitleBarModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
-                qName: 'org.apache.flex.html.beads.models.TitleBarModel'}] };
+                qName: 'org.apache.flex.html.beads.models.TitleBarModel'}],
+      interfaces: [org.apache.flex.core.IBeadModel]
+    };
 
 
 /**

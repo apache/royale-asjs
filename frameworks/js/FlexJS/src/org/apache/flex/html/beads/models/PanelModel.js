@@ -52,7 +52,8 @@ goog.inherits(org.apache.flex.html.beads.models.PanelModel,
  */
 org.apache.flex.html.beads.models.PanelModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelModel',
-                qName: 'org.apache.flex.html.beads.models.PanelModel'}] };
+                qName: 'org.apache.flex.html.beads.models.PanelModel'}],
+      interfaces: [org.apache.flex.core.IBeadModel] };
 
 
 /**
