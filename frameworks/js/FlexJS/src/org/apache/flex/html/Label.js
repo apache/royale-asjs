@@ -66,7 +66,7 @@ org.apache.flex.html.Label.prototype.set_text = function(value) {
  * @return {string} The html getter.
  */
 org.apache.flex.html.Label.prototype.get_html = function() {
-    return this.element.innerHTML;
+  return this.element.innerHTML;
 };
 
 
@@ -75,5 +75,5 @@ org.apache.flex.html.Label.prototype.get_html = function() {
  * @param {string} value The html setter.
  */
 org.apache.flex.html.Label.prototype.set_html = function(value) {
-    this.element.innerHTML = value;
+  this.element.innerHTML = value;
 };
