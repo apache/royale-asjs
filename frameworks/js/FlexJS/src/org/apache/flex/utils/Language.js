@@ -92,9 +92,8 @@ org.apache.flex.utils.Language._int = function(value) {
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
-  // (erikdebruin) we intentionally DON'T do null checks on the
-  //               [class].FLEXJS_CLASS_INFO property, as it MUST be
-  //               declared for every FLEXJS JS (framework) class
+  if (!leftOperand)
+    return false;
 
   if (leftOperand && !rightOperand) {
     return false;
