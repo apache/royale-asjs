@@ -47,6 +47,9 @@ org.apache.flex.html.CloseButton.prototype.createElement =
   org.apache.flex.html.CloseButton.base(this, 'createElement');
   this.element.innerHTML = 'x';
 
+  this.element.style.padding = 0;
+  this.set_height(11);
+  this.set_width(11);
   return this.element;
 };
 
