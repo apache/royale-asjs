@@ -99,7 +99,8 @@ package org.apache.flex.core
 			{
 				stage.align = StageAlign.TOP_LEFT;
 				stage.scaleMode = StageScaleMode.NO_SCALE;
-				stage.quality = StageQuality.HIGH_16X16_LINEAR;
+                // should be opt-in
+				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
 			}
 			
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
@@ -120,9 +121,6 @@ package org.apache.flex.core
         
         private function initHandler(event:flash.events.Event):void
         {
-            ValuesManager.valuesImpl = valuesImpl;
-            ValuesManager.valuesImpl.init(this);
-
             dispatchEvent(new Event("initialize"));
 
             if (initialView)
@@ -147,7 +145,11 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var valuesImpl:IValuesImpl;
+        public function set valuesImpl(value:IValuesImpl):void
+        {
+            ValuesManager.valuesImpl = value;
+            ValuesManager.valuesImpl.init(this);
+        }
 
         /**
          *  The initial view.

@@ -15,7 +15,7 @@
 goog.provide('org.apache.flex.core.Application');
 
 goog.require('org.apache.flex.core.HTMLElementWrapper');
-goog.require('org.apache.flex.core.SimpleValuesImpl');
+goog.require('org.apache.flex.core.IValuesImpl');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
@@ -65,9 +65,15 @@ org.apache.flex.core.Application.prototype.model = null;
 
 /**
  * @expose
- * @type {org.apache.flex.core.SimpleValuesImpl}
+ * @param {org.apache.flex.core.IValuesImpl} value The IValuesImpl.
  */
-org.apache.flex.core.Application.prototype.valuesImpl = null;
+org.apache.flex.core.Application.prototype.set_valuesImpl =
+    function(value) {
+  org.apache.flex.core.ValuesManager.valuesImpl = value;
+  if (value.init) {
+    value.init(this);
+  }
+};
 
 
 /**
@@ -76,11 +82,6 @@ org.apache.flex.core.Application.prototype.valuesImpl = null;
 org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
-
-  org.apache.flex.core.ValuesManager.valuesImpl = this.valuesImpl;
-  if (this.valuesImpl.init) {
-    this.valuesImpl.init(this);
-  }
 
   this.dispatchEvent('initialize');
 
