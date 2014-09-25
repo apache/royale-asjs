@@ -177,11 +177,11 @@ package org.apache.flex.html
 		{
             super.addedToParent();
             
-//            if (getBeadByType(IDataProviderItemRendererMapper) == null)
-//            {
-//                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
-//                addBead(mapper);
-//            }
+            if (getBeadByType(IDataProviderItemRendererMapper) == null)
+            {
+                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
+                addBead(mapper);
+            }
 			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
 			if (!itemRendererFactory)
 			{

@@ -23,32 +23,14 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
-<<<<<<< HEAD
 	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutParent;
-||||||| merged common ancestors
-	import org.apache.flex.core.ILayoutParent;
-=======
 	import org.apache.flex.core.IScrollingLayoutParent;
     import org.apache.flex.core.ILayoutParent;
-<<<<<<< HEAD
->>>>>>> refactor ILayoutParent into IScrollingLayoutParent
-||||||| merged common ancestors
-=======
     import org.apache.flex.core.IParentIUIBase;
->>>>>>> get rid of DisplayObject and DisplayObjectContainer dependencies in ILayoutParent
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-<<<<<<< HEAD
-	import org.apache.flex.core.UIBase;
-||||||| merged common ancestors
-=======
     import org.apache.flex.core.IUIBase;
->>>>>>> get rid of DisplayObject and DisplayObjectContainer dependencies in ILayoutParent
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
@@ -105,10 +87,9 @@ package org.apache.flex.html.beads.layouts
 		
 		private function changeHandler(event:Event):void
 		{            
-<<<<<<< HEAD
             var layoutParent:IScrollingLayoutParent = 
                 _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
-            var contentView:IContentView = layoutParent.contentView as IContentView;
+            var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			var border:Border = layoutParent.border;
 			var borderModel:IBorderModel = border.model as IBorderModel;
 			
