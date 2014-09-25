@@ -92,8 +92,6 @@ package org.apache.flex.html.beads
             _textModel.addEventListener("widthChanged", widthChangeHandler);
             _textModel.addEventListener("heightChanged", heightChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
-            textField.width = DisplayObject(_strand).width;
-            textField.height = DisplayObject(_strand).height;
 			if (_textModel.text !== null)
 				text = _textModel.text;
 			if (_textModel.html !== null)
@@ -155,7 +153,6 @@ package org.apache.flex.html.beads
 		private function textChangeHandler(event:Event):void
 		{
 			text = _textModel.text;
-			sizeChangeHandler(event);
 		}
 		
 		private function htmlChangeHandler(event:Event):void
@@ -172,7 +169,7 @@ package org.apache.flex.html.beads
             autoWidth = false;
 			textField.width = DisplayObject(_strand).width;
             if (autoHeight)
-    			textField.height = textField.textHeight + 4;
+    	        textField.height = textField.textHeight + 4;
             else
                 textField.height = DisplayObject(_strand).height;
 		}
