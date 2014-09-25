@@ -25,7 +25,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IParent;
     import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRollOverModel;
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ListView extends Strand implements IBeadView, IStrand, IListView, ILayoutParent
+	public class ListView extends Strand implements IBeadView, IStrand, IListView, IScrollingLayoutParent
 	{
 		public function ListView()
 		{
@@ -190,7 +190,7 @@ package org.apache.flex.html.beads
             if (_strand.getBeadByType(IBeadLayout) == null)
             {
                 var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-				strand.addBead(mapper);
+				_strand.addBead(mapper);
             }  
 			
 			handleSizeChange(null);
