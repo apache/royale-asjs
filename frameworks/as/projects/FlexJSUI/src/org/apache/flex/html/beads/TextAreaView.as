@@ -141,7 +141,7 @@ package org.apache.flex.html.beads
 			vsbm.value = 0;
 			vsb.model = vsbm;
 			vsb.width = 16;
-            IParent(strand).addElement(vsb);
+            IParent(host).addElement(vsb);
 			
 			vsb.addEventListener("scroll", scrollHandler);
 			
@@ -162,13 +162,13 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(strand).width - DisplayObject(vScrollBar).width;
+			var ww:Number = DisplayObject(host).width - DisplayObject(vScrollBar).width;
 			if( !isNaN(ww) && ww > 0 ) {
 				textField.width = ww;
 				_border.width = ww;
 			}
 			
-			var hh:Number = DisplayObject(strand).height;
+			var hh:Number = DisplayObject(host).height;
 			if( !isNaN(hh) && hh > 0 ) {
 				textField.height = hh;
 				_border.height = hh;
