@@ -41,7 +41,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBaseDataBinding implements IBead
+	public class MXMLBeadViewBaseDataBinding extends DataBindingBase implements IBead
 	{
         /**
          *  Constructor.
@@ -114,7 +114,7 @@ package org.apache.flex.core
                                 sb.sourceID = binding.source[0];
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
-                                destObject = MXMLBeadViewBase(_strand)[binding.destination[0]];                                
+                                destObject = getProperty(_strand, binding.destination[0]);                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(sb);
@@ -139,7 +139,7 @@ package org.apache.flex.core
                                 cb.sourceID = binding.source[0];
                                 cb.sourcePropertyName = binding.source[1];
                                 cb.setDocument(_strand);
-                                destObject = MXMLBeadViewBase(_strand)[binding.destination[0]];                                
+                                destObject = getProperty(_strand, binding.destination[0]);                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(cb);
@@ -170,7 +170,7 @@ package org.apache.flex.core
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
                         sb.setDocument(_strand);
-                        destObject = MXMLBeadViewBase(_strand)[binding.destination[0]];                                
+                        destObject = getProperty(_strand, binding.destination[0]);                                
                         destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(sb);
