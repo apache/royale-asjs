@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.DataItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IListPresentationModel');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
@@ -125,6 +126,8 @@ org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
 
   this.dataGroup.removeAllElements();
 
+  var presModel = this.strand_.getBeadByType(org.apache.flex.core.IListPresentationModel);
+
   dp = this.model.get_dataProvider();
   n = dp.length;
   for (i = 0; i < n; i++) {
@@ -132,6 +135,7 @@ org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     ir.set_index(i);
     ir.set_labelField(this.model.get_labelField());
     ir.set_data(dp[i]);
+    if (presModel) ir.set_height(presModel.get_rowHeight());
   }
 
   var newEvent = new org.apache.flex.events.Event('itemsCreated');

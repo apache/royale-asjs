@@ -19,7 +19,9 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IDataGridModel;
+	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	
@@ -97,6 +99,41 @@ package org.apache.flex.html
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;
+		}
+		
+		/**
+		 *  The DataGrid's presentation model
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get presentationModel():IDataGridPresentationModel
+		{
+			var presModel:IDataGridPresentationModel = getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			if (presModel == null) {
+				presModel = new DataGridPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
+				
+		/**
+		 *  The default height of each cell in every column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get rowHeight():Number
+		{
+			return presentationModel.rowHeight;
+		}
+		public function set rowHeight(value:Number):void
+		{
+			presentationModel.rowHeight = value;
 		}
 	}
 }

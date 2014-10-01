@@ -18,54 +18,54 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.models
 {
-	import org.apache.flex.core.IDataGridPresentationModel;
+	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	
 	/**
-	 *  The DataGridPresentationModel class contains the data to label the columns
-	 *  of the org.apache.flex.html.DataGrid along with the height of the rows. 
-	 *  
+	 *  The ListPresentationModel holds values used by list controls for presenting
+	 *  their user interfaces.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridPresentationModel extends ListPresentationModel implements IDataGridPresentationModel
+	public class ListPresentationModel extends EventDispatcher implements IListPresentationModel
 	{
 		/**
 		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function DataGridPresentationModel()
-		{
-			super();
-		}
-		
-		private var _columnLabels:Array;
-		
-		/**
-		 *  The labels for each column.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get columnLabels():Array
+		public function ListPresentationModel()
 		{
-			return _columnLabels;
+			super();
 		}
-		public function set columnLabels(value:Array):void
+		
+		private var _rowHeight:Number = 30;
+		
+		/**
+		 *  The height of each row.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get rowHeight():Number
 		{
-			if (value != _columnLabels) {
-				_columnLabels = value;
-				dispatchEvent(new Event("columnsChanged"));
-			}
+			return _rowHeight;
+		}
+		
+		public function set rowHeight(value:Number):void
+		{
+			_rowHeight = value;
+			dispatchEvent(new Event("rowHeightChanged"));
 		}
 		
 		private var _strand:IStrand;
@@ -78,7 +78,7 @@ package org.apache.flex.html.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function set strand(value:IStrand):void
+		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 		}

@@ -18,28 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-	
 	/**
-	 *  The IDataGridPresentationModel interfaces defines the data needed to
-	 *  present a DataGrid. 
-	 *  
+	 *  The IListPresentationModel interface holds key values for the display
+	 *  of lists.
+	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IDataGridPresentationModel extends IListPresentationModel
+	public interface IListPresentationModel extends IBead
 	{
 		/**
-		 *  The labels used for each column.
-		 *
+		 *  The height of every row in the list.
+		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get columnLabels():Array;
-		function set columnLabels(value:Array):void;
+		function get rowHeight():Number;
+		function set rowHeight(value:Number):void;
 	}
 }

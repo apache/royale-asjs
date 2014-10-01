@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.html.List');
 goog.require('mx.core.IFactory');
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.core.IItemRendererClassFactory');
+goog.require('org.apache.flex.core.IListPresentationModel');
 goog.require('org.apache.flex.core.ItemRendererClassFactory');
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.core.ValuesManager');
@@ -24,6 +25,7 @@ goog.require('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.models.ListPresentationModel');
 goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 
 
@@ -90,6 +92,41 @@ function(value) {
 
 
 /**
+ * @expose
+ * @return {number} The height of each row.
+ */
+org.apache.flex.html.List.prototype.get_rowHeight =
+function() {
+  return this.get_presentationModel().get_rowHeight();
+};
+
+
+/**
+ * @expose
+ * @param {number} value The height of each row.
+ */
+org.apache.flex.html.List.prototype.set_rowHeight =
+function(value) {
+  this.get_presentationModel().set_rowHeight(value);
+};
+
+
+/**
+ * @expose
+ * @return {Object} The model used to present some of the list's visual properties.
+ */
+org.apache.flex.html.List.prototype.get_presentationModel =
+function() {
+  var presModel = this.getBeadByType(org.apache.flex.core.IListPresentationModel);
+  if (presModel == null) {
+    presModel = new org.apache.flex.html.beads.models.ListPresentationModel();
+    this.addBead(presModel);
+  }
+  return presModel;
+};
+
+
+/**
  * @override
  */
 org.apache.flex.html.List.prototype.createElement =
@@ -107,6 +144,13 @@ org.apache.flex.html.List.prototype.createElement =
 org.apache.flex.html.List.prototype.addedToParent =
     function() {
   org.apache.flex.html.List.base(this, 'addedToParent');
+
+  var dataFactory = this.getBeadByType(org.apache.flex.html.beads.DataItemRendererFactoryForArrayData);
+  if (dataFactory == null) {
+    var m1 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iDataProviderItemRendererMapper');
+    dataFactory = new m1();
+    this.addBead(dataFactory);
+  }
 
   var itemRendererFactory = this.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
   if (itemRendererFactory == null) {

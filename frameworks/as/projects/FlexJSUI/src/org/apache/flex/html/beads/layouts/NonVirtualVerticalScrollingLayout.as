@@ -19,21 +19,18 @@
 package org.apache.flex.html.beads.layouts
 {
 	import flash.display.DisplayObject;
-    import flash.geom.Rectangle;
+	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.IScrollingLayoutParent;
-    import org.apache.flex.core.ILayoutParent;
-    import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.List;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
@@ -82,7 +79,6 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private function changeHandler(event:Event):void
@@ -133,6 +129,8 @@ package org.apache.flex.html.beads.layouts
                 DisplayObject(contentView).scrollRect = null;
 				vScrollBar.visible = false;
 			}
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 
         private function scrollHandler(event:Event):void

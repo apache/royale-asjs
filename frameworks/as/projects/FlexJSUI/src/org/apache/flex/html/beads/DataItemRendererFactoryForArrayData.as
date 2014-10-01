@@ -20,11 +20,13 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IListPresentationModel;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -132,12 +134,16 @@ package org.apache.flex.html.beads
 			
 			dataGroup.removeAllElements();
 			
+			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				ir.index = i;
 				ir.labelField = labelField;
+				if (presentationModel) IUIBase(ir).height = presentationModel.rowHeight;
 				dataGroup.addElement(ir);
 				ir.data = dp[i];
 			}

@@ -22,12 +22,14 @@ package org.apache.flex.html
 	
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.beads.models.ListPresentationModel;
 	
     [Event(name="change", type="org.apache.flex.events.Event")]
     
@@ -131,6 +133,41 @@ package org.apache.flex.html
 		public function set rollOverIndex(value:int):void
 		{
 			IRollOverModel(model).rollOverIndex = value;
+		}
+			
+		/**
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get presentationModel():IListPresentationModel
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new ListPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
+		
+		/**
+		 *  The default height of each cell in every column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get rowHeight():Number
+		{
+			return presentationModel.rowHeight;
+		}
+		public function set rowHeight(value:Number):void
+		{
+			presentationModel.rowHeight = value;
 		}
 		
 		/**

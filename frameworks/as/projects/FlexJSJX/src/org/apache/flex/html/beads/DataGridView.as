@@ -19,23 +19,23 @@
 package org.apache.flex.html.beads
 {	
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridLayout;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.ButtonBar;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
-	import org.apache.flex.html.beads.layouts.DataGridLayout;
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
-	import org.apache.flex.html.supportClasses.DataGridColumn;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadModel;
+    import org.apache.flex.core.IDataGridLayout;
+    import org.apache.flex.core.IDataGridModel;
+    import org.apache.flex.core.ISelectionModel;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.html.ButtonBar;
+    import org.apache.flex.html.Container;
+    import org.apache.flex.html.List;
+    import org.apache.flex.html.beads.layouts.ButtonBarLayout;
+    import org.apache.flex.html.beads.layouts.DataGridLayout;
+    import org.apache.flex.html.beads.models.ArraySelectionModel;
+    import org.apache.flex.html.beads.models.DataGridPresentationModel;
+    import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
 	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid. 
@@ -92,6 +92,13 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+			// see if there is a presentation model already in place. if not, add one.
+			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
+			if (presentationModel == null) {
+				presentationModel = new DataGridPresentationModel();
+				_strand.addBead(presentationModel);
+			}
+			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",onDataProviderChanged);
 			
@@ -130,6 +137,8 @@ package org.apache.flex.html.beads
 				list.addBead(listModel); 
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;
+				list.addBead(presentationModel);
+				trace("List.rowHeight is "+list.rowHeight);
 				
 				var colWidth:Number = dataGridColumn.columnWidth;
 				if (!isNaN(colWidth)) list.width = colWidth;

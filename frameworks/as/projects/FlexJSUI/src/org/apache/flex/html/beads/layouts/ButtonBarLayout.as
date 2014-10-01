@@ -22,12 +22,12 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -75,7 +75,6 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _buttonWidths:Array = null;
@@ -103,30 +102,18 @@ package org.apache.flex.html.beads.layouts
 		 */
 		private function changeHandler(event:Event):void
 		{
-            var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-            var contentView:IParent = layoutParent.contentView;
-            
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            var dp:Array = selectionModel.dataProvider as Array;
-            if (!dp)
-                return;
-            
-            var itemRendererFactory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-            
-			var n:int = dp.length;
+			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:IParent = layoutParent.contentView;
+			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
+			
+			var n:int = itemRendererParent.numElements;
 			var xpos:Number = 0;
 			var useWidth:Number = IUIBase(_strand).width / n;
 			var useHeight:Number = IUIBase(_strand).height;
 			
-			for (var i:int = 0; i < n; i++)
+			for (var i:int=0; i < n; i++)
 			{
-				var ir:ISelectableItemRenderer = IItemRendererParent(contentView).getItemRendererForIndex(i) as ISelectableItemRenderer;
-				if (ir == null) {
-					ir = itemRendererFactory.createItemRenderer(contentView as IItemRendererParent) as ISelectableItemRenderer;
-				}
-				ir.index = i;
-				ir.labelField = (_strand as List).labelField;
-				ir.data = dp[i];
+				var ir:ISelectableItemRenderer = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
 				UIBase(ir).y = 0;
 				UIBase(ir).height = useHeight;
 				UIBase(ir).x = xpos;
