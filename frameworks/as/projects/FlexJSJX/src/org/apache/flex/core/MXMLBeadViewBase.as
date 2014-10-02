@@ -193,6 +193,7 @@ package org.apache.flex.core
         
         private var _currentState:String;
         
+        [Bindable("currentStateChange")]
         /**
          *  The name of the current state.
          * 
@@ -211,7 +212,7 @@ package org.apache.flex.core
          */
         public function set currentState(value:String):void
         {
-            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChanged", false, false, _currentState, value)
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
             _currentState = value;
             dispatchEvent(event);
         }

@@ -20,7 +20,7 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 
-	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
+	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The NumericStepper class is a component that displays a numeric
@@ -51,6 +51,7 @@ package org.apache.flex.html
 			super();
 		}
 		
+        [Bindable("valueChange")]
 		/**
 		 *  The current value of the control.
 		 *

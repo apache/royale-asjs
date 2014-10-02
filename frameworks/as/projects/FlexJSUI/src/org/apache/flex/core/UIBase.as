@@ -213,6 +213,7 @@ package org.apache.flex.core
 		
 		private var _width:Number;
 
+        [Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
         /**
          *  The width of the component.  If no width has been previously
@@ -274,6 +275,7 @@ package org.apache.flex.core
 		
 		private var _height:Number;
 
+        [Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
         /**
          *  The height of the component.  If no height has been previously

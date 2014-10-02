@@ -86,6 +86,7 @@ package org.apache.flex.html
 			IToggleButtonModel(model).text = value;
 		}
 		
+        [Bindable("change")]
         /**
          *  <code>true</code> if the check mark is displayed.
          *  

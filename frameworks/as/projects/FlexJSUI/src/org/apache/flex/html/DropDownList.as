@@ -90,6 +90,7 @@ package org.apache.flex.html
             ISelectionModel(model).dataProvider = value;
         }
         
+        [Bindable("change")]
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
          *  
@@ -112,6 +113,7 @@ package org.apache.flex.html
         }
         
 
+        [Bindable("change")]
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedItem
          *  

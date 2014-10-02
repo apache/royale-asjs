@@ -69,7 +69,7 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(_strand).addEventListener("currentStateChanged", stateChangeHandler);
+            IEventDispatcher(_strand).addEventListener("currentStateChange", stateChangeHandler);
         }		
      
         private function stateChangeHandler(event:ValueChangeEvent):void
