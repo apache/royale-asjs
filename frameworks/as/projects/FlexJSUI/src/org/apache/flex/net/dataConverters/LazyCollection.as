@@ -216,5 +216,19 @@ package org.apache.flex.net.dataConverters
             }
             return data[index];
         }   
+        
+        /**
+         *  The number of items.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get length():int
+        {
+            return rawData ? rawData.length : 0;   
+        }
+
 	}
 }
