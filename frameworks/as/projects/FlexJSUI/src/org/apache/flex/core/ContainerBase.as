@@ -20,7 +20,8 @@ package org.apache.flex.core
 {
 	import mx.states.State;
 	
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.IMXMLDocument;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
@@ -71,7 +72,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerBase extends UIBase
+	public class ContainerBase extends UIBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -204,6 +205,7 @@ package org.apache.flex.core
         
         private var _currentState:String;
         
+        [Bindable("currentStateChange")]
         /**
          *  The name of the current state.
          * 
@@ -222,7 +224,7 @@ package org.apache.flex.core
          */
         public function set currentState(value:String):void
         {
-            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChanged", false, false, _currentState, value)
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
             _currentState = value;
             dispatchEvent(event);
         }
