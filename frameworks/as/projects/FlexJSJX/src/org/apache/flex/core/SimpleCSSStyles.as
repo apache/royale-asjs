@@ -81,6 +81,11 @@ package org.apache.flex.core
         public var paddingRight:*;
         public var paddingTop:*;
         public var paddingBottom:*;
+        public var margin:*;
+        public var marginLeft:*;
+        public var marginRight:*;
+        public var marginTop:*;
+        public var marginBottom:*;
         public var horizontalCenter:*;
         public var verticalCenter:*;
         public var horizontalAlign:*;
