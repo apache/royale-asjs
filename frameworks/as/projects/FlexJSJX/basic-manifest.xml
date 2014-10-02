@@ -54,6 +54,7 @@
 
     <component id="Fade" class="org.apache.flex.effects.Fade"/>
     <component id="Move" class="org.apache.flex.effects.Move"/>
+    <component id="Resize" class="org.apache.flex.effects.Resize"/>
     <component id="Wipe" class="org.apache.flex.effects.Wipe"/>
     <component id="Sequence" class="org.apache.flex.effects.Sequence"/>
     <component id="Parallel" class="org.apache.flex.effects.Parallel"/>
@@ -66,5 +67,6 @@
     <component id="MXMLBeadViewBaseDataBinding" class="org.apache.flex.core.MXMLBeadViewBaseDataBinding"/>
     <component id="LayoutChangeNotifier" class="org.apache.flex.html.beads.layouts.LayoutChangeNotifier"/>
     <component id="ImageButton" class="org.apache.flex.html.ImageButton"/>
+    <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
 
 </componentPackage>
