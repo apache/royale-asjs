@@ -180,6 +180,16 @@ public class MXMLDataInterpreter
                     comp.document = document;
                 else if (name == "_id")
                     id = value as String; // and don't assign to comp
+                else if (name == "id")
+                {
+                    // not all objects have to have their own id property
+                    try {
+                        comp["id"] = value;
+                    } catch (e:Error)
+                    {
+                        
+                    }
+                }
                 else
                     comp[name] = value;
             }
