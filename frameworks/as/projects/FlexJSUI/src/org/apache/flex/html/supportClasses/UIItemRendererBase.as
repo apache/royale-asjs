@@ -113,6 +113,7 @@ package org.apache.flex.html.supportClasses
 		
 		private var _data:Object;
 		
+        [Bindable("__NoChangeEvent__")]
 		/**
 		 *  The data being represented by this itemRenderer. This can be something simple like a String or
 		 *  a Number or something very complex.
