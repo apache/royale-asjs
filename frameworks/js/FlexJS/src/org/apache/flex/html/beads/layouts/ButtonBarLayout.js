@@ -80,8 +80,6 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
         goog.bind(this.changeHandler, this));
     this.strand_.addEventListener('heightChanged',
         goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
   }
 };
@@ -92,34 +90,27 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
  */
 org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.changeHandler = function(event) {
+
   var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = layoutParent.get_contentView();
-  var selectionModel = this.strand_.get_model();
-  var dp = selectionModel.get_dataProvider();
+  var itemRendererParent = contentView;
 
-  var itemRendererFactory = this.strand_.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
-
-  var n = dp.length;
-
+  var n = itemRendererParent.get_numElements();
   var xpos = 0;
   var useWidth = this.strand_.get_width() / n;
   var useHeight = this.strand_.get_height();
 
   for (var i = 0; i < n; i++)
   {
-    var ir = contentView.getItemRendererForIndex(i);
-    if (ir == null) {
-      ir = itemRendererFactory.createItemRenderer(contentView);
-    }
-    ir.set_index(i);
-    ir.set_labelField(this.strand_.get_labelField());
-    ir.set_data(dp[i]);
+    var ir = itemRendererParent.getElementAt(i);
+    ir.set_y(0);
+    ir.set_height(useHeight);
+    ir.set_x(xpos);
     ir.element.style['vertical-align'] = 'middle';
     ir.element.style['text-align'] = 'center';
     ir.element.style['left-margin'] = 'auto';
     ir.element.style['right-margin'] = 'auto';
 
-    ir.set_height(useHeight);
     if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.set_width(this.buttonWidths_[i]);
     else ir.set_width(useWidth);
 
@@ -127,5 +118,7 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
       ir.lastDisplay_ = 'inline-block';
     else
       ir.element.style.display = 'inline-block';
+
+    xpos += ir.get_width();
   }
 };

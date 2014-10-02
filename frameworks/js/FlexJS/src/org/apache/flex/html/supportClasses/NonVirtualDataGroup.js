@@ -102,6 +102,31 @@ org.apache.flex.html.supportClasses.NonVirtualDataGroup.
 
 /**
  * @expose
+ * @return {number} The number of child nodes in the group.
+ */
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
+    prototype.get_numElements = function() {
+
+  var n = this.element.childNodes.length;
+  return n;
+};
+
+
+/**
+ * @expose
+ * @param {number} index The index of the desired element.
+ * @return {Object} The element at the given index.
+ */
+org.apache.flex.html.supportClasses.NonVirtualDataGroup.
+    prototype.getElementAt = function(index) {
+
+  var e = this.element.childNodes[index];
+  return e.flexjs_wrapper;
+};
+
+
+/**
+ * @expose
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */

@@ -93,10 +93,14 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			
 			// see if there is a presentation model already in place. if not, add one.
-			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
-			if (presentationModel == null) {
+			var modBead:IBead = _strand.getBeadByType(DataGridPresentationModel);
+			var presentationModel:DataGridPresentationModel;
+			if (modBead == null) {
 				presentationModel = new DataGridPresentationModel();
 				_strand.addBead(presentationModel);
+			}
+			else {
+				presentationModel = modBead as DataGridPresentationModel;
 			}
 			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;

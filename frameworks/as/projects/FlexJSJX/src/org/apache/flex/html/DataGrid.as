@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.UIBase;
@@ -111,10 +112,14 @@ package org.apache.flex.html
 		 */
 		public function get presentationModel():IDataGridPresentationModel
 		{
-			var presModel:IDataGridPresentationModel = getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
-			if (presModel == null) {
+			var beadMod:IBead = getBeadByType(IDataGridPresentationModel);
+			var presModel:IDataGridPresentationModel;
+			
+			if (beadMod == null) {
 				presModel = new DataGridPresentationModel();
 				addBead(presModel);
+			} else {
+				presModel = beadMod as IDataGridPresentationModel;
 			}
 			return presModel;
 		}

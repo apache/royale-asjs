@@ -51,7 +51,11 @@ org.apache.flex.html.beads.layouts.
     this.strand_ = value;
     this.strand_.addEventListener('childrenAdded',
         goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
+    this.strand_.addEventListener('itemsCreated',
+        goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('widthChanged',
+        goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('heightChanged',
         goog.bind(this.changeHandler, this));
   }
 };

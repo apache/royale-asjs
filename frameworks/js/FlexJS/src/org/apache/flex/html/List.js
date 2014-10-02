@@ -158,9 +158,6 @@ org.apache.flex.html.List.prototype.addedToParent =
     itemRendererFactory = new m2();
     this.addBead(itemRendererFactory);
   }
-
-  var newEvent = new org.apache.flex.events.Event('layoutNeeded');
-  this.dispatchEvent(newEvent);
 };
 
 
