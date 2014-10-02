@@ -121,6 +121,8 @@ package org.apache.flex.core
         
         private function initHandler(event:flash.events.Event):void
         {
+            MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+            
             dispatchEvent(new Event("initialize"));
 
             if (initialView)
