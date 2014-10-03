@@ -103,12 +103,15 @@ package org.apache.flex.core
 			
 			super.addedToParent();
 			
-			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
 			
 			dispatchEvent(new Event("initComplete"))
 			dispatchEvent(new Event("childrenAdded"));
 		}
-		
+
+        private var _mxmlDescriptor:Array;
+        private var _mxmlDocument:Object = this;
+        
         /**
          *  @copy org.apache.flex.core.Application#MXMLDescriptor
          *  
@@ -119,9 +122,18 @@ package org.apache.flex.core
          */
 		public function get MXMLDescriptor():Array
 		{
-			return null;
+			return _mxmlDescriptor;
 		}
-		
+
+        /**
+         *  @private
+         */
+        public function setMXMLDescriptor(document:Object, value:Array):void
+        {
+            _mxmlDocument = document;
+            _mxmlDescriptor = value;
+        }
+
         /**
          *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
          *  

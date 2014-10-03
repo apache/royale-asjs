@@ -149,7 +149,7 @@ package org.apache.flex.core
          */
         protected function createFromMXMLContent(parent:IItemRendererParent):IItemRenderer
         {
-            return MXMLDataInterpreter.generateMXMLArray(document, parent as IParent, MXMLDescriptor, true)[0];
+            return MXMLDataInterpreter.generateMXMLArray(document, parent as IParent, MXMLDescriptor)[0];
         }
         
         /**

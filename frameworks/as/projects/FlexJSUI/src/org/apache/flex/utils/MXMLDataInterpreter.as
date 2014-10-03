@@ -22,6 +22,7 @@ package org.apache.flex.utils
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IContainer;
 import org.apache.flex.core.IDocument;
+import org.apache.flex.core.IMXMLDocument;
 import org.apache.flex.core.IParent;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.events.Event;
@@ -72,38 +73,43 @@ public class MXMLDataInterpreter
         var cls:Class = data[i++];
         var comp:Object = new cls();
         
-        var m:int;
-        var j:int;
-        var name:String;
-        var simple:*;
-        var value:Object;
-        var id:String;
-        
-        m = data[i++]; // num props
-        for (j = 0; j < m; j++)
+        if (comp is IStrand)
+            initializeStrandBasedObject(document, null, comp, data, i);
+        else
         {
-            name = data[i++];
-            simple = data[i++];
-            value = data[i++];
-            if (simple == null)
-                value = generateMXMLArray(document, null, value as Array);
-            else if (simple == false)
-                value = generateMXMLObject(document, value as Array);
-            if (name == "id")
+            var m:int;
+            var j:int;
+            var name:String;
+            var simple:*;
+            var value:Object;
+            var id:String;
+            
+            m = data[i++]; // num props
+            for (j = 0; j < m; j++)
             {
-                document[value] = comp;
-                id = value as String;
+                name = data[i++];
+                simple = data[i++];
+                value = data[i++];
+                if (simple == null)
+                    value = generateMXMLArray(document, null, value as Array);
+                else if (simple == false)
+                    value = generateMXMLObject(document, value as Array);
+                if (name == "id")
+                {
+                    document[value] = comp;
+                    id = value as String;
+                }
+                else if (name == "_id")
+                {
+                    document[value] = comp;
+                    id = value as String;
+                    continue; // skip assignment to comp
+                }
+                comp[name] = value;
             }
-            else if (name == "_id")
-            {
-                document[value] = comp;
-                id = value as String;
-                continue; // skip assignment to comp
-            }
-            comp[name] = value;
+            if (comp is IDocument)
+                comp.setDocument(document, id);
         }
-        if (comp is IDocument)
-            comp.setDocument(document, id);
         return comp;
     }
     
@@ -114,7 +120,6 @@ public class MXMLDataInterpreter
      *  it will be assigned in this document in this method.
      *  @param parent The parent for any display objects encoded in the array.
      *  @param data The encoded data.
-     *  @param recursive Whether to interpret a child's array of encoded data.
      *  @return The Array.
      *  
      *  @langversion 3.0
@@ -122,7 +127,7 @@ public class MXMLDataInterpreter
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public static function generateMXMLArray(document:Object, parent:IParent, data:Array, recursive:Boolean = true):Array
+    public static function generateMXMLArray(document:Object, parent:IParent, data:Array):Array
     {
         var comps:Array = [];
         
@@ -132,154 +137,163 @@ public class MXMLDataInterpreter
         {
             var cls:Class = data[i++];
             var comp:Object = new cls();
-                        
-            var m:int;
-            var j:int;
-            var name:String;
-            var simple:*;
-            var value:Object;
-            var id:String = null;
-			var dispatchBeadsAdded:Boolean = false;
-            
-            m = data[i++]; // num props
-            if (m > 0 && data[0] == "model")
-            {
-                m--;
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, parent, value as Array, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value as Array);
-                comp[name] = value;
-                if (value is IBead && comp is IStrand)
-                    IStrand(comp).addBead(value as IBead);
-            }
-            var beadOffset:int = i + (m - 1) * 3;
-            //if (beadOffset >= -1)
-            //    trace(beadOffset, data[beadOffset]);
-            if (m > 0 && data[beadOffset] == "beads")
-            {
-                m--;
-            }
-            else
-                beadOffset = -1;
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value as Array, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value as Array);
-                if (name == "id")
-                    id = value as String;
-                if (name == "document" && !comp.document)
-                    comp.document = document;
-                else if (name == "_id")
-                    id = value as String; // and don't assign to comp
-                else if (name == "id")
-                {
-                    // not all objects have to have their own id property
-                    try {
-                        comp["id"] = value;
-                    } catch (e:Error)
-                    {
-                        
-                    }
-                }
-                else
-                    comp[name] = value;
-            }
-            if (beadOffset > -1)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value as Array, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value as Array);
-                else
-                    comp[name] = value;
-                var beads:Array = value as Array;
-                var l:int = beads.length;
-                for (var k:int = 0; k < l; k++)
-                {
-                    var bead:IBead = beads[k] as IBead;
-                    IStrand(comp).addBead(bead);
-					dispatchBeadsAdded = true;
-                }
-            }
-            m = data[i++]; // num styles
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value as Array, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value as Array);
-                comp.setStyle(name, value);
-            }            
-            
-            m = data[i++]; // num effects
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                simple = data[i++];
-                value = data[i++];
-                if (simple == null)
-                    value = generateMXMLArray(document, null, value as Array, recursive);
-                else if (simple == false)
-                    value = generateMXMLObject(document, value as Array);
-                comp.setStyle(name, value);
-            }
-            
-            m = data[i++]; // num events
-            for (j = 0; j < m; j++)
-            {
-                name = data[i++];
-                value = data[i++];
-                comp.addEventListener(name, value);
-            }
-            
-            if (parent)
-            {
-                parent.addElement(comp);
-				dispatchBeadsAdded = true;
-            }
 
-            var children:Array = data[i++];
-            if (children)
-            {
-                if (recursive)
-				{
-                    generateMXMLInstances(document, comp as IParent, children, recursive);
-					if (comp is IContainer)
-					{
-						IContainer(comp).childrenAdded();
-					}
-				}
-                else
-                    comp.setMXMLDescriptor(children);
-            }
+            i = initializeStrandBasedObject(document, parent, comp, data, i);
             
-            if (id)
-                document[id] = comp;
-            
-            if (comp is IDocument)
-                comp.setDocument(document, id);
             comps.push(comp);
-			
-			if (dispatchBeadsAdded) {
-				IEventDispatcher(comp).dispatchEvent(new Event("beadsAdded"));
-			}
         }
         return comps;
+    }
+    
+    private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
+    {
+        var m:int;
+        var j:int;
+        var name:String;
+        var simple:*;
+        var value:Object;
+        var id:String = null;
+        var dispatchBeadsAdded:Boolean = false;
+        
+        m = data[i++]; // num props
+        if (m > 0 && data[0] == "model")
+        {
+            m--;
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(document, parent, value as Array);
+            else if (simple == false)
+                value = generateMXMLObject(document, value as Array);
+            comp[name] = value;
+            if (value is IBead && comp is IStrand)
+                IStrand(comp).addBead(value as IBead);
+        }
+        var beadOffset:int = i + (m - 1) * 3;
+        //if (beadOffset >= -1)
+        //    trace(beadOffset, data[beadOffset]);
+        if (m > 0 && data[beadOffset] == "beads")
+        {
+            m--;
+        }
+        else
+            beadOffset = -1;
+        for (j = 0; j < m; j++)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(document, null, value as Array);
+            else if (simple == false)
+                value = generateMXMLObject(document, value as Array);
+            if (name == "id")
+                id = value as String;
+            if (name == "document" && !comp.document)
+                comp.document = document;
+            else if (name == "_id")
+                id = value as String; // and don't assign to comp
+            else if (name == "id")
+            {
+                // not all objects have to have their own id property
+                try {
+                    comp["id"] = value;
+                } catch (e:Error)
+                {
+                    
+                }
+            }
+            else
+                comp[name] = value;
+        }
+        if (beadOffset > -1)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(document, null, value as Array);
+            else if (simple == false)
+                value = generateMXMLObject(document, value as Array);
+            else
+                comp[name] = value;
+            var beads:Array = value as Array;
+            var l:int = beads.length;
+            for (var k:int = 0; k < l; k++)
+            {
+                var bead:IBead = beads[k] as IBead;
+                IStrand(comp).addBead(bead);
+                dispatchBeadsAdded = true;
+            }
+        }
+        m = data[i++]; // num styles
+        for (j = 0; j < m; j++)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(document, null, value as Array);
+            else if (simple == false)
+                value = generateMXMLObject(document, value as Array);
+            comp.setStyle(name, value);
+        }            
+        
+        m = data[i++]; // num effects
+        for (j = 0; j < m; j++)
+        {
+            name = data[i++];
+            simple = data[i++];
+            value = data[i++];
+            if (simple == null)
+                value = generateMXMLArray(document, null, value as Array);
+            else if (simple == false)
+                value = generateMXMLObject(document, value as Array);
+            comp.setStyle(name, value);
+        }
+        
+        m = data[i++]; // num events
+        for (j = 0; j < m; j++)
+        {
+            name = data[i++];
+            value = data[i++];
+            comp.addEventListener(name, value);
+        }
+        
+        var children:Array = data[i++];
+        if (children && comp is IMXMLDocument)
+        {
+            comp.setMXMLDescriptor(document, children);                
+        }
+        if (parent)
+        {
+            parent.addElement(comp);
+            dispatchBeadsAdded = true;
+        }
+        
+        if (children)
+        {
+            if (!(comp is IMXMLDocument))
+                generateMXMLInstances(document, comp as IParent, children);
+            
+            if (comp is IContainer)
+            {
+                IContainer(comp).childrenAdded();
+            }
+        }
+        
+        if (id)
+            document[id] = comp;
+        
+        if (comp is IDocument)
+            comp.setDocument(document, id);
+                
+        if (dispatchBeadsAdded) {
+            IEventDispatcher(comp).dispatchEvent(new Event("beadsAdded"));
+        }
+
+        return i;
     }
     
     /**
@@ -289,18 +303,17 @@ public class MXMLDataInterpreter
      *  it will be assigned in this document in this method.
      *  @param parent The parent for any display objects encoded in the array.
      *  @param data The encoded data.
-     *  @param recursive Whether to interpret a child's array of encoded data.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public static function generateMXMLInstances(document:Object, parent:IParent, data:Array, recursive:Boolean = true):void
+    public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
 		if (!data) return;
 		
-        generateMXMLArray(document, parent, data, recursive);
+        generateMXMLArray(document, parent, data);
     }
     
     /**
@@ -345,7 +358,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, true);
+                value = generateMXMLArray(host, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             if (name == "id")
@@ -361,7 +374,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, true);
+                value = generateMXMLArray(host, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             else
@@ -386,7 +399,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, true);
+                value = generateMXMLArray(host, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             host[name] = value;
@@ -399,7 +412,7 @@ public class MXMLDataInterpreter
             simple = data[i++];
             value = data[i++];
             if (simple == null)
-                value = generateMXMLArray(host, null, value as Array, true);
+                value = generateMXMLArray(host, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
             host[name] = value;

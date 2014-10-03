@@ -132,7 +132,7 @@ package org.apache.flex.core
                     if (ai.items == null)
                     {
                         ai.items = MXMLDataInterpreter.generateMXMLArray(ai.document,
-                                                    null, ai.itemsDescriptor, true);
+                                                    null, ai.itemsDescriptor);
                     }
                     for each (var item:DisplayObject in ai.items)
                     {

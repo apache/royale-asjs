@@ -40,6 +40,19 @@ package org.apache.flex.core
         function get MXMLDescriptor():Array;
         
         /**
+         *  Set the descriptor for this MXML component
+         *  
+         *  @param document The MXML document.
+         *  @param value The descriptor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function setMXMLDescriptor(document:Object, value:Array):void;
+        
+        /**
          *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
          *  
          *  @langversion 3.0
