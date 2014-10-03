@@ -75,7 +75,7 @@ package org.apache.flex.html.beads.layouts
 		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParentIUIBase = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(_strand);
 			
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
