@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
@@ -33,7 +34,7 @@ package org.apache.flex.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel
+	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel, ITextModel
 	{
 		/**
 		 *  constructor.
