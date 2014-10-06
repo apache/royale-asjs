@@ -124,7 +124,10 @@ package org.apache.flex.core
                 else if (o is SetProperty)
                 {
                     var sp:SetProperty = SetProperty(o);
-                    sp.document[sp.target][sp.name] = sp.previousValue;
+                    if (sp.target != null)
+                        sp.document[sp.target][sp.name] = sp.previousValue;
+                    else
+                        sp.document[sp.name] = sp.previousValue;
                 }
             }
         }
@@ -170,8 +173,16 @@ package org.apache.flex.core
                 else if (o is SetProperty)
                 {
                     var sp:SetProperty = SetProperty(o);
-                    sp.previousValue = sp.document[sp.target][sp.name];
-                    sp.document[sp.target][sp.name] = sp.value;
+                    if (sp.target != null)
+                    {
+                        sp.previousValue = sp.document[sp.target][sp.name];
+                        sp.document[sp.target][sp.name] = sp.value;
+                    }
+                    else
+                    {
+                        sp.previousValue = sp.document[sp.name];
+                        sp.document[sp.name] = sp.value;                        
+                    }
                 }
             }            
         }
