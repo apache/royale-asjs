@@ -32,6 +32,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStrandWithModel;
     import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
 	
@@ -86,7 +87,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-            textModel = value.getBeadByType(ITextModel) as ITextModel;
+            textModel = IStrandWithModel(value).model as ITextModel;
             textModel.addEventListener("textChange", textChangeHandler);
             textModel.addEventListener("htmlChange", htmlChangeHandler);
 			
