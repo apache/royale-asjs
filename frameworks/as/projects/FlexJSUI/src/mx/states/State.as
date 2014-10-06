@@ -60,6 +60,17 @@ package mx.states
 		public var name:String;
         
         /**
+         *  Comma-delimited list of state groups of the state.
+         *  It is not an array so don't use square brackets [].
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public var stateGroups:String;
+        
+        /**
          *  The array of overrides.  This is normally set by the compiler.
          *  
          *  @langversion 3.0
