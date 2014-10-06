@@ -25,6 +25,7 @@ package org.apache.flex.core
     import mx.states.State;
     
     import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IStatesObject;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
@@ -70,11 +71,18 @@ package org.apache.flex.core
         {
             _strand = value;
             IEventDispatcher(_strand).addEventListener("currentStateChange", stateChangeHandler);
+            IEventDispatcher(_strand).addEventListener("initComplete", initialStateHandler);
+        }
+        
+        private function initialStateHandler(event:org.apache.flex.events.Event):void
+        {
+            stateChangeHandler(new ValueChangeEvent("currentStateChange", false, false, null, 
+                IStatesObject(_strand).currentState));
         }		
      
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
-            var doc:Object = event.target;
+            var doc:IStatesObject = _strand as IStatesObject;
             var arr:Array = doc.states;
             for each (var s:State in arr)
             {
