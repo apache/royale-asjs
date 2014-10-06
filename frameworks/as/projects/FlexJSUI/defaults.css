@@ -211,6 +211,7 @@ Container
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 }
 
 HContainer
