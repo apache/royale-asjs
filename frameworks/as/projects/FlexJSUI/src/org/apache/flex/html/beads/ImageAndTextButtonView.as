@@ -103,6 +103,10 @@ package org.apache.flex.html.beads
 			setupBackground(upSprite, upTextField, 0xCCCCCC);
 			setupBackground(overSprite, overTextField, 0xFFCCCC, "hover");
 			setupBackground(downSprite, downTextField, 0x808080, "active");
+            upTextField.styleParent = value;
+            downTextField.styleParent = value;
+            overTextField.styleParent = value;
+
 		}
 		
 		private var upSprite:Sprite;
@@ -138,7 +142,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function setupBackground(sprite:Sprite, textField:TextField, color:uint, state:String = null):void
+		private function setupBackground(sprite:Sprite, textField:CSSTextField, color:uint, state:String = null):void
 		{
 			var backgroundImage:Object = image;
 			if (backgroundImage)
