@@ -21,7 +21,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
 	
-	[Event(name="valueChanged", type="org.apache.flex.events.Event")]
+	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The Spinner class is a component that displays a control for incrementing a value

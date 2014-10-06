@@ -102,7 +102,7 @@ package org.apache.flex.html.beads.controllers
 			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 		
 		private var origin:Point;
@@ -124,7 +124,7 @@ package org.apache.flex.html.beads.controllers
 		
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 		
 		/**
@@ -142,7 +142,7 @@ package org.apache.flex.html.beads.controllers
 			
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 	}
 }

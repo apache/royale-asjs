@@ -130,12 +130,12 @@ limitations under the License.
 		<basic:TextButton text="Push Me" click="onButtonClick()" />
 		<basic:Label id="spinMe" />
 		<basic:NumericStepper id="stepper" 
-							  valueChanged="spinnerChanged(stepper)" 
+							  valueChange="spinnerChanged(stepper)" 
 							  className="numStepper"
 							  stepSize="10"/>
 		<basic:Label id="slideMe" />
 		<basic:Slider id="slider"
-					  valueChanged="sliderChanged(slider)"
+					  valueChange="sliderChanged(slider)"
 					  minimum="20"
 					  maximum="80"
 					  stepSize="5" />

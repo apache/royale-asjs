@@ -83,7 +83,7 @@ package org.apache.flex.html.beads.controllers
 		private function decrementClickHandler( event:Event ) : void
 		{
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 		
 		/**
@@ -92,7 +92,7 @@ package org.apache.flex.html.beads.controllers
 		private function incrementClickHandler( event:Event ) : void
 		{
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);	
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChanged"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 	}
 }

@@ -81,7 +81,7 @@ org.apache.flex.html.beads.controllers.SliderMouseController.
 
   this.calcValFromMousePosition(event, true);
 
-  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
@@ -120,7 +120,7 @@ org.apache.flex.html.beads.controllers.SliderMouseController.
 
   this.calcValFromMousePosition(event, false);
 
-  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
@@ -135,7 +135,7 @@ org.apache.flex.html.beads.controllers.SliderMouseController.
     {
   this.calcValFromMousePosition(event, false);
 
-  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 

@@ -93,7 +93,7 @@ org.apache.flex.html.Spinner.prototype.set_value =
     function(value) {
   if (value != this.value_) {
     this.value_ = value;
-    this.dispatchEvent('valueChanged');
+    this.dispatchEvent('valueChange');
   }
 };
 

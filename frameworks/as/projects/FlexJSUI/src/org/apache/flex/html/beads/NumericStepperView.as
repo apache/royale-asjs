@@ -99,7 +99,7 @@ package org.apache.flex.html.beads
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
-			spinner.addEventListener("valueChanged",spinnerValueChanged);
+			spinner.addEventListener("valueChange",spinnerValueChanged);
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			

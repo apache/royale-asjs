@@ -59,7 +59,7 @@ org.apache.flex.html.NumericStepper.prototype.createElement =
   this.spinner = new org.apache.flex.html.Spinner();
   this.addElement(this.spinner);
   this.spinner.positioner.style.display = 'inline-block';
-  goog.events.listen(this.spinner, 'valueChanged',
+  goog.events.listen(this.spinner, 'valueChange',
       goog.bind(this.spinnerChange, this));
 
   this.element.flexjs_wrapper = this;
@@ -80,7 +80,7 @@ org.apache.flex.html.NumericStepper.prototype.spinnerChange =
   var newValue = this.spinner.get_value();
   this.set_value(newValue);
   this.input.set_text(String(this.spinner.get_value()));
-  this.dispatchEvent(new org.apache.flex.events.Event('valueChanged'));
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
