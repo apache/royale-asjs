@@ -131,6 +131,7 @@ internal class FlexJSUIClasses
     
 	import mx.core.ClassFactory; ClassFactory;
     import mx.states.AddItems; AddItems;
+    import mx.states.SetEventHandler; SetEventHandler;
     import mx.states.SetProperty; SetProperty;
     import mx.states.State; State;
 }
