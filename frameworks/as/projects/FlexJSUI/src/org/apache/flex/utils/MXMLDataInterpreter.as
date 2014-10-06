@@ -19,6 +19,8 @@
 package org.apache.flex.utils
 {
 
+import flash.display.DisplayObject;
+
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IContainer;
 import org.apache.flex.core.IDocument;
@@ -266,7 +268,7 @@ public class MXMLDataInterpreter
         {
             comp.setMXMLDescriptor(document, children);                
         }
-        if (parent)
+        if (parent && comp is DisplayObject)
         {
             parent.addElement(comp);
             dispatchBeadsAdded = true;
