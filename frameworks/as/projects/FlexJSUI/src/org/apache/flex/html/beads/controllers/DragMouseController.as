@@ -23,9 +23,10 @@ package org.apache.flex.html.beads.controllers
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
-    import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
+    import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 	
     /**
@@ -69,7 +70,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DragMouseController implements IBead
+	public class DragMouseController extends EventDispatcher implements IBead
 	{
         /**
          *  The data being dragged. Or an instance

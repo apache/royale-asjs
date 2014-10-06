@@ -22,10 +22,11 @@ package org.apache.flex.html.beads.controllers
 	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IDragInitiator;
+	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
+    import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 
     /**
@@ -69,7 +70,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DropMouseController implements IBead
+	public class DropMouseController extends EventDispatcher implements IBead
 	{
 		/**
 		 *  constructor.
