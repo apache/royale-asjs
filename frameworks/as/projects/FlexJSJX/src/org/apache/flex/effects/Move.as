@@ -55,7 +55,7 @@ public class Move extends Tween implements IDocument
     {
         super();
 
-		this.target = target;
+		this.actualTarget = target;
 		startValue = 0;
 		endValue = 1;
 		
@@ -74,11 +74,17 @@ public class Move extends Tween implements IDocument
 	 */
 	private var document:Object;
 
+    /**
+     *  @private
+     *  The actual target.
+     */
+    private var actualTarget:IUIBase;
+    
 	/**
-	 *  @private
-	 *  The target.
+	 *  The target as the String id 
+     *  of a widget in an MXML Document.
 	 */
-	private var target:IUIBase;
+	public var target:String;
     
 	/**
 	 *  The change in x.
@@ -146,11 +152,11 @@ public class Move extends Tween implements IDocument
 	 */
 	override public function play():void
 	{
-		if (target is String)
-			target = document[target];
+		if (target != null)
+			actualTarget = document[target];
 		
 		if (isNaN(xFrom))
-			xStart = target.x;
+			xStart = actualTarget.x;
         if (isNaN(xBy))
         {
     		if (isNaN(xTo))
@@ -160,7 +166,7 @@ public class Move extends Tween implements IDocument
         }
         
 		if (isNaN(yFrom))
-			yStart = target.y;
+			yStart = actualTarget.y;
         if (isNaN(yBy))
         {
     		if (isNaN(yTo))
@@ -174,17 +180,17 @@ public class Move extends Tween implements IDocument
 	public function onTweenUpdate(value:Number):void
 	{
 		if (xBy)
-			target.x = xStart + value * xBy;
+			actualTarget.x = xStart + value * xBy;
 		if (yBy)
-			target.y = yStart + value * yBy;
+			actualTarget.y = yStart + value * yBy;
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
 		if (xBy)
-			target.x = xStart + xBy;
+			actualTarget.x = xStart + xBy;
 		if (yBy)
-			target.y = yStart + yBy;
+			actualTarget.y = yStart + yBy;
 	}
 }
 

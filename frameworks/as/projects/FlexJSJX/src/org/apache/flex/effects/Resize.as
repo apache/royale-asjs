@@ -55,7 +55,7 @@ public class Resize extends Tween implements IDocument
     {
         super();
 
-		this.target = target;
+		this.actualTarget = target;
 		startValue = 0;
 		endValue = 1;
 		
@@ -78,7 +78,13 @@ public class Resize extends Tween implements IDocument
 	 *  @private
 	 *  The target.
 	 */
-	private var target:IUIBase;
+	private var actualTarget:IUIBase;
+    
+    /**
+     *  The target as the String id 
+     *  of a widget in an MXML Document.
+     */
+    public var target:String;
     
 	/**
 	 *  The change in width.
@@ -146,11 +152,11 @@ public class Resize extends Tween implements IDocument
 	 */
 	override public function play():void
 	{
-		if (target is String)
-			target = document[target];
+        if (target != null)
+            actualTarget = document[target];
 		
 		if (isNaN(widthFrom))
-			widthStart = target.width;
+			widthStart = actualTarget.width;
         if (isNaN(widthBy))
         {
     		if (isNaN(widthTo))
@@ -160,7 +166,7 @@ public class Resize extends Tween implements IDocument
         }
         
 		if (isNaN(heightFrom))
-			heightStart = target.height;
+			heightStart = actualTarget.height;
         if (isNaN(heightBy))
         {
     		if (isNaN(heightTo))
@@ -174,17 +180,17 @@ public class Resize extends Tween implements IDocument
 	public function onTweenUpdate(value:Number):void
 	{
 		if (widthBy)
-			target.width = widthStart + value * widthBy;
+			actualTarget.width = widthStart + value * widthBy;
 		if (heightBy)
-			target.height = heightStart + value * heightBy;
+			actualTarget.height = heightStart + value * heightBy;
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
 		if (widthBy)
-			target.width = widthStart + widthBy;
+			actualTarget.width = widthStart + widthBy;
 		if (heightBy)
-			target.height = heightStart + heightBy;
+			actualTarget.height = heightStart + heightBy;
 	}
 }
 

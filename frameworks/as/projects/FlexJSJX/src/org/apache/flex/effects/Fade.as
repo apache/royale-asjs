@@ -43,7 +43,7 @@ public class Fade extends Tween implements IDocument
     /**
      *  Constructor.
      *
-     *  @param target Object ID or reference to an object that will
+     *  @param target An object that will
 	 *  have its x and/or y property animated.
      *
      *  @langversion 3.0
@@ -55,7 +55,7 @@ public class Fade extends Tween implements IDocument
     {
         super();
 
-		this.target = target;
+		this.actualTarget = target;
 		startValue = 0;
 		endValue = 1;
 		
@@ -78,7 +78,13 @@ public class Fade extends Tween implements IDocument
 	 *  @private
 	 *  The target.
 	 */
-	private var target:IUIBase;
+	private var actualTarget:IUIBase;
+    
+    /**
+     *  The target as the String id 
+     *  of a widget in an MXML Document.
+     */
+    public var target:String;
     
 	/**
 	 *  @private
@@ -127,11 +133,11 @@ public class Fade extends Tween implements IDocument
 	 */
 	override public function play():void
 	{
-		if (target is String)
-			target = document[target];
+        if (target != null)
+            actualTarget = document[target];
 		
 		if (isNaN(alphaFrom))
-			start = target.alpha;
+			start = actualTarget.alpha;
 		else
 			start = alphaFrom;
 		
@@ -146,13 +152,13 @@ public class Fade extends Tween implements IDocument
 	public function onTweenUpdate(value:Number):void
 	{
 		if (d)
-			target.alpha = start + value * d;
+			actualTarget.alpha = start + value * d;
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
 		if (d)
-			target.alpha = start + d;
+			actualTarget.alpha = start + d;
 	}
 }
 

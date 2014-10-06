@@ -57,7 +57,7 @@ public class Wipe extends Tween implements IDocument
     {
         super();
 
-		this.target = target;
+		this.actualTarget = target;
         
 		listener = this;
     }
@@ -78,7 +78,13 @@ public class Wipe extends Tween implements IDocument
 	 *  @private
 	 *  The target.
 	 */
-	private var target:IUIBase;
+	private var actualTarget:IUIBase;
+    
+    /**
+     *  The target as the String id 
+     *  of a widget in an MXML Document.
+     */
+    public var target:String;
     
 	/**
 	 *  The direction of the Wipe.  "up" means the top will be the last
@@ -111,20 +117,21 @@ public class Wipe extends Tween implements IDocument
 	 */
 	override public function play():void
 	{
-		if (target is String)
-			target = document[target];
+        if (target != null)
+            actualTarget = document[target];
+        
 		
-        wiper.target = target;
+        wiper.target = actualTarget;
         if (direction == "up")
         {
-            startValue = target.height;
+            startValue = actualTarget.height;
             endValue = 0;
         }
         else
         {
             startValue = 0;
-            endValue = target.height;
-            wiper.visibleRect = new Rectangle(0, 0, target.width, 0);
+            endValue = actualTarget.height;
+            wiper.visibleRect = new Rectangle(0, 0, actualTarget.width, 0);
         }
         
 		super.play();
@@ -132,7 +139,7 @@ public class Wipe extends Tween implements IDocument
 
 	public function onTweenUpdate(value:Number):void
 	{
-		wiper.visibleRect = new Rectangle(0, 0, target.width, value);
+		wiper.visibleRect = new Rectangle(0, 0, actualTarget.width, value);
 	}
 	
 	public function onTweenEnd(value:Number):void
