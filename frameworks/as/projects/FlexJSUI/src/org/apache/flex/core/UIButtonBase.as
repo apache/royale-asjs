@@ -57,7 +57,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIButtonBase extends SimpleButton implements IStrand, IEventDispatcher, IUIBase, IStyleableObject
+	public class UIButtonBase extends SimpleButton implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject
 	{
         /**
          *  Constructor.
@@ -550,7 +550,7 @@ package org.apache.flex.core
         public function set style(value:Object):void
         {
             if (value is String)
-                _styles = JSON.parse("{" + value + "}");                
+                _styles = ValuesManager.valuesImpl.parseStyles(value as String);
             else
                 _styles = value;
             dispatchEvent(new org.apache.flex.events.Event("stylesChanged"));

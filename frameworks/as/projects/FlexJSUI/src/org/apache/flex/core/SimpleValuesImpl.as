@@ -148,5 +148,20 @@ package org.apache.flex.core
                 return uint(stringValue.substr(1));
             return uint(stringValue);
         }
-	}
+        
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#parseStyles()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function parseStyles(value:String):Object
+        {
+            value = value.replace(/;/g, ",");
+            return JSON.parse("{" + value + "}");
+        }
+
+    }
 }

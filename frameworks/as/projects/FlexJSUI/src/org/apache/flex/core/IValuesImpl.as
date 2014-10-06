@@ -108,5 +108,16 @@ package org.apache.flex.core
          */
         function convertColor(value:Object):uint;
 
+        /**
+         *  Converts an HTML-like style format into an object.
+         *
+         *  @param value A string, such as "color:red;fontSize:10px".
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function parseStyles(value:String):Object;
     }
 }

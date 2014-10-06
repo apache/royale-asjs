@@ -471,6 +471,40 @@ package org.apache.flex.core
         }
         
         /**
+         *  @copy org.apache.flex.core.IValuesImpl#parseStyles()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function parseStyles(styles:String):Object
+        {
+            var obj:Object = {};
+            var parts:Array = styles.split(";");
+            for each (var part:String in parts)
+            {
+                var pieces:Array = part.split(":");
+                var value:String = pieces[1];
+                if (value == "null")
+                    obj[pieces[0]] = null;
+                else if (value == "true")
+                    obj[pieces[0]] = true;
+                else if (value == "false")
+                    obj[pieces[0]] = false;
+                else
+                {
+                    var n:Number = Number(value);
+                    if (isNaN(n))
+                        obj[pieces[0]] = value;
+                    else
+                        obj[pieces[0]] = n;
+                }
+            }
+            return obj;
+        }
+        
+        /**
          *  A map of inheriting styles 
          *  
          *  @langversion 3.0

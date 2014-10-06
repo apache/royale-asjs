@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends Sprite implements IStrand, IEventDispatcher, IParentIUIBase, IStyleableObject, IChild
+	public class UIBase extends Sprite implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, IChild
 	{
         /**
          *  Constructor.
@@ -460,7 +460,9 @@ package org.apache.flex.core
             if (_styles != value)
             {
                 if (value is String)
-                    _styles = JSON.parse("{" + value + "}");                
+                {
+                    _styles = ValuesManager.valuesImpl.parseStyles(value as String);
+                }
                 else
                     _styles = value;
                 dispatchEvent(new org.apache.flex.events.Event("stylesChanged"));
