@@ -35,6 +35,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.charts.core.ChartBase; ChartBase;
 	import org.apache.flex.charts.core.IChart; IChart;
 	import org.apache.flex.charts.core.ICartesianChartLayout; ICartesianChartLayout;
+	import org.apache.flex.charts.core.IChartDataGroup; IChartDataGroup;
 	import org.apache.flex.charts.core.IChartSeries; IChartSeries;
 	import org.apache.flex.charts.core.IHorizontalAxisBead; IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead; IVerticalAxisBead;

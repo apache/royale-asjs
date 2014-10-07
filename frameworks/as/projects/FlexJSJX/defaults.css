@@ -26,6 +26,7 @@ BarChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.BarChartLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
 }
 
@@ -36,6 +37,7 @@ ColumnChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.ColumnChartLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
 }
 
@@ -73,6 +75,7 @@ LineChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IConnectedItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.LineSegmentItemRenderer");
 }
@@ -84,6 +87,7 @@ PieChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.PieChartLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.WedgeItemRenderer");
 }
 
@@ -94,6 +98,7 @@ StackedColumnChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.StackedColumnChartLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
 }
 
@@ -104,5 +109,6 @@ StackedBarChart
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.StackedBarChartLayout");
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
 }

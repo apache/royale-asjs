@@ -32,6 +32,18 @@ package org.apache.flex.charts.core
 	public interface IChartItemRenderer extends IItemRenderer
 	{
 		/**
+		 *  The series to which this itemRenderer instance belongs. Or, the series
+		 *  being presented.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get series():IChartSeries;
+		function set series(value:IChartSeries):void;
+		
+		/**
 		 *  The name of the field containing the X-axis value found
 		 *  in the data property.
 		 *

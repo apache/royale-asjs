@@ -16,59 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.flex.charts.core
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
-	
+	import org.apache.flex.core.IItemRendererParent;
+
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The IChartDataGroup is the interface for the parent element of
+	 *  chart itemRenderers. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IChartDataGroup
+	public interface IChartDataGroup extends IItemRendererParent
 	{
 		/**
-		 *  constructor.
+		 *  Returns the itemRenderer that matches both the series and child index value.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ChartDataGroup()
-		{
-			super();
-		}
-		
-		/**
-		 *  Returns the itemRenderer that matches both the series and child index. A null return is
-		 *  valid since some charts have optional itemRenderers for their series.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer
-		{
-			var n:int = numChildren;
-			for(var i:int=0; i < n; i++)
-			{
-				var child:IChartItemRenderer = getChildAt(i) as IChartItemRenderer;
-				if (child && child.series == series) {
-					if (index == 0) return child;
-					--index;
-				}
-			}
-			
-			return null;
-		}
+		function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer;
 	}
 }

@@ -124,10 +124,7 @@ package org.apache.flex.charts.beads.layouts
 				{
 					bcs = chart.series[s] as ColumnSeries;
 
-					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
-					chartDataGroup.addElement(child);
-					child.itemRendererParent = chartDataGroup;
-					child.data = data;
+					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(bcs,i);
 					yValue = Number(data[bcs.yField]);
 					
 					child.x = xpos;

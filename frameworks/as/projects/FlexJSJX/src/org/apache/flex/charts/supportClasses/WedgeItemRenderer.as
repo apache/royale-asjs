@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {	
+	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
 	import org.apache.flex.core.graphics.Path;
@@ -36,6 +37,26 @@ package org.apache.flex.charts.supportClasses
 		public function WedgeItemRenderer()
 		{
 			super();
+		}
+		
+		private var _series:IChartSeries;
+		
+		/**
+		 *  The series to which this itemRenderer instance belongs. Or, the series
+		 *  being presented.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get series():IChartSeries
+		{
+			return _series;
+		}
+		public function set series(value:IChartSeries):void
+		{
+			_series = value;
 		}
 		
 		private var _centerX:Number;

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {	
+	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.charts.supportClasses.IWedgeItemRenderer;
 	import org.apache.flex.charts.supportClasses.PieSeries;
@@ -108,10 +109,7 @@ package org.apache.flex.charts.beads.layouts
 					fill.color = colors[i%colors.length];
 					fill.alpha = 1.0;
 					
-					var child:IWedgeItemRenderer = (chart.series[s] as IChartSeries).itemRenderer.newInstance() as IWedgeItemRenderer;
-					chartDataGroup.addElement(child);
-					child.itemRendererParent = chartDataGroup;
-					child.data = data;
+					var child:IWedgeItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(chart.series[s],i) as IWedgeItemRenderer;
 					child.fill = fill;
 					
 					end = start + (360.0 * obj.percent);

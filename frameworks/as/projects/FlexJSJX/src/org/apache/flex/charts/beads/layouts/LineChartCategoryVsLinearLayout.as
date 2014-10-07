@@ -101,15 +101,12 @@ package org.apache.flex.charts.beads.layouts
 					
 					seriesMaxes[s].points.push( {x:childX, y:childY} );
 					
-					if (aseries.itemRenderer) {
-						var child:IChartItemRenderer = aseries.itemRenderer.newInstance() as IChartItemRenderer;
-						child.itemRendererParent = chartDataGroup;
-						child.data = data;
+					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(aseries,i);
+					if (child) {
 						child.x = childX - 5;
 						child.y = childY - 5;
 						child.width = 10;
 						child.height = 10;
-						chartDataGroup.addElement(child);
 					}
 					
 					xpos += itemWidth;

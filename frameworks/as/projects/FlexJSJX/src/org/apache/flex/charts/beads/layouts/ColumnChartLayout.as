@@ -23,6 +23,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -110,10 +111,7 @@ package org.apache.flex.charts.beads.layouts
 				{
 					bcs = chart.series[s] as ColumnSeries;
 					
-					var child:IChartItemRenderer = bcs.itemRenderer.newInstance() as IChartItemRenderer;
-					chartDataGroup.addElement(child);
-					child.itemRendererParent = chartDataGroup;
-					child.data = data;
+					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(bcs,i);
 					yValue = Number(data[bcs.yField]);
 					
 					child.y = useHeight - yValue*seriesMaxes[s].scaleFactor;
