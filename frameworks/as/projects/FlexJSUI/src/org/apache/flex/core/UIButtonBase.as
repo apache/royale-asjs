@@ -83,74 +83,16 @@ package org.apache.flex.core
 				dispatchEvent(new Event("click"));
 			}
 		}
-		
-		private var _x:Number;
-		
-		/**
-		 *  @copy org.apache.flex.core.UIBase#x
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function get x():Number
-		{
-			if (isNaN(_x))
-			{
-				var value:* = ValuesManager.valuesImpl.getValue(this, "x");
-				if (value === undefined)
-					return $x;
-				_x = Number(value);
-			}
-			return _x;
-		}
-		
+				
 		/**
 		 *  @private
 		 */
 		override public function set x(value:Number):void
 		{
-			if (_x != value) {
-				_x = value;
+			if (super.x != value) {
 				super.x = value;
 				dispatchEvent(new Event("xChanged"));
 			}
-		}
-		
-		/**
-		 *  Retrieve the low-level bounding box x.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function get $x():Number
-		{
-			return super.x;
-		}
-		
-		private var _y:Number;
-		
-		/**
-		 *  @copy org.apache.flex.core.UIBase#y
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function get y():Number
-		{
-			if (isNaN(_y))
-			{
-				var value:* = ValuesManager.valuesImpl.getValue(this, "y");
-				if (value === undefined)
-					return $y;
-				_y = Number(value);
-			}
-			return _y;
 		}
 		
 		/**
@@ -158,8 +100,7 @@ package org.apache.flex.core
 		 */
 		override public function set y(value:Number):void
 		{
-			if (_y != value) {
-				_y = value;
+			if (super.y != value) {
 				super.y = value;
 				dispatchEvent(new Event("yChanged"));
 			}
