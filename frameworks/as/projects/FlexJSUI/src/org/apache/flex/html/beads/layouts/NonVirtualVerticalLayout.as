@@ -19,7 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {
 	
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -39,7 +39,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualVerticalLayout implements IBead
+	public class NonVirtualVerticalLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
