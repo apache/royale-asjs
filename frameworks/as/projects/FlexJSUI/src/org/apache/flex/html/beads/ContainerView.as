@@ -20,6 +20,7 @@ package org.apache.flex.html.beads
 {
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParentIUIBase;
@@ -117,6 +118,17 @@ package org.apache.flex.html.beads
 				if (value.getBeadByType(IBorderBead) == null)
 					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
 			}
+            
+            if (_strand.getBeadByType(IBeadLayout) == null)
+            {
+                var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
+                if (c)
+                {
+                    var mapper:IBeadLayout = new c() as IBeadLayout;
+                    _strand.addBead(mapper);
+                }
+            }  
+
 		}
 		
 		/**
