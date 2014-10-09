@@ -87,17 +87,21 @@ package org.apache.flex.html.beads.layouts
                 _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			var border:Border = layoutParent.border;
-			var borderModel:IBorderModel = border.model as IBorderModel;
-			
+   			var borderModel:IBorderModel;
+            if (border)
+                borderModel = border.model as IBorderModel;
             var ww:Number = layoutParent.resizableView.width;
             var hh:Number = layoutParent.resizableView.height;
-            border.width = ww;
-            border.height = hh;
-           
-			contentView.width = ww - borderModel.offsets.left - borderModel.offsets.right;
-			contentView.height = hh - borderModel.offsets.top - borderModel.offsets.bottom;
-			contentView.x = borderModel.offsets.left;
-			contentView.y = borderModel.offsets.top;
+            if (border)
+            {
+                border.width = ww;
+                border.height = hh;
+            }
+            
+			contentView.width = ww - ((border) ? borderModel.offsets.left + borderModel.offsets.right : 0);
+			contentView.height = hh - ((border) ? borderModel.offsets.top - borderModel.offsets.bottom : 0);
+			contentView.x = (border) ? borderModel.offsets.left : 0;
+			contentView.y = (border) ? borderModel.offsets.top : 0;
 			
 			var n:int = contentView.numElements;
 			var yy:Number = 0;
