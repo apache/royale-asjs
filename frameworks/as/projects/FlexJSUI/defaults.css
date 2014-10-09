@@ -259,8 +259,6 @@ DropDownListList
 
 Image
 {
-    width: 64;
-    height: 64;
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
     IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
