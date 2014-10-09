@@ -70,6 +70,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 			IEventDispatcher(value).addEventListener("beadsAdded", changeHandler);
 		}
 	
@@ -180,6 +181,12 @@ package org.apache.flex.html.beads.layouts
 						flexibleHorizontalMargins[i].marginRight = mr;
 				}
 				child.x = ml;
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(contentView.width * ilc.percentWidth / 100);
+                }
 				maxWidth = Math.max(maxWidth, ml + child.width + mr);
 			}
 			if (hasHorizontalFlex)
@@ -187,12 +194,6 @@ package org.apache.flex.html.beads.layouts
 				for (i = 0; i < n; i++)
 				{
 					child = contentView.getElementAt(i) as IUIBase;
-                    if (child is ILayoutChild)
-                    {
-                        ilc = child as ILayoutChild;
-                        if (!isNaN(ilc.percentWidth))
-                            ilc.setWidth(contentView.width * ilc.percentWidth / 100);
-                    }
 					var obj:Object = flexibleHorizontalMargins[i];
 					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
 						child.x = maxWidth - child.width / 2;
