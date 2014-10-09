@@ -99,8 +99,14 @@ package org.apache.flex.core
 		
 		/**
 		 * The height of the bounding box.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
 		 */
 		function get height():Number;
 		function set height(value:Number):void;
-	}
+        
+    }
 }

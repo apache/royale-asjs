@@ -20,10 +20,11 @@ package org.apache.flex.html.beads.layouts
 {
 	
 	import org.apache.flex.core.IBeadLayout;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -83,7 +84,7 @@ package org.apache.flex.html.beads.layouts
 			var n:int = contentView.numElements;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				var child:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
                 var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
                 var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
                 var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
@@ -96,6 +97,19 @@ package org.apache.flex.html.beads.layouts
                 if (!isNaN(top))
                 {
                     child.y = top;
+                }
+                var ilc:ILayoutChild;
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(contentView.height * ilc.percentHeight / 100);
+                }
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(contentView.width * ilc.percentWidth / 100);
                 }
                 if (!isNaN(right))
                 {

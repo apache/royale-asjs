@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IParentIUIBase;
@@ -77,6 +78,7 @@ package org.apache.flex.html.beads.layouts
 			var contentView:IParentIUIBase = layoutParent.contentView;
 			
 			var n:int = contentView.numElements;
+            var ilc:ILayoutChild;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
@@ -151,6 +153,12 @@ package org.apache.flex.html.beads.layouts
 					child.x = ml;
 				else
 					child.x = xx + ml + lastmr;
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(contentView.width * ilc.percentWidth / 100);
+                }
 				xx = child.x + child.width;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
@@ -160,6 +168,12 @@ package org.apache.flex.html.beads.layouts
 			{
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(contentView.height * ilc.percentHeight / 100);
+                }
 				if (obj.valign == "middle")
 					child.y = maxHeight - child.height / 2;
 				else if (valign == "bottom")

@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {
 	
 	import org.apache.flex.core.IBeadLayout;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -80,6 +81,7 @@ package org.apache.flex.html.beads.layouts
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
 			var flexibleHorizontalMargins:Array = [];
+            var ilc:ILayoutChild;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
@@ -134,6 +136,12 @@ package org.apache.flex.html.beads.layouts
 					child.y = mt;
 				else
 					child.y = yy + Math.max(mt, lastmb);
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(contentView.height * ilc.percentHeight / 100);
+                }
 				yy = child.y + child.height;
 				lastmb = mb;
 				flexibleHorizontalMargins[i] = {};
@@ -179,6 +187,12 @@ package org.apache.flex.html.beads.layouts
 				for (i = 0; i < n; i++)
 				{
 					child = contentView.getElementAt(i) as IUIBase;
+                    if (child is ILayoutChild)
+                    {
+                        ilc = child as ILayoutChild;
+                        if (!isNaN(ilc.percentWidth))
+                            ilc.setWidth(contentView.width * ilc.percentWidth / 100);
+                    }
 					var obj:Object = flexibleHorizontalMargins[i];
 					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
 						child.x = maxWidth - child.width / 2;

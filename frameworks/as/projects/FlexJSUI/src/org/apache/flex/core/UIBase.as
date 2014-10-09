@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends Sprite implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, IChild
+	public class UIBase extends Sprite implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild
 	{
         /**
          *  Constructor.
@@ -252,11 +252,7 @@ package org.apache.flex.core
 				explicitWidth = value;
 			}
 			
-			if (_width != value)
-			{
-				_width = value;
-				dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
-			}
+            setWidth(value);
 		}
 
         /**
@@ -314,11 +310,7 @@ package org.apache.flex.core
 				explicitHeight = value;
 			}
 			
-			if (_height != value)
-			{
-				_height = value;
-				dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
-			}
+            setHeight(value);
 		}
         
         /**
@@ -334,7 +326,65 @@ package org.apache.flex.core
 		{
 			return super.height;
 		}
-		
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#setHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setHeight(value:Number):void
+        {
+            if (_height != value)
+            {
+                _height = value;
+                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+            }            
+        }
+
+        /**
+         *  @copy org.apache.flex.core.IUIBase#setWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setWidth(value:Number):void
+        {
+            if (_width != value)
+            {
+                _width = value;
+                dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+            }
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#setWidthAndHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setWidthAndHeight(newWidth:Number, newHeight:Number):void
+        {
+            if (_width != newWidth)
+            {
+                _width = newWidth;
+                if (_height == newHeight)
+                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+            }
+            if (_height != newHeight)
+            {
+                _height = newHeight;
+                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+            }            
+            
+        }
+        
 		private var _model:IBeadModel;
 
         /**
