@@ -82,6 +82,16 @@ package org.apache.flex.core
 			}
 			c = mainClass.constructor as Class;
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
+            var i:int = 1;
+            while (true)
+            {
+                var ffName:String = "factoryFunctions" + i.toString();
+                var ff:Object = c[ffName];
+                if (ff == null)
+                    break;
+                generateCSSStyleDeclarations(c[ffName], c["data" + i.toString()]);
+                i++;
+            }
         }
         
         /**
