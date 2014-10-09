@@ -77,7 +77,10 @@ package org.apache.flex.html.beads.layouts
 			if (_value !== value)
             {
                 _value = value;
-                IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
+                if (_strand is IBeadView)
+                    IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
+                else
+                    IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
             }
 		}
 		
