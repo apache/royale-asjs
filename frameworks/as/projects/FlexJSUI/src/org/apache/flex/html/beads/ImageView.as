@@ -96,15 +96,20 @@ package org.apache.flex.html.beads
 		 */
 		private function onComplete(event:Object):void
 		{
+            var host:UIBase = UIBase(_strand);
 			if (bitmap) {
-				UIBase(_strand).removeChild(bitmap);
+				host.removeChild(bitmap);
 			}
 			
 			bitmap = Bitmap(LoaderInfo(event.target).content);
 			
-			UIBase(_strand).addChild(bitmap);
+			host.addChild(bitmap);
 			
-			handleSizeChange(null);
+            if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+                host.dispatchEvent(new Event("widthChanged"));
+            if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
+                host.dispatchEvent(new Event("heightChanged"));
+                
 		}
 		
 		/**
@@ -112,9 +117,12 @@ package org.apache.flex.html.beads
 		 */
 		private function handleSizeChange(event:Object):void
 		{
-			if (bitmap) {
-				bitmap.width = UIBase(_strand).width;
-				bitmap.height = UIBase(_strand).height;
+            var host:UIBase = UIBase(_strand);
+            if (bitmap) {
+                if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
+	    			bitmap.width = UIBase(_strand).width;
+                if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
+    				bitmap.height = UIBase(_strand).height;
 			}
 		}
 	}
