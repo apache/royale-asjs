@@ -20,11 +20,11 @@ package org.apache.flex.html.beads.layouts
 {
 	
 	import org.apache.flex.core.IBeadLayout;
-    import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -70,6 +70,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 			IEventDispatcher(value).addEventListener("beadsAdded", changeHandler);
 		}
@@ -89,39 +90,43 @@ package org.apache.flex.html.beads.layouts
                 var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
                 var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
                 var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
+                var ww:Number = w;
+                var hh:Number = h;
                 
                 if (!isNaN(left))
                 {
                     child.x = left;
+                    ww -= left;
                 }
                 if (!isNaN(top))
                 {
                     child.y = top;
+                    hh -= top;
                 }
                 var ilc:ILayoutChild;
                 if (child is ILayoutChild)
                 {
                     ilc = child as ILayoutChild;
-                    if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(contentView.height * ilc.percentHeight / 100);
-                }
-                if (child is ILayoutChild)
-                {
-                    ilc = child as ILayoutChild;
                     if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth(contentView.width * ilc.percentWidth / 100);
+                        ilc.setWidth((ww - (isNaN(right) ? 0 : right)) * ilc.percentWidth / 100);
                 }
                 if (!isNaN(right))
                 {
                     if (!isNaN(left))
-                        child.width = w - right - left;
+                        child.width = ww - right;
                     else
                         child.x = w - right - child.width;
+                }
+                if (child is ILayoutChild)
+                {
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight((hh - (isNaN(bottom) ? 0 : bottom)) * ilc.percentHeight / 100);
                 }
                 if (!isNaN(bottom))
                 {
                     if (!isNaN(top))
-                        child.height = h - bottom - top;
+                        child.height = hh - bottom;
                     else
                         child.y = h - bottom - child.height;
                 }
