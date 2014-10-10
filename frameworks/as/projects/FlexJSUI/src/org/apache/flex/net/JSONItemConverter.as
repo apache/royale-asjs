@@ -34,6 +34,11 @@ package org.apache.flex.net
 	{
 		public function convertItem(data:String):Object
         {
+            var c:int = data.indexOf("{");
+            if (c > 0)
+                data = data.substring(c);
+            if (data.indexOf("}") == -1)
+                data += "}";
             return JSON.parse(data);
         }
 	}

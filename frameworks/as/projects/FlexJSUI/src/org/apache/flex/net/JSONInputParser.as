@@ -42,6 +42,12 @@ package org.apache.flex.net
          */        
 		public function parseItems(s:String):Array
         {
+            var c:int = s.indexOf("[");
+            if (c != -1)
+            {
+                var c2:int = s.lastIndexOf("]");
+                s = s.substring(c + 1, c2);
+            }
             return s.split("},");
         }
 	}
