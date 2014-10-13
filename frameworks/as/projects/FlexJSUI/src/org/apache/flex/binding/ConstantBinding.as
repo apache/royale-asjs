@@ -129,8 +129,26 @@ package org.apache.flex.binding
             if (destination == null)
                 destination = value;
             
-			source = document[sourceID];
-			destination[destinationPropertyName] = source[sourcePropertyName];
+            if (sourceID != null)
+    			source = document[sourceID];
+            else
+                source = document;
+            var value:*;
+            try 
+            {
+                value = source[sourcePropertyName];
+                destination[destinationPropertyName] = value;
+            } 
+            catch (e:Error)
+            {
+                try {
+                    value = source.constructor[sourcePropertyName];
+                    destination[destinationPropertyName] = value;
+                }
+                catch (e:Error)
+                {
+                }
+            }
 		}
 		
         /**
