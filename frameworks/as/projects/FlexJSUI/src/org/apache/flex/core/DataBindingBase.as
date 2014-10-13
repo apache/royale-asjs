@@ -51,6 +51,9 @@ package org.apache.flex.core
          */
         protected function getProperty(obj:Object, propName:String):*
         {
+            if (propName === 'this')
+                return obj;
+            
             return obj[propName];
         }
         
