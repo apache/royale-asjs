@@ -144,7 +144,7 @@ package org.apache.flex.binding
 
             source = parent;
             
-            if (source)
+            if (source && source is IEventDispatcher)
                 addEventListeners();
             
             // Now get our property.
