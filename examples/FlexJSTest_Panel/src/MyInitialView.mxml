@@ -79,7 +79,6 @@ limitations under the License.
 		}
 		
 		.TitleBar {
-			padding: 5px;
 			color: #FFFFFF;
 			font-weight: bold;
 			text-align: center;
