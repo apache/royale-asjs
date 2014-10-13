@@ -89,89 +89,44 @@ package org.apache.flex.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;
-			
+            var host:UIBase = UIBase(value);
+            
             if (!_titleBar)
                 _titleBar = new TitleBar();
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
-			titleBar.model = Panel(_strand).model;
-			Container(_strand).addElement(titleBar);
-			
-			layoutChromeElements();
-			
-			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
-		}
-		
-		/**
-		 *  Always returns true because Panel's content is separate from its chrome
-		 *  elements such as the title bar and optional control bar.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override protected function contentAreaNeeded():Boolean
-		{
-			return true;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function layoutChromeElements():void
-		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-						
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = UIBase(_strand).width;
-			
-			var ypos:Number = titleBar.y + titleBar.height;
-			
-			actualParent.x = 0;
-			actualParent.y = ypos;
-			
-			ypos = actualParent.y + actualParent.height;
-			trace("ypos is "+ypos+" because actualParent.height is "+actualParent.height);
-						
-			UIBase(_strand).dispatchEvent(new Event("widthChanged"));
-		}
-		
-		/**
-		 * @private
-		 */
-		private function changeHandler(event:Event):void
-		{
-			layoutChromeElements();
-		}
-		private function changeHandlerOLD(event:Event):void
-		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-			
-			var w:Number = UIBase(_strand).explicitWidth;
-			if (isNaN(w)) w = Math.max(titleBar.width,actualParent.width+metrics.left+metrics.right,0);
-			
-			var h:Number = UIBase(_strand).explicitHeight;
-			if (isNaN(h)) h = titleBar.height + actualParent.height + 
-				metrics.top + metrics.bottom;
-			
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = w;
-			
-			var remainingHeight:Number = h - titleBar.height;
-						
-			actualParent.x = metrics.left;
-			actualParent.y = titleBar.y + titleBar.height + metrics.top;
-			actualParent.width = w;
-			actualParent.height = remainingHeight - metrics.top - metrics.bottom;
-			
-			UIBase(_strand).width = w;
-			UIBase(_strand).height = h;
+			titleBar.model = host.model;
+			host.addElement(titleBar);
+			titleBar.addEventListener("heightChanged", changeHandler);
+            if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+                titleBar.addEventListener("widthChanged", changeHandler);
+            
+            super.strand = value;
+            
 		}
         
+        /**
+         * @private
+         * Panel always needs content area.
+         */
+        override protected function contentAreaNeeded():Boolean
+        {
+            return true;
+        }
+						
+        /**
+         * @private
+         */
+        override protected function determinePadding():Object
+        {
+            var paddings:Object = super.determinePadding();
+            titleBar.x = paddings.left;
+            titleBar.y = paddings.top;
+            titleBar.width = UIBase(_strand).width;
+            paddings.paddingTop += titleBar.height;
+            return paddings;
+        }
+                
 	}
 }

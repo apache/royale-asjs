@@ -28,6 +28,8 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ContainerContentArea;
@@ -79,56 +81,92 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+            changeHandler(null);
+            IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
+            IEventDispatcher(_strand).addEventListener("widthChanged", changeHandler);            
+            IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);            
+        }
+        
+        private var inChangeHandler:Boolean;
+        
+        /**
+         *  React if the size changed or content changed 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function changeHandler(event:Event):void
+        {
+            if (inChangeHandler) return;
+            
+            inChangeHandler = true;
+            
+            var host:UIBase = UIBase(_strand);
 			
 			var padding:Object = determinePadding();
 			
 			if (contentAreaNeeded())
 			{
-				actualParent = new ContainerContentArea();
-				UIBase(value).addElement(actualParent);
-				Container(value).setActualParent(actualParent);
+                if (actualParent == null || actualParent == host)
+                {
+    				actualParent = new ContainerContentArea();
+    				host.addElement(actualParent);
+                    Container(host).setActualParent(actualParent);
+                }
 				actualParent.x = padding.paddingLeft;
 				actualParent.y = padding.paddingTop;
+                if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
+                    actualParent.width = host.width;
+                else
+                    host.dispatchEvent(new Event("widthChanged"));
+                
+                if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
+                    actualParent.height = host.height;
+                else
+                    host.dispatchEvent(new Event("heightChanged"));
 			}
 			else
 			{
-				actualParent = value as UIBase;
+				actualParent = host;
 			}
 			
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+				if (host.getBeadByType(IBackgroundBead) == null)
+                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
 			}
 			
 			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
 			if (borderStyles is Array)
 			{
 				borderStyle = borderStyles[1];
 			}
 			if (borderStyle == null)
 			{
-				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
-				if (value.getBeadByType(IBorderBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+				if (host.getBeadByType(IBorderBead) == null)
+                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
 			}
             
             if (_strand.getBeadByType(IBeadLayout) == null)
             {
-                var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
+                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
                 if (c)
                 {
                     var mapper:IBeadLayout = new c() as IBeadLayout;
                     _strand.addBead(mapper);
                 }
-            }  
-
+            }
+            
+            inChangeHandler = false;
 		}
 		
 		/**
