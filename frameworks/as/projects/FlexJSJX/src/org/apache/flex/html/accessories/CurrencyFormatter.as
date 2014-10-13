@@ -207,7 +207,7 @@ package org.apache.flex.html.accessories
 			if (value == null) return "";
 			
 			var num:Number = Number(value);
-            var source:String = num.toPrecision(fractionalDigits);
+            var source:String = num.toFixed(fractionalDigits);
 			
 			return currencySymbol + source;
 		}
