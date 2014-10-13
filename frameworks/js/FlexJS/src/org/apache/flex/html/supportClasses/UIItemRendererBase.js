@@ -18,6 +18,7 @@ goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.IItemRendererFactory');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
@@ -52,6 +53,26 @@ org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_IN
 org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.addedToParent =
 function() {
   org.apache.flex.html.supportClasses.UIItemRendererBase.base(this, 'addedToParent');
+
+  // very common for item renderers to be resized by their containers,
+  this.addEventListener('widthChanged', goog.bind(this.sizeChangeHandler, this));
+  this.addEventListener('heightChanged', goog.bind(this.sizeChangeHandler, this));
+
+  // each MXML file can also have styles in fx:Style block
+  //? appropriate for JavaScript? ValuesManager.valuesImpl.init(this);
+
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
+
+  this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
+};
+
+
+/**
+ * @expose
+ * @param {Array} data The data for the attributes.
+ */
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
