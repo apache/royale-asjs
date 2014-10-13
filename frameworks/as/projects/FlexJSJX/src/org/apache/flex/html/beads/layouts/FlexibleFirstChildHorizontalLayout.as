@@ -152,7 +152,7 @@ package org.apache.flex.html.beads.layouts
 						mr = 0;
 				}
 				child.y = mt;
-				maxHeight = Math.max(maxHeight, ml + child.height + mr);
+				maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				if (i == 0)
                 {
                     child.x = ml;
