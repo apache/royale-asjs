@@ -18,26 +18,34 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	/**
-	 *  The IHorizontalAxisBead interface is a marker for any class that draws a
-	 *  verical axis. The YAxisBead is an example that implements this interface.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public interface IVerticalAxisBead extends IAxisBead
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.graphics.IStroke;
+	
+	public interface IAxisBead extends IBead
 	{
 		/**
-		 *  The overall width of the horizontal axis. 
+		 * The placement of the axis with respect to the chart area. Valid
+		 * values are: top, bottom (for IHorizontalAxisBeads), left, and right
+		 * (for IVerticalAxisBeads).
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get axisWidth():Number;
-		function set axisWidth(value:Number):void;
+		function get placement():String;
+		function set placement(value:String):void;
+		
+		/**
+		 * The stroke used for the axis line
+		 */
+		function get axisStroke():IStroke;
+		function set axisStroke(value:IStroke):void;
+		
+		/**
+		 * The stroked used for the tick marks
+		 */
+		function get tickStroke():IStroke;
+		function set tickStroke(value:IStroke):void;
 	}
 }

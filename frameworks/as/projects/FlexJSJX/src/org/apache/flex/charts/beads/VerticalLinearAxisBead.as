@@ -21,11 +21,11 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.core.FilledRectangle;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.graphics.Path;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Label;
@@ -40,14 +40,15 @@ package org.apache.flex.charts.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class VerticalLinearAxisBead implements IBead, IVerticalAxisBead
+	public class VerticalLinearAxisBead extends AxisBaseBead implements IBead, IVerticalAxisBead
 	{
 		public function VerticalLinearAxisBead()
 		{
+			super();
+			
+			placement = "left";
 		}
-		
-		private var _strand:IStrand;
-		
+				
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -56,12 +57,12 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			
 			// in order to draw or create the labels, need to know when the series has been created.
-			IEventDispatcher(_strand).addEventListener("layoutComplete",handleItemsCreated);
+			IEventDispatcher(strand).addEventListener("layoutComplete",handleItemsCreated);
 		}
 		
 		private var _axisWidth:Number = 50;
@@ -164,33 +165,23 @@ package org.apache.flex.charts.beads
 		 */
 		private function handleItemsCreated(event:Event):void
 		{
-			var model:ArraySelectionModel = _strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
+			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
 			
-			var series:Array = IChart(_strand).series;
+			var series:Array = IChart(strand).series;
 			
 			var xAxis:IHorizontalAxisBead;
-			if (_strand.getBeadByType(IHorizontalAxisBead)) xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+			if (strand.getBeadByType(IHorizontalAxisBead)) xAxis = strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
 			
 			var yAxisWidthOffset:Number = axisWidth;
-			var useHeight:Number = UIBase(_strand).height-xAxisOffset;
+			var useHeight:Number = UIBase(strand).height-xAxisOffset;
 			var xpos:Number = yAxisWidthOffset;
 			var ypos:Number = useHeight;
-			
-			// draw the vertical axis
-			var horzLine:FilledRectangle = new FilledRectangle();
-			horzLine.fillColor = 0x111111;
-			horzLine.x = yAxisWidthOffset;
-			horzLine.y = 0;
-			horzLine.height = useHeight;
-			horzLine.width = 1;
-			UIBase(_strand).addElement(horzLine);
-			
-			// place the labels below the axis enough to account for the tick marks
-			var labelY:Number = UIBase(_strand).height + 8;
+			var originX:Number = yAxisWidthOffset;
+			var originY:Number = 0;
 			
 			// determine minimum and maximum values, if needed
 			if (isNaN(minValue)) {
@@ -218,26 +209,26 @@ package org.apache.flex.charts.beads
 			// adjust ypos to the first tick position
 			ypos = useHeight;// - tickSpacing;
 			
+			// place the labels below the axis enough to account for the tick marks
+			var labelY:Number = UIBase(strand).height + 8;
+			
 			for(i=0; i < numTicks+1; i++) {				
 				var label:Label = new Label();
 				label.text = formatLabel(tickValue);
 				label.x = 0;
 				label.y = ypos - label.height/2;
-				
-				UIBase(_strand).addElement(label);
-				
-				// add a tick mark, too
-				var tick:FilledRectangle = new FilledRectangle();
-				tick.fillColor = 0x111111;
-				tick.x = xpos - 5;
-				tick.y = ypos;
-				tick.width = 5;
-				tick.height = 1;
-				UIBase(_strand).addElement(tick);
+				UIBase(strand).addElement(label);
+			
+				// add a tick mark, too.
+				addTickMark(xpos - 5 - originX, ypos - originY, 5, 0);
 				
 				ypos -= tickSpacing;
 				tickValue += tickStep;
 			}
+			
+			// draw the axis and the tick marks
+			drawAxisPath(originX, originY, 0, useHeight);
+			drawTickPath(originX, originY);
 			
 		}
 		

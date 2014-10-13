@@ -27,7 +27,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IHorizontalAxisBead
+	public interface IHorizontalAxisBead extends IAxisBead
 	{
 		/**
 		 *  The overall height of the axis, including its labels.
