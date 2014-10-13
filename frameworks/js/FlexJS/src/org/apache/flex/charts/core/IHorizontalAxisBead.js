@@ -20,10 +20,13 @@
 
 goog.provide('org.apache.flex.charts.core.IHorizontalAxisBead');
 
+goog.require('org.apache.flex.charts.core.IAxisBead');
+
 
 
 /**
  * @interface
+ * @extends {org.apache.flex.charts.core.IAxisBead}
  */
 org.apache.flex.charts.core.IHorizontalAxisBead = function() {
 };
@@ -35,7 +38,8 @@ org.apache.flex.charts.core.IHorizontalAxisBead = function() {
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.charts.core.IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IHorizontalAxisBead', qName: 'org.apache.flex.charts.core.IHorizontalAxisBead'}]
+    names: [{ name: 'IHorizontalAxisBead', qName: 'org.apache.flex.charts.core.IHorizontalAxisBead'}],
+    interfaces: [org.apache.flex.charts.core.IAxisBead]
   };
 
 
