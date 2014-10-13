@@ -73,10 +73,11 @@
         <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
     </target>
     
-    <target name="compile" description="Compile Examples">
+    <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/CordovaCameraExample"/>
         <ant dir="${basedir}/DataBindingTest"/>
         <ant dir="${basedir}/DataGridExample"/>
+		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/DesktopMap"/>
         <ant dir="${basedir}/EffectsExample"/>
         <ant dir="${basedir}/FlexJSTest_basic"/>
@@ -85,14 +86,12 @@
         <ant dir="${basedir}/FlexJSTest_jquery"/>
         <ant dir="${basedir}/FlexJSTest_Panel"/>
         <ant dir="${basedir}/FlexJSTest_SVG"/>
-        <ant dir="${basedir}/FormatExample"/>
         <ant dir="${basedir}/FormExample"/>
         <ant dir="${basedir}/ImageTest"/>
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/MapSearch"/>
         <ant dir="${basedir}/MobileTrader"/>
-        <ant dir="${basedir}/StatesTest"/>
         <ant dir="${basedir}/StockQuote"/>
         <ant dir="${basedir}/ChartExample"/>
         <ant dir="${basedir}/TodoListSampleApp"/>
