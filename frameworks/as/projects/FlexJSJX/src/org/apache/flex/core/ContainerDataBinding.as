@@ -76,6 +76,7 @@ package org.apache.flex.core
         {
             var fieldWatcher:Object;
             var sb:SimpleBinding;
+            var cb:ConstantBinding;
             if (!("_bindings" in _strand))
                 return;
             var bindingData:Array = _strand["_bindings"];
@@ -135,7 +136,7 @@ package org.apache.flex.core
                             }
                             else if (fieldWatcher.eventNames == null)
                             {
-                                var cb:ConstantBinding = new ConstantBinding();
+                                cb = new ConstantBinding();
                                 cb.destinationPropertyName = binding.destination[1];
                                 cb.sourceID = binding.source[0];
                                 cb.sourcePropertyName = binding.source[1];
@@ -164,7 +165,31 @@ package org.apache.flex.core
                 else if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
-                    if (fieldWatcher.eventNames is String)
+                    if (fieldWatcher == null)
+                    {
+                        cb = new ConstantBinding();
+                        cb.destinationPropertyName = binding.destination[1];
+                        cb.sourcePropertyName = binding.source;
+                        cb.setDocument(_strand);
+                        destObject = getProperty(_strand, binding.destination[0]);                                
+                        destination = destObject as IStrand;
+                        if (destination)
+                            destination.addBead(cb);
+                        else
+                        {
+                            if (destObject)
+                            {
+                                cb.destination = destObject;
+                                _strand.addBead(sb);
+                            }
+                            else
+                            {
+                                deferredBindings[binding.destination[0]] = sb;
+                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                            }
+                        }
+                    }
+                    else if (fieldWatcher.eventNames is String)
                     {
                         sb = new SimpleBinding();
                         sb.destinationPropertyName = binding.destination[1];
@@ -213,7 +238,12 @@ package org.apache.flex.core
             for (var i:int = 0; i < n; i++)
             {
                 var watcher:Object = watchers[i];
-                if (watcher.bindings.indexOf(index) != -1)
+                var isValidWatcher:Boolean = false;
+                if (typeof(watcher.bindings) == "number")
+                    isValidWatcher = (watcher.bindings == index);
+                else
+                    isValidWatcher = (watcher.bindings.indexOf(index) != -1);
+                if (isValidWatcher)
                 {
                     var type:String = watcher.type;
                     switch (type)
@@ -238,7 +268,7 @@ package org.apache.flex.core
                     }
                     if (watcher.children)
                     {
-                        setupWatchers(gb, index, watcher.children, watcher.watcher);
+                        setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
                     }
                 }
             }
