@@ -17,9 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<core:MXMLBeadViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<basic:MXMLBeadViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
-                  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.apache.flex.core.*" xmlns:html="org.apache.flex.html.*" xmlns:layouts="org.apache.flex.html.beads.layouts.*"
+                  xmlns:mx="library://ns.adobe.com/flex/mx"
                   >
     <fx:Script>
         <![CDATA[
@@ -35,18 +35,17 @@ limitations under the License.
             }
         ]]>
     </fx:Script>
-    <core:beads>
-        <core:MXMLBeadViewBaseDataBinding />
-        <layouts:LayoutChangeNotifier watchedProperty="{ITitleBarModel(model).title}" />
-    </core:beads>
+    <basic:beads>
+        <basic:MXMLBeadViewBaseDataBinding />
+        <basic:LayoutChangeNotifier watchedProperty="{ITitleBarModel(model).title}" />
+    </basic:beads>
 
-    <html:Label id="titleLabel" text="{ITitleBarModel(model).title}" >
-        <html:style>
-            <core:SimpleCSSStyles fontWeight="inherit" />
-        </html:style>
-    </html:Label>
-    <html:CloseButton id="closeButton" click="clickHandler()"
-                       visible="{ITitleBarModel(model).showCloseButton}"
-/>
+    <basic:Label id="titleLabel" text="{ITitleBarModel(model).title}" >
+        <basic:style>
+            <basic:SimpleCSSStyles fontWeight="inherit" margin="5" />
+        </basic:style>
+    </basic:Label>
+    <basic:CloseButton id="closeButton" click="clickHandler()"
+                       visible="{ITitleBarModel(model).showCloseButton}";/>
     
-</core:MXMLBeadViewBase>
+</basic:MXMLBeadViewBase>
