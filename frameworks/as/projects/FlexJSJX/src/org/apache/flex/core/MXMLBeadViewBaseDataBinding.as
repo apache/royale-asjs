@@ -97,14 +97,14 @@ package org.apache.flex.core
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (binding.source[0] == "model")
+                    if (binding.source[0] in _strand)
                     {
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
                             var destObject:Object;
                             var destination:IStrand;
                             // can be simplebinding or constantbinding
-                            var modelWatcher:Object = watchers.watcherMap["model"];
+                            var modelWatcher:Object = watchers.watcherMap[binding.source[0]];
                             fieldWatcher = modelWatcher.children.watcherMap[binding.source[1]];
                             if (fieldWatcher.eventNames is String)
                             {
