@@ -104,6 +104,9 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+            for each (var bead:IBead in beads)
+                addBead(bead);
+            
 			// add a border to this
 			_border = new Border();
 			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;

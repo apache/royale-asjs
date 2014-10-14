@@ -72,9 +72,16 @@ package org.apache.flex.core
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
             
-            dispatchEvent(new Event("strandChanged"));            
+            dispatchEvent(new Event("strandChanged"));  
+            
+            for each (var bead:IBead in beads)
+                addBead(bead);
+            
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+
             MXMLDataInterpreter.generateMXMLInstances(this, IParent(value), MXMLDescriptor);
             
+            dispatchEvent(new Event("initBindings"))
             dispatchEvent(new Event("initComplete"))
             dispatchEvent(new Event("childrenAdded"));
         }

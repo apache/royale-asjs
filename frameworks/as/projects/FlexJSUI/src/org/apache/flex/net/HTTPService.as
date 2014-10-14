@@ -410,7 +410,14 @@ package org.apache.flex.net
         public function set strand(value:IStrand):void
         {
             _strand = value;
-        }
+            if (_beads == null)
+            {
+                for each (var bead:IBead in beads)
+                    addBead(bead);
+            }
+            
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+       }
 
         /**
          *  @copy org.apache.flex.core.UIBase#id
@@ -493,6 +500,12 @@ package org.apache.flex.net
          */
         public function send():void
         {
+            if (_beads == null)
+            {
+                for each (var bead:IBead in beads)
+                addBead(bead);
+            }
+            
             if (!urlLoader)
                 urlLoader = new URLLoader();
 			var request:URLRequest = new URLRequest(url);

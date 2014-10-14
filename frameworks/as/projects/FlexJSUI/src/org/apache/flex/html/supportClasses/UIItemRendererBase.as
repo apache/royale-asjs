@@ -65,6 +65,7 @@ package org.apache.flex.html.supportClasses
             MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
             MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
             
+            dispatchEvent(new Event("initBindings"));
             dispatchEvent(new Event("initComplete"));
             
 		}

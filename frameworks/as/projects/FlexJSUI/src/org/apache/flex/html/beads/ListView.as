@@ -169,6 +169,10 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			
+            for each (var bead:IBead in beads)
+            addBead(bead);
+            
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
             

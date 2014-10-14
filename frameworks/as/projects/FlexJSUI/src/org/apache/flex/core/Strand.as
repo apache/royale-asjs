@@ -106,6 +106,10 @@ package org.apache.flex.core
         /**
          *  @copy org.apache.flex.core.Application#beads
          *  
+         *  The beads are not automatically added to the
+         *  strand.  Subclasses must decide when to
+         *  add the beads.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

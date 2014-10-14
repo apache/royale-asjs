@@ -785,6 +785,9 @@ package org.apache.flex.core
         {
             var c:Class;
             
+            for each (var bead:IBead in beads)
+                addBead(bead);
+                
             if (getBeadByType(IBeadModel) == null) 
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
@@ -815,6 +818,7 @@ package org.apache.flex.core
                         addBead(controller);
                 }
             }
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
         }
         		
         /**

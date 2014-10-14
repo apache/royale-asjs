@@ -155,7 +155,6 @@ public class MXMLDataInterpreter
         var simple:*;
         var value:Object;
         var id:String = null;
-        var dispatchBeadsAdded:Boolean = false;
         
         m = data[i++]; // num props
         if (m > 0 && data[0] == "model")
@@ -218,16 +217,7 @@ public class MXMLDataInterpreter
                 value = generateMXMLArray(document, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(document, value as Array);
-            else
-                comp[name] = value;
-            var beads:Array = value as Array;
-            var l:int = beads.length;
-            for (var k:int = 0; k < l; k++)
-            {
-                var bead:IBead = beads[k] as IBead;
-                IStrand(comp).addBead(bead);
-                dispatchBeadsAdded = true;
-            }
+            comp[name] = value;
         }
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)
@@ -271,7 +261,6 @@ public class MXMLDataInterpreter
         if (parent && comp is DisplayObject)
         {
             parent.addElement(comp);
-            dispatchBeadsAdded = true;
         }
         
         if (children)
@@ -291,10 +280,6 @@ public class MXMLDataInterpreter
         if (comp is IDocument)
             comp.setDocument(document, id);
                 
-        if (dispatchBeadsAdded) {
-            IEventDispatcher(comp).dispatchEvent(new Event("beadsAdded"));
-        }
-
         return i;
     }
     
@@ -379,20 +364,7 @@ public class MXMLDataInterpreter
                 value = generateMXMLArray(host, null, value as Array);
             else if (simple == false)
                 value = generateMXMLObject(host, value as Array);
-            else
-                host[name] = value;
-            var beads:Array = value as Array;
-            var l:int = beads.length;
-            for (var k:int = 0; k < l; k++)
-            {
-                var bead:IBead = beads[k] as IBead;
-                IStrand(host).addBead(bead);
-                bead.strand = host as IStrand;
-            }
-			
-//			if (l>0) {
-//				IEventDispatcher(host).dispatchEvent(new Event("beadsAdded"));
-//			}
+            host[name] = value;
         }
         m = data[i++]; // num styles
         for (j = 0; j < m; j++)
@@ -427,6 +399,7 @@ public class MXMLDataInterpreter
             value = data[i++];
             host.addEventListener(name, value as Function);
         }
+        
     }
     
 }

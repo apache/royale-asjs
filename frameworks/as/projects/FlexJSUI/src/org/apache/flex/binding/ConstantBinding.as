@@ -133,17 +133,17 @@ package org.apache.flex.binding
     			source = document[sourceID];
             else
                 source = document;
-            var value:*;
+            var val:*;
             try 
             {
-                value = source[sourcePropertyName];
-                destination[destinationPropertyName] = value;
+                val = source[sourcePropertyName];
+                destination[destinationPropertyName] = val;
             } 
             catch (e:Error)
             {
                 try {
-                    value = source.constructor[sourcePropertyName];
-                    destination[destinationPropertyName] = value;
+                    val = source.constructor[sourcePropertyName];
+                    destination[destinationPropertyName] = val;
                 }
                 catch (e:Error)
                 {

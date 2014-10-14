@@ -122,6 +122,11 @@ package org.apache.flex.core
         
         private function initHandler(event:flash.events.Event):void
         {
+            for each (var bead:IBead in beads)
+                addBead(bead);
+                
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
             
             dispatchEvent(new Event("initialize"));

@@ -69,7 +69,7 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(_strand).addEventListener("initComplete", initCompleteHandler);
+            IEventDispatcher(_strand).addEventListener("initBindings", initCompleteHandler);
         }    
 
         private function initCompleteHandler(event:Event):void

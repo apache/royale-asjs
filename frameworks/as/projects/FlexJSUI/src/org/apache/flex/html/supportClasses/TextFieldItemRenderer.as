@@ -333,6 +333,11 @@ package org.apache.flex.html.supportClasses
         public function addedToParent():void
         {
             var c:Class;
+            
+            for each (var bead:IBead in beads)
+                addBead(bead);
+            
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 
             // renderer has a default model (the 'data' property)
             // and it is essentially a view of that model, so it

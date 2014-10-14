@@ -415,6 +415,11 @@ package org.apache.flex.net
         public function set strand(value:IStrand):void
         {
             _strand = value;
+            
+            for each (var bead:IBead in beads)
+                addBead(bead);
+            
+            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
         }
 
         /**

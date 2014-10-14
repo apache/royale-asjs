@@ -20,6 +20,7 @@ package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
+    import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IScrollBarModel;
@@ -85,6 +86,10 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            
+            for each (var bead:IBead in beads)
+                addBead(bead);
+                        
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
             
             // TODO: (aharui) put in values impl

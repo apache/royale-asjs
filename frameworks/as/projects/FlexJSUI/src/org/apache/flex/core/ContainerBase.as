@@ -105,6 +105,7 @@ package org.apache.flex.core
 			
 			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
 			
+            dispatchEvent(new Event("initBindings"))
 			dispatchEvent(new Event("initComplete"))
 			dispatchEvent(new Event("childrenAdded"));
 		}
