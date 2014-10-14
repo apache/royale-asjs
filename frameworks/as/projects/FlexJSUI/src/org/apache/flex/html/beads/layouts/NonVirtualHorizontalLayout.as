@@ -176,7 +176,7 @@ package org.apache.flex.html.beads.layouts
                         ilc.setHeight(contentView.height * ilc.percentHeight / 100);
                 }
 				if (obj.valign == "middle")
-					child.y = maxHeight - child.height / 2;
+					child.y = (maxHeight - child.height) / 2;
 				else if (valign == "bottom")
 					child.y = maxHeight - child.height - obj.marginBottom;
 				else

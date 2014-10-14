@@ -170,7 +170,7 @@ package org.apache.flex.html.beads.layouts
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
 				if (obj.valign == "middle")
-					child.y = maxHeight - child.height / 2;
+					child.y = (maxHeight - child.height) / 2;
 				else if (valign == "bottom")
 					child.y = maxHeight - child.height - obj.marginBottom;
 				else
