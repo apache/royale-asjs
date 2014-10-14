@@ -162,7 +162,7 @@ package org.apache.flex.core
                         }
                     }
                 }
-                else if (binding.source is String)
+                else if (binding.source is String && binding.destination is Array)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
                     if (fieldWatcher == null)
