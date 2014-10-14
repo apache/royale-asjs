@@ -79,6 +79,8 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+            IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private function changeHandler(event:Event):void
