@@ -98,22 +98,5 @@ package org.apache.flex.html
 			ITextModel(model).html = value;
 		}
 				
-        /**
-         *  @private
-         */
-		override public function set width(value:Number):void
-		{
-			super.width = value;
-			IEventDispatcher(model).dispatchEvent( new Event("widthChanged") );
-		}
-		
-        /**
-         *  @private
-         */
-		override public function set height(value:Number):void
-		{
-			super.height = value;
-			IEventDispatcher(model).dispatchEvent( new Event("heightChanged") );
-		}
 	}
 }
