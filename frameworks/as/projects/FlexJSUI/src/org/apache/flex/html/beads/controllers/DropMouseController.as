@@ -26,7 +26,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
-    import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 
     /**
@@ -99,6 +99,11 @@ package org.apache.flex.html.beads.controllers
 			_strand = value;
 			
             IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, dragMoveHandler);
+		}
+		
+		public function get strand():IStrand
+		{
+			return _strand;
 		}
         
         private var inside:Boolean;

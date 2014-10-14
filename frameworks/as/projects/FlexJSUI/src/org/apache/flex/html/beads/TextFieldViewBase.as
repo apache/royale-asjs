@@ -97,6 +97,11 @@ package org.apache.flex.html.beads
 			if (_textModel.html !== null)
 				html = _textModel.html;
 		}
+		
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
 
         /**
          *  @private

@@ -116,7 +116,7 @@ package org.apache.flex.charts.beads
 					k.yField = s.yField;
 					//k.fillColor = s.fillColor;
 					k.data = dp[j];
-					k.index = j;
+					//k.index = j;
 					
 					renderers.push(k);
 					

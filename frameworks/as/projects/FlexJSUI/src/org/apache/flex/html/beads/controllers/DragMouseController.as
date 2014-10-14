@@ -156,6 +156,11 @@ package org.apache.flex.html.beads.controllers
 			
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, dragMouseDownHandler);
 		}
+		
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
         
         private var mouseDownX:Number;
         private var mouseDownY:Number;
