@@ -29,7 +29,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.UIButtonBase;
+    import org.apache.flex.core.ValuesManager;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -103,7 +104,17 @@ package org.apache.flex.html.beads
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
-					updateHitArea();
+                    var host:UIButtonBase = UIButtonBase(_strand);
+                    if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+                        host.setWidth(loader.content.width);
+                    else
+                        loader.content.width = host.width;
+                    
+                    if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
+                        host.setHeight(loader.content.height);
+                    else
+                        loader.content.height = host.height;
+                    updateHitArea();
 				});
 			}
 		}
@@ -117,7 +128,6 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, upSprite.width, upSprite.height);
 			shape.graphics.endFill();
-			
 		}
 	}
 }
