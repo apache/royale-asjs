@@ -117,13 +117,19 @@ package org.apache.flex.html.beads
                 }
 				actualParent.x = padding.paddingLeft;
 				actualParent.y = padding.paddingTop;
+                var pb:Number = padding.paddingBottom;
+                if (isNaN(pb))
+                    pb = 0;
+                var pr:Number = padding.paddingRight;
+                if (isNaN(pr))
+                    pr = 0;
                 if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
-                    actualParent.width = host.width;
+                    actualParent.width = host.width - padding.paddingLeft - pr;
                 else
                     host.dispatchEvent(new Event("widthChanged"));
                 
                 if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
-                    actualParent.height = host.height;
+                    actualParent.height = host.height - padding.paddingTop - pb;
                 else
                     host.dispatchEvent(new Event("heightChanged"));
 			}
