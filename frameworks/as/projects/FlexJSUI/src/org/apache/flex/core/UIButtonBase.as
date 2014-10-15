@@ -730,9 +730,6 @@ package org.apache.flex.core
                 }
             }
 
-            _width = $width;
-            _height = $height;
-            
             dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
             
 		}
