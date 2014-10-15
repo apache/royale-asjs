@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBorderModel;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IScrollBarModel;
@@ -88,6 +89,11 @@ package org.apache.flex.html.beads.layouts
             var layoutParent:IScrollingLayoutParent = 
                 _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
+            if (!contentView)
+                return;
+            IEventDispatcher(contentView).addEventListener("childrenAdded", changeHandler);
+            IEventDispatcher(contentView).addEventListener("layoutNeeded", changeHandler);
+            
 			var border:Border = layoutParent.border;
    			var borderModel:IBorderModel;
             if (border)
@@ -100,8 +106,17 @@ package org.apache.flex.html.beads.layouts
                 border.height = hh;
             }
             
-			contentView.width = ww - ((border) ? borderModel.offsets.left + borderModel.offsets.right : 0);
-			contentView.height = hh - ((border) ? borderModel.offsets.top - borderModel.offsets.bottom : 0);
+            var ilc:ILayoutChild = contentView as ILayoutChild;
+            if (ilc)
+            {
+                ilc.setWidth(ww - ((border) ? borderModel.offsets.left + borderModel.offsets.right : 0));
+                ilc.setHeight(hh - ((border) ? borderModel.offsets.top - borderModel.offsets.bottom : 0));                
+            }
+            else
+            {
+                contentView.width = ww - ((border) ? borderModel.offsets.left + borderModel.offsets.right : 0);
+                contentView.height = hh - ((border) ? borderModel.offsets.top - borderModel.offsets.bottom : 0);                
+            }
 			contentView.x = (border) ? borderModel.offsets.left : 0;
 			contentView.y = (border) ? borderModel.offsets.top : 0;
 			
@@ -118,7 +133,10 @@ package org.apache.flex.html.beads.layouts
 			if (yy > contentView.height)
 			{
 				vScrollBar = layoutParent.vScrollBar;
-				contentView.width -= vScrollBar.width;
+                if (ilc)
+    				ilc.setWidth(contentView.width - vScrollBar.width);
+                else
+                    contentView.width -= vScrollBar.width;
 				IScrollBarModel(vScrollBar.model).maximum = yy;
 				IScrollBarModel(vScrollBar.model).pageSize = contentView.height;
 				IScrollBarModel(vScrollBar.model).pageStepSize = contentView.height;

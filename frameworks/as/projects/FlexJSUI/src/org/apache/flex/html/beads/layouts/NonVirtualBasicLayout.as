@@ -85,7 +85,7 @@ package org.apache.flex.html.beads.layouts
 			var n:int = contentView.numElements;
 			for (var i:int = 0; i < n; i++)
 			{
-				var child:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
+				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
                 var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
                 var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
                 var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
@@ -103,8 +103,8 @@ package org.apache.flex.html.beads.layouts
                     child.y = top;
                     hh -= top;
                 }
-                var ilc:ILayoutChild;
-                if (child is ILayoutChild)
+                var ilc:ILayoutChild = child as ILayoutChild;
+                if (ilc)
                 {
                     ilc = child as ILayoutChild;
                     if (!isNaN(ilc.percentWidth))
@@ -113,7 +113,12 @@ package org.apache.flex.html.beads.layouts
                 if (!isNaN(right))
                 {
                     if (!isNaN(left))
-                        child.width = ww - right;
+                    {
+                        if (ilc)
+                            ilc.setWidth(ww - right);
+                        else
+                            child.width = ww - right;
+                    }
                     else
                         child.x = w - right - child.width;
                 }
@@ -126,7 +131,12 @@ package org.apache.flex.html.beads.layouts
                 if (!isNaN(bottom))
                 {
                     if (!isNaN(top))
-                        child.height = hh - bottom;
+                    {
+                        if (ilc)
+                            ilc.setHeight(hh - bottom);
+                        else
+                            child.height = hh - bottom;
+                    }
                     else
                         child.y = h - bottom - child.height;
                 }
