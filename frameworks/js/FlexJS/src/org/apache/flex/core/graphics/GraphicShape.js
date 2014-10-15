@@ -72,6 +72,24 @@ org.apache.flex.core.graphics.GraphicShape = function() {
 
 
 /**
+ * @expose
+ * @param {number} value New X position.
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.set_x = function(value) {
+  this.x_ = value;
+};
+
+
+/**
+ * @expose
+ * @param {number} value New Y position.
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.set_y = function(value) {
+  this.y_ = value;
+};
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}

@@ -122,10 +122,13 @@ package org.apache.flex.charts.beads
 		protected function drawAxisPath(originX:Number, originY:Number, xoffset:Number, yoffset:Number):Path
 		{
 			var axisPath:Path = new Path();
-			axisPath.stroke = axisStroke;
+			// set (x,y) before adding as element to set the location correctly
+			axisPath.x = originX;
+			axisPath.y = originY;
 			UIBase(strand).addElement(axisPath);
-			var pathLine:String = "l "+String(xoffset)+" "+String(yoffset);
-			axisPath.drawPath(originX, originY, pathLine);
+			axisPath.stroke = axisStroke;
+			var pathLine:String = "M 0 0 l "+String(xoffset)+" "+String(yoffset);
+			axisPath.drawPath(0, 0, pathLine);
 			
 			return axisPath;
 		}
@@ -142,9 +145,12 @@ package org.apache.flex.charts.beads
 		protected function drawTickPath(originX:Number, originY:Number):void
 		{
 			var tickPath:Path = new Path();
-			tickPath.stroke = tickStroke;
+			// set (x,y) before adding as element to set the location correctly
+			tickPath.x = originX;
+			tickPath.y = originY;
 			UIBase(strand).addElement(tickPath);
-			tickPath.drawPath( originX, originY, tickPathString );
+			tickPath.stroke = tickStroke;
+			tickPath.drawPath( 0, 0, tickPathString );
 			
 			tickPathString = null;
 		}
