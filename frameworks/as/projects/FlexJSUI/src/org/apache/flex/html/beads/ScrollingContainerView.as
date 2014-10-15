@@ -22,18 +22,19 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
+	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ContainerContentArea;
 	import org.apache.flex.html.supportClasses.ScrollBar;
-    import org.apache.flex.html.beads.models.ScrollBarModel;
 	
     /**
      *  The ContainerView class is the default view for
@@ -81,108 +82,44 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			var padding:Object = determinePadding();
-			
-			if (contentAreaNeeded())
-			{
-				actualParent = new ContainerContentArea();
-				IParent(value).addElement(actualParent);
-				Container(value).setActualParent(actualParent);
-				actualParent.x = padding.paddingLeft;
-				actualParent.y = padding.paddingTop;
-			}
-			else
-			{
-				actualParent = value as UIBase;
-			}
-			
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+            var host:UIBase = value as UIBase;
+            if (host.numChildren > 0)
+                childHandler(null);  
+            else
+                host.addEventListener("childrenAdded", childHandler);
+        }
+        
+        private function childHandler(event:Event):void
+        {
+            var host:UIBase = _strand as UIBase;
+            if (host.numChildren > 0)
+            {
+                actualParent = host.getChildAt(0) as UIBase;   
+            }
+        
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
-				if (value.getBeadByType(IBackgroundBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);					
+				if (host.getBeadByType(IBackgroundBead) == null)
+                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
 			}
 			
 			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
 			if (borderStyles is Array)
 			{
 				borderStyle = borderStyles[1];
 			}
 			if (borderStyle == null)
 			{
-				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
-				if (value.getBeadByType(IBorderBead) == null)
-					value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);	
+				if (host.getBeadByType(IBorderBead) == null)
+                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
 			}
-		}
-		
-		/**
-		 *  Determines the top and left padding values, if any, as set by
-		 *  padding style values. This includes "padding" for all padding values
-		 *  as well as "padding-left" and "padding-top".
-		 * 
-		 *  Returns an object with paddingLeft and paddingTop properties.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function determinePadding():Object
-		{
-			var paddingLeft:Object;
-			var paddingTop:Object;
-			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
-			if (padding is Array)
-			{
-				if (padding.length == 1)
-					paddingLeft = paddingTop = padding[0];
-				else if (padding.length <= 3)
-				{
-					paddingLeft = padding[1];
-					paddingTop = padding[0];
-				}
-				else if (padding.length == 4)
-				{
-					paddingLeft = padding[3];
-					paddingTop = padding[0];					
-				}
-			}
-			else if (padding == null)
-			{
-				paddingLeft = ValuesManager.valuesImpl.getValue(_strand, "padding-left");
-				paddingTop = ValuesManager.valuesImpl.getValue(_strand, "padding-top");
-			}
-			else
-			{
-				paddingLeft = paddingTop = padding;
-			}
-			var pl:Number = Number(paddingLeft);
-			var pt:Number = Number(paddingTop);
-			
-			return {paddingLeft:pl, paddingTop:pt};
-		}
-		
-		/**
-		 *  Returns true if container to create a separate ContainerContentArea.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function contentAreaNeeded():Boolean
-		{
-			var padding:Object = determinePadding();
-			
-			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
-				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
 		}
 		
         /**
