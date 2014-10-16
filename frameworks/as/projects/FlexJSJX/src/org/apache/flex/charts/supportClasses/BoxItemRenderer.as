@@ -207,7 +207,10 @@ package org.apache.flex.charts.supportClasses
 				
 				filledRect.fill = fill;
 				filledRect.stroke = stroke;
-				filledRect.drawRect(0,0,this.width,this.height);
+				filledRect.x = 0;
+				filledRect.y = 0;
+				filledRect.width = this.width;
+				filledRect.height = this.height;
 				
 				if (needsAdd) {
 					addElement(filledRect);
