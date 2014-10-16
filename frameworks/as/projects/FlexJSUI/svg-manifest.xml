@@ -20,8 +20,5 @@
 
 
 <componentPackage>
-
     <component id="TextButton" class="org.apache.flex.svg.TextButton"/>
-	<component id="Rect" class="org.apache.flex.core.graphics.Rect" />
-
 </componentPackage>
