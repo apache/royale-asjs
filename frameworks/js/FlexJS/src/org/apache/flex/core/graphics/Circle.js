@@ -44,9 +44,10 @@ org.apache.flex.core.graphics.Circle.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Circle',
                 qName: 'org.apache.flex.core.graphics.Circle' }] };
 
+
 /**
  * @expose
- * @param {number} v The radius of the circle
+ * @param {number} v The radius of the circle.
  */
 org.apache.flex.core.graphics.Circle.prototype.set_radius = function(v) {
   this.radius_ = v;
@@ -55,11 +56,12 @@ org.apache.flex.core.graphics.Circle.prototype.set_radius = function(v) {
 
 /**
  * @expose
- * @return {number} The radius of the circle
+ * @return {number} The radius of the circle.
  */
 org.apache.flex.core.graphics.Circle.prototype.get_radius = function() {
   return this.radius_;
-};				
+};
+
 
 /**
  * @expose
@@ -89,9 +91,10 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
     this.element.appendChild(circle);
   };
 
+
 /**
  * @override
-*/
-  org.apache.flex.core.graphics.Circle.prototype.draw = function() {
+ */
+org.apache.flex.core.graphics.Circle.prototype.draw = function() {
     this.drawCircle(this.get_x(), this.get_y(), this.get_radius());
   };

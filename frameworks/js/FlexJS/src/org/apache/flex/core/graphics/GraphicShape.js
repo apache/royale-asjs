@@ -17,14 +17,16 @@ goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
+
+
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.graphics.GraphicShape = function() {
-  
+
   org.apache.flex.core.graphics.GraphicShape.base(this, 'constructor');
-  
+
   /**
    * @private
    * @type {org.apache.flex.core.graphics.IFill}
@@ -125,12 +127,14 @@ org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() 
   this.resize(this.x_, this.y_, bbox);
 };
 
+
 /**
- * This is where the drawing methods get called from 
+ * This is where the drawing methods get called from.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.draw = function() {
   //Overwrite in subclass
 };
+
 
 /**
  * @expose
