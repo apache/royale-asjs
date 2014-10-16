@@ -181,7 +181,9 @@ package org.apache.flex.charts.supportClasses
 					else pathString += "L "+point.x+" "+point.y+" ";
 				}
 				
-				path.drawPath(0, 0, pathString);
+				path.x = 0;
+				path.y = 0;
+				path.data = pathString;
 				
 				if (needsAddElement) {
 					addElement(path);

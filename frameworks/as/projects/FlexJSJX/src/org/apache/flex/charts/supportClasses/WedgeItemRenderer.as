@@ -237,7 +237,9 @@ package org.apache.flex.charts.supportClasses
 			var path:Path = new Path();
 			path.fill = fill;
 			path.stroke = stroke;
-			path.drawPath(0, 0, pathString);
+			path.x = 0;
+			path.y = 0;
+			path.data = pathString;
 			addElement(path);
 		}
 		
