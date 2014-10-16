@@ -19,7 +19,18 @@ package org.apache.flex.core.graphics
 
 	public class Circle extends GraphicShape
 	{
-		
+		private var _radius:Number;
+
+		public function get radius():Number
+		{
+			return _radius;
+		}
+
+		public function set radius(value:Number):void
+		{
+			_radius = value;
+		}
+
 		/**
 		 *  Draw the circle.
 		 *  @param x The x location of the center of the circle
@@ -38,6 +49,11 @@ package org.apache.flex.core.graphics
 			beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
 			graphics.drawCircle(x,y,radius);
 			endFill();
+		}
+		
+		override public function addedToParent():void
+		{
+			drawCircle(0, 0, radius);
 		}
 		
 	}

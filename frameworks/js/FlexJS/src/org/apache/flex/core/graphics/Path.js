@@ -25,6 +25,11 @@ goog.require('org.apache.flex.core.graphics.GraphicShape');
 org.apache.flex.core.graphics.Path = function() {
   org.apache.flex.core.graphics.Path.base(this, 'constructor');
 
+   /**
+   * @private
+   * @type {string}
+   */
+  this.data_ = "";
 };
 goog.inherits(org.apache.flex.core.graphics.Path,
     org.apache.flex.core.graphics.GraphicShape);
@@ -39,11 +44,28 @@ org.apache.flex.core.graphics.Path.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Path',
                 qName: 'org.apache.flex.core.graphics.Path' }] };
 
+				
+/**
+ * @expose
+ * @param {string} v The string representation of the path data
+ */
+org.apache.flex.core.graphics.Path.prototype.set_data = function(v) {
+  this.data_ = v;
+};
+
 
 /**
  * @expose
- * @param {number} x The x location of the center of the Path.
- * @param {number} y The y location of the center of the Path.
+ * @return {string} The string representation of the path data
+ */
+org.apache.flex.core.graphics.Path.prototype.get_data = function() {
+  return this.data_;
+};						
+
+/**
+ * @expose
+ * @param {number} x The x location of the Path.
+ * @param {number} y The y location of the Path.
  * @param {string} data A string containing a compact represention of the path segments.
  *  The value is a space-delimited string describing each path segment. Each
  *  segment entry has a single character which denotes the segment type and
@@ -67,3 +89,10 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
       this.setPosition(x, y, 0, 0);
     }
   };
+
+ /**
+ * @override
+*/
+  org.apache.flex.core.graphics.Path.prototype.draw = function() {
+    this.drawPath(this.get_x(), this.get_y(), this.get_data());
+  }; 

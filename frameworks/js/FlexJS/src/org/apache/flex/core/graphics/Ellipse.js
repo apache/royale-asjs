@@ -67,3 +67,10 @@ org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, wid
     ellipse.setAttribute('ry', String(height / 2));
     this.element.appendChild(ellipse);
   };
+
+/**
+ * @override
+*/
+  org.apache.flex.core.graphics.Ellipse.prototype.draw = function() {
+    this.drawEllipse(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+  };

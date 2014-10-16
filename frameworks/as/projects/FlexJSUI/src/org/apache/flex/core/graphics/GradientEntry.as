@@ -34,7 +34,7 @@ package org.apache.flex.core.graphics
 		private var _ratio:Number = 0x000000;
 		
 		
-		public function GradientEntry(alpha:Number, color:uint, ratio:Number)
+		public function GradientEntry(alpha:Number = 1.0, color:uint = 0x000000, ratio:Number = 1.0)
 		{
 			_alpha = alpha;
 			_color = color;

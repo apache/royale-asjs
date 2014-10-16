@@ -84,5 +84,19 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
+		/**
+		 * This is where the drawing methods get called from
+		 */
+		protected function draw():void
+		{
+			//Overwrite in subclass
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			draw();
+		}
+		
 	}
 }

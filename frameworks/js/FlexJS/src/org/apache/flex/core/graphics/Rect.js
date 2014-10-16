@@ -67,3 +67,10 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
     rect.setAttribute('height', String(height) + 'px');
     this.element.appendChild(rect);
   };
+
+/**
+ * @override
+*/
+  org.apache.flex.core.graphics.Rect.prototype.draw = function() {
+    this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+  };

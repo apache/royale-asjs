@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-//TODO Should implment IUIBase
 goog.provide('org.apache.flex.core.graphics.GraphicShape');
-
+goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.graphics.SolidColor');
 goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
-
-
 /**
  * @constructor
+ * @extends {org.apache.flex.core.UIBase}
  */
 org.apache.flex.core.graphics.GraphicShape = function() {
-
+  
+  org.apache.flex.core.graphics.GraphicShape.base(this, 'constructor');
+  
   /**
    * @private
    * @type {org.apache.flex.core.graphics.IFill}
@@ -66,27 +66,9 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    * @type {SVGElement}
    */
   this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-
 };
-
-
-/**
- * @expose
- * @param {number} value New X position.
- */
-org.apache.flex.core.graphics.GraphicShape.prototype.set_x = function(value) {
-  this.x_ = value;
-};
-
-
-/**
- * @expose
- * @param {number} value New Y position.
- */
-org.apache.flex.core.graphics.GraphicShape.prototype.set_y = function(value) {
-  this.y_ = value;
-};
+goog.inherits(org.apache.flex.core.graphics.GraphicShape,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -138,10 +120,17 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
  *
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
+  this.draw();
   var bbox = this.element.getBBox();
   this.resize(this.x_, this.y_, bbox);
 };
 
+/**
+ * This is where the drawing methods get called from 
+ */
+org.apache.flex.core.graphics.GraphicShape.prototype.draw = function() {
+  //Overwrite in subclass
+};
 
 /**
  * @expose

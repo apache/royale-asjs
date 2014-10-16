@@ -1,7 +1,5 @@
 package org.apache.flex.core.graphics
 {
-	import flash.display.CapsStyle;
-	import flash.display.JointStyle;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
@@ -27,6 +25,11 @@ package org.apache.flex.core.graphics
 			beginFill(new Rectangle(x, y, width, height), new Point(x,y));
 			graphics.drawEllipse(x,y,width,height);
 			endFill();
+		}
+		
+		override protected function draw():void
+		{
+			this.drawEllipse(0, 0, width, height);	
 		}
 		
 	}

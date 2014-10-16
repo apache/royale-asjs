@@ -23,6 +23,18 @@ package org.apache.flex.core.graphics
 	public class Path extends GraphicShape
 	{
 		
+		private var _data:String;
+		
+		public function get data():String
+		{
+			return _data;
+		}
+
+		public function set data(value:String):void
+		{
+			_data = value;
+		}
+
 		/**
 		 *  Draw the path.
 		 *  @param data A string containing a compact represention of the path segments.
@@ -44,11 +56,17 @@ package org.apache.flex.core.graphics
 			graphics.clear();
 			applyStroke();
 			var bounds:Rectangle = PathHelper.getBounds(data);
+			this.width = bounds.width;
+			this.height = bounds.height;
 			beginFill(bounds,new Point(bounds.left + x, bounds.top + y) );
 			var graphicsPath:GraphicsPath = PathHelper.getSegments(data,x,y);
 			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
 			endFill();
-			
+		}
+		
+		override protected function draw():void
+		{
+			drawPath(0, 0, data);
 		}
 	}
 }

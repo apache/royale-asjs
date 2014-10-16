@@ -43,5 +43,10 @@ package org.apache.flex.core.graphics
 			endFill();
 		}
 		
+		override protected function draw():void
+		{
+			drawRect(0,0,width,height);
+		}
+		
 	}
 }
