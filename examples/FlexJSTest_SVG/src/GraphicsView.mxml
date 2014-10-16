@@ -37,7 +37,7 @@ limitations under the License.
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
-				//drawIndividualShapes();
+				drawIndividualShapes();
 				//drawOnGraphicsContainer();
 			}
 			
@@ -139,7 +139,9 @@ limitations under the License.
 				stroke.color = 0x123456;
 				stroke.weight = 2;
 				circle1.stroke = stroke;
-				circle1.drawCircle(700,300,200);
+				circle1.x = 700;
+				circle1.y = 200;
+				circle1.radius = 200;
 				this.addElement(circle1);
 				
 				var circle2:Circle = new Circle();
@@ -149,7 +151,10 @@ limitations under the License.
 				stroke.color = 0xccff11;
 				stroke.weight = 5;
 				circle2.stroke = stroke;
-				circle2.drawCircle(100,700,100);
+				circle2.x = 100;
+				circle2.y = 700;
+				circle2.radius = 100;
+				//circle2.drawCircle(100,700,100);
 				this.addElement(circle2);
 				
 				var path1:Path = new Path();
@@ -251,7 +256,7 @@ limitations under the License.
 			
 		]]>
     </fx:Script>
-	<basic:Rect x="0" y="0" width="200" height="200" >
+<!--	<basic:Rect x="0" y="0" width="200" height="200" >
 		<basic:fill>
 			<basic:SolidColor color="#FF0000" />
 		</basic:fill>
@@ -317,6 +322,6 @@ limitations under the License.
 		<basic:fill>
 			<basic:SolidColor color="#0000FF" alpha="0.5" />
 		</basic:fill>
-	</basic:Path>
+	</basic:Path>-->
 	
 </basic:ViewBase>
