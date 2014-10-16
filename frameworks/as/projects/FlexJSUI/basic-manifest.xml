@@ -93,6 +93,11 @@
 
     <component id="Map" class="org.apache.flex.maps.google.Map" />
 
+	<component id="Circle" class="org.apache.flex.core.graphics.Circle" />
+	<component id="Ellipse" class="org.apache.flex.core.graphics.Ellipse" />
+	<component id="Path" class="org.apache.flex.core.graphics.Path" />
+	<component id="Rect" class="org.apache.flex.core.graphics.Rect" />
+	<component id="GraphicsContainer" class="org.apache.flex.core.graphics.GraphicsContainer" />
     <component id="GradientEntry" class="org.apache.flex.core.graphics.GradientEntry" />
     <component id="LinearGradient" class="org.apache.flex.core.graphics.LinearGradient" />
     <component id="SolidColor" class="org.apache.flex.core.graphics.SolidColor" />
