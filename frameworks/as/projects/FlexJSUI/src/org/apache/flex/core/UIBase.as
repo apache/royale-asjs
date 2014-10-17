@@ -25,6 +25,7 @@ package org.apache.flex.core
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.MouseEvent;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -63,15 +64,53 @@ package org.apache.flex.core
 		{
 			super();
 			
-			addEventListener(MouseEvent.CLICK, clickKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.CLICK, clickKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.MOUSE_DOWN, mouseEventKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.MOUSE_UP, mouseEventKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.ROLL_OVER, mouseEventKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.ROLL_OUT, mouseEventKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.MOUSE_OVER, mouseEventKiller, false, 9999);
+			addEventListener(flash.events.MouseEvent.MOUSE_OUT, mouseEventKiller, false, 9999);
 		}
 		
 		private function clickKiller(event:flash.events.Event):void
 		{
-			if (event is MouseEvent)
+			if (event is flash.events.MouseEvent)
 			{
 				event.stopImmediatePropagation();
 				dispatchEvent(new org.apache.flex.events.Event("click"));
+			}
+		}
+		
+		private function mouseEventKiller(event:flash.events.MouseEvent):void
+		{
+			if (event is flash.events.MouseEvent)
+			{
+				event.stopImmediatePropagation();
+				if(event.type == flash.events.MouseEvent.MOUSE_DOWN)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_DOWN,true));
+				}
+				else if(event.type == flash.events.MouseEvent.MOUSE_UP)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_UP,true));
+				}
+				else if(event.type == flash.events.MouseEvent.MOUSE_OVER)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_OVER,true));
+				}
+				else if(event.type == flash.events.MouseEvent.MOUSE_OUT)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_OUT,true));
+				}
+				else if(event.type == flash.events.MouseEvent.ROLL_OVER)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.ROLL_OVER,true));
+				}
+				else if(event.type == flash.events.MouseEvent.ROLL_OUT)
+				{
+					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.ROLL_OUT,true));
+				}
 			}
 		}
 		
