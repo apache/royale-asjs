@@ -70,7 +70,7 @@ package org.apache.flex.html.beads
 		 */
 		private function handleBeadsAdded(event:Event):void
 		{
-			_formatter = strand.getBeadByType(IFormatBead) as IFormatBead;
+			_formatter = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			_formatter.addEventListener("formatChanged",formatReadyHandler);
 			
 			// process any text set in the label at this moment

@@ -187,7 +187,7 @@ package org.apache.flex.html.beads.controllers
                 {
                     dragEvent = new DragEvent("dragStart", true, true);
                     dragEvent.copyMouseEventProperties(event);
-                    IEventDispatcher(strand).dispatchEvent(dragEvent);
+                    IEventDispatcher(_strand).dispatchEvent(dragEvent);
                     if (dragSource != null)
                     {
                         dragging = true;
@@ -201,7 +201,7 @@ package org.apache.flex.html.beads.controllers
                 dragEvent.copyMouseEventProperties(event);
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
-                IEventDispatcher(strand).dispatchEvent(dragEvent);
+                IEventDispatcher(_strand).dispatchEvent(dragEvent);
             }
         }
         
@@ -216,7 +216,7 @@ package org.apache.flex.html.beads.controllers
                 event.stopImmediatePropagation();
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
-                IEventDispatcher(strand).dispatchEvent(dragEvent);
+                IEventDispatcher(_strand).dispatchEvent(dragEvent);
             }
             dragging = false;
             dragSource = null;

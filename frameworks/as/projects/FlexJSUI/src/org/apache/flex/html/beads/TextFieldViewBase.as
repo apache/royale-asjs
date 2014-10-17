@@ -74,7 +74,7 @@ package org.apache.flex.html.beads
 		
 		private var _textModel:ITextModel;
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
         /**
          *  @copy org.apache.flex.core.IBead#strand

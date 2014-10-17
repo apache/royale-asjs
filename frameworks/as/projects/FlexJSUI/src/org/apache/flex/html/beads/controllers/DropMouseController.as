@@ -123,7 +123,7 @@ package org.apache.flex.html.beads.controllers
                 dragEvent.copyMouseEventProperties(event);
                 dragSource = dragEvent.dragSource = event.dragSource;
                 dragInitiator = dragEvent.dragInitiator = event.dragInitiator;
-                IEventDispatcher(strand).dispatchEvent(dragEvent);
+                IEventDispatcher(_strand).dispatchEvent(dragEvent);
                 inside = true;
                 DisplayObject(_strand).stage.addEventListener(DragEvent.DRAG_END, dragEndHandler);
                 DisplayObject(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
@@ -134,7 +134,7 @@ package org.apache.flex.html.beads.controllers
                 dragEvent.copyMouseEventProperties(event);
                 dragEvent.dragSource = event.dragSource;
                 dragEvent.dragInitiator = event.dragInitiator;
-                IEventDispatcher(strand).dispatchEvent(dragEvent);
+                IEventDispatcher(_strand).dispatchEvent(dragEvent);
             }
         }
         
@@ -151,7 +151,7 @@ package org.apache.flex.html.beads.controllers
                 dragSource = null;
                 dragInitiator = null;
                 event.stopImmediatePropagation();
-                IEventDispatcher(strand).dispatchEvent(dragEvent);
+                IEventDispatcher(_strand).dispatchEvent(dragEvent);
                 inside = false;
             }
             DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
@@ -169,7 +169,7 @@ package org.apache.flex.html.beads.controllers
             dragSource = null;
             dragInitiator = null;
             event.stopImmediatePropagation();
-            IEventDispatcher(strand).dispatchEvent(dragEvent);
+            IEventDispatcher(_strand).dispatchEvent(dragEvent);
             
             DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             DisplayObject(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
