@@ -19,6 +19,7 @@
 package org.apache.flex.events
 {
     import flash.events.MouseEvent;
+    
     import org.apache.flex.core.IDragInitiator;
     
 	/**
@@ -29,7 +30,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class DragEvent extends MouseEvent
+	public class DragEvent extends flash.events.MouseEvent
 	{
         /**
          *  The <code>DragEvent.DRAG_START</code> constant defines the value of the 
@@ -269,7 +270,7 @@ package org.apache.flex.events
          */
         public var dragSource:Object;
         
-        public function copyMouseEventProperties(event:MouseEvent):void
+        public function copyMouseEventProperties(event:flash.events.MouseEvent):void
         {
             localX = event.localX;
             localY = event.localY;
