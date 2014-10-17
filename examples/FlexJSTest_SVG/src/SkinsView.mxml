@@ -29,7 +29,7 @@ limitations under the License.
 			
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
-				this.mouseChildren = false;
+				//this.mouseChildren = false;
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_DOWN, handleMouseDown);
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_UP, handleMouseUp);
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_OVER, handleMouseOver);
@@ -59,10 +59,10 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	<basic:states>
-		<mx:State name="up" id="stateUp"/>
-		<mx:State name="over" id="stateOver"/>
-		<mx:State name="down" id="stateDown"/>
-		<mx:State name="disabled" id="stateDisabled"/>
+		<mx:State name="up"/>
+		<mx:State name="over"/>
+		<mx:State name="down"/>
+		<mx:State name="disabled"/>
 	</basic:states>
 	
 	<basic:Label text="MyButton" x="20" y="5" includeIn="{[up,over,down,disabled]}" />
