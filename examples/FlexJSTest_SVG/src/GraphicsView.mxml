@@ -37,7 +37,7 @@ limitations under the License.
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
-				drawIndividualShapes();
+				//drawIndividualShapes();
 				//drawOnGraphicsContainer();
 			}
 			
@@ -256,7 +256,7 @@ limitations under the License.
 			
 		]]>
     </fx:Script>
-<!--	<basic:Rect x="0" y="0" width="200" height="200" >
+	<basic:Rect x="0" y="0" width="200" height="200" >
 		<basic:fill>
 			<basic:SolidColor color="#FF0000" />
 		</basic:fill>
@@ -322,6 +322,6 @@ limitations under the License.
 		<basic:fill>
 			<basic:SolidColor color="#0000FF" alpha="0.5" />
 		</basic:fill>
-	</basic:Path>-->
+	</basic:Path>
 	
 </basic:ViewBase>
