@@ -19,7 +19,8 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.IChild;
+	import org.apache.flex.core.IUIBase;
 
 	/**
 	 *  The UIUtils class is a collection of static functions that provide utility
@@ -52,7 +53,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public static function center( item:UIBase, relativeTo:UIBase ):void
+		public static function center( item:IUIBase, relativeTo:IUIBase ):void
 		{
 			var xpos:Number = (relativeTo.width - item.width)/2;
 			var ypos:Number = (relativeTo.height - item.height)/2;
@@ -74,10 +75,10 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public static function findPopUpHost(start:UIBase):IPopUpHost
+		public static function findPopUpHost(start:IUIBase):IPopUpHost
 		{
-			while( start != null && !(start is IPopUpHost) ) {
-				start = start.parent as UIBase;
+			while( start != null && !(start is IPopUpHost) && start is IChild ) {
+				start = IChild(start).parent as IUIBase;
 			}
 			
 			return start as IPopUpHost;
@@ -94,7 +95,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public static function removePopUp(popUp:UIBase):void
+		public static function removePopUp(popUp:IChild):void
 		{
 			var host:IPopUpHost = popUp.parent as IPopUpHost;
 			host.removeElement(popUp);
