@@ -24,6 +24,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.EventDispatcher;
@@ -111,11 +112,17 @@ package org.apache.flex.html.beads.controllers
         private var dragSource:Object;
         private var dragInitiator:IDragInitiator;
         
+        public function acceptDragDrop(target:IUIBase, type:String):void
+        {
+            // TODO: aharui: switch icons
+        }
+        
         /**
          *  @private
          */
         private function dragMoveHandler(event:DragEvent):void
         {
+            trace("dragMove");
             var dragEvent:DragEvent;
             if (!inside)
             {
@@ -123,7 +130,7 @@ package org.apache.flex.html.beads.controllers
                 dragEvent.copyMouseEventProperties(event);
                 dragSource = dragEvent.dragSource = event.dragSource;
                 dragInitiator = dragEvent.dragInitiator = event.dragInitiator;
-                IEventDispatcher(_strand).dispatchEvent(dragEvent);
+                dispatchEvent(dragEvent);
                 inside = true;
                 DisplayObject(_strand).stage.addEventListener(DragEvent.DRAG_END, dragEndHandler);
                 DisplayObject(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
@@ -151,7 +158,7 @@ package org.apache.flex.html.beads.controllers
                 dragSource = null;
                 dragInitiator = null;
                 event.stopImmediatePropagation();
-                IEventDispatcher(_strand).dispatchEvent(dragEvent);
+                dispatchEvent(dragEvent);
                 inside = false;
             }
             DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
@@ -160,6 +167,7 @@ package org.apache.flex.html.beads.controllers
         
         private function dragEndHandler(event:DragEvent):void
         {
+            trace("dragEnd");
             var dragEvent:DragEvent;
             
             dragEvent = new DragEvent("dragDrop", true, true);
@@ -169,7 +177,7 @@ package org.apache.flex.html.beads.controllers
             dragSource = null;
             dragInitiator = null;
             event.stopImmediatePropagation();
-            IEventDispatcher(_strand).dispatchEvent(dragEvent);
+            dispatchEvent(dragEvent);
             
             DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             DisplayObject(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			

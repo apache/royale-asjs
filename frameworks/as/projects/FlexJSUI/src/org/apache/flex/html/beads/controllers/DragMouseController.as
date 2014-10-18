@@ -20,14 +20,18 @@ package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
+    import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
-    import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.UIUtils;
 	
     /**
      *  Indicates that a drag/drop operation is starting.
@@ -106,6 +110,36 @@ package org.apache.flex.html.beads.controllers
         public static var dragging:Boolean;
         
         /**
+         *  The drag image.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var dragImage:IUIBase;
+        
+        /**
+         *  The offset of the drag image.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var dragImageOffsetX:Number = 0;
+        
+        /**
+         *  The offset of the drag image.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var dragImageOffsetY:Number = 0;
+        
+        /**
          *  The default movement in x and or y that
          *  means a drag should start
          *  
@@ -165,11 +199,14 @@ package org.apache.flex.html.beads.controllers
         private var mouseDownX:Number;
         private var mouseDownY:Number;
         
+        private var host:IPopUpHost;
+        
         /**
          *  @private
          */
         private function dragMouseDownHandler(event:MouseEvent):void
         {
+            trace("dragMouseDown");
             DisplayObject(_strand).stage.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
             DisplayObject(_strand).stage.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             mouseDownX = event.stageX;
@@ -178,49 +215,67 @@ package org.apache.flex.html.beads.controllers
         
         private function dragMouseMoveHandler(event:MouseEvent):void
         {
+            var pt:Point;
             var dragEvent:DragEvent;
+            trace("dragMouseMove");
             
             if (!dragging)
             {
+                trace("not dragging anything else");
                 if (Math.abs(event.stageX - mouseDownX) > threshold ||
                     Math.abs(event.stageY - mouseDownY) > threshold)
                 {
+                    trace("sending dragStart");
                     dragEvent = new DragEvent("dragStart", true, true);
                     dragEvent.copyMouseEventProperties(event);
                     IEventDispatcher(_strand).dispatchEvent(dragEvent);
                     if (dragSource != null)
                     {
                         dragging = true;
+                        host = UIUtils.findPopUpHost(_strand as IUIBase);
+                        host.addElement(dragImage);
+                        pt = DisplayObject(host).globalToLocal(new Point(event.stageX, event.stageY));
+                        dragImage.x = pt.x + dragImageOffsetX;
+                        dragImage.y = pt.y + dragImageOffsetY;
                     }
                 }
             }
             else
             {
+                trace("sending dragMove", event.target);
                 dragEvent = new DragEvent("dragMove", true, true);
                 event.stopImmediatePropagation();
                 dragEvent.copyMouseEventProperties(event);
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
-                IEventDispatcher(_strand).dispatchEvent(dragEvent);
+                pt = DisplayObject(host).globalToLocal(new Point(event.stageX, event.stageY));
+                dragImage.x = pt.x + dragImageOffsetX;
+                dragImage.y = pt.y + dragImageOffsetY;
+                event.target.dispatchEvent(dragEvent);
             }
         }
         
         private function dragMouseUpHandler(event:MouseEvent):void
         {
+            trace("dragMouseUp");
             var dragEvent:DragEvent;
             
             if (dragging)
             {
+                trace("sending dragEnd");
                 dragEvent = new DragEvent("dragEnd", true, true);
                 dragEvent.copyMouseEventProperties(event);
                 event.stopImmediatePropagation();
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
-                IEventDispatcher(_strand).dispatchEvent(dragEvent);
+                event.target.dispatchEvent(dragEvent);
             }
             dragging = false;
             dragSource = null;
             dragInitiator = null;
+            if (dragImage)
+                host.removeElement(dragImage);
+            dragImage = null;
             DisplayObject(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
             DisplayObject(_strand).stage.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);			
         }
