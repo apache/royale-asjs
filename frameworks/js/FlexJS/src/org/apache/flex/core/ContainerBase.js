@@ -60,6 +60,7 @@ org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
   org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
 
+  this.dispatchEvent('initBindings');
   this.dispatchEvent('initComplete');
   this.dispatchEvent('childrenAdded');
 };
