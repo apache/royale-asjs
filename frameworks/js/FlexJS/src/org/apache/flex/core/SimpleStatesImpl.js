@@ -67,10 +67,20 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
     if (this.strand_.addEventListener) {
       this.strand_.addEventListener('currentStateChanged',
           goog.bind(this.stateChangeHandler_, this));
+	  this.strand_.addEventListener('initComplete',
+          goog.bind(this.initialStateHandler_, this));	  
     }
   }
 };
 
+/**
+ * @private
+ * @param {Object} event The event.
+ */
+org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
+    function(event) {
+    this.dispatchEvent(new org.apache.flex.events.ValueChangeEvent('currentStateChanged', null, this.strand_.get_currentState()));
+};
 
 /**
  * @private
