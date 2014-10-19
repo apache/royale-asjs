@@ -30,6 +30,7 @@ limitations under the License.
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
 				//this.mouseChildren = false;
+				currentState = "up";
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_DOWN, handleMouseDown);
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_UP, handleMouseUp);
 				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_OVER, handleMouseOver);
@@ -64,34 +65,39 @@ limitations under the License.
 		<mx:State name="down"/>
 		<mx:State name="disabled"/>
 	</basic:states>
-	
-	<basic:Label text="MyButton" x="20" y="5" includeIn="{[up,over,down,disabled]}" />
-	
-	<basic:Rect id="fill_up" width="100" height="30" includeIn="up" >
-		<basic:stroke>
-			<basic:SolidColorStroke alpha="1.0" color="#000000" />
-		</basic:stroke>
-		<basic:fill>
-			<basic:SolidColor color="#1ABC9C" alpha="1.0" />
-		</basic:fill>
-	</basic:Rect>
-	
-	<basic:Rect id="fill_over" width="100" height="30" includeIn="over">
-		<basic:stroke>
-			<basic:SolidColorStroke alpha="1.0" color="#000000" />
-		</basic:stroke>
-		<basic:fill>
-			<basic:SolidColor color="#48C9B0" alpha="1.0" />
-		</basic:fill>
-	</basic:Rect>
-	
-	<basic:Rect id="fill_down" width="100" height="30" includeIn="down">
-		<basic:stroke>
-			<basic:SolidColorStroke alpha="1.0" color="#000000" />
-		</basic:stroke>
-		<basic:fill>
-			<basic:SolidColor color="#16A085" alpha="1.0" />
-		</basic:fill>
-	</basic:Rect>
+	<!--<basic:beads>
+		<basic:ViewBaseDataBinding />
+	</basic:beads>-->
+	<basic:Container x="0" y="0" >
+		<basic:Label text="MyButton" x="20" y="5" includeIn="{[up,down,over,disabled]}" />
+		
+		<basic:Rect id="fill_up" width="100" height="30" includeIn="up" >
+			<basic:stroke>
+				<basic:SolidColorStroke alpha="1.0" color="#000000" />
+			</basic:stroke>
+			<basic:fill>
+				<basic:SolidColor color="#1ABC9C" alpha="1.0" />
+			</basic:fill>
+		</basic:Rect>
+		
+		<basic:Rect id="fill_over" width="100" height="30" includeIn="over">
+			<basic:stroke>
+				<basic:SolidColorStroke alpha="1.0" color="#000000" />
+			</basic:stroke>
+			<basic:fill>
+				<basic:SolidColor color="#48C9B0" alpha="1.0" />
+			</basic:fill>
+		</basic:Rect>
+		
+		<basic:Rect id="fill_down" width="100" height="30" includeIn="down">
+			<basic:stroke>
+				<basic:SolidColorStroke alpha="1.0" color="#000000" />
+			</basic:stroke>
+			<basic:fill>
+				<basic:SolidColor color="#16A085" alpha="1.0" />
+			</basic:fill>
+		</basic:Rect>
+		
+	</basic:Container>
 	
 </basic:ViewBase>
