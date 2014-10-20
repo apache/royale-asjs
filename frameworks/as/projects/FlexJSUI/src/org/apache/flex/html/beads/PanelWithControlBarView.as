@@ -176,7 +176,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function changeHandler(event:Event):void
+		override protected function changeHandler(event:Event):void
 		{
 			layoutChromeElements();
 		}

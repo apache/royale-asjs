@@ -46,6 +46,6 @@ limitations under the License.
         </basic:style>
     </basic:Label>
     <basic:CloseButton id="closeButton" click="clickHandler()"
-                       visible="{ITitleBarModel(model).showCloseButton}";/>
+                       visible="{ITitleBarModel(model).showCloseButton}"/>
     
 </basic:MXMLBeadViewBase>
