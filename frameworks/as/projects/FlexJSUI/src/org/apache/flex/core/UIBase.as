@@ -84,7 +84,7 @@ package org.apache.flex.core
 		
 		private function mouseEventKiller(event:flash.events.MouseEvent):void
 		{
-			if (event is flash.events.MouseEvent)
+			if ((event is flash.events.MouseEvent) && ! (event is org.apache.flex.events.MouseEvent))
 			{
 				event.stopImmediatePropagation();
 				if(event.type == flash.events.MouseEvent.MOUSE_DOWN)

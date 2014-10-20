@@ -30,12 +30,12 @@ package org.apache.flex.events
 	 */
 	public class MouseEvent extends flash.events.MouseEvent
 	{
-		public static const MOUSE_DOWN:String = "mouseDown_";
-		public static const MOUSE_UP:String = "mouseUp_";
-		public static const MOUSE_OUT:String = "mouseOut_";
-		public static const MOUSE_OVER:String = "mouseOver_";
-		public static const ROLL_OVER:String = "rollOver_";
-		public static const ROLL_OUT:String = "rollOut_";
+		public static const MOUSE_DOWN:String = "mouseDown";
+		public static const MOUSE_UP:String = "mouseUp";
+		public static const MOUSE_OUT:String = "mouseOut";
+		public static const MOUSE_OVER:String = "mouseOver";
+		public static const ROLL_OVER:String = "rollOver";
+		public static const ROLL_OUT:String = "rollOut";
 
         /**
          *  Constructor.
