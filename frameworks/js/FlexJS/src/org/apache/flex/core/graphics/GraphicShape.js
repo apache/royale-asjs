@@ -124,6 +124,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   this.draw();
   var bbox = this.element.getBBox();
+  if (bbox.width === 0 && !isNaN(this.get_width())) bbox.width = this.get_width();
+  if (bbox.height === 0 && !isNaN(this.get_height())) bbox.height = this.get_height();
   this.resize(this.get_x(), this.get_y(), bbox);
 };
 
