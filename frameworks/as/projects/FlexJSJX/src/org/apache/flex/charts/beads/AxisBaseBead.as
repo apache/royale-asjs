@@ -125,6 +125,8 @@ package org.apache.flex.charts.beads
 			// set (x,y) before adding as element to set the location correctly
 			axisPath.x = originX;
 			axisPath.y = originY;
+			axisPath.width = 1+xoffset;
+			axisPath.height = 1+yoffset;
 			UIBase(strand).addElement(axisPath);
 			axisPath.stroke = axisStroke;
 			var pathLine:String = "M 0 0 l "+String(xoffset)+" "+String(yoffset);
@@ -134,12 +136,17 @@ package org.apache.flex.charts.beads
 		}
 		
 		private var tickPathString:String = null;
+		private var tickMaxWidth:Number = 0;
+		private var tickMaxHeight:Number = 0;
 		
 		protected function addTickMark(xpos:Number, ypos:Number, xoffset:Number, yoffset:Number):void
 		{
 			if (tickPathString == null) tickPathString = "";
 			tickPathString = tickPathString + " M "+String(xpos)+" "+String(ypos);
 			tickPathString = tickPathString + " l " + String(xoffset)+" "+String(yoffset);
+			
+			tickMaxWidth = Math.max(tickMaxWidth, xpos+xoffset);
+			tickMaxHeight= Math.max(tickMaxHeight, ypos+yoffset);
 		}
 		
 		protected function drawTickPath(originX:Number, originY:Number):void
@@ -148,6 +155,8 @@ package org.apache.flex.charts.beads
 			// set (x,y) before adding as element to set the location correctly
 			tickPath.x = originX;
 			tickPath.y = originY;
+			tickPath.width = tickMaxWidth;
+			tickPath.height = tickMaxHeight;
 			UIBase(strand).addElement(tickPath);
 			tickPath.stroke = tickStroke;
 			tickPath.drawPath( 0, 0, tickPathString );

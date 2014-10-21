@@ -172,14 +172,14 @@ package org.apache.flex.charts.beads
 				UIBase(strand).addElement(label);
 			
 				// add a tick mark
-				addTickMark(yAxisWidthOffset - 5 - originX, ypos + useHeight/2 - originY, 5, 0);
+				addTickMark(0, ypos + useHeight/2 - originY, 5, 0);
 				
 				ypos -= useHeight;
 			}
 
 			// draw the axis and tick marks
 			drawAxisPath(originX, originY, 0, UIBase(strand).height - xAxisOffset);
-			drawTickPath(originX, originY);
+			drawTickPath(originX-5, originY);
 		}
 	}
 }

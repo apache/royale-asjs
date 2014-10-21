@@ -220,7 +220,8 @@ package org.apache.flex.charts.beads
 				UIBase(strand).addElement(label);
 			
 				// add a tick mark, too.
-				addTickMark(xpos - 5 - originX, ypos - originY, 5, 0);
+				//addTickMark(xpos - 5 - originX, ypos - originY, 5, 0);
+				addTickMark(0, ypos-originY, 5, 0);
 				
 				ypos -= tickSpacing;
 				tickValue += tickStep;
@@ -228,7 +229,7 @@ package org.apache.flex.charts.beads
 			
 			// draw the axis and the tick marks
 			drawAxisPath(originX, originY, 0, useHeight);
-			drawTickPath(originX, originY);
+			drawTickPath(originX-5, originY);
 			
 		}
 		
