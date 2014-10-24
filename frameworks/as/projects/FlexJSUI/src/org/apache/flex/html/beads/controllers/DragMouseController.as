@@ -19,7 +19,6 @@
 package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import org.apache.flex.core.IBead;
@@ -31,6 +30,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.utils.UIUtils;
 	
     /**

@@ -17,9 +17,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
-{
-	import flash.events.MouseEvent;
-	
+{	
+    import flash.events.MouseEvent;
+    
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.geom.Point;
+    import org.apache.flex.utils.PointUtils;
+    
 	/**
 	 *  Mouse events
      *  
@@ -28,15 +32,42 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class MouseEvent extends flash.events.MouseEvent
+	public class MouseEvent extends Event
 	{
 		public static const MOUSE_DOWN:String = "mouseDown";
+        public static const MOUSE_MOVE:String = "mouseMove";
 		public static const MOUSE_UP:String = "mouseUp";
 		public static const MOUSE_OUT:String = "mouseOut";
 		public static const MOUSE_OVER:String = "mouseOver";
 		public static const ROLL_OVER:String = "rollOver";
 		public static const ROLL_OUT:String = "rollOut";
+        public static const CLICK:String = "click";
 
+        public static const UNCONVERTED_EVENTS:Object = { mouseWheel: 1 };
+        
+        public static function convert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
+        {
+            if (UNCONVERTED_EVENTS[event.type])
+                return null;
+            
+            var newEvent:org.apache.flex.events.MouseEvent = 
+                  new org.apache.flex.events.MouseEvent(event.type, event.bubbles, event.cancelable,
+                                                        event.localX, event.localY, event.relatedObject,
+                                                        event.ctrlKey, event.altKey, event.shiftKey,
+                                                        event.buttonDown, event.delta);
+
+            try 
+            {
+                newEvent.commandKey = event.commandKey;
+                newEvent.controlKey = event.controlKey;
+                newEvent.clickCount = event.clickCount;
+            }
+            catch (e:Error)
+            {          
+            }
+            return newEvent;
+        }
+        
         /**
          *  Constructor.
          *  
@@ -49,9 +80,82 @@ package org.apache.flex.events
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function MouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function MouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
+                                   localX:Number = NaN, localY:Number = NaN, 
+                                   relatedObject:Object = null, 
+                                   ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false, 
+                                   buttonDown:Boolean = false, delta:int = 0, 
+                                   commandKey:Boolean = false, controlKey:Boolean = false, 
+                                   clickCount:int = 0)
 		{
 			super(type, bubbles, cancelable);
+            this.localX = localX;
+            this.localY = localY;
+            this.relatedObject = relatedObject;
+            this.ctrlKey = ctrlKey;
+            this.altKey = altKey;
+            this.shiftKey = shiftKey;
+            this.buttonDown = buttonDown;
+            this.delta = delta;
+            this.commandKey = commandKey;
+            this.controlKey = controlKey;
+            this.clickCount = clickCount;
 		}
+        
+        private var _localX:Number;
+        public function get localX():Number
+        {
+            return _localX;
+        }
+        public function set localX(value:Number):void
+        {
+            _localX = value;
+            _stagePoint = null;
+        }
+        
+        private var _localY:Number;
+        public function get localY():Number
+        {
+            return _localY;
+        }
+        public function set localY(value:Number):void
+        {
+            _localY = value;
+            _stagePoint = null;
+        }
+        
+        public var relatedObject:Object;
+        public var ctrlKey:Boolean;
+        public var altKey:Boolean;
+        public var shiftKey:Boolean;
+        public var buttonDown:Boolean;
+        public var delta:int;
+        public var commandKey:Boolean;
+        public var controlKey:Boolean;
+        public var clickCount:int;
+        
+        private var _stagePoint:Point;
+        
+        public function get stageX():Number
+        {
+            if (!target) return localX;
+            if (!_stagePoint)
+            {
+                var localPoint:Point = new Point(localX, localY);
+                _stagePoint = PointUtils.localToGlobal(localPoint, IUIBase(target));
+            }
+            return _stagePoint.x;
+        }
+        
+        public function get stageY():Number
+        {
+            if (!target) return localY;
+            if (!_stagePoint)
+            {
+                var localPoint:Point = new Point(localX, localY);
+                _stagePoint = PointUtils.localToGlobal(localPoint, IUIBase(target));
+            }
+            return _stagePoint.y;            
+        }
 	}
 }

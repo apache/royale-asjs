@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	import flash.display.DisplayObject;
-    import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IPopUpHost;
@@ -30,8 +26,11 @@ package org.apache.flex.html.accessories
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.geom.Point;
 	import org.apache.flex.html.ToolTip;
-	import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.utils.PointUtils;
+    import org.apache.flex.utils.UIUtils;
 	
 	/**
 	 *  The ToolTipBead class is a specialty bead that can be used with
@@ -108,7 +107,7 @@ package org.apache.flex.html.accessories
             tt = new ToolTip();
             tt.text = toolTip;
             var pt:Point = new Point(comp.width, comp.height);
-            pt = DisplayObject(comp).localToGlobal(pt);
+            pt = PointUtils.localToGlobal(pt, comp);
             tt.x = pt.x;
             tt.y = pt.y;
             host.addElement(tt);

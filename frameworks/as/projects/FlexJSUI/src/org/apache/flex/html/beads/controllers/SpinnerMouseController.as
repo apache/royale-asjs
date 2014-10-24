@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.events.MouseEvent;
-	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.ISpinnerView;
 	

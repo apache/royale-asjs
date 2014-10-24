@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.events.MouseEvent;
-	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
 
 	/**
 	 *  The ItemRendererMouseController class bead handles mouse events in itemRenderers. This

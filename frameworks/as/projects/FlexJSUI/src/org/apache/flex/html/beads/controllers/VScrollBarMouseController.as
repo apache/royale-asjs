@@ -19,9 +19,9 @@
 package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 	
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	
     /**

@@ -19,7 +19,6 @@
 package org.apache.flex.html.beads.controllers
 {
 	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
@@ -29,6 +28,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
 
     /**
      *  Indicates that the mouse has entered the component during

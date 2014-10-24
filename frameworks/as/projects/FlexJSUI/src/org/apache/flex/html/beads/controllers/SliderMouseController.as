@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
@@ -28,6 +26,8 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.geom.Point;
 	import org.apache.flex.html.beads.ISliderView;
 	
 	/**

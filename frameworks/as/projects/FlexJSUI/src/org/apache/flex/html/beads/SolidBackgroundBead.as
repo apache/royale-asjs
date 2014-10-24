@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -74,6 +75,7 @@ package org.apache.flex.html.beads
             
             IEventDispatcher(host).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(host).addEventListener("widthChanged", changeHandler);
+            IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
 			
 			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			if( bgColor != null ) {
@@ -84,6 +86,12 @@ package org.apache.flex.html.beads
 			if( bgAlpha != null ) {
 				opacity = Number(bgAlpha);
 			}
+            var ilc:ILayoutChild = value as ILayoutChild;
+            if (ilc)
+            {
+                if (!isNaN(ilc.explicitWidth) && !isNaN(ilc.explicitHeight))
+                    changeHandler(null);
+            }
 		}
 		
 		private var _backgroundColor:uint;
