@@ -64,8 +64,23 @@ package org.apache.flex.html.beads.layouts
 			
         private var _value:* = undefined;
         
+        /**
+         *  The value of the property being watched.  This is usually
+         *  a data binding expression.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function set initialValue(value:Object):void
+        {
+            _value = value;
+        }
+        
 		/**
-		 *  The number of tiles to fit horizontally into the layout.
+		 *  The value of the property being watched.  This is usually
+         *  a data binding expression.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
