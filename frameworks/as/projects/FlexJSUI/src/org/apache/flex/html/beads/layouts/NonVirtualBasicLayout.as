@@ -28,6 +28,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.debug.DOMPathUtil;
 
     /**
      *  The NonVirtualBasicLayout class is a simple layout
@@ -54,8 +55,11 @@ package org.apache.flex.html.beads.layouts
 		{
 		}
 		
-		private var _strand:IStrand;
-		
+        // the strand/host container is also an ILayoutChild because
+        // can have its size dictated by the host's parent which is
+        // important to know for layout optimization
+        private var host:ILayoutChild;
+        		
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -66,19 +70,40 @@ package org.apache.flex.html.beads.layouts
          */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
-            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
-			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("beadsAdded", changeHandler);
+            host = value as ILayoutChild;
+            
+            // if host is going to be sized by its parent, then don't
+            // run layout when the children are added until after the
+            // initial sizing by the parent.
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            {
+                host.addEventListener("childrenAdded", changeHandler);
+                host.addEventListener("layoutNeeded", changeHandler);
+                host.addEventListener("itemsCreated", changeHandler);
+            }
+            else
+            {
+                host.addEventListener("heightChanged", changeHandler);
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("sizeChanged", sizeChangeHandler);
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                    sizeChangeHandler(null);
+            }
 		}
 	
+        private function sizeChangeHandler(event:Event):void
+        {
+            host.addEventListener("childrenAdded", changeHandler);
+            host.addEventListener("layoutNeeded", changeHandler);
+            host.addEventListener("itemsCreated", changeHandler);
+            changeHandler(event);
+        }
+        
 		private function changeHandler(event:Event):void
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(_strand);
+            //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
+			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
+			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
 			
             var w:Number = contentView.width;
             var h:Number = contentView.height;
@@ -108,7 +133,7 @@ package org.apache.flex.html.beads.layouts
                 {
                     ilc = child as ILayoutChild;
                     if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth((ww - (isNaN(right) ? 0 : right)) * ilc.percentWidth / 100);
+                        ilc.setWidth((ww - (isNaN(right) ? 0 : right)) * ilc.percentWidth / 100, true);
                 }
                 if (!isNaN(right))
                 {
@@ -126,7 +151,7 @@ package org.apache.flex.html.beads.layouts
                 {
                     ilc = child as ILayoutChild;
                     if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight((hh - (isNaN(bottom) ? 0 : bottom)) * ilc.percentHeight / 100);
+                        ilc.setHeight((hh - (isNaN(bottom) ? 0 : bottom)) * ilc.percentHeight / 100, true);
                 }
                 if (!isNaN(bottom))
                 {
@@ -140,6 +165,7 @@ package org.apache.flex.html.beads.layouts
                     else
                         child.y = h - bottom - child.height;
                 }
+                child.dispatchEvent(new Event("sizeChanged"));
 			}
 		}
 	}
