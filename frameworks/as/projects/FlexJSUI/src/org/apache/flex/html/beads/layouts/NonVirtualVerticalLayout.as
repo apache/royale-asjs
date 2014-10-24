@@ -28,7 +28,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.debug.DOMPathUtil;
+    import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
      *  The NonVirtualVerticalLayout class is a simple layout
