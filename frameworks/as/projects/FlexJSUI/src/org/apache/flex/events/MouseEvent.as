@@ -45,7 +45,14 @@ package org.apache.flex.events
 
         public static const UNCONVERTED_EVENTS:Object = { mouseWheel: 1 };
         
-        public static function convert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
+        /**
+         *  A method used to copy properties from flash.events.MouseEvent to 
+         *  org.apache.flex.events.Event.  The set of properties can be
+         *  different based on platform and runtime.
+         */
+        public static var convert:Function = flashConvert;
+        
+        private static function flashConvert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
         {
             if (UNCONVERTED_EVENTS[event.type])
                 return null;
@@ -56,15 +63,6 @@ package org.apache.flex.events
                                                         event.ctrlKey, event.altKey, event.shiftKey,
                                                         event.buttonDown, event.delta);
 
-            try 
-            {
-                newEvent.commandKey = event.commandKey;
-                newEvent.controlKey = event.controlKey;
-                newEvent.clickCount = event.clickCount;
-            }
-            catch (e:Error)
-            {          
-            }
             return newEvent;
         }
         
