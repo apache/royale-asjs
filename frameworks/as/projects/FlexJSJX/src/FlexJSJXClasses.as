@@ -27,6 +27,7 @@ package
  */
 internal class FlexJSJXClasses
 {
+	
 	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
 	import org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData; DataItemRendererFactoryForSeriesData;
 	import org.apache.flex.charts.beads.HorizontalCategoryAxisBead; HorizontalCategoryAxisBead;
@@ -46,6 +47,10 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
 	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer; LineSegmentItemRenderer;
 	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
+	import org.apache.flex.charts.supportClasses.optimized.SVGChartDataGroup; SVGChartDataGroup;
+	import org.apache.flex.charts.supportClasses.optimized.SVGBoxItemRenderer; SVGBoxItemRenderer;
+	import org.apache.flex.charts.supportClasses.optimized.SVGWedgeItemRenderer; SVGWedgeItemRenderer;
+	import org.apache.flex.charts.supportClasses.optimized.SVGLineSegmentItemRenderer; SVGLineSegmentItemRenderer;
 	
 	import org.apache.flex.effects.Tween; Tween;
 	import org.apache.flex.effects.Move; Move;
