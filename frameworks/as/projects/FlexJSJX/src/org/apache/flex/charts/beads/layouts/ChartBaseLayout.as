@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads.layouts
 {
-	import org.apache.flex.charts.supportClasses.ChartDataGroup;
 	import org.apache.flex.charts.core.ChartBase;
+	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBeadLayout;
@@ -102,7 +102,7 @@ package org.apache.flex.charts.beads.layouts
 			return _yAxis;
 		}
 		
-		private var _chartDataGroup:ChartDataGroup;
+		private var _chartDataGroup:IChartDataGroup;
 		
 		/**
 		 *  Returns the object into which the chart elements are drawn or added. The ChartDataGroup implements
@@ -113,11 +113,11 @@ package org.apache.flex.charts.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get chartDataGroup():ChartDataGroup
+		public function get chartDataGroup():IChartDataGroup
 		{
 			if (_chartDataGroup == null) {
 				var layoutParent:ILayoutParent = chart.getBeadByType(ILayoutParent) as ILayoutParent;
-				_chartDataGroup = layoutParent.contentView as ChartDataGroup;
+				_chartDataGroup = layoutParent.contentView as IChartDataGroup;
 			}
 			return _chartDataGroup;
 		}
