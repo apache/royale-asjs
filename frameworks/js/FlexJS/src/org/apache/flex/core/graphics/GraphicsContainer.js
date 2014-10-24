@@ -40,6 +40,40 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
+ * @return {number} The number of child elements.
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.get_numChildren = function() {
+    return this.internalChildren().length;
+  };
+
+
+/**
+ * @expose
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.removeChildren = function() {
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.set_width = function(value) {
+  goog.base(this, 'set_width', value);
+  this.element.setAttribute('width', String(value) + 'px');
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.set_height = function(value) {
+  goog.base(this, 'set_height', value);
+  this.element.setAttribute('height', String(value) + 'px');
+};
+
+
+/**
+ * @expose
  * @param {number} x The x position of the top-left corner of the rectangle.
  * @param {number} y The y position of the top-left corner.
  * @param {number} width The width of the rectangle.
