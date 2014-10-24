@@ -266,11 +266,14 @@ public class MXMLDataInterpreter
         if (children)
         {
             if (!(comp is IMXMLDocument))
+            {
                 generateMXMLInstances(document, comp as IParent, children);
             
-            if (comp is IContainer)
-            {
-                IContainer(comp).childrenAdded();
+                // maybe we can remove this.  All IContainers should be IMXMLDocuments?
+                if (comp is IContainer)
+                {
+                    IContainer(comp).childrenAdded();
+                }
             }
         }
         
