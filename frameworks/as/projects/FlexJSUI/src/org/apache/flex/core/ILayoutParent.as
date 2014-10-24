@@ -20,9 +20,9 @@ package org.apache.flex.core
 {
     /**
      *  The ILayoutParent interface is the basic interface for the 
-     *  container that have an IBeadLayout.  The layout implementation
+     *  container views that have an IBeadLayout.  The layout implementation
      *  often needs to know certain things about other objects in
-     *  the component.
+     *  the view.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
