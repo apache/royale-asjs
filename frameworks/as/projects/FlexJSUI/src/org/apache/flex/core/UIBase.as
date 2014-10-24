@@ -37,8 +37,92 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="click", type="org.apache.flex.events.Event")]
+	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 	
+    /**
+     *  Set a different class for rollOver events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="rollOver", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for rollOut events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="rollOut", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseDown events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="mouseDown", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseUp events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="mouseUp", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseMove events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="mouseMove", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseOut events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="mouseOut", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Set a different class for mouseOver events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="mouseOver", type="org.apache.flex.events.MouseEvent")]
+    
     /**
      *  The UIBase class is the base class for most composite user interface
      *  components.  For the Flash Player, Buttons and Text controls may
@@ -62,58 +146,9 @@ package org.apache.flex.core
          */
 		public function UIBase()
 		{
-			super();
-			
-			addEventListener(flash.events.MouseEvent.CLICK, clickKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.MOUSE_DOWN, mouseEventKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.MOUSE_UP, mouseEventKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.ROLL_OVER, mouseEventKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.ROLL_OUT, mouseEventKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.MOUSE_OVER, mouseEventKiller, false, 9999);
-			addEventListener(flash.events.MouseEvent.MOUSE_OUT, mouseEventKiller, false, 9999);
+			super();			
 		}
-		
-		private function clickKiller(event:flash.events.Event):void
-		{
-			if (event is flash.events.MouseEvent)
-			{
-				event.stopImmediatePropagation();
-				dispatchEvent(new org.apache.flex.events.Event("click"));
-			}
-		}
-		
-		private function mouseEventKiller(event:flash.events.MouseEvent):void
-		{
-			if ((event is flash.events.MouseEvent) && ! (event is org.apache.flex.events.MouseEvent))
-			{
-				event.stopImmediatePropagation();
-				if(event.type == flash.events.MouseEvent.MOUSE_DOWN)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_DOWN,true));
-				}
-				else if(event.type == flash.events.MouseEvent.MOUSE_UP)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_UP,true));
-				}
-				else if(event.type == flash.events.MouseEvent.MOUSE_OVER)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_OVER,true));
-				}
-				else if(event.type == flash.events.MouseEvent.MOUSE_OUT)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.MOUSE_OUT,true));
-				}
-				else if(event.type == flash.events.MouseEvent.ROLL_OVER)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.ROLL_OVER,true));
-				}
-				else if(event.type == flash.events.MouseEvent.ROLL_OUT)
-				{
-					dispatchEvent(new org.apache.flex.events.MouseEvent(org.apache.flex.events.MouseEvent.ROLL_OUT,true));
-				}
-			}
-		}
-		
+				
 		private var _explicitWidth:Number;
         
         /**
@@ -367,61 +402,91 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#setHeight
+         *  @copy org.apache.flex.core.ILayoutChild#setHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setHeight(value:Number):void
+        public function setHeight(value:Number, noEvent:Boolean = false):void
         {
             if (_height != value)
             {
                 _height = value;
-                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
             }            
         }
 
         /**
-         *  @copy org.apache.flex.core.IUIBase#setWidth
+         *  @copy org.apache.flex.core.ILayoutChild#setWidth
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setWidth(value:Number):void
+        public function setWidth(value:Number, noEvent:Boolean = false):void
         {
             if (_width != value)
             {
                 _width = value;
-                dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
             }
         }
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#setWidthAndHeight
+         *  @copy org.apache.flex.core.ILayoutChild#setWidthAndHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setWidthAndHeight(newWidth:Number, newHeight:Number):void
+        public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
             if (_width != newWidth)
             {
                 _width = newWidth;
                 if (_height == newHeight)
-                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                    if (!noEvent) 
+                        dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
             }
             if (_height != newHeight)
             {
                 _height = newHeight;
-                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
             }            
-            
+            dispatchEvent(new org.apache.flex.events.Event("sizeChanged"));
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#isWidthSizedToContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function isWidthSizedToContent():Boolean
+        {
+            return (isNaN(_explicitWidth) && isNaN(_percentWidth));
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function isHeightSizedToContent():Boolean
+        {
+            return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
         
 		private var _model:IBeadModel;

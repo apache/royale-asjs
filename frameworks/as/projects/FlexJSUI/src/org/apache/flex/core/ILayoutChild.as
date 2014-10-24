@@ -56,26 +56,54 @@ package org.apache.flex.core
         function set percentHeight(value:Number):void;
         
         /**
-         * Sets the height of the component without
-         * setting explicitHeight.
+         *  The width of this component 
+         *  if set by the width property
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function setHeight(value:Number):void;
+        function get explicitWidth():Number;
+        
+        /**
+         *  The height of this component 
+         *  if set by the height property
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get explicitHeight():Number;
+        
+        /**
+         * Sets the height of the component without
+         * setting explicitHeight.
+         * 
+         *  @param value The new height.
+         *  @param noEvent True if no change event should be sent.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function setHeight(value:Number, noEvent:Boolean = false):void;
         
         /**
          * Sets the width of the component without
          * setting explicitWidth.
          *  
+         *  @param value The new width.
+         *  @param noEvent True if no change event should be sent.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function setWidth(value:Number):void;
+        function setWidth(value:Number, noEvent:Boolean = false):void;
         
         /**
          * Sets the width and height of the component 
@@ -83,12 +111,38 @@ package org.apache.flex.core
          * It also sends one change event.  If both
          * values change it only sends heightCHange event.
          *  
+         *  @param newWidth The new width.
+         *  @param newHeight The new height.
+         *  @param noEvent True if no change event should be sent.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function setWidthAndHeight(newWidth:Number, newHeight:Number):void;
+        function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void;
         
-   	}
+        /**
+         * True if no percentWidth or explicitWidth has been
+         * assigned
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function isWidthSizedToContent():Boolean;
+        
+        /**
+         * True if no percentHeight or explicitHeight has been
+         * assigned
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function isHeightSizedToContent():Boolean;
+
+    }
 }

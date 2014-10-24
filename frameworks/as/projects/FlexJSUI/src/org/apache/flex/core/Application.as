@@ -23,12 +23,15 @@ package org.apache.flex.core
     import flash.display.StageAlign;
     import flash.display.StageQuality;
     import flash.display.StageScaleMode;
+    import flash.events.Event;
     import flash.events.IOErrorEvent;
+    import flash.events.MouseEvent;
     import flash.system.ApplicationDomain;
     import flash.utils.getQualifiedClassName;
     
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
     import org.apache.flex.utils.MXMLDataInterpreter;
     
     //--------------------------------------
@@ -102,11 +105,36 @@ package org.apache.flex.core
 				stage.scaleMode = StageScaleMode.NO_SCALE;
                 // should be opt-in
 				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
+                
+                stage.addEventListener(flash.events.MouseEvent.CLICK, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.MOUSE_DOWN, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.MOUSE_UP, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.ROLL_OVER, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.ROLL_OUT, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.MOUSE_OVER, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.MOUSE_OUT, mouseEventKiller, true, 9999);
+                stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE, mouseEventKiller, true, 9999);
 			}
 			
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
         }
 
+        private function mouseEventKiller(event:flash.events.Event):void
+        {
+            if (event is flash.events.MouseEvent && (!(event is org.apache.flex.events.MouseEvent)))
+            {
+                var newEvent:org.apache.flex.events.MouseEvent = 
+                    org.apache.flex.events.MouseEvent.convert(flash.events.MouseEvent(event));
+                if (newEvent) 
+                {
+                    // some events are not converted if there are no JS equivalents
+                    event.stopImmediatePropagation();
+                    event.target.dispatchEvent(newEvent);
+                }
+                else
+                    trace("did not convert", event.type);
+            }
+        }
         
         /**
          *  The document property is used to provide
@@ -129,15 +157,15 @@ package org.apache.flex.core
 
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
             
-            dispatchEvent(new Event("initialize"));
+            dispatchEvent(new org.apache.flex.events.Event("initialize"));
 
             if (initialView)
             {
                 initialView.applicationModel =  model;
         	    this.addElement(initialView);
-                dispatchEvent(new Event("viewChanged"));
+                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
             }
-            dispatchEvent(new Event("applicationComplete"));
+            dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
         }
 
         /**

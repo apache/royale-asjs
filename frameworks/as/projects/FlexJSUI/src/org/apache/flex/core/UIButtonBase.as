@@ -379,12 +379,13 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setHeight(value:Number):void
+        public function setHeight(value:Number, noEvent:Boolean = false):void
         {
             if (_height != value)
             {
                 _height = value;
-                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
             }            
         }
         
@@ -396,12 +397,13 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setWidth(value:Number):void
+        public function setWidth(value:Number, noEvent:Boolean = false):void
         {
             if (_width != value)
             {
                 _width = value;
-                dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
             }
         }
         
@@ -413,20 +415,48 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function setWidthAndHeight(newWidth:Number, newHeight:Number):void
+        public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
             if (_width != newWidth)
             {
                 _width = newWidth;
                 if (_height == newHeight)
-                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                    if (!noEvent) 
+                        dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
             }
             if (_height != newHeight)
             {
                 _height = newHeight;
-                dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                if (!noEvent)
+                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
             }            
-            
+            dispatchEvent(new org.apache.flex.events.Event("sizeChanged"));
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#isWidthSizedToContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function isWidthSizedToContent():Boolean
+        {
+            return (isNaN(_explicitWidth) && isNaN(_percentWidth));
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function isHeightSizedToContent():Boolean
+        {
+            return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
         
         private var _model:IBeadModel;
@@ -751,5 +781,6 @@ package org.apache.flex.core
 			
 			return measurementBead;
 		}
+        
 	}
 }
