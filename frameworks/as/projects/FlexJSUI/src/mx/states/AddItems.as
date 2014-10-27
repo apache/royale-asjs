@@ -56,7 +56,7 @@ package mx.states
         
 		public var itemsDescriptorIndex:int;     
 
-        public var itemsDescriptor:Object;     
+        public var itemsDescriptor:ItemAndDescriptor;     
         
         public var destination:String;
         
@@ -71,12 +71,17 @@ package mx.states
         public function setDocument(document:Object, id:String = null):void
         {
             this.document = document;
-            itemsDescriptor = document.mxmlsd[itemsDescriptorIndex];
-            if (itemsDescriptor is Array)
+            var data:Object = document.mxmlsd[itemsDescriptorIndex];
+            if (data is Array)
             {
-                itemsDescriptor = { object: null, descriptor: itemsDescriptor };
+                itemsDescriptor = new ItemAndDescriptor();
+                itemsDescriptor.descriptor = data as Array;
+                // replace the entry in the document so subsequent
+                // addItems know it is shared
                 document.mxmlsd[itemsDescriptorIndex] = itemsDescriptor;
             }
+            else
+                itemsDescriptor = data as ItemAndDescriptor;
         }
         
         /**
