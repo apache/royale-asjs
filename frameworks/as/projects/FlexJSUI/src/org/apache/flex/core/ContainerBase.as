@@ -98,20 +98,28 @@ package org.apache.flex.core
          */
 		override public function addedToParent():void
 		{
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-			
+            if (!_initialized)
+            {
+    			// each MXML file can also have styles in fx:Style block
+    			ValuesManager.valuesImpl.init(this);
+            }
+            
 			super.addedToParent();
 			
-			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+            if (!_initialized)
+            {
+    			MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
 			
-            dispatchEvent(new Event("initBindings"))
-			dispatchEvent(new Event("initComplete"))
+                dispatchEvent(new Event("initBindings"));
+    			dispatchEvent(new Event("initComplete"));
+                _initialized = true;
+            }
 			dispatchEvent(new Event("childrenAdded"));
 		}
 
         private var _mxmlDescriptor:Array;
         private var _mxmlDocument:Object = this;
+        private var _initialized:Boolean;
         
         /**
          *  @copy org.apache.flex.core.Application#MXMLDescriptor
