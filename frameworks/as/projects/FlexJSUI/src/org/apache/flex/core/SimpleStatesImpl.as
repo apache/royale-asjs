@@ -142,8 +142,14 @@ package org.apache.flex.core
                     var ai:AddItems = AddItems(o);
                     if (ai.items == null)
                     {
-                        ai.items = MXMLDataInterpreter.generateMXMLArray(ai.document,
-                                                    null, ai.itemsDescriptor);
+                        ai.items = ai.itemsDescriptor.object;
+                        if (ai.items == null)
+                        {
+                            ai.items = 
+                                MXMLDataInterpreter.generateMXMLArray(ai.document,
+                                    null, ai.itemsDescriptor.descriptor);
+                            ai.itemsDescriptor.object = ai.items;
+                        }
                     }
                     for each (var item:DisplayObject in ai.items)
                     {

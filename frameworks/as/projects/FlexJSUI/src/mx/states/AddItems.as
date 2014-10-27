@@ -54,8 +54,10 @@ package mx.states
 		
         public var items:Array;
         
-		public var itemsDescriptor:Array;     
+		public var itemsDescriptorIndex:int;     
 
+        public var itemsDescriptor:Object;     
+        
         public var destination:String;
         
         public var propertyName:String;
@@ -69,6 +71,12 @@ package mx.states
         public function setDocument(document:Object, id:String = null):void
         {
             this.document = document;
+            itemsDescriptor = document.mxmlsd[itemsDescriptorIndex];
+            if (itemsDescriptor is Array)
+            {
+                itemsDescriptor = { object: null, descriptor: itemsDescriptor };
+                document.mxmlsd[itemsDescriptorIndex] = itemsDescriptor;
+            }
         }
         
         /**
