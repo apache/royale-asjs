@@ -32,6 +32,7 @@ package org.apache.flex.core
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.utils.MXMLDataInterpreter;
     
     //--------------------------------------
@@ -104,36 +105,10 @@ package org.apache.flex.core
 				stage.align = StageAlign.TOP_LEFT;
 				stage.scaleMode = StageScaleMode.NO_SCALE;
                 // should be opt-in
-				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-                
-                stage.addEventListener(flash.events.MouseEvent.CLICK, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.MOUSE_DOWN, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.MOUSE_UP, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.ROLL_OVER, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.ROLL_OUT, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.MOUSE_OVER, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.MOUSE_OUT, mouseEventKiller, true, 9999);
-                stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE, mouseEventKiller, true, 9999);
+				//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
 			}
 			
             loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-        }
-
-        private function mouseEventKiller(event:flash.events.Event):void
-        {
-            if (event is flash.events.MouseEvent && (!(event is org.apache.flex.events.MouseEvent)))
-            {
-                var newEvent:org.apache.flex.events.MouseEvent = 
-                    org.apache.flex.events.MouseEvent.convert(flash.events.MouseEvent(event));
-                if (newEvent) 
-                {
-                    // some events are not converted if there are no JS equivalents
-                    event.stopImmediatePropagation();
-                    event.target.dispatchEvent(newEvent);
-                }
-                else
-                    trace("did not convert", event.type);
-            }
         }
         
         /**
@@ -150,6 +125,8 @@ package org.apache.flex.core
         
         private function initHandler(event:flash.events.Event):void
         {
+            MouseEventConverter.setupAllConverters(stage);
+                
             for each (var bead:IBead in beads)
                 addBead(bead);
                 

@@ -43,30 +43,7 @@ package org.apache.flex.events
 		public static const ROLL_OUT:String = "rollOut";
         public static const CLICK:String = "click";
 
-        public static const UNCONVERTED_EVENTS:Object = { mouseWheel: 1 };
-        
-        /**
-         *  A method used to copy properties from flash.events.MouseEvent to 
-         *  org.apache.flex.events.Event.  The set of properties can be
-         *  different based on platform and runtime.
-         */
-        public static var convert:Function = flashConvert;
-        
-        private static function flashConvert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
-        {
-            if (UNCONVERTED_EVENTS[event.type])
-                return null;
-            
-            var newEvent:org.apache.flex.events.MouseEvent = 
-                  new org.apache.flex.events.MouseEvent(event.type, event.bubbles, event.cancelable,
-                                                        event.localX, event.localY, event.relatedObject,
-                                                        event.ctrlKey, event.altKey, event.shiftKey,
-                                                        event.buttonDown, event.delta);
-
-            return newEvent;
-        }
-        
-        /**
+         /**
          *  Constructor.
          *  
          *  @param type The name of the event.

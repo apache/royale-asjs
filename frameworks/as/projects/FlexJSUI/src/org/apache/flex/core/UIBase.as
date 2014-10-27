@@ -20,12 +20,11 @@ package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.events.utils.MouseEventConverter;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -146,9 +145,11 @@ package org.apache.flex.core
          */
 		public function UIBase()
 		{
-			super();			
-		}
-				
+			super();
+            
+            MouseEventConverter.setupInstanceConverters(this);
+        }
+        
 		private var _explicitWidth:Number;
         
         /**
@@ -179,7 +180,7 @@ package org.apache.flex.core
 			
 			_explicitWidth = value;
 			
-			dispatchEvent(new org.apache.flex.events.Event("explicitWidthChanged"));
+			dispatchEvent(new Event("explicitWidthChanged"));
 		}
 		
 		private var _explicitHeight:Number;
@@ -212,7 +213,7 @@ package org.apache.flex.core
 			
 			_explicitHeight = value;
 			
-			dispatchEvent(new org.apache.flex.events.Event("explicitHeightChanged"));
+			dispatchEvent(new Event("explicitHeightChanged"));
 		}
 		
 		private var _percentWidth:Number;
@@ -247,7 +248,7 @@ package org.apache.flex.core
 			
 			_percentWidth = value;
 			
-			dispatchEvent(new org.apache.flex.events.Event("percentWidthChanged"));
+			dispatchEvent(new Event("percentWidthChanged"));
 		}
 
         private var _percentHeight:Number;
@@ -282,7 +283,7 @@ package org.apache.flex.core
 			
 			_percentHeight = value;
 			
-			dispatchEvent(new org.apache.flex.events.Event("percentHeightChanged"));
+			dispatchEvent(new Event("percentHeightChanged"));
 		}
 		
 		private var _width:Number;
@@ -415,7 +416,7 @@ package org.apache.flex.core
             {
                 _height = value;
                 if (!noEvent)
-                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                    dispatchEvent(new Event("heightChanged"));
             }            
         }
 
@@ -433,7 +434,7 @@ package org.apache.flex.core
             {
                 _width = value;
                 if (!noEvent)
-                    dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                    dispatchEvent(new Event("widthChanged"));
             }
         }
         
@@ -452,15 +453,15 @@ package org.apache.flex.core
                 _width = newWidth;
                 if (_height == newHeight)
                     if (!noEvent) 
-                        dispatchEvent(new org.apache.flex.events.Event("widthChanged"));
+                        dispatchEvent(new Event("widthChanged"));
             }
             if (_height != newHeight)
             {
                 _height = newHeight;
                 if (!noEvent)
-                    dispatchEvent(new org.apache.flex.events.Event("heightChanged"));
+                    dispatchEvent(new Event("heightChanged"));
             }            
-            dispatchEvent(new org.apache.flex.events.Event("sizeChanged"));
+            dispatchEvent(new Event("sizeChanged"));
         }
         
         /**
@@ -517,7 +518,7 @@ package org.apache.flex.core
 			if (_model != value)
 			{
 				addBead(value as IBead);
-				dispatchEvent(new org.apache.flex.events.Event("modelChanged"));
+				dispatchEvent(new Event("modelChanged"));
 			}
 		}
 		
@@ -556,7 +557,7 @@ package org.apache.flex.core
             if (_view != value)
             {
                 addBead(value as IBead);
-                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+                dispatchEvent(new Event("viewChanged"));
             }
         }
 
@@ -583,7 +584,7 @@ package org.apache.flex.core
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new org.apache.flex.events.Event("idChanged"));
+				dispatchEvent(new Event("idChanged"));
 			}
 		}
 		
@@ -619,7 +620,7 @@ package org.apache.flex.core
                 }
                 else
                     _styles = value;
-                dispatchEvent(new org.apache.flex.events.Event("stylesChanged"));
+                dispatchEvent(new Event("stylesChanged"));
             }
         }
         
@@ -647,7 +648,7 @@ package org.apache.flex.core
 			if (_className != value)
 			{
 				_className = value;
-				dispatchEvent(new org.apache.flex.events.Event("classNameChanged"));
+				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
         
@@ -696,7 +697,7 @@ package org.apache.flex.core
 			bead.strand = this;
 			
 			if (bead is IBeadView) {
-				IEventDispatcher(this).dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
 			}
 		}
 		
@@ -883,7 +884,7 @@ package org.apache.flex.core
                         addBead(controller);
                 }
             }
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new Event("beadsAdded"));
         }
         		
         /**

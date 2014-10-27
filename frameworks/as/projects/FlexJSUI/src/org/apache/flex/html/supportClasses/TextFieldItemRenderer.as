@@ -28,6 +28,8 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.html.beads.ITextItemRenderer;
 	
 	/**
@@ -53,8 +55,10 @@ package org.apache.flex.html.supportClasses
 			super();
             type = TextFieldType.DYNAMIC;
             selectable = false;
+            
+            MouseEventConverter.setupInstanceConverters(this);
 		}
-        
+                
         public var highlightColor:uint = 0xCEDBEF;
         public var selectedColor:uint = 0xA8C6EE;
         public var downColor:uint = 0x808080;
@@ -337,7 +341,7 @@ package org.apache.flex.html.supportClasses
             for each (var bead:IBead in beads)
                 addBead(bead);
             
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new Event("beadsAdded"));
 
             // renderer has a default model (the 'data' property)
             // and it is essentially a view of that model, so it
