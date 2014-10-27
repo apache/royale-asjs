@@ -120,7 +120,7 @@ package org.apache.flex.html.beads
 			
 			var hitArea:Shape = new Shape();
 			hitArea.graphics.beginFill(0x000000);
-			hitArea.graphics.drawRect(12,0,upSprite.width, upSprite.height);
+			hitArea.graphics.drawRect(0,0,upSprite.width, upSprite.height);
 			hitArea.graphics.endFill();
 			
 			SimpleButton(value).upState = upSprite;
