@@ -81,10 +81,62 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-            changeHandler(null);
-            IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
-            IEventDispatcher(_strand).addEventListener("widthChanged", changeHandler);            
-            IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);            
+            
+            var host:UIBase = value as UIBase;
+            
+            if (_strand.getBeadByType(IBeadLayout) == null)
+            {
+                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+                if (c)
+                {
+                    var layout:IBeadLayout = new c() as IBeadLayout;
+                    _strand.addBead(layout);
+                }
+            }
+            
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            {
+                host.addEventListener("childrenAdded", changeHandler);
+                checkActualParent();
+            }
+            else
+            {
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("heightChanged", changeHandler);
+                host.addEventListener("sizeChanged", sizeChangeHandler);
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                    sizeChangeHandler(null);
+                else
+                    checkActualParent();
+            }
+        }
+        
+        private function checkActualParent():Boolean
+        {
+            var host:UIBase = UIBase(_strand);
+            if (contentAreaNeeded())
+            {
+                if (actualParent == null || actualParent == host)
+                {
+                    actualParent = new ContainerContentArea();
+                    host.addElement(actualParent);
+                    Container(host).setActualParent(actualParent);
+                }
+                return true;
+            }
+            else
+            {
+                actualParent = host;
+            }
+            return false;
+        }
+        
+        private function sizeChangeHandler(event:Event):void
+        {
+            var host:UIBase = UIBase(_strand);
+            host.addEventListener("childrenAdded", changeHandler);
+            host.addEventListener("layoutNeeded", changeHandler);
+            changeHandler(event);
         }
         
         private var inChangeHandler:Boolean;
@@ -107,14 +159,8 @@ package org.apache.flex.html.beads
 			
 			var padding:Object = determinePadding();
 			
-			if (contentAreaNeeded())
+			if (checkActualParent())
 			{
-                if (actualParent == null || actualParent == host)
-                {
-    				actualParent = new ContainerContentArea();
-    				host.addElement(actualParent);
-                    Container(host).setActualParent(actualParent);
-                }
 				actualParent.x = padding.paddingLeft;
 				actualParent.y = padding.paddingTop;
                 var pb:Number = padding.paddingBottom;
@@ -124,18 +170,14 @@ package org.apache.flex.html.beads
                 if (isNaN(pr))
                     pr = 0;
                 if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
-                    actualParent.width = host.width - padding.paddingLeft - pr;
+                    actualParent.setWidth(host.width - padding.paddingLeft - pr);
                 else
                     host.dispatchEvent(new Event("widthChanged"));
                 
                 if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
-                    actualParent.height = host.height - padding.paddingTop - pb;
+                    actualParent.setHeight(host.height - padding.paddingTop - pb);
                 else
                     host.dispatchEvent(new Event("heightChanged"));
-			}
-			else
-			{
-				actualParent = host;
 			}
 			
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
@@ -161,16 +203,6 @@ package org.apache.flex.html.beads
 				if (host.getBeadByType(IBorderBead) == null)
                     host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
 			}
-            
-            if (_strand.getBeadByType(IBeadLayout) == null)
-            {
-                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-                if (c)
-                {
-                    var mapper:IBeadLayout = new c() as IBeadLayout;
-                    _strand.addBead(mapper);
-                }
-            }
             
             inChangeHandler = false;
 		}
