@@ -229,7 +229,15 @@ package org.apache.flex.core
             gb.destinationData = binding.destination;
 			gb.destinationFunction = binding.destFunc;
             gb.source = binding.source;
-            setupWatchers(gb, index, watchers.watchers, null);
+            if (watchers.watchers.length)
+                setupWatchers(gb, index, watchers.watchers, null);
+            else
+            {
+                // should be a constant expression.
+                // the value doesn't matter as GenericBinding
+                // should get the value from the source
+                gb.valueChanged(null);  
+            }
         }
         
         private function setupWatchers(gb:GenericBinding, index:int, watchers:Array, parentWatcher:WatcherBase):void
