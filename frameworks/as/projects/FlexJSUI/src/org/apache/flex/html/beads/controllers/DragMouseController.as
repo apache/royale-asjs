@@ -273,7 +273,7 @@ package org.apache.flex.html.beads.controllers
             dragging = false;
             dragSource = null;
             dragInitiator = null;
-            if (dragImage)
+            if (dragImage && host)
                 host.removeElement(dragImage);
             dragImage = null;
             DisplayObject(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
