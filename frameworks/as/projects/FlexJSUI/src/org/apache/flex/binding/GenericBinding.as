@@ -120,8 +120,14 @@ package org.apache.flex.binding
 		public function set strand(value:IStrand):void
 		{
 			destination = value;
-            var val:Object = getValueFromSource();
-            applyValue(val);
+            try 
+            {
+                var val:Object = getValueFromSource();
+                applyValue(val);
+            }
+            catch (e:Error)
+            {
+            }
         }
         
         private function getValueFromSource():Object
@@ -204,8 +210,14 @@ package org.apache.flex.binding
          */
 		public function valueChanged(value:Object):void
 		{
-            var val:Object = getValueFromSource();
-            applyValue(val);
+            try 
+            {
+                var val:Object = getValueFromSource();
+                applyValue(val);
+            } 
+            catch (e:Error)
+            {
+            }
 		}
 	}
 }
