@@ -17,7 +17,9 @@ package org.apache.flex.core.graphics
 	import flash.display.GraphicsPath;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.text.TextFieldType;
 	
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.graphics.utils.PathHelper;
 	
 	/**
@@ -123,5 +125,37 @@ package org.apache.flex.core.graphics
 		{
 			
 		} 
+		
+		/**
+		 *  Draw a string of characters.
+		 *  @param value The string to draw.
+		 *  @param x The x location of the center of the circle
+		 *  @param y The y location of the center of the circle.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function drawText(value:String, x:Number, y:Number):void
+		{
+			var textField:CSSTextField = new CSSTextField();
+			addChild(textField);
+			
+			textField.selectable = false;
+			textField.type = TextFieldType.DYNAMIC;
+			textField.mouseEnabled = false;
+			textField.autoSize = "left";
+			textField.text = value;
+			
+			var lineColor:SolidColorStroke = stroke as SolidColorStroke;
+			if (lineColor) {
+				textField.textColor = lineColor.color;
+				textField.alpha = lineColor.alpha;
+			}
+			
+			textField.x = x;
+			textField.y = y;
+		}
 	}
 }

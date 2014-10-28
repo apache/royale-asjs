@@ -149,6 +149,23 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(da
 
 /**
  * @expose
+ * @param {string} value The text string to draw.
+ * @param {number} x The x position of the text.
+ * @param {number} y The y position of the text.
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(value, x, y) {
+  var style = this.getStyleStr();
+  var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.setAttribute('style', style);
+  text.innerHTML = value;
+  text.setAttribute('x', String(x) + 'px');
+  text.setAttribute('y', String(y) + 'px');
+  this.element.appendChild(text);
+};
+
+
+/**
+ * @expose
  */
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawLine = function() {
 };
