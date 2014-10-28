@@ -24,6 +24,7 @@ package org.apache.flex.binding
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
+    import org.apache.flex.events.ValueChangeEvent;
 
     /**
      *  The SimpleBinding class is lightweight data-binding class that
@@ -144,7 +145,15 @@ package org.apache.flex.binding
 			if (destination == null)
                 destination = value;
             if (sourceID != null)
+            {
     			source = document[sourceID] as IEventDispatcher;
+                if (source == null)
+                {
+                    document.addEventListener("valueChange", 
+                        sourceChangeHandler);
+                    return;
+                }
+            }
             else
                 source = document as IEventDispatcher;
 			source.addEventListener(eventName, changeHandler);
@@ -168,5 +177,21 @@ package org.apache.flex.binding
 		{
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
+        
+        private function sourceChangeHandler(event:ValueChangeEvent):void
+        {
+            if (event.propertyName != sourceID)
+                return;
+            
+            if (source)
+                source.removeEventListener(eventName, changeHandler);
+            
+            source = document[sourceID] as IEventDispatcher;
+            if (source)
+            {
+                source.addEventListener(eventName, changeHandler);
+                destination[destinationPropertyName] = source[sourcePropertyName];
+            }
+        }
 	}
 }
