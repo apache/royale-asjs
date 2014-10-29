@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
 	import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	
 	import org.apache.flex.core.ValuesManager;
@@ -84,9 +85,15 @@ package org.apache.flex.core
 			tf.rightMargin = paddingRight;
             var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align");
             if (align == "center")
+			{
+				autoSize = TextFieldAutoSize.NONE;
                 tf.align = "center";
+			}
             else if (align == "right")
+			{
                 tf.align = "right";
+				autoSize = TextFieldAutoSize.NONE;	
+			}
 
 			defaultTextFormat = tf;
 			super.text = value;
