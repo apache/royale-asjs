@@ -86,6 +86,8 @@ package org.apache.flex.html.beads.models
          */
 		public function set text(value:String):void
 		{
+            if (value == null)
+                value = "";
 			if (value != _text)
 			{
 				_text = value;
