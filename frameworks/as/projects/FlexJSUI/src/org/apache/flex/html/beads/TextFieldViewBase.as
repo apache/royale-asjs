@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.IUIBase;
@@ -92,11 +93,18 @@ package org.apache.flex.html.beads
             _textModel.addEventListener("htmlChange", htmlChangeHandler);
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
+            IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
 			if (_textModel.text !== null)
 				text = _textModel.text;
 			if (_textModel.html !== null)
 				html = _textModel.html;
+            
+            var ilc:ILayoutChild = host as ILayoutChild;
+            
+            autoHeight = ilc.isHeightSizedToContent();
+            autoWidth = ilc.isWidthSizedToContent();
+
 		}
 		
         /**
@@ -188,8 +196,8 @@ package org.apache.flex.html.beads
 			html = _textModel.html;
 		}
 		
-        private var autoHeight:Boolean = true;
-        private var autoWidth:Boolean = true;
+        private var autoHeight:Boolean;
+        private var autoWidth:Boolean;
         private var inHeightChange:Boolean = false;
         private var inWidthChange:Boolean = false;
         
@@ -218,6 +226,25 @@ package org.apache.flex.html.beads
                     autoSizeIfNeeded();
                 else
                     textField.width = DisplayObject(_strand).width;
+            }
+        }
+        
+        private function sizeChangeHandler(event:Event):void
+        {
+            var ilc:ILayoutChild = host as ILayoutChild;
+
+            autoHeight = ilc.isHeightSizedToContent();
+            if (!autoHeight)
+            {
+                textField.autoSize = "none";
+                textField.height = DisplayObject(_strand).height;
+            }
+            
+            autoWidth = ilc.isWidthSizedToContent();
+            if (!autoWidth)
+            {
+                textField.autoSize = "none";
+                textField.width = DisplayObject(_strand).width;
             }
         }
         
