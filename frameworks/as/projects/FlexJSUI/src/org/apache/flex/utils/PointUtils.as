@@ -54,7 +54,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:IUIBase ):org.apache.flex.geom.Point
+		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
             var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
             return new org.apache.flex.geom.Point(fpt.x, fpt.y);
@@ -71,7 +71,7 @@ package org.apache.flex.utils
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static function localToGlobal( pt:org.apache.flex.geom.Point, local:IUIBase ):org.apache.flex.geom.Point
+        public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
         {
             var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
             return new org.apache.flex.geom.Point(fpt.x, fpt.y);
