@@ -77,9 +77,7 @@ package org.apache.flex.html.beads.layouts
             // initial sizing by the parent.
             if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
             {
-                host.addEventListener("childrenAdded", changeHandler);
-                host.addEventListener("layoutNeeded", changeHandler);
-                host.addEventListener("itemsCreated", changeHandler);
+                addOtherListeners();
             }
             else
             {
@@ -87,15 +85,20 @@ package org.apache.flex.html.beads.layouts
                 host.addEventListener("heightChanged", changeHandler);
                 host.addEventListener("sizeChanged", sizeChangeHandler);
                 if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
-                    sizeChangeHandler(null);
+                    addOtherListeners();
             }
 		}
 	
-        private function sizeChangeHandler(event:Event):void
+        private function addOtherListeners():void
         {
             host.addEventListener("childrenAdded", changeHandler);
             host.addEventListener("layoutNeeded", changeHandler);
             host.addEventListener("itemsCreated", changeHandler);
+        }
+        
+        private function sizeChangeHandler(event:Event):void
+        {
+            addOtherListeners();
             changeHandler(event);
         }
         
