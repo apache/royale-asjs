@@ -88,10 +88,11 @@ package org.apache.flex.html.beads
 			downTextField.type = TextFieldType.DYNAMIC;
 			overTextField.selectable = false;
 			overTextField.type = TextFieldType.DYNAMIC;
+            // auto-size collapses if no text
 			//upTextField.autoSize = "left";
 			//downTextField.autoSize = "left";
 			//overTextField.autoSize = "left";
-            
+
             upArrows = new Shape();
             overArrows = new Shape();
             downArrows = new Shape();
@@ -153,6 +154,14 @@ package org.apache.flex.html.beads
 			SimpleButton(value).hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				text = selectionModel.selectedItem.toString();
+            else
+                text = "^W_";
+            upTextField.height = upTextField.textHeight + 4;
+            downTextField.height = downTextField.textHeight + 4;
+            overTextField.height = overTextField.textHeight + 4;
+            if (selectionModel.selectedIndex == -1)
+                text = "";
+            
             IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			changeHandler(null);
