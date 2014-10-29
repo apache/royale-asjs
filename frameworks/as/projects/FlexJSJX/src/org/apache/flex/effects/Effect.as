@@ -152,7 +152,7 @@ public class Effect extends EventDispatcher implements IEffect
     //  duration
     //----------------------------------
 
-    private var _duration:Number = 3000;
+    private var _duration:Number = 500;
     /**
      *  Duration of the animation, in milliseconds. 
      *  
