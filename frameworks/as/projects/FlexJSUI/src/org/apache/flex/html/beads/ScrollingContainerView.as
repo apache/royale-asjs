@@ -59,6 +59,15 @@ package org.apache.flex.html.beads
          */
 		public function ScrollingContainerView()
 		{
+            var vsbm:ScrollBarModel = new ScrollBarModel();
+            vsbm.maximum = 0;
+            vsbm.minimum = 0;
+            vsbm.pageSize = 0;
+            vsbm.pageStepSize = 1;
+            vsbm.snapInterval = 1;
+            vsbm.stepSize = 1;
+            vsbm.value = 0;
+            _vScrollBarModel = vsbm;
 		}
 		
         /**
@@ -161,6 +170,7 @@ package org.apache.flex.html.beads
 			return _strand as IUIBase;
 		}
 		
+        private var _vScrollBarModel:ScrollBarModel;
         private var _vScrollBar:ScrollBar;
         
         /**
@@ -198,15 +208,7 @@ package org.apache.flex.html.beads
         {
             var vsb:ScrollBar;
             vsb = new ScrollBar();
-            var vsbm:ScrollBarModel = new ScrollBarModel();
-            vsbm.maximum = 100;
-            vsbm.minimum = 0;
-            vsbm.pageSize = 10;
-            vsbm.pageStepSize = 10;
-            vsbm.snapInterval = 1;
-            vsbm.stepSize = 1;
-            vsbm.value = 0;
-            vsb.model = vsbm;
+            vsb.model = _vScrollBarModel;
             vsb.width = 16;
             IParent(_strand).addElement(vsb);
             return vsb;
@@ -222,7 +224,7 @@ package org.apache.flex.html.beads
          */
         public function get verticalScrollPosition():Number
         {
-            return ScrollBarModel(vScrollBar.model).value;
+            return _vScrollBarModel.value;
         }
         
         /**
@@ -230,7 +232,7 @@ package org.apache.flex.html.beads
          */
         public function set verticalScrollPosition(value:Number):void
         {
-            ScrollBarModel(vScrollBar.model).value = value;
+            _vScrollBarModel.value = value;
         }
 
         /**
@@ -243,8 +245,8 @@ package org.apache.flex.html.beads
          */
         public function get maxVerticalScrollPosition():Number
         {
-            return ScrollBarModel(vScrollBar.model).maximum - 
-                ScrollBarModel(vScrollBar.model).pageSize;
+            return _vScrollBarModel.maximum - 
+                _vScrollBarModel.pageSize;
         }
         
     
