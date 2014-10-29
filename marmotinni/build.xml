@@ -91,7 +91,7 @@
 		<java classname="${param.test.class}" outputproperty="stdout" classpath="${basedir}/java/bin" fork="true" failonerror="yes">
 		    <arg value="url=${param.test.url}" />
             <classpath>
-            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.32.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.44.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/bsh-1.3.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -103,6 +103,7 @@
             	<pathelement location="${basedir}/java/lib/selenium/libs/commons-lang3-3.1.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/commons-logging-1.1.1.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/cssparser-0.9.9.jar"/>
+                <pathelement location="${basedir}/java/lib/selenium/libs/gson-2.3.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/guava-14.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
@@ -154,7 +155,7 @@
     <target name="test_compile" depends="test_prepare">
         <javac srcdir="${basedir}/java/src/org/apache/flex/html/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
             <classpath>
-            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.32.0.jar"/>
+            	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.44.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/bsh-1.3.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -166,6 +167,7 @@
             	<pathelement location="${basedir}/java/lib/selenium/libs/commons-lang3-3.1.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/commons-logging-1.1.1.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/cssparser-0.9.9.jar"/>
+                <pathelement location="${basedir}/java/lib/selenium/libs/gson-2.3.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/guava-14.0.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
