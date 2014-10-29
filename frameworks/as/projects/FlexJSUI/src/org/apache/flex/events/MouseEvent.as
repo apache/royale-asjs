@@ -117,7 +117,7 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, IUIBase(target));
+                _stagePoint = PointUtils.localToGlobal(localPoint, target);
             }
             return _stagePoint.x;
         }
@@ -128,7 +128,7 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, IUIBase(target));
+                _stagePoint = PointUtils.localToGlobal(localPoint, target);
             }
             return _stagePoint.y;            
         }
