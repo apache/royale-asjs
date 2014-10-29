@@ -21,6 +21,7 @@ package org.apache.flex.core
     import flash.display.DisplayObject;
     
     import mx.states.AddItems;
+    import mx.states.SetEventHandler;
     import mx.states.SetProperty;
     import mx.states.State;
     
@@ -129,6 +130,18 @@ package org.apache.flex.core
                     else
                         sp.document[sp.name] = sp.previousValue;
                 }
+                else if (o is SetEventHandler)
+                {
+                    var seh:SetEventHandler = SetEventHandler(o);
+                    if (seh.target != null)
+                    {
+                        seh.document[seh.target].removeEventListener(seh.name, seh.handlerFunction);
+                    }
+                    else
+                    {
+                        seh.document.removeEventListener(seh.name, seh.handlerFunction);
+                    }
+                }
             }
         }
         
@@ -188,6 +201,18 @@ package org.apache.flex.core
                     {
                         sp.previousValue = sp.document[sp.name];
                         sp.document[sp.name] = sp.value;                        
+                    }
+                }
+                else if (o is SetEventHandler)
+                {
+                    var seh:SetEventHandler = SetEventHandler(o);
+                    if (seh.target != null)
+                    {
+                        seh.document[seh.target].addEventListener(seh.name, seh.handlerFunction);
+                    }
+                    else
+                    {
+                        seh.document.addEventListener(seh.name, seh.handlerFunction);
                     }
                 }
             }            
