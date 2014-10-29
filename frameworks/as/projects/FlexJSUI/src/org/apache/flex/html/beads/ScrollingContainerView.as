@@ -210,7 +210,7 @@ package org.apache.flex.html.beads
             vsb = new ScrollBar();
             vsb.model = _vScrollBarModel;
             vsb.width = 16;
-            IParent(_strand).addElement(vsb);
+            IParent(_strand).addElement(vsb, false);
             return vsb;
         }
 

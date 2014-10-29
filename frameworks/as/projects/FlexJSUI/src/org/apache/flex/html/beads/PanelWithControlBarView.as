@@ -107,17 +107,17 @@ package org.apache.flex.html.beads
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = UIBase(_strand).model as ITitleBarModel;
-			Container(_strand).addElement(titleBar);
+			Container(_strand).addElement(titleBar, false);
 			
 			var controlBarItems:Array = IPanelModel(UIBase(_strand).model).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
 				
 				for each(var comp:IUIBase in controlBarItems) {
-					_controlBar.addElement(comp);
+					_controlBar.addElement(comp, false);
 				}
 				
-				Container(_strand).addElement(controlBar);
+				Container(_strand).addElement(controlBar, false);
 			}
 			
 			layoutChromeElements();

@@ -340,7 +340,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function addElement(c:Object):void
+        public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
             {
@@ -359,7 +359,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function addElementAt(c:Object, index:int):void
+        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
             {
@@ -407,7 +407,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function removeElement(c:Object):void
+        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
             {

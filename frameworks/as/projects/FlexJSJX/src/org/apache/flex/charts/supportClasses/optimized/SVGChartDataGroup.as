@@ -120,7 +120,7 @@ package org.apache.flex.charts.supportClasses.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(value:Object):void
+		override public function addElement(value:Object, dispatchEvent:Boolean = true):void
 		{
 			_children.push(value);
 			
@@ -137,7 +137,7 @@ package org.apache.flex.charts.supportClasses.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(value:Object, index:int):void
+		override public function addElementAt(value:Object, index:int, dispatchEvent:Boolean = true):void
 		{
 			if (index >= _children.length) _children.push(value);
 			else _children.splice(index, 0, value);

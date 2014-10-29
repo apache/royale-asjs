@@ -105,7 +105,7 @@ package org.apache.flex.html
         /**
          *  @private
          */
-        override public function addElement(c:Object):void
+        override public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
             {
@@ -126,12 +126,14 @@ package org.apache.flex.html
 					actualParent.addChild(c as DisplayObject);
 				}
 			}
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
         }
         
         /**
          *  @private
          */
-        override public function addElementAt(c:Object, index:int):void
+        override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
             {
@@ -151,17 +153,21 @@ package org.apache.flex.html
                 	actualParent.addChildAt(c as DisplayObject, index);
 				}
 			}
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
         }
         
         /**
          *  @private
          */
-        override public function removeElement(c:Object):void
+        override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
                 actualParent.removeChild(IUIBase(c).element as DisplayObject);
             else
                 actualParent.removeChild(c as DisplayObject);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenRemoved"));
         }
         
         /**

@@ -97,7 +97,7 @@ package org.apache.flex.html.beads
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
-			host.addElement(titleBar);
+			host.addElement(titleBar, false);
 			titleBar.addEventListener("heightChanged", changeHandler);
             if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
                 titleBar.addEventListener("widthChanged", changeHandler);

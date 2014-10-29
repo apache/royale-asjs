@@ -61,12 +61,12 @@ package org.apache.flex.createjs.core
 			return _applicationModel;
 		}
         
-        public function addElement(c:Object):void
+        public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
             addChild(c as DisplayObject);
         }
 
-        public function addElementAt(c:Object, index:int):void
+        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
             addChildAt(c as DisplayObject, index);
         }
@@ -81,7 +81,7 @@ package org.apache.flex.createjs.core
             return getChildIndex(c as DisplayObject);
         }
         
-        public function removeElement(c:Object):void
+        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
             removeChild(c as DisplayObject);
         }

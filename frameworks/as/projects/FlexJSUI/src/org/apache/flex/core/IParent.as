@@ -34,26 +34,28 @@ package org.apache.flex.core
          *  Add a component to the parent.
          * 
          *  @param c The subcomponent to add.
+         *  @param dispatchEvent Whether to dispatch an event after adding the child.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function addElement(c:Object):void;
+        function addElement(c:Object, dispatchEvent:Boolean = true):void;
 
         /**
          *  Add a component to the parent.
          * 
          *  @param c The subcomponent to add.
          *  @param c The index where the subcomponent should be added.
+         *  @param dispatchEvent Whether to dispatch an event after adding the child.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function addElementAt(c:Object, index:int):void;
+        function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void;
         
         /**
          *  Gets the index of this subcomponent.
@@ -72,13 +74,14 @@ package org.apache.flex.core
          *  Remove a component from the parent.
          * 
          *  @param c The subcomponent to remove.
+         *  @param dispatchEvent Whether to dispatch an event after removing the child.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-       function removeElement(c:Object):void;
+       function removeElement(c:Object, dispatchEvent:Boolean = true):void;
        
        /**
         *  The number of elements in the parent.

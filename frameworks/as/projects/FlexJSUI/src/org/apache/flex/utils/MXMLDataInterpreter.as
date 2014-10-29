@@ -260,7 +260,7 @@ public class MXMLDataInterpreter
         }
         if (parent && comp is DisplayObject)
         {
-            parent.addElement(comp);
+            parent.addElement(comp, !(comp is IContainer));
         }
         
         if (children)
