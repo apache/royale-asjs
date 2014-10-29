@@ -157,6 +157,9 @@ public class Move extends Tween implements IDocument
 		
 		if (isNaN(xFrom))
 			xStart = actualTarget.x;
+        else
+            xStart = xFrom;
+        
         if (isNaN(xBy))
         {
     		if (isNaN(xTo))
@@ -167,6 +170,8 @@ public class Move extends Tween implements IDocument
         
 		if (isNaN(yFrom))
 			yStart = actualTarget.y;
+        else
+            yStart = yFrom;
         if (isNaN(yBy))
         {
     		if (isNaN(yTo))
