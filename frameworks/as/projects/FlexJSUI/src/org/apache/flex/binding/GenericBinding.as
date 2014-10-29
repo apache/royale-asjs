@@ -23,7 +23,8 @@ package org.apache.flex.binding
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.IStrand;
-
+	import org.apache.flex.events.ValueChangeEvent;
+    
     /**
      *  The GenericBinding class is the data-binding class that applies
      *  changes to properties of source objects to a property of the
@@ -173,7 +174,11 @@ package org.apache.flex.binding
                 var n:int = arr.length;
                 var obj:Object = document[arr[0]];
                 if (obj == null)
+                {
+                    document.addEventListener(ValueChangeEvent.VALUE_CHANGE,
+                        destinationChangeHandler);
                     return;
+                }
                 for (var i:int = 1; i < n - 1; i++)
                 {
                     obj = obj[arr[i]];
@@ -219,5 +224,11 @@ package org.apache.flex.binding
             {
             }
 		}
+        
+        private function destinationChangeHandler(event:ValueChangeEvent):void
+        {
+            if (event.propertyName == destinationData[0])
+                valueChanged(null);
+        }
 	}
 }
