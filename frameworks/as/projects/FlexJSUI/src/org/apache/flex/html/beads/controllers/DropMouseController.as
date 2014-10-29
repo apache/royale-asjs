@@ -179,6 +179,7 @@ package org.apache.flex.html.beads.controllers
             event.stopImmediatePropagation();
             dispatchEvent(dragEvent);
             
+            inside = false;
             DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             DisplayObject(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
