@@ -68,6 +68,7 @@
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
     <component id="ListViewNoSelectionState" class="org.apache.flex.html.beads.ListViewNoSelectionState"/>
+    <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView"/>
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.flex.html.Alert"/>
