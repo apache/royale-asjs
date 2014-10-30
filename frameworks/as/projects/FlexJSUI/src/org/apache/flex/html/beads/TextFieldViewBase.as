@@ -259,7 +259,7 @@ package org.apache.flex.html.beads
         public function get viewHeight():Number
         {
             // textfields with autosize collapse if no text
-            if (_textField.text == "" && _textField.autoSize != "none")
+            if (_textField.text == "" && autoHeight)
                 return ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
 
             return _textField.height;
@@ -276,7 +276,7 @@ package org.apache.flex.html.beads
         public function get viewWidth():Number
         {
             // textfields with autosize collapse if no text
-            if (_textField.text == "" && _textField.autoSize != "none")
+            if (_textField.text == "" && autoWidth)
                 return 0;
             
             return _textField.width;
