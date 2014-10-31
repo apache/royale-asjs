@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
+    import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
 	
     import org.apache.flex.core.BeadViewBase;
@@ -87,6 +88,10 @@ package org.apache.flex.html.beads
 			if (_model.source) {
 				loader = new Loader();
 				loader.contentLoaderInfo.addEventListener("complete",onComplete);
+                loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
+                    trace(e);
+                    e.preventDefault();
+                });
 				loader.load(new URLRequest(_model.source));
 			}
 		}

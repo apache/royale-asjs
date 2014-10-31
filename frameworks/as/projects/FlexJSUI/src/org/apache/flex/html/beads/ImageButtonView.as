@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
 	import flash.events.Event;
+    import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
 	
     import org.apache.flex.core.BeadViewBase;
@@ -103,6 +104,10 @@ package org.apache.flex.html.beads
 				sprite.addChildAt(loader, 0);
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
+                loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
+                    trace(e);
+                    e.preventDefault();
+                });
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
                     var host:UIButtonBase = UIButtonBase(_strand);
                     if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
