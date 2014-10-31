@@ -78,9 +78,9 @@ public class PlatformWiper
      */
     public function set target(value:IUIBase):void
     {
-        _target = value;
         if (value == null)
             DisplayObject(_target).scrollRect = null;
+        _target = value;
     }
     
     /**
