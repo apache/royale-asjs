@@ -97,18 +97,27 @@ public class MXMLDataInterpreter
                 else if (simple == false)
                     value = generateMXMLObject(document, value as Array);
                 if (name == "id")
-                {
-                    document[value] = comp;
                     id = value as String;
-                }
+                if (name == "document" && !comp.document)
+                    comp.document = document;
                 else if (name == "_id")
+                    id = value as String; // and don't assign to comp
+                else if (name == "id")
                 {
-                    document[value] = comp;
-                    id = value as String;
-                    continue; // skip assignment to comp
+                    // not all objects have to have their own id property
+                    try {
+                        comp["id"] = value;
+                    } catch (e:Error)
+                    {
+                        
+                    }
                 }
-                comp[name] = value;
+                else
+                    comp[name] = value;
             }
+            if (id)
+                document[id] = comp;
+
             if (comp is IDocument)
                 comp.setDocument(document, id);
         }
