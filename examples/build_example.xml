@@ -69,8 +69,8 @@
  
         <copy todir="${basedir}/bin-debug">
             <fileset dir="${basedir}/src">
-                <include name="*.png" />
-                <include name="*.jpg" />
+                <include name="**/*.png" />
+                <include name="**/*.jpg" />
             </fileset>
         </copy>
     </target>
