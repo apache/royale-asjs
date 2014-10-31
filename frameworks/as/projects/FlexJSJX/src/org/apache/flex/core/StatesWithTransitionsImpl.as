@@ -233,7 +233,8 @@ package org.apache.flex.core
                         if (ai.relativeTo != null)
                         {
                             var child:Object = ai.document[ai.relativeTo];
-                            parent = child.parent as IParent;
+                            if (ai.destination == null)
+                                parent = child.parent as IParent;
                             var index:int = parent.getElementIndex(child);
                             if (ai.position == "after")
                                 index++;
