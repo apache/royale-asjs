@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                xmlns:mx="library://ns.adobe.com/flex/mx"
+                xmlns="*"
+                initialize="startService()"
+			    pageTitle="FlexStore">
+	
+	<fx:Script>
+		<![CDATA[	
+            import org.apache.flex.core.ValuesManager;
+            
+            /*
+			private var currentTheme:String = "beige";
+			
+			private function toggleTheme():void
+			{
+				if (currentTheme == "beige")
+				{
+					currentTheme = "blue";
+				}
+				else
+				{
+					currentTheme = "beige";
+				}
+				
+				loadStyle();
+			}
+			*/
+            
+			private function startService():void
+			{
+				productService.send();
+			}
+			
+			private function loadStyle():void
+			{
+                /* load css not implemented yet
+				var eventDispatcher:IEventDispatcher =
+					styleManager.loadStyleDeclarations(currentTheme + ".swf");
+				eventDispatcher.addEventListener(StyleEvent.COMPLETE, completeHandler);
+                */
+			}
+			
+			private function completeHandler(event:Event):void
+			{
+				image.source = ValuesManager.valuesImpl.getValue(acb, "storeLogo");
+                /*
+				super.initialized = true;
+                */
+                callLater.callLater(prebake);
+			}
+			
+            /*
+			override public function set initialized(value:Boolean):void
+			{
+				// Hold off until the Runtime CSS SWF is done loading.
+			}
+            */
+            
+            private var stateChain:Array;
+            
+            private function headHome():void
+            {
+                homeButton.selected = true;
+                if (initialView.currentState == "ProductsState")
+                {
+                    productsButton.selected = false;
+                    stateChain = ["ProductsWipeUp", "HomeWipeDown", "HomeState"];
+                    initialView.currentState = "ProductsWipeUp";
+                }
+                else if (initialView.currentState == "SupportState")
+                {
+                    supportButton.selected = false;
+                    stateChain = ["SupportWipeUp", "HomeWipeDown", "HomeState"];
+                    initialView.currentState = "SupportWipeUp";                    
+                }
+            }
+            
+            private function headToProducts():void
+            {
+                productsButton.selected = true;
+                if (initialView.currentState == "SupportState")
+                {
+                    supportButton.selected = false;
+                    stateChain = ["SupportWipeUp", "ProductsWipeDown", "ProductsState"];
+                    initialView.currentState = "SupportWipeUp";                    
+                }
+                if (initialView.currentState == "HomeState")
+                {
+                    homeButton.selected = false;
+                    stateChain = ["HomeWipeUp", "ProductsWipeDown", "ProductsState"];
+                    initialView.currentState = "HomeWipeUp";                    
+                }
+            }
+            
+            private function headToSupport():void
+            {
+                supportButton.selected = true;
+                if (initialView.currentState == "ProductsState")
+                {
+                    productsButton.selected = false;
+                    stateChain = ["ProductsWipeUp", "SupportWipeDown", "SupportState"];
+                    initialView.currentState = "ProductsWipeUp";                    
+                }
+                if (initialView.currentState == "HomeState")
+                {
+                    homeButton.selected = false;
+                    stateChain = ["HomeWipeUp", "SupportWipeDown", "SupportState"];
+                    initialView.currentState = "HomeWipeUp";                    
+                }
+            }
+            
+            private function prebake():void
+            {
+                callLater.callLater(prebake2);
+            }
+            
+            private function prebake2():void
+            {
+                trace("prebake2");
+                stateChain = ["ProductsPreBake", "HomeState"];
+                initialView.currentState = "ProductsPreBake";
+            }
+                
+            private function chainStatesIfNeeded():void
+            {
+                if (stateChain != null)
+                {
+                    if (initialView.currentState == stateChain[0])
+                    {
+                        callLater.callLater(nextState);
+                    }
+                }
+            }
+            
+            private function nextState():void
+            {
+                stateChain.shift();
+                if (stateChain.length)
+                    initialView.currentState = stateChain[0];
+                else
+                    stateChain == null;
+            }
+		]]>
+	</fx:Script>
+	
+	<fx:Style source="main.css"/>
+    <fx:Style source="beige.css"/>
+	
+    <fx:Declarations>
+        <basic:HTTPService id="productService" url="data/catalog.json">
+            <basic:LazyCollection id="catalog">
+                <basic:inputParser>
+                    <basic:JSONInputParser />
+                </basic:inputParser>
+                <basic:itemConverter>
+                    <ProductJSONItemConverter />
+                </basic:itemConverter> 
+            </basic:LazyCollection>
+        </basic:HTTPService>        
+    </fx:Declarations>
+    <basic:valuesImpl>
+        <basic:SimpleCSSValuesImpl />
+    </basic:valuesImpl>
+	<basic:beads>
+        <basic:CallLaterBead id="callLater" />
+        <basic:ApplicationDataBinding />
+    </basic:beads>
+    <basic:initialView>
+        <basic:ViewBase	width="990" height="550"
+                        initComplete="completeHandler(null)"
+                        stateChangeComplete="chainStatesIfNeeded()">
+            <basic:states>
+                <mx:State name="HomeState" stateGroups="['Home']" />
+                <mx:State name="HomeWipeUp" stateGroups="['Home']" />
+                <mx:State name="HomeWipeDown" stateGroups="['Home']" />
+                <mx:State name="ProductsPreBake" stateGroups="['Home', 'Products']" />
+                <mx:State name="ProductsState" stateGroups="['Products']" />
+                <mx:State name="ProductsWipeUp" stateGroups="['Products']" />
+                <mx:State name="ProductsWipeDown" stateGroups="['Products']" />
+                <mx:State name="SupportState" stateGroups="['Support']" />
+                <mx:State name="SupportWipeUp" stateGroups="['Support']" />
+                <mx:State name="SupportWipeDown" stateGroups="['Support']" />
+            </basic:states>
+            
+            <basic:transitions>
+                <basic:Transition fromState="HomeState" toState="HomeWipeUp">
+                    <basic:Wipe direction="up" target="homeView" />
+                </basic:Transition>
+                <basic:Transition fromState="HomeWipeDown" toState="HomeState">
+                    <basic:Wipe direction="down" target="homeView" />
+                </basic:Transition>
+                <basic:Transition fromState="ProductsState" toState="ProductsWipeUp">
+                    <basic:Wipe direction="up" target="pView" />
+                </basic:Transition>
+                <basic:Transition fromState="ProductsWipeDown" toState="ProductsState">
+                    <basic:Wipe direction="down" target="pView" />
+                </basic:Transition>
+                <basic:Transition fromState="SupportState" toState="SupportWipeUp">
+                    <basic:Wipe direction="up" target="supportView" />
+                </basic:Transition>
+                <basic:Transition fromState="SupportWipeDown" toState="SupportState">
+                    <basic:Wipe direction="down" target="supportView" />
+                </basic:Transition>
+            </basic:transitions>
+            <basic:beads>
+                <basic:NonVirtualVerticalLayout />
+            </basic:beads>
+            <basic:ControlBar id="acb" width="100%" className="storeControlBar" >
+                <basic:beads>
+                    <basic:NonVirtualHorizontalLayout />
+                    <basic:LayoutChangeNotifier watchedProperty="{image.width}" />
+                </basic:beads>
+                <basic:Image id="image" />
+                         <!-- click="toggleTheme()" -->
+                         <!-- toolTip="Change Theme"/ -->
+                <basic:ToggleTextButton id="homeButton"
+                                text="Home"
+                                height="100%"
+                                selected="true"
+                                className="storeButtonBar"
+                                click="headHome()" />
+                <basic:ToggleTextButton id="productsButton"
+                                text="Products"
+                                height="100%"
+                                className="storeButtonBar"
+                                click="headToProducts()"/>
+                <basic:ToggleTextButton id="supportButton"
+                                text="Support"
+                                height="100%"
+                                className="storeButtonBar"
+                                click="headToSupport()"/>            
+            </basic:ControlBar>
+            <basic:Container width="990" >
+                <basic:style>
+                    <basic:SimpleCSSStyles paddingLeft="0" paddingRight="0" horizontalCenter="0" top="12" />
+                </basic:style>
+                        
+                <HomeView id="homeView" width="100%" height="550" includeIn="Home"
+                          />
+                <ProductsView id="pView" includeIn="Products" visible.ProductsPreBake="false"
+                              width="100%" height="550" initComplete="pView.catalog = catalog"
+                              />
+                <SupportView id="supportView" includeIn="Support"
+                             width="100%" height="550"
+                             />
+            </basic:Container>
+        </basic:ViewBase>        
+    </basic:initialView>    
+</basic:Application>

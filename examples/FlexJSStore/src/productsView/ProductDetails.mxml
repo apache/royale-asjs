@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                 xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                 xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:productsView="productsView.*"
+    >
+    <basic:beads>
+        <basic:ContainerDataBinding />
+    </basic:beads>
+
+    <fx:Metadata>
+        [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="browse", type="samples.flexstore.ProductThumbEvent")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+
+		import mx.events.*;
+		
+		import samples.flexstore.Product;
+		import samples.flexstore.ProductThumbEvent;
+
+        private var _product:Product;
+        
+        [Bindable]
+        public function get product():Product
+        {
+            return _product;
+        }
+        
+        public function set product(p:Product):void
+        {
+            _product = p;
+            tn.selectedIndex = 0;
+        }
+        
+	]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+    </fx:Declarations>
+
+    <basic:states>
+        <mx:State name="Features" />
+        <mx:State name="Support" />
+    </basic:states>
+    
+    <basic:transitions>
+        <basic:Transition>
+            <basic:Fade />
+        </basic:Transition>
+    </basic:transitions>
+    
+    <basic:ButtonBar id="tn" width="100%" change="currentState = tn.selectedItem as String">
+        <basic:dataProvider>
+            <fx:Array>
+                <fx:String>Features</fx:String>
+                <fx:String>Support</fx:String>
+            </fx:Array>
+        </basic:dataProvider>
+    </basic:ButtonBar>
+    <basic:Container width="100%" height="100%" >
+        <basic:style>
+            <basic:SimpleCSSStyles left="4" right="8" top="34" bottom="4" />
+        </basic:style>
+                    
+
+        <basic:VContainer width="100%" height="100%" includeIn="Features" >
+            <basic:style>
+                <!--<basic:SimpleCSSStyles gap="8"-->
+                <basic:SimpleCSSStyles
+                    paddingLeft="8" paddingTop="8" paddingRight="8" paddingBottom="8"/>
+            </basic:style>
+            <basic:HContainer width="100%" style="gap:12">
+
+                <basic:Image id="img" width="101" height="101" source="{product.image}"/>
+
+                <basic:VContainer id="descr" width="100%" height="100%">
+                    <basic:style>
+                        <basic:SimpleCSSStyles paddingTop="0" />
+                        <!--<basic:SimpleCSSStyles paddingTop="0" gap="4" />-->
+                    </basic:style>
+                    
+                    <basic:Label text="{product.name}" style="fontSize:11;fontWeight:'bold'"/>
+
+	                <basic:Label text="{product.featureString}" width="80" height="48" />
+
+                    <basic:Label text="{product.highlight1}" style="color:#EE8D0C"/>
+
+                    <basic:Label text="{product.highlight2}" style="color:#EE8D0C"/>
+
+                    <basic:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
+
+                </basic:VContainer>
+            </basic:HContainer>
+
+            <basic:Label id="descriptionText" width="100%" height="100%" text="{product.description}"/>
+
+        </basic:VContainer>
+
+        <productsView:ProductSupport width="100%" height="100%" includeIn="Support" />
+
+    </basic:Container>
+
+    <basic:VContainer>
+        <basic:beads>
+            <basic:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
+            <basic:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
+            <basic:LayoutChangeNotifier watchedProperty="{tiles.height}" initialValue="0" />
+        </basic:beads>
+        <basic:style>
+            <basic:SimpleCSSStyles marginTop="4" right="16" top="36" />
+        </basic:style>
+        <basic:Spacer width="100%"/>
+        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Add to cart"/>
+            </basic:beads>
+        </basic:ImageButton>
+        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Add to compare list"/>
+            </basic:beads>
+        </basic:ImageButton>
+        <basic:ImageButton id="tiles" backgroundImage="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Back to thumbnail view"/>
+            </basic:beads>
+        </basic:ImageButton>
+    </basic:VContainer>
+
+</basic:Container>

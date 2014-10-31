@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                   xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="{COL_WIDTH_4}" height="{COL_HEIGHT_4}" height.compare="502"
+    width.x4cols="{COL_WIDTH_4}" height.x4cols="{COL_HEIGHT_4}"
+    width.x3cols="{COL_WIDTH_3}" height.x3cols="{COL_HEIGHT_3}"
+    width.x2cols="{COL_WIDTH_2}" height.x2cols="{COL_HEIGHT_2}"
+    rollOver="rollOverHandler(event)"
+    rollOut="rollOutHandler(event)"
+    mouseDown="mouseDownHandler(event)"
+    mouseMove="mouseMoveHandler(event)"
+    mouseUp="mouseUpHandler(event)"
+    click="clickHandler(event)"
+    currentState="x4cols"
+    >
+    <!-- automationName="{product.name}" -->
+    <basic:beads>
+        <basic:ContainerDataBinding />
+        <basic:LayoutChangeNotifier watchedProperty="{details.height}" />
+    </basic:beads>
+    <basic:style>
+        <basic:SimpleCSSStyles borderStyle="solid"
+                               borderColor="#FFFFFF" />
+    </basic:style>
+    <fx:Metadata>
+        [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
+        [Event(name="details", type="samples.flexstore.ProductThumbEvent")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+
+		import org.apache.flex.events.*;
+        import org.apache.flex.utils.PointUtils;
+            
+        import samples.flexstore.Product;
+        import samples.flexstore.ProductThumbEvent;
+        
+        public static const COL_WIDTH_4:int = 162;
+        public static const COL_HEIGHT_4:int = 122;
+        public static const COL_WIDTH_3:int = 217;
+        public static const COL_HEIGHT_3:int = 165;
+        public static const COL_WIDTH_2:int = 327;
+        public static const COL_HEIGHT_2:int = 250;
+        public static const COMPARE_WIDTH:int = 162;
+        public static const HORIZONTAL_GAP:int = 2;
+        public static const VERTICAL_GAP:int = 3;
+
+        [Bindable]
+        public var product:Product;
+
+        private function rollOverHandler(event:MouseEvent):void
+		{
+            style["borderColor"] = "#CCCCCC";
+            //style["dropShadowEnabled"] = true;
+            buttons.visible = true;
+        }
+
+        private function rollOutHandler(event:MouseEvent):void
+		{
+            style["borderColor"] = "#FFFFFF";
+            //style["dropShadowEnabled"] = false;
+			buttons.visible = false;
+        }
+
+        private var dragStartPoint:Point;
+
+        public function mouseDownHandler(event:MouseEvent):void
+        {
+            if (event.target != purchase &&
+                event.target != compare &&
+                event.target != details)
+            {
+                dragStartPoint = new Point(event.stageX, event.stageY);
+                dragStartPoint = PointUtils.globalToLocal(dragStartPoint, this);
+
+            }
+        }
+
+        public function mouseMoveHandler(event:MouseEvent):void
+        {
+            if (dragStartPoint != null)
+            {
+                var dragEvent:DragEvent = new DragEvent(DragEvent.DRAG_START, true);
+                dragEvent.localX = dragStartPoint.x;
+                dragEvent.localY = dragStartPoint.y;
+                dragEvent.buttonDown = true;
+                dispatchEvent(dragEvent);
+
+                rollOutHandler(event);
+
+                dragStartPoint = null;
+            }
+        }
+
+        public function mouseUpHandler(event:MouseEvent):void
+        {
+            if (dragStartPoint != null)
+            {
+                dragStartPoint = null;
+            }
+        }
+
+        public function clickHandler(event:org.apache.flex.events.Event):void
+        {
+            if (event.target != purchase &&
+                event.target != compare &&
+                event.target != details)
+            {
+                dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product));
+            }
+        }
+
+	]]>
+    </fx:Script>
+    <fx:Declarations>
+        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+    </fx:Declarations>
+
+    <basic:VContainer id="vb" width="100%" height="100%">
+        <basic:style>
+            <basic:SimpleCSSStyles paddingLeft="6" paddingTop="4" paddingRight="8" paddingBottom="4" />
+                                 <!--  gap="0">  -->
+        </basic:style>
+        
+
+        <basic:Label text="{product.name}" style="fontWeight:bold"/>
+
+        <basic:HContainer width="100%" >
+            <basic:style>
+                <basic:SimpleCSSStyles paddingTop="0" /> <!-- gap="4 -->"
+            </basic:style>
+
+            <basic:Image id="img" height="45" width="45" 
+                     width.x3cols="60" height.x3cols="60"
+                     width.x2cols="60" height.x2cols="60"
+                     source="{product.image}" />
+
+            <basic:VContainer id="descr" width="100%" height="100%" >
+                <basic:style>
+                    <basic:SimpleCSSStyles paddingTop="0" /> <!--  gap="0"  -->
+                </basic:style>
+                <basic:Label text="{product.featureString}" width="80" height="48" />
+                <basic:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
+				<basic:Spacer height="4"/>
+                <basic:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+                <basic:Label text="{product.highlight2}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+            </basic:VContainer>
+
+        </basic:HContainer>
+
+        <basic:Spacer height="8"/>
+
+        <basic:Label id="compYears" text="Years: {product.experience}" includeIn="compare"/>
+        <basic:Label id="compBlaze" text="BlazeDS: {product.blazeds}" includeIn="compare"/>
+        <basic:Label id="compMobile" text="Mobile: {product.mobile}" includeIn="compare"/>
+        <basic:Label id="compVideo" text="Video: {product.video}" includeIn="compare"/>
+        <basic:Label id="compHigh1" text="Highlight: {product.highlight1}" includeIn="compare"/>
+        <basic:Label id="compHigh2" text="Highlight: {product.highlight2}" includeIn="compare"/>
+        <basic:Label text="Description:" includeIn="compare"/>
+        <basic:Label id="compDesc" text="{product.description}" width="100%" includeIn="compare">
+            <basic:beads>
+                <basic:MultilineTextFieldView />
+            </basic:beads>
+        </basic:Label>
+    </basic:VContainer>
+
+
+    <basic:VContainer id="buttons" visible="false">
+        <basic:style>
+            <basic:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
+        </basic:style>
+        <basic:beads>
+            <basic:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
+            <basic:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
+            <basic:LayoutChangeNotifier watchedProperty="{details.height}" initialValue="0" />
+        </basic:beads>
+        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" 
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
+            width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Add to cart"/>
+            </basic:beads>
+        </basic:ImageButton>
+        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" 
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
+            width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Add to compare list"/>
+            </basic:beads>
+        </basic:ImageButton>
+        <basic:ImageButton id="details" backgroundImage="assets/button_details.png" 
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
+            width="30">
+            <basic:beads>
+                <basic:ToolTipBead toolTip="Show details"/>
+            </basic:beads>
+        </basic:ImageButton>
+    </basic:VContainer>
+
+    <basic:states>
+
+        <mx:State name="compare" />
+
+        <mx:State name="x4cols" />
+
+        <mx:State name="x3cols" />
+
+        <mx:State name="x2cols"/>
+    </basic:states>
+
+</basic:Container>

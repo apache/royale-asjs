@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:HContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+          xmlns:basic="library://ns.apache.org/flexjs/basic" 
+          xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 >
+    <basic:style>
+        <basic:SimpleCSSStyles paddingLeft="4" paddingRight="8" paddingBottom="4" />
+    </basic:style>
+    <basic:beads>
+        <basic:ContainerDataBinding />
+    </basic:beads>
+
+    <fx:Script>
+	<![CDATA[
+
+        private function toggle():void
+		{
+			/*
+            if (vd.playing)
+			{
+                vd.stop();
+                list.visible = true;
+            }
+			else
+			{
+                list.visible = false;
+                vd.play();
+            }
+			*/
+        }
+
+	]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <basic:Parallel id="hideList">
+            <basic:children>
+                <fx:Array>
+                    <basic:Resize target="{list}" widthTo="0"/>
+                    <!--<mx:Resize target="{vd}" widthTo="400" heightTo="314"/>-->
+                </fx:Array>
+            </basic:children>
+        </basic:Parallel>
+        
+        <basic:Parallel id="showList">
+            <basic:children>
+                <fx:Array>
+                    <basic:Resize target="{list}" widthTo="130"/>
+                    <!--<mx:Resize target="{vd}" widthTo="270" heightTo="217"/>-->
+                </fx:Array>
+            </basic:children>
+        </basic:Parallel>        
+    </fx:Declarations>
+    <basic:List id="list" width="130" height="100%" selectedIndex="0">
+        <basic:dataProvider>
+            <fx:Array>
+                <fx:Object label="Install SIM Card"/>
+            </fx:Array>
+        </basic:dataProvider>
+    </basic:List>
+
+    <basic:Container width="100%">
+
+		<!--<mx:VideoDisplay id="vd" width="270" height="217" source="assets/phone.flv"
+						 autoPlay="false" complete="list.visible=true"/>
+
+		<mx:Button label="{vd.playing ? 'Stop' : 'Play'}" click="toggle()" left="8" bottom="8" includeInLayout="false">
+		</mx:Button>
+		-->
+	</basic:Container>
+
+
+</basic:HContainer>
