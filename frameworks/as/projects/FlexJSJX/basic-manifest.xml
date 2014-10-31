@@ -67,6 +67,7 @@
     <component id="NumberFormatter" class="org.apache.flex.html.accessories.NumberFormatter"/>
     <component id="CurrencyFormatter" class="org.apache.flex.html.accessories.CurrencyFormatter"/>
 
+    <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
     <component id="MXMLBeadViewBase" class="org.apache.flex.core.MXMLBeadViewBase"/>
     <component id="MXMLBeadViewBaseDataBinding" class="org.apache.flex.core.MXMLBeadViewBaseDataBinding"/>
