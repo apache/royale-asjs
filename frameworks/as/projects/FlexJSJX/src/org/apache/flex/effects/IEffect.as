@@ -109,6 +109,28 @@ public interface IEffect extends IEventDispatcher
      *  @productversion Flex 3
      */
     function resume():void;
+
+    /**
+     *  Tries to compute initial values
+     *  for effect 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function captureStartValues():void;
+
+    /**
+     *  Tries to compute final values
+     *  for effect 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function captureEndValues():void;
 }
 
 }

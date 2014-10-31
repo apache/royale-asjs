@@ -234,6 +234,30 @@ public class Effect extends EventDispatcher implements IEffect
     public function resume():void
     {
     }   
+
+    /**
+     *  @copy org.apache.flex.effects.IEffect#captureStartValues
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function captureStartValues():void
+    {
+    }   
+
+    /**
+     *  @copy org.apache.flex.effects.IEffect#captureEndValues
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function captureEndValues():void
+    {
+    }   
 }
 
 }

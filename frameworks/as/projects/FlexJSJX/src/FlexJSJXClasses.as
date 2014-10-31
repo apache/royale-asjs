@@ -77,6 +77,7 @@ internal class FlexJSJXClasses
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 
     import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+    import org.apache.flex.core.StatesWithTransitionsImpl; StatesWithTransitionsImpl;
 }
 
 }

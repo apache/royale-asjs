@@ -104,10 +104,22 @@ public class Move extends Tween implements IDocument
 	
 	/**
 	 *  @private
-	 *  The staring y.
+	 *  The starting y.
 	 */
 	private var yStart:Number;
 
+    /**
+     *  @private
+     *  The total change for x.
+     */
+    private var xMove:Number;
+    
+    /**
+     *  @private
+     *  The total change for y.
+     */
+    private var yMove:Number;
+    
 	/**
 	 *  Starting x value.  If NaN, the current x value is used
      */
@@ -163,10 +175,12 @@ public class Move extends Tween implements IDocument
         if (isNaN(xBy))
         {
     		if (isNaN(xTo))
-    			xBy = 0;
+                xMove = 0;
     		else
-    			xBy = xTo - xStart;
+                xMove = xTo - xStart;
         }
+        else
+            xMove = xBy;
         
 		if (isNaN(yFrom))
 			yStart = actualTarget.y;
@@ -175,28 +189,52 @@ public class Move extends Tween implements IDocument
         if (isNaN(yBy))
         {
     		if (isNaN(yTo))
-    			yBy = 0;
+                yMove = 0;
     		else
-    			yBy = yTo - yStart;
-        }			
+                yMove = yTo - yStart;
+        }
+        else
+            yMove = yBy;
+        
 		super.play();
 	}
 
 	public function onTweenUpdate(value:Number):void
 	{
-		if (xBy)
-			actualTarget.x = xStart + value * xBy;
-		if (yBy)
-			actualTarget.y = yStart + value * yBy;
+		if (xMove)
+			actualTarget.x = xStart + value * xMove;
+		if (yMove)
+			actualTarget.y = yStart + value * yMove;
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
-		if (xBy)
-			actualTarget.x = xStart + xBy;
-		if (yBy)
-			actualTarget.y = yStart + yBy;
+		if (xMove)
+			actualTarget.x = xStart + xMove;
+		if (yMove)
+			actualTarget.y = yStart + yMove;
+        
 	}
+    
+    override public function captureStartValues():void
+    {
+        if (target != null)
+        {
+            actualTarget = document[target];
+            xFrom = actualTarget.x;
+            yFrom = actualTarget.y;
+        }
+    }
+    
+    override public function captureEndValues():void
+    {
+        if (target != null)
+        {
+            actualTarget = document[target];
+            xTo = actualTarget.x;
+            yTo = actualTarget.y;
+        }
+    }
 }
 
 }
