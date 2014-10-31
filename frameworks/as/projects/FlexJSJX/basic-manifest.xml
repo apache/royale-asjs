@@ -76,5 +76,6 @@
     <component id="ImageButton" class="org.apache.flex.html.ImageButton"/>
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="FlexibleFirstChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout"/>
+    <component id="OneFlexibleChildVerticalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout"/>
 
 </componentPackage>
