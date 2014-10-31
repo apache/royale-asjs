@@ -60,6 +60,8 @@ package org.apache.flex.core
         
         private var _strand:IStrand;
         
+        private var sawInitComplete:Boolean;
+        
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -77,12 +79,16 @@ package org.apache.flex.core
         
         private function initialStateHandler(event:org.apache.flex.events.Event):void
         {
+            sawInitComplete = true;
             stateChangeHandler(new ValueChangeEvent("currentStateChange", false, false, null, 
                 IStatesObject(_strand).currentState));
         }		
      
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
+            if (!sawInitComplete)
+                return;
+            
             var doc:IStatesObject = _strand as IStatesObject;
             var arr:Array = doc.states;
             for each (var s:State in arr)
@@ -114,9 +120,7 @@ package org.apache.flex.core
                     var ai:AddItems = AddItems(o);
                     for each (var item:DisplayObject in ai.items)
                     {
-                        var parent:IParent = ai.document as IParent;
-                        if (ai.destination != null)
-                            parent = parent[ai.destination] as IParent;
+                        var parent:IParent = item.parent as IParent;
                         parent.removeElement(item);
                     }
                     if (parent is IContainer)
@@ -171,14 +175,11 @@ package org.apache.flex.core
                             parent = parent[ai.destination] as IParent;
                         if (ai.relativeTo != null)
                         {
-                            var index:int = parent.numElements;
-                            if (ai.relativeTo != null)
-                            {
-                                var child:Object = ai.document[ai.relativeTo];
-                                index = parent.getElementIndex(child);
-                                if (ai.position == "after")
-                                    index++;
-                            }
+                            var child:Object = ai.document[ai.relativeTo];
+                            parent = child.parent as IParent;
+                            var index:int = parent.getElementIndex(child);
+                            if (ai.position == "after")
+                                index++;
                             parent.addElementAt(item, index);
                         }
                         else
