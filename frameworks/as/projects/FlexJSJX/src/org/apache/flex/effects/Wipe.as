@@ -92,7 +92,7 @@ public class Wipe extends Tween implements IDocument
      */
     public var direction:String;
     	
-    private var wiper:PlatformWiper;	
+    private var wiper:PlatformWiper = new PlatformWiper();	
     
     //--------------------------------------------------------------------------
     //
@@ -131,6 +131,8 @@ public class Wipe extends Tween implements IDocument
         {
             startValue = 0;
             endValue = actualTarget.height;
+            // WipeDown makes something appear
+            actualTarget.visible = true;
             wiper.visibleRect = new Rectangle(0, 0, actualTarget.width, 0);
         }
         
@@ -139,11 +141,15 @@ public class Wipe extends Tween implements IDocument
 
 	public function onTweenUpdate(value:Number):void
 	{
+        trace(actualTarget, value);
 		wiper.visibleRect = new Rectangle(0, 0, actualTarget.width, value);
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
+        // WipeUp makes something disappear
+        if (direction == "up")
+            actualTarget.visible = false;
         wiper.target = null;
 	}
 }
