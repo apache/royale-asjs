@@ -20,10 +20,9 @@
 package org.apache.flex.effects
 {
 
-import flash.geom.Rectangle;
-
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
+import org.apache.flex.geom.Rectangle;
 
 /**
  *  The Fade effect animates a UI component's alpha or opacity.
