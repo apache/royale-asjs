@@ -132,6 +132,7 @@ internal class FlexJSUIClasses
     import org.apache.flex.core.DropType; DropType;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.effects.PlatformWiper; PlatformWiper;    
+    import org.apache.flex.geom.Rectangle; Rectangle;    
     
 	import mx.core.ClassFactory; ClassFactory;
     import mx.states.AddItems; AddItems;
