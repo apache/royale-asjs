@@ -33,13 +33,11 @@
 
     <include file="${basedir}/../build_example.xml" />
     
-    <!-- disable JS compile until we get it working
-         <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">-->
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
         <mkdir dir="${basedir}/bin-debug/data" />
         <copy file="${basedir}/src/data/catalog.json" tofile="${basedir}/bin-debug/data/catalog.json" />
     </target>
-    
+
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
