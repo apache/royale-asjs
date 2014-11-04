@@ -12,16 +12,9 @@ ARGS="$ARGS -load-config+="/Users/erik/Documents/ApacheFlex/git/flex-sdk/framewo
 ARGS="$ARGS -load-config+="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/projects/spark/compile-config.xml" "
 
 ARGS="$ARGS -external-library-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/libs/air/airspark.swc" "
-
 ARGS="$ARGS -external-library-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/libs/player/15.0/playerglobal.swc" "
-
 ARGS="$ARGS -external-library-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/libs/osmf.swc" "
-
 ARGS="$ARGS -external-library-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/libs/textlayout.swc" "
-
-ARGS="$ARGS -external-library-path="/Users/erik/Documents/ApacheFlex/git/flex-asjs/vf2js/utils/FlexSDKToJS/lcds/libs/fds.swc" "
-
-ARGS="$ARGS -source-path="/Users/erik/Documents/ApacheFlex/git/flex-asjs/vf2js/utils/FlexSDKToJS/src-framework-3.6.0/src" "
 
 ARGS="$ARGS -source-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/projects/advancedgrids/src" "
 ARGS="$ARGS -source-path="/Users/erik/Documents/ApacheFlex/git/flex-sdk/frameworks/projects/apache/src" "
