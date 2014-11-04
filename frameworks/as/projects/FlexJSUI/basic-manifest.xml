@@ -86,7 +86,6 @@
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
-    <component id="Transition" class="org.apache.flex.states.Transition" />
     <component id="HRule" class="org.apache.flex.html.HRule" />
     <component id="Spacer" class="org.apache.flex.html.Spacer" />
     <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" />

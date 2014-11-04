@@ -63,7 +63,8 @@
     <component id="Wipe" class="org.apache.flex.effects.Wipe"/>
     <component id="Sequence" class="org.apache.flex.effects.Sequence"/>
     <component id="Parallel" class="org.apache.flex.effects.Parallel"/>
-    
+    <component id="Transition" class="org.apache.flex.states.Transition" />
+
     <component id="NumberFormatter" class="org.apache.flex.html.accessories.NumberFormatter"/>
     <component id="CurrencyFormatter" class="org.apache.flex.html.accessories.CurrencyFormatter"/>
 
