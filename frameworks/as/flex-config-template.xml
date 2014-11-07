@@ -94,6 +94,8 @@
       <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
       <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
       <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+      <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
+      <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
 
       <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
