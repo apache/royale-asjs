@@ -34,7 +34,7 @@ package org.apache.flex.html
      * 
      *  This is effectively the same as the pattern
      *  <code>
-     *  <basic:Container>
+     *  <basic:Container xmlns:basic="library://ns.apache.org/flexjs/basic">
      *    <basic:layout>
      *       <basic:NonVirtualHorizontalLayout />
      *    </basic:layout>
