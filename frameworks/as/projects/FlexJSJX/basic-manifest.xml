@@ -67,6 +67,7 @@
 
     <component id="NumberFormatter" class="org.apache.flex.html.accessories.NumberFormatter"/>
     <component id="CurrencyFormatter" class="org.apache.flex.html.accessories.CurrencyFormatter"/>
+    <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" />
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
