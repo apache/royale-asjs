@@ -117,6 +117,7 @@
             <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <arg value="-output=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="-load-config=${FLEXJS_HOME}/frameworks/as/projects/FlexJSJX/compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
