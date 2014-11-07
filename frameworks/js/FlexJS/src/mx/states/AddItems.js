@@ -44,6 +44,15 @@ mx.states.AddItems.prototype.FLEXJS_CLASS_INFO =
 mx.states.AddItems.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
+  var data = document.mxmlsd[itemsDescriptorIndex];
+  if (typeof(data.slice) == 'function') {
+  	itemsDescriptor = {};
+    itemsDescriptor.descriptor = data;
+    // replace the entry in the document so subsequent
+    // addItems know it is shared
+    document.mxmlsd[itemsDescriptorIndex] = itemsDescriptor;
+  } else
+    itemsDescriptor = data;
 };
 
 
@@ -59,6 +68,14 @@ mx.states.AddItems.prototype.document = null;
  * @type {Array} items The array of items to add.
  */
 mx.states.AddItems.prototype.items = null;
+
+
+/**
+ * @expose
+ * @type {Array} itemsDescriptor The index into the array 
+ *                               of itemDescriptors on the document
+ */
+mx.states.AddItems.prototype.itemsDescriptorIndex;
 
 
 /**

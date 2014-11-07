@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.core.SimpleStatesImpl');
 
 goog.require('mx.states.AddItems');
 goog.require('mx.states.SetProperty');
+goog.require('mx.states.SetEventHandler');
 goog.require('mx.states.State');
 goog.require('org.apache.flex.core.IBead');
 goog.require('org.apache.flex.core.IStatesImpl');
@@ -155,6 +156,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
       } else {
         target[o.name] = o.previousValue;
       }
+    } else if (org.apache.flex.utils.Language.is(o, mx.states.SetEventHandler)) {
+      if (typeof(o.document['get_' + o.target]) === 'function') {
+        target = o.document['get_' + o.target]();
+      } else {
+        target = o.document[o.target];
+      }
+      target.removeEventListener(o.name, o.handlerFunction);
     }
   }
 };
@@ -175,11 +183,14 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
     o = arr[p];
     if (org.apache.flex.utils.Language.is(o, mx.states.AddItems)) {
       if (!o.items) {
-        //TODO (aharui).  This array should be deferred
-        //var di = org.apache.flex.utils.MXMLDataInterpreter;
-        //o.items = di.generateMXMLArray(o.document,
-        //                                null, o.itemsDescriptor, true);
-        o.items = o.itemsDescriptor;
+      	o.items = o.itemsDescriptor.items;
+        if (o.items == null)
+        {
+        	ai.items = 
+            	MXMLDataInterpreter.generateMXMLArray(o.document,
+                                    null, ai.itemsDescriptor.descriptor);
+            o.itemsDescriptor.items = ai.items;
+         }
       }
 
       for (q in o.items) {
@@ -234,6 +245,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
       } else {
         target[o.name] = o.value;
       }
+    } else if (org.apache.flex.utils.Language.is(o, mx.states.SetEventHandler)) {
+      if (typeof(o.document['get_' + o.target]) === 'function') {
+        target = o.document['get_' + o.target]();
+      } else {
+        target = o.document[o.target];
+      }
+      target.addEventListener(o.name, o.handlerFunction);
     }
   }
 };
