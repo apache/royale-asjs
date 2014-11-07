@@ -19,7 +19,7 @@
 package samples.flexstore
 {
 
-import flash.events.Event;
+import org.apache.flex.events.Event;
 
 public class ProductFilterEvent extends Event
 {
