@@ -21,7 +21,7 @@
     <property environment="env"/>
 	<property name="FLEX_HOME" value="${basedir}/../../flex-sdk"/>
 	<property name="lenient" value="true"/>
-	<property name="flexlib" location="${FLEX_HOME}/frameworks"/>
+	<property name="flexlib" location="${basedir}/../frameworks"/>
 
     <property name="doc_output" location="${basedir}/../asdoc-output"   />
     <property name="project_home" location="${basedir}/../frameworks/as/projects"/>
@@ -69,9 +69,12 @@
                main-title="${release} API Reference "
                footer="${manifest.Implementation-Vendor}" >
                
-			<!-- source path for asdoc -->
+            <load-config filename="${flexlib}/asdoc-config.xml" />
+               
+            <!-- source path for asdoc -->
 			<compiler.source-path path-element="${project_home}/FlexJSUI/src"/>
 			<compiler.source-path path-element="${project_home}/FlexJSJX/src"/>
+            <compiler.source-path path-element="${project_home}/MXMLCClasses/src"/>
 						
 			<!-- namespaces to include in asdoc -->
  			<doc-namespaces uri="library://ns.apache.org/flexjs/basic"/>
