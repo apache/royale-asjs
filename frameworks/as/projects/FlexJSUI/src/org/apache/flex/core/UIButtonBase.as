@@ -773,5 +773,21 @@ package org.apache.flex.core
 			return measurementBead;
 		}
         
+        /**
+         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get topMostEventDispatcher():IEventDispatcher
+        {
+            if (!parent)
+                return null;
+            return IUIBase(parent).topMostEventDispatcher;
+        }
+
+        
 	}
 }

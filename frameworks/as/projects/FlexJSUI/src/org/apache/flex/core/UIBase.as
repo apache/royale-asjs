@@ -20,6 +20,7 @@ package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -904,6 +905,32 @@ package org.apache.flex.core
 			
 			return measurementBead;
 		}
+        
+        private var _stageProxy:StageProxy;
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function get topMostEventDispatcher():IEventDispatcher
+        {
+            if (!_stageProxy)
+            {
+                _stageProxy = new StageProxy(stage);
+                _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
+            }
+            
+            return _stageProxy;
+        }
+        
+        private function stageProxy_removedFromStageHandler(event:Event):void
+        {
+            _stageProxy = null;
+        }
         
 	}
 }

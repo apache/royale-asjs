@@ -28,6 +28,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.html.beads.ITextItemRenderer;
@@ -358,5 +359,21 @@ package org.apache.flex.html.supportClasses
                 }
             }
         }
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get topMostEventDispatcher():IEventDispatcher
+        {
+            if (!parent)
+                return null;
+            return IUIBase(parent).topMostEventDispatcher;
+        }
+
     }
 }

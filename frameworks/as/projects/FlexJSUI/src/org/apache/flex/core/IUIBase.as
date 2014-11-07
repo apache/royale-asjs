@@ -119,5 +119,15 @@ package org.apache.flex.core
         function get visible():Boolean;
         function set visible(value:Boolean):void;
         
+        /**
+         *  The top most event dispatcher.  Good for trying to capture
+         *  all input events.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get topMostEventDispatcher():IEventDispatcher;
     }
 }
