@@ -35,6 +35,8 @@ package org.apache.flex.core
      *  this information.  It is intended to be used
      *  as a bead in the top-level tag of an MXML document.
      *  
+     *  @flexjsignoreimport org.apache.flex.core.IChild
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -100,6 +102,10 @@ package org.apache.flex.core
         }
         
         [Bindable("parentDocumentChange")]
+        /**
+         *  @private
+         *  @flexjsignorecoercion org.apache.flex.core.IChild
+         */
         public function get parentDocument():Object
         {
             var child:IChild = _strand as IChild;

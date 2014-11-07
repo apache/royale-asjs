@@ -40,6 +40,8 @@ package org.apache.flex.core
      *  It only supports AddItems and SetProperty and SetEventHandler 
      *  changes at this time.
      *  
+     *  @flexjsignoreimport org.apache.flex.core.IStatesObject
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -79,6 +81,10 @@ package org.apache.flex.core
             IEventDispatcher(_strand).addEventListener("initComplete", initialStateHandler);
         }
         
+        /**
+         *  @private
+         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         */
         private function initialStateHandler(event:org.apache.flex.events.Event):void
         {
             sawInitComplete = true;
@@ -86,6 +92,10 @@ package org.apache.flex.core
                 IStatesObject(_strand).currentState));
         }		
      
+        /**
+         *  @private
+         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         */
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
             if (!sawInitComplete)
@@ -151,6 +161,10 @@ package org.apache.flex.core
         
         private var transitionEffects:Array;
         
+        /**
+         *  @private
+         *  @flexjsignorecoercion org.apache.flex.core.IStatesObject
+         */
         private function effectEndHandler(event:Event):void
         {
             var n:int = transitionEffects.length;
