@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.display.DisplayObject;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IStrand;
@@ -66,6 +64,8 @@ package org.apache.flex.html.beads.controllers
 	 *  The DropMouseController bead handles mouse events on the 
 	 *  a component, looking for events from a drag/drop operation.
 	 *  
+     *  @flexjsignoreimport org.apache.flex.core.IDragInitiator
+     * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -132,8 +132,8 @@ package org.apache.flex.html.beads.controllers
                 dragInitiator = dragEvent.dragInitiator = event.dragInitiator;
                 dispatchEvent(dragEvent);
                 inside = true;
-                DisplayObject(_strand).stage.addEventListener(DragEvent.DRAG_END, dragEndHandler);
-                DisplayObject(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+                IUIBase(_strand).topMostEventDispatcher.addEventListener(DragEvent.DRAG_END, dragEndHandler);
+                IUIBase(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
             }
             else
             {
@@ -161,8 +161,8 @@ package org.apache.flex.html.beads.controllers
                 dispatchEvent(dragEvent);
                 inside = false;
             }
-            DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
-            DisplayObject(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
         
         private function dragEndHandler(event:DragEvent):void
@@ -180,8 +180,8 @@ package org.apache.flex.html.beads.controllers
             dispatchEvent(dragEvent);
             
             inside = false;
-            DisplayObject(_strand).stage.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
-            DisplayObject(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
 		
 	}

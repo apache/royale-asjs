@@ -57,6 +57,9 @@
     <component id="SVGWedgeItemRenderer" class="org.apache.flex.charts.supportClasses.optimized.SVGWedgeItemRenderer"/>
     <component id="SVGLineSegmentItemRenderer" class="org.apache.flex.charts.supportClasses.optimized.SVGLineSegmentItemRenderer"/>
 
+    <component id="DragMouseController" class="org.apache.flex.html.beads.controllers.DragMouseController" />
+    <component id="DropMouseController" class="org.apache.flex.html.beads.controllers.DropMouseController" />
+
     <component id="Fade" class="org.apache.flex.effects.Fade"/>
     <component id="Move" class="org.apache.flex.effects.Move"/>
     <component id="Resize" class="org.apache.flex.effects.Resize"/>

@@ -76,6 +76,7 @@ internal class FlexJSJXClasses
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 
+    import org.apache.flex.core.DropType; DropType;
     import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
     import org.apache.flex.core.StatesWithTransitionsImpl; StatesWithTransitionsImpl;
 }
