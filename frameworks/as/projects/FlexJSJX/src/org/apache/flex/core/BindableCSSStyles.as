@@ -31,7 +31,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class BindableCSSStyles 
+	public class BindableCSSStyles extends EventDispatcher
 	{
         /**
          *  Constructor.
