@@ -53,5 +53,26 @@ package org.apache.flex.events
 		{
 			super(type, bubbles, cancelable);
 		}
+        
+        /**
+         *  @private
+         */
+        override public function clone():flash.events.Event
+        {
+            return cloneEvent();
+        }
+        
+        /**
+         *  Create a copy/clone of the Event object.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function cloneEvent():org.apache.flex.events.Event
+        {
+            return new org.apache.flex.events.Event(type, bubbles, cancelable);
+        }
 	}
 }
