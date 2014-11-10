@@ -34,6 +34,8 @@
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.Image"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
+    <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"/>
+    <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"/>
     <component id="TextButton" class="org.apache.flex.html.TextButton"/>
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"/>
     <component id="TextInput" class="org.apache.flex.html.TextInput"/>

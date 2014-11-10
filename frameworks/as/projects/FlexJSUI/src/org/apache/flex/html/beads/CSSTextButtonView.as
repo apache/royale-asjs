@@ -115,14 +115,19 @@ package org.apache.flex.html.beads
 			if (textModel.html !== null)
 				html = textModel.html;
 
-            setupSkin(overSprite, overTextField, "hover");
-			setupSkin(downSprite, downTextField, "active");
-			setupSkin(upSprite, upTextField);
+            setupSkins();
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
 		}
 	
+        protected function setupSkins():void
+        {
+            setupSkin(overSprite, overTextField, "hover");
+            setupSkin(downSprite, downTextField, "active");
+            setupSkin(upSprite, upTextField);            
+        }
+        
 		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
 		{
 			var sw:uint = DisplayObject(_strand).width;

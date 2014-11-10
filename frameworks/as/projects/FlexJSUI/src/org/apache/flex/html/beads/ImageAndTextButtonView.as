@@ -33,8 +33,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IStrandWithModel;
-    import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.html.beads.models.ImageAndTextModel;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-            textModel = IStrandWithModel(value).model as ITextModel;
+            textModel = IStrandWithModel(value).model as ImageAndTextModel;
             textModel.addEventListener("textChange", textChangeHandler);
             textModel.addEventListener("htmlChange", htmlChangeHandler);
 			
@@ -114,10 +114,8 @@ package org.apache.flex.html.beads
 		private var overSprite:Sprite;
 		private var shape:Shape;
         
-        private var textModel:ITextModel;
+        private var textModel:ImageAndTextModel;
 		
-        private var _image:String;
-        
         /**
          *  The URL of an icon to use in the button
          *  
@@ -128,17 +126,9 @@ package org.apache.flex.html.beads
          */
         public function get image():String
         {
-            return _image;
+            return textModel.image;
         }
-        
-        /**
-         *  @private
-         */
-        public function set image(value:String):void
-        {
-            _image = value;
-        }
-        
+                
 		/**
 		 * @private
 		 */
