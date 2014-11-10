@@ -49,10 +49,10 @@ org.apache.flex.utils.PointUtils.globalToLocal =
   do {
     x -= element.offsetLeft;
     y -= element.offsetTop;
-	element = element.offsetParent;
+    element = element.offsetParent;
   }
   while (element);
-  return new Point(x,y);
+  return new Point(x, y);
 };
 
 
@@ -70,8 +70,8 @@ org.apache.flex.utils.PointUtils.localToGlobal =
   do {
     x += element.offsetLeft;
     y += element.offsetTop;
-	element = element.offsetParent;
+    element = element.offsetParent;
   }
   while (element);
-  return new Point(x,y);
+  return new Point(x, y);
 };

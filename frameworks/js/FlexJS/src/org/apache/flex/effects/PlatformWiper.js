@@ -21,13 +21,13 @@ goog.require('org.apache.flex.geom.Rectangle');
 /**
  * @constructor
  */
-org.apache.flex.effects.PlatformWiper = function(delay, opt_repeatCount) {
+org.apache.flex.effects.PlatformWiper = function() {
 
   /**
-   * @protected
+   * @private
    * @type {Object}
    */
-  this.target_;
+  this.target_ = null;
 
 };
 
@@ -47,10 +47,10 @@ org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
  * Sets the target for the Wipe.
  * @param {Object} target The target for the Wipe effect.
  */
-org.apache.flex.effects.PlatformWiper.prototype.set_target = 
-	function(target) {
+org.apache.flex.effects.PlatformWiper.prototype.set_target =
+    function(target) {
   if (target == null)
-  	delete this.target_.style.clip;
+      delete this.target_.style.clip;
   this.target_ = target;
 };
 
@@ -60,8 +60,8 @@ org.apache.flex.effects.PlatformWiper.prototype.set_target =
  * Clips the Object.
  * @param {org.apache.flex.geom.Rectangle} rect The visible area.
  */
-org.apache.flex.effects.PlatformWiper.prototype.set_visibleRect = 
-	function(rect) {
+org.apache.flex.effects.PlatformWiper.prototype.set_visibleRect =
+    function(rect) {
   var styleString = 'rect(';
   styleString += rect.top.toString() + 'px,';
   styleString += rect.width.toString() + 'px,';

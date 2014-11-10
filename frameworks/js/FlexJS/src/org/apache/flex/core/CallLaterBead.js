@@ -28,7 +28,7 @@ org.apache.flex.core.CallLaterBead = function() {
   this.strand_ = null;
 
   /**
-   * @protected
+   * @private
    * @type {Array}
    */
   this.calls_ = null;
@@ -61,16 +61,16 @@ org.apache.flex.core.CallLaterBead.prototype.set_strand =
 /**
  * @protected
  * @param {Function} fn The fucntion to call later.
- * @param {Array=} args The optional array of arguments.
- * @param {Object} thisArg The optional 'this' object.
+ * @param {Array=} opt_args The optional array of arguments.
+ * @param {Object=} opt_thisArg The optional 'this' object.
  */
 org.apache.flex.core.CallLaterBead.prototype.callLater =
-    function(fn, args, thisArg) {
+    function(fn, opt_args, opt_thisArg) {
 
   if (this.calls_ == null)
-	this.calls_ = [ {thisArg: thisArg, fn: fn, args: args } ];
+    this.calls_ = [{thisArg: opt_thisArg, fn: fn, args: opt_args }];
   else
-    this.calls_.push({thisArg: thisArg, fn: fn, args: args });
+    this.calls_.push({thisArg: opt_thisArg, fn: fn, args: opt_args });
 
   window.setTimeout(callback, 0);
 };

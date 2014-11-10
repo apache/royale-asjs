@@ -71,9 +71,9 @@ org.apache.flex.events.DragEvent.prototype.dragSource = null;
  * @expose
  * @param {MouseEvent} event The mouse event to copy.
  */
-org.apache.flex.events.DragEvent.prototype.copyMouseEventProperties = 
-	function(event) {
-}
+org.apache.flex.events.DragEvent.prototype.copyMouseEventProperties =
+    function(event) {
+};
 
 
 /**

@@ -14,8 +14,8 @@
 
 goog.provide('org.apache.flex.html.HContainer');
 
-goog.require('org.apache.flex.html.Container');
 goog.require('org.apache.flex.core.IContainer');
+goog.require('org.apache.flex.html.Container');
 
 
 

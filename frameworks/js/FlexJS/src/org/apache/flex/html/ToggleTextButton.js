@@ -28,6 +28,7 @@ org.apache.flex.html.ToggleTextButton = function() {
 
 
   /**
+   * @private
    * @type {boolean}
    */
   this.selected_ = false;
@@ -64,6 +65,7 @@ org.apache.flex.html.ToggleTextButton.prototype.set_text =
   this.element.innerHTML = value;
 };
 
+
 /**
  * @expose
  * @return {boolean} The selected getter.
@@ -73,6 +75,7 @@ org.apache.flex.html.ToggleTextButton.prototype.get_selected =
   return this.selected_;
 };
 
+
 /**
  * @expose
  * @param {boolean} value The selected setter.
@@ -80,17 +83,17 @@ org.apache.flex.html.ToggleTextButton.prototype.get_selected =
 org.apache.flex.html.ToggleTextButton.prototype.set_selected =
     function(value) {
   if (this.selected_ != value) {
-	this.selected_ = value;
-	
-	var className = this._strand.className;
-	if (value) {
-		if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-			this._strand.className = className.substring(0, className.length - this.SELECTED.length);
-	}
-	else {
-		if (className.indexOf(this.SELECTED) == -1)
-			this._strand.className += this.SELECTED;
-	}
+    this.selected_ = value;
+
+    var className = this._strand.className;
+    if (value) {
+      if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
+        this._strand.className = className.substring(0, className.length - this.SELECTED.length);
+    }
+    else {
+      if (className.indexOf(this.SELECTED) == -1)
+        this._strand.className += this.SELECTED;
+    }
 
   }
 };
@@ -99,5 +102,5 @@ org.apache.flex.html.ToggleTextButton.prototype.set_selected =
 /**
  * @type {string} The selected setter.
  */
-org.apache.flex.html.ToggleTextButton.prototype.SELECTED = "_Selected";
+org.apache.flex.html.ToggleTextButton.prototype.SELECTED = '_Selected';
 

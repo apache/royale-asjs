@@ -24,12 +24,8 @@ goog.require('org.apache.flex.html.Button');
  */
 org.apache.flex.html.ImageAndTextButton = function() {
   org.apache.flex.html.ImageAndTextButton.base(this, 'constructor');
-  
-  /**
-   * @type {Object>}
-   */
-  this.img;
-  
+
+
 };
 goog.inherits(org.apache.flex.html.ImageAndTextButton,
     org.apache.flex.html.Button);
@@ -54,7 +50,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
   this.element.setAttribute('type', 'button');
   this.img = document.createElement('img');
   this.element.appendChild(img);
-  
+
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 

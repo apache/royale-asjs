@@ -15,8 +15,8 @@
 goog.provide('org.apache.flex.core.SimpleStatesImpl');
 
 goog.require('mx.states.AddItems');
-goog.require('mx.states.SetProperty');
 goog.require('mx.states.SetEventHandler');
+goog.require('mx.states.SetProperty');
 goog.require('mx.states.State');
 goog.require('org.apache.flex.core.IBead');
 goog.require('org.apache.flex.core.IStatesImpl');
@@ -183,14 +183,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
     o = arr[p];
     if (org.apache.flex.utils.Language.is(o, mx.states.AddItems)) {
       if (!o.items) {
-      	o.items = o.itemsDescriptor.items;
-        if (o.items == null)
-        {
-        	ai.items = 
-            	MXMLDataInterpreter.generateMXMLArray(o.document,
+        o.items = o.itemsDescriptor.items;
+        if (o.items == null) {
+          ai.items =
+              MXMLDataInterpreter.generateMXMLArray(o.document,
                                     null, ai.itemsDescriptor.descriptor);
-            o.itemsDescriptor.items = ai.items;
-         }
+          o.itemsDescriptor.items = ai.items;
+        }
       }
 
       for (q in o.items) {

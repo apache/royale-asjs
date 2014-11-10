@@ -18,6 +18,8 @@ goog.provide('org.apache.flex.geom.Point');
 
 /**
  * @constructor
+ * @param {number} x
+ * @param {number} y
  */
 org.apache.flex.geom.Point = function(x, y) {
 
@@ -51,8 +53,8 @@ org.apache.flex.geom.Point.prototype.FLEXJS_CLASS_INFO =
  * The x coordinate.
  * @return {number} value The x coordinate.
  */
-org.apache.flex.geom.Point.prototype.get_x = 
-	function() {
+org.apache.flex.geom.Point.prototype.get_x =
+    function() {
   return this.x;
 };
 
@@ -62,8 +64,8 @@ org.apache.flex.geom.Point.prototype.get_x =
  * The x coordinate.
  * @param {number} value The x coordinate.
  */
-org.apache.flex.geom.Point.prototype.set_x = 
-	function(value) {
+org.apache.flex.geom.Point.prototype.set_x =
+    function(value) {
   this.x = value;
 };
 
@@ -73,8 +75,8 @@ org.apache.flex.geom.Point.prototype.set_x =
  * The y coordinate.
  * @return {number} value The y coordinate.
  */
-org.apache.flex.geom.Point.prototype.get_y = 
-	function() {
+org.apache.flex.geom.Point.prototype.get_y =
+    function() {
   return this.y;
 };
 
@@ -84,7 +86,7 @@ org.apache.flex.geom.Point.prototype.get_y =
  * The y coordinate.
  * @param {number} value The y coordinate.
  */
-org.apache.flex.geom.Point.prototype.set_y = 
-	function(value) {
+org.apache.flex.geom.Point.prototype.set_y =
+    function(value) {
   this.y = value;
 };

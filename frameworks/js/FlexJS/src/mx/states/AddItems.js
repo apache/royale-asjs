@@ -46,7 +46,7 @@ mx.states.AddItems.prototype.setDocument = function(document, opt_id) {
   this.document = document;
   var data = document.mxmlsd[itemsDescriptorIndex];
   if (typeof(data.slice) == 'function') {
-  	itemsDescriptor = {};
+    itemsDescriptor = {};
     itemsDescriptor.descriptor = data;
     // replace the entry in the document so subsequent
     // addItems know it is shared
@@ -72,10 +72,10 @@ mx.states.AddItems.prototype.items = null;
 
 /**
  * @expose
- * @type {Array} itemsDescriptor The index into the array 
+ * @type {number} itemsDescriptor The index into the array
  *                               of itemDescriptors on the document
  */
-mx.states.AddItems.prototype.itemsDescriptorIndex;
+mx.states.AddItems.prototype.itemsDescriptorIndex = -1;
 
 
 /**
