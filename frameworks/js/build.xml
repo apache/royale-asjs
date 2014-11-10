@@ -83,7 +83,9 @@
         <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
     </target>
     
-    <target name="compile" depends="flexjsjx" description="Validates JS code" unless="no.lint">
+    <target name="compile" depends="flexjsjx, gjslint, jshint" description="Validates JS code" />
+    
+    <target name="gjslint" unless="no.lint">
         <echo>running gjslint</echo>
         <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
             <arg value="--strict" />
@@ -98,6 +100,9 @@
             <arg value="-r" />
             <arg value="FlexJS/src" />
         </exec>
+    </target>
+    
+    <target name="jshint" unless="no.lint">
         <echo>running jshint</echo>
         <exec executable="${jshint}" dir="${basedir}" failonerror="true">
             <arg value="--config" />
