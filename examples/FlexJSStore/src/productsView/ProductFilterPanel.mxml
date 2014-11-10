@@ -200,18 +200,13 @@ limitations under the License.
 
     <basic:Spacer height="8"/>
     
-    <basic:TextButton id="compareButton" className="glass" 
+    <basic:ImageAndTextButton id="compareButton" className="glass" 
                   click.showingThumbnails="attemptCompare()"
                   click.showingComparison="dispatchFilter()"            
                   text.showingComparison="Back to thumbnail view"
                   text.showingThumbnails="Compare Items"
-                  >
-        <basic:beads>
-            <basic:ImageAndTextButtonView
-                image.showingThumbnails="assets/icon_compare.png"
-                image.showingComparison="assets/icon_tiles.png" />
-        </basic:beads>
-    </basic:TextButton>
+                  image.showingThumbnails="assets/icon_compare.png"
+                  image.showingComparison="assets/icon_tiles.png" />
     
     <basic:states>
        <mx:State name="showingThumbnails" />

@@ -178,11 +178,7 @@ limitations under the License.
         <basic:Label id="compHigh1" text="Highlight: {product.highlight1}" includeIn="compare"/>
         <basic:Label id="compHigh2" text="Highlight: {product.highlight2}" includeIn="compare"/>
         <basic:Label text="Description:" includeIn="compare"/>
-        <basic:Label id="compDesc" text="{product.description}" width="100%" includeIn="compare">
-            <basic:beads>
-                <basic:MultilineTextFieldView />
-            </basic:beads>
-        </basic:Label>
+        <basic:MultilineLabel id="compDesc" text="{product.description}" width="100%" includeIn="compare"/>
     </basic:VContainer>
 
 
