@@ -43,6 +43,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get className():String;
+        function set className(value:String):void;
         
         /**
          *  Get the object containing styles
