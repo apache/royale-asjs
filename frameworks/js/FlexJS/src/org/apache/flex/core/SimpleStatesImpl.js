@@ -81,8 +81,12 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
     function(event) {
+	/**
+	 *  @type {Object}
+	**/
+    var host = this.strand_;
     this.dispatchEvent(new org.apache.flex.events.ValueChangeEvent('currentStateChanged', null,
-      this.strand_.get_currentState()));
+      host.get_currentState()));
   };
 
 
@@ -185,10 +189,10 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
       if (!o.items) {
         o.items = o.itemsDescriptor.items;
         if (o.items == null) {
-          ai.items =
-              MXMLDataInterpreter.generateMXMLArray(o.document,
-                                    null, ai.itemsDescriptor.descriptor);
-          o.itemsDescriptor.items = ai.items;
+          o.items =
+              org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(o.document,
+                                    null, o.itemsDescriptor.descriptor);
+          o.itemsDescriptor.items = o.items;
         }
       }
 

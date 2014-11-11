@@ -44,6 +44,13 @@ org.apache.flex.core.ContainerBase.prototype.mxmlDescriptor = null;
 
 
 /**
+ * @expose
+ * @type {Array}
+ */
+org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
