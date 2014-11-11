@@ -81,9 +81,9 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
  */
 org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
     function(event) {
-	/**
-	 *  @type {Object}
-	**/
+    /**
+     *  @type {Object}
+    **/
     var host = this.strand_;
     this.dispatchEvent(new org.apache.flex.events.ValueChangeEvent('currentStateChanged', null,
       host.get_currentState()));
