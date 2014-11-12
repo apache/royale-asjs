@@ -61,13 +61,13 @@ package org.apache.flex.html
 		 */
 		override public function addedToParent():void
 		{
+            var klass:* = ValuesManager.valuesImpl.getValue(this,"iFormatBead");
+            var bead:IBead = new klass() as IBead;
+            if (bead) {
+                addBead(bead);
+            }
+            
 			super.addedToParent();
-			
-			var klass:* = ValuesManager.valuesImpl.getValue(this,"iFormatBead");
-			var bead:IBead = new klass() as IBead;
-			if (bead) {
-				addBead(bead);
-			}
 		}
 		
 		/**

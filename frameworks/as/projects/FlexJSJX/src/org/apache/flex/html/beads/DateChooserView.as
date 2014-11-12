@@ -150,6 +150,8 @@ package org.apache.flex.html.beads
 			dayContainer = new Container();
 			var tileLayout:TileLayout = new TileLayout();
 			dayContainer.addBead(tileLayout);
+            UIBase(_strand).addElement(dayContainer, false);
+            
 			tileLayout.numColumns = 7;
 			dayContainer.x = 0;
 			dayContainer.y = monthLabel.y + monthLabel.height + 5;
@@ -165,7 +167,7 @@ package org.apache.flex.html.beads
 				var dayName:DateChooserButton = new DateChooserButton();
 				dayName.text = model.dayNames[i];
 				dayName.dayOfMonth = 0;
-				dayContainer.addElement(dayName);
+				dayContainer.addElement(dayName, false);
 			}
 			
 			_dayButtons = new Array();
@@ -173,11 +175,9 @@ package org.apache.flex.html.beads
 			for(i=0; i < 42; i++) {
 				var date:DateChooserButton = new DateChooserButton();
 				date.text = String(i+1);
-				dayContainer.addElement(date);
+				dayContainer.addElement(date, false);
 				dayButtons.push(date);
 			}
-			
-			UIBase(_strand).addElement(dayContainer);
 			
 			IEventDispatcher(dayContainer).dispatchEvent( new Event("itemsCreated") );			
 			IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );			

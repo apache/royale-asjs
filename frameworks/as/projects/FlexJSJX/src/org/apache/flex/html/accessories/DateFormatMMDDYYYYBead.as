@@ -22,6 +22,7 @@ package org.apache.flex.html.accessories
 	import org.apache.flex.core.IDateChooserModel;
 	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStrandWithModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.html.TextInput;
@@ -30,6 +31,8 @@ package org.apache.flex.html.accessories
 	/**
 	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
 	 *  
+     *  @flexjsignoreimport org.apache.flex.core.IStrandWithModel
+     * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -113,6 +116,8 @@ package org.apache.flex.html.accessories
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
+         *  @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
+         * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -122,16 +127,18 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 			
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
 			model.addEventListener("selectedDateChanged",handleTextChange);
 		}
 		
 		/**
 		 * @private
+         * 
+         * @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
 		 */
 		private function handleTextChange(event:Event):void
 		{
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
 			/*var view:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			var input:TextInput = view.textInput;*/
 			
