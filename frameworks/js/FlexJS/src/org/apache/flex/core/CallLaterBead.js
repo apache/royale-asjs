@@ -59,7 +59,6 @@ org.apache.flex.core.CallLaterBead.prototype.set_strand =
 
 
 /**
- * @protected
  * @param {Function} fn The fucntion to call later.
  * @param {Array=} opt_args The optional array of arguments.
  * @param {Object=} opt_thisArg The optional 'this' object.
