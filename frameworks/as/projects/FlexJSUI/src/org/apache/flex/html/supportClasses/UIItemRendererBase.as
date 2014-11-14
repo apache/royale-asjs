@@ -24,7 +24,9 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	
-	/**
+    [DefaultProperty("mxmlContent")]
+
+    /**
 	 *  The UIItemRendererBase class is the base class for all itemRenderers. An itemRenderer is used to
 	 *  display a single datum within a collection of data. Components such as a List use itemRenderers to 
 	 *  show their dataProviders.
@@ -89,6 +91,16 @@ package org.apache.flex.html.supportClasses
 			_itemRendererParent = value;
 		}
 		
+        /**
+         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var mxmlContent:Array;
+        
 		/**
 		 * @private
 		 */
