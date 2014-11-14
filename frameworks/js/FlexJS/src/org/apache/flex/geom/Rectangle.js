@@ -25,28 +25,12 @@ goog.provide('org.apache.flex.geom.Rectangle');
  */
 org.apache.flex.geom.Rectangle = function(left, top, width, height) {
 
-  /**
-   * @protected
-   * @type {number}
-   */
   this.left = left;
 
-  /**
-   * @protected
-   * @type {number}
-   */
   this.top = top;
 
-  /**
-   * @protected
-   * @type {number}
-   */
   this.width = width;
 
-  /**
-   * @protected
-   * @type {number}
-   */
   this.height = height;
 
 };
@@ -65,88 +49,30 @@ org.apache.flex.geom.Rectangle.prototype.FLEXJS_CLASS_INFO =
 /**
  * @expose
  * The left coordinate.
- * @return {number} value The left coordinate.
+ * @type {number} value The left coordinate.
  */
-org.apache.flex.geom.Rectangle.prototype.get_left =
-    function() {
-  return this.left;
-};
-
-
-/**
- * @expose
- * The left coordinate.
- * @param {number} value The left coordinate.
- */
-org.apache.flex.geom.Rectangle.prototype.set_left =
-    function(value) {
-  this.left = value;
-};
+org.apache.flex.geom.Rectangle.prototype.left = 0;
 
 
 /**
  * @expose
  * The top coordinate.
- * @return {number} value The top coordinate.
+ * @type {number} value The top coordinate.
  */
-org.apache.flex.geom.Rectangle.prototype.get_top =
-    function() {
-  return this.top;
-};
-
-
-/**
- * @expose
- * The top coordinate.
- * @param {number} value The top coordinate.
- */
-org.apache.flex.geom.Rectangle.prototype.set_top =
-    function(value) {
-  this.top = value;
-};
+org.apache.flex.geom.Rectangle.prototype.top = 0;
 
 
 /**
  * @expose
  * The width coordinate.
- * @return {number} value The width coordinate.
+ * @type {number} value The width coordinate.
  */
-org.apache.flex.geom.Rectangle.prototype.get_width =
-    function() {
-  return this.width;
-};
-
-
-/**
- * @expose
- * The width coordinate.
- * @param {number} value The width coordinate.
- */
-org.apache.flex.geom.Rectangle.prototype.set_width =
-    function(value) {
-  this.width = value;
-};
+org.apache.flex.geom.Rectangle.prototype.width = 0;
 
 
 /**
  * @expose
  * The height coordinate.
- * @return {number} value The height coordinate.
+ * @type {number} value The height coordinate.
  */
-org.apache.flex.geom.Rectangle.prototype.get_height =
-    function() {
-  return this.height;
-};
-
-
-/**
- * @expose
- * The height coordinate.
- * @param {number} value The height coordinate.
- */
-org.apache.flex.geom.Rectangle.prototype.set_height =
-    function(value) {
-  this.height = value;
-};
-
-
+org.apache.flex.geom.Rectangle.prototype.height = 9;
