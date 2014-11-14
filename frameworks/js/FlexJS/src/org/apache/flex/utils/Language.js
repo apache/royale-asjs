@@ -183,3 +183,63 @@ org.apache.flex.utils.Language.trace = function(opt_value) {
 org.apache.flex.utils.Language.uint = function(value) {
   return value >>> 0;
 };
+
+
+/**
+ * preincrement handles --foo
+ *
+ * @expose
+ * @param {Object} obj The object with the getter/setter.
+ * @param {string} prop The name of a property.
+ * @return {number}
+ */
+org.apache.flex.utils.Language.preincrement = function(obj, prop) {
+  var value = obj["get_" + prop]() + 1;
+  obj["set_" + prop](value);
+  return value;
+};
+
+
+/**
+ * predecrement handles ++foo
+ *
+ * @expose
+ * @param {Object} obj The object with the getter/setter.
+ * @param {string} prop The name of a property.
+ * @return {number}
+ */
+org.apache.flex.utils.Language.predecrement = function(obj, prop) {
+  var value = obj["get_" + prop]() - 1;
+  obj["set_" + prop](value);
+  return value;
+};
+
+
+/**
+ * postincrement handles foo++
+ *
+ * @expose
+ * @param {Object} obj The object with the getter/setter.
+ * @param {string} prop The name of a property.
+ * @return {number}
+ */
+org.apache.flex.utils.Language.postincrement = function(obj, prop) {
+  var value = obj["get_" + prop]();
+  obj["set_" + prop](value + 1);
+  return value;
+};
+
+
+/**
+ * postdecrement handles foo++
+ *
+ * @expose
+ * @param {Object} obj The object with the getter/setter.
+ * @param {string} prop The name of a property.
+ * @return {number}
+ */
+org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
+  var value = obj["get_" + prop]();
+  obj["set_" + prop](value + 1);
+  return value;
+};
