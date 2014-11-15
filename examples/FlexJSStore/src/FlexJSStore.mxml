@@ -158,7 +158,7 @@ limitations under the License.
                 if (stateChain.length)
                     initialView.currentState = stateChain[0];
                 else
-                    stateChain == null;
+                    stateChain = null;
             }
 		]]>
 	</fx:Script>
