@@ -194,8 +194,8 @@ org.apache.flex.utils.Language.uint = function(value) {
  * @return {number}
  */
 org.apache.flex.utils.Language.preincrement = function(obj, prop) {
-  var value = obj["get_" + prop]() + 1;
-  obj["set_" + prop](value);
+  var value = obj['get_' + prop]() + 1;
+  obj['set_' + prop](value);
   return value;
 };
 
@@ -209,8 +209,8 @@ org.apache.flex.utils.Language.preincrement = function(obj, prop) {
  * @return {number}
  */
 org.apache.flex.utils.Language.predecrement = function(obj, prop) {
-  var value = obj["get_" + prop]() - 1;
-  obj["set_" + prop](value);
+  var value = obj['get_' + prop]() - 1;
+  obj['set_' + prop](value);
   return value;
 };
 
@@ -224,8 +224,8 @@ org.apache.flex.utils.Language.predecrement = function(obj, prop) {
  * @return {number}
  */
 org.apache.flex.utils.Language.postincrement = function(obj, prop) {
-  var value = obj["get_" + prop]();
-  obj["set_" + prop](value + 1);
+  var value = obj['get_' + prop]();
+  obj['set_' + prop](value + 1);
   return value;
 };
 
@@ -239,7 +239,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
  * @return {number}
  */
 org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
-  var value = obj["get_" + prop]();
-  obj["set_" + prop](value + 1);
+  var value = obj['get_' + prop]();
+  obj['set_' + prop](value + 1);
   return value;
 };

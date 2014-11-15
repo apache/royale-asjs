@@ -29,49 +29,48 @@ org.apache.flex.events.MouseEvent = function() {
 };
 goog.inherits(org.apache.flex.events.MouseEvent,
     window.MouseEvent);
-	
-	
-/**
- * @type {string}
- */
-org.apache.flex.events.MouseEvent.ROLL_OVER = "rollOver";
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.ROLL_OUT = "rollOout";
+org.apache.flex.events.MouseEvent.ROLL_OVER = 'rollOver';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OVER = "mouseOver";
+org.apache.flex.events.MouseEvent.ROLL_OUT = 'rollOout';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OUT = "mouseOut";
+org.apache.flex.events.MouseEvent.MOUSE_OVER = 'mouseOver';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_UP = "mouseUp";
+org.apache.flex.events.MouseEvent.MOUSE_OUT = 'mouseOut';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_DOWN = "mouseDown";
+org.apache.flex.events.MouseEvent.MOUSE_UP = 'mouseUp';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_MOVE = "mouseMove";
+org.apache.flex.events.MouseEvent.MOUSE_DOWN = 'mouseDown';
 
+
+/**
+ * @type {string}
+ */
+org.apache.flex.events.MouseEvent.MOUSE_MOVE = 'mouseMove';
 
 
 /**
