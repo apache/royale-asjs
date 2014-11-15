@@ -20,8 +20,7 @@ goog.require('org.apache.flex.html.Label');
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IContainer}
- * @extends {org.apache.flex.core.ToolTipBase}
+ * @extends {org.apache.flex.html.Label}
  */
 org.apache.flex.html.ToolTip = function() {
   org.apache.flex.html.ToolTip.base(this, 'constructor');

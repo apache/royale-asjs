@@ -71,7 +71,7 @@ org.apache.flex.core.CallLaterBead.prototype.callLater =
   else
     this.calls_.push({thisArg: opt_thisArg, fn: fn, args: opt_args });
 
-  window.setTimeout(callback, 0);
+  window.setTimeout(this.callback, 0);
 };
 
 

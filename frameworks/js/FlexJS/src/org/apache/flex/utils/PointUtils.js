@@ -52,7 +52,7 @@ org.apache.flex.utils.PointUtils.globalToLocal =
     element = element.offsetParent;
   }
   while (element);
-  return new Point(x, y);
+  return new org.apache.flex.geom.Point(x, y);
 };
 
 
@@ -73,5 +73,5 @@ org.apache.flex.utils.PointUtils.localToGlobal =
     element = element.offsetParent;
   }
   while (element);
-  return new Point(x, y);
+  return new org.apache.flex.geom.Point(x, y);
 };

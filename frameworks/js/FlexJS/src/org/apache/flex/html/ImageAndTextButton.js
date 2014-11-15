@@ -49,7 +49,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
   this.img = document.createElement('img');
-  this.element.appendChild(img);
+  this.element.appendChild(this.img);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -84,7 +84,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.set_text =
 
 /**
  * @expose
- * @return {string} The text getter.
+ * @return {string} The image url.
  */
 org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
   return this.img.src;
@@ -93,9 +93,9 @@ org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
 
 /**
  * @expose
- * @param {string} value The text setter.
+ * @param {string} value The image url.
  */
-org.apache.flex.html.ImageAndTextButton.prototype.set_text =
+org.apache.flex.html.ImageAndTextButton.prototype.set_image =
     function(value) {
   this.img.src = value;
 };

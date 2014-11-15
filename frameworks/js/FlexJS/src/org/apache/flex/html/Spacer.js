@@ -38,7 +38,7 @@ goog.inherits(org.apache.flex.html.Spacer,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Label.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Spacer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Spacer',
                 qName: 'org.apache.flex.html.Spacer' }] };
 

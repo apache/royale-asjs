@@ -38,7 +38,7 @@ goog.inherits(org.apache.flex.html.HRule,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Label.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.HRule.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HRule',
                 qName: 'org.apache.flex.html.HRule' }] };
 

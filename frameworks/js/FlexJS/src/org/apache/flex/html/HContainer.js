@@ -22,7 +22,7 @@ goog.require('org.apache.flex.html.Container');
 /**
  * @constructor
  * @implements {org.apache.flex.core.IContainer}
- * @extends {org.apache.flex.core.HContainerBase}
+ * @extends {org.apache.flex.html.Container}
  */
 org.apache.flex.html.HContainer = function() {
   org.apache.flex.html.HContainer.base(this, 'constructor');
