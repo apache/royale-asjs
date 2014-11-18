@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses.optimized
+package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.graphics.GraphicsContainer;

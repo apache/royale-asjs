@@ -19,16 +19,13 @@
 package org.apache.flex.charts.beads
 {
 	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.Path;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
@@ -172,16 +169,10 @@ package org.apache.flex.charts.beads
 			
 			var series:Array = IChart(strand).series;
 			
-			var xAxis:IHorizontalAxisBead;
-			if (strand.getBeadByType(IHorizontalAxisBead)) xAxis = strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
-			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
-			
-			var yAxisWidthOffset:Number = axisWidth;
-			var useHeight:Number = UIBase(strand).height-xAxisOffset;
-			var xpos:Number = yAxisWidthOffset;
+			var useHeight:Number = UIBase(axisGroup).height;
+			var useWidth:Number  = UIBase(axisGroup).width;
+			var xpos:Number = 0;
 			var ypos:Number = useHeight;
-			var originX:Number = yAxisWidthOffset;
-			var originY:Number = 0;
 			
 			// determine minimum and maximum values, if needed
 			if (isNaN(minValue)) {
@@ -206,30 +197,23 @@ package org.apache.flex.charts.beads
 			var tickSpacing:Number = useHeight/numTicks;
 			var tickValue:Number = minValue;
 			
-			// adjust ypos to the first tick position
-			ypos = useHeight;// - tickSpacing;
-			
 			// place the labels below the axis enough to account for the tick marks
-			var labelY:Number = UIBase(strand).height + 8;
+			var labelY:Number = UIBase(axisGroup).height + 8;
 			
-			for(i=0; i < numTicks+1; i++) {				
-				var label:Label = new Label();
-				label.text = formatLabel(tickValue);
-				label.x = 0;
-				label.y = ypos - label.height/2;
-				UIBase(strand).addElement(label);
+			for(i=0; i < numTicks+1; i++) 
+			{				
+				addTickLabel(formatLabel(tickValue), 0, ypos, 0, tickSpacing);
 			
 				// add a tick mark, too.
-				//addTickMark(xpos - 5 - originX, ypos - originY, 5, 0);
-				addTickMark(0, ypos-originY, 5, 0);
+				addTickMark(useWidth-6, ypos, 5, 0);
 				
 				ypos -= tickSpacing;
 				tickValue += tickStep;
 			}
 			
 			// draw the axis and the tick marks
-			drawAxisPath(originX, originY, 0, useHeight);
-			drawTickPath(originX-5, originY);
+			drawAxisPath(useWidth-1, 0, 0, useHeight);
+			drawTickPath(useWidth-6, 0);
 			
 		}
 		

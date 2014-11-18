@@ -33,6 +33,19 @@ package org.apache.flex.core.graphics
 	public class GraphicsContainer extends GraphicShape
 	{
 		/**
+		 *  Removes all of the drawn elements of the container.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0.3
+		 */
+		public function removeAllElements():void
+		{
+			graphics.clear();
+		}
+		
+		/**
 		 *  Draw the rectangle.
 		 *  @param x The x position of the top-left corner of the rectangle.
 		 *  @param y The y position of the top-left corner.

@@ -16,27 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses.optimized
+package org.apache.flex.charts.optimized
 {
-	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.core.graphics.Path;
 	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.charts.supportClasses.ILineSegmentItemRenderer;
 	
 	/**
-	 *  The SVGBoxItemRenderer draws its graphics directly into a SVGChartDataGroup
-	 *  (GraphicsContainer).
+	 *  The SVGLineSegmentItemRenderer draws its graphics directly into a SVGChartDataGroup (a
+	 *  GraphicsContainer).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SVGBoxItemRenderer extends DataItemRenderer implements IChartItemRenderer
+	public class SVGLineSegmentItemRenderer extends DataItemRenderer implements ILineSegmentItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -46,7 +45,7 @@ package org.apache.flex.charts.supportClasses.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function SVGBoxItemRenderer()
+		public function SVGLineSegmentItemRenderer()
 		{
 			super();
 		}
@@ -70,74 +69,29 @@ package org.apache.flex.charts.supportClasses.optimized
 		{
 			_series = value;
 		}
-				
-		private var _yField:String = "y";
+		
+		private var _points:Array;
 		
 		/**
-		 *  The name of the field containing the value for the Y axis.
-		 *
+		 *  The points of the vertices. 
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get yField():String
+		public function get points():Array
 		{
-			return _yField;
+			return _points;
 		}
-		public function set yField(value:String):void
+		public function set points(value:Array):void
 		{
-			_yField = value;
-		}
-		
-		private var _xField:String = "x";
-		
-		/**
-		 *  The name of the field containing the value for the X axis.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get xField():String
-		{
-			return _xField;
-		}
-		public function set xField(value:String):void
-		{
-			_xField = value;
-		}
-		
-		private var _fill:IFill;
-		
-		/**
-		 *  The color used to fill the interior of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get fill():IFill
-		{
-			return _fill;
-		}
-		public function set fill(value:IFill):void
-		{
-			_fill = value;
+			_points = value;
+			drawLine();
 		}
 		
 		private var _stroke:IStroke;
 		
-		/**
-		 *  The outline of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
 		public function get stroke():IStroke
 		{
 			return _stroke;
@@ -145,6 +99,7 @@ package org.apache.flex.charts.supportClasses.optimized
 		public function set stroke(value:IStroke):void
 		{
 			_stroke = value;
+			drawLine();
 		}
 		
 		/**
@@ -158,49 +113,88 @@ package org.apache.flex.charts.supportClasses.optimized
 		override public function set data(value:Object):void
 		{
 			super.data = value;	
-			drawBar();
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.UIBase#width
+		 *  The name of the field containing the value for the Y axis. This is not implemented by this class.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function set width(value:Number):void
+		public function get yField():String
 		{
-			super.width = value;
-			drawBar();
+			return null;
+		}
+		public function set yField(value:String):void
+		{
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.UIBase#height
+		 *  The name of the field containing the value for the X axis. This is not implemented by this class.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function set height(value:Number):void
+		public function get xField():String
 		{
-			super.height = value;
-			drawBar();
+			return null;
+		}
+		public function set xField(value:String):void
+		{
+		}
+		
+		private var _fillColor:uint;
+		
+		/**
+		 *  The color used to fill the interior of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fillColor():uint
+		{
+			return _fillColor;
+		}
+		public function set fillColor(value:uint):void
+		{
+			_fillColor = value;
 		}
 		
 		/**
 		 *  @private
 		 */
-		protected function drawBar():void
-		{
-			if ((this.width > 0) && (this.height > 0))
-			{				
-				var hsdg:SVGChartDataGroup = this.itemRendererParent as SVGChartDataGroup;
+		protected function drawLine():void
+		{			
+			if (points != null)
+			{
+				var graphicsContainer:GraphicsContainer = this.itemRendererParent as GraphicsContainer;
 				
-				hsdg.fill = fill;
-				hsdg.stroke = stroke;
-				hsdg.drawRect(this.x, this.y, this.width, this.height);
+				if (stroke == null) {
+					var solidColorStroke:SolidColorStroke = new SolidColorStroke();
+					solidColorStroke.color = 0x000088;
+					solidColorStroke.weight = 1;
+					solidColorStroke.alpha = 1;
+					_stroke = solidColorStroke;
+				}
+				
+				graphicsContainer.stroke = stroke;
+				graphicsContainer.fill = null;
+				
+				var pathString:String = "";
+				
+				for (var i:int=0; i < points.length; i++) {
+					var point:Object = points[i];
+					if (i == 0) pathString += "M "+point.x+" "+point.y+" ";
+					else pathString += "L "+point.x+" "+point.y+" ";
+				}
+				
+				graphicsContainer.drawPath(pathString);
 			}
 		}
 	}

@@ -115,6 +115,10 @@ package org.apache.flex.charts.beads.layouts
 					end = start + (360.0 * obj.percent);
 					var arc:Number = 360.0 * obj.percent;
 					
+					child.x = 0;
+					child.y = 0;
+					child.width = useWidth;
+					child.height = useHeight;
 					child.centerX = centerX;
 					child.centerY = centerY;
 					child.startAngle = start*Math.PI/180;

@@ -19,14 +19,33 @@
 package org.apache.flex.charts.beads
 {
 	import org.apache.flex.charts.core.IAxisBead;
+	import org.apache.flex.charts.core.IAxisGroup;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
+	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.core.graphics.SolidColorStroke;
 	
+	/**
+	 * The AxisBaseBead is the base class for the chart axis beads.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class AxisBaseBead implements IAxisBead
 	{
+		/**
+		 * Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function AxisBaseBead()
 		{
 			// create default dark stroke for the axis line and tick marks
@@ -39,9 +58,26 @@ package org.apache.flex.charts.beads
 			
 			axisStroke = blackLine;
 			tickStroke = blackLine;
+			
+			var blackFill:SolidColor = new SolidColor();
+			blackFill.color = 0x111111;
+			blackFill.alpha = 1.0;
+			
+			tickFill = blackFill;
 		}
 		
+		private var _strand:IStrand;
+		private var wrapper:GraphicsContainer;
+		private var _axisGroup:IAxisGroup;
+	
 		private var _placement:String = "unset";
+		private var _axisStroke:IStroke;
+		private var _tickStroke:IStroke;
+		private var _tickFill:IFill;
+		
+		private var tickPathString:String = null;
+		private var tickMaxWidth:Number = 0;
+		private var tickMaxHeight:Number = 0;
 		
 		/**
 		 * The placement of the axis with respect to the chart area. Valid
@@ -62,8 +98,6 @@ package org.apache.flex.charts.beads
 			_placement = value;
 		}
 		
-		private var _axisStroke:IStroke;
-		
 		/**
 		 * The stroke used to draw the line for the axis.
 		 *  
@@ -80,8 +114,6 @@ package org.apache.flex.charts.beads
 		{
 			_axisStroke = value;
 		}
-		
-		private var _tickStroke:IStroke;
 		
 		/**
 		 * The stroke used to draw each tick mark.
@@ -100,7 +132,41 @@ package org.apache.flex.charts.beads
 			_tickStroke = value;
 		}
 		
-		private var _strand:IStrand;
+		/**
+		 * The stroke used to draw each tick label.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get tickFill():IFill
+		{
+			return _tickFill;
+		}
+		public function set tickFill(value:IFill):void
+		{
+			_tickFill = value;
+		}
+		
+		/**
+		 * The container space for lines, tick marks, etc.
+		 */
+		public function get axisGroup():IAxisGroup
+		{
+			return _axisGroup;
+		}
+		public function set axisGroup(value:IAxisGroup):void
+		{
+			_axisGroup = value;
+			
+			wrapper = new GraphicsContainer();
+			UIBase(_axisGroup).addElement(wrapper);
+			wrapper.x = 0;
+			wrapper.y = 0;
+			wrapper.width = UIBase(_axisGroup).width;
+			wrapper.height = UIBase(_axisGroup).height;
+		}
 		
 		/**
 		 * @copy org.apache.flex.core.IBead#strand
@@ -119,26 +185,28 @@ package org.apache.flex.charts.beads
 			return _strand;
 		}
 		
-		protected function drawAxisPath(originX:Number, originY:Number, xoffset:Number, yoffset:Number):Path
+		/**
+		 * @private
+		 */
+		protected function drawAxisPath(originX:Number, originY:Number, xoffset:Number, yoffset:Number):void
 		{
-			var axisPath:Path = new Path();
-			// set (x,y) before adding as element to set the location correctly
-			axisPath.x = originX;
-			axisPath.y = originY;
-			axisPath.width = 1+xoffset;
-			axisPath.height = 1+yoffset;
-			UIBase(strand).addElement(axisPath);
-			axisPath.stroke = axisStroke;
-			var pathLine:String = "M 0 0 l "+String(xoffset)+" "+String(yoffset);
-			axisPath.drawPath(0, 0, pathLine);
-			
-			return axisPath;
+			axisGroup.drawAxisLine(originX, originY, xoffset, yoffset, axisStroke);
 		}
 		
-		private var tickPathString:String = null;
-		private var tickMaxWidth:Number = 0;
-		private var tickMaxHeight:Number = 0;
+		/**
+		 * @private
+		 */
+		protected function addTickLabel(text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number):void
+		{
+			var isHorizontal:Boolean = (placement == "bottom") || (placement == "top");
+			
+			if (isHorizontal) axisGroup.drawHorizontalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+			else axisGroup.drawVerticalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+		}
 		
+		/**
+		 * @private
+		 */
 		protected function addTickMark(xpos:Number, ypos:Number, xoffset:Number, yoffset:Number):void
 		{
 			if (tickPathString == null) tickPathString = "";
@@ -149,18 +217,12 @@ package org.apache.flex.charts.beads
 			tickMaxHeight= Math.max(tickMaxHeight, ypos+yoffset);
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function drawTickPath(originX:Number, originY:Number):void
 		{
-			var tickPath:Path = new Path();
-			// set (x,y) before adding as element to set the location correctly
-			tickPath.x = originX;
-			tickPath.y = originY;
-			tickPath.width = tickMaxWidth;
-			tickPath.height = tickMaxHeight;
-			UIBase(strand).addElement(tickPath);
-			tickPath.stroke = tickStroke;
-			tickPath.drawPath( 0, 0, tickPathString );
-			
+			axisGroup.drawTickMarks(originX, originY, tickMaxWidth, tickMaxHeight, tickPathString, tickStroke);
 			tickPathString = null;
 		}
 	}

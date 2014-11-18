@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses.optimized
+package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IChartItemRenderer;
@@ -106,8 +106,9 @@ package org.apache.flex.charts.supportClasses.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function removeAllElements():void
+		override public function removeAllElements():void
 		{
+			super.removeAllElements();
 			_children = new Array();
 		}
 		

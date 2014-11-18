@@ -33,6 +33,8 @@ internal class FlexJSUIClasses
 	
 	import org.apache.flex.charts.core.CartesianChart; CartesianChart;
 	import org.apache.flex.charts.core.ChartBase; ChartBase;
+	import org.apache.flex.charts.core.IAxisBead; IAxisBead;
+	import org.apache.flex.charts.core.IAxisGroup; IAxisGroup;
 	import org.apache.flex.charts.core.IChart; IChart;
 	import org.apache.flex.charts.core.ICartesianChartLayout; ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChartDataGroup; IChartDataGroup;
@@ -42,6 +44,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
 	import org.apache.flex.charts.core.IConnectedItemRenderer; IConnectedItemRenderer;
 	import org.apache.flex.charts.core.PolarChart; PolarChart;
+	import org.apache.flex.charts.supportClasses.ChartAxisGroup; ChartAxisGroup;
 	import org.apache.flex.charts.supportClasses.ChartDataGroup; ChartDataGroup;
 	import org.apache.flex.maps.google.Map; Map;
 	

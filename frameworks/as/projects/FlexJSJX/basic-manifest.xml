@@ -52,10 +52,10 @@
     <component id="LineChartLinearVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout" />
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 
-    <component id="SVGChartDataGroup" class="org.apache.flex.charts.supportClasses.optimized.SVGChartDataGroup"/>
-    <component id="SVGBoxItemRenderer" class="org.apache.flex.charts.supportClasses.optimized.SVGBoxItemRenderer"/>
-    <component id="SVGWedgeItemRenderer" class="org.apache.flex.charts.supportClasses.optimized.SVGWedgeItemRenderer"/>
-    <component id="SVGLineSegmentItemRenderer" class="org.apache.flex.charts.supportClasses.optimized.SVGLineSegmentItemRenderer"/>
+    <component id="SVGChartDataGroup" class="org.apache.flex.charts.optimized.SVGChartDataGroup"/>
+    <component id="SVGBoxItemRenderer" class="org.apache.flex.charts.optimized.SVGBoxItemRenderer"/>
+    <component id="SVGWedgeItemRenderer" class="org.apache.flex.charts.optimized.SVGWedgeItemRenderer"/>
+    <component id="SVGLineSegmentItemRenderer" class="org.apache.flex.charts.optimized.SVGLineSegmentItemRenderer"/>
 
     <component id="DragMouseController" class="org.apache.flex.html.beads.controllers.DragMouseController" />
     <component id="DropMouseController" class="org.apache.flex.html.beads.controllers.DropMouseController" />

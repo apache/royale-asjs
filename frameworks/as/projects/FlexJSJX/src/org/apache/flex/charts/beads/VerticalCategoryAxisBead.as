@@ -19,16 +19,13 @@
 package org.apache.flex.charts.beads
 {
 	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.Path;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
@@ -148,38 +145,28 @@ package org.apache.flex.charts.beads
 			
 			var series:Array = IChart(strand).series;
 			
-			var xAxis:IHorizontalAxisBead;
-			if (strand.getBeadByType(IHorizontalAxisBead)) xAxis = strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
-			var xAxisOffset:Number = xAxis == null ? 0 : xAxis.axisHeight;
+			var useHeight:Number = UIBase(axisGroup).height;
+			var useWidth:Number  = UIBase(axisGroup).width;
+			var itemHeight:Number = (useHeight - gap*(items.length-1)) / items.length;
+			var xpos:Number = 0;
+			var ypos:Number = useHeight - itemHeight/2;
 			
-			var yAxisWidthOffset:Number = axisWidth;
-			var useHeight:Number = (UIBase(strand).height-xAxisOffset) / items.length;
-			var seriesHeight:Number = useHeight/series.length;
-			var xpos:Number = yAxisWidthOffset;
-			var ypos:Number = UIBase(strand).height - xAxisOffset - seriesHeight - gap;
-			var originX:Number = yAxisWidthOffset;
-			var originY:Number = 0;
+			var numTicks:Number = items.length;
+			var tickSpacing:Number = itemHeight + gap;
 			
-			// place the labels left of the axis enough to account for the tick marks
-			var labelX:Number = 0;
-			
-			for(var i:int=0; i < items.length; i++) {				
-				var label:Label = new Label();
-				label.text = items[i][categoryField];
-				label.x = 0;
-				label.y = (ypos + useHeight/2) - label.height/2;
-				label.width = yAxisWidthOffset;
-				UIBase(strand).addElement(label);
-			
-				// add a tick mark
-				addTickMark(0, ypos + useHeight/2 - originY, 5, 0);
+			for(var i:int=0; i < items.length; i++) 
+			{				
+				addTickLabel(items[i][categoryField], 0, ypos, 0, itemHeight);
 				
-				ypos -= useHeight;
+				// add a tick mark, too.
+				addTickMark(useWidth-6, ypos, 5, 0);
+				
+				ypos -= tickSpacing;
 			}
 
 			// draw the axis and tick marks
-			drawAxisPath(originX, originY, 0, UIBase(strand).height - xAxisOffset);
-			drawTickPath(originX-5, originY);
+			drawAxisPath(useWidth-1, 0, 0, useHeight);
+			drawTickPath(useWidth-6, 0);
 		}
 	}
 }

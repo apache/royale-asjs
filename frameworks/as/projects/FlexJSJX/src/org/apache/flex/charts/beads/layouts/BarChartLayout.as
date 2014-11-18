@@ -24,6 +24,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.BarSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -83,17 +84,14 @@ package org.apache.flex.charts.beads.layouts
 				return;
 			
 			var n:int = dp.length;
+			var useWidth:Number = UIBase(chartDataGroup).width;
+			var useHeight:Number = UIBase(chartDataGroup).height;
+			var itemHeight:Number =  (useHeight - gap*(dp.length-1))/dp.length;
+			var seriesHeight:Number = itemHeight/chart.series.length;
+			var ypos:Number = useHeight;
+			
 			var maxXValue:Number = 0;
 			var seriesMaxes:Array = [];
-			
-			var xAxisOffset:Number = horizontalAxisBead == null ? 0 : horizontalAxisBead.axisHeight;
-			var yAxisOffset:Number = verticalAxisBead == null ? 0 : verticalAxisBead.axisWidth;
-			
-			var useWidth:Number = chart.width - yAxisOffset;
-			var useHeight:Number = ((chart.height-xAxisOffset) / n) - gap;
-			var seriesHeight:Number = useHeight/chart.series.length;
-			var xpos:Number = 0;
-			var ypos:Number = chart.height - xAxisOffset - seriesHeight;
 			
 			for (var s:int = 0; s < chart.series.length; s++)
 			{
@@ -123,8 +121,8 @@ package org.apache.flex.charts.beads.layouts
 					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(bcs,i);
 					xValue = Number(data[bcs.xField]);
 					
-					child.x = yAxisOffset;
-					child.y = ypos;
+					child.x = 0;
+					child.y = ypos - seriesHeight;
 					child.width = xValue*seriesMaxes[s].scaleFactor;
 					child.height = seriesHeight;
 					ypos -= seriesHeight;

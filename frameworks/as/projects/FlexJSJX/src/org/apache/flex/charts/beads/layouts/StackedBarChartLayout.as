@@ -24,6 +24,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.BarSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -85,14 +86,12 @@ package org.apache.flex.charts.beads.layouts
 			var maxXValue:Number = 0;
 			var seriesMaxes:Array = [];
 			
-			var xAxisOffset:Number = horizontalAxisBead == null ? 0 : horizontalAxisBead.axisHeight;
-			var yAxisOffset:Number = verticalAxisBead == null ? 0 : verticalAxisBead.axisWidth;
-			
-			var useWidth:Number = chart.width - yAxisOffset;
-			var useHeight:Number = ((chart.height-xAxisOffset) / n) - gap;
-			var seriesHeight:Number = useHeight;
-			var xpos:Number = xAxisOffset;
-			var ypos:Number = chart.height - xAxisOffset - seriesHeight;
+			var useWidth:Number = UIBase(chartDataGroup).width;
+			var useHeight:Number = UIBase(chartDataGroup).height;
+			var itemHeight:Number = (useHeight - gap*(dp.length-1))/n;
+			var seriesHeight:Number = itemHeight;
+			var xpos:Number = 0;
+			var ypos:Number = useHeight;
 			
 			var barValues:Array = [];
 			var maxValue:Number = 0;
@@ -121,7 +120,8 @@ package org.apache.flex.charts.beads.layouts
 			for (i=0; i < n; i++)
 			{
 				data = dp[i];
-				xpos = yAxisOffset;
+				
+				xpos = 0;
 				
 				for (s=0; s < chart.series.length; s++)
 				{
@@ -132,13 +132,13 @@ package org.apache.flex.charts.beads.layouts
 					
 					child.x = xpos;
 					child.width = xValue*scaleFactor;
-					child.y = ypos;
+					child.y = ypos - seriesHeight;
 					child.height = seriesHeight;
 					
 					xpos += xValue*scaleFactor;
 				}
 				
-				ypos -= gap + seriesHeight;
+				ypos -= (itemHeight + gap);
 			}
 			
 			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));

@@ -18,41 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
-	
-	public interface IAxisBead extends IBead
+
+	/**
+	 * The IAxisGroup defines the interface for classes that provide drawing
+	 * space for chart axis objects, such as tick marks and lines.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public interface IAxisGroup
 	{
-		/**
-		 * The placement of the axis with respect to the chart area. Valid
-		 * values are: top, bottom (for IHorizontalAxisBeads), left, and right
-		 * (for IVerticalAxisBeads).
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get placement():String;
-		function set placement(value:String):void;
+		function removeAllElements():void;
 		
-		/**
-		 * The stroke used for the axis line
-		 */
-		function get axisStroke():IStroke;
-		function set axisStroke(value:IStroke):void;
-		
-		/**
-		 * The stroked used for the tick marks
-		 */
-		function get tickStroke():IStroke;
-		function set tickStroke(value:IStroke):void;
-		
-		/**
-		 * The group space to use as the drawing area for the axis parts
-		 * (lines, ticks, labels, etc.).
-		 */
-		function get axisGroup():IAxisGroup;
-		function set axisGroup(value:IAxisGroup):void;
+		function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):void;
+		function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):void;
+		function drawTickMarks( originX:Number, originY:Number, width:Number, height:Number, marks:String, tickStroke:IStroke ):void;
+		function drawAxisLine( originX:Number, originY:Number, width:Number, height:Number, lineStroke:IStroke ):void;
 	}
 }

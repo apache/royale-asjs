@@ -20,15 +20,12 @@ package org.apache.flex.charts.beads
 {
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.Path;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	/**
@@ -186,17 +183,9 @@ package org.apache.flex.charts.beads
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
 			
+			var xpos:Number = 0;
+			var useWidth:Number = UIBase(axisGroup).width;
 			var series:Array = IChart(strand).series;
-			
-			var yAxis:IVerticalAxisBead;
-			if (strand.getBeadByType(IVerticalAxisBead)) yAxis = strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
-			var yAxisOffset:Number = yAxis == null ? 0 : yAxis.axisWidth;
-			
-			var xpos:Number = yAxisOffset;
-			var xAxisHeightOffset:Number = axisHeight;
-			var useWidth:Number = UIBase(strand).width - yAxisOffset;
-			var originX:Number = xpos;
-			var originY:Number = UIBase(strand).height - xAxisHeightOffset;
 			
 			// determine minimum and maximum values, if needed
 			if (isNaN(minValue)) {
@@ -222,25 +211,22 @@ package org.apache.flex.charts.beads
 			var tickValue:Number = minValue;
 			
 			// place the labels below the axis enough to account for the tick marks
-			var labelY:Number = UIBase(strand).height + 8;
+			var labelY:Number = 7;
 			
-			for(i=0; i < numTicks+1; i++) {				
-				var label:Label = new Label();
-				label.text = formatLabel(tickValue);
-				label.x = xpos - label.width/2;
-				label.y = labelY - xAxisHeightOffset;
-				UIBase(strand).addElement(label);
+			for(i=0; i < numTicks+1; i++) 
+			{	
+				addTickLabel(formatLabel(tickValue), xpos, labelY, tickSpacing, 0);
 				
 				// add a tick mark, too				
-				addTickMark(xpos - originX, UIBase(strand).height - xAxisHeightOffset - originY, 0, 5);
+				addTickMark(xpos, 0, 0, 5);
 				
 				xpos += tickSpacing;
 				tickValue += tickStep;
 			}
 
 			// draw the axis and tick marks
-			drawAxisPath(originX, originY, useWidth, 0);
-			drawTickPath(originX, originY);
+			drawAxisPath(0, 0, useWidth, 0);
+			drawTickPath(0, 1);
 		}
 	}
 }

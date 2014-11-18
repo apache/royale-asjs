@@ -23,7 +23,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -73,13 +73,10 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
-			var n:int = dp.length;			
-			var xAxisOffset:Number = horizontalAxisBead == null ? 0 : horizontalAxisBead.axisHeight;
-			var yAxisOffset:Number = verticalAxisBead == null ? 0 : verticalAxisBead.axisWidth;
-			
-			var xpos:Number = yAxisOffset;
-			var useWidth:Number = chart.width-yAxisOffset;;
-			var useHeight:Number = chart.height - xAxisOffset;
+			var n:int = dp.length;
+			var xpos:Number = 0;
+			var useWidth:Number = UIBase(chartDataGroup).width;
+			var useHeight:Number = UIBase(chartDataGroup).height;
 			var itemWidth:Number =  (useWidth - gap*(dp.length-1))/dp.length;
 			var seriesWidth:Number = itemWidth/chart.series.length;
 			

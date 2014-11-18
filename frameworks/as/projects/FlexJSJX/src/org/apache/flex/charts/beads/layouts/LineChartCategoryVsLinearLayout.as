@@ -25,6 +25,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.LineSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -54,12 +55,12 @@ package org.apache.flex.charts.beads.layouts
 				return;
 			
 			var n:int = dp.length;
-			var xAxisOffset:Number = horizontalAxisBead == null ? 0 : horizontalAxisBead.axisHeight;
-			var yAxisOffset:Number = verticalAxisBead == null ? 0 : verticalAxisBead.axisWidth;
+			var xAxisOffset:Number = 0;
+			var yAxisOffset:Number = 0;
 			
 			var xpos:Number = yAxisOffset;
-			var useWidth:Number = chart.width-yAxisOffset;;
-			var useHeight:Number = chart.height - xAxisOffset;
+			var useWidth:Number = UIBase(chartDataGroup).width-yAxisOffset;;
+			var useHeight:Number = UIBase(chartDataGroup).height - xAxisOffset;
 			var itemWidth:Number =  useWidth/dp.length;
 			
 			var maxYValue:Number = 0;
