@@ -50,11 +50,14 @@ org.apache.flex.core.graphics.Text.prototype.drawText = function(value, x, y) {
     var style = this.getStyleStr();
     var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('style', style);
-    text.innerHTML = value;
     text.setAttribute('x', String(x) + 'px');
     text.setAttribute('y', String(y) + 'px');
     this.setPosition(x, y, 0, 0);
+    var textNode = document.createTextNode(value);
+    text.appendChild(textNode);
     this.element.appendChild(text);
+
+    this.resize(x, y, text.getBBox());
   };
 
 

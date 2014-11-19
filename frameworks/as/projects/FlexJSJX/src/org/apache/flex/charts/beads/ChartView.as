@@ -64,14 +64,16 @@ package org.apache.flex.charts.beads
 			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			if (haxis && _horizontalAxisGroup == null) {
-				_horizontalAxisGroup = new (ValuesManager.valuesImpl.getValue(value, "iHorizontalAxisGroup")) as IAxisGroup;
+				var m1:Class = ValuesManager.valuesImpl.getValue(value, "iHorizontalAxisGroup");
+				_horizontalAxisGroup = new m1();
 				haxis.axisGroup = _horizontalAxisGroup;
 				IParent(_strand).addElement(_horizontalAxisGroup);
 			}
 			
 			var vaxis:IVerticalAxisBead = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			if (vaxis && _verticalAxisGroup == null) {
-				_verticalAxisGroup = new (ValuesManager.valuesImpl.getValue(value, "iVerticalAxisGroup")) as IAxisGroup;
+				var m2:Class = ValuesManager.valuesImpl.getValue(value, "iVerticalAxisGroup");
+				_verticalAxisGroup = new m2();
 				vaxis.axisGroup = _verticalAxisGroup;
 				IParent(_strand).addElement(_verticalAxisGroup);
 			}

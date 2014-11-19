@@ -19,6 +19,8 @@ goog.require('org.apache.flex.core.IBeadController');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.core.IBeadView');
+goog.require('org.apache.flex.core.ILayoutChild');
+goog.require('org.apache.flex.core.IParentIUIBase');
 goog.require('org.apache.flex.core.IUIBase');
 goog.require('org.apache.flex.core.ValuesManager');
 
@@ -27,6 +29,8 @@ goog.require('org.apache.flex.core.ValuesManager');
 /**
  * @constructor
  * @implements {org.apache.flex.core.IUIBase}
+ * @implements {org.apache.flex.core.ILayoutChild}
+ * @implements {org.apache.flex.core.IParentIUIBase}
  * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
 org.apache.flex.core.UIBase = function() {
@@ -52,7 +56,9 @@ goog.inherits(org.apache.flex.core.UIBase,
 org.apache.flex.core.UIBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIBase',
                 qName: 'org.apache.flex.core.UIBase' }],
-      interfaces: [org.apache.flex.core.IUIBase] };
+      interfaces: [org.apache.flex.core.IUIBase,
+                   org.apache.flex.core.IParentIUIBase,
+                   org.apache.flex.core.ILayoutChild] };
 
 
 /**

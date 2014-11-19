@@ -123,10 +123,13 @@ org.apache.flex.core.graphics.GraphicShape.prototype.set_stroke = function(value
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   this.draw();
+  this.element.style.overflow = 'visible';
+  /*
+   * not sure this is valuable any longer
   var bbox = this.element.getBBox();
   if (bbox.width === 0 && !isNaN(this.get_width())) bbox.width = this.get_width();
   if (bbox.height === 0 && !isNaN(this.get_height())) bbox.height = this.get_height();
-  this.resize(this.get_x(), this.get_y(), bbox);
+  this.resize(this.get_x(), this.get_y(), bbox);*/
 };
 
 
@@ -175,10 +178,14 @@ org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
  * @param {Object} bbox The bounding box of the svg element.
  */
 org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
-  this.element.setAttribute('width', String(bbox.width + bbox.x + this.xOffset_) + 'px');
-  this.element.setAttribute('height', String(bbox.height + bbox.y + this.yOffset_) + 'px');
-  this.element.setAttribute('style', 'overflow:visible; position:absolute; left:' +
-      String(x) + 'px; top:' + String(y) + 'px');
+  var width = Math.max(this.get_width(), bbox.width);
+  var height = Math.max(this.get_height(), bbox.height);
+
+  this.element.style.position = 'absolute';
+  if (!isNaN(x)) this.element.style.top = String(x) + 'px';
+  if (!isNaN(y)) this.element.style.left = String(y) + 'px';
+  this.element.style.width = String(width) + 'px';
+  this.element.style.height = String(height) + 'px';
 };
 
 

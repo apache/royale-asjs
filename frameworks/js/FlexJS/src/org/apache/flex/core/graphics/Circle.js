@@ -89,6 +89,8 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
     circle.setAttribute('rx', String(radius));
     circle.setAttribute('ry', String(radius));
     this.element.appendChild(circle);
+
+    this.resize(x, y, circle.getBBox());
   };
 
 

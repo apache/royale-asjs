@@ -67,6 +67,8 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
   this.model = this.strand_.get_model();
   this.model.addEventListener('selectedIndexChanged',
       goog.bind(this.selectionChangeHandler, this));
+  this.model.addEventListener('dataProviderChanged',
+      goog.bind(this.dataProviderChangeHandler, this));
 
   if (this.dataGroup_ == null) {
     var m2 = org.apache.flex.core.ValuesManager.valuesImpl.
@@ -124,6 +126,16 @@ org.apache.flex.html.beads.ListView.prototype.
     if (ir) ir.set_selected(true);
   }
   this.lastSelectedIndex = this.model.get_selectedIndex();
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The event that triggeed the selection.
+ */
+org.apache.flex.html.beads.ListView.prototype.
+    dataProviderChangeHandler = function(value) {
+    // override in subclass
 };
 
 

@@ -201,7 +201,7 @@ package org.apache.flex.charts.beads
 			var labelY:Number = UIBase(axisGroup).height + 8;
 			
 			for(i=0; i < numTicks+1; i++) 
-			{				
+			{			
 				addTickLabel(formatLabel(tickValue), 0, ypos, 0, tickSpacing);
 			
 				// add a tick mark, too.

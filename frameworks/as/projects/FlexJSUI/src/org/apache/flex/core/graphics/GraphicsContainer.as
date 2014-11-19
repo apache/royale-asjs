@@ -168,7 +168,7 @@ package org.apache.flex.core.graphics
 			}
 			
 			textField.x = x;
-			textField.y = y;
+			textField.y = y + textField.textHeight/4;
 		}
 	}
 }

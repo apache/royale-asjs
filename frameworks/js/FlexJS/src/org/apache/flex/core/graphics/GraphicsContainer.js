@@ -50,7 +50,11 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.get_numChildren = func
 /**
  * @expose
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.removeChildren = function() {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.removeAllElements = function() {
+  var svg = this.element;
+  while (svg.lastChild) {
+    svg.removeChild(svg.lastChild);
+  }
 };
 
 
@@ -58,8 +62,9 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.removeChildren = funct
  * @override
  */
 org.apache.flex.core.graphics.GraphicsContainer.prototype.set_width = function(value) {
-  goog.base(this, 'set_width', value);
+  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_width', value);
   this.element.setAttribute('width', String(value) + 'px');
+  this.element.style.width = String(value) + 'px';
 };
 
 
@@ -67,8 +72,31 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_width = function(v
  * @override
  */
 org.apache.flex.core.graphics.GraphicsContainer.prototype.set_height = function(value) {
-  goog.base(this, 'set_height', value);
+  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_height', value);
   this.element.setAttribute('height', String(value) + 'px');
+  this.element.style.height = String(value) + 'px';
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.set_x = function(value) {
+  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_x', value);
+  this.element.setAttribute('x', String(value) + 'px');
+  this.element.style.position = 'absolute';
+  this.element.style.left = String(value) + 'px';
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.graphics.GraphicsContainer.prototype.set_y = function(value) {
+  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_y', value);
+  this.element.setAttribute('y', String(value) + 'px');
+  this.element.style.position = 'absolute';
+  this.element.style.top = String(value) + 'px';
 };
 
 
@@ -157,9 +185,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(va
   var style = this.getStyleStr();
   var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   text.setAttribute('style', style);
-  text.innerHTML = value;
   text.setAttribute('x', String(x) + 'px');
-  text.setAttribute('y', String(y) + 'px');
+  text.setAttribute('y', String(y + 15) + 'px');
+  var textNode = document.createTextNode(value);
+  text.appendChild(textNode);
   this.element.appendChild(text);
 };
 

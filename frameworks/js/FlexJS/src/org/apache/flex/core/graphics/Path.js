@@ -76,6 +76,7 @@ org.apache.flex.core.graphics.Path.prototype.get_data = function() {
  *  If the segment command is lower-case, the parameters are relative values.
  */
 org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
+    if (data == null || data.length === 0) return;
     var style = this.getStyleStr();
     var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('style', style);
@@ -89,6 +90,8 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
     {
       this.setPosition(x, y, 0, 0);
     }
+
+    this.resize(x, y, path.getBBox());
   };
 
 

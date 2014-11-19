@@ -95,7 +95,7 @@ package org.apache.flex.charts.optimized
 		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):void
 		{
 			fill = tickFill;
-			drawText(text, xpos, ypos-9);
+			drawText(text, xpos, ypos-boxHeight/4);
 		}
 		
 		/**
