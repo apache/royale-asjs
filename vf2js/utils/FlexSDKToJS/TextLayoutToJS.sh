@@ -15,6 +15,7 @@ ARGS="$ARGS -ignore-problems=org.apache.flex.compiler.problems.DuplicateQNameInS
 ARGS="$ARGS -ignore-problems=org.apache.flex.compiler.problems.NoDefinitionForSWCDependencyProblem "
 
 ARGS="$ARGS -js-output-type=VF2JS "
+ARGS="$ARGS -keep-asdoc=false "
 
 ARGS="$ARGS -closure-lib="/Users/erik/Documents/ApacheFlex/dependencies/GoogleClosure/library" "
 
