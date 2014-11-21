@@ -140,8 +140,10 @@
 			
 			parseClasses();
 			
-			// VERY special case
+			// namespace 'classes'
 			functions_['mx.core.mx_internal'] = 'mx.core.mx_internal';
+			functions_['mx.utils.object_proxy'] = 'mx.utils.object_proxy';
+			functions_['flashx.textLayout.tlf_internal'] = 'flashx.textLayout.tlf_internal';
 			
 			for (key in functions_) {
 				clazz = new Clazz(null);
