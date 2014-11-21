@@ -172,6 +172,9 @@
 					
 					clsMembers = parseClassMembers(clazz);
 					
+					if (clazz.qName === 'int') {
+						clazz.qName = 'INT';
+					}
 					clazz.startOutput();
 					
 					// Member stubs
