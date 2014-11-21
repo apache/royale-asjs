@@ -162,7 +162,7 @@ sed -i '' -e "s/####\/\*\*/##goog.require('mx.managers.DragManagerImpl');&/g" ./
 sed -i '' -e "s/####\/\*\*/##goog.require('mx.core.TextFieldFactory');&/g" ./mx/managers/SystemManager.js_temp
 
 sed -i '' -e "s/####\/\*\*/##goog.require('Class');&/g" ./mx/managers/SystemManager.js_temp
-sed -i '' -e "s/####\/\*\*/##goog.require('int');&/g" ./mx/managers/SystemManager.js_temp
+sed -i '' -e "s/####\/\*\*/##goog.require('INT');&/g" ./mx/managers/SystemManager.js_temp
 sed -i '' -e "s/####\/\*\*/##goog.require('QName');&/g" ./mx/managers/SystemManager.js_temp
 
 sed -i '' -e "s/####\/\*\*/##goog.require('mx.preloaders.DownloadProgressBar');&/g" ./mx/managers/SystemManager.js_temp
