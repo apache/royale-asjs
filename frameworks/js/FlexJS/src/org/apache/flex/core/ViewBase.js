@@ -49,6 +49,14 @@ org.apache.flex.core.ViewBase = function() {
    */
   this.currentState_ = '';
 
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.initialized_ = false;
+  
+  this.document = this;
+
 };
 goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
 
@@ -89,6 +97,25 @@ org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
 
 /**
  * @expose
+ * @type {Object} The document.
+ */
+org.apache.flex.core.ViewBase.prototype.document = null;
+
+
+/**
+ * @expose
+ * @param {Object} doc The document.
+ * @param {Array} desc The descriptor data;
+ */
+org.apache.flex.core.ViewBase.prototype.setMXMLDescriptor =
+    function(doc, desc) {
+  this.MXMLDescriptor = desc;
+  this.document = doc;
+}
+
+
+/**
+ * @expose
  */
 org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
@@ -98,10 +125,17 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
     org.apache.flex.core.ValuesManager.valuesImpl.init(this);
   }
 
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
-      this, this.get_MXMLDescriptor());
+  org.apache.flex.core.ViewBase.base(this, 'addedToParent')
 
-  this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
+  if (!this.initialized_) {
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
+      this, this.MXMLDescriptor);
+
+    this.dispatchEvent(new org.apache.flex.events.Event('initBindings'));
+    this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
+    this.initialized_ = true;
+  }
+  this.dispatchEvent(new org.apache.flex.events.Event('childrenAdded'));
 };
 
 
