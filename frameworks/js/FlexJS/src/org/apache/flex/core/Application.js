@@ -84,7 +84,7 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.element.flexjs_wrapper = this;
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, null, this.get_MXMLDescriptor());
-  
+
   this.dispatchEvent('initialize');
 
   this.initialView.applicationModel = this.model;
