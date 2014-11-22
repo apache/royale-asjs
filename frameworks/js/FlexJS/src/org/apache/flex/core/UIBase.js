@@ -184,6 +184,13 @@ org.apache.flex.core.UIBase.prototype.get_parent = function() {
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
+  if (this.beads) {
+    var n = this.beads.length;
+	for (var i = 0; i < n; i++) {
+      this.addBead(this.beads[i]);
+	}
+  }
+  
   /**
    * @type {Function}
    */
