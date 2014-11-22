@@ -85,14 +85,14 @@ org.apache.flex.html.ToggleTextButton.prototype.set_selected =
   if (this.selected_ != value) {
     this.selected_ = value;
 
-    var className = this.strand.className;
+    var className = this.className;
     if (value) {
       if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-        this.strand.className = className.substring(0, className.length - this.SELECTED.length);
+        this.set_className(className.substring(0, className.length - this.SELECTED.length));
     }
     else {
       if (className.indexOf(this.SELECTED) == -1)
-        this.strand.className += this.SELECTED;
+        this.set_className(className + this.SELECTED);
     }
 
   }
