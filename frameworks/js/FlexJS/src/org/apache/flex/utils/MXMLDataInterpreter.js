@@ -40,7 +40,7 @@ org.apache.flex.utils.MXMLDataInterpreter.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
     function(document, data) {
-  var assingComp, Cls, comp, generateMXMLArray, generateMXMLObject, i, id, j, m,
+  var assignComp, Cls, comp, generateMXMLArray, generateMXMLObject, i, id, j, m,
       name, simple, value;
 
   i = 0;
@@ -52,39 +52,50 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
   generateMXMLObject =
       org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-  m = data[i++]; // num props
-  for (j = 0; j < m; j++) {
-    name = data[i++];
-    simple = data[i++];
-    value = data[i++];
+  if (comp.set_strand)
+    org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject(document, null, comp, data, i);
+  else {
+    m = data[i++]; // num props
+    for (j = 0; j < m; j++) {
+      name = data[i++];
+      simple = data[i++];
+      value = data[i++];
 
-    if (simple === null) {
-      value = generateMXMLArray(document, null, value);
-    } else if (simple === false) {
-      value = generateMXMLObject(document, value);
-    }
+      if (simple === null) {
+        value = generateMXMLArray(document, null, value);
+      } else if (simple === false) {
+        value = generateMXMLObject(document, value);
+      }
 
-    assingComp = true;
-    if (name === 'id') {
-      document['set_' + value](comp);
-      id = value;
-    } else if (name === '_id') {
-      document[value] = comp;
-      id = value;
-      assingComp = false;
-    }
+      if (name === 'id') {
+        document['set_' + value](comp);
+        id = value;
+      }
 
-    if (assingComp) {
-      if (typeof comp['set_' + name] === 'function') {
-        comp['set_' + name](value);
-      } else {
-        comp[name] = value;
+      if (name == 'document' && !comp.document) {
+        comp.document = document;
+      }
+      else if (name === '_id') {
+        document[value] = comp;
+        id = value;
+      }
+      else if (name === 'id') {
+        if (typeof(comp['set_id']) === 'function') {
+          comp['set_id'](value);
+        }
+      }
+      else {
+        if (typeof comp['set_' + name] === 'function') {
+          comp['set_' + name](value);
+        } else {
+          comp[name] = value;
+        }
       }
     }
-  }
 
-  if (typeof comp.setDocument === 'function') {
-    comp.setDocument(document, id);
+    if (typeof comp.setDocument === 'function') {
+      comp.setDocument(document, id);
+    }
   }
 
   return comp;
@@ -96,60 +107,64 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
- * @param {boolean=} opt_recursive Whether to create objects in children.
  * @return {Array} The generated array.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
-    function(document, parent, data, opt_recursive) {
-  var bead, beadOffset, beads, children, Cls, comp, comps, generateMXMLArray,
-      generateMXMLObject, i, id, j, k, l, m, n, name, self, simple, value, dispatchBeadsAdded;
+    function(document, parent, data) {
+  var comps = [];
 
-  if (opt_recursive === undefined) {
-    opt_recursive = true;
+  var n = data.length;
+  var i = 0;
+  while (i < n) {
+    var cls = data[i++];
+    var comp = new cls();
+
+    i = org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject(document, parent, comp, data, i);
+
+    comps.push(comp);
   }
+  return comps;
+};
+
+
+/**
+ * @expose
+ * @param {Object} document The MXML object.
+ * @param {Object} parent The parent object.
+ * @param {Object} comp The component being initialized.
+ * @param {Array} data The data array.
+ * @param {number} i The offset into data.
+ * @return {number} The new offset into the data.
+ */
+org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
+    function(document, parent, comp, data, i) {
+  var bead, beadOffset, beads, children, Cls, generateMXMLArray,
+      generateMXMLObject, id, j, k, l, m, n, name, self, simple, value, dispatchBeadsAdded;
 
   generateMXMLArray =
       org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
   generateMXMLObject =
       org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-  comps = [];
+  id = null;
 
-  n = data.length;
-  i = 0;
-  while (i < n) {
-    Cls = data[i++];
-    comp = new Cls();
+  m = data[i++]; // num props
+  if (m > 0 && data[0] === 'model') {
+    m--;
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
 
-    id = null;
-    dispatchBeadsAdded = false;
+    if (simple === null) {
+      value = generateMXMLArray(document, parent, value);
+    } else if (simple === false) {
+      value = generateMXMLObject(document, value);
+    }
 
-    m = data[i++]; // num props
-    if (m > 0 && data[0] === 'model') {
-      m--;
-      name = data[i++];
-      simple = data[i++];
-      value = data[i++];
-
-      if (simple === null) {
-        value = generateMXMLArray(document, parent, value, opt_recursive);
-      } else if (simple === false) {
-        value = generateMXMLObject(document, value);
-      }
-
-      if (typeof comp['set_' + name] === 'function') {
-        comp['set_' + name](value);
-      } else {
-        comp[name] = value;
-      }
-
-      // (erikdebruin) There are no components with the 'get_strand' method...
-      /*
-      if (typeof value.addBead === 'function' &&
-          typeof comp.get_strand === 'function') {
-        comp.addBead(value);
-      }
-      */
+    if (typeof comp['set_' + name] === 'function') {
+      comp['set_' + name](value);
+    } else {
+      comp[name] = value;
     }
 
     beadOffset = i + (m - 1) * 3;
@@ -158,78 +173,76 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
     } else {
       beadOffset = -1;
     }
+  }
 
-    for (j = 0; j < m; j++) {
-      name = data[i++];
-      simple = data[i++];
-      value = data[i++];
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
 
-      if (simple === null) {
-        value = generateMXMLArray(document, null, value, opt_recursive);
-      } else if (simple === false) {
-        value = generateMXMLObject(document, value);
+    if (simple === null) {
+      value = generateMXMLArray(document, null, value);
+    } else if (simple === false) {
+      value = generateMXMLObject(document, value);
+    }
+
+    if (name === 'id') {
+      id = value;
+      document['set_' + value](comp);
+    }
+
+    if (name === 'document' && !comp.document) {
+      comp.document = document;
+    } else if (name === '_id') {
+      id = value; // and don't assign to comp
+    } else if (name === 'id') {
+      if (typeof(comp['set_id']) === 'function') {
+        comp['set_id'](value);
       }
-
-      if (name === 'id') {
-        id = value;
-      }
-
-      if (name === 'document' && !comp.document) {
-        comp.document = document;
-      } else if (name === '_id') {
-        id = value; // and don't assign to comp
+    } else {
+      if (typeof(comp['set_' + name]) === 'function') {
+        comp['set_' + name](value);
       } else {
-        if (typeof(comp['set_' + name]) === 'function') {
-          comp['set_' + name](value);
-        } else {
-          comp[name] = value;
-        }
+        comp[name] = value;
       }
     }
+  }
 
-    if (beadOffset > -1)
-    {
-      name = data[i++];
-      simple = data[i++];
-      value = data[i++];
+  if (beadOffset > -1)
+  {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
 
-      if (simple === null) {
-        value = generateMXMLArray(document, null, value, opt_recursive);
-      } else if (simple === false) {
-        value = generateMXMLObject(document, value);
+    if (simple === null) {
+      value = generateMXMLArray(document, null, value);
+    } else if (simple === false) {
+      value = generateMXMLObject(document, value);
+    } else {
+      if (typeof(comp['set_' + name]) === 'function') {
+        comp['set_' + name](value);
       } else {
-        if (typeof(comp['set_' + name]) === 'function') {
-          comp['set_' + name](value);
-        } else {
-          comp[name] = value;
-        }
-      }
-
-      beads = value;
-      l = beads.length;
-      for (k = 0; k < l; k++) {
-        bead = beads[k];
-        comp.addBead(bead);
-        dispatchBeadsAdded = true;
+        comp[name] = value;
       }
     }
+  }
 
-    m = data[i++]; // num styles
-    for (j = 0; j < m; j++) {
-      name = data[i++];
-      simple = data[i++];
-      value = data[i++];
+  m = data[i++]; // num styles
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    simple = data[i++];
+    value = data[i++];
 
-      if (simple === null) {
-        value = generateMXMLArray(document, null, value, opt_recursive);
-      } else if (simple === false) {
-        value = generateMXMLObject(document, value);
-      }
-
-      if (comp.setStyle) {
-        comp.setStyle(name, value);
-      }
+    if (simple === null) {
+      value = generateMXMLArray(document, null, value);
+    } else if (simple === false) {
+      value = generateMXMLObject(document, value);
     }
+
+    if (comp.setStyle) {
+      comp.setStyle(name, value);
+    }
+  }
 
     /*
     m = data[i++]; // num effects
@@ -246,56 +259,50 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
     }
     */
 
-    m = data[i++]; // num events
-    for (j = 0; j < m; j++) {
-      name = data[i++];
-      value = data[i++];
+  m = data[i++]; // num events
+  for (j = 0; j < m; j++) {
+    name = data[i++];
+    value = data[i++];
 
-      comp.addEventListener(name, goog.bind(value, document));
-    }
+    comp.addEventListener(name, goog.bind(value, document));
+  }
 
-    if (parent) {
-      parent.addElement(comp);
-      dispatchBeadsAdded = true;
-    }
+  children = data[i++];
+  if (children && comp["setMXMLDescriptor"]) {
+    comp["setMXMLDescriptor"](document, children);
+  }
+  if (parent && org.apache.flex.utils.Language.is(comp,
+      org.apache.flex.core.IUIBase)) {
+    parent.addElement(comp);
+  }
 
-    children = data[i++];
-    if (children) {
-      if (opt_recursive) {
-        self = org.apache.flex.utils.MXMLDataInterpreter;
-        self.generateMXMLInstances(
-            document, comp, children, opt_recursive);
-        if (typeof comp.childrenAdded === 'function')
-          comp.childrenAdded();
-      } else if (comp.setMXMLDescriptor) {
-        comp.setMXMLDescriptor(children);
-      }
-    }
-
-    if (id) {
-      if (typeof(document['set_' + id]) === 'function') {
-        document['set_' + id](comp);
-      } else {
-        document[id] = comp;
-      }
-    }
-
-    if (typeof(comp.setDocument) === 'function') {
-      comp.setDocument(document, id);
-    }
-
-    if (goog.isFunction(comp.finalizeElement)) {
-      comp.finalizeElement();
-    }
-
-    comps.push(comp);
-
-    if (dispatchBeadsAdded) {
-      comp.dispatchEvent('beadsAdded');
+  if (children) {
+    if (!comp["setMXMLDescriptor"]) {
+      self = org.apache.flex.utils.MXMLDataInterpreter;
+      self.generateMXMLInstances(
+            document, comp, children);
+      if (typeof comp.childrenAdded === 'function')
+        comp.childrenAdded();
     }
   }
 
-  return comps;
+  if (id) {
+    if (typeof(document['set_' + id]) === 'function') {
+      document['set_' + id](comp);
+    } else {
+      document[id] = comp;
+    }
+  }
+
+  if (typeof(comp.setDocument) === 'function') {
+    comp.setDocument(document, id);
+  }
+
+  if (goog.isFunction(comp.finalizeElement)) {
+    comp.finalizeElement();
+  }
+
+  return i;
 };
 
 
@@ -304,13 +311,12 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
- * @param {boolean=} opt_recursive Whether to create objects in children.
  */
 org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
-    function(document, parent, data, opt_recursive) {
+    function(document, parent, data) {
   if (data) {
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
-        document, parent, data, opt_recursive);
+        document, parent, data);
   }
 };
 
@@ -351,7 +357,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
     value = data[i++];
 
     if (simple === null) {
-      value = generateMXMLArray(host, null, value, true);
+      value = generateMXMLArray(host, null, value);
     } else if (simple === false) {
       value = generateMXMLObject(host, value);
     }
@@ -377,7 +383,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
     value = data[i++];
 
     if (simple === null) {
-      value = generateMXMLArray(host, null, value, true);
+      value = generateMXMLArray(host, null, value);
     } else if (simple === false) {
       value = generateMXMLObject(host, value);
     } else {
@@ -403,7 +409,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
     value = data[i++];
 
     if (simple === null) {
-      value = generateMXMLArray(host, null, value, true);
+      value = generateMXMLArray(host, null, value);
     } else if (simple === false) {
       value = generateMXMLObject(host, value);
     }
