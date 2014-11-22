@@ -25,6 +25,15 @@ goog.require('org.apache.flex.core.UIBase');
 org.apache.flex.core.ContainerBase = function() {
   this.mxmlProperties = null;
   org.apache.flex.core.ContainerBase.base(this, 'constructor');
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.initialized_ = false;
+  
+  this.document = this;
+
 };
 goog.inherits(org.apache.flex.core.ContainerBase,
     org.apache.flex.core.UIBase);
@@ -65,10 +74,15 @@ org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
   org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
+  
+  if (!this.initialized_) {
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
+	    this, this.get_MXMLDescriptor());
 
-  this.dispatchEvent('initBindings');
-  this.dispatchEvent('initComplete');
+    this.dispatchEvent('initBindings');
+    this.dispatchEvent('initComplete');
+	this.initialized_ = true;
+  }
   this.dispatchEvent('childrenAdded');
 };
 
@@ -89,3 +103,17 @@ org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(d
 org.apache.flex.core.ContainerBase.prototype.get_MXMLDescriptor = function() {
   return this.mxmlDescriptor;
 };
+
+
+/**
+ * @expose
+ * @param {Object} doc The document.
+ * @param {Array} desc The descriptor data;
+ */
+org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
+    function(doc, desc) {
+  this.mxmlDescriptor = desc;
+  this.document = doc;
+}
+
+
