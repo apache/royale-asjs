@@ -42,14 +42,14 @@
         <copy file="${basedir}/src/data/catalog.json" tofile="${basedir}/bin/js-release/data/catalog.json" />
         <mkdir dir="${basedir}/bin/js-debug/assets" />
         <copy todir="${basedir}/bin/js-debug/assets" >
-            <fileset dir="${basedir}/src">
-                <include name="assets/**" />
+            <fileset dir="${basedir}/src/assets">
+                <include name="**" />
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-release/assets" />
         <copy todir="${basedir}/bin/js-release/assets" >
-            <fileset dir="${basedir}/src">
-                <include name="assets/**" />
+            <fileset dir="${basedir}/src/assets">
+                <include name="**" />
             </fileset>
         </copy>
     </target>
