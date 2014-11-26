@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.binding.GenericBinding');
 
 goog.require('org.apache.flex.binding.BindingBase');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
@@ -61,8 +62,11 @@ org.apache.flex.binding.GenericBinding.prototype.set_strand =
     function(value) {
   this.destination = value;
 
-  var val = this.getValueFromSource();
-  this.applyValue(val);
+  try {
+    var val = this.getValueFromSource();
+    this.applyValue(val);
+  } catch (e) {
+  }
 };
 
 
@@ -109,8 +113,7 @@ org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.applyValue =
-    function(value)
-    {
+    function(value) {
   if (this.destinationFunction != null)
   {
     this.destinationFunction.apply(this.document, [value]);
@@ -119,16 +122,33 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
   {
     var arr = this.destinationData;
     var n = arr.length;
-    var obj = this.document['get_' + arr[0]]();
-    if (obj == null)
-      return;
+    var obj;
+    var getter = 'get_' + arr[0];
+    if (typeof(this.document[getter]) === 'function')
+      obj = this.document[getter]();
+    else
+      obj = this.document[arr[0]];
+    if (obj == null) {
+       this.document.addEventListener(
+           org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
+           this.destinationChangeHandler);
+       return;
+    }
     for (var i = 1; i < n - 1; i++)
     {
-      obj = obj['get_' + arr[i]]();
+      getter = 'get_' + arr[i];
+      if (typeof(this.document[getter]) === 'function')
+        obj = obj[getter]();
+      else
+        obj = obj[arr[i]];
       if (obj == null)
         return;
     }
-    obj['set_' + arr[n - 1]](value);
+    var setter = 'set_' + arr[n - 1];
+    if (typeof(obj[setter]) === 'function')
+      obj[setter](value);
+    else
+      obj[arr[n - 1]] = value;
   }
 };
 
@@ -138,9 +158,23 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
  * @param {Object} value The value from the source as specified.
  */
 org.apache.flex.binding.GenericBinding.prototype.valueChanged =
-    function(value)
-    {
-  var val = this.getValueFromSource();
-  this.applyValue(val);
+    function(value) {
+
+  try {
+    var val = this.getValueFromSource();
+    this.applyValue(val);
+  } catch (e) {
+  }
+};
+
+
+/**
+ * @expose
+ * @param {Object} event The change event.
+ */
+org.apache.flex.binding.GenericBinding.prototype.destinationChangeHandler =
+    function(event) {
+  if (event.propertyName == this.destinationData[0])
+    this.valueChanged(null);
 };
 
