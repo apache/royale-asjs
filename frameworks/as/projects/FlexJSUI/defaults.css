@@ -89,6 +89,11 @@ ButtonBarButtonItemRenderer
     height: 30;
 }
 
+Container
+{
+    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
+}
+
 List
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
@@ -209,7 +214,6 @@ ComboBox
 
 Container
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 }
