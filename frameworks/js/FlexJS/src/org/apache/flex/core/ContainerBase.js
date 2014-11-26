@@ -31,7 +31,7 @@ org.apache.flex.core.ContainerBase = function() {
    * @type {boolean}
    */
   this.initialized_ = false;
-  
+
   this.document = this;
 
 };
@@ -74,14 +74,14 @@ org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
   org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
-  
+
   if (!this.initialized_) {
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
-	    this, this.get_MXMLDescriptor());
+        this, this.get_MXMLDescriptor());
 
     this.dispatchEvent('initBindings');
     this.dispatchEvent('initComplete');
-	this.initialized_ = true;
+    this.initialized_ = true;
   }
   this.dispatchEvent('childrenAdded');
 };
@@ -114,6 +114,6 @@ org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
-}
+};
 
 

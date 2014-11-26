@@ -268,8 +268,8 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
   }
 
   children = data[i++];
-  if (children && comp["setMXMLDescriptor"]) {
-    comp["setMXMLDescriptor"](document, children);
+  if (children && comp['setMXMLDescriptor']) {
+    comp['setMXMLDescriptor'](document, children);
   }
   if (parent && org.apache.flex.utils.Language.is(comp,
       org.apache.flex.core.IUIBase)) {
@@ -277,7 +277,7 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
   }
 
   if (children) {
-    if (!comp["setMXMLDescriptor"]) {
+    if (!comp['setMXMLDescriptor']) {
       self = org.apache.flex.utils.MXMLDataInterpreter;
       self.generateMXMLInstances(
             document, comp, children);

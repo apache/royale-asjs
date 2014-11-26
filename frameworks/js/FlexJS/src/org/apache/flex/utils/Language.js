@@ -126,7 +126,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
     return rightOperand === Number;
   if (rightOperand === Array && Array.isArray(leftOperand))
     return true;
-  if (leftOperand.FLEXJS_CLASS_INFO == undefined)
+  if (leftOperand.FLEXJS_CLASS_INFO === undefined)
     return false; // could be a function but not an instance
   if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
     if (checkInterfaces(leftOperand)) {

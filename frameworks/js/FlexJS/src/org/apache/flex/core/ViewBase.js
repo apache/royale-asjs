@@ -54,7 +54,7 @@ org.apache.flex.core.ViewBase = function() {
    * @type {boolean}
    */
   this.initialized_ = false;
-  
+
   this.document = this;
 
 };
@@ -111,7 +111,7 @@ org.apache.flex.core.ViewBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.MXMLDescriptor = desc;
   this.document = doc;
-}
+};
 
 
 /**
@@ -125,7 +125,7 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
     org.apache.flex.core.ValuesManager.valuesImpl.init(this);
   }
 
-  org.apache.flex.core.ViewBase.base(this, 'addedToParent')
+  org.apache.flex.core.ViewBase.base(this, 'addedToParent');
 
   if (!this.initialized_) {
     org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
