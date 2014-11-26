@@ -107,7 +107,7 @@ org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
 
   this.source = parent;
 
-  if (this.source)
+  if (this.source && typeof(this.source.addEventListener) == 'function')
     this.addEventListeners();
 
   // Now get our property.
