@@ -99,6 +99,15 @@
             <available file="c:/Users/${env.USERNAME}/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt"
                 type="file"/>
         </condition>
+        <!-- Check the system user profile -->
+        <condition property="FLASHLOG"
+                   value="C:/Windows/system32/config/systemprofile/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt">
+            <available file="C:/Windows/system32/config/systemprofile/AppData/Roaming/Macromedia/Flash Player/Logs/flashlog.txt"
+                       type="file"/>
+        </condition>
+        <antcall target="copy-flashlog"/>
+    </target>
+    <target name="copy-flashlog" if="FLASHLOG">
         <echo>copying last flashlog.txt from ${FLASHLOG}</echo>
         <copy file="${FLASHLOG}" tofile="${basedir}/lastflashlog.txt" />
     </target>
