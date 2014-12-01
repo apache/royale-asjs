@@ -33,7 +33,7 @@ goog.require('org.apache.flex.html.List');
  */
 org.apache.flex.charts.core.ChartBase =
     function() {
-  org.apache.flex.charts.core.ChartBase.base(this);
+  org.apache.flex.charts.core.ChartBase.base(this, 'constructor');
   this.className = 'ChartBase';
 };
 goog.inherits(
