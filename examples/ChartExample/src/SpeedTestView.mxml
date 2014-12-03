@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:basic="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*" 
+				xmlns:models="models.*"
+				>
+	<fx:Script>
+		<![CDATA[
+			import models.ProductsModel;
+			
+			import org.apache.flex.events.Event;
+			
+			private var startTime:Date;
+			private var endTime:Date;
+			
+			private function startTimingSVG():void
+			{
+				var n:Number = Number(numPoints.text);
+				
+				var m:ProductsModel = applicationModel as ProductsModel;
+				m.generateWaves(n);
+				
+				trace("Will start timing");
+				startTime = new Date();
+				svgChart.addEventListener("layoutComplete",wave1Complete);
+				svgChart.dataProvider = m.wave1;
+			}
+			
+			private function wave1Complete(event:org.apache.flex.events.Event):void
+			{
+				endTime = new Date();
+				var diff:Number = endTime.getTime() - startTime.getTime();
+				svgChartResults.text = diff+" msecs";
+			}
+			
+			private function startTimingReg():void
+			{
+				var n:Number = Number(numPoints.text);
+				
+				var m:ProductsModel = applicationModel as ProductsModel;
+				m.generateWaves(n);
+				
+				trace("Will start timing");
+				startTime = new Date();
+				regChart.addEventListener("layoutComplete",wave2Complete);
+				regChart.dataProvider = m.wave1;
+			}
+			
+			private function wave2Complete(event:org.apache.flex.events.Event):void
+			{
+				endTime = new Date();
+				var diff:Number = endTime.getTime() - startTime.getTime();
+				regChartResults.text = diff+" msecs";
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Style>
+		@namespace models "models.*";
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.hsline {
+			IDataGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartDataGroup");
+			IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartAxisGroup");
+			IVerticalAxisGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartAxisGroup");
+		}
+	</fx:Style>
+	
+	<basic:Container x="20" y="20">
+		<basic:beads>
+			<basic:NonVirtualHorizontalLayout />
+		</basic:beads>
+		<basic:Label text="Points:" />
+		<basic:TextInput id="numPoints" text="300" />
+	</basic:Container>
+	
+	<!-- SVG Line Chart -->
+	
+	<basic:Label text="SVG Chart" x="250" y="80" />
+	
+	<basic:LineChart id="svgChart" x="21" y="100" width="400" height="200" className="hsline">
+		<basic:beads>
+			<!--<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="wave"
+				destinationPropertyName="dataProvider" />-->
+			<basic:HorizontalLinearAxisBead valueField="x" />
+			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:LineChartLinearVsLinearLayout />
+		</basic:beads>
+		<basic:series>
+			<basic:LineSeries xField="x" yField="sin">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:SVGBoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#FF44FF" alpha="1" />
+							</basic:fill>  
+						</basic:SVGBoxItemRenderer>
+					</fx:Component>
+				</basic:itemRenderer>
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:SVGLineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#964DFF" weight="2" alpha="1" />
+							</basic:stroke>
+						</basic:SVGLineSegmentItemRenderer>                        
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+		</basic:series>
+	</basic:LineChart>
+	
+	<!-- Regular Line Chart -->
+	
+	<basic:Label text="Reg Chart" x="650" y="80" />
+	
+	<basic:LineChart id="regChart" x="500" y="100" width="400" height="200">
+		<basic:beads>
+			<!--<basic:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="wave2"
+				destinationPropertyName="dataProvider" />-->
+			<basic:HorizontalLinearAxisBead valueField="x" />
+			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:LineChartLinearVsLinearLayout />
+		</basic:beads>
+		<basic:series>
+			<basic:LineSeries xField="x" yField="sin">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:BoxItemRenderer>
+							<basic:fill>
+								<basic:SolidColor color="#99FF99" alpha="1" />
+							</basic:fill>  
+						</basic:BoxItemRenderer>
+					</fx:Component>
+				</basic:itemRenderer>
+				<basic:lineSegmentRenderer>
+					<fx:Component>
+						<basic:LineSegmentItemRenderer>
+							<basic:stroke>
+								<basic:SolidColorStroke color="#33DD33" weight="2" alpha="1" />
+							</basic:stroke>
+						</basic:LineSegmentItemRenderer>                        
+					</fx:Component>
+				</basic:lineSegmentRenderer>
+			</basic:LineSeries>
+		</basic:series>
+	</basic:LineChart>
+	
+	<basic:Container x="150" y="325">
+		<basic:beads>
+			<basic:NonVirtualHorizontalLayout />
+		</basic:beads>
+		<basic:TextButton text="SVG Go" click="startTimingSVG()" />
+		<basic:Label text="  (results)" id="svgChartResults" />
+	</basic:Container>
+	
+	<basic:Container x="650" y="325">
+		<basic:beads>
+			<basic:NonVirtualHorizontalLayout />
+		</basic:beads>
+		<basic:TextButton text="Reg Go" click="startTimingReg()" />
+		<basic:Label text="  (results)" id="regChartResults" />
+	</basic:Container>
+	
+</basic:ViewBase>

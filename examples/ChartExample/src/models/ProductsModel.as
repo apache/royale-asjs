@@ -26,7 +26,7 @@ package models
 	{
 		public function ProductsModel()
 		{
-			generateWaves(360);
+			generateWaves(20);
 		}
 
 		private var _productList:Array = [
@@ -49,7 +49,7 @@ package models
 		
 		private var _wave:Array;
 		
-		private function generateWaves(numPoints:int):void
+		public function generateWaves(numPoints:int):void
 		{
 			_wave = [];
 			
@@ -66,7 +66,12 @@ package models
 			}
 		}
 		
-		public function get wave():Array
+		public function get wave1():Array
+		{
+			return _wave;
+		}
+		
+		public function get wave2():Array
 		{
 			return _wave;
 		}

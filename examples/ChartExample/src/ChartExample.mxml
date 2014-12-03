@@ -31,7 +31,7 @@
 		<models:ProductsModel />
 	</basic:model>
 	<basic:initialView>
-		<local:MyInitialView />
+		<local:SpeedTestView />
 	</basic:initialView>
 </basic:Application>
 
