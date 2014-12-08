@@ -84,6 +84,8 @@ package org.apache.flex.charts.beads.layouts
 			
 			var n:int = dp.length;			
 			var maxXValue:Number = 0;
+			var minXValue:Number = 0;
+			var determineScale:Boolean = true;
 			var seriesMaxes:Array = [];
 			
 			var useWidth:Number = UIBase(chartDataGroup).width;
@@ -94,8 +96,15 @@ package org.apache.flex.charts.beads.layouts
 			var ypos:Number = useHeight;
 			
 			var barValues:Array = [];
-			var maxValue:Number = 0;
 			var scaleFactor:Number = 1;
+			
+			if (horizontalAxisBead != null && !isNaN(horizontalAxisBead.maximum)) {
+				maxXValue = horizontalAxisBead.maximum;
+				determineScale = false;
+			}
+			if (horizontalAxisBead != null && !isNaN(horizontalAxisBead.minimum)) {
+				minXValue = horizontalAxisBead.minimum;
+			}
 			
 			for (var i:int=0; i < n; i++)
 			{
@@ -112,10 +121,12 @@ package org.apache.flex.charts.beads.layouts
 					barValues[i].totalValue += xValue;
 				}
 				
-				maxValue = Math.max(maxValue, barValues[i].totalValue);
+				if (determineScale) {
+					maxXValue = Math.max(maxXValue, barValues[i].totalValue);
+				}
 			}
 			
-			scaleFactor = useWidth/maxValue;
+			scaleFactor = useWidth/(maxXValue - minXValue);
 			
 			for (i=0; i < n; i++)
 			{
@@ -128,14 +139,15 @@ package org.apache.flex.charts.beads.layouts
 					bcs = chart.series[s] as BarSeries;
 					
 					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(bcs,i);
-					xValue = Number(data[bcs.xField]);
+					xValue = Number(data[bcs.xField]) - minXValue;
+					xValue = xValue * scaleFactor;
 					
 					child.x = xpos;
-					child.width = xValue*scaleFactor;
-					child.y = ypos - seriesHeight;
+					child.width = Math.floor(xValue);
+					child.y = Math.floor(ypos - seriesHeight);
 					child.height = seriesHeight;
 					
-					xpos += xValue*scaleFactor;
+					xpos += xValue;
 				}
 				
 				ypos -= (itemHeight + gap);

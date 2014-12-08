@@ -77,7 +77,7 @@ package org.apache.flex.charts.beads
 		
 		/**
 		 *  The name of field within the chart data the holds the value being mapped
-		 *  to this axis. If values should fall within minValue and maxValue but if
+		 *  to this axis. If values should fall within minimum and maximum but if
 		 *  not, they will be fixed to the closest value.
 		 *
 		 *  @langversion 3.0
@@ -94,10 +94,10 @@ package org.apache.flex.charts.beads
 			_valueField = value;
 		}
 		
-		private var _minValue:Number = Number.NaN;
+		private var _minimum:Number = 0;
 		
 		/**
-		 *  The minimun value to be represented on this axis. If minValue is NaN,
+		 *  The minimun value to be represented on this axis. If minimum is NaN,
 		 *  the value is calculated from the data.
 		 *
 		 *  @langversion 3.0
@@ -105,19 +105,19 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get minValue():Number
+		public function get minimum():Number
 		{
-			return _minValue;
+			return _minimum;
 		}
-		public function set minValue(value:Number):void
+		public function set minimum(value:Number):void
 		{
-			_minValue = value;
+			_minimum = value;
 		}
 		
-		private var _maxValue:Number = Number.NaN;
+		private var _maximum:Number = Number.NaN;
 		
 		/**
-		 *  The maximum value to be represented on this axis. If maxValue is NaN,
+		 *  The maximum value to be represented on this axis. If maximum is NaN,
 		 *  the value is calculated from the data.
 		 *
 		 *  @langversion 3.0
@@ -125,13 +125,13 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get maxValue():Number
+		public function get maximum():Number
 		{
-			return _maxValue;
+			return _maximum;
 		}
-		public function set maxValue(value:Number):void
+		public function set maximum(value:Number):void
 		{
-			_maxValue = value;
+			_maximum = value;
 		}
 		
 		/**
@@ -186,23 +186,27 @@ package org.apache.flex.charts.beads
 			var xpos:Number = 0;
 			var useWidth:Number = UIBase(axisGroup).width;
 			var series:Array = IChart(strand).series;
+			var maxValue:Number = Number.MIN_VALUE;
+			var minValue:Number = Number.MAX_VALUE;
 			
 			// determine minimum and maximum values, if needed
-			if (isNaN(minValue)) {
-				minValue = Number.MAX_VALUE;
+			if (isNaN(minimum)) {
 				for(var i:int=0; i < items.length; i++) {
 					var value:Number = Number(items[i][valueField]);
 					if (!isNaN(value)) minValue = Math.min(minValue,value);
 					else minValue = Math.min(minValue,0);
 				}
+			} else {
+				minValue = minimum;
 			}
-			if (isNaN(maxValue)) {
-				maxValue = Number.MIN_VALUE;
+			if (isNaN(maximum)) {
 				for(i=0; i < items.length; i++) {
 					value = Number(items[i][valueField]);
 					if (!isNaN(value)) maxValue = Math.max(maxValue,value);
 					else maxValue = Math.max(maxValue,0);
 				}
+			} else {
+				maxValue = maximum;
 			}
 			
 			var numTicks:Number = 10; // should determine this some other way, I think

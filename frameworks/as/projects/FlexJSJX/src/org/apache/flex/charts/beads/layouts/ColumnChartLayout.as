@@ -20,6 +20,7 @@ package org.apache.flex.charts.beads.layouts
 {
 	import org.apache.flex.charts.core.ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
@@ -81,12 +82,21 @@ package org.apache.flex.charts.beads.layouts
 			var seriesWidth:Number = itemWidth/chart.series.length;
 			
 			var maxYValue:Number = 0;
-			var seriesMaxes:Array = [];
+			var minYValue:Number = 0;
+			var scaleFactor:Number = 1;
+			var determineScale:Boolean = true;
+			
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.maximum)) {
+				maxYValue = verticalAxisBead.maximum;
+				determineScale = false;
+			}
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.minimum)) {
+				minYValue = verticalAxisBead.minimum;
+			}
 			
 			for (var s:int = 0; s < chart.series.length; s++)
 			{
-				var bcs:ColumnSeries = chart.series[s] as ColumnSeries;
-				seriesMaxes.push({maxValue:0,scaleFactor:0});
+				var bcs:ColumnSeries = chart.series[s] as ColumnSeries;				
 				
 				for (var i:int = 0; i < n; i++)
 				{
@@ -94,11 +104,12 @@ package org.apache.flex.charts.beads.layouts
 					var field:String = bcs.yField;
 					
 					var yValue:Number = Number(data[field]);
-					seriesMaxes[s].maxValue = Math.max(seriesMaxes[s].maxValue,yValue);
+					if (determineScale) maxYValue = Math.max(yValue, maxYValue);
 				}
-				
-				seriesMaxes[s].scaleFactor = useHeight/seriesMaxes[s].maxValue;
 			}
+			
+			var range:Number = maxYValue - minYValue;
+			scaleFactor = useHeight/range;
 			
 			for (i = 0; i < n; i++)
 			{
@@ -109,12 +120,14 @@ package org.apache.flex.charts.beads.layouts
 					bcs = chart.series[s] as ColumnSeries;
 					
 					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(bcs,i);
-					yValue = Number(data[bcs.yField]);
+					yValue = Number(data[bcs.yField]) - minYValue;
+					if (yValue > maxYValue) yValue = maxYValue;
+					yValue = yValue * scaleFactor;
 					
-					child.y = useHeight - yValue*seriesMaxes[s].scaleFactor;
+					child.y = useHeight - yValue;
 					child.x = xpos;
 					child.width = seriesWidth;
-					child.height = yValue*seriesMaxes[s].scaleFactor;
+					child.height = yValue;
 					xpos += seriesWidth;
 				}
 				

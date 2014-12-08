@@ -136,6 +136,22 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		public function get maximum():Number
+		{
+			return Number.NaN;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function get minimum():Number
+		{
+			return 0;
+		}
+		
+		/**
+		 * @private
+		 */
 		private function handleItemsCreated(event:Event):void
 		{	
 			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;

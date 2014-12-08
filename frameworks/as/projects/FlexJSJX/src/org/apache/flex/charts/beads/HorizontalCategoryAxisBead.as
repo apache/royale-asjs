@@ -116,6 +116,22 @@ package org.apache.flex.charts.beads
 		}
 		
 		/**
+		 * @private
+		 */
+		public function get maximum():Number
+		{
+			return Number.NaN;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function get minimum():Number
+		{
+			return 0;
+		}
+		
+		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
 		 *  @langversion 3.0

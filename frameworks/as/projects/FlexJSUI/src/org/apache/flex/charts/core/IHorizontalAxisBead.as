@@ -39,5 +39,27 @@ package org.apache.flex.charts.core
 		 */
 		function get axisHeight():Number;
 		function set axisHeight(value:Number):void;
+		
+		/**
+		 *  The explicit maximum value being represented by this axis. If
+		 *  this value is not set, NaN is returned. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get maximum():Number;
+		
+		/**
+		 *  The explicit minimum value being represented by this axis. If
+		 *  this value is not set, 0 is returned. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get minimum():Number;
 	}
 }

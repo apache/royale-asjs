@@ -55,23 +55,44 @@ package org.apache.flex.charts.beads.layouts
 				return;
 			
 			var n:int = dp.length;
-			var xAxisOffset:Number = 0;
-			var yAxisOffset:Number = 0;
 			
-			var xpos:Number = yAxisOffset;
-			var ypos:Number = xAxisOffset;
-			var useWidth:Number = UIBase(chartDataGroup).width - yAxisOffset;;
-			var useHeight:Number = UIBase(chartDataGroup).height - xAxisOffset;
+			var xpos:Number = 0;
+			var ypos:Number = 0;
+			var useWidth:Number = UIBase(chartDataGroup).width;
+			var useHeight:Number = UIBase(chartDataGroup).height;
 			var itemWidth:Number =  useWidth/dp.length;
 			
-			var seriesMaxes:Array = [];
+			var maxXValue:Number = 0;
+			var minXValue:Number = 0;
+			var maxYValue:Number = 0;
+			var minYValue:Number = 0;
+			var scaleXFactor:Number = 1;
+			var scaleYFactor:Number = 1;
+			var determineYScale:Boolean = true;
+			var determineXScale:Boolean = true;
+			
+			if (horizontalAxisBead != null && !isNaN(horizontalAxisBead.maximum)) {
+				maxXValue = horizontalAxisBead.maximum;
+				determineXScale = false;
+			}
+			if (horizontalAxisBead != null && !isNaN(horizontalAxisBead.minimum)) {
+				minXValue = horizontalAxisBead.minimum;
+			}
+			
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.maximum)) {
+				maxYValue = verticalAxisBead.maximum;
+				determineYScale = false;
+			}
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.minimum)) {
+				minYValue = verticalAxisBead.minimum;
+			}
+			
+			var seriesPoints:Array = [];
 			
 			for (var s:int = 0; s < chart.series.length; s++)
 			{
 				var aseries:IChartSeries = chart.series[s] as IChartSeries;
-				seriesMaxes.push({minX:Number.MAX_VALUE,maxX:Number.MIN_VALUE,
-					              minY:Number.MAX_VALUE,maxY:Number.MIN_VALUE,
-								  scaleX:0,scaleY:0,points:[]});
+				seriesPoints.push({points:[]});
 				
 				for (var i:int = 0; i < n; i++)
 				{
@@ -80,16 +101,15 @@ package org.apache.flex.charts.beads.layouts
 					var yfield:String = aseries.yField;
 					
 					var xValue:Number = Number(data[xfield]);
-					seriesMaxes[s].minX = Math.min(seriesMaxes[s].minX,xValue);
-					seriesMaxes[s].maxX = Math.max(seriesMaxes[s].maxX,xValue);
+					if (determineXScale) maxXValue = Math.max(maxXValue, xValue);
+
 					var yValue:Number = Number(data[yfield]);
-					seriesMaxes[s].minY = Math.min(seriesMaxes[s].minY,yValue);
-					seriesMaxes[s].maxY = Math.max(seriesMaxes[s].maxY,yValue);
+					if (determineYScale) maxYValue = Math.max(maxYValue, yValue);
 				}
-				
-				seriesMaxes[s].scaleX = useWidth/(seriesMaxes[s].maxX - seriesMaxes[s].minX);
-				seriesMaxes[s].scaleY = useHeight/(seriesMaxes[s].maxY - seriesMaxes[s].minY);
 			}
+			
+			scaleXFactor = useWidth / (maxXValue - minXValue);
+			scaleYFactor = useHeight / (maxYValue - minYValue);
 			
 			// draw the itemRenderers at each vertex and build the points array for the
 			// line segment.
@@ -101,13 +121,13 @@ package org.apache.flex.charts.beads.layouts
 				for (i=0; i < n; i++)
 				{
 					data = dp[i];
-					xValue = Number(data[aseries.xField]);
-					yValue = Number(data[aseries.yField]);
+					xValue = Number(data[aseries.xField]) - minXValue;
+					yValue = Number(data[aseries.yField]) - minYValue;
 					
-					var childX:Number = (xValue-seriesMaxes[s].minX)*seriesMaxes[s].scaleX + yAxisOffset;
-					var childY:Number = useHeight - (yValue-seriesMaxes[s].minY)*seriesMaxes[s].scaleY;
+					var childX:Number = (xValue*scaleXFactor);
+					var childY:Number = useHeight - (yValue*scaleYFactor);
 					
-					seriesMaxes[s].points.push( {x:childX, y:childY} );
+					seriesPoints[s].points.push( {x:childX, y:childY} );
 					
 					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(aseries,i);
 					if (child) {
@@ -131,7 +151,7 @@ package org.apache.flex.charts.beads.layouts
 					chartDataGroup.addElement(renderer);
 					renderer.itemRendererParent = chartDataGroup;
 					renderer.data = lcs;
-					renderer.points = seriesMaxes[s].points;
+					renderer.points = seriesPoints[s].points;
 				}
 			}
 			

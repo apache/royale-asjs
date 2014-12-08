@@ -64,12 +64,23 @@ package org.apache.flex.charts.beads.layouts
 			var itemWidth:Number =  useWidth/dp.length;
 			
 			var maxYValue:Number = 0;
-			var seriesMaxes:Array = [];
+			var minYValue:Number = 0;
+			var scaleYFactor:Number = 1;
+			var determineYScale:Boolean = true;
+			var seriesPoints:Array = [];
+			
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.maximum)) {
+				maxYValue = verticalAxisBead.maximum;
+				determineYScale = false;
+			}
+			if (verticalAxisBead != null && !isNaN(verticalAxisBead.minimum)) {
+				minYValue = verticalAxisBead.minimum;
+			}
 			
 			for (var s:int = 0; s < chart.series.length; s++)
 			{
 				var aseries:IChartSeries = chart.series[s] as IChartSeries;
-				seriesMaxes.push({maxValue:0,scaleFactor:0,points:[]});
+				seriesPoints.push({points:[]});
 				
 				for (var i:int = 0; i < n; i++)
 				{
@@ -77,11 +88,11 @@ package org.apache.flex.charts.beads.layouts
 					var field:String = aseries.yField;
 					
 					var yValue:Number = Number(data[field]);
-					seriesMaxes[s].maxValue = Math.max(seriesMaxes[s].maxValue,yValue);
-				}
-				
-				seriesMaxes[s].scaleFactor = useHeight/seriesMaxes[s].maxValue;
+					if (determineYScale) maxYValue = Math.max(maxYValue,yValue);
+				}				
 			}
+			
+			scaleYFactor = useHeight/(maxYValue - minYValue);
 			
 			// draw the itemRenderers at each vertex and build the points array for the
 			// line segment.
@@ -95,12 +106,12 @@ package org.apache.flex.charts.beads.layouts
 				for (i=0; i < n; i++)
 				{
 					data = dp[i];
-					yValue = Number(data[aseries.yField]);
+					yValue = Number(data[aseries.yField]) - minYValue;
 					
 					var childX:Number = xpos;
-					var childY:Number = useHeight - yValue*seriesMaxes[s].scaleFactor;
+					var childY:Number = useHeight - yValue*scaleYFactor;
 					
-					seriesMaxes[s].points.push( {x:childX, y:childY} );
+					seriesPoints[s].points.push( {x:childX, y:childY} );
 					
 					var child:IChartItemRenderer = chartDataGroup.getItemRendererForSeriesAtIndex(aseries,i);
 					if (child) {
@@ -126,7 +137,7 @@ package org.apache.flex.charts.beads.layouts
 					chartDataGroup.addElement(renderer);
 					renderer.itemRendererParent = chartDataGroup;
 					renderer.data = lcs;
-					renderer.points = seriesMaxes[s].points;
+					renderer.points = seriesPoints[s].points;
 				}
 			}
 			
