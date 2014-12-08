@@ -21,10 +21,19 @@ limitations under the License.
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*"
+                initComplete="testit()"
 				>
 	<fx:Script>
 		<![CDATA[
 			
+			import models.ProductsModel;
+			
+			private function testit():void
+			{
+				var m:ProductsModel = applicationModel as ProductsModel;
+				m.generateWaves(50);
+				waveChart.dataProvider = m.wave1;
+			}
 			
 		]]>
 	</fx:Script>
@@ -260,7 +269,7 @@ limitations under the License.
 				sourcePropertyName="wave"
 				destinationPropertyName="dataProvider" />
 			<basic:HorizontalLinearAxisBead valueField="x" />
-			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
 			<basic:LineChartLinearVsLinearLayout />
 		</basic:beads>
 		<basic:series>

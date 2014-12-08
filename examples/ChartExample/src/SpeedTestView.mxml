@@ -103,7 +103,7 @@ limitations under the License.
 				sourcePropertyName="wave"
 				destinationPropertyName="dataProvider" />-->
 			<basic:HorizontalLinearAxisBead valueField="x" />
-			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
 			<basic:LineChartLinearVsLinearLayout />
 		</basic:beads>
 		<basic:series>
@@ -141,7 +141,7 @@ limitations under the License.
 				sourcePropertyName="wave2"
 				destinationPropertyName="dataProvider" />-->
 			<basic:HorizontalLinearAxisBead valueField="x" />
-			<basic:VerticalLinearAxisBead valueField="sin" />
+			<basic:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
 			<basic:LineChartLinearVsLinearLayout />
 		</basic:beads>
 		<basic:series>
