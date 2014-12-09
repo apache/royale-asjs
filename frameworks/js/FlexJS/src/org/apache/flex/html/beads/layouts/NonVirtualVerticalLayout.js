@@ -48,11 +48,45 @@ org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
     prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
+    if (this.strand_.isWidthSizedToContent() &&
+        this.strand_.isHeightSizedToContent())
+      this.addOtherListeners();
+    else {
+      this.strand_.addEventListener('heightChanged',
+          goog.bind(this.changeHandler, this));
+      this.strand_.addEventListener('widthChanged',
+          goog.bind(this.changeHandler, this));
+      this.strand_.addEventListener('sizeChanged',
+          goog.bind(this.sizeChangeHandler, this));
+      if (!isNaN(this.strand_.get_explicitWidth()) &&
+          !isNaN(this.strand_.get_explicitHeight()))
+          this.addOtherListeners();
+    }
   }
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
+    prototype.addOtherListeners = function() {
+  this.strand_.addEventListener('childrenAdded',
+      goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('layoutNeeded',
+     goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('itemsCreated',
+     goog.bind(this.changeHandler, this));
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
+    prototype.sizeChangeHandler = function(event) {
+  this.addOtherListeners();
+  this.changeHandler(event);
 };
 
 
@@ -67,10 +101,12 @@ org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout.
   n = children.length;
   for (i = 0; i < n; i++)
   {
-    if (children[i].style.display === 'none') {
-      children[i].lastDisplay_ = 'block';
+    var child = children[i];
+    if (child.style.display === 'none') {
+      child.lastDisplay_ = 'block';
     } else {
-      children[i].style.display = 'block';
+      child.style.display = 'block';
     }
+    child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
 };

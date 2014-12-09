@@ -51,21 +51,50 @@ org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('itemsCreated',
-                                  goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('elementAdded',
-                                  goog.bind(this.changeHandler, this));
+    if (this.strand_.isWidthSizedToContent() &&
+        this.strand_.isHeightSizedToContent())
+      this.addOtherListeners();
+    else {
+      this.strand_.addEventListener('heightChanged',
+          goog.bind(this.changeHandler, this));
+      this.strand_.addEventListener('widthChanged',
+          goog.bind(this.changeHandler, this));
+      this.strand_.addEventListener('sizeChanged',
+          goog.bind(this.sizeChangeHandler, this));
+      if (!isNaN(this.strand_.get_explicitWidth()) &&
+          !isNaN(this.strand_.get_explicitHeight()))
+          this.addOtherListeners();
+    }
     this.strand_.element.style.display = 'block';
-
-    this.changeHandler(null);
   }
 };
 
 
 /**
-          NonVirtualHorizontalLayout}
+ *
+ */
+org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
+    prototype.addOtherListeners = function() {
+  this.strand_.addEventListener('childrenAdded',
+      goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('layoutNeeded',
+     goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('itemsCreated',
+     goog.bind(this.changeHandler, this));
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
+    prototype.sizeChangeHandler = function(event) {
+  this.addOtherListeners();
+  this.changeHandler(event);
+};
+
+
+/**
  * @param {org.apache.flex.events.Event} event The text getter.
  */
 org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
@@ -76,9 +105,11 @@ org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
   n = children.length;
   for (i = 0; i < n; i++)
   {
-    if (children[i].style.display == 'none')
-      children[i].lastDisplay_ = 'inline-block';
+    var child = children[i];
+    if (child.style.display == 'none')
+      child.lastDisplay_ = 'inline-block';
     else
-      children[i].style.display = 'inline-block';
+      child.style.display = 'inline-block';
+    child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
 };
