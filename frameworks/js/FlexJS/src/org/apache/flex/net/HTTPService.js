@@ -64,6 +64,12 @@ org.apache.flex.net.HTTPService = function() {
 
   /**
    * @private
+   * @type {Array.<Object>}
+   */
+  this.beads_ = null;
+
+  /**
+   * @private
    * @type {number}
    */
   this.timeout_ = 0;
@@ -127,6 +133,15 @@ org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = 'PUT';
  * @type {string}
  */
 org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = 'DELETE';
+
+
+/**
+ * @expose
+ * @param {Array.<Object>} value The array of beads.
+ */
+org.apache.flex.net.HTTPService.prototype.set_beads = function(value) {
+  this.beads_ = value;
+};
 
 
 /**
@@ -413,4 +428,19 @@ org.apache.flex.net.HTTPService.prototype.get_MXMLProperties = function() {
  */
 org.apache.flex.net.HTTPService.prototype.setDocument = function(document, id) {
   this.document = document;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The strand.
+ */
+org.apache.flex.net.HTTPService.prototype.set_strand = function(value) {
+  if (this.strand_ !== value) {
+    this.strand_ = value;
+  }
+  var n = this.beads_ ? this.beads_.length : 0;
+  for (var i = 0; i < n; i++) {
+    this.addBead(this.beads_[i]);
+  }
 };
