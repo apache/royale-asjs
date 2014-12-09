@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.ContainerView');
 
 goog.require('org.apache.flex.core.BeadViewBase');
+goog.require('org.apache.flex.core.ILayoutParent');
 
 
 
