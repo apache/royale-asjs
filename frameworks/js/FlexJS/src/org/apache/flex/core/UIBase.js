@@ -21,6 +21,7 @@ goog.require('org.apache.flex.core.IBeadModel');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.ILayoutChild');
 goog.require('org.apache.flex.core.IParentIUIBase');
+goog.require('org.apache.flex.core.IStyleableObject');
 goog.require('org.apache.flex.core.IUIBase');
 goog.require('org.apache.flex.core.ValuesManager');
 
@@ -42,6 +43,44 @@ org.apache.flex.core.UIBase = function() {
    */
   this.lastDisplay_ = '';
 
+  /**
+   * @private
+   * @type {number}
+   */
+  this.explicitWidth_ = NaN;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.explicitHeight_ = NaN;
+
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.percentWidth_ = NaN;
+
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.percentHeight_ = NaN;
+
+  /**
+   * @private
+   * @type {Array.<Object>}
+   */
+  this.mxmlBeads_ = null;
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.style_ = null;
+
   this.createElement();
 };
 goog.inherits(org.apache.flex.core.UIBase,
@@ -58,7 +97,17 @@ org.apache.flex.core.UIBase.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org.apache.flex.core.UIBase' }],
       interfaces: [org.apache.flex.core.IUIBase,
                    org.apache.flex.core.IParentIUIBase,
-                   org.apache.flex.core.ILayoutChild] };
+                   org.apache.flex.core.ILayoutChild,
+                   org.apache.flex.core.IStyleableObject] };
+
+
+/**
+ * @expose
+ * @param {Array.<Object>} value The list of beads from MXML.
+ */
+org.apache.flex.core.UIBase.prototype.set_beads = function(value) {
+  this.mxmlBeads_ = value;
+};
 
 
 /**
@@ -184,10 +233,14 @@ org.apache.flex.core.UIBase.prototype.get_parent = function() {
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
-  if (this.beads) {
-    var n = this.beads.length;
+  var styles = this.get_style();
+  if (styles)
+    org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, styles);
+
+  if (this.mxmlBeads_) {
+    var n = this.mxmlBeads_.length;
     for (var i = 0; i < n; i++) {
-      this.addBead(this.beads[i]);
+      this.addBead(this.mxmlBeads_[i]);
     }
   }
 
@@ -376,8 +429,8 @@ org.apache.flex.core.UIBase.prototype.get_y = function() {
  * @param {number} pixels The pixel count from the left edge.
  */
 org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
-  this.positioner.style.width = pixels.toString() + 'px';
-  this.dispatchEvent('widthChanged');
+  this.set_explicitWidth(pixels);
+  this.setWidth(pixels);
 };
 
 
@@ -397,11 +450,52 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
 
 /**
  * @expose
+ * @param {number} pixels The pixel count from the left edge.
+ */
+org.apache.flex.core.UIBase.prototype.set_explicitWidth = function(pixels) {
+  this.explicitWidth_ = pixels;
+  if (!isNaN(pixels))
+    this.percentWidth_ = NaN;
+};
+
+
+/**
+ * @expose
+ * @return {number} The width of the object in pixels.
+ */
+org.apache.flex.core.UIBase.prototype.get_explicitWidth = function() {
+  return this.explicitWidth_;
+};
+
+
+/**
+ * @expose
+ * @param {number} pixels The percent width of the object.
+ */
+org.apache.flex.core.UIBase.prototype.set_percentWidth = function(pixels) {
+  this.percentWidth_ = pixels;
+  this.positioner.style.width = pixels.toString() + '%';
+  if (!isNaN(pixels))
+    this.explicitWidth_ = NaN;
+};
+
+
+/**
+ * @expose
+ * @return {number} The percent width of the object.
+ */
+org.apache.flex.core.UIBase.prototype.get_percentWidth = function() {
+  return this.percentWidth_;
+};
+
+
+/**
+ * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
 org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
-  this.positioner.style.height = pixels.toString() + 'px';
-  this.dispatchEvent('heightChanged');
+  this.set_explicitHeight(pixels);
+  this.setHeight(pixels);
 };
 
 
@@ -416,6 +510,135 @@ org.apache.flex.core.UIBase.prototype.get_height = function() {
   if (isNaN(pixels))
     pixels = this.positioner.offsetHeight;
   return pixels;
+};
+
+
+/**
+ * @expose
+ * @param {number} pixels The height of the object in pixels.
+ */
+org.apache.flex.core.UIBase.prototype.set_explicitHeight = function(pixels) {
+  this.explicitHeight_ = pixels;
+  if (!isNaN(pixels))
+    this.percentHeight_ = NaN;
+};
+
+
+/**
+ * @expose
+ * @return {number} The height of the object in pixels.
+ */
+org.apache.flex.core.UIBase.prototype.get_explicitHeight = function() {
+  return this.explicitHeight_;
+};
+
+
+/**
+ * @expose
+ * @param {number} pixels The percentage height.
+ */
+org.apache.flex.core.UIBase.prototype.set_percentHeight = function(pixels) {
+  this.percentHeight_ = pixels;
+  this.positioner.style.height = pixels.toString() + '%';
+  if (!isNaN(pixels))
+    this.explicitHeight_ = NaN;
+};
+
+
+/**
+ * @expose
+ * @return {number} The percentage height of the object.
+ */
+org.apache.flex.core.UIBase.prototype.get_percentHeight = function() {
+  return this.percentHeight_;
+};
+
+
+/**
+ * @expose
+ * @param {number} value The height of the object in pixels.
+ * @param {boolean=} opt_noEvent Whether to skip sending a change event.
+ */
+org.apache.flex.core.UIBase.prototype.setHeight =
+    function(value, opt_noEvent)
+{
+  if (opt_noEvent === undefined)
+    opt_noEvent = false;
+
+  var _height = this.get_height();
+  if (_height != value) {
+    this.positioner.style.height = value.toString() + 'px';
+    if (!opt_noEvent)
+      this.dispatchEvent('heightChanged');
+  }
+};
+
+
+/**
+ * @expose
+ * @param {number} value The width of the object in pixels.
+ * @param {boolean=} opt_noEvent Whether to skip sending a change event.
+ */
+org.apache.flex.core.UIBase.prototype.setWidth =
+    function(value, opt_noEvent)
+{
+  if (opt_noEvent === undefined)
+    opt_noEvent = false;
+
+  var _width = this.get_width();
+  if (_width != value) {
+    this.positioner.style.width = value.toString() + 'px';
+    if (!opt_noEvent)
+      this.dispatchEvent('widthChanged');
+  }
+};
+
+
+/**
+ * @expose
+ * @param {number} newWidth The width of the object in pixels.
+ * @param {number} newHeight The height of the object in pixels.
+ * @param {boolean=} opt_noEvent Whether to skip sending a change event.
+ */
+org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
+    function(newWidth, newHeight, opt_noEvent)
+{
+  if (opt_noEvent === undefined)
+    opt_noEvent = false;
+
+  var _width = this.get_width();
+  if (_width != newWidth) {
+    this.positioner.style.width = newWidth.toString() + 'px';
+    if (!opt_noEvent)
+      this.dispatchEvent('widthChanged');
+  }
+  var _height = this.get_height();
+  if (_height != newHeight) {
+    this.positioner.style.height = newHeight.toString() + 'px';
+    if (!opt_noEvent)
+      this.dispatchEvent('heightChanged');
+  }
+  this.dispatchEvent('sizeChanged');
+};
+
+
+/**
+ * @expose
+ * @return {boolean} True if width sized to content.
+ */
+org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
+{
+  return (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_));
+};
+
+
+/**
+ * @expose
+ * @return {boolean} True if height sized to content.
+ */
+org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
+{
+  return (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_));
 };
 
 
@@ -515,6 +738,29 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
   if (this.model !== value) {
     this.addBead(value);
     this.dispatchEvent('modelChanged');
+  }
+};
+
+
+/**
+ * @expose
+ * @return {Object} The style properties.
+ */
+org.apache.flex.core.UIBase.prototype.get_style = function() {
+  return this.style_;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The new style properties.
+ */
+org.apache.flex.core.UIBase.prototype.set_style = function(value) {
+  if (this.style_ !== value) {
+    if (typeof(value) == 'string')
+      value = org.apache.flex.core.ValuesManager.valuesImpl.parseStyles(value);
+    this.style_ = value;
+    this.dispatchEvent('stylesChanged');
   }
 };
 
