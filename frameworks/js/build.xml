@@ -85,6 +85,8 @@
     
     <target name="compile" depends="flexjsjx, gjslint, jshint" description="Validates JS code" />
     
+    <target name="lint" depends="gjslint, jshint" />
+    
     <target name="gjslint" unless="no.lint">
         <echo>running gjslint</echo>
         <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
