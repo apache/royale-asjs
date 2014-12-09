@@ -172,3 +172,13 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.getItemAt =
 
   return this.data_[index];
 };
+
+
+/**
+ * @expose
+ * @return {string} The number of items in the collection.
+ */
+org.apache.flex.net.dataConverters.LazyCollection.prototype.get_length =
+    function() {
+  return this.rawData ? this.rawData.length : 0;
+};
