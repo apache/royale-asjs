@@ -19,6 +19,7 @@ goog.require('org.apache.flex.binding.GenericBinding');
 goog.require('org.apache.flex.binding.PropertyWatcher');
 goog.require('org.apache.flex.binding.SimpleBinding');
 goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
@@ -134,7 +135,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.initCompleteHandler =
               this.deferredBindings[prop] =
                   sb;
               this.strand_.addEventListener('valueChange',
-                  this.deferredBindingsHandler);
+                  goog.bind(this.deferredBindingsHandler, this));
             }
           }
           else if (fieldWatcher.eventNames == null)
@@ -341,7 +342,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.decodeWatcher =
 
 /**
  * @protected
- * @param {Object} event The event.
+ * @param {org.apache.flex.events.ValueChangeEvent} event The event.
  */
 org.apache.flex.core.ViewBaseDataBinding.prototype.deferredBindingsHandler =
     function(event) {
@@ -349,6 +350,7 @@ org.apache.flex.core.ViewBaseDataBinding.prototype.deferredBindingsHandler =
   var destination;
   for (p in this.deferredBindings)
   {
+    if (p != event.propertyName) continue;
     if (typeof(this.strand_['get_' + p]) == 'function')
     {
       destination = this.strand_['get_' + p]();
