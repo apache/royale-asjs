@@ -82,13 +82,12 @@ org.apache.flex.binding.BindingBase.prototype.sourceID = null;
 org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   if (this.destination == null)
     this.destination = value;
-
-  if (this.sourceID != null)
-  {
-    try {
-      this.source = this.document['get_' + this.sourceID]();
-    } catch (e) {
-      this.source = this.document[this.sourceID];
+  if (this.sourceID != null) {
+    this.source = this.document[this.sourceID];
+    if (this.source == null) {
+      this.document.addEventListener('valueChange',
+          goog.bind(this.sourceChangeHandler, this));
+        return;
     }
   }
   else
@@ -102,4 +101,22 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
  */
 org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
   this.document = document;
+};
+
+
+/**
+ * @param {Object} event The event.
+ */
+org.apache.flex.binding.BindingBase.prototype.sourceChangeHandler = function(event) {
+  if (event.propertyName != this.sourceID)
+    return;
+
+  if (this.source)
+    this.source.removeEventListener(this.eventName,
+        goog.bind(this.changeHandler, this));
+
+  if (typeof(this.document['get_' + this.sourceID]) === 'function')
+    this.source = this.document['get_' + this.sourceID]();
+  else
+    this.source = this.document[this.sourceID];
 };

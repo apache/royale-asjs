@@ -50,9 +50,14 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
  * @expose
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
-  this.destination['set_' + this.destinationPropertyName](
-      this.source['get_' + this.sourcePropertyName]()
-  );
+  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
+    this.destination['set_' + this.destinationPropertyName](
+        this.source['get_' + this.sourcePropertyName]()
+    );
+  else {
+    this.destination[this.destinationPropertyName] =
+        this.source['get_' + this.sourcePropertyName]();
+  }
 };
 
 
@@ -62,8 +67,22 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
   org.apache.flex.binding.SimpleBinding.base(this, 'set_strand', value);
 
+
   this.source.addEventListener(this.eventName,
       goog.bind(this.changeHandler, this));
 
   this.changeHandler();
+};
+
+
+/**
+ * @param {Object} event The event.
+ */
+org.apache.flex.binding.SimpleBinding.prototype.sourceChangeHandler = function(event) {
+  org.apache.flex.binding.SimpleBinding.base(this, 'sourceChangeHandler', event);
+  if (this.source) {
+    this.source.addEventListener(this.eventName,
+        goog.bind(this.changeHandler, this));
+    this.changeHandler();
+  }
 };
