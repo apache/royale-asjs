@@ -52,6 +52,8 @@ org.apache.flex.html.DropDownList.prototype.
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
 
+  this.element.flexjs_wrapper = this;
+
   return this.element;
 };
 

@@ -55,6 +55,7 @@ org.apache.flex.html.CheckBox.prototype.createElement =
 
   this.positioner = this.element;
   cb.flexjs_wrapper = this;
+  this.element.flexjs_wrapper = this;
 
   return this.element;
 };

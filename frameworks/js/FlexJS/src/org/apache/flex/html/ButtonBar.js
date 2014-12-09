@@ -81,5 +81,7 @@ org.apache.flex.html.ButtonBar.prototype.createElement =
 
   this.set_className('ButtonBar');
 
+  this.element.flexjs_wrapper = this;
+
   return this.element;
 };

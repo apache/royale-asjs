@@ -55,6 +55,7 @@ org.apache.flex.html.RadioButton.prototype.createElement =
 
   this.positioner = this.element;
   rb.flexjs_wrapper = this;
+  this.element.flexjs_wrapper = this;
 
   return this.element;
 };
