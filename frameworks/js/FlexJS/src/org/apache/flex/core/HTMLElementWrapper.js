@@ -130,18 +130,6 @@ org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 
 /**
- * @expose
- * @param {Array.<Object>} value The new strand.
- */
-org.apache.flex.core.HTMLElementWrapper.prototype.set_strand =
-    function(value) {
-  if (this.strand !== value) {
-    this.strand = value;
-  }
-};
-
-
-/**
  * Hack to allow event.target expressions to work
  *
  * @expose
