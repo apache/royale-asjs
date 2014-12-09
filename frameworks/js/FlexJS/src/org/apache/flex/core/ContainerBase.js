@@ -32,6 +32,25 @@ org.apache.flex.core.ContainerBase = function() {
    */
   this.initialized_ = false;
 
+  /**
+   * @private
+   * @type {Array}
+   */
+  this.states_ = null;
+
+  /**
+   * @private
+   * @type {Array}
+   */
+  this.transitions_ = null;
+
+  /**
+   * @private
+   * @type {?String}
+   */
+  this.currentState_ = null;
+
+
   this.document = this;
 
 };
@@ -114,6 +133,60 @@ org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
+};
+
+
+/**
+ * @expose
+ * @return {Array} An array of states.
+ */
+org.apache.flex.core.ContainerBase.prototype.get_states = function() {
+  return this.states_;
+};
+
+
+/**
+ * @expose
+ * @param {Array} s An array of states.
+ */
+org.apache.flex.core.ContainerBase.prototype.set_states = function(s) {
+  this.states_ = s;
+};
+
+
+/**
+ * @expose
+ * @return {String} The current state.
+ */
+org.apache.flex.core.ContainerBase.prototype.get_currentState = function() {
+  return this.currentState_;
+};
+
+
+/**
+ * @expose
+ * @param {String} s The current state.
+ */
+org.apache.flex.core.ContainerBase.prototype.set_currentState = function(s) {
+  this.currentState_ = s;
+};
+
+
+/**
+ * @expose
+ * @return {Array} An array of states.
+ */
+org.apache.flex.core.ContainerBase.prototype.get_transitions = function() {
+  return this.transitions_;
+};
+
+
+/**
+ * @expose
+ * @param {Array} s An array of states.
+ */
+org.apache.flex.core.ContainerBase.prototype.set_transitions = function(s) {
+  this.transitions_ = s;
 };
 
 
