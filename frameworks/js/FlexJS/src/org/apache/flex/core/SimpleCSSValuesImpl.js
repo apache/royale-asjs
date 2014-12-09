@@ -33,6 +33,12 @@ org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR = 'global';
 
 
 /**
+ * @type {string}
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.UNIVERSAL_SELECTOR = '*';
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
@@ -67,6 +73,22 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
   var o;
   var cName;
   var selectorName;
+
+  if (typeof(thisObject.get_style) === 'function')
+  {
+    var style = thisObject.get_style();
+    if (style != null)
+    {
+      try {
+         value = style[valueName];
+      }
+      catch (e) {
+        value = undefined;
+      }
+      if (value !== undefined)
+        return value;
+    }
+  }
 
   if ('className' in thisObject)
   {
@@ -141,14 +163,12 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   }
   o = values[org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR];
-  if (o !== undefined)
-  {
-    value = o[valueName];
-    if (value !== undefined)
-      return value;
-  }
-  o = values['*'];
-  return o[valueName];
+  if (o)
+    return o[valueName];
+  o = values[org.apache.flex.core.SimpleCSSValuesImpl.UNIVERSAL_SELECTOR];
+  if (o)
+    return o[valueName];
+  return undefined;
 };
 
 
@@ -210,4 +230,73 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
   }
 
   this.values = values;
+};
+
+
+/**
+ * @param {string} styles The styles as HTML style syntax.
+ * @return {Object} The styles object.
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.parseStyles = function(styles) {
+  var obj = {};
+  var parts = styles.split(';');
+  var l = parts.length;
+  for (var i = 0; i < l; i++) {
+    var part = parts[i];
+    var pieces = part.split(':');
+    var value = pieces[1];
+    if (value == 'null')
+      obj[pieces[0]] = null;
+    else if (value == 'true')
+      obj[pieces[0]] = true;
+    else if (value == 'false')
+      obj[pieces[0]] = false;
+    else {
+      var n = Number(value);
+      if (isNaN(n))
+        obj[pieces[0]] = value;
+      else
+        obj[pieces[0]] = n;
+    }
+  }
+  return obj;
+};
+
+
+/**
+ * The styles that apply to each UI widget
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles =
+  ['backgroundColor',
+   'backgroundImage',
+   'color',
+   'fontFamily',
+   'fontWeight',
+   'fontSize',
+   'fontStyle'];
+
+
+/**
+ * @param {Object} thisObject The object to apply styles to;
+ * @param {Object} styles The styles.
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
+    function(thisObject, styles) {
+  var styleList = org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles;
+  var n = styleList.length;
+  for (var i = 0; i < n; i++) {
+    this.applyStyle(thisObject, styleList[i]);
+  }
+};
+
+
+/**
+ * @param {Object} thisObject The object to apply styles to;
+ * @param {string} style The style name.
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyle =
+    function(thisObject, style) {
+  var value = this.getValue(thisObject, style);
+  if (value !== undefined)
+    thisObject.element.style[style] = value;
 };
