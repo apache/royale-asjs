@@ -53,3 +53,15 @@ org.apache.flex.charts.core.IHorizontalAxisBead.prototype.set_axisHeight = funct
  * @return {number}
  */
 org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_axisHeight = function() {};
+
+
+/**
+ * @return {number}
+ */
+org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_maximum = function() {};
+
+
+/**
+ * @return {number}
+ */
+org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_minimum = function() {};

@@ -53,3 +53,15 @@ org.apache.flex.charts.core.IVerticalAxisBead.prototype.set_axisWidth = function
  * @return {number}
  */
 org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_axisWidth = function() {};
+
+
+/**
+ * @return {number}
+ */
+org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_maximum = function() {};
+
+
+/**
+ * @return {number}
+ */
+org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_minimum = function() {};
