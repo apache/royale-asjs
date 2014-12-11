@@ -24,6 +24,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.graphics.GraphicsContainer;
 	import org.apache.flex.events.Event;
@@ -59,6 +60,20 @@ package org.apache.flex.charts.optimized
 		}
 		
 		private var _children:Array;
+		private var _strand:IStrand;
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+		}
 		
 		/**
 		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()

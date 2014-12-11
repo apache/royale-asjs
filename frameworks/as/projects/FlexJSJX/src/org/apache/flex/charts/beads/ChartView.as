@@ -132,22 +132,26 @@ package org.apache.flex.charts.beads
 				heightAdjustment = haxis.axisHeight;
 			}
 			
-			UIBase(dataGroup).x = widthAdjustment;
-			UIBase(dataGroup).y = 0;
-			UIBase(dataGroup).width = UIBase(dataGroup).width - widthAdjustment;
-			UIBase(dataGroup).height= UIBase(dataGroup).height - heightAdjustment;
+			var dg:UIBase = UIBase(dataGroup);
+			var strandWidth:Number = UIBase(_strand).width;
+			var strandHeight:Number = UIBase(_strand).height;
+			
+			dg.x = widthAdjustment;
+			dg.y = 0;
+			dg.width = strandWidth - widthAdjustment;
+			dg.height= strandHeight - heightAdjustment;
 			
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = 0;
 				UIBase(verticalAxisGroup).y = 0;
 				UIBase(verticalAxisGroup).width = widthAdjustment;
-				UIBase(verticalAxisGroup).height = UIBase(dataGroup).height;
+				UIBase(verticalAxisGroup).height = strandHeight - heightAdjustment;
 			}
 			
 			if (horizontalAxisGroup) {
 				UIBase(horizontalAxisGroup).x = widthAdjustment;
-				UIBase(horizontalAxisGroup).y = UIBase(dataGroup).height;
-				UIBase(horizontalAxisGroup).width = UIBase(dataGroup).width;
+				UIBase(horizontalAxisGroup).y = strandHeight - heightAdjustment;
+				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
 		}
