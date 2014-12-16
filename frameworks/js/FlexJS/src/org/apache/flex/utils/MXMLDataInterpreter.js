@@ -52,7 +52,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
   generateMXMLObject =
       org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
 
-  if (comp.set_strand)
+  if (comp.addBead)
     org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject(document, null, comp, data, i);
   else {
     m = data[i++]; // num props
