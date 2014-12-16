@@ -104,6 +104,15 @@ org.apache.flex.core.ViewBase.prototype.document = null;
 
 /**
  * @expose
+ * @return {Array} An array of descriptors.
+ */
+org.apache.flex.core.ViewBase.prototype.get_MXMLDescriptor = function() {
+  return this.MXMLDescriptor;
+};
+
+
+/**
+ * @expose
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
