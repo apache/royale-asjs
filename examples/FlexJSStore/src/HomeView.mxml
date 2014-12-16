@@ -104,9 +104,9 @@ Width and height are hard-coded in the root tag to help the Design view.
                                 <basic:SimpleCSSStyles horizontalAlign="left" verticalAlign="middle" />
                             </basic:style>
 							<basic:TextInput height="20" width="40"/>
-							<basic:HRule width="8" height="25"/>
+							<basic:HRule width="8" height="2"/>
 							<basic:TextInput height="20" width="40"/>
-							<basic:HRule width="8" height="25"/>
+							<basic:HRule width="8" height="2"/>
 							<basic:TextInput height="20" width="40"/>
 						</basic:HContainer>
 						
