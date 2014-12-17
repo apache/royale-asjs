@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.Application');
 
 goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.IParent');
 goog.require('org.apache.flex.core.IValuesImpl');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
@@ -39,7 +40,8 @@ goog.inherits(org.apache.flex.core.Application,
  */
 org.apache.flex.core.Application.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Application',
-                qName: 'org.apache.flex.core.Application' }] };
+                qName: 'org.apache.flex.core.Application' }],
+      interfaces: [org.apache.flex.core.IParent] };
 
 
 /**
