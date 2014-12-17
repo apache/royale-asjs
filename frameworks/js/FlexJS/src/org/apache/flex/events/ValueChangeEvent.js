@@ -22,10 +22,12 @@ goog.require('goog.events.Event');
  * @constructor
  * @extends {goog.events.Event}
  * @param {string} type The event type.
+ * @param {boolean} b The bubbles parameter.
+ * @param {boolean} c The cancelable parameter.
  * @param {*} ov The old value.
  * @param {*} nv The new value.
  */
-org.apache.flex.events.ValueChangeEvent = function(type, ov, nv) {
+org.apache.flex.events.ValueChangeEvent = function(type, b, c, ov, nv) {
   org.apache.flex.events.ValueChangeEvent.base(this, 'constructor', type);
 
   this.type = type;
@@ -103,7 +105,7 @@ org.apache.flex.events.ValueChangeEvent.createUpdateEvent =
     {
   var event = new org.apache.flex.events.ValueChangeEvent(
       org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
-      oldValue, newValue);
+      false, false, oldValue, newValue);
   event.propertyName = name;
   event.source = source;
   return event;

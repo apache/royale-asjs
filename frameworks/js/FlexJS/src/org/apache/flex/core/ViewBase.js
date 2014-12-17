@@ -216,7 +216,7 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
  */
 org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
   var event = new org.apache.flex.events.ValueChangeEvent(
-      'currentStateChanged', this.currentState_, value);
+      'currentStateChanged', false, false, this.currentState_, value);
   this.currentState_ = value;
   this.dispatchEvent(event);
 };
