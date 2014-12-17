@@ -168,7 +168,10 @@ org.apache.flex.core.ContainerBase.prototype.get_currentState = function() {
  * @param {String} s The current state.
  */
 org.apache.flex.core.ContainerBase.prototype.set_currentState = function(s) {
+  var event = new org.apache.flex.events.ValueChangeEvent(
+      'currentStateChange', false, false, this.currentState_, s);
   this.currentState_ = s;
+  this.dispatchEvent(event);
 };
 
 
