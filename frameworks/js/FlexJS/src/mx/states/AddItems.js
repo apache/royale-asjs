@@ -108,9 +108,9 @@ mx.states.AddItems.prototype.position = '';
 
 /**
  * @expose
- * @type {string} relativeTo The id of the child where the item goes.
+ * @type {?string} relativeTo The id of the child where the item goes.
  */
-mx.states.AddItems.prototype.relativeTo = '';
+mx.states.AddItems.prototype.relativeTo = null;
 
 
 /**
