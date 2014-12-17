@@ -254,10 +254,10 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.parseStyles = function(styles
     else {
       var n = Number(value);
       if (isNaN(n)) {
-        if (value.indexOf("'") == 0)
+        if (value.indexOf("'") === 0)
           value = value.substring(1, value.length - 1);
         obj[pieces[0]] = value;
-	  }
+      }
       else
         obj[pieces[0]] = n;
     }
@@ -270,21 +270,22 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.parseStyles = function(styles
  * The styles that apply to each UI widget
  */
 org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles = {
-   backgroundColor : 1,
-   backgroundImage : 1,
-   color : 1,
-   fontFamily : 1,
-   fontWeight : 1,
-   fontSize : 1,
-   fontStyle : 1
+   backgroundColor: 1,
+   backgroundImage: 1,
+   color: 1,
+   fontFamily: 1,
+   fontWeight: 1,
+   fontSize: 1,
+   fontStyle: 1
 };
+
 
 /**
  * The styles that use color format #RRGGBB
  */
 org.apache.flex.core.SimpleCSSValuesImpl.colorStyles = {
-   backgroundColor : 1,
-   color : 1
+   backgroundColor: 1,
+   color: 1
 };
 
 
@@ -299,12 +300,12 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
   for (var p in styles) {
     //if (styleList[p])
     var value = styles[p];
-    if (typeof(value) == "number") {
+    if (typeof(value) == 'number') {
       if (colorStyles[p])
-        value = "#" + value.toString(16);
+        value = '#' + value.toString(16);
       else
-        value = value.toString() + "px";
-	}
+        value = value.toString() + 'px';
+    }
     thisObject.element.style[p] = value;
   }
 };
