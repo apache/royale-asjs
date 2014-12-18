@@ -50,7 +50,7 @@ org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.effects.PlatformWiper.prototype.set_target =
     function(target) {
   if (target == null)
-      delete this.target_.style.clip;
+      delete this.target_.positioner.style.clip;
   this.target_ = target;
 };
 
@@ -67,5 +67,5 @@ org.apache.flex.effects.PlatformWiper.prototype.set_visibleRect =
   styleString += rect.width.toString() + 'px,';
   styleString += rect.height.toString() + 'px,';
   styleString += rect.left.toString() + 'px,)';
-  this.target_.style.clip = styleString;
+  this.target_.positioner.style.clip = styleString;
 };
