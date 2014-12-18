@@ -675,6 +675,13 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {string}
  */
+org.apache.flex.core.UIBase.prototype.typeNames = '';
+
+
+/**
+ * @expose
+ * @type {string}
+ */
 org.apache.flex.core.UIBase.prototype.className = '';
 
 
@@ -694,7 +701,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
   if (this.className !== value)
   {
-    this.element.className = value;
+    this.element.className = this.typeNames ? value + " " + this.typeNames : value;
     this.className = value;
     this.dispatchEvent('classNameChanged');
   }
