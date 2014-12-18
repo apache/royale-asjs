@@ -81,21 +81,21 @@ limitations under the License.
         <productsView:Grip id="filterGrip" gripIcon="assets/icon_magnifier.png" 
             gripTip="Show filter panel" click="currentState = 'showFilter'"/>
     
-        <productsView:ProductFilterPanel x="{filterGrip.width}" id="filterPanel" width="265" height="100%"
+        <productsView:ProductFilterPanel x="{filterGrip.width}" y="0" id="filterPanel" width="265" height="100%"
             filter="catalogPanel.filter(event.filter, event.live)"
             compare="catalogPanel.compare(filterPanel.productList.getProducts())"
             initComplete="if (catalog) filterPanel.filter.count = catalog.length"/>
     
         <productsView:ProductCart id="cartPanel" width="265" height="100%">
             <productsView:style>
-                <basic:SimpleCSSStyles right="{cartGrip.width}" />
+                <basic:SimpleCSSStyles right="{cartGrip.width}" top="0" />
             </productsView:style>
         </productsView:ProductCart>
 
         <productsView:Grip id="cartGrip" gripIcon="assets/icon_cart_empty.png"
             gripTip="Show cart" click="currentState = 'showCart'">
             <productsView:style>
-                <basic:SimpleCSSStyles right="0" />
+                <basic:SimpleCSSStyles right="0" top="0"/>
             </productsView:style>
         </productsView:Grip>
     
