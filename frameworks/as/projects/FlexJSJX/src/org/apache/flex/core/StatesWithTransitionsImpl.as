@@ -189,7 +189,7 @@ package org.apache.flex.core
                 if (o is AddItems)
                 {
                     var ai:AddItems = AddItems(o);
-                    for each (var item:Object in ai.items)
+                    for each (var item:IChild in ai.items)
                     {
                         var parent:IParent = item.parent as IParent;
                         parent.removeElement(item);
