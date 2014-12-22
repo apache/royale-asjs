@@ -313,6 +313,13 @@ org.apache.flex.net.HTTPService.prototype.set_url = function(value) {
 org.apache.flex.net.HTTPService.prototype.send = function() {
   var contentData, header, i, n, sawContentType, url;
 
+  if (this.strand == null && this.beads_) {
+    var m = this.beads_.length;
+    for (var j = 0; j < m; j++) {
+      this.addBead(this.beads_[j]);
+    }
+  }
+
   this.element.onreadystatechange = goog.bind(this.progressHandler, this);
 
   url = this.url_;
