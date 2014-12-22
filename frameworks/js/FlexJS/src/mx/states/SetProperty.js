@@ -63,9 +63,9 @@ mx.states.SetProperty.prototype.name = '';
 
 /**
  * @expose
- * @type {string} target The id of the object.
+ * @type {?string} target The id of the object.
  */
-mx.states.SetProperty.prototype.target = '';
+mx.states.SetProperty.prototype.target = null;
 
 
 /**
