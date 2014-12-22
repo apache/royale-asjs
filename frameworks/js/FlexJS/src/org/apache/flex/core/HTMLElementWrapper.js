@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.HTMLElementWrapper');
 
 goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.IStrand');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.utils.Language');
 
@@ -38,7 +39,8 @@ goog.inherits(org.apache.flex.core.HTMLElementWrapper,
  */
 org.apache.flex.core.HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HTMLElementWrapper',
-                qName: 'org.apache.flex.core.HTMLElementWrapper' }] };
+                qName: 'org.apache.flex.core.HTMLElementWrapper' }],
+      interfaces: [org.apache.flex.core.IStrand] };
 
 
 /**
