@@ -131,7 +131,7 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
     if (obj == null) {
        this.document.addEventListener(
            org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
-           this.destinationChangeHandler);
+           goog.bind(this.destinationChangeHandler, this));
        return;
     }
     for (var i = 1; i < n - 1; i++)
