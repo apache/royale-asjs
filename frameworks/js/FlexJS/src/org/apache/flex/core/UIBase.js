@@ -399,6 +399,8 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
 org.apache.flex.core.UIBase.prototype.get_x = function() {
   var strpixels = this.positioner.style.left;
   var pixels = parseFloat(strpixels);
+  if (isNaN(pixels))
+    pixels = this.positioner.offsetLeft;
   return pixels;
 };
 
@@ -420,6 +422,8 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
 org.apache.flex.core.UIBase.prototype.get_y = function() {
   var strpixels = this.positioner.style.top;
   var pixels = parseFloat(strpixels);
+  if (isNaN(pixels))
+    pixels = this.positioner.offsetTop;
   return pixels;
 };
 
@@ -701,7 +705,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
 org.apache.flex.core.UIBase.prototype.set_className = function(value) {
   if (this.className !== value)
   {
-    this.element.className = this.typeNames ? value + " " + this.typeNames : value;
+    this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
     this.className = value;
     this.dispatchEvent('classNameChanged');
   }
