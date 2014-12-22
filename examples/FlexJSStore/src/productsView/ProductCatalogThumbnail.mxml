@@ -156,9 +156,9 @@ limitations under the License.
                      width.x2cols="60" height.x2cols="60"
                      source="{product.image}" />
 
-            <basic:VContainer id="descr" width="100%" height="100%" >
+            <basic:VContainer id="descr" height="100%" >
                 <basic:style>
-                    <basic:SimpleCSSStyles paddingTop="0" /> <!--  gap="0"  -->
+                    <basic:SimpleCSSStyles paddingTop="0" left="50" right="0" /> <!--  gap="0"  -->
                 </basic:style>
                 <basic:Label text="{product.featureString}" width="80" height="48" />
                 <basic:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
