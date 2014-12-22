@@ -80,6 +80,17 @@ function() {
 
 /**
  * @expose
+ * @param {number} value The resizeable view.
+ */
+org.apache.flex.html.beads.ScrollingContainerView.prototype.set_verticalScrollPosition =
+function(value) {
+
+  this._strand.scrollTop = value;
+};
+
+
+/**
+ * @expose
  * @return {number} value The resizeable view.
  */
 org.apache.flex.html.beads.ScrollingContainerView.prototype.get_maxVerticalScrollPosition =
