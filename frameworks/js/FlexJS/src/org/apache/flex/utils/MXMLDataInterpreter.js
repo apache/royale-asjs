@@ -166,13 +166,13 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
     } else {
       comp[name] = value;
     }
+  }
 
-    beadOffset = i + (m - 1) * 3;
-    if (m > 0 && data[beadOffset] === 'beads') {
-      m--;
-    } else {
-      beadOffset = -1;
-    }
+  beadOffset = i + (m - 1) * 3;
+  if (m > 0 && data[beadOffset] === 'beads') {
+    m--;
+  } else {
+    beadOffset = -1;
   }
 
   for (j = 0; j < m; j++) {
@@ -218,12 +218,11 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
       value = generateMXMLArray(document, null, value);
     } else if (simple === false) {
       value = generateMXMLObject(document, value);
+    }
+    if (typeof(comp['set_' + name]) === 'function') {
+      comp['set_' + name](value);
     } else {
-      if (typeof(comp['set_' + name]) === 'function') {
-        comp['set_' + name](value);
-      } else {
-        comp[name] = value;
-      }
+      comp[name] = value;
     }
   }
 
