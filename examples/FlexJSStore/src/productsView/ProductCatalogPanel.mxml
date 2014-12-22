@@ -103,6 +103,8 @@ limitations under the License.
             for (i=0; i < n; i++)
             {
                 var thumb:ProductCatalogThumbnail = new ProductCatalogThumbnail();
+                thumb.x = 0;
+                thumb.y = 0;
                 thumbnails[i] = thumb;
                 // thumbnails[i].showInAutomationHierarchy = true;
                 thumb.product = catalog.getItemAt(i) as Product;
