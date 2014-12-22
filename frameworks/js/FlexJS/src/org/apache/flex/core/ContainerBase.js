@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.core.ContainerBase');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ValuesManager');
 
 
 
@@ -151,6 +152,17 @@ org.apache.flex.core.ContainerBase.prototype.get_states = function() {
  */
 org.apache.flex.core.ContainerBase.prototype.set_states = function(s) {
   this.states_ = s;
+  this.currentState_ = s[0].name;
+
+  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+    /**
+     * @type {Function}
+     */
+    var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+        getValue(this, 'iStatesImpl'));
+    // TODO: (aharui) check if bead already exists
+    this.addBead(new impl());
+  }
 };
 
 

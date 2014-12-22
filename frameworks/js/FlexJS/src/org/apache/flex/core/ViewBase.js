@@ -172,6 +172,7 @@ org.apache.flex.core.ViewBase.prototype.get_states = function() {
  */
 org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
   this.states_ = value;
+  this.currentState_ = value[0].name;
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
     /**
