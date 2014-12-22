@@ -80,7 +80,7 @@ org.apache.flex.binding.WatcherBase.prototype.addChild =
   else
     this.children.push(child);
 
-  child.parentChanged(this);
+  child.parentChanged(this.value);
 };
 
 
