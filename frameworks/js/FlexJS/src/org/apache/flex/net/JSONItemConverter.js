@@ -39,5 +39,5 @@ org.apache.flex.net.JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
  * @return {*} The object.
  */
 org.apache.flex.net.JSONItemConverter.prototype.convertItem = function(s) {
-  return JSON.parse(s);
+  return JSON.parse(s + '}');
 };
