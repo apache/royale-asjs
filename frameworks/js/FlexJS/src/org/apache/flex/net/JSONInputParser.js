@@ -39,5 +39,10 @@ org.apache.flex.net.JSONInputParser.prototype.FLEXJS_CLASS_INFO =
  * @return {Array.<string>} The Array of unparsed objects.
  */
 org.apache.flex.net.JSONInputParser.prototype.parseItems = function(s) {
+  var c = s.indexOf('[');
+  if (c != -1) {
+    var c2 = s.lastIndexOf(']');
+    s = s.substring(c + 1, c2);
+  }
   return s.split('},');
 };
