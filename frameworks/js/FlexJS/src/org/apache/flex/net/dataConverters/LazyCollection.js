@@ -180,5 +180,5 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.getItemAt =
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.get_length =
     function() {
-  return this.rawData ? this.rawData.length : 0;
+  return this.rawData_ ? this.rawData_.length : 0;
 };
