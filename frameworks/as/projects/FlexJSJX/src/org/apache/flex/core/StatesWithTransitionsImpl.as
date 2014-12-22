@@ -201,16 +201,16 @@ package org.apache.flex.core
                 {
                     var sp:SetProperty = SetProperty(o);
                     if (sp.target != null)
-                        sp.document[sp.target][sp.name] = sp.previousValue;
+                        setProperty(getProperty(sp.document, sp.target), sp.name, sp.previousValue);
                     else
-                        sp.document[sp.name] = sp.previousValue;
+                        setProperty(sp.document, sp.name, sp.previousValue);
                 }
                 else if (o is SetEventHandler)
                 {
                     var seh:SetEventHandler = SetEventHandler(o);
                     if (seh.target != null)
                     {
-                        seh.document[seh.target].removeEventListener(seh.name, seh.handlerFunction);
+                        getProperty(seh.document, seh.target).removeEventListener(seh.name, seh.handlerFunction);
                     }
                     else
                     {
@@ -267,13 +267,13 @@ package org.apache.flex.core
                     var sp:SetProperty = SetProperty(o);
                     if (sp.target != null)
                     {
-                        sp.previousValue = sp.document[sp.target][sp.name];
-                        sp.document[sp.target][sp.name] = sp.value;
+                        sp.previousValue = getProperty(getProperty(sp.document, sp.target), sp.name);
+                        setProperty(getProperty(sp.document, sp.target), sp.name, sp.value);
                     }
                     else
                     {
-                        sp.previousValue = sp.document[sp.name];
-                        sp.document[sp.name] = sp.value;                        
+                        sp.previousValue = getProperty(sp.document, sp.name);
+                        setProperty(sp.document, sp.name, sp.value);                        
                     }
                 }
                 else if (o is SetEventHandler)
@@ -281,7 +281,7 @@ package org.apache.flex.core
                     var seh:SetEventHandler = SetEventHandler(o);
                     if (seh.target != null)
                     {
-                        seh.document[seh.target].addEventListener(seh.name, seh.handlerFunction);
+                        getProperty(seh.document, seh.target).addEventListener(seh.name, seh.handlerFunction);
                     }
                     else
                     {
