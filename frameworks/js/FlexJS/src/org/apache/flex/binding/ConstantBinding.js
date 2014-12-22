@@ -46,7 +46,17 @@ org.apache.flex.binding.ConstantBinding.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.binding.ConstantBinding.prototype.set_strand = function(value) {
   org.apache.flex.binding.ConstantBinding.base(this, 'set_strand', value);
 
-  this.destination['set_' + this.destinationPropertyName](
-      this.source['get_' + this.sourcePropertyName]()
-  );
+  var val;
+  try {
+    val = this.source['get_' + this.sourcePropertyName]();
+  } catch (e) {
+    try {
+      val = this.source.constructor[this.sourcePropertyName];
+    } catch (e2) {
+    }
+  }
+  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
+    this.destination['set_' + this.destinationPropertyName](val);
+  else
+    this.destination[this.destinationPropertyName] = val;
 };
