@@ -116,7 +116,7 @@ org.apache.flex.html.Panel.prototype.createElement =
 
   this.element = document.createElement('div');
   this.element.className = 'Panel';
-  this.typeNames = "Panel";
+  this.typeNames = 'Panel';
 
   this.contentArea = document.createElement('div');
   this.contentArea.flexjs_wrapper = this;
