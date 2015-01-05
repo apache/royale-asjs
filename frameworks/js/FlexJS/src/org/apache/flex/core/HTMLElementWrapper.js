@@ -150,5 +150,30 @@ Event.prototype.get_target = function() {
  * @return {Object} The wrapping object.
  */
 goog.events.BrowserEvent.prototype.get_target = function() {
+  // if it is a faked event so just return the target
+  if (!this.event_) return this.target;
+  // for true browser events, get the embedded event's target
   return this.event_.get_target();
+};
+
+
+/**
+ * Hack to allow event.screenX expressions to work
+ *
+ * @expose
+ * @return {number} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_screenX = function() {
+  return this.screenX;
+};
+
+
+/**
+ * Hack to allow event.screenY expressions to work
+ *
+ * @expose
+ * @return {number} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_screenY = function() {
+  return this.screenY;
 };

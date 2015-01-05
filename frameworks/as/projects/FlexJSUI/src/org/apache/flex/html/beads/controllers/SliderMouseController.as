@@ -90,7 +90,7 @@ package org.apache.flex.html.beads.controllers
 			
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
 			
-			origin = new Point(event.stageX, event.stageY);
+			origin = new Point(event.screenX, event.screenY);
 			thumb = new Point(sliderView.thumb.x,sliderView.thumb.y);
 		}
 		
@@ -115,7 +115,7 @@ package org.apache.flex.html.beads.controllers
 		{
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
 			
-			var deltaX:Number = event.stageX - origin.x;
+			var deltaX:Number = event.screenX - origin.x;
 			var thumbW:Number = sliderView.thumb.width/2;
 			var newX:Number = thumb.x + deltaX;
 			

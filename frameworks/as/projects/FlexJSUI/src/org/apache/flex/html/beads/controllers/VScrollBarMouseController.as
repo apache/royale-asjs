@@ -78,7 +78,7 @@ package org.apache.flex.html.beads.controllers
 		{
 			sbView.thumb.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
 			sbView.thumb.stage.addEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);
-			thumbDownY = event.stageY;
+			thumbDownY = event.screenY;
 			lastThumbY = sbView.thumb.y;
 		}
 		
@@ -86,7 +86,7 @@ package org.apache.flex.html.beads.controllers
 		{
 			var thumb:DisplayObject = sbView.thumb;
 			var track:DisplayObject = sbView.track;
-			thumb.y = Math.max(track.y, Math.min(lastThumbY + (event.stageY - thumbDownY), track.y + track.height - thumb.height));
+			thumb.y = Math.max(track.y, Math.min(lastThumbY + (event.screenY - thumbDownY), track.y + track.height - thumb.height));
 			var newValue:Number = snap((thumb.y - track.y) / (track.height - thumb.height) * (sbModel.maximum - sbModel.minimum - sbModel.pageSize));
 			sbModel.value = newValue;
 			IEventDispatcher(strand).dispatchEvent(new Event("scroll"));
