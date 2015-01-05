@@ -34,43 +34,43 @@ goog.inherits(org.apache.flex.events.MouseEvent,
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.ROLL_OVER = 'rollOver';
+org.apache.flex.events.MouseEvent.ROLL_OVER = 'rollover';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.ROLL_OUT = 'rollOout';
+org.apache.flex.events.MouseEvent.ROLL_OUT = 'rollout';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OVER = 'mouseOver';
+org.apache.flex.events.MouseEvent.MOUSE_OVER = 'mouseover';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OUT = 'mouseOut';
+org.apache.flex.events.MouseEvent.MOUSE_OUT = 'mouseout';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_UP = 'mouseUp';
+org.apache.flex.events.MouseEvent.MOUSE_UP = 'mouseup';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_DOWN = 'mouseDown';
+org.apache.flex.events.MouseEvent.MOUSE_DOWN = 'mousedown';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_MOVE = 'mouseMove';
+org.apache.flex.events.MouseEvent.MOUSE_MOVE = 'mousemove';
 
 
 /**
