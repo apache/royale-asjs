@@ -167,9 +167,14 @@ package org.apache.flex.core
          */
         private function effectEndHandler(event:Event):void
         {
+            // in case of extraneous calls to effectEndHandler
+            if (transitionEffects == null)
+                return;
+            
             var n:int = transitionEffects.length;
             for (var i:int = 0; i < n; i++)   
             {
+                event.target.removeEventListener(Effect.EFFECT_END, effectEndHandler);
                 if (transitionEffects[i] == event.target)
                     transitionEffects.splice(i, 1);
             }
