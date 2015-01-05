@@ -79,28 +79,6 @@ package org.apache.flex.html.beads.controllers
 	public class DragMouseController extends EventDispatcher implements IBead
 	{
         /**
-         *  The data being dragged. Or an instance
-         *  of an object describing the data.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static var dragSource:Object;
-        
-        /**
-         *  The object that wants to know if a
-         *  drop is accepted.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static var dragInitiator:IDragInitiator;
-        
-        /**
          *  Whether there is a drag operation
          *  in progress.
          *  
@@ -228,10 +206,9 @@ package org.apache.flex.html.beads.controllers
                     Math.abs(event.screenY - mouseDownY) > threshold)
                 {
                     trace("sending dragStart");
-                    dragEvent = new DragEvent("dragStart", true, true);
-                    dragEvent.copyMouseEventProperties(event);
-                    IEventDispatcher(_strand).dispatchEvent(dragEvent);
-                    if (dragSource != null)
+                    dragEvent = DragEvent.createDragEvent("dragStart", event);
+                    DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(_strand));
+                    if (DragEvent.dragSource != null)
                     {
                         dragging = true;
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
@@ -245,14 +222,11 @@ package org.apache.flex.html.beads.controllers
             else
             {
                 trace("sending dragMove", event.target);
-                dragEvent = new DragEvent("dragMove", true, true);
-                dragEvent.copyMouseEventProperties(event);
-                dragEvent.dragSource = dragSource;
-                dragEvent.dragInitiator = dragInitiator;
+                dragEvent = DragEvent.createDragEvent("dragMove", event);
                 pt = PointUtils.globalToLocal(new Point(event.screenX, event.screenY), host);
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
-                event.target.dispatchEvent(dragEvent);
+                DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
             }
         }
         
@@ -264,15 +238,12 @@ package org.apache.flex.html.beads.controllers
             if (dragging)
             {
                 trace("sending dragEnd");
-                dragEvent = new DragEvent("dragEnd", true, true);
-                dragEvent.copyMouseEventProperties(event);
-                dragEvent.dragSource = dragSource;
-                dragEvent.dragInitiator = dragInitiator;
-                event.target.dispatchEvent(dragEvent);
+                dragEvent = DragEvent.createDragEvent("dragEnd", event);
+                DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
             }
             dragging = false;
-            dragSource = null;
-            dragInitiator = null;
+            DragEvent.dragSource = null;
+            DragEvent.dragInitiator = null;
             if (dragImage && host)
                 host.removeElement(dragImage);
             dragImage = null;

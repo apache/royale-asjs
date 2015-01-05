@@ -133,14 +133,14 @@ limitations under the License.
             if (DragMouseController.dragging == false)
             {
                 var thumb:ProductCatalogThumbnail = event.target as ProductCatalogThumbnail;
-                DragMouseController.dragSource = thumb.product;
+                DragEvent.dragSource = thumb.product;
 
                 var di:ProductCatalogThumbnail = new ProductCatalogThumbnail();
                 di.product = thumb.product;
                 di.currentState = thumb.currentState;
                 DragMouseController.dragImage = di;
                 
-                DragMouseController.dragInitiator = this;
+                DragEvent.dragInitiator = this;
             }    
         }
         

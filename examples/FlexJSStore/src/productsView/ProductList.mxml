@@ -201,7 +201,7 @@ limitations under the License.
         private function doDragDrop(event:DragEvent):void
         {
             trace("doDragDrop");
-            var product:Product = event.dragSource as Product;
+            var product:Product = DragEvent.dragSource as Product;
             addProduct(product);
         }  
  

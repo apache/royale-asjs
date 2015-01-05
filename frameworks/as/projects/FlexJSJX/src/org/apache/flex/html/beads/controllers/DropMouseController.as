@@ -51,6 +51,17 @@ package org.apache.flex.html.beads.controllers
     [Event(name="dragOver", type="org.apache.flex.events.DragEvent")]
     
     /**
+     *  Indicates that the mouse is moving out of a component during
+     *  a drag/drop operation.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="dragExit", type="org.apache.flex.events.DragEvent")]
+    
+    /**
      *  Indicates that a drop operation should be executed.
      *  
      *  @langversion 3.0
@@ -126,10 +137,7 @@ package org.apache.flex.html.beads.controllers
             var dragEvent:DragEvent;
             if (!inside)
             {
-                dragEvent = new DragEvent("dragEnter", true, true);
-                dragEvent.copyMouseEventProperties(event);
-                dragSource = dragEvent.dragSource = event.dragSource;
-                dragInitiator = dragEvent.dragInitiator = event.dragInitiator;
+                dragEvent = DragEvent.createDragEvent("dragEnter", event);
                 dispatchEvent(dragEvent);
                 inside = true;
                 IUIBase(_strand).topMostEventDispatcher.addEventListener(DragEvent.DRAG_END, dragEndHandler);
@@ -137,11 +145,8 @@ package org.apache.flex.html.beads.controllers
             }
             else
             {
-                dragEvent = new DragEvent("dragOver", true, true);
-                dragEvent.copyMouseEventProperties(event);
-                dragEvent.dragSource = event.dragSource;
-                dragEvent.dragInitiator = event.dragInitiator;
-                IEventDispatcher(_strand).dispatchEvent(dragEvent);
+                dragEvent = DragEvent.createDragEvent("dragOver", event);
+                dispatchEvent(dragEvent);
             }
         }
         
@@ -151,12 +156,7 @@ package org.apache.flex.html.beads.controllers
             
             if (inside)
             {
-                dragEvent = new DragEvent("dragExit", true, true);
-                dragEvent.copyMouseEventProperties(event);
-                dragEvent.dragSource = dragSource;
-                dragEvent.dragInitiator = dragInitiator;
-                dragSource = null;
-                dragInitiator = null;
+                dragEvent = DragEvent.createDragEvent("dragExit", event);
                 dispatchEvent(dragEvent);
                 inside = false;
             }
@@ -169,12 +169,7 @@ package org.apache.flex.html.beads.controllers
             trace("dragEnd");
             var dragEvent:DragEvent;
             
-            dragEvent = new DragEvent("dragDrop", true, true);
-            dragEvent.copyMouseEventProperties(event);
-            dragEvent.dragSource = event.dragSource;
-            dragEvent.dragInitiator = event.dragInitiator;
-            dragSource = null;
-            dragInitiator = null;
+            dragEvent = DragEvent.createDragEvent("dragDrop", event);
             dispatchEvent(dragEvent);
             
             inside = false;

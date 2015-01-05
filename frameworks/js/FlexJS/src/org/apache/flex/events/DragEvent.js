@@ -14,6 +14,9 @@
 
 goog.provide('org.apache.flex.events.DragEvent');
 
+goog.require('goog.events.BrowserEvent');
+goog.require('org.apache.flex.events.EventDispatcher');
+
 
 
 /**
@@ -22,16 +25,16 @@ goog.provide('org.apache.flex.events.DragEvent');
  * sent with additional properties like dragInitiator and
  * dragSource tacked on.
  *
- * @extends {MouseEvent}
+ * @extends {goog.events.BrowserEvent}
  * @param {string} type The event type.
  */
 org.apache.flex.events.DragEvent = function(type) {
-  window.MouseEvent.base(this, 'constructor', type);
+  org.apache.flex.events.DragEvent.base(this, 'constructor');
 
   this.type = type;
 };
 goog.inherits(org.apache.flex.events.DragEvent,
-    window.MouseEvent);
+    goog.events.BrowserEvent);
 
 
 /**
@@ -47,32 +50,32 @@ org.apache.flex.events.DragEvent.prototype.FLEXJS_CLASS_INFO =
 /**
  * @expose
  * @param {string} type The event type.
+ * @param {Event} event The mouse event to base the DragEvent on.
+ * @return {MouseEvent} The new event.
  */
-org.apache.flex.events.DragEvent.prototype.init = function(type) {
-  this.type = type;
+org.apache.flex.events.DragEvent.createDragEvent =
+    function(type, event) {
+  var out = new MouseEvent(type);
+  out.initMouseEvent(type, true, true);
+  out.screenX = event.screenX;
+  out.screenY = event.screenY;
+  out.clientX = event.clientX;
+  out.clientY = event.clientY;
+  out.ctrlKey = event.ctrlKey;
+  out.shiftKey = event.shiftKey;
+  out.alttKey = event.altKey;
+  return out;
 };
 
 
 /**
  * @expose
- * @type {Object} dragInitiator The object that started the drag.
+ * @param {Event} event The drag event.
+ * @param {Object} target The target for the event.
  */
-org.apache.flex.events.DragEvent.prototype.dragInitiator = null;
-
-
-/**
- * @expose
- * @type {Object} dragSource The data being dragged.
- */
-org.apache.flex.events.DragEvent.prototype.dragSource = null;
-
-
-/**
- * @expose
- * @param {MouseEvent} event The mouse event to copy.
- */
-org.apache.flex.events.DragEvent.prototype.copyMouseEventProperties =
-    function(event) {
+org.apache.flex.events.DragEvent.dispatchDragEvent =
+    function(event, target) {
+  target.element.dispatchEvent(event);
 };
 
 
@@ -123,3 +126,24 @@ org.apache.flex.events.DragEvent.DRAG_EXIT = 'dragExit';
  * @type {string} DRAG_DROP The event type for dropping on a target.
  */
 org.apache.flex.events.DragEvent.DRAG_DROP = 'dragDrop';
+
+
+/**
+ * @return {boolean}
+ */
+org.apache.flex.events.DragEvent.installDragEventMixin = function() {
+  var o = org.apache.flex.events.EventDispatcher.elementEvents;
+  o.dragEnd = 1;
+  o.dragMove = 1;
+  return true;
+};
+
+
+/**
+ * Add some other events to listen from the element
+ */
+/**
+ * @type {boolean}
+ */
+org.apache.flex.events.DragEvent.dragEventMixin =
+    org.apache.flex.events.DragEvent.installDragEventMixin();

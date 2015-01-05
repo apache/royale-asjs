@@ -228,7 +228,34 @@ package org.apache.flex.events
         public static const DRAG_DROP:String = "dragDrop";
         
         /**
-         *  Constructor.
+         *  The object that wants to know if a drop is accepted
+         *  
+         *  @param type The name of the event.
+         *  @param bubbles Whether the event bubbles.
+         *  @param cancelable Whether the event can be canceled.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var dragInitiator:IDragInitiator;
+        
+        /**
+         *  The data being dragged. Or an instance
+         *  of an object describing the data.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var dragSource:Object;
+        
+
+        /**
+         *  Constructor.  Do not call 'new DragEvent', use the
+         *  createDragEvent method instead.
          *  
          *  @param type The name of the event.
          *  @param bubbles Whether the event bubbles.
@@ -245,40 +272,46 @@ package org.apache.flex.events
 		}
 
         /**
-         *  The object that wants to know if a drop is accepted
+         *  Factory for DragEvents.
          *  
          *  @param type The name of the event.
-         *  @param bubbles Whether the event bubbles.
-         *  @param cancelable Whether the event can be canceled.
+         *  @param event The MouseEvent properties to copy into the DragEvent.
+         *  @return The new DragEvent.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var dragInitiator:IDragInitiator;
+        public static function createDragEvent(type:String, event:MouseEvent):DragEvent
+        {
+            var de:DragEvent = new DragEvent(type, true, true);
+            de.localX = event.localX;
+            de.localY = event.localY;
+            de.altKey = event.altKey;
+            de.ctrlKey = event.ctrlKey;
+            de.shiftKey = event.shiftKey;
+            de.buttonDown = event.buttonDown;
+            de.delta = event.delta;
+            de.relatedObject = event.relatedObject;
+            return de;
+        }
+        
         
         /**
-         *  The data being dragged. Or an instance
-         *  of an object describing the data.
+         *  Dispatch a DragEvent
          *  
+         *  @param event The DragEvent to dispatch.
+         *  @param target The target to dispatch the event from.
+         * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var dragSource:Object;
-        
-        public function copyMouseEventProperties(event:MouseEvent):void
+        public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
         {
-            localX = event.localX;
-            localY = event.localY;
-            altKey = event.altKey;
-            ctrlKey = event.ctrlKey;
-            shiftKey = event.shiftKey;
-            buttonDown = event.buttonDown;
-            delta = event.delta;
-            relatedObject = event.relatedObject;
+            target.dispatchEvent(event);
         }
 	}
 }
