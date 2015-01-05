@@ -26,6 +26,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.core.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.html.supportClasses.GraphicsItemRenderer;
 	
 	/**
 	 *  The SVGBoxItemRenderer draws its graphics directly into a SVGChartDataGroup
@@ -36,7 +37,7 @@ package org.apache.flex.charts.optimized
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SVGBoxItemRenderer extends DataItemRenderer implements IChartItemRenderer
+	public class SVGBoxItemRenderer extends GraphicsItemRenderer implements IChartItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -109,44 +110,6 @@ package org.apache.flex.charts.optimized
 			_xField = value;
 		}
 		
-		private var _fill:IFill;
-		
-		/**
-		 *  The color used to fill the interior of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get fill():IFill
-		{
-			return _fill;
-		}
-		public function set fill(value:IFill):void
-		{
-			_fill = value;
-		}
-		
-		private var _stroke:IStroke;
-		
-		/**
-		 *  The outline of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get stroke():IStroke
-		{
-			return _stroke;
-		}
-		public function set stroke(value:IStroke):void
-		{
-			_stroke = value;
-		}
-		
 		/**
 		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
 		 *
@@ -195,12 +158,8 @@ package org.apache.flex.charts.optimized
 		protected function drawBar():void
 		{
 			if ((this.width > 0) && (this.height > 0))
-			{				
-				var hsdg:SVGChartDataGroup = this.itemRendererParent as SVGChartDataGroup;
-				
-				hsdg.fill = fill;
-				hsdg.stroke = stroke;
-				hsdg.drawRect(this.x, this.y, this.width, this.height);
+			{		
+				this.drawRect(0, 0, this.width, this.height);
 			}
 		}
 	}

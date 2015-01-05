@@ -28,6 +28,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.graphics.GraphicsContainer;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.geom.Point;
 	
 	/**
 	 *  The SVGChartDataGroup serves as the drawing canvas for SVG itemRenderers. Rather than having
@@ -142,6 +143,8 @@ package org.apache.flex.charts.optimized
 			
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
+			
+			super.addElement(value, dispatchEvent);
 		}
 		
 		/**
@@ -160,6 +163,8 @@ package org.apache.flex.charts.optimized
 			
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
+			
+			super.addElementAt(value, index, dispatchEvent);
 		}
 		
 		/**
@@ -168,6 +173,11 @@ package org.apache.flex.charts.optimized
 		private function resizeContainer(event:Event) : void
 		{
 			// might need to do something with this
+		}
+		
+		public function getItemRendererUnderPoint(point:Point):IChartItemRenderer
+		{
+			return null;
 		}
 	}
 }

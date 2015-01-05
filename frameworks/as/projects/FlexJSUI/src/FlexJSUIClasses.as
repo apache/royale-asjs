@@ -125,6 +125,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
+	import org.apache.flex.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
 	import org.apache.flex.core.graphics.GraphicShape; GraphicShape;
 	import org.apache.flex.core.graphics.Rect; Rect;
@@ -138,7 +139,8 @@ internal class FlexJSUIClasses
 	import org.apache.flex.core.graphics.LinearGradient; LinearGradient;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.effects.PlatformWiper; PlatformWiper;    
-    import org.apache.flex.events.DragEvent; DragEvent;    
+    import org.apache.flex.events.DragEvent; DragEvent;   
+	import org.apache.flex.events.utils.MouseUtils; MouseUtils;
     import org.apache.flex.geom.Rectangle; Rectangle;    
     
 	import mx.core.ClassFactory; ClassFactory;

@@ -19,6 +19,7 @@
 package org.apache.flex.charts.core
 {
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.geom.Point;
 
 	/**
 	 *  The IChartDataGroup is the interface for the parent element of
@@ -40,5 +41,15 @@ package org.apache.flex.charts.core
 		 *  @productversion FlexJS 0.0
 		 */
 		function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer;
+		
+		/**
+		 *  Returns the first itemRenderer that encompasses the point.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function getItemRendererUnderPoint(point:Point):IChartItemRenderer;
 	}
 }

@@ -21,6 +21,8 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
 	
 	/**
@@ -65,6 +67,30 @@ package org.apache.flex.charts.supportClasses
 				if (child && child.series == series) {
 					if (index == 0) return child;
 					--index;
+				}
+			}
+			
+			return null;
+		}
+		
+		/**
+		 *  Returns the first itemRenderer that encompasses the point.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function getItemRendererUnderPoint(point:Point):IChartItemRenderer
+		{
+			var n:int = numChildren;
+			for(var i:int=0; i < n; i++)
+			{
+				var child:IUIBase = getChildAt(i) as IUIBase;
+				if (child) {
+					if (child.x <= point.x && point.x <= (child.x+child.width) &&
+						child.y <= point.y && point.y <= (child.y+child.height))
+						return child as IChartItemRenderer;
 				}
 			}
 			

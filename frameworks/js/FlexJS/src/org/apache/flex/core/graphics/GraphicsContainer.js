@@ -86,6 +86,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_x = function(value
   this.element.setAttribute('x', String(value) + 'px');
   this.element.style.position = 'absolute';
   this.element.style.left = String(value) + 'px';
+  this.element.offsetLeft = value;
 };
 
 
@@ -97,6 +98,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_y = function(value
   this.element.setAttribute('y', String(value) + 'px');
   this.element.style.position = 'absolute';
   this.element.style.top = String(value) + 'px';
+  this.element.offsetTop = value;
 };
 
 
@@ -110,6 +112,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_y = function(value
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x, y, width, height) {
   var style = this.getStyleStr();
   var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.flexjs_wrapper = this;
+  rect.offsetLeft = x;
+  rect.offsetTop = y;
+  rect.offsetParent = this;
   rect.setAttribute('style', style);
   rect.setAttribute('x', String(x) + 'px');
   rect.setAttribute('y', String(y) + 'px');
@@ -129,6 +135,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x,
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function(x, y, width, height) {
   var style = this.getStyleStr();
   var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+  ellipse.flexjs_wrapper = this;
+  ellipse.offsetLeft = x;
+  ellipse.offsetTop = y;
+  ellipse.offsetParent = this;
   ellipse.setAttribute('style', style);
   ellipse.setAttribute('cx', String(x + width / 2));
   ellipse.setAttribute('cy', String(y + height / 2));
@@ -147,6 +157,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawCircle = function(x, y, radius) {
   var style = this.getStyleStr();
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+  circle.flexjs_wrapper = this;
+  circle.offsetLeft = x;
+  circle.offsetTop = y;
+  circle.offsetParent = this;
   circle.setAttribute('style', style);
   circle.setAttribute('cx', String(x));
   circle.setAttribute('cy', String(y));
@@ -169,6 +183,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawCircle = function(
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(data) {
   var style = this.getStyleStr();
   var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.flexjs_wrapper = this;
+  path.offsetLeft = 0;
+  path.offsetTop = 0;
+  path.offsetParent = this;
   path.setAttribute('style', style);
   path.setAttribute('d', data);
   this.element.appendChild(path);
@@ -184,6 +202,10 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(da
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(value, x, y) {
   var style = this.getStyleStr();
   var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.flexjs_wrapper = this;
+  text.offsetLeft = x;
+  text.offsetTop = y;
+  text.offsetParent = this;
   text.setAttribute('style', style);
   text.setAttribute('x', String(x) + 'px');
   text.setAttribute('y', String(y + 15) + 'px');

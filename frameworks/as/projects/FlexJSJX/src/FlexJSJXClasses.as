@@ -31,6 +31,7 @@ internal class FlexJSJXClasses
 	import org.apache.flex.charts.beads.ChartView; ChartView;
 	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
 	import org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData; DataItemRendererFactoryForSeriesData;
+	import org.apache.flex.charts.beads.DataTipBead; DataTipBead;
 	import org.apache.flex.charts.beads.HorizontalCategoryAxisBead; HorizontalCategoryAxisBead;
 	import org.apache.flex.charts.beads.HorizontalLinearAxisBead; HorizontalLinearAxisBead;
 	import org.apache.flex.charts.beads.VerticalCategoryAxisBead; VerticalCategoryAxisBead;
@@ -74,6 +75,7 @@ internal class FlexJSJXClasses
 	import org.apache.flex.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
+	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
     
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;

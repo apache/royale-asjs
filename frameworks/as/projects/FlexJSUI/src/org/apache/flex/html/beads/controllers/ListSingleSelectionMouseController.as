@@ -19,13 +19,14 @@
 package org.apache.flex.html.beads.controllers
 {
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IRollOverModel;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IListView;
 	
 
@@ -105,7 +106,8 @@ package org.apache.flex.html.beads.controllers
 			listView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
             dataGroup.addEventListener("selected", selectedHandler, true);
-            dataGroup.addEventListener("rollover", rolloverHandler, true);
+            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rolloverHandler);
+//			dataGroup.addEventListener(MouseEvent.ROLL_OVER, rolloverHandler, true);
 		}
 		
         private function selectedHandler(event:Event):void
@@ -116,8 +118,11 @@ package org.apache.flex.html.beads.controllers
 		
         private function rolloverHandler(event:Event):void
         {
-            IRollOverModel(listModel).rollOverIndex = ISelectableItemRenderer(event.target).index;
-            listView.host.dispatchEvent(new Event("rollover"));
+			var renderer:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			if (renderer) {
+				trace("ListSingleSelectionMouseController.ROLL_OVER");
+				IRollOverModel(listModel).rollOverIndex = renderer.index;
+			}
         }
 	
 	}

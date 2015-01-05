@@ -20,9 +20,11 @@ package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
 	import org.apache.flex.core.graphics.Rect;
+	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -49,6 +51,16 @@ package org.apache.flex.charts.supportClasses
 		public function BoxItemRenderer()
 		{
 			super();
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+		}
+		
+		override public function addBead(bead:IBead):void
+		{
+			super.addBead(bead);
 		}
 		
 		private var _series:IChartSeries;
@@ -216,6 +228,27 @@ package org.apache.flex.charts.supportClasses
 					addElement(filledRect);
 				}
 			}
+		}
+		
+		private var hoverFill:SolidColor;
+		
+		override public function updateRenderer():void
+		{
+			super.updateRenderer();
+			
+			if (down||selected||hovered) {
+				if (hoverFill == null) {
+					hoverFill = new SolidColor();
+					hoverFill.color = (fill as SolidColor).color;
+					hoverFill.alpha = 0.5;
+				}
+				filledRect.fill = hoverFill;
+			}
+			else {
+				filledRect.fill = fill;
+			}
+			
+			filledRect.drawRect(filledRect.x, filledRect.y, filledRect.width, filledRect.height);
 		}
 	}
 }

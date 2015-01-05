@@ -15,6 +15,8 @@
 package org.apache.flex.core.graphics
 {
 	import flash.display.GraphicsPath;
+	import flash.display.Shape;
+	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextFieldType;
@@ -63,6 +65,20 @@ package org.apache.flex.core.graphics
 			beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
 			graphics.drawRect(x, y, width, height);
 			endFill();
+		}
+		
+		public function createRect(x:Number, y:Number, width:Number, height:Number):void
+		{
+			var color:uint = (fill as SolidColor).color;
+			var alpha:uint = (fill as SolidColor).alpha;
+			
+			var shape:Sprite = new Sprite();
+			shape.graphics.beginFill(color,alpha);
+			shape.graphics.drawRect(0, 0, width, height);
+			shape.graphics.endFill();
+			shape.x = x;
+			shape.y = y;
+			this.addChild(shape);
 		}
 		
 		/**

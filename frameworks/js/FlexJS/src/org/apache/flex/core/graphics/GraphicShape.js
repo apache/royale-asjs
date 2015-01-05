@@ -68,6 +68,10 @@ org.apache.flex.core.graphics.GraphicShape = function() {
    * @type {SVGElement}
    */
   this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  this.element.flexjs_wrapper = this;
+  this.element.offsetLeft = 0;
+  this.element.offsetTop = 0;
+  this.element.offsetParent = null;
 };
 goog.inherits(org.apache.flex.core.graphics.GraphicShape,
     org.apache.flex.core.UIBase);
@@ -186,6 +190,8 @@ org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbo
   if (!isNaN(y)) this.element.style.left = String(y) + 'px';
   this.element.style.width = String(width) + 'px';
   this.element.style.height = String(height) + 'px';
+  this.element.offsetLeft = x;
+  this.element.offsetTop = y;
 };
 
 
@@ -201,5 +207,7 @@ org.apache.flex.core.graphics.GraphicShape.prototype.setPosition = function(x, y
   this.y_ = y;
   this.xOffset_ = xOffset;
   this.yOffset_ = yOffset;
+  this.element.offsetLeft = xOffset;
+  this.element.offsetTop = yOffset;
 };
 

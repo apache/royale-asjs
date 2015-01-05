@@ -39,6 +39,7 @@
     <component id="PieSeries" class="org.apache.flex.charts.supportClasses.PieSeries" />
     <component id="StackedColumnChart" class="org.apache.flex.charts.StackedColumnChart" />
     <component id="StackedBarChart" class="org.apache.flex.charts.StackedBarChart" />
+    <component id="DataTipBead" class="org.apache.flex.charts.beads.DataTipBead" />
     <component id="HorizontalCategoryAxisBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisBead" />
     <component id="HorizontalLinearAxisBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisBead" />
     <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />

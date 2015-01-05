@@ -32,6 +32,11 @@ BarChart
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
 }
 
+BoxItemRenderer
+{
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+}
+
 ColumnChart
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");

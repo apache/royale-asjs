@@ -26,11 +26,12 @@ package org.apache.flex.html.accessories
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.geom.Point;
+	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.utils.MouseUtils;
+	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.ToolTip;
 	import org.apache.flex.utils.PointUtils;
-    import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.utils.UIUtils;
 	
 	/**
 	 *  The ToolTipBead class is a specialty bead that can be used with
@@ -89,7 +90,7 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
 		}
 		
         private var tt:ToolTip;
@@ -98,19 +99,32 @@ package org.apache.flex.html.accessories
 		/**
 		 * @private
 		 */
-		private function rollOverHandler( event:MouseEvent ):void
+		protected function rollOverHandler( event:MouseEvent ):void
 		{	
-            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
             
             var comp:IUIBase = _strand as IUIBase
             host = UIUtils.findPopUpHost(comp);
+			if (tt) host.removeElement(tt);
+			
             tt = new ToolTip();
             tt.text = toolTip;
-            var pt:Point = new Point(comp.width, comp.height);
-            pt = PointUtils.localToGlobal(pt, comp);
+            var pt:Point = determinePosition(new Point(MouseUtils.localX(event), MouseUtils.localY(event)), event.target);
             tt.x = pt.x;
             tt.y = pt.y;
             host.addElement(tt);
+		}
+		
+		/**
+		 * @private
+		 * Determines the position of the toolTip.
+		 */
+		protected function determinePosition(base:Point, local:Object):Point
+		{
+			var comp:IUIBase = _strand as IUIBase;
+			var pt:Point = new Point(comp.width, comp.height);
+			pt = PointUtils.localToGlobal(pt, comp);
+			return pt;
 		}
         
         /**
@@ -118,8 +132,9 @@ package org.apache.flex.html.accessories
          */
         private function rollOutHandler( event:MouseEvent ):void
         {	
-            if (tt)
+            if (tt) {
                 host.removeElement(tt);
+			}
             tt = null;
         }
 	}

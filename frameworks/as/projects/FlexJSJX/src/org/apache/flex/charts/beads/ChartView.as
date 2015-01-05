@@ -85,6 +85,8 @@ package org.apache.flex.charts.beads
 			}
 			
 			handleLocalChange(null);
+			
+			IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
 		}
 		
 		public function get horizontalAxisGroup():IAxisGroup
