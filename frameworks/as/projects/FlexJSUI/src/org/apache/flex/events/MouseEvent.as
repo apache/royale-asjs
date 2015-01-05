@@ -85,6 +85,7 @@ package org.apache.flex.events
         public function set localX(value:Number):void
         {
             _localX = value;
+            clientX = value;
             _stagePoint = null;
         }
         
@@ -96,6 +97,7 @@ package org.apache.flex.events
         public function set localY(value:Number):void
         {
             _localY = value;
+            clientY = value;
             _stagePoint = null;
         }
         
@@ -109,9 +111,13 @@ package org.apache.flex.events
         public var controlKey:Boolean;
         public var clickCount:int;
         
+        // these map directly to JS MouseEvent fields.
+        public var clientX:Number;
+        public var clientY:Number;
+        
         private var _stagePoint:Point;
         
-        public function get stageX():Number
+        public function get screenX():Number
         {
             if (!target) return localX;
             if (!_stagePoint)
@@ -122,7 +128,7 @@ package org.apache.flex.events
             return _stagePoint.x;
         }
         
-        public function get stageY():Number
+        public function get screenY():Number
         {
             if (!target) return localY;
             if (!_stagePoint)
