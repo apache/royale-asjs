@@ -138,8 +138,10 @@ org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
  * @return {Object} The wrapping object.
  */
 Event.prototype.get_target = function() {
-  var obj = this.target.flexjs_wrapper;
-  return obj;
+  var obj = this.target;
+  if (!obj)
+    return this.currentTarget;
+  return obj.flexjs_wrapper;
 };
 
 
