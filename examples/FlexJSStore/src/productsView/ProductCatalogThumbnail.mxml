@@ -91,7 +91,7 @@ limitations under the License.
                 event.target != compare &&
                 event.target != details)
             {
-                dragStartPoint = new Point(event.stageX, event.stageY);
+                dragStartPoint = new Point(event.screenX, event.screenY);
                 dragStartPoint = PointUtils.globalToLocal(dragStartPoint, this);
 
             }
@@ -102,8 +102,8 @@ limitations under the License.
             if (dragStartPoint != null)
             {
                 var dragEvent:DragEvent = new DragEvent(DragEvent.DRAG_START, true);
-                dragEvent.localX = dragStartPoint.x;
-                dragEvent.localY = dragStartPoint.y;
+                dragEvent.clientX = dragStartPoint.x;
+                dragEvent.clientY = dragStartPoint.y;
                 dragEvent.buttonDown = true;
                 dispatchEvent(dragEvent);
 
