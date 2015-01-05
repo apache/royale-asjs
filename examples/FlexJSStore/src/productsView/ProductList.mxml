@@ -115,7 +115,7 @@ limitations under the License.
             var ret:Array = [];
             for (var i:int = 0; i < items.length; i++)
             {
-                ret[i] = items[i].product;
+                ret[i] = ProductListItem(items[i]).product;
             }
             return ret;
         }
@@ -182,7 +182,7 @@ limitations under the License.
             var n:int = items.length;
 			for (var i:int = 0; i < items.length; i++)
 			{
-                if (items[i].product.productId == productId)
+                if (ProductListItem(items[i]).product.productId == productId)
 				{
                     index = i;
                     break;
