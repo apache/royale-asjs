@@ -306,6 +306,10 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
       else
         value = value.toString() + 'px';
     }
+    else if (p == 'backgroundImage') {
+      if (p.indexOf('url') !== 0)
+        value = 'url(' + value + ')';
+    }
     thisObject.element.style[p] = value;
   }
 };
