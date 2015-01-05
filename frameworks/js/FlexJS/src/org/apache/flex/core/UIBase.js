@@ -806,3 +806,12 @@ org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
     }
   }
 };
+
+
+/**
+ * @expose
+ * @return {Object} The top most EventDispatcher.
+ */
+org.apache.flex.core.UIBase.prototype.get_topMostEventDispatcher = function() {
+  return document.body.flexjs_wrapper;
+};
