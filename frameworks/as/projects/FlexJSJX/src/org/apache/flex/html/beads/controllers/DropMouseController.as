@@ -157,7 +157,6 @@ package org.apache.flex.html.beads.controllers
                 dragEvent.dragInitiator = dragInitiator;
                 dragSource = null;
                 dragInitiator = null;
-                event.stopImmediatePropagation();
                 dispatchEvent(dragEvent);
                 inside = false;
             }
@@ -176,7 +175,6 @@ package org.apache.flex.html.beads.controllers
             dragEvent.dragInitiator = event.dragInitiator;
             dragSource = null;
             dragInitiator = null;
-            event.stopImmediatePropagation();
             dispatchEvent(dragEvent);
             
             inside = false;

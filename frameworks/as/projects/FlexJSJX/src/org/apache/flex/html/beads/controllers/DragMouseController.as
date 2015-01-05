@@ -211,8 +211,8 @@ package org.apache.flex.html.beads.controllers
             trace("dragMouseDown");
             IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
             IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
-            mouseDownX = event.stageX;
-            mouseDownY = event.stageY;
+            mouseDownX = event.screenX;
+            mouseDownY = event.screenY;
         }
         
         private function dragMouseMoveHandler(event:MouseEvent):void
@@ -224,8 +224,8 @@ package org.apache.flex.html.beads.controllers
             if (!dragging)
             {
                 trace("not dragging anything else");
-                if (Math.abs(event.stageX - mouseDownX) > threshold ||
-                    Math.abs(event.stageY - mouseDownY) > threshold)
+                if (Math.abs(event.screenX - mouseDownX) > threshold ||
+                    Math.abs(event.screenY - mouseDownY) > threshold)
                 {
                     trace("sending dragStart");
                     dragEvent = new DragEvent("dragStart", true, true);
@@ -236,7 +236,7 @@ package org.apache.flex.html.beads.controllers
                         dragging = true;
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
                         host.addElement(dragImage);
-                        pt = PointUtils.globalToLocal(new Point(event.stageX, event.stageY), host);
+                        pt = PointUtils.globalToLocal(new Point(event.screenX, event.screenY), host);
                         dragImage.x = pt.x + dragImageOffsetX;
                         dragImage.y = pt.y + dragImageOffsetY;
                     }
@@ -246,11 +246,10 @@ package org.apache.flex.html.beads.controllers
             {
                 trace("sending dragMove", event.target);
                 dragEvent = new DragEvent("dragMove", true, true);
-                event.stopImmediatePropagation();
                 dragEvent.copyMouseEventProperties(event);
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
-                pt = PointUtils.globalToLocal(new Point(event.stageX, event.stageY), host);
+                pt = PointUtils.globalToLocal(new Point(event.screenX, event.screenY), host);
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
                 event.target.dispatchEvent(dragEvent);
@@ -267,7 +266,6 @@ package org.apache.flex.html.beads.controllers
                 trace("sending dragEnd");
                 dragEvent = new DragEvent("dragEnd", true, true);
                 dragEvent.copyMouseEventProperties(event);
-                event.stopImmediatePropagation();
                 dragEvent.dragSource = dragSource;
                 dragEvent.dragInitiator = dragInitiator;
                 event.target.dispatchEvent(dragEvent);
