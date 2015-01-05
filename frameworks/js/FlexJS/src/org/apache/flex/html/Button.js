@@ -58,3 +58,15 @@ org.apache.flex.html.Button.prototype.createElement =
   return this.element;
 };
 
+
+/**
+ * @override
+ * Buttons dispatch events off the element.
+ */
+org.apache.flex.html.Button.prototype.dispatchEvent =
+    function(e) {
+  if (this.element && typeof(e) != 'string')
+    return this.element.dispatchEvent(e);
+  return org.apache.flex.html.Button.base(this, 'dispatchEvent', e);
+};
+
