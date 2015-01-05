@@ -151,7 +151,7 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
     for (var i = 0; i < n; i++) {
       me = org.apache.flex.events.MouseEvent.makeMouseEvent(
                    org.apache.flex.events.MouseEvent.ROLL_OVER, e);
-                   newTargets[i].dispatchEvent(me);
+      newTargets[i].dispatchEvent(me);
     }
     org.apache.flex.events.MouseEvent.targets = targets.concat(newTargets);
   }
@@ -183,6 +183,6 @@ org.apache.flex.events.MouseEvent.makeMouseEvent = function(type, e) {
   out.screenY = e.screenY;
   out.ctrlKey = e.ctrlKey;
   out.shiftKey = e.shiftKey;
-  out.alttKey = e.altKey;
+  out.altKey = e.altKey;
   return out;
 };
