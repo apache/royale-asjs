@@ -59,7 +59,7 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
       this.element.nodeName.toLowerCase() !== 'div' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
-  } else if (this.elementEvents[type]) {
+  } else if (org.apache.flex.events.EventDispatcher.elementEvents[type]) {
     // mouse and keyboard events also dispatch off the element.
     source = this.element;
   }
@@ -102,7 +102,7 @@ function(obj, propName, value) {
 /**
  * @type {Object}
  */
-org.apache.flex.events.EventDispatcher.prototype.elementEvents = {
+org.apache.flex.events.EventDispatcher.elementEvents = {
   mouseover: 1,
   mouseout: 1,
   mouseup: 1,
