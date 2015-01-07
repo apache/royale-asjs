@@ -191,6 +191,7 @@ package org.apache.flex.html.beads.controllers
             IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             mouseDownX = event.screenX;
             mouseDownY = event.screenY;
+            event.preventDefault();
         }
         
         private function dragMouseMoveHandler(event:MouseEvent):void
@@ -198,6 +199,8 @@ package org.apache.flex.html.beads.controllers
             var pt:Point;
             var dragEvent:DragEvent;
             trace("dragMouseMove");
+            
+            event.preventDefault();
             
             if (!dragging)
             {
@@ -240,6 +243,7 @@ package org.apache.flex.html.beads.controllers
                 trace("sending dragEnd");
                 dragEvent = DragEvent.createDragEvent("dragEnd", event);
                 DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
+                event.preventDefault();
             }
             dragging = false;
             DragEvent.dragSource = null;
