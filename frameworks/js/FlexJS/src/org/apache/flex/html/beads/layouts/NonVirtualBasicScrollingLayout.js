@@ -61,4 +61,37 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
  */
 org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
     prototype.changeHandler = function(event) {
+  var i, n, h, w;
+
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var contentView = viewBead.get_contentView();
+  contentView.element.style.overflow = 'auto';
+  w = contentView.get_width();
+  h = contentView.get_height();
+  n = contentView.get_numElements();
+  for (i = 0; i < n; i++) {
+    var child = contentView.getElementAt(i);
+    var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
+    var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
+    var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
+    var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
+
+    if (!isNaN(left)) {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.left = left.toString() + 'px';
+    }
+    if (!isNaN(top)) {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.top = top.toString() + 'px';
+    }
+    if (!isNaN(right)) {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.right = right.toString() + 'px';
+    }
+    if (!isNaN(bottom)) {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.bottom = bottom.toString() + 'px';
+    }
+    child.dispatchEvent('sizeChanged');
+  }
 };
