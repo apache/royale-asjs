@@ -126,11 +126,11 @@ package org.apache.flex.charts.beads
 		 * Override's the ToolTipBead's function to position the data tip just above
 		 * the itemRenderer.
 		 */
-		override protected function determinePosition(base:Point, local:Object):Point
+		override protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
 			// always want above the renderer
 			var pt:Point = new Point(0, -20);
-			pt = PointUtils.localToGlobal(pt, local);
+			pt = PointUtils.localToGlobal(pt, base);
 			return pt;
 		}
 		

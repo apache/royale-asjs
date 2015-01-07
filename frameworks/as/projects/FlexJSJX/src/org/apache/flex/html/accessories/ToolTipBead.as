@@ -109,7 +109,7 @@ package org.apache.flex.html.accessories
 			
             tt = new ToolTip();
             tt.text = toolTip;
-            var pt:Point = determinePosition(new Point(MouseUtils.localX(event), MouseUtils.localY(event)), event.target);
+            var pt:Point = determinePosition(event, event.target);
             tt.x = pt.x;
             tt.y = pt.y;
             host.addElement(tt);
@@ -119,7 +119,7 @@ package org.apache.flex.html.accessories
 		 * @private
 		 * Determines the position of the toolTip.
 		 */
-		protected function determinePosition(base:Point, local:Object):Point
+		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
 			var comp:IUIBase = _strand as IUIBase;
 			var pt:Point = new Point(comp.width, comp.height);
