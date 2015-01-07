@@ -49,7 +49,12 @@ org.apache.flex.utils.PointUtils.globalToLocal =
   do {
     x -= element.offsetLeft;
     y -= element.offsetTop;
-    element = element.offsetParent;
+    if (local.get_parent) {
+      local = local.get_parent();
+      element = local.element;
+    } else {
+      element = null;
+    }
   }
   while (element);
   return new org.apache.flex.geom.Point(x, y);
@@ -70,7 +75,12 @@ org.apache.flex.utils.PointUtils.localToGlobal =
   do {
     x += element.offsetLeft;
     y += element.offsetTop;
-    element = element.offsetParent;
+    if (local.get_parent) {
+      local = local.get_parent();
+      element = local.element;
+    } else {
+      element = null;
+    }
   }
   while (element);
   return new org.apache.flex.geom.Point(x, y);
