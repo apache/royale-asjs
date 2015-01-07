@@ -73,5 +73,31 @@ package org.apache.flex.events.utils
 		{
 			return event.localY;
 		}
+		
+		/**
+		 *  Returns the globel X value.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		static public function globalX(event:MouseEvent):Number
+		{
+			return event.stageX;
+		}
+		
+		/**
+		 *  Returns the global Y value.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		static public function globalY(event:MouseEvent):Number
+		{
+			return event.stageY;
+		}
 	}
 }

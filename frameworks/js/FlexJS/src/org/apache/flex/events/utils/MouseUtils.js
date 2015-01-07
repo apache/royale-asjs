@@ -31,7 +31,7 @@ org.apache.flex.events.utils.MouseUtils.eventTarget = function(event) {
  * @return {number} The x position of the mouse with respect to its parent.
  */
 org.apache.flex.events.utils.MouseUtils.localX = function(event) {
-  return event.clientX;
+  return event.offsetX;
 };
 
 
@@ -40,5 +40,23 @@ org.apache.flex.events.utils.MouseUtils.localX = function(event) {
  * @return {number} The y position of the mouse with respect to its parent.
  */
 org.apache.flex.events.utils.MouseUtils.localY = function(event) {
+  return event.offsetY;
+};
+
+
+/**
+ * @param {Object} event The event.
+ * @return {number} The x position of the mouse with respect to the screen.
+ */
+org.apache.flex.events.utils.MouseUtils.globalX = function(event) {
+  return event.clientX;
+};
+
+
+/**
+ * @param {Object} event The event.
+ * @return {number} The y position of the mouse with respect to the screen.
+ */
+org.apache.flex.events.utils.MouseUtils.globalY = function(event) {
   return event.clientY;
 };
