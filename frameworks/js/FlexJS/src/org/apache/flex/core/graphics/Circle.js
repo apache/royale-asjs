@@ -72,6 +72,7 @@ org.apache.flex.core.graphics.Circle.prototype.get_radius = function() {
 org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radius) {
     var style = this.getStyleStr();
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+    circle.flexjs_wrapper = this;
     circle.setAttribute('style', style);
     if (this.get_stroke())
     {

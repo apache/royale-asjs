@@ -50,6 +50,7 @@ org.apache.flex.core.graphics.Line.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.core.graphics.Line.prototype.drawLine = function(x1, y1, x2, y2) {
     var style = this.getStyleStr();
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.flexjs_wrapper = this;
     line.setAttribute('style', style);
     line.setAttribute('x1', 0);
     line.setAttribute('y1', y1);

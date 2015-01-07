@@ -50,6 +50,7 @@ org.apache.flex.core.graphics.Rect.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, height) {
     var style = this.getStyleStr();
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.flexjs_wrapper = this;
     rect.setAttribute('style', style);
     if (this.get_stroke())
     {

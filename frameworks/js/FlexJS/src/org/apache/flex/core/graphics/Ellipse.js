@@ -50,6 +50,7 @@ org.apache.flex.core.graphics.Ellipse.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, width, height) {
     var style = this.getStyleStr();
     var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+    ellipse.flexjs_wrapper = this;
     ellipse.setAttribute('style', style);
     if (this.get_stroke())
     {

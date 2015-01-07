@@ -79,6 +79,7 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
     if (data == null || data.length === 0) return;
     var style = this.getStyleStr();
     var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.flexjs_wrapper = this;
     path.setAttribute('style', style);
     path.setAttribute('d', data);
     this.element.appendChild(path);

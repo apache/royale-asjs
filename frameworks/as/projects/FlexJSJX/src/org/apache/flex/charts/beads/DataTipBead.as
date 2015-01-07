@@ -23,6 +23,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
@@ -150,10 +151,11 @@ package org.apache.flex.charts.beads
 			}
 			else
 			{
-				while (base != null && !(base is IChartItemRenderer)) {
-					base = base.parent;
+				var chain:UIBase = base as UIBase;
+				while (chain != null && !(chain is IChartItemRenderer)) {
+					chain = chain.parent as UIBase;
 				}
-				return base as IChartItemRenderer;
+				return chain as IChartItemRenderer;
 			}
 		}
 	}
