@@ -72,16 +72,36 @@ org.apache.flex.html.beads.PanelView.prototype.set_strand =
  */
 org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
+  var strand = this.strand_;
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
-    this.strand_.addElement(this.strand_.titleBar);
-    this.strand_.addElement(this.strand_.controlBar);
+    strand.addElement(strand.titleBar);
+    strand.addElement(strand.controlBar);
   }
 
   if (event.type == 'titleChange') {
-    this.strand_.titleBar.set_title(this.strand_.model.get_title());
+    strand.titleBar.set_title(strand.model.get_title());
   }
 
+  var p = this.strand_.positioner;
+  if (!strand.isWidthSizedToContent()) {
+    var w = strand.get_width();
+	w -= p.offsetWidth - p.clientWidth;
+    strand.titleBar.setWidth(w);
+    strand.contentArea.style.width = w.toString() + "px";
+    if (strand.controlBar)
+      strand.controlBar.setWidth(w);
+  }
+  if (!strand.isHeightSizedToContent()) {
+    var t = strand.titleBar.get_height();
+    var b = 0;
+    if (strand.controlBar)
+      b = strand.controlBar.get_height();
+    strand.contentArea.style.top = t.toString() + "px";
+	var h = strand.get_height() - t - b;
+	h -= p.offsetHeight - p.clientHeight;
+    strand.contentArea.style.height = h.toString() + "px";
+  }
   this.strand_.dispatchEvent('layoutNeeded');
 };
