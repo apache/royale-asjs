@@ -84,7 +84,7 @@ package org.apache.flex.events.utils
 		 */
 		static public function globalX(event:MouseEvent):Number
 		{
-			return event.stageX;
+			return event.screenX;
 		}
 		
 		/**
@@ -97,7 +97,7 @@ package org.apache.flex.events.utils
 		 */
 		static public function globalY(event:MouseEvent):Number
 		{
-			return event.stageY;
+			return event.screenY;
 		}
 	}
 }
