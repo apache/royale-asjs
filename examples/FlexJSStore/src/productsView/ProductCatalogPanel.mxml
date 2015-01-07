@@ -120,12 +120,13 @@ limitations under the License.
             if (lastMove)
             {
                 lastMove.addEventListener(Tween.TWEEN_UPDATE, updateLayout);
+                lastMove.addEventListener(Tween.TWEEN_END, updateLayout);
             }
         }
         
         private function updateLayout(event:org.apache.flex.events.Event):void
         {
-            thumbContent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));   
+            thumbContentGroup.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));   
         }
             
         private function thumbDragStartHandler(event:MouseEvent):void
@@ -307,7 +308,7 @@ limitations under the License.
 						fadeInThumbnails();
 					});
             }
-            thumbContent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+            thumbContentGroup.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
             //return the last move to watch
             return move;
         }
