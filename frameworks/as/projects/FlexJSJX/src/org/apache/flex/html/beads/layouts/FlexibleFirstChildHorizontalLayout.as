@@ -89,6 +89,8 @@ package org.apache.flex.html.beads.layouts
 			var verticalMargins:Array = [];
 			
             var xx:Number = layoutParent.resizableView.width;
+            if (isNaN(xx))
+                return;
             var padding:Object = determinePadding();
             xx -= padding.paddingLeft + padding.paddingRight;
             
@@ -228,7 +230,12 @@ package org.apache.flex.html.beads.layouts
             var pl:Number = Number(paddingLeft);
             var pt:Number = Number(paddingTop);
             var pr:Number = Number(paddingRight);
-            
+            if (isNaN(pl))
+                pl = 0;
+            if (isNaN(pt))
+                pt = 0;
+            if (isNaN(pr))
+                pr = 0;
             return {paddingLeft:pl, paddingTop:pt, paddingRight:pr};
         }
 
