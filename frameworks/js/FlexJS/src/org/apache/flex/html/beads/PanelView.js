@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.html.beads.PanelView');
 
+goog.require('org.apache.flex.core.IBeadView');
+
 
 
 /**
@@ -37,7 +39,8 @@ org.apache.flex.html.beads.PanelView = function() {
 org.apache.flex.html.beads.PanelView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelView',
-                qName: 'org.apache.flex.html.beads.PanelView'}] };
+                qName: 'org.apache.flex.html.beads.PanelView'}],
+      interfaces: [org.apache.flex.core.IBeadView] };
 
 
 /**
@@ -49,7 +52,11 @@ org.apache.flex.html.beads.PanelView.prototype.set_strand =
 
   this.strand_ = value;
 
-  this.strand_.titleBar = new org.apache.flex.html.TitleBar();
+  if (!this.titleBar)
+    this.strand_.titleBar = new org.apache.flex.html.TitleBar();
+  else
+    this.strand_.titleBar = this.titleBar;
+
   this.strand_.titleBar.set_id('titleBar');
   this.strand_.titleBar.set_model(this.strand_.get_model());
 
@@ -87,9 +94,9 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
   var p = this.strand_.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.get_width();
-	w -= p.offsetWidth - p.clientWidth;
+    w -= p.offsetWidth - p.clientWidth;
     strand.titleBar.setWidth(w);
-    strand.contentArea.style.width = w.toString() + "px";
+    strand.contentArea.style.width = w.toString() + 'px';
     if (strand.controlBar)
       strand.controlBar.setWidth(w);
   }
@@ -98,10 +105,10 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     var b = 0;
     if (strand.controlBar)
       b = strand.controlBar.get_height();
-    strand.contentArea.style.top = t.toString() + "px";
-	var h = strand.get_height() - t - b;
-	h -= p.offsetHeight - p.clientHeight;
-    strand.contentArea.style.height = h.toString() + "px";
+    strand.contentArea.style.top = t.toString() + 'px';
+    var h = strand.get_height() - t - b;
+    h -= p.offsetHeight - p.clientHeight;
+    strand.contentArea.style.height = h.toString() + 'px';
   }
   this.strand_.dispatchEvent('layoutNeeded');
 };
