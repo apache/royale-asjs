@@ -448,7 +448,7 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
   pixels = parseFloat(strpixels);
   if (isNaN(pixels)) {
     pixels = this.positioner.offsetWidth;
-    if (pixels == 0 && this.positioner.scrollWidth != 0) {
+    if (pixels === 0 && this.positioner.scrollWidth !== 0) {
       // invisible child elements cause offsetWidth to be 0.
       pixels = this.positioner.scrollWidth;
     }
@@ -518,7 +518,7 @@ org.apache.flex.core.UIBase.prototype.get_height = function() {
   pixels = parseFloat(strpixels);
   if (isNaN(pixels)) {
     pixels = this.positioner.offsetHeight;
-    if (pixels == 0 && this.positioner.scrollHeight != 0) {
+    if (pixels === 0 && this.positioner.scrollHeight !== 0) {
       // invisible child elements cause offsetHeight to be 0.
       pixels = this.positioner.scrollHeight;
     }
