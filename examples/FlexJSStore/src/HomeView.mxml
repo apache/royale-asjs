@@ -53,25 +53,25 @@ Width and height are hard-coded in the root tag to help the Design view.
 		<basic:VContainer width="230" height="100%">
 			<basic:Container width="100%" height="100%">
 			
-				<basic:Container width="100%" height="60" className="homeSection">
+				<basic:Container height="60" className="homeSection">
                     <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="10" />
+                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="10" right="10"/>
                     </basic:style>
 					<basic:Label style="left:10;top:10" text="Search Developers" height="22" className="sectionHeader" />
-					<basic:TextButton style="left:168;top:30" text="Go" width="47" height="20" className="glass" click="SimpleAlert.show('This feature is not implemented in this sample', 'Go')"/>
+					<basic:TextButton style="left:168;top:30" text="Go" width="27" height="20" className="glass" click="SimpleAlert.show('This feature is not implemented in this sample', 'Go')"/>
 					<basic:TextInput style="left:10;top:30" height="20" width="150"/>
 				</basic:Container>
 				
-				<basic:Container width="100%" height="280" className="homeSection">
+				<basic:Container height="280" className="homeSection">
                     <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ffffff" left="10" top="78" />                        
+                        <basic:SimpleCSSStyles backgroundColor="#ffffff" left="10" top="78" right="10" />                        
                     </basic:style>
 					<basic:VContainer width="100%" height="100%">
                         <basic:style>
                             <basic:SimpleCSSStyles left="10" top="10" />                        
                         </basic:style>
 						<basic:Label text="Flex Experts That Can Help You" className="sectionHeader"/>
-						<basic:HRule height="5" width="197"/>
+						<basic:HRule height="5" width="187" style="marginLeft:0"/>
 						<basic:Label text="General" className="homeProgramHeader"/>
 						<basic:Label text="BlazeDS Experts" style="fontSize:9"/>
 						<basic:Spacer height="8" width="100%"/>
@@ -87,9 +87,9 @@ Width and height are hard-coded in the root tag to help the Design view.
 					</basic:VContainer>
 				</basic:Container>
 				
-				<basic:Container width="100%" height="174" className="homeSection">
+				<basic:Container height="174" className="homeSection">
                     <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="366" />
+                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="366" right="10" />
                     </basic:style>
 					<basic:VContainer width="100%" height="100%">
                         <basic:style>
@@ -130,9 +130,9 @@ Width and height are hard-coded in the root tag to help the Design view.
 			<basic:Container width="100%" height="100%">
 			
 			    <!-- can't use binding to set the mapImage source because the style isn't available early enough -->
-				<basic:Container id="mapCanvas" width="100%" height="35%" className="homeMap">
+				<basic:Container id="mapCanvas" height="35%" className="homeMap">
                     <basic:style>
-                        <basic:SimpleCSSStyles right="10" top="10" />
+                        <basic:SimpleCSSStyles left="0" right="10" top="10" />
                     </basic:style>
 					<basic:Image id="mapImage" width="487" height="100%" alpha="1.0" style="left:10;top:10"/>
 					<basic:Label y="110" text="US Developers . Flex . FlexJS" width="95%" height="40" style="horizontalCenter:0;fontWeight:'bold';fontSize:22;color:#ffffff;fontFamily:'Arial';textAlign:'center'"/>
@@ -141,14 +141,14 @@ Width and height are hard-coded in the root tag to help the Design view.
 					<basic:Label text="Rates as low as" x="551" y="16" style="fontSize:12"/>
 				</basic:Container>
 				
-				<basic:Container width="100%" height="330" >
+				<basic:Container height="330" >
                     <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ffffff" borderStyle="solid" bottom="10" right="10" /> <!-- cornerRadius="4" -->
+                        <basic:SimpleCSSStyles backgroundColor="#ffffff" borderStyle="solid" bottom="10" right="10" left="0" /> <!-- cornerRadius="4" -->
                     </basic:style>
 					
 					<basic:Label style="left:10;top:10" text="Featured Developers" width="173" height="25" className="sectionHeader"/>
 					
-					<basic:HContainer style="left:0;top:43" width="100%" height="100%">
+					<basic:HContainer style="left:10;top:43" width="100%" height="100%">
 						<basic:VContainer width="33%" height="100%">
 							<basic:beads>
                                 <basic:LayoutChangeNotifier watchedProperty="{image1.height}" />
