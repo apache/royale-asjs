@@ -37,6 +37,21 @@ org.apache.flex.core.DataBindingBase.prototype.FLEXJS_CLASS_INFO =
  * @expose
  * @param {Object} obj The object.
  * @param {string} propName The name of the property.
+ * @return {boolean} True if property exists.
+ */
+org.apache.flex.core.DataBindingBase.prototype.hasProperty =
+    function(obj, propName) {
+  if (typeof obj['get_' + propName] === 'function') {
+    return true;
+  }
+  return (propName in obj);
+};
+
+
+/**
+ * @expose
+ * @param {Object} obj The object.
+ * @param {string} propName The name of the property.
  * @return {Object} value The value of the property.
  */
 org.apache.flex.core.DataBindingBase.prototype.getProperty =
