@@ -107,6 +107,8 @@ org.apache.flex.events.EventDispatcher.elementEvents = {
   mouseout: 1,
   mouseup: 1,
   mousedown: 1,
-  mousemove: 1
+  mousemove: 1,
+  rollover: 1,
+  rollout: 1
 };
 

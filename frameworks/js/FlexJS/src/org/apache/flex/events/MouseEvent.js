@@ -117,7 +117,7 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
     for (j = 0; j < m; j++) {
       me = org.apache.flex.events.MouseEvent.makeMouseEvent(
                org.apache.flex.events.MouseEvent.ROLL_OUT, e);
-      outs[j].dispatchEvent(me);
+      outs[j].element.dispatchEvent(me);
     }
     org.apache.flex.events.MouseEvent.targets = targets.slice(0, index + 1);
   }
@@ -141,7 +141,7 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
         for (j = 0; j < m; j++) {
           me = org.apache.flex.events.MouseEvent.makeMouseEvent(
                    org.apache.flex.events.MouseEvent.ROLL_OUT, e);
-          outs[j].dispatchEvent(me);
+          outs[j].element.dispatchEvent(me);
         }
         targets = targets.slice(0, index + 1);
         break;
@@ -151,7 +151,7 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
     for (var i = 0; i < n; i++) {
       me = org.apache.flex.events.MouseEvent.makeMouseEvent(
                    org.apache.flex.events.MouseEvent.ROLL_OVER, e);
-      newTargets[i].dispatchEvent(me);
+      newTargets[i].element.dispatchEvent(me);
     }
     org.apache.flex.events.MouseEvent.targets = targets.concat(newTargets);
   }
@@ -178,7 +178,7 @@ org.apache.flex.events.MouseEvent.targets = [];
  */
 org.apache.flex.events.MouseEvent.makeMouseEvent = function(type, e) {
   var out = new MouseEvent(type);
-  out.initMouseEvent(type);
+  out.initMouseEvent(type, false, false);
   out.screenX = e.screenX;
   out.screenY = e.screenY;
   out.ctrlKey = e.ctrlKey;
