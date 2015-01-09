@@ -92,7 +92,8 @@ package org.apache.flex.html.beads.layouts
             if (isNaN(xx))
                 return;
             var padding:Object = determinePadding();
-            xx -= padding.paddingLeft + padding.paddingRight;
+            // some browsers don't like it when you go all the way to the right edge.
+            xx -= padding.paddingLeft + padding.paddingRight + 1;
             
             for (var i:int = n - 1; i >= 0; i--)
 			{
