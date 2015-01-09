@@ -61,9 +61,14 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
           goog.bind(this.changeHandler, this));
       this.strand_.addEventListener('sizeChanged',
           goog.bind(this.sizeChangeHandler, this));
-      if (!isNaN(this.strand_.get_explicitWidth()) &&
-          !isNaN(this.strand_.get_explicitHeight()))
-          this.addOtherListeners();
+
+      // in JS, we won't always get size/width/height change
+      // events because we let the browser layout based on
+      // %'s and don't convert to pixels, so listen to the
+      // other events anyway.
+      /* if (!isNaN(this.strand_.get_explicitWidth()) &&
+          !isNaN(this.strand_.get_explicitHeight()))*/
+      this.addOtherListeners();
     }
   }
 };
