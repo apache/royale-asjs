@@ -42,6 +42,7 @@ package org.apache.flex.html
 		public function ImageButton()
 		{
 			super();
+            typeNames = "ImageButton";
 		}
         
         public function get backgroundImage():String

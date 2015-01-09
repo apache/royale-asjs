@@ -108,6 +108,11 @@ HContainer
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
 }
 
+ImageButton
+{
+    border-style: none;
+}
+
 VContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");

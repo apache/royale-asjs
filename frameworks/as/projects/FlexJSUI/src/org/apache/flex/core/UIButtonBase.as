@@ -594,6 +594,17 @@ package org.apache.flex.core
             _styles = JSON.parse("{" + value + "}");
         }
         
+        /**
+         *  A list of type names.  Often used for CSS
+         *  type selector lookups.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var typeNames:String;
+        
 		private var _className:String;
 
         /**
