@@ -67,51 +67,23 @@ org.apache.flex.jquery.RadioButton.groupHandlerSet = false;
 org.apache.flex.jquery.RadioButton.prototype.createElement =
     function() {
 
-  var input = document.createElement('input');
-  input.type = 'radio';
-  input.name = 'radio';
-  input.id = 'radio' +
-      org.apache.flex.jquery.RadioButton.radioCounter;
+  this.input = document.createElement('input');
+  this.input.type = 'radio';
+  this.input.name = 'radio';
+  this.input.id = 'radio' + org.apache.flex.jquery.RadioButton.radioCounter;
 
-  var label = document.createElement('label');
-  label.htmlFor = input.id;
+  this.labelFor = document.createElement('label');
+  this.labelFor.htmlFor = this.input.id;
 
-  this.element = input;
-  this.labelFor = label;
-
+  this.element = document.createElement('div');
+  this.element.appendChild(this.input);
+  this.element.appendChild(this.labelFor);
   this.positioner = this.element;
   this.flexjs_wrapper = this;
+  this.input.flexjs_wrapper = this;
+  this.labelFor.fljs_wrapper = this;
+
   return this.element;
-};
-
-
-/**
- * @param {Object} doc the document for this item.
- * @param {string} id the id in the document for this item.
- */
-org.apache.flex.jquery.RadioButton.prototype.setDocument =
-    function(doc, id) {
-  if (!org.apache.flex.jquery.RadioButton.groupHandlerSet)
-  {
-    org.apache.flex.jquery.RadioButton.groupHandlerSet =
-        true;
-    doc.addEventListener('initComplete',
-        goog.bind(this.initHandler, this));
-  }
-};
-
-
-/**
- * @param {Event} event The event.
- */
-org.apache.flex.jquery.RadioButton.prototype.initHandler =
-    function(event) {
-  var divtags = org.apache.flex.jquery.RadioButton.groups;
-  for (var name in divtags)
-  {
-    var div = divtags[name];
-    $(div).buttonset();
-  }
 };
 
 
@@ -132,38 +104,8 @@ org.apache.flex.jquery.RadioButton.prototype.get_groupName =
 org.apache.flex.jquery.RadioButton.prototype.set_groupName =
     function(value) {
 
-  /*
- * NOTE: Ideally when a RadioButton was created it would be added to an
- * existing set of RadioButtons. This is especially true for RadioButtons
- * added dynamically. However, due to a bug in jQuery
- * (see http://bugs.jqueryui.com/ticket/8975), it is currently not possible
- * to add or remove RadioButtons programmatically. For this version the
- * groups are maintained here in RadioButton and once the application has
- * finished initializing, the groups are given their buttonset().
- */
-
   this.radioGroupName = value;
-
-  this.element.name = value;
-
-  var div;
-
-  if (org.apache.flex.jquery.RadioButton.groups[value]) {
-    div = org.apache.flex.jquery.RadioButton.groups[value];
-    div.appendChild(this.element);
-    div.appendChild(this.labelFor);
-  }
-  else {
-    div = document.createElement('div');
-    div.id = value;
-    div.appendChild(this.element);
-    div.appendChild(this.labelFor);
-
-    org.apache.flex.jquery.
-        RadioButton.groups[String(value)] = div;
-  }
-
-  this.positioner = div;
+  this.input.name = value;
 };
 
 
@@ -193,7 +135,7 @@ org.apache.flex.jquery.RadioButton.prototype.set_text =
  */
 org.apache.flex.jquery.RadioButton.prototype.get_selected =
     function() {
-  return this.element.checked;
+  return this.input.checked;
 };
 
 
@@ -203,5 +145,5 @@ org.apache.flex.jquery.RadioButton.prototype.get_selected =
  */
 org.apache.flex.jquery.RadioButton.prototype.set_selected =
     function(value) {
-  this.element.checked = value;
+  this.input.checked = value;
 };
