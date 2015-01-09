@@ -110,6 +110,7 @@ org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout.
       child.lastDisplay_ = 'inline-block';
     else
       child.style.display = 'inline-block';
+    child.style.verticalAlign = 'middle';
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
 };
