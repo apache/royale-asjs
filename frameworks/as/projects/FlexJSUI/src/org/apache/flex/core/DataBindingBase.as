@@ -42,6 +42,19 @@ package org.apache.flex.core
 		}
 		
         /**
+         *  True if property is defined on object.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function hasProperty(obj:Object, propName:String):Boolean
+        {
+            return (propName in obj);
+        }
+        
+        /**
          *  Get a property from an object.
          *  
          *  @langversion 3.0
