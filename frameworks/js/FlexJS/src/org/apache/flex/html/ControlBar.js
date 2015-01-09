@@ -49,6 +49,7 @@ org.apache.flex.html.ControlBar.prototype.createElement =
   this.element = document.createElement('div');
   this.element.className = 'ControlBar';
   this.element.style.display = 'inline';
+  this.typeNames = 'ControlBar';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
