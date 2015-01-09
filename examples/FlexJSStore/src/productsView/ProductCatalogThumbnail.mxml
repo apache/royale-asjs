@@ -191,21 +191,21 @@ limitations under the License.
             <basic:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
             <basic:LayoutChangeNotifier watchedProperty="{details.height}" initialValue="0" />
         </basic:beads>
-        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" 
+        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
             width="30">
             <basic:beads>
                 <basic:ToolTipBead toolTip="Add to cart"/>
             </basic:beads>
         </basic:ImageButton>
-        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" 
+        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
             width="30">
             <basic:beads>
                 <basic:ToolTipBead toolTip="Add to compare list"/>
             </basic:beads>
         </basic:ImageButton>
-        <basic:ImageButton id="details" backgroundImage="assets/button_details.png" 
+        <basic:ImageButton id="details" backgroundImage="assets/button_details.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
             width="30">
             <basic:beads>

@@ -93,3 +93,8 @@ basic|Container
     cornerRadius:           4;
     borderStyle:            "solid";
 }
+
+.hoverButton
+{
+    height: 20px;
+}
