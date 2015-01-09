@@ -98,7 +98,7 @@ package org.apache.flex.core
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (binding.source[0] in _strand)
+                    if (hasProperty(_strand, binding.source[0]))
                     {
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
@@ -353,9 +353,9 @@ package org.apache.flex.core
         {
             for (var p:String in deferredBindings)
             {
-                if (_strand[p] != null)
+                if (getProperty(_strand, p) != null)
                 {
-                    var destination:IStrand = _strand[p] as IStrand;
+                    var destination:IStrand = getProperty(_strand, p) as IStrand;
                     destination.addBead(deferredBindings[p]);
                     delete deferredBindings[p];
                 }

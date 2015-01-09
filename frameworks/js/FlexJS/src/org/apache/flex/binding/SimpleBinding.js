@@ -67,6 +67,8 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
   org.apache.flex.binding.SimpleBinding.base(this, 'set_strand', value);
 
+  if (!this.source)
+    return;
 
   this.source.addEventListener(this.eventName,
       goog.bind(this.changeHandler, this));

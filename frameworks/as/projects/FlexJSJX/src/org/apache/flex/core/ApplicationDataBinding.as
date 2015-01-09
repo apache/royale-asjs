@@ -97,7 +97,7 @@ package org.apache.flex.core
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (binding.source[0] in _strand)
+                    if (hasProperty(_strand, binding.source[0]))
                     {
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
