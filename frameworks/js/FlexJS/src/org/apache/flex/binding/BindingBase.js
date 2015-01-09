@@ -83,7 +83,10 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
   if (this.destination == null)
     this.destination = value;
   if (this.sourceID != null) {
-    this.source = this.document[this.sourceID];
+    if (typeof(this.document['get_' + this.sourceID]) === 'function')
+      this.source = this.document['get_' + this.sourceID]();
+    else
+      this.source = this.document[this.sourceID];
     if (this.source == null) {
       this.document.addEventListener('valueChange',
           goog.bind(this.sourceChangeHandler, this));
