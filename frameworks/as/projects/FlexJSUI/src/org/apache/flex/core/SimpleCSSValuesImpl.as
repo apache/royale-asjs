@@ -504,7 +504,22 @@ package org.apache.flex.core
                 {
                     var n:Number = Number(value);
                     if (isNaN(n))
-                        obj[pieces[0]] = value;
+                    {
+                        if (value.charAt(0) == "#")
+                        {
+                            value = value.replace("#", "0x");
+                            n = parseInt(value);
+                            obj[pieces[0]] = n;
+                        }
+                        else
+                        {
+                            if (value.charAt(0) == "'")
+                                value = value.substr(1, value.length - 2);
+                            else if (value.charAt(0) == '"')
+                                value = value.substr(1, value.length - 2);
+                            obj[pieces[0]] = value;
+                        }
+                    }
                     else
                         obj[pieces[0]] = n;
                 }
