@@ -71,7 +71,7 @@ Application
 .colorPanel /* for the background of some surfaces */
 {
     borderStyle:            "solid";
-    borderThickness:        0;
+    borderWidth:        0;
     backgroundColor:		#BCB29F;
     backgroundAlpha:		0.4;
     color: 					#170505;
@@ -161,6 +161,7 @@ Application
     headerColors:           #A65904, #E68701;
     borderAlpha:            1;
     borderColor:            #FFFFFF;
+    border-width: 1px;
     borderThicknessRight:   1;
     borderThicknessBottom:  1;
     paddingRight:           0;
