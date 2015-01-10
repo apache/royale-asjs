@@ -285,6 +285,7 @@ org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles = {
  */
 org.apache.flex.core.SimpleCSSValuesImpl.colorStyles = {
    backgroundColor: 1,
+   borderColor: 1,
    color: 1
 };
 
