@@ -24,6 +24,7 @@ goog.require('org.apache.flex.html.Label');
  */
 org.apache.flex.html.ToolTip = function() {
   org.apache.flex.html.ToolTip.base(this, 'constructor');
+  this.element.className = 'ToolTip';
 };
 goog.inherits(org.apache.flex.html.ToolTip,
     org.apache.flex.html.Label);

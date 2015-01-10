@@ -185,6 +185,11 @@ TitleBar
     background-color: #FFFFFF;
 }
 
+ToolTip
+{
+    background-color: #FFFFCC;
+}
+
 /* Global Style Declaration */
 global
 {
