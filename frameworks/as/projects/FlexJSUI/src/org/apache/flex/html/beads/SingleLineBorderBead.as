@@ -63,6 +63,7 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
             IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
             IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
@@ -72,6 +73,11 @@ package org.apache.flex.html.beads
 		private function changeHandler(event:Event):void
 		{
 			var styleObject:* = ValuesManager.valuesImpl.getValue(_strand,"border-color");
+            if (styleObject is String)
+            {
+                if (styleObject.charAt(0) == "#")
+                    styleObject = styleObject.replace("#", "0x");
+            }
 			var borderColor:Number = Number(styleObject);
 			if( isNaN(borderColor) ) borderColor = 0x000000;
 			styleObject = ValuesManager.valuesImpl.getValue(_strand,"border-width");
