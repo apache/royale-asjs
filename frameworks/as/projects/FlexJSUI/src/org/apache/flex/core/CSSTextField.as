@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
 	import flash.text.TextField;
-    import flash.text.TextFieldAutoSize;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	
 	import org.apache.flex.core.ValuesManager;
@@ -94,7 +94,17 @@ package org.apache.flex.core
                 tf.align = "right";
 				autoSize = TextFieldAutoSize.NONE;	
 			}
-
+            var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color");
+            if (backgroundColor != null)
+            {
+                this.background = true;
+                if (backgroundColor is String)
+                {
+                    backgroundColor = backgroundColor.replace("#", "0x");
+                    backgroundColor = uint(backgroundColor);
+                }
+                this.backgroundColor = backgroundColor as uint;
+            }
 			defaultTextFormat = tf;
 			super.text = value;
 		}
