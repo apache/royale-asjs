@@ -35,11 +35,11 @@ limitations under the License.
     <!-- automationName="{product.name}" -->
     <basic:beads>
         <basic:ContainerDataBinding />
-        <basic:LayoutChangeNotifier watchedProperty="{details.height}" />
+        <basic:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
     </basic:beads>
     <basic:style>
-        <basic:SimpleCSSStyles borderStyle="solid"
-                               borderColor="#FFFFFF" />
+        <basic:BindableCSSStyles id="borderStyles" borderStyle="solid"
+                               borderColor="#FFFFFF" backgroundColor="#FFFFFF"/>
     </basic:style>
     <fx:Metadata>
         [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
@@ -71,14 +71,14 @@ limitations under the License.
 
         private function rollOverHandler(event:MouseEvent):void
 		{
-            style["borderColor"] = "#CCCCCC";
+            borderStyles.borderColor = "#CCCCCC";
             //style["dropShadowEnabled"] = true;
             buttons.visible = true;
         }
 
         private function rollOutHandler(event:MouseEvent):void
 		{
-            style["borderColor"] = "#FFFFFF";
+            borderStyles.borderColor = "#FFFFFF";
             //style["dropShadowEnabled"] = false;
 			buttons.visible = false;
         }
@@ -158,9 +158,9 @@ limitations under the License.
 
             <basic:VContainer id="descr" height="100%" >
                 <basic:style>
-                    <basic:SimpleCSSStyles paddingTop="0" left="50" right="0" /> <!--  gap="0"  -->
+                    <basic:SimpleCSSStyles paddingTop="0" right="0" /> <!--  gap="0"  -->
                 </basic:style>
-                <basic:Label text="{product.featureString}" width="80" height="48" />
+                <basic:Label text="{product.featureString}" width="60" height="48" />
                 <basic:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
 				<basic:Spacer height="4"/>
                 <basic:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
@@ -182,15 +182,10 @@ limitations under the License.
     </basic:VContainer>
 
 
-    <basic:VContainer id="buttons" visible="false">
+    <basic:VContainer id="buttons" visible="false" width="30">
         <basic:style>
             <basic:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
         </basic:style>
-        <basic:beads>
-            <basic:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
-            <basic:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
-            <basic:LayoutChangeNotifier watchedProperty="{details.height}" initialValue="0" />
-        </basic:beads>
         <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
             width="30">
