@@ -24,6 +24,7 @@ goog.require('org.apache.flex.core.IParentIUIBase');
 goog.require('org.apache.flex.core.IStyleableObject');
 goog.require('org.apache.flex.core.IUIBase');
 goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
@@ -781,8 +782,22 @@ org.apache.flex.core.UIBase.prototype.set_style = function(value) {
     if (typeof(value) == 'string')
       value = org.apache.flex.core.ValuesManager.valuesImpl.parseStyles(value);
     this.style_ = value;
+    if (value.addEventListener)
+      value.addEventListener(org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
+          goog.bind(this.styleChangeHandler, this));
     this.dispatchEvent('stylesChanged');
   }
+};
+
+
+/**
+ * @expose
+ * @param {org.apache.flex.events.ValueChangeEvent} value The new style properties.
+ */
+org.apache.flex.core.UIBase.prototype.styleChangeHandler = function(value) {
+  var newStyle = {};
+  newStyle[value.propertyName] = value.newValue;
+  org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, newStyle);
 };
 
 
