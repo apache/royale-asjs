@@ -672,6 +672,8 @@ package org.apache.flex.core
 			strand.push(bead);
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
+            else if (bead is IBeadView)
+                _view = bead as IBeadView;
 			bead.strand = this;
 		}
 		
