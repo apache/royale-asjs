@@ -28,13 +28,14 @@ package org.apache.flex.html.beads
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.CSSTextField;
+	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStrandWithModel;
+	import org.apache.flex.core.IStrandWithModel;
 	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.html.beads.models.ImageAndTextModel;
+	import org.apache.flex.html.beads.models.ImageAndTextModel;
+    import org.apache.flex.utils.SolidBorderUtil;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -90,6 +91,7 @@ package org.apache.flex.html.beads
             textModel = IStrandWithModel(value).model as ImageAndTextModel;
             textModel.addEventListener("textChange", textChangeHandler);
             textModel.addEventListener("htmlChange", htmlChangeHandler);
+            textModel.addEventListener("imageChange", imageChangeHandler);
 			
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
@@ -143,12 +145,20 @@ package org.apache.flex.html.beads
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
+                    var padding:int = 2;
+                    var borderWidth:int = 1;
 					updateHitArea();
-                    textField.x = loader.width;
+                    loader.x = padding;
+                    textField.x = loader.width + padding;
+                    textField.y = padding;
+                    loader.y = (textField.height + padding + padding - loader.height) / 2;
                     sprite.graphics.clear();
                     sprite.graphics.beginFill(color);
                     sprite.graphics.drawRect(0, 0, sprite.width, sprite.height);
                     sprite.graphics.endFill();
+                    SolidBorderUtil.drawBorder(sprite.graphics, 
+                        0, 0, textField.x + textField.width + padding, textField.height + padding + padding,
+                        0x000000, color, borderWidth);
 				});
 			}
 		}
@@ -163,6 +173,13 @@ package org.apache.flex.html.beads
             html = textModel.html;
         }
 		
+        private function imageChangeHandler(event:Event):void
+        {
+            setupBackground(upSprite, upTextField, 0xCCCCCC);
+            setupBackground(overSprite, overTextField, 0xFFCCCC, "hover");
+            setupBackground(downSprite, downTextField, 0x808080, "active");
+        }
+        
         /**
          *  The CSSTextField in the up state
          *  
