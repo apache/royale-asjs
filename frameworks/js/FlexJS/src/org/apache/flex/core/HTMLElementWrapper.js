@@ -179,3 +179,47 @@ goog.events.BrowserEvent.prototype.get_screenX = function() {
 goog.events.BrowserEvent.prototype.get_screenY = function() {
   return this.screenY;
 };
+
+
+/**
+ * Hack to allow event.clientX expressions to work
+ *
+ * @expose
+ * @return {number} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_clientX = function() {
+  return this.clientX;
+};
+
+
+/**
+ * Hack to allow event.clientY expressions to work
+ *
+ * @expose
+ * @return {number} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_clientY = function() {
+  return this.clientY;
+};
+
+
+/**
+ * Hack to allow event.clientX expressions to work
+ *
+ * @expose
+ * @param {number} value The value.
+ */
+goog.events.BrowserEvent.prototype.set_clientX = function(value) {
+  this.clientX = value;
+};
+
+
+/**
+ * Hack to allow event.clientY expressions to work
+ *
+ * @expose
+ * @param {number} value The value.
+ */
+goog.events.BrowserEvent.prototype.set_clientY = function(value) {
+  this.clientY = value;
+};
