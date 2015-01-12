@@ -87,7 +87,7 @@ package org.apache.flex.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static var dragging:Boolean;
+        public static var dragging:Boolean = false;
         
         /**
          *  The drag image.
@@ -216,7 +216,7 @@ package org.apache.flex.html.beads.controllers
                         dragging = true;
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
                         host.addElement(dragImage);
-                        pt = PointUtils.globalToLocal(new Point(event.screenX, event.screenY), host);
+                        pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
                         dragImage.x = pt.x + dragImageOffsetX;
                         dragImage.y = pt.y + dragImageOffsetY;
                     }
@@ -224,9 +224,11 @@ package org.apache.flex.html.beads.controllers
             }
             else
             {
-                trace("sending dragMove", event.target);
+                trace("sending dragMove " + event.target.toString());
                 dragEvent = DragEvent.createDragEvent("dragMove", event);
-                pt = PointUtils.globalToLocal(new Point(event.screenX, event.screenY), host);
+                trace("client: " + event.clientX.toString() + " " + event.clientY.toString() + " " + event.target.toString());
+                pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
+                trace("host: " + pt.x.toString() + " " + pt.y.toString());
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
                 DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
