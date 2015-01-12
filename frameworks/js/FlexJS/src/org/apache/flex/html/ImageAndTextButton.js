@@ -25,7 +25,8 @@ goog.require('org.apache.flex.html.Button');
 org.apache.flex.html.ImageAndTextButton = function() {
   org.apache.flex.html.ImageAndTextButton.base(this, 'constructor');
 
-
+  this._text = '';
+  this._src = '';
 };
 goog.inherits(org.apache.flex.html.ImageAndTextButton,
     org.apache.flex.html.Button);
@@ -48,8 +49,6 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
-  this.img = document.createElement('img');
-  this.element.appendChild(this.img);
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -68,7 +67,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
  * @return {string} The text getter.
  */
 org.apache.flex.html.ImageAndTextButton.prototype.get_text = function() {
-  return this.element.innerHTML;
+  return this._text;
 };
 
 
@@ -78,7 +77,8 @@ org.apache.flex.html.ImageAndTextButton.prototype.get_text = function() {
  */
 org.apache.flex.html.ImageAndTextButton.prototype.set_text =
     function(value) {
-  this.element.innerHTML = value;
+  this._text = value;
+  this.setInnerHTML();
 };
 
 
@@ -87,7 +87,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.set_text =
  * @return {string} The image url.
  */
 org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
-  return this.img.src;
+  return this._src;
 };
 
 
@@ -97,5 +97,18 @@ org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
  */
 org.apache.flex.html.ImageAndTextButton.prototype.set_image =
     function(value) {
-  this.img.src = value;
+  this._src = value;
+  this.setInnerHTML();
+};
+
+
+/**
+ */
+org.apache.flex.html.ImageAndTextButton.prototype.setInnerHTML = function() {
+  var inner = '';
+  if (this._src != null)
+    inner += '<img src=\'' + this._src + '\'/>';
+  inner += '&nbsp;';
+  inner += this._text;
+  this.element.innerHTML = inner;
 };
