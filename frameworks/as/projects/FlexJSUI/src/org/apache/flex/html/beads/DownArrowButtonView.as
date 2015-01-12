@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IBeadView;
+    import org.apache.flex.events.Event;
 	
     /**
      *  The DownArrowButtonView class is the view for
@@ -92,11 +93,19 @@ package org.apache.flex.html.beads
 			SimpleButton(value).downState = downView;
 			SimpleButton(value).overState = overView;
 			SimpleButton(value).hitTestState = shape;
-		}
+
+            SimpleButton(_strand).addEventListener("widthChanged",sizeChangeHandler);
+            SimpleButton(_strand).addEventListener("heightChanged",sizeChangeHandler);
+        }
 				
 		private var upView:Shape;
 		private var downView:Shape;
 		private var overView:Shape;
         
+        private function sizeChangeHandler(event:Event):void
+        {
+            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / 16;
+            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / 16;
+        }
 	}
 }
