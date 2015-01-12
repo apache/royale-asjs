@@ -58,11 +58,11 @@ org.apache.flex.html.Spinner.prototype.createElement =
   this.element.style.verticalAlign = 'middle';
 
   this.incrementButton = new org.apache.flex.html.TextButton();
-  this.incrementButton.set_text('\u2191');
+  this.incrementButton.set_text('\u25B2');
   this.addElement(this.incrementButton);
 
   this.decrementButton = new org.apache.flex.html.TextButton();
-  this.decrementButton.set_text('\u2193');
+  this.decrementButton.set_text('\u25BC');
   this.addElement(this.decrementButton);
 
   this.controller = new org.apache.flex.html.
