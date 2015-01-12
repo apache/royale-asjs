@@ -55,9 +55,25 @@ org.apache.flex.html.NumericStepper.prototype.createElement =
   this.input = new org.apache.flex.html.TextInput();
   this.addElement(this.input);
   this.input.positioner.style.display = 'inline-block';
+  this.input.positioner.style.width = '100px';
 
   this.spinner = new org.apache.flex.html.Spinner();
+  this.spinner.positioner.style.display = 'inline-block';
+  this.spinner.positioner.style.height = '24px';
+  this.spinner.positioner.style.marginLeft = '-2px';
+  this.spinner.positioner.style.marginTop = '2px';
   this.addElement(this.spinner);
+  /* TODO: ajh move to view and css */
+  this.spinner.incrementButton.positioner.style.display = 'block';
+  this.spinner.incrementButton.positioner.style.marginBottom = '-1px';
+  this.spinner.incrementButton.positioner.style.paddingTop = '1px';
+  this.spinner.incrementButton.positioner.style.paddingBottom = '1px';
+  this.spinner.incrementButton.positioner.style.fontSize = '6px';
+  this.spinner.decrementButton.positioner.style.marginTop = '0px';
+  this.spinner.decrementButton.positioner.style.display = 'block';
+  this.spinner.decrementButton.positioner.style.paddingTop = '1px';
+  this.spinner.decrementButton.positioner.style.paddingBottom = '1px';
+  this.spinner.decrementButton.positioner.style.fontSize = '6px';
   this.spinner.positioner.style.display = 'inline-block';
   goog.events.listen(this.spinner, 'valueChange',
       goog.bind(this.spinnerChange, this));
@@ -141,6 +157,7 @@ org.apache.flex.html.NumericStepper.prototype.get_value =
 org.apache.flex.html.NumericStepper.prototype.set_value =
     function(newValue) {
   this.model.set_value(newValue);
+  this.spinner.set_value(newValue);
 };
 
 
