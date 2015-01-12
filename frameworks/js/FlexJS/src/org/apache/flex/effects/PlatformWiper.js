@@ -29,6 +29,13 @@ org.apache.flex.effects.PlatformWiper = function() {
    */
   this.target_ = null;
 
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.overflow_ = null;
+
 };
 
 
@@ -49,9 +56,16 @@ org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.effects.PlatformWiper.prototype.set_target =
     function(target) {
-  if (target == null)
-      delete this.target_.positioner.style.clip;
+  if (target == null) {
+    if (this.overflow_ == null)
+      delete this.target_.positioner.style.overflow;
+    else
+      this.target_.positioner.style.overflow = this.overflow_;
+  }
   this.target_ = target;
+  if (target != null) {
+    this.overflow_ = this.target_.positioner.style.overflow;
+  }
 };
 
 
@@ -62,10 +76,14 @@ org.apache.flex.effects.PlatformWiper.prototype.set_target =
  */
 org.apache.flex.effects.PlatformWiper.prototype.set_visibleRect =
     function(rect) {
+  /*
   var styleString = 'rect(';
   styleString += rect.top.toString() + 'px,';
   styleString += rect.width.toString() + 'px,';
   styleString += rect.height.toString() + 'px,';
-  styleString += rect.left.toString() + 'px,)';
+  styleString += rect.left.toString() + 'px)';
   this.target_.positioner.style.clip = styleString;
+  */
+  this.target_.positioner.style.height = rect.height.toString() + 'px';
+  this.target_.positioner.style.overflow = 'hidden';
 };
