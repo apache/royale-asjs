@@ -23,6 +23,7 @@ package org.apache.flex.core
 	import flash.text.TextFormat;
 	
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
 		
     /**
      *  The CSSTextField class implements CSS text styles in a TextField.
@@ -69,7 +70,8 @@ package org.apache.flex.core
 			var sp:Object = parent;
 			if (!sp)
 				sp = styleParent;
-			
+			sp.addEventListener("classNameChanged", updateStyles);
+            
 			var tf: TextFormat = new TextFormat();
 			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily") as String;
 			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize");
@@ -108,5 +110,11 @@ package org.apache.flex.core
 			defaultTextFormat = tf;
 			super.text = value;
 		}
+        
+        private function updateStyles(event:Event):void
+        {
+            // force styles to be re-calculated
+            this.text = text;
+        }
 	}
 }
