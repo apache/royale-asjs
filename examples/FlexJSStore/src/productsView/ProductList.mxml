@@ -50,7 +50,7 @@ limitations under the License.
         public var newItemStartX:int;
         public var newItemStartY:int;
         [Bindable]
-        public var maxItems:int;
+        public var maxItems:int = 0;
         public var showQuantity:Boolean;
         
         private var playingEffects:Object = new Object();
