@@ -56,6 +56,17 @@ package org.apache.flex.html.beads.layouts
 		{
 		}
 		
+        
+        /**
+         *  The flexible child
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var flexibleChild:IUIBase;
+        
         // the strand/host container is also an ILayoutChild because
         // can have its size dictated by the host's parent which is
         // important to know for layout optimization
@@ -136,7 +147,7 @@ package org.apache.flex.html.beads.layouts
             for (var i:int = 0; i < n; i++)
             {
                 var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-                if (child is ILayoutChild && !isNaN(ILayoutChild(child).percentHeight))
+                if (child == flexibleChild)
                 {
                     flexChildIndex = i;
                     break;
@@ -207,7 +218,7 @@ package org.apache.flex.html.beads.layouts
                 horizontalMargins[i] = { marginLeft: ml, marginRight: mr, halign: halign };
             }
 
-            for (i = n - 1; i >= flexChildIndex; i--)
+            for (i = n - 1; i > flexChildIndex; i--)
 			{
 				child = contentView.getElementAt(i) as IUIBase;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
@@ -404,7 +415,12 @@ package org.apache.flex.html.beads.layouts
             var pl:Number = Number(paddingLeft);
             var pt:Number = Number(paddingTop);
             var pr:Number = Number(paddingRight);
-            
+            if (isNaN(pl))
+                pl = 0;
+            if (isNaN(pr))
+                pr = 0;
+            if (isNaN(pt))
+                pt = 0;
             return {paddingLeft:pl, paddingTop:pt, paddingRight:pr};
         }
 
