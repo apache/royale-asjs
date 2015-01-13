@@ -104,7 +104,14 @@ package org.apache.flex.html.beads
             
             autoHeight = ilc.isHeightSizedToContent();
             autoWidth = ilc.isWidthSizedToContent();
-
+            if (!autoWidth && !isNaN(ilc.explicitWidth))
+            {
+                widthChangeHandler(null);
+            }
+            if (!autoHeight && !isNaN(ilc.explicitHeight))
+            {
+                heightChangeHandler(null);
+            }
 		}
 		
         /**
