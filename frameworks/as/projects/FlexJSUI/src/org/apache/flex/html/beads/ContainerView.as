@@ -84,16 +84,6 @@ package org.apache.flex.html.beads
             
             var host:UIBase = value as UIBase;
             
-            if (_strand.getBeadByType(IBeadLayout) == null)
-            {
-                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-                if (c)
-                {
-                    var layout:IBeadLayout = new c() as IBeadLayout;
-                    _strand.addBead(layout);
-                }
-            }
-            
             if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
             {
                 host.addEventListener("childrenAdded", changeHandler);
@@ -109,6 +99,16 @@ package org.apache.flex.html.beads
                 else
                     checkActualParent();
             }
+            
+            if (_strand.getBeadByType(IBeadLayout) == null)
+            {
+                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+                if (c)
+                {
+                    var layout:IBeadLayout = new c() as IBeadLayout;
+                    _strand.addBead(layout);
+                }
+            }            
         }
         
         private function checkActualParent():Boolean
