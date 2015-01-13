@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.core.ContainerBase');
 
+goog.require('org.apache.flex.core.IMXMLDocument');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.ValuesManager');
 
@@ -86,7 +87,8 @@ org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
  */
 org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerBase',
-                qName: 'org.apache.flex.core.ContainerBase'}] };
+                qName: 'org.apache.flex.core.ContainerBase'}] ,
+      interfaces: [org.apache.flex.core.IMXMLDocument]};
 
 
 /**
