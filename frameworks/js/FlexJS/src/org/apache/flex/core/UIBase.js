@@ -446,7 +446,10 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
 org.apache.flex.core.UIBase.prototype.get_width = function() {
   var pixels;
   var strpixels = this.positioner.style.width;
-  pixels = parseFloat(strpixels);
+  if (strpixels !== null && strpixels.indexOf('%') != -1)
+    pixels = NaN;
+  else
+    pixels = parseFloat(strpixels);
   if (isNaN(pixels)) {
     pixels = this.positioner.offsetWidth;
     if (pixels === 0 && this.positioner.scrollWidth !== 0) {
@@ -516,7 +519,10 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
 org.apache.flex.core.UIBase.prototype.get_height = function() {
   var pixels;
   var strpixels = this.positioner.style.height;
-  pixels = parseFloat(strpixels);
+  if (strpixels !== null && strpixels.indexOf('%') != -1)
+    pixels = NaN;
+  else
+    pixels = parseFloat(strpixels);
   if (isNaN(pixels)) {
     pixels = this.positioner.offsetHeight;
     if (pixels === 0 && this.positioner.scrollHeight !== 0) {
