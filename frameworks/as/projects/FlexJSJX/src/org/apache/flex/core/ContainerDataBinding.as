@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import org.apache.flex.binding.ChainBinding;
     import org.apache.flex.binding.ConstantBinding;
     import org.apache.flex.binding.GenericBinding;
     import org.apache.flex.binding.PropertyWatcher;
@@ -100,13 +101,14 @@ package org.apache.flex.core
                 {
                     if (hasProperty(_strand, binding.source[0]))
                     {
+                        var destObject:Object;
+                        var destination:IStrand;
+                        var compWatcher:Object;
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
                             // simple component.property binding
-                            var destObject:Object;
-                            var destination:IStrand;
                             // can be simplebinding or constantbinding
-                            var compWatcher:Object = watchers.watcherMap[binding.source[0]];
+                            compWatcher = watchers.watcherMap[binding.source[0]];
                             fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
                             if (fieldWatcher.eventNames is String)
                             {
@@ -159,6 +161,16 @@ package org.apache.flex.core
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            compWatcher = watchers.watcherMap[binding.source[0]];
+                            var chb:ChainBinding = new ChainBinding();
+                            chb.destination = binding.destination;
+                            chb.source = binding.source;
+                            chb.watcherChain = compWatcher;
+                            chb.setDocument(_strand);
+                            _strand.addBead(chb);
                         }
                     }
                 }
