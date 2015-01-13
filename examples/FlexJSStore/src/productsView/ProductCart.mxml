@@ -31,7 +31,7 @@ limitations under the License.
     </basic:style>
     <basic:beads>
         <basic:ContainerDataBinding />
-        <basic:OneFlexibleChildVerticalLayout />
+        <basic:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="{productList}" />
     </basic:beads>
     <fx:Script>
         <![CDATA[
@@ -58,7 +58,8 @@ limitations under the License.
                     //fall through into the same logic as dup          
                 case ProductListEvent.DUPLICATE_PRODUCT:
                     event.product.qty++;
-                    total += event.product.price;
+                    //total += event.product.price;
+                    total = total + event.product.price;
                     numProducts++;
                     break;            
                 case ProductListEvent.PRODUCT_QTY_CHANGE:
@@ -69,8 +70,10 @@ limitations under the License.
                     for (var i:int=0; i < items.length; i++)
                     {
                         var product:Product = items[i].product;
-                        total += product.qty * product.price;
-                        numProducts += product.qty;
+                        //total += product.qty * product.price;
+                        //numProducts += product.qty;
+                        total = total + product.qty * product.price;
+                        numProducts = numProducts + product.qty;
                     }       
                     break;
                 default:
@@ -86,7 +89,7 @@ limitations under the License.
     
     <basic:Label width="100%" text="Your Shopping Cart" className="sectionHeader"/>
         
-    <productsView:ProductList id="productList" height="100%" width="100%"
+    <productsView:ProductList id="productList" width="100%"
         newItemStartX="-100" newItemStartY="-100" 
         addProduct="productListEventHandler(event)"
         duplicateProduct="productListEventHandler(event)"
@@ -94,18 +97,18 @@ limitations under the License.
         removeProduct="productListEventHandler(event)"
         showQuantity="true" />
     
-    <basic:Container style="paddingRight:0">
+    <basic:Container style="paddingRight:0" width="100%">
         <basic:beads>
             <basic:VerticalColumnLayout numColumns="2" />
         </basic:beads>
         <basic:Label text="Total:" width="100%" />
-        <basic:Label width="70" text="{cf.format(total)}" style="textAlign:'right'"/>
+        <basic:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
 
         <basic:Label text="Service Fee:" width="100%" />
-        <basic:Label width="70" text="{cf.format(numProducts * SHIPPING)}" style="textAlign:'right'"/>
+        <basic:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
 
         <basic:Label text="Grand Total:" style="fontWeight:'bold'" width="100%" />
-        <basic:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" style="textAlign:'right'"/>
+        <basic:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
 
     </basic:Container>
 
