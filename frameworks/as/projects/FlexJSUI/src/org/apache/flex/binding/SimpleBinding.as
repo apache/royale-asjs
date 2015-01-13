@@ -175,6 +175,12 @@ package org.apache.flex.binding
 		
 		private function changeHandler(event:Event):void
 		{
+            if (event.type == ValueChangeEvent.VALUE_CHANGE)
+            {
+                var vce:ValueChangeEvent = event as ValueChangeEvent;
+                if (vce.propertyName != sourcePropertyName)
+                    return;
+            }
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
         
