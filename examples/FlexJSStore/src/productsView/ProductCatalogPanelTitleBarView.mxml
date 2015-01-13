@@ -38,6 +38,7 @@ limitations under the License.
     </fx:Script>
     <basic:beads>
         <basic:MXMLBeadViewBaseDataBinding />
+        <basic:ParentDocumentBead id="pdb" />
         <basic:LayoutChangeNotifier watchedProperty="{titleLabel.height}" />
     </basic:beads>
     <basic:Label id="titleLabel" text="{ITitleBarModel(model).title}" 
