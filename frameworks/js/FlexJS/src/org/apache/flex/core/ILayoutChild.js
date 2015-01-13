@@ -19,6 +19,8 @@
 
 goog.provide('org.apache.flex.core.ILayoutChild');
 
+goog.require('org.apache.flex.core.IChild');
+
 
 
 /**
@@ -35,5 +37,6 @@ org.apache.flex.core.ILayoutChild = function() {
  */
 org.apache.flex.core.ILayoutChild.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ILayoutChild',
-                qName: 'org.apache.flex.core.ILayoutChild' }] };
+                qName: 'org.apache.flex.core.ILayoutChild' }],
+      interfaces: [org.apache.flex.core.IChild] };
 
