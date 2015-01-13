@@ -75,7 +75,9 @@ package org.apache.flex.html
          */
 		public function set text(value:String):void
 		{
+            inSetter = true;
 			ITextModel(model).text = value;
+            inSetter = false;
 		}
 		
         /**
@@ -99,6 +101,8 @@ package org.apache.flex.html
 			ITextModel(model).html = value;
 		}
 
+        private var inSetter:Boolean;
+        
 		/**
 		 * @dispatch change event in response to a textChange event
 		 *
@@ -109,7 +113,8 @@ package org.apache.flex.html
 		 */
 		public function textChangeHandler(event:Event):void
 		{
-            dispatchEvent(new Event(Event.CHANGE));
+            if (!inSetter)
+                dispatchEvent(new Event(Event.CHANGE));
 		}
 	}
 }
