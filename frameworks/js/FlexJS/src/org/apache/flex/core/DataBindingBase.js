@@ -56,6 +56,9 @@ org.apache.flex.core.DataBindingBase.prototype.hasProperty =
  */
 org.apache.flex.core.DataBindingBase.prototype.getProperty =
     function(obj, propName) {
+  if (propName == 'this')
+    return obj;
+
   if (typeof obj['get_' + propName] === 'function') {
     return obj['get_' + propName]();
   }
