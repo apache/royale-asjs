@@ -247,13 +247,13 @@ package org.apache.flex.core
                     for each (var item:Object in ai.items)
                     {
                         var parent:IParent = ai.document as IParent;
-                        if (ai.destination != null)
-                            parent = parent[ai.destination] as IParent;
+                        if (ai.destination)
+                            parent = getProperty(parent, ai.destination) as IParent;
                         if (ai.relativeTo != null)
                         {
-                            var child:Object = ai.document[ai.relativeTo];
-                            if (ai.destination == null)
-                                parent = child.parent as IParent;
+                            var child:Object = getProperty(ai.document, ai.relativeTo);
+                            if (ai.destination)
+                                parent = IChild(child).parent as IParent;
                             var index:int = parent.getElementIndex(child);
                             if (ai.position == "after")
                                 index++;
