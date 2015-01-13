@@ -138,6 +138,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.core.graphics.GraphicsContainer; GraphicsContainer;
 	import org.apache.flex.core.graphics.LinearGradient; LinearGradient;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
+    import org.apache.flex.binding.ChainBinding; ChainBinding;
     import org.apache.flex.effects.PlatformWiper; PlatformWiper;    
     import org.apache.flex.events.DragEvent; DragEvent;   
 	import org.apache.flex.events.utils.MouseUtils; MouseUtils;
