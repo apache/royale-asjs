@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<basic:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                  xmlns:basic="library://ns.apache.org/flexjs/basic" 
+                  xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:productsView="productsView.*"
+    xmlns:flexstore="samples.flexstore.*"
+    height="100%" 
+    currentState="showingThumbnails"
+    initComplete="series.selectedIndex = 0">
+    <basic:style>
+        <basic:SimpleCSSStyles paddingLeft="4" 
+                               paddingRight="12" 
+                               paddingTop="12" 
+                               paddingBottom="8" 
+                               />
+
+    </basic:style>
+    
+    <fx:Metadata>
+       [Event(name="filter", type="samples.flexstore.ProductFilterEvent")] 
+       [Event("compare")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.flex.html.Slider;
+        import org.apache.flex.html.SimpleAlert; 
+        import samples.flexstore.ProductFilterEvent;
+           
+        private var thumbBeingPressed:Boolean;
+           
+        private function dispatchFilter():void
+        {
+            var event:ProductFilterEvent = 
+                new ProductFilterEvent(filter, thumbBeingPressed);
+            dispatchEvent(event);
+            currentState = "showingThumbnails";
+        }
+        
+        private function sliderValue(values:Array, index:int):Number
+        {
+            return values[index];
+        }
+        
+        private function productRemoved():void
+        {
+            if (currentState == "showingComparison")
+            {
+                if (productList.items.length == 0)
+                {
+                    dispatchFilter();
+                }
+                else
+                {
+                    attemptCompare();
+                }
+            }
+        }
+        
+        private function attemptCompare():void
+        {
+            if (productList.items.length > 0)
+            {
+                dispatchEvent(new Event("compare"));
+                currentState = "showingComparison";
+            }
+            else
+            {
+                SimpleAlert.show("There are no items to compare.", "Compare");
+            }
+        }
+        
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <flexstore:ProductFilter id="filter">
+            <flexstore:experience>{series.selectedItem}</flexstore:experience>
+            <flexstore:minPrice>{loPrice.value}</flexstore:minPrice>
+            <flexstore:maxPrice>{hiPrice.value}</flexstore:maxPrice>
+            <flexstore:blazeds>{cbBlazeDS.selected}</flexstore:blazeds>
+            <flexstore:mobile>{cbMobile.selected}</flexstore:mobile>
+            <flexstore:video>{cbVideo.selected}</flexstore:video>
+        </flexstore:ProductFilter>
+        
+        <basic:CurrencyFormatter currencySymbol="$" id="cf"/>    
+        
+    </fx:Declarations>
+    <basic:beads>
+        <basic:ContainerDataBinding />
+    </basic:beads>
+    
+    <basic:Label text="Find" className="sectionHeader"/>
+    
+    <basic:Container width="100%">
+        <basic:beads>
+            <basic:FlexibleFirstChildHorizontalLayout />
+        </basic:beads>
+        <basic:TextInput className="glass" width="100%"/>
+        <basic:TextButton className="glass" text="Go" click="SimpleAlert.show('This feature is not implemented in this sample', 'Find')"/>
+    </basic:Container>
+
+    <basic:Spacer height="18"/>
+
+    <basic:HRule width="100%"/>
+
+    <basic:Spacer height="8"/>
+
+    <basic:HContainer>
+        <basic:style>
+            <basic:SimpleCSSStyles paddingTop="0" paddingLeft="0" verticalAlign="bottom" />
+        </basic:style>
+        <basic:Label text="Filter" className="sectionHeader"/>
+        <basic:Label text="({filter.count} items selected)" >
+            <basic:style>
+                <basic:SimpleCSSStyles fontWeight="bold" />
+                <!--<basic:SimpleCSSStyles color="{getStyle('themeColor')}" fontWeight="bold" />-->
+            </basic:style>
+        </basic:Label>
+    </basic:HContainer>
+
+    <basic:Spacer height="8"/>
+
+    <basic:Label text="Years of Experience"/>
+
+    <basic:DropDownList id="series" className="glass" width="140" change="dispatchFilter();">
+        <basic:dataProvider>
+            <fx:Array>
+                <fx:String>All</fx:String>
+                <fx:String>3</fx:String>
+                <fx:String>5</fx:String>
+                <fx:String>7</fx:String>
+                <fx:String>9</fx:String>
+            </fx:Array>                
+        </basic:dataProvider>
+    </basic:DropDownList>
+
+    <basic:Spacer height="18"/>
+
+    <basic:Label text="Price"/>
+
+    <!--<s:HSlider id="priceSlider" className="glassSlider" minimum="0" maximum="200" tickInterval="10" snapInterval="10"
+        width="100%" thumbCount="2" values="[0,200]" labels="[$0,$200]" liveDragging="true" dataTipFormatFunction="{cf.format}"
+        change="dispatchFilter()"
+        thumbPress="thumbBeingPressed=true"
+        thumbRelease="thumbBeingPressed=false;dispatchFilter()"
+        />-->
+    <basic:HContainer>
+        <basic:NumericStepper width="48%" id="loPrice" minimum="0" maximum="{hiPrice.value}" value="0" valueChange="dispatchFilter()" />
+        <basic:NumericStepper width="48%" id="hiPrice" minimum="{loPrice.value}" maximum="200" value="200" valueChange="dispatchFilter()" />
+    </basic:HContainer>
+
+    <basic:Spacer height="18"/>
+
+    <basic:Label text="Required Features"/>
+
+    <basic:Spacer height="4"/>
+
+    <basic:CheckBox id="cbBlazeDS" className="glass" text="BlazeDS" click="dispatchFilter();"/>
+    <basic:Spacer height="4"/>
+    <basic:CheckBox id="cbMobile" className="glass" text="Mobile" click="dispatchFilter()"/>
+    <basic:Spacer height="4"/>
+    <basic:CheckBox id="cbVideo" className="glass" text="Video" click="dispatchFilter();"/>
+
+    <basic:Spacer height="18"/>
+
+    <basic:HRule width="100%"/>
+
+    <basic:Spacer height="8"/>
+
+        <basic:HContainer>
+            <basic:Label text="Compare" className="sectionHeader"/>
+            <basic:Label text="(Drag items here to compare)" className="instructions"/>
+        </basic:HContainer>
+
+
+    <basic:Spacer height="4"/>
+
+    <!-- height is maxItems * ProductListItem.HEIGHT + 2px border -->
+    <productsView:ProductList id="productList" height="{productList.maxItems * ProductListItem.HEIGHT + 2}" width="100%"
+        newItemStartX="300" newItemStartY="-100" maxItems="4" 
+        removeProduct="productRemoved()"/>
+
+    <basic:Spacer height="8"/>
+    
+    <basic:ImageAndTextButton id="compareButton" className="glass" 
+                  click.showingThumbnails="attemptCompare()"
+                  click.showingComparison="dispatchFilter()"            
+                  text.showingComparison="Back to thumbnail view"
+                  text.showingThumbnails="Compare Items"
+                  image.showingThumbnails="assets/icon_compare.png"
+                  image.showingComparison="assets/icon_tiles.png" />
+    
+    <basic:states>
+       <mx:State name="showingThumbnails" />
+       <mx:State name="showingComparison" />
+    </basic:states>
+
+</basic:VContainer>
