@@ -36,11 +36,20 @@ org.apache.flex.jquery.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
-  $(this.element).button();
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
   return this.element;
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.jquery.TextButton.prototype.addedToParent =
+    function() {
+  org.apache.flex.jquery.TextButton.base(this, 'addedToParent');
+  $(this.element).button();
 };
 
 
