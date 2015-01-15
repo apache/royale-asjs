@@ -24,10 +24,19 @@ goog.require('org.apache.flex.core.UIBase');
  */
 org.apache.flex.jquery.CheckBox = function() {
   org.apache.flex.jquery.CheckBox.base(this, 'constructor');
-
 };
 goog.inherits(org.apache.flex.jquery.CheckBox,
     org.apache.flex.core.UIBase);
+
+
+/**
+ * Metadata
+ *
+ * @type {Object.<string, Array.<Object>>}
+ */
+org.apache.flex.jquery.CheckBox.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'CheckBox',
+                qName: 'org.apache.flex.jquery.CheckBox'}] };
 
 
 /**
@@ -35,25 +44,19 @@ goog.inherits(org.apache.flex.jquery.CheckBox,
  */
 org.apache.flex.jquery.CheckBox.prototype.createElement =
     function() {
-  var cb, d, lb;
+  var cb;
 
-  d = document.createElement('div');
+  this.element = document.createElement('label');
+
   cb = document.createElement('input');
   cb.type = 'checkbox';
-  cb.id = 'checkbox1';
-
-  lb = document.createElement('label');
-  lb.htmlFor = 'checkbox1';
-
-  d.appendChild(cb);
-  d.appendChild(lb);
-
-  this.element = d;
-
-  $(cb).button();
+  this.element.appendChild(cb);
+  this.element.appendChild(document.createTextNode(''));
 
   this.positioner = this.element;
+  cb.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
+
   return this.element;
 };
 
@@ -63,7 +66,7 @@ org.apache.flex.jquery.CheckBox.prototype.createElement =
  * @return {string} The text getter.
  */
 org.apache.flex.jquery.CheckBox.prototype.get_text = function() {
-  return this.element.childNodes.item(1).value;
+  return this.element.childNodes.item(1).nodeValue;
 };
 
 
@@ -73,7 +76,7 @@ org.apache.flex.jquery.CheckBox.prototype.get_text = function() {
  */
 org.apache.flex.jquery.CheckBox.prototype.set_text =
     function(value) {
-  this.element.childNodes.item(1).appendChild(document.createTextNode(value));
+  this.element.childNodes.item(1).nodeValue = value;
 };
 
 
