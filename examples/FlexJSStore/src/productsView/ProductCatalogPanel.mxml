@@ -529,7 +529,7 @@ limitations under the License.
             </basic:beads>
             <basic:Container id="thumbContent" width="100%" height="100%" />
         </basic:Container>
-        <productsView:ProductDetails id="details"
+        <productsView:ProductDetails id="details" y="0"
             width="{ProductCatalogThumbnail.COL_WIDTH_4 * 3}"
             height="100%"
             visible="false"
