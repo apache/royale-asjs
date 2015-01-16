@@ -45,7 +45,7 @@ limitations under the License.
         import samples.flexstore.Product;
         import samples.flexstore.ProductListEvent;
         
-        public var items:Array = [];
+        public var items:Array;
         
         public var newItemStartX:int;
         public var newItemStartY:int;
@@ -57,6 +57,9 @@ limitations under the License.
         
         public function addProduct(product:Product):void
 		{
+            if (items == null)
+                items = [];
+            
             var index:int = indexOf(product.productId);
             var event:ProductListEvent;
             var item:ProductListItem;
