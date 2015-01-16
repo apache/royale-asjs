@@ -142,13 +142,18 @@ package org.apache.flex.binding
             if (source && source is IEventDispatcher)
                 removeEventListeners();
 
-            source = parent;
+            if (source is PropertyWatcher)
+                source = PropertyWatcher(parent).value;
+            else
+                source = parent;
             
             if (source && source is IEventDispatcher)
                 addEventListeners();
             
             // Now get our property.
             wrapUpdate(updateProperty);
+            
+            notifyListeners();            
         }
 
         private function addEventListeners():void
