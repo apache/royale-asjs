@@ -80,6 +80,8 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
         goog.bind(this.changeHandler, this));
     this.strand_.addEventListener('heightChanged',
         goog.bind(this.changeHandler, this));
+    this.strand_.addEventListener('sizeChanged',
+        goog.bind(this.changeHandler, this));
     this.strand_.element.style.display = 'block';
   }
 };

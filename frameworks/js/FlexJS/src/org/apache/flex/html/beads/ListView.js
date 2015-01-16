@@ -59,6 +59,8 @@ org.apache.flex.html.beads.ListView.prototype.set_strand =
 
   this.strand_ = value;
 
+  this.strand_.addEventListener('sizeChanged',
+      goog.bind(this.handleSizeChange, this));
   this.strand_.addEventListener('widthChanged',
       goog.bind(this.handleSizeChange, this));
   this.strand_.addEventListener('heightChanged',
