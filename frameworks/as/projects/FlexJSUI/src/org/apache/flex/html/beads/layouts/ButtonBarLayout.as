@@ -71,6 +71,7 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
