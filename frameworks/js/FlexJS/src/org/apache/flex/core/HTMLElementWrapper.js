@@ -146,6 +146,15 @@ Event.prototype.get_target = function() {
 
 
 /**
+ * Hack to allow event.currentTarget to work
+ * @return {Object} The wrapping object.
+ */
+Event.prototype.get_currentTarget = function() {
+  return this.currentTarget.flexjs_wrapper;
+};
+
+
+/**
  * Hack to allow event.target expressions to work
  *
  * @expose
@@ -156,6 +165,20 @@ goog.events.BrowserEvent.prototype.get_target = function() {
   if (!this.event_) return this.target;
   // for true browser events, get the embedded event's target
   return this.event_.get_target();
+};
+
+
+/**
+ * Hack to allow event.currentTarget expressions to work
+ *
+ * @expose
+ * @return {Object} The wrapping object.
+ */
+goog.events.BrowserEvent.prototype.get_currentTarget = function() {
+  // if it is a faked event so just return the currentTarget
+  if (!this.event_) return this.currentTarget;
+  // for true browser events, get the embedded event's currentTarget
+  return this.event_.get_currentTarget();
 };
 
 
