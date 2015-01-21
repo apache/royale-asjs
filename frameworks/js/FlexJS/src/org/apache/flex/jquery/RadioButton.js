@@ -67,23 +67,45 @@ org.apache.flex.jquery.RadioButton.groupHandlerSet = false;
 org.apache.flex.jquery.RadioButton.prototype.createElement =
     function() {
 
+  // the radio itself
   this.input = document.createElement('input');
   this.input.type = 'radio';
   this.input.name = 'radio';
-  this.input.id = 'radio' + org.apache.flex.jquery.RadioButton.radioCounter;
+  this.input.id = '_radio_' + org.apache.flex.jquery.RadioButton.radioCounter++;
 
   this.labelFor = document.createElement('label');
   this.labelFor.htmlFor = this.input.id;
 
-  this.element = document.createElement('div');
-  this.element.appendChild(this.input);
-  this.element.appendChild(this.labelFor);
-  this.positioner = this.element;
-  this.flexjs_wrapper = this;
+  this.positioner = document.createElement('div');
+  this.positioner.appendChild(this.input);
+  this.positioner.appendChild(this.labelFor);
+  this.element = this.input;
+
   this.input.flexjs_wrapper = this;
-  this.labelFor.fljs_wrapper = this;
+  this.labelFor.flexjs_wrapper = this;
+  this.positioner.flexjs_wrapper = this;
 
   return this.element;
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.jquery.RadioButton.prototype.addedToParent =
+    function() {
+  org.apache.flex.jquery.RadioButton.base(this, 'addedToParent');
+  $(this.input).button();
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.jquery.RadioButton.prototype.set_id = function(value) {
+  org.apache.flex.jquery.RadioButton.base(this, 'set_id', value);
+  this.labelFor.id = value;
+  this.labelFor.htmlFor = value;
 };
 
 
@@ -146,4 +168,65 @@ org.apache.flex.jquery.RadioButton.prototype.get_selected =
 org.apache.flex.jquery.RadioButton.prototype.set_selected =
     function(value) {
   this.input.checked = value;
+};
+
+
+/**
+ * @expose
+ * @return {Object} The value getter.
+ */
+org.apache.flex.jquery.RadioButton.prototype.get_value =
+    function() {
+  return this.input.value;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The value setter.
+ */
+org.apache.flex.jquery.RadioButton.prototype.set_value =
+    function(value) {
+  this.input.value = value;
+};
+
+
+/**
+ * @expose
+ * @return {Object} The value of the selected RadioButton.
+ */
+org.apache.flex.jquery.RadioButton.prototype.get_selectedValue =
+    function() {
+  var buttons, groupName, i, n;
+
+  groupName = this.input.name;
+  buttons = document.getElementsByName(groupName);
+  n = buttons.length;
+
+  for (i = 0; i < n; i++) {
+    if (buttons[i].checked) {
+      return buttons[i].value;
+    }
+  }
+  return null;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The value of the selected RadioButton.
+ */
+org.apache.flex.jquery.RadioButton.prototype.set_selectedValue =
+    function(value) {
+  var buttons, groupName, i, n;
+
+  groupName = this.input.name;
+  buttons = document.getElementsByName(groupName);
+  n = buttons.length;
+  for (i = 0; i < n; i++) {
+    if (buttons[i].value === value) {
+      buttons[i].checked = true;
+      break;
+    }
+  }
 };

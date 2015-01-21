@@ -40,22 +40,32 @@ org.apache.flex.html.RadioButton.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
+ * Provides unique name
+ */
+org.apache.flex.html.RadioButton.radioCounter = 0;
+
+
+/**
  * @override
  */
 org.apache.flex.html.RadioButton.prototype.createElement =
     function() {
-  var rb;
 
-  this.element = document.createElement('label');
+  this.input = document.createElement('input');
+  this.input.type = 'radio';
+  this.input.id = '_radio_' + org.apache.flex.html.RadioButton.radioCounter++;
 
-  rb = document.createElement('input');
-  rb.type = 'radio';
-  this.element.appendChild(rb);
-  this.element.appendChild(document.createTextNode('radio button'));
+  this.textNode = document.createTextNode('radio button');
 
+  this.labelFor = document.createElement('label');
+  this.labelFor.appendChild(this.input);
+  this.labelFor.appendChild(this.textNode);
+
+  this.element = this.labelFor;
   this.positioner = this.element;
-  rb.flexjs_wrapper = this;
+  this.input.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
+  this.textNode.flexjs_wrapper = this;
 
   return this.element;
 };
@@ -78,12 +88,22 @@ org.apache.flex.html.RadioButton.prototype.initSkin =
 
 
 /**
+ * @override
+ */
+org.apache.flex.html.RadioButton.prototype.set_id = function(value) {
+  org.apache.flex.html.RadioButton.base(this, 'set_id', value);
+  this.labelFor.id = value;
+  this.input.id = value;
+};
+
+
+/**
  * @expose
  * @return {string} The groupName getter.
  */
 org.apache.flex.html.RadioButton.prototype.get_groupName =
     function() {
-  return this.element.childNodes.item(0).name;
+  return this.input.name;
 };
 
 
@@ -93,7 +113,7 @@ org.apache.flex.html.RadioButton.prototype.get_groupName =
  */
 org.apache.flex.html.RadioButton.prototype.set_groupName =
     function(value) {
-  this.element.childNodes.item(0).name = value;
+  this.input.name = value;
 };
 
 
@@ -103,7 +123,7 @@ org.apache.flex.html.RadioButton.prototype.set_groupName =
  */
 org.apache.flex.html.RadioButton.prototype.get_text =
     function() {
-  return this.element.childNodes.item(1).nodeValue;
+  return this.textNode.nodeValue;
 };
 
 
@@ -113,7 +133,7 @@ org.apache.flex.html.RadioButton.prototype.get_text =
  */
 org.apache.flex.html.RadioButton.prototype.set_text =
     function(value) {
-  this.element.childNodes.item(1).nodeValue = value;
+  this.textNode.nodeValue = value;
 };
 
 
@@ -123,7 +143,7 @@ org.apache.flex.html.RadioButton.prototype.set_text =
  */
 org.apache.flex.html.RadioButton.prototype.get_selected =
     function() {
-  return this.element.childNodes.item(0).checked;
+  return this.input.checked;
 };
 
 
@@ -133,7 +153,7 @@ org.apache.flex.html.RadioButton.prototype.get_selected =
  */
 org.apache.flex.html.RadioButton.prototype.set_selected =
     function(value) {
-  this.element.childNodes.item(0).checked = value;
+  this.input.checked = value;
 };
 
 
@@ -143,7 +163,7 @@ org.apache.flex.html.RadioButton.prototype.set_selected =
  */
 org.apache.flex.html.RadioButton.prototype.get_value =
     function() {
-  return this.element.childNodes.item(0).value;
+  return this.input.value;
 };
 
 
@@ -153,7 +173,7 @@ org.apache.flex.html.RadioButton.prototype.get_value =
  */
 org.apache.flex.html.RadioButton.prototype.set_value =
     function(value) {
-  this.element.childNodes.item(0).value = value;
+  this.input.value = value;
 };
 
 
@@ -165,7 +185,7 @@ org.apache.flex.html.RadioButton.prototype.get_selectedValue =
     function() {
   var buttons, groupName, i, n;
 
-  groupName = this.element.childNodes.item(0).name;
+  groupName = this.input.name;
   buttons = document.getElementsByName(groupName);
   n = buttons.length;
 
@@ -186,7 +206,7 @@ org.apache.flex.html.RadioButton.prototype.set_selectedValue =
     function(value) {
   var buttons, groupName, i, n;
 
-  groupName = this.element.childNodes.item(0).name;
+  groupName = this.input.name;
   buttons = document.getElementsByName(groupName);
   n = buttons.length;
   for (i = 0; i < n; i++) {
