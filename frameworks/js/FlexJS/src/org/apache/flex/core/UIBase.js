@@ -140,7 +140,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
 
   this.element.flexjs_wrapper = this;
 
-  return this.element;
+  return this.positioner;
 };
 
 
@@ -155,7 +155,7 @@ org.apache.flex.core.UIBase.prototype.finalizeElement = null;
  * @param {Object} c The child element.
  */
 org.apache.flex.core.UIBase.prototype.addElement = function(c) {
-  this.element.appendChild(c.element);
+  this.element.appendChild(c.positioner);
   c.addedToParent();
 };
 
@@ -170,7 +170,7 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
     this.addElement(c);
   else
   {
-    this.element.insertBefore(c.element,
+    this.element.insertBefore(c.positioner,
         children[index]);
     c.addedToParent();
   }
@@ -224,7 +224,7 @@ org.apache.flex.core.UIBase.prototype.get_numElements = function() {
  * @return {Object} The parent of this object.
  */
 org.apache.flex.core.UIBase.prototype.get_parent = function() {
-  var p = this.element.parentNode;
+  var p = this.parent.parentNode;
   var wrapper = p.flexjs_wrapper;
   return wrapper;
 };
@@ -812,7 +812,7 @@ org.apache.flex.core.UIBase.prototype.styleChangeHandler = function(value) {
  * @return {boolean} True if visible.
  */
 org.apache.flex.core.UIBase.prototype.get_visible = function() {
-  return this.element.style.display !== 'none';
+  return this.positioner.style.display !== 'none';
 };
 
 
@@ -821,17 +821,17 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
  * @param {boolean} value The new model.
  */
 org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
-  var oldValue = this.element.style.display !== 'none';
+  var oldValue = this.positioner.style.display !== 'none';
   if (value !== oldValue) {
     if (!value) {
-      this.lastDisplay_ = this.element.style.display;
-      this.element.style.display = 'none';
+      this.lastDisplay_ = this.positioner.style.display;
+      this.positioner.style.display = 'none';
       this.dispatchEvent(new org.apache.flex.events.Event('hide'));
     } else {
       if (this.lastDisplay_) {
-        this.element.style.display = this.lastDisplay_;
+        this.positioner.style.display = this.lastDisplay_;
       } else {
-        this.element.style.display = 'block';
+        this.positioner.style.display = 'block';
       }
       this.dispatchEvent(new org.apache.flex.events.Event('show'));
     }
