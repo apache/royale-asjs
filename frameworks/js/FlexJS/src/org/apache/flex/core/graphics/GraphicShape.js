@@ -72,6 +72,7 @@ org.apache.flex.core.graphics.GraphicShape = function() {
   this.element.offsetLeft = 0;
   this.element.offsetTop = 0;
   this.element.offsetParent = null;
+  this.positioner = this.element;
 };
 goog.inherits(org.apache.flex.core.graphics.GraphicShape,
     org.apache.flex.core.UIBase);
