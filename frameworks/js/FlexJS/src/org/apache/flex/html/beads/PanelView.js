@@ -88,7 +88,7 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
   {
     this.titleBarAdded_ = true;
     strand.addElement(this.titleBar_);
-	if (strand.controlBar != null)
+    if (strand.controlBar != null)
       strand.addElement(strand.controlBar);
   }
 
