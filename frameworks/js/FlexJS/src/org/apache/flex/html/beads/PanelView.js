@@ -28,6 +28,11 @@ org.apache.flex.html.beads.PanelView = function() {
   */
   this.titleBarAdded_ = false;
 
+  /**
+   * @private
+   * @type {Object}
+  */
+  this.titleBar_ = false;
 };
 
 
@@ -52,13 +57,12 @@ org.apache.flex.html.beads.PanelView.prototype.set_strand =
 
   this.strand_ = value;
 
-  if (!this.titleBar)
-    this.strand_.titleBar = new org.apache.flex.html.TitleBar();
-  else
-    this.strand_.titleBar = this.titleBar;
+  if (!this.titleBar_)
+    this.titleBar_ = new org.apache.flex.html.TitleBar();
 
-  this.strand_.titleBar.set_id('titleBar');
-  this.strand_.titleBar.set_model(this.strand_.get_model());
+  this.strand_.titleBar = this.titleBar_;
+  this.titleBar_.set_id('titleBar');
+  this.titleBar_.set_model(this.strand_.get_model());
 
   this.strand_.controlBar =
       new org.apache.flex.html.ControlBar();
@@ -83,25 +87,26 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
-    strand.addElement(strand.titleBar);
-    strand.addElement(strand.controlBar);
+    strand.addElement(this.titleBar_);
+	if (strand.controlBar != null)
+      strand.addElement(strand.controlBar);
   }
 
   if (event.type == 'titleChange') {
-    strand.titleBar.set_title(strand.model.get_title());
+    this.titleBar_.set_title(strand.model.get_title());
   }
 
   var p = this.strand_.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.get_width();
     w -= p.offsetWidth - p.clientWidth;
-    strand.titleBar.setWidth(w);
+    this.titleBar_.setWidth(w);
     strand.contentArea.style.width = w.toString() + 'px';
     if (strand.controlBar)
       strand.controlBar.setWidth(w);
   }
   if (!strand.isHeightSizedToContent()) {
-    var t = strand.titleBar.get_height();
+    var t = this.titleBar_.get_height();
     var b = 0;
     if (strand.controlBar)
       b = strand.controlBar.get_height();
@@ -111,4 +116,24 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     strand.contentArea.style.height = h.toString() + 'px';
   }
   this.strand_.dispatchEvent('layoutNeeded');
+};
+
+
+/**
+ * @expose
+ * @return {Object} The titleBar getter.
+ */
+org.apache.flex.html.beads.PanelView.prototype.get_titleBar =
+    function() {
+  return this.titleBar_;
+};
+
+
+/**
+ * @expose
+ * @param {Object} value The titleBar setter.
+ */
+org.apache.flex.html.beads.PanelView.prototype.set_titleBar =
+    function(value) {
+  this.titleBar_ = value;
 };
