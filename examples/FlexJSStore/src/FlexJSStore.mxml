@@ -168,7 +168,7 @@ limitations under the License.
 	
     <fx:Declarations>
         <basic:HTTPService id="productService" url="data/catalog.json">
-            <basic:LazyCollection id="catalog">
+            <basic:LazyCollection id="catalog" complete="if (pView) pView.catalog = catalog">
                 <basic:inputParser>
                     <basic:JSONInputParser />
                 </basic:inputParser>
@@ -182,6 +182,7 @@ limitations under the License.
         <basic:SimpleCSSValuesImpl />
     </basic:valuesImpl>
 	<basic:beads>
+        <basic:ViewSourceContextMenuOption />
         <basic:CallLaterBead id="callLater" />
         <basic:ApplicationDataBinding />
     </basic:beads>
@@ -258,7 +259,7 @@ limitations under the License.
                 <HomeView id="homeView" width="100%" height="550" includeIn="Home"
                           />
                 <ProductsView id="pView" includeIn="Products" visible.ProductsPreBake="false"
-                              width="100%" height="550" initComplete="pView.catalog = catalog"
+                              width="100%" height="550" initComplete="if (catalog.length) pView.catalog = catalog"
                               />
                 <SupportView id="supportView" includeIn="Support"
                              width="100%" height="550"

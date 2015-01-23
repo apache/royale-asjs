@@ -14,12 +14,16 @@
 
 goog.provide('org.apache.flex.net.dataConverters.LazyCollection');
 
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.events.IEventDispatcher');
+
 
 
 /**
  * @constructor
  */
 org.apache.flex.net.dataConverters.LazyCollection = function() {
+  org.apache.flex.net.dataConverters.LazyCollection.base(this, 'constructor');
   /**
    * @private
    * @type {Object}
@@ -51,6 +55,7 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
    */
   this.strand_ = null;
 };
+goog.inherits(org.apache.flex.net.dataConverters.LazyCollection, org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -60,7 +65,8 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
  */
 org.apache.flex.net.dataConverters.LazyCollection.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'LazyCollection',
-                qName: 'org.apache.flex.net.dataConverters.LazyCollection'}] };
+                qName: 'org.apache.flex.net.dataConverters.LazyCollection'}],
+      interfaces: [org.apache.flex.events.IEventDispatcher]};
 
 
 /**
@@ -155,6 +161,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
   var results = this.strand_.get_data();
   this.rawData_ = this.inputParser_.parseItems(results);
   this.data_ = [];
+  this.dispatchEvent('complete');
 };
 
 

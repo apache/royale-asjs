@@ -28,6 +28,20 @@ package org.apache.flex.net.dataConverters
     import org.apache.flex.net.IInputParser;
     import org.apache.flex.net.IItemConverter;
     
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the collection has processed a complete event.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="complete", type="org.apache.flex.events.Event")]
+    
     /**
      *  The LazyCollection class implements a collection
      *  whose items require conversion from a source data format
@@ -198,6 +212,7 @@ package org.apache.flex.net.dataConverters
         {
             rawData = inputParser.parseItems(_strand["data"]);  
             data = new Array(rawData.length);
+            dispatchEvent(event);
         }
         
         /**
