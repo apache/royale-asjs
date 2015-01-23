@@ -122,7 +122,14 @@ org.apache.flex.binding.ChainBinding.prototype.evaluateSourceChain = function() 
 /**
  */
 org.apache.flex.binding.ChainBinding.prototype.applyValue = function() {
-  var destinationName;
+  var destinationName, n, obj, self;
+  function handler(event) {
+    if (event.propertyName != propName)
+      return;
+    if (event.oldValue != null)
+      event.oldValue.removeEventListener('valueChange', handler);
+    self.applyValue();
+  }
   if (typeof(this.destination) === 'string') {
     destinationName = this.destination;
     if (typeof(this.document['set_' + destinationName]) === 'function')
@@ -132,9 +139,9 @@ org.apache.flex.binding.ChainBinding.prototype.applyValue = function() {
     return;
   }
 
-  var n = this.destination.length;
-  var obj = this.document;
-  var self = this;
+  n = this.destination.length;
+  obj = this.document;
+  self = this;
   for (var i = 0; i < n - 1; i++) {
     var propName = this.destination[i];
     var propObj;
@@ -142,13 +149,6 @@ org.apache.flex.binding.ChainBinding.prototype.applyValue = function() {
       propObj = obj['get_' + propName]();
     else
       propObj = obj[propName];
-    function handler(event) {
-      if (event.propertyName != propName)
-        return;
-      if (event.oldValue != null)
-        event.oldValue.removeEventListener('valueChange', handler);
-      self.applyValue();
-    }
     if (propObj == null) {
       obj.addEventListener('valueChange', handler);
       return;
