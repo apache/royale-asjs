@@ -224,7 +224,7 @@ org.apache.flex.core.UIBase.prototype.get_numElements = function() {
  * @return {Object} The parent of this object.
  */
 org.apache.flex.core.UIBase.prototype.get_parent = function() {
-  var p = this.parent.parentNode;
+  var p = this.positioner.parentNode;
   var wrapper = p.flexjs_wrapper;
   return wrapper;
 };
