@@ -134,7 +134,7 @@ public class Fade extends Tween implements IDocument
 	override public function play():void
 	{
         if (target != null)
-            actualTarget = document[target];
+            actualTarget = getProperty(document, target);
 		
 		if (isNaN(alphaFrom))
 			start = actualTarget.alpha;
