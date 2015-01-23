@@ -103,12 +103,12 @@ function(obj, propName, value) {
  * @type {Object}
  */
 org.apache.flex.events.EventDispatcher.elementEvents = {
-  mouseover: 1,
-  mouseout: 1,
-  mouseup: 1,
-  mousedown: 1,
-  mousemove: 1,
-  rollover: 1,
-  rollout: 1
+  'mouseover': 1,
+  'mouseout': 1,
+  'mouseup': 1,
+  'mousedown': 1,
+  'mousemove': 1,
+  'rollover': 1,
+  'rollout': 1
 };
 

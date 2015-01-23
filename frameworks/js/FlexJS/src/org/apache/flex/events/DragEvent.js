@@ -133,8 +133,8 @@ org.apache.flex.events.DragEvent.DRAG_DROP = 'dragDrop';
  */
 org.apache.flex.events.DragEvent.installDragEventMixin = function() {
   var o = org.apache.flex.events.EventDispatcher.elementEvents;
-  o.dragEnd = 1;
-  o.dragMove = 1;
+  o['dragEnd'] = 1;
+  o['dragMove'] = 1;
   return true;
 };
 
