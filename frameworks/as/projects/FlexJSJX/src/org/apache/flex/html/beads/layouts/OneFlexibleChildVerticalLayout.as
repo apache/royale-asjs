@@ -218,60 +218,129 @@ package org.apache.flex.html.beads.layouts
                 horizontalMargins[i] = { marginLeft: ml, marginRight: mr, halign: halign };
             }
 
-            for (i = n - 1; i > flexChildIndex; i--)
-			{
-				child = contentView.getElementAt(i) as IUIBase;
-				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-				if (margin is Array)
-				{
-					if (margin.length == 1)
-						marginLeft = marginTop = marginRight = marginBottom = margin[0];
-					else if (margin.length <= 3)
-					{
-						marginLeft = marginRight = margin[1];
-						marginTop = marginBottom = margin[0];
-					}
-					else if (margin.length == 4)
-					{
-						marginLeft = margin[3];
-						marginBottom = margin[2];
-						marginRight = margin[1];
-						marginTop = margin[0];					
-					}
-				}
-				else if (margin == null)
-				{
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				}
-				else
-				{
-					marginLeft = marginTop = marginBottom = marginRight = margin;
-				}
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
-				if (marginLeft == "auto")
-					ml = 0;
-				else
-				{
-					ml = Number(marginLeft);
-					if (isNaN(ml))
-						ml = 0;
-				}
-				if (marginRight == "auto")
-					mr = 0;
-				else
-				{
-					mr = Number(marginRight);
-					if (isNaN(mr))
-						mr = 0;
-				}
+            if (n > 0 && n > flexChildIndex)
+            {
+                for (i = n - 1; i > flexChildIndex; i--)
+    			{
+    				child = contentView.getElementAt(i) as IUIBase;
+    				margin = ValuesManager.valuesImpl.getValue(child, "margin");
+    				if (margin is Array)
+    				{
+    					if (margin.length == 1)
+    						marginLeft = marginTop = marginRight = marginBottom = margin[0];
+    					else if (margin.length <= 3)
+    					{
+    						marginLeft = marginRight = margin[1];
+    						marginTop = marginBottom = margin[0];
+    					}
+    					else if (margin.length == 4)
+    					{
+    						marginLeft = margin[3];
+    						marginBottom = margin[2];
+    						marginRight = margin[1];
+    						marginTop = margin[0];					
+    					}
+    				}
+    				else if (margin == null)
+    				{
+    					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+    					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+    					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+    					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+    				}
+    				else
+    				{
+    					marginLeft = marginTop = marginBottom = marginRight = margin;
+    				}
+    				mt = Number(marginTop);
+    				if (isNaN(mt))
+    					mt = 0;
+    				mb = Number(marginBottom);
+    				if (isNaN(mb))
+    					mb = 0;
+    				if (marginLeft == "auto")
+    					ml = 0;
+    				else
+    				{
+    					ml = Number(marginLeft);
+    					if (isNaN(ml))
+    						ml = 0;
+    				}
+    				if (marginRight == "auto")
+    					mr = 0;
+    				else
+    				{
+    					mr = Number(marginRight);
+    					if (isNaN(mr))
+    						mr = 0;
+    				}
+                    child.x = ml;
+                    if (child is ILayoutChild)
+                    {
+                        ilc = child as ILayoutChild;
+                        if (!isNaN(ilc.percentWidth))
+                            ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
+                    }
+                    maxWidth = Math.max(maxWidth, ml + child.width + mr);
+                    child.y = hh - child.height - mb;
+    				hh -= child.height + mt + mb;
+    				lastmt = mt;
+                    halign = ValuesManager.valuesImpl.getValue(child, "horizontal-align");
+                    horizontalMargins[i] = { marginLeft: ml, marginRight: mr, halign: halign };
+    			}
+            
+                child = contentView.getElementAt(flexChildIndex) as IUIBase;
+                margin = ValuesManager.valuesImpl.getValue(child, "margin");
+                if (margin is Array)
+                {
+                    if (margin.length == 1)
+                        marginLeft = marginTop = marginRight = marginBottom = margin[0];
+                    else if (margin.length <= 3)
+                    {
+                        marginLeft = marginRight = margin[1];
+                        marginTop = marginBottom = margin[0];
+                    }
+                    else if (margin.length == 4)
+                    {
+                        marginLeft = margin[3];
+                        marginBottom = margin[2];
+                        marginRight = margin[1];
+                        marginTop = margin[0];					
+                    }
+                }
+                else if (margin == null)
+                {
+                    marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+                    marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+                    marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+                    marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+                }
+                else
+                {
+                    marginLeft = marginTop = marginBottom = marginRight = margin;
+                }
+                mt = Number(marginTop);
+                if (isNaN(mt))
+                    mt = 0;
+                mb = Number(marginBottom);
+                if (isNaN(mb))
+                    mb = 0;
+                if (marginLeft == "auto")
+                    ml = 0;
+                else
+                {
+                    ml = Number(marginLeft);
+                    if (isNaN(ml))
+                        ml = 0;
+                }
+                if (marginRight == "auto")
+                    mr = 0;
+                else
+                {
+                    mr = Number(marginRight);
+                    if (isNaN(mr))
+                        mr = 0;
+                }
                 child.x = ml;
                 if (child is ILayoutChild)
                 {
@@ -280,78 +349,12 @@ package org.apache.flex.html.beads.layouts
                         ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
                 }
                 maxWidth = Math.max(maxWidth, ml + child.width + mr);
-                child.y = hh - child.height - mb;
-				hh -= child.height + mt + mb;
-				lastmt = mt;
+                child.y = yy + mt;
+                child.height = hh - yy - mb;
                 halign = ValuesManager.valuesImpl.getValue(child, "horizontal-align");
-                horizontalMargins[i] = { marginLeft: ml, marginRight: mr, halign: halign };
-			}
+                horizontalMargins[flexChildIndex] = { marginLeft: ml, marginRight: mr, halign: halign };
+            }
             
-            child = contentView.getElementAt(flexChildIndex) as IUIBase;
-            margin = ValuesManager.valuesImpl.getValue(child, "margin");
-            if (margin is Array)
-            {
-                if (margin.length == 1)
-                    marginLeft = marginTop = marginRight = marginBottom = margin[0];
-                else if (margin.length <= 3)
-                {
-                    marginLeft = marginRight = margin[1];
-                    marginTop = marginBottom = margin[0];
-                }
-                else if (margin.length == 4)
-                {
-                    marginLeft = margin[3];
-                    marginBottom = margin[2];
-                    marginRight = margin[1];
-                    marginTop = margin[0];					
-                }
-            }
-            else if (margin == null)
-            {
-                marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-                marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-                marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-                marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-            }
-            else
-            {
-                marginLeft = marginTop = marginBottom = marginRight = margin;
-            }
-            mt = Number(marginTop);
-            if (isNaN(mt))
-                mt = 0;
-            mb = Number(marginBottom);
-            if (isNaN(mb))
-                mb = 0;
-            if (marginLeft == "auto")
-                ml = 0;
-            else
-            {
-                ml = Number(marginLeft);
-                if (isNaN(ml))
-                    ml = 0;
-            }
-            if (marginRight == "auto")
-                mr = 0;
-            else
-            {
-                mr = Number(marginRight);
-                if (isNaN(mr))
-                    mr = 0;
-            }
-            child.x = ml;
-            if (child is ILayoutChild)
-            {
-                ilc = child as ILayoutChild;
-                if (!isNaN(ilc.percentWidth))
-                    ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
-            }
-            maxWidth = Math.max(maxWidth, ml + child.width + mr);
-            child.y = yy + mt;
-            child.height = hh - yy - mb;
-            halign = ValuesManager.valuesImpl.getValue(child, "horizontal-align");
-            horizontalMargins[flexChildIndex] = { marginLeft: ml, marginRight: mr, halign: halign };
-
             for (i = 0; i < n; i++)
 			{
 				var obj:Object = horizontalMargins[0]
