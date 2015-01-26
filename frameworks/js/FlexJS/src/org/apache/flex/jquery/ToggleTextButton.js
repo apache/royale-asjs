@@ -93,6 +93,16 @@ org.apache.flex.jquery.ToggleTextButton.prototype.addedToParent =
 
 
 /**
+ * @override
+ */
+org.apache.flex.jquery.ToggleTextButton.prototype.set_id = function(value) {
+  org.apache.flex.jquery.ToggleTextButton.base(this, 'set_id', value);
+  this.labelFor.id = value;
+  this.labelFor.htmlFor = value;
+};
+
+
+/**
  * @expose
  * @return {string} The text getter.
  */
