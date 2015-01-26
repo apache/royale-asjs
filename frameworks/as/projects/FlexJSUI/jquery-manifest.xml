@@ -25,5 +25,6 @@
     <component id="TextButton" class="org.apache.flex.jquery.TextButton"/>
     <component id="CheckBox" class="org.apache.flex.jquery.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.jquery.RadioButton"/>
+    <component id="ToggleTextButton" class="org.apache.flex.jquery.ToggleTextButton"/>
 
 </componentPackage>
