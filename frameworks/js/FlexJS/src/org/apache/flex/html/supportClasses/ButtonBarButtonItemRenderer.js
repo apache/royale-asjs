@@ -12,25 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
+goog.provide('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
 
-goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
-goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
+goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
+ * @extends {org_apache_flex_html_supportClasses_DataItemRenderer}
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer =
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer =
     function() {
-  org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.base(this, 'constructor');
+  org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.html.
-        supportClasses.ButtonBarButtonItemRenderer,
-    org.apache.flex.html.supportClasses.DataItemRenderer);
+    org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer,
+    org_apache_flex_html_supportClasses_DataItemRenderer);
 
 
 /**
@@ -38,15 +37,15 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarButtonItemRenderer',
-                qName: 'org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer' }] };
+                qName: 'org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -64,8 +63,7 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org.apache.flex.html.beads.controllers.
-      ItemRendererMouseController();
+  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
   this.controller.set_strand(this);
 
   return this.element;
@@ -76,7 +74,7 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
     prototype.set_strand = function(value) {
 
   this.strand_ = value;
@@ -87,7 +85,7 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @return {Object} The strand.
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
     prototype.get_strand = function() {
   return this.strand_;
 };
@@ -97,10 +95,10 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
+org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
     prototype.set_data = function(value) {
 
-  org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.base(this, 'set_data', value);
+  org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
 
   if (value.hasOwnProperty('label')) {
     this.button.innerHTML = value.label;

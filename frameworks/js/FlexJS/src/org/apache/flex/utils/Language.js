@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.utils.Language');
+goog.provide('org_apache_flex_utils_Language');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.utils.Language = function() {
+org_apache_flex_utils_Language = function() {
 };
 
 
@@ -28,9 +28,9 @@ org.apache.flex.utils.Language = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.utils.Language.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_utils_Language.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Language',
-                qName: 'org.apache.flex.utils.Language'}] };
+                qName: 'org_apache_flex_utils_Language'}] };
 
 
 /**
@@ -46,12 +46,12 @@ org.apache.flex.utils.Language.prototype.FLEXJS_CLASS_INFO =
  * @return {?} Returns the lefthand operand if it is of the
  *             type of the righthand operand, otherwise null.
  */
-org.apache.flex.utils.Language.as = function(leftOperand, rightOperand, opt_coercion) {
+org_apache_flex_utils_Language.as = function(leftOperand, rightOperand, opt_coercion) {
   var error, itIs, message;
 
   opt_coercion = (opt_coercion !== undefined) ? opt_coercion : false;
 
-  itIs = org.apache.flex.utils.Language.is(leftOperand, rightOperand);
+  itIs = org_apache_flex_utils_Language.is(leftOperand, rightOperand);
 
   if (!itIs && opt_coercion) {
     message = 'Type Coercion failed';
@@ -74,7 +74,7 @@ org.apache.flex.utils.Language.as = function(leftOperand, rightOperand, opt_coer
  * @param {?} value The value to be cast.
  * @return {number}
  */
-org.apache.flex.utils.Language._int = function(value) {
+org_apache_flex_utils_Language._int = function(value) {
   return value >> 0;
 };
 
@@ -89,7 +89,7 @@ org.apache.flex.utils.Language._int = function(value) {
  *     binary operator in AS3.
  * @return {boolean}
  */
-org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
+org_apache_flex_utils_Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
   if (!leftOperand)
@@ -157,7 +157,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
  * @expose
  * @param {string=} opt_value The message to be written to the console.
  */
-org.apache.flex.utils.Language.trace = function(opt_value) {
+org_apache_flex_utils_Language.trace = function(opt_value) {
   var theConsole;
 
   opt_value = (opt_value !== undefined) ? opt_value : '';
@@ -184,7 +184,7 @@ org.apache.flex.utils.Language.trace = function(opt_value) {
  * @param {?} value The value to be cast.
  * @return {number}
  */
-org.apache.flex.utils.Language.uint = function(value) {
+org_apache_flex_utils_Language.uint = function(value) {
   return value >>> 0;
 };
 
@@ -197,7 +197,7 @@ org.apache.flex.utils.Language.uint = function(value) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org.apache.flex.utils.Language.preincrement = function(obj, prop) {
+org_apache_flex_utils_Language.preincrement = function(obj, prop) {
   var value = obj['get_' + prop]() + 1;
   obj['set_' + prop](value);
   return value;
@@ -212,7 +212,7 @@ org.apache.flex.utils.Language.preincrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org.apache.flex.utils.Language.predecrement = function(obj, prop) {
+org_apache_flex_utils_Language.predecrement = function(obj, prop) {
   var value = obj['get_' + prop]() - 1;
   obj['set_' + prop](value);
   return value;
@@ -227,7 +227,7 @@ org.apache.flex.utils.Language.predecrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org.apache.flex.utils.Language.postincrement = function(obj, prop) {
+org_apache_flex_utils_Language.postincrement = function(obj, prop) {
   var value = obj['get_' + prop]();
   obj['set_' + prop](value + 1);
   return value;
@@ -242,7 +242,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
+org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
   var value = obj['get_' + prop]();
   obj['set_' + prop](value + 1);
   return value;

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.maps.google.LatLng');
+goog.provide('org_apache_flex_maps_google_LatLng');
 
 
 // IMPORTANT:
@@ -24,7 +24,7 @@ goog.provide('org.apache.flex.maps.google.LatLng');
 /**
  * @constructor
  */
-org.apache.flex.maps.google.LatLng = function() {
+org_apache_flex_maps_google_LatLng = function() {
 };
 
 
@@ -33,21 +33,21 @@ org.apache.flex.maps.google.LatLng = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.maps.google.LatLng.prototype.
+org_apache_flex_maps_google_LatLng.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'LatLng',
-           qName: 'org.apache.flex.maps.google.LatLng' }],
+           qName: 'org_apache_flex_maps_google_LatLng' }],
     interfaces: [] };
 
 
 /**
  * @type {number} The latitude
  */
-org.apache.flex.maps.google.LatLng.prototype.lat = 0;
+org_apache_flex_maps_google_LatLng.prototype.lat = 0;
 
 
 /**
  * @type {number} The longitude
  */
-org.apache.flex.maps.google.LatLng.prototype.lng = 0;
+org_apache_flex_maps_google_LatLng.prototype.lng = 0;
 

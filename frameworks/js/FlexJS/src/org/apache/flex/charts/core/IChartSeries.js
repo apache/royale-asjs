@@ -11,72 +11,72 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IChartSeries
+ * org_apache_flex_charts_core_IChartSeries
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IChartSeries');
+goog.provide('org_apache_flex_charts_core_IChartSeries');
 
-goog.require('mx.core.IFactory');
+goog.require('mx_core_IFactory');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.charts.core.IChartSeries = function() {
+org_apache_flex_charts_core_IChartSeries = function() {
 };
 
 
 /**
  * @return {string}
  */
-org.apache.flex.charts.core.IChartSeries.prototype.get_xField = function() {};
+org_apache_flex_charts_core_IChartSeries.prototype.get_xField = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.charts.core.IChartSeries.prototype.set_xField = function(value) {};
+org_apache_flex_charts_core_IChartSeries.prototype.set_xField = function(value) {};
 
 
 /**
  * @return {string}
  */
-org.apache.flex.charts.core.IChartSeries.prototype.get_yField = function() {};
+org_apache_flex_charts_core_IChartSeries.prototype.get_yField = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.charts.core.IChartSeries.prototype.set_yField = function(value) {};
+org_apache_flex_charts_core_IChartSeries.prototype.set_yField = function(value) {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IChartSeries.prototype.get_fillColor = function() {};
+org_apache_flex_charts_core_IChartSeries.prototype.get_fillColor = function() {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartSeries.prototype.set_fillColor = function(value) {};
+org_apache_flex_charts_core_IChartSeries.prototype.set_fillColor = function(value) {};
 
 
 /**
- * @return {mx.core.IFactory}
+ * @return {mx_core_IFactory}
  */
-org.apache.flex.charts.core.IChartSeries.prototype.get_itemRenderer = function() {};
+org_apache_flex_charts_core_IChartSeries.prototype.get_itemRenderer = function() {};
 
 
 /**
- * @param {mx.core.IFactory} value
+ * @param {mx_core_IFactory} value
  */
-org.apache.flex.charts.core.IChartSeries.prototype.set_itemRenderer = function(value) {};
+org_apache_flex_charts_core_IChartSeries.prototype.set_itemRenderer = function(value) {};
 
 
 /**
@@ -84,6 +84,6 @@ org.apache.flex.charts.core.IChartSeries.prototype.set_itemRenderer = function(v
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IChartSeries.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChartSeries', qName: 'org.apache.flex.charts.core.IChartSeries'}]
+org_apache_flex_charts_core_IChartSeries.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChartSeries', qName: 'org_apache_flex_charts_core_IChartSeries'}]
   };

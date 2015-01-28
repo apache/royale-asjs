@@ -12,18 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.net.dataConverters.LazyCollection');
+goog.provide('org_apache_flex_net_dataConverters_LazyCollection');
 
-goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.events.IEventDispatcher');
+goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org_apache_flex_events_IEventDispatcher');
 
 
 
 /**
  * @constructor
+ * @extends {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.net.dataConverters.LazyCollection = function() {
-  org.apache.flex.net.dataConverters.LazyCollection.base(this, 'constructor');
+org_apache_flex_net_dataConverters_LazyCollection = function() {
+  org_apache_flex_net_dataConverters_LazyCollection.base(this, 'constructor');
   /**
    * @private
    * @type {Object}
@@ -55,7 +56,7 @@ org.apache.flex.net.dataConverters.LazyCollection = function() {
    */
   this.strand_ = null;
 };
-goog.inherits(org.apache.flex.net.dataConverters.LazyCollection, org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_net_dataConverters_LazyCollection, org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -63,17 +64,17 @@ goog.inherits(org.apache.flex.net.dataConverters.LazyCollection, org.apache.flex
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'LazyCollection',
-                qName: 'org.apache.flex.net.dataConverters.LazyCollection'}],
-      interfaces: [org.apache.flex.events.IEventDispatcher]};
+                qName: 'org_apache_flex_net_dataConverters_LazyCollection'}],
+      interfaces: [org_apache_flex_events_IEventDispatcher]};
 
 
 /**
  * @expose
  * @return {Object} value The input parser.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.get_inputParser =
     function() {
   return this.inputParser_;
 };
@@ -83,7 +84,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_inputParser =
  * @expose
  * @param {Object} value The input parser.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.set_inputParser =
     function(value) {
   this.inputParser_ = value;
 };
@@ -93,7 +94,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_inputParser =
  * @expose
  * @return {Object} value The input parser.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.get_itemConverter =
     function() {
   return this.itemConverter_;
 };
@@ -103,7 +104,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_itemConverter =
  * @expose
  * @param {Object} value The input parser.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.set_itemConverter =
     function(value) {
   this.itemConverter_ = value;
 };
@@ -113,14 +114,14 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_itemConverter =
  * @expose
  * @type {string}
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.id = '';
+org_apache_flex_net_dataConverters_LazyCollection.prototype.id = '';
 
 
 /**
  * @expose
  * @return {string} The id.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.get_id =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.get_id =
     function() {
   return this.id;
 };
@@ -130,7 +131,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.get_id =
  * @expose
  * @param {string} value The new id.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.set_id =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.set_id =
     function(value) {
   if (this.id !== value) {
     this.id = value;
@@ -143,7 +144,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_id =
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.set_strand =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -156,7 +157,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.set_strand =
 /**
  * @protected
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.completeHandler =
     function() {
   var results = this.strand_.get_data();
   this.rawData_ = this.inputParser_.parseItems(results);
@@ -170,7 +171,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.completeHandler =
  * @param {number} index The index in the collection.
  * @return {Object} An item in the collection.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.getItemAt =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.getItemAt =
     function(index) {
   if (this.data_[index] === undefined) {
     this.data_[index] =
@@ -185,7 +186,7 @@ org.apache.flex.net.dataConverters.LazyCollection.prototype.getItemAt =
  * @expose
  * @return {string} The number of items in the collection.
  */
-org.apache.flex.net.dataConverters.LazyCollection.prototype.get_length =
+org_apache_flex_net_dataConverters_LazyCollection.prototype.get_length =
     function() {
   return this.rawData_ ? this.rawData_.length : 0;
 };

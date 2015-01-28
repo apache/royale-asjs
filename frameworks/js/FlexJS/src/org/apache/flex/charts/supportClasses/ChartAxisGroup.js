@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.charts.supportClasses.ChartAxisGroup');
+goog.provide('org_apache_flex_charts_supportClasses_ChartAxisGroup');
 
-goog.require('org.apache.flex.charts.core.IAxisGroup');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.core.graphics.Path');
-goog.require('org.apache.flex.html.Label');
+goog.require('org_apache_flex_charts_core_IAxisGroup');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_core_graphics_Path');
+goog.require('org_apache_flex_html_Label');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
- * @implements {org.apache.flex.charts.core.IAxisGroup}
+ * @extends {org_apache_flex_core_UIBase}
+ * @implements {org_apache_flex_charts_core_IAxisGroup}
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup =
+org_apache_flex_charts_supportClasses_ChartAxisGroup =
     function() {
-  org.apache.flex.charts.supportClasses.ChartAxisGroup.base(this, 'constructor');
+  org_apache_flex_charts_supportClasses_ChartAxisGroup.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.charts.supportClasses.ChartAxisGroup,
-    org.apache.flex.core.UIBase);
+    org_apache_flex_charts_supportClasses_ChartAxisGroup,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ChartAxisGroup',
-                qName: 'org.apache.flex.charts.supportClasses.ChartAxisGroup' }],
-      interfaces: [org.apache.flex.charts.core.IAxisGroup] };
+                qName: 'org_apache_flex_charts_supportClasses_ChartAxisGroup' }],
+      interfaces: [org_apache_flex_charts_core_IAxisGroup] };
 
 
 /**
  * @override
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.
+org_apache_flex_charts_supportClasses_ChartAxisGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
@@ -68,11 +68,11 @@ org.apache.flex.charts.supportClasses.ChartAxisGroup.
  * @param {number} ypos The y position of the label.
  * @param {number} boxWidth The size of the area for the label.
  * @param {number} boxHeight The size of the area for the label.
- * @param {org.apache.flex.core.graphics.IStroke} tickFill The color of the path.
+ * @param {org_apache_flex_core_graphics_IStroke} tickFill The color of the path.
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawHorizontalTickLabel =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawHorizontalTickLabel =
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
-  var label = new org.apache.flex.html.Label();
+  var label = new org_apache_flex_html_Label();
   this.addElement(label);
   label.set_text(text);
   label.set_x(xpos - label.get_width() / 2);
@@ -87,11 +87,11 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
  * @param {number} ypos The y position of the label.
  * @param {number} boxWidth The size of the area for the label.
  * @param {number} boxHeight The size of the area for the label.
- * @param {org.apache.flex.core.graphics.IStroke} tickFill The color of the path.
+ * @param {org_apache_flex_core_graphics_IStroke} tickFill The color of the path.
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawVerticalTickLabel =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawVerticalTickLabel =
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
-  var label = new org.apache.flex.html.Label();
+  var label = new org_apache_flex_html_Label();
   this.addElement(label);
   label.set_text(text);
   label.set_x(xpos);
@@ -106,11 +106,11 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
  * @param {number} width The size of the area for the path.
  * @param {number} height The size of the area for the path.
  * @param {string} marks The path to draw.
- * @param {org.apache.flex.core.graphics.IStroke} tickStroke The color of the path.
+ * @param {org_apache_flex_core_graphics_IStroke} tickStroke The color of the path.
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawTickMarks =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawTickMarks =
 function(originX, originY, width, height, marks, tickStroke) {
-  var tickPath = new org.apache.flex.core.graphics.Path();
+  var tickPath = new org_apache_flex_core_graphics_Path();
   tickPath.set_x(0);
   tickPath.set_y(0);
   tickPath.set_width(this.get_width());
@@ -127,11 +127,11 @@ function(originX, originY, width, height, marks, tickStroke) {
  * @param {number} originY The y position of the path.
  * @param {number} width The size of the area for the path.
  * @param {number} height The size of the area for the path.
- * @param {org.apache.flex.core.graphics.IStroke} lineStroke The color of the path.
+ * @param {org_apache_flex_core_graphics_IStroke} lineStroke The color of the path.
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawAxisLine =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawAxisLine =
 function(originX, originY, width, height, lineStroke) {
-  var axisPath = new org.apache.flex.core.graphics.Path();
+  var axisPath = new org_apache_flex_core_graphics_Path();
   axisPath.set_x(0);
   axisPath.set_y(0);
   axisPath.set_width(this.get_width());
@@ -146,7 +146,7 @@ function(originX, originY, width, height, lineStroke) {
 /**
  * @return {void}
  */
-org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.removeAllElements =
+org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.removeAllElements =
 function() {
   var svg = this.element;
   while (svg.lastChild) {

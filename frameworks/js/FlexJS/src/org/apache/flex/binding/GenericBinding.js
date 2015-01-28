@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.binding.GenericBinding');
+goog.provide('org_apache_flex_binding_GenericBinding');
 
-goog.require('org.apache.flex.binding.BindingBase');
-goog.require('org.apache.flex.events.ValueChangeEvent');
+goog.require('org_apache_flex_binding_BindingBase');
+goog.require('org_apache_flex_events_ValueChangeEvent');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.binding.BindingBase}
+ * @extends {org_apache_flex_binding_BindingBase}
  */
-org.apache.flex.binding.GenericBinding = function() {
-  org.apache.flex.binding.GenericBinding.base(this, 'constructor');
+org_apache_flex_binding_GenericBinding = function() {
+  org_apache_flex_binding_GenericBinding.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.binding.GenericBinding,
-    org.apache.flex.binding.BindingBase);
+goog.inherits(org_apache_flex_binding_GenericBinding,
+    org_apache_flex_binding_BindingBase);
 
 
 /**
@@ -35,30 +35,30 @@ goog.inherits(org.apache.flex.binding.GenericBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.GenericBinding.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_GenericBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'GenericBinding',
-                qName: 'org.apache.flex.binding.GenericBinding'}] };
+                qName: 'org_apache_flex_binding_GenericBinding'}] };
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.GenericBinding.prototype.destinationData = null;
+org_apache_flex_binding_GenericBinding.prototype.destinationData = null;
 
 
 /**
  * @expose
  * @type {?function(?): ?}
  */
-org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
+org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
 
 
 /**
  * @expose
  * @param {Object} value The strand (owner) of the bead.
  */
-org.apache.flex.binding.GenericBinding.prototype.set_strand =
+org_apache_flex_binding_GenericBinding.prototype.set_strand =
     function(value) {
   this.destination = value;
 
@@ -74,7 +74,7 @@ org.apache.flex.binding.GenericBinding.prototype.set_strand =
  * @expose
  * @return {Object} The value from the source as specified.
  */
-org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
+org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
     function() {
   var obj;
   if (typeof(this.source) == 'object' &&
@@ -112,7 +112,7 @@ org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
  * @expose
  * @param {Object} value The value from the source as specified.
  */
-org.apache.flex.binding.GenericBinding.prototype.applyValue =
+org_apache_flex_binding_GenericBinding.prototype.applyValue =
     function(value) {
   if (this.destinationFunction != null)
   {
@@ -130,7 +130,7 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
       obj = this.document[arr[0]];
     if (obj == null) {
        this.document.addEventListener(
-           org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
+           org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
            goog.bind(this.destinationChangeHandler, this));
        return;
     }
@@ -157,7 +157,7 @@ org.apache.flex.binding.GenericBinding.prototype.applyValue =
  * @expose
  * @param {Object} value The value from the source as specified.
  */
-org.apache.flex.binding.GenericBinding.prototype.valueChanged =
+org_apache_flex_binding_GenericBinding.prototype.valueChanged =
     function(value) {
 
   try {
@@ -172,7 +172,7 @@ org.apache.flex.binding.GenericBinding.prototype.valueChanged =
  * @expose
  * @param {Object} event The change event.
  */
-org.apache.flex.binding.GenericBinding.prototype.destinationChangeHandler =
+org_apache_flex_binding_GenericBinding.prototype.destinationChangeHandler =
     function(event) {
   if (event.propertyName == this.destinationData[0])
     this.valueChanged(null);

@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.Spacer');
+goog.provide('org_apache_flex_html_Spacer');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.Spacer = function() {
-  org.apache.flex.html.Spacer.base(this, 'constructor');
+org_apache_flex_html_Spacer = function() {
+  org_apache_flex_html_Spacer.base(this, 'constructor');
 
   this.element = document.createElement('div');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org.apache.flex.html.Spacer,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_Spacer,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -38,7 +38,7 @@ goog.inherits(org.apache.flex.html.Spacer,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Spacer.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_Spacer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Spacer',
-                qName: 'org.apache.flex.html.Spacer' }] };
+                qName: 'org_apache_flex_html_Spacer' }] };
 

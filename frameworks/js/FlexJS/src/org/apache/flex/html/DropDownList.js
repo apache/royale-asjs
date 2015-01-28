@@ -12,23 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.DropDownList');
+goog.provide('org_apache_flex_html_DropDownList');
 
-goog.require('org.apache.flex.core.ListBase');
+goog.require('org_apache_flex_core_ListBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.ListBase}
+ * @extends {org_apache_flex_core_ListBase}
  */
-org.apache.flex.html.DropDownList = function() {
-  org.apache.flex.html.DropDownList.base(this, 'constructor');
-  this.model = new org.apache.flex.html.beads.
-      models.ArraySelectionModel();
+org_apache_flex_html_DropDownList = function() {
+  org_apache_flex_html_DropDownList.base(this, 'constructor');
+  this.model = new org_apache_flex_html_beads_models_ArraySelectionModel();
 };
-goog.inherits(org.apache.flex.html.DropDownList,
-    org.apache.flex.core.ListBase);
+goog.inherits(org_apache_flex_html_DropDownList,
+    org_apache_flex_core_ListBase);
 
 
 /**
@@ -36,15 +35,15 @@ goog.inherits(org.apache.flex.html.DropDownList,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.DropDownList.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_DropDownList.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DropDownList',
-                qName: 'org.apache.flex.html.DropDownList'}] };
+                qName: 'org_apache_flex_html_DropDownList'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.DropDownList.prototype.
+org_apache_flex_html_DropDownList.prototype.
     createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 1;
@@ -62,7 +61,7 @@ org.apache.flex.html.DropDownList.prototype.
  * @expose
  * @param {Object} value The new dataProvider.
  */
-org.apache.flex.html.DropDownList.prototype.
+org_apache_flex_html_DropDownList.prototype.
     set_dataProvider = function(value) {
   var dp, i, n, opt;
 
@@ -87,7 +86,7 @@ org.apache.flex.html.DropDownList.prototype.
 /**
  * @protected
  */
-org.apache.flex.html.DropDownList.prototype.changeHandler =
+org_apache_flex_html_DropDownList.prototype.changeHandler =
     function() {
   this.model.set_selectedIndex(this.element.selectedIndex);
   this.dispatchEvent('change');
@@ -98,7 +97,7 @@ org.apache.flex.html.DropDownList.prototype.changeHandler =
  * @expose
  * @param {number} value The new selected index.
  */
-org.apache.flex.html.DropDownList.prototype.
+org_apache_flex_html_DropDownList.prototype.
     set_selectedIndex = function(value) {
   this.model.set_selectedIndex(value);
   this.element.selectedIndex = value;
@@ -109,7 +108,7 @@ org.apache.flex.html.DropDownList.prototype.
  * @expose
  * @param {Object} value The new selected item.
  */
-org.apache.flex.html.DropDownList.prototype.
+org_apache_flex_html_DropDownList.prototype.
     set_selectedItem = function(value) {
   this.model.set_selectedItem(value);
   this.element.selectedIndex = this.get_selectedIndex();

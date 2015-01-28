@@ -17,47 +17,47 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IFormatBead');
+goog.provide('org_apache_flex_core_IFormatBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IBead}
- * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org_apache_flex_core_IBead}
+ * @extends {org_apache_flex_events_IEventDispatcher}
  */
-org.apache.flex.core.IFormatBead = function() {
+org_apache_flex_core_IFormatBead = function() {
 };
 
 
 /**
  * @return {string}
  */
-org.apache.flex.core.IFormatBead.prototype.get_propertyName = function() {};
+org_apache_flex_core_IFormatBead.prototype.get_propertyName = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.core.IFormatBead.prototype.set_propertyName = function(value) {};
+org_apache_flex_core_IFormatBead.prototype.set_propertyName = function(value) {};
 
 
 /**
  * @return {string}
  */
-org.apache.flex.core.IFormatBead.prototype.get_eventName = function() {};
+org_apache_flex_core_IFormatBead.prototype.get_eventName = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.core.IFormatBead.prototype.set_eventName = function(value) {};
+org_apache_flex_core_IFormatBead.prototype.set_eventName = function(value) {};
 
 
 /**
  * @return {string}
  */
-org.apache.flex.core.IFormatBead.prototype.get_formattedString = function() {};
+org_apache_flex_core_IFormatBead.prototype.get_formattedString = function() {};
 
 
 /**
@@ -65,7 +65,7 @@ org.apache.flex.core.IFormatBead.prototype.get_formattedString = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IFormatBead.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IFormatBead', qName: 'org.apache.flex.core.IFormatBead'}],
-  interfaces: [org.apache.flex.core.IBead, org.apache.flex.events.IEventDispatcher]
+org_apache_flex_core_IFormatBead.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IFormatBead', qName: 'org_apache_flex_core_IFormatBead'}],
+  interfaces: [org_apache_flex_core_IBead, org_apache_flex_events_IEventDispatcher]
 };

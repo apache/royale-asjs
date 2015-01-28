@@ -17,10 +17,10 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IStatesImpl');
+goog.provide('org_apache_flex_core_IStatesImpl');
 
-goog.require('org.apache.flex.core.IBead');
-goog.require('org.apache.flex.events.IEventDispatcher');
+goog.require('org_apache_flex_core_IBead');
+goog.require('org_apache_flex_events_IEventDispatcher');
 
 
 
@@ -28,10 +28,10 @@ goog.require('org.apache.flex.events.IEventDispatcher');
  * IStatesImpl
  *
  * @interface
- * @extends {org.apache.flex.core.IBead}
- * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org_apache_flex_core_IBead}
+ * @extends {org_apache_flex_events_IEventDispatcher}
  */
-org.apache.flex.core.IStatesImpl = function() {
+org_apache_flex_core_IStatesImpl = function() {
 };
 
 
@@ -40,8 +40,8 @@ org.apache.flex.core.IStatesImpl = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IStatesImpl.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IStatesImpl',
-                qName: 'org.apache.flex.core.IStatesImpl' }],
-      interfaces: [org.apache.flex.core.IBead,
-                   org.apache.flex.events.IEventDispatcher] };
+                qName: 'org_apache_flex_core_IStatesImpl' }],
+      interfaces: [org_apache_flex_core_IBead,
+                   org_apache_flex_events_IEventDispatcher] };

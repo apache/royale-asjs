@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.SolidColorStroke');
-goog.require('org.apache.flex.core.graphics.IStroke');
+goog.provide('org_apache_flex_core_graphics_SolidColorStroke');
+goog.require('org_apache_flex_core_graphics_IStroke');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.graphics.IStroke}
+ * @implements {org_apache_flex_core_graphics_IStroke}
  *
  */
-org.apache.flex.core.graphics.SolidColorStroke = function() {
+org_apache_flex_core_graphics_SolidColorStroke = function() {
 
   /**
    * @private
@@ -50,16 +50,16 @@ org.apache.flex.core.graphics.SolidColorStroke = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SolidColorStroke',
-                qName: 'org.apache.flex.core.graphics.SolidColorStroke' }] };
+                qName: 'org_apache_flex_core_graphics_SolidColorStroke' }] };
 
 
 /**
  * @expose
  * @return {number} color.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.get_color = function() {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.get_color = function() {
   return this.color_;
 };
 
@@ -67,7 +67,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_color = function() 
 /**
  * @param {number} value color.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.set_color = function(value) {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.set_color = function(value) {
   this.color_ = value;
 };
 
@@ -76,7 +76,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.set_color = function(va
  * @expose
  * @return {number} alpha.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.get_alpha = function() {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.get_alpha = function() {
   return this.alpha_;
 };
 
@@ -84,7 +84,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_alpha = function() 
 /**
  * @param {number} value alpha.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.set_alpha = function(value) {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.set_alpha = function(value) {
   this.alpha_ = value;
 };
 
@@ -93,7 +93,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.set_alpha = function(va
  * @expose
  * @return {number} weight.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.get_weight = function() {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.get_weight = function() {
   return this.weight_;
 };
 
@@ -101,7 +101,7 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.get_weight = function()
 /**
  * @param {number} value weight.
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.set_weight = function(value) {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.set_weight = function(value) {
   this.weight_ = value;
 };
 
@@ -110,10 +110,10 @@ org.apache.flex.core.graphics.SolidColorStroke.prototype.set_weight = function(v
  * addStrokeAttrib()
  *
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the stroke must be added.
+ * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the stroke must be added.
  * @return {string}
  */
-org.apache.flex.core.graphics.SolidColorStroke.prototype.addStrokeAttrib = function(value) {
+org_apache_flex_core_graphics_SolidColorStroke.prototype.addStrokeAttrib = function(value) {
     var strokeColor = Number(this.get_color()).toString(16);
     if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 2) strokeColor = '00' + strokeColor;

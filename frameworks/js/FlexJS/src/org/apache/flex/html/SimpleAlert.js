@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.SimpleAlert');
+goog.provide('org_apache_flex_html_SimpleAlert');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.SimpleAlert = function() {
-  org.apache.flex.html.SimpleAlert.base(this, 'constructor');
+org_apache_flex_html_SimpleAlert = function() {
+  org_apache_flex_html_SimpleAlert.base(this, 'constructor');
 
 };
-goog.inherits(org.apache.flex.html.SimpleAlert,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_SimpleAlert,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -35,16 +35,16 @@ goog.inherits(org.apache.flex.html.SimpleAlert,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.SimpleAlert.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_SimpleAlert.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleAlert',
-                qName: 'org.apache.flex.html.SimpleAlert'}] };
+                qName: 'org_apache_flex_html_SimpleAlert'}] };
 
 
 /**
  * @param {string} message The message to display in the alert.
  * @param {Object} host The host that should display the alert.
  */
-org.apache.flex.html.SimpleAlert.show =
+org_apache_flex_html_SimpleAlert.show =
     function(message, host) {
 
   alert(message);

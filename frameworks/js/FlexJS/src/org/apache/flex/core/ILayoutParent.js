@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.ILayoutParent');
+goog.provide('org_apache_flex_core_ILayoutParent');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.ILayoutParent = function() {
+org_apache_flex_core_ILayoutParent = function() {
 };
 
 
@@ -33,41 +33,41 @@ org.apache.flex.core.ILayoutParent = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ILayoutParent.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ILayoutParent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ILayoutParent',
-                qName: 'org.apache.flex.core.ILayoutParent' }] };
+                qName: 'org_apache_flex_core_ILayoutParent' }] };
 
 
 /**
  * @expose
  * @return {Object} The view that contains the layout objects.
  */
-org.apache.flex.core.ILayoutParent.prototype.get_contentView = function() {};
+org_apache_flex_core_ILayoutParent.prototype.get_contentView = function() {};
 
 
 /**
  * @expose
  * @return {Object} The border for the layout area.
  */
-org.apache.flex.core.ILayoutParent.prototype.get_border = function() {};
+org_apache_flex_core_ILayoutParent.prototype.get_border = function() {};
 
 
 /**
  * @expose
  * @return {Object} The vertical scrollbar.
  */
-org.apache.flex.core.ILayoutParent.prototype.get_vScrollBar = function() {};
+org_apache_flex_core_ILayoutParent.prototype.get_vScrollBar = function() {};
 
 
 /**
  * @expose
  * @param {Object} value The vertical scrollbar.
  */
-org.apache.flex.core.ILayoutParent.prototype.set_vScrollBar = function(value) {};
+org_apache_flex_core_ILayoutParent.prototype.set_vScrollBar = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} The view that can be resized.
  */
-org.apache.flex.core.ILayoutParent.prototype.get_resizeableView = function() {};
+org_apache_flex_core_ILayoutParent.prototype.get_resizeableView = function() {};

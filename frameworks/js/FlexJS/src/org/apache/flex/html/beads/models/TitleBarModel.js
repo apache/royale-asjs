@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.models.TitleBarModel');
+goog.provide('org_apache_flex_html_beads_models_TitleBarModel');
 
-goog.require('org.apache.flex.core.IBeadModel');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IBeadModel}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IBeadModel}
  */
-org.apache.flex.html.beads.models.TitleBarModel = function() {
-  org.apache.flex.html.beads.models.TitleBarModel.base(this, 'constructor');
+org_apache_flex_html_beads_models_TitleBarModel = function() {
+  org_apache_flex_html_beads_models_TitleBarModel.base(this, 'constructor');
 
   /**
    * @private
@@ -43,8 +43,8 @@ org.apache.flex.html.beads.models.TitleBarModel = function() {
    */
   this.showCloseButton_ = false;
 };
-goog.inherits(org.apache.flex.html.beads.models.TitleBarModel,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_html_beads_models_TitleBarModel,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -52,10 +52,10 @@ goog.inherits(org.apache.flex.html.beads.models.TitleBarModel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_models_TitleBarModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
-                qName: 'org.apache.flex.html.beads.models.TitleBarModel'}],
-      interfaces: [org.apache.flex.core.IBeadModel]
+                qName: 'org_apache_flex_html_beads_models_TitleBarModel'}],
+      interfaces: [org_apache_flex_core_IBeadModel]
     };
 
 
@@ -63,7 +63,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.FLEXJS_CLASS_INFO =
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -73,7 +73,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @expose
  * @return {string} The title.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     get_title = function() {
   return this.title_;
 };
@@ -83,7 +83,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @expose
  * @param {string} value The title to set.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     set_title = function(value) {
   if (this.title_ != value) {
     this.title_ = value;
@@ -96,7 +96,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @expose
  * @return {string} The HTML title.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     get_htmlTitle = function() {
   return this.htmlTitle_;
 };
@@ -106,7 +106,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @expose
  * @param {string} value The new HTML title.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     set_htmlTitle = function(value) {
   if (this.htmlTitle_ != value) {
     this.htmlTitle_ = value;
@@ -120,7 +120,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @return {boolean} Returns true if the close button should appear in
  * the TitleBar.
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     get_showCloseButton = function() {
   return this.showCloseButton_;
 };
@@ -131,7 +131,7 @@ org.apache.flex.html.beads.models.TitleBarModel.prototype.
  * @param {boolean} value Determines if the close button shows (true) or
  * not (false).
  */
-org.apache.flex.html.beads.models.TitleBarModel.prototype.
+org_apache_flex_html_beads_models_TitleBarModel.prototype.
     set_showCloseButton = function(value) {
   if (this.showCloseButton_ != value) {
     this.showCloseButton_ = value;

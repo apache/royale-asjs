@@ -14,21 +14,21 @@
 
 
 /**
- * org.apache.cordova.Application
+ * org_apache_cordova_Application
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.cordova.Weinre');
+goog.provide('org_apache_cordova_Weinre');
 
 
 
 /**
  * @constructor
  */
-org.apache.cordova.Weinre = function() {
+org_apache_cordova_Weinre = function() {
 };
 
 
@@ -36,7 +36,7 @@ org.apache.cordova.Weinre = function() {
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.cordova.Weinre.prototype.set_strand =
+org_apache_cordova_Weinre.prototype.set_strand =
 function(value) {
 
   this.strand_ = value;
@@ -47,7 +47,7 @@ function(value) {
  * @expose
  * @param {string} value The new guid.
  */
-org.apache.cordova.Weinre.prototype.set_guid =
+org_apache_cordova_Weinre.prototype.set_guid =
 function(value) {
 
   var scriptNode = document.createElement('SCRIPT');
@@ -66,6 +66,6 @@ function(value) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.cordova.Weinre.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'Weinre', qName: 'org.apache.cordova.Weinre'}]
+org_apache_cordova_Weinre.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'Weinre', qName: 'org_apache_cordova_Weinre'}]
 };

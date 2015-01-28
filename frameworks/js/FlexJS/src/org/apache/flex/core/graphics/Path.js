@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Path');
+goog.provide('org_apache_flex_core_graphics_Path');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Path = function() {
-  org.apache.flex.core.graphics.Path.base(this, 'constructor');
+org_apache_flex_core_graphics_Path = function() {
+  org_apache_flex_core_graphics_Path.base(this, 'constructor');
 
    /**
    * @private
@@ -31,8 +31,8 @@ org.apache.flex.core.graphics.Path = function() {
    */
   this.data_ = '';
 };
-goog.inherits(org.apache.flex.core.graphics.Path,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Path,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(org.apache.flex.core.graphics.Path,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Path.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Path.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Path',
-                qName: 'org.apache.flex.core.graphics.Path' }] };
+                qName: 'org_apache_flex_core_graphics_Path' }] };
 
 
 /**
  * @expose
  * @param {string} v The string representation of the path data.
  */
-org.apache.flex.core.graphics.Path.prototype.set_data = function(v) {
+org_apache_flex_core_graphics_Path.prototype.set_data = function(v) {
   this.data_ = v;
 };
 
@@ -58,7 +58,7 @@ org.apache.flex.core.graphics.Path.prototype.set_data = function(v) {
  * @expose
  * @return {string} The string representation of the path data.
  */
-org.apache.flex.core.graphics.Path.prototype.get_data = function() {
+org_apache_flex_core_graphics_Path.prototype.get_data = function() {
   return this.data_;
 };
 
@@ -75,7 +75,7 @@ org.apache.flex.core.graphics.Path.prototype.get_data = function() {
  *  If the segment command is upper-case, the parameters are absolute values.
  *  If the segment command is lower-case, the parameters are relative values.
  */
-org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
+org_apache_flex_core_graphics_Path.prototype.drawPath = function(x, y, data) {
     if (data == null || data.length === 0) return;
     var style = this.getStyleStr();
     var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -99,6 +99,6 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
  /**
   * @override
   */
-org.apache.flex.core.graphics.Path.prototype.draw = function() {
+org_apache_flex_core_graphics_Path.prototype.draw = function() {
     this.drawPath(this.get_x(), this.get_y(), this.get_data());
   };

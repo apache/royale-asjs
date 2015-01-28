@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.PanelView');
+goog.provide('org_apache_flex_html_beads_PanelView');
 
-goog.require('org.apache.flex.core.IBeadView');
+goog.require('org_apache_flex_core_IBeadView');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.beads.PanelView = function() {
+org_apache_flex_html_beads_PanelView = function() {
   /**
    * @private
    * @type {boolean}
@@ -30,9 +30,9 @@ org.apache.flex.html.beads.PanelView = function() {
 
   /**
    * @private
-   * @type {Object}
+   * @type {?Object}
   */
-  this.titleBar_ = false;
+  this.titleBar_ = null;
 };
 
 
@@ -41,31 +41,31 @@ org.apache.flex.html.beads.PanelView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.PanelView
+org_apache_flex_html_beads_PanelView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelView',
-                qName: 'org.apache.flex.html.beads.PanelView'}],
-      interfaces: [org.apache.flex.core.IBeadView] };
+                qName: 'org_apache_flex_html_beads_PanelView'}],
+      interfaces: [org_apache_flex_core_IBeadView] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.PanelView.prototype.set_strand =
+org_apache_flex_html_beads_PanelView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
 
   if (!this.titleBar_)
-    this.titleBar_ = new org.apache.flex.html.TitleBar();
+    this.titleBar_ = new org_apache_flex_html_TitleBar();
 
   this.strand_.titleBar = this.titleBar_;
   this.titleBar_.set_id('titleBar');
   this.titleBar_.set_model(this.strand_.get_model());
 
   this.strand_.controlBar =
-      new org.apache.flex.html.ControlBar();
+      new org_apache_flex_html_ControlBar();
 
   this.strand_.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
@@ -81,7 +81,7 @@ org.apache.flex.html.beads.PanelView.prototype.set_strand =
 /**
  * @param {Object} event The event that triggered this handler.
  */
-org.apache.flex.html.beads.PanelView.prototype.changeHandler =
+org_apache_flex_html_beads_PanelView.prototype.changeHandler =
     function(event) {
   var strand = this.strand_;
   if (!this.titleBarAdded_)
@@ -123,7 +123,7 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
  * @expose
  * @return {Object} The titleBar getter.
  */
-org.apache.flex.html.beads.PanelView.prototype.get_titleBar =
+org_apache_flex_html_beads_PanelView.prototype.get_titleBar =
     function() {
   return this.titleBar_;
 };
@@ -133,7 +133,7 @@ org.apache.flex.html.beads.PanelView.prototype.get_titleBar =
  * @expose
  * @param {Object} value The titleBar setter.
  */
-org.apache.flex.html.beads.PanelView.prototype.set_titleBar =
+org_apache_flex_html_beads_PanelView.prototype.set_titleBar =
     function(value) {
   this.titleBar_ = value;
 };

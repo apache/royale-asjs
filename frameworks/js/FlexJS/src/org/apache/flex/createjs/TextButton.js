@@ -12,42 +12,42 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.TextButton');
+goog.provide('org_apache_flex_createjs_TextButton');
 
-goog.require('org.apache.flex.createjs.core.UIBase');
+goog.require('org_apache_flex_createjs_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.createjs.core.UIBase}
+ * @extends {org_apache_flex_createjs_core_UIBase}
  */
-org.apache.flex.createjs.TextButton = function() {
-  org.apache.flex.createjs.core.UIBase.call(this);
+org_apache_flex_createjs_TextButton = function() {
+  org_apache_flex_createjs_core_UIBase.call(this);
 };
-goog.inherits(org.apache.flex.createjs.TextButton,
-    org.apache.flex.createjs.core.UIBase);
+goog.inherits(org_apache_flex_createjs_TextButton,
+    org_apache_flex_createjs_core_UIBase);
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.TextButton.prototype.buttonLabel = null;
+org_apache_flex_createjs_TextButton.prototype.buttonLabel = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.TextButton.prototype.buttonBackground =
+org_apache_flex_createjs_TextButton.prototype.buttonBackground =
     null;
 
 
 /**
  * @override
  */
-org.apache.flex.createjs.TextButton.prototype.createElement =
+org_apache_flex_createjs_TextButton.prototype.createElement =
     function(p) {
 
   this.buttonBackground = new createjs.Shape();
@@ -79,7 +79,7 @@ org.apache.flex.createjs.TextButton.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.TextButton.prototype.get_text =
+org_apache_flex_createjs_TextButton.prototype.get_text =
     function() {
   return this.buttonLabel.text;
 };
@@ -89,7 +89,7 @@ org.apache.flex.createjs.TextButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.createjs.TextButton.prototype.set_text =
+org_apache_flex_createjs_TextButton.prototype.set_text =
     function(value) {
   this.buttonLabel.text = value;
 };

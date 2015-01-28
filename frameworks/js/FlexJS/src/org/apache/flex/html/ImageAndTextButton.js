@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.ImageAndTextButton');
+goog.provide('org_apache_flex_html_ImageAndTextButton');
 
-goog.require('org.apache.flex.html.Button');
+goog.require('org_apache_flex_html_Button');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.Button}
+ * @extends {org_apache_flex_html_Button}
  */
-org.apache.flex.html.ImageAndTextButton = function() {
-  org.apache.flex.html.ImageAndTextButton.base(this, 'constructor');
+org_apache_flex_html_ImageAndTextButton = function() {
+  org_apache_flex_html_ImageAndTextButton.base(this, 'constructor');
 
   this._text = '';
   this._src = '';
 };
-goog.inherits(org.apache.flex.html.ImageAndTextButton,
-    org.apache.flex.html.Button);
+goog.inherits(org_apache_flex_html_ImageAndTextButton,
+    org_apache_flex_html_Button);
 
 
 /**
@@ -37,15 +37,15 @@ goog.inherits(org.apache.flex.html.ImageAndTextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.ImageAndTextButton.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_ImageAndTextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageAndTextButton',
-                qName: 'org.apache.flex.html.ImageAndTextButton'}] };
+                qName: 'org_apache_flex_html_ImageAndTextButton'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.ImageAndTextButton.prototype.createElement =
+org_apache_flex_html_ImageAndTextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -53,8 +53,8 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
+  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+    var impl = org_apache_flex_core_ValuesManager.valuesImpl.
         getValue(this, 'iStatesImpl');
   }
 
@@ -66,7 +66,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html.ImageAndTextButton.prototype.get_text = function() {
+org_apache_flex_html_ImageAndTextButton.prototype.get_text = function() {
   return this._text;
 };
 
@@ -75,7 +75,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.ImageAndTextButton.prototype.set_text =
+org_apache_flex_html_ImageAndTextButton.prototype.set_text =
     function(value) {
   this._text = value;
   this.setInnerHTML();
@@ -86,7 +86,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.set_text =
  * @expose
  * @return {string} The image url.
  */
-org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
+org_apache_flex_html_ImageAndTextButton.prototype.get_image = function() {
   return this._src;
 };
 
@@ -95,7 +95,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.get_image = function() {
  * @expose
  * @param {string} value The image url.
  */
-org.apache.flex.html.ImageAndTextButton.prototype.set_image =
+org_apache_flex_html_ImageAndTextButton.prototype.set_image =
     function(value) {
   this._src = value;
   this.setInnerHTML();
@@ -104,7 +104,7 @@ org.apache.flex.html.ImageAndTextButton.prototype.set_image =
 
 /**
  */
-org.apache.flex.html.ImageAndTextButton.prototype.setInnerHTML = function() {
+org_apache_flex_html_ImageAndTextButton.prototype.setInnerHTML = function() {
   var inner = '';
   if (this._src != null)
     inner += '<img src=\'' + this._src + '\'/>';

@@ -17,19 +17,19 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IBeadModel');
+goog.provide('org_apache_flex_core_IBeadModel');
 
-goog.require('org.apache.flex.core.IBead');
-goog.require('org.apache.flex.events.IEventDispatcher');
+goog.require('org_apache_flex_core_IBead');
+goog.require('org_apache_flex_events_IEventDispatcher');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IBead}
- * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org_apache_flex_core_IBead}
+ * @extends {org_apache_flex_events_IEventDispatcher}
  */
-org.apache.flex.core.IBeadModel = function() {
+org_apache_flex_core_IBeadModel = function() {
 };
 
 
@@ -38,8 +38,8 @@ org.apache.flex.core.IBeadModel = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IBeadModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IBeadModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IBeadModel',
-                qName: 'org.apache.flex.core.IBeadModel' }],
-      interfaces: [org.apache.flex.core.IBead,
-                   org.apache.flex.events.IEventDispatcher] };
+                qName: 'org_apache_flex_core_IBeadModel' }],
+      interfaces: [org_apache_flex_core_IBead,
+                   org_apache_flex_events_IEventDispatcher] };

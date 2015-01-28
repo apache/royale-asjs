@@ -11,21 +11,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IChart
+ * org_apache_flex_charts_core_IChart
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.ICartesianChartLayout');
+goog.provide('org_apache_flex_charts_core_ICartesianChartLayout');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.charts.core.ICartesianChartLayout = function() {
+org_apache_flex_charts_core_ICartesianChartLayout = function() {
 };
 
 
@@ -34,6 +34,6 @@ org.apache.flex.charts.core.ICartesianChartLayout = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.ICartesianChartLayout.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'ICartesianChartLayout', qName: 'org.apache.flex.charts.core.ICartesianChartLayout'}]
+org_apache_flex_charts_core_ICartesianChartLayout.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'ICartesianChartLayout', qName: 'org_apache_flex_charts_core_ICartesianChartLayout'}]
   };

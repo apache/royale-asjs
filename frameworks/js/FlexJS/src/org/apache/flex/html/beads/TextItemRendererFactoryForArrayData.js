@@ -12,28 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
+goog.provide('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
 
-goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
-goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
+goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IItemRenderer}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IItemRenderer}
  */
-org.apache.flex.html.beads.TextItemRendererFactoryForArrayData =
+org_apache_flex_html_beads_TextItemRendererFactoryForArrayData =
     function() {
-  org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.base(this, 'constructor');
+  org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.html.
-        beads.TextItemRendererFactoryForArrayData,
-    org.apache.flex.events.EventDispatcher);
+    org_apache_flex_html_beads_TextItemRendererFactoryForArrayData,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -41,26 +40,26 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
+org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextItemRendererFactoryForArrayData',
-                qName: 'org.apache.flex.html.beads.TextItemRendererFactoryForArrayData' }],
-      interfaces: [org.apache.flex.core.IItemRenderer] };
+                qName: 'org_apache_flex_html_beads_TextItemRendererFactoryForArrayData' }],
+      interfaces: [org_apache_flex_core_IItemRenderer] };
 
 
 /**
  * @expose
  * @param {Object} value The component strand.
  */
-org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
+org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     prototype.set_strand = function(value) {
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.beads.models.ArraySelectionModel);
+      org_apache_flex_html_beads_models_ArraySelectionModel);
 
   this.listView = value.getBeadByType(
-      org.apache.flex.html.beads.ListView);
+      org_apache_flex_html_beads_ListView);
   this.dataGroup = this.listView.get_dataGroup();
 
   this.model.addEventListener('dataProviderChanged',
@@ -74,7 +73,7 @@ org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
  * @expose
  * @param {Object} event The event that triggered the dataProvider change.
  */
-org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
+org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
@@ -82,11 +81,11 @@ org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = new
-        org.apache.flex.html.supportClasses.StringItemRenderer();
+        org_apache_flex_html_supportClasses_StringItemRenderer();
     this.dataGroup.addElement(opt);
     opt.set_text(dp[i]);
   }
 
-  var newEvent = new org.apache.flex.events.Event('itemsCreated');
+  var newEvent = new org_apache_flex_events_Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };

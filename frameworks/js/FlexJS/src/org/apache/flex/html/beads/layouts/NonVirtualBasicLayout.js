@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.layouts.NonVirtualBasicLayout');
+goog.provide('org_apache_flex_html_beads_layouts_NonVirtualBasicLayout');
 
-goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.core.ILayoutChild');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.utils.Language');
+goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org_apache_flex_core_ILayoutChild');
+goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org_apache_flex_utils_Language');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IBeadLayout}
+ * @implements {org_apache_flex_core_IBeadLayout}
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout =
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout =
     function() {
   this.strand_ = null;
   this.className = 'NonVirtualBasicLayout';
@@ -37,17 +37,17 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NonVirtualBasicLayout',
-                qName: 'org.apache.flex.html.beads.layouts.NonVirtualBasicLayout'}],
-      interfaces: [org.apache.flex.core.IBeadLayout] };
+                qName: 'org_apache_flex_html_beads_layouts_NonVirtualBasicLayout'}],
+      interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
     prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -77,7 +77,7 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
 /**
  *
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
     prototype.addOtherListeners = function() {
   this.strand_.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
@@ -89,9 +89,9 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
 
 
 /**
- * @param {org.apache.flex.events.Event} event The event.
+ * @param {org_apache_flex_events_Event} event The event.
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
     prototype.sizeChangeHandler = function(event) {
   this.addOtherListeners();
   this.changeHandler(event);
@@ -99,23 +99,23 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
 
 
 /**
- * @param {org.apache.flex.events.Event} event The text getter.
+ * @param {org_apache_flex_events_Event} event The text getter.
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
     prototype.changeHandler = function(event) {
   var i, n, h, w;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
   var contentView = viewBead.get_contentView();
   w = contentView.get_width();
   h = contentView.get_height();
   n = contentView.get_numElements();
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
-    var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
-    var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
-    var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
-    var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
+    var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');
+    var right = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'right');
+    var top = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'top');
+    var bottom = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'bottom');
 
     if (!isNaN(left)) {
       child.positioner.style.position = 'absolute';

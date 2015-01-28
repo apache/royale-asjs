@@ -13,25 +13,25 @@
  */
 
 /**
- * org.apache.flex.core.ISelectableItemRenderer
+ * org_apache_flex_core_ISelectableItemRenderer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.ISelectableItemRenderer');
+goog.provide('org_apache_flex_core_ISelectableItemRenderer');
 
-goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org_apache_flex_core_IItemRenderer');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.events.IEventDispatcher}
- * @extends {org.apache.flex.core.IItemRenderer}
+ * @extends {org_apache_flex_events_IEventDispatcher}
+ * @extends {org_apache_flex_core_IItemRenderer}
  */
-org.apache.flex.core.ISelectableItemRenderer = function() {
+org_apache_flex_core_ISelectableItemRenderer = function() {
 };
 
 
@@ -39,70 +39,70 @@ org.apache.flex.core.ISelectableItemRenderer = function() {
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.set_labelField = function(value) {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.set_labelField = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} The labelField.
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.get_labelField = function() {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.get_labelField = function() {};
 
 
 /**
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.set_index = function(value) {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.set_index = function(value) {};
 
 
 /**
  * @expose
  * @return {number} The selected index.
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.get_index = function() {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.get_index = function() {};
 
 
 /**
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.set_selected = function(value) {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.set_selected = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} Whether or not the item in the selected state.
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.get_selected = function() {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.get_selected = function() {};
 
 
 /**
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.set_hovered = function(value) {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.set_hovered = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} Whether or not the item is in the hovered state.
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.get_hovered = function() {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.get_hovered = function() {};
 
 
 /**
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.set_down = function(value) {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.set_down = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} Whether or not the item is in the down state.
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.get_down = function() {};
+org_apache_flex_core_ISelectableItemRenderer.prototype.get_down = function() {};
 
 
 /**
@@ -110,6 +110,6 @@ org.apache.flex.core.ISelectableItemRenderer.prototype.get_down = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ISelectableItemRenderer.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'ISelectableItemRenderer', qName: 'org.apache.flex.core.ISelectableItemRenderer'}],
-  interfaces: [org.apache.flex.core.IItemRenderer] };
+org_apache_flex_core_ISelectableItemRenderer.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'ISelectableItemRenderer', qName: 'org_apache_flex_core_ISelectableItemRenderer'}],
+  interfaces: [org_apache_flex_core_IItemRenderer] };

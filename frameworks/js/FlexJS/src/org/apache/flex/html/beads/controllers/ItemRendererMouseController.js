@@ -12,18 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.provide('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
 
-goog.require('org.apache.flex.core.IBeadController');
+goog.require('org_apache_flex_core_IBeadController');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IBeadController}
+ * @implements {org_apache_flex_core_IBeadController}
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController = function() {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController = function() {
 };
 
 
@@ -32,19 +31,17 @@ org.apache.flex.html.beads.controllers.
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ItemRendererMouseController',
-                qName: 'org.apache.flex.html.beads.controllers.ItemRendererMouseController' }],
-      interfaces: [org.apache.flex.core.IBeadController] };
+                qName: 'org_apache_flex_html_beads_controllers_ItemRendererMouseController' }],
+      interfaces: [org_apache_flex_core_IBeadController] };
 
 
 /**
  * @expose
  * @param {Object} value The strand for this component.
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.set_strand = function(value) {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.set_strand = function(value) {
   this.strand_ = value;
 
   goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
@@ -65,8 +62,7 @@ org.apache.flex.html.beads.controllers.
  * @expose
  * @param {Object} event The mouse event that triggered the hover.
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.handleMouseOver = function(event) {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
   this.strand_.set_hovered(true);
 
@@ -80,8 +76,7 @@ org.apache.flex.html.beads.controllers.
  * @expose
  * @param {Object} event The mouse-out event.
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.handleMouseOut = function(event) {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
   this.strand_.set_hovered(false);
 
@@ -95,8 +90,7 @@ org.apache.flex.html.beads.controllers.
  * @expose
  * @param {Object} event The mouse-down event.
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.handleMouseDown = function(event) {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseDown = function(event) {
 
   // ??
 };
@@ -106,8 +100,7 @@ org.apache.flex.html.beads.controllers.
  * @expose
  * @param {Object} event The mouse-up event that triggers the selection.
  */
-org.apache.flex.html.beads.controllers.
-    ItemRendererMouseController.prototype.handleMouseUp = function(event) {
+org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseUp = function(event) {
 
   var newEvent = new goog.events.Event('selected');
 

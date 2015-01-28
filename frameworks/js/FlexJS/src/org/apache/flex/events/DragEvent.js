@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.events.DragEvent');
+goog.provide('org_apache_flex_events_DragEvent');
 
 goog.require('goog.events.BrowserEvent');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
@@ -28,12 +28,12 @@ goog.require('org.apache.flex.events.EventDispatcher');
  * @extends {goog.events.BrowserEvent}
  * @param {string} type The event type.
  */
-org.apache.flex.events.DragEvent = function(type) {
-  org.apache.flex.events.DragEvent.base(this, 'constructor');
+org_apache_flex_events_DragEvent = function(type) {
+  org_apache_flex_events_DragEvent.base(this, 'constructor');
 
   this.type = type;
 };
-goog.inherits(org.apache.flex.events.DragEvent,
+goog.inherits(org_apache_flex_events_DragEvent,
     goog.events.BrowserEvent);
 
 
@@ -42,9 +42,9 @@ goog.inherits(org.apache.flex.events.DragEvent,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.events.DragEvent.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_events_DragEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DragEvent',
-                qName: 'org.apache.flex.events.DragEvent'}] };
+                qName: 'org_apache_flex_events_DragEvent'}] };
 
 
 /**
@@ -53,7 +53,7 @@ org.apache.flex.events.DragEvent.prototype.FLEXJS_CLASS_INFO =
  * @param {Event} event The mouse event to base the DragEvent on.
  * @return {MouseEvent} The new event.
  */
-org.apache.flex.events.DragEvent.createDragEvent =
+org_apache_flex_events_DragEvent.createDragEvent =
     function(type, event) {
   var out = new MouseEvent(type);
   out.initMouseEvent(type, true, true);
@@ -73,7 +73,7 @@ org.apache.flex.events.DragEvent.createDragEvent =
  * @param {Event} event The drag event.
  * @param {Object} target The target for the event.
  */
-org.apache.flex.events.DragEvent.dispatchDragEvent =
+org_apache_flex_events_DragEvent.dispatchDragEvent =
     function(event, target) {
   target.element.dispatchEvent(event);
 };
@@ -83,56 +83,56 @@ org.apache.flex.events.DragEvent.dispatchDragEvent =
  * @expose
  * @type {string} DRAG_START The event type for starting drag-drop.
  */
-org.apache.flex.events.DragEvent.DRAG_START = 'dragStart';
+org_apache_flex_events_DragEvent.DRAG_START = 'dragStart';
 
 
 /**
  * @expose
  * @type {string} DRAG_MOVE The event type when moving mouse during drag-drop.
  */
-org.apache.flex.events.DragEvent.DRAG_MOVE = 'dragMove';
+org_apache_flex_events_DragEvent.DRAG_MOVE = 'dragMove';
 
 
 /**
  * @expose
  * @type {string} DRAG_END The event type for ending drag-drop.
  */
-org.apache.flex.events.DragEvent.DRAG_END = 'dragEnd';
+org_apache_flex_events_DragEvent.DRAG_END = 'dragEnd';
 
 
 /**
  * @expose
  * @type {string} DRAG_ENTER The event type for entering a potential drop target.
  */
-org.apache.flex.events.DragEvent.DRAG_ENTER = 'dragEnter';
+org_apache_flex_events_DragEvent.DRAG_ENTER = 'dragEnter';
 
 
 /**
  * @expose
  * @type {string} DRAG_OVER The event type for moving over a potential drop target.
  */
-org.apache.flex.events.DragEvent.DRAG_OVER = 'dragOver';
+org_apache_flex_events_DragEvent.DRAG_OVER = 'dragOver';
 
 
 /**
  * @expose
  * @type {string} DRAG_EXIT The event type for leaving a potential drop target.
  */
-org.apache.flex.events.DragEvent.DRAG_EXIT = 'dragExit';
+org_apache_flex_events_DragEvent.DRAG_EXIT = 'dragExit';
 
 
 /**
  * @expose
  * @type {string} DRAG_DROP The event type for dropping on a target.
  */
-org.apache.flex.events.DragEvent.DRAG_DROP = 'dragDrop';
+org_apache_flex_events_DragEvent.DRAG_DROP = 'dragDrop';
 
 
 /**
  * @return {boolean}
  */
-org.apache.flex.events.DragEvent.installDragEventMixin = function() {
-  var o = org.apache.flex.events.EventDispatcher.elementEvents;
+org_apache_flex_events_DragEvent.installDragEventMixin = function() {
+  var o = org_apache_flex_events_EventDispatcher.elementEvents;
   o['dragEnd'] = 1;
   o['dragMove'] = 1;
   return true;
@@ -145,5 +145,5 @@ org.apache.flex.events.DragEvent.installDragEventMixin = function() {
 /**
  * @type {boolean}
  */
-org.apache.flex.events.DragEvent.dragEventMixin =
-    org.apache.flex.events.DragEvent.installDragEventMixin();
+org_apache_flex_events_DragEvent.dragEventMixin =
+    org_apache_flex_events_DragEvent.installDragEventMixin();

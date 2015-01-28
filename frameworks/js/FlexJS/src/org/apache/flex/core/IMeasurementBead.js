@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IMeasurementBead');
+goog.provide('org_apache_flex_core_IMeasurementBead');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.IMeasurementBead = function() {
+org_apache_flex_core_IMeasurementBead = function() {
 };
 
 
@@ -33,6 +33,6 @@ org.apache.flex.core.IMeasurementBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IMeasurementBead.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IMeasurementBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IMeasurementBead',
-                qName: 'org.apache.flex.core.IMeasurementBead' }] };
+                qName: 'org_apache_flex_core_IMeasurementBead' }] };

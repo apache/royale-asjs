@@ -11,34 +11,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IChart
+ * org_apache_flex_charts_core_IChart
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IChart');
+goog.provide('org_apache_flex_charts_core_IChart');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.charts.core.IChart = function() {
+org_apache_flex_charts_core_IChart = function() {
 };
 
 
 /**
  * @return {Array}
  */
-org.apache.flex.charts.core.IChart.prototype.get_series = function() {};
+org_apache_flex_charts_core_IChart.prototype.get_series = function() {};
 
 
 /**
  * @param {Array} value
  */
-org.apache.flex.charts.core.IChart.prototype.set_series = function(value) {};
+org_apache_flex_charts_core_IChart.prototype.set_series = function(value) {};
 
 
 /**
@@ -46,6 +46,6 @@ org.apache.flex.charts.core.IChart.prototype.set_series = function(value) {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IChart.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChart', qName: 'org.apache.flex.charts.core.IChart'}]
+org_apache_flex_charts_core_IChart.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChart', qName: 'org_apache_flex_charts_core_IChart'}]
   };

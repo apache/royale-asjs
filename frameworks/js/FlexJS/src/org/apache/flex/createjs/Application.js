@@ -26,63 +26,63 @@
 // end createjs
 // ------------------------------------------------------------------
 
-goog.provide('org.apache.flex.createjs.Application');
+goog.provide('org_apache_flex_createjs_Application');
 
-goog.require('org.apache.flex.core.HTMLElementWrapper');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+goog.require('org_apache_flex_core_HTMLElementWrapper');
+goog.require('org_apache_flex_utils_MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.HTMLElementWrapper}
+ * @extends {org_apache_flex_core_HTMLElementWrapper}
  */
-org.apache.flex.createjs.Application = function() {
-  org.apache.flex.createjs.Application.base(this, 'constructor');
+org_apache_flex_createjs_Application = function() {
+  org_apache_flex_createjs_Application.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.createjs.Application,
-    org.apache.flex.core.HTMLElementWrapper);
+goog.inherits(org_apache_flex_createjs_Application,
+    org_apache_flex_core_HTMLElementWrapper);
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.createjs.Application.prototype.controller = null;
+org_apache_flex_createjs_Application.prototype.controller = null;
 
 
 /**
  * @expose
- * @type {org.apache.flex.createjs.core.ViewBase}
+ * @type {org_apache_flex_createjs_core_ViewBase}
  */
-org.apache.flex.createjs.Application.prototype.initialView = null;
+org_apache_flex_createjs_Application.prototype.initialView = null;
 
 
 /**
  * @expose
  * @type {createjs.Stage}
  */
-org.apache.flex.createjs.Application.prototype.stage = null;
+org_apache_flex_createjs_Application.prototype.stage = null;
 
 
 /**
  * @expose
- * @type {org.apache.flex.events.EventDispatcher}
+ * @type {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.createjs.Application.prototype.model = null;
+org_apache_flex_createjs_Application.prototype.model = null;
 
 
 /**
  * @expose
- * @type {org.apache.flex.core.SimpleValuesImpl}
+ * @type {org_apache_flex_core_SimpleValuesImpl}
  */
-org.apache.flex.createjs.Application.prototype.valuesImpl = null;
+org_apache_flex_createjs_Application.prototype.valuesImpl = null;
 
 
 /**
  * @expose
  */
-org.apache.flex.createjs.Application.prototype.start = function() {
+org_apache_flex_createjs_Application.prototype.start = function() {
   var body;
 
   // For createjs, the application is the same as the canvas
@@ -98,7 +98,7 @@ org.apache.flex.createjs.Application.prototype.start = function() {
 
   this.stage = new createjs.Stage('flexjsCanvas');
 
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this,
       this.get_MXMLProperties());
 
   this.dispatchEvent('initialize');
@@ -113,7 +113,7 @@ org.apache.flex.createjs.Application.prototype.start = function() {
 /**
  * @param {Object} c The child element.
  */
-org.apache.flex.createjs.core.Application.prototype.addElement =
+org_apache_flex_createjs_core_Application.prototype.addElement =
     function(c) {
   this.stage.addChild(c.element);
   c.addedToParent();

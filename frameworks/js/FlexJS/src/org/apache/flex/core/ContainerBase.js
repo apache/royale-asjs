@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.ContainerBase');
+goog.provide('org_apache_flex_core_ContainerBase');
 
-goog.require('org.apache.flex.core.IMXMLDocument');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org_apache_flex_core_IMXMLDocument');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_core_ValuesManager');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.core.ContainerBase = function() {
+org_apache_flex_core_ContainerBase = function() {
   this.mxmlProperties = null;
-  org.apache.flex.core.ContainerBase.base(this, 'constructor');
+  org_apache_flex_core_ContainerBase.base(this, 'constructor');
 
   /**
    * @private
@@ -56,28 +56,28 @@ org.apache.flex.core.ContainerBase = function() {
   this.document = this;
 
 };
-goog.inherits(org.apache.flex.core.ContainerBase,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_core_ContainerBase,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @expose
  */
-org.apache.flex.core.ContainerBase.prototype.mxmlContent = null;
-
-
-/**
- * @expose
- * @type {Array}
- */
-org.apache.flex.core.ContainerBase.prototype.mxmlDescriptor = null;
+org_apache_flex_core_ContainerBase.prototype.mxmlContent = null;
 
 
 /**
  * @expose
  * @type {Array}
  */
-org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
+org_apache_flex_core_ContainerBase.prototype.mxmlDescriptor = null;
+
+
+/**
+ * @expose
+ * @type {Array}
+ */
+org_apache_flex_core_ContainerBase.prototype.mxmlsd = null;
 
 
 /**
@@ -85,20 +85,20 @@ org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ContainerBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerBase',
-                qName: 'org.apache.flex.core.ContainerBase'}] ,
-      interfaces: [org.apache.flex.core.IMXMLDocument]};
+                qName: 'org_apache_flex_core_ContainerBase'}] ,
+      interfaces: [org_apache_flex_core_IMXMLDocument]};
 
 
 /**
  * @override
  */
-org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
-  org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
+org_apache_flex_core_ContainerBase.prototype.addedToParent = function() {
+  org_apache_flex_core_ContainerBase.base(this, 'addedToParent');
 
   if (!this.initialized_) {
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
+    org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
         this, this.get_MXMLDescriptor());
 
     this.dispatchEvent('initBindings');
@@ -113,8 +113,8 @@ org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
  * @expose
  * @param {Array} data The data for the attributes.
  */
-org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(data) {
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
+org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(data) {
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
@@ -122,7 +122,7 @@ org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(d
  * @expose
  * @return {Array} An array of descriptors.
  */
-org.apache.flex.core.ContainerBase.prototype.get_MXMLDescriptor = function() {
+org_apache_flex_core_ContainerBase.prototype.get_MXMLDescriptor = function() {
   return this.mxmlDescriptor;
 };
 
@@ -132,7 +132,7 @@ org.apache.flex.core.ContainerBase.prototype.get_MXMLDescriptor = function() {
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
-org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
+org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
@@ -143,7 +143,7 @@ org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
  * @expose
  * @return {Array} An array of states.
  */
-org.apache.flex.core.ContainerBase.prototype.get_states = function() {
+org_apache_flex_core_ContainerBase.prototype.get_states = function() {
   return this.states_;
 };
 
@@ -152,15 +152,15 @@ org.apache.flex.core.ContainerBase.prototype.get_states = function() {
  * @expose
  * @param {Array} s An array of states.
  */
-org.apache.flex.core.ContainerBase.prototype.set_states = function(s) {
+org_apache_flex_core_ContainerBase.prototype.set_states = function(s) {
   this.states_ = s;
   this.currentState_ = s[0].name;
 
-  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
     /**
      * @type {Function}
      */
-    var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
         getValue(this, 'iStatesImpl'));
     // TODO: (aharui) check if bead already exists
     this.addBead(new impl());
@@ -172,7 +172,7 @@ org.apache.flex.core.ContainerBase.prototype.set_states = function(s) {
  * @expose
  * @return {String} The current state.
  */
-org.apache.flex.core.ContainerBase.prototype.get_currentState = function() {
+org_apache_flex_core_ContainerBase.prototype.get_currentState = function() {
   return this.currentState_;
 };
 
@@ -181,8 +181,8 @@ org.apache.flex.core.ContainerBase.prototype.get_currentState = function() {
  * @expose
  * @param {String} s The current state.
  */
-org.apache.flex.core.ContainerBase.prototype.set_currentState = function(s) {
-  var event = new org.apache.flex.events.ValueChangeEvent(
+org_apache_flex_core_ContainerBase.prototype.set_currentState = function(s) {
+  var event = new org_apache_flex_events_ValueChangeEvent(
       'currentStateChange', false, false, this.currentState_, s);
   this.currentState_ = s;
   this.dispatchEvent(event);
@@ -193,7 +193,7 @@ org.apache.flex.core.ContainerBase.prototype.set_currentState = function(s) {
  * @expose
  * @return {Array} An array of states.
  */
-org.apache.flex.core.ContainerBase.prototype.get_transitions = function() {
+org_apache_flex_core_ContainerBase.prototype.get_transitions = function() {
   return this.transitions_;
 };
 
@@ -202,7 +202,7 @@ org.apache.flex.core.ContainerBase.prototype.get_transitions = function() {
  * @expose
  * @param {Array} s An array of states.
  */
-org.apache.flex.core.ContainerBase.prototype.set_transitions = function(s) {
+org_apache_flex_core_ContainerBase.prototype.set_transitions = function(s) {
   this.transitions_ = s;
 };
 

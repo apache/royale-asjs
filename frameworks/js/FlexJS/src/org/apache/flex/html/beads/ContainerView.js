@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.ContainerView');
+goog.provide('org_apache_flex_html_beads_ContainerView');
 
-goog.require('org.apache.flex.core.BeadViewBase');
-goog.require('org.apache.flex.core.ILayoutParent');
+goog.require('org_apache_flex_core_BeadViewBase');
+goog.require('org_apache_flex_core_ILayoutParent');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.BeadViewBase}
+ * @extends {org_apache_flex_core_BeadViewBase}
  */
-org.apache.flex.html.beads.ContainerView = function() {
+org_apache_flex_html_beads_ContainerView = function() {
   this.lastSelectedIndex = -1;
-  org.apache.flex.html.beads.ContainerView.base(this, 'constructor');
+  org_apache_flex_html_beads_ContainerView.base(this, 'constructor');
 
   this.className = 'ContainerView';
 };
 goog.inherits(
-    org.apache.flex.html.beads.ContainerView,
-    org.apache.flex.core.BeadViewBase);
+    org_apache_flex_html_beads_ContainerView,
+    org_apache_flex_core_BeadViewBase);
 
 
 /**
@@ -39,10 +39,10 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_ContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerView',
-                qName: 'org.apache.flex.html.beads.ContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutParent]
+                qName: 'org_apache_flex_html_beads_ContainerView' }],
+    interfaces: [org_apache_flex_core_ILayoutParent]
     };
 
 
@@ -50,7 +50,7 @@ org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
  * @expose
  * @return {Object} value The content view.
  */
-org.apache.flex.html.beads.ContainerView.prototype.get_contentView =
+org_apache_flex_html_beads_ContainerView.prototype.get_contentView =
     function() {
 
   return this._strand;
@@ -61,7 +61,7 @@ org.apache.flex.html.beads.ContainerView.prototype.get_contentView =
  * @expose
  * @return {Object} value The resizeable view.
  */
-org.apache.flex.html.beads.ContainerView.prototype.get_resizableView =
+org_apache_flex_html_beads_ContainerView.prototype.get_resizableView =
 function() {
 
   return this._strand;

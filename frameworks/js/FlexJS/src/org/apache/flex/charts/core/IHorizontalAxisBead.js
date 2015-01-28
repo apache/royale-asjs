@@ -11,24 +11,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IHorizontalAxisBead
+ * org_apache_flex_charts_core_IHorizontalAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IHorizontalAxisBead');
+goog.provide('org_apache_flex_charts_core_IHorizontalAxisBead');
 
-goog.require('org.apache.flex.charts.core.IAxisBead');
+goog.require('org_apache_flex_charts_core_IAxisBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.charts.core.IAxisBead}
+ * @extends {org_apache_flex_charts_core_IAxisBead}
  */
-org.apache.flex.charts.core.IHorizontalAxisBead = function() {
+org_apache_flex_charts_core_IHorizontalAxisBead = function() {
 };
 
 
@@ -37,31 +37,31 @@ org.apache.flex.charts.core.IHorizontalAxisBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IHorizontalAxisBead', qName: 'org.apache.flex.charts.core.IHorizontalAxisBead'}],
-    interfaces: [org.apache.flex.charts.core.IAxisBead]
+org_apache_flex_charts_core_IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IHorizontalAxisBead', qName: 'org_apache_flex_charts_core_IHorizontalAxisBead'}],
+    interfaces: [org_apache_flex_charts_core_IAxisBead]
   };
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IHorizontalAxisBead.prototype.set_axisHeight = function(value) {};
+org_apache_flex_charts_core_IHorizontalAxisBead.prototype.set_axisHeight = function(value) {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_axisHeight = function() {};
+org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_axisHeight = function() {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_maximum = function() {};
+org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_maximum = function() {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IHorizontalAxisBead.prototype.get_minimum = function() {};
+org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_minimum = function() {};

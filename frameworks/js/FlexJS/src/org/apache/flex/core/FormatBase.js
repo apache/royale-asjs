@@ -17,23 +17,23 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.FormatBase');
+goog.provide('org_apache_flex_core_FormatBase');
 
-goog.require('org.apache.flex.core.IFormatBead');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_IFormatBead');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IFormatBead}
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org_apache_flex_core_IFormatBead}
+ * @extends {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.core.FormatBase = function() {
+org_apache_flex_core_FormatBase = function() {
   goog.base(this);
 };
-goog.inherits(org.apache.flex.core.FormatBase,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_core_FormatBase,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -41,24 +41,24 @@ goog.inherits(org.apache.flex.core.FormatBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.FormatBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_FormatBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'FormatBase',
-                qName: 'org.apache.flex.core.FormatBase' }],
-      interfaces: [org.apache.flex.core.IFormatBead] };
+                qName: 'org_apache_flex_core_FormatBase' }],
+      interfaces: [org_apache_flex_core_IFormatBead] };
 
 
 /**
  * @private
- * @type {org.apache.flex.core.IStrand}
+ * @type {org_apache_flex_core_IStrand}
  */
-org.apache.flex.core.FormatBase.prototype.strand_ = null;
+org_apache_flex_core_FormatBase.prototype.strand_ = null;
 
 
 /**
  * @expose
- * @param {org.apache.flex.core.IStrand} value
+ * @param {org_apache_flex_core_IStrand} value
  */
-org.apache.flex.core.FormatBase.prototype.set_strand = function(value) {
+org_apache_flex_core_FormatBase.prototype.set_strand = function(value) {
   this.strand_ = value;
 };
 
@@ -66,26 +66,26 @@ org.apache.flex.core.FormatBase.prototype.set_strand = function(value) {
 /**
  * @type {string}
  */
-org.apache.flex.core.FormatBase.prototype._propertyName = 'text';
+org_apache_flex_core_FormatBase.prototype._propertyName = 'text';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.core.FormatBase.prototype._eventName = 'textChange';
+org_apache_flex_core_FormatBase.prototype._eventName = 'textChange';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.core.FormatBase.prototype._formattedResult = '';
+org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 
 /**
  * @expose
  * @return {Object}
  */
-org.apache.flex.core.FormatBase.prototype.get_propertyValue = function() {
+org_apache_flex_core_FormatBase.prototype.get_propertyValue = function() {
   var value = this.strand_['get_' + this.get_propertyName()]();
   return value;
 };
@@ -95,7 +95,7 @@ org.apache.flex.core.FormatBase.prototype.get_propertyValue = function() {
  * @expose
  * @return {string}
  */
-org.apache.flex.core.FormatBase.prototype.get_propertyName = function() {
+org_apache_flex_core_FormatBase.prototype.get_propertyName = function() {
   if (this._propertyName == null) {
     this._propertyName = 'text';
   }
@@ -107,7 +107,7 @@ org.apache.flex.core.FormatBase.prototype.get_propertyName = function() {
  * @expose
  * @param {string} value
  */
-org.apache.flex.core.FormatBase.prototype.set_propertyName = function(value) {
+org_apache_flex_core_FormatBase.prototype.set_propertyName = function(value) {
   this._propertyName = value;
 };
 
@@ -116,7 +116,7 @@ org.apache.flex.core.FormatBase.prototype.set_propertyName = function(value) {
  * @expose
  * @return {string}
  */
-org.apache.flex.core.FormatBase.prototype.get_eventName = function() {
+org_apache_flex_core_FormatBase.prototype.get_eventName = function() {
   if (this._eventName == null) {
     return this._propertyName + 'Change';
   }
@@ -128,7 +128,7 @@ org.apache.flex.core.FormatBase.prototype.get_eventName = function() {
  * @expose
  * @param {string} value
  */
-org.apache.flex.core.FormatBase.prototype.set_eventName = function(value) {
+org_apache_flex_core_FormatBase.prototype.set_eventName = function(value) {
   this._eventName = value;
 };
 
@@ -137,7 +137,7 @@ org.apache.flex.core.FormatBase.prototype.set_eventName = function(value) {
  * @expose
  * @return {string}
  */
-org.apache.flex.core.FormatBase.prototype.get_formattedString = function() {
+org_apache_flex_core_FormatBase.prototype.get_formattedString = function() {
   return null;
 };
 

@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.ButtonBarView');
+goog.provide('org_apache_flex_html_beads_ButtonBarView');
 
-goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org_apache_flex_html_beads_ListView');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.beads.ListView}
+ * @extends {org_apache_flex_html_beads_ListView}
  */
-org.apache.flex.html.beads.ButtonBarView = function() {
+org_apache_flex_html_beads_ButtonBarView = function() {
   this.lastSelectedIndex = -1;
-  org.apache.flex.html.beads.ButtonBarView.base(this, 'constructor');
+  org_apache_flex_html_beads_ButtonBarView.base(this, 'constructor');
 
   this.className = 'ButtonBarView';
 };
 goog.inherits(
-    org.apache.flex.html.beads.ButtonBarView,
-    org.apache.flex.html.beads.ListView);
+    org_apache_flex_html_beads_ButtonBarView,
+    org_apache_flex_html_beads_ListView);
 
 
 /**
@@ -38,18 +38,18 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_ButtonBarView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarView',
-                qName: 'org.apache.flex.html.beads.ButtonBarView' }] };
+                qName: 'org_apache_flex_html_beads_ButtonBarView' }] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.ButtonBarView.prototype.set_strand =
+org_apache_flex_html_beads_ButtonBarView.prototype.set_strand =
     function(value) {
 
-  org.apache.flex.html.beads.ButtonBarView.base(this, 'set_strand', value);
+  org_apache_flex_html_beads_ButtonBarView.base(this, 'set_strand', value);
   this.strand_ = value;
 };

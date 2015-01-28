@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.effects.PlatformWiper');
+goog.provide('org_apache_flex_effects_PlatformWiper');
 
-goog.require('org.apache.flex.geom.Rectangle');
+goog.require('org_apache_flex_geom_Rectangle');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.effects.PlatformWiper = function() {
+org_apache_flex_effects_PlatformWiper = function() {
 
   /**
    * @private
@@ -44,9 +44,9 @@ org.apache.flex.effects.PlatformWiper = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_effects_PlatformWiper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PlatformWiper',
-                qName: 'org.apache.flex.effects.PlatformWiper'}] };
+                qName: 'org_apache_flex_effects_PlatformWiper'}] };
 
 
 /**
@@ -54,7 +54,7 @@ org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
  * Sets the target for the Wipe.
  * @param {Object} target The target for the Wipe effect.
  */
-org.apache.flex.effects.PlatformWiper.prototype.set_target =
+org_apache_flex_effects_PlatformWiper.prototype.set_target =
     function(target) {
   if (target == null) {
     if (this.overflow_ == null)
@@ -72,9 +72,9 @@ org.apache.flex.effects.PlatformWiper.prototype.set_target =
 /**
  * @expose
  * Clips the Object.
- * @param {org.apache.flex.geom.Rectangle} rect The visible area.
+ * @param {org_apache_flex_geom_Rectangle} rect The visible area.
  */
-org.apache.flex.effects.PlatformWiper.prototype.set_visibleRect =
+org_apache_flex_effects_PlatformWiper.prototype.set_visibleRect =
     function(rect) {
   /*
   var styleString = 'rect(';

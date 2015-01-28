@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.binding.BindingBase');
+goog.provide('org_apache_flex_binding_BindingBase');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.binding.BindingBase = function() {
+org_apache_flex_binding_BindingBase = function() {
 };
 
 
@@ -28,58 +28,58 @@ org.apache.flex.binding.BindingBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.BindingBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_BindingBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BindingBase',
-                qName: 'org.apache.flex.binding.BindingBase'}] };
+                qName: 'org_apache_flex_binding_BindingBase'}] };
 
 
 /**
  * @protected
  * @type {Object}
  */
-org.apache.flex.binding.BindingBase.prototype.document = null;
+org_apache_flex_binding_BindingBase.prototype.document = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.BindingBase.prototype.destination = null;
+org_apache_flex_binding_BindingBase.prototype.destination = null;
 
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.BindingBase.prototype.destinationPropertyName = '';
+org_apache_flex_binding_BindingBase.prototype.destinationPropertyName = '';
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.BindingBase.prototype.source = null;
+org_apache_flex_binding_BindingBase.prototype.source = null;
 
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.BindingBase.prototype.sourcePropertyName = '';
+org_apache_flex_binding_BindingBase.prototype.sourcePropertyName = '';
 
 
 /**
  * @expose
  * @type {?string}
  */
-org.apache.flex.binding.BindingBase.prototype.sourceID = null;
+org_apache_flex_binding_BindingBase.prototype.sourceID = null;
 
 
 /**
  * @expose
  * @param {Object} value The strand (owner) of the bead.
  */
-org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
+org_apache_flex_binding_BindingBase.prototype.set_strand = function(value) {
   if (this.destination == null)
     this.destination = value;
   if (this.sourceID != null) {
@@ -102,7 +102,7 @@ org.apache.flex.binding.BindingBase.prototype.set_strand = function(value) {
  * @expose
  * @param {Object} document The MXML object.
  */
-org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
+org_apache_flex_binding_BindingBase.prototype.setDocument = function(document) {
   this.document = document;
 };
 
@@ -110,7 +110,7 @@ org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
 /**
  * @param {Object} event The event.
  */
-org.apache.flex.binding.BindingBase.prototype.sourceChangeHandler = function(event) {
+org_apache_flex_binding_BindingBase.prototype.sourceChangeHandler = function(event) {
   if (event.propertyName != this.sourceID)
     return;
 

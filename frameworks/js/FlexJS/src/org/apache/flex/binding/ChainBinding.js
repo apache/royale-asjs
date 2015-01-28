@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.binding.ChainBinding');
-goog.provide('org.apache.flex.binding.ChainWatcher');
+goog.provide('org_apache_flex_binding_ChainBinding');
+goog.provide('org_apache_flex_binding_ChainWatcher');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.binding.ChainBinding = function() {
+org_apache_flex_binding_ChainBinding = function() {
 };
 
 
@@ -29,51 +29,51 @@ org.apache.flex.binding.ChainBinding = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.ChainBinding.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_ChainBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ChainBinding',
-                qName: 'org.apache.flex.binding.ChainBinding'}] };
+                qName: 'org_apache_flex_binding_ChainBinding'}] };
 
 
 /**
  * @protected
  * @type {Object}
  */
-org.apache.flex.binding.ChainBinding.prototype.document = null;
+org_apache_flex_binding_ChainBinding.prototype.document = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.ChainBinding.prototype.destination = null;
+org_apache_flex_binding_ChainBinding.prototype.destination = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.ChainBinding.prototype.value = null;
+org_apache_flex_binding_ChainBinding.prototype.value = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.binding.ChainBinding.prototype.source = null;
+org_apache_flex_binding_ChainBinding.prototype.source = null;
 
 
 /**
  * @expose
  * @param {Object} value The strand (owner) of the bead.
  */
-org.apache.flex.binding.ChainBinding.prototype.set_strand = function(value) {
+org_apache_flex_binding_ChainBinding.prototype.set_strand = function(value) {
   this.applyBinding();
 };
 
 
 /**
  */
-org.apache.flex.binding.ChainBinding.prototype.applyBinding = function() {
+org_apache_flex_binding_ChainBinding.prototype.applyBinding = function() {
   var chainSet = this.evaluateSourceChain();
   if (chainSet)
     this.applyValue();
@@ -83,7 +83,7 @@ org.apache.flex.binding.ChainBinding.prototype.applyBinding = function() {
 /**
  * @return {boolean} True if chain complete.
  */
-org.apache.flex.binding.ChainBinding.prototype.evaluateSourceChain = function() {
+org_apache_flex_binding_ChainBinding.prototype.evaluateSourceChain = function() {
   var propName;
   var n = this.source.length;
   var obj = this.document;
@@ -94,7 +94,7 @@ org.apache.flex.binding.ChainBinding.prototype.evaluateSourceChain = function() 
       propObj = obj['get_' + propName]();
     else
       propObj = obj[propName];
-    var watcher = new org.apache.flex.binding.ChainWatcher(propName, this.applyBinding);
+    var watcher = new org_apache_flex_binding_ChainWatcher(propName, this.applyBinding);
     obj.addEventListener('valueChange', watcher.handler);
     if (propObj == null)
       return false;
@@ -121,7 +121,7 @@ org.apache.flex.binding.ChainBinding.prototype.evaluateSourceChain = function() 
 
 /**
  */
-org.apache.flex.binding.ChainBinding.prototype.applyValue = function() {
+org_apache_flex_binding_ChainBinding.prototype.applyValue = function() {
   var destinationName, n, obj, self;
   function handler(event) {
     if (event.propertyName != propName)
@@ -166,7 +166,7 @@ org.apache.flex.binding.ChainBinding.prototype.applyValue = function() {
  * @expose
  * @param {Object} document The MXML object.
  */
-org.apache.flex.binding.ChainBinding.prototype.setDocument = function(document) {
+org_apache_flex_binding_ChainBinding.prototype.setDocument = function(document) {
   this.document = document;
 };
 
@@ -177,7 +177,7 @@ org.apache.flex.binding.ChainBinding.prototype.setDocument = function(document) 
  * @param {string} propName The name of the property to watch.
  * @param {function()} cb The callback function.
  */
-org.apache.flex.binding.ChainWatcher = function(propName, cb) {
+org_apache_flex_binding_ChainWatcher = function(propName, cb) {
   this.propertyName = propName;
   this.callback = cb;
 };
@@ -188,30 +188,30 @@ org.apache.flex.binding.ChainWatcher = function(propName, cb) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.ChainWatcher.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_ChainWatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ChainWatcher',
-                qName: 'org.apache.flex.binding.ChainWatcher'}] };
+                qName: 'org_apache_flex_binding_ChainWatcher'}] };
 
 
 /**
  * @protected
  * @type {string}
  */
-org.apache.flex.binding.ChainWatcher.prototype.propertyName = '';
+org_apache_flex_binding_ChainWatcher.prototype.propertyName = '';
 
 
 /**
  * @protected
  * @type {?function()}
  */
-org.apache.flex.binding.ChainWatcher.prototype.callback = null;
+org_apache_flex_binding_ChainWatcher.prototype.callback = null;
 
 
 /**
  * @expose
  * @param {Object} event The event object.
  */
-org.apache.flex.binding.ChainWatcher.prototype.handler = function(event) {
+org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
   if (event.propertyName != this.propertyName)
     return;
   if (event.oldValue != null)

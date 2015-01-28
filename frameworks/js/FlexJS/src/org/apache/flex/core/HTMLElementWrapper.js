@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.HTMLElementWrapper');
+goog.provide('org_apache_flex_core_HTMLElementWrapper');
 
-goog.require('org.apache.flex.core.IBeadModel');
-goog.require('org.apache.flex.core.IStrand');
-goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.utils.Language');
+goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org_apache_flex_core_IStrand');
+goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org_apache_flex_utils_Language');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.core.HTMLElementWrapper = function() {
-  org.apache.flex.core.HTMLElementWrapper.base(this, 'constructor');
+org_apache_flex_core_HTMLElementWrapper = function() {
+  org_apache_flex_core_HTMLElementWrapper.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.core.HTMLElementWrapper,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_core_HTMLElementWrapper,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -37,38 +37,38 @@ goog.inherits(org.apache.flex.core.HTMLElementWrapper,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HTMLElementWrapper',
-                qName: 'org.apache.flex.core.HTMLElementWrapper' }],
-      interfaces: [org.apache.flex.core.IStrand] };
+                qName: 'org_apache_flex_core_HTMLElementWrapper' }],
+      interfaces: [org_apache_flex_core_IStrand] };
 
 
 /**
  * @expose
  * @type {EventTarget}
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.element = null;
+org_apache_flex_core_HTMLElementWrapper.prototype.element = null;
 
 
 /**
  * @protected
  * @type {Array.<Object>}
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.strand = null;
+org_apache_flex_core_HTMLElementWrapper.prototype.strand = null;
 
 
 /**
  * @expose
  * @param {Object} bead The new bead.
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
+org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
   if (!this.strand) {
     this.strand = [];
   }
 
   this.strand.push(bead);
 
-  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel)) {
+  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel)) {
     this.model = bead;
   }
 
@@ -81,7 +81,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
  * @param {!Object} classOrInterface The requested bead type.
  * @return {Object} The bead.
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
+org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
     function(classOrInterface) {
   var bead, i, n;
 
@@ -89,7 +89,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
   for (i = 0; i < n; i++) {
     bead = this.strand[i];
 
-    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
+    if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
@@ -102,7 +102,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
  * @expose
  * @return {Array} The array of descriptors.
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLDescriptor =
+org_apache_flex_core_HTMLElementWrapper.prototype.get_MXMLDescriptor =
     function() {
   return null;
 };
@@ -113,7 +113,7 @@ org.apache.flex.core.HTMLElementWrapper.prototype.get_MXMLDescriptor =
  * @param {Object} bead The bead to remove.
  * @return {Object} The bead.
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
+org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
   var i, n, value;
 
   n = this.strand.length;
@@ -172,7 +172,7 @@ goog.events.BrowserEvent.prototype.get_target = function() {
  * Hack to allow event.currentTarget expressions to work
  *
  * @expose
- * @return {Object} The wrapping object.
+ * @return {?Node|Object} The wrapping object.
  */
 goog.events.BrowserEvent.prototype.get_currentTarget = function() {
   // if it is a faked event so just return the currentTarget

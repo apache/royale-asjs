@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.events.ValueEvent');
+goog.provide('org_apache_flex_events_ValueEvent');
 
 goog.require('goog.events.Event');
 
@@ -24,13 +24,13 @@ goog.require('goog.events.Event');
  * @param {string} type The event type.
  * @param {*} v The value.
  */
-org.apache.flex.events.ValueEvent = function(type, v) {
-  org.apache.flex.events.ValueEvent.base(this, 'constructor', type);
+org_apache_flex_events_ValueEvent = function(type, v) {
+  org_apache_flex_events_ValueEvent.base(this, 'constructor', type);
 
   this.type = type;
   this.value = v;
 };
-goog.inherits(org.apache.flex.events.ValueEvent,
+goog.inherits(org_apache_flex_events_ValueEvent,
     goog.events.Event);
 
 
@@ -39,16 +39,16 @@ goog.inherits(org.apache.flex.events.ValueEvent,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.events.ValueEvent.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_events_ValueEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ValueEvent',
-                qName: 'org.apache.flex.events.ValueEvent' }] };
+                qName: 'org_apache_flex_events_ValueEvent' }] };
 
 
 /**
  * @expose
  * @param {string} type The event type.
  */
-org.apache.flex.events.ValueEvent.prototype.init = function(type) {
+org_apache_flex_events_ValueEvent.prototype.init = function(type) {
   this.type = type;
 };
 
@@ -57,13 +57,13 @@ org.apache.flex.events.ValueEvent.prototype.init = function(type) {
  * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.ValueEvent.prototype.type = '';
+org_apache_flex_events_ValueEvent.prototype.type = '';
 
 
 /**
  * @expose
  * @type {*} value The old value.
  */
-org.apache.flex.events.ValueEvent.prototype.value = null;
+org_apache_flex_events_ValueEvent.prototype.value = null;
 
 

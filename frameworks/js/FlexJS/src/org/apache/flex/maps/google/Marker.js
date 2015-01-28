@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.maps.google.Marker');
+goog.provide('org_apache_flex_maps_google_Marker');
 
-goog.require('org.apache.flex.maps.google.LatLng');
+goog.require('org_apache_flex_maps_google_LatLng');
 
 
 
@@ -27,8 +27,8 @@ goog.require('org.apache.flex.maps.google.LatLng');
 /**
  * @constructor
  */
-org.apache.flex.maps.google.Marker = function() {
-  this.position = new org.apache.flex.maps.google.LatLng();
+org_apache_flex_maps_google_Marker = function() {
+  this.position = new org_apache_flex_maps_google_LatLng();
 };
 
 
@@ -37,27 +37,27 @@ org.apache.flex.maps.google.Marker = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.maps.google.Marker.prototype.
+org_apache_flex_maps_google_Marker.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'Marker',
-           qName: 'org.apache.flex.maps.google.Marker' }],
+           qName: 'org_apache_flex_maps_google_Marker' }],
     interfaces: [] };
 
 
 /**
  * @type {Object} The marker's location.
  */
-org.apache.flex.maps.google.Marker.prototype.position = null;
+org_apache_flex_maps_google_Marker.prototype.position = null;
 
 
 /**
  * @type {String} The title for the marker.
  */
-org.apache.flex.maps.google.Marker.prototype.title = null;
+org_apache_flex_maps_google_Marker.prototype.title = null;
 
 
 /**
  * @type {Object} The map to which the marker belongs.
  */
-org.apache.flex.maps.google.Marker.prototype.map = null;
+org_apache_flex_maps_google_Marker.prototype.map = null;
 

@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.MultilineLabel');
+goog.provide('org_apache_flex_html_MultilineLabel');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.MultilineLabel = function() {
-  org.apache.flex.html.MultilineLabel.base(this, 'constructor');
+org_apache_flex_html_MultilineLabel = function() {
+  org_apache_flex_html_MultilineLabel.base(this, 'constructor');
 
   this.element = document.createElement('div');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org.apache.flex.html.MultilineLabel,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_MultilineLabel,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(org.apache.flex.html.MultilineLabel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.MultilineLabel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_MultilineLabel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'MultilineLabel',
-                qName: 'org.apache.flex.html.MultilineLabel' }] };
+                qName: 'org_apache_flex_html_MultilineLabel' }] };
 
 
 /**
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html.MultilineLabel.prototype.get_text = function() {
+org_apache_flex_html_MultilineLabel.prototype.get_text = function() {
   return this.element.innerHTML;
 };
 
@@ -56,7 +56,7 @@ org.apache.flex.html.MultilineLabel.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.MultilineLabel.prototype.set_text = function(value) {
+org_apache_flex_html_MultilineLabel.prototype.set_text = function(value) {
   this.element.innerHTML = value;
 };
 
@@ -65,7 +65,7 @@ org.apache.flex.html.MultilineLabel.prototype.set_text = function(value) {
  * @expose
  * @return {string} The html getter.
  */
-org.apache.flex.html.MultilineLabel.prototype.get_html = function() {
+org_apache_flex_html_MultilineLabel.prototype.get_html = function() {
   return this.element.innerHTML;
 };
 
@@ -74,6 +74,6 @@ org.apache.flex.html.MultilineLabel.prototype.get_html = function() {
  * @expose
  * @param {string} value The html setter.
  */
-org.apache.flex.html.MultilineLabel.prototype.set_html = function(value) {
+org_apache_flex_html_MultilineLabel.prototype.set_html = function(value) {
   this.element.innerHTML = value;
 };

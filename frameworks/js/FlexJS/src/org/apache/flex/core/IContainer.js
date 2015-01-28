@@ -13,38 +13,38 @@
  */
 
 /**
- * org.apache.flex.core.IContainer
+ * org_apache_flex_core_IContainer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IContainer');
+goog.provide('org_apache_flex_core_IContainer');
 
-goog.require('org.apache.flex.core.IParent');
+goog.require('org_apache_flex_core_IParent');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IParent}
+ * @extends {org_apache_flex_core_IParent}
  */
-org.apache.flex.core.IContainer = function() {
+org_apache_flex_core_IContainer = function() {
 };
 
 
 /**
  * @return {Array} All of the children of the container.
  */
-org.apache.flex.core.IContainer.prototype.getChildren = function() {};
+org_apache_flex_core_IContainer.prototype.getChildren = function() {};
 
 
 /**
  * Called after all of the children have been added to the container.
  * @return {void}
  */
-org.apache.flex.core.IContainer.prototype.childrenAdded = function() {};
+org_apache_flex_core_IContainer.prototype.childrenAdded = function() {};
 
 
 /**
@@ -52,7 +52,7 @@ org.apache.flex.core.IContainer.prototype.childrenAdded = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IContainer.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IContainer', qName: 'org.apache.flex.core.IContainer'}],
-  interfaces: [org.apache.flex.core.IParent]
+org_apache_flex_core_IContainer.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IContainer', qName: 'org_apache_flex_core_IContainer'}],
+  interfaces: [org_apache_flex_core_IParent]
 };

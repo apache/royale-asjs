@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.ListBase');
+goog.provide('org_apache_flex_core_ListBase');
 
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_html_supportClasses_StringItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.core.ListBase = function() {
-  org.apache.flex.core.ListBase.base(this, 'constructor');
+org_apache_flex_core_ListBase = function() {
+  org_apache_flex_core_ListBase.base(this, 'constructor');
 
   /**
    * @protected
@@ -38,8 +38,8 @@ org.apache.flex.core.ListBase = function() {
    */
   this.selectedIndex_ = -1;
 };
-goog.inherits(org.apache.flex.core.ListBase,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_core_ListBase,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -47,15 +47,15 @@ goog.inherits(org.apache.flex.core.ListBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ListBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ListBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListBase',
-                qName: 'org.apache.flex.core.ListBase' }] };
+                qName: 'org_apache_flex_core_ListBase' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.core.ListBase.prototype.createElement = function() {
+org_apache_flex_core_ListBase.prototype.createElement = function() {
   //  this.element = document.createElement('select');
   //  goog.events.listen(this.element, 'change',
   //      goog.bind(this.changeHandler, this));
@@ -75,7 +75,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
  * @expose
  * @return {Array.<Object>} The collection of data.
  */
-org.apache.flex.core.ListBase.prototype.get_dataProvider =
+org_apache_flex_core_ListBase.prototype.get_dataProvider =
     function() {
   return this.get_model().get_dataProvider();
 };
@@ -85,7 +85,7 @@ org.apache.flex.core.ListBase.prototype.get_dataProvider =
  * @expose
  * @param {Array.<Object>} value The text setter.
  */
-org.apache.flex.core.ListBase.prototype.set_dataProvider =
+org_apache_flex_core_ListBase.prototype.set_dataProvider =
     function(value) {
   this.get_model().set_dataProvider(value);
 };
@@ -95,7 +95,7 @@ org.apache.flex.core.ListBase.prototype.set_dataProvider =
  * @expose
  * @return {number} The selected index.
  */
-org.apache.flex.core.ListBase.prototype.get_selectedIndex =
+org_apache_flex_core_ListBase.prototype.get_selectedIndex =
     function() {
   return this.get_model().get_selectedIndex();
 };
@@ -105,7 +105,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedIndex =
  * @expose
  * @param {number} value The selected index.
  */
-org.apache.flex.core.ListBase.prototype.set_selectedIndex =
+org_apache_flex_core_ListBase.prototype.set_selectedIndex =
     function(value) {
   this.get_model().set_selectedIndex(value);
 };
@@ -115,7 +115,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedIndex =
  * @expose
  * @return {Object} The selected item.
  */
-org.apache.flex.core.ListBase.prototype.get_selectedItem =
+org_apache_flex_core_ListBase.prototype.get_selectedItem =
     function() {
   return this.get_model().get_selectedItem();
 };
@@ -125,7 +125,7 @@ org.apache.flex.core.ListBase.prototype.get_selectedItem =
  * @expose
  * @param {Object} value The selected item.
  */
-org.apache.flex.core.ListBase.prototype.set_selectedItem =
+org_apache_flex_core_ListBase.prototype.set_selectedItem =
     function(value) {
   this.get_model().set_selectedItem(value);
 };
@@ -134,7 +134,7 @@ org.apache.flex.core.ListBase.prototype.set_selectedItem =
 /**
  * @protected
  */
-org.apache.flex.core.ListBase.prototype.changeHandler =
+org_apache_flex_core_ListBase.prototype.changeHandler =
     function() {
   this.dispatchEvent('change');
 };

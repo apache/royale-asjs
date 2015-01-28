@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.models.RangeModel');
+goog.provide('org_apache_flex_html_beads_models_RangeModel');
 
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.html.beads.models.RangeModel = function() {
-  org.apache.flex.html.beads.models.RangeModel.base(this, 'constructor');
+org_apache_flex_html_beads_models_RangeModel = function() {
+  org_apache_flex_html_beads_models_RangeModel.base(this, 'constructor');
 
   this.minimum_ = 0;
   this.maximum_ = 100;
@@ -31,8 +31,8 @@ org.apache.flex.html.beads.models.RangeModel = function() {
   this.snapInterval_ = 1;
   this.stepSize_ = 1;
 };
-goog.inherits(org.apache.flex.html.beads.models.RangeModel,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_html_beads_models_RangeModel,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(org.apache.flex.html.beads.models.RangeModel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
-                qName: 'org.apache.flex.html.beads.models.RangeModel'}] };
+                qName: 'org_apache_flex_html_beads_models_RangeModel'}] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -59,7 +59,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @return {number} The current minimum value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     get_minimum = function() {
   return this.minimum_;
 };
@@ -69,7 +69,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @param {number} value The new minimum value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_minimum = function(value) {
   if (this.minimum_ != value) {
     this.minimum_ = value;
@@ -82,7 +82,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @return {number} The current maximu value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     get_maximum = function() {
   return this.maximum_;
 };
@@ -92,7 +92,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @param {number} value The new maximum value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_maximum = function(value) {
   if (this.maximum_ != value) {
     this.maximum_ = value;
@@ -105,7 +105,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @return {number} The current value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     get_value = function() {
   return this.value_;
 };
@@ -115,7 +115,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @param {number} newValue The new value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_value = function(newValue) {
   if (this.value_ != newValue) {
 
@@ -135,7 +135,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @return {number} The current snapInterval value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     get_snapInterval = function() {
   return this.snapInterval_;
 };
@@ -145,7 +145,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @param {number} value The new snapInterval value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_snapInterval = function(value) {
   if (this.snapInterval_ != value) {
     this.snapInterval_ = value;
@@ -158,7 +158,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @return {number} The current stepSize value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     get_stepSize = function() {
   return this.stepSize_;
 };
@@ -168,7 +168,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @expose
  * @param {number} value The new stepSize value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     set_stepSize = function(value) {
   if (this.stepSize_ != value) {
     this.stepSize_ = value;
@@ -182,7 +182,7 @@ org.apache.flex.html.beads.models.RangeModel.prototype.
  * @param {number} value The candidate number.
  * @return {number} Adjusted value.
  */
-org.apache.flex.html.beads.models.RangeModel.prototype.
+org_apache_flex_html_beads_models_RangeModel.prototype.
     snap = function(value) {
   var si = this.snapInterval_;
   var n = Math.round((value - this.minimum_) / si) *

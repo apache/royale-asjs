@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.net.HTTPHeader');
+goog.provide('org_apache_flex_net_HTTPHeader');
 
 
 
@@ -21,7 +21,7 @@ goog.provide('org.apache.flex.net.HTTPHeader');
  * @param {string=} opt_name The name.
  * @param {string=} opt_value The value.
  */
-org.apache.flex.net.HTTPHeader = function(opt_name, opt_value) {
+org_apache_flex_net_HTTPHeader = function(opt_name, opt_value) {
   if (typeof opt_name !== 'undefined') {
     this.name = opt_name;
   }
@@ -37,27 +37,27 @@ org.apache.flex.net.HTTPHeader = function(opt_name, opt_value) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.net.HTTPHeader.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_net_HTTPHeader.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HTTPHeader',
-                qName: 'org.apache.flex.net.HTTPHeader'}] };
+                qName: 'org_apache_flex_net_HTTPHeader'}] };
 
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.net.HTTPHeader.CONTENT_TYPE = 'Content-type';
+org_apache_flex_net_HTTPHeader.CONTENT_TYPE = 'Content-type';
 
 
 /**
  * @expose
  * @type {?string}
  */
-org.apache.flex.net.HTTPHeader.prototype.value = null;
+org_apache_flex_net_HTTPHeader.prototype.value = null;
 
 
 /**
  * @expose
  * @type {?string}
  */
-org.apache.flex.net.HTTPHeader.prototype.name = null;
+org_apache_flex_net_HTTPHeader.prototype.name = null;

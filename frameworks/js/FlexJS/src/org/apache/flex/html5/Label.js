@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.Label');
+goog.provide('org_apache_flex_html5_Label');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html5.Label = function() {
-  org.apache.flex.html5.Label.base(this, 'constructor');
+org_apache_flex_html5_Label = function() {
+  org_apache_flex_html5_Label.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html5.Label,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html5_Label,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.Label.prototype.createElement =
+org_apache_flex_html5_Label.prototype.createElement =
     function() {
-  org.apache.flex.html5.Label.base(this, 'createElement');
+  org_apache_flex_html5_Label.base(this, 'createElement');
 
   this.positioner = this.element;
 
@@ -46,7 +46,7 @@ org.apache.flex.html5.Label.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.Label.prototype.get_text = function() {
+org_apache_flex_html5_Label.prototype.get_text = function() {
   return this.element.innerHTML;
 };
 
@@ -55,7 +55,7 @@ org.apache.flex.html5.Label.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.Label.prototype.set_text =
+org_apache_flex_html5_Label.prototype.set_text =
     function(value) {
   this.element.innerHTML = value;
 };

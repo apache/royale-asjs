@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.BeadViewBase');
+goog.provide('org_apache_flex_core_BeadViewBase');
 
-goog.require('org.apache.flex.core.IBeadView');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_IBeadView');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IBeadView}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IBeadView}
  */
-org.apache.flex.core.BeadViewBase = function() {
-    org.apache.flex.core.BeadViewBase.base(this, 'constructor');
+org_apache_flex_core_BeadViewBase = function() {
+    org_apache_flex_core_BeadViewBase.base(this, 'constructor');
   };
 goog.inherits(
-              org.apache.flex.core.BeadViewBase,
-              org.apache.flex.events.EventDispatcher);
+              org_apache_flex_core_BeadViewBase,
+              org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -37,24 +37,24 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.BeadViewBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_BeadViewBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BeadViewBase',
-                qName: 'org.apache.flex.core.BeadViewBase'}],
-    interfaces: [org.apache.flex.core.IBeadView]};
+                qName: 'org_apache_flex_core_BeadViewBase'}],
+    interfaces: [org_apache_flex_core_IBeadView]};
 
 
 /**
  * @protected
  * @type {Object}
  */
-org.apache.flex.core.BeadViewBase.prototype._strand = null;
+org_apache_flex_core_BeadViewBase.prototype._strand = null;
 
 
 /**
  * @expose
  * @param {Object} value The new strand.
  */
-org.apache.flex.core.BeadViewBase.prototype.set_strand =
+org_apache_flex_core_BeadViewBase.prototype.set_strand =
 function(value) {
   if (this._strand !== value) {
     this._strand = value;
@@ -66,7 +66,7 @@ function(value) {
  * @expose
  * @return {Object} value The strand.
  */
-org.apache.flex.core.BeadViewBase.prototype.get_host =
+org_apache_flex_core_BeadViewBase.prototype.get_host =
 function() {
   return this._strand;
 };

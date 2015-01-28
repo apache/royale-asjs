@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout');
+goog.provide('org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout');
 
-goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org_apache_flex_core_IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IBeadLayout}
+ * @implements {org_apache_flex_core_IBeadLayout}
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout =
+org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout =
     function() {
   this.strand_ = null;
   this.className = 'NonVirtualBasicScrollingLayout';
@@ -34,17 +34,17 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NonVirtualBasicScrollingLayout',
-                qName: 'org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout'}],
-      interfaces: [org.apache.flex.core.IBeadLayout] };
+                qName: 'org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout'}],
+      interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
     prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -57,13 +57,13 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
 
 
 /**
- * @param {org.apache.flex.events.Event} event The text getter.
+ * @param {org_apache_flex_events_Event} event The text getter.
  */
-org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
+org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
     prototype.changeHandler = function(event) {
   var i, n, h, w;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
   var contentView = viewBead.get_contentView();
   contentView.element.style.overflow = 'auto';
   w = contentView.get_width();
@@ -71,10 +71,10 @@ org.apache.flex.html.beads.layouts.NonVirtualBasicScrollingLayout.
   n = contentView.get_numElements();
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
-    var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
-    var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
-    var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
-    var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
+    var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');
+    var right = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'right');
+    var top = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'top');
+    var bottom = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'bottom');
 
     if (!isNaN(left)) {
       child.positioner.style.position = 'absolute';

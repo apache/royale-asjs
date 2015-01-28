@@ -17,17 +17,17 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IDataGridModel');
+goog.provide('org_apache_flex_core_IDataGridModel');
 
-goog.require('org.apache.flex.core.ISelectionModel');
+goog.require('org_apache_flex_core_ISelectionModel');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.ISelectionModel}
+ * @extends {org_apache_flex_core_ISelectionModel}
  */
-org.apache.flex.core.IDataGridModel = function() {
+org_apache_flex_core_IDataGridModel = function() {
 };
 
 
@@ -35,7 +35,7 @@ org.apache.flex.core.IDataGridModel = function() {
  * @const
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IDataGridModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IDataGridModel.prototype.FLEXJS_CLASS_INFO =
 { names: [{ name: 'IDataGridModel',
-                qName: 'org.apache.flex.core.IDataGridModel' }],
-      interfaces: [org.apache.flex.core.ISelectionModel] };
+                qName: 'org_apache_flex_core_IDataGridModel' }],
+      interfaces: [org_apache_flex_core_ISelectionModel] };

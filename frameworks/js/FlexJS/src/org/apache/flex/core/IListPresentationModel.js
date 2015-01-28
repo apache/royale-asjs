@@ -13,25 +13,25 @@
  */
 
 /**
- * org.apache.flex.core.IListPresentationModel
+ * org_apache_flex_core_IListPresentationModel
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IListPresentationModel');
+goog.provide('org_apache_flex_core_IListPresentationModel');
 
-goog.require('org.apache.flex.core.IBead');
+goog.require('org_apache_flex_core_IBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.events.IEventDispatcher}
- * @extends {org.apache.flex.core.IBead}
+ * @extends {org_apache_flex_events_IEventDispatcher}
+ * @extends {org_apache_flex_core_IBead}
  */
-org.apache.flex.core.IListPresentationModel = function() {
+org_apache_flex_core_IListPresentationModel = function() {
 };
 
 
@@ -39,14 +39,14 @@ org.apache.flex.core.IListPresentationModel = function() {
  * @expose
  * @param {number} value The height of the rows.
  */
-org.apache.flex.core.IListPresentationModel.prototype.set_rowHeight = function(value) {};
+org_apache_flex_core_IListPresentationModel.prototype.set_rowHeight = function(value) {};
 
 
 /**
  * @expose
  * @return {number} The height of the rows.
  */
-org.apache.flex.core.IListPresentationModel.prototype.get_rowHeight = function() {};
+org_apache_flex_core_IListPresentationModel.prototype.get_rowHeight = function() {};
 
 
 /**
@@ -54,6 +54,6 @@ org.apache.flex.core.IListPresentationModel.prototype.get_rowHeight = function()
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IListPresentationModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'IListPresentationModel', qName: 'org.apache.flex.core.IListPresentationModel'}],
-  interfaces: [org.apache.flex.events.IEventDispatcher, org.apache.flex.core.IBead] };
+org_apache_flex_core_IListPresentationModel.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'IListPresentationModel', qName: 'org_apache_flex_core_IListPresentationModel'}],
+  interfaces: [org_apache_flex_events_IEventDispatcher, org_apache_flex_core_IBead] };

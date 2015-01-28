@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.utils.MXMLDataInterpreter');
+goog.provide('org_apache_flex_utils_MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.utils.MXMLDataInterpreter = function() {
+org_apache_flex_utils_MXMLDataInterpreter = function() {
 };
 
 
@@ -28,9 +28,9 @@ org.apache.flex.utils.MXMLDataInterpreter = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.utils.MXMLDataInterpreter.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_utils_MXMLDataInterpreter.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'MXMLDataInterpreter',
-                qName: 'org.apache.flex.utils.MXMLDataInterpreter'}] };
+                qName: 'org_apache_flex_utils_MXMLDataInterpreter'}] };
 
 
 /**
@@ -38,7 +38,7 @@ org.apache.flex.utils.MXMLDataInterpreter.prototype.FLEXJS_CLASS_INFO =
  * @param {Array} data The data array.
  * @return {Object} The generated object.
  */
-org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
+org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject =
     function(document, data) {
   var assignComp, Cls, comp, generateMXMLArray, generateMXMLObject, i, id, j, m,
       name, simple, value;
@@ -48,12 +48,12 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
   comp = new Cls();
 
   generateMXMLArray =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray;
   generateMXMLObject =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject;
 
   if (comp.addBead)
-    org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject(document, null, comp, data, i);
+    org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject(document, null, comp, data, i);
   else {
     m = data[i++]; // num props
     for (j = 0; j < m; j++) {
@@ -109,7 +109,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject =
  * @param {Array} data The data array.
  * @return {Array} The generated array.
  */
-org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
+org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray =
     function(document, parent, data) {
   var comps = [];
 
@@ -119,7 +119,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
     var cls = data[i++];
     var comp = new cls();
 
-    i = org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject(document, parent, comp, data, i);
+    i = org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject(document, parent, comp, data, i);
 
     comps.push(comp);
   }
@@ -136,15 +136,15 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray =
  * @param {number} i The offset into data.
  * @return {number} The new offset into the data.
  */
-org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
+org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
     function(document, parent, comp, data, i) {
   var bead, beadOffset, beads, children, Cls, generateMXMLArray,
       generateMXMLObject, id, j, k, l, m, n, name, self, simple, value, dispatchBeadsAdded;
 
   generateMXMLArray =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray;
   generateMXMLObject =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject;
 
   id = null;
 
@@ -270,14 +270,14 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
   if (children && comp['setMXMLDescriptor']) {
     comp['setMXMLDescriptor'](document, children);
   }
-  if (parent && org.apache.flex.utils.Language.is(comp,
-      org.apache.flex.core.IUIBase)) {
+  if (parent && org_apache_flex_utils_Language.is(comp,
+      org_apache_flex_core_IUIBase)) {
     parent.addElement(comp);
   }
 
   if (children) {
     if (!comp['setMXMLDescriptor']) {
-      self = org.apache.flex.utils.MXMLDataInterpreter;
+      self = org_apache_flex_utils_MXMLDataInterpreter;
       self.generateMXMLInstances(
             document, comp, children);
       if (typeof comp.childrenAdded === 'function')
@@ -311,10 +311,10 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
  */
-org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
+org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances =
     function(document, parent, data) {
   if (data) {
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(
+    org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray(
         document, parent, data);
   }
 };
@@ -325,7 +325,7 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances =
  * @param {Object} host The MXML object.
  * @param {Array} data The data array.
  */
-org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
+org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties =
     function(host, data) {
   var bead, beadOffset, beads, generateMXMLArray, generateMXMLObject, i, id, j,
       k, l, m, name, simple, value;
@@ -338,9 +338,9 @@ org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties =
   id = null;
 
   generateMXMLArray =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray;
   generateMXMLObject =
-      org.apache.flex.utils.MXMLDataInterpreter.generateMXMLObject;
+      org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject;
 
   m = data[i++]; // num props
   beadOffset = i + (m - 1) * 3;

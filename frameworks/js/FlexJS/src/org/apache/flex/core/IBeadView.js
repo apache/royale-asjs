@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IBeadView');
+goog.provide('org_apache_flex_core_IBeadView');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.IBeadView = function() {
+org_apache_flex_core_IBeadView = function() {
 };
 
 
@@ -33,6 +33,6 @@ org.apache.flex.core.IBeadView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IBeadView.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IBeadView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IBeadView',
-                qName: 'org.apache.flex.core.IBeadView' }] };
+                qName: 'org_apache_flex_core_IBeadView' }] };

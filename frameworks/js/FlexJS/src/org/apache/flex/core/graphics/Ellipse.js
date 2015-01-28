@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Ellipse');
+goog.provide('org_apache_flex_core_graphics_Ellipse');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Ellipse = function() {
-  org.apache.flex.core.graphics.Ellipse.base(this, 'constructor');
+org_apache_flex_core_graphics_Ellipse = function() {
+  org_apache_flex_core_graphics_Ellipse.base(this, 'constructor');
 
 };
-goog.inherits(org.apache.flex.core.graphics.Ellipse,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Ellipse,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -35,9 +35,9 @@ goog.inherits(org.apache.flex.core.graphics.Ellipse,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Ellipse.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Ellipse.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Ellipse',
-                qName: 'org.apache.flex.core.graphics.Ellipse' }] };
+                qName: 'org_apache_flex_core_graphics_Ellipse' }] };
 
 
 /**
@@ -47,7 +47,7 @@ org.apache.flex.core.graphics.Ellipse.prototype.FLEXJS_CLASS_INFO =
  * @param {number} width The width of the ellipse.
  * @param {number} height The height of the ellipse.
  */
-org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, width, height) {
+org_apache_flex_core_graphics_Ellipse.prototype.drawEllipse = function(x, y, width, height) {
     var style = this.getStyleStr();
     var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     ellipse.flexjs_wrapper = this;
@@ -75,6 +75,6 @@ org.apache.flex.core.graphics.Ellipse.prototype.drawEllipse = function(x, y, wid
 /**
  * @override
 */
-org.apache.flex.core.graphics.Ellipse.prototype.draw = function() {
+org_apache_flex_core_graphics_Ellipse.prototype.draw = function() {
     this.drawEllipse(this.get_x(), this.get_y(), this.get_width(), this.get_height());
   };

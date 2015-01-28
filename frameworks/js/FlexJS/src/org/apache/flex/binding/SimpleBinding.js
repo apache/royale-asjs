@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.binding.SimpleBinding');
+goog.provide('org_apache_flex_binding_SimpleBinding');
 
-goog.require('org.apache.flex.binding.BindingBase');
+goog.require('org_apache_flex_binding_BindingBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.binding.BindingBase}
+ * @extends {org_apache_flex_binding_BindingBase}
  */
-org.apache.flex.binding.SimpleBinding = function() {
-  org.apache.flex.binding.SimpleBinding.base(this, 'constructor');
+org_apache_flex_binding_SimpleBinding = function() {
+  org_apache_flex_binding_SimpleBinding.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.binding.SimpleBinding,
-    org.apache.flex.binding.BindingBase);
+goog.inherits(org_apache_flex_binding_SimpleBinding,
+    org_apache_flex_binding_BindingBase);
 
 
 /**
@@ -34,22 +34,22 @@ goog.inherits(org.apache.flex.binding.SimpleBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.SimpleBinding.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_SimpleBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleBinding',
-                qName: 'org.apache.flex.binding.SimpleBinding'}] };
+                qName: 'org_apache_flex_binding_SimpleBinding'}] };
 
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
+org_apache_flex_binding_SimpleBinding.prototype.eventName = '';
 
 
 /**
  * @expose
  */
-org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
+org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
   if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
     this.destination['set_' + this.destinationPropertyName](
         this.source['get_' + this.sourcePropertyName]()
@@ -64,8 +64,8 @@ org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
 /**
  * @override
  */
-org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
-  org.apache.flex.binding.SimpleBinding.base(this, 'set_strand', value);
+org_apache_flex_binding_SimpleBinding.prototype.set_strand = function(value) {
+  org_apache_flex_binding_SimpleBinding.base(this, 'set_strand', value);
 
   if (!this.source)
     return;
@@ -80,8 +80,8 @@ org.apache.flex.binding.SimpleBinding.prototype.set_strand = function(value) {
 /**
  * @param {Object} event The event.
  */
-org.apache.flex.binding.SimpleBinding.prototype.sourceChangeHandler = function(event) {
-  org.apache.flex.binding.SimpleBinding.base(this, 'sourceChangeHandler', event);
+org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(event) {
+  org_apache_flex_binding_SimpleBinding.base(this, 'sourceChangeHandler', event);
   if (this.source) {
     this.source.addEventListener(this.eventName,
         goog.bind(this.changeHandler, this));

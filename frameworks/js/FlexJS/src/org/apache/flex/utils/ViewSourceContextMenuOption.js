@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.utils.ViewSourceContextMenuOption');
+goog.provide('org_apache_flex_utils_ViewSourceContextMenuOption');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.utils.ViewSourceContextMenuOption = function() {
+org_apache_flex_utils_ViewSourceContextMenuOption = function() {
   // no implementation in JS since ViewSource is already in menu
 };
 
@@ -30,15 +30,15 @@ org.apache.flex.utils.ViewSourceContextMenuOption = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.utils.ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_utils_ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewSourceContextMenuOption',
-                qName: 'org.apache.flex.utils.ViewSourceContextMenuOption'}] };
+                qName: 'org_apache_flex_utils_ViewSourceContextMenuOption'}] };
 
 
 /**
  * @param {Object} value The strand (owner) of the bead.
  */
-org.apache.flex.utils.ViewSourceContextMenuOption.prototype.set_strand =
+org_apache_flex_utils_ViewSourceContextMenuOption.prototype.set_strand =
     function(value) {
 };
 

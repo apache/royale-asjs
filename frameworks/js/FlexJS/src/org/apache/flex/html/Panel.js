@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.Panel');
+goog.provide('org_apache_flex_html_Panel');
 
-goog.require('org.apache.flex.html.Container');
-goog.require('org.apache.flex.html.ControlBar');
-goog.require('org.apache.flex.html.TitleBar');
-goog.require('org.apache.flex.html.beads.PanelView');
-goog.require('org.apache.flex.html.beads.models.PanelModel');
+goog.require('org_apache_flex_html_Container');
+goog.require('org_apache_flex_html_ControlBar');
+goog.require('org_apache_flex_html_TitleBar');
+goog.require('org_apache_flex_html_beads_PanelView');
+goog.require('org_apache_flex_html_beads_models_PanelModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.Container}
+ * @extends {org_apache_flex_html_Container}
  */
-org.apache.flex.html.Panel = function() {
-  org.apache.flex.html.Panel.base(this, 'constructor');
+org_apache_flex_html_Panel = function() {
+  org_apache_flex_html_Panel.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html.Panel,
-    org.apache.flex.html.Container);
+goog.inherits(org_apache_flex_html_Panel,
+    org_apache_flex_html_Container);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(org.apache.flex.html.Panel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Panel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_Panel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Panel',
-                qName: 'org.apache.flex.html.Panel' }] };
+                qName: 'org_apache_flex_html_Panel' }] };
 
 
 /**
  * @override
  * @param {Object} c Element being added.
  */
-org.apache.flex.html.Panel.prototype.addElement = function(c) {
+org_apache_flex_html_Panel.prototype.addElement = function(c) {
   if (c == this.titleBar) {
     this.element.insertBefore(this.titleBar.element, this.contentArea);
   }
@@ -66,7 +66,7 @@ org.apache.flex.html.Panel.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org.apache.flex.html.Panel.prototype.addElementAt =
+org_apache_flex_html_Panel.prototype.addElementAt =
     function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
@@ -85,7 +85,7 @@ org.apache.flex.html.Panel.prototype.addElementAt =
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org.apache.flex.html.Panel.prototype.getElementIndex =
+org_apache_flex_html_Panel.prototype.getElementIndex =
     function(c) {
   var children = this.internalChildren();
   var n = children.length;
@@ -102,7 +102,7 @@ org.apache.flex.html.Panel.prototype.getElementIndex =
  * @override
  * @param {Object} c The child element.
  */
-org.apache.flex.html.Panel.prototype.removeElement =
+org_apache_flex_html_Panel.prototype.removeElement =
     function(c) {
   this.contentArea.removeChild(c.element);
 };
@@ -111,7 +111,7 @@ org.apache.flex.html.Panel.prototype.removeElement =
 /**
  * @override
  */
-org.apache.flex.html.Panel.prototype.createElement =
+org_apache_flex_html_Panel.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -132,9 +132,9 @@ org.apache.flex.html.Panel.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.Panel.prototype.addedToParent =
+org_apache_flex_html_Panel.prototype.addedToParent =
     function() {
-  org.apache.flex.html.Panel.base(this, 'addedToParent');
+  org_apache_flex_html_Panel.base(this, 'addedToParent');
 };
 
 
@@ -142,7 +142,7 @@ org.apache.flex.html.Panel.prototype.addedToParent =
  * @expose
  * @return {boolean} The showCloseButton getter.
  */
-org.apache.flex.html.Panel.prototype.get_showCloseButton = function() {
+org_apache_flex_html_Panel.prototype.get_showCloseButton = function() {
   return this.get_model().get_showCloseButton();
 };
 
@@ -151,7 +151,7 @@ org.apache.flex.html.Panel.prototype.get_showCloseButton = function() {
  * @expose
  * @param {boolean} value The showCloseButton setter.
  */
-org.apache.flex.html.Panel.prototype.set_showCloseButton =
+org_apache_flex_html_Panel.prototype.set_showCloseButton =
     function(value) {
   this.get_model().set_showCloseButton(value);
 };
@@ -161,7 +161,7 @@ org.apache.flex.html.Panel.prototype.set_showCloseButton =
  * @expose
  * @return {string} The title getter.
  */
-org.apache.flex.html.Panel.prototype.get_title = function() {
+org_apache_flex_html_Panel.prototype.get_title = function() {
   return this.get_model().get_title();
 };
 
@@ -170,7 +170,7 @@ org.apache.flex.html.Panel.prototype.get_title = function() {
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.Panel.prototype.set_title =
+org_apache_flex_html_Panel.prototype.set_title =
 function(value) {
   this.get_model().set_title(value);
 };
@@ -180,7 +180,7 @@ function(value) {
  * @expose
  * @return {Array} The controlBar getter.
  */
-org.apache.flex.html.Panel.prototype.get_controlBar =
+org_apache_flex_html_Panel.prototype.get_controlBar =
     function() {
   return this.controlBarChildren;
 };
@@ -190,7 +190,7 @@ org.apache.flex.html.Panel.prototype.get_controlBar =
  * @expose
  * @param {Array} value The controlBar setter.
  */
-org.apache.flex.html.Panel.prototype.set_controlBar =
+org_apache_flex_html_Panel.prototype.set_controlBar =
     function(value) {
   this.controlBarChildren = value;
 

@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.Container');
+goog.provide('org_apache_flex_html_Container');
 
-goog.require('org.apache.flex.core.ContainerBase');
-goog.require('org.apache.flex.core.IContainer');
+goog.require('org_apache_flex_core_ContainerBase');
+goog.require('org_apache_flex_core_IContainer');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IContainer}
- * @extends {org.apache.flex.core.ContainerBase}
+ * @implements {org_apache_flex_core_IContainer}
+ * @extends {org_apache_flex_core_ContainerBase}
  */
-org.apache.flex.html.Container = function() {
-  org.apache.flex.html.Container.base(this, 'constructor');
+org_apache_flex_html_Container = function() {
+  org_apache_flex_html_Container.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html.Container,
-    org.apache.flex.core.ContainerBase);
+goog.inherits(org_apache_flex_html_Container,
+    org_apache_flex_core_ContainerBase);
 
 
 /**
@@ -36,16 +36,16 @@ goog.inherits(org.apache.flex.html.Container,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Container.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_Container.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Container',
-                qName: 'org.apache.flex.html.Container' }],
-      interfaces: [org.apache.flex.core.IContainer] };
+                qName: 'org_apache_flex_html_Container' }],
+      interfaces: [org_apache_flex_core_IContainer] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.Container.prototype.createElement =
+org_apache_flex_html_Container.prototype.createElement =
     function() {
   var cb;
 
@@ -66,9 +66,9 @@ org.apache.flex.html.Container.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.html.Container.prototype.addElement =
+org_apache_flex_html_Container.prototype.addElement =
     function(child) {
-  org.apache.flex.html.Container.base(this, 'addElement', child);
+  org_apache_flex_html_Container.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
 };
 
@@ -76,7 +76,7 @@ org.apache.flex.html.Container.prototype.addElement =
 /**
  * @expose
  */
-org.apache.flex.html.Container.prototype.childrenAdded =
+org_apache_flex_html_Container.prototype.childrenAdded =
     function() {
   this.dispatchEvent('childrenAdded');
 };
@@ -86,7 +86,7 @@ org.apache.flex.html.Container.prototype.childrenAdded =
  * @expose
  * @return {Array} the HTML DOM element children.
  */
-org.apache.flex.html.Container.prototype.internalChildren =
+org_apache_flex_html_Container.prototype.internalChildren =
     function() {
   return this.element.children;
 };
@@ -95,7 +95,7 @@ org.apache.flex.html.Container.prototype.internalChildren =
 /**
  * @return {Array} All of the children of the container.
  */
-org.apache.flex.html.Container.prototype.getChildren = function() {
+org_apache_flex_html_Container.prototype.getChildren = function() {
   var arr = this.element.children;
   var comparr = [];
   var n = arr.length;

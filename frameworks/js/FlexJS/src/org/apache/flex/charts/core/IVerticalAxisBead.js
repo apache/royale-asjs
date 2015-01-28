@@ -11,24 +11,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IVerticalAxisBead
+ * org_apache_flex_charts_core_IVerticalAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IVerticalAxisBead');
+goog.provide('org_apache_flex_charts_core_IVerticalAxisBead');
 
-goog.require('org.apache.flex.charts.core.IAxisBead');
+goog.require('org_apache_flex_charts_core_IAxisBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.charts.core.IAxisBead}
+ * @extends {org_apache_flex_charts_core_IAxisBead}
  */
-org.apache.flex.charts.core.IVerticalAxisBead = function() {
+org_apache_flex_charts_core_IVerticalAxisBead = function() {
 };
 
 
@@ -37,31 +37,31 @@ org.apache.flex.charts.core.IVerticalAxisBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IVerticalAxisBead', qName: 'org.apache.flex.charts.core.IVerticalAxisBead'}],
-    interfaces: [org.apache.flex.charts.core.IAxisBead]
+org_apache_flex_charts_core_IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IVerticalAxisBead', qName: 'org_apache_flex_charts_core_IVerticalAxisBead'}],
+    interfaces: [org_apache_flex_charts_core_IAxisBead]
   };
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IVerticalAxisBead.prototype.set_axisWidth = function(value) {};
+org_apache_flex_charts_core_IVerticalAxisBead.prototype.set_axisWidth = function(value) {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_axisWidth = function() {};
+org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_axisWidth = function() {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_maximum = function() {};
+org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_maximum = function() {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IVerticalAxisBead.prototype.get_minimum = function() {};
+org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_minimum = function() {};

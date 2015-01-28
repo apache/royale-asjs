@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.accessories.TextPromptBead');
+goog.provide('org_apache_flex_html_accessories_TextPromptBead');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.accessories.TextPromptBead = function() {
+org_apache_flex_html_accessories_TextPromptBead = function() {
 
   /**
    * @protected
@@ -34,16 +34,16 @@ org.apache.flex.html.accessories.TextPromptBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.accessories.TextPromptBead.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_accessories_TextPromptBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextPromptBead',
-                qName: 'org.apache.flex.html.accessories.TextPromptBead' }] };
+                qName: 'org_apache_flex_html_accessories_TextPromptBead' }] };
 
 
 /**
  * @expose
  * @return {string} value The new prompt.
  */
-org.apache.flex.html.accessories.TextPromptBead.prototype.
+org_apache_flex_html_accessories_TextPromptBead.prototype.
     get_prompt = function() {
   return this.prompt;
 };
@@ -53,7 +53,7 @@ org.apache.flex.html.accessories.TextPromptBead.prototype.
  * @expose
  * @param {string} value The new prompt.
  */
-org.apache.flex.html.accessories.TextPromptBead.prototype.
+org_apache_flex_html_accessories_TextPromptBead.prototype.
     set_prompt = function(value) {
   this.prompt = value;
 };
@@ -63,7 +63,7 @@ org.apache.flex.html.accessories.TextPromptBead.prototype.
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.accessories.TextPromptBead.prototype.
+org_apache_flex_html_accessories_TextPromptBead.prototype.
     set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;

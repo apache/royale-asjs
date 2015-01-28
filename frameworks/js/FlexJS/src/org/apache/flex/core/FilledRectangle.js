@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.FilledRectangle');
+goog.provide('org_apache_flex_core_FilledRectangle');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.core.FilledRectangle = function() {
-  org.apache.flex.core.FilledRectangle.base(this, 'constructor');
+org_apache_flex_core_FilledRectangle = function() {
+  org_apache_flex_core_FilledRectangle.base(this, 'constructor');
 
   /**
    * @private
@@ -31,8 +31,8 @@ org.apache.flex.core.FilledRectangle = function() {
    */
   this.fillColor_ = 0;
 };
-goog.inherits(org.apache.flex.core.FilledRectangle,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_core_FilledRectangle,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(org.apache.flex.core.FilledRectangle,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.FilledRectangle.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_FilledRectangle.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'FilledRectangle',
-                qName: 'org.apache.flex.core.FilledRectangle' }] };
+                qName: 'org_apache_flex_core_FilledRectangle' }] };
 
 
 /**
  * @override
  */
-org.apache.flex.core.FilledRectangle.prototype.addedToParent = function() {
-  org.apache.flex.core.FilledRectangle.base(this, 'addedToParent');
+org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
+  org_apache_flex_core_FilledRectangle.base(this, 'addedToParent');
   this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
 };
 
@@ -58,7 +58,7 @@ org.apache.flex.core.FilledRectangle.prototype.addedToParent = function() {
  * @expose
  * @return {number} The fill color.
  */
-org.apache.flex.core.UIBase.prototype.get_fillColor = function() {
+org_apache_flex_core_UIBase.prototype.get_fillColor = function() {
   return this.fillColor_;
 };
 
@@ -66,7 +66,7 @@ org.apache.flex.core.UIBase.prototype.get_fillColor = function() {
 /**
  * @param {number} value The fill color.
  */
-org.apache.flex.core.UIBase.prototype.set_fillColor = function(value) {
+org_apache_flex_core_UIBase.prototype.set_fillColor = function(value) {
   this.fillColor_ = value;
 };
 
@@ -78,7 +78,7 @@ org.apache.flex.core.UIBase.prototype.set_fillColor = function(value) {
  * @param {number} width The width.
  * @param {number} height The height.
  */
-org.apache.flex.core.UIBase.prototype.drawRect = function(x, y, width, height) {
+org_apache_flex_core_UIBase.prototype.drawRect = function(x, y, width, height) {
   this.element.style.position = 'absolute';
   this.element.style.backgroundColor = '#' + this.fillColor_.toString(16);
   if (!isNaN(x)) this.set_x(x);

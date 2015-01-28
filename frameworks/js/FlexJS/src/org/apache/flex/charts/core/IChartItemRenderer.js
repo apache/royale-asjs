@@ -11,85 +11,85 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IChartItemRenderer
+ * org_apache_flex_charts_core_IChartItemRenderer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IChartItemRenderer');
+goog.provide('org_apache_flex_charts_core_IChartItemRenderer');
 
-goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org_apache_flex_core_IItemRenderer');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IItemRenderer}
+ * @extends {org_apache_flex_core_IItemRenderer}
  */
-org.apache.flex.charts.core.IChartItemRenderer = function() {
+org_apache_flex_charts_core_IChartItemRenderer = function() {
 };
 
 
 /**
  * @return {string}
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.get_xField = function() {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.get_xField = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_xField = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_xField = function(value) {};
 
 
 /**
  * @return {string}
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.get_yField = function() {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.get_yField = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_yField = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_yField = function(value) {};
 
 
 /**
  * @return {number}
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.get_fillColor = function() {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.get_fillColor = function() {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_fillColor = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_fillColor = function(value) {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_x = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_x = function(value) {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_y = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_y = function(value) {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_width = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_width = function(value) {};
 
 
 /**
  * @param {number} value
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.set_height = function(value) {};
+org_apache_flex_charts_core_IChartItemRenderer.prototype.set_height = function(value) {};
 
 
 /**
@@ -97,7 +97,7 @@ org.apache.flex.charts.core.IChartItemRenderer.prototype.set_height = function(v
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IChartItemRenderer.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChartItemRenderer', qName: 'org.apache.flex.charts.core.IChartItemRenderer'}],
-    interfaces: [org.apache.flex.core.IItemRenderer]
+org_apache_flex_charts_core_IChartItemRenderer.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChartItemRenderer', qName: 'org_apache_flex_charts_core_IChartItemRenderer'}],
+    interfaces: [org_apache_flex_core_IItemRenderer]
   };
