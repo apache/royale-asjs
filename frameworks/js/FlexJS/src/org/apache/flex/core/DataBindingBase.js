@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.DataBindingBase');
+goog.provide('org_apache_flex_core_DataBindingBase');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.core.DataBindingBase = function() {
+org_apache_flex_core_DataBindingBase = function() {
 };
 
 
@@ -28,9 +28,9 @@ org.apache.flex.core.DataBindingBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.DataBindingBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_DataBindingBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataBindingBase',
-                qName: 'org.apache.flex.core.DataBindingBase'}] };
+                qName: 'org_apache_flex_core_DataBindingBase'}] };
 
 
 /**
@@ -39,7 +39,7 @@ org.apache.flex.core.DataBindingBase.prototype.FLEXJS_CLASS_INFO =
  * @param {string} propName The name of the property.
  * @return {boolean} True if property exists.
  */
-org.apache.flex.core.DataBindingBase.prototype.hasProperty =
+org_apache_flex_core_DataBindingBase.prototype.hasProperty =
     function(obj, propName) {
   if (typeof obj['get_' + propName] === 'function') {
     return true;
@@ -54,7 +54,7 @@ org.apache.flex.core.DataBindingBase.prototype.hasProperty =
  * @param {string} propName The name of the property.
  * @return {Object} value The value of the property.
  */
-org.apache.flex.core.DataBindingBase.prototype.getProperty =
+org_apache_flex_core_DataBindingBase.prototype.getProperty =
     function(obj, propName) {
   if (propName == 'this')
     return obj;
@@ -72,7 +72,7 @@ org.apache.flex.core.DataBindingBase.prototype.getProperty =
  * @param {string} propName The name of the property.
  * @param {Object} value The value of the property.
  */
-org.apache.flex.core.DataBindingBase.prototype.setProperty =
+org_apache_flex_core_DataBindingBase.prototype.setProperty =
 function(obj, propName, value) {
   if (typeof obj['set_' + propName] === 'function') {
     obj['set_' + propName](value);

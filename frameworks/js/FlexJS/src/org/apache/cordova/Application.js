@@ -14,39 +14,39 @@
 
 
 /**
- * org.apache.cordova.Application
+ * org_apache_cordova_Application
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.cordova.Application');
+goog.provide('org_apache_cordova_Application');
 
-goog.require('org.apache.flex.core.Application');
+goog.require('org_apache_flex_core_Application');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.Application}
+ * @extends {org_apache_flex_core_Application}
  */
-org.apache.cordova.Application = function() {
-  org.apache.cordova.Application.base(this, 'constructor');
+org_apache_cordova_Application = function() {
+  org_apache_cordova_Application.base(this, 'constructor');
 
   document.addEventListener('deviceready',
                              goog.bind(this.devicereadyredispatcher, this),
                              false);
 };
-goog.inherits(org.apache.cordova.Application,
-              org.apache.flex.core.Application);
+goog.inherits(org_apache_cordova_Application,
+              org_apache_flex_core_Application);
 
 
 /**
  * @protected
  * @param {Object} event
  */
-org.apache.cordova.Application.prototype.devicereadyredispatcher = function(event) {
+org_apache_cordova_Application.prototype.devicereadyredispatcher = function(event) {
   this.dispatchEvent('deviceready');
 };
 
@@ -56,6 +56,6 @@ org.apache.cordova.Application.prototype.devicereadyredispatcher = function(even
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.cordova.Application.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'Application', qName: 'org.apache.cordova.Application'}]
+org_apache_cordova_Application.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'Application', qName: 'org_apache_cordova_Application'}]
 };

@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.TextButton');
+goog.provide('org_apache_flex_html5_TextButton');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html5.TextButton = function() {
-  org.apache.flex.html5.TextButton.base(this, 'constructor');
+org_apache_flex_html5_TextButton = function() {
+  org_apache_flex_html5_TextButton.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html5.TextButton,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html5_TextButton,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.TextButton.prototype.createElement =
+org_apache_flex_html5_TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -47,7 +47,7 @@ org.apache.flex.html5.TextButton.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.TextButton.prototype.get_text =
+org_apache_flex_html5_TextButton.prototype.get_text =
     function() {
   return this.element.innerHTML;
 };
@@ -57,7 +57,7 @@ org.apache.flex.html5.TextButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.TextButton.prototype.set_text =
+org_apache_flex_html5_TextButton.prototype.set_text =
     function(value) {
   this.element.innerHTML = value;
 };

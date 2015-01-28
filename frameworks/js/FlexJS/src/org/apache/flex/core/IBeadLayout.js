@@ -17,17 +17,17 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IBeadLayout');
+goog.provide('org_apache_flex_core_IBeadLayout');
 
-goog.require('org.apache.flex.core.IBead');
+goog.require('org_apache_flex_core_IBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IBead}
+ * @extends {org_apache_flex_core_IBead}
  */
-org.apache.flex.core.IBeadLayout = function() {
+org_apache_flex_core_IBeadLayout = function() {
 };
 
 
@@ -36,7 +36,7 @@ org.apache.flex.core.IBeadLayout = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IBeadLayout.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IBeadLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IBeadLayout',
-                qName: 'org.apache.flex.core.IBeadLayout' }],
-      interfaces: [org.apache.flex.core.IBead] };
+                qName: 'org_apache_flex_core_IBeadLayout' }],
+      interfaces: [org_apache_flex_core_IBead] };

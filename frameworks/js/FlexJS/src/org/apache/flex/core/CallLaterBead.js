@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.CallLaterBead');
+goog.provide('org_apache_flex_core_CallLaterBead');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.core.CallLaterBead = function() {
+org_apache_flex_core_CallLaterBead = function() {
 
   /**
    * @private
@@ -41,16 +41,16 @@ org.apache.flex.core.CallLaterBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.CallLaterBead.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_CallLaterBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CallLaterBead.js',
-                qName: 'org.apache.flex.core.CallLaterBead'}] };
+                qName: 'org_apache_flex_core_CallLaterBead'}] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.core.CallLaterBead.prototype.set_strand =
+org_apache_flex_core_CallLaterBead.prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -63,7 +63,7 @@ org.apache.flex.core.CallLaterBead.prototype.set_strand =
  * @param {Array=} opt_args The optional array of arguments.
  * @param {Object=} opt_thisArg The optional 'this' object.
  */
-org.apache.flex.core.CallLaterBead.prototype.callLater =
+org_apache_flex_core_CallLaterBead.prototype.callLater =
     function(fn, opt_args, opt_thisArg) {
 
   if (this.calls_ == null)
@@ -78,7 +78,7 @@ org.apache.flex.core.CallLaterBead.prototype.callLater =
 /**
  * @protected
  */
-org.apache.flex.core.CallLaterBead.prototype.callback =
+org_apache_flex_core_CallLaterBead.prototype.callback =
     function() {
   var list = this.calls_;
   var n = list.length;

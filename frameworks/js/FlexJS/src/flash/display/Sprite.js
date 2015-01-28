@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('flash.display.Sprite');
+goog.provide('flash_display_Sprite');
 
 
 
 /**
  * @constructor
  */
-flash.display.Sprite = function() {
+flash_display_Sprite = function() {
 };
 
 
@@ -28,13 +28,13 @@ flash.display.Sprite = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-flash.display.Sprite.prototype.FLEXJS_CLASS_INFO =
+flash_display_Sprite.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Sprite',
-                qName: 'flash.display.Sprite' }] };
+                qName: 'flash_display_Sprite' }] };
 
 
 /**
  * @expose
  */
-flash.display.Sprite.prototype.start = function() {
+flash_display_Sprite.prototype.start = function() {
 };

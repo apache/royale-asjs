@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.TitleBar');
+goog.provide('org_apache_flex_html_TitleBar');
 
-goog.require('org.apache.flex.html.Container');
-goog.require('org.apache.flex.html.Label');
-goog.require('org.apache.flex.html.TextButton');
-goog.require('org.apache.flex.html.beads.models.TitleBarModel');
+goog.require('org_apache_flex_html_Container');
+goog.require('org_apache_flex_html_Label');
+goog.require('org_apache_flex_html_TextButton');
+goog.require('org_apache_flex_html_beads_models_TitleBarModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.Container}
+ * @extends {org_apache_flex_html_Container}
  */
-org.apache.flex.html.TitleBar = function() {
+org_apache_flex_html_TitleBar = function() {
 
-  org.apache.flex.html.TitleBar.base(this, 'constructor');
+  org_apache_flex_html_TitleBar.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html.TitleBar,
-    org.apache.flex.html.Container);
+goog.inherits(org_apache_flex_html_TitleBar,
+    org_apache_flex_html_Container);
 
 
 /**
@@ -38,15 +38,15 @@ goog.inherits(org.apache.flex.html.TitleBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.TitleBar.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_TitleBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TitleBar',
-                qName: 'org.apache.flex.html.TitleBar'}] };
+                qName: 'org_apache_flex_html_TitleBar'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.TitleBar.prototype.createElement =
+org_apache_flex_html_TitleBar.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -64,7 +64,7 @@ org.apache.flex.html.TitleBar.prototype.createElement =
  * @expose
  * @return {string} The title getter.
  */
-org.apache.flex.html.TitleBar.prototype.get_title =
+org_apache_flex_html_TitleBar.prototype.get_title =
     function() {
   return this.model.get_title();
 };
@@ -74,7 +74,7 @@ org.apache.flex.html.TitleBar.prototype.get_title =
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.TitleBar.prototype.set_title =
+org_apache_flex_html_TitleBar.prototype.set_title =
     function(value) {
   this.model.set_title(value);
 };
@@ -84,7 +84,7 @@ org.apache.flex.html.TitleBar.prototype.set_title =
  * @expose
  * @return {string} The showCloseButton getter.
  */
-org.apache.flex.html.TitleBar.prototype.get_showCloseButton =
+org_apache_flex_html_TitleBar.prototype.get_showCloseButton =
     function() {
   return this.model.get_showCloseButton();
 };
@@ -94,7 +94,7 @@ org.apache.flex.html.TitleBar.prototype.get_showCloseButton =
  * @expose
  * @param {string} value The title setter.
  */
-org.apache.flex.html.TitleBar.prototype.set_showCloseButton =
+org_apache_flex_html_TitleBar.prototype.set_showCloseButton =
     function(value) {
   this.model.set_showCloseButton(value);
 };

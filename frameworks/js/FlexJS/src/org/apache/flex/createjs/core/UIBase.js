@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.core.UIBase');
+goog.provide('org_apache_flex_createjs_core_UIBase');
 
-goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org_apache_flex_core_HTMLElementWrapper');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.HTMLElementWrapper}
+ * @extends {org_apache_flex_core_HTMLElementWrapper}
  */
-org.apache.flex.createjs.core.UIBase = function() {
-  org.apache.flex.createjs.core.UIBase.base(this, 'constructor');
+org_apache_flex_createjs_core_UIBase = function() {
+  org_apache_flex_createjs_core_UIBase.base(this, 'constructor');
 
   /**
      * @protected
@@ -33,14 +33,14 @@ org.apache.flex.createjs.core.UIBase = function() {
 
   this.createElement();
 };
-goog.inherits(org.apache.flex.createjs.core.UIBase,
-    org.apache.flex.core.HTMLElementWrapper);
+goog.inherits(org_apache_flex_createjs_core_UIBase,
+    org_apache_flex_core_HTMLElementWrapper);
 
 
 /**
  * @param {Object} c The child element.
  */
-org.apache.flex.createjs.core.UIBase.prototype.addElement =
+org_apache_flex_createjs_core_UIBase.prototype.addElement =
     function(c) {
   this.addChild(c.element);
 };
@@ -48,7 +48,7 @@ org.apache.flex.createjs.core.UIBase.prototype.addElement =
 
 /**
  */
-org.apache.flex.createjs.core.UIBase.prototype.createElement =
+org_apache_flex_createjs_core_UIBase.prototype.createElement =
     function() {
   this.element = new createjs.Container();
 
@@ -60,7 +60,7 @@ org.apache.flex.createjs.core.UIBase.prototype.createElement =
  * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
+org_apache_flex_createjs_core_UIBase.prototype.set_x = function(pixels) {
   this.positioner.x = pixels;
   this.element.getStage().update();
 };
@@ -70,7 +70,7 @@ org.apache.flex.createjs.core.UIBase.prototype.set_x = function(pixels) {
  * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
+org_apache_flex_createjs_core_UIBase.prototype.set_y = function(pixels) {
   this.positioner.y = pixels;
   this.element.getStage().update();
 };
@@ -80,7 +80,7 @@ org.apache.flex.createjs.core.UIBase.prototype.set_y = function(pixels) {
  * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
+org_apache_flex_createjs_core_UIBase.prototype.set_width = function(pixels) {
   this.positioner.width = pixels;
   this.element.getStage().update();
 };
@@ -90,7 +90,7 @@ org.apache.flex.createjs.core.UIBase.prototype.set_width = function(pixels) {
  * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
+org_apache_flex_createjs_core_UIBase.prototype.set_height = function(pixels) {
   this.positioner.height = pixels;
   this.element.getStage().update();
 };
@@ -100,14 +100,14 @@ org.apache.flex.createjs.core.UIBase.prototype.set_height = function(pixels) {
  * @expose
  * @type {string}
  */
-org.apache.flex.createjs.core.UIBase.prototype.id = null;
+org_apache_flex_createjs_core_UIBase.prototype.id = null;
 
 
 /**
  * @expose
  * @return {string} The id.
  */
-org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
+org_apache_flex_createjs_core_UIBase.prototype.get_id = function() {
   return this.name;
 };
 
@@ -116,7 +116,7 @@ org.apache.flex.createjs.core.UIBase.prototype.get_id = function() {
  * @expose
  * @param {object} value The new id.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
+org_apache_flex_createjs_core_UIBase.prototype.set_id = function(value) {
   if (this.name !== value)
   {
     this.element.name = value;
@@ -130,14 +130,14 @@ org.apache.flex.createjs.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {object}
  */
-org.apache.flex.createjs.core.UIBase.prototype.model = null;
+org_apache_flex_createjs_core_UIBase.prototype.model = null;
 
 
 /**
  * @expose
  * @return {object} The model.
  */
-org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
+org_apache_flex_createjs_core_UIBase.prototype.get_model = function() {
   return this.model;
 };
 
@@ -146,7 +146,7 @@ org.apache.flex.createjs.core.UIBase.prototype.get_model = function() {
  * @expose
  * @param {object} value The new model.
  */
-org.apache.flex.createjs.core.UIBase.prototype.set_model = function(value) {
+org_apache_flex_createjs_core_UIBase.prototype.set_model = function(value) {
   if (this.model !== value)
   {
     this.addBead(value);

@@ -13,14 +13,14 @@
  */
 
 /**
- * org.apache.flex.core.graphics.GradientEntry
+ * org_apache_flex_core_graphics_GradientEntry
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.graphics.GradientEntry');
+goog.provide('org_apache_flex_core_graphics_GradientEntry');
 
 
 
@@ -30,7 +30,7 @@ goog.provide('org.apache.flex.core.graphics.GradientEntry');
  * @param {number} color
  * @param {number} ratio
  */
-org.apache.flex.core.graphics.GradientEntry = function(alpha, color, ratio) {
+org_apache_flex_core_graphics_GradientEntry = function(alpha, color, ratio) {
   this._alpha = alpha;
   this._color = color;
   this._ratio = ratio;
@@ -40,26 +40,26 @@ org.apache.flex.core.graphics.GradientEntry = function(alpha, color, ratio) {
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype._alpha = 1.0;
+org_apache_flex_core_graphics_GradientEntry.prototype._alpha = 1.0;
 
 
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype._color = 0x000000;
+org_apache_flex_core_graphics_GradientEntry.prototype._color = 0x000000;
 
 
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype._ratio = 0x000000;
+org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 
 /**
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.get_alpha = function() {
+org_apache_flex_core_graphics_GradientEntry.prototype.get_alpha = function() {
   return this._alpha;
 };
 
@@ -68,7 +68,7 @@ org.apache.flex.core.graphics.GradientEntry.prototype.get_alpha = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.set_alpha = function(value) {
+org_apache_flex_core_graphics_GradientEntry.prototype.set_alpha = function(value) {
   var /** @type {number} */ oldValue = this._alpha;
   if (value != oldValue) {
     this._alpha = value;
@@ -80,7 +80,7 @@ org.apache.flex.core.graphics.GradientEntry.prototype.set_alpha = function(value
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.get_color = function() {
+org_apache_flex_core_graphics_GradientEntry.prototype.get_color = function() {
   return this._color;
 };
 
@@ -89,7 +89,7 @@ org.apache.flex.core.graphics.GradientEntry.prototype.get_color = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.set_color = function(value) {
+org_apache_flex_core_graphics_GradientEntry.prototype.set_color = function(value) {
   var /** @type {number} */ oldValue = this._color;
   if (value != oldValue) {
     this._color = value;
@@ -101,7 +101,7 @@ org.apache.flex.core.graphics.GradientEntry.prototype.set_color = function(value
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.get_ratio = function() {
+org_apache_flex_core_graphics_GradientEntry.prototype.get_ratio = function() {
   return this._ratio;
 };
 
@@ -110,25 +110,25 @@ org.apache.flex.core.graphics.GradientEntry.prototype.get_ratio = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.set_ratio = function(value) {
+org_apache_flex_core_graphics_GradientEntry.prototype.set_ratio = function(value) {
   this._ratio = value;
 };
 
 
 /**
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} s
+ * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.begin = function(s) {
+org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
   s.get_graphics().beginFill(this.get_color(), this.get_alpha());
 };
 
 
 /**
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} s
+ * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.end = function(s) {
+org_apache_flex_core_graphics_GradientEntry.prototype.end = function(s) {
   s.get_graphics().endFill();
 };
 
@@ -138,6 +138,6 @@ org.apache.flex.core.graphics.GradientEntry.prototype.end = function(s) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GradientEntry.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'GradientEntry', qName: 'org.apache.flex.core.graphics.GradientEntry'}]
+org_apache_flex_core_graphics_GradientEntry.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'GradientEntry', qName: 'org_apache_flex_core_graphics_GradientEntry'}]
   };

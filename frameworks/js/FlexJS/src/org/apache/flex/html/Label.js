@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.Label');
+goog.provide('org_apache_flex_html_Label');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.Label = function() {
-  org.apache.flex.html.Label.base(this, 'constructor');
+org_apache_flex_html_Label = function() {
+  org_apache_flex_html_Label.base(this, 'constructor');
 
   this.element = document.createElement('span');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org.apache.flex.html.Label,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_Label,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(org.apache.flex.html.Label,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Label.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_Label.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Label',
-                qName: 'org.apache.flex.html.Label' }] };
+                qName: 'org_apache_flex_html_Label' }] };
 
 
 /**
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html.Label.prototype.get_text = function() {
+org_apache_flex_html_Label.prototype.get_text = function() {
   return this.element.innerHTML;
 };
 
@@ -56,7 +56,7 @@ org.apache.flex.html.Label.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html.Label.prototype.set_text = function(value) {
+org_apache_flex_html_Label.prototype.set_text = function(value) {
   this.element.innerHTML = value;
 };
 
@@ -65,7 +65,7 @@ org.apache.flex.html.Label.prototype.set_text = function(value) {
  * @expose
  * @return {string} The html getter.
  */
-org.apache.flex.html.Label.prototype.get_html = function() {
+org_apache_flex_html_Label.prototype.get_html = function() {
   return this.element.innerHTML;
 };
 
@@ -74,6 +74,6 @@ org.apache.flex.html.Label.prototype.get_html = function() {
  * @expose
  * @param {string} value The html setter.
  */
-org.apache.flex.html.Label.prototype.set_html = function(value) {
+org_apache_flex_html_Label.prototype.set_html = function(value) {
   this.element.innerHTML = value;
 };

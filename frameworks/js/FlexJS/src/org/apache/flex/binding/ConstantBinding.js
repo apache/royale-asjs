@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.binding.ConstantBinding');
+goog.provide('org_apache_flex_binding_ConstantBinding');
 
-goog.require('org.apache.flex.binding.BindingBase');
+goog.require('org_apache_flex_binding_BindingBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.binding.BindingBase}
+ * @extends {org_apache_flex_binding_BindingBase}
  */
-org.apache.flex.binding.ConstantBinding = function() {
-  org.apache.flex.binding.ConstantBinding.base(this, 'constructor');
+org_apache_flex_binding_ConstantBinding = function() {
+  org_apache_flex_binding_ConstantBinding.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.binding.ConstantBinding,
-    org.apache.flex.binding.BindingBase);
+goog.inherits(org_apache_flex_binding_ConstantBinding,
+    org_apache_flex_binding_BindingBase);
 
 
 /**
@@ -34,17 +34,17 @@ goog.inherits(org.apache.flex.binding.ConstantBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.binding.ConstantBinding.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_binding_ConstantBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ConstantBinding',
-                qName: 'org.apache.flex.binding.ConstantBinding'}] };
+                qName: 'org_apache_flex_binding_ConstantBinding'}] };
 
 
 /**
  * @override
  * @param {Object} value The strand (owner) of the bead.
  */
-org.apache.flex.binding.ConstantBinding.prototype.set_strand = function(value) {
-  org.apache.flex.binding.ConstantBinding.base(this, 'set_strand', value);
+org_apache_flex_binding_ConstantBinding.prototype.set_strand = function(value) {
+  org_apache_flex_binding_ConstantBinding.base(this, 'set_strand', value);
 
   var val;
   try {

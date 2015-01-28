@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('mx.core.IFactory');
+goog.provide('mx_core_IFactory');
 
 
 
 /**
  * @interface
  */
-mx.core.IFactory = function() {
+mx_core_IFactory = function() {
 };
 
 
@@ -32,7 +32,7 @@ mx.core.IFactory = function() {
  * @expose
  * @return {Object} A new instance of the itemRenderer.
  */
-mx.core.IFactory.prototype.newInstance = function() {};
+mx_core_IFactory.prototype.newInstance = function() {};
 
 
 /**
@@ -40,6 +40,6 @@ mx.core.IFactory.prototype.newInstance = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx.core.IFactory.prototype.FLEXJS_CLASS_INFO =
+mx_core_IFactory.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IFactory',
-                qName: 'mx.core.IFactory' }] };
+                qName: 'mx_core_IFactory' }] };

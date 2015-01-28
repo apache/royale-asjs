@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.provide('org_apache_flex_html_supportClasses_DataItemRenderer');
 
-goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
-goog.require('org.apache.flex.html.supportClasses.UIItemRendererBase');
+goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
+goog.require('org_apache_flex_html_supportClasses_UIItemRendererBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.supportClasses.UIItemRendererBase}
- * @implements {org.apache.flex.core.IItemRenderer}
+ * @extends {org_apache_flex_html_supportClasses_UIItemRendererBase}
+ * @implements {org_apache_flex_core_IItemRenderer}
  */
-org.apache.flex.html.supportClasses.DataItemRenderer =
+org_apache_flex_html_supportClasses_DataItemRenderer =
     function() {
-  org.apache.flex.html.supportClasses.DataItemRenderer.base(this, 'constructor');
+  org_apache_flex_html_supportClasses_DataItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.html.supportClasses.DataItemRenderer,
-    org.apache.flex.html.supportClasses.UIItemRendererBase);
+    org_apache_flex_html_supportClasses_DataItemRenderer,
+    org_apache_flex_html_supportClasses_UIItemRendererBase);
 
 
 /**
@@ -39,17 +39,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataItemRenderer',
-                qName: 'org.apache.flex.html.supportClasses.DataItemRenderer' }],
-      interfaces: [org.apache.flex.core.IItemRenderer] };
+                qName: 'org_apache_flex_html_supportClasses_DataItemRenderer' }],
+      interfaces: [org_apache_flex_core_IItemRenderer] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -62,8 +62,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org.apache.flex.html.beads.controllers.
-      ItemRendererMouseController();
+  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
   this.controller.set_strand(this);
 
   return this.element;
@@ -74,7 +73,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @expose
  * @return {Object} The item renderer's parent.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.get_itemRendererParent = function() {
   return this.rendererParent_;
 };
@@ -84,7 +83,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @expose
  * @param {Object} value The item renderer's parent.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.set_itemRendererParent = function(value) {
   this.rendererParent_ = value;
 };
@@ -94,7 +93,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @expose
  * @param {Object} value The renderer's index.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.set_index = function(value) {
   this.index_ = value;
 };
@@ -104,7 +103,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @expose
  * @param {string} value The name of field to use.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.set_dataField = function(value) {
 
   this.dataField_ = value;
@@ -115,7 +114,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @expose
  * @return {string} The name of the field to use.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.get_dataField = function() {
 
   return this.dataField_;
@@ -126,7 +125,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @override
  * @param {Boolean} value The selection state.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.set_selected = function(value) {
   this.selected_ = value;
 
@@ -142,7 +141,7 @@ org.apache.flex.html.supportClasses.DataItemRenderer.
  * @override
  * @param {Boolean} value The hovered state.
  */
-org.apache.flex.html.supportClasses.DataItemRenderer.
+org_apache_flex_html_supportClasses_DataItemRenderer.
     prototype.set_hovered = function(value) {
   this.hovered_ = value;
 

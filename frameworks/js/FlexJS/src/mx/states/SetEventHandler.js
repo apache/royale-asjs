@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('mx.states.SetEventHandler');
+goog.provide('mx_states_SetEventHandler');
 
-goog.require('org.apache.flex.core.IDocument');
+goog.require('org_apache_flex_core_IDocument');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IDocument}
+ * @implements {org_apache_flex_core_IDocument}
  */
-mx.states.SetEventHandler = function() {
+mx_states_SetEventHandler = function() {
 };
 
 
@@ -31,17 +31,17 @@ mx.states.SetEventHandler = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx.states.SetEventHandler.prototype.FLEXJS_CLASS_INFO =
+mx_states_SetEventHandler.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SetEventHandler',
-                qName: 'mx.states.SetEventHandler' }],
-      interfaces: [org.apache.flex.core.IDocument] };
+                qName: 'mx_states_SetEventHandler' }],
+      interfaces: [org_apache_flex_core_IDocument] };
 
 
 /**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-mx.states.SetEventHandler.prototype.setDocument = function(document, opt_id) {
+mx_states_SetEventHandler.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
@@ -51,28 +51,28 @@ mx.states.SetEventHandler.prototype.setDocument = function(document, opt_id) {
  * @expose
  * @type {Object} document The MXML object.
  */
-mx.states.SetEventHandler.prototype.document = null;
+mx_states_SetEventHandler.prototype.document = null;
 
 
 /**
  * @expose
  * @type {string} name The event to listen for.
  */
-mx.states.SetEventHandler.prototype.name = '';
+mx_states_SetEventHandler.prototype.name = '';
 
 
 /**
  * @expose
  * @type {string} target The id of the object.
  */
-mx.states.SetEventHandler.prototype.target = '';
+mx_states_SetEventHandler.prototype.target = '';
 
 
 /**
  * @expose
  * @type {Object} handlerFunction The listener to be added.
  */
-mx.states.SetEventHandler.prototype.handlerFunction = null;
+mx_states_SetEventHandler.prototype.handlerFunction = null;
 
 
 /**
@@ -80,7 +80,7 @@ mx.states.SetEventHandler.prototype.handlerFunction = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-mx.states.SetEventHandler.prototype.initializeFromObject = function(properties) {
+mx_states_SetEventHandler.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {

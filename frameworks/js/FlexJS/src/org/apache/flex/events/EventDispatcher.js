@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.events.EventDispatcher');
+goog.provide('org_apache_flex_events_EventDispatcher');
 
 goog.require('goog.events.EventTarget');
-goog.require('org.apache.flex.events.IEventDispatcher');
+goog.require('org_apache_flex_events_IEventDispatcher');
 
 
 
 /**
  * @constructor
  * @extends {goog.events.EventTarget}
- * @implements {org.apache.flex.events.IEventDispatcher}
+ * @implements {org_apache_flex_events_IEventDispatcher}
  */
-org.apache.flex.events.EventDispatcher = function() {
-  org.apache.flex.events.EventDispatcher.base(this, 'constructor');
+org_apache_flex_events_EventDispatcher = function() {
+  org_apache_flex_events_EventDispatcher.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.events.EventDispatcher,
+goog.inherits(org_apache_flex_events_EventDispatcher,
     goog.events.EventTarget);
 
 
@@ -36,16 +36,16 @@ goog.inherits(org.apache.flex.events.EventDispatcher,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.events.EventDispatcher.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_events_EventDispatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'EventDispatcher',
-                qName: 'org.apache.flex.events.EventDispatcher'}],
-      interfaces: [org.apache.flex.events.IEventDispatcher] };
+                qName: 'org_apache_flex_events_EventDispatcher'}],
+      interfaces: [org_apache_flex_events_IEventDispatcher] };
 
 
 /**
  * @override
  */
-org.apache.flex.events.EventDispatcher.prototype.addEventListener =
+org_apache_flex_events_EventDispatcher.prototype.addEventListener =
     function(type, handler, opt_capture, opt_handlerScope) {
   var source;
 
@@ -59,7 +59,7 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
       this.element.nodeName.toLowerCase() !== 'div' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
-  } else if (org.apache.flex.events.EventDispatcher.elementEvents[type]) {
+  } else if (org_apache_flex_events_EventDispatcher.elementEvents[type]) {
     // mouse and keyboard events also dispatch off the element.
     source = this.element;
   }
@@ -74,7 +74,7 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
  * @param {string} propName The name of the property.
  * @return {Object} value The value of the property.
  */
-org.apache.flex.events.EventDispatcher.prototype.getProperty =
+org_apache_flex_events_EventDispatcher.prototype.getProperty =
     function(obj, propName) {
   if (typeof obj['get_' + propName] === 'function') {
     return obj['get_' + propName]();
@@ -89,7 +89,7 @@ org.apache.flex.events.EventDispatcher.prototype.getProperty =
  * @param {string} propName The name of the property.
  * @param {Object} value The value of the property.
  */
-org.apache.flex.events.EventDispatcher.prototype.setProperty =
+org_apache_flex_events_EventDispatcher.prototype.setProperty =
 function(obj, propName, value) {
   if (typeof obj['set_' + propName] === 'function') {
     obj['set_' + propName](value);
@@ -102,7 +102,7 @@ function(obj, propName, value) {
 /**
  * @type {Object}
  */
-org.apache.flex.events.EventDispatcher.elementEvents = {
+org_apache_flex_events_EventDispatcher.elementEvents = {
   'mouseover': 1,
   'mouseout': 1,
   'mouseup': 1,

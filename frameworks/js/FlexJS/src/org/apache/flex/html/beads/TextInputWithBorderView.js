@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.TextInputWithBorderView');
+goog.provide('org_apache_flex_html_beads_TextInputWithBorderView');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.beads.TextInputWithBorderView = function() {
+org_apache_flex_html_beads_TextInputWithBorderView = function() {
 };
 
 
@@ -28,17 +28,17 @@ org.apache.flex.html.beads.TextInputWithBorderView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.TextInputWithBorderView
+org_apache_flex_html_beads_TextInputWithBorderView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextInputWithBorderView',
-                qName: 'org.apache.flex.html.beads.TextInputWithBorderView'}] };
+                qName: 'org_apache_flex_html_beads_TextInputWithBorderView'}] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.TextInputWithBorderView.prototype.
+org_apache_flex_html_beads_TextInputWithBorderView.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };

@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.SliderThumbView');
+goog.provide('org_apache_flex_html_beads_SliderThumbView');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.beads.SliderThumbView = function() {
+org_apache_flex_html_beads_SliderThumbView = function() {
 };
 
 
@@ -28,17 +28,17 @@ org.apache.flex.html.beads.SliderThumbView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.SliderThumbView
+org_apache_flex_html_beads_SliderThumbView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SliderThumbView',
-                qName: 'org.apache.flex.html.beads.SliderThumbView'}] };
+                qName: 'org_apache_flex_html_beads_SliderThumbView'}] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.SliderThumbView.prototype.
+org_apache_flex_html_beads_SliderThumbView.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 

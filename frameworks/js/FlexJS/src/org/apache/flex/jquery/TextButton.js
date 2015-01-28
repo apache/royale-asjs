@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.jquery.TextButton');
+goog.provide('org_apache_flex_jquery_TextButton');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.jquery.TextButton = function() {
-  org.apache.flex.jquery.TextButton.base(this, 'constructor');
+org_apache_flex_jquery_TextButton = function() {
+  org_apache_flex_jquery_TextButton.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.jquery.TextButton,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_jquery_TextButton,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.jquery.TextButton.prototype.createElement =
+org_apache_flex_jquery_TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -46,9 +46,9 @@ org.apache.flex.jquery.TextButton.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.jquery.TextButton.prototype.addedToParent =
+org_apache_flex_jquery_TextButton.prototype.addedToParent =
     function() {
-  org.apache.flex.jquery.TextButton.base(this, 'addedToParent');
+  org_apache_flex_jquery_TextButton.base(this, 'addedToParent');
   $(this.element).button();
 };
 
@@ -57,7 +57,7 @@ org.apache.flex.jquery.TextButton.prototype.addedToParent =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.jquery.TextButton.prototype.get_text =
+org_apache_flex_jquery_TextButton.prototype.get_text =
     function() {
   return this.element.innerHTML;
 };
@@ -67,7 +67,7 @@ org.apache.flex.jquery.TextButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.jquery.TextButton.prototype.set_text =
+org_apache_flex_jquery_TextButton.prototype.set_text =
     function(value) {
   this.element.innerHTML = value;
 };

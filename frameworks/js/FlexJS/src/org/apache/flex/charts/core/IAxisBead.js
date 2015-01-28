@@ -11,61 +11,61 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org.apache.flex.charts.core.IAxisBead
+ * org_apache_flex_charts_core_IAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.charts.core.IAxisBead');
+goog.provide('org_apache_flex_charts_core_IAxisBead');
 
-goog.require('org.apache.flex.core.IBead');
+goog.require('org_apache_flex_core_IBead');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.core.IBead}
+ * @extends {org_apache_flex_core_IBead}
  */
-org.apache.flex.charts.core.IAxisBead = function() {
+org_apache_flex_charts_core_IAxisBead = function() {
 };
 
 
 /**
  * @return {string}
  */
-org.apache.flex.charts.core.IAxisBead.prototype.get_placement = function() {};
+org_apache_flex_charts_core_IAxisBead.prototype.get_placement = function() {};
 
 
 /**
  * @param {string} value
  */
-org.apache.flex.charts.core.IAxisBead.prototype.set_placement = function(value) {};
+org_apache_flex_charts_core_IAxisBead.prototype.set_placement = function(value) {};
 
 
 /**
  * @return {Object}
  */
-org.apache.flex.charts.core.IAxisBead.prototype.get_axisStroke = function() {};
+org_apache_flex_charts_core_IAxisBead.prototype.get_axisStroke = function() {};
 
 
 /**
  * @param {Object} value
  */
-org.apache.flex.charts.core.IAxisBead.prototype.set_axisStroke = function(value) {};
+org_apache_flex_charts_core_IAxisBead.prototype.set_axisStroke = function(value) {};
 
 
 /**
  * @return {Object}
  */
-org.apache.flex.charts.core.IAxisBead.prototype.get_tickStroke = function() {};
+org_apache_flex_charts_core_IAxisBead.prototype.get_tickStroke = function() {};
 
 
 /**
  * @param {Object} value
  */
-org.apache.flex.charts.core.IAxisBead.prototype.set_tickStroke = function(value) {};
+org_apache_flex_charts_core_IAxisBead.prototype.set_tickStroke = function(value) {};
 
 
 /**
@@ -73,7 +73,7 @@ org.apache.flex.charts.core.IAxisBead.prototype.set_tickStroke = function(value)
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.core.IAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IAxisBead', qName: 'org.apache.flex.charts.core.IAxisBead'}],
-    interfaces: [org.apache.flex.core.IBead]
+org_apache_flex_charts_core_IAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IAxisBead', qName: 'org_apache_flex_charts_core_IAxisBead'}],
+    interfaces: [org_apache_flex_core_IBead]
   };

@@ -30,11 +30,11 @@ MySimpleValuesImpl = function() {
     this.values_ = {
         /*
         ITextButtonBead :
-            org.apache.flex.html.beads.TextButtonBead,
+            org_apache_flex_html_beads_TextButtonBead,
         ITextBead :
-            org.apache.flex.html.beads.TextFieldBead,
+            org_apache_flex_html_beads_TextFieldBead,
         ITextModel :
-            org.apache.flex.html.beads.models.TextModel
+            org_apache_flex_html_beads_models.TextModel
         */
     };
 };

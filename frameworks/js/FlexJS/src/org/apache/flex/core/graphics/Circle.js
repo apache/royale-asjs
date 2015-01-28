@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Circle');
+goog.provide('org_apache_flex_core_graphics_Circle');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Circle = function() {
-  org.apache.flex.core.graphics.Circle.base(this, 'constructor');
+org_apache_flex_core_graphics_Circle = function() {
+  org_apache_flex_core_graphics_Circle.base(this, 'constructor');
 
    /**
    * @private
@@ -31,8 +31,8 @@ org.apache.flex.core.graphics.Circle = function() {
    */
   this.radius_ = 0;
 };
-goog.inherits(org.apache.flex.core.graphics.Circle,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Circle,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -40,16 +40,16 @@ goog.inherits(org.apache.flex.core.graphics.Circle,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Circle.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Circle.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Circle',
-                qName: 'org.apache.flex.core.graphics.Circle' }] };
+                qName: 'org_apache_flex_core_graphics_Circle' }] };
 
 
 /**
  * @expose
  * @param {number} v The radius of the circle.
  */
-org.apache.flex.core.graphics.Circle.prototype.set_radius = function(v) {
+org_apache_flex_core_graphics_Circle.prototype.set_radius = function(v) {
   this.radius_ = v;
 };
 
@@ -58,7 +58,7 @@ org.apache.flex.core.graphics.Circle.prototype.set_radius = function(v) {
  * @expose
  * @return {number} The radius of the circle.
  */
-org.apache.flex.core.graphics.Circle.prototype.get_radius = function() {
+org_apache_flex_core_graphics_Circle.prototype.get_radius = function() {
   return this.radius_;
 };
 
@@ -69,7 +69,7 @@ org.apache.flex.core.graphics.Circle.prototype.get_radius = function() {
  * @param {number} y The y location of the center of the circle.
  * @param {number} radius The radius of the circle.
  */
-org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radius) {
+org_apache_flex_core_graphics_Circle.prototype.drawCircle = function(x, y, radius) {
     var style = this.getStyleStr();
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     circle.flexjs_wrapper = this;
@@ -98,6 +98,6 @@ org.apache.flex.core.graphics.Circle.prototype.drawCircle = function(x, y, radiu
 /**
  * @override
  */
-org.apache.flex.core.graphics.Circle.prototype.draw = function() {
+org_apache_flex_core_graphics_Circle.prototype.draw = function() {
     this.drawCircle(this.get_x(), this.get_y(), this.get_radius());
   };

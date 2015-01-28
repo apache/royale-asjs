@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Line');
+goog.provide('org_apache_flex_core_graphics_Line');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Line = function() {
-  org.apache.flex.core.graphics.Line.base(this, 'constructor');
+org_apache_flex_core_graphics_Line = function() {
+  org_apache_flex_core_graphics_Line.base(this, 'constructor');
 
 };
-goog.inherits(org.apache.flex.core.graphics.Line,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Line,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -35,9 +35,9 @@ goog.inherits(org.apache.flex.core.graphics.Line,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Line.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Line.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Line',
-                qName: 'org.apache.flex.core.graphics.Line' }] };
+                qName: 'org_apache_flex_core_graphics_Line' }] };
 
 
 /**
@@ -47,7 +47,7 @@ org.apache.flex.core.graphics.Line.prototype.FLEXJS_CLASS_INFO =
  *  @param {number} x2 The x2 attribute defines the end of the line on the x-axis.
  *  @param {number} y2 The y2 attribute defines the end of the line on the y-axis.
  */
-org.apache.flex.core.graphics.Line.prototype.drawLine = function(x1, y1, x2, y2) {
+org_apache_flex_core_graphics_Line.prototype.drawLine = function(x1, y1, x2, y2) {
     var style = this.getStyleStr();
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.flexjs_wrapper = this;
@@ -70,7 +70,7 @@ org.apache.flex.core.graphics.Line.prototype.drawLine = function(x1, y1, x2, y2)
  * @param {number} y Y position.
  * @param {Object} bbox The bounding box of the svg element.
  */
-org.apache.flex.core.graphics.Line.prototype.resize = function(x, y, bbox) {
+org_apache_flex_core_graphics_Line.prototype.resize = function(x, y, bbox) {
   this.element.setAttribute('width', String(bbox.width) + 'px');
   this.element.setAttribute('height', String(bbox.height) + 'px');
 

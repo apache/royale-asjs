@@ -13,24 +13,24 @@
  */
 
 /**
- * org.apache.flex.core.IStyleableObject
+ * org_apache_flex_core_IStyleableObject
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IStyleableObject');
+goog.provide('org_apache_flex_core_IStyleableObject');
 
-goog.require('org.apache.flex.events.IEventDispatcher');
+goog.require('org_apache_flex_events_IEventDispatcher');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org_apache_flex_events_IEventDispatcher}
  */
-org.apache.flex.core.IStyleableObject = function() {
+org_apache_flex_core_IStyleableObject = function() {
 };
 
 
@@ -39,8 +39,8 @@ org.apache.flex.core.IStyleableObject = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IStyleableObject.prototype.FLEXJS_CLASS_INFO = {
+org_apache_flex_core_IStyleableObject.prototype.FLEXJS_CLASS_INFO = {
   names: [{ name: 'IStyleableObject',
-    qName: 'org.apache.flex.core.IStyleableObject'}],
-  interfaces: [org.apache.flex.events.IEventDispatcher]
+    qName: 'org_apache_flex_core_IStyleableObject'}],
+  interfaces: [org_apache_flex_events_IEventDispatcher]
 };

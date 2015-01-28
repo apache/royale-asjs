@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IDocument');
+goog.provide('org_apache_flex_core_IDocument');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org.apache.flex.core.IDocument');
  *
  * @interface
  */
-org.apache.flex.core.IDocument = function() {
+org_apache_flex_core_IDocument = function() {
 };
 
 
@@ -35,9 +35,9 @@ org.apache.flex.core.IDocument = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IDocument.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IDocument.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IDocument',
-                qName: 'org.apache.flex.core.IDocument' }] };
+                qName: 'org_apache_flex_core_IDocument' }] };
 
 
 /**
@@ -47,5 +47,5 @@ org.apache.flex.core.IDocument.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} document The DOM document element.
  * @param {string=} opt_id The id (optional).
  */
-org.apache.flex.core.IDocument.prototype.setDocument =
+org_apache_flex_core_IDocument.prototype.setDocument =
     function(document, opt_id) {};

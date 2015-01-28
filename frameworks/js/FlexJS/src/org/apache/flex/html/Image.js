@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.Image');
+goog.provide('org_apache_flex_html_Image');
 
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.beads.ImageView');
-goog.require('org.apache.flex.html.beads.models.ImageModel');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_html_beads_ImageView');
+goog.require('org_apache_flex_html_beads_models_ImageModel');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.Image = function() {
-  org.apache.flex.html.Image.base(this, 'constructor');
+org_apache_flex_html_Image = function() {
+  org_apache_flex_html_Image.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html.Image,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_Image,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -36,9 +36,9 @@ goog.inherits(org.apache.flex.html.Image,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.Image.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_Image.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Image',
-                qName: 'org.apache.flex.html.Image' }] };
+                qName: 'org_apache_flex_html_Image' }] };
 
 
 /**
@@ -46,7 +46,7 @@ org.apache.flex.html.Image.prototype.FLEXJS_CLASS_INFO =
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org.apache.flex.html.Image.prototype.createElement =
+org_apache_flex_html_Image.prototype.createElement =
     function() {
 
   this.element = document.createElement('img');
@@ -55,12 +55,12 @@ org.apache.flex.html.Image.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this.model = new
-          org.apache.flex.html.beads.models.ImageModel();
+          org_apache_flex_html_beads_models_ImageModel();
 
   this.addBead(this.model);
 
   this.addBead(new
-      org.apache.flex.html.beads.ImageView());
+      org_apache_flex_html_beads_ImageView());
 
   return this.element;
 };
@@ -70,7 +70,7 @@ org.apache.flex.html.Image.prototype.createElement =
  * @expose
  * @return {String} The source identifier for the Image.
  */
-org.apache.flex.html.Image.prototype.
+org_apache_flex_html_Image.prototype.
     get_source = function() {
   return this.model.get_source();
 };
@@ -80,7 +80,7 @@ org.apache.flex.html.Image.prototype.
  * @expose
  * @param {String} value The source identifier for the Image.
  */
-org.apache.flex.html.Image.prototype.
+org_apache_flex_html_Image.prototype.
     set_source = function(value) {
   this.model.set_source(value);
 };

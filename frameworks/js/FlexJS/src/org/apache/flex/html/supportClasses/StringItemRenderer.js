@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.supportClasses.StringItemRenderer');
+goog.provide('org_apache_flex_html_supportClasses_StringItemRenderer');
 
-goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
-goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
+goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
- * @implements {org.apache.flex.core.IItemRenderer}
+ * @extends {org_apache_flex_html_supportClasses_DataItemRenderer}
+ * @implements {org_apache_flex_core_IItemRenderer}
  */
-org.apache.flex.html.supportClasses.StringItemRenderer =
+org_apache_flex_html_supportClasses_StringItemRenderer =
     function() {
-  org.apache.flex.html.supportClasses.StringItemRenderer.base(this, 'constructor');
+  org_apache_flex_html_supportClasses_StringItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.html.supportClasses.StringItemRenderer,
-    org.apache.flex.html.supportClasses.DataItemRenderer);
+    org_apache_flex_html_supportClasses_StringItemRenderer,
+    org_apache_flex_html_supportClasses_DataItemRenderer);
 
 
 /**
@@ -40,17 +40,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'StringItemRenderer',
-                qName: 'org.apache.flex.html.supportClasses.StringItemRenderer' }],
-      interfaces: [org.apache.flex.core.IItemRenderer] };
+                qName: 'org_apache_flex_html_supportClasses_StringItemRenderer' }],
+      interfaces: [org_apache_flex_core_IItemRenderer] };
 
 
 /**
  * @override
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -63,8 +63,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org.apache.flex.html.beads.controllers.
-      ItemRendererMouseController();
+  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
   this.controller.set_strand(this);
 
   return this.element;
@@ -75,7 +74,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.set_strand = function(value) {
 
   this.strand_ = value;
@@ -86,7 +85,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The strand.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.get_strand = function() {
   return this.strand_;
 };
@@ -96,7 +95,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The item renderer's parent.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.get_itemRendererParent = function() {
   return this.rendererParent_;
 };
@@ -106,7 +105,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The item renderer's parent.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.set_itemRendererParent = function(value) {
   this.rendererParent_ = value;
 };
@@ -116,7 +115,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The renderer's index.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.set_index = function(value) {
   this.index_ = value;
 };
@@ -126,7 +125,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.set_text = function(value) {
 
   this.element.innerHTML = value;
@@ -137,7 +136,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The text being displayed.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.get_text = function() {
 
   return this.element.innerHTML;
@@ -148,10 +147,10 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @param {Object} value The text to display.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.set_data = function(value) {
 
-  org.apache.flex.html.supportClasses.StringItemRenderer.base(this, 'set_data', value);
+  org_apache_flex_html_supportClasses_StringItemRenderer.base(this, 'set_data', value);
 
   if (this.get_labelField()) {
     this.element.innerHTML = String(value[this.get_labelField()]);
@@ -171,7 +170,7 @@ org.apache.flex.html.supportClasses.StringItemRenderer.
  * @expose
  * @return {Object} The text being displayed.
  */
-org.apache.flex.html.supportClasses.StringItemRenderer.
+org_apache_flex_html_supportClasses_StringItemRenderer.
     prototype.get_data = function() {
 
   return this.element.innerHTML;

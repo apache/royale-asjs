@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.jquery.CheckBox');
+goog.provide('org_apache_flex_jquery_CheckBox');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.jquery.CheckBox = function() {
-  org.apache.flex.jquery.CheckBox.base(this, 'constructor');
+org_apache_flex_jquery_CheckBox = function() {
+  org_apache_flex_jquery_CheckBox.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.jquery.CheckBox,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_jquery_CheckBox,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org.apache.flex.jquery.CheckBox,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.jquery.CheckBox.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_jquery_CheckBox.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CheckBox',
-                qName: 'org.apache.flex.jquery.CheckBox'}] };
+                qName: 'org_apache_flex_jquery_CheckBox'}] };
 
 
 /**
  * @override
  */
-org.apache.flex.jquery.CheckBox.prototype.createElement =
+org_apache_flex_jquery_CheckBox.prototype.createElement =
     function() {
   var cb;
 
@@ -65,7 +65,7 @@ org.apache.flex.jquery.CheckBox.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.jquery.CheckBox.prototype.get_text = function() {
+org_apache_flex_jquery_CheckBox.prototype.get_text = function() {
   return this.element.childNodes.item(1).nodeValue;
 };
 
@@ -74,7 +74,7 @@ org.apache.flex.jquery.CheckBox.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.jquery.CheckBox.prototype.set_text =
+org_apache_flex_jquery_CheckBox.prototype.set_text =
     function(value) {
   this.element.childNodes.item(1).nodeValue = value;
 };
@@ -84,7 +84,7 @@ org.apache.flex.jquery.CheckBox.prototype.set_text =
  * @expose
  * @return {boolean} The selected getter.
  */
-org.apache.flex.jquery.CheckBox.prototype.get_selected =
+org_apache_flex_jquery_CheckBox.prototype.get_selected =
     function() {
   return this.element.childNodes.item(0).checked;
 };
@@ -94,7 +94,7 @@ org.apache.flex.jquery.CheckBox.prototype.get_selected =
  * @expose
  * @param {boolean} value The selected setter.
  */
-org.apache.flex.jquery.CheckBox.prototype.set_selected =
+org_apache_flex_jquery_CheckBox.prototype.set_selected =
     function(value) {
   this.element.childNodes.item(0).checked = value;
 };

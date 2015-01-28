@@ -13,21 +13,21 @@
  */
 
 /**
- * org.apache.flex.core.graphics.GradientBase
+ * org_apache_flex_core_graphics_GradientBase
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.graphics.GradientBase');
+goog.provide('org_apache_flex_core_graphics_GradientBase');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.core.graphics.GradientBase = function() {
+org_apache_flex_core_graphics_GradientBase = function() {
 };
 
 
@@ -35,40 +35,40 @@ org.apache.flex.core.graphics.GradientBase = function() {
  * @protected
  * @type {Array}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.colors = [];
+org_apache_flex_core_graphics_GradientBase.prototype.colors = [];
 
 
 /**
  * @protected
  * @type {Array}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.ratios = [];
+org_apache_flex_core_graphics_GradientBase.prototype.ratios = [];
 
 
 /**
  * @protected
  * @type {Array}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.alphas = [];
+org_apache_flex_core_graphics_GradientBase.prototype.alphas = [];
 
 
 /**
  * @type {Array}
  */
-org.apache.flex.core.graphics.GradientBase.prototype._entries = [];
+org_apache_flex_core_graphics_GradientBase.prototype._entries = [];
 
 
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype._rotation = 0.0;
+org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
 
 
 /**
  * @expose
  * @return {Array}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_entries = function() {
+org_apache_flex_core_graphics_GradientBase.prototype.get_entries = function() {
   return this._entries;
 };
 
@@ -77,7 +77,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_entries = function() {
  * @expose
  * @param {Array} value
  */
-org.apache.flex.core.graphics.GradientBase.prototype.set_entries = function(value) {
+org_apache_flex_core_graphics_GradientBase.prototype.set_entries = function(value) {
   this._entries = value;
 };
 
@@ -91,7 +91,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_entries = function(valu
  *  to occur from right to left, rather than from left to right.
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_rotation = function() {
+org_apache_flex_core_graphics_GradientBase.prototype.get_rotation = function() {
   return this._rotation;
 };
 
@@ -100,7 +100,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_rotation = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientBase.prototype.set_rotation = function(value) {
+org_apache_flex_core_graphics_GradientBase.prototype.set_rotation = function(value) {
   this._rotation = value;
 };
 
@@ -108,14 +108,14 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_rotation = function(val
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype._x = 0;
+org_apache_flex_core_graphics_GradientBase.prototype._x = 0;
 
 
 /**
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_x = function() {
+org_apache_flex_core_graphics_GradientBase.prototype.get_x = function() {
   return this._x;
 };
 
@@ -124,7 +124,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_x = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientBase.prototype.set_x = function(value) {
+org_apache_flex_core_graphics_GradientBase.prototype.set_x = function(value) {
   this._x = value;
 };
 
@@ -132,14 +132,14 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_x = function(value) {
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype._y = 0;
+org_apache_flex_core_graphics_GradientBase.prototype._y = 0;
 
 
 /**
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.GradientBase.prototype.set_y = function(value) {
+org_apache_flex_core_graphics_GradientBase.prototype.set_y = function(value) {
   this._y = value;
 };
 
@@ -148,7 +148,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.set_y = function(value) {
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_y = function() {
+org_apache_flex_core_graphics_GradientBase.prototype.get_y = function() {
   return this._y;
 };
 
@@ -157,7 +157,7 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_y = function() {
  * @expose
  * @return {string} A new gradient id value.
  */
-org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function() {
+org_apache_flex_core_graphics_GradientBase.prototype.get_newId = function() {
   return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
 };
 
@@ -167,6 +167,6 @@ org.apache.flex.core.graphics.GradientBase.prototype.get_newId = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GradientBase.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'GradientBase', qName: 'org.apache.flex.core.graphics.GradientBase'}]
+org_apache_flex_core_graphics_GradientBase.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'GradientBase', qName: 'org_apache_flex_core_graphics_GradientBase'}]
   };

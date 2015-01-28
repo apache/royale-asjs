@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.ValuesManager');
+goog.provide('org_apache_flex_core_ValuesManager');
 
-goog.require('org.apache.flex.core.IValuesImpl');
+goog.require('org_apache_flex_core_IValuesImpl');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.core.ValuesManager = function() {
+org_apache_flex_core_ValuesManager = function() {
 };
 
 
@@ -30,33 +30,33 @@ org.apache.flex.core.ValuesManager = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ValuesManager.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ValuesManager.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ValuesManager',
-                qName: 'org.apache.flex.core.ValuesManager' }] };
+                qName: 'org_apache_flex_core_ValuesManager' }] };
 
 
 /**
  * @expose
- * @type {org.apache.flex.core.IValuesImpl}
+ * @type {org_apache_flex_core_IValuesImpl}
  */
-org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;
+org_apache_flex_core_ValuesManager.prototype.valuesImpl = null;
 
 
 /**
  * @expose
- * @this {org.apache.flex.core.ValuesManager}
- * @return {org.apache.flex.core.IValuesImpl} The value.
+ * @this {org_apache_flex_core_ValuesManager}
+ * @return {org_apache_flex_core_IValuesImpl} The value.
  */
-org.apache.flex.core.ValuesManager.get_valuesImpl = function() {
-  return org.apache.flex.core.ValuesManager.valuesImpl;
+org_apache_flex_core_ValuesManager.get_valuesImpl = function() {
+  return org_apache_flex_core_ValuesManager.valuesImpl;
 };
 
 
 /**
  * @expose
- * @this {org.apache.flex.core.ValuesManager}
- * @param {org.apache.flex.core.IValuesImpl} value being set.
+ * @this {org_apache_flex_core_ValuesManager}
+ * @param {org_apache_flex_core_IValuesImpl} value being set.
  */
-org.apache.flex.core.ValuesManager.set_valuesImpl = function(value) {
-  org.apache.flex.core.ValuesManager.valuesImpl = value;
+org_apache_flex_core_ValuesManager.set_valuesImpl = function(value) {
+  org_apache_flex_core_ValuesManager.valuesImpl = value;
 };

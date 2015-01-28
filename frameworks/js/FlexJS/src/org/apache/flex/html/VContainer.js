@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.VContainer');
+goog.provide('org_apache_flex_html_VContainer');
 
-goog.require('org.apache.flex.core.IContainer');
-goog.require('org.apache.flex.html.Container');
+goog.require('org_apache_flex_core_IContainer');
+goog.require('org_apache_flex_html_Container');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IContainer}
- * @extends {org.apache.flex.html.Container}
+ * @implements {org_apache_flex_core_IContainer}
+ * @extends {org_apache_flex_html_Container}
  */
-org.apache.flex.html.VContainer = function() {
-  org.apache.flex.html.VContainer.base(this, 'constructor');
+org_apache_flex_html_VContainer = function() {
+  org_apache_flex_html_VContainer.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html.VContainer,
-    org.apache.flex.html.Container);
+goog.inherits(org_apache_flex_html_VContainer,
+    org_apache_flex_html_Container);
 
 
 /**
@@ -36,7 +36,7 @@ goog.inherits(org.apache.flex.html.VContainer,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.VContainer.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_VContainer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'VContainer',
-                qName: 'org.apache.flex.html.VContainer' }],
-      interfaces: [org.apache.flex.core.IContainer] };
+                qName: 'org_apache_flex_html_VContainer' }],
+      interfaces: [org_apache_flex_core_IContainer] };

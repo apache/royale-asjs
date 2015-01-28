@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.net.JSONInputParser');
+goog.provide('org_apache_flex_net_JSONInputParser');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.net.JSONInputParser = function() {
+org_apache_flex_net_JSONInputParser = function() {
 };
 
 
@@ -28,9 +28,9 @@ org.apache.flex.net.JSONInputParser = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.net.JSONInputParser.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_net_JSONInputParser.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'JSONInputParser',
-                qName: 'org.apache.flex.net.JSONInputParser'}] };
+                qName: 'org_apache_flex_net_JSONInputParser'}] };
 
 
 /**
@@ -38,7 +38,7 @@ org.apache.flex.net.JSONInputParser.prototype.FLEXJS_CLASS_INFO =
  * @param {string} s The input string.
  * @return {Array.<string>} The Array of unparsed objects.
  */
-org.apache.flex.net.JSONInputParser.prototype.parseItems = function(s) {
+org_apache_flex_net_JSONInputParser.prototype.parseItems = function(s) {
   var c = s.indexOf('[');
   if (c != -1) {
     var c2 = s.lastIndexOf(']');

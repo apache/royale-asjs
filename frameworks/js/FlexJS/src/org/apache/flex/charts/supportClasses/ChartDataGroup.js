@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.charts.supportClasses.ChartDataGroup');
+goog.provide('org_apache_flex_charts_supportClasses_ChartDataGroup');
 
-goog.require('org.apache.flex.charts.core.IChartDataGroup');
-goog.require('org.apache.flex.html.supportClasses.NonVirtualDataGroup');
+goog.require('org_apache_flex_charts_core_IChartDataGroup');
+goog.require('org_apache_flex_html_supportClasses_NonVirtualDataGroup');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.supportClasses.NonVirtualDataGroup}
- * @implements {org.apache.flex.charts.core.IChartDataGroup}
+ * @extends {org_apache_flex_html_supportClasses_NonVirtualDataGroup}
+ * @implements {org_apache_flex_charts_core_IChartDataGroup}
  */
-org.apache.flex.charts.supportClasses.ChartDataGroup =
+org_apache_flex_charts_supportClasses_ChartDataGroup =
     function() {
-  org.apache.flex.charts.supportClasses.ChartDataGroup.base(this, 'constructor');
+  org_apache_flex_charts_supportClasses_ChartDataGroup.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.charts.supportClasses.ChartDataGroup,
-    org.apache.flex.html.supportClasses.NonVirtualDataGroup);
+    org_apache_flex_charts_supportClasses_ChartDataGroup,
+    org_apache_flex_html_supportClasses_NonVirtualDataGroup);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.charts.supportClasses.ChartDataGroup.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_charts_supportClasses_ChartDataGroup.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ChartDataGroup',
-                qName: 'org.apache.flex.charts.supportClasses.ChartDataGroup' }],
-      interfaces: [org.apache.flex.charts.core.IChartDataGroup] };
+                qName: 'org_apache_flex_charts_supportClasses_ChartDataGroup' }],
+      interfaces: [org_apache_flex_charts_core_IChartDataGroup] };
 
 
 /**
  * @override
  */
-org.apache.flex.charts.supportClasses.ChartDataGroup.
+org_apache_flex_charts_supportClasses_ChartDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
@@ -65,7 +65,7 @@ org.apache.flex.charts.supportClasses.ChartDataGroup.
  * @param {number} index The position of the itemRenderer within the series.
  * @return {Object} The itemRenderer that matches the series and index.
  */
-org.apache.flex.charts.supportClasses.ChartDataGroup.prototype.getItemRendererForSeriesAtIndex =
+org_apache_flex_charts_supportClasses_ChartDataGroup.prototype.getItemRendererForSeriesAtIndex =
 function(series, index) {
   var n = this.get_numElements();
   for (var i = 0; i < n; i++)

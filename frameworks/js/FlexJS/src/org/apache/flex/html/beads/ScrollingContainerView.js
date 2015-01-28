@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.ScrollingContainerView');
+goog.provide('org_apache_flex_html_beads_ScrollingContainerView');
 
-goog.require('org.apache.flex.html.beads.ContainerView');
+goog.require('org_apache_flex_html_beads_ContainerView');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.beads.ContainerView}
+ * @extends {org_apache_flex_html_beads_ContainerView}
  */
-org.apache.flex.html.beads.ScrollingContainerView = function() {
+org_apache_flex_html_beads_ScrollingContainerView = function() {
   this.lastSelectedIndex = -1;
-  org.apache.flex.html.beads.ScrollingContainerView.base(this, 'constructor');
+  org_apache_flex_html_beads_ScrollingContainerView.base(this, 'constructor');
 
   this.className = 'ScrollingContainerView';
 };
 goog.inherits(
-    org.apache.flex.html.beads.ScrollingContainerView,
-    org.apache.flex.html.beads.ContainerView);
+    org_apache_flex_html_beads_ScrollingContainerView,
+    org_apache_flex_html_beads_ContainerView);
 
 
 /**
@@ -38,10 +38,10 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ScrollingContainerView',
-                qName: 'org.apache.flex.html.beads.ScrollingContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutParent]
+                qName: 'org_apache_flex_html_beads_ScrollingContainerView' }],
+    interfaces: [org_apache_flex_core_ILayoutParent]
     };
 
 
@@ -49,7 +49,7 @@ org.apache.flex.html.beads.ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
  * @expose
  * @return {Object} value The content view.
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.get_contentView =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.get_contentView =
     function() {
 
   return this._strand;
@@ -60,7 +60,7 @@ org.apache.flex.html.beads.ScrollingContainerView.prototype.get_contentView =
  * @expose
  * @return {Object} value The resizeable view.
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.get_resizableView =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.get_resizableView =
 function() {
 
   return this._strand;
@@ -71,7 +71,7 @@ function() {
  * @expose
  * @return {number} value The resizeable view.
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.get_verticalScrollPosition =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.get_verticalScrollPosition =
 function() {
 
   return this._strand.scrollTop;
@@ -82,7 +82,7 @@ function() {
  * @expose
  * @param {number} value The resizeable view.
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.set_verticalScrollPosition =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.set_verticalScrollPosition =
 function(value) {
 
   this._strand.scrollTop = value;
@@ -93,7 +93,7 @@ function(value) {
  * @expose
  * @return {number} value The resizeable view.
  */
-org.apache.flex.html.beads.ScrollingContainerView.prototype.get_maxVerticalScrollPosition =
+org_apache_flex_html_beads_ScrollingContainerView.prototype.get_maxVerticalScrollPosition =
 function() {
 
   return this._strand.scrollHeight - this._strand.clientHeight;

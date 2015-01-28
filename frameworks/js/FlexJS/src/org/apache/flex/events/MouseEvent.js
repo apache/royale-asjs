@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.events.MouseEvent');
+goog.provide('org_apache_flex_events_MouseEvent');
 
 goog.require('goog.events.BrowserEvent');
 
@@ -27,53 +27,53 @@ goog.require('goog.events.BrowserEvent');
  * if the runtime is actually sending a native
  * browser MouseEvent
  */
-org.apache.flex.events.MouseEvent = function() {
-  org.apache.flex.events.MouseEvent.base(this, 'constructor');
+org_apache_flex_events_MouseEvent = function() {
+  org_apache_flex_events_MouseEvent.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.events.MouseEvent,
+goog.inherits(org_apache_flex_events_MouseEvent,
     goog.events.BrowserEvent);
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.ROLL_OVER = 'rollover';
+org_apache_flex_events_MouseEvent.ROLL_OVER = 'rollover';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.ROLL_OUT = 'rollout';
+org_apache_flex_events_MouseEvent.ROLL_OUT = 'rollout';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OVER = 'mouseover';
+org_apache_flex_events_MouseEvent.MOUSE_OVER = 'mouseover';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_OUT = 'mouseout';
+org_apache_flex_events_MouseEvent.MOUSE_OUT = 'mouseout';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_UP = 'mouseup';
+org_apache_flex_events_MouseEvent.MOUSE_UP = 'mouseup';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_DOWN = 'mousedown';
+org_apache_flex_events_MouseEvent.MOUSE_DOWN = 'mousedown';
 
 
 /**
  * @type {string}
  */
-org.apache.flex.events.MouseEvent.MOUSE_MOVE = 'mousemove';
+org_apache_flex_events_MouseEvent.MOUSE_MOVE = 'mousemove';
 
 
 /**
@@ -81,17 +81,17 @@ org.apache.flex.events.MouseEvent.MOUSE_MOVE = 'mousemove';
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.events.MouseEvent.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_events_MouseEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'MouseEvent',
-                qName: 'org.apache.flex.events.MouseEvent' }] };
+                qName: 'org_apache_flex_events_MouseEvent' }] };
 
 
 /**
  * @return {boolean}
  */
-org.apache.flex.events.MouseEvent.installRollOverMixin = function() {
-  window.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_OVER,
-    org.apache.flex.events.MouseEvent.mouseOverHandler);
+org_apache_flex_events_MouseEvent.installRollOverMixin = function() {
+  window.addEventListener(org_apache_flex_events_MouseEvent.MOUSE_OVER,
+    org_apache_flex_events_MouseEvent.mouseOverHandler);
   return true;
 };
 
@@ -103,23 +103,23 @@ org.apache.flex.events.MouseEvent.installRollOverMixin = function() {
  * for the child and not the parent and you need to send rollout
  * to both.  A similar issue exists for rollover.
  */
-org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
+org_apache_flex_events_MouseEvent.mouseOverHandler = function(e) {
   var j, m, outs, me, parent;
   var target = e.target.flexjs_wrapper;
   if (target === undefined)
     return; // probably over the html tag
-  var targets = org.apache.flex.events.MouseEvent.targets;
+  var targets = org_apache_flex_events_MouseEvent.targets;
   var index = targets.indexOf(target);
   if (index != -1) {
     // get all children
     outs = targets.slice(index + 1);
     m = outs.length;
     for (j = 0; j < m; j++) {
-      me = org.apache.flex.events.MouseEvent.makeMouseEvent(
-               org.apache.flex.events.MouseEvent.ROLL_OUT, e);
+      me = org_apache_flex_events_MouseEvent.makeMouseEvent(
+               org_apache_flex_events_MouseEvent.ROLL_OUT, e);
       outs[j].element.dispatchEvent(me);
     }
-    org.apache.flex.events.MouseEvent.targets = targets.slice(0, index + 1);
+    org_apache_flex_events_MouseEvent.targets = targets.slice(0, index + 1);
   }
   else {
     var newTargets = [target];
@@ -139,8 +139,8 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
         outs = targets.slice(index + 1);
         m = outs.length;
         for (j = 0; j < m; j++) {
-          me = org.apache.flex.events.MouseEvent.makeMouseEvent(
-                   org.apache.flex.events.MouseEvent.ROLL_OUT, e);
+          me = org_apache_flex_events_MouseEvent.makeMouseEvent(
+                   org_apache_flex_events_MouseEvent.ROLL_OUT, e);
           outs[j].element.dispatchEvent(me);
         }
         targets = targets.slice(0, index + 1);
@@ -149,11 +149,11 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
     }
     var n = newTargets.length;
     for (var i = 0; i < n; i++) {
-      me = org.apache.flex.events.MouseEvent.makeMouseEvent(
-                   org.apache.flex.events.MouseEvent.ROLL_OVER, e);
+      me = org_apache_flex_events_MouseEvent.makeMouseEvent(
+                   org_apache_flex_events_MouseEvent.ROLL_OVER, e);
       newTargets[i].element.dispatchEvent(me);
     }
-    org.apache.flex.events.MouseEvent.targets = targets.concat(newTargets);
+    org_apache_flex_events_MouseEvent.targets = targets.concat(newTargets);
   }
 };
 
@@ -161,14 +161,14 @@ org.apache.flex.events.MouseEvent.mouseOverHandler = function(e) {
 /**
  * @type {boolean}
  */
-org.apache.flex.events.MouseEvent.rollOverMixin =
-    org.apache.flex.events.MouseEvent.installRollOverMixin();
+org_apache_flex_events_MouseEvent.rollOverMixin =
+    org_apache_flex_events_MouseEvent.installRollOverMixin();
 
 
 /**
  * @type {Object}
  */
-org.apache.flex.events.MouseEvent.targets = [];
+org_apache_flex_events_MouseEvent.targets = [];
 
 
 /**
@@ -176,7 +176,7 @@ org.apache.flex.events.MouseEvent.targets = [];
  * @param {Event} e The mouse event.
  * @return {MouseEvent} The new event.
  */
-org.apache.flex.events.MouseEvent.makeMouseEvent = function(type, e) {
+org_apache_flex_events_MouseEvent.makeMouseEvent = function(type, e) {
   var out = new MouseEvent(type);
   out.initMouseEvent(type, false, false);
   out.screenX = e.screenX;

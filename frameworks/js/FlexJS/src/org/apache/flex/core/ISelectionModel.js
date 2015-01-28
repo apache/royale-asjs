@@ -13,25 +13,25 @@
  */
 
 /**
- * org.apache.flex.core.ISelectionModel
+ * org_apache_flex_core_ISelectionModel
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.ISelectionModel');
+goog.provide('org_apache_flex_core_ISelectionModel');
 
-goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org_apache_flex_core_IBeadModel');
 
 
 
 /**
  * @interface
- * @extends {org.apache.flex.events.IEventDispatcher}
- * @extends {org.apache.flex.core.IBeadModel}
+ * @extends {org_apache_flex_events_IEventDispatcher}
+ * @extends {org_apache_flex_core_IBeadModel}
  */
-org.apache.flex.core.ISelectionModel = function() {
+org_apache_flex_core_ISelectionModel = function() {
 };
 
 
@@ -39,42 +39,42 @@ org.apache.flex.core.ISelectionModel = function() {
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectionModel.prototype.set_dataProvider = function(value) {};
+org_apache_flex_core_ISelectionModel.prototype.set_dataProvider = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} The dataProvider.
  */
-org.apache.flex.core.ISelectionModel.prototype.get_dataProvider = function() {};
+org_apache_flex_core_ISelectionModel.prototype.get_dataProvider = function() {};
 
 
 /**
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.ISelectionModel.prototype.set_selectedIndex = function(value) {};
+org_apache_flex_core_ISelectionModel.prototype.set_selectedIndex = function(value) {};
 
 
 /**
  * @expose
  * @return {number} The selected index.
  */
-org.apache.flex.core.ISelectionModel.prototype.get_selectedIndex = function() {};
+org_apache_flex_core_ISelectionModel.prototype.get_selectedIndex = function() {};
 
 
 /**
  * @expose
  * @param {Object} value
  */
-org.apache.flex.core.ISelectionModel.prototype.set_selectedItem = function(value) {};
+org_apache_flex_core_ISelectionModel.prototype.set_selectedItem = function(value) {};
 
 
 /**
  * @expose
  * @return {Object} The selected item.
  */
-org.apache.flex.core.ISelectionModel.prototype.get_selectedItem = function() {};
+org_apache_flex_core_ISelectionModel.prototype.get_selectedItem = function() {};
 
 
 /**
@@ -82,6 +82,6 @@ org.apache.flex.core.ISelectionModel.prototype.get_selectedItem = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ISelectionModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'ISelectionModel', qName: 'org.apache.flex.core.ISelectionModel'}],
-  interfaces: [org.apache.flex.events.IEventDispatcher, org.apache.flex.core.IBeadModel] };
+org_apache_flex_core_ISelectionModel.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'ISelectionModel', qName: 'org_apache_flex_core_ISelectionModel'}],
+  interfaces: [org_apache_flex_events_IEventDispatcher, org_apache_flex_core_IBeadModel] };

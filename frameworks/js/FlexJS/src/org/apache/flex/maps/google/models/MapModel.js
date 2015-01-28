@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.maps.google.models.MapModel');
+goog.provide('org_apache_flex_maps_google_models_MapModel');
 
-goog.require('org.apache.flex.core.IBeadModel');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 // IMPORTANT:
@@ -26,15 +26,15 @@ goog.require('org.apache.flex.events.EventDispatcher');
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IBeadModel}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IBeadModel}
  */
-org.apache.flex.maps.google.models.MapModel = function() {
-  org.apache.flex.maps.google.models.MapModel.base(this, 'constructor');
+org_apache_flex_maps_google_models_MapModel = function() {
+  org_apache_flex_maps_google_models_MapModel.base(this, 'constructor');
 };
 goog.inherits(
-    org.apache.flex.maps.google.models.MapModel,
-    org.apache.flex.events.EventDispatcher);
+    org_apache_flex_maps_google_models_MapModel,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -42,18 +42,18 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.maps.google.models.MapModel.prototype.
+org_apache_flex_maps_google_models_MapModel.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'MapModel',
-           qName: 'org.apache.flex.maps.google.models.MapModel' }],
-    interfaces: [org.apache.flex.core.IBeadModel] };
+           qName: 'org_apache_flex_maps_google_models_MapModel' }],
+    interfaces: [org_apache_flex_core_IBeadModel] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.
+org_apache_flex_maps_google_models_MapModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -63,7 +63,7 @@ org.apache.flex.maps.google.models.MapModel.prototype.
  * @expose
  * @return {Array} The search results list.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.get_searchResults =
+org_apache_flex_maps_google_models_MapModel.prototype.get_searchResults =
 function() {
   return this._searchResults;
 };
@@ -73,7 +73,7 @@ function() {
  * @expose
  * @param {Array} value A list of search results.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.set_searchResults =
+org_apache_flex_maps_google_models_MapModel.prototype.set_searchResults =
 function(value) {
   this._searchResults = value;
   this.dispatchEvent('searchResultsChanged');
@@ -84,7 +84,7 @@ function(value) {
  * @expose
  * @return {Number} Map zoom level.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.get_zoom =
+org_apache_flex_maps_google_models_MapModel.prototype.get_zoom =
 function() {
   return this._zoom;
 };
@@ -94,7 +94,7 @@ function() {
  * @expose
  * @param {Number} value Map zoom level.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.set_zoom =
+org_apache_flex_maps_google_models_MapModel.prototype.set_zoom =
 function(value) {
   this._zoom = value;
   this.dispatchEvent('zoomChanged');
@@ -105,7 +105,7 @@ function(value) {
  * @expose
  * @return {Object} The currently selected map Marker.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.get_selectedMarker =
+org_apache_flex_maps_google_models_MapModel.prototype.get_selectedMarker =
 function() {
   return this._selectedMarker;
 };
@@ -115,7 +115,7 @@ function() {
  * @expose
  * @param {Object} value A marker to be made the selected marker.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.set_selectedMarker =
+org_apache_flex_maps_google_models_MapModel.prototype.set_selectedMarker =
 function(value) {
   this._selectedMarker = value;
   this.dispatchEvent('selectedMarkerChanged');
@@ -126,7 +126,7 @@ function(value) {
  * @expose
  * @return {Object} The map's current center.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.get_currentLocation =
+org_apache_flex_maps_google_models_MapModel.prototype.get_currentLocation =
 function() {
   return this._currentLocation;
 };
@@ -136,7 +136,7 @@ function() {
  * @expose
  * @param {Object} value The map's new current center.
  */
-org.apache.flex.maps.google.models.MapModel.prototype.set_currentLocation =
+org_apache_flex_maps_google_models_MapModel.prototype.set_currentLocation =
 function(value) {
   this._currentLocation = value;
   this.dispatchEvent('currentLocationChanged');

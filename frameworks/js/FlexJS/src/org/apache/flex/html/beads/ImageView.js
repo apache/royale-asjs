@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.ImageView');
+goog.provide('org_apache_flex_html_beads_ImageView');
 
 
-goog.require('org.apache.flex.html.beads.models.ImageModel');
+goog.require('org_apache_flex_html_beads_models_ImageModel');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.beads.ImageView = function() {
+org_apache_flex_html_beads_ImageView = function() {
 };
 
 
@@ -31,23 +31,23 @@ org.apache.flex.html.beads.ImageView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.ImageView
+org_apache_flex_html_beads_ImageView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageView',
-                qName: 'org.apache.flex.html.beads.ImageView'}] };
+                qName: 'org_apache_flex_html_beads_ImageView'}] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.ImageView.prototype.set_strand =
+org_apache_flex_html_beads_ImageView.prototype.set_strand =
     function(value) {
 
   this.strand_ = value;
 
   this.model = value.getBeadByType(
-      org.apache.flex.html.beads.models.ImageModel);
+      org_apache_flex_html_beads_models_ImageModel);
   this.model.addEventListener('sourceChanged',
       goog.bind(this.sourceChangeHandler, this));
 };
@@ -57,7 +57,7 @@ org.apache.flex.html.beads.ImageView.prototype.set_strand =
  * @expose
  * @param {Object} event The event triggered by the source change.
  */
-org.apache.flex.html.beads.ImageView.prototype.
+org_apache_flex_html_beads_ImageView.prototype.
     sourceChangeHandler = function(event) {
   this.strand_.element.src = this.model.get_source();
 };

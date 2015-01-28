@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.SolidColor');
-goog.require('org.apache.flex.core.graphics.IFill');
+goog.provide('org_apache_flex_core_graphics_SolidColor');
+goog.require('org_apache_flex_core_graphics_IFill');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.graphics.IFill}
+ * @implements {org_apache_flex_core_graphics_IFill}
  */
-org.apache.flex.core.graphics.SolidColor = function() {
+org_apache_flex_core_graphics_SolidColor = function() {
 
   /**
    * @private
@@ -43,17 +43,17 @@ org.apache.flex.core.graphics.SolidColor = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.SolidColor.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_SolidColor.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SolidColor',
-                qName: 'org.apache.flex.core.graphics.SolidColor' }],
-                interfaces: [org.apache.flex.core.graphics.IFill] };
+                qName: 'org_apache_flex_core_graphics_SolidColor' }],
+                interfaces: [org_apache_flex_core_graphics_IFill] };
 
 
 /**
  * @expose
  * @return {number} color.
  */
-org.apache.flex.core.graphics.SolidColor.prototype.get_color = function() {
+org_apache_flex_core_graphics_SolidColor.prototype.get_color = function() {
   return this.color_;
 };
 
@@ -61,7 +61,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_color = function() {
 /**
  * @param {number} value color.
  */
-org.apache.flex.core.graphics.SolidColor.prototype.set_color = function(value) {
+org_apache_flex_core_graphics_SolidColor.prototype.set_color = function(value) {
   this.color_ = value;
 };
 
@@ -70,7 +70,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.set_color = function(value) {
  * @expose
  * @return {number} alpha.
  */
-org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
+org_apache_flex_core_graphics_SolidColor.prototype.get_alpha = function() {
   return this.alpha_;
 };
 
@@ -78,7 +78,7 @@ org.apache.flex.core.graphics.SolidColor.prototype.get_alpha = function() {
 /**
  * @param {number} value alpha.
  */
-org.apache.flex.core.graphics.SolidColor.prototype.set_alpha = function(value) {
+org_apache_flex_core_graphics_SolidColor.prototype.set_alpha = function(value) {
   this.alpha_ = value;
 };
 
@@ -87,10 +87,10 @@ org.apache.flex.core.graphics.SolidColor.prototype.set_alpha = function(value) {
  * addFillAttrib()
  *
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the fill must be added.
+ * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string}
  */
-org.apache.flex.core.graphics.SolidColor.prototype.addFillAttrib = function(value) {
+org_apache_flex_core_graphics_SolidColor.prototype.addFillAttrib = function(value) {
   var color = Number(this.get_color()).toString(16);
   if (color.length == 1) color = '00' + color;
   if (color.length == 2) color = '00' + color;

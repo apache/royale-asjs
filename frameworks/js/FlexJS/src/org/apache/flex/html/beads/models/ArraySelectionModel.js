@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.provide('org_apache_flex_html_beads_models_ArraySelectionModel');
 
-goog.require('org.apache.flex.core.ISelectionModel');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_ISelectionModel');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.ISelectionModel}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_ISelectionModel}
  */
-org.apache.flex.html.beads.models.ArraySelectionModel =
+org_apache_flex_html_beads_models_ArraySelectionModel =
     function() {
-  org.apache.flex.html.beads.models.ArraySelectionModel.base(this, 'constructor');
+  org_apache_flex_html_beads_models_ArraySelectionModel.base(this, 'constructor');
   this.className = 'ArraySelectionModel';
 };
 goog.inherits(
-    org.apache.flex.html.beads.models.ArraySelectionModel,
-    org.apache.flex.events.EventDispatcher);
+    org_apache_flex_html_beads_models_ArraySelectionModel,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -39,17 +39,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ArraySelectionModel',
-                qName: 'org.apache.flex.html.beads.models.ArraySelectionModel' }],
-      interfaces: [org.apache.flex.core.ISelectionModel] };
+                qName: 'org_apache_flex_html_beads_models_ArraySelectionModel' }],
+      interfaces: [org_apache_flex_core_ISelectionModel] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -59,7 +59,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @return {Object} value The dataProvider.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     get_dataProvider = function() {
   return this.dataProvider_;
 };
@@ -69,7 +69,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @param {Object} value The dataProvider.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     set_dataProvider = function(value) {
   this.dataProvider_ = value;
   this.dispatchEvent('dataProviderChanged');
@@ -80,7 +80,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @return {number} value The selected index.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     get_selectedIndex = function() {
   return this.selectedIndex_;
 };
@@ -90,7 +90,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @param {number} value The selected index.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     set_selectedIndex = function(value) {
   this.selectedIndex_ = value;
   this.dispatchEvent('selectedIndexChanged');
@@ -101,7 +101,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @return {Object} value The selected item.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     get_selectedItem = function() {
   var si;
 
@@ -120,7 +120,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @param {Object} value The selected item.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
     set_selectedItem = function(value) {
   // find item in dataProvider and set selectedIndex or -1 if not exists
 
@@ -143,7 +143,7 @@ org.apache.flex.html.beads.models.ArraySelectionModel.prototype.
  * @expose
  * @return {String} The name of the field to use as a label.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.get_labelField =
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.get_labelField =
 function() {
   return this.labelField_;
 };
@@ -153,7 +153,7 @@ function() {
  * @expose
  * @param {String} value The name of the field to use as a label.
  */
-org.apache.flex.html.beads.models.ArraySelectionModel.prototype.set_labelField =
+org_apache_flex_html_beads_models_ArraySelectionModel.prototype.set_labelField =
 function(value) {
   this.labelField_ = value;
   this.dispatchEvent('labelFieldChanged');

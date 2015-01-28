@@ -14,7 +14,7 @@
 // EventHandler and ErrorHandler are not listed as deps for
 // some of the event classes because they would cause
 // circularities so we force them in here.
-goog.provide('org.apache.flex.events.Event');
+goog.provide('org_apache_flex_events_Event');
 
 goog.require('goog.debug.ErrorHandler');
 goog.require('goog.events.Event');
@@ -27,12 +27,12 @@ goog.require('goog.events.EventHandler');
  * @extends {goog.events.Event}
  * @param {string} type The event type.
  */
-org.apache.flex.events.Event = function(type) {
-  org.apache.flex.events.Event.base(this, 'constructor', type);
+org_apache_flex_events_Event = function(type) {
+  org_apache_flex_events_Event.base(this, 'constructor', type);
 
   this.type = type;
 };
-goog.inherits(org.apache.flex.events.Event,
+goog.inherits(org_apache_flex_events_Event,
     goog.events.Event);
 
 
@@ -41,16 +41,16 @@ goog.inherits(org.apache.flex.events.Event,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.events.Event.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_events_Event.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Event',
-                qName: 'org.apache.flex.events.Event' }] };
+                qName: 'org_apache_flex_events_Event' }] };
 
 
 /**
  * Enum type for the events fired by the FlexJS Event
  * @enum {string}
  */
-org.apache.flex.events.Event.EventType = {
+org_apache_flex_events_Event.EventType = {
     CHANGE: 'change'
   };
 
@@ -59,14 +59,14 @@ org.apache.flex.events.Event.EventType = {
  * @expose
  * @type {string} type The event type.
  */
-org.apache.flex.events.Event.prototype.type = '';
+org_apache_flex_events_Event.prototype.type = '';
 
 
 /**
  * @expose
  * @param {string} type The event type.
  */
-org.apache.flex.events.Event.prototype.init = function(type) {
+org_apache_flex_events_Event.prototype.init = function(type) {
   this.type = type;
 };
 
@@ -75,7 +75,7 @@ org.apache.flex.events.Event.prototype.init = function(type) {
  * @expose
  * @return {string} The event type.
  */
-org.apache.flex.events.Event.prototype.get_type = function() {
+org_apache_flex_events_Event.prototype.get_type = function() {
   return this.type;
 };
 
@@ -84,7 +84,7 @@ org.apache.flex.events.Event.prototype.get_type = function() {
  * @expose
  * @return {Object|undefined} The event target.
  */
-org.apache.flex.events.Event.prototype.get_target = function() {
+org_apache_flex_events_Event.prototype.get_target = function() {
   return this.target;
 };
 
@@ -93,6 +93,6 @@ org.apache.flex.events.Event.prototype.get_target = function() {
  * @expose
  * @return {Object|undefined} The event currentTarget.
  */
-org.apache.flex.events.Event.prototype.get_currentTarget = function() {
+org_apache_flex_events_Event.prototype.get_currentTarget = function() {
   return this.currentTarget;
 };

@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.TextArea');
+goog.provide('org_apache_flex_html5_TextArea');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html5.TextArea = function() {
-  org.apache.flex.html5.TextArea.base(this, 'constructor');
+org_apache_flex_html5_TextArea = function() {
+  org_apache_flex_html5_TextArea.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html5.TextArea,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html5_TextArea,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.TextArea.prototype.createElement =
+org_apache_flex_html5_TextArea.prototype.createElement =
     function() {
   this.element = document.createElement('textarea');
 
@@ -46,7 +46,7 @@ org.apache.flex.html5.TextArea.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.TextArea.prototype.get_text = function() {
+org_apache_flex_html5_TextArea.prototype.get_text = function() {
   return this.element.value;
 };
 
@@ -55,7 +55,7 @@ org.apache.flex.html5.TextArea.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.TextArea.prototype.set_text =
+org_apache_flex_html5_TextArea.prototype.set_text =
     function(value) {
   this.element.value = value;
 };

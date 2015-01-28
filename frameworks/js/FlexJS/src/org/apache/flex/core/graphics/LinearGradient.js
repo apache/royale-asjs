@@ -13,40 +13,40 @@
  */
 
 /**
- * org.apache.flex.core.graphics.LinearGradient
+ * org_apache_flex_core_graphics_LinearGradient
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.graphics.LinearGradient');
-goog.require('org.apache.flex.core.graphics.GradientBase');
+goog.provide('org_apache_flex_core_graphics_LinearGradient');
+goog.require('org_apache_flex_core_graphics_GradientBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GradientBase}
- * @implements {org.apache.flex.core.graphics.IFill}
+ * @extends {org_apache_flex_core_graphics_GradientBase}
+ * @implements {org_apache_flex_core_graphics_IFill}
  */
-org.apache.flex.core.graphics.LinearGradient = function() {
-  org.apache.flex.core.graphics.LinearGradient.base(this, 'constructor');
+org_apache_flex_core_graphics_LinearGradient = function() {
+  org_apache_flex_core_graphics_LinearGradient.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.core.graphics.LinearGradient, org.apache.flex.core.graphics.GradientBase);
+goog.inherits(org_apache_flex_core_graphics_LinearGradient, org_apache_flex_core_graphics_GradientBase);
 
 
 /**
  * @type {number}
  */
-org.apache.flex.core.graphics.LinearGradient.prototype._scaleX = 1.0;
+org_apache_flex_core_graphics_LinearGradient.prototype._scaleX = 1.0;
 
 
 /**
  * @expose
  * @return {number}
  */
-org.apache.flex.core.graphics.LinearGradient.prototype.get_scaleX = function() {
+org_apache_flex_core_graphics_LinearGradient.prototype.get_scaleX = function() {
   return this._scaleX;
 };
 
@@ -55,7 +55,7 @@ org.apache.flex.core.graphics.LinearGradient.prototype.get_scaleX = function() {
  * @expose
  * @param {number} value
  */
-org.apache.flex.core.graphics.LinearGradient.prototype.set_scaleX = function(value) {
+org_apache_flex_core_graphics_LinearGradient.prototype.set_scaleX = function(value) {
   this._scaleX = value;
 };
 
@@ -64,10 +64,10 @@ org.apache.flex.core.graphics.LinearGradient.prototype.set_scaleX = function(val
  * addFillAttrib()
  *
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the fill must be added.
+ * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string}
  */
-org.apache.flex.core.graphics.LinearGradient.prototype.addFillAttrib = function(value) {
+org_apache_flex_core_graphics_LinearGradient.prototype.addFillAttrib = function(value) {
   //Create and add a linear gradient def
   var svgNS = value.element.namespaceURI;
   var grad = document.createElementNS(svgNS, 'linearGradient');
@@ -122,7 +122,7 @@ org.apache.flex.core.graphics.LinearGradient.prototype.addFillAttrib = function(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.LinearGradient.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'LinearGradient', qName: 'org.apache.flex.core.graphics.LinearGradient'}],
-    interfaces: [org.apache.flex.core.graphics.IFill]
+org_apache_flex_core_graphics_LinearGradient.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'LinearGradient', qName: 'org_apache_flex_core_graphics_LinearGradient'}],
+    interfaces: [org_apache_flex_core_graphics_IFill]
   };

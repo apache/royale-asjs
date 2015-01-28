@@ -12,33 +12,33 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.models.ListPresentationModel');
+goog.provide('org_apache_flex_html_beads_models_ListPresentationModel');
 
-goog.require('org.apache.flex.core.IListPresentationModel');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org_apache_flex_core_IListPresentationModel');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IListPresentationModel}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IListPresentationModel}
  */
-org.apache.flex.html.beads.models.ListPresentationModel =
+org_apache_flex_html_beads_models_ListPresentationModel =
     function() {
-  org.apache.flex.html.beads.models.ListPresentationModel.base(this, 'constructor');
+  org_apache_flex_html_beads_models_ListPresentationModel.base(this, 'constructor');
   this.className = 'ListPresentationModel';
 };
 goog.inherits(
-    org.apache.flex.html.beads.models.ListPresentationModel,
-    org.apache.flex.events.EventDispatcher);
+    org_apache_flex_html_beads_models_ListPresentationModel,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
  * @private
  * @type {number}
  */
-org.apache.flex.html.beads.models.ListPresentationModel.prototype.rowHeight_ = 30;
+org_apache_flex_html_beads_models_ListPresentationModel.prototype.rowHeight_ = 30;
 
 
 /**
@@ -46,17 +46,17 @@ org.apache.flex.html.beads.models.ListPresentationModel.prototype.rowHeight_ = 3
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.models.ListPresentationModel.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_models_ListPresentationModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListPresentationModel',
-                qName: 'org.apache.flex.html.beads.models.ListPresentationModel' }],
-      interfaces: [org.apache.flex.core.IListPresentationModel] };
+                qName: 'org_apache_flex_html_beads_models_ListPresentationModel' }],
+      interfaces: [org_apache_flex_core_IListPresentationModel] };
 
 
 /**
  * @expose
  * @param {Object} value The strand.
  */
-org.apache.flex.html.beads.models.ListPresentationModel.prototype.
+org_apache_flex_html_beads_models_ListPresentationModel.prototype.
     set_strand = function(value) {
   this.strand_ = value;
 };
@@ -66,7 +66,7 @@ org.apache.flex.html.beads.models.ListPresentationModel.prototype.
  * @expose
  * @return {number} value The height of the rows.
  */
-org.apache.flex.html.beads.models.ListPresentationModel.prototype.
+org_apache_flex_html_beads_models_ListPresentationModel.prototype.
     get_rowHeight = function() {
   return this.rowHeight_;
 };
@@ -76,7 +76,7 @@ org.apache.flex.html.beads.models.ListPresentationModel.prototype.
  * @expose
  * @param {number} value The height of the rows.
  */
-org.apache.flex.html.beads.models.ListPresentationModel.prototype.
+org_apache_flex_html_beads_models_ListPresentationModel.prototype.
     set_rowHeight = function(value) {
   this.rowHeight_ = value;
   this.dispatchEvent('rowHeightChanged');

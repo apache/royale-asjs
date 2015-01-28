@@ -17,16 +17,16 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.ILayoutChild');
+goog.provide('org_apache_flex_core_ILayoutChild');
 
-goog.require('org.apache.flex.core.IChild');
+goog.require('org_apache_flex_core_IChild');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.ILayoutChild = function() {
+org_apache_flex_core_ILayoutChild = function() {
 };
 
 
@@ -35,8 +35,8 @@ org.apache.flex.core.ILayoutChild = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ILayoutChild.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ILayoutChild.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ILayoutChild',
-                qName: 'org.apache.flex.core.ILayoutChild' }],
-      interfaces: [org.apache.flex.core.IChild] };
+                qName: 'org_apache_flex_core_ILayoutChild' }],
+      interfaces: [org_apache_flex_core_IChild] };
 

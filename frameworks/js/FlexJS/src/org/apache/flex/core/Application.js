@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.Application');
+goog.provide('org_apache_flex_core_Application');
 
-goog.require('org.apache.flex.core.HTMLElementWrapper');
-goog.require('org.apache.flex.core.IParent');
-goog.require('org.apache.flex.core.IValuesImpl');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+goog.require('org_apache_flex_core_HTMLElementWrapper');
+goog.require('org_apache_flex_core_IParent');
+goog.require('org_apache_flex_core_IValuesImpl');
+goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org_apache_flex_utils_MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.HTMLElementWrapper}
+ * @extends {org_apache_flex_core_HTMLElementWrapper}
  */
-org.apache.flex.core.Application = function() {
-  org.apache.flex.core.Application.base(this, 'constructor');
+org_apache_flex_core_Application = function() {
+  org_apache_flex_core_Application.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.core.Application,
-    org.apache.flex.core.HTMLElementWrapper);
+goog.inherits(org_apache_flex_core_Application,
+    org_apache_flex_core_HTMLElementWrapper);
 
 
 /**
@@ -38,40 +38,40 @@ goog.inherits(org.apache.flex.core.Application,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.Application.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_Application.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Application',
-                qName: 'org.apache.flex.core.Application' }],
-      interfaces: [org.apache.flex.core.IParent] };
+                qName: 'org_apache_flex_core_Application' }],
+      interfaces: [org_apache_flex_core_IParent] };
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.Application.prototype.controller = null;
+org_apache_flex_core_Application.prototype.controller = null;
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.Application.prototype.initialView = null;
+org_apache_flex_core_Application.prototype.initialView = null;
 
 
 /**
  * @expose
- * @type {org.apache.flex.events.EventDispatcher}
+ * @type {org_apache_flex_events_EventDispatcher}
  */
-org.apache.flex.core.Application.prototype.model = null;
+org_apache_flex_core_Application.prototype.model = null;
 
 
 /**
  * @expose
- * @param {org.apache.flex.core.IValuesImpl} value The IValuesImpl.
+ * @param {org_apache_flex_core_IValuesImpl} value The IValuesImpl.
  */
-org.apache.flex.core.Application.prototype.set_valuesImpl =
+org_apache_flex_core_Application.prototype.set_valuesImpl =
     function(value) {
-  org.apache.flex.core.ValuesManager.valuesImpl = value;
+  org_apache_flex_core_ValuesManager.valuesImpl = value;
   if (value.init) {
     value.init(this);
   }
@@ -81,12 +81,12 @@ org.apache.flex.core.Application.prototype.set_valuesImpl =
 /**
  * @expose
  */
-org.apache.flex.core.Application.prototype.start = function() {
+org_apache_flex_core_Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
 
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, null, this.get_MXMLDescriptor());
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.get_MXMLDescriptor());
 
   this.dispatchEvent('initialize');
 
@@ -101,15 +101,15 @@ org.apache.flex.core.Application.prototype.start = function() {
  * @expose
  * @param {Array} data The data for the attributes.
  */
-org.apache.flex.core.Application.prototype.generateMXMLAttributes = function(data) {
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
+org_apache_flex_core_Application.prototype.generateMXMLAttributes = function(data) {
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
 /**
  * @param {Object} c The child element.
  */
-org.apache.flex.core.Application.prototype.addElement =
+org_apache_flex_core_Application.prototype.addElement =
     function(c) {
   this.element.appendChild(c.element);
   c.addedToParent();

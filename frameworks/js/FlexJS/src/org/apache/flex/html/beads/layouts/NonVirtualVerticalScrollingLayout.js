@@ -12,18 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout');
+goog.provide('org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout');
 
-goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org_apache_flex_core_IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IBeadLayout}
+ * @implements {org_apache_flex_core_IBeadLayout}
  */
-org.apache.flex.html.beads.layouts.
-    NonVirtualVerticalScrollingLayout = function() {
+org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout = function() {
   this.strand_ = null;
   this.className = 'NonVirtualVerticalScrollingLayout';
 };
@@ -34,19 +33,17 @@ org.apache.flex.html.beads.layouts.
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.beads.layouts.
-    NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NonVirtualVerticalScrollingLayout',
-                qName: 'org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout' }],
-      interfaces: [org.apache.flex.core.IBeadLayout] };
+                qName: 'org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout' }],
+      interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
 /**
  * @expose
  * @param {Object} value The new host.
  */
-org.apache.flex.html.beads.layouts.
-    NonVirtualVerticalScrollingLayout.prototype.set_strand = function(value) {
+org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.set_strand = function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
   }

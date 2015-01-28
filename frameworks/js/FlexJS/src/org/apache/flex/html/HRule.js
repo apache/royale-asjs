@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.HRule');
+goog.provide('org_apache_flex_html_HRule');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html.HRule = function() {
-  org.apache.flex.html.HRule.base(this, 'constructor');
+org_apache_flex_html_HRule = function() {
+  org_apache_flex_html_HRule.base(this, 'constructor');
 
   this.element = document.createElement('hr');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org.apache.flex.html.HRule,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html_HRule,
+    org_apache_flex_core_UIBase);
 
 
 /**
@@ -38,7 +38,7 @@ goog.inherits(org.apache.flex.html.HRule,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.html.HRule.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_html_HRule.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HRule',
-                qName: 'org.apache.flex.html.HRule' }] };
+                qName: 'org_apache_flex_html_HRule' }] };
 

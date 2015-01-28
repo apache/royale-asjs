@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.CheckBox');
+goog.provide('org_apache_flex_html5_CheckBox');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html5.CheckBox = function() {
-  org.apache.flex.html5.CheckBox.base(this, 'constructor');
+org_apache_flex_html5_CheckBox = function() {
+  org_apache_flex_html5_CheckBox.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html5.CheckBox,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html5_CheckBox,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.CheckBox.prototype.createElement =
+org_apache_flex_html5_CheckBox.prototype.createElement =
     function() {
   var cb;
 
@@ -53,7 +53,7 @@ org.apache.flex.html5.CheckBox.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.CheckBox.prototype.get_text = function() {
+org_apache_flex_html5_CheckBox.prototype.get_text = function() {
   return this.element.childNodes.item(1).nodeValue;
 };
 
@@ -62,7 +62,7 @@ org.apache.flex.html5.CheckBox.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.CheckBox.prototype.set_text =
+org_apache_flex_html5_CheckBox.prototype.set_text =
     function(value) {
   this.element.childNodes.item(1).nodeValue = value;
 };
@@ -72,7 +72,7 @@ org.apache.flex.html5.CheckBox.prototype.set_text =
  * @expose
  * @return {boolean} The selected getter.
  */
-org.apache.flex.html5.CheckBox.prototype.get_selected =
+org_apache_flex_html5_CheckBox.prototype.get_selected =
     function() {
   return this.element.childNodes.item(0).checked;
 };
@@ -82,7 +82,7 @@ org.apache.flex.html5.CheckBox.prototype.get_selected =
  * @expose
  * @param {boolean} value The selected setter.
  */
-org.apache.flex.html5.CheckBox.prototype.set_selected =
+org_apache_flex_html5_CheckBox.prototype.set_selected =
     function(value) {
   this.element.childNodes.item(0).checked = value;
 };

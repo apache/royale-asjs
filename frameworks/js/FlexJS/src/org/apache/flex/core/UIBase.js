@@ -12,31 +12,31 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.UIBase');
+goog.provide('org_apache_flex_core_UIBase');
 
-goog.require('org.apache.flex.core.HTMLElementWrapper');
-goog.require('org.apache.flex.core.IBeadController');
-goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.core.IBeadModel');
-goog.require('org.apache.flex.core.IBeadView');
-goog.require('org.apache.flex.core.ILayoutChild');
-goog.require('org.apache.flex.core.IParentIUIBase');
-goog.require('org.apache.flex.core.IStyleableObject');
-goog.require('org.apache.flex.core.IUIBase');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.events.ValueChangeEvent');
+goog.require('org_apache_flex_core_HTMLElementWrapper');
+goog.require('org_apache_flex_core_IBeadController');
+goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org_apache_flex_core_IBeadView');
+goog.require('org_apache_flex_core_ILayoutChild');
+goog.require('org_apache_flex_core_IParentIUIBase');
+goog.require('org_apache_flex_core_IStyleableObject');
+goog.require('org_apache_flex_core_IUIBase');
+goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org_apache_flex_events_ValueChangeEvent');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IUIBase}
- * @implements {org.apache.flex.core.ILayoutChild}
- * @implements {org.apache.flex.core.IParentIUIBase}
- * @extends {org.apache.flex.core.HTMLElementWrapper}
+ * @implements {org_apache_flex_core_IUIBase}
+ * @implements {org_apache_flex_core_ILayoutChild}
+ * @implements {org_apache_flex_core_IParentIUIBase}
+ * @extends {org_apache_flex_core_HTMLElementWrapper}
  */
-org.apache.flex.core.UIBase = function() {
-  org.apache.flex.core.UIBase.base(this, 'constructor');
+org_apache_flex_core_UIBase = function() {
+  org_apache_flex_core_UIBase.base(this, 'constructor');
 
   /**
    * @private
@@ -84,8 +84,8 @@ org.apache.flex.core.UIBase = function() {
 
   this.createElement();
 };
-goog.inherits(org.apache.flex.core.UIBase,
-    org.apache.flex.core.HTMLElementWrapper);
+goog.inherits(org_apache_flex_core_UIBase,
+    org_apache_flex_core_HTMLElementWrapper);
 
 
 /**
@@ -93,20 +93,20 @@ goog.inherits(org.apache.flex.core.UIBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.UIBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_UIBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIBase',
-                qName: 'org.apache.flex.core.UIBase' }],
-      interfaces: [org.apache.flex.core.IUIBase,
-                   org.apache.flex.core.IParentIUIBase,
-                   org.apache.flex.core.ILayoutChild,
-                   org.apache.flex.core.IStyleableObject] };
+                qName: 'org_apache_flex_core_UIBase' }],
+      interfaces: [org_apache_flex_core_IUIBase,
+                   org_apache_flex_core_IParentIUIBase,
+                   org_apache_flex_core_ILayoutChild,
+                   org_apache_flex_core_IStyleableObject] };
 
 
 /**
  * @expose
  * @param {Array.<Object>} value The list of beads from MXML.
  */
-org.apache.flex.core.UIBase.prototype.set_beads = function(value) {
+org_apache_flex_core_UIBase.prototype.set_beads = function(value) {
   this.mxmlBeads_ = value;
 };
 
@@ -115,13 +115,13 @@ org.apache.flex.core.UIBase.prototype.set_beads = function(value) {
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.UIBase.prototype.positioner = null;
+org_apache_flex_core_UIBase.prototype.positioner = null;
 
 
 /**
  * @return {Object} The array of children.
  */
-org.apache.flex.core.UIBase.prototype.internalChildren =
+org_apache_flex_core_UIBase.prototype.internalChildren =
     function() {
   return this.element.childNodes;
 };
@@ -131,7 +131,7 @@ org.apache.flex.core.UIBase.prototype.internalChildren =
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org.apache.flex.core.UIBase.prototype.createElement = function() {
+org_apache_flex_core_UIBase.prototype.createElement = function() {
   if (this.element == null)
     this.element = document.createElement('div');
   if (this.positioner == null)
@@ -148,13 +148,13 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
  * @protected
  * @type {?function()}
  */
-org.apache.flex.core.UIBase.prototype.finalizeElement = null;
+org_apache_flex_core_UIBase.prototype.finalizeElement = null;
 
 
 /**
  * @param {Object} c The child element.
  */
-org.apache.flex.core.UIBase.prototype.addElement = function(c) {
+org_apache_flex_core_UIBase.prototype.addElement = function(c) {
   this.element.appendChild(c.positioner);
   c.addedToParent();
 };
@@ -164,7 +164,7 @@ org.apache.flex.core.UIBase.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
+org_apache_flex_core_UIBase.prototype.addElementAt = function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
@@ -181,7 +181,7 @@ org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
  * @param {number} index The index in parent.
  * @return {Object} The child element.
  */
-org.apache.flex.core.UIBase.prototype.getElementAt = function(index) {
+org_apache_flex_core_UIBase.prototype.getElementAt = function(index) {
   var children = this.internalChildren();
   return children[index].flexjs_wrapper;
 };
@@ -191,7 +191,7 @@ org.apache.flex.core.UIBase.prototype.getElementAt = function(index) {
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
+org_apache_flex_core_UIBase.prototype.getElementIndex = function(c) {
   var children = this.internalChildren();
   var n = children.length;
   for (var i = 0; i < n; i++)
@@ -206,7 +206,7 @@ org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
 /**
  * @param {Object} c The child element.
  */
-org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
+org_apache_flex_core_UIBase.prototype.removeElement = function(c) {
   this.element.removeChild(c.element);
 };
 
@@ -214,7 +214,7 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
 /**
  * @return {number} The number of child elements.
  */
-org.apache.flex.core.UIBase.prototype.get_numElements = function() {
+org_apache_flex_core_UIBase.prototype.get_numElements = function() {
   var children = this.internalChildren();
   return children.length;
 };
@@ -223,7 +223,7 @@ org.apache.flex.core.UIBase.prototype.get_numElements = function() {
 /**
  * @return {Object} The parent of this object.
  */
-org.apache.flex.core.UIBase.prototype.get_parent = function() {
+org_apache_flex_core_UIBase.prototype.get_parent = function() {
   var p = this.positioner.parentNode;
   var wrapper = p.flexjs_wrapper;
   return wrapper;
@@ -232,11 +232,11 @@ org.apache.flex.core.UIBase.prototype.get_parent = function() {
 
 /**
  */
-org.apache.flex.core.UIBase.prototype.addedToParent = function() {
+org_apache_flex_core_UIBase.prototype.addedToParent = function() {
 
   var styles = this.get_style();
   if (styles)
-    org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, styles);
+    org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, styles);
 
   if (this.mxmlBeads_) {
     var n = this.mxmlBeads_.length;
@@ -249,10 +249,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
    * @type {Function}
    */
   var c;
-  if (this.getBeadByType(org.apache.flex.core.IBeadModel) == null)
+  if (this.getBeadByType(org_apache_flex_core_IBeadModel) == null)
   {
-    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
           getValue(this, 'iBeadModel'));
       if (c)
       {
@@ -262,10 +262,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
+  if (this.getBeadByType(org_apache_flex_core_IBeadView) == null)
   {
-    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
           getValue(this, 'iBeadView'));
       if (c)
       {
@@ -275,10 +275,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
+  if (this.getBeadByType(org_apache_flex_core_IBeadLayout) == null)
   {
-    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
           getValue(this, 'iBeadLayout'));
       if (c)
       {
@@ -288,10 +288,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org.apache.flex.core.IBeadController) == null)
+  if (this.getBeadByType(org_apache_flex_core_IBeadController) == null)
   {
-    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
           getValue(this, 'iBeadController'));
       if (c)
       {
@@ -307,17 +307,17 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 /**
  * @param {Object} bead The bead to be added.
  */
-org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
+org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
   if (!this.beads_) {
     this.beads_ = [];
   }
   this.beads_.push(bead);
 
-  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel))
+  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel))
     this.model = bead;
 
-  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadView)) {
-    this.dispatchEvent(new org.apache.flex.events.Event('viewChanged'));
+  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadView)) {
+    this.dispatchEvent(new org_apache_flex_events_Event('viewChanged'));
   }
 
   bead.set_strand(this);
@@ -328,14 +328,14 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
  * @param {Object} classOrInterface A type or interface.
  * @return {Object} The bead of the given type or null.
  */
-org.apache.flex.core.UIBase.prototype.getBeadByType =
+org_apache_flex_core_UIBase.prototype.getBeadByType =
     function(classOrInterface) {
   if (!this.beads_) {
     this.beads_ = [];
   }
   for (var i = 0; i < this.beads_.length; i++) {
     var bead = this.beads_[i];
-    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
+    if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
@@ -347,7 +347,7 @@ org.apache.flex.core.UIBase.prototype.getBeadByType =
  * @param {Object} value The bead to be removed.
  * @return {Object} The bead that was removed.
  */
-org.apache.flex.core.UIBase.prototype.removeBead =
+org_apache_flex_core_UIBase.prototype.removeBead =
     function(value) {
   if (!this.beads_) return null;
   var n = this.beads_.length;
@@ -367,7 +367,7 @@ org.apache.flex.core.UIBase.prototype.removeBead =
  * @expose
  * @param {number} alpha The alpha or opacity.
  */
-org.apache.flex.core.UIBase.prototype.set_alpha = function(alpha) {
+org_apache_flex_core_UIBase.prototype.set_alpha = function(alpha) {
   this.positioner.style.opacity = alpha;
 };
 
@@ -376,7 +376,7 @@ org.apache.flex.core.UIBase.prototype.set_alpha = function(alpha) {
  * @expose
  * @return {number} The alpha or opacity.
  */
-org.apache.flex.core.UIBase.prototype.get_alpha = function() {
+org_apache_flex_core_UIBase.prototype.get_alpha = function() {
   var stralpha = this.positioner.style.opacity;
   var alpha = parseFloat(stralpha);
   return alpha;
@@ -387,7 +387,7 @@ org.apache.flex.core.UIBase.prototype.get_alpha = function() {
  * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
-org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_x = function(pixels) {
   this.positioner.style.position = 'absolute';
   this.positioner.style.left = pixels.toString() + 'px';
 };
@@ -397,7 +397,7 @@ org.apache.flex.core.UIBase.prototype.set_x = function(pixels) {
  * @expose
  * @return {number} The pixel count from the left edge.
  */
-org.apache.flex.core.UIBase.prototype.get_x = function() {
+org_apache_flex_core_UIBase.prototype.get_x = function() {
   var strpixels = this.positioner.style.left;
   var pixels = parseFloat(strpixels);
   if (isNaN(pixels))
@@ -410,7 +410,7 @@ org.apache.flex.core.UIBase.prototype.get_x = function() {
  * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
-org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_y = function(pixels) {
   this.positioner.style.position = 'absolute';
   this.positioner.style.top = pixels.toString() + 'px';
 };
@@ -420,7 +420,7 @@ org.apache.flex.core.UIBase.prototype.set_y = function(pixels) {
  * @expose
  * @return {number} The pixel count from the top edge.
  */
-org.apache.flex.core.UIBase.prototype.get_y = function() {
+org_apache_flex_core_UIBase.prototype.get_y = function() {
   var strpixels = this.positioner.style.top;
   var pixels = parseFloat(strpixels);
   if (isNaN(pixels))
@@ -433,7 +433,7 @@ org.apache.flex.core.UIBase.prototype.get_y = function() {
  * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
-org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_width = function(pixels) {
   this.set_explicitWidth(pixels);
   this.setWidth(pixels);
 };
@@ -443,7 +443,7 @@ org.apache.flex.core.UIBase.prototype.set_width = function(pixels) {
  * @expose
  * @return {number} The width of the object in pixels.
  */
-org.apache.flex.core.UIBase.prototype.get_width = function() {
+org_apache_flex_core_UIBase.prototype.get_width = function() {
   var pixels;
   var strpixels = this.positioner.style.width;
   if (strpixels !== null && strpixels.indexOf('%') != -1)
@@ -465,7 +465,7 @@ org.apache.flex.core.UIBase.prototype.get_width = function() {
  * @expose
  * @param {number} pixels The pixel count from the left edge.
  */
-org.apache.flex.core.UIBase.prototype.set_explicitWidth = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_explicitWidth = function(pixels) {
   this.explicitWidth_ = pixels;
   if (!isNaN(pixels))
     this.percentWidth_ = NaN;
@@ -476,7 +476,7 @@ org.apache.flex.core.UIBase.prototype.set_explicitWidth = function(pixels) {
  * @expose
  * @return {number} The width of the object in pixels.
  */
-org.apache.flex.core.UIBase.prototype.get_explicitWidth = function() {
+org_apache_flex_core_UIBase.prototype.get_explicitWidth = function() {
   return this.explicitWidth_;
 };
 
@@ -485,7 +485,7 @@ org.apache.flex.core.UIBase.prototype.get_explicitWidth = function() {
  * @expose
  * @param {number} pixels The percent width of the object.
  */
-org.apache.flex.core.UIBase.prototype.set_percentWidth = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_percentWidth = function(pixels) {
   this.percentWidth_ = pixels;
   this.positioner.style.width = pixels.toString() + '%';
   if (!isNaN(pixels))
@@ -497,7 +497,7 @@ org.apache.flex.core.UIBase.prototype.set_percentWidth = function(pixels) {
  * @expose
  * @return {number} The percent width of the object.
  */
-org.apache.flex.core.UIBase.prototype.get_percentWidth = function() {
+org_apache_flex_core_UIBase.prototype.get_percentWidth = function() {
   return this.percentWidth_;
 };
 
@@ -506,7 +506,7 @@ org.apache.flex.core.UIBase.prototype.get_percentWidth = function() {
  * @expose
  * @param {number} pixels The pixel count from the top edge.
  */
-org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_height = function(pixels) {
   this.set_explicitHeight(pixels);
   this.setHeight(pixels);
 };
@@ -516,7 +516,7 @@ org.apache.flex.core.UIBase.prototype.set_height = function(pixels) {
  * @expose
  * @return {number} The height of the object in pixels.
  */
-org.apache.flex.core.UIBase.prototype.get_height = function() {
+org_apache_flex_core_UIBase.prototype.get_height = function() {
   var pixels;
   var strpixels = this.positioner.style.height;
   if (strpixels !== null && strpixels.indexOf('%') != -1)
@@ -538,7 +538,7 @@ org.apache.flex.core.UIBase.prototype.get_height = function() {
  * @expose
  * @param {number} pixels The height of the object in pixels.
  */
-org.apache.flex.core.UIBase.prototype.set_explicitHeight = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_explicitHeight = function(pixels) {
   this.explicitHeight_ = pixels;
   if (!isNaN(pixels))
     this.percentHeight_ = NaN;
@@ -549,7 +549,7 @@ org.apache.flex.core.UIBase.prototype.set_explicitHeight = function(pixels) {
  * @expose
  * @return {number} The height of the object in pixels.
  */
-org.apache.flex.core.UIBase.prototype.get_explicitHeight = function() {
+org_apache_flex_core_UIBase.prototype.get_explicitHeight = function() {
   return this.explicitHeight_;
 };
 
@@ -558,7 +558,7 @@ org.apache.flex.core.UIBase.prototype.get_explicitHeight = function() {
  * @expose
  * @param {number} pixels The percentage height.
  */
-org.apache.flex.core.UIBase.prototype.set_percentHeight = function(pixels) {
+org_apache_flex_core_UIBase.prototype.set_percentHeight = function(pixels) {
   this.percentHeight_ = pixels;
   this.positioner.style.height = pixels.toString() + '%';
   if (!isNaN(pixels))
@@ -570,7 +570,7 @@ org.apache.flex.core.UIBase.prototype.set_percentHeight = function(pixels) {
  * @expose
  * @return {number} The percentage height of the object.
  */
-org.apache.flex.core.UIBase.prototype.get_percentHeight = function() {
+org_apache_flex_core_UIBase.prototype.get_percentHeight = function() {
   return this.percentHeight_;
 };
 
@@ -580,7 +580,7 @@ org.apache.flex.core.UIBase.prototype.get_percentHeight = function() {
  * @param {number} value The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org.apache.flex.core.UIBase.prototype.setHeight =
+org_apache_flex_core_UIBase.prototype.setHeight =
     function(value, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -600,7 +600,7 @@ org.apache.flex.core.UIBase.prototype.setHeight =
  * @param {number} value The width of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org.apache.flex.core.UIBase.prototype.setWidth =
+org_apache_flex_core_UIBase.prototype.setWidth =
     function(value, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -621,7 +621,7 @@ org.apache.flex.core.UIBase.prototype.setWidth =
  * @param {number} newHeight The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
+org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
     function(newWidth, newHeight, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -647,7 +647,7 @@ org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
  * @expose
  * @return {boolean} True if width sized to content.
  */
-org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
+org_apache_flex_core_UIBase.prototype.isWidthSizedToContent = function()
 {
   return (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_));
 };
@@ -657,7 +657,7 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
  * @expose
  * @return {boolean} True if height sized to content.
  */
-org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
+org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
 {
   return (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_));
 };
@@ -667,14 +667,14 @@ org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.id = '';
+org_apache_flex_core_UIBase.prototype.id = '';
 
 
 /**
  * @expose
  * @return {string} The id.
  */
-org.apache.flex.core.UIBase.prototype.get_id = function() {
+org_apache_flex_core_UIBase.prototype.get_id = function() {
   return this.id;
 };
 
@@ -683,7 +683,7 @@ org.apache.flex.core.UIBase.prototype.get_id = function() {
  * @expose
  * @param {string} value The new id.
  */
-org.apache.flex.core.UIBase.prototype.set_id = function(value) {
+org_apache_flex_core_UIBase.prototype.set_id = function(value) {
   if (this.id !== value) {
     this.element.id = value;
     this.id = value;
@@ -696,21 +696,21 @@ org.apache.flex.core.UIBase.prototype.set_id = function(value) {
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.typeNames = '';
+org_apache_flex_core_UIBase.prototype.typeNames = '';
 
 
 /**
  * @expose
  * @type {string}
  */
-org.apache.flex.core.UIBase.prototype.className = '';
+org_apache_flex_core_UIBase.prototype.className = '';
 
 
 /**
  * @expose
  * @return {string} The className.
  */
-org.apache.flex.core.UIBase.prototype.get_className = function() {
+org_apache_flex_core_UIBase.prototype.get_className = function() {
   return this.className;
 };
 
@@ -719,7 +719,7 @@ org.apache.flex.core.UIBase.prototype.get_className = function() {
  * @expose
  * @param {string} value The new className.
  */
-org.apache.flex.core.UIBase.prototype.set_className = function(value) {
+org_apache_flex_core_UIBase.prototype.set_className = function(value) {
   if (this.className !== value)
   {
     this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
@@ -733,22 +733,22 @@ org.apache.flex.core.UIBase.prototype.set_className = function(value) {
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.UIBase.prototype.model = null;
+org_apache_flex_core_UIBase.prototype.model = null;
 
 
 /**
  * @expose
  * @return {Object} The model.
  */
-org.apache.flex.core.UIBase.prototype.get_model = function() {
+org_apache_flex_core_UIBase.prototype.get_model = function() {
   if (this.model == null)
   {
     // addbead will set _model
-    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
       /**
        * @type {Function}
        */
-      var m = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+      var m = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
           getValue(this, 'iBeadModel'));
       var b = new m();
       this.addBead(b);
@@ -762,7 +762,7 @@ org.apache.flex.core.UIBase.prototype.get_model = function() {
  * @expose
  * @param {Object} value The new model.
  */
-org.apache.flex.core.UIBase.prototype.set_model = function(value) {
+org_apache_flex_core_UIBase.prototype.set_model = function(value) {
   if (this.model !== value) {
     this.addBead(value);
     this.dispatchEvent('modelChanged');
@@ -774,7 +774,7 @@ org.apache.flex.core.UIBase.prototype.set_model = function(value) {
  * @expose
  * @return {Object} The style properties.
  */
-org.apache.flex.core.UIBase.prototype.get_style = function() {
+org_apache_flex_core_UIBase.prototype.get_style = function() {
   return this.style_;
 };
 
@@ -783,13 +783,13 @@ org.apache.flex.core.UIBase.prototype.get_style = function() {
  * @expose
  * @param {Object} value The new style properties.
  */
-org.apache.flex.core.UIBase.prototype.set_style = function(value) {
+org_apache_flex_core_UIBase.prototype.set_style = function(value) {
   if (this.style_ !== value) {
     if (typeof(value) == 'string')
-      value = org.apache.flex.core.ValuesManager.valuesImpl.parseStyles(value);
+      value = org_apache_flex_core_ValuesManager.valuesImpl.parseStyles(value);
     this.style_ = value;
     if (value.addEventListener)
-      value.addEventListener(org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
+      value.addEventListener(org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
           goog.bind(this.styleChangeHandler, this));
     this.dispatchEvent('stylesChanged');
   }
@@ -798,12 +798,12 @@ org.apache.flex.core.UIBase.prototype.set_style = function(value) {
 
 /**
  * @expose
- * @param {org.apache.flex.events.ValueChangeEvent} value The new style properties.
+ * @param {org_apache_flex_events_ValueChangeEvent} value The new style properties.
  */
-org.apache.flex.core.UIBase.prototype.styleChangeHandler = function(value) {
+org_apache_flex_core_UIBase.prototype.styleChangeHandler = function(value) {
   var newStyle = {};
   newStyle[value.propertyName] = value.newValue;
-  org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, newStyle);
+  org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, newStyle);
 };
 
 
@@ -811,7 +811,7 @@ org.apache.flex.core.UIBase.prototype.styleChangeHandler = function(value) {
  * @expose
  * @return {boolean} True if visible.
  */
-org.apache.flex.core.UIBase.prototype.get_visible = function() {
+org_apache_flex_core_UIBase.prototype.get_visible = function() {
   return this.positioner.style.display !== 'none';
 };
 
@@ -820,20 +820,20 @@ org.apache.flex.core.UIBase.prototype.get_visible = function() {
  * @expose
  * @param {boolean} value The new model.
  */
-org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
+org_apache_flex_core_UIBase.prototype.set_visible = function(value) {
   var oldValue = this.positioner.style.display !== 'none';
   if (value !== oldValue) {
     if (!value) {
       this.lastDisplay_ = this.positioner.style.display;
       this.positioner.style.display = 'none';
-      this.dispatchEvent(new org.apache.flex.events.Event('hide'));
+      this.dispatchEvent(new org_apache_flex_events_Event('hide'));
     } else {
       if (this.lastDisplay_) {
         this.positioner.style.display = this.lastDisplay_;
       } else {
         this.positioner.style.display = 'block';
       }
-      this.dispatchEvent(new org.apache.flex.events.Event('show'));
+      this.dispatchEvent(new org_apache_flex_events_Event('show'));
     }
   }
 };
@@ -843,6 +843,6 @@ org.apache.flex.core.UIBase.prototype.set_visible = function(value) {
  * @expose
  * @return {Object} The top most EventDispatcher.
  */
-org.apache.flex.core.UIBase.prototype.get_topMostEventDispatcher = function() {
+org_apache_flex_core_UIBase.prototype.get_topMostEventDispatcher = function() {
   return document.body.flexjs_wrapper;
 };

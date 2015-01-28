@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.ViewBase');
+goog.provide('org_apache_flex_core_ViewBase');
 
-goog.require('org.apache.flex.core.IPopUpHost');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.events.Event');
-goog.require('org.apache.flex.events.ValueChangeEvent');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+goog.require('org_apache_flex_core_IPopUpHost');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org_apache_flex_events_Event');
+goog.require('org_apache_flex_events_ValueChangeEvent');
+goog.require('org_apache_flex_utils_MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @implements {org.apache.flex.core.IPopUpHost}
- * @extends {org.apache.flex.core.UIBase}
+ * @implements {org_apache_flex_core_IPopUpHost}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.core.ViewBase = function() {
-  org.apache.flex.core.ViewBase.base(this, 'constructor');
+org_apache_flex_core_ViewBase = function() {
+  org_apache_flex_core_ViewBase.base(this, 'constructor');
 
   /**
    * @private
@@ -58,7 +58,7 @@ org.apache.flex.core.ViewBase = function() {
   this.document = this;
 
 };
-goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_core_ViewBase, org_apache_flex_core_UIBase);
 
 
 /**
@@ -66,25 +66,25 @@ goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ViewBase.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_ViewBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewBase',
-                qName: 'org.apache.flex.core.ViewBase' }],
-      interfaces: [org.apache.flex.core.IPopUpHost] };
+                qName: 'org_apache_flex_core_ViewBase' }],
+      interfaces: [org_apache_flex_core_IPopUpHost] };
 
 
 /**
  * @expose
  * @type {Object}
  */
-org.apache.flex.core.ViewBase.prototype.applicationModel = null;
+org_apache_flex_core_ViewBase.prototype.applicationModel = null;
 
 
 /**
  * @expose
  * @param {Array} data The data for the attributes.
  */
-org.apache.flex.core.ViewBase.prototype.generateMXMLAttributes = function(data) {
-  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
+org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) {
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
@@ -92,21 +92,21 @@ org.apache.flex.core.ViewBase.prototype.generateMXMLAttributes = function(data) 
  * @expose
  * @type {Array}
  */
-org.apache.flex.core.ViewBase.prototype.MXMLDescriptor = null;
+org_apache_flex_core_ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
  * @expose
  * @type {Object} The document.
  */
-org.apache.flex.core.ViewBase.prototype.document = null;
+org_apache_flex_core_ViewBase.prototype.document = null;
 
 
 /**
  * @expose
  * @return {Array} An array of descriptors.
  */
-org.apache.flex.core.ViewBase.prototype.get_MXMLDescriptor = function() {
+org_apache_flex_core_ViewBase.prototype.get_MXMLDescriptor = function() {
   return this.MXMLDescriptor;
 };
 
@@ -116,7 +116,7 @@ org.apache.flex.core.ViewBase.prototype.get_MXMLDescriptor = function() {
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
-org.apache.flex.core.ViewBase.prototype.setMXMLDescriptor =
+org_apache_flex_core_ViewBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.MXMLDescriptor = desc;
   this.document = doc;
@@ -126,25 +126,25 @@ org.apache.flex.core.ViewBase.prototype.setMXMLDescriptor =
 /**
  * @expose
  */
-org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
+org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
 
-  //org.apache.flex.core.ViewBase.base(this,'addedToParent');
+  //org_apache_flex_core_ViewBase.base(this,'addedToParent');
   this.element.flexjs_wrapper = this;
-  if (org.apache.flex.core.ValuesManager.valuesImpl.init) {
-    org.apache.flex.core.ValuesManager.valuesImpl.init(this);
+  if (org_apache_flex_core_ValuesManager.valuesImpl.init) {
+    org_apache_flex_core_ValuesManager.valuesImpl.init(this);
   }
 
-  org.apache.flex.core.ViewBase.base(this, 'addedToParent');
+  org_apache_flex_core_ViewBase.base(this, 'addedToParent');
 
   if (!this.initialized_) {
-    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
+    org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
       this, this.get_MXMLDescriptor());
 
-    this.dispatchEvent(new org.apache.flex.events.Event('initBindings'));
-    this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
+    this.dispatchEvent(new org_apache_flex_events_Event('initBindings'));
+    this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
     this.initialized_ = true;
   }
-  this.dispatchEvent(new org.apache.flex.events.Event('childrenAdded'));
+  this.dispatchEvent(new org_apache_flex_events_Event('childrenAdded'));
 };
 
 
@@ -152,7 +152,7 @@ org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
  * @expose
  * @return {Object} The application model.
  */
-org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
+org_apache_flex_core_ViewBase.prototype.get_applicationModel = function() {
   return this.applicationModel;
 };
 
@@ -161,7 +161,7 @@ org.apache.flex.core.ViewBase.prototype.get_applicationModel = function() {
  * @expose
  * @return {Array} The array of State objects.
  */
-org.apache.flex.core.ViewBase.prototype.get_states = function() {
+org_apache_flex_core_ViewBase.prototype.get_states = function() {
   return this.states_;
 };
 
@@ -170,15 +170,15 @@ org.apache.flex.core.ViewBase.prototype.get_states = function() {
  * @expose
  * @param {Array} value The array of State objects.
  */
-org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
+org_apache_flex_core_ViewBase.prototype.set_states = function(value) {
   this.states_ = value;
   this.currentState_ = value[0].name;
 
-  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
     /**
      * @type {Function}
      */
-    var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
+    var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
         getValue(this, 'iStatesImpl'));
     // TODO: (aharui) check if bead already exists
     this.addBead(new impl());
@@ -191,7 +191,7 @@ org.apache.flex.core.ViewBase.prototype.set_states = function(value) {
  * @param {string} state The name of the state.
  * @return {boolean} True if state in states array.
  */
-org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
+org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
   for (var p in this.states_)
   {
     var s = this.states_[p];
@@ -206,7 +206,7 @@ org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
  * @expose
  * @return {string} The name of the current state.
  */
-org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
+org_apache_flex_core_ViewBase.prototype.get_currentState = function() {
   return this.currentState_;
 };
 
@@ -215,8 +215,8 @@ org.apache.flex.core.ViewBase.prototype.get_currentState = function() {
  * @expose
  * @param {string} value The name of the current state.
  */
-org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
-  var event = new org.apache.flex.events.ValueChangeEvent(
+org_apache_flex_core_ViewBase.prototype.set_currentState = function(value) {
+  var event = new org_apache_flex_events_ValueChangeEvent(
       'currentStateChange', false, false, this.currentState_, value);
   this.currentState_ = value;
   this.dispatchEvent(event);
@@ -227,7 +227,7 @@ org.apache.flex.core.ViewBase.prototype.set_currentState = function(value) {
  * @expose
  * @return {Array} The array of transitions.
  */
-org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
+org_apache_flex_core_ViewBase.prototype.get_transitions = function() {
   return this.transitions_;
 };
 
@@ -236,7 +236,7 @@ org.apache.flex.core.ViewBase.prototype.get_transitions = function() {
  * @expose
  * @param {Array} value The array of transitions.
  */
-org.apache.flex.core.ViewBase.prototype.set_transitions = function(value) {
+org_apache_flex_core_ViewBase.prototype.set_transitions = function(value) {
   this.transitions_ = value;
 };
 

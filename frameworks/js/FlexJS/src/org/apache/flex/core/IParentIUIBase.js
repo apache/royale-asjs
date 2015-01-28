@@ -13,24 +13,24 @@
  */
 
 /**
- * org.apache.flex.core.IParentIUIBase
+ * org_apache_flex_core_IParentIUIBase
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IParentIUIBase');
+goog.provide('org_apache_flex_core_IParentIUIBase');
 
-goog.require('org.apache.flex.core.IParent');
-goog.require('org.apache.flex.core.IUIBase');
+goog.require('org_apache_flex_core_IParent');
+goog.require('org_apache_flex_core_IUIBase');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.IParentIUIBase = function() {
+org_apache_flex_core_IParentIUIBase = function() {
 };
 
 
@@ -39,8 +39,8 @@ org.apache.flex.core.IParentIUIBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IParentIUIBase.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IParentIUIBase', qName: 'org.apache.flex.core.IParentIUIBase'}],
-  interfaces: [org.apache.flex.core.IParent,
-             org.apache.flex.core.IUIBase]
+org_apache_flex_core_IParentIUIBase.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IParentIUIBase', qName: 'org_apache_flex_core_IParentIUIBase'}],
+  interfaces: [org_apache_flex_core_IParent,
+             org_apache_flex_core_IUIBase]
 };

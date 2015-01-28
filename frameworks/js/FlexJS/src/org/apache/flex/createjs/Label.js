@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.createjs.Label');
+goog.provide('org_apache_flex_createjs_Label');
 
-goog.require('org.apache.flex.createjs.core.UIBase');
+goog.require('org_apache_flex_createjs_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.createjs.core.UIBase}
+ * @extends {org_apache_flex_createjs_core_UIBase}
  */
-org.apache.flex.createjs.Label = function() {
-  org.apache.flex.createjs.core.UIBase.call(this);
+org_apache_flex_createjs_Label = function() {
+  org_apache_flex_createjs_core_UIBase.call(this);
 };
-goog.inherits(org.apache.flex.createjs.Label,
-    org.apache.flex.createjs.core.UIBase);
+goog.inherits(org_apache_flex_createjs_Label,
+    org_apache_flex_createjs_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.createjs.Label.prototype.createElement =
+org_apache_flex_createjs_Label.prototype.createElement =
     function(p) {
-  org.apache.flex.createjs.Label.base(this, 'createElement');
+  org_apache_flex_createjs_Label.base(this, 'createElement');
 
   this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
   this.element.x = 0;
@@ -51,7 +51,7 @@ org.apache.flex.createjs.Label.prototype.createElement =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.createjs.Label.prototype.get_text = function() {
+org_apache_flex_createjs_Label.prototype.get_text = function() {
   return this.element.text;
 };
 
@@ -60,7 +60,7 @@ org.apache.flex.createjs.Label.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.createjs.Label.prototype.set_text =
+org_apache_flex_createjs_Label.prototype.set_text =
     function(value) {
   this.element.text = value;
   this.element.getStage().update();

@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Rect');
+goog.provide('org_apache_flex_core_graphics_Rect');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Rect = function() {
-  org.apache.flex.core.graphics.Rect.base(this, 'constructor');
+org_apache_flex_core_graphics_Rect = function() {
+  org_apache_flex_core_graphics_Rect.base(this, 'constructor');
 
 };
-goog.inherits(org.apache.flex.core.graphics.Rect,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Rect,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -35,9 +35,9 @@ goog.inherits(org.apache.flex.core.graphics.Rect,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Rect.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Rect.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Rect',
-                qName: 'org.apache.flex.core.graphics.Rect' }] };
+                qName: 'org_apache_flex_core_graphics_Rect' }] };
 
 
 /**
@@ -47,7 +47,7 @@ org.apache.flex.core.graphics.Rect.prototype.FLEXJS_CLASS_INFO =
  * @param {number} width The width of the rectangle.
  * @param {number} height The height of the rectangle.
  */
-org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, height) {
+org_apache_flex_core_graphics_Rect.prototype.drawRect = function(x, y, width, height) {
     var style = this.getStyleStr();
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.flexjs_wrapper = this;
@@ -75,6 +75,6 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
 /**
  * @override
 */
-org.apache.flex.core.graphics.Rect.prototype.draw = function() {
+org_apache_flex_core_graphics_Rect.prototype.draw = function() {
     this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
   };

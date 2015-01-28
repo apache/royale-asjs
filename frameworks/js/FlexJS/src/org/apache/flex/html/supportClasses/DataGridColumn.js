@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html.supportClasses.DataGridColumn');
+goog.provide('org_apache_flex_html_supportClasses_DataGridColumn');
 
-goog.require('mx.core.IFactory');
+goog.require('mx_core_IFactory');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.html.supportClasses.DataGridColumn =
+org_apache_flex_html_supportClasses_DataGridColumn =
     function() {
 };
 
 
 /**
  * @expose
- * @return {mx.core.IFactory} The object factory for the itemRenderer.
+ * @return {mx_core_IFactory} The object factory for the itemRenderer.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.get_itemRenderer =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.get_itemRenderer =
 function() {
   return this.itemRenderer_;
 };
@@ -38,9 +38,9 @@ function() {
 
 /**
  * @expose
- * @param {mx.core.IFactory} value The object factory for the itemRenderer.
+ * @param {mx_core_IFactory} value The object factory for the itemRenderer.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.set_itemRenderer =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.set_itemRenderer =
 function(value) {
   this.itemRenderer_ = value;
 };
@@ -50,7 +50,7 @@ function(value) {
  * @expose
  * @return {Number} The width of the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.get_columnWidth =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.get_columnWidth =
 function() {
   return this.columnWidth_;
 };
@@ -60,7 +60,7 @@ function() {
  * @expose
  * @param {Number} value The width of the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.set_columnWidth =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.set_columnWidth =
 function(value) {
   this.columnWidth_ = value;
 };
@@ -70,7 +70,7 @@ function(value) {
  * @expose
  * @return {String} The label for the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.get_label =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.get_label =
 function() {
   return this.label_;
 };
@@ -80,7 +80,7 @@ function() {
  * @expose
  * @param {String} value The label for the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.set_label =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.set_label =
 function(value) {
   this.label_ = value;
 };
@@ -90,7 +90,7 @@ function(value) {
  * @expose
  * @return {String} The field for the data for the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.get_dataField =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.get_dataField =
 function() {
   return this.dataField_;
 };
@@ -100,7 +100,7 @@ function() {
  * @expose
  * @param {String} value The field for the data for the column.
  */
-org.apache.flex.html.supportClasses.DataGridColumn.prototype.set_dataField =
+org_apache_flex_html_supportClasses_DataGridColumn.prototype.set_dataField =
 function(value) {
   this.dataField_ = value;
 };

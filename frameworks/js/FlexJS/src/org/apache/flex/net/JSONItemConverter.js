@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.net.JSONItemConverter');
+goog.provide('org_apache_flex_net_JSONItemConverter');
 
 
 
 /**
  * @constructor
  */
-org.apache.flex.net.JSONItemConverter = function() {
+org_apache_flex_net_JSONItemConverter = function() {
 };
 
 
@@ -28,9 +28,9 @@ org.apache.flex.net.JSONItemConverter = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.net.JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_net_JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'JSONItemConverter',
-                qName: 'org.apache.flex.net.JSONItemConverter'}] };
+                qName: 'org_apache_flex_net_JSONItemConverter'}] };
 
 
 /**
@@ -38,7 +38,7 @@ org.apache.flex.net.JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
  * @param {string} s The input string.
  * @return {*} The object.
  */
-org.apache.flex.net.JSONItemConverter.prototype.convertItem = function(s) {
+org_apache_flex_net_JSONItemConverter.prototype.convertItem = function(s) {
   var c = s.indexOf('{)');
   if (c > 0)
     s = s.substring(c);
@@ -54,7 +54,7 @@ org.apache.flex.net.JSONItemConverter.prototype.convertItem = function(s) {
  * @param {string} propName The name of the property.
  * @return {Object} value The value of the property.
  */
-org.apache.flex.net.JSONItemConverter.prototype.getProperty =
+org_apache_flex_net_JSONItemConverter.prototype.getProperty =
     function(obj, propName) {
   if (typeof obj['get_' + propName] === 'function') {
     return obj['get_' + propName]();
@@ -69,7 +69,7 @@ org.apache.flex.net.JSONItemConverter.prototype.getProperty =
  * @param {string} propName The name of the property.
  * @param {Object} value The value of the property.
  */
-org.apache.flex.net.JSONItemConverter.prototype.setProperty =
+org_apache_flex_net_JSONItemConverter.prototype.setProperty =
 function(obj, propName, value) {
   if (typeof obj['set_' + propName] === 'function') {
     obj['set_' + propName](value);

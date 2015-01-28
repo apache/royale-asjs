@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.GraphicsContainer');
+goog.provide('org_apache_flex_core_graphics_GraphicsContainer');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.GraphicsContainer = function() {
-  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'constructor');
+org_apache_flex_core_graphics_GraphicsContainer = function() {
+  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.core.graphics.GraphicsContainer, org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_GraphicsContainer, org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -33,16 +33,16 @@ goog.inherits(org.apache.flex.core.graphics.GraphicsContainer, org.apache.flex.c
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'GraphicsContainer',
-      qName: 'org.apache.flex.core.graphics.GraphicsContainer'}] };
+      qName: 'org_apache_flex_core_graphics_GraphicsContainer'}] };
 
 
 /**
  * @expose
  * @return {number} The number of child elements.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.get_numChildren = function() {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.get_numChildren = function() {
     return this.internalChildren().length;
   };
 
@@ -50,7 +50,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.get_numChildren = func
 /**
  * @expose
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.removeAllElements = function() {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = function() {
   var svg = this.element;
   while (svg.lastChild) {
     svg.removeChild(svg.lastChild);
@@ -61,8 +61,8 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.removeAllElements = fu
 /**
  * @override
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.set_width = function(value) {
-  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_width', value);
+org_apache_flex_core_graphics_GraphicsContainer.prototype.set_width = function(value) {
+  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_width', value);
   this.element.setAttribute('width', String(value) + 'px');
   this.element.style.width = String(value) + 'px';
 };
@@ -71,8 +71,8 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_width = function(v
 /**
  * @override
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.set_height = function(value) {
-  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_height', value);
+org_apache_flex_core_graphics_GraphicsContainer.prototype.set_height = function(value) {
+  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_height', value);
   this.element.setAttribute('height', String(value) + 'px');
   this.element.style.height = String(value) + 'px';
 };
@@ -81,8 +81,8 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_height = function(
 /**
  * @override
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.set_x = function(value) {
-  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_x', value);
+org_apache_flex_core_graphics_GraphicsContainer.prototype.set_x = function(value) {
+  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_x', value);
   this.element.setAttribute('x', String(value) + 'px');
   this.element.style.position = 'absolute';
   this.element.style.left = String(value) + 'px';
@@ -93,8 +93,8 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_x = function(value
 /**
  * @override
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.set_y = function(value) {
-  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'set_y', value);
+org_apache_flex_core_graphics_GraphicsContainer.prototype.set_y = function(value) {
+  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_y', value);
   this.element.setAttribute('y', String(value) + 'px');
   this.element.style.position = 'absolute';
   this.element.style.top = String(value) + 'px';
@@ -109,7 +109,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.set_y = function(value
  * @param {number} width The width of the rectangle.
  * @param {number} height The height of the rectangle.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x, y, width, height) {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawRect = function(x, y, width, height) {
   var style = this.getStyleStr();
   var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
   rect.flexjs_wrapper = this;
@@ -132,7 +132,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x,
  * @param {number} width The width of the ellipse.
  * @param {number} height The height of the ellipse.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function(x, y, width, height) {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawEllipse = function(x, y, width, height) {
   var style = this.getStyleStr();
   var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
   ellipse.flexjs_wrapper = this;
@@ -154,7 +154,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function
  * @param {number} y The y location of the center of the circle.
  * @param {number} radius The radius of the circle.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawCircle = function(x, y, radius) {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawCircle = function(x, y, radius) {
   var style = this.getStyleStr();
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
   circle.flexjs_wrapper = this;
@@ -180,7 +180,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawCircle = function(
  *  If the segment command is upper-case, the parameters are absolute values.
  *  If the segment command is lower-case, the parameters are relative values.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(data) {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPath = function(data) {
   var style = this.getStyleStr();
   var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.flexjs_wrapper = this;
@@ -199,7 +199,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(da
  * @param {number} x The x position of the text.
  * @param {number} y The y position of the text.
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(value, x, y) {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawText = function(value, x, y) {
   var style = this.getStyleStr();
   var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   text.flexjs_wrapper = this;
@@ -218,13 +218,13 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(va
 /**
  * @expose
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawLine = function() {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawLine = function() {
 };
 
 
 /**
  * @expose
  */
-org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPolygon = function() {
+org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPolygon = function() {
 };
 

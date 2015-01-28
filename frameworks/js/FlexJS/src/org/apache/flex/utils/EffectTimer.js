@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.utils.EffectTimer');
+goog.provide('org_apache_flex_utils_EffectTimer');
 
-goog.require('org.apache.flex.core.IEffectTimer');
-goog.require('org.apache.flex.core.ValuesManager');
-goog.require('org.apache.flex.events.EventDispatcher');
-goog.require('org.apache.flex.events.ValueEvent');
+goog.require('org_apache_flex_core_IEffectTimer');
+goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org_apache_flex_events_ValueEvent');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
+ * @extends {org_apache_flex_events_EventDispatcher}
  * @suppress {checkTypes}
  */
-org.apache.flex.utils.EffectTimer = function() {
-  org.apache.flex.utils.EffectTimer.base(this, 'constructor');
+org_apache_flex_utils_EffectTimer = function() {
+  org_apache_flex_utils_EffectTimer.base(this, 'constructor');
 
   /**
    * @protected
@@ -39,12 +39,12 @@ org.apache.flex.utils.EffectTimer = function() {
    * @protected
    * @type {number}
    */
-  this._delay = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this,
+  this._delay = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this,
                                                         'effectTimerInterval');
 
 };
-goog.inherits(org.apache.flex.utils.EffectTimer,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_utils_EffectTimer,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -52,17 +52,17 @@ goog.inherits(org.apache.flex.utils.EffectTimer,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.utils.EffectTimer.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_utils_EffectTimer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'EffectTimer',
-               qName: 'org.apache.flex.utils.EffectTimer'}],
-        interfaces: [org.apache.flex.core.IEffectTimer] };
+               qName: 'org_apache_flex_utils_EffectTimer'}],
+        interfaces: [org_apache_flex_core_IEffectTimer] };
 
 
 /**
  * @expose
  * Stops the timer.
  */
-org.apache.flex.utils.EffectTimer.prototype.stop = function() {
+org_apache_flex_utils_EffectTimer.prototype.stop = function() {
   clearInterval(this.timerInterval);
   this.timerInterval = -1;
 };
@@ -73,7 +73,7 @@ org.apache.flex.utils.EffectTimer.prototype.stop = function() {
  * Starts the timer.
  * @return {number} The start time.
  */
-org.apache.flex.utils.EffectTimer.prototype.start = function() {
+org_apache_flex_utils_EffectTimer.prototype.start = function() {
   this.timerInterval =
       setInterval(goog.bind(this.timerHandler, this), this._delay);
   var d = new Date();
@@ -84,10 +84,10 @@ org.apache.flex.utils.EffectTimer.prototype.start = function() {
 /**
  * @protected
  */
-org.apache.flex.utils.EffectTimer.prototype.timerHandler =
+org_apache_flex_utils_EffectTimer.prototype.timerHandler =
     function() {
   var d = new Date();
-  this.dispatchEvent(new org.apache.flex.events.ValueEvent('update', d.getTime()));
+  this.dispatchEvent(new org_apache_flex_events_ValueEvent('update', d.getTime()));
 
 };
 

@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.graphics.Text');
+goog.provide('org_apache_flex_core_graphics_Text');
 
-goog.require('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org_apache_flex_core_graphics_GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.graphics.GraphicShape}
+ * @extends {org_apache_flex_core_graphics_GraphicShape}
  */
-org.apache.flex.core.graphics.Text = function() {
-  org.apache.flex.core.graphics.Text.base(this, 'constructor');
+org_apache_flex_core_graphics_Text = function() {
+  org_apache_flex_core_graphics_Text.base(this, 'constructor');
 
 };
-goog.inherits(org.apache.flex.core.graphics.Text,
-    org.apache.flex.core.graphics.GraphicShape);
+goog.inherits(org_apache_flex_core_graphics_Text,
+    org_apache_flex_core_graphics_GraphicShape);
 
 
 /**
@@ -35,9 +35,9 @@ goog.inherits(org.apache.flex.core.graphics.Text,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.Text.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_Text.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Rect',
-                qName: 'org.apache.flex.core.graphics.Text' }] };
+                qName: 'org_apache_flex_core_graphics_Text' }] };
 
 
 /**
@@ -46,7 +46,7 @@ org.apache.flex.core.graphics.Text.prototype.FLEXJS_CLASS_INFO =
  * @param {number} x The x position of the top-left corner of the rectangle.
  * @param {number} y The y position of the top-left corner.
  */
-org.apache.flex.core.graphics.Text.prototype.drawText = function(value, x, y) {
+org_apache_flex_core_graphics_Text.prototype.drawText = function(value, x, y) {
     var style = this.getStyleStr();
     var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.flexjs_wrapper = this;
@@ -65,6 +65,6 @@ org.apache.flex.core.graphics.Text.prototype.drawText = function(value, x, y) {
 /**
  * @override
 */
-org.apache.flex.core.graphics.Text.prototype.draw = function() {
+org_apache_flex_core_graphics_Text.prototype.draw = function() {
 
 };

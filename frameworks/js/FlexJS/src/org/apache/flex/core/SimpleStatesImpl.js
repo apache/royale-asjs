@@ -12,37 +12,37 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.core.SimpleStatesImpl');
+goog.provide('org_apache_flex_core_SimpleStatesImpl');
 
-goog.require('mx.states.AddItems');
-goog.require('mx.states.SetEventHandler');
-goog.require('mx.states.SetProperty');
-goog.require('mx.states.State');
-goog.require('org.apache.flex.core.IBead');
-goog.require('org.apache.flex.core.IStatesImpl');
-goog.require('org.apache.flex.core.IStrand');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('mx_states_AddItems');
+goog.require('mx_states_SetEventHandler');
+goog.require('mx_states_SetProperty');
+goog.require('mx_states_State');
+goog.require('org_apache_flex_core_IBead');
+goog.require('org_apache_flex_core_IStatesImpl');
+goog.require('org_apache_flex_core_IStrand');
+goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_events_EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.events.EventDispatcher}
- * @implements {org.apache.flex.core.IBead}
- * @implements {org.apache.flex.core.IStatesImpl}
+ * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org_apache_flex_core_IBead}
+ * @implements {org_apache_flex_core_IStatesImpl}
  */
-org.apache.flex.core.SimpleStatesImpl = function() {
-  org.apache.flex.core.SimpleStatesImpl.base(this, 'constructor');
+org_apache_flex_core_SimpleStatesImpl = function() {
+  org_apache_flex_core_SimpleStatesImpl.base(this, 'constructor');
 
   /**
    * @private
-   * @type {org.apache.flex.core.IStrand}
+   * @type {org_apache_flex_core_IStrand}
    */
   this.strand_ = null;
 };
-goog.inherits(org.apache.flex.core.SimpleStatesImpl,
-    org.apache.flex.events.EventDispatcher);
+goog.inherits(org_apache_flex_core_SimpleStatesImpl,
+    org_apache_flex_events_EventDispatcher);
 
 
 /**
@@ -50,18 +50,18 @@ goog.inherits(org.apache.flex.core.SimpleStatesImpl,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleStatesImpl',
-                qName: 'org.apache.flex.core.SimpleStatesImpl' }],
-      interfaces: [org.apache.flex.core.IBead,
-                   org.apache.flex.core.IStatesImpl] };
+                qName: 'org_apache_flex_core_SimpleStatesImpl' }],
+      interfaces: [org_apache_flex_core_IBead,
+                   org_apache_flex_core_IStatesImpl] };
 
 
 /**
  * @expose
- * @param {org.apache.flex.core.IStrand} value The new host.
+ * @param {org_apache_flex_core_IStrand} value The new host.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
+org_apache_flex_core_SimpleStatesImpl.prototype.set_strand =
     function(value) {
   if (this.strand_ !== value) {
     this.strand_ = value;
@@ -79,13 +79,13 @@ org.apache.flex.core.SimpleStatesImpl.prototype.set_strand =
  * @private
  * @param {Object} event The event.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
+org_apache_flex_core_SimpleStatesImpl.prototype.initialStateHandler_ =
     function(event) {
     /**
      *  @type {Object}
     **/
     var host = this.strand_;
-    this.dispatchEvent(new org.apache.flex.events.ValueChangeEvent('currentStateChange',
+    this.dispatchEvent(new org_apache_flex_events_ValueChangeEvent('currentStateChange',
         false, false, null,
         host.get_currentState()));
   };
@@ -95,7 +95,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
  * @private
  * @param {Object} event The event.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler_ =
+org_apache_flex_core_SimpleStatesImpl.prototype.stateChangeHandler_ =
     function(event) {
   var arr, doc, p, s;
 
@@ -121,18 +121,18 @@ org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler_ =
 
 /**
  * @private
- * @param {mx.states.State} s The State to revert.
+ * @param {mx_states_State} s The State to revert.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
+org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
   var arr, item, o, p, q, target;
   /**
-   * @type {org.apache.flex.core.UIBase}
+   * @type {org_apache_flex_core_UIBase}
    */
   var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org.apache.flex.utils.Language.is(o, mx.states.AddItems)) {
+    if (org_apache_flex_utils_Language.is(o, mx_states_AddItems)) {
       for (q in o.items) {
         item = o.items[q];
 
@@ -147,9 +147,9 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
 
         parent.removeElement(item);
         parent.dispatchEvent(
-            new org.apache.flex.events.Event('childrenAdded'));
+            new org_apache_flex_events_Event('childrenAdded'));
       }
-    } else if (org.apache.flex.utils.Language.is(o, mx.states.SetProperty)) {
+    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty)) {
       if (typeof(o.document['get_' + o.target]) === 'function') {
         target = o.document['get_' + o.target]();
       } else {
@@ -161,7 +161,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
       } else {
         target[o.name] = o.previousValue;
       }
-    } else if (org.apache.flex.utils.Language.is(o, mx.states.SetEventHandler)) {
+    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
       if (typeof(o.document['get_' + o.target]) === 'function') {
         target = o.document['get_' + o.target]();
       } else {
@@ -175,23 +175,23 @@ org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
 
 /**
  * @private
- * @param {mx.states.State} s The State to apply.
+ * @param {mx_states_State} s The State to apply.
  */
-org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
+org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
   var arr, child, index, item, o, p, q, target;
   /**
-   * type {org.apache.flex.core.UIBase}
+   * type {org_apache_flex_core_UIBase}
    */
   var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org.apache.flex.utils.Language.is(o, mx.states.AddItems)) {
+    if (org_apache_flex_utils_Language.is(o, mx_states_AddItems)) {
       if (!o.items) {
         o.items = o.itemsDescriptor.items;
         if (o.items == null) {
           o.items =
-              org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(o.document,
+              org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray(o.document,
                                     null, o.itemsDescriptor.descriptor);
           o.itemsDescriptor.items = o.items;
         }
@@ -227,10 +227,10 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
         }
 
         parent.dispatchEvent(
-            new org.apache.flex.events.Event('childrenAdded'));
+            new org_apache_flex_events_Event('childrenAdded'));
       }
     }
-    else if (org.apache.flex.utils.Language.is(o, mx.states.SetProperty))
+    else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty))
     {
       if (typeof(o.document['get_' + o.target]) === 'function') {
         target = o.document['get_' + o.target]();
@@ -249,7 +249,7 @@ org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
       } else {
         target[o.name] = o.value;
       }
-    } else if (org.apache.flex.utils.Language.is(o, mx.states.SetEventHandler)) {
+    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
       if (typeof(o.document['get_' + o.target]) === 'function') {
         target = o.document['get_' + o.target]();
       } else {

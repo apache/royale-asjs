@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.html5.RadioButton');
+goog.provide('org_apache_flex_html5_RadioButton');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org_apache_flex_core_UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org_apache_flex_core_UIBase}
  */
-org.apache.flex.html5.RadioButton = function() {
-  org.apache.flex.html5.RadioButton.base(this, 'constructor');
+org_apache_flex_html5_RadioButton = function() {
+  org_apache_flex_html5_RadioButton.base(this, 'constructor');
 };
-goog.inherits(org.apache.flex.html5.RadioButton,
-    org.apache.flex.core.UIBase);
+goog.inherits(org_apache_flex_html5_RadioButton,
+    org_apache_flex_core_UIBase);
 
 
 /**
  * @override
  */
-org.apache.flex.html5.RadioButton.prototype.createElement =
+org_apache_flex_html5_RadioButton.prototype.createElement =
     function() {
   var rb;
 
@@ -53,7 +53,7 @@ org.apache.flex.html5.RadioButton.prototype.createElement =
  * @expose
  * @return {string} The groupName getter.
  */
-org.apache.flex.html5.RadioButton.prototype.get_groupName =
+org_apache_flex_html5_RadioButton.prototype.get_groupName =
     function() {
   return this.element.childNodes.item(0).name;
 };
@@ -63,7 +63,7 @@ org.apache.flex.html5.RadioButton.prototype.get_groupName =
  * @expose
  * @param {string} value The groupName setter.
  */
-org.apache.flex.html5.RadioButton.prototype.set_groupName =
+org_apache_flex_html5_RadioButton.prototype.set_groupName =
     function(value) {
   this.element.childNodes.item(0).name = value;
 };
@@ -73,7 +73,7 @@ org.apache.flex.html5.RadioButton.prototype.set_groupName =
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.html5.RadioButton.prototype.get_text =
+org_apache_flex_html5_RadioButton.prototype.get_text =
     function() {
   return this.element.childNodes.item(1).nodeValue;
 };
@@ -83,7 +83,7 @@ org.apache.flex.html5.RadioButton.prototype.get_text =
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.html5.RadioButton.prototype.set_text =
+org_apache_flex_html5_RadioButton.prototype.set_text =
     function(value) {
   this.element.childNodes.item(1).nodeValue = value;
 };
@@ -93,7 +93,7 @@ org.apache.flex.html5.RadioButton.prototype.set_text =
  * @expose
  * @return {boolean} The selected getter.
  */
-org.apache.flex.html5.RadioButton.prototype.get_selected =
+org_apache_flex_html5_RadioButton.prototype.get_selected =
     function() {
   return this.element.childNodes.item(0).checked;
 };
@@ -103,7 +103,7 @@ org.apache.flex.html5.RadioButton.prototype.get_selected =
  * @expose
  * @param {boolean} value The selected setter.
  */
-org.apache.flex.html5.RadioButton.prototype.set_selected =
+org_apache_flex_html5_RadioButton.prototype.set_selected =
     function(value) {
   this.element.childNodes.item(0).checked = value;
 };

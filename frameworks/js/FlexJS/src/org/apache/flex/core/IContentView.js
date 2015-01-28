@@ -13,84 +13,84 @@
  */
 
 /**
- * org.apache.flex.core.IContentView
+ * org_apache_flex_core_IContentView
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.IContentView');
+goog.provide('org_apache_flex_core_IContentView');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.IContentView = function() {
+org_apache_flex_core_IContentView = function() {
 };
 
 
 /**
  * @return {number} x position.
  */
-org.apache.flex.core.IContentView.prototype.get_x = function() {};
+org_apache_flex_core_IContentView.prototype.get_x = function() {};
 
 
 /**
  * @param {number} value x position.
  */
-org.apache.flex.core.IContentView.prototype.set_x = function(value) {};
+org_apache_flex_core_IContentView.prototype.set_x = function(value) {};
 
 
 /**
  * @return {number} y position.
  */
-org.apache.flex.core.IContentView.prototype.get_y = function() {};
+org_apache_flex_core_IContentView.prototype.get_y = function() {};
 
 
 /**
  * @param {number} value y position.
  */
-org.apache.flex.core.IContentView.prototype.set_y = function(value) {};
+org_apache_flex_core_IContentView.prototype.set_y = function(value) {};
 
 
 /**
  * @return {number} Component width.
  */
-org.apache.flex.core.IContentView.prototype.get_width = function() {};
+org_apache_flex_core_IContentView.prototype.get_width = function() {};
 
 
 /**
  * @param {number} value Component width.
  */
-org.apache.flex.core.IContentView.prototype.set_width = function(value) {};
+org_apache_flex_core_IContentView.prototype.set_width = function(value) {};
 
 
 /**
  * @return {number} Component height.
  */
-org.apache.flex.core.IContentView.prototype.get_height = function() {};
+org_apache_flex_core_IContentView.prototype.get_height = function() {};
 
 
 /**
  * @param {number} value Component height.
  */
-org.apache.flex.core.IContentView.prototype.set_height = function(value) {};
+org_apache_flex_core_IContentView.prototype.set_height = function(value) {};
 
 
 /**
  * Adds a new element to component.
  * @param {Object} value The child element being added.
  */
-org.apache.flex.core.IContentView.prototype.addElement = function(value) {};
+org_apache_flex_core_IContentView.prototype.addElement = function(value) {};
 
 
 /**
  * Removes all of the component's children.
  * @return {void}
  */
-org.apache.flex.core.IContentView.prototype.removeAllElements = function() {};
+org_apache_flex_core_IContentView.prototype.removeAllElements = function() {};
 
 
 /**
@@ -98,6 +98,6 @@ org.apache.flex.core.IContentView.prototype.removeAllElements = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IContentView.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IContentView', qName: 'org.apache.flex.core.IContentView'}]
+org_apache_flex_core_IContentView.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IContentView', qName: 'org_apache_flex_core_IContentView'}]
 };

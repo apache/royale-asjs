@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.graphics.IStroke');
+goog.provide('org_apache_flex_core_graphics_IStroke');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org.apache.flex.core.graphics.IStroke');
  *
  * @interface
  */
-org.apache.flex.core.graphics.IStroke = function() {
+org_apache_flex_core_graphics_IStroke = function() {
 };
 
 
@@ -35,18 +35,18 @@ org.apache.flex.core.graphics.IStroke = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.graphics.IStroke.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_graphics_IStroke.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IStroke',
-                qName: 'org.apache.flex.core.graphics.IStroke' }] };
+                qName: 'org_apache_flex_core_graphics_IStroke' }] };
 
 
 /**
  * addStrokeAttrib()
  *
  * @expose
- * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the stroke must be added.
+ * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the stroke must be added.
  * @return {string} The stroke style attribute.
  */
-org.apache.flex.core.graphics.IStroke.prototype.addStrokeAttrib =
+org_apache_flex_core_graphics_IStroke.prototype.addStrokeAttrib =
     function(value) {};
 
