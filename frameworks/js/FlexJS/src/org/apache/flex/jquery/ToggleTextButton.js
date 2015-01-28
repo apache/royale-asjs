@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org.apache.flex.jquery.ToggleTextButton');
+goog.provide('org_apache_flex_jquery_ToggleTextButton');
 
-goog.require('org.apache.flex.html.Button');
+goog.require('org_apache_flex_html_Button');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.html.Button}
+ * @extends {org_apache_flex_html_Button}
  */
-org.apache.flex.jquery.ToggleTextButton = function() {
-  org.apache.flex.jquery.ToggleTextButton.base(this, 'constructor');
+org_apache_flex_jquery_ToggleTextButton = function() {
+  org_apache_flex_jquery_ToggleTextButton.base(this, 'constructor');
 
 
 
@@ -33,8 +33,8 @@ org.apache.flex.jquery.ToggleTextButton = function() {
    */
   this.selected_ = false;
 };
-goog.inherits(org.apache.flex.jquery.ToggleTextButton,
-    org.apache.flex.html.Button);
+goog.inherits(org_apache_flex_jquery_ToggleTextButton,
+    org_apache_flex_html_Button);
 
 
 /**
@@ -42,29 +42,29 @@ goog.inherits(org.apache.flex.jquery.ToggleTextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_jquery_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ToggleTextButton',
-                qName: 'org.apache.flex.jquery.ToggleTextButton'}] };
+                qName: 'org_apache_flex_jquery_ToggleTextButton'}] };
 
 
 /**
  * @expose
  * Used to provide ids to the ToggleTextButton.
  */
-org.apache.flex.jquery.ToggleTextButton.toggleCounter = 0;
+org_apache_flex_jquery_ToggleTextButton.toggleCounter = 0;
 
 
 /**
  * @override
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.createElement =
+org_apache_flex_jquery_ToggleTextButton.prototype.createElement =
     function() {
 
   // the radio itself
   this.input = document.createElement('input');
   this.input.type = 'checkbox';
   this.input.name = 'checkbox';
-  this.input.id = '_toggle_' + org.apache.flex.jquery.ToggleTextButton.toggleCounter++;
+  this.input.id = '_toggle_' + org_apache_flex_jquery_ToggleTextButton.toggleCounter++;
 
   this.labelFor = document.createElement('label');
   this.labelFor.htmlFor = this.input.id;
@@ -85,9 +85,9 @@ org.apache.flex.jquery.ToggleTextButton.prototype.createElement =
 /**
  * @override
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.addedToParent =
+org_apache_flex_jquery_ToggleTextButton.prototype.addedToParent =
     function() {
-  org.apache.flex.jquery.ToggleTextButton.base(this, 'addedToParent');
+  org_apache_flex_jquery_ToggleTextButton.base(this, 'addedToParent');
   $(this.element).button();
 };
 
@@ -95,8 +95,8 @@ org.apache.flex.jquery.ToggleTextButton.prototype.addedToParent =
 /**
  * @override
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.set_id = function(value) {
-  org.apache.flex.jquery.ToggleTextButton.base(this, 'set_id', value);
+org_apache_flex_jquery_ToggleTextButton.prototype.set_id = function(value) {
+  org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
   this.labelFor.id = value;
   this.labelFor.htmlFor = value;
 };
@@ -106,7 +106,7 @@ org.apache.flex.jquery.ToggleTextButton.prototype.set_id = function(value) {
  * @expose
  * @return {string} The text getter.
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.get_text = function() {
+org_apache_flex_jquery_ToggleTextButton.prototype.get_text = function() {
   return this.labelFor.innerHTML;
 };
 
@@ -115,7 +115,7 @@ org.apache.flex.jquery.ToggleTextButton.prototype.get_text = function() {
  * @expose
  * @param {string} value The text setter.
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.set_text =
+org_apache_flex_jquery_ToggleTextButton.prototype.set_text =
     function(value) {
   this.labelFor.innerHTML = value;
 };
@@ -125,7 +125,7 @@ org.apache.flex.jquery.ToggleTextButton.prototype.set_text =
  * @expose
  * @return {boolean} The selected getter.
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.get_selected =
+org_apache_flex_jquery_ToggleTextButton.prototype.get_selected =
     function() {
   return this.input.selected_;
 };
@@ -135,7 +135,7 @@ org.apache.flex.jquery.ToggleTextButton.prototype.get_selected =
  * @expose
  * @param {boolean} value The selected setter.
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.set_selected =
+org_apache_flex_jquery_ToggleTextButton.prototype.set_selected =
     function(value) {
   if (this.input.selected_ != value) {
     this.inputselected_ = value;
@@ -157,5 +157,5 @@ org.apache.flex.jquery.ToggleTextButton.prototype.set_selected =
 /**
  * @type {string} The selected setter.
  */
-org.apache.flex.jquery.ToggleTextButton.prototype.SELECTED = '_Selected';
+org_apache_flex_jquery_ToggleTextButton.prototype.SELECTED = '_Selected';
 
