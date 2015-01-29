@@ -143,10 +143,10 @@ org_apache_flex_html_beads_layouts_TileLayout.
   for (i = 0; i < n; i++)
   {
     var child = children[i].flexjs_wrapper;
-    child.set_width(useWidth);
-    child.set_height(useHeight);
-    child.set_x(xpos);
-    child.set_y(ypos);
+    child.width = useWidth;
+    child.height = useHeight;
+    child.x = xpos;
+    child.y = ypos;
 
     xpos += useWidth;
 

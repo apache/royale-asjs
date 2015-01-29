@@ -82,5 +82,5 @@ org_apache_flex_html_Image.prototype.
  */
 org_apache_flex_html_Image.prototype.
     set_source = function(value) {
-  this.model.set_source(value);
+  this.model.source = value;
 };

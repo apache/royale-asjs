@@ -48,8 +48,8 @@ org_apache_flex_html_CloseButton.prototype.createElement =
   this.element.innerHTML = 'x';
 
   this.element.style.padding = 0;
-  this.set_height(11);
-  this.set_width(11);
+  this.height = 11;
+  this.width = 11;
   return this.element;
 };
 

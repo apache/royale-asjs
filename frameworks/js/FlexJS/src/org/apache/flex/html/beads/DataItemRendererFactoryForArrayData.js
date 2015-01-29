@@ -132,10 +132,10 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
   n = dp.length;
   for (i = 0; i < n; i++) {
     var ir = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
-    ir.set_index(i);
-    ir.set_labelField(this.model.labelField);
-    ir.set_data(dp[i]);
-    if (presModel) ir.set_height(presModel.rowHeight);
+    ir.index = i;
+    ir.labelField = this.model.labelField;
+    ir.data = dp[i];
+    if (presModel) ir.height = presModel.rowHeight;
   }
 
   var newEvent = new org_apache_flex_events_Event('itemsCreated');

@@ -43,8 +43,8 @@ org_apache_flex_html_ButtonBar = function() {
   //  this.itemRendererFactory = new
   //        org_apache_flex_html_beads_
   //        DataItemRendererFactoryForArrayData();
-  //  this.itemRendererFactory.set_itemRendererClass('org_apache_flex_html_' +
-  //        'supportClasses.ButtonBarButtonItemRenderer');
+  //  this.itemRendererFactory.itemRendererClass = 'org_apache_flex_html_' +
+  //        'supportClasses_ButtonBarButtonItemRenderer';
   //  this.addBead(this.itemRendererFactory);
 
   //  this.addBead(new
@@ -79,7 +79,7 @@ org_apache_flex_html_ButtonBar.prototype.createElement =
   this.element.style.borderColor = '#333333';
   this.positioner = this.element;
 
-  this.set_className('ButtonBar');
+  this.className = 'ButtonBar';
 
   this.element.flexjs_wrapper = this;
 

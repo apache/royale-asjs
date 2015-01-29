@@ -51,7 +51,7 @@ org_apache_flex_html_SimpleList.prototype.
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
-  this.set_className('SimpleList');
+  this.className = 'SimpleList';
 
   return this.element;
 };
@@ -73,7 +73,7 @@ org_apache_flex_html_SimpleList.prototype.
     set_dataProvider = function(value) {
   var dp, i, n, opt;
 
-  this.model.set_dataProvider(value);
+  this.model.dataProvider = value;
 
   dp = this.element.options;
   n = dp.length;
@@ -105,7 +105,7 @@ org_apache_flex_html_SimpleList.prototype.
  */
 org_apache_flex_html_SimpleList.prototype.
     set_selectedIndex = function(value) {
-  this.model.set_selectedIndex(value);
+  this.model.selectedIndex = value;
 };
 
 
@@ -123,6 +123,6 @@ org_apache_flex_html_SimpleList.prototype.
  */
 org_apache_flex_html_SimpleList.prototype.
     set_selectedItem = function(value) {
-  this.model.set_selectedItem(value);
+  this.model.selectedItem = value;
 };
 

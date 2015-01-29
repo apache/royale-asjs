@@ -56,14 +56,14 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
   this.positioner = this.element;
 
   this.element.flexjs_wrapper = this;
-  this.set_className('DataItemRenderer');
+  this.className = 'DataItemRenderer';
 
   // itemRenderers should provide something for the background to handle
   // the selection and highlight
   this.backgroundView = this.element;
 
   this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
-  this.controller.set_strand(this);
+  this.controller.strand = this;
 
   return this.element;
 };

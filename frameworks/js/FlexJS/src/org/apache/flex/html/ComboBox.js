@@ -90,7 +90,7 @@ org_apache_flex_html_ComboBox.prototype.selectChanged =
 
   select = event.currentTarget;
 
-  this.set_selectedItem(select.options[select.selectedIndex].value);
+  this.selectedItem = select.options[select.selectedIndex].value;
 
   this.popup.parentNode.removeChild(this.popup);
   this.popup = null;

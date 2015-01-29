@@ -70,7 +70,7 @@ org_apache_flex_maps_google_Map.prototype.createElement =
   this.addBead(model);
 
   this.element = document.createElement('div');
-  this.set_className('Map');
+  this.className = 'Map';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -309,7 +309,7 @@ function(results, status) {
       this.markers.push(marker);
     }
     var model = this.model;
-    model.set_searchResults(this.searchResults);
+    model.searchResults = this.searchResults;
   }
 };
 

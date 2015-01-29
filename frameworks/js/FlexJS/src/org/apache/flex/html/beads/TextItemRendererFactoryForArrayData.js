@@ -83,7 +83,7 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     opt = new
         org_apache_flex_html_supportClasses_StringItemRenderer();
     this.dataGroup.addElement(opt);
-    opt.set_text(dp[i]);
+    opt.text = dp[i];
   }
 
   var newEvent = new org_apache_flex_events_Event('itemsCreated');

@@ -87,7 +87,7 @@ org_apache_flex_core_ListBase.prototype.get_dataProvider =
  */
 org_apache_flex_core_ListBase.prototype.set_dataProvider =
     function(value) {
-  this.model.set_dataProvider(value);
+  this.model.dataProvider = value;
 };
 
 
@@ -107,7 +107,7 @@ org_apache_flex_core_ListBase.prototype.get_selectedIndex =
  */
 org_apache_flex_core_ListBase.prototype.set_selectedIndex =
     function(value) {
-  this.model.set_selectedIndex(value);
+  this.model.selectedIndex = value;
 };
 
 
@@ -127,7 +127,7 @@ org_apache_flex_core_ListBase.prototype.get_selectedItem =
  */
 org_apache_flex_core_ListBase.prototype.set_selectedItem =
     function(value) {
-  this.model.set_selectedItem(value);
+  this.model.selectedItem = value;
 };
 
 

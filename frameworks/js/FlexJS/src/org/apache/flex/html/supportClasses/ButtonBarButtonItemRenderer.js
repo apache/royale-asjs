@@ -57,14 +57,14 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
   this.element.appendChild(this.button);
 
   this.element.flexjs_wrapper = this;
-  this.set_className('ButtonBarButtonItemRenderer');
+  this.className = 'ButtonBarButtonItemRenderer';
 
   // itemRenderers should provide something for the background to handle
   // the selection and highlight
   this.backgroundView = this.element;
 
   this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
-  this.controller.set_strand(this);
+  this.controller.strand = this;
 
   return this.element;
 };

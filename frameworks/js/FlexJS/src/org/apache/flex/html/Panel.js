@@ -153,7 +153,7 @@ org_apache_flex_html_Panel.prototype.get_showCloseButton = function() {
  */
 org_apache_flex_html_Panel.prototype.set_showCloseButton =
     function(value) {
-  this.model.set_showCloseButton(value);
+  this.model.showCloseButton = value;
 };
 
 
@@ -172,7 +172,7 @@ org_apache_flex_html_Panel.prototype.get_title = function() {
  */
 org_apache_flex_html_Panel.prototype.set_title =
 function(value) {
-  this.model.set_title(value);
+  this.model.title = value;
 };
 
 

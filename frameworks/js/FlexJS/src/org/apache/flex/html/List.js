@@ -87,7 +87,7 @@ function() {
  */
 org_apache_flex_html_List.prototype.set_labelField =
 function(value) {
-  this.model.set_labelField(value);
+  this.model.labelField = value;
 };
 
 
@@ -107,7 +107,7 @@ function() {
  */
 org_apache_flex_html_List.prototype.set_rowHeight =
 function(value) {
-  this.presentationModel.set_rowHeight(value);
+  this.presentationModel.rowHeight = value;
 };
 
 
@@ -132,7 +132,7 @@ function() {
 org_apache_flex_html_List.prototype.createElement =
     function() {
   org_apache_flex_html_List.base(this, 'createElement');
-  this.set_className('List');
+  this.className = 'List';
 
   return this.element;
 };
@@ -192,11 +192,11 @@ org_apache_flex_html_List.prototype.selectedHandler =
     for (i = 0; i < n; i++) {
       var test = this.renderers[i];
       if (test == itemRenderer) {
-        this.model.set_selectedIndex(i);
-        itemRenderer.set_selected(true);
+        this.model.selectedIndex = i;
+        itemRenderer.selected = true;
       }
       else {
-        test.set_selected(false);
+        test.selected = false;
       }
     }
   }

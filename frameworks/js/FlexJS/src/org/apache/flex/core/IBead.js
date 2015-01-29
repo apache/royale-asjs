@@ -41,7 +41,7 @@ org_apache_flex_core_IBead.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * set_strand()
+ * strand
  *
  * @expose
  * @param {org_apache_flex_core_IStrand} value The new host.

@@ -67,7 +67,7 @@ org_apache_flex_html_Slider.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  this.set_className('Slider');
+  this.className = 'Slider';
 
   return this.element;
 };
@@ -90,7 +90,7 @@ org_apache_flex_html_Slider.prototype.get_value =
  */
 org_apache_flex_html_Slider.prototype.set_value =
     function(newValue) {
-  this.model.set_value(newValue);
+  this.model.value = newValue;
   this.setThumbFromValue(this.model.value);
 };
 
@@ -112,7 +112,7 @@ org_apache_flex_html_Slider.prototype.get_minimum =
  */
 org_apache_flex_html_Slider.prototype.set_minimum =
     function(value) {
-  this.model.set_minimum(value);
+  this.model.minimum = value;
 };
 
 
@@ -133,7 +133,7 @@ org_apache_flex_html_Slider.prototype.get_maximum =
  */
 org_apache_flex_html_Slider.prototype.set_maximum =
     function(value) {
-  this.model.set_maximum(value);
+  this.model.maximum = value;
 };
 
 
@@ -154,7 +154,7 @@ org_apache_flex_html_Slider.prototype.get_snapInterval =
  */
 org_apache_flex_html_Slider.prototype.set_snapInterval =
     function(value) {
-  this.model.set_snapInterval(value);
+  this.model.snapInterval = value;
 };
 
 
@@ -175,7 +175,7 @@ org_apache_flex_html_Slider.prototype.get_stepSize =
  */
 org_apache_flex_html_Slider.prototype.set_stepSize =
     function(value) {
-  this.model.set_stepSize(value);
+  this.model.stepSize = value;
 };
 
 

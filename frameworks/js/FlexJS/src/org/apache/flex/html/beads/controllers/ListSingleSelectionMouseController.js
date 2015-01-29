@@ -67,7 +67,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
         function(event) {
 
   var index = event.target.index;
-  this.model.set_selectedIndex(index);
+  this.model.selectedIndex = index;
 
   var newEvent = new org_apache_flex_events_Event('change');
   this.strand_.dispatchEvent(newEvent);

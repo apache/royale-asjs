@@ -105,9 +105,9 @@ org_apache_flex_html_Alert.show =
 
   var a = new org_apache_flex_html_Alert();
   host.addElement(a);
-  a.set_title(title);
-  a.set_text(message);
-  a.set_flags(flags);
+  a.title = title;
+  a.text = message;
+  a.flags = flags;
 
   a.positioner.style.position = 'relative';
   a.positioner.style.width = '200px';
@@ -131,7 +131,7 @@ org_apache_flex_html_Alert.prototype.get_title = function()
 org_apache_flex_html_Alert.prototype.set_title =
     function(value)
     {
-  this.titleBar.set_title(value);
+  this.titleBar.title = value;
 };
 
 
@@ -150,7 +150,7 @@ org_apache_flex_html_Alert.prototype.get_text = function()
 org_apache_flex_html_Alert.prototype.set_text =
     function(value)
     {
-  this.message.set_text(value);
+  this.message.text = value;
 };
 
 
@@ -175,28 +175,28 @@ org_apache_flex_html_Alert.prototype.set_flags =
   if (this.flags & org_apache_flex_html_Alert.OK) {
     var ok = new org_apache_flex_html_TextButton();
     this.buttonArea.addElement(ok);
-    ok.set_text('OK');
+    ok.text = 'OK';
     goog.events.listen(/** @type {EventTarget} */ (ok.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org_apache_flex_html_Alert.CANCEL) {
     var cancel = new org_apache_flex_html_TextButton();
     this.buttonArea.addElement(cancel);
-    cancel.set_text('Cancel');
+    cancel.text = 'Cancel';
     goog.events.listen(/** @type {EventTarget} */ (cancel.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org_apache_flex_html_Alert.YES) {
     var yes = new org_apache_flex_html_TextButton();
     this.buttonArea.addElement(yes);
-    yes.set_text('YES');
+    yes.text = 'YES';
     goog.events.listen(/** @type {EventTarget} */ (yes.element), 'click',
         goog.bind(this.dismissAlert, this));
   }
   if (this.flags & org_apache_flex_html_Alert.NO) {
     var nob = new org_apache_flex_html_TextButton();
     this.buttonArea.addElement(nob);
-    nob.set_text('NO');
+    nob.text = 'NO';
     goog.events.listen(/** @type {EventTarget} */ (nob.element), 'click',
         goog.bind(this.dismissAlert, this));
   }

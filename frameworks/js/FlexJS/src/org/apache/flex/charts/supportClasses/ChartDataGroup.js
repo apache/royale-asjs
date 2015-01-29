@@ -51,7 +51,7 @@ org_apache_flex_charts_supportClasses_ChartDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
-  this.set_className('ChartDataGroup');
+  this.className = 'ChartDataGroup';
 
   this.positioner = this.element;
 

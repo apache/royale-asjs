@@ -73,7 +73,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
   var n = p * (this.strand_.maximum - this.strand_.minimum) +
           this.strand_.minimum;
 
-  this.strand_.set_value(n);
+  this.strand_.value = n;
 
   this.origin = parseInt(this.thumb.element.style.left, 10);
   this.position = parseInt(this.thumb.element.style.left, 10);
@@ -167,6 +167,6 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
   this.thumb.element.style.left = String(newX -
       parseInt(this.thumb.element.style.width, 10) / 2) + 'px';
 
-  this.strand_.set_value(n);
+  this.strand_.value = n;
 };
 

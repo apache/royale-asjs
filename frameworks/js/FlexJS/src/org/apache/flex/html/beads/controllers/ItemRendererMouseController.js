@@ -64,7 +64,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.set
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
-  this.strand_.set_hovered(true);
+  this.strand_.hovered = true;
 
   var newEvent = new goog.events.Event('rollover');
   newEvent.target = this.strand_;
@@ -78,7 +78,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
-  this.strand_.set_hovered(false);
+  this.strand_.hovered = false;
 
   var newEvent = new goog.events.Event('rollout');
   newEvent.target = this.strand_;

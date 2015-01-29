@@ -58,11 +58,11 @@ org_apache_flex_html_Spinner.prototype.createElement =
   this.element.style.verticalAlign = 'middle';
 
   this.incrementButton = new org_apache_flex_html_TextButton();
-  this.incrementButton.set_text('\u25B2');
+  this.incrementButton.text = '\u25B2';
   this.addElement(this.incrementButton);
 
   this.decrementButton = new org_apache_flex_html_TextButton();
-  this.decrementButton.set_text('\u25BC');
+  this.decrementButton.text = '\u25BC';
   this.addElement(this.decrementButton);
 
   this.controller = new org_apache_flex_html_beads_controllers_SpinnerMouseController();

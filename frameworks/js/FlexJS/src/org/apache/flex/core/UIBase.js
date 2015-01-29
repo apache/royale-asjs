@@ -320,7 +320,7 @@ org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
     this.dispatchEvent(new org_apache_flex_events_Event('viewChanged'));
   }
 
-  bead.set_strand(this);
+  bead.strand = this;
 };
 
 
@@ -434,7 +434,7 @@ org_apache_flex_core_UIBase.prototype.get_y = function() {
  * @param {number} pixels The pixel count from the left edge.
  */
 org_apache_flex_core_UIBase.prototype.set_width = function(pixels) {
-  this.set_explicitWidth(pixels);
+  this.explicitWidth = pixels;
   this.setWidth(pixels);
 };
 
@@ -507,7 +507,7 @@ org_apache_flex_core_UIBase.prototype.get_percentWidth = function() {
  * @param {number} pixels The pixel count from the top edge.
  */
 org_apache_flex_core_UIBase.prototype.set_height = function(pixels) {
-  this.set_explicitHeight(pixels);
+  this.explicitHeight = pixels;
   this.setHeight(pixels);
 };
 

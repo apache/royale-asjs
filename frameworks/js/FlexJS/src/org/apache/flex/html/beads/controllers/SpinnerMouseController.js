@@ -66,7 +66,7 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
   var newValue = this.strand_.snap(Math.min(this.strand_.maximum,
       this.strand_.value +
       this.strand_.stepSize));
-  this.strand_.set_value(newValue);
+  this.strand_.value = newValue;
 };
 
 
@@ -81,5 +81,5 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
   var newValue = this.strand_.snap(Math.max(this.strand_.minimum,
       this.strand_.value -
       this.strand_.stepSize));
-  this.strand_.set_value(newValue);
+  this.strand_.value = newValue;
 };

@@ -77,7 +77,7 @@ org_apache_flex_html5_ComboBox.prototype.selectChanged =
   var select;
 
   select = event.currentTarget;
-  this.set_selectedItem(select.value);
+  this.selectedItem = select.value;
 
   this.popup.parentNode.removeChild(this.popup);
   this.popup = null;

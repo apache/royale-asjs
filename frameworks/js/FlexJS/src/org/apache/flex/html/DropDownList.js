@@ -65,7 +65,7 @@ org_apache_flex_html_DropDownList.prototype.
     set_dataProvider = function(value) {
   var dp, i, n, opt;
 
-  this.model.set_dataProvider(value);
+  this.model.dataProvider = value;
 
   dp = this.element.options;
   n = dp.length;
@@ -88,7 +88,7 @@ org_apache_flex_html_DropDownList.prototype.
  */
 org_apache_flex_html_DropDownList.prototype.changeHandler =
     function() {
-  this.model.set_selectedIndex(this.element.selectedIndex);
+  this.model.selectedIndex = this.element.selectedIndex;
   this.dispatchEvent('change');
 };
 
@@ -99,7 +99,7 @@ org_apache_flex_html_DropDownList.prototype.changeHandler =
  */
 org_apache_flex_html_DropDownList.prototype.
     set_selectedIndex = function(value) {
-  this.model.set_selectedIndex(value);
+  this.model.selectedIndex = value;
   this.element.selectedIndex = value;
 };
 
@@ -110,6 +110,6 @@ org_apache_flex_html_DropDownList.prototype.
  */
 org_apache_flex_html_DropDownList.prototype.
     set_selectedItem = function(value) {
-  this.model.set_selectedItem(value);
+  this.model.selectedItem = value;
   this.element.selectedIndex = this.selectedIndex;
 };

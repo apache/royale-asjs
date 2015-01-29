@@ -88,11 +88,11 @@ org_apache_flex_html_ToggleTextButton.prototype.set_selected =
     var className = this.className;
     if (value) {
       if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-        this.set_className(className.substring(0, className.length - this.SELECTED.length));
+        this.className = className.substring(0, className.length - this.SELECTED.length);
     }
     else {
       if (className.indexOf(this.SELECTED) == -1)
-        this.set_className(className + this.SELECTED);
+        this.className = className + this.SELECTED;
     }
 
   }

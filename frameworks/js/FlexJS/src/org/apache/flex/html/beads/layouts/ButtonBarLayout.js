@@ -105,16 +105,16 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout.
   for (var i = 0; i < n; i++)
   {
     var ir = itemRendererParent.getElementAt(i);
-    ir.set_y(0);
-    ir.set_height(useHeight);
-    ir.set_x(xpos);
+    ir.y = 0;
+    ir.height = useHeight;
+    ir.x = xpos;
     ir.element.style['vertical-align'] = 'middle';
     ir.element.style['text-align'] = 'center';
     ir.element.style['left-margin'] = 'auto';
     ir.element.style['right-margin'] = 'auto';
 
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.set_width(this.buttonWidths_[i]);
-    else ir.set_width(useWidth);
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i];
+    else ir.width = useWidth;
 
     if (ir.element.style.display == 'none')
       ir.lastDisplay_ = 'inline-block';

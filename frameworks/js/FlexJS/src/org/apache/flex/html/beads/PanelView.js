@@ -61,8 +61,8 @@ org_apache_flex_html_beads_PanelView.prototype.set_strand =
     this.titleBar_ = new org_apache_flex_html_TitleBar();
 
   this.strand_.titleBar = this.titleBar_;
-  this.titleBar_.set_id('titleBar');
-  this.titleBar_.set_model(this.strand_.model);
+  this.titleBar_.id = 'titleBar';
+  this.titleBar_.model = this.strand_.model;
 
   this.strand_.controlBar =
       new org_apache_flex_html_ControlBar();
@@ -93,7 +93,7 @@ org_apache_flex_html_beads_PanelView.prototype.changeHandler =
   }
 
   if (event.type == 'titleChange') {
-    this.titleBar_.set_title(strand.model.title);
+    this.titleBar_.title = strand.model.title;
   }
 
   var p = this.strand_.positioner;

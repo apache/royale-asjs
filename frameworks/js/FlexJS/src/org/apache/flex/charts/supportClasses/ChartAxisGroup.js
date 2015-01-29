@@ -53,7 +53,7 @@ org_apache_flex_charts_supportClasses_ChartAxisGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
-  this.set_className('ChartAxisGroup');
+  this.className = 'ChartAxisGroup';
 
   this.positioner = this.element;
 
@@ -74,9 +74,9 @@ org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawHorizontalTic
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   var label = new org_apache_flex_html_Label();
   this.addElement(label);
-  label.set_text(text);
-  label.set_x(xpos - label.width / 2);
-  label.set_y(ypos);
+  label.text = text;
+  label.x = xpos - label.width / 2;
+  label.y = ypos;
 };
 
 
@@ -93,9 +93,9 @@ org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawVerticalTickL
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   var label = new org_apache_flex_html_Label();
   this.addElement(label);
-  label.set_text(text);
-  label.set_x(xpos);
-  label.set_y(ypos - label.height / 2);
+  label.text = text;
+  label.x = xpos;
+  label.y = ypos - label.height / 2;
 };
 
 
@@ -111,12 +111,12 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
 org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawTickMarks =
 function(originX, originY, width, height, marks, tickStroke) {
   var tickPath = new org_apache_flex_core_graphics_Path();
-  tickPath.set_x(0);
-  tickPath.set_y(0);
-  tickPath.set_width(this.width);
-  tickPath.set_height(this.height);
+  tickPath.x = 0;
+  tickPath.y = 0;
+  tickPath.width = this.width;
+  tickPath.height = this.height;
   this.addElement(tickPath);
-  tickPath.set_stroke(tickStroke);
+  tickPath.stroke = tickStroke;
   tickPath.drawPath(0, 0, marks);
 };
 
@@ -132,12 +132,12 @@ function(originX, originY, width, height, marks, tickStroke) {
 org_apache_flex_charts_supportClasses_ChartAxisGroup.prototype.drawAxisLine =
 function(originX, originY, width, height, lineStroke) {
   var axisPath = new org_apache_flex_core_graphics_Path();
-  axisPath.set_x(0);
-  axisPath.set_y(0);
-  axisPath.set_width(this.width);
-  axisPath.set_height(this.height);
+  axisPath.x = 0;
+  axisPath.y = 0;
+  axisPath.width = this.width;
+  axisPath.height = this.height;
   this.addElement(axisPath);
-  axisPath.set_stroke(lineStroke);
+  axisPath.stroke = lineStroke;
   var pathLine = 'M ' + String(originX) + ' ' + String(originY) + ' l ' + String(width) + ' ' + String(height);
   axisPath.drawPath(0, 0, pathLine);
 };

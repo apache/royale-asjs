@@ -64,7 +64,7 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
   this.element.style.display = 'inline-block';
   this.element.style.position = 'inherit';
   this.element.flexjs_wrapper = this;
-  this.set_className('NonVirtualDataGroup');
+  this.className = 'NonVirtualDataGroup';
 
   this.positioner = this.element;
 
@@ -82,8 +82,8 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
 
   var itemRenderer = org_apache_flex_utils_Language.as(value,
                            org_apache_flex_html_supportClasses_DataItemRenderer);
-  itemRenderer.set_index(this.renderers.length);
-  itemRenderer.set_itemRendererParent(this);
+  itemRenderer.index = this.renderers.length;
+  itemRenderer.itemRendererParent = this;
   this.renderers.push(value);
 };
 

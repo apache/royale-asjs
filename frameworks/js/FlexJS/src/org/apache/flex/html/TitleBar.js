@@ -54,7 +54,7 @@ org_apache_flex_html_TitleBar.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  this.set_className('TitleBar');
+  this.className = 'TitleBar';
 
   return this.element;
 };
@@ -76,7 +76,7 @@ org_apache_flex_html_TitleBar.prototype.get_title =
  */
 org_apache_flex_html_TitleBar.prototype.set_title =
     function(value) {
-  this.model.set_title(value);
+  this.model.title = value;
 };
 
 
@@ -96,5 +96,5 @@ org_apache_flex_html_TitleBar.prototype.get_showCloseButton =
  */
 org_apache_flex_html_TitleBar.prototype.set_showCloseButton =
     function(value) {
-  this.model.set_showCloseButton(value);
+  this.model.showCloseButton = value;
 };

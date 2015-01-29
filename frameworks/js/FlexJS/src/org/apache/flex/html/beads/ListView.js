@@ -77,14 +77,14 @@ org_apache_flex_html_beads_ListView.prototype.set_strand =
         getValue(this.strand_, 'iDataGroup');
     this.dataGroup_ = new m2();
   }
-  this.dataGroup_.set_strand(this);
+  this.dataGroup_.strand = this;
   this.strand_.addElement(this.dataGroup_);
 
   if (this.strand_.getBeadByType(org_apache_flex_core_IBeadLayout) == null) {
     var m3 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
     this.layout_ = new m3();
     this.strand_.addBead(this.layout_);
-    //this.layout_.set_strand(this.strand_);
+    //this.layout_.strand = this.strand_;
   }
 
   this.handleSizeChange(null);
@@ -120,12 +120,12 @@ org_apache_flex_html_beads_ListView.prototype.
   var ir;
   if (this.lastSelectedIndex != -1) {
     ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
-    if (ir) ir.set_selected(false);
+    if (ir) ir.selected = false;
   }
   if (this.model.selectedIndex != -1) {
     ir = this.dataGroup_.getItemRendererForIndex(
         this.model.selectedIndex);
-    if (ir) ir.set_selected(true);
+    if (ir) ir.selected = true;
   }
   this.lastSelectedIndex = this.model.selectedIndex;
 };
@@ -190,6 +190,6 @@ org_apache_flex_html_beads_ListView.prototype.get_resizeableView = function() {
  * @param {Object} event The event that triggered the resize.
  */
 org_apache_flex_html_beads_ListView.prototype.handleSizeChange = function(event) {
-  this.dataGroup_.set_width(this.strand_.width);
-  this.dataGroup_.set_height(this.strand_.height);
+  this.dataGroup_.width = this.strand_.width;
+  this.dataGroup_.height = this.strand_.height;
 };

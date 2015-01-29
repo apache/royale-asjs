@@ -72,7 +72,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
     this.model = bead;
   }
 
-  bead.set_strand(this);
+  bead.strand = this;
 };
 
 

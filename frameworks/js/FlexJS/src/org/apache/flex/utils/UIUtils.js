@@ -51,8 +51,8 @@ org_apache_flex_utils_UIUtils.center =
 
   var xpos = (rw - item.width) / 2;
   var ypos = (rh - item.height) / 2;
-  item.set_x(xpos);
-  item.set_y(ypos);
+  item.x = xpos;
+  item.y = ypos;
 };
 
 
