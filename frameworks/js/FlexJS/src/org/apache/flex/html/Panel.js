@@ -143,7 +143,7 @@ org_apache_flex_html_Panel.prototype.addedToParent =
  * @return {boolean} The showCloseButton getter.
  */
 org_apache_flex_html_Panel.prototype.get_showCloseButton = function() {
-  return this.get_model().get_showCloseButton();
+  return this.model.showCloseButton;
 };
 
 
@@ -153,7 +153,7 @@ org_apache_flex_html_Panel.prototype.get_showCloseButton = function() {
  */
 org_apache_flex_html_Panel.prototype.set_showCloseButton =
     function(value) {
-  this.get_model().set_showCloseButton(value);
+  this.model.set_showCloseButton(value);
 };
 
 
@@ -162,7 +162,7 @@ org_apache_flex_html_Panel.prototype.set_showCloseButton =
  * @return {string} The title getter.
  */
 org_apache_flex_html_Panel.prototype.get_title = function() {
-  return this.get_model().get_title();
+  return this.model.title;
 };
 
 
@@ -172,7 +172,7 @@ org_apache_flex_html_Panel.prototype.get_title = function() {
  */
 org_apache_flex_html_Panel.prototype.set_title =
 function(value) {
-  this.get_model().set_title(value);
+  this.model.set_title(value);
 };
 
 

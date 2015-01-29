@@ -52,7 +52,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
   this.listView = value.getBeadByType(
       org_apache_flex_html_beads_ListView);
 
-  this.dataGroup = this.listView.get_dataGroup();
+  this.dataGroup = this.listView.dataGroup;
   this.dataGroup.addEventListener('selected',
       goog.bind(this.selectedHandler, this));
 };
@@ -66,7 +66,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
 org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype.selectedHandler =
         function(event) {
 
-  var index = event.target.get_index();
+  var index = event.target.index;
   this.model.set_selectedIndex(index);
 
   var newEvent = new org_apache_flex_events_Event('change');

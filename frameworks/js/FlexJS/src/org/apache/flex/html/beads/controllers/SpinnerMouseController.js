@@ -63,9 +63,9 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
 org_apache_flex_html_beads_controllers_SpinnerMouseController.
     prototype.handleIncrementClick = function(event)
     {
-  var newValue = this.strand_.snap(Math.min(this.strand_.get_maximum(),
-      this.strand_.get_value() +
-      this.strand_.get_stepSize()));
+  var newValue = this.strand_.snap(Math.min(this.strand_.maximum,
+      this.strand_.value +
+      this.strand_.stepSize));
   this.strand_.set_value(newValue);
 };
 
@@ -78,8 +78,8 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
     prototype.handleDecrementClick =
     function(event)
     {
-  var newValue = this.strand_.snap(Math.max(this.strand_.get_minimum(),
-      this.strand_.get_value() -
-      this.strand_.get_stepSize()));
+  var newValue = this.strand_.snap(Math.max(this.strand_.minimum,
+      this.strand_.value -
+      this.strand_.stepSize));
   this.strand_.set_value(newValue);
 };

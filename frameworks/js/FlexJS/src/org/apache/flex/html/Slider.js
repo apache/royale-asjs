@@ -79,7 +79,7 @@ org_apache_flex_html_Slider.prototype.createElement =
  */
 org_apache_flex_html_Slider.prototype.get_value =
     function() {
-  return this.model.get_value();
+  return this.model.value;
 };
 
 
@@ -91,7 +91,7 @@ org_apache_flex_html_Slider.prototype.get_value =
 org_apache_flex_html_Slider.prototype.set_value =
     function(newValue) {
   this.model.set_value(newValue);
-  this.setThumbFromValue(this.model.get_value());
+  this.setThumbFromValue(this.model.value);
 };
 
 
@@ -101,7 +101,7 @@ org_apache_flex_html_Slider.prototype.set_value =
  */
 org_apache_flex_html_Slider.prototype.get_minimum =
     function() {
-  return this.model.get_minimum();
+  return this.model.minimum;
 };
 
 
@@ -122,7 +122,7 @@ org_apache_flex_html_Slider.prototype.set_minimum =
  */
 org_apache_flex_html_Slider.prototype.get_maximum =
     function() {
-  return this.model.get_maximum();
+  return this.model.maximum;
 };
 
 
@@ -143,7 +143,7 @@ org_apache_flex_html_Slider.prototype.set_maximum =
  */
 org_apache_flex_html_Slider.prototype.get_snapInterval =
     function() {
-  return this.model.get_snapInterval();
+  return this.model.snapInterval;
 };
 
 
@@ -164,7 +164,7 @@ org_apache_flex_html_Slider.prototype.set_snapInterval =
  */
 org_apache_flex_html_Slider.prototype.get_stepSize =
     function() {
-  return this.model.get_stepSize();
+  return this.model.stepSize;
 };
 
 
@@ -185,9 +185,9 @@ org_apache_flex_html_Slider.prototype.set_stepSize =
  */
 org_apache_flex_html_Slider.prototype.snap = function(value)
     {
-  var si = this.get_snapInterval();
-  var n = Math.round((value - this.get_minimum()) / si) *
-      si + this.get_minimum();
+  var si = this.snapInterval;
+  var n = Math.round((value - this.minimum) / si) *
+      si + this.minimum;
   if (value > 0)
   {
     if (value - n < n + si - value)
@@ -207,8 +207,8 @@ org_apache_flex_html_Slider.prototype.snap = function(value)
 org_apache_flex_html_Slider.prototype.setThumbFromValue =
     function(value)
     {
-  var min = this.model.get_minimum();
-  var max = this.model.get_maximum();
+  var min = this.model.minimum;
+  var max = this.model.maximum;
   var p = (value - min) / (max - min);
   var xloc = p * (parseInt(this.track.element.style.width, 10) -
              parseInt(this.thumb.element.style.width, 10));

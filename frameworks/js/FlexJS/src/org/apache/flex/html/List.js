@@ -77,7 +77,7 @@ function(value) {
  */
 org_apache_flex_html_List.prototype.get_labelField =
 function() {
-  return this.get_model().get_labelField();
+  return this.model.labelField;
 };
 
 
@@ -87,7 +87,7 @@ function() {
  */
 org_apache_flex_html_List.prototype.set_labelField =
 function(value) {
-  this.get_model().set_labelField(value);
+  this.model.set_labelField(value);
 };
 
 
@@ -97,7 +97,7 @@ function(value) {
  */
 org_apache_flex_html_List.prototype.get_rowHeight =
 function() {
-  return this.get_presentationModel().get_rowHeight();
+  return this.presentationModel.rowHeight;
 };
 
 
@@ -107,7 +107,7 @@ function() {
  */
 org_apache_flex_html_List.prototype.set_rowHeight =
 function(value) {
-  this.get_presentationModel().set_rowHeight(value);
+  this.presentationModel.set_rowHeight(value);
 };
 
 
@@ -170,7 +170,7 @@ org_apache_flex_html_List.prototype.internalChildren =
     function() {
   var listView =
       this.getBeadByType(org_apache_flex_html_beads_ListView);
-  var dg = listView.get_dataGroup();
+  var dg = listView.dataGroup;
   var items = null;
   if (dg.renderers) {
     items = dg.renderers;

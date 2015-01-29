@@ -121,7 +121,7 @@ org_apache_flex_html_Alert.show =
  */
 org_apache_flex_html_Alert.prototype.get_title = function()
     {
-  return this.titleBar.get_title();
+  return this.titleBar.title;
 };
 
 
@@ -140,7 +140,7 @@ org_apache_flex_html_Alert.prototype.set_title =
  */
 org_apache_flex_html_Alert.prototype.get_text = function()
     {
-  return this.message.get_text();
+  return this.message.text;
 };
 
 

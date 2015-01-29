@@ -72,7 +72,7 @@ org_apache_flex_html_Image.prototype.createElement =
  */
 org_apache_flex_html_Image.prototype.
     get_source = function() {
-  return this.model.get_source();
+  return this.model.source;
 };
 
 

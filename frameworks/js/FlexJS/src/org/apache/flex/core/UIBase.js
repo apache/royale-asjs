@@ -234,7 +234,7 @@ org_apache_flex_core_UIBase.prototype.get_parent = function() {
  */
 org_apache_flex_core_UIBase.prototype.addedToParent = function() {
 
-  var styles = this.get_style();
+  var styles = this.style;
   if (styles)
     org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, styles);
 
@@ -586,7 +586,7 @@ org_apache_flex_core_UIBase.prototype.setHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _height = this.get_height();
+  var _height = this.height;
   if (_height != value) {
     this.positioner.style.height = value.toString() + 'px';
     if (!opt_noEvent)
@@ -606,7 +606,7 @@ org_apache_flex_core_UIBase.prototype.setWidth =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.get_width();
+  var _width = this.width;
   if (_width != value) {
     this.positioner.style.width = value.toString() + 'px';
     if (!opt_noEvent)
@@ -627,13 +627,13 @@ org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.get_width();
+  var _width = this.width;
   if (_width != newWidth) {
     this.positioner.style.width = newWidth.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('widthChanged');
   }
-  var _height = this.get_height();
+  var _height = this.height;
   if (_height != newHeight) {
     this.positioner.style.height = newHeight.toString() + 'px';
     if (!opt_noEvent)

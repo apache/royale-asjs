@@ -76,7 +76,7 @@ org_apache_flex_createjs_core_ViewBase.prototype.MXMLDescriptor = null;
 org_apache_flex_createjs_core_ViewBase.prototype.initUI = function(model) {
   this.applicationModel = model;
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
+      this.MXMLProperties);
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this,
-      this, this.get_MXMLDescriptor());
+      this, this.MXMLDescriptor);
 };

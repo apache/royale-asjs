@@ -71,7 +71,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
 
   this.listView = value.getBeadByType(
       org_apache_flex_html_beads_ListView);
-  this.dataGroup = this.listView.get_dataGroup();
+  this.dataGroup = this.listView.dataGroup;
 
   this.model.addEventListener('dataProviderChanged',
       goog.bind(this.dataProviderChangedHandler, this));
@@ -128,14 +128,14 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
 
   var presModel = this.strand_.getBeadByType(org_apache_flex_core_IListPresentationModel);
 
-  dp = this.model.get_dataProvider();
+  dp = this.model.dataProvider;
   n = dp.length;
   for (i = 0; i < n; i++) {
     var ir = this.itemRendererFactory_.createItemRenderer(this.dataGroup);
     ir.set_index(i);
-    ir.set_labelField(this.model.get_labelField());
+    ir.set_labelField(this.model.labelField);
     ir.set_data(dp[i]);
-    if (presModel) ir.set_height(presModel.get_rowHeight());
+    if (presModel) ir.set_height(presModel.rowHeight);
   }
 
   var newEvent = new org_apache_flex_events_Event('itemsCreated');

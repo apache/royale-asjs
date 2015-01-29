@@ -55,7 +55,7 @@ org_apache_flex_core_ItemRendererClassFactory.
   // see if the _strand has an itemRenderer property that isn't empty. if that's
   // true, use that value instead of pulling it from the the style
   if (this.strand_.get_itemRenderer) {
-    this.itemRendererClassFactory = this.strand_.get_itemRenderer();
+    this.itemRendererClassFactory = this.strand_.itemRenderer;
     if (this.itemRendererClassFactory) {
       this.createFunction = this.createFromClass;
       return;

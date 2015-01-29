@@ -86,7 +86,7 @@ org_apache_flex_core_Application.prototype.start = function() {
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.get_MXMLDescriptor());
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
 
   this.dispatchEvent('initialize');
 

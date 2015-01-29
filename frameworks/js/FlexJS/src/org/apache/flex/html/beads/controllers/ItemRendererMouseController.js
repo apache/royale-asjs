@@ -68,7 +68,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
 
   var newEvent = new goog.events.Event('rollover');
   newEvent.target = this.strand_;
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 
 
@@ -82,7 +82,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
 
   var newEvent = new goog.events.Event('rollout');
   newEvent.target = this.strand_;
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 
 
@@ -113,5 +113,5 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
   // since the event is not going to up the chain, we also have to dispatch
   // it against its final destination.
 
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };

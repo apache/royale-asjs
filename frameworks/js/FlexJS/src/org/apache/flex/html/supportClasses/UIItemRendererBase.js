@@ -61,7 +61,7 @@ function() {
   // each MXML file can also have styles in fx:Style block
   //? appropriate for JavaScript? ValuesManager.valuesImpl.init(this);
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, this, this.MXMLDescriptor);
 
   this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
 };
@@ -201,11 +201,11 @@ function(value) {
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.updateRenderer =
 function() {
-  if (this.get_down()) {
+  if (this.down) {
   }
-  else if (this.get_hovered()) {
+  else if (this.hovered) {
   }
-  else if (this.get_selected()) {
+  else if (this.selected) {
   }
 };
 

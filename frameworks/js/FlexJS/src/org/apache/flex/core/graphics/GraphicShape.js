@@ -132,9 +132,9 @@ org_apache_flex_core_graphics_GraphicShape.prototype.addedToParent = function() 
   /*
    * not sure this is valuable any longer
   var bbox = this.element.getBBox();
-  if (bbox.width === 0 && !isNaN(this.get_width())) bbox.width = this.get_width();
-  if (bbox.height === 0 && !isNaN(this.get_height())) bbox.height = this.get_height();
-  this.resize(this.get_x(), this.get_y(), bbox);*/
+  if (bbox.width === 0 && !isNaN(this.width)) bbox.width = this.width;
+  if (bbox.height === 0 && !isNaN(this.height)) bbox.height = this.height;
+  this.resize(this.x, this.y, bbox);*/
 };
 
 
@@ -152,9 +152,9 @@ org_apache_flex_core_graphics_GraphicShape.prototype.draw = function() {
  */
 org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
   var fillStr;
-  if (this.get_fill())
+  if (this.fill)
   {
-    fillStr = this.get_fill().addFillAttrib(this);
+    fillStr = this.fill.addFillAttrib(this);
   }
   else
   {
@@ -162,9 +162,9 @@ org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
   }
 
   var strokeStr;
-  if (this.get_stroke())
+  if (this.stroke)
   {
-    strokeStr = this.get_stroke().addStrokeAttrib(this);
+    strokeStr = this.stroke.addStrokeAttrib(this);
   }
   else
   {
@@ -183,8 +183,8 @@ org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
  * @param {Object} bbox The bounding box of the svg element.
  */
 org_apache_flex_core_graphics_GraphicShape.prototype.resize = function(x, y, bbox) {
-  var width = Math.max(this.get_width(), bbox.width);
-  var height = Math.max(this.get_height(), bbox.height);
+  var width = Math.max(this.width, bbox.width);
+  var height = Math.max(this.height, bbox.height);
 
   this.element.style.position = 'absolute';
   if (!isNaN(x)) this.element.style.top = String(x) + 'px';

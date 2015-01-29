@@ -62,7 +62,7 @@ org_apache_flex_html_SimpleList.prototype.
  */
 org_apache_flex_html_SimpleList.prototype.
     get_dataProvider = function() {
-  return this.model.get_dataProvider();
+  return this.model.dataProvider;
 };
 
 
@@ -96,7 +96,7 @@ org_apache_flex_html_SimpleList.prototype.
  */
 org_apache_flex_html_SimpleList.prototype.
     get_selectedIndex = function() {
-  return this.model.get_selectedIndex();
+  return this.model.selectedIndex;
 };
 
 
@@ -114,7 +114,7 @@ org_apache_flex_html_SimpleList.prototype.
  */
 org_apache_flex_html_SimpleList.prototype.
     get_selectedItem = function() {
-  return this.model.get_selectedItem();
+  return this.model.selectedItem;
 };
 
 

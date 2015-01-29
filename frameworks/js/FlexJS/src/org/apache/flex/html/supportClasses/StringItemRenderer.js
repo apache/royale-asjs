@@ -152,11 +152,11 @@ org_apache_flex_html_supportClasses_StringItemRenderer.
 
   org_apache_flex_html_supportClasses_StringItemRenderer.base(this, 'set_data', value);
 
-  if (this.get_labelField()) {
-    this.element.innerHTML = String(value[this.get_labelField()]);
+  if (this.labelField) {
+    this.element.innerHTML = String(value[this.labelField]);
   }
-  else if (this.get_dataField()) {
-    this.element.innerHTML = String(value[this.get_dataField()]);
+  else if (this.dataField) {
+    this.element.innerHTML = String(value[this.dataField]);
   }
   else if (value.toString) {
     this.element.innerHTML = value.toString();

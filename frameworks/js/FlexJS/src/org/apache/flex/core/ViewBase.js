@@ -138,7 +138,7 @@ org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
 
   if (!this.initialized_) {
     org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
-      this, this.get_MXMLDescriptor());
+      this, this.MXMLDescriptor);
 
     this.dispatchEvent(new org_apache_flex_events_Event('initBindings'));
     this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));

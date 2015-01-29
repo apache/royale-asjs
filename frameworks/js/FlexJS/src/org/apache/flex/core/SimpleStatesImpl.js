@@ -87,7 +87,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.initialStateHandler_ =
     var host = this.strand_;
     this.dispatchEvent(new org_apache_flex_events_ValueChangeEvent('currentStateChange',
         false, false, null,
-        host.get_currentState()));
+        host.currentState));
   };
 
 
@@ -100,7 +100,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.stateChangeHandler_ =
   var arr, doc, p, s;
 
   doc = event.target;
-  arr = doc.get_states();
+  arr = doc.states;
   for (p in arr) {
     s = arr[p];
     if (s.name === event.oldValue) {

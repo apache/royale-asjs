@@ -64,11 +64,11 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
   var i, n, h, w;
 
   var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
-  var contentView = viewBead.get_contentView();
+  var contentView = viewBead.contentView;
   contentView.element.style.overflow = 'auto';
-  w = contentView.get_width();
-  h = contentView.get_height();
-  n = contentView.get_numElements();
+  w = contentView.width;
+  h = contentView.height;
+  n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
     var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');

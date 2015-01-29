@@ -111,5 +111,5 @@ org_apache_flex_html_DropDownList.prototype.
 org_apache_flex_html_DropDownList.prototype.
     set_selectedItem = function(value) {
   this.model.set_selectedItem(value);
-  this.element.selectedIndex = this.get_selectedIndex();
+  this.element.selectedIndex = this.selectedIndex;
 };

@@ -306,12 +306,12 @@ org_apache_flex_net_BinaryUploader.prototype.send = function() {
   if (this.binaryData_ !== undefined) {
     if (this.method_ === org_apache_flex_net_BinaryUploader.HTTP_METHOD_GET) {
       if (url.indexOf('?') !== -1) {
-        url += this.binaryData_.get_data();
+        url += this.binaryData_.data;
       } else {
-        url += '?' + this.binaryData_.get_data();
+        url += '?' + this.binaryData_.data;
       }
     } else {
-      binaryData = this.binaryData_.get_data();
+      binaryData = this.binaryData_.data;
     }
   }
 

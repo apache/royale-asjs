@@ -114,10 +114,10 @@ org_apache_flex_core_graphics_SolidColorStroke.prototype.set_weight = function(v
  * @return {string}
  */
 org_apache_flex_core_graphics_SolidColorStroke.prototype.addStrokeAttrib = function(value) {
-    var strokeColor = Number(this.get_color()).toString(16);
+    var strokeColor = Number(this.color).toString(16);
     if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
     if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
     return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
-         String(this.get_weight()) + ';stroke-opacity:' + String(this.get_alpha());
+         String(this.weight) + ';stroke-opacity:' + String(this.alpha);
   };

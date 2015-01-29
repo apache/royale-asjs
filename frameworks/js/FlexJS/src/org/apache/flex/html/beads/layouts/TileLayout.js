@@ -130,14 +130,14 @@ org_apache_flex_html_beads_layouts_TileLayout.
 
   xpos = 0;
   ypos = 0;
-  useWidth = this.get_columnWidth();
-  useHeight = this.get_rowHeight();
+  useWidth = this.columnWidth;
+  useHeight = this.rowHeight;
 
-  if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.get_width() / this.get_numColumns()); // + gap
+  if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.width / this.numColumns); // + gap
   if (isNaN(useHeight)) {
     // given the width and total number of items, how many rows?
-    var numRows = Math.floor(n / this.get_numColumns());
-    useHeight = Math.floor(this.strand_.get_height() / numRows);
+    var numRows = Math.floor(n / this.numColumns);
+    useHeight = Math.floor(this.strand_.height / numRows);
   }
 
   for (i = 0; i < n; i++)
@@ -150,7 +150,7 @@ org_apache_flex_html_beads_layouts_TileLayout.
 
     xpos += useWidth;
 
-    if (((i + 1) % this.get_numColumns()) === 0) {
+    if (((i + 1) % this.numColumns) === 0) {
       xpos = 0;
       ypos += useHeight;
     }

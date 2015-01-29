@@ -156,7 +156,7 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
   goog.events.listen(select, 'change', goog.bind(this.selectChanged, this));
   opts = select.options;
 
-  dp = /** @type {Array.<string>} */ (this.get_dataProvider());
+  dp = /** @type {Array.<string>} */ (this.dataProvider);
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('option');
@@ -166,7 +166,7 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
 
   select.size = n;
 
-  si = this.get_selectedIndex();
+  si = this.selectedIndex;
   if (si < 0) {
     select.value = null;
   } else {

@@ -75,7 +75,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   var label = new org_apache_flex_html_Label();
   this.addElement(label);
   label.set_text(text);
-  label.set_x(xpos - label.get_width() / 2);
+  label.set_x(xpos - label.width / 2);
   label.set_y(ypos);
 };
 
@@ -95,7 +95,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   this.addElement(label);
   label.set_text(text);
   label.set_x(xpos);
-  label.set_y(ypos - label.get_height() / 2);
+  label.set_y(ypos - label.height / 2);
 };
 
 
@@ -113,8 +113,8 @@ function(originX, originY, width, height, marks, tickStroke) {
   var tickPath = new org_apache_flex_core_graphics_Path();
   tickPath.set_x(0);
   tickPath.set_y(0);
-  tickPath.set_width(this.get_width());
-  tickPath.set_height(this.get_height());
+  tickPath.set_width(this.width);
+  tickPath.set_height(this.height);
   this.addElement(tickPath);
   tickPath.set_stroke(tickStroke);
   tickPath.drawPath(0, 0, marks);
@@ -134,8 +134,8 @@ function(originX, originY, width, height, lineStroke) {
   var axisPath = new org_apache_flex_core_graphics_Path();
   axisPath.set_x(0);
   axisPath.set_y(0);
-  axisPath.set_width(this.get_width());
-  axisPath.set_height(this.get_height());
+  axisPath.set_width(this.width);
+  axisPath.set_height(this.height);
   this.addElement(axisPath);
   axisPath.set_stroke(lineStroke);
   var pathLine = 'M ' + String(originX) + ' ' + String(originY) + ' l ' + String(width) + ' ' + String(height);

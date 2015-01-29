@@ -120,7 +120,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype.set_ratio = function(value
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
-  s.get_graphics().beginFill(this.get_color(), this.get_alpha());
+  s.graphics.beginFill(this.color, this.alpha);
 };
 
 
@@ -129,7 +129,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.end = function(s) {
-  s.get_graphics().endFill();
+  s.graphics.endFill();
 };
 
 

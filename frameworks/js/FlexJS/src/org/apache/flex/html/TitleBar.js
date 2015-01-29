@@ -66,7 +66,7 @@ org_apache_flex_html_TitleBar.prototype.createElement =
  */
 org_apache_flex_html_TitleBar.prototype.get_title =
     function() {
-  return this.model.get_title();
+  return this.model.title;
 };
 
 
@@ -86,7 +86,7 @@ org_apache_flex_html_TitleBar.prototype.set_title =
  */
 org_apache_flex_html_TitleBar.prototype.get_showCloseButton =
     function() {
-  return this.model.get_showCloseButton();
+  return this.model.showCloseButton;
 };
 
 

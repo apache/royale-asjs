@@ -77,7 +77,7 @@ org_apache_flex_core_ListBase.prototype.createElement = function() {
  */
 org_apache_flex_core_ListBase.prototype.get_dataProvider =
     function() {
-  return this.get_model().get_dataProvider();
+  return this.model.dataProvider;
 };
 
 
@@ -87,7 +87,7 @@ org_apache_flex_core_ListBase.prototype.get_dataProvider =
  */
 org_apache_flex_core_ListBase.prototype.set_dataProvider =
     function(value) {
-  this.get_model().set_dataProvider(value);
+  this.model.set_dataProvider(value);
 };
 
 
@@ -97,7 +97,7 @@ org_apache_flex_core_ListBase.prototype.set_dataProvider =
  */
 org_apache_flex_core_ListBase.prototype.get_selectedIndex =
     function() {
-  return this.get_model().get_selectedIndex();
+  return this.model.selectedIndex;
 };
 
 
@@ -107,7 +107,7 @@ org_apache_flex_core_ListBase.prototype.get_selectedIndex =
  */
 org_apache_flex_core_ListBase.prototype.set_selectedIndex =
     function(value) {
-  this.get_model().set_selectedIndex(value);
+  this.model.set_selectedIndex(value);
 };
 
 
@@ -117,7 +117,7 @@ org_apache_flex_core_ListBase.prototype.set_selectedIndex =
  */
 org_apache_flex_core_ListBase.prototype.get_selectedItem =
     function() {
-  return this.get_model().get_selectedItem();
+  return this.model.selectedItem;
 };
 
 
@@ -127,7 +127,7 @@ org_apache_flex_core_ListBase.prototype.get_selectedItem =
  */
 org_apache_flex_core_ListBase.prototype.set_selectedItem =
     function(value) {
-  this.get_model().set_selectedItem(value);
+  this.model.set_selectedItem(value);
 };
 
 

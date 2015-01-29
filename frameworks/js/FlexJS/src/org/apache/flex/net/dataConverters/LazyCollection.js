@@ -159,7 +159,7 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.set_strand =
  */
 org_apache_flex_net_dataConverters_LazyCollection.prototype.completeHandler =
     function() {
-  var results = this.strand_.get_data();
+  var results = this.strand_.data;
   this.rawData_ = this.inputParser_.parseItems(results);
   this.data_ = [];
   this.dispatchEvent('complete');

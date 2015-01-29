@@ -52,11 +52,11 @@ org_apache_flex_core_graphics_Ellipse.prototype.drawEllipse = function(x, y, wid
     var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     ellipse.flexjs_wrapper = this;
     ellipse.setAttribute('style', style);
-    if (this.get_stroke())
+    if (this.stroke)
     {
-      ellipse.setAttribute('cx', String(width / 2 + this.get_stroke().get_weight()));
-      ellipse.setAttribute('cy', String(height / 2 + this.get_stroke().get_weight()));
-      this.setPosition(x, y, this.get_stroke().get_weight() * 2, this.get_stroke().get_weight() * 2);
+      ellipse.setAttribute('cx', String(width / 2 + this.stroke.weight));
+      ellipse.setAttribute('cy', String(height / 2 + this.stroke.weight));
+      this.setPosition(x, y, this.stroke.weight * 2, this.stroke.weight * 2);
     }
     else
     {
@@ -76,5 +76,5 @@ org_apache_flex_core_graphics_Ellipse.prototype.drawEllipse = function(x, y, wid
  * @override
 */
 org_apache_flex_core_graphics_Ellipse.prototype.draw = function() {
-    this.drawEllipse(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+    this.drawEllipse(this.x, this.y, this.width, this.height);
   };

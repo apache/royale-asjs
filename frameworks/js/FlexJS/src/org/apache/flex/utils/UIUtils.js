@@ -44,13 +44,13 @@ org_apache_flex_utils_UIUtils.prototype.FLEXJS_CLASS_INFO =
 org_apache_flex_utils_UIUtils.center =
     function(item, relativeTo) {
 
-  var rw = relativeTo.get_width();
+  var rw = relativeTo.width;
   if (isNaN(rw)) rw = window.innerWidth;
-  var rh = relativeTo.get_height();
+  var rh = relativeTo.height;
   if (isNaN(rh)) rh = window.innerHeight;
 
-  var xpos = (rw - item.get_width()) / 2;
-  var ypos = (rh - item.get_height()) / 2;
+  var xpos = (rw - item.width) / 2;
+  var ypos = (rh - item.height) / 2;
   item.set_x(xpos);
   item.set_y(ypos);
 };
@@ -65,7 +65,7 @@ org_apache_flex_utils_UIUtils.findPopUpHost =
     function(start) {
 
   while (start != null && !org_apache_flex_utils_Language.is(start, org_apache_flex_core_IPopUpHost)) {
-    start = start.get_parent();
+    start = start.parent;
   }
 
   return start;
@@ -79,6 +79,6 @@ org_apache_flex_utils_UIUtils.findPopUpHost =
 org_apache_flex_utils_UIUtils.removePopUp =
     function(popUp) {
 
-  var p = popUp.get_parent();
+  var p = popUp.parent;
   p.removeElement(popUp);
 };

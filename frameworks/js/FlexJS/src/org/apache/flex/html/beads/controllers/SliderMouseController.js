@@ -70,8 +70,8 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
     {
   var xloc = event.clientX;
   var p = Math.min(1, xloc / parseInt(this.track.element.style.width, 10));
-  var n = p * (this.strand_.get_maximum() - this.strand_.get_minimum()) +
-          this.strand_.get_minimum();
+  var n = p * (this.strand_.maximum - this.strand_.minimum) +
+          this.strand_.minimum;
 
   this.strand_.set_value(n);
 
@@ -154,14 +154,14 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
   var newX = this.position + deltaX;
 
   var p = newX / parseInt(this.track.element.style.width, 10);
-  var n = p * (this.strand_.get_maximum() - this.strand_.get_minimum()) +
-          this.strand_.get_minimum();
+  var n = p * (this.strand_.maximum - this.strand_.minimum) +
+          this.strand_.minimum;
   n = this.strand_.snap(n);
-  if (n < this.strand_.get_minimum()) n = this.strand_.get_minimum();
-  else if (n > this.strand_.get_maximum()) n = this.strand_.get_maximum();
+  if (n < this.strand_.minimum) n = this.strand_.minimum;
+  else if (n > this.strand_.maximum) n = this.strand_.maximum;
 
-  p = (n - this.strand_.get_minimum()) / (this.strand_.get_maximum() -
-      this.strand_.get_minimum());
+  p = (n - this.strand_.minimum) / (this.strand_.maximum -
+      this.strand_.minimum);
   newX = p * parseInt(this.track.element.style.width, 10);
 
   this.thumb.element.style.left = String(newX -

@@ -60,7 +60,7 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
 
   this.listView = value.getBeadByType(
       org_apache_flex_html_beads_ListView);
-  this.dataGroup = this.listView.get_dataGroup();
+  this.dataGroup = this.listView.dataGroup;
 
   this.model.addEventListener('dataProviderChanged',
       goog.bind(this.dataProviderChangedHandler, this));
@@ -77,7 +77,7 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
-  dp = this.model.get_dataProvider();
+  dp = this.model.dataProvider;
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = new

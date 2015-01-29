@@ -59,5 +59,5 @@ org_apache_flex_html_beads_ImageView.prototype.set_strand =
  */
 org_apache_flex_html_beads_ImageView.prototype.
     sourceChangeHandler = function(event) {
-  this.strand_.element.src = this.model.get_source();
+  this.strand_.element.src = this.model.source;
 };

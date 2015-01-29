@@ -66,8 +66,8 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
       // events because we let the browser layout based on
       // %'s and don't convert to pixels, so listen to the
       // other events anyway.
-      /* if (!isNaN(this.strand_.get_explicitWidth()) &&
-          !isNaN(this.strand_.get_explicitHeight()))*/
+      /* if (!isNaN(this.strand_.explicitWidth) &&
+          !isNaN(this.strand_.explicitHeight))*/
       this.addOtherListeners();
     }
   }
@@ -106,10 +106,10 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
   var i, n, h, w;
 
   var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
-  var contentView = viewBead.get_contentView();
-  w = contentView.get_width();
-  h = contentView.get_height();
-  n = contentView.get_numElements();
+  var contentView = viewBead.contentView;
+  w = contentView.width;
+  h = contentView.height;
+  n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
     var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');

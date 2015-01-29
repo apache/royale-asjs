@@ -61,8 +61,8 @@ org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout.
           goog.bind(this.changeHandler, this));
       this.strand_.addEventListener('sizeChanged',
           goog.bind(this.sizeChangeHandler, this));
-      if (!isNaN(this.strand_.get_explicitWidth()) &&
-          !isNaN(this.strand_.get_explicitHeight()))
+      if (!isNaN(this.strand_.explicitWidth) &&
+          !isNaN(this.strand_.explicitHeight))
           this.addOtherListeners();
     }
     this.strand_.element.style.display = 'block';

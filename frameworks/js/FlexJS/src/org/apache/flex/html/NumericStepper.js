@@ -81,7 +81,7 @@ org_apache_flex_html_NumericStepper.prototype.createElement =
   this.element.flexjs_wrapper = this;
   this.set_className('NumericStepper');
 
-  this.input.set_text(String(this.spinner.get_value()));
+  this.input.set_text(String(this.spinner.value));
 
   return this.element;
 };
@@ -93,9 +93,9 @@ org_apache_flex_html_NumericStepper.prototype.createElement =
 org_apache_flex_html_NumericStepper.prototype.spinnerChange =
     function(event)
     {
-  var newValue = this.spinner.get_value();
+  var newValue = this.spinner.value;
   this.set_value(newValue);
-  this.input.set_text(String(this.spinner.get_value()));
+  this.input.set_text(String(this.spinner.value));
   this.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
 };
 
@@ -106,7 +106,7 @@ org_apache_flex_html_NumericStepper.prototype.spinnerChange =
  */
 org_apache_flex_html_NumericStepper.prototype.get_minimum =
     function() {
-  return this.model.get_minimum();
+  return this.model.minimum;
 };
 
 
@@ -126,7 +126,7 @@ org_apache_flex_html_NumericStepper.prototype.set_minimum =
  */
 org_apache_flex_html_NumericStepper.prototype.get_maximum =
     function() {
-  return this.model.get_maximum();
+  return this.model.maximum;
 };
 
 
@@ -146,7 +146,7 @@ org_apache_flex_html_NumericStepper.prototype.set_maximum =
  */
 org_apache_flex_html_NumericStepper.prototype.get_value =
     function() {
-  return this.model.get_value();
+  return this.model.value;
 };
 
 
@@ -167,7 +167,7 @@ org_apache_flex_html_NumericStepper.prototype.set_value =
  */
 org_apache_flex_html_NumericStepper.prototype.get_snapInterval =
     function() {
-  return this.model.get_snapInterval();
+  return this.model.snapInterval;
 };
 
 
@@ -187,7 +187,7 @@ org_apache_flex_html_NumericStepper.prototype.set_snapInterval =
  */
 org_apache_flex_html_NumericStepper.prototype.get_stepSize =
     function() {
-  return this.model.get_stepSize();
+  return this.model.stepSize;
 };
 
 

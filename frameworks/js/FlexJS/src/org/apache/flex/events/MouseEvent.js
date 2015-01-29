@@ -126,14 +126,14 @@ org_apache_flex_events_MouseEvent.mouseOverHandler = function(e) {
     if (target.get_parent === undefined)
       parent = null;
     else
-      parent = target.get_parent();
+      parent = target.parent;
     while (parent) {
       index = targets.indexOf(parent);
       if (index == -1) {
         newTargets.unshift(parent);
         if (parent.get_parent === undefined)
           break;
-        parent = parent.get_parent();
+        parent = parent.parent;
       }
       else {
         outs = targets.slice(index + 1);

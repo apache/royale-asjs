@@ -140,5 +140,5 @@ org_apache_flex_createjs_CheckBox.prototype.set_selected =
  */
 org_apache_flex_createjs_CheckBox.prototype.clickHandler =
     function(event) {
-  this.set_selected(!this.get_selected());
+  this.set_selected(!this.selected);
 };

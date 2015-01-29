@@ -83,9 +83,9 @@ org_apache_flex_core_graphics_Path.prototype.drawPath = function(x, y, data) {
     path.setAttribute('style', style);
     path.setAttribute('d', data);
     this.element.appendChild(path);
-    if (this.get_stroke())
+    if (this.stroke)
     {
-      this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+      this.setPosition(x, y, this.stroke.weight, this.stroke.weight);
     }
     else
     {
@@ -100,5 +100,5 @@ org_apache_flex_core_graphics_Path.prototype.drawPath = function(x, y, data) {
   * @override
   */
 org_apache_flex_core_graphics_Path.prototype.draw = function() {
-    this.drawPath(this.get_x(), this.get_y(), this.get_data());
+    this.drawPath(this.x, this.y, this.data);
   };

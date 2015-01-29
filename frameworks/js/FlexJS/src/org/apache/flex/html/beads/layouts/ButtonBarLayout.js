@@ -94,13 +94,13 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout.
     prototype.changeHandler = function(event) {
 
   var layoutParent = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
-  var contentView = layoutParent.get_contentView();
+  var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
 
-  var n = itemRendererParent.get_numElements();
+  var n = itemRendererParent.numElements;
   var xpos = 0;
-  var useWidth = this.strand_.get_width() / n;
-  var useHeight = this.strand_.get_height();
+  var useWidth = this.strand_.width / n;
+  var useHeight = this.strand_.height;
 
   for (var i = 0; i < n; i++)
   {
@@ -121,6 +121,6 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout.
     else
       ir.element.style.display = 'inline-block';
 
-    xpos += ir.get_width();
+    xpos += ir.width;
   }
 };

@@ -62,7 +62,7 @@ org_apache_flex_html_beads_PanelView.prototype.set_strand =
 
   this.strand_.titleBar = this.titleBar_;
   this.titleBar_.set_id('titleBar');
-  this.titleBar_.set_model(this.strand_.get_model());
+  this.titleBar_.set_model(this.strand_.model);
 
   this.strand_.controlBar =
       new org_apache_flex_html_ControlBar();
@@ -93,12 +93,12 @@ org_apache_flex_html_beads_PanelView.prototype.changeHandler =
   }
 
   if (event.type == 'titleChange') {
-    this.titleBar_.set_title(strand.model.get_title());
+    this.titleBar_.set_title(strand.model.title);
   }
 
   var p = this.strand_.positioner;
   if (!strand.isWidthSizedToContent()) {
-    var w = strand.get_width();
+    var w = strand.width;
     w -= p.offsetWidth - p.clientWidth;
     this.titleBar_.setWidth(w);
     strand.contentArea.style.width = w.toString() + 'px';
@@ -106,12 +106,12 @@ org_apache_flex_html_beads_PanelView.prototype.changeHandler =
       strand.controlBar.setWidth(w);
   }
   if (!strand.isHeightSizedToContent()) {
-    var t = this.titleBar_.get_height();
+    var t = this.titleBar_.height;
     var b = 0;
     if (strand.controlBar)
-      b = strand.controlBar.get_height();
+      b = strand.controlBar.height;
     strand.contentArea.style.top = t.toString() + 'px';
-    var h = strand.get_height() - t - b;
+    var h = strand.height - t - b;
     h -= p.offsetHeight - p.clientHeight;
     strand.contentArea.style.height = h.toString() + 'px';
   }

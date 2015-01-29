@@ -50,7 +50,7 @@ org_apache_flex_core_FilledRectangle.prototype.FLEXJS_CLASS_INFO =
  */
 org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
   org_apache_flex_core_FilledRectangle.base(this, 'addedToParent');
-  this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+  this.drawRect(this.x, this.y, this.width, this.height);
 };
 
 

@@ -76,7 +76,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
 
   if (typeof(thisObject.get_style) === 'function')
   {
-    var style = thisObject.get_style();
+    var style = thisObject.style;
     if (style != null)
     {
       try {

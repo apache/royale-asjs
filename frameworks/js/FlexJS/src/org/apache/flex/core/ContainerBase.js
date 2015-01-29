@@ -99,7 +99,7 @@ org_apache_flex_core_ContainerBase.prototype.addedToParent = function() {
 
   if (!this.initialized_) {
     org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
-        this, this.get_MXMLDescriptor());
+        this, this.MXMLDescriptor);
 
     this.dispatchEvent('initBindings');
     this.dispatchEvent('initComplete');
