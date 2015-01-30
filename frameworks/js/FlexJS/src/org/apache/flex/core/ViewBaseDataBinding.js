@@ -121,12 +121,7 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.initCompleteHandler =
             sb.setDocument(this.strand_);
             prop = binding.destination[0];
 
-            if (typeof(this.strand_['get_' +
-                                    prop]) == 'function')
-              destination = this.strand_[
-                  'get_' + prop]();
-            else
-              destination = this.strand_[prop];
+            destination = this.strand_[prop];
 
             if (destination)
               destination.addBead(sb);
@@ -149,12 +144,7 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.initCompleteHandler =
             cb.sourcePropertyName = binding.source[1];
             cb.setDocument(this.strand_);
             prop = binding.destination[0];
-            if (typeof(this.strand_['get_' +
-                                    prop]) == 'function')
-              destination = this.strand_[
-                  'get_' + prop]();
-            else
-              destination = this.strand_[prop];
+            destination = this.strand_[prop];
 
             if (destination)
               destination.addBead(cb);
@@ -180,12 +170,7 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.initCompleteHandler =
         sb.sourcePropertyName = binding.source;
         sb.setDocument(this.strand_);
         prop = binding.destination[0];
-        if (typeof(this.strand_['get_' +
-                                prop]) == 'function')
-          destination = this.strand_[
-              'get_' + prop]();
-        else
-          destination = this.strand_[prop];
+        destination = this.strand_[prop];
 
         if (destination)
           destination.addBead(sb);
@@ -351,18 +336,9 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.deferredBindingsHandler =
   for (p in this.deferredBindings)
   {
     if (p != event.propertyName) continue;
-    if (typeof(this.strand_['get_' + p]) == 'function')
-    {
-      destination = this.strand_['get_' + p]();
-      destination.addBead(this.deferredBindings[p]);
-      delete this.deferredBindings[p];
-    }
-    else if (this.strand_[p] != null)
-    {
-      destination = this.strand_[p];
-      destination.addBead(this.deferredBindings[p]);
-      delete this.deferredBindings[p];
-    }
+    destination = this.strand_[p];
+    destination.addBead(this.deferredBindings[p]);
+    delete this.deferredBindings[p];
   }
 };
 

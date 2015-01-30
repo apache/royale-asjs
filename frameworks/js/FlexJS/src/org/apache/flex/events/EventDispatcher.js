@@ -69,37 +69,6 @@ org_apache_flex_events_EventDispatcher.prototype.addEventListener =
 
 
 /**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @return {Object} value The value of the property.
- */
-org_apache_flex_events_EventDispatcher.prototype.getProperty =
-    function(obj, propName) {
-  if (typeof obj['get_' + propName] === 'function') {
-    return obj['get_' + propName]();
-  }
-  return obj[propName];
-};
-
-
-/**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @param {Object} value The value of the property.
- */
-org_apache_flex_events_EventDispatcher.prototype.setProperty =
-function(obj, propName, value) {
-  if (typeof obj['set_' + propName] === 'function') {
-    obj['set_' + propName](value);
-  } else {
-    obj[propName] = value;
-  }
-};
-
-
-/**
  * @type {Object}
  */
 org_apache_flex_events_EventDispatcher.elementEvents = {

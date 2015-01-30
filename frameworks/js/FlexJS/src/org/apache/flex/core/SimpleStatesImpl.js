@@ -138,11 +138,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
 
         parent = o.document;
         if (o.destination) {
-          if (typeof(o.document['get_' + o.destination]) === 'function') {
-            parent = o.document['get_' + o.destination]();
-          } else {
-            parent = o.document[o.destination];
-          }
+          parent = o.document[o.destination];
         }
 
         parent.removeElement(item);
@@ -150,23 +146,10 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
             new org_apache_flex_events_Event('childrenAdded'));
       }
     } else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty)) {
-      if (typeof(o.document['get_' + o.target]) === 'function') {
-        target = o.document['get_' + o.target]();
-      } else {
-        target = o.document[o.target];
-      }
-
-      if (typeof(target['set_' + o.name]) === 'function') {
-        target['set_' + o.name](o.previousValue);
-      } else {
-        target[o.name] = o.previousValue;
-      }
+      target = o.document[o.target];
+      target[o.name] = o.previousValue;
     } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
-      if (typeof(o.document['get_' + o.target]) === 'function') {
-        target = o.document['get_' + o.target]();
-      } else {
-        target = o.document[o.target];
-      }
+      target = o.document[o.target];
       target.removeEventListener(o.name, o.handlerFunction);
     }
   }
@@ -202,19 +185,11 @@ org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
 
         parent = o.document;
         if (o.destination) {
-          if (typeof(o.document['get_' + o.destination]) === 'function') {
-            parent = o.document['get_' + o.destination]();
-          } else {
-            parent = o.document[o.destination];
-          }
+          parent = o.document[o.destination];
         }
 
         if (o.relativeTo) {
-          if (typeof(o.document['get_' + o.relativeTo]) === 'function') {
-            child = o.document['get_' + o.relativeTo]();
-          } else {
-            child = o.document[o.relativeTo];
-          }
+          child = o.document[o.relativeTo];
 
           index = parent.getElementIndex(child);
           if (o.position === 'after') {
@@ -232,29 +207,11 @@ org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
     }
     else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty))
     {
-      if (typeof(o.document['get_' + o.target]) === 'function') {
-        target = o.document['get_' + o.target]();
-      } else {
-        target = o.document[o.target];
-      }
-
-      if (typeof(target['get_' + o.name]) === 'function') {
-        o.previousValue = target['get_' + o.name]();
-      } else {
-        o.previousValue = target[o.name];
-      }
-
-      if (typeof(target['set_' + o.name]) === 'function') {
-        target['set_' + o.name](o.value);
-      } else {
-        target[o.name] = o.value;
-      }
+      target = o.document[o.target];
+      o.previousValue = target[o.name];
+      target[o.name] = o.value;
     } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
-      if (typeof(o.document['get_' + o.target]) === 'function') {
-        target = o.document['get_' + o.target]();
-      } else {
-        target = o.document[o.target];
-      }
+      target = o.document[o.target];
       target.addEventListener(o.name, o.handlerFunction);
     }
   }

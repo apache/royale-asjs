@@ -48,15 +48,12 @@ org_apache_flex_binding_ConstantBinding.prototype.set_strand = function(value) {
 
   var val;
   try {
-    val = this.source['get_' + this.sourcePropertyName]();
+    val = this.source[this.sourcePropertyName];
   } catch (e) {
     try {
       val = this.source.constructor[this.sourcePropertyName];
     } catch (e2) {
     }
   }
-  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
-    this.destination['set_' + this.destinationPropertyName](val);
-  else
-    this.destination[this.destinationPropertyName] = val;
+  this.destination[this.destinationPropertyName] = val;
 };

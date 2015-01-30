@@ -198,8 +198,8 @@ org_apache_flex_utils_Language.uint = function(value) {
  * @return {number}
  */
 org_apache_flex_utils_Language.preincrement = function(obj, prop) {
-  var value = obj['get_' + prop]() + 1;
-  obj['set_' + prop](value);
+  var value = obj[prop] + 1;
+  obj[prop] = value;
   return value;
 };
 
@@ -213,8 +213,8 @@ org_apache_flex_utils_Language.preincrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.predecrement = function(obj, prop) {
-  var value = obj['get_' + prop]() - 1;
-  obj['set_' + prop](value);
+  var value = obj[prop] - 1;
+  obj[prop] = value;
   return value;
 };
 
@@ -228,8 +228,8 @@ org_apache_flex_utils_Language.predecrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.postincrement = function(obj, prop) {
-  var value = obj['get_' + prop]();
-  obj['set_' + prop](value + 1);
+  var value = obj[prop];
+  obj[prop] = value + 1;
   return value;
 };
 
@@ -243,7 +243,7 @@ org_apache_flex_utils_Language.postincrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
-  var value = obj['get_' + prop]();
-  obj['set_' + prop](value + 1);
+  var value = obj[prop];
+  obj[prop] = value + 1;
   return value;
 };

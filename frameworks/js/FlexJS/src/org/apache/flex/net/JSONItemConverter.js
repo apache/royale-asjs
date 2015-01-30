@@ -46,35 +46,3 @@ org_apache_flex_net_JSONItemConverter.prototype.convertItem = function(s) {
     s += '}';
   return JSON.parse(s);
 };
-
-
-/**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @return {Object} value The value of the property.
- */
-org_apache_flex_net_JSONItemConverter.prototype.getProperty =
-    function(obj, propName) {
-  if (typeof obj['get_' + propName] === 'function') {
-    return obj['get_' + propName]();
-  }
-  return obj[propName];
-};
-
-
-/**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @param {Object} value The value of the property.
- */
-org_apache_flex_net_JSONItemConverter.prototype.setProperty =
-function(obj, propName, value) {
-  if (typeof obj['set_' + propName] === 'function') {
-    obj['set_' + propName](value);
-  } else {
-    obj[propName] = value;
-  }
-};
-

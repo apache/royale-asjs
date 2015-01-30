@@ -50,14 +50,8 @@ org_apache_flex_binding_SimpleBinding.prototype.eventName = '';
  * @expose
  */
 org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
-  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
-    this.destination['set_' + this.destinationPropertyName](
-        this.source['get_' + this.sourcePropertyName]()
-    );
-  else {
-    this.destination[this.destinationPropertyName] =
-        this.source['get_' + this.sourcePropertyName]();
-  }
+  this.destination[this.destinationPropertyName] =
+      this.source[this.sourcePropertyName];
 };
 
 

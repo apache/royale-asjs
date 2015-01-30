@@ -68,7 +68,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject =
       }
 
       if (name === 'id') {
-        document['set_' + value](comp);
+        document[value] = comp;
         id = value;
       }
 
@@ -80,16 +80,12 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject =
         id = value;
       }
       else if (name === 'id') {
-        if (typeof(comp['set_id']) === 'function') {
-          comp['set_id'](value);
-        }
+		try {
+          comp.id = value;
+		} catch (e) {};
       }
       else {
-        if (typeof comp['set_' + name] === 'function') {
-          comp['set_' + name](value);
-        } else {
-          comp[name] = value;
-        }
+        comp[name] = value;
       }
     }
 
@@ -161,11 +157,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
       value = generateMXMLObject(document, value);
     }
 
-    if (typeof comp['set_' + name] === 'function') {
-      comp['set_' + name](value);
-    } else {
-      comp[name] = value;
-    }
+    comp[name] = value;
   }
 
   beadOffset = i + (m - 1) * 3;
@@ -188,7 +180,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
 
     if (name === 'id') {
       id = value;
-      document['set_' + value](comp);
+      document[value] = comp;
     }
 
     if (name === 'document' && !comp.document) {
@@ -196,15 +188,11 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
     } else if (name === '_id') {
       id = value; // and don't assign to comp
     } else if (name === 'id') {
-      if (typeof(comp['set_id']) === 'function') {
-        comp['set_id'](value);
-      }
+      try {
+        comp.id = value;
+      } catch (e) {};
     } else {
-      if (typeof(comp['set_' + name]) === 'function') {
-        comp['set_' + name](value);
-      } else {
-        comp[name] = value;
-      }
+      comp[name] = value;
     }
   }
 
@@ -219,11 +207,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
     } else if (simple === false) {
       value = generateMXMLObject(document, value);
     }
-    if (typeof(comp['set_' + name]) === 'function') {
-      comp['set_' + name](value);
-    } else {
-      comp[name] = value;
-    }
+    comp[name] = value;
   }
 
   m = data[i++]; // num styles
@@ -286,11 +270,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
   }
 
   if (id) {
-    if (typeof(document['set_' + id]) === 'function') {
-      document['set_' + id](comp);
-    } else {
-      document[id] = comp;
-    }
+    document[id] = comp;
   }
 
   if (typeof(comp.setDocument) === 'function') {
@@ -368,11 +348,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties =
     if (name === '_id') {
       id = value; // and don't assign
     } else {
-      if (typeof(host['set_' + name]) === 'function') {
-        host['set_' + name](value);
-      } else {
-        host[name] = value;
-      }
+      host[name] = value;
     }
   }
 
@@ -385,12 +361,6 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties =
       value = generateMXMLArray(host, null, value);
     } else if (simple === false) {
       value = generateMXMLObject(host, value);
-    } else {
-      if (typeof(host['set_' + name]) === 'function') {
-        host['set_' + name](value);
-      } else {
-        host[name] = value;
-      }
     }
 
     beads = value;
@@ -413,11 +383,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties =
       value = generateMXMLObject(host, value);
     }
 
-    if (typeof(host['set_' + name]) === 'function') {
-      host['set_' + name](value);
-    } else {
-      host[name] = value;
-    }
+    host[name] = value;
   }
 
   /*
@@ -431,10 +397,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties =
                 value = generateMXMLArray(host, null, value, false);
             else if (simple === false)
                 value = generateMXMLObject(host, value);
-            if (typeof(host['set_' + name]) == 'function')
-                host['set_' + name](value);
-            else
-                host[name] = value;
+            host[name] = value;
         }
       */
 
