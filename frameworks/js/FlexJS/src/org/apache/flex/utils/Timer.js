@@ -107,56 +107,31 @@ org_apache_flex_utils_Timer.prototype.timerHandler =
 
 };
 
-
-/**
- * @expose
- * @return {number} The currentCount.
- */
-org_apache_flex_utils_Timer.prototype.get_currentCount = function() {
-  return this._currentCount;
-};
-
-
-/**
- * @expose
- * @return {boolean} True if the timer is running.
- */
-org_apache_flex_utils_Timer.prototype.get_running = function() {
-  return this.timerInterval !== -1;
-};
-
-
-/**
- * @expose
- * @return {number} The number of milliseconds between events.
- */
-org_apache_flex_utils_Timer.prototype.get_delay = function() {
-  return this._delay;
-};
-
-
-/**
- * @expose
- * @param {number} value The number of milliseconds between events.
- */
-org_apache_flex_utils_Timer.prototype.set_delay = function(value) {
-  this._delay = value;
-};
-
-
-/**
- * @expose
- * @return {number} The repeat count.
- */
-org_apache_flex_utils_Timer.prototype.get_repeatCount = function() {
-  return this._repeatCount;
-};
-
-
-/**
- * @expose
- * @param {number} value The repeat count.
- */
-org_apache_flex_utils_Timer.prototype.set_repeatCount = function(value) {
-  this._repeatCount = value;
-};
+Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
+    "currentCount": {
+        get: function() {
+            return this._currentCount;
+		}
+	},
+    "running": {
+        get: function() {
+            return this.timerInterval !== -1;
+		}
+	},
+    "delay": {
+		get: function() {
+            return this._delay;
+		},
+        set: function(value) {
+            this._delay = value;
+		}
+	},
+    "repeatCount": {
+		get: function() {
+            return this._repeatCount;
+		},
+        set: function(value) {
+            this._repeatCount = value;
+		}
+	}
+});
