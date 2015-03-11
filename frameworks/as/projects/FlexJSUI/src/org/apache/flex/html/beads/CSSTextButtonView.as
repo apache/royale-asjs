@@ -202,6 +202,10 @@ package org.apache.flex.html.beads
 					updateHitArea();
 				});
 			}
+			var textColor:Object = ValuesManager.valuesImpl.getValue(_strand, "color", state);
+			if (textColor) {
+				textField.textColor = Number(textColor);
+			}
 		}
 		
 		private function drawSkin() : void

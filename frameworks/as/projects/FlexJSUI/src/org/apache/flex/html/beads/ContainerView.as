@@ -119,6 +119,7 @@ package org.apache.flex.html.beads
                 if (actualParent == null || actualParent == host)
                 {
                     actualParent = new ContainerContentArea();
+					actualParent.className = "ActualParent";
                     host.addElement(actualParent);
                     Container(host).setActualParent(actualParent);
                 }
@@ -223,6 +224,8 @@ package org.apache.flex.html.beads
 		{
 			var paddingLeft:Object;
 			var paddingTop:Object;
+			var paddingRight:Object;
+			var paddingBottom:Object;
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
 			if (padding is Array)
 			{
@@ -243,15 +246,20 @@ package org.apache.flex.html.beads
 			{
 				paddingLeft = ValuesManager.valuesImpl.getValue(_strand, "padding-left");
 				paddingTop = ValuesManager.valuesImpl.getValue(_strand, "padding-top");
+				paddingRight = ValuesManager.valuesImpl.getValue(_strand, "padding-right");
+				paddingBottom = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom");
 			}
 			else
 			{
 				paddingLeft = paddingTop = padding;
+				paddingRight = paddingBottom = padding;
 			}
 			var pl:Number = Number(paddingLeft);
 			var pt:Number = Number(paddingTop);
+			var pr:Number = Number(paddingRight);
+			var pb:Number = Number(paddingBottom);
 			
-			return {paddingLeft:pl, paddingTop:pt};
+			return {paddingLeft:pl, paddingTop:pt, paddingRight:pr, paddingBottom:pb};
 		}
 		
 		/**

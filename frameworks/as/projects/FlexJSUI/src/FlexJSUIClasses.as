@@ -53,6 +53,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.accessories.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.beads.AlertView; AlertView;
+	import org.apache.flex.html.beads.BackgroundImageBead; BackgroundImageBead;
 	import org.apache.flex.html.beads.ButtonBarView; ButtonBarView;
 	import org.apache.flex.html.beads.CheckBoxView; CheckBoxView;
     import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
@@ -143,6 +144,8 @@ internal class FlexJSUIClasses
     import org.apache.flex.events.DragEvent; DragEvent;   
 	import org.apache.flex.events.utils.MouseUtils; MouseUtils;
     import org.apache.flex.geom.Rectangle; Rectangle;    
+	
+	import org.apache.flex.mobile.ManagerBase; ManagerBase;
     
 	import mx.core.ClassFactory; ClassFactory;
     import mx.states.AddItems; AddItems;

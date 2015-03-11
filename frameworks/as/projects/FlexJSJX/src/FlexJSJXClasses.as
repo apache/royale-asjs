@@ -27,6 +27,12 @@ package
  */
 internal class FlexJSJXClasses
 {
+	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
+	import org.apache.flex.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
+	import org.apache.flex.mobile.chrome.NavigationBar; NavigationBar;
+	import org.apache.flex.mobile.chrome.TabBar; TabBar;
+	import org.apache.flex.mobile.chrome.ToolBar; ToolBar;
+	import org.apache.flex.mobile.models.ViewManagerModel; ViewManagerModel;
 	
 	import org.apache.flex.charts.beads.ChartView; ChartView;
 	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;

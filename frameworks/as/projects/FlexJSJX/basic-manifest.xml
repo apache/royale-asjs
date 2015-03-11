@@ -21,6 +21,13 @@
 
 <componentPackage>
 
+   <component id="StackedViewManager" class="org.apache.flex.mobile.StackedViewManager" />
+   <component id="TabbedViewManager" class="org.apache.flex.mobile.TabbedViewManager" />
+   <component id="View" class="org.apache.flex.mobile.View" />
+   <component id="NavigationBar" class="org.apache.flex.mobile.chrome.NavigationBar" />
+   <component id="ToolBar" class="org.apache.flex.mobile.chrome.ToolBar" />
+   <component id="TabBar" class="org.apache.flex.mobile.chrome.TabBar" />
+
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLayout" class="org.apache.flex.html.beads.layouts.DataGridLayout" />

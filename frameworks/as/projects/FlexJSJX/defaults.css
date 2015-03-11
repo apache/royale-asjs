@@ -19,6 +19,16 @@
 
 @namespace "library://ns.apache.org/flexjs/basic";
 
+StackedViewManager {
+    IBeadModel: ClassReference("org.apache.flex.mobile.models.ViewManagerModel");
+    IBeadView: ClassReference("org.apache.flex.mobile.beads.StackedViewManagerView");
+}
+
+TabbedViewManager {
+    IBeadModel: ClassReference("org.apache.flex.mobile.models.ViewManagerModel");
+    IBeadView: ClassReference("org.apache.flex.mobile.beads.TabbedViewManagerView");
+}
+
 BarChart
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
