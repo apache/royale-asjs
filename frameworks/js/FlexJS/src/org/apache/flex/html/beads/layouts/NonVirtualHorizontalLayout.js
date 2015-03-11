@@ -106,6 +106,7 @@ org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout.
   for (i = 0; i < n; i++)
   {
     var child = children[i];
+    child.internalDisplay = 'inline-block';
     if (child.style.display == 'none')
       child.lastDisplay_ = 'inline-block';
     else

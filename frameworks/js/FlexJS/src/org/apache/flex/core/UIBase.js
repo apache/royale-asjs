@@ -831,7 +831,7 @@ org_apache_flex_core_UIBase.prototype.set_visible = function(value) {
       if (this.lastDisplay_) {
         this.positioner.style.display = this.lastDisplay_;
       } else {
-        this.positioner.style.display = 'block';
+        this.positioner.style.display = this.positioner.internalDisplay;
       }
       this.dispatchEvent(new org_apache_flex_events_Event('show'));
     }

@@ -130,7 +130,7 @@ org_apache_flex_core_ContainerBase.prototype.get_MXMLDescriptor = function() {
 /**
  * @expose
  * @param {Object} doc The document.
- * @param {Array} desc The descriptor data;
+ * @param {Array} desc The descriptor data.
  */
 org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {

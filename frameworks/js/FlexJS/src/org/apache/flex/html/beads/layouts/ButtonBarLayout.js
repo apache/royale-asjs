@@ -108,6 +108,7 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout.
     ir.set_y(0);
     ir.set_height(useHeight);
     ir.set_x(xpos);
+    ir.element.internalDisplay = 'inline-block';
     ir.element.style['vertical-align'] = 'middle';
     ir.element.style['text-align'] = 'center';
     ir.element.style['left-margin'] = 'auto';

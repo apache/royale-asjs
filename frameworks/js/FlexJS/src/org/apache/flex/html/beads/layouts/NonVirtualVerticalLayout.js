@@ -102,6 +102,7 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
   for (i = 0; i < n; i++)
   {
     var child = children[i];
+    child.internalDisplay = 'block';
     if (child.style.display === 'none') {
       child.lastDisplay_ = 'block';
     } else {

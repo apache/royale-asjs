@@ -58,6 +58,13 @@ org_apache_flex_core_HTMLElementWrapper.prototype.strand = null;
 
 
 /**
+ * @protected
+ * @type {boolean}
+ */
+org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'none';
+
+
+/**
  * @expose
  * @param {Object} bead The new bead.
  */
@@ -172,7 +179,7 @@ goog.events.BrowserEvent.prototype.get_target = function() {
  * Hack to allow event.currentTarget expressions to work
  *
  * @expose
- * @return {?Node|Object} The wrapping object.
+ * @return {Node|Object} The wrapping object.
  */
 goog.events.BrowserEvent.prototype.get_currentTarget = function() {
   // if it is a faked event so just return the currentTarget
