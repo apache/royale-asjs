@@ -81,7 +81,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
             IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
-            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private function changeHandler(event:Event):void
@@ -126,6 +126,7 @@ package org.apache.flex.html.beads.layouts
 			for (var i:int = 0; i < n; i++)
 			{
 				var ir:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (ir == null || !ir.visible) continue;
 				ir.y = yy;
 				ir.width = contentView.width;
 				yy += ir.height;			

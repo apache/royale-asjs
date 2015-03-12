@@ -436,6 +436,16 @@ package org.apache.flex.core
         {
             return (isNaN(_explicitWidth) && isNaN(_percentWidth));
         }
+		
+		/**
+		 * @private
+		 */
+		override public function set visible(value:Boolean):void
+		{
+			super.visible = value;
+			dispatchEvent(new Event(value?"show":"hide"));
+			dispatchEvent(new Event("visibleChanged"));
+		}
         
         /**
          *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent

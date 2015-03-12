@@ -67,6 +67,7 @@ package org.apache.flex.html.beads.layouts
 			
 			IEventDispatcher(_strand).addEventListener("itemsCreated",handleCreated);
 			IEventDispatcher(_strand).addEventListener("childrenAdded",handleCreated);
+			IEventDispatcher(_strand).addEventListener("layoutNeeded",handleCreated);
 		}
 		
 		private var _numColumns:Number = 4;
@@ -155,16 +156,24 @@ package org.apache.flex.html.beads.layouts
 			var n:Number = area.numChildren;
 			if (n == 0) return;
 			
+			var realN:Number = n;
+			for(var j:int=0; j < n; j++)
+			{
+				var testChild:IUIBase = area.getChildAt(i) as IUIBase;
+				if (testChild && !testChild.visible) realN--;
+			}
+			
 			if (isNaN(useWidth)) useWidth = Math.floor(area.width / numColumns); // + gap
 			if (isNaN(useHeight)) {
 				// given the width and total number of items, how many rows?
-				var numRows:Number = Math.floor(n/numColumns);
+				var numRows:Number = Math.floor(realN/numColumns);
 				useHeight = Math.floor(area.height / numRows);
 			}
 			
 			for(var i:int=0; i < n; i++)
 			{
 				var child:IUIBase = area.getChildAt(i) as IUIBase;
+				if (child && !child.visible) continue;
 				child.width = useWidth;
 				child.height = useHeight;
 				child.x = xpos;

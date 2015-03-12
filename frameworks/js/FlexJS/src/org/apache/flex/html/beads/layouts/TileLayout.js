@@ -128,6 +128,13 @@ org_apache_flex_html_beads_layouts_TileLayout.
   n = children.length;
   if (n === 0) return;
 
+  var realN = n;
+  for (i = 0; i < n; i++)
+  {
+    var child = children[i].flexjs_wrapper;
+    if (!child.get_visible()) realN--;
+  }
+
   xpos = 0;
   ypos = 0;
   useWidth = this.get_columnWidth();
@@ -136,13 +143,14 @@ org_apache_flex_html_beads_layouts_TileLayout.
   if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.get_width() / this.get_numColumns()); // + gap
   if (isNaN(useHeight)) {
     // given the width and total number of items, how many rows?
-    var numRows = Math.floor(n / this.get_numColumns());
+    var numRows = Math.floor(realN / this.get_numColumns());
     useHeight = Math.floor(this.strand_.get_height() / numRows);
   }
 
   for (i = 0; i < n; i++)
   {
     var child = children[i].flexjs_wrapper;
+    if (!child.get_visible()) continue;
     child.positioner.internalDisplay = 'inline-block';
     child.set_width(useWidth);
     child.set_height(useHeight);

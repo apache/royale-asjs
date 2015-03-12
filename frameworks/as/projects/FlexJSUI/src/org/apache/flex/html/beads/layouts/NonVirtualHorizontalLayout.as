@@ -120,6 +120,7 @@ package org.apache.flex.html.beads.layouts
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -198,6 +199,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
                 if (child is ILayoutChild)
                 {
                     ilc = child as ILayoutChild;

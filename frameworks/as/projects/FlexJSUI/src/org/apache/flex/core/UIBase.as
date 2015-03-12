@@ -490,6 +490,16 @@ package org.apache.flex.core
         {
             return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
+		
+		/**
+		 * @private
+		 */
+		override public function set visible(value:Boolean):void
+		{
+			super.visible = value;
+			dispatchEvent(new Event(value?"show":"hide"));
+			dispatchEvent(new Event("visibleChanged"));
+		}
         
 		private var _model:IBeadModel;
 

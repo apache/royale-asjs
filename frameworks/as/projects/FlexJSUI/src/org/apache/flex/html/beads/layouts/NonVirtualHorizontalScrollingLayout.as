@@ -99,6 +99,7 @@ package org.apache.flex.html.beads.layouts
 			for (var i:int = 0; i < n; i++)
 			{
 				var ir:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (ir == null || !ir.visible) continue;
 				ir.x = xx;
 				ir.height = contentView.height;
 				xx += ir.width;			

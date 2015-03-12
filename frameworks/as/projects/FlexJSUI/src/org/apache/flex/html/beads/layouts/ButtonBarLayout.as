@@ -76,6 +76,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _buttonWidths:Array = null;
@@ -108,13 +109,22 @@ package org.apache.flex.html.beads.layouts
 			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
 			
 			var n:int = itemRendererParent.numElements;
+			var realN:int = n;
+			
+			for (var j:int=0; j < n; j++)
+			{
+				var child:IUIBase = itemRendererParent.getElementAt(j) as IUIBase;
+				if (child == null || !child.visible) realN--;
+			}
+			
 			var xpos:Number = 0;
-			var useWidth:Number = IUIBase(_strand).width / n;
+			var useWidth:Number = IUIBase(_strand).width / realN;
 			var useHeight:Number = IUIBase(_strand).height;
 			
 			for (var i:int=0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
+				if (ir == null || !UIBase(ir).visible) continue;
 				UIBase(ir).y = 0;
 				UIBase(ir).height = useHeight;
 				UIBase(ir).x = xpos;

@@ -835,6 +835,7 @@ org_apache_flex_core_UIBase.prototype.set_visible = function(value) {
       }
       this.dispatchEvent(new org_apache_flex_events_Event('show'));
     }
+    this.dispatchEvent(new org_apache_flex_events_Event('visibleChanged'));
   }
 };
 

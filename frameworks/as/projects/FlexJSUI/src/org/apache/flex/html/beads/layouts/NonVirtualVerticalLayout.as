@@ -93,7 +93,7 @@ package org.apache.flex.html.beads.layouts
         {
             host.addEventListener("childrenAdded", changeHandler);
             host.addEventListener("layoutNeeded", changeHandler);
-            host.addEventListener("itemsCreated", changeHandler);
+			host.addEventListener("itemsCreated", changeHandler);
         }
         
         private function sizeChangeHandler(event:Event):void
@@ -121,6 +121,7 @@ package org.apache.flex.html.beads.layouts
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -221,6 +222,7 @@ package org.apache.flex.html.beads.layouts
 			for (i = 0; i < n; i++)
 			{
                 child = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
                 if (hasHorizontalFlex)
                 {
 					var obj:Object = flexibleHorizontalMargins[i];
