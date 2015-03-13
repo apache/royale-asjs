@@ -219,6 +219,14 @@ package org.apache.flex.mobile
 			
 			var n:int = ViewManagerModel(model).views.length;
 			if (n > 0) {
+				for (var i:int = 0; i < n; i++)
+				{
+					var view:IView = ViewManagerModel(model).views[i] as IView;
+					view.viewManager = this;
+					if (i == 0) {
+						addElement(view,false);
+					}
+				}
 				ViewManagerModel(model).selectedIndex = 0;
 			}
 		}

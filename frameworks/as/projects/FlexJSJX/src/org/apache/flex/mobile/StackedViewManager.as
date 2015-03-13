@@ -74,9 +74,15 @@ package org.apache.flex.mobile
 			
 			var n:int = ViewManagerModel(model).views.length;
 			if (n > 0) {
-				var view:IView = ViewManagerModel(model).views[n-1] as IView;
-				addElement(view,false);
-				_topView = view;
+				for (var i:int = 0; i < n; i++)
+				{
+					var view:IView = ViewManagerModel(model).views[i] as IView;
+					view.viewManager = this;
+					if (i == (n-1)) {
+						addElement(view,false);
+						_topView = view;
+					}
+				}
 			}
 		}
 		
