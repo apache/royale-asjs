@@ -17,29 +17,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mobile:ViewController xmlns:fx="http://ns.adobe.com/mxml/2009"
+<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 					   xmlns:basic="library://ns.apache.org/flexjs/basic"
-					   xmlns:mobile="org.apache.flex.mobile.*"
 					   xmlns:apache="org.apache.flex.html.beads.*"
 					   xmlns:local="*"
 					   className="StockView">
 	
 	<fx:Script>
 		<![CDATA[			
+			import org.apache.flex.mobile.StackedViewManager;
 			private function onBackClick() : void
 			{
-				navigationController.pop();
+				(viewManager as StackedViewManager).pop();
+			}
+			
+			private function onNextClick() : void
+			{
+				var nextView:SearchView = new SearchView();
+				(viewManager as StackedViewManager).push(nextView);
 			}
 		]]>
 	</fx:Script>
-	
-	<basic:Image source="assets/background.png" x="0" y="0" width="320" height="55" />
-	<basic:Button x="0" y="5" width="45" height="45" className="BackButton" click="onBackClick()">
-		<basic:beads>
-			<apache:ImageButtonView />
-		</basic:beads>
-	</basic:Button>
-	<basic:Image source="assets/logo.png" x="47" y="0" width="218" height="55" />
 		
 	<basic:Label text="Stock View" x="20" y="100" />
-</mobile:ViewController>
+	<basic:TextButton text="Again" x="20" y="130" click="onNextClick()" />
+</basic:View>

@@ -18,27 +18,20 @@ limitations under the License.
 
 -->
 <basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-			 title="Alerts"
-				       xmlns:basic="library://ns.apache.org/flexjs/basic"
-				       xmlns:local="*"
-				       className="AlertsView">
-	
-	<fx:Metadata>
-		[Event("next")]
-	</fx:Metadata>
+					   xmlns:basic="library://ns.apache.org/flexjs/basic"
+					   xmlns:apache="org.apache.flex.html.beads.*"
+					   xmlns:local="*"
+					   className="StockView">
 	
 	<fx:Script>
-		<![CDATA[
-			import org.apache.flex.events.Event;
-			private function gotoNext():void
+		<![CDATA[			
+			import org.apache.flex.mobile.StackedViewManager;
+			private function onBackClick() : void
 			{
-				trace("goto next");
-				dispatchEvent(new org.apache.flex.events.Event("next"));
+				(viewManager as StackedViewManager).pop();
 			}
 		]]>
 	</fx:Script>
-	
-	<basic:Label text="Alerts View" x="20" y="100" />
-	<basic:TextButton text="Next" x="20" y="150" click="gotoNext()" />
-	
+		
+	<basic:Label text="Search View" x="20" y="100" />
 </basic:View>

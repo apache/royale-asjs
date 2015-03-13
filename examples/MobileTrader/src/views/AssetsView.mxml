@@ -17,33 +17,44 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mobile:ViewController xmlns:fx="http://ns.adobe.com/mxml/2009"
-					   xmlns:basic="library://ns.apache.org/flexjs/basic"
-					   xmlns:mobile="org.apache.flex.mobile.*" 
-					   xmlns:models="models.*"
-					   xmlns:local="*"
-					   className="AssetsView" xmlns:tests="tests.*">
+<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+			title="Assets"
+			xmlns:basic="library://ns.apache.org/flexjs/basic"
+			xmlns:models="models.*"
+			xmlns:local="*"
+			className="AssetsView">
 	<fx:Script>
 		<![CDATA[
 
 		]]>
 	</fx:Script>
 	
-	<mobile:model>
+	<fx:Metadata>
+		[Event("next")]
+	</fx:Metadata>
+	
+	<basic:beads>
+		<basic:NonVirtualBasicLayout />
+	</basic:beads>
+	
+	<basic:model>
 		<models:AssetsModel />
-	</mobile:model>
+	</basic:model>
 	
-	<basic:Image source="assets/background.png" x="0" y="0" width="320" height="55" />
-	<basic:Image source="assets/logo.png" x="0" y="0" width="218" height="55" />
-	
-	<basic:Container x="0" y="55" width="480" className="AssetsInner">
+	<basic:Container className="AssetsInner" width="480">
 		<basic:beads>
 			<basic:NonVirtualVerticalLayout />
 		</basic:beads>
+		<basic:style>
+			<basic:SimpleCSSStyles top="0" left="0" right="0" />
+		</basic:style>
 		
 		<basic:Label text="Summary" />
 		
-		<basic:DataGrid width="320" height="200">
+		<basic:DataGrid height="200" width="480">
+			<basic:style>
+				<basic:SimpleCSSStyles top="0" left="0" right="0" />
+			</basic:style>
 			<basic:beads>
 				<basic:ConstantBinding
 					sourceID="model"
@@ -80,4 +91,4 @@ limitations under the License.
 		</basic:BarChart>-->
 		
 	</basic:Container>
-</mobile:ViewController>
+</basic:View>

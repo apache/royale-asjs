@@ -17,22 +17,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mobile:ViewController xmlns:fx="http://ns.adobe.com/mxml/2009"
-					   xmlns:basic="library://ns.apache.org/flexjs/basic"
-					   xmlns:mobile="org.apache.flex.mobile.*"
-					   xmlns:controller="controller.*"
-					   xmlns:local="*"
-					   className="WatchListView"
-					   xmlns:renderers="renderers.*">
+<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+			title="Watch List"
+			xmlns:basic="library://ns.apache.org/flexjs/basic"
+			xmlns:controller="controller.*"
+			xmlns:local="*"
+			className="WatchListView"
+			xmlns:renderers="renderers.*">
 	
 	<fx:Script>
 		<![CDATA[						
 			import org.apache.flex.events.Event;
+			import org.apache.flex.mobile.IViewManager;
+			import org.apache.flex.mobile.StackedViewManager;
 
 			private function onSelectStock():void
 			{
 				var stockView:StockView = new StockView();
-				navigationController.push(stockView);
+				var svm:IViewManager = viewManager;
+				(viewManager as StackedViewManager).push(stockView);
 			}
 			
 			private function onStockChange(event:org.apache.flex.events.Event):void
@@ -51,19 +54,16 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<mobile:model>
+	<basic:model>
 		<controller:Feed />
-	</mobile:model>
+	</basic:model>
 	
-	<basic:Image source="assets/background.png" x="0" y="0" width="320" height="55" />
-	<basic:Image source="assets/logo.png" x="0" y="0" width="218" height="55" />
-	
-	<basic:Container x="0" y="55" width="320" className="WatchListInner">
+	<basic:Container x="0" y="0" width="480" className="WatchListInner">
 		<basic:beads>
 			<basic:NonVirtualVerticalLayout />
 		</basic:beads>
 		
-		<basic:DataGrid width="320" height="380" change="onSelectStock()">
+		<basic:DataGrid width="480" height="380" change="onSelectStock()">
 			<basic:beads>
 				<basic:SimpleBinding
 					eventName="update"
@@ -111,4 +111,4 @@ limitations under the License.
 		</basic:DataGrid>
 	</basic:Container>
 
-</mobile:ViewController>
+</basic:View>
