@@ -108,30 +108,30 @@ org_apache_flex_utils_Timer.prototype.timerHandler =
 };
 
 Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
-    "currentCount": {
+    'currentCount': {
         get: function() {
             return this._currentCount;
-		}
-	},
-    "running": {
+        }
+    },
+    'running': {
         get: function() {
             return this.timerInterval !== -1;
-		}
-	},
-    "delay": {
-		get: function() {
+        }
+    },
+    'delay': {
+        get: function() {
             return this._delay;
-		},
+        },
         set: function(value) {
             this._delay = value;
-		}
-	},
-    "repeatCount": {
-		get: function() {
+        }
+    },
+    'repeatCount': {
+        get: function() {
             return this._repeatCount;
-		},
+        },
         set: function(value) {
             this._repeatCount = value;
-		}
-	}
+        }
+    }
 });

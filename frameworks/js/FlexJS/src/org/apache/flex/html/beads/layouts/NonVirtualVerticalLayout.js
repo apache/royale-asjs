@@ -42,7 +42,7 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype.FLEXJS_CLA
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               if (this.strand_.isWidthSizedToContent() &&
@@ -60,8 +60,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLay
                   this.addOtherListeners();
                }
             }
-		}
-	}
+        }
+    }
 });
 
 

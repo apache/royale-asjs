@@ -37,26 +37,27 @@ org_apache_flex_core_ISelectableItemRenderer = function() {
 
 Object.defineProperties(org_apache_flex_core_ISelectableItemRenderer.prototype, {
     'labelField': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'index': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'selected': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'hovered': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'down': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	}
+    }
 });
+
 
 /**
  * Metadata

@@ -45,11 +45,11 @@ org_apache_flex_html5_TextInput.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html5_TextInput.prototype, {
     'text': {
-		get: function() {
+        get: function() {
             return this.element.value;
-		},
+        },
         set: function(value) {
             this.element.value = value;
-		}
-	}
+        }
+    }
 });

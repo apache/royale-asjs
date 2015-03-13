@@ -94,25 +94,25 @@ org_apache_flex_jquery_ToggleTextButton.prototype.addedToParent =
 
 Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
     'id': {
-		set: function(value) {
+        set: function(value) {
             org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
             this.labelFor.id = value;
             this.labelFor.htmlFor = value;
-		}
-	},
+        }
+    },
     'text': {
-		get: function() {
+        get: function() {
             return this.labelFor.innerHTML;
-		},
+        },
         set: function(value) {
             this.labelFor.innerHTML = value;
-		}
-	},
-	'selected': {
-		get: function() {
+        }
+    },
+    'selected': {
+        get: function() {
             return this.input.selected_;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             if (this.input.selected_ != value) {
             this.inputselected_ = value;
             /*
@@ -126,9 +126,9 @@ Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
                   this.className = className + this.SELECTED;
               }
              */
-			}
-		}
-	}
+            }
+        }
+    }
 });
 
 

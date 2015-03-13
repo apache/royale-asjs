@@ -46,13 +46,13 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
  */
 Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               value.addEventListener('keypress', goog.bind(this.validateInput, this));
             }
-		}
-	}
+        }
+    }
 });
 
 

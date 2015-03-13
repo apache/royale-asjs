@@ -32,16 +32,16 @@ org_apache_flex_core_IFormatBead = function() {
 
 Object.defineProperties(org_apache_flex_core_IFormatBead.prototype, {
     'propertyName': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'eventName': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'formattedString': {
-		get: function() {}
-	}
+        get: function() {}
+    }
 });
 
 

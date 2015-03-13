@@ -198,8 +198,8 @@ org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
 
 Object.defineProperties(org_apache_flex_binding_ChainWatcher.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.applyBinding();
         }
-	}
+    }
 });

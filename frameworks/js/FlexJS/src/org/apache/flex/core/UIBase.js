@@ -341,35 +341,35 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
      * @param {Array.<Object>} value The list of beads from MXML.
      */
     'beads': {
-		set: function(value) {
+        set: function(value) {
             this.mxmlBeads_ = value;
         }
-	},
+    },
     'numElements': {
-		get: function() {
+        get: function() {
             var children = this.internalChildren();
             return children.length;
-		}
-	},
+        }
+    },
     'parent': {
-		get: function() {
+        get: function() {
             var p = this.positioner.parentNode;
             var wrapper = p.flexjs_wrapper;
             return wrapper;
-		}
-	},
+        }
+    },
     'alpha': {
-		set: function(alpha) {
+        set: function(alpha) {
             this.positioner.style.opacity = alpha;
         },
         get: function() {
             var stralpha = this.positioner.style.opacity;
             var alpha = parseFloat(stralpha);
             return alpha;
-		}
-	},
+        }
+    },
     'x': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.left = pixels.toString() + 'px';
         },
@@ -379,10 +379,10 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             if (isNaN(pixels))
               pixels = this.positioner.offsetLeft;
             return pixels;
-		}
-	},
+        }
+    },
     'y': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.top = pixels.toString() + 'px';
         },
@@ -392,10 +392,10 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             if (isNaN(pixels))
               pixels = this.positioner.offsetTop;
             return pixels;
-		}
-	},
+        }
+    },
     'width': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.explicitWidth = pixels;
             this.setWidth(pixels);
         },
@@ -415,9 +415,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
             return pixels;
         }
-	},
+    },
     'explicitWidth': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.explicitWidth_ = pixels;
             if (!isNaN(pixels))
               this.percentWidth_ = NaN;
@@ -425,9 +425,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         get: function() {
             return this.explicitWidth_;
         }
-	},
+    },
     'percentWidth': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.percentWidth_ = pixels;
             this.positioner.style.width = pixels.toString() + '%';
             if (!isNaN(pixels))
@@ -436,9 +436,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         get: function() {
             return this.percentWidth_;
         }
-	},
+    },
     'height': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.explicitHeight = pixels;
             this.setHeight(pixels);
         },
@@ -457,10 +457,10 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
               }
             }
             return pixels;
-		}
-	},
+        }
+    },
     'explicitHeight': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.explicitHeight_ = pixels;
             if (!isNaN(pixels))
                 this.percentHeight_ = NaN;
@@ -468,9 +468,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         get: function() {
             return this.explicitHeight_;
         }
-	},
+    },
     'percentHeight': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.percentHeight_ = pixels;
             this.positioner.style.height = pixels.toString() + '%';
             if (!isNaN(pixels))
@@ -479,9 +479,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         get: function() {
             return this.percentHeight_;
         }
-	},
+    },
     'id': {
-		get: function() {
+        get: function() {
             return this.id;
         },
         set: function(value) {
@@ -491,9 +491,9 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
               this.dispatchEvent('idChanged');
             }
         }
-	},
+    },
     'className': {
-		get: function() {
+        get: function() {
             return this.className;
         },
         set: function(value) {
@@ -502,10 +502,10 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
               this.className = value;
               this.dispatchEvent('classNameChanged');
             }
-		}
-	},
+        }
+    },
     'model': {
-		get: function() {
+        get: function() {
             if (this.model == null) {
               // addbead will set _model
               if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
@@ -519,16 +519,16 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
               }
             }
             return this.model;
-		},
+        },
         set: function(value) {
             if (this.model !== value) {
               this.addBead(value);
               this.dispatchEvent('modelChanged');
             }
-		}
-	},
+        }
+    },
     'style': {
-		get: function() {
+        get: function() {
             return this.style_;
         },
         set: function(value) {
@@ -541,10 +541,10 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
                     goog.bind(this.styleChangeHandler, this));
               this.dispatchEvent('stylesChanged');
             }
-		}
-	},
+        }
+    },
     'visible': {
-		get: function() {
+        get: function() {
             return this.positioner.style.display !== 'none';
         },
         set: function(value) {
@@ -563,13 +563,13 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
                 this.dispatchEvent(new org_apache_flex_events_Event('show'));
               }
            }
-		}
-	},
+        }
+    },
     'topMostEventDispatcher': {
-		get: function() {
+        get: function() {
             return document.body.flexjs_wrapper;
         }
-	}
+    }
 });
 
 

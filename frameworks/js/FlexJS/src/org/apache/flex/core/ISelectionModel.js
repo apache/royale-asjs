@@ -37,18 +37,19 @@ org_apache_flex_core_ISelectionModel = function() {
 
 Object.defineProperties(org_apache_flex_core_ISelectionModel.prototype, {
     'dataProvider': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'selectedIndex': {
-		set: function(value) {},
-		get: function() {}
-	},
-    'selectedItem': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	}
+    },
+    'selectedItem': {
+        set: function(value) {},
+        get: function() {}
+    }
 });
+
 
 /**
  * Metadata

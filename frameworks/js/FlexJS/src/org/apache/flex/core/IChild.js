@@ -33,8 +33,8 @@ org_apache_flex_core_IChild = function() {
 
 Object.defineProperties(org_apache_flex_core_IChild.prototype, {
     'parent': {
-		get: function() {}
-	}
+        get: function() {}
+    }
 });
 
 

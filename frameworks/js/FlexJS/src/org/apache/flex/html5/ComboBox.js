@@ -170,14 +170,14 @@ Object.defineProperties(org_apache_flex_html5_ComboBox.prototype, {
     'dataProvider': {
         set: function(value) {
             this.dataProvider = value;
-		}
-	},
+        }
+    },
     'text': {
-		get: function() {
+        get: function() {
             return this.element.childNodes.item(0).value;
-		},
+        },
         set: function(value) {
             this.element.childNodes.item(0).value = value;
-		}
-	}
+        }
+    }
 });

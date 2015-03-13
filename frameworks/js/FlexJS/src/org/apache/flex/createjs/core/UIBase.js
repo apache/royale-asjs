@@ -58,31 +58,31 @@ org_apache_flex_createjs_core_UIBase.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
     'x': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.x = pixels;
             this.element.getStage().update();
-		}
-	},
+        }
+    },
     'y': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.y = pixels;
             this.element.getStage().update();
-		}
-	},
+        }
+    },
     'width': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.width = pixels;
             this.element.getStage().update();
-		}
-	},
+        }
+    },
     'height': {
-		set: function(pixels) {
+        set: function(pixels) {
             this.positioner.height = pixels;
             this.element.getStage().update();
-		}
-	},
+        }
+    },
     'id': {
-		get: function() {
+        get: function() {
              return this.name;
         },
         set: function(value) {
@@ -91,10 +91,10 @@ Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
               this.name = value;
               this.dispatchEvent('idChanged');
             }
-		}
-	},
+        }
+    },
     'model': {
-		get: function() {
+        get: function() {
             return this.model;
         },
         set: function(value) {
@@ -103,7 +103,7 @@ Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
               this.dispatchEvent('modelChanged');
             }
         }
-	}
+    }
 });
 
 
@@ -112,6 +112,7 @@ Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
  * @type {string}
  */
 org_apache_flex_createjs_core_UIBase.prototype.id = null;
+
 
 /**
  * @expose

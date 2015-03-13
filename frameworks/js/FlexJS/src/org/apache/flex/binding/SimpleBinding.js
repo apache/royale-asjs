@@ -80,8 +80,8 @@ Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
                  goog.bind(this.changeHandler, this));
 
              this.changeHandler();
-		 }
-	}
+         }
+    }
 });
 
 

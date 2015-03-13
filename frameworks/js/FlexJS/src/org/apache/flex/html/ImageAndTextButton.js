@@ -64,23 +64,23 @@ org_apache_flex_html_ImageAndTextButton.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html_ImageAndTextButton.prototype, {
     'text': {
-		get: function() {
+        get: function() {
             return this._text;
-		},
+        },
         set: function(value) {
             this._text = value;
             this.setInnerHTML();
-		}
-	},
+        }
+    },
     'image': {
-		get: function() {
+        get: function() {
             return this._src;
-		},
+        },
         set: function(value) {
             this._src = value;
             this.setInnerHTML();
-		}
-	}
+        }
+    }
 });
 
 

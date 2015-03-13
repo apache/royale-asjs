@@ -39,7 +39,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.prototype.FLEXJS_CL
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseController.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             this.track = this.strand_.getBeadByType(
@@ -52,8 +52,8 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseContro
 
             goog.events.listen(this.thumb.element, goog.events.EventType.MOUSEDOWN,
                      this.handleThumbDown, false, this);
-		}
-	}
+        }
+    }
 });
 
 

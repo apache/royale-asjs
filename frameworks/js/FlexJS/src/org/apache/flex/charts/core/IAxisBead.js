@@ -33,20 +33,21 @@ org_apache_flex_charts_core_IAxisBead = function() {
 
 Object.defineProperties(org_apache_flex_charts_core_IAxisBead.prototype, {
     'placement': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
 
     'axisStroke': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
-	
+    },
+
     'tickStroke': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	}
+    }
 });
+
 
 /**
  * Metadata

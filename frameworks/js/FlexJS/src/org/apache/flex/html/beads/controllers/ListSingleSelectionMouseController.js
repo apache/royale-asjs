@@ -41,7 +41,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
@@ -52,8 +52,8 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelecti
             this.dataGroup = this.listView.dataGroup;
             this.dataGroup.addEventListener('selected',
                 goog.bind(this.selectedHandler, this));
-		}
-	}
+        }
+    }
 });
 
 

@@ -160,22 +160,22 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
      * @return {Array} An array of descriptors.
      */
     'MXMLDescriptor': {
-		get: function() {
+        get: function() {
             return this.MXMLDescriptor;
-		}
-	},
+        }
+    },
     /**
      * @return {Object} The application model.
      */
     'applicationModel': {
-		get: function() {
+        get: function() {
             return this.applicationModel;
         }
-	},
+    },
     'states': {
-		get: function() {
+        get: function() {
             return this.states_;
-		},
+        },
         set: function(value) {
             this.states_ = value;
             this.currentState_ = value[0].name;
@@ -189,10 +189,10 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
               // TODO: (aharui) check if bead already exists
               this.addBead(new impl());
             }
-		}
-	},
+        }
+    },
     'currentState': {
-		get: function() {
+        get: function() {
             return this.currentState_;
         },
         set: function(value) {
@@ -200,14 +200,14 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
                 'currentStateChange', false, false, this.currentState_, value);
             this.currentState_ = value;
             this.dispatchEvent(event);
-		}
-	},
+        }
+    },
     'transitions': {
-		get: function() {
+        get: function() {
             return this.transitions_;
         },
         set: function(value) {
             this.transitions_ = value;
         }
-	}
+    }
 });

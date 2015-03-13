@@ -143,27 +143,27 @@ org_apache_flex_html_beads_ListView.prototype.
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
     'contentView': {
-		get: function() {
+        get: function() {
             return this.dataGroup_;
         }
-	},
+    },
     'border': {
-		get: function() {
+        get: function() {
             return null;
-		}
-	},
+        }
+    },
     'vScrollBar': {
-		get: function() {
+        get: function() {
             return null;
-		},
+        },
         set: function(value) {
-		}
-	},
+        }
+    },
     'resizeableView': {
-		get: function() {
+        get: function() {
             return this;
-		}
-	}
+        }
+    }
 });
 
 

@@ -110,7 +110,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
         set: function(value) {
             this.stroke_ = value;
         }
-	}
+    }
 });
 
 

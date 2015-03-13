@@ -44,11 +44,11 @@ org_apache_flex_html5_TextArea.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html5_TextArea.prototype, {
     'text': {
-		get: function() {
+        get: function() {
             return this.element.value;
-		},
+        },
         set: function(value) {
             this.element.value = value;
-		}
-	}
+        }
+    }
 });

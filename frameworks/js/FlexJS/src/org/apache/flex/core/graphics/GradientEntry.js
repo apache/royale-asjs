@@ -57,7 +57,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
     'alpha': {
-		get: function() {
+        get: function() {
             return this._alpha;
         },
         set: function(value) {
@@ -66,9 +66,9 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
                 this._alpha = value;
             }
         }
-	},
+    },
     'color': {
-		get: function() {
+        get: function() {
             return this._color;
         },
         set: function(value) {
@@ -77,16 +77,17 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
               this._color = value;
             }
         }
-	},
+    },
     'ratio': {
-		get: function() {
+        get: function() {
             return this._ratio;
         },
         set: function(value) {
             this._ratio = value;
         }
-	}
+    }
 });
+
 
 /**
  * @expose

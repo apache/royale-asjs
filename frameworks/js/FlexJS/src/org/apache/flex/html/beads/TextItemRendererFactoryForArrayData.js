@@ -49,7 +49,7 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
 
 Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
@@ -63,8 +63,8 @@ Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArr
                 goog.bind(this.dataProviderChangedHandler, this));
 
             this.dataProviderChangedHandler(null);
-		}
-	}
+        }
+    }
 });
 
 

@@ -81,15 +81,15 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
     'token': {
-		set: function(value) {
+        set: function(value) {
             this.token = value;
-		}
-	},
-	'selectedMarker': {
-		get: function() {
+        }
+    },
+    'selectedMarker': {
+        get: function() {
             return this._selectedMarker;
-		}
-	}
+        }
+    }
 });
 
 

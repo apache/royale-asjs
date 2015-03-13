@@ -44,11 +44,11 @@ org_apache_flex_html5_Label.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html5_Label.prototype, {
     'text': {
-		get: function() {
+        get: function() {
             return this.element.innerHTML;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this.element.innerHTML = value;
-		}
-	}
+        }
+    }
 });

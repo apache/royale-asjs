@@ -80,9 +80,9 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject =
         id = value;
       }
       else if (name === 'id') {
-		try {
+        try {
           comp.id = value;
-		} catch (e) {};
+        } catch (e) {}
       }
       else {
         comp[name] = value;
@@ -190,7 +190,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
     } else if (name === 'id') {
       try {
         comp.id = value;
-      } catch (e) {};
+      } catch (e) {}
     } else {
       comp[name] = value;
     }

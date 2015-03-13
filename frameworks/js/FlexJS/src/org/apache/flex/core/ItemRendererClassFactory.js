@@ -46,7 +46,7 @@ org_apache_flex_core_ItemRendererClassFactory.
 
 Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             // see if the _strand has an itemRenderer property that isn't empty. if that's
@@ -68,8 +68,8 @@ Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype,
                 this.createFunction = this.createFromClass;
               }
            }
-		}
-	}
+        }
+    }
 });
 
 

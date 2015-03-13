@@ -101,47 +101,47 @@ org_apache_flex_jquery_RadioButton.prototype.addedToParent =
 
 Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
     'id': {
-		set: function(value) {
+        set: function(value) {
             org_apache_flex_jquery_RadioButton.base(this, 'set_id', value);
             this.labelFor.id = value;
             this.labelFor.htmlFor = value;
-		}
-	},
+        }
+    },
     'groupName': {
         get: function() {
             return this.radioGroupName;
-		},
+        },
         set: function(value) {
            this.radioGroupName = value;
            this.input.name = value;
-		}
-	},
+        }
+    },
     'text': {
-		get: function() {
+        get: function() {
             return this.labelFor.innerHTML;
-		},
+        },
         set: function(value) {
             this.labelFor.innerHTML = value;
-		}
-	},
-	'selected': {
+        }
+    },
+    'selected': {
         get: function() {
             return this.input.checked;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this.input.checked = value;
-		}
-	},
-	'value': {
-		get: function() {
+        }
+    },
+    'value': {
+        get: function() {
             return this.input.value;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this.input.value = value;
-		}
-	},
-	'selectedValue': {
-		get: function() {
+        }
+    },
+    'selectedValue': {
+        get: function() {
             var buttons, groupName, i, n;
 
             groupName = this.input.name;
@@ -154,8 +154,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
               }
             }
             return null;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             var buttons, groupName, i, n;
 
             groupName = this.input.name;
@@ -167,6 +167,6 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
                 break;
               }
             }
-		}
-	}
+        }
+    }
 });

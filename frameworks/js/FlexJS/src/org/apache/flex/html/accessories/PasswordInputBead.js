@@ -42,11 +42,11 @@ org_apache_flex_html_accessories_PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_html_accessories_PasswordInputBead.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               value.element.type = 'password';
             }
-		}
-	}
+        }
+    }
 });

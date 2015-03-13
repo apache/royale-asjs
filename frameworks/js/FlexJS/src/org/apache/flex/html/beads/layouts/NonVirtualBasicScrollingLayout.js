@@ -42,7 +42,7 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype.FLEX
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               this.strand_.addEventListener('childrenAdded',
@@ -50,8 +50,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScroll
               this.strand_.addEventListener('layoutNeeded',
                   goog.bind(this.changeHandler, this));
             }
-		}
-	}
+        }
+    }
 });
 
 

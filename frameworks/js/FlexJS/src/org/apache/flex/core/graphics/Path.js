@@ -47,13 +47,13 @@ org_apache_flex_core_graphics_Path.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
     'data': {
-		set: function(v) {
+        set: function(v) {
             this.data_ = v;
         },
         get: function() {
             return this.data_;
-		}
-	}
+        }
+    }
 });
 
 

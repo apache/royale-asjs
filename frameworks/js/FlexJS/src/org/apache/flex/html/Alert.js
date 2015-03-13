@@ -118,26 +118,26 @@ org_apache_flex_html_Alert.show =
 
 Object.defineProperties(org_apache_flex_html_Alert.prototype, {
     'title': {
-		get: function() {
+        get: function() {
             return this.titleBar.title;
-		},
+        },
         set: function(value) {
             this.titleBar.title = value;
-		}
-	},
+        }
+    },
     'text': {
-		get: function() {
+        get: function() {
             return this.message.text;
-		},
+        },
         set: function(value) {
             this.message.text = value;
-		}
-	},
+        }
+    },
     'flags': {
-		get: function() {
+        get: function() {
             return this.flags;
-		}
-	}
+        }
+    }
 });
 
 

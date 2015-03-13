@@ -132,12 +132,12 @@ org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
 
 Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
     'MXMLDescriptor': {
-		get: function() {
+        get: function() {
             return this.mxmlDescriptor;
         }
-	},
-	'states': {
-		get: function() {
+    },
+    'states': {
+        get: function() {
             return this.states_;
         },
         set: function(s) {
@@ -154,9 +154,9 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
               this.addBead(new impl());
             }
         }
-	},
+    },
     'currentState': {
-		get: function() {
+        get: function() {
              return this.currentState_;
         },
         set: function(s) {
@@ -164,14 +164,14 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
                   'currentStateChange', false, false, this.currentState_, s);
              this.currentState_ = s;
              this.dispatchEvent(event);
-		}
-	},
+        }
+    },
     'transitions': {
-		get: function() {
+        get: function() {
              return this.transitions_;
         },
         set: function(s) {
            this.transitions_ = s;
         }
-	}
+    }
 });

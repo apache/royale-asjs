@@ -99,49 +99,49 @@ org_apache_flex_html_Spinner.prototype.set_value =
 
 Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     'minimum': {
-		get: function() {
+        get: function() {
             return this.minimum_;
-		},
+        },
         set: function(value) {
             if (value != this.minimum_) {
               this.minimum_ = value;
               this.dispatchEvent('minimumChanged');
             }
-		}
-	},
+        }
+    },
     'maximum': {
-		get: function() {
+        get: function() {
             return this.maximum_;
-		},
+        },
         set: function(value) {
             if (value != this.maximum_) {
               this.maximum_ = value;
               this.dispatchEvent('maximumChanged');
             }
-		}
-	},
+        }
+    },
     'snapInterval': {
         get: function() {
             return this.snapInterval_;
-		},
+        },
         set: function(value) {
             if (value != this.snapInterval_) {
               this.snapInterval_ = value;
               this.dispatchEvent('snapIntervalChanged');
             }
-		}
-	},
+        }
+    },
     'stepSize': {
         get: function() {
             return this.stepSize_;
-		},
+        },
         set: function(value) {
             if (value != this.stepSize_) {
               this.stepSize_ = value;
               this.dispatchEvent('stepSizeChanged');
             }
-		}
-	}
+        }
+    }
 });
 
 

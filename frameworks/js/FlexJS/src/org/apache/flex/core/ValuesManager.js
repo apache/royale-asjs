@@ -44,11 +44,11 @@ org_apache_flex_core_ValuesManager.prototype.valuesImpl = null;
 
 Object.defineProperties(org_apache_flex_core_ValuesManager.prototype, {
     'valuesImpl': {
-		get: function() {
+        get: function() {
             return org_apache_flex_core_ValuesManager.valuesImpl;
         },
         set: function(value) {
             org_apache_flex_core_ValuesManager.valuesImpl = value;
-		}
-	}
+        }
+    }
 });

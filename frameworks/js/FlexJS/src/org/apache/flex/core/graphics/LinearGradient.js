@@ -44,15 +44,14 @@ org_apache_flex_core_graphics_LinearGradient.prototype._scaleX = 1.0;
 
 Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
     'scaleX': {
-		get: function() {
+        get: function() {
             return this._scaleX;
         },
- 	    set: function(value) {
+        set: function(value) {
             this._scaleX = value;
         }
-	}
+    }
 });
-	
 
 
 /**

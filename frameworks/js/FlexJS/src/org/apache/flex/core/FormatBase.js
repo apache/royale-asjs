@@ -74,18 +74,18 @@ org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
         }
-	},
+    },
     'propertyValue': {
-		get: function() {
+        get: function() {
             var value = this.strand_[this.propertyName];
             return value;
         }
-	},
+    },
     'propertyName': {
-		get: function() {
+        get: function() {
             if (this._propertyName == null) {
               this._propertyName = 'text';
             }
@@ -94,9 +94,9 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
         set: function(value) {
             this._propertyName = value;
         }
-	},
+    },
     'eventName': {
-		get: function() {
+        get: function() {
             if (this._eventName == null) {
                  return this._propertyName + 'Change';
             }
@@ -105,10 +105,10 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
         set: function(value) {
             this._eventName = value;
         }
-	},
+    },
     'formattedString': {
-		get: function() {
+        get: function() {
              return null;
         }
-	}
+    }
 });

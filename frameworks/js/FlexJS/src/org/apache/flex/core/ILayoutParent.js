@@ -40,16 +40,16 @@ org_apache_flex_core_ILayoutParent.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_core_ILayoutParent.prototype, {
     'contentView': {
-		get: function() {}
-	},
+        get: function() {}
+    },
     'border': {
-		get: function() {}
-	},
+        get: function() {}
+    },
     'vScrollBar': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'resizeableView': {
-		get: function() {}
-	}
+        get: function() {}
+    }
 });

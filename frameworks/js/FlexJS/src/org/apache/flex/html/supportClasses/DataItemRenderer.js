@@ -71,28 +71,28 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
     'itemRendererParent': {
-		get: function() {
+        get: function() {
             return this.rendererParent_;
-		},
+        },
         set: function(value) {
             this.rendererParent_ = value;
-		}
-	},
+        }
+    },
     'index': {
-		set: function(value) {
+        set: function(value) {
             this.index_ = value;
-		}
-	},
+        }
+    },
     'dataField': {
-		set: function(value) {
+        set: function(value) {
             this.dataField_ = value;
-		},
+        },
         get: function() {
             return this.dataField_;
-		}
-	},
+        }
+    },
     'selected': {
-		set: function(value) {
+        set: function(value) {
             this.selected_ = value;
 
             if (value) {
@@ -100,10 +100,10 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             } else {
                 this.backgroundView.style.backgroundColor = null;
             }
-		}
-	},
+        }
+    },
     'hovered': {
-		set: function(value) {
+        set: function(value) {
             this.hovered_ = value;
 
             if (value) {
@@ -115,6 +115,6 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
                 this.backgroundView.style.backgroundColor = null;
               }
             }
-		}
-	}
+        }
+    }
 });

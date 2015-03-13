@@ -60,7 +60,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
 
 Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
@@ -84,10 +84,10 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
             }
 
             this.dataProviderChangedHandler(null);
-		}
-	},
+        }
+    },
     'itemRendererClass': {
-		get: function() {
+        get: function() {
             if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
               var c = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
               if (c) {
@@ -95,11 +95,11 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
               }
             }
             return this.itemRendererClass_;
-		},
+        },
         set: function(value) {
             this.itemRendererClass_ = value;
-		}
-	}
+        }
+    }
 });
 
 

@@ -44,13 +44,13 @@ org_apache_flex_charts_core_IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
 
 Object.defineProperties(org_apache_flex_charts_core_IVerticalAxisBead.prototype, {
     'axisWidth': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'maximum': {
-		get: function() {}
-	},
+        get: function() {}
+    },
     'minimum': {
-		get: function() {}
-	}
+        get: function() {}
+    }
 });

@@ -41,10 +41,10 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.F
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
             }
-		}
-	}
+        }
+    }
 });

@@ -33,22 +33,23 @@ org_apache_flex_core_IContentView = function() {
 
 Object.defineProperties(org_apache_flex_core_IContentView.prototype, {
     'x': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'y': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'width': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	},
+    },
     'height': {
-		get: function() {},
+        get: function() {},
         set: function(value) {}
-	}
+    }
 });
+
 
 /**
  * Adds a new element to component.

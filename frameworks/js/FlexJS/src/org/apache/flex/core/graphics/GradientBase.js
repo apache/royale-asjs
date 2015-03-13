@@ -66,13 +66,13 @@ org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
     'entries': {
-		get: function() {
+        get: function() {
             return this._entries;
         },
         set: function(value) {
             this._entries = value;
         }
-	},
+    },
     /**
      *  By default, the LinearGradientStroke defines a transition
      *  from left to right across the control.
@@ -82,34 +82,34 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
      * @return {number}
      */
     'rotation': {
-		get: function() {
+        get: function() {
             return this._rotation;
         },
         set: function(value) {
             this._rotation = value;
         }
-	},
+    },
     'x': {
-		get: function() {
+        get: function() {
             return this._x;
         },
         set: function(value) {
             this._x = value;
         }
-	},
+    },
     'y': {
-		set: function(value) {
+        set: function(value) {
             this._y = value;
-		},
+        },
         get: function() {
             return this._y;
-		}
-	},
+        }
+    },
     'newId': {
-		get: function() {
+        get: function() {
             return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
-		}
-	}
+        }
+    }
 });
 
 

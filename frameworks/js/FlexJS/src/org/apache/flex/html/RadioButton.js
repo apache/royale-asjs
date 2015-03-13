@@ -89,46 +89,46 @@ org_apache_flex_html_RadioButton.prototype.initSkin =
 
 Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
     'id': {
-		set: function(value) {
+        set: function(value) {
             org_apache_flex_utils_Language.superSetter(org_apache_flex_html_RadioButton, this, 'id', value);
             this.labelFor.id = value;
             this.input.id = value;
-		}
-	},
+        }
+    },
     'groupName': {
-		get: function() {
+        get: function() {
             return this.input.name;
-		},
+        },
         set: function(value) {
             this.input.name = value;
-		}
-	},
+        }
+    },
     'text': {
-		get: function() {
+        get: function() {
             return this.textNode.nodeValue;
-		},
+        },
         set: function(value) {
             this.textNode.nodeValue = value;
-		}
-	},
+        }
+    },
     'selected': {
-		get: function() {
+        get: function() {
             return this.input.checked;
-		},
+        },
         set: function(value) {
             this.input.checked = value;
-		}
-	},
+        }
+    },
     'value': {
-		get: function() {
+        get: function() {
             return this.input.value;
-		},
+        },
         set: function(value) {
             this.input.value = value;
-		}
-	},
+        }
+    },
     'selectedValue': {
-		get: function() {
+        get: function() {
             var buttons, groupName, i, n;
 
             groupName = this.input.name;
@@ -141,7 +141,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
               }
             }
             return null;
-		},
+        },
         set: function(value) {
             var buttons, groupName, i, n;
 
@@ -154,6 +154,6 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
                 break;
               }
             }
-		}
-	}
+        }
+    }
 });

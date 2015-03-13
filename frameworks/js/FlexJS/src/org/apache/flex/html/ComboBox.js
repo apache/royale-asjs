@@ -195,9 +195,9 @@ Object.defineProperties(org_apache_flex_html_CheckBox.prototype, {
     'text': {
         get: function() {
             return this.element.childNodes.item(0).value;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this.element.childNodes.item(0).value = value;
-		}
-	}
+        }
+    }
 });

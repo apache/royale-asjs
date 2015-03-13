@@ -45,13 +45,13 @@ org_apache_flex_charts_core_IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
 
 Object.defineProperties(org_apache_flex_charts_core_IHorizontalAxisBead.prototype, {
     'axisHeight': {
-		set: function(value) {},
+        set: function(value) {},
         get: function() {}
-	},
+    },
     'maximum': {
-		get: function() {}
-	},
+        get: function() {}
+    },
     'minimum': {
-		get: function() {}
-	}
+        get: function() {}
+    }
 });

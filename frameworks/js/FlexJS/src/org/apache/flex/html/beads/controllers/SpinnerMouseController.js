@@ -38,7 +38,7 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype.FLEXJS_C
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             this.incrementButton = this.strand_.incrementButton;
@@ -49,8 +49,8 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_SpinnerMouseContr
 
             goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
                 goog.bind(this.handleDecrementClick, this));
-		}
-	}
+        }
+    }
 });
 
 

@@ -131,48 +131,48 @@ org_apache_flex_net_BinaryUploader.HTTP_METHOD_DELETE = 'DELETE';
 
 Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
     'data': {
-		get: function() {
+        get: function() {
             return this.element.responseText;
-		}
-	},
+        }
+    },
     'binaryData': {
-		get: function() {
+        get: function() {
             return this.binaryData_;
-		},
+        },
         set: function(value) {
             this.binaryData_ = value;
-		}
-	},
+        }
+    },
     'contentType': {
-		get: function() {
+        get: function() {
             return this.contentType_;
-		},
+        },
         set: function(value) {
             this.contentType_ = value;
-		}
-	},
+        }
+    },
     'headers': {
-		get: function() {
+        get: function() {
             if (this.headers_ === 'undefined') {
               this.headers_ = [];
             }
 
             return this.headers_;
-		},
+        },
         set: function(value) {
             this.headers_ = value;
-		}
-	},
+        }
+    },
     'method': {
-		get: function() {
+        get: function() {
             return this.method_;
-		},
+        },
         set: function(value) {
             this.method_ = value;
-		}
-	},
+        }
+    },
     'responseHeaders': {
-		get: function() {
+        get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
 
             if (typeof this.responseHeaders_ === 'undefined') {
@@ -189,55 +189,55 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
                }
             }
             return this.responseHeaders_;
-		}
-	},
+        }
+    },
     'responseURL': {
-		get: function() {
+        get: function() {
             return this.responseURL_;
-		}
-	},
+        }
+    },
     'status': {
-		get: function() {
+        get: function() {
             return this.status_;
-		}
-	},
+        }
+    },
     'timeout': {
-		get: function() {
+        get: function() {
             return this.timeout_;
-		},
+        },
         set: function(value) {
             this.timeout_ = value;
-		}
-	},
+        }
+    },
     'url': {
-		get: function() {
+        get: function() {
             return this.url_;
-		},
+        },
         set: function(value) {
             this.url_ = value;
-		}
-	},
+        }
+    },
     'id': {
-		get: function() {
+        get: function() {
             return this.id;
-		},
+        },
         set: function(value) {
             if (this.id !== value) {
               this.id = value;
               this.dispatchEvent('idChanged');
             }
-		}
-	},
+        }
+    },
     'MXMLDescriptor': {
-		get: function() {
+        get: function() {
             return null;
-		}
-	},
+        }
+    },
     'MXMLProperties': {
-		get: function() {
+        get: function() {
             return null;
-		}
-	}
+        }
+    }
 });
 
 

@@ -138,22 +138,22 @@ Object.defineProperties(Event.prototype, {
      * @return {Object} The wrapping object.
      */
     'target': {
-		get: function() {
+        get: function() {
             var obj = this.target;
             if (!obj)
               return this.currentTarget;
             return obj.flexjs_wrapper;
         }
-	},
+    },
     /**
      * Hack to allow event.currentTarget to work
      * @return {Object} The wrapping object.
      */
     'currentTarget': {
-		get: function() {
+        get: function() {
             return this.currentTarget.flexjs_wrapper;
         }
-	}
+    }
 });
 
 
@@ -165,13 +165,13 @@ Object.defineProperties(goog.events.BrowserEvent.prototype, {
      * @return {Object} The wrapping object.
      */
     'target': {
-	    get: function() {
+        get: function() {
             // if it is a faked event so just return the target
             if (!this.event_) return this.target;
             // for true browser events, get the embedded event's target
             return this.event_.target;
         }
-	},
+    },
     /**
      * Hack to allow event.currentTarget expressions to work
      *
@@ -179,11 +179,11 @@ Object.defineProperties(goog.events.BrowserEvent.prototype, {
      * @return {?Node|Object} The wrapping object.
      */
     'currentTarget': {
-     	 get: function() {
+         get: function() {
              // if it is a faked event so just return the currentTarget
              if (!this.event_) return this.currentTarget;
              // for true browser events, get the embedded event's currentTarget
              return this.event_.currentTarget;
          }
-	}
+    }
 });

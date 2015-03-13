@@ -57,29 +57,29 @@ org_apache_flex_core_graphics_SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype, {
     'color': {
-		get: function() {
+        get: function() {
             return this.color_;
-		},
+        },
         set: function(value) {
             this.color_ = value;
-		}
-	},
+        }
+    },
     'alpha': {
-		get: function() {
+        get: function() {
             return this.alpha_;
         },
         set: function(value) {
             this.alpha_ = value;
         }
-	},
+    },
     'weight': {
-		get: function() {
+        get: function() {
             return this.weight_;
-		},
+        },
         set: function(value) {
             this.weight_ = value;
         }
-	}
+    }
 });
 
 

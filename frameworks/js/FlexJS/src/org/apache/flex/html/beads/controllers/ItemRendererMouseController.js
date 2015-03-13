@@ -39,7 +39,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLE
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
 
             goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
@@ -53,8 +53,8 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouse
 
             goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
                 goog.bind(this.handleMouseUp, this));
-		}
-	}
+        }
+    }
 });
 
 

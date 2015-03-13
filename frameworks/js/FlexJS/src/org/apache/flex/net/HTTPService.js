@@ -137,53 +137,53 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     'beads': {
-		set: function(value) {
+        set: function(value) {
             this.beads_ = value;
-		}
-	},
+        }
+    },
     'data': {
-		get: function() {
+        get: function() {
             return this.element.responseText;
-		}
-	},
+        }
+    },
     'contentData': {
-		get: function() {
+        get: function() {
             return this.contentData_;
-		},
+        },
         set: function(value) {
             this.contentData_ = value;
-		}
-	},
+        }
+    },
     'contentType': {
-		get: function() {
+        get: function() {
             return this.contentType_;
-		},
+        },
         set: function(value) {
             this.contentType_ = value;
-		}
-	},
+        }
+    },
     'headers': {
-		get: function() {
+        get: function() {
             if (this.headers_ === undefined) {
               this.headers_ = [];
             }
 
             return this.headers_;
-		},
+        },
         set: function(value) {
             this.headers_ = value;
-		}
-	},
+        }
+    },
     'method': {
-		get: function() {
+        get: function() {
             return this.method_;
-		},
+        },
         set: function(value) {
             this.method_ = value;
-		}
-	},
+        }
+    },
     'responseHeaders': {
-		get: function() {
+        get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
 
             if (typeof this.responseHeaders_ === 'undefined') {
@@ -200,57 +200,57 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
               }
             }
             return this.responseHeaders_;
-		}
-	},
+        }
+    },
     'responseURL': {
-		get: function() {
+        get: function() {
             return this.responseURL_;
-		}
-	},
+        }
+    },
     'status': {
-		get: function() {
+        get: function() {
             return this.status_;
-		}
-	},
+        }
+    },
     'timeout': {
-		get: function() {
+        get: function() {
             return this.timeout_;
-		},
+        },
         set: function(value) {
             this.timeout_ = value;
-		}
-	},
+        }
+    },
     'url': {
-		get: function() {
+        get: function() {
             return this.url_;
-		},
+        },
         set: function(value) {
             this.url_ = value;
-		}
-	},
+        }
+    },
     'id': {
-		get: function() {
+        get: function() {
             return this.id;
-		},
+        },
         set: function(value) {
             if (this.id !== value) {
               this.id = value;
               this.dispatchEvent('idChanged');
             }
-		}
-	},
+        }
+    },
     'MXMLDescriptor': {
-		get: function() {
+        get: function() {
             return null;
-		}
-	},
+        }
+    },
     'MXMLProperties': {
-		get: function() {
+        get: function() {
             return null;
-		}
-	},
+        }
+    },
     'strand': {
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
             }
@@ -258,8 +258,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             for (var i = 0; i < n; i++) {
               this.addBead(this.beads_[i]);
             }
-		}
-	}
+        }
+    }
 });
 
 

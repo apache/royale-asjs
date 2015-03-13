@@ -72,36 +72,36 @@ org_apache_flex_html_supportClasses_StringItemRenderer.
 
 Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
-		},
+        },
         get: function() {
              return this.strand_;
-		}
-	},
+        }
+    },
     'itemRendererParent': {
-		get: function() {
+        get: function() {
             return this.rendererParent_;
-		},
+        },
         set: function(value) {
             this.rendererParent_ = value;
-		}
-	},
+        }
+    },
     'index': {
-		set: function(value) {
+        set: function(value) {
             this.index_ = value;
-		}
-	},
+        }
+    },
     'text': {
-		set: function(value) {
+        set: function(value) {
             this.element.innerHTML = value;
-		},
+        },
         get: function() {
             return this.element.innerHTML;
-		}
-	},
+        }
+    },
     'data': {
-		set: function(value) {
+        set: function(value) {
             org_apache_flex_html_supportClasses_StringItemRenderer.base(this, 'set_data', value);
 
             if (this.labelField) {
@@ -115,9 +115,9 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
             } else {
               this.element.innerHTML = String(value);
             }
-		},
+        },
         get: function() {
             return this.element.innerHTML;
-		}
-	}
+        }
+    }
 });

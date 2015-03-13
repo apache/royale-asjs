@@ -72,15 +72,15 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
 
 Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
     'strand': {
-		set: function(value) {
+        set: function(value) {
             this.strand_ = value;
-		},
+        },
         get: function() {
             return this.strand_;
-		}
-	},
+        }
+    },
     'data': {
-		set: function(value) {
+        set: function(value) {
 
             org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
 
@@ -93,6 +93,6 @@ Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemR
             else {
               this.button.innerHTML = value;
             }
-		}
-	}
+        }
+    }
 });

@@ -56,14 +56,15 @@ org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
 
 Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
     'fillColor': {
-		get: function() {
+        get: function() {
              return this.fillColor_;
         },
         set: function(value) {
              this.fillColor_ = value;
         }
-	}
+    }
 });
+
 
 /**
  * @expose

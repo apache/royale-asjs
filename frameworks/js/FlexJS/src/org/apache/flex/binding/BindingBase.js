@@ -117,4 +117,3 @@ Object.defineProperties(org_apache_flex_binding_BindingBase.prototype, {
         }
     }
 });
-  
