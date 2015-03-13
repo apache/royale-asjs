@@ -39,23 +39,22 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
       interfaces: [org_apache_flex_core_IBeadController] };
 
 
-/**
- * @expose
- *        ListSingleSelectionMouseController}
- * @param {Object} value The strand for this component.
- */
-org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ArraySelectionModel);
-  this.listView = value.getBeadByType(
-      org_apache_flex_html_beads_ListView);
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ArraySelectionModel);
+            this.listView = value.getBeadByType(
+                org_apache_flex_html_beads_ListView);
 
-  this.dataGroup = this.listView.dataGroup;
-  this.dataGroup.addEventListener('selected',
-      goog.bind(this.selectedHandler, this));
-};
+            this.dataGroup = this.listView.dataGroup;
+            this.dataGroup.addEventListener('selected',
+                goog.bind(this.selectedHandler, this));
+		}
+	}
+});
 
 
 /**

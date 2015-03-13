@@ -69,20 +69,14 @@ org_apache_flex_charts_core_ChartBase.prototype.createElement = function() {
 org_apache_flex_charts_core_ChartBase.prototype.series_ = null;
 
 
-/**
- * @expose
- * @return {Array} The series for the chart.
- */
-org_apache_flex_charts_core_ChartBase.prototype.get_series = function() {
-  return this.series_;
-};
-
-
-/**
- * @expose
- * @param {Array} value The series for the chart.
- */
-org_apache_flex_charts_core_ChartBase.prototype.set_series = function(value) {
-  this.series_ = value;
-  this.dispatchEvent(new org_apache_flex_events_Event('seriesChanged'));
-};
+Object.defineProperties(org_apache_flex_charts_core_ChartBase.prototype, {
+    'series': {
+		get: function() {
+             return this.series_;
+        },
+        set: function(value) {
+             this.series_ = value;
+             this.dispatchEvent(new org_apache_flex_events_Event('seriesChanged'));
+        }
+	}
+});

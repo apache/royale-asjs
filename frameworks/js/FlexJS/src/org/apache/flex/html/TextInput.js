@@ -57,23 +57,17 @@ org_apache_flex_html_TextInput.prototype.createElement = function() {
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_TextInput.prototype.get_text = function() {
-  return this.element.value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_TextInput.prototype.set_text = function(value) {
-  this.element.value = value;
-  this.dispatchEvent(new org_apache_flex_events_Event('textChange'));
-};
+Object.defineProperties(org_apache_flex_html_TextButton.prototype, {
+    'text': {
+		get: function() {
+            return this.element.value;
+		},
+        set: function(value) {
+            this.element.value = value;
+            this.dispatchEvent(new org_apache_flex_events_Event('textChange'));
+		}
+	},
+});
 
 
 /**

@@ -31,53 +31,24 @@ org_apache_flex_core_IContentView = function() {
 };
 
 
-/**
- * @return {number} x position.
- */
-org_apache_flex_core_IContentView.prototype.get_x = function() {};
-
-
-/**
- * @param {number} value x position.
- */
-org_apache_flex_core_IContentView.prototype.set_x = function(value) {};
-
-
-/**
- * @return {number} y position.
- */
-org_apache_flex_core_IContentView.prototype.get_y = function() {};
-
-
-/**
- * @param {number} value y position.
- */
-org_apache_flex_core_IContentView.prototype.set_y = function(value) {};
-
-
-/**
- * @return {number} Component width.
- */
-org_apache_flex_core_IContentView.prototype.get_width = function() {};
-
-
-/**
- * @param {number} value Component width.
- */
-org_apache_flex_core_IContentView.prototype.set_width = function(value) {};
-
-
-/**
- * @return {number} Component height.
- */
-org_apache_flex_core_IContentView.prototype.get_height = function() {};
-
-
-/**
- * @param {number} value Component height.
- */
-org_apache_flex_core_IContentView.prototype.set_height = function(value) {};
-
+Object.defineProperties(org_apache_flex_core_IContentView.prototype, {
+    'x': {
+		get: function() {},
+        set: function(value) {}
+	},
+    'y': {
+		get: function() {},
+        set: function(value) {}
+	},
+    'width': {
+		get: function() {},
+        set: function(value) {}
+	},
+    'height': {
+		get: function() {},
+        set: function(value) {}
+	}
+});
 
 /**
  * Adds a new element to component.

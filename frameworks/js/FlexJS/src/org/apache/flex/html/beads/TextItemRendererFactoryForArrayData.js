@@ -47,26 +47,25 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
       interfaces: [org_apache_flex_core_IItemRenderer] };
 
 
-/**
- * @expose
- * @param {Object} value The component strand.
- */
-org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ArraySelectionModel);
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ArraySelectionModel);
 
-  this.listView = value.getBeadByType(
-      org_apache_flex_html_beads_ListView);
-  this.dataGroup = this.listView.dataGroup;
+            this.listView = value.getBeadByType(
+                org_apache_flex_html_beads_ListView);
+            this.dataGroup = this.listView.dataGroup;
 
-  this.model.addEventListener('dataProviderChanged',
-      goog.bind(this.dataProviderChangedHandler, this));
+            this.model.addEventListener('dataProviderChanged',
+                goog.bind(this.dataProviderChangedHandler, this));
 
-  this.dataProviderChangedHandler(null);
-};
+            this.dataProviderChangedHandler(null);
+		}
+	}
+});
 
 
 /**

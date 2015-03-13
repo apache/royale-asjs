@@ -54,22 +54,16 @@ org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
 };
 
 
-/**
- * @expose
- * @return {number} The fill color.
- */
-org_apache_flex_core_UIBase.prototype.get_fillColor = function() {
-  return this.fillColor_;
-};
-
-
-/**
- * @param {number} value The fill color.
- */
-org_apache_flex_core_UIBase.prototype.set_fillColor = function(value) {
-  this.fillColor_ = value;
-};
-
+Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
+    'fillColor': {
+		get: function() {
+             return this.fillColor_;
+        },
+        set: function(value) {
+             this.fillColor_ = value;
+        }
+	}
+});
 
 /**
  * @expose

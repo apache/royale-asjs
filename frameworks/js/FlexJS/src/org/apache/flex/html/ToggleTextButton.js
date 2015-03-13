@@ -47,56 +47,36 @@ org_apache_flex_html_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_ToggleTextButton'}] };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_ToggleTextButton.prototype.get_text = function() {
-  return this.element.innerHTML;
-};
+Object.defineProperties(org_apache_flex_html_TextButton.prototype, {
+    'text': {
+		get: function() {
+            return this.element.innerHTML;
+		},
+        set: function(value) {
+            this.element.innerHTML = value;
+		}
+	},
+    'selected': {
+		get: function() {
+             return this.selected_;
+		},
+        set: function(value) {
+            if (this.selected_ != value) {
+              this.selected_ = value;
 
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_ToggleTextButton.prototype.set_text =
-    function(value) {
-  this.element.innerHTML = value;
-};
-
-
-/**
- * @expose
- * @return {boolean} The selected getter.
- */
-org_apache_flex_html_ToggleTextButton.prototype.get_selected =
-    function() {
-  return this.selected_;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selected setter.
- */
-org_apache_flex_html_ToggleTextButton.prototype.set_selected =
-    function(value) {
-  if (this.selected_ != value) {
-    this.selected_ = value;
-
-    var className = this.className;
-    if (value) {
-      if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-        this.className = className.substring(0, className.length - this.SELECTED.length);
-    }
-    else {
-      if (className.indexOf(this.SELECTED) == -1)
-        this.className = className + this.SELECTED;
-    }
-
-  }
-};
+              var className = this.className;
+              if (value) {
+                 if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
+                   this.className = className.substring(0, className.length - this.SELECTED.length);
+              }
+              else {
+                if (className.indexOf(this.SELECTED) == -1)
+                  this.className = className + this.SELECTED;
+              }
+           }
+		}
+	}
+});
 
 
 /**

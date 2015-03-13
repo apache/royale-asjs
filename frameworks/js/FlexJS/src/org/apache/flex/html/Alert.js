@@ -116,51 +116,29 @@ org_apache_flex_html_Alert.show =
 };
 
 
-/**
- * @return {string} The message to be displayed in the title bar.
- */
-org_apache_flex_html_Alert.prototype.get_title = function()
-    {
-  return this.titleBar.title;
-};
-
-
-/**
- * @param {string} value The message to be displayed in the title bar.
- */
-org_apache_flex_html_Alert.prototype.set_title =
-    function(value)
-    {
-  this.titleBar.title = value;
-};
-
-
-/**
- * @return {string} The message to be displayed.
- */
-org_apache_flex_html_Alert.prototype.get_text = function()
-    {
-  return this.message.text;
-};
-
-
-/**
- * @param {string} value The message to be displayed.
- */
-org_apache_flex_html_Alert.prototype.set_text =
-    function(value)
-    {
-  this.message.text = value;
-};
-
-
-/**
- * @return {number} The button options.
- */
-org_apache_flex_html_Alert.prototype.get_flags = function()
-    {
-  return this.flags;
-};
+Object.defineProperties(org_apache_flex_html_Alert.prototype, {
+    'title': {
+		get: function() {
+            return this.titleBar.title;
+		},
+        set: function(value) {
+            this.titleBar.title = value;
+		}
+	},
+    'text': {
+		get: function() {
+            return this.message.text;
+		},
+        set: function(value) {
+            this.message.text = value;
+		}
+	},
+    'flags': {
+		get: function() {
+            return this.flags;
+		}
+	}
+});
 
 
 /**

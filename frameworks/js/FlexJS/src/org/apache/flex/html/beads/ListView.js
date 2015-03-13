@@ -141,48 +141,30 @@ org_apache_flex_html_beads_ListView.prototype.
 };
 
 
-/**
- * @expose
- * @return {Object} The view that contains the layout objects.
- */
-org_apache_flex_html_beads_ListView.prototype.get_contentView = function() {
-  return this.dataGroup_;
-};
-
-
-/**
- * @expose
- * @return {Object} The border for the layout area.
- */
-org_apache_flex_html_beads_ListView.prototype.get_border = function() {
-  return null;
-};
-
-
-/**
- * @expose
- * @return {Object} The vertical scrollbar.
- */
-org_apache_flex_html_beads_ListView.prototype.get_vScrollBar = function() {
-  return null;
-};
-
-
-/**
- * @expose
- * @param {Object} value The vertical scrollbar.
- */
-org_apache_flex_html_beads_ListView.prototype.set_vScrollBar = function(value) {
-};
-
-
-/**
- * @expose
- * @return {Object} The view that can be resized.
- */
-org_apache_flex_html_beads_ListView.prototype.get_resizeableView = function() {
-  return this;
-};
+Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
+    'contentView': {
+		get: function() {
+            return this.dataGroup_;
+        }
+	},
+    'border': {
+		get: function() {
+            return null;
+		}
+	},
+    'vScrollBar': {
+		get: function() {
+            return null;
+		},
+        set: function(value) {
+		}
+	},
+    'resizeableView': {
+		get: function() {
+            return this;
+		}
+	}
+});
 
 
 /**

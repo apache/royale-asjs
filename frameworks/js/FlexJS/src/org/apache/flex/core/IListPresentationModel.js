@@ -35,19 +35,12 @@ org_apache_flex_core_IListPresentationModel = function() {
 };
 
 
-/**
- * @expose
- * @param {number} value The height of the rows.
- */
-org_apache_flex_core_IListPresentationModel.prototype.set_rowHeight = function(value) {};
-
-
-/**
- * @expose
- * @return {number} The height of the rows.
- */
-org_apache_flex_core_IListPresentationModel.prototype.get_rowHeight = function() {};
-
+Object.defineProperties(org_apache_flex_core_IListPresentationModel.prototype, {
+    'rowHeight': {
+		set: function(value) {},
+        get: function() {}
+	}
+});
 
 /**
  * Metadata

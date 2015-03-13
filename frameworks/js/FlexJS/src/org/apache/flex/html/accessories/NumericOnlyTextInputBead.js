@@ -44,13 +44,16 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
  * @expose
  * @param {Object} value The new host.
  */
-org_apache_flex_html_accessories_NumericOnlyTextInputBead.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    value.addEventListener('keypress', goog.bind(this.validateInput, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
+    'strand': {
+		set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              value.addEventListener('keypress', goog.bind(this.validateInput, this));
+            }
+		}
+	}
+});
 
 
 /**

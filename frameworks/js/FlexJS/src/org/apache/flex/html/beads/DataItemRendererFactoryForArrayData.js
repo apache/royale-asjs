@@ -58,62 +58,49 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
     prototype.itemRendererClass_ = null;
 
 
-/**
- * @expose
- * @param {Object} value The component strand.
- */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ArraySelectionModel);
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ArraySelectionModel);
 
-  this.listView = value.getBeadByType(
-      org_apache_flex_html_beads_ListView);
-  this.dataGroup = this.listView.dataGroup;
+            this.listView = value.getBeadByType(
+                org_apache_flex_html_beads_ListView);
+            this.dataGroup = this.listView.dataGroup;
 
-  this.model.addEventListener('dataProviderChanged',
-      goog.bind(this.dataProviderChangedHandler, this));
+            this.model.addEventListener('dataProviderChanged',
+                goog.bind(this.dataProviderChangedHandler, this));
 
-  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
-    /**
-     * @type {Function}
-     */
-    var c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_,
-            'iItemRendererClassFactory'));
-    this.itemRendererFactory_ = new c();
-    this.strand_.addBead(this.itemRendererFactory_);
-  }
+            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
+              /**
+               * @type {Function}
+               */
+              var c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_,
+                  'iItemRendererClassFactory'));
+              this.itemRendererFactory_ = new c();
+              this.strand_.addBead(this.itemRendererFactory_);
+            }
 
-  this.dataProviderChangedHandler(null);
-};
-
-
-/**
- * @expose
- * @return {Object} The itemRenderer.
- */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
-    prototype.get_itemRendererClass = function() {
-  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
-    var c = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
-    if (c) {
-      this.itemRendererClass_ = c;
-    }
-  }
-  return this.itemRendererClass_;
-};
-
-
-/**
- * @expose
- * @param {Object} value class to use for the item renderer.
- */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
-    prototype.set_itemRendererClass = function(value) {
-  this.itemRendererClass_ = value;
-};
+            this.dataProviderChangedHandler(null);
+		}
+	},
+    'itemRendererClass': {
+		get: function() {
+            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
+              var c = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
+              if (c) {
+                this.itemRendererClass_ = c;
+              }
+            }
+            return this.itemRendererClass_;
+		},
+        set: function(value) {
+            this.itemRendererClass_ = value;
+		}
+	}
+});
 
 
 /**

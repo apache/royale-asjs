@@ -56,22 +56,6 @@ org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
 
 
 /**
- * @override
- */
-org_apache_flex_binding_SimpleBinding.prototype.set_strand = function(value) {
-  org_apache_flex_binding_SimpleBinding.base(this, 'set_strand', value);
-
-  if (!this.source)
-    return;
-
-  this.source.addEventListener(this.eventName,
-      goog.bind(this.changeHandler, this));
-
-  this.changeHandler();
-};
-
-
-/**
  * @param {Object} event The event.
  */
 org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(event) {
@@ -82,3 +66,22 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
     this.changeHandler();
   }
 };
+
+
+Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
+    'strand': {
+         set: function(value) {
+             org_apache_flex_binding_SimpleBinding.base(this, 'set_strand', value);
+
+             if (!this.source)
+                 return;
+
+             this.source.addEventListener(this.eventName,
+                 goog.bind(this.changeHandler, this));
+
+             this.changeHandler();
+		 }
+	}
+});
+
+

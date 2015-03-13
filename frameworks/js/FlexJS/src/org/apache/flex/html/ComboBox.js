@@ -191,20 +191,13 @@ org_apache_flex_html_ComboBox.prototype.set_dataProvider =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_ComboBox.prototype.get_text = function() {
-  return this.element.childNodes.item(0).value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_ComboBox.prototype.set_text =
-    function(value) {
-  this.element.childNodes.item(0).value = value;
-};
+Object.defineProperties(org_apache_flex_html_CheckBox.prototype, {
+    'text': {
+        get: function() {
+            return this.element.childNodes.item(0).value;
+		},
+		set: function(value) {
+            this.element.childNodes.item(0).value = value;
+		}
+	}
+});

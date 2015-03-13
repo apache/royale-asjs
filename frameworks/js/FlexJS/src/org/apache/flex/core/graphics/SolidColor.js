@@ -49,38 +49,24 @@ org_apache_flex_core_graphics_SolidColor.prototype.FLEXJS_CLASS_INFO =
                 interfaces: [org_apache_flex_core_graphics_IFill] };
 
 
-/**
- * @expose
- * @return {number} color.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.get_color = function() {
-  return this.color_;
-};
-
-
-/**
- * @param {number} value color.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.set_color = function(value) {
-  this.color_ = value;
-};
-
-
-/**
- * @expose
- * @return {number} alpha.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.get_alpha = function() {
-  return this.alpha_;
-};
-
-
-/**
- * @param {number} value alpha.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.set_alpha = function(value) {
-  this.alpha_ = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
+    'color': {
+		get: function() {
+            return this.color_;
+		},
+        set: function(value) {
+            this.color_ = value;
+		}
+	},
+    'alpha': {
+		get: function() {
+            return this.alpha_;
+		},
+        set: function(value) {
+            this.alpha_ = value;
+        }
+	}
+});
 
 
 /**

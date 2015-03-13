@@ -97,95 +97,52 @@ org_apache_flex_html_Spinner.prototype.set_value =
 };
 
 
-/**
- * @expose
- * @return {number} The minimum value.
- */
-org_apache_flex_html_Spinner.prototype.get_minimum = function() {
-  return this.minimum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new minimum value.
- */
-org_apache_flex_html_Spinner.prototype.set_minimum =
-    function(value) {
-  if (value != this.minimum_) {
-    this.minimum_ = value;
-    this.dispatchEvent('minimumChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The maximum value.
- */
-org_apache_flex_html_Spinner.prototype.get_maximum =
-    function() {
-  return this.maximum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new maximum setter.
- */
-org_apache_flex_html_Spinner.prototype.set_maximum =
-    function(value) {
-  if (value != this.maximum_) {
-    this.maximum_ = value;
-    this.dispatchEvent('maximumChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The snapInterval.
- */
-org_apache_flex_html_Spinner.prototype.get_snapInterval =
-    function() {
-  return this.snapInterval_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new snapInterval value.
- */
-org_apache_flex_html_Spinner.prototype.set_snapInterval =
-    function(value) {
-  if (value != this.snapInterval_) {
-    this.snapInterval_ = value;
-    this.dispatchEvent('snapIntervalChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The stepSize.
- */
-org_apache_flex_html_Spinner.prototype.get_stepSize =
-    function() {
-  return this.stepSize_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new stepSize value.
- */
-org_apache_flex_html_Spinner.prototype.set_stepSize =
-    function(value) {
-  if (value != this.stepSize_) {
-    this.stepSize_ = value;
-    this.dispatchEvent('stepSizeChanged');
-  }
-};
+Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
+    'minimum': {
+		get: function() {
+            return this.minimum_;
+		},
+        set: function(value) {
+            if (value != this.minimum_) {
+              this.minimum_ = value;
+              this.dispatchEvent('minimumChanged');
+            }
+		}
+	},
+    'maximum': {
+		get: function() {
+            return this.maximum_;
+		},
+        set: function(value) {
+            if (value != this.maximum_) {
+              this.maximum_ = value;
+              this.dispatchEvent('maximumChanged');
+            }
+		}
+	},
+    'snapInterval': {
+        get: function() {
+            return this.snapInterval_;
+		},
+        set: function(value) {
+            if (value != this.snapInterval_) {
+              this.snapInterval_ = value;
+              this.dispatchEvent('snapIntervalChanged');
+            }
+		}
+	},
+    'stepSize': {
+        get: function() {
+            return this.stepSize_;
+		},
+        set: function(value) {
+            if (value != this.stepSize_) {
+              this.stepSize_ = value;
+              this.dispatchEvent('stepSizeChanged');
+            }
+		}
+	}
+});
 
 
 /**

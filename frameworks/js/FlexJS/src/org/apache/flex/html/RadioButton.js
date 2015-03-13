@@ -87,132 +87,73 @@ org_apache_flex_html_RadioButton.prototype.initSkin =
 };
 
 
-/**
- * @override
- */
-org_apache_flex_html_RadioButton.prototype.set_id = function(value) {
-  org_apache_flex_html_RadioButton.base(this, 'set_id', value);
-  this.labelFor.id = value;
-  this.input.id = value;
-};
+Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
+    'id': {
+		set: function(value) {
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_html_RadioButton, this, 'id', value);
+            this.labelFor.id = value;
+            this.input.id = value;
+		}
+	},
+    'groupName': {
+		get: function() {
+            return this.input.name;
+		},
+        set: function(value) {
+            this.input.name = value;
+		}
+	},
+    'text': {
+		get: function() {
+            return this.textNode.nodeValue;
+		},
+        set: function(value) {
+            this.textNode.nodeValue = value;
+		}
+	},
+    'selected': {
+		get: function() {
+            return this.input.checked;
+		},
+        set: function(value) {
+            this.input.checked = value;
+		}
+	},
+    'value': {
+		get: function() {
+            return this.input.value;
+		},
+        set: function(value) {
+            this.input.value = value;
+		}
+	},
+    'selectedValue': {
+		get: function() {
+            var buttons, groupName, i, n;
 
+            groupName = this.input.name;
+            buttons = document.getElementsByName(groupName);
+            n = buttons.length;
 
-/**
- * @expose
- * @return {string} The groupName getter.
- */
-org_apache_flex_html_RadioButton.prototype.get_groupName =
-    function() {
-  return this.input.name;
-};
+            for (i = 0; i < n; i++) {
+              if (buttons[i].checked) {
+                return buttons[i].value;
+              }
+            }
+            return null;
+		},
+        set: function(value) {
+            var buttons, groupName, i, n;
 
-
-/**
- * @expose
- * @param {string} value The groupName setter.
- */
-org_apache_flex_html_RadioButton.prototype.set_groupName =
-    function(value) {
-  this.input.name = value;
-};
-
-
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_RadioButton.prototype.get_text =
-    function() {
-  return this.textNode.nodeValue;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_RadioButton.prototype.set_text =
-    function(value) {
-  this.textNode.nodeValue = value;
-};
-
-
-/**
- * @expose
- * @return {boolean} The selected getter.
- */
-org_apache_flex_html_RadioButton.prototype.get_selected =
-    function() {
-  return this.input.checked;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selected setter.
- */
-org_apache_flex_html_RadioButton.prototype.set_selected =
-    function(value) {
-  this.input.checked = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The value getter.
- */
-org_apache_flex_html_RadioButton.prototype.get_value =
-    function() {
-  return this.input.value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The value setter.
- */
-org_apache_flex_html_RadioButton.prototype.set_value =
-    function(value) {
-  this.input.value = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The value of the selected RadioButton.
- */
-org_apache_flex_html_RadioButton.prototype.get_selectedValue =
-    function() {
-  var buttons, groupName, i, n;
-
-  groupName = this.input.name;
-  buttons = document.getElementsByName(groupName);
-  n = buttons.length;
-
-  for (i = 0; i < n; i++) {
-    if (buttons[i].checked) {
-      return buttons[i].value;
-    }
-  }
-  return null;
-};
-
-
-/**
- * @expose
- * @param {Object} value The value of the selected RadioButton.
- */
-org_apache_flex_html_RadioButton.prototype.set_selectedValue =
-    function(value) {
-  var buttons, groupName, i, n;
-
-  groupName = this.input.name;
-  buttons = document.getElementsByName(groupName);
-  n = buttons.length;
-  for (i = 0; i < n; i++) {
-    if (buttons[i].value === value) {
-      buttons[i].checked = true;
-      break;
-    }
-  }
-};
+            groupName = this.input.name;
+            buttons = document.getElementsByName(groupName);
+            n = buttons.length;
+            for (i = 0; i < n; i++) {
+              if (buttons[i].value === value) {
+                buttons[i].checked = true;
+                break;
+              }
+            }
+		}
+	}
+});

@@ -35,75 +35,28 @@ org_apache_flex_core_ISelectableItemRenderer = function() {
 };
 
 
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.set_labelField = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} The labelField.
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.get_labelField = function() {};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.set_index = function(value) {};
-
-
-/**
- * @expose
- * @return {number} The selected index.
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.get_index = function() {};
-
-
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.set_selected = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} Whether or not the item in the selected state.
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.get_selected = function() {};
-
-
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.set_hovered = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} Whether or not the item is in the hovered state.
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.get_hovered = function() {};
-
-
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.set_down = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} Whether or not the item is in the down state.
- */
-org_apache_flex_core_ISelectableItemRenderer.prototype.get_down = function() {};
-
+Object.defineProperties(org_apache_flex_core_ISelectableItemRenderer.prototype, {
+    'labelField': {
+		set: function(value) {},
+        get: function() {}
+	},
+    'index': {
+		set: function(value) {},
+        get: function() {}
+	},
+    'selected': {
+		set: function(value) {},
+        get: function() {}
+	},
+    'hovered': {
+		set: function(value) {},
+        get: function() {}
+	},
+    'down': {
+		set: function(value) {},
+        get: function() {}
+	}
+});
 
 /**
  * Metadata

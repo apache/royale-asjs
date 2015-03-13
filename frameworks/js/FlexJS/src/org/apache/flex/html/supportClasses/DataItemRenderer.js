@@ -69,89 +69,52 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
 };
 
 
-/**
- * @expose
- * @return {Object} The item renderer's parent.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.get_itemRendererParent = function() {
-  return this.rendererParent_;
-};
+Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
+    'itemRendererParent': {
+		get: function() {
+            return this.rendererParent_;
+		},
+        set: function(value) {
+            this.rendererParent_ = value;
+		}
+	},
+    'index': {
+		set: function(value) {
+            this.index_ = value;
+		}
+	},
+    'dataField': {
+		set: function(value) {
+            this.dataField_ = value;
+		},
+        get: function() {
+            return this.dataField_;
+		}
+	},
+    'selected': {
+		set: function(value) {
+            this.selected_ = value;
 
+            if (value) {
+                this.backgroundView.style.backgroundColor = '#9C9C9C';
+            } else {
+                this.backgroundView.style.backgroundColor = null;
+            }
+		}
+	},
+    'hovered': {
+		set: function(value) {
+            this.hovered_ = value;
 
-/**
- * @expose
- * @param {Object} value The item renderer's parent.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_itemRendererParent = function(value) {
-  this.rendererParent_ = value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The renderer's index.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_index = function(value) {
-  this.index_ = value;
-};
-
-
-/**
- * @expose
- * @param {string} value The name of field to use.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_dataField = function(value) {
-
-  this.dataField_ = value;
-};
-
-
-/**
- * @expose
- * @return {string} The name of the field to use.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.get_dataField = function() {
-
-  return this.dataField_;
-};
-
-
-/**
- * @override
- * @param {Boolean} value The selection state.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_selected = function(value) {
-  this.selected_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#9C9C9C';
-  } else {
-    this.backgroundView.style.backgroundColor = null;
-  }
-};
-
-
-/**
- * @override
- * @param {Boolean} value The hovered state.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_hovered = function(value) {
-  this.hovered_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#ECECEC';
-  } else {
-    if (this.selected_) {
-      this.backgroundView.style.backgroundColor = '#9C9C9C';
-    } else {
-      this.backgroundView.style.backgroundColor = null;
-    }
-  }
-};
+            if (value) {
+              this.backgroundView.style.backgroundColor = '#ECECEC';
+            } else {
+              if (this.selected_) {
+                this.backgroundView.style.backgroundColor = '#9C9C9C';
+              } else {
+                this.backgroundView.style.backgroundColor = null;
+              }
+            }
+		}
+	}
+});

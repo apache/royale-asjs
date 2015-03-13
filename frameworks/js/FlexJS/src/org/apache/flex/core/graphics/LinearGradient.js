@@ -42,22 +42,17 @@ goog.inherits(org_apache_flex_core_graphics_LinearGradient, org_apache_flex_core
 org_apache_flex_core_graphics_LinearGradient.prototype._scaleX = 1.0;
 
 
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_LinearGradient.prototype.get_scaleX = function() {
-  return this._scaleX;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_LinearGradient.prototype.set_scaleX = function(value) {
-  this._scaleX = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
+    'scaleX': {
+		get: function() {
+            return this._scaleX;
+        },
+ 	    set: function(value) {
+            this._scaleX = value;
+        }
+	}
+});
+	
 
 
 /**

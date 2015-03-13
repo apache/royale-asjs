@@ -166,31 +166,18 @@ org_apache_flex_html5_ComboBox.prototype.buttonClicked =
 };
 
 
-/**
- * @override
- * @expose
- * @param {Array.<Object>} value The collection of data.
- */
-org_apache_flex_html5_ComboBox.prototype.set_dataProvider =
-    function(value) {
-  this.dataProvider = value;
-};
-
-
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html5_ComboBox.prototype.get_text = function() {
-  return this.element.childNodes.item(0).value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html5_ComboBox.prototype.set_text =
-    function(value) {
-  this.element.childNodes.item(0).value = value;
-};
+Object.defineProperties(org_apache_flex_html5_ComboBox.prototype, {
+    'dataProvider': {
+        set: function(value) {
+            this.dataProvider = value;
+		}
+	},
+    'text': {
+		get: function() {
+            return this.element.childNodes.item(0).value;
+		},
+        set: function(value) {
+            this.element.childNodes.item(0).value = value;
+		}
+	}
+});

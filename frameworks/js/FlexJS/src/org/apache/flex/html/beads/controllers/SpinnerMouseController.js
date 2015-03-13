@@ -36,24 +36,22 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype.FLEXJS_C
                 qName: 'org_apache_flex_html_beads_controllers_SpinnerMouseController' }] };
 
 
-/**
- * @expose
- *        SpinnerMouseController}
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_controllers_SpinnerMouseController.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  this.incrementButton = this.strand_.incrementButton;
-  this.decrementButton = this.strand_.decrementButton;
+            this.incrementButton = this.strand_.incrementButton;
+            this.decrementButton = this.strand_.decrementButton;
 
-  goog.events.listen(this.incrementButton.element, goog.events.EventType.CLICK,
-      goog.bind(this.handleIncrementClick, this));
+            goog.events.listen(this.incrementButton.element, goog.events.EventType.CLICK,
+                goog.bind(this.handleIncrementClick, this));
 
-  goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
-      goog.bind(this.handleDecrementClick, this));
-};
+            goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
+                goog.bind(this.handleDecrementClick, this));
+		}
+	}
+});
 
 
 /**

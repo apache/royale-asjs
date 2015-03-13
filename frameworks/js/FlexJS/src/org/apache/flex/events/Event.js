@@ -71,28 +71,20 @@ org_apache_flex_events_Event.prototype.init = function(type) {
 };
 
 
-/**
- * @expose
- * @return {string} The event type.
- */
-org_apache_flex_events_Event.prototype.get_type = function() {
-  return this.type;
-};
-
-
-/**
- * @expose
- * @return {Object|undefined} The event target.
- */
-org_apache_flex_events_Event.prototype.get_target = function() {
-  return this.target;
-};
-
-
-/**
- * @expose
- * @return {Object|undefined} The event currentTarget.
- */
-org_apache_flex_events_Event.prototype.get_currentTarget = function() {
-  return this.currentTarget;
-};
+Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
+    'type': {
+        get: function() {
+            return this.type;
+        }
+    },
+    'target': {
+        get: function() {
+            return this.target;
+        }
+    },
+    'currentTarget': {
+        get: function() {
+            return this.currentTarget;
+        }
+    }
+});

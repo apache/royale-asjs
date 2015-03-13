@@ -40,15 +40,6 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @expose
- * @return {number} The number of child elements.
- */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.get_numChildren = function() {
-    return this.internalChildren().length;
-  };
-
-
-/**
- * @expose
  */
 org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = function() {
   var svg = this.element;
@@ -58,48 +49,45 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = fu
 };
 
 
-/**
- * @override
- */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.set_width = function(value) {
-  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_width', value);
-  this.element.setAttribute('width', String(value) + 'px');
-  this.element.style.width = String(value) + 'px';
-};
-
-
-/**
- * @override
- */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.set_height = function(value) {
-  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_height', value);
-  this.element.setAttribute('height', String(value) + 'px');
-  this.element.style.height = String(value) + 'px';
-};
-
-
-/**
- * @override
- */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.set_x = function(value) {
-  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_x', value);
-  this.element.setAttribute('x', String(value) + 'px');
-  this.element.style.position = 'absolute';
-  this.element.style.left = String(value) + 'px';
-  this.element.offsetLeft = value;
-};
-
-
-/**
- * @override
- */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.set_y = function(value) {
-  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_y', value);
-  this.element.setAttribute('y', String(value) + 'px');
-  this.element.style.position = 'absolute';
-  this.element.style.top = String(value) + 'px';
-  this.element.offsetTop = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototype, {
+    'numChildren': {
+		get: function() {
+            return this.internalChildren().length;
+        }
+	},
+    'width': {
+		set: function(value) {
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_core_graphics_GraphicsContainer, this, 'width', value);
+            this.element.setAttribute('width', String(value) + 'px');
+            this.element.style.width = String(value) + 'px';
+        }
+	},
+    'height': {
+		set: function(value) {
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_core_graphics_GraphicsContainer, this, 'height', value);
+            this.element.setAttribute('height', String(value) + 'px');
+            this.element.style.height = String(value) + 'px';
+        }
+	},
+    'x': {
+		set: function(value) {
+            org_apache_flex_core_graphics_GraphicsContainer.base(org_apache_flex_core_graphics_GraphicsContainer, this, 'x', value);
+            this.element.setAttribute('x', String(value) + 'px');
+            this.element.style.position = 'absolute';
+            this.element.style.left = String(value) + 'px';
+            this.element.offsetLeft = value;
+		}
+	},
+    'y': { 
+	    set: function(value) {
+            org_apache_flex_core_graphics_GraphicsContainer.base(this, 'set_y', value);
+            this.element.setAttribute('y', String(value) + 'px');
+            this.element.style.position = 'absolute';
+            this.element.style.top = String(value) + 'px';
+            this.element.offsetTop = value;
+		}
+	}
+});
 
 
 /**

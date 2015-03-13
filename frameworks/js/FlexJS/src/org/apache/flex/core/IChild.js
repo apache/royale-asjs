@@ -31,10 +31,11 @@ org_apache_flex_core_IChild = function() {
 };
 
 
-/**
- * @return {Object} The parent of the child.
- */
-org_apache_flex_core_IChild.prototype.get_parent = function() {};
+Object.defineProperties(org_apache_flex_core_IChild.prototype, {
+    'parent': {
+		get: function() {}
+	}
+});
 
 
 /**

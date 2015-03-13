@@ -131,118 +131,59 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 };
 
 
-/**
- * Hack to allow event.target expressions to work
- *
- * @expose
- * @return {Object} The wrapping object.
- */
-Event.prototype.get_target = function() {
-  var obj = this.target;
-  if (!obj)
-    return this.currentTarget;
-  return obj.flexjs_wrapper;
-};
+Object.defineProperties(Event.prototype, {
+    /* Hack to allow event.target expressions to work
+     *
+     * @expose
+     * @return {Object} The wrapping object.
+     */
+    'target': {
+		get: function() {
+            var obj = this.target;
+            if (!obj)
+              return this.currentTarget;
+            return obj.flexjs_wrapper;
+        }
+	},
+    /**
+     * Hack to allow event.currentTarget to work
+     * @return {Object} The wrapping object.
+     */
+    'currentTarget': {
+		get: function() {
+            return this.currentTarget.flexjs_wrapper;
+        }
+	}
+});
 
 
-/**
- * Hack to allow event.currentTarget to work
- * @return {Object} The wrapping object.
- */
-Event.prototype.get_currentTarget = function() {
-  return this.currentTarget.flexjs_wrapper;
-};
-
-
-/**
- * Hack to allow event.target expressions to work
- *
- * @expose
- * @return {Object} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_target = function() {
-  // if it is a faked event so just return the target
-  if (!this.event_) return this.target;
-  // for true browser events, get the embedded event's target
-  return this.event_.target;
-};
-
-
-/**
- * Hack to allow event.currentTarget expressions to work
- *
- * @expose
- * @return {?Node|Object} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_currentTarget = function() {
-  // if it is a faked event so just return the currentTarget
-  if (!this.event_) return this.currentTarget;
-  // for true browser events, get the embedded event's currentTarget
-  return this.event_.currentTarget;
-};
-
-
-/**
- * Hack to allow event.screenX expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_screenX = function() {
-  return this.screenX;
-};
-
-
-/**
- * Hack to allow event.screenY expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_screenY = function() {
-  return this.screenY;
-};
-
-
-/**
- * Hack to allow event.clientX expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_clientX = function() {
-  return this.clientX;
-};
-
-
-/**
- * Hack to allow event.clientY expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_clientY = function() {
-  return this.clientY;
-};
-
-
-/**
- * Hack to allow event.clientX expressions to work
- *
- * @expose
- * @param {number} value The value.
- */
-goog.events.BrowserEvent.prototype.set_clientX = function(value) {
-  this.clientX = value;
-};
-
-
-/**
- * Hack to allow event.clientY expressions to work
- *
- * @expose
- * @param {number} value The value.
- */
-goog.events.BrowserEvent.prototype.set_clientY = function(value) {
-  this.clientY = value;
-};
+Object.defineProperties(goog.events.BrowserEvent.prototype, {
+    /**
+     * Hack to allow event.target expressions to work
+     *
+     * @expose
+     * @return {Object} The wrapping object.
+     */
+    'target': {
+	    get: function() {
+            // if it is a faked event so just return the target
+            if (!this.event_) return this.target;
+            // for true browser events, get the embedded event's target
+            return this.event_.target;
+        }
+	},
+    /**
+     * Hack to allow event.currentTarget expressions to work
+     *
+     * @expose
+     * @return {?Node|Object} The wrapping object.
+     */
+    'currentTarget': {
+     	 get: function() {
+             // if it is a faked event so just return the currentTarget
+             if (!this.event_) return this.currentTarget;
+             // for true browser events, get the embedded event's currentTarget
+             return this.event_.currentTarget;
+         }
+	}
+});

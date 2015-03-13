@@ -70,43 +70,29 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
 };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.set_strand = function(value) {
+Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
+		},
+        get: function() {
+            return this.strand_;
+		}
+	},
+    'data': {
+		set: function(value) {
 
-  this.strand_ = value;
-};
+            org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
 
-
-/**
- * @expose
- * @return {Object} The strand.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.get_strand = function() {
-  return this.strand_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The text to display.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.set_data = function(value) {
-
-  org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
-
-  if (value.hasOwnProperty('label')) {
-    this.button.innerHTML = value.label;
-  }
-  else if (value.hasOwnProperty('title')) {
-    this.button.innerHTML = value.title;
-  }
-  else {
-    this.button.innerHTML = value;
-  }
-};
+            if (value.hasOwnProperty('label')) {
+              this.button.innerHTML = value.label;
+            }
+            else if (value.hasOwnProperty('title')) {
+              this.button.innerHTML = value.title;
+            }
+            else {
+              this.button.innerHTML = value;
+            }
+		}
+	}
+});

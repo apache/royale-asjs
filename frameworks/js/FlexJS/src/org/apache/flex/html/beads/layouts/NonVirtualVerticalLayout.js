@@ -40,30 +40,29 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype.FLEXJS_CLA
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    if (this.strand_.isWidthSizedToContent() &&
-        this.strand_.isHeightSizedToContent())
-      this.addOtherListeners();
-    else {
-      this.strand_.addEventListener('heightChanged',
-          goog.bind(this.changeHandler, this));
-      this.strand_.addEventListener('widthChanged',
-          goog.bind(this.changeHandler, this));
-      this.strand_.addEventListener('sizeChanged',
-          goog.bind(this.sizeChangeHandler, this));
-      if (!isNaN(this.strand_.explicitWidth) &&
-          !isNaN(this.strand_.explicitHeight))
-          this.addOtherListeners();
-    }
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype, {
+    'strand': {
+		set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              if (this.strand_.isWidthSizedToContent() &&
+                this.strand_.isHeightSizedToContent())
+                this.addOtherListeners();
+              else {
+                this.strand_.addEventListener('heightChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('widthChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('sizeChanged',
+                    goog.bind(this.sizeChangeHandler, this));
+                if (!isNaN(this.strand_.explicitWidth) &&
+                    !isNaN(this.strand_.explicitHeight))
+                  this.addOtherListeners();
+               }
+            }
+		}
+	}
+});
 
 
 /**

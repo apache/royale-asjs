@@ -43,35 +43,28 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype.FLEXJS_CLASS_
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    if (this.strand_.isWidthSizedToContent() &&
-        this.strand_.isHeightSizedToContent())
-      this.addOtherListeners();
-    else {
-      this.strand_.addEventListener('heightChanged',
-          goog.bind(this.changeHandler, this));
-      this.strand_.addEventListener('widthChanged',
-          goog.bind(this.changeHandler, this));
-      this.strand_.addEventListener('sizeChanged',
-          goog.bind(this.sizeChangeHandler, this));
+Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype, {
+    'strand': {
+		set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              if (this.strand_.isWidthSizedToContent() &&
+                this.strand_.isHeightSizedToContent())
+                this.addOtherListeners();
+              else {
+                this.strand_.addEventListener('heightChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('widthChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('sizeChanged',
+                    goog.bind(this.sizeChangeHandler, this));
 
-      // in JS, we won't always get size/width/height change
-      // events because we let the browser layout based on
-      // %'s and don't convert to pixels, so listen to the
-      // other events anyway.
-      /* if (!isNaN(this.strand_.explicitWidth) &&
-          !isNaN(this.strand_.explicitHeight))*/
-      this.addOtherListeners();
-    }
-  }
-};
+                this.addOtherListeners();
+              }
+            }
+		}
+	}
+});
 
 
 /**

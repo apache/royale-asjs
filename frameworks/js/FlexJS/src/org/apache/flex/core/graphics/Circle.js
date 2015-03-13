@@ -45,22 +45,17 @@ org_apache_flex_core_graphics_Circle.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_Circle' }] };
 
 
-/**
- * @expose
- * @param {number} v The radius of the circle.
- */
-org_apache_flex_core_graphics_Circle.prototype.set_radius = function(v) {
-  this.radius_ = v;
-};
 
-
-/**
- * @expose
- * @return {number} The radius of the circle.
- */
-org_apache_flex_core_graphics_Circle.prototype.get_radius = function() {
-  return this.radius_;
-};
+Object.defineProperties(org_apache_flex_core_graphics_Circle.prototype, {
+    'radius': {
+		set: function(v) {
+            this.radius_ = v;
+		},
+        get: function() {
+            return this.radius_;
+		}
+	}
+});
 
 
 /**

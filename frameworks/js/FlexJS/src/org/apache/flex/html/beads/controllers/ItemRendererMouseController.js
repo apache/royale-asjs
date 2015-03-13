@@ -37,25 +37,25 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLE
       interfaces: [org_apache_flex_core_IBeadController] };
 
 
-/**
- * @expose
- * @param {Object} value The strand for this component.
- */
-org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
-      goog.bind(this.handleMouseOver, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
+                goog.bind(this.handleMouseOver, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOUT,
-      goog.bind(this.handleMouseOut, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOUT,
+                goog.bind(this.handleMouseOut, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEDOWN,
-      goog.bind(this.handleMouseDown, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEDOWN,
+                goog.bind(this.handleMouseDown, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
-      goog.bind(this.handleMouseUp, this));
-};
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
+                goog.bind(this.handleMouseUp, this));
+		}
+	}
+});
 
 
 /**

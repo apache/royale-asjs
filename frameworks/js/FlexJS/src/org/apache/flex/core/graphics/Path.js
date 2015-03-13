@@ -45,22 +45,16 @@ org_apache_flex_core_graphics_Path.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_Path' }] };
 
 
-/**
- * @expose
- * @param {string} v The string representation of the path data.
- */
-org_apache_flex_core_graphics_Path.prototype.set_data = function(v) {
-  this.data_ = v;
-};
-
-
-/**
- * @expose
- * @return {string} The string representation of the path data.
- */
-org_apache_flex_core_graphics_Path.prototype.get_data = function() {
-  return this.data_;
-};
+Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
+    'data': {
+		set: function(v) {
+            this.data_ = v;
+        },
+        get: function() {
+            return this.data_;
+		}
+	}
+});
 
 
 /**

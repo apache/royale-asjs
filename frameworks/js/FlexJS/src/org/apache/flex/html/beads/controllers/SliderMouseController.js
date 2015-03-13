@@ -37,26 +37,24 @@ org_apache_flex_html_beads_controllers_SliderMouseController.prototype.FLEXJS_CL
                 qName: 'org_apache_flex_html_beads_controllers_SliderMouseController' }] };
 
 
-/**
- * @expose
- *        SliderMouseController}
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_controllers_SliderMouseController.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseController.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
 
-  this.track = this.strand_.getBeadByType(
-      org_apache_flex_html_beads_SliderTrackView);
-  this.thumb = this.strand_.getBeadByType(
-      org_apache_flex_html_beads_SliderThumbView);
+            this.track = this.strand_.getBeadByType(
+                org_apache_flex_html_beads_SliderTrackView);
+            this.thumb = this.strand_.getBeadByType(
+                org_apache_flex_html_beads_SliderThumbView);
 
-  goog.events.listen(this.track.element, goog.events.EventType.CLICK,
+            goog.events.listen(this.track.element, goog.events.EventType.CLICK,
                      this.handleTrackClick, false, this);
 
-  goog.events.listen(this.thumb.element, goog.events.EventType.MOUSEDOWN,
+            goog.events.listen(this.thumb.element, goog.events.EventType.MOUSEDOWN,
                      this.handleThumbDown, false, this);
-};
+		}
+	}
+});
 
 
 /**

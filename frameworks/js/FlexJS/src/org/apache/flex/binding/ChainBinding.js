@@ -63,15 +63,6 @@ org_apache_flex_binding_ChainBinding.prototype.source = null;
 
 
 /**
- * @expose
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_ChainBinding.prototype.set_strand = function(value) {
-  this.applyBinding();
-};
-
-
-/**
  */
 org_apache_flex_binding_ChainBinding.prototype.applyBinding = function() {
   var chainSet = this.evaluateSourceChain();
@@ -203,3 +194,12 @@ org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
     event.oldValue.removeEventListener('valueChange', this.handler);
   this.callback();
 };
+
+
+Object.defineProperties(org_apache_flex_binding_ChainWatcher.prototype, {
+    'strand': {
+		set: function(value) {
+            this.applyBinding();
+        }
+	}
+});

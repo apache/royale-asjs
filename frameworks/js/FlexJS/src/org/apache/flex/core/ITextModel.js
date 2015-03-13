@@ -35,18 +35,12 @@ org_apache_flex_core_ITextModel = function() {
 };
 
 
-/**
- * @expose
- * @param {Object} value The text content.
- */
-org_apache_flex_core_ITextModel.prototype.set_text = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} The text content.
- */
-org_apache_flex_core_ITextModel.prototype.get_text = function() {};
+Object.defineProperties(org_apache_flex_core_ITextModel.prototype, {
+    'text': {
+		set: function(value) {},
+        get: function() {}
+	}
+});
 
 
 /**

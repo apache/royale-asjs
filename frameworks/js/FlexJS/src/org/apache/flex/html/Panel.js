@@ -138,64 +138,34 @@ org_apache_flex_html_Panel.prototype.addedToParent =
 };
 
 
-/**
- * @expose
- * @return {boolean} The showCloseButton getter.
- */
-org_apache_flex_html_Panel.prototype.get_showCloseButton = function() {
-  return this.model.showCloseButton;
-};
+Object.defineProperties(org_apache_flex_html_Panel.prototype, {
+    'showCloseButton': {
+		get: function() {
+            return this.model.showCloseButton;
+		},
+        set: function(value) {
+            this.model.showCloseButton = value;
+		}
+	},
+    'title': {
+		get: function() {
+            return this.model.title;
+		},
+        set: function(value) {
+            this.model.title = value;
+		}
+	},
+    'controlBar': {
+        get: function() {
+            return this.controlBarChildren;
+		},
+        set: function(value) {
+            this.controlBarChildren = value;
 
-
-/**
- * @expose
- * @param {boolean} value The showCloseButton setter.
- */
-org_apache_flex_html_Panel.prototype.set_showCloseButton =
-    function(value) {
-  this.model.showCloseButton = value;
-};
-
-
-/**
- * @expose
- * @return {string} The title getter.
- */
-org_apache_flex_html_Panel.prototype.get_title = function() {
-  return this.model.title;
-};
-
-
-/**
- * @expose
- * @param {string} value The title setter.
- */
-org_apache_flex_html_Panel.prototype.set_title =
-function(value) {
-  this.model.title = value;
-};
-
-
-/**
- * @expose
- * @return {Array} The controlBar getter.
- */
-org_apache_flex_html_Panel.prototype.get_controlBar =
-    function() {
-  return this.controlBarChildren;
-};
-
-
-/**
- * @expose
- * @param {Array} value The controlBar setter.
- */
-org_apache_flex_html_Panel.prototype.set_controlBar =
-    function(value) {
-  this.controlBarChildren = value;
-
-  for (var i = 0; i < value.length; i++) {
-    var item = value[i];
-    this.controlBar.addElement(item);
-  }
-};
+            for (var i = 0; i < value.length; i++) {
+              var item = value[i];
+              this.controlBar.addElement(item);
+            }
+		}
+	}
+});

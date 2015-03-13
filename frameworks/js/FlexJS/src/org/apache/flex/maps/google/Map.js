@@ -79,23 +79,18 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @param {String} value Google API dev token.
- */
-org_apache_flex_maps_google_Map.prototype.set_token = function(value) {
-  this.token = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The marker that was last selected.
- */
-org_apache_flex_maps_google_Map.prototype.get_selectedMarker =
-function() {
-  return this._selectedMarker;
-};
+Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
+    'token': {
+		set: function(value) {
+            this.token = value;
+		}
+	},
+	'selectedMarker': {
+		get: function() {
+            return this._selectedMarker;
+		}
+	}
+});
 
 
 /**

@@ -120,15 +120,6 @@ org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(d
 
 /**
  * @expose
- * @return {Array} An array of descriptors.
- */
-org_apache_flex_core_ContainerBase.prototype.get_MXMLDescriptor = function() {
-  return this.mxmlDescriptor;
-};
-
-
-/**
- * @expose
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
@@ -139,71 +130,48 @@ org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
 };
 
 
-/**
- * @expose
- * @return {Array} An array of states.
- */
-org_apache_flex_core_ContainerBase.prototype.get_states = function() {
-  return this.states_;
-};
+Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
+    'MXMLDescriptor': {
+		get: function() {
+            return this.mxmlDescriptor;
+        }
+	},
+	'states': {
+		get: function() {
+            return this.states_;
+        },
+        set: function(s) {
+            this.states_ = s;
+            this.currentState_ = s[0].name;
 
-
-/**
- * @expose
- * @param {Array} s An array of states.
- */
-org_apache_flex_core_ContainerBase.prototype.set_states = function(s) {
-  this.states_ = s;
-  this.currentState_ = s[0].name;
-
-  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-    /**
-     * @type {Function}
-     */
-    var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
-        getValue(this, 'iStatesImpl'));
-    // TODO: (aharui) check if bead already exists
-    this.addBead(new impl());
-  }
-};
-
-
-/**
- * @expose
- * @return {String} The current state.
- */
-org_apache_flex_core_ContainerBase.prototype.get_currentState = function() {
-  return this.currentState_;
-};
-
-
-/**
- * @expose
- * @param {String} s The current state.
- */
-org_apache_flex_core_ContainerBase.prototype.set_currentState = function(s) {
-  var event = new org_apache_flex_events_ValueChangeEvent(
-      'currentStateChange', false, false, this.currentState_, s);
-  this.currentState_ = s;
-  this.dispatchEvent(event);
-};
-
-
-/**
- * @expose
- * @return {Array} An array of states.
- */
-org_apache_flex_core_ContainerBase.prototype.get_transitions = function() {
-  return this.transitions_;
-};
-
-
-/**
- * @expose
- * @param {Array} s An array of states.
- */
-org_apache_flex_core_ContainerBase.prototype.set_transitions = function(s) {
-  this.transitions_ = s;
-};
-
-
+            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+              /**
+               * @type {Function}
+               */
+              var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+                  getValue(this, 'iStatesImpl'));
+              // TODO: (aharui) check if bead already exists
+              this.addBead(new impl());
+            }
+        }
+	},
+    'currentState': {
+		get: function() {
+             return this.currentState_;
+        },
+        set: function(s) {
+             var event = new org_apache_flex_events_ValueChangeEvent(
+                  'currentStateChange', false, false, this.currentState_, s);
+             this.currentState_ = s;
+             this.dispatchEvent(event);
+		}
+	},
+    'transitions': {
+		get: function() {
+             return this.transitions_;
+        },
+        set: function(s) {
+           this.transitions_ = s;
+        }
+	}
+});

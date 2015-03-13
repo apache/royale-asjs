@@ -32,64 +32,32 @@ org_apache_flex_charts_core_IChartItemRenderer = function() {
 };
 
 
-/**
- * @return {string}
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.get_xField = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_xField = function(value) {};
-
-
-/**
- * @return {string}
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.get_yField = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_yField = function(value) {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.get_fillColor = function() {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_fillColor = function(value) {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_x = function(value) {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_y = function(value) {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_width = function(value) {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.set_height = function(value) {};
+Object.defineProperties(org_apache_flex_charts_core_IChart.prototype, {
+    'xField': {
+		get: function() {},
+        set: function(value) {}
+	},
+    'yField': {
+		get: function() {},
+        set: function(value) {}
+	},
+	'fillColor': {
+		get: function() {},
+	    set: function(value) {}
+	},
+    'x': {
+		set: function(value) {}
+	},
+    'y': {
+		set: function(value) {}
+	},
+    'width': {
+		set: function(value) {}
+	},
+    'height': {
+		set: function(value) {}
+	}
+});
 
 
 /**

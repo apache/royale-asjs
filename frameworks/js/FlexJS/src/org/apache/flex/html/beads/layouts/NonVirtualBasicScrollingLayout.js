@@ -40,20 +40,19 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype.FLEX
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype, {
+    'strand': {
+		set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('layoutNeeded',
+                  goog.bind(this.changeHandler, this));
+            }
+		}
+	}
+});
 
 
 /**

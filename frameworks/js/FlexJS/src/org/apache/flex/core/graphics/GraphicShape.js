@@ -88,39 +88,30 @@ org_apache_flex_core_graphics_GraphicShape.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_GraphicShape' }] };
 
 
-/**
- * @expose
- * @return {org_apache_flex_core_graphics_IFill} The fill object.
- */
-org_apache_flex_core_graphics_GraphicShape.prototype.get_fill = function() {
-  return this.fill_;
-};
-
-
-/**
- * @param {org_apache_flex_core_graphics_IFill} value The fill object.
- */
-org_apache_flex_core_graphics_GraphicShape.prototype.set_fill = function(value) {
-  this.fill_ = value;
-};
-
-
-/**
- * @expose
- * @return {org_apache_flex_core_graphics_IStroke} The stroke object.
- */
-org_apache_flex_core_graphics_GraphicShape.prototype.get_stroke = function() {
-  return this.stroke_;
-};
-
-
-/**
- * @expose
- * @param {org_apache_flex_core_graphics_IStroke} value The stroke object.
- */
-org_apache_flex_core_graphics_GraphicShape.prototype.set_stroke = function(value) {
-  this.stroke_ = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
+    /**
+     * @type {org_apache_flex_core_graphics_IFill}
+     */
+    'fill': {
+        get: function() {
+            return this.fill_;
+        },
+        set: function(value) {
+            this.fill_ = value;
+        }
+    },
+    /**
+     * @type {org_apache_flex_core_graphics_IStroke} The stroke object.
+     */
+    'stroke': {
+        get: function() {
+            return this.stroke_;
+        },
+        set: function(value) {
+            this.stroke_ = value;
+        }
+	}
+});
 
 
 /**

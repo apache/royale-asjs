@@ -55,65 +55,38 @@ org_apache_flex_core_graphics_GradientEntry.prototype._color = 0x000000;
 org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_alpha = function() {
-  return this._alpha;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_alpha = function(value) {
-  var /** @type {number} */ oldValue = this._alpha;
-  if (value != oldValue) {
-    this._alpha = value;
-  }
-};
-
-
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_color = function() {
-  return this._color;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_color = function(value) {
-  var /** @type {number} */ oldValue = this._color;
-  if (value != oldValue) {
-    this._color = value;
-  }
-};
-
-
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_ratio = function() {
-  return this._ratio;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_ratio = function(value) {
-  this._ratio = value;
-};
-
+Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
+    'alpha': {
+		get: function() {
+            return this._alpha;
+        },
+        set: function(value) {
+            var /** @type {number} */ oldValue = this._alpha;
+            if (value != oldValue) {
+                this._alpha = value;
+            }
+        }
+	},
+    'color': {
+		get: function() {
+            return this._color;
+        },
+        set: function(value) {
+            var /** @type {number} */ oldValue = this._color;
+            if (value != oldValue) {
+              this._color = value;
+            }
+        }
+	},
+    'ratio': {
+		get: function() {
+            return this._ratio;
+        },
+        set: function(value) {
+            this._ratio = value;
+        }
+	}
+});
 
 /**
  * @expose

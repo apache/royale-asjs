@@ -40,14 +40,13 @@ org_apache_flex_html_accessories_PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_accessories_PasswordInputBead' }] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_accessories_PasswordInputBead.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    value.element.type = 'password';
-  }
-};
+Object.defineProperties(org_apache_flex_html_accessories_PasswordInputBead.prototype, {
+    'strand': {
+		set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              value.element.type = 'password';
+            }
+		}
+	}
+});

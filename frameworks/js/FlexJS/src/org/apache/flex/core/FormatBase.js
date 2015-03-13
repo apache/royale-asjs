@@ -55,15 +55,6 @@ org_apache_flex_core_FormatBase.prototype.strand_ = null;
 
 
 /**
- * @expose
- * @param {org_apache_flex_core_IStrand} value
- */
-org_apache_flex_core_FormatBase.prototype.set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
  * @type {string}
  */
 org_apache_flex_core_FormatBase.prototype._propertyName = 'text';
@@ -81,63 +72,43 @@ org_apache_flex_core_FormatBase.prototype._eventName = 'textChange';
 org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 
-/**
- * @expose
- * @return {Object}
- */
-org_apache_flex_core_FormatBase.prototype.get_propertyValue = function() {
-  var value = this.strand_[this.propertyName];
-  return value;
-};
-
-
-/**
- * @expose
- * @return {string}
- */
-org_apache_flex_core_FormatBase.prototype.get_propertyName = function() {
-  if (this._propertyName == null) {
-    this._propertyName = 'text';
-  }
-  return this._propertyName;
-};
-
-
-/**
- * @expose
- * @param {string} value
- */
-org_apache_flex_core_FormatBase.prototype.set_propertyName = function(value) {
-  this._propertyName = value;
-};
-
-
-/**
- * @expose
- * @return {string}
- */
-org_apache_flex_core_FormatBase.prototype.get_eventName = function() {
-  if (this._eventName == null) {
-    return this._propertyName + 'Change';
-  }
-  return this._eventName;
-};
-
-
-/**
- * @expose
- * @param {string} value
- */
-org_apache_flex_core_FormatBase.prototype.set_eventName = function(value) {
-  this._eventName = value;
-};
-
-
-/**
- * @expose
- * @return {string}
- */
-org_apache_flex_core_FormatBase.prototype.get_formattedString = function() {
-  return null;
-};
-
+Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
+        }
+	},
+    'propertyValue': {
+		get: function() {
+            var value = this.strand_[this.propertyName];
+            return value;
+        }
+	},
+    'propertyName': {
+		get: function() {
+            if (this._propertyName == null) {
+              this._propertyName = 'text';
+            }
+            return this._propertyName;
+        },
+        set: function(value) {
+            this._propertyName = value;
+        }
+	},
+    'eventName': {
+		get: function() {
+            if (this._eventName == null) {
+                 return this._propertyName + 'Change';
+            }
+            return this._eventName;
+        },
+        set: function(value) {
+            this._eventName = value;
+        }
+	},
+    'formattedString': {
+		get: function() {
+             return null;
+        }
+	}
+});

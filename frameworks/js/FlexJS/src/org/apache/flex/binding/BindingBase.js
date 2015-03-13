@@ -77,26 +77,6 @@ org_apache_flex_binding_BindingBase.prototype.sourceID = null;
 
 /**
  * @expose
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_BindingBase.prototype.set_strand = function(value) {
-  if (this.destination == null)
-    this.destination = value;
-  if (this.sourceID != null) {
-    this.source = this.document[this.sourceID];
-    if (this.source == null) {
-      this.document.addEventListener('valueChange',
-          goog.bind(this.sourceChangeHandler, this));
-        return;
-    }
-  }
-  else
-    this.source = this.document;
-};
-
-
-/**
- * @expose
  * @param {Object} document The MXML object.
  */
 org_apache_flex_binding_BindingBase.prototype.setDocument = function(document) {
@@ -117,3 +97,24 @@ org_apache_flex_binding_BindingBase.prototype.sourceChangeHandler = function(eve
 
   this.source = this.document[this.sourceID];
 };
+
+
+Object.defineProperties(org_apache_flex_binding_BindingBase.prototype, {
+  'strand': {
+      set: function(value) {
+          if (this.destination == null)
+            this.destination = value;
+          if (this.sourceID != null) {
+            this.source = this.document[this.sourceID];
+            if (this.source == null) {
+               this.document.addEventListener('valueChange',
+                    goog.bind(this.sourceChangeHandler, this));
+               return;
+            }
+          }
+          else
+            this.source = this.document;
+        }
+    }
+});
+  

@@ -92,66 +92,44 @@ org_apache_flex_jquery_ToggleTextButton.prototype.addedToParent =
 };
 
 
-/**
- * @override
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_id = function(value) {
-  org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
-  this.labelFor.id = value;
-  this.labelFor.htmlFor = value;
-};
-
-
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.get_text = function() {
-  return this.labelFor.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_text =
-    function(value) {
-  this.labelFor.innerHTML = value;
-};
-
-
-/**
- * @expose
- * @return {boolean} The selected getter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.get_selected =
-    function() {
-  return this.input.selected_;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selected setter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_selected =
-    function(value) {
-  if (this.input.selected_ != value) {
-    this.inputselected_ = value;
-/*
-    var className = this.className;
-    if (value) {
-      if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-        this.className = className.substring(0, className.length - this.SELECTED.length);
-    }
-    else {
-      if (className.indexOf(this.SELECTED) == -1)
-        this.className = className + this.SELECTED;
-    }
-*/
-  }
-};
+Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
+    'id': {
+		set: function(value) {
+            org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
+            this.labelFor.id = value;
+            this.labelFor.htmlFor = value;
+		}
+	},
+    'text': {
+		get: function() {
+            return this.labelFor.innerHTML;
+		},
+        set: function(value) {
+            this.labelFor.innerHTML = value;
+		}
+	},
+	'selected': {
+		get: function() {
+            return this.input.selected_;
+		},
+		set: function(value) {
+            if (this.input.selected_ != value) {
+            this.inputselected_ = value;
+            /*
+              var className = this.className;
+              if (value) {
+                if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
+                  this.className = className.substring(0, className.length - this.SELECTED.length);
+              }
+              else {
+                if (className.indexOf(this.SELECTED) == -1)
+                  this.className = className + this.SELECTED;
+              }
+             */
+			}
+		}
+	}
+});
 
 
 /**

@@ -44,14 +44,20 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype.FLEXJS_CLASS_I
                 qName: 'org_apache_flex_html_supportClasses_NonVirtualDataGroup' }] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype, {
+    'strand': {
+		set: function(value) {
+            this.strand_ = value;
+        }
+	},
+	'numElements': {
+		get: function() {
+
+            var n = this.element.childNodes.length;
+            return n;
+		}
+	}
+});
 
 
 /**
@@ -97,18 +103,6 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
   while (this.element.hasChildNodes()) {
     this.element.removeChild(this.element.lastChild);
   }
-};
-
-
-/**
- * @expose
- * @return {number} The number of child nodes in the group.
- */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
-    prototype.get_numElements = function() {
-
-  var n = this.element.childNodes.length;
-  return n;
 };
 
 
