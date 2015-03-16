@@ -38,6 +38,7 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype.FLEXJS_C
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype, {
     'strand': {
+        /** @this {org_apache_flex_html_beads_controllers_SpinnerMouseController} */
         set: function(value) {
             this.strand_ = value;
 

@@ -45,17 +45,21 @@ org_apache_flex_html_Label.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_html_Label.prototype, {
     'text': {
+        /** @this {org_apache_flex_html_Label} */
         get: function() {
             return this.element.innerHTML;
         },
+        /** @this {org_apache_flex_html_Label} */
         set: function(value) {
             this.element.innerHTML = value;
         }
     },
     'html': {
+        /** @this {org_apache_flex_html_Label} */
         get: function() {
             return this.element.innerHTML;
         },
+        /** @this {org_apache_flex_html_Label} */
         set: function(value) {
             this.element.innerHTML = value;
         }

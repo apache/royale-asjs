@@ -45,11 +45,13 @@ org_apache_flex_core_graphics_Path.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_Path' }] };
 
 
-Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
+Object.defineProperties(org_apache_flex_core_graphics_Path.prototype, {
     'data': {
+ 		/** @this {org_apache_flex_core_graphics_Path} */
         set: function(v) {
             this.data_ = v;
         },
+ 		/** @this {org_apache_flex_core_graphics_Path} */
         get: function() {
             return this.data_;
         }

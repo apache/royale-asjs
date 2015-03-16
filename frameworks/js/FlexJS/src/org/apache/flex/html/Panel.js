@@ -140,25 +140,31 @@ org_apache_flex_html_Panel.prototype.addedToParent =
 
 Object.defineProperties(org_apache_flex_html_Panel.prototype, {
     'showCloseButton': {
+        /** @this {org_apache_flex_html_Panel} */
         get: function() {
             return this.model.showCloseButton;
         },
+        /** @this {org_apache_flex_html_Panel} */
         set: function(value) {
             this.model.showCloseButton = value;
         }
     },
     'title': {
+        /** @this {org_apache_flex_html_Panel} */
         get: function() {
             return this.model.title;
         },
+        /** @this {org_apache_flex_html_Panel} */
         set: function(value) {
             this.model.title = value;
         }
     },
     'controlBar': {
+        /** @this {org_apache_flex_html_Panel} */
         get: function() {
             return this.controlBarChildren;
         },
+        /** @this {org_apache_flex_html_Panel} */
         set: function(value) {
             this.controlBarChildren = value;
 

@@ -118,22 +118,27 @@ org_apache_flex_html_Alert.show =
 
 Object.defineProperties(org_apache_flex_html_Alert.prototype, {
     'title': {
+ 		/** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.titleBar.title;
         },
+ 		/** @this {org_apache_flex_html_Alert} */
         set: function(value) {
             this.titleBar.title = value;
         }
     },
     'text': {
+ 		/** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.message.text;
         },
+ 		/** @this {org_apache_flex_html_Alert} */
         set: function(value) {
             this.message.text = value;
         }
     },
     'flags': {
+ 		/** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.flags;
         }

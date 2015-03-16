@@ -16,6 +16,7 @@ goog.provide('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
 
 goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
 goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -72,17 +73,20 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
 
 Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
     'strand': {
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
         set: function(value) {
             this.strand_ = value;
         },
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
         get: function() {
             return this.strand_;
         }
     },
     'data': {
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
         set: function(value) {
-
-            org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
+            org_apache_flex_utils_Language.superSetter(
+                org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer, this, 'data', value);
 
             if (value.hasOwnProperty('label')) {
               this.button.innerHTML = value.label;

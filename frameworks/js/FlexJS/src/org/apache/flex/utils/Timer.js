@@ -109,27 +109,33 @@ org_apache_flex_utils_Timer.prototype.timerHandler =
 
 Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
     'currentCount': {
+ 		/** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this._currentCount;
         }
     },
     'running': {
+ 		/** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this.timerInterval !== -1;
         }
     },
     'delay': {
+ 		/** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this._delay;
         },
+ 		/** @this {org_apache_flex_utils_Timer} */
         set: function(value) {
             this._delay = value;
         }
     },
     'repeatCount': {
+ 		/** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this._repeatCount;
         },
+ 		/** @this {org_apache_flex_utils_Timer} */
         set: function(value) {
             this._repeatCount = value;
         }

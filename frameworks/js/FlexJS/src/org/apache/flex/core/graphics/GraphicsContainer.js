@@ -51,11 +51,13 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = fu
 
 Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototype, {
     'numChildren': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         get: function() {
             return this.internalChildren().length;
         }
     },
     'width': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
                 org_apache_flex_core_graphics_GraphicsContainer, this, 'width', value);
@@ -64,6 +66,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
         }
     },
     'height': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
                 org_apache_flex_core_graphics_GraphicsContainer, this, 'height', value);
@@ -72,6 +75,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
         }
     },
     'x': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
                 org_apache_flex_core_graphics_GraphicsContainer, this, 'x', value);
@@ -82,9 +86,10 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
         }
     },
     'y': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_core_graphics_GraphicsContainerthis, 'set_y', value);
+                org_apache_flex_core_graphics_GraphicsContainer, this, 'y', value);
             this.element.setAttribute('y', String(value) + 'px');
             this.element.style.position = 'absolute';
             this.element.style.top = String(value) + 'px';

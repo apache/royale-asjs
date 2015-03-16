@@ -45,6 +45,7 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype.FLEXJS_CLASS_
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype, {
     'strand': {
+        /** @this {org_apache_flex_html_beads_layouts_NonVirtualBasicLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;

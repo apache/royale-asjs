@@ -48,9 +48,11 @@ org_apache_flex_core_graphics_Circle.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_core_graphics_Circle.prototype, {
     'radius': {
+ 		/** @this {org_apache_flex_core_graphics_Circle} */
         set: function(v) {
             this.radius_ = v;
         },
+ 		/** @this {org_apache_flex_core_graphics_Circle} */
         get: function() {
             return this.radius_;
         }

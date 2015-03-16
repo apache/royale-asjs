@@ -132,12 +132,13 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 
 Object.defineProperties(Event.prototype, {
-    /* Hack to allow event.target expressions to work
+    /** Hack to allow event.target expressions to work
      *
      * @expose
      * @return {Object} The wrapping object.
      */
     'target': {
+ 		/** @this {Event} */
         get: function() {
             var obj = this.target;
             if (!obj)
@@ -150,6 +151,7 @@ Object.defineProperties(Event.prototype, {
      * @return {Object} The wrapping object.
      */
     'currentTarget': {
+ 		/** @this {Event} */
         get: function() {
             return this.currentTarget.flexjs_wrapper;
         }
@@ -165,6 +167,7 @@ Object.defineProperties(goog.events.BrowserEvent.prototype, {
      * @return {Object} The wrapping object.
      */
     'target': {
+ 		/** @this {goog.events.BrowserEvent} */
         get: function() {
             // if it is a faked event so just return the target
             if (!this.event_) return this.target;
@@ -179,6 +182,7 @@ Object.defineProperties(goog.events.BrowserEvent.prototype, {
      * @return {?Node|Object} The wrapping object.
      */
     'currentTarget': {
+ 		/** @this {goog.events.BrowserEvent} */
          get: function() {
              // if it is a faked event so just return the currentTarget
              if (!this.event_) return this.currentTarget;

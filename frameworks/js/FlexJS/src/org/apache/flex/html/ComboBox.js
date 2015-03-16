@@ -180,22 +180,13 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
 };
 
 
-/**
- * @override
- * @expose
- * @param {Array.<Object>} value The collection of data.
- */
-org_apache_flex_html_ComboBox.prototype.set_dataProvider =
-    function(value) {
-  this.dataProvider = value;
-};
-
-
-Object.defineProperties(org_apache_flex_html_CheckBox.prototype, {
+Object.defineProperties(org_apache_flex_html_ComboBox.prototype, {
     'text': {
+        /** @this {org_apache_flex_html_ComboBox} */
         get: function() {
             return this.element.childNodes.item(0).value;
         },
+        /** @this {org_apache_flex_html_ComboBox} */
         set: function(value) {
             this.element.childNodes.item(0).value = value;
         }

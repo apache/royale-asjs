@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_binding_SimpleBinding');
 
 goog.require('org_apache_flex_binding_BindingBase');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -70,16 +71,18 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
 
 Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
     'strand': {
+ 		/** @this {org_apache_flex_binding_SimpleBinding} */
          set: function(value) {
-             org_apache_flex_binding_SimpleBinding.base(this, 'set_strand', value);
+            org_apache_flex_utils_Language.superSetter(
+                org_apache_flex_binding_SimpleBinding, this, 'strand', value);
 
-             if (!this.source)
-                 return;
+            if (!this.source)
+                return;
 
-             this.source.addEventListener(this.eventName,
-                 goog.bind(this.changeHandler, this));
+            this.source.addEventListener(this.eventName,
+                goog.bind(this.changeHandler, this));
 
-             this.changeHandler();
+            this.changeHandler();
          }
     }
 });

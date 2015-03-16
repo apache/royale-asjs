@@ -88,14 +88,16 @@ org_apache_flex_core_graphics_GraphicShape.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_GraphicShape' }] };
 
 
-Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
+Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
     /**
      * @type {org_apache_flex_core_graphics_IFill}
      */
     'fill': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicShape} */
         get: function() {
             return this.fill_;
         },
+ 		/** @this {org_apache_flex_core_graphics_GraphicShape} */
         set: function(value) {
             this.fill_ = value;
         }
@@ -104,9 +106,11 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
      * @type {org_apache_flex_core_graphics_IStroke} The stroke object.
      */
     'stroke': {
+ 		/** @this {org_apache_flex_core_graphics_GraphicShape} */
         get: function() {
             return this.stroke_;
         },
+ 		/** @this {org_apache_flex_core_graphics_GraphicShape} */
         set: function(value) {
             this.stroke_ = value;
         }

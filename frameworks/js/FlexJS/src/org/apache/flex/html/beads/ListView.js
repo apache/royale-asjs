@@ -143,23 +143,28 @@ org_apache_flex_html_beads_ListView.prototype.
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
     'contentView': {
+        /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this.dataGroup_;
         }
     },
     'border': {
+        /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return null;
         }
     },
     'vScrollBar': {
+        /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return null;
         },
+        /** @this {org_apache_flex_html_beads_ListView} */
         set: function(value) {
         }
     },
     'resizeableView': {
+        /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this;
         }

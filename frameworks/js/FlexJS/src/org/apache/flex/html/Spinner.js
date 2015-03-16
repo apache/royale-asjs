@@ -99,9 +99,11 @@ org_apache_flex_html_Spinner.prototype.set_value =
 
 Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     'minimum': {
+        /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.minimum_;
         },
+        /** @this {org_apache_flex_html_Spinner} */
         set: function(value) {
             if (value != this.minimum_) {
               this.minimum_ = value;
@@ -110,9 +112,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
         }
     },
     'maximum': {
+        /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.maximum_;
         },
+        /** @this {org_apache_flex_html_Spinner} */
         set: function(value) {
             if (value != this.maximum_) {
               this.maximum_ = value;
@@ -121,9 +125,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
         }
     },
     'snapInterval': {
+        /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.snapInterval_;
         },
+        /** @this {org_apache_flex_html_Spinner} */
         set: function(value) {
             if (value != this.snapInterval_) {
               this.snapInterval_ = value;
@@ -132,9 +138,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
         }
     },
     'stepSize': {
+        /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.stepSize_;
         },
+        /** @this {org_apache_flex_html_Spinner} */
         set: function(value) {
             if (value != this.stepSize_) {
               this.stepSize_ = value;

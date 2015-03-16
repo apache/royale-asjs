@@ -55,9 +55,11 @@ org_apache_flex_html_TextArea.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html_TextArea.prototype, {
     'text': {
+ 		/** @this {org_apache_flex_html_TextArea} */
         get: function() {
             return this.element.value;
         },
+ 		/** @this {org_apache_flex_html_TextArea} */
         set: function(value) {
             this.element.value = value;
         }

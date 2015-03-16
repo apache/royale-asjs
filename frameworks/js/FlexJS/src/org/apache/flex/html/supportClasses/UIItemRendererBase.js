@@ -201,12 +201,6 @@ function(value) {
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.updateRenderer =
 function() {
-  if (this.down) {
-  }
-  else if (this.hovered) {
-  }
-  else if (this.selected) {
-  }
 };
 
 
@@ -227,3 +221,13 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.adjustSize =
 function() {
   // handle in sub-class
 };
+
+
+Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
+	'MXMLDescriptor': {
+ 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+		get: function() {
+			return null;
+		}
+	}
+});

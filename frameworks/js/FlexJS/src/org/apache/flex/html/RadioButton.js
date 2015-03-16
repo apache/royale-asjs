@@ -89,6 +89,7 @@ org_apache_flex_html_RadioButton.prototype.initSkin =
 
 Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
     'id': {
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(org_apache_flex_html_RadioButton, this, 'id', value);
             this.labelFor.id = value;
@@ -96,38 +97,47 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
         }
     },
     'groupName': {
+        /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.name;
         },
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             this.input.name = value;
         }
     },
     'text': {
+        /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.textNode.nodeValue;
         },
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             this.textNode.nodeValue = value;
         }
     },
     'selected': {
+        /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.checked;
         },
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             this.input.checked = value;
         }
     },
     'value': {
+        /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.value;
         },
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             this.input.value = value;
         }
     },
     'selectedValue': {
+        /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             var buttons, groupName, i, n;
 
@@ -142,6 +152,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             }
             return null;
         },
+        /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             var buttons, groupName, i, n;
 

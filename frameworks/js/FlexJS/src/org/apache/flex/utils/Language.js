@@ -256,7 +256,7 @@ org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
  * @param {Object} clazz The class.
  * @param {Object} pthis The this pointer.
  * @param {string} prop The name of the getter.
- * @return {number}
+ * @return {Object}
  */
 org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
   var superdesc = Object.getOwnPropertyDescriptor(clazz.superClass_, prop);
@@ -272,9 +272,8 @@ org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
  * @param {Object} pthis The this pointer.
  * @param {string} prop The name of the getter.
  * @param {Object} value The value.
- * @return {number}
  */
 org_apache_flex_utils_Language.superSetter = function(clazz, pthis, prop, value) {
   var superdesc = Object.getOwnPropertyDescriptor(clazz.superClass_, prop);
-  return superdesc.set.apply(pthis, [value]);
+  superdesc.set.apply(pthis, [value]);
 };

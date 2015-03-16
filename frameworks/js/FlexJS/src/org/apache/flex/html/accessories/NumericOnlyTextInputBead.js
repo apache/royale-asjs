@@ -40,12 +40,9 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
                 qName: 'org_apache_flex_html_accessories_NumericOnlyTextInputBead' }] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
 Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
     'strand': {
+ 		/** @this {org_apache_flex_html_accessories_NumericOnlyTextInputBead} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
