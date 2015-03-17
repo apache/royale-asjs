@@ -123,7 +123,7 @@ org_apache_flex_events_MouseEvent.mouseOverHandler = function(e) {
   }
   else {
     var newTargets = [target];
-    if (target.get_parent === undefined)
+    if (target.hasOwnProperty('parent') === undefined)
       parent = null;
     else
       parent = target.parent;
@@ -131,7 +131,7 @@ org_apache_flex_events_MouseEvent.mouseOverHandler = function(e) {
       index = targets.indexOf(parent);
       if (index == -1) {
         newTargets.unshift(parent);
-        if (parent.get_parent === undefined)
+        if (parent.hasOwnProperty('parent') === undefined)
           break;
         parent = parent.parent;
       }

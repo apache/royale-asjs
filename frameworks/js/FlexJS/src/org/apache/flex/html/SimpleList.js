@@ -57,72 +57,51 @@ org_apache_flex_html_SimpleList.prototype.
 };
 
 
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_dataProvider = function() {
-  return this.model.dataProvider;
-};
+Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
+	'dataProvider': {
+ 		/** @this {org_apache_flex_html_SimpleList} */
+		get: function() {
+            return this.model.dataProvider;
+		},
+ 		/** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            var dp, i, n, opt;
 
+            this.model.dataProvider = value;
 
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_dataProvider = function(value) {
-  var dp, i, n, opt;
+            dp = this.element.options;
+            n = dp.length;
+            for (i = 0; i < n; i++) {
+              dp.remove(0);
+            }
 
-  this.model.dataProvider = value;
-
-  dp = this.element.options;
-  n = dp.length;
-  for (i = 0; i < n; i++) {
-    dp.remove(0);
-  }
-
-  n = value.length;
-  for (i = 0; i < n; i++) {
-    opt = document.createElement('option');
-    opt.text = value[i].toString();
-    dp.add(opt);
-  }
-
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_selectedIndex = function() {
-  return this.model.selectedIndex;
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_selectedIndex = function(value) {
-  this.model.selectedIndex = value;
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_selectedItem = function() {
-  return this.model.selectedItem;
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_selectedItem = function(value) {
-  this.model.selectedItem = value;
-};
+            n = value.length;
+            for (i = 0; i < n; i++) {
+              opt = document.createElement('option');
+              opt.text = value[i].toString();
+              dp.add(opt);
+            }
+		}
+	},
+    'selectedIndex': {
+ 		/** @this {org_apache_flex_html_SimpleList} */
+	    get: function() {
+            return this.model.selectedIndex;
+	    },
+ 		/** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            this.model.selectedIndex = value;
+		}
+	},
+    'selectedItem': {
+ 		/** @this {org_apache_flex_html_SimpleList} */
+		get: function() {
+            return this.model.selectedItem;
+		},
+ 		/** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            this.model.selectedItem = value;
+		}
+	}
+});
 

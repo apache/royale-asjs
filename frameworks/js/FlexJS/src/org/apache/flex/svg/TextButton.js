@@ -74,21 +74,15 @@ org_apache_flex_svg_TextButton.prototype.finalizeElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_svg_TextButton.prototype.get_text =
-    function() {
-  return this.element.getAttribute('label');
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_svg_TextButton.prototype.set_text =
-    function(value) {
-  this.element.setAttribute('label', value);
-};
+Object.defineProperties(org_apache_flex_svg_TextButton.prototype, {
+    'text': {
+        /** @this {org_apache_flex_svg_TextButton} */
+        get: function() {
+            return this.element.getAttribute('label');
+		},
+        /** @this {org_apache_flex_svg_TextButton} */
+		set: function(value) {
+            this.element.setAttribute('label', value);
+		}
+	}
+});

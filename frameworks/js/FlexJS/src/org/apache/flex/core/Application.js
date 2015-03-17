@@ -65,17 +65,17 @@ org_apache_flex_core_Application.prototype.initialView = null;
 org_apache_flex_core_Application.prototype.model = null;
 
 
-/**
- * @expose
- * @param {org_apache_flex_core_IValuesImpl} value The IValuesImpl.
- */
-org_apache_flex_core_Application.prototype.set_valuesImpl =
-    function(value) {
-  org_apache_flex_core_ValuesManager.valuesImpl = value;
-  if (value.init) {
-    value.init(this);
-  }
-};
+Object.defineProperties(org_apache_flex_core_Application.prototype, {
+    'valuesImpl': {
+        /** @this {org_apache_flex_core_Application} */
+        set: function() {
+            org_apache_flex_core_ValuesManager.valuesImpl = value;
+            if (value.init) {
+              value.init(this);
+            }
+		}
+	}
+});
 
 
 /**

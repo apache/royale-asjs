@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_jquery_ToggleTextButton');
 
 goog.require('org_apache_flex_html_Button');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -96,7 +97,7 @@ Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
     'id': {
  		/** @this {org_apache_flex_jquery_ToggleTextButton} */
         set: function(value) {
-            org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_jquery_ToggleTextButton.base, this, 'id', value);
             this.labelFor.id = value;
             this.labelFor.htmlFor = value;
         }

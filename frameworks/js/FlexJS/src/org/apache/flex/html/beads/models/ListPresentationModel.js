@@ -52,32 +52,22 @@ org_apache_flex_html_beads_models_ListPresentationModel.prototype.FLEXJS_CLASS_I
       interfaces: [org_apache_flex_core_IListPresentationModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_ListPresentationModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {number} value The height of the rows.
- */
-org_apache_flex_html_beads_models_ListPresentationModel.prototype.
-    get_rowHeight = function() {
-  return this.rowHeight_;
-};
-
-
-/**
- * @expose
- * @param {number} value The height of the rows.
- */
-org_apache_flex_html_beads_models_ListPresentationModel.prototype.
-    set_rowHeight = function(value) {
-  this.rowHeight_ = value;
-  this.dispatchEvent('rowHeightChanged');
-};
+Object.defineProperties(org_apache_flex_html_beads_models_ListPresentationModel.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
+        set: function(value) {
+            this.strand_ = value;
+		}
+	},
+    'rowHeight': {
+        /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
+		get: function() {
+            return this.rowHeight_;
+		},
+        /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
+        set: function(value) {
+            this.rowHeight_ = value;
+            this.dispatchEvent('rowHeightChanged');
+		}
+	}
+});

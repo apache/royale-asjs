@@ -49,41 +49,35 @@ org_apache_flex_effects_PlatformWiper.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_effects_PlatformWiper'}] };
 
 
-/**
- * @expose
- * Sets the target for the Wipe.
- * @param {Object} target The target for the Wipe effect.
- */
-org_apache_flex_effects_PlatformWiper.prototype.set_target =
-    function(target) {
-  if (target == null) {
-    if (this.overflow_ == null)
-      delete this.target_.positioner.style.overflow;
-    else
-      this.target_.positioner.style.overflow = this.overflow_;
-  }
-  this.target_ = target;
-  if (target != null) {
-    this.overflow_ = this.target_.positioner.style.overflow;
-  }
-};
-
-
-/**
- * @expose
- * Clips the Object.
- * @param {org_apache_flex_geom_Rectangle} rect The visible area.
- */
-org_apache_flex_effects_PlatformWiper.prototype.set_visibleRect =
-    function(rect) {
-  /*
-  var styleString = 'rect(';
-  styleString += rect.top.toString() + 'px,';
-  styleString += rect.width.toString() + 'px,';
-  styleString += rect.height.toString() + 'px,';
-  styleString += rect.left.toString() + 'px)';
-  this.target_.positioner.style.clip = styleString;
-  */
-  this.target_.positioner.style.height = rect.height.toString() + 'px';
-  this.target_.positioner.style.overflow = 'hidden';
-};
+Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
+    'target': {
+        /** @this {org_apache_flex_effects_PlatformWiper} */
+        set: function(target) {
+			if (target == null) {
+			  if (this.overflow_ == null)
+				delete this.target_.positioner.style.overflow;
+			  else
+				this.target_.positioner.style.overflow = this.overflow_;
+			}
+			this.target_ = target;
+			if (target != null) {
+			  this.overflow_ = this.target_.positioner.style.overflow;
+			}
+		}
+	},
+    'visibleRect': {
+        /** @this {org_apache_flex_effects_PlatformWiper} */
+        set: function(rect) {
+			/*
+			var styleString = 'rect(';
+			styleString += rect.top.toString() + 'px,';
+			styleString += rect.width.toString() + 'px,';
+			styleString += rect.height.toString() + 'px,';
+			styleString += rect.left.toString() + 'px)';
+			this.target_.positioner.style.clip = styleString;
+			*/
+			this.target_.positioner.style.height = rect.height.toString() + 'px';
+			this.target_.positioner.style.overflow = 'hidden';
+		}
+	}
+});

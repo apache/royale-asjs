@@ -73,110 +73,59 @@ org_apache_flex_html_Slider.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {number} The value getter.
- */
-org_apache_flex_html_Slider.prototype.get_value =
-    function() {
-  return this.model.value;
-};
-
-
-/**
- * @expose
- * @param {Object} newValue The new value.
- * @return {void} The value setter.
- */
-org_apache_flex_html_Slider.prototype.set_value =
-    function(newValue) {
-  this.model.value = newValue;
-  this.setThumbFromValue(this.model.value);
-};
-
-
-/**
- * @expose
- * @return {number} The minimum getter.
- */
-org_apache_flex_html_Slider.prototype.get_minimum =
-    function() {
-  return this.model.minimum;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new minimum value.
- * @return {void} The minimum setter.
- */
-org_apache_flex_html_Slider.prototype.set_minimum =
-    function(value) {
-  this.model.minimum = value;
-};
-
-
-/**
- * @expose
- * @return {number} The maximum getter.
- */
-org_apache_flex_html_Slider.prototype.get_maximum =
-    function() {
-  return this.model.maximum;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new maximum value.
- * @return {void} The maximum setter.
- */
-org_apache_flex_html_Slider.prototype.set_maximum =
-    function(value) {
-  this.model.maximum = value;
-};
-
-
-/**
- * @expose
- * @return {number} The snapInterval getter.
- */
-org_apache_flex_html_Slider.prototype.get_snapInterval =
-    function() {
-  return this.model.snapInterval;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new snapInterval value.
- * @return {void} The snapInterval setter.
- */
-org_apache_flex_html_Slider.prototype.set_snapInterval =
-    function(value) {
-  this.model.snapInterval = value;
-};
-
-
-/**
- * @expose
- * @return {number} The stepSize getter.
- */
-org_apache_flex_html_Slider.prototype.get_stepSize =
-    function() {
-  return this.model.stepSize;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new stepSize value.
- * @return {void} The stepSize setter.
- */
-org_apache_flex_html_Slider.prototype.set_stepSize =
-    function(value) {
-  this.model.stepSize = value;
-};
+Object.defineProperties(org_apache_flex_html_Slider.prototype, {
+	'value': {
+ 		/** @this {org_apache_flex_html_Slider} */
+		get: function() {
+            return this.model.value;
+		},
+ 		/** @this {org_apache_flex_html_Slider} */
+        set: function(newValue) {
+            this.model.value = newValue;
+            this.setThumbFromValue(this.model.value);
+		}
+	},
+    'minimum': {
+ 		/** @this {org_apache_flex_html_Slider} */
+		get: function() {
+            return this.model.minimum;
+		},
+ 		/** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.minimum = value;
+		}
+	},
+    'maximum': {
+ 		/** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.maximum;
+		},
+ 		/** @this {org_apache_flex_html_Slider} */
+		set: function(value) {
+            this.model.maximum = value;
+		}
+	},
+	'snapInterval': {
+ 		/** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.snapInterval;
+		},
+ 		/** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.snapInterval = value;
+		}
+	},
+    'stepSize': {
+ 		/** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.stepSize;
+		},
+ 		/** @this {org_apache_flex_html_Slider} */
+		set: function(value) {
+            this.model.stepSize = value;
+		}
+	}
+});
 
 
 /**

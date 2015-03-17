@@ -35,10 +35,10 @@ org_apache_flex_utils_ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_utils_ViewSourceContextMenuOption'}] };
 
 
-/**
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_utils_ViewSourceContextMenuOption.prototype.set_strand =
-    function(value) {
-};
+Object.defineProperties(org_apache_flex_utils_ViewSourceContextMenuOption.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_utils_ViewSourceContextMenuOption} */
+        set: function(value) {}
+	}
+});
 

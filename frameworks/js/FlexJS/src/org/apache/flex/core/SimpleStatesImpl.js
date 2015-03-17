@@ -57,22 +57,22 @@ org_apache_flex_core_SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
                    org_apache_flex_core_IStatesImpl] };
 
 
-/**
- * @expose
- * @param {org_apache_flex_core_IStrand} value The new host.
- */
-org_apache_flex_core_SimpleStatesImpl.prototype.set_strand =
-    function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    if (this.strand_.addEventListener) {
-      this.strand_.addEventListener('currentStateChange',
-          goog.bind(this.stateChangeHandler_, this));
-      this.strand_.addEventListener('initComplete',
-          goog.bind(this.initialStateHandler_, this));
-    }
-  }
-};
+Object.defineProperties(org_apache_flex_core_SimpleStatesImpl.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_core_SimpleStatesImpl} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              if (this.strand_.addEventListener) {
+                this.strand_.addEventListener('currentStateChange',
+                goog.bind(this.stateChangeHandler_, this));
+                    this.strand_.addEventListener('initComplete',
+                goog.bind(this.initialStateHandler_, this));
+              }
+            }
+		}
+	}
+});
 
 
 /**

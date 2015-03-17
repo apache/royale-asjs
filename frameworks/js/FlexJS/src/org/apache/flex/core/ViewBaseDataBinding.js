@@ -53,18 +53,18 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_ViewBaseDataBinding'}] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_core_ViewBaseDataBinding.prototype.set_strand =
-    function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('initComplete',
-        goog.bind(this.initCompleteHandler, this));
-  }
-};
+Object.defineProperties(org_apache_flex_core_ViewBaseDataBinding.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_core_ViewBaseDataBinding} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('initComplete',
+              goog.bind(this.initCompleteHandler, this));
+            }
+		}
+	}
+});
 
 
 /**

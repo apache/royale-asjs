@@ -37,20 +37,19 @@ org_apache_flex_html_beads_ImageView
                 qName: 'org_apache_flex_html_beads_ImageView'}] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_ImageView.prototype.set_strand =
-    function(value) {
+Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_html_beads_ImageView} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.strand_ = value;
-
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ImageModel);
-  this.model.addEventListener('sourceChanged',
-      goog.bind(this.sourceChangeHandler, this));
-};
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ImageModel);
+            this.model.addEventListener('sourceChanged',
+                goog.bind(this.sourceChangeHandler, this));
+		}
+	}
+});
 
 
 /**

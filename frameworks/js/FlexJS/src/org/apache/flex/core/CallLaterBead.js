@@ -46,16 +46,16 @@ org_apache_flex_core_CallLaterBead.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_CallLaterBead'}] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_core_CallLaterBead.prototype.set_strand =
-    function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-  }
-};
+Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_binding_GenericBinding} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+            }
+		}
+	}
+});
 
 
 /**

@@ -141,49 +141,43 @@ Object.defineProperties(org_apache_flex_html_Alert.prototype, {
  		/** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.flags;
-        }
-    }
+        },
+ 		/** @this {org_apache_flex_html_Alert} */
+        set: function(value) {
+			this.flags = value;
+		  
+			// add buttons based on flags
+			if (this.flags & org_apache_flex_html_Alert.OK) {
+			  var ok = new org_apache_flex_html_TextButton();
+			  this.buttonArea.addElement(ok);
+			  ok.text = 'OK';
+			  goog.events.listen(/** @type {EventTarget} */ (ok.element), 'click',
+				  goog.bind(this.dismissAlert, this));
+			}
+			if (this.flags & org_apache_flex_html_Alert.CANCEL) {
+			  var cancel = new org_apache_flex_html_TextButton();
+			  this.buttonArea.addElement(cancel);
+			  cancel.text = 'Cancel';
+			  goog.events.listen(/** @type {EventTarget} */ (cancel.element), 'click',
+				  goog.bind(this.dismissAlert, this));
+			}
+			if (this.flags & org_apache_flex_html_Alert.YES) {
+			  var yes = new org_apache_flex_html_TextButton();
+			  this.buttonArea.addElement(yes);
+			  yes.text = 'YES';
+			  goog.events.listen(/** @type {EventTarget} */ (yes.element), 'click',
+				  goog.bind(this.dismissAlert, this));
+			}
+			if (this.flags & org_apache_flex_html_Alert.NO) {
+			  var nob = new org_apache_flex_html_TextButton();
+			  this.buttonArea.addElement(nob);
+			  nob.text = 'NO';
+			  goog.events.listen(/** @type {EventTarget} */ (nob.element), 'click',
+				  goog.bind(this.dismissAlert, this));
+			}
+		}
+	}
 });
-
-
-/**
- * @param {number} value The button options.
- */
-org_apache_flex_html_Alert.prototype.set_flags =
-    function(value)
-    {
-  this.flags = value;
-
-  // add buttons based on flags
-  if (this.flags & org_apache_flex_html_Alert.OK) {
-    var ok = new org_apache_flex_html_TextButton();
-    this.buttonArea.addElement(ok);
-    ok.text = 'OK';
-    goog.events.listen(/** @type {EventTarget} */ (ok.element), 'click',
-        goog.bind(this.dismissAlert, this));
-  }
-  if (this.flags & org_apache_flex_html_Alert.CANCEL) {
-    var cancel = new org_apache_flex_html_TextButton();
-    this.buttonArea.addElement(cancel);
-    cancel.text = 'Cancel';
-    goog.events.listen(/** @type {EventTarget} */ (cancel.element), 'click',
-        goog.bind(this.dismissAlert, this));
-  }
-  if (this.flags & org_apache_flex_html_Alert.YES) {
-    var yes = new org_apache_flex_html_TextButton();
-    this.buttonArea.addElement(yes);
-    yes.text = 'YES';
-    goog.events.listen(/** @type {EventTarget} */ (yes.element), 'click',
-        goog.bind(this.dismissAlert, this));
-  }
-  if (this.flags & org_apache_flex_html_Alert.NO) {
-    var nob = new org_apache_flex_html_TextButton();
-    this.buttonArea.addElement(nob);
-    nob.text = 'NO';
-    goog.events.listen(/** @type {EventTarget} */ (nob.element), 'click',
-        goog.bind(this.dismissAlert, this));
-  }
-};
 
 
 /**

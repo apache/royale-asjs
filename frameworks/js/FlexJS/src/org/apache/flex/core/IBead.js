@@ -40,11 +40,9 @@ org_apache_flex_core_IBead.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_IBead' }] };
 
 
-/**
- * strand
- *
- * @expose
- * @param {org_apache_flex_core_IStrand} value The new host.
- */
-org_apache_flex_core_IBead.prototype.set_strand =
-    function(value) {};
+Object.defineProperties(org_apache_flex_core_IBead.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_binding_GenericBinding} */
+        set: function(value) {}
+	}
+});

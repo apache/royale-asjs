@@ -74,7 +74,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
   var cName;
   var selectorName;
 
-  if (typeof(thisObject.get_style) === 'function')
+  if (typeof(thisObject.hasOwnPropertY('style')) === 'function')
   {
     var style = thisObject.style;
     if (style != null)

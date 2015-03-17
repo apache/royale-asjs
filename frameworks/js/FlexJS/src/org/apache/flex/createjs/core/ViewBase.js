@@ -36,24 +36,17 @@ goog.inherits(org_apache_flex_createjs_core_ViewBase,
     org_apache_flex_createjs_core_UIBase);
 
 
-/**
- * @expose
- * @return {Object} Returns the application model.
- */
-org_apache_flex_createjs_core_ViewBase.prototype.get_applicationModel =
-    function() {
-  return this.applicationModel;
-};
-
-
-/**
- * @expose
- * @param {Object} value The application model.
- */
-org_apache_flex_createjs_core_ViewBase.prototype.set_applicationModel =
-    function(value) {
-  this.applicationModel = value;
-};
+Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
+    'applicationModel': {
+        /** @this {org_apache_flex_createjs_core_ViewBase} */
+        get: function() {
+            return this.applicationModel_;
+		},
+        set: function(value) {
+            this.applicationModel = value;
+		}
+	}
+});
 
 
 /**

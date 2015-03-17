@@ -39,34 +39,24 @@ org_apache_flex_html_accessories_TextPromptBead.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_accessories_TextPromptBead' }] };
 
 
-/**
- * @expose
- * @return {string} value The new prompt.
- */
-org_apache_flex_html_accessories_TextPromptBead.prototype.
-    get_prompt = function() {
-  return this.prompt;
-};
-
-
-/**
- * @expose
- * @param {string} value The new prompt.
- */
-org_apache_flex_html_accessories_TextPromptBead.prototype.
-    set_prompt = function(value) {
-  this.prompt = value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_accessories_TextPromptBead.prototype.
-    set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    value.element.placeholder = this.prompt;
-  }
-};
+Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_html_accessories_TextPromptBead} */
+        set: function(value) {
+			if (this.strand_ !== value) {
+			  this.strand_ = value;
+			  value.element.placeholder = this.prompt;
+			}
+		}
+	},
+    'prompt': {
+        /** @this {org_apache_flex_html_accessories_TextPromptBead} */
+		get: function() {
+            return this.prompt;
+		},
+        /** @this {org_apache_flex_html_accessories_TextPromptBead} */
+        set: function(value) {
+            this.prompt = value;
+        }
+	}
+});

@@ -66,21 +66,15 @@ org_apache_flex_html_Image.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {String} The source identifier for the Image.
- */
-org_apache_flex_html_Image.prototype.
-    get_source = function() {
-  return this.model.source;
-};
-
-
-/**
- * @expose
- * @param {String} value The source identifier for the Image.
- */
-org_apache_flex_html_Image.prototype.
-    set_source = function(value) {
-  this.model.source = value;
-};
+Object.defineProperties(org_apache_flex_html_Image.prototype, {
+	'source': {
+ 		/** @this {org_apache_flex_html_Image} */
+        get: function() {
+            return this.model.source;
+		},
+ 		/** @this {org_apache_flex_html_Image} */
+		set: function(value) {
+            this.model.source = value;
+		}
+	}
+});

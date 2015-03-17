@@ -51,79 +51,49 @@ org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_List' }] };
 
 
-/**
- * @expose
- * @return {mx_core_IFactory} The itemRenderer generator.
- */
-org_apache_flex_html_List.prototype.get_itemRenderer =
-function() {
-  return this.itemRenderer_;
-};
-
-
-/**
- * @expose
- * @param {mx_core_IFactory} value The itemRenderer generator.
- */
-org_apache_flex_html_List.prototype.set_itemRenderer =
-function(value) {
-  this.itemRenderer_ = value;
-};
-
-
-/**
- * @expose
- * @return {String} The name of the field to use as a label.
- */
-org_apache_flex_html_List.prototype.get_labelField =
-function() {
-  return this.model.labelField;
-};
-
-
-/**
- * @expose
- * @param {String} value The name of the field to use as a label.
- */
-org_apache_flex_html_List.prototype.set_labelField =
-function(value) {
-  this.model.labelField = value;
-};
-
-
-/**
- * @expose
- * @return {number} The height of each row.
- */
-org_apache_flex_html_List.prototype.get_rowHeight =
-function() {
-  return this.presentationModel.rowHeight;
-};
-
-
-/**
- * @expose
- * @param {number} value The height of each row.
- */
-org_apache_flex_html_List.prototype.set_rowHeight =
-function(value) {
-  this.presentationModel.rowHeight = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The model used to present some of the list's visual properties.
- */
-org_apache_flex_html_List.prototype.get_presentationModel =
-function() {
-  var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
-  if (presModel == null) {
-    presModel = new org_apache_flex_html_beads_models_ListPresentationModel();
-    this.addBead(presModel);
-  }
-  return presModel;
-};
+Object.defineProperties(org_apache_flex_html_List.prototype, {
+	'itemRenderer': {
+ 		/** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.itemRenderer_;
+		},
+ 		/** @this {org_apache_flex_html_List} */
+        set: function(value) {
+            this.itemRenderer_ = value;
+		}
+	},
+    'labelField': {
+ 		/** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.model.labelField;
+		},
+ 		/** @this {org_apache_flex_html_List} */
+        set: function(value) {
+            this.model.labelField = value;
+		}
+	},
+    'rowHeight': {
+ 		/** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.presentationModel.rowHeight;
+		},
+ 		/** @this {org_apache_flex_html_List} */
+		set: function(value) {
+            this.presentationModel.rowHeight = value;
+		}
+	},
+    'presentationModel': {
+ 		/** @this {org_apache_flex_html_List} */
+        get: function() {
+            var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
+            if (presModel == null) {
+              presModel = new org_apache_flex_html_beads_models_ListPresentationModel();
+              this.addBead(presModel);
+            }
+            return presModel;
+		}
+	}
+});
 
 
 /**

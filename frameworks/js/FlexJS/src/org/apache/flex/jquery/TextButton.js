@@ -53,21 +53,15 @@ org_apache_flex_jquery_TextButton.prototype.addedToParent =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_jquery_TextButton.prototype.get_text =
-    function() {
-  return this.element.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_jquery_TextButton.prototype.set_text =
-    function(value) {
-  this.element.innerHTML = value;
-};
+Object.defineProperties(org_apache_flex_jquery_TextButton.prototype, {
+    'text': {
+ 		/** @this {org_apache_flex_jquery_TextButton} */
+        get: function() {
+            return this.element.innerHTML;
+        },
+ 		/** @this {org_apache_flex_jquery_TextButton} */
+        set: function(value) {
+            this.element.innerHTML = value;
+        }
+    }
+});

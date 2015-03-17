@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_jquery_RadioButton');
 
 goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -103,7 +104,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
     'id': {
  		/** @this {org_apache_flex_jquery_RadioButton} */
         set: function(value) {
-            org_apache_flex_jquery_RadioButton.base(this, 'set_id', value);
+            org_apache_flex_utils_Language(org_apache_flex_jquery_RadioButton.base, this, 'id', value);
             this.labelFor.id = value;
             this.labelFor.htmlFor = value;
         }

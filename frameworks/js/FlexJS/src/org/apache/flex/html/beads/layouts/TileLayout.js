@@ -40,80 +40,50 @@ org_apache_flex_html_beads_layouts_TileLayout.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @return {number} The number of columns wide for the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_numColumns = function() {
-  return this._numColumns;
-};
-
-
-/**
- * @expose
- * @param {number} value The number of columns wide for the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_numColumns = function(value) {
-  this._numColumns = value;
-};
-
-
-/**
- * @expose
- * @return {number} The width of each column in the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_columnWidth = function() {
-  return this._columnWidth;
-};
-
-
-/**
- * @expose
- * @param {number} value The width of each column in the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_columnWidth = function(value) {
-  this._columnWidth = value;
-};
-
-
-/**
- * @expose
- * @return {number} The height of each row of the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_rowHeight = function() {
-  return this._rowHeight;
-};
-
-
-/**
- * @expose
- * @param {number} value The height of each row of the Tile layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_rowHeight = function(value) {
-  this._rowHeight = value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('layoutNeeded',
+                  goog.bind(this.changeHandler, this));
+            }
+		}
+	},
+    'numColumns': {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+		get: function() {
+            return this._numColumns;
+		},
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._numColumns = value;
+		}
+	},
+    'columnWidth': {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+		get: function() {
+            return this._columnWidth;
+		},
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._columnWidth = value;
+		}
+	},
+    'rowHeight': {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+		get: function() {
+            return this._rowHeight;
+		},
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._rowHeight = value;
+		}
+	}
+});
 
 
 /**

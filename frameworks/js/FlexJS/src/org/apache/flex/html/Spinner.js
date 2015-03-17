@@ -74,29 +74,6 @@ org_apache_flex_html_Spinner.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {number} The current value.
- */
-org_apache_flex_html_Spinner.prototype.get_value =
-    function() {
-  return this.value_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new value.
- */
-org_apache_flex_html_Spinner.prototype.set_value =
-    function(value) {
-  if (value != this.value_) {
-    this.value_ = value;
-    this.dispatchEvent('valueChange');
-  }
-};
-
-
 Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     'minimum': {
         /** @this {org_apache_flex_html_Spinner} */
@@ -149,7 +126,20 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
               this.dispatchEvent('stepSizeChanged');
             }
         }
-    }
+    },
+    'value': {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.value_;
+		},
+        /** @this {org_apache_flex_html_Spinner} */
+    	set: function(value) {
+            if (value != this.value_) {
+              this.value_ = value;
+              this.dispatchEvent('valueChange');
+            }
+		}
+	}
 });
 
 

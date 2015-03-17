@@ -16,6 +16,7 @@ goog.provide('org_apache_flex_html_beads_models_DataGridModel');
 
 goog.require('org_apache_flex_core_IDataGridModel');
 goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -48,32 +49,22 @@ org_apache_flex_html_beads_models_DataGridModel.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_core_IDataGridModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_DataGridModel.prototype.
-    set_strand = function(value) {
-  org_apache_flex_html_beads_models_DataGridModel.base(this, 'set_strand', value);
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @param {Array} value Array of DataGridColumn instances.
- */
-org_apache_flex_html_beads_models_DataGridModel.prototype.
-    set_columns = function(value) {
-  this.columns_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} Array of DataGridColumn instances.
- */
-org_apache_flex_html_beads_models_DataGridModel.prototype.
-    get_columns = function() {
-  return this.columns_;
-};
+Object.defineProperties(org_apache_flex_html_beads_models_DataGridModel.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+        set: function(value) {
+            org_apache_flex_utils-Language(org_apache_flex_html_beads_models_DataGridModel, this, 'strand', value);
+            this.strand_ = value;
+		}
+	},
+    'columns': {
+        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+		set: function(value) {
+            this.columns_ = value;
+		},
+        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+        get: function() {
+            return this.columns_;
+		}
+	}
+});

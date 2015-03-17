@@ -54,20 +54,20 @@ org_apache_flex_binding_GenericBinding.prototype.destinationData = null;
 org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
 
 
-/**
- * @expose
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_GenericBinding.prototype.set_strand =
-    function(value) {
-  this.destination = value;
+Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
+    'strand': {
+        /** @this {org_apache_flex_binding_GenericBinding} */
+        set: function(value) {
+            this.destination = value;
 
-  try {
-    var val = this.getValueFromSource();
-    this.applyValue(val);
-  } catch (e) {
-  }
-};
+            try {
+              var val = this.getValueFromSource();
+              this.applyValue(val);
+            } catch (e) {
+            }
+		}
+	}
+});
 
 
 /**
