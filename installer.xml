@@ -238,7 +238,7 @@
         <property name="goog.lib.md5" value="${config.google-closure-library.md5}" />
     </target>
     
-    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
 
@@ -1132,5 +1132,7 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
 			</condition>
 		</fail>
     </target>
-
+	<target name="delete-download-dir">
+		<delete dir="${download.dir}"/>
+	</target>
 </project>
