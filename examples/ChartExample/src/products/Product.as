@@ -20,7 +20,7 @@ package products
 {
 	public class Product
 	{
-		public function Product(id:String,title:String,detail:Number,sales2013:Number, sales2014 ,image:String)
+		public function Product(id:String, title:String, detail:Number,sales2013:Number, sales2014:Number ,image:String)
 		{
 			this.id = id;
 			this.title = title;
