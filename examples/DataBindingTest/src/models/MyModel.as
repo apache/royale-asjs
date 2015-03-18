@@ -46,8 +46,6 @@ package models
 			}
 		}
 		
-		private var _responseText:String;
-		
 		[Bindable("responseTextChanged")]
 		public function get responseText():String
 		{
