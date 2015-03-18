@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mybeads
 {
-	import flash.display.DisplayObject;
-	
+
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
