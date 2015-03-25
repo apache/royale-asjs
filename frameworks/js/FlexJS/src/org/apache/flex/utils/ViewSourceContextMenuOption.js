@@ -14,6 +14,8 @@
 
 goog.provide('org_apache_flex_utils_ViewSourceContextMenuOption');
 
+goog.require('org_apache_flex_events_EventDispatcher');
+
 
 
 /**
