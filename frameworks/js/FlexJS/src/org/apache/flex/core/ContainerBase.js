@@ -52,7 +52,12 @@ org_apache_flex_core_ContainerBase = function() {
    */
   this.currentState_ = null;
 
-
+  /**
+   * @private
+   * @type {?Array}
+   */
+  this.mxmlDescriptor = null;
+  
   this.document = this;
 
 };

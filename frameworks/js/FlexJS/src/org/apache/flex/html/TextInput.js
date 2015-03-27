@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_html_TextInput');
 
 goog.require('org_apache_flex_core_UIBase');
+goog.require('org_apache_flex_events_Event');
 
 
 

@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_html_DropDownList');
 
 goog.require('org_apache_flex_core_ListBase');
+goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
 
 
 

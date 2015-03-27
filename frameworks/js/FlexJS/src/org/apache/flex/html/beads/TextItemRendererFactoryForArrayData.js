@@ -16,8 +16,10 @@ goog.provide('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
 
 goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
 goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org_apache_flex_events_Event');
 goog.require('org_apache_flex_events_EventDispatcher');
 goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
+goog.require('org_apache_flex_html_supportClasses_StringItemRenderer');
 
 
 
