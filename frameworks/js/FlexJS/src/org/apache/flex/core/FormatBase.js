@@ -74,46 +74,46 @@ org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
     'strand': {
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     'propertyValue': {
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             var value = this.strand_[this.propertyName];
             return value;
         }
     },
     'propertyName': {
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             if (this._propertyName == null) {
               this._propertyName = 'text';
             }
             return this._propertyName;
         },
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         set: function(value) {
             this._propertyName = value;
         }
     },
     'eventName': {
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             if (this._eventName == null) {
                  return this._propertyName + 'Change';
             }
             return this._eventName;
         },
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         set: function(value) {
             this._eventName = value;
         }
     },
     'formattedString': {
- 		/** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
              return null;
         }

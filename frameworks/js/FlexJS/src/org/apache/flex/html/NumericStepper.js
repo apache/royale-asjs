@@ -101,56 +101,56 @@ org_apache_flex_html_NumericStepper.prototype.spinnerChange =
 
 
 Object.defineProperties(org_apache_flex_html_NumericStepper.prototype, {
-	'minimum': {
- 		/** @this {org_apache_flex_html_NumericStepper} */
+    'minimum': {
+        /** @this {org_apache_flex_html_NumericStepper} */
         get: function() {
             return this.model.minimum;
-		},
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
         set: function(value) {
             this.model.minimum = value;
-		}
-	},
+        }
+    },
     'maximum': {
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org_apache_flex_html_NumericStepper} */
         get: function() {
             return this.model.maximum;
-		},
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
         set: function(value) {
             this.model.maximum = value;
-		}
-	},
+        }
+    },
     'value': {
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org_apache_flex_html_NumericStepper} */
         get: function() {
             return this.model.value;
-		},
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
         set: function(newValue) {
             this.model.value = newValue;
             this.spinner.value = newValue;
-		}
-	},
+        }
+    },
     'snapInterval': {
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org_apache_flex_html_NumericStepper} */
         get: function() {
             return this.model.snapInterval;
-		},
- 		/** @this {org_apache_flex_html_NumericStepper} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(value) {
             this.model.snapInterval = value;
-		}
-	},
+        }
+    },
     'stepSize': {
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org_apache_flex_html_NumericStepper} */
         get: function() {
             return this.model.stepSize;
-		},
- 		/** @this {org_apache_flex_html_NumericStepper} */
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
         set: function(value) {
             this.model.stepSize = value;
-		}
-	}
+        }
+    }
 });
 

@@ -45,11 +45,11 @@ org_apache_flex_html5_TextButton.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html5_TextButton.prototype, {
     'text': {
- 		/** @this {org_apache_flex_html5_TextButton} */
+        /** @this {org_apache_flex_html5_TextButton} */
         get: function() {
             return this.element.innerHTML;
         },
- 		/** @this {org_apache_flex_html5_TextButton} */
+        /** @this {org_apache_flex_html5_TextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }

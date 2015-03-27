@@ -73,58 +73,58 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.FLEXJS_CLASS_INFO =
 Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.prototype, {
     'strand': {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
-		set: function(value) {
+        set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               this.strand_.addEventListener('complete',
               goog.bind(this.completeHandler, this));
             }
-  		}
-	},
+        }
+    },
     'length': {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.rawData_ ? this.rawData_.length : 0;
-		}
-	},
+        }
+    },
     'inputParser': {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.inputParser_;
-		},
+        },
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
-		set: function(value) {
+        set: function(value) {
             this.inputParser_ = value;
-		}
-	},
+        }
+    },
     'itemConverter': {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.itemConverter_;
-		},
+        },
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
-		set: function(value) {
+        set: function(value) {
             this.itemConverter_ = value;
-		}
-	},
+        }
+    },
     'id': {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.id_;
-		},
+        },
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
-		set: function(value) {
+        set: function(value) {
             if (this.id_ !== value) {
               this.id_ = value;
               // this.dispatchEvent(new Event('idChanged'));
             }
-		}
-	}
+        }
+    }
 });
 
 
 /**
- * @expose
+ * @private
  * @type {string}
  */
 org_apache_flex_net_dataConverters_LazyCollection.prototype.id_ = '';

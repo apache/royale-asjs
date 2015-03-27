@@ -57,14 +57,14 @@ Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
             if (this._strand !== value) {
               this._strand = value;
             }
-		}
-	},
-	'host': {
+        }
+    },
+    'host': {
         /** @this {org_apache_flex_core_BeadViewBase} */
-		get: function() {
+        get: function() {
             return this._strand;
-		}
-	}
+        }
+    }
 });
 
 

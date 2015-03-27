@@ -39,6 +39,6 @@ Object.defineProperties(org_apache_flex_html_beads_ImageButtonView.prototype, {
         /** @this {org_apache_flex_html_beads_ImageButtonView} */
         set: function(value) {
             this.strand_ = value;
-		}
-	}
+        }
+    }
 });

@@ -64,45 +64,45 @@ Object.defineProperties(org_apache_flex_html_beads_models_TitleBarModel.prototyp
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'title': {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
-		get: function() {
+        get: function() {
             return this.title_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         set: function(value) {
             if (this.title_ != value) {
               this.title_ = value;
               this.dispatchEvent('titleChange');
             }
-		}
-	},
+        }
+    },
     'htmlTitle': {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
-		get: function() {
+        get: function() {
             return this.htmlTitle_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         set: function(value) {
             if (this.htmlTitle_ != value) {
               this.htmlTitle_ = value;
               this.dispatchEvent('htmlTitleChange');
             }
-		}
-	},
+        }
+    },
     'showCloseButton': {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
-		get: function() {
+        get: function() {
             return this.showCloseButton_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
-		set: function(value) {
+        set: function(value) {
             if (this.showCloseButton_ != value) {
               this.showCloseButton_ = value;
               this.dispatchEvent('showCloseButtonChange');
             }
-		}
-	}
+        }
+    }
 });

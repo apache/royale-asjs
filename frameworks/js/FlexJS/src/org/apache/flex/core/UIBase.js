@@ -341,20 +341,20 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
      * @param {Array.<Object>} value The list of beads from MXML.
      */
     'beads': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             this.mxmlBeads_ = value;
         }
     },
     'numElements': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var children = this.internalChildren();
             return children.length;
         }
     },
     'parent': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var p = this.positioner.parentNode;
             var wrapper = p.flexjs_wrapper;
@@ -362,11 +362,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'alpha': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(alpha) {
             this.positioner.style.opacity = alpha;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var stralpha = this.positioner.style.opacity;
             var alpha = parseFloat(stralpha);
@@ -374,12 +374,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'x': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.left = pixels.toString() + 'px';
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var strpixels = this.positioner.style.left;
             var pixels = parseFloat(strpixels);
@@ -389,12 +389,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'y': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.top = pixels.toString() + 'px';
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var strpixels = this.positioner.style.top;
             var pixels = parseFloat(strpixels);
@@ -404,12 +404,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'width': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.explicitWidth = pixels;
             this.setWidth(pixels);
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.width;
@@ -428,37 +428,37 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'explicitWidth': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.explicitWidth_ = pixels;
             if (!isNaN(pixels))
               this.percentWidth_ = NaN;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.explicitWidth_;
         }
     },
     'percentWidth': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.percentWidth_ = pixels;
             this.positioner.style.width = pixels.toString() + '%';
             if (!isNaN(pixels))
               this.explicitWidth_ = NaN;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.percentWidth_;
         }
     },
     'height': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.explicitHeight = pixels;
             this.setHeight(pixels);
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.height;
@@ -477,36 +477,36 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'explicitHeight': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.explicitHeight_ = pixels;
             if (!isNaN(pixels))
                 this.percentHeight_ = NaN;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.explicitHeight_;
         }
     },
     'percentHeight': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
             this.percentHeight_ = pixels;
             this.positioner.style.height = pixels.toString() + '%';
             if (!isNaN(pixels))
               this.explicitHeight_ = NaN;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.percentHeight_;
         }
     },
     'id': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.id;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             if (this.id !== value) {
               this.element.id = value;
@@ -516,11 +516,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'className': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.className;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             if (this.className !== value) {
               this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
@@ -530,7 +530,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'model': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             if (this.model == null) {
               // addbead will set _model
@@ -546,7 +546,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
             return this.model;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             if (this.model !== value) {
               this.addBead(value);
@@ -555,11 +555,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'style': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.style_;
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             if (this.style_ !== value) {
               if (typeof(value) == 'string')
@@ -573,11 +573,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'visible': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.positioner.style.display !== 'none';
         },
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             var oldValue = this.positioner.style.display !== 'none';
             if (value !== oldValue) {
@@ -597,7 +597,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     'topMostEventDispatcher': {
- 		/** @this {org_apache_flex_core_UIBase} */
+        /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return document.body.flexjs_wrapper;
         }

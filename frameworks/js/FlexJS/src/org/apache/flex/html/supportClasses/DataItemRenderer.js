@@ -75,29 +75,29 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
         get: function() {
             return this.rendererParent_;
         },
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.rendererParent_ = value;
         }
     },
     'index': {
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.index_ = value;
         }
     },
     'dataField': {
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.dataField_ = value;
         },
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         get: function() {
             return this.dataField_;
         }
     },
     'selected': {
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.selected_ = value;
 
@@ -109,7 +109,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
         }
     },
     'hovered': {
- 		/** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.hovered_ = value;
 

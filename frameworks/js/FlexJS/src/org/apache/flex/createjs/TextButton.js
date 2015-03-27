@@ -80,10 +80,10 @@ Object.defineProperties(org_apache_flex_createjs_TextButton.prototype, {
         /** @this {org_apache_flex_createjs_TextButton} */
         get: function() {
             return this.buttonLabel.text;
-		},
+        },
         /** @this {org_apache_flex_createjs_TextButton} */
         set: function(value) {
             this.buttonLabel.text = value;
-		}
-	}
+        }
+    }
 });

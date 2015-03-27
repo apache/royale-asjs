@@ -43,20 +43,20 @@ Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototyp
     'strand': {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         set: function(value) {
-			if (this.strand_ !== value) {
-			  this.strand_ = value;
-			  value.element.placeholder = this.prompt;
-			}
-		}
-	},
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              value.element.placeholder = this.prompt;
+            }
+        }
+    },
     'prompt': {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
-		get: function() {
+        get: function() {
             return this.prompt;
-		},
+        },
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         set: function(value) {
             this.prompt = value;
         }
-	}
+    }
 });

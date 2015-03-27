@@ -38,24 +38,24 @@ Object.defineProperties(org_apache_flex_html_beads_SliderThumbView.prototype, {
     'strand': {
         /** @this {org_apache_flex_html_beads_SliderThumbView} */
         set: function(value) {
-			this.strand_ = value;
-		  
-			this.element = document.createElement('div');
-			this.element.className = 'SliderThumb';
-			this.element.id = 'thumb';
-			this.element.style.backgroundColor = '#949494';
-			this.element.style.border = 'thin solid #747474';
-			this.element.style.position = 'relative';
-			this.element.style.height = '30px';
-			this.element.style.width = '10px';
-			this.element.style.zIndex = '2';
-			this.element.style.top = '-10px';
-			this.element.style.left = '20px';
-		  
-			this.strand_.element.appendChild(this.element);
-		  
-			this.positioner = this.element;
-			this.element.flexjs_wrapper = this;
-		}
-	}
+            this.strand_ = value;
+
+            this.element = document.createElement('div');
+            this.element.className = 'SliderThumb';
+            this.element.id = 'thumb';
+            this.element.style.backgroundColor = '#949494';
+            this.element.style.border = 'thin solid #747474';
+            this.element.style.position = 'relative';
+            this.element.style.height = '30px';
+            this.element.style.width = '10px';
+            this.element.style.zIndex = '2';
+            this.element.style.top = '-10px';
+            this.element.style.left = '20px';
+
+            this.strand_.element.appendChild(this.element);
+
+            this.positioner = this.element;
+            this.element.flexjs_wrapper = this;
+        }
+    }
 });

@@ -73,43 +73,43 @@ org_apache_flex_html_supportClasses_StringItemRenderer.
 
 Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.prototype, {
     'strand': {
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             this.strand_ = value;
         },
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         get: function() {
              return this.strand_;
         }
     },
     'itemRendererParent': {
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         get: function() {
             return this.rendererParent_;
         },
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             this.rendererParent_ = value;
         }
     },
     'index': {
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             this.index_ = value;
         }
     },
     'text': {
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             this.element.innerHTML = value;
         },
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         get: function() {
             return this.element.innerHTML;
         }
     },
     'data': {
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
                 org_apache_flex_html_supportClasses_StringItemRenderer, this, 'data', value);
@@ -126,7 +126,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
               this.element.innerHTML = String(value);
             }
         },
- 		/** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         get: function() {
             return this.element.innerHTML;
         }

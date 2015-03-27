@@ -137,39 +137,39 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     'beads': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.beads_ = value;
         }
     },
     'data': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.element.responseText;
         }
     },
     'contentData': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.contentData_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.contentData_ = value;
         }
     },
     'contentType': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.contentType_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.contentType_ = value;
         }
     },
     'headers': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             if (this.headers_ === undefined) {
               this.headers_ = [];
@@ -177,23 +177,23 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
 
             return this.headers_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.headers_ = value;
         }
     },
     'method': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.method_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.method_ = value;
         }
     },
     'responseHeaders': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
 
@@ -214,43 +214,43 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
         }
     },
     'responseURL': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.responseURL_;
         }
     },
     'status': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.status_;
         }
     },
     'timeout': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.timeout_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.timeout_ = value;
         }
     },
     'url': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.url_;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.url_ = value;
         }
     },
     'id': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.id;
         },
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             if (this.id !== value) {
               this.id = value;
@@ -259,19 +259,19 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
         }
     },
     'MXMLDescriptor': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;
         }
     },
     'MXMLProperties': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;
         }
     },
     'strand': {
- 		/** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;

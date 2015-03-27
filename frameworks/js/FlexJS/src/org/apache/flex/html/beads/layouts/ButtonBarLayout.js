@@ -47,32 +47,32 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.proto
     'strand': {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {
-			if (this.strand_ !== value) {
-			  this.strand_ = value;
-			  this.strand_.addEventListener('childrenAdded',
-				  goog.bind(this.changeHandler, this));
-			  this.strand_.addEventListener('itemsCreated',
-				  goog.bind(this.changeHandler, this));
-			  this.strand_.addEventListener('widthChanged',
-				  goog.bind(this.changeHandler, this));
-			  this.strand_.addEventListener('heightChanged',
-				  goog.bind(this.changeHandler, this));
-			  this.strand_.addEventListener('sizeChanged',
-				  goog.bind(this.changeHandler, this));
-			  this.strand_.element.style.display = 'block';
-			}
-		}
-	},
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('itemsCreated',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('widthChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('heightChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('sizeChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.element.style.display = 'block';
+            }
+        }
+    },
     'buttonWidths': {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {
             this.buttonWidths_ = value;
-		},
+        },
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         get: function() {
             return this.buttonWidths_;
-		}
-	}
+        }
+    }
 });
 
 

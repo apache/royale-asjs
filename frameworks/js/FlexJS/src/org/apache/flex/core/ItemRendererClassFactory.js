@@ -46,7 +46,7 @@ org_apache_flex_core_ItemRendererClassFactory.
 
 Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype, {
     'strand': {
- 		/** @this {org_apache_flex_core_ItemRendererClassFactory} */
+        /** @this {org_apache_flex_core_ItemRendererClassFactory} */
         set: function(value) {
             this.strand_ = value;
 

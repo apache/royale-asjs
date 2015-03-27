@@ -67,14 +67,14 @@ org_apache_flex_html_Image.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Image.prototype, {
-	'source': {
- 		/** @this {org_apache_flex_html_Image} */
+    'source': {
+        /** @this {org_apache_flex_html_Image} */
         get: function() {
             return this.model.source;
-		},
- 		/** @this {org_apache_flex_html_Image} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_Image} */
+        set: function(value) {
             this.model.source = value;
-		}
-	}
+        }
+    }
 });

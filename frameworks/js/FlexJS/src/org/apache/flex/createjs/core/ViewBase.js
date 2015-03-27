@@ -41,11 +41,11 @@ Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
         /** @this {org_apache_flex_createjs_core_ViewBase} */
         get: function() {
             return this.applicationModel_;
-		},
+        },
         set: function(value) {
             this.applicationModel = value;
-		}
-	}
+        }
+    }
 });
 
 

@@ -58,7 +58,7 @@ Object.defineProperties(org_apache_flex_maps_google_beads_MapView.prototype, {
                 this.mapView.strand_.finishInitalization();
             };
             document.head.appendChild(script);
-		}
-	}
+        }
+    }
 });
 

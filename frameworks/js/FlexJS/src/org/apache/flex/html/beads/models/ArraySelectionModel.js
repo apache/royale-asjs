@@ -50,33 +50,33 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'dataProvider': {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
-		get: function() {
+        get: function() {
             return this.dataProvider_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.dataProvider_ = value;
             this.dispatchEvent('dataProviderChanged');
-		}
-	},
+        }
+    },
     'selectedIndex': {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
-		get: function() {
+        get: function() {
             return this.selectedIndex_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.selectedIndex_ = value;
             this.dispatchEvent('selectedIndexChanged');
-		}
-	},
+        }
+    },
     'selectedItem': {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
-		get: function() {
+        get: function() {
             var si;
 
             si = this.selectedIndex_;
@@ -87,34 +87,34 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             }
 
             return this.dataProvider_[si];
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
-			// find item in dataProvider and set selectedIndex or -1 if not exists
-		  
-			this.selectedIndex_ = -1;
-			var n = this.dataProvider_.length;
-			for (var i = 0; i < n; i++) {
-			  var item = this.dataProvider_[i];
-			  if (item == value) {
-				this.selectedIndex_ = i;
-				break;
-			  }
-			}
-		  
-			this.dispatchEvent('selectedItemChanged');
-			this.dispatchEvent('selectedIndexChanged');
-		}
-	},
+            // find item in dataProvider and set selectedIndex or -1 if not exists
+
+            this.selectedIndex_ = -1;
+            var n = this.dataProvider_.length;
+            for (var i = 0; i < n; i++) {
+              var item = this.dataProvider_[i];
+              if (item == value) {
+                this.selectedIndex_ = i;
+                break;
+              }
+            }
+
+            this.dispatchEvent('selectedItemChanged');
+            this.dispatchEvent('selectedIndexChanged');
+        }
+    },
     'labelField': {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
             return this.labelField_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.labelField_ = value;
             this.dispatchEvent('labelFieldChanged');
-		}
-	}
+        }
+    }
 });

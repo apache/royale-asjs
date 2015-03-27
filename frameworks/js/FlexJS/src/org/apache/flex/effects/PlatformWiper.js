@@ -53,31 +53,31 @@ Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
     'target': {
         /** @this {org_apache_flex_effects_PlatformWiper} */
         set: function(target) {
-			if (target == null) {
-			  if (this.overflow_ == null)
-				delete this.target_.positioner.style.overflow;
-			  else
-				this.target_.positioner.style.overflow = this.overflow_;
-			}
-			this.target_ = target;
-			if (target != null) {
-			  this.overflow_ = this.target_.positioner.style.overflow;
-			}
-		}
-	},
+            if (target == null) {
+              if (this.overflow_ == null)
+                delete this.target_.positioner.style.overflow;
+              else
+                this.target_.positioner.style.overflow = this.overflow_;
+            }
+            this.target_ = target;
+            if (target != null) {
+              this.overflow_ = this.target_.positioner.style.overflow;
+            }
+        }
+    },
     'visibleRect': {
         /** @this {org_apache_flex_effects_PlatformWiper} */
         set: function(rect) {
-			/*
-			var styleString = 'rect(';
-			styleString += rect.top.toString() + 'px,';
-			styleString += rect.width.toString() + 'px,';
-			styleString += rect.height.toString() + 'px,';
-			styleString += rect.left.toString() + 'px)';
-			this.target_.positioner.style.clip = styleString;
-			*/
-			this.target_.positioner.style.height = rect.height.toString() + 'px';
-			this.target_.positioner.style.overflow = 'hidden';
-		}
-	}
+            /*
+            var styleString = 'rect(';
+            styleString += rect.top.toString() + 'px,';
+            styleString += rect.width.toString() + 'px,';
+            styleString += rect.height.toString() + 'px,';
+            styleString += rect.left.toString() + 'px)';
+            this.target_.positioner.style.clip = styleString;
+            */
+            this.target_.positioner.style.height = rect.height.toString() + 'px';
+            this.target_.positioner.style.overflow = 'hidden';
+        }
+    }
 });

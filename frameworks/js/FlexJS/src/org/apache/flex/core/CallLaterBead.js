@@ -53,8 +53,8 @@ Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
             if (this.strand_ !== value) {
               this.strand_ = value;
             }
-		}
-	}
+        }
+    }
 });
 
 

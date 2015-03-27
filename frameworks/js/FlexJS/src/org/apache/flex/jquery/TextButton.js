@@ -55,11 +55,11 @@ org_apache_flex_jquery_TextButton.prototype.addedToParent =
 
 Object.defineProperties(org_apache_flex_jquery_TextButton.prototype, {
     'text': {
- 		/** @this {org_apache_flex_jquery_TextButton} */
+        /** @this {org_apache_flex_jquery_TextButton} */
         get: function() {
             return this.element.innerHTML;
         },
- 		/** @this {org_apache_flex_jquery_TextButton} */
+        /** @this {org_apache_flex_jquery_TextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }

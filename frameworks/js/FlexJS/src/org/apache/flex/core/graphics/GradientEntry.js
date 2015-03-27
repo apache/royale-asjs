@@ -57,11 +57,11 @@ org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
     'alpha': {
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
             return this._alpha;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         set: function(value) {
             var /** @type {number} */ oldValue = this._alpha;
             if (value != oldValue) {
@@ -70,11 +70,11 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
         }
     },
     'color': {
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
             return this._color;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         set: function(value) {
             var /** @type {number} */ oldValue = this._color;
             if (value != oldValue) {
@@ -83,11 +83,11 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
         }
     },
     'ratio': {
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
             return this._ratio;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientEntry} */
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
         set: function(value) {
             this._ratio = value;
         }

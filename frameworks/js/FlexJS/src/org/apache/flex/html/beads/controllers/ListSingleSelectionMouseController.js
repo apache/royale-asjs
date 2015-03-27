@@ -41,7 +41,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype, {
     'strand': {
- 		/** @this {org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController} */
+        /** @this {org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController} */
         set: function(value) {
             this.strand_ = value;
 

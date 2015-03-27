@@ -46,17 +46,17 @@ Object.defineProperties(org_apache_flex_html_beads_models_ImageModel.prototype, 
         /** @this {org_apache_flex_html_beads_models_ImageModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'source': {
         /** @this {org_apache_flex_html_beads_models_ImageModel} */
-		get: function() {
+        get: function() {
             return this.source;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ImageModel} */
         set: function(value) {
             this.source = value;
             this.dispatchEvent('sourceChanged');
-		}
-	}
+        }
+    }
 });

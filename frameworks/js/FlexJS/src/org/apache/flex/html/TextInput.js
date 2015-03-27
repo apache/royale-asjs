@@ -60,11 +60,11 @@ org_apache_flex_html_TextInput.prototype.createElement = function() {
 
 Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
     'text': {
- 		/** @this {org_apache_flex_html_TextInput} */
+        /** @this {org_apache_flex_html_TextInput} */
         get: function() {
             return this.element.value;
         },
- 		/** @this {org_apache_flex_html_TextInput} */
+        /** @this {org_apache_flex_html_TextInput} */
         set: function(value) {
             this.element.value = value;
             this.dispatchEvent(new org_apache_flex_events_Event('textChange'));

@@ -49,8 +49,8 @@ Object.defineProperties(org_apache_flex_html_beads_ButtonBarView.prototype, {
         /** @this {org_apache_flex_html_beads_ButtonBarView} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
-			    org_apache_flex_html_beads_ButtonBarView, this, 'strand', value);
+                org_apache_flex_html_beads_ButtonBarView, this, 'strand', value);
             this.strand_ = value;
-		}
-	}
+        }
+    }
 });

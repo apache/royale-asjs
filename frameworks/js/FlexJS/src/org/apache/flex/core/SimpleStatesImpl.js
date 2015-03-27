@@ -70,8 +70,8 @@ Object.defineProperties(org_apache_flex_core_SimpleStatesImpl.prototype, {
                 goog.bind(this.initialStateHandler_, this));
               }
             }
-		}
-	}
+        }
+    }
 });
 
 

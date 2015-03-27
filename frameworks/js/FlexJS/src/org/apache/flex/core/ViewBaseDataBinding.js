@@ -62,8 +62,8 @@ Object.defineProperties(org_apache_flex_core_ViewBaseDataBinding.prototype, {
               this.strand_.addEventListener('initComplete',
               goog.bind(this.initCompleteHandler, this));
             }
-		}
-	}
+        }
+    }
 });
 
 

@@ -160,7 +160,7 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
      * @return {Array} An array of descriptors.
      */
     'MXMLDescriptor': {
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.MXMLDescriptor;
         }
@@ -169,17 +169,17 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
      * @return {Object} The application model.
      */
     'applicationModel': {
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.applicationModel;
         }
     },
     'states': {
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.states_;
         },
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         set: function(value) {
             this.states_ = value;
             this.currentState_ = value[0].name;
@@ -196,11 +196,11 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
         }
     },
     'currentState': {
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.currentState_;
         },
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         set: function(value) {
             var event = new org_apache_flex_events_ValueChangeEvent(
                 'currentStateChange', false, false, this.currentState_, value);
@@ -209,11 +209,11 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
         }
     },
     'transitions': {
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.transitions_;
         },
- 		/** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org_apache_flex_core_ViewBase} */
         set: function(value) {
             this.transitions_ = value;
         }

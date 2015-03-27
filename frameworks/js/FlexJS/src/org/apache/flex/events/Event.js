@@ -73,19 +73,19 @@ org_apache_flex_events_Event.prototype.init = function(type) {
 
 Object.defineProperties(org_apache_flex_events_Event.prototype, {
     'type': {
- 		/** @this {org_apache_flex_events_Event} */
+        /** @this {org_apache_flex_events_Event} */
         get: function() {
             return this.type;
         }
     },
     'target': {
- 		/** @this {org_apache_flex_events_Event} */
+        /** @this {org_apache_flex_events_Event} */
         get: function() {
             return this.target;
         }
     },
     'currentTarget': {
- 		/** @this {org_apache_flex_events_Event} */
+        /** @this {org_apache_flex_events_Event} */
         get: function() {
             return this.currentTarget;
         }

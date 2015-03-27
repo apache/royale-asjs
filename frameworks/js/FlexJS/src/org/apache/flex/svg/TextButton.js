@@ -79,10 +79,10 @@ Object.defineProperties(org_apache_flex_svg_TextButton.prototype, {
         /** @this {org_apache_flex_svg_TextButton} */
         get: function() {
             return this.element.getAttribute('label');
-		},
+        },
         /** @this {org_apache_flex_svg_TextButton} */
-		set: function(value) {
+        set: function(value) {
             this.element.setAttribute('label', value);
-		}
-	}
+        }
+    }
 });

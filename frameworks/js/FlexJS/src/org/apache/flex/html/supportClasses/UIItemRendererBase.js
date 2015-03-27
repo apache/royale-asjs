@@ -77,72 +77,72 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAtt
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
-	'MXMLDescriptor': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		get: function() {
-			return null;
-		}
-	},
+    'MXMLDescriptor': {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return null;
+        }
+    },
     'data': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		get: function() {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
             return this.data_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
             this.data_ = value;
-		}
-	},
-	'labelField': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		get: function() {
+        }
+    },
+    'labelField': {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
             return this.labelField_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
             this.labelField_ = value;
-		}
-	},
-	'index': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        }
+    },
+    'index': {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.index_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
             this.index_ = value;
-		}
-	},
-	'hovered': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		get: function() {
+        }
+    },
+    'hovered': {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
             return this.hovered_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         set: function(value) {
             this.hovered_ = value;
-		}
-	},
+        }
+    },
     'selected': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.selected_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
             this.selected_ = value;
-		}
-	},
-	'down': {
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        }
+    },
+    'down': {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.down_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
             this.down_ = value;
-		}
-	}
+        }
+    }
 });
 
 

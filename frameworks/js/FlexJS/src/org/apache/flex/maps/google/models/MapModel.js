@@ -52,44 +52,44 @@ FLEXJS_CLASS_INFO =
 Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, {
     'strand': {
         /** @this {org_apache_flex_maps_google_models_MapModel} */
-		set: function(value) {
+        set: function(value) {
            this.strand_ = value;
-		}
-	},
+        }
+    },
     'searchResults': {
-		get: function() {
+        get: function() {
             return this._searchResults;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this._searchResults = value;
             this.dispatchEvent('searchResultsChanged');
-		}
-	},
+        }
+    },
     'zoom': {
         get: function() {
             return this._zoom;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this._zoom = value;
             this.dispatchEvent('zoomChanged');
-		}
-	},
+        }
+    },
     'selectedMarker': {
         get: function() {
             return this._selectedMarker;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this._selectedMarker = value;
             this.dispatchEvent('selectedMarkerChanged');
-		}
-	},
+        }
+    },
     'currentLocation': {
         get: function() {
             return this._currentLocation;
-		},
-		set: function(value) {
+        },
+        set: function(value) {
             this._currentLocation = value;
             this.dispatchEvent('currentLocationChanged');
-		}
-	}
+        }
+    }
 });

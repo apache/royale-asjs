@@ -50,28 +50,28 @@ Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.protot
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
-		}
-	},
+        }
+    },
     'resizableView': {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
-		}
-	},
+        }
+    },
     'verticalScrollPosition': {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
            return this._strand.scrollTop;
-		},
+        },
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
-	set: function(value) {
+    set: function(value) {
            this._strand.scrollTop = value;
-		}
-	},
-    'maxVerticalScrollPosition':  {
+        }
+    },
+    'maxVerticalScrollPosition': {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand.scrollHeight - this._strand.clientHeight;
-		}
-	}
+        }
+    }
 });

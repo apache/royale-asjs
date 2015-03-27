@@ -65,8 +65,8 @@ Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
               this.applyValue(val);
             } catch (e) {
             }
-		}
-	}
+        }
+    }
 });
 
 

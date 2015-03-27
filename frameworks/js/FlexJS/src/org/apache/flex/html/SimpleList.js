@@ -58,12 +58,12 @@ org_apache_flex_html_SimpleList.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
-	'dataProvider': {
- 		/** @this {org_apache_flex_html_SimpleList} */
-		get: function() {
+    'dataProvider': {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
             return this.model.dataProvider;
-		},
- 		/** @this {org_apache_flex_html_SimpleList} */
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
         set: function(value) {
             var dp, i, n, opt;
 
@@ -81,27 +81,27 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
               opt.text = value[i].toString();
               dp.add(opt);
             }
-		}
-	},
+        }
+    },
     'selectedIndex': {
- 		/** @this {org_apache_flex_html_SimpleList} */
-	    get: function() {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
             return this.model.selectedIndex;
-	    },
- 		/** @this {org_apache_flex_html_SimpleList} */
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
         set: function(value) {
             this.model.selectedIndex = value;
-		}
-	},
+        }
+    },
     'selectedItem': {
- 		/** @this {org_apache_flex_html_SimpleList} */
-		get: function() {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
             return this.model.selectedItem;
-		},
- 		/** @this {org_apache_flex_html_SimpleList} */
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
         set: function(value) {
             this.model.selectedItem = value;
-		}
-	}
+        }
+    }
 });
 

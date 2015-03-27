@@ -47,8 +47,8 @@ Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
                 org_apache_flex_html_beads_models_ImageModel);
             this.model.addEventListener('sourceChanged',
                 goog.bind(this.sourceChangeHandler, this));
-		}
-	}
+        }
+    }
 });
 
 

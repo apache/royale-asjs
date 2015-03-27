@@ -44,5 +44,5 @@ Object.defineProperties(org_apache_flex_core_IBead.prototype, {
     'strand': {
         /** @this {org_apache_flex_binding_GenericBinding} */
         set: function(value) {}
-	}
+    }
 });

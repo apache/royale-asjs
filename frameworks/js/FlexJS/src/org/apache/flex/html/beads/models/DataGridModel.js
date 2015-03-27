@@ -53,18 +53,18 @@ Object.defineProperties(org_apache_flex_html_beads_models_DataGridModel.prototyp
     'strand': {
         /** @this {org_apache_flex_html_beads_models_DataGridModel} */
         set: function(value) {
-            org_apache_flex_utils-Language(org_apache_flex_html_beads_models_DataGridModel, this, 'strand', value);
+            org_apache_flex_utils_Language(org_apache_flex_html_beads_models_DataGridModel, this, 'strand', value);
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'columns': {
         /** @this {org_apache_flex_html_beads_models_DataGridModel} */
-		set: function(value) {
+        set: function(value) {
             this.columns_ = value;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_DataGridModel} */
         get: function() {
             return this.columns_;
-		}
-	}
+        }
+    }
 });

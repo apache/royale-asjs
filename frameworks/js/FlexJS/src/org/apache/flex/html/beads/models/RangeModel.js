@@ -50,80 +50,80 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'minimum': {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		get: function() {
+        get: function() {
             return this.minimum_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             if (this.minimum_ != value) {
               this.minimum_ = value;
               this.dispatchEvent('minimumChange');
             }
-		}
-	},
+        }
+    },
     'maximum': {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		get: function() {
+        get: function() {
             return this.maximum_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		set: function(value) {
+        set: function(value) {
             if (this.maximum_ != value) {
               this.maximum_ = value;
               this.dispatchEvent('maximumChange');
             }
-		}
-	},
+        }
+    },
     'value': {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		get: function() {
+        get: function() {
             return this.value_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(newValue) {
-			if (this.value_ != newValue) {
-		  
-			  // value must lie within the boundaries of minimum & maximum
-			  // and be on a step interval, so the value is adjusted to
-			  // what is coming in.
-			  newValue = Math.max(this.minimum_, newValue - this.stepSize_);
-			  newValue = Math.min(this.maximum_, newValue + this.stepSize_);
-			  this.value_ = this.snap(newValue);
-		  
-			  this.dispatchEvent('valueChange');
-			}
-		}
-	},
+            if (this.value_ != newValue) {
+
+              // value must lie within the boundaries of minimum & maximum
+              // and be on a step interval, so the value is adjusted to
+              // what is coming in.
+              newValue = Math.max(this.minimum_, newValue - this.stepSize_);
+              newValue = Math.min(this.maximum_, newValue + this.stepSize_);
+              this.value_ = this.snap(newValue);
+
+              this.dispatchEvent('valueChange');
+            }
+        }
+    },
     'snapInterval': {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		get: function() {
+        get: function() {
             return this.snapInterval_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             if (this.snapInterval_ != value) {
               this.snapInterval_ = value;
               this.dispatchEvent('snapIntervalChange');
             }
-		}
-	},
+        }
+    },
     'stepSize': {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
-		get: function() {
+        get: function() {
             return this.stepSize_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             if (this.stepSize_ != value) {
               this.stepSize_ = value;
               this.dispatchEvent('stepSizeChange');
             }
-		}
-	}
+        }
+    }
 });
 
 

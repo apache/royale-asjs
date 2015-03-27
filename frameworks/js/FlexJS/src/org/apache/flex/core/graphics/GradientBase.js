@@ -66,11 +66,11 @@ org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
     'entries': {
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._entries;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
             this._entries = value;
         }
@@ -84,37 +84,37 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
      * @return {number}
      */
     'rotation': {
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._rotation;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
             this._rotation = value;
         }
     },
     'x': {
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._x;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
             this._x = value;
         }
     },
     'y': {
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
             this._y = value;
         },
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._y;
         }
     },
     'newId': {
- 		/** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
         }

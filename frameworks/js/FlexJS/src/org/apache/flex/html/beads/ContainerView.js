@@ -51,12 +51,12 @@ Object.defineProperties(org_apache_flex_html_beads_ContainerView.prototype, {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         get: function() {
             return this._strand;
-		}
-	},
+        }
+    },
     'resizableView': {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         get: function() {
             return this._strand;
-		}
-	}
+        }
+    }
 });

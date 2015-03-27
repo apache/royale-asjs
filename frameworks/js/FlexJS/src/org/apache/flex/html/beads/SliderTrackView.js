@@ -41,21 +41,21 @@ Object.defineProperties(org_apache_flex_html_beads_SliderTrackView.prototype, {
             this.strand_ = value;
 
             this.element = document.createElement('div');
-			this.element.className = 'SliderTrack';
-			this.element.id = 'track';
-			this.element.style.backgroundColor = '#E4E4E4';
-			this.element.style.height = '10px';
-			this.element.style.width = '200px';
-			this.element.style.border = 'thin solid #C4C4C4';
-			this.element.style.position = 'relative';
-			this.element.style.left = '0px';
-			this.element.style.top = '10px';
-			this.element.style.zIndex = '1';
-		  
-			this.strand_.element.appendChild(this.element);
-		  
-			this.positioner = this.element;
-			this.element.flexjs_wrapper = this;
-		}
-	}
+            this.element.className = 'SliderTrack';
+            this.element.id = 'track';
+            this.element.style.backgroundColor = '#E4E4E4';
+            this.element.style.height = '10px';
+            this.element.style.width = '200px';
+            this.element.style.border = 'thin solid #C4C4C4';
+            this.element.style.position = 'relative';
+            this.element.style.left = '0px';
+            this.element.style.top = '10px';
+            this.element.style.zIndex = '1';
+
+            this.strand_.element.appendChild(this.element);
+
+            this.positioner = this.element;
+            this.element.flexjs_wrapper = this;
+        }
+    }
 });

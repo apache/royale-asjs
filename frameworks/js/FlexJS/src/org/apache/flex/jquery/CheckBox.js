@@ -63,21 +63,21 @@ org_apache_flex_jquery_CheckBox.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_jquery_CheckBox.prototype, {
     'text': {
- 		/** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org_apache_flex_jquery_CheckBox} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;
         },
- 		/** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org_apache_flex_jquery_CheckBox} */
         set: function(value) {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
     'selected': {
- 		/** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org_apache_flex_jquery_CheckBox} */
         get: function() {
             return this.element.childNodes.item(0).checked;
         },
- 		/** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org_apache_flex_jquery_CheckBox} */
         set: function(value) {
             this.element.childNodes.item(0).checked = value;
         }

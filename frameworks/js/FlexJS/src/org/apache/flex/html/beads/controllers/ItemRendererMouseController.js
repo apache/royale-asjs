@@ -39,7 +39,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLE
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype, {
     'strand': {
- 		/** @this {org_apache_flex_html_beads_controllers_ItemRendererMouseController} */
+        /** @this {org_apache_flex_html_beads_controllers_ItemRendererMouseController} */
         set: function(value) {
             this.strand_ = value;
 

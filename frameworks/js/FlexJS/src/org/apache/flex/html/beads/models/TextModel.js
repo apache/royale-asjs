@@ -50,17 +50,17 @@ Object.defineProperties(org_apache_flex_html_beads_models_TextModel.prototype, {
         /** @this {org_apache_flex_html_beads_models_TextModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'text': {
         /** @this {org_apache_flex_html_beads_models_TextModel} */
-		get: function() {
+        get: function() {
             return this.text_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_TextModel} */
-		set: function(value) {
+        set: function(value) {
             this.text_ = value;
             this.dispatchEvent('textChange');
-		}
-	}
+        }
+    }
 });

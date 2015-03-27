@@ -51,38 +51,38 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
               this.strand_.addEventListener('layoutNeeded',
                   goog.bind(this.changeHandler, this));
             }
-		}
-	},
+        }
+    },
     'numColumns': {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
-		get: function() {
+        get: function() {
             return this._numColumns;
-		},
+        },
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         set: function(value) {
             this._numColumns = value;
-		}
-	},
+        }
+    },
     'columnWidth': {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
-		get: function() {
+        get: function() {
             return this._columnWidth;
-		},
+        },
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         set: function(value) {
             this._columnWidth = value;
-		}
-	},
+        }
+    },
     'rowHeight': {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
-		get: function() {
+        get: function() {
             return this._rowHeight;
-		},
+        },
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         set: function(value) {
             this._rowHeight = value;
-		}
-	}
+        }
+    }
 });
 
 

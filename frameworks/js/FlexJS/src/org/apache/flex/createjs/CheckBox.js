@@ -98,23 +98,23 @@ Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
             return this.checkBoxLabel.text;
-		},
+        },
         /** @this {org_apache_flex_createjs_CheckBox} */
         set: function(value) {
             this.checkBoxLabel.text = value;
-		}
-	},
+        }
+    },
     'selected': {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
             return this.selected;
-		},
+        },
         /** @this {org_apache_flex_createjs_CheckBox} */
         set: function(value) {
             this.checkMark.visible = this.selected = value;
             this.element.getStage().update();
-		}
-	}
+        }
+    }
 });
 
 

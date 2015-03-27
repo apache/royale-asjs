@@ -74,57 +74,57 @@ org_apache_flex_html_Slider.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Slider.prototype, {
-	'value': {
- 		/** @this {org_apache_flex_html_Slider} */
-		get: function() {
+    'value': {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
             return this.model.value;
-		},
- 		/** @this {org_apache_flex_html_Slider} */
+        },
+        /** @this {org_apache_flex_html_Slider} */
         set: function(newValue) {
             this.model.value = newValue;
             this.setThumbFromValue(this.model.value);
-		}
-	},
+        }
+    },
     'minimum': {
- 		/** @this {org_apache_flex_html_Slider} */
-		get: function() {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
             return this.model.minimum;
-		},
- 		/** @this {org_apache_flex_html_Slider} */
+        },
+        /** @this {org_apache_flex_html_Slider} */
         set: function(value) {
             this.model.minimum = value;
-		}
-	},
+        }
+    },
     'maximum': {
- 		/** @this {org_apache_flex_html_Slider} */
+        /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.maximum;
-		},
- 		/** @this {org_apache_flex_html_Slider} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
             this.model.maximum = value;
-		}
-	},
-	'snapInterval': {
- 		/** @this {org_apache_flex_html_Slider} */
+        }
+    },
+    'snapInterval': {
+        /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.snapInterval;
-		},
- 		/** @this {org_apache_flex_html_Slider} */
+        },
+        /** @this {org_apache_flex_html_Slider} */
         set: function(value) {
             this.model.snapInterval = value;
-		}
-	},
+        }
+    },
     'stepSize': {
- 		/** @this {org_apache_flex_html_Slider} */
+        /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.stepSize;
-		},
- 		/** @this {org_apache_flex_html_Slider} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
             this.model.stepSize = value;
-		}
-	}
+        }
+    }
 });
 
 

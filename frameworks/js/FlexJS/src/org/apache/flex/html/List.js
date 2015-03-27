@@ -52,38 +52,38 @@ org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_List.prototype, {
-	'itemRenderer': {
- 		/** @this {org_apache_flex_html_List} */
+    'itemRenderer': {
+        /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.itemRenderer_;
-		},
- 		/** @this {org_apache_flex_html_List} */
+        },
+        /** @this {org_apache_flex_html_List} */
         set: function(value) {
             this.itemRenderer_ = value;
-		}
-	},
+        }
+    },
     'labelField': {
- 		/** @this {org_apache_flex_html_List} */
+        /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.model.labelField;
-		},
- 		/** @this {org_apache_flex_html_List} */
+        },
+        /** @this {org_apache_flex_html_List} */
         set: function(value) {
             this.model.labelField = value;
-		}
-	},
+        }
+    },
     'rowHeight': {
- 		/** @this {org_apache_flex_html_List} */
+        /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.presentationModel.rowHeight;
-		},
- 		/** @this {org_apache_flex_html_List} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_List} */
+        set: function(value) {
             this.presentationModel.rowHeight = value;
-		}
-	},
+        }
+    },
     'presentationModel': {
- 		/** @this {org_apache_flex_html_List} */
+        /** @this {org_apache_flex_html_List} */
         get: function() {
             var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
             if (presModel == null) {
@@ -91,8 +91,8 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
               this.addBead(presModel);
             }
             return presModel;
-		}
-	}
+        }
+    }
 });
 
 

@@ -49,21 +49,21 @@ org_apache_flex_html_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
 
 Object.defineProperties(org_apache_flex_html_ToggleTextButton.prototype, {
     'text': {
- 		/** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org_apache_flex_html_ToggleTextButton} */
         get: function() {
             return this.element.innerHTML;
         },
- 		/** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org_apache_flex_html_ToggleTextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }
     },
     'selected': {
- 		/** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org_apache_flex_html_ToggleTextButton} */
         get: function() {
              return this.selected_;
         },
- 		/** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org_apache_flex_html_ToggleTextButton} */
         set: function(value) {
             if (this.selected_ != value) {
               this.selected_ = value;

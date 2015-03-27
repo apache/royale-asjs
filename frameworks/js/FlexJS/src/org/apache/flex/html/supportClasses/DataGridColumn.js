@@ -27,45 +27,45 @@ org_apache_flex_html_supportClasses_DataGridColumn =
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.prototype, {
-	'itemRenderer': {
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
-		get: function() {
+    'itemRenderer': {
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        get: function() {
             return this.itemRenderer_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
-		set: function(value) {
-		    this.itemRenderer_ = value;
-		}
-	},
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        set: function(value) {
+            this.itemRenderer_ = value;
+        }
+    },
     'columnWidth': {
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
             return this.columnWidth_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        set: function(value) {
             this.columnWidth_ = value;
-		}
-	},
-	'label': {
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        }
+    },
+    'label': {
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
             return this.label_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        set: function(value) {
             this.label_ = value;
-		}
-	},
+        }
+    },
     'dataField': {
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
             return this.dataField_;
-		},
- 		/** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         set: function(value) {
             this.dataField_ = value;
-		}
-	}
+        }
+    }
 });
 

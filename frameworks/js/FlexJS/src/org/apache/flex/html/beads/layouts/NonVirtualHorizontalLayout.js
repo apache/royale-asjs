@@ -45,26 +45,26 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualHorizontalL
     'strand': {
         /** @this {org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout} */
         set: function(value) {
-			if (this.strand_ !== value) {
-			  this.strand_ = value;
-			  if (this.strand_.isWidthSizedToContent() &&
-				  this.strand_.isHeightSizedToContent())
-				this.addOtherListeners();
-			  else {
-				this.strand_.addEventListener('heightChanged',
-					goog.bind(this.changeHandler, this));
-				this.strand_.addEventListener('widthChanged',
-					goog.bind(this.changeHandler, this));
-				this.strand_.addEventListener('sizeChanged',
-					goog.bind(this.sizeChangeHandler, this));
-				if (!isNaN(this.strand_.explicitWidth) &&
-					!isNaN(this.strand_.explicitHeight))
-					this.addOtherListeners();
-			  }
-			  this.strand_.element.style.display = 'block';
-			}
-		}
-	}
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              if (this.strand_.isWidthSizedToContent() &&
+                  this.strand_.isHeightSizedToContent())
+                this.addOtherListeners();
+              else {
+                this.strand_.addEventListener('heightChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('widthChanged',
+                    goog.bind(this.changeHandler, this));
+                this.strand_.addEventListener('sizeChanged',
+                    goog.bind(this.sizeChangeHandler, this));
+                if (!isNaN(this.strand_.explicitWidth) &&
+                    !isNaN(this.strand_.explicitHeight))
+                    this.addOtherListeners();
+              }
+              this.strand_.element.style.display = 'block';
+            }
+        }
+    }
 });
 
 

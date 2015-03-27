@@ -57,17 +57,17 @@ Object.defineProperties(org_apache_flex_html_beads_models_ListPresentationModel.
         /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
         set: function(value) {
             this.strand_ = value;
-		}
-	},
+        }
+    },
     'rowHeight': {
         /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
-		get: function() {
+        get: function() {
             return this.rowHeight_;
-		},
+        },
         /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
         set: function(value) {
             this.rowHeight_ = value;
             this.dispatchEvent('rowHeightChanged');
-		}
-	}
+        }
+    }
 });

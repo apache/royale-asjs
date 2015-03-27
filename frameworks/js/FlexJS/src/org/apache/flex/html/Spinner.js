@@ -131,15 +131,15 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.value_;
-		},
+        },
         /** @this {org_apache_flex_html_Spinner} */
-    	set: function(value) {
+        set: function(value) {
             if (value != this.value_) {
               this.value_ = value;
               this.dispatchEvent('valueChange');
             }
-		}
-	}
+        }
+    }
 });
 
 

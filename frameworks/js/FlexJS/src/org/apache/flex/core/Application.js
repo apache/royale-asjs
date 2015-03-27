@@ -73,14 +73,14 @@ Object.defineProperties(org_apache_flex_core_Application.prototype, {
             if (value.init) {
               value.init(this);
             }
-		}
-	},
-	'MXMLDescriptor': {
-	        /** @this {org_apache_flex_core_Application} */
+        }
+    },
+    'MXMLDescriptor': {
+            /** @this {org_apache_flex_core_Application} */
         get: function() {
-			return null;
-		}
-	}
+            return null;
+        }
+    }
 });
 
 

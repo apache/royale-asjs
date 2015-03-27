@@ -52,12 +52,6 @@ org_apache_flex_core_ContainerBase = function() {
    */
   this.currentState_ = null;
 
-  /**
-   * @private
-   * @type {?Array}
-   */
-  this.mxmlDescriptor = null;
-  
   this.document = this;
 
 };
@@ -137,17 +131,17 @@ org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
 
 Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
     'MXMLDescriptor': {
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
             return this.mxmlDescriptor;
         }
     },
     'states': {
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
             return this.states_;
         },
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         set: function(s) {
             this.states_ = s;
             this.currentState_ = s[0].name;
@@ -164,11 +158,11 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
         }
     },
     'currentState': {
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
              return this.currentState_;
         },
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         set: function(s) {
              var event = new org_apache_flex_events_ValueChangeEvent(
                   'currentStateChange', false, false, this.currentState_, s);
@@ -177,11 +171,11 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
         }
     },
     'transitions': {
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
              return this.transitions_;
         },
- 		/** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org_apache_flex_core_ContainerBase} */
         set: function(s) {
            this.transitions_ = s;
         }

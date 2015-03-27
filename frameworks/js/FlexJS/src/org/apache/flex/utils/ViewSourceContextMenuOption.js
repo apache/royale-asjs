@@ -41,6 +41,6 @@ Object.defineProperties(org_apache_flex_utils_ViewSourceContextMenuOption.protot
     'strand': {
         /** @this {org_apache_flex_utils_ViewSourceContextMenuOption} */
         set: function(value) {}
-	}
+    }
 });
 

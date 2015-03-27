@@ -34,13 +34,13 @@ org_apache_cordova_Weinre = function() {
 
 Object.defineProperties(org_apache_cordova_Weinre.prototype, {
     'strand': {
- 		/** @this {org_apache_cordova_Weinre} */
+        /** @this {org_apache_cordova_Weinre} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     'guid': {
- 		/** @this {org_apache_cordova_Weinre} */
+        /** @this {org_apache_cordova_Weinre} */
         set: function(value) {
 
             var scriptNode = document.createElement('SCRIPT');
@@ -50,8 +50,8 @@ Object.defineProperties(org_apache_cordova_Weinre.prototype, {
             var headNode = document.getElementsByTagName('HEAD');
             if (headNode[0] != null)
               headNode[0].appendChild(scriptNode);
-		}
-	}
+        }
+    }
 });
 
 

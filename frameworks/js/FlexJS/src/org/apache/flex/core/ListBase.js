@@ -78,30 +78,30 @@ Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
             return this.model.dataProvider;
         },
         /** @this {org_apache_flex_core_ListBase} */
-		set: function(value) {
+        set: function(value) {
             this.model.dataProvider = value;
-		}
-	},
+        }
+    },
     'selectedIndex': {
         /** @this {org_apache_flex_core_ListBase} */
         get: function() {
             return this.model.selectedIndex;
-		},
+        },
         /** @this {org_apache_flex_core_ListBase} */
         set: function(value) {
             this.model.selectedIndex = value;
-		}
-	},
+        }
+    },
     'selectedItem': {
         /** @this {org_apache_flex_core_ListBase} */
         get: function() {
             return this.model.selectedItem;
-		},
+        },
         /** @this {org_apache_flex_core_ListBase} */
         set: function(value) {
             this.model.selectedItem = value;
-		}
-	}
+        }
+    }
 });
 
 

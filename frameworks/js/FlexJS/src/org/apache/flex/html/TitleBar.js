@@ -62,23 +62,23 @@ org_apache_flex_html_TitleBar.prototype.createElement =
 
 Object.defineProperties(org_apache_flex_html_TitleBar.prototype, {
     'title': {
- 		/** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org_apache_flex_html_TitleBar} */
         get: function() {
             return this.model.title;
-		},
- 		/** @this {org_apache_flex_html_TitleBar} */
+        },
+        /** @this {org_apache_flex_html_TitleBar} */
         set: function(value) {
             this.model.title = value;
-		}
-	},
+        }
+    },
     'showCloseButton': {
- 		/** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org_apache_flex_html_TitleBar} */
         get: function() {
             return this.model.showCloseButton;
-		},
- 		/** @this {org_apache_flex_html_TitleBar} */
-		set: function(value) {
+        },
+        /** @this {org_apache_flex_html_TitleBar} */
+        set: function(value) {
             this.model.showCloseButton = value;
-		}
-	}
+        }
+    }
 });

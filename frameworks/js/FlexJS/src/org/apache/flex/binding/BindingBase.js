@@ -101,7 +101,7 @@ org_apache_flex_binding_BindingBase.prototype.sourceChangeHandler = function(eve
 
 Object.defineProperties(org_apache_flex_binding_BindingBase.prototype, {
   'strand': {
- 		/** @this {org_apache_flex_binding_BindingBase} */
+        /** @this {org_apache_flex_binding_BindingBase} */
       set: function(value) {
           if (this.destination == null)
             this.destination = value;
