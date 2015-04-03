@@ -86,6 +86,12 @@ org_apache_flex_net_HTTPService = function() {
    */
   this.contentType_ = 'application/x-www-form-urlencoded';
 
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.id_ = null;
+
   //try { // (erikdebruin) 'desperate' attempt to bypass XDR security in IE < 10
   //  this.contentType_ = 'text/plain';
   //  this.element = new XDomainRequest();
@@ -248,12 +254,12 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     'id': {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
-            return this.id;
+            return this.id_;
         },
         /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
-            if (this.id !== value) {
-              this.id = value;
+            if (this.id_ !== value) {
+              this.id_ = value;
               this.dispatchEvent('idChanged');
             }
         }
@@ -268,18 +274,6 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;
-        }
-    },
-    'strand': {
-        /** @this {org_apache_flex_net_HTTPService} */
-        set: function(value) {
-            if (this.strand_ !== value) {
-              this.strand_ = value;
-            }
-            var n = this.beads_ ? this.beads_.length : 0;
-            for (var i = 0; i < n; i++) {
-              this.addBead(this.beads_[i]);
-            }
         }
     }
 });
@@ -359,13 +353,6 @@ org_apache_flex_net_HTTPService.prototype.progressHandler = function() {
     this.dispatchEvent('complete');
   }
 };
-
-
-/**
- * @expose
- * @type {?string}
- */
-org_apache_flex_net_HTTPService.prototype.id = null;
 
 
 /**
