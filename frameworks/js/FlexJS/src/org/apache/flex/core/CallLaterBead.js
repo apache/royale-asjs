@@ -46,7 +46,7 @@ org_apache_flex_core_CallLaterBead.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_CallLaterBead'}] };
 
 
-Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
+Object.defineProperties(org_apache_flex_core_CallLaterBead.prototype, {
     'strand': {
         /** @this {org_apache_flex_binding_GenericBinding} */
         set: function(value) {
