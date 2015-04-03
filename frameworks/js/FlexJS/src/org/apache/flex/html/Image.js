@@ -57,8 +57,6 @@ org_apache_flex_html_Image.prototype.createElement =
   this.model = new
           org_apache_flex_html_beads_models_ImageModel();
 
-  this.addBead(this.model);
-
   this.addBead(new
       org_apache_flex_html_beads_ImageView());
 
