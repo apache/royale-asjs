@@ -125,6 +125,9 @@ package org.apache.flex.core
         
         private function initHandler(event:flash.events.Event):void
         {
+			if (model) addBead(model as IBead);
+			if (controller) addBead(controller as IBead);
+			
             MouseEventConverter.setupAllConverters(stage);
                 
             for each (var bead:IBead in beads)

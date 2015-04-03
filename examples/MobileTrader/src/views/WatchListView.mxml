@@ -27,10 +27,27 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[						
+			import controller.WatchListController;
+			
+			import models.ProductsModel;
+			import models.Stock;
+			
+			import org.apache.flex.binding.SimpleBinding;
+			import org.apache.flex.core.IBeadController;
+			import org.apache.flex.core.IBeadModel;
 			import org.apache.flex.events.Event;
 			import org.apache.flex.mobile.IViewManager;
 			import org.apache.flex.mobile.StackedViewManager;
-
+						
+			public function set dataModel(value:IBeadModel):void
+			{
+				(controller as WatchListController).model = value;
+			}
+			public function get dataModel():IBeadModel
+			{
+				return (controller as WatchListController).model;
+			}
+			
 			private function onSelectStock():void
 			{
 				var stockView:StockView = new StockView();
@@ -38,37 +55,60 @@ limitations under the License.
 				(viewManager as StackedViewManager).push(stockView);
 			}
 			
-			private function onStockChange(event:org.apache.flex.events.Event):void
+			private function addSymbol():void
 			{
-				
+				dispatchEvent(new org.apache.flex.events.Event("addSymbol"));
 			}
 			
-			override public function addedToParent():void
+			public var selectedStockIndex:Number;
+			
+			private function selectRow():void
 			{
-				super.addedToParent();
+				selectedStockIndex = dataGrid.selectedIndex;
+				dispatchEvent(new org.apache.flex.events.Event("stockSelected"));
+			}
+			
+			public function showStockDetails(stock:Stock):StockView
+			{
+				var stockView:StockView = new StockView();
+				stockView.stock = stock;
+				(viewManager as StackedViewManager).push(stockView);
 				
-				var feed:Feed = this.model as Feed;
-				feed.addEventListener("update",onStockChange);
-				feed.subscribe();
+				return stockView;
+			}
+			
+			public function popView():void
+			{
+				(viewManager as StackedViewManager).pop();
 			}
 		]]>
 	</fx:Script>
 	
-	<basic:model>
-		<controller:Feed />
-	</basic:model>
+	<basic:beads>
+		<basic:NonVirtualVerticalLayout />
+	</basic:beads>
 	
-	<basic:Container x="0" y="0" width="480" className="WatchListInner">
+	<basic:Container className="WatchListInputArea">
 		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
+			<basic:NonVirtualHorizontalLayout />
+		</basic:beads>
+		<basic:Label text="Symbol:" />
+		<basic:TextInput id="symbolName" />
+		<basic:TextButton text="Add" click="addSymbol()" />
+	</basic:Container>
+	
+	<basic:Container x="0" y="0" className="WatchListInner">
+		<basic:beads>
+			<basic:ScrollingContainerView />
+			<basic:NonVirtualVerticalScrollingLayout />
 		</basic:beads>
 		
-		<basic:DataGrid width="480" height="380" change="onSelectStock()">
+		<basic:DataGrid id="dataGrid" change="selectRow()" width="480" height="480" className="WatchListDataGrid">
 			<basic:beads>
 				<basic:SimpleBinding
 					eventName="update"
-					sourceID="model"
-					sourcePropertyName="stockList"
+					sourceID="dataModel"
+					sourcePropertyName="watchList"
 					destinationPropertyName="dataProvider" />
 			</basic:beads>
 			<basic:columns>

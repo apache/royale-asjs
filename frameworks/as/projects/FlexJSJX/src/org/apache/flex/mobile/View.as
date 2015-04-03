@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile
 {
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.Container;
 	
 	/**
@@ -57,12 +60,21 @@ package org.apache.flex.mobile
 			_viewManager = value;
 		}
 		
-		override public function addedToParent():void
+		private var _controller:IBeadController;
+		public function get controller():IBeadController
 		{
-			super.addedToParent();
-//			this.width = this.viewManager.contentWidth;
-//			this.height = this.viewManager.contentHeight;
-//			trace("Set View to "+this.width+"x"+this.height);
+			if (_controller == null) {
+				_controller = getBeadByType(IBeadController) as IBeadController;
+				if (_controller == null) {
+					_controller = new (ValuesManager.valuesImpl.getValue(this, "iBeadController")) as IBeadController;
+					addBead(_controller);
+				}
+			}
+			return _controller;
+		}
+		public function set controller(value:IBeadController):void
+		{
+			_controller = value;
 		}
 	}
 }

@@ -18,25 +18,131 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	public class Stock
-	{	    
-		public var symbol:String;
-		public var name:String;
-		public var low:Number;
-		public var high:Number;
-		public var open:Number;
-		public var last:Number;
-		public var change:Number = 0;
-		public var date:Date;
-		
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+	
+	public class Stock extends EventDispatcher
+	{	    		
 		public var history:Array;
 		
-		public function Stock(symbol:String, last:Number)
+		public function Stock(symbol:String=null, last:Number=0)
 		{
 			this.symbol = symbol;
 			this.last = last;
+			this.low = last;
+			this.high = last;
+			this.open = last;
+			this.change = 0;
+			this.name = "";
 		}
 		
+		public function updateFromData(obj:Object):void
+		{
+			name = obj["Name"];
+			low = obj["DaysLow"];
+			high = obj["DaysHigh"];
+			open = obj["Open"];
+			change = obj["Change"];
+			symbol = obj["Symbol"];
+			last = obj["LastTradePriceOnly"];
+		}
+		
+		private var _symbol:String;
+		private var _name:String;
+		private var _low:Number;
+		private var _high:Number;
+		private var _open:Number;
+		private var _last:Number;
+		private var _change:Number;
+		private var _date:Date;
+		
+		[Bindable("symbolChanged")]
+		public function get symbol():String
+		{
+			return _symbol;
+		}
+		public function set symbol(value:String):void
+		{
+			_symbol = value;
+			dispatchEvent(new Event("symbolChanged"));
+		}
+		
+		[Bindable("nameChanged")]
+		public function get name():String
+		{
+			return _name;
+		}
+		public function set name(value:String):void
+		{
+			_name = value;
+			dispatchEvent(new Event("nameChanged"));
+		}
+		
+		[Bindable("lowChanged")]
+		public function get low():Number
+		{
+			return _low;
+		}
+		public function set low(value:Number):void
+		{
+			_low = value;
+			dispatchEvent(new Event("lowChanged"));
+		}
+		
+		[Bindable("highChanged")]
+		public function get high():Number
+		{
+			return _high;
+		}
+		public function set high(value:Number):void
+		{
+			_high = value;
+			dispatchEvent(new Event("highChanged"));
+		}
+		
+		[Bindable("openChanged")]
+		public function get open():Number
+		{
+			return _open;
+		}
+		public function set open(value:Number):void
+		{
+			_open = value;
+			dispatchEvent(new Event("openChanged"));
+		}
+		
+		[Bindable("lastChanged")]
+		public function get last():Number
+		{
+			return _last;
+		}
+		public function set last(value:Number):void
+		{
+			_last = value;
+			dispatchEvent(new Event("lastChanged"));
+		}
+		
+		[Bindable("changeChanged")]
+		public function get change():Number
+		{
+			return _change;
+		}
+		public function set change(value:Number):void
+		{
+			_change = value;
+			dispatchEvent(new Event("changeChanged"));
+		}
+		
+		[Bindable("dateChanged")]
+		public function get date():Date
+		{
+			return _date;
+		}
+		public function set date(value:Date):void
+		{
+			_date = value;
+			dispatchEvent(new Event("dateChanged"));
+		}
 	}
 	
 }

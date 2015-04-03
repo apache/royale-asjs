@@ -18,10 +18,13 @@ limitations under the License.
 
 -->
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:local="*"
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:views="views.*" 
 				xmlns:apache="org.apache.flex.html.beads.*"
-				xmlns:html="org.apache.flex.html.*">
+				xmlns:html="org.apache.flex.html.*"
+				xmlns:controller="controller.*"
+				initComplete="onInitComplete()" xmlns:models="models.*" >
 	
 	
 	
@@ -87,6 +90,23 @@ limitations under the License.
 		views|WatchListView {
 			width: 480px;
 			height: 640px;
+			IBeadController:ClassReference('controller.WatchListController');
+		}
+		
+		.WatchListInner {
+			height: 480px;
+			width:  480px;
+		}
+		
+		.WatchListDataGrid {
+			height: 480px;
+			width:  480px;
+		}
+		
+		.WatchListInputArea {
+			background-color: #FFFFFF;
+			padding: 10px;
+			width: 480px;
 		}
 		
 		views|StockView {
@@ -97,6 +117,7 @@ limitations under the License.
 		views|AlertsView {
 			width: 480px;
 			height: 640px;
+			IBeadController:ClassReference('controller.AlertsViewController');
 		}
 		
 		.redCell {
@@ -105,6 +126,47 @@ limitations under the License.
 		
 		.greenCell {
 			color: #00FF00;
+		}
+		
+		.ViewTitle {
+			font-size: 18pt;
+			font-weight: bold;
+			padding: 10pt;
+		}
+		
+		.StockName {
+			font-size: 14pt;
+			font-weight: normal;
+			padding: 10pt;
+		}
+		
+		.StockDetailArea {
+			padding: 10pt;
+		}
+		
+		.StockLabel {
+			font-size: 18pt;
+			font-weight: normal;
+			color: #2255DD;
+		}
+		
+		.StockRemoveButton {
+			background-color: #FF5522;
+			font-size: 16pt;
+			font-weight: bold;
+			color: #FFFFFF;
+			width: 200px;
+			height: 50px;
+		}
+		
+		.StockRemoveButton:hover {
+			background-color: #DD3300;
+		}
+		
+		.StockValue {
+			font-size: 18pt;
+			font-weight: normal;
+			color: #999999;
 		}
 		
 		@media -flex-flash
@@ -118,10 +180,23 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+			import org.apache.flex.core.IBeadController;
+			import org.apache.flex.core.IBeadModel;
 			import org.apache.flex.events.Event;
 			import org.apache.flex.mobile.IView;
 			import org.apache.flex.mobile.IViewManager;
 			import org.apache.flex.mobile.chrome.NavigationBar;
+			
+			private function onInitComplete():void
+			{
+				// Give the model to the WatchListView's dataModel; do not replace
+				// a component's model with a custom model as that can adversely
+				// affect a component's behavior.
+				watchListView.dataModel = applicationModel as IBeadModel;
+				
+				alertsView.dataModel = applicationModel as IBeadModel;
+				trace("alerts view set");
+			}
 			
 			private function onAssetsNext():void
 			{
@@ -170,7 +245,7 @@ limitations under the License.
 			
 			<basic:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
 				<basic:views>
-					<views:WatchListView id="watchListView" />
+					<views:WatchListView id="watchListView"/>
 				</basic:views>
 			</basic:StackedViewManager>
 			

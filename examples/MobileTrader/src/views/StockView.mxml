@@ -25,20 +25,75 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[			
+			import models.Stock;
+			
+			import org.apache.flex.events.Event;
 			import org.apache.flex.mobile.StackedViewManager;
+			
+			private var _stock:Stock;
+			
+			[Bindable("stockChanged")]
+			public function get stock():Stock
+			{
+				return _stock;
+			}
+			public function set stock(value:Stock):void
+			{
+				_stock = value;
+				dispatchEvent(new org.apache.flex.events.Event("stockChanged"));
+			}
+			
 			private function onBackClick() : void
 			{
 				(viewManager as StackedViewManager).pop();
 			}
 			
-			private function onNextClick() : void
+			override public function addedToParent():void
 			{
-				var nextView:SearchView = new SearchView();
-				(viewManager as StackedViewManager).push(nextView);
+				super.addedToParent();
+				
+				stockSymbol.text = stock.symbol;
+				stockName.text = stock.name;
+				lastPrice.text = String(stock.last);
+				openPrice.text = String(stock.open);
+				lowPrice.text = String(stock.low);
+				highPrice.text = String(stock.high);
+				changeAmount.text = String(stock.change);
+			}
+			
+			private function removeFromList():void
+			{
+				dispatchEvent(new org.apache.flex.events.Event("removeFromList"));
 			}
 		]]>
 	</fx:Script>
+	
+	<basic:Container>
+		<basic:beads>
+			<basic:NonVirtualVerticalLayout />
+			<basic:ViewBaseDataBinding />
+		</basic:beads>
+		<basic:style>
+			<basic:SimpleCSSStyles top="10px" left="10px" />
+		</basic:style>
 		
-	<basic:Label text="Stock View" x="20" y="100" />
-	<basic:TextButton text="Again" x="20" y="130" click="onNextClick()" />
+		<basic:Label id="stockSymbol" text="{stock.symbol}" className="ViewTitle" />
+		<basic:Label id="stockName" text="{stock.name}" className="StockName"  />
+		
+		<basic:Container className="StockDetailArea">
+			<basic:beads>
+				<basic:VerticalColumnLayout numColumns="2" />
+			</basic:beads>
+			
+			<basic:Label text="Last Price:" className="StockLabel" /> <basic:Label id="lastPrice" className="StockValue" />
+			<basic:Label text="Open Price:" className="StockLabel" /> <basic:Label id="openPrice" className="StockValue" />
+			<basic:Label text="Low  Price:" className="StockLabel" /> <basic:Label id="lowPrice" className="StockValue" />
+			<basic:Label text="High Price:" className="StockLabel" /> <basic:Label id="highPrice" className="StockValue" />
+			<basic:Label text="Change:    " className="StockLabel" /> <basic:Label id="changeAmount" className="StockValue" />
+		</basic:Container>
+		
+		<basic:Container className="StockDetailArea">
+			<basic:TextButton text="Remove From List" width="200" className="StockRemoveButton" click="removeFromList()" />
+		</basic:Container>
+	</basic:Container>
 </basic:View>

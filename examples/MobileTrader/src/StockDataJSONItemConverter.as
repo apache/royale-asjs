@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,23 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:local="*"
-				   xmlns:models="models.*"
-				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
-				   xmlns:controller="controller.*" 
-				   >
-	
-	<basic:valuesImpl>
-		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	
-	<basic:model>
-		<models:ProductsModel />
-	</basic:model>
-	
-	<basic:initialView>
-	   <local:MyInitialView />
-	</basic:initialView>
-</basic:Application>
+package
+{    
+    import org.apache.flex.net.JSONItemConverter;
+    
+    public class StockDataJSONItemConverter extends JSONItemConverter
+    {
+        public function StockDataJSONItemConverter()
+        {
+            super();
+        }
+        
+        override public function convertItem(data:String):Object
+        {
+            var obj:Object = super.convertItem(data);
+			if (obj["query"]["count"] == 0)
+				return "No Data";
+			
+			obj = obj["query"]["results"]["quote"];
+			return obj;
+        }
+    }
+}

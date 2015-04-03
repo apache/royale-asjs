@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,23 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:local="*"
-				   xmlns:models="models.*"
-				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
-				   xmlns:controller="controller.*" 
-				   >
+package renderers
+{
+	import org.apache.flex.html.supportClasses.StringItemRenderer;
 	
-	<basic:valuesImpl>
-		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	
-	<basic:model>
-		<models:ProductsModel />
-	</basic:model>
-	
-	<basic:initialView>
-	   <local:MyInitialView />
-	</basic:initialView>
-</basic:Application>
+	public class AlertRenderer extends StringItemRenderer
+	{
+		public function AlertRenderer()
+		{
+			super();
+		}
+		
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			
+			if (labelField == "greaterThan") {
+				if (Boolean(value[labelField])) {
+					text = "when over "+value["value"];
+				}
+				else {
+					text = "when under "+value["value"];
+				}
+			}
+		}
+	}
+}

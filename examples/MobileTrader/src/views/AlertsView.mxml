@@ -21,7 +21,7 @@ limitations under the License.
 			 title="Alerts"
 				       xmlns:basic="library://ns.apache.org/flexjs/basic"
 				       xmlns:local="*"
-				       className="AlertsView">
+				       className="AlertsView" xmlns:renderers="renderers.*">
 	
 	<fx:Metadata>
 		[Event("next")]
@@ -29,16 +29,70 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+			import controller.AlertsViewController;
+						
+			import org.apache.flex.core.IBeadModel;
 			import org.apache.flex.events.Event;
-			private function gotoNext():void
+			
+			public function set dataModel(value:IBeadModel):void
+			{				
+				(controller as AlertsViewController).model = value;
+			}
+			public function get dataModel():IBeadModel
 			{
-				trace("goto next");
-				dispatchEvent(new org.apache.flex.events.Event("next"));
+				return (controller as AlertsViewController).model;
+			}
+			
+			private function onAlertSet():void
+			{
+				dispatchEvent(new org.apache.flex.events.Event("alertSet"));
 			}
 		]]>
 	</fx:Script>
+		
+	<basic:Container x="4" y="10" >
+		<basic:beads>
+			<basic:NonVirtualHorizontalLayout />
+		</basic:beads>
+		<basic:Label text="Symbol:" />
+		<basic:TextInput id="symbolField" />
+		<basic:Label text="Value:" />
+		<basic:TextInput id="valueField" />
+		<basic:CheckBox text="Higher?" id="higherCheck" />
+		<basic:TextButton text="Set" click="onAlertSet()" />
+	</basic:Container>
 	
-	<basic:Label text="Alerts View" x="20" y="100" />
-	<basic:TextButton text="Next" x="20" y="150" click="gotoNext()" />
+	<basic:DataGrid x="0" y="40" width="480" height="200">
+		<basic:beads>
+			<basic:SimpleBinding
+				eventName="alertAdded"
+				sourceID="dataModel"
+				sourcePropertyName="alerts"
+				destinationPropertyName="dataProvider" />
+		</basic:beads>
+		<basic:columns>
+			<basic:DataGridColumn label="Symbol" dataField="symbol">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:StringItemRenderer />
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:DataGridColumn>
+			<basic:DataGridColumn label="Alert" dataField="greaterThan">
+				<basic:itemRenderer>
+					<fx:Component>
+						<renderers:AlertRenderer />
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:DataGridColumn>
+			<basic:DataGridColumn label="Message" dataField="message">
+				<basic:itemRenderer>
+					<fx:Component>
+						<basic:StringItemRenderer />
+					</fx:Component>
+				</basic:itemRenderer>
+			</basic:DataGridColumn>
+		</basic:columns>
+	</basic:DataGrid>
 	
 </basic:View>
