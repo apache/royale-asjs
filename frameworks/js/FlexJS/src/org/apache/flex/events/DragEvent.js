@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_events_DragEvent');
 
 goog.require('goog.events.BrowserEvent');
+goog.require('org_apache_flex_events_ElementEvents');
 goog.require('org_apache_flex_events_EventDispatcher');
 
 
@@ -132,7 +133,7 @@ org_apache_flex_events_DragEvent.DRAG_DROP = 'dragDrop';
  * @return {boolean}
  */
 org_apache_flex_events_DragEvent.installDragEventMixin = function() {
-  var o = org_apache_flex_events_EventDispatcher.elementEvents;
+  var o = org_apache_flex_events_ElementEvents.elementEvents;
   o['dragEnd'] = 1;
   o['dragMove'] = 1;
   return true;

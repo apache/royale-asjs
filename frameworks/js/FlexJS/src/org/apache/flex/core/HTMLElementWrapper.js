@@ -16,6 +16,7 @@ goog.provide('org_apache_flex_core_HTMLElementWrapper');
 
 goog.require('org_apache_flex_core_IBeadModel');
 goog.require('org_apache_flex_core_IStrand');
+goog.require('org_apache_flex_events_BrowserEvent');
 goog.require('org_apache_flex_events_EventDispatcher');
 goog.require('org_apache_flex_utils_Language');
 
@@ -128,3 +129,34 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 
   return null;
 };
+
+
+/**
+ * @type {function((goog.events.Listener|null), (Object|null)):boolean}
+ */
+org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
+
+/**
+ * Fires a listener with a set of arguments
+ *
+ * @param {goog.events.Listener} listener The listener object to call.
+ * @param {Object} eventObject The event object to pass to the listener.
+ * @return {boolean} Result of listener.
+ */
+org_apache_flex_core_HTMLElementWrapper.fireListenerOverride = function(listener, eventObject) {
+  var e = new org_apache_flex_events_BrowserEvent();
+  e.wrappedEvent = eventObject;
+  return org_apache_flex_core_HTMLElementWrapper.googFireListener(listener, e);
+};
+
+
+org_apache_flex_core_HTMLElementWrapper.installOverride = function() {
+  org_apache_flex_core_HTMLElementWrapper.googFireListener =
+      goog.events.fireListener;
+  goog.events.fireListener = org_apache_flex_core_HTMLElementWrapper.fireListenerOverride;
+};
+
+	
+org_apache_flex_core_HTMLElementWrapper.installedOverride =
+    org_apache_flex_core_HTMLElementWrapper.installOverride();
+	
