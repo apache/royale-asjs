@@ -162,7 +162,11 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
     'MXMLDescriptor': {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
-            return this.MXMLDescriptor;
+            return this.mxmldd;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.mxmldd = value;
         }
     },
     /**
