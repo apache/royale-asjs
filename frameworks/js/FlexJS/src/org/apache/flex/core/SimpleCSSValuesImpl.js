@@ -74,21 +74,15 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
   var cName;
   var selectorName;
 
-  if (typeof(thisObject.hasOwnProperty('style')) === 'function')
-  {
+  try {
     var style = thisObject.style;
-    if (style != null)
-    {
-      try {
-         value = style[valueName];
-      }
-      catch (e) {
-        value = undefined;
-      }
+    if (style != null) {
+      value = style[valueName];
       if (value !== undefined)
         return value;
     }
   }
+  catch(e) {};
 
   if ('className' in thisObject)
   {
