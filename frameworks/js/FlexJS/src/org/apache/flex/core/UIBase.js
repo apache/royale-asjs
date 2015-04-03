@@ -82,6 +82,24 @@ org_apache_flex_core_UIBase = function() {
    */
   this.style_ = null;
 
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.id_ = null;
+
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.className_ = '';
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.model_ = null;
+
   this.createElement();
 };
 goog.inherits(org_apache_flex_core_UIBase,
@@ -286,7 +304,7 @@ org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
   this.beads_.push(bead);
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel))
-    this.model = bead;
+    this.model_ = bead;
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadView)) {
     this.dispatchEvent(new org_apache_flex_events_Event('viewChanged'));
@@ -504,13 +522,13 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     'id': {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
-            return this.id;
+            return this.id_;
         },
         /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
-            if (this.id !== value) {
+            if (this.id_ !== value) {
               this.element.id = value;
-              this.id = value;
+              this.id_ = value;
               this.dispatchEvent('idChanged');
             }
         }
@@ -518,13 +536,13 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     'className': {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
-            return this.className;
+            return this.className_;
         },
         /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
-            if (this.className !== value) {
+            if (this.className_ !== value) {
               this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
-              this.className = value;
+              this.className_ = value;
               this.dispatchEvent('classNameChanged');
             }
         }
@@ -532,7 +550,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     'model': {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
-            if (this.model == null) {
+            if (this.model_ == null) {
               // addbead will set _model
               if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
                 /**
@@ -544,11 +562,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
                 this.addBead(b);
               }
             }
-            return this.model;
+            return this.model_;
         },
         /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
-            if (this.model !== value) {
+            if (this.model_ !== value) {
               this.addBead(value);
               this.dispatchEvent('modelChanged');
             }
@@ -697,28 +715,7 @@ org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
  * @expose
  * @type {string}
  */
-org_apache_flex_core_UIBase.prototype.id = '';
-
-
-/**
- * @expose
- * @type {string}
- */
 org_apache_flex_core_UIBase.prototype.typeNames = '';
-
-
-/**
- * @expose
- * @type {string}
- */
-org_apache_flex_core_UIBase.prototype.className = '';
-
-
-/**
- * @expose
- * @type {Object}
- */
-org_apache_flex_core_UIBase.prototype.model = null;
 
 
 /**
