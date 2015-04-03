@@ -26,9 +26,9 @@ goog.require('org_apache_flex_html_beads_models_RangeModel');
  * @extends {org_apache_flex_core_UIBase}
  */
 org_apache_flex_html_NumericStepper = function() {
+  org_apache_flex_html_NumericStepper.base(this, 'constructor');
   this.model =
       new org_apache_flex_html_beads_models_RangeModel();
-  org_apache_flex_html_NumericStepper.base(this, 'constructor');
 };
 goog.inherits(org_apache_flex_html_NumericStepper,
     org_apache_flex_core_UIBase);
