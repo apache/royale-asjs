@@ -206,16 +206,16 @@ package org.apache.flex.core
                 {
                     var sp:SetProperty = SetProperty(o);
                     if (sp.target != null)
-                        setProperty(getProperty(sp.document, sp.target), sp.name, sp.previousValue);
+                        sp.document[sp.target][sp.name] = sp.previousValue;
                     else
-                        setProperty(sp.document, sp.name, sp.previousValue);
+                        sp.document[sp.name] = sp.previousValue;
                 }
                 else if (o is SetEventHandler)
                 {
                     var seh:SetEventHandler = SetEventHandler(o);
                     if (seh.target != null)
                     {
-                        getProperty(seh.document, seh.target).removeEventListener(seh.name, seh.handlerFunction);
+                        seh.document[seh.target].removeEventListener(seh.name, seh.handlerFunction);
                     }
                     else
                     {
@@ -248,10 +248,10 @@ package org.apache.flex.core
                     {
                         var parent:IParent = ai.document as IParent;
                         if (ai.destination)
-                            parent = getProperty(parent, ai.destination) as IParent;
+                            parent = parent[ai.destination] as IParent;
                         if (ai.relativeTo != null)
                         {
-                            var child:Object = getProperty(ai.document, ai.relativeTo);
+                            var child:Object = ai.document[ai.relativeTo];
                             if (ai.destination)
                                 parent = IChild(child).parent as IParent;
                             var index:int = parent.getElementIndex(child);
@@ -272,13 +272,13 @@ package org.apache.flex.core
                     var sp:SetProperty = SetProperty(o);
                     if (sp.target != null)
                     {
-                        sp.previousValue = getProperty(getProperty(sp.document, sp.target), sp.name);
-                        setProperty(getProperty(sp.document, sp.target), sp.name, sp.value);
+                        sp.previousValue = sp.document[sp.target][sp.name];
+                        sp.document[sp.target][sp.name] = sp.value;
                     }
                     else
                     {
-                        sp.previousValue = getProperty(sp.document, sp.name);
-                        setProperty(sp.document, sp.name, sp.value);                        
+                        sp.previousValue = sp.document[sp.name];
+                        sp.document[sp.name] = sp.value;                        
                     }
                 }
                 else if (o is SetEventHandler)
@@ -286,7 +286,7 @@ package org.apache.flex.core
                     var seh:SetEventHandler = SetEventHandler(o);
                     if (seh.target != null)
                     {
-                        getProperty(seh.document, seh.target).addEventListener(seh.name, seh.handlerFunction);
+                        seh.document[seh.target].addEventListener(seh.name, seh.handlerFunction);
                     }
                     else
                     {

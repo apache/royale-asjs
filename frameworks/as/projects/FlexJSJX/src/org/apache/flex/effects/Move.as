@@ -165,7 +165,7 @@ public class Move extends Tween implements IDocument
 	override public function play():void
 	{
 		if (target != null)
-			actualTarget = getProperty(document, target);
+			actualTarget = document[target];
 		
 		if (isNaN(xFrom))
 			xStart = actualTarget.x;
@@ -220,7 +220,7 @@ public class Move extends Tween implements IDocument
     {
         if (target != null)
         {
-            actualTarget = getProperty(document, target);
+            actualTarget = document[target];
             xFrom = actualTarget.x;
             yFrom = actualTarget.y;
         }
@@ -230,7 +230,7 @@ public class Move extends Tween implements IDocument
     {
         if (target != null)
         {
-            actualTarget = getProperty(document, target);
+            actualTarget = document[target];
             xTo = actualTarget.x;
             yTo = actualTarget.y;
         }
