@@ -27,12 +27,6 @@ org_apache_flex_core_ListBase = function() {
   org_apache_flex_core_ListBase.base(this, 'constructor');
 
   /**
-   * @protected
-   * @type {Array.<Object>}
-   */
-  this.dataProvider = null;
-
-  /**
    * @private
    * @type {number}
    */
