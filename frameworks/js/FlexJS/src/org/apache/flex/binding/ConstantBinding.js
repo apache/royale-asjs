@@ -46,13 +46,10 @@ Object.defineProperties(org_apache_flex_binding_ConstantBinding.prototype, {
             org_apache_flex_utils_Language.superSetter(org_apache_flex_binding_ConstantBinding, this, 'strand', value);
 
             var val;
-            try {
+            if (this.sourcePropertyName in this.source) {
               val = this.source[this.sourcePropertyName];
-            } catch (e) {
-              try {
-                val = this.source.constructor[this.sourcePropertyName];
-              } catch (e2) {
-              }
+            } else if (this.sourcePropertyName in this.source.constructor) {
+              val = this.source.constructor[this.sourcePropertyName];
             }
             this.destination[this.destinationPropertyName] = val;
         }
