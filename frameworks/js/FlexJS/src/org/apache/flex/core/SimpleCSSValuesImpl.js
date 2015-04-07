@@ -82,7 +82,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
         return value;
     }
   }
-  catch(e) {};
+  catch (e) {}
 
   if ('className' in thisObject)
   {
@@ -304,7 +304,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.applyStyles =
   for (var p in styles) {
     //if (styleList[p])
     if (skipStyles[p])
-	  continue;
+      continue;
     var value = styles[p];
     if (typeof(value) == 'number') {
       if (colorStyles[p])

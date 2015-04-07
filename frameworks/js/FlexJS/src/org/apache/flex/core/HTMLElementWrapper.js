@@ -137,6 +137,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
  */
 org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
 
+
 /**
  * Fires a listener with a set of arguments
  *
@@ -151,13 +152,19 @@ org_apache_flex_core_HTMLElementWrapper.fireListenerOverride = function(listener
 };
 
 
+/**
+ * Static initializer
+ */
 org_apache_flex_core_HTMLElementWrapper.installOverride = function() {
   org_apache_flex_core_HTMLElementWrapper.googFireListener =
       goog.events.fireListener;
   goog.events.fireListener = org_apache_flex_core_HTMLElementWrapper.fireListenerOverride;
 };
 
-	
+
+/**
+ * The properties that triggers the static initializer
+ */
 org_apache_flex_core_HTMLElementWrapper.installedOverride =
     org_apache_flex_core_HTMLElementWrapper.installOverride();
-	
+

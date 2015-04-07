@@ -44,7 +44,7 @@ goog.inherits(org_apache_flex_html_beads_models_RangeModel,
 org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
                 qName: 'org_apache_flex_html_beads_models_RangeModel'}],
-      interfaces: [ org_apache_flex_core_IBeadModel] };
+      interfaces: [org_apache_flex_core_IBeadModel]};
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, {

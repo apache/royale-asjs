@@ -62,7 +62,7 @@ Object.defineProperties(org_apache_flex_html5_RadioButton.prototype, {
         }
     },
     /** @expose */
-    text : {
+    text: {
         /** @this {org_apache_flex_html5_RadioButton} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;

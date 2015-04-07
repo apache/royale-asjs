@@ -50,102 +50,103 @@ org_apache_flex_events_BrowserEvent.prototype.wrappedEvent = null;
  */
 org_apache_flex_events_BrowserEvent.prototype.preventDefault = function() {
   this.wrappedEvent.preventDefault();
-}
+};
+
 
 Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
     /** @expose */
     currentTarget: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			var o = this.wrappedEvent.currentTarget;
-			if (o && o.flexjs_wrapper)
-			  return o.flexjs_wrapper;
-			return o;
-		}
-	},
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            var o = this.wrappedEvent.currentTarget;
+            if (o && o.flexjs_wrapper)
+              return o.flexjs_wrapper;
+            return o;
+        }
+    },
     /** @expose */
-	button: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.button;
-		}
-	},
+    button: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.button;
+        }
+    },
     /** @expose */
-	charCode: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.charCode;
-		}
-	},
+    charCode: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.charCode;
+        }
+    },
     /** @expose */
-	clientX: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.clientX;
-		}
-	},
+    clientX: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.clientX;
+        }
+    },
     /** @expose */
-	clientY: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.clientY;
-		}
-	},
+    clientY: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.clientY;
+        }
+    },
     /** @expose */
-	keyCode: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.keyCode;
-		}
-	},
+    keyCode: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.keyCode;
+        }
+    },
     /** @expose */
-	offsetX: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.offsetX;
-		}
-	},
+    offsetX: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.offsetX;
+        }
+    },
     /** @expose */
-	offsetY: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.offsetY;
-		}
-	},
+    offsetY: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.offsetY;
+        }
+    },
     /** @expose */
-	screenX: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.screenX;
-		}
-	},
+    screenX: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.screenX;
+        }
+    },
     /** @expose */
-	screenY: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			return this.wrappedEvent.screenY;
-		}
-	},
+    screenY: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            return this.wrappedEvent.screenY;
+        }
+    },
     /** @expose */
-	relatedTarget: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			var o = this.wrappedEvent.relatedTarget;
-			if (o && o.flexjs_wrapper)
-			  return o.flexjs_wrapper;
-			return o;
-		}
-	},
+    relatedTarget: {
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            var o = this.wrappedEvent.relatedTarget;
+            if (o && o.flexjs_wrapper)
+              return o.flexjs_wrapper;
+            return o;
+        }
+    },
     /** @expose */
     target: {
-		/** @this {org_apache_flex_events_BrowserEvent} */
-		get: function() {
-			var o = this.wrappedEvent.target;
-			if (o && o.flexjs_wrapper)
-			  return o.flexjs_wrapper;
-			return o;
-		}
-	}
+        /** @this {org_apache_flex_events_BrowserEvent} */
+        get: function() {
+            var o = this.wrappedEvent.target;
+            if (o && o.flexjs_wrapper)
+              return o.flexjs_wrapper;
+            return o;
+        }
+    }
 });
 
 

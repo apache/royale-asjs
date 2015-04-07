@@ -40,7 +40,7 @@ goog.inherits(
 org_apache_flex_html_beads_models_ImageModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageModel',
                 qName: 'org_apache_flex_html_beads_models_ImageModel'}],
-      interfaces: [ org_apache_flex_core_IBeadModel] };
+      interfaces: [org_apache_flex_core_IBeadModel]};
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_ImageModel.prototype, {

@@ -180,7 +180,7 @@ org_apache_flex_events_MouseEvent.makeMouseEvent = function(type, e) {
   var out = new MouseEvent(type);
   out.initMouseEvent(type, false, false,
     e.view, e.detail, e.screenX, e.screenY,
-    e.clientX, e.clientY, e.ctrlKey, e.altKey, 
+    e.clientX, e.clientY, e.ctrlKey, e.altKey,
     e.shiftKey, e.metaKey, e.button, e.relatedTarget);
   return out;
 };
