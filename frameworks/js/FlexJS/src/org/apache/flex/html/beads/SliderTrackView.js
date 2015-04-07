@@ -35,7 +35,8 @@ org_apache_flex_html_beads_SliderTrackView
 
 
 Object.defineProperties(org_apache_flex_html_beads_SliderTrackView.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_SliderTrackView} */
         set: function(value) {
             this.strand_ = value;

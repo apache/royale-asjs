@@ -73,10 +73,10 @@ org_apache_flex_core_ViewBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @private
  * @type {Object}
  */
-org_apache_flex_core_ViewBase.prototype.applicationModel = null;
+org_apache_flex_core_ViewBase.prototype.applicationModel_ = null;
 
 
 /**
@@ -86,13 +86,6 @@ org_apache_flex_core_ViewBase.prototype.applicationModel = null;
 org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) {
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
-
-
-/**
- * @expose
- * @type {Array}
- */
-org_apache_flex_core_ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
@@ -156,10 +149,8 @@ org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
 
 
 Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
-    /**
-     * @return {Array} An array of descriptors.
-     */
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.mxmldd;
@@ -169,16 +160,19 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             this.mxmldd = value;
         }
     },
-    /**
-     * @return {Object} The application model.
-     */
-    'applicationModel': {
+    /** @expose */
+    applicationModel: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
-            return this.applicationModel;
+            return this.applicationModel_;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.applicationModel_ = value;
         }
     },
-    'states': {
+    /** @expose */
+    states: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.states_;
@@ -199,7 +193,8 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             }
         }
     },
-    'currentState': {
+    /** @expose */
+    currentState: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.currentState_;
@@ -212,7 +207,8 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             this.dispatchEvent(event);
         }
     },
-    'transitions': {
+    /** @expose */
+    transitions: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
             return this.transitions_;

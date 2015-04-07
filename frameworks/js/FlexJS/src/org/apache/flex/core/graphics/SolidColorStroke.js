@@ -56,7 +56,8 @@ org_apache_flex_core_graphics_SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype, {
-    'color': {
+    /** @expose */
+    color: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
             return this.color_;
@@ -66,7 +67,8 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype
             this.color_ = value;
         }
     },
-    'alpha': {
+    /** @expose */
+    alpha: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
             return this.alpha_;
@@ -76,7 +78,8 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype
             this.alpha_ = value;
         }
     },
-    'weight': {
+    /** @expose */
+    weight: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
             return this.weight_;

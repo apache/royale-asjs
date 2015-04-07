@@ -181,7 +181,8 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
 
 
 Object.defineProperties(org_apache_flex_html_ComboBox.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_ComboBox} */
         get: function() {
             return this.element.childNodes.item(0).value;

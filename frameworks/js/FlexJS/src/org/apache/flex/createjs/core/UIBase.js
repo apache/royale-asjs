@@ -57,35 +57,40 @@ org_apache_flex_createjs_core_UIBase.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
-    'x': {
+    /** @expose */
+    x: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
             this.positioner.x = pixels;
             this.element.getStage().update();
         }
     },
-    'y': {
+    /** @expose */
+    y: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
             this.positioner.y = pixels;
             this.element.getStage().update();
         }
     },
-    'width': {
+    /** @expose */
+    width: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
             this.positioner.width = pixels;
             this.element.getStage().update();
         }
     },
-    'height': {
+    /** @expose */
+    height: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
             this.positioner.height = pixels;
             this.element.getStage().update();
         }
     },
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         get: function() {
              return this.name;
@@ -99,7 +104,8 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             }
         }
     },
-    'model': {
+    /** @expose */
+    model: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         get: function() {
             return this.model;

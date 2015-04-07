@@ -48,7 +48,8 @@ org_apache_flex_createjs_Label.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_createjs_Label} */
         get: function() {
             return this.element.text;

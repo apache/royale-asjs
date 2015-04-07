@@ -53,13 +53,15 @@ org_apache_flex_html_beads_models_ListPresentationModel.prototype.FLEXJS_CLASS_I
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_ListPresentationModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'rowHeight': {
+    /** @expose */
+    rowHeight: {
         /** @this {org_apache_flex_html_beads_models_ListPresentationModel} */
         get: function() {
             return this.rowHeight_;

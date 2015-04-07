@@ -100,7 +100,8 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
 
 
 Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         get: function() {
             return null;
         }

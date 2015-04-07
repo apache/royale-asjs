@@ -65,7 +65,8 @@ org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
-    'entries': {
+    /** @expose */
+    entries: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._entries;
@@ -75,15 +76,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._entries = value;
         }
     },
-    /**
-     *  By default, the LinearGradientStroke defines a transition
-     *  from left to right across the control.
-     *  Use the <code>rotation</code> property to control the transition direction.
-     *  For example, a value of 180.0 causes the transition
-     *  to occur from right to left, rather than from left to right.
-     * @return {number}
-     */
-    'rotation': {
+    /** @expose */
+    rotation: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._rotation;
@@ -93,7 +87,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._rotation = value;
         }
     },
-    'x': {
+    /** @expose */
+    x: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return this._x;
@@ -103,7 +98,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._x = value;
         }
     },
-    'y': {
+    /** @expose */
+    y: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
             this._y = value;
@@ -113,7 +109,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             return this._y;
         }
     },
-    'newId': {
+    /** @expose */
+    newId: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
             return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));

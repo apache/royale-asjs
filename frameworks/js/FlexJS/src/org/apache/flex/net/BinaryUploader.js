@@ -130,13 +130,15 @@ org_apache_flex_net_BinaryUploader.HTTP_METHOD_DELETE = 'DELETE';
 
 
 Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
-    'data': {
+    /** @expose */
+    data: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.element.responseText;
         }
     },
-    'binaryData': {
+    /** @expose */
+    binaryData: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.binaryData_;
@@ -146,7 +148,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.binaryData_ = value;
         }
     },
-    'contentType': {
+    /** @expose */
+    contentType: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.contentType_;
@@ -156,7 +159,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.contentType_ = value;
         }
     },
-    'headers': {
+    /** @expose */
+    headers: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             if (this.headers_ === 'undefined') {
@@ -170,7 +174,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.headers_ = value;
         }
     },
-    'method': {
+    /** @expose */
+    method: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.method_;
@@ -180,7 +185,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.method_ = value;
         }
     },
-    'responseHeaders': {
+    /** @expose */
+    responseHeaders: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
@@ -201,19 +207,22 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             return this.responseHeaders_;
         }
     },
-    'responseURL': {
+    /** @expose */
+    responseURL: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.responseURL_;
         }
     },
-    'status': {
+    /** @expose */
+    status: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.status_;
         }
     },
-    'timeout': {
+    /** @expose */
+    timeout: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.timeout_;
@@ -223,7 +232,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.timeout_ = value;
         }
     },
-    'url': {
+    /** @expose */
+    url: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.url_;
@@ -233,7 +243,8 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.url_ = value;
         }
     },
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.id;
@@ -246,13 +257,15 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             }
         }
     },
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return null;
         }
     },
-    'MXMLProperties': {
+    /** @expose */
+    MXMLProperties: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return null;

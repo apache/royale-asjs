@@ -46,29 +46,33 @@ org_apache_flex_html_beads_ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.prototype, {
-    'contentView': {
+    /** @expose */
+    contentView: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    'resizableView': {
+    /** @expose */
+    resizableView: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    'verticalScrollPosition': {
+    /** @expose */
+    verticalScrollPosition: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
            return this._strand.scrollTop;
         },
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
-    set: function(value) {
+        set: function(value) {
            this._strand.scrollTop = value;
         }
     },
-    'maxVerticalScrollPosition': {
+    /** @expose */
+    maxVerticalScrollPosition: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand.scrollHeight - this._strand.clientHeight;

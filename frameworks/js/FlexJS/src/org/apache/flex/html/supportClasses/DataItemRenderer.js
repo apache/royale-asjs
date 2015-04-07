@@ -70,7 +70,8 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
-    'itemRendererParent': {
+    /** @expose */
+    itemRendererParent: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         get: function() {
             return this.rendererParent_;
@@ -80,13 +81,15 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             this.rendererParent_ = value;
         }
     },
-    'index': {
+    /** @expose */
+    index: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.index_ = value;
         }
     },
-    'dataField': {
+    /** @expose */
+    dataField: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.dataField_ = value;
@@ -96,7 +99,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             return this.dataField_;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.selected_ = value;
@@ -108,7 +112,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             }
         }
     },
-    'hovered': {
+    /** @expose */
+    hovered: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.hovered_ = value;

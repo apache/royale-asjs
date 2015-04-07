@@ -52,7 +52,8 @@ org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_List.prototype, {
-    'itemRenderer': {
+    /** @expose */
+    itemRenderer: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.itemRenderer_;
@@ -62,7 +63,8 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.itemRenderer_ = value;
         }
     },
-    'labelField': {
+    /** @expose */
+    labelField: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.model.labelField;
@@ -72,7 +74,8 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.model.labelField = value;
         }
     },
-    'rowHeight': {
+    /** @expose */
+    rowHeight: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
             return this.presentationModel.rowHeight;
@@ -82,7 +85,8 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.presentationModel.rowHeight = value;
         }
     },
-    'presentationModel': {
+    /** @expose */
+    presentationModel: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
             var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);

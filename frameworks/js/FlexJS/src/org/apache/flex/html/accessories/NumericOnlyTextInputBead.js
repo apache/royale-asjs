@@ -41,7 +41,8 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
 
 
 Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_accessories_NumericOnlyTextInputBead} */
         set: function(value) {
             if (this.strand_ !== value) {

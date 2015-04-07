@@ -167,13 +167,15 @@ org_apache_flex_html5_ComboBox.prototype.buttonClicked =
 
 
 Object.defineProperties(org_apache_flex_html5_ComboBox.prototype, {
-    'dataProvider': {
+    /** @expose */
+    dataProvider: {
         /** @this {org_apache_flex_html5_ComboBox} */
         set: function(value) {
             this.dataProvider = value;
         }
     },
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html5_ComboBox} */
         get: function() {
             return this.element.childNodes.item(0).value;

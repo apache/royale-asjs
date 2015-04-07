@@ -53,83 +53,95 @@ org_apache_flex_events_BrowserEvent.prototype.preventDefault = function() {
 }
 
 Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
-    'currentTarget': {
+    /** @expose */
+    currentTarget: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			var o = this.wrappedEvent.currentTarget;
-			if (o.flexjs_wrapper)
+			if (o && o.flexjs_wrapper)
 			  return o.flexjs_wrapper;
 			return o;
 		}
 	},
-	'button': {
+    /** @expose */
+	button: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.button;
 		}
 	},
-	'charCode': {
+    /** @expose */
+	charCode: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.charCode;
 		}
 	},
-	'clientX': {
+    /** @expose */
+	clientX: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.clientX;
 		}
 	},
-	'clientY': {
+    /** @expose */
+	clientY: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.clientY;
 		}
 	},
-	'keyCode': {
+    /** @expose */
+	keyCode: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.keyCode;
 		}
 	},
-	'offsetX': {
+    /** @expose */
+	offsetX: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.offsetX;
 		}
 	},
-	'offsetY': {
+    /** @expose */
+	offsetY: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.offsetY;
 		}
 	},
-	'screenX': {
+    /** @expose */
+	screenX: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.screenX;
 		}
 	},
-	'screenY': {
+    /** @expose */
+	screenY: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			return this.wrappedEvent.screenY;
 		}
 	},
-	'relatedTarget': {
+    /** @expose */
+	relatedTarget: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			var o = this.wrappedEvent.relatedTarget;
-			if (o.flexjs_wrapper)
+			if (o && o.flexjs_wrapper)
 			  return o.flexjs_wrapper;
 			return o;
 		}
 	},
-    'target': {
+    /** @expose */
+    target: {
 		/** @this {org_apache_flex_events_BrowserEvent} */
 		get: function() {
 			var o = this.wrappedEvent.target;
-			if (o.flexjs_wrapper)
+			if (o && o.flexjs_wrapper)
 			  return o.flexjs_wrapper;
 			return o;
 		}

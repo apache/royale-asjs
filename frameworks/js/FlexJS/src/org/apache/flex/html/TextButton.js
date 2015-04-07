@@ -40,7 +40,8 @@ org_apache_flex_html_TextButton.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_TextButton.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_TextButton} */
         get: function() {
             return this.element.innerHTML;

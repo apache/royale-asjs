@@ -62,7 +62,8 @@ org_apache_flex_html_CheckBox.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_CheckBox.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_CheckBox} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;
@@ -72,7 +73,8 @@ Object.defineProperties(org_apache_flex_html_CheckBox.prototype, {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_html_CheckBox} */
         get: function() {
             return this.element.childNodes.item(0).checked;

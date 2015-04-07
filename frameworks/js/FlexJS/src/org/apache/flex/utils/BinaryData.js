@@ -47,13 +47,15 @@ org_apache_flex_utils_BinaryData.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_utils_BinaryData.prototype, {
-    'data': {
+    /** @expose */
+    data: {
         /** @this {org_apache_flex_utils_BinaryData} */
         get: function() {
             return this.data_;
         }
     },
-    'position': {
+    /** @expose */
+    position: {
         /** @this {org_apache_flex_utils_BinaryData} */
         get: function() {
             return this.position_;
@@ -63,13 +65,15 @@ Object.defineProperties(org_apache_flex_utils_BinaryData.prototype, {
             this.position_ = value;
         }
     },
-    'length': {
+    /** @expose */
+    length: {
         /** @this {org_apache_flex_utils_BinaryData} */
         get: function() {
             return this.data_.byteLength;
         }
     },
-    'bytesAvailable': {
+    /** @expose */
+    bytesAvailable: {
         /** @this {org_apache_flex_utils_BinaryData} */
         get: function() {
             return this.data_.byteLength - this.position_;

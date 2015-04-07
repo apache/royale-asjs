@@ -70,7 +70,8 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
 
 
 Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_binding_SimpleBinding} */
          set: function(value) {
             org_apache_flex_utils_Language.superSetter(

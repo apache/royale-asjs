@@ -142,19 +142,22 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
-    'beads': {
+    /** @expose */
+    beads: {
         /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.beads_ = value;
         }
     },
-    'data': {
+    /** @expose */
+    data: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.element.responseText;
         }
     },
-    'contentData': {
+    /** @expose */
+    contentData: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.contentData_;
@@ -164,7 +167,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.contentData_ = value;
         }
     },
-    'contentType': {
+    /** @expose */
+    contentType: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.contentType_;
@@ -174,7 +178,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.contentType_ = value;
         }
     },
-    'headers': {
+    /** @expose */
+    headers: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             if (this.headers_ === undefined) {
@@ -188,7 +193,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.headers_ = value;
         }
     },
-    'method': {
+    /** @expose */
+    method: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.method_;
@@ -198,7 +204,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.method_ = value;
         }
     },
-    'responseHeaders': {
+    /** @expose */
+    responseHeaders: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
@@ -219,19 +226,22 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             return this.responseHeaders_;
         }
     },
-    'responseURL': {
+    /** @expose */
+    responseURL: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.responseURL_;
         }
     },
-    'status': {
+    /** @expose */
+    status: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.status_;
         }
     },
-    'timeout': {
+    /** @expose */
+    timeout: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.timeout_;
@@ -241,7 +251,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.timeout_ = value;
         }
     },
-    'url': {
+    /** @expose */
+    url: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.url_;
@@ -251,7 +262,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.url_ = value;
         }
     },
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.id_;
@@ -264,13 +276,15 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             }
         }
     },
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;
         }
     },
-    'MXMLProperties': {
+    /** @expose */
+    MXMLProperties: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;

@@ -45,7 +45,8 @@ org_apache_flex_html_beads_ButtonBarView.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_ButtonBarView.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_ButtonBarView} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(

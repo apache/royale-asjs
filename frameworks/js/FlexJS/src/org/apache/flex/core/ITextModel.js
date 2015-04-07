@@ -36,7 +36,8 @@ org_apache_flex_core_ITextModel = function() {
 
 
 Object.defineProperties(org_apache_flex_core_ITextModel.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         set: function(value) {},
         get: function() {}
     }

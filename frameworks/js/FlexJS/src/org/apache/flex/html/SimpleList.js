@@ -58,7 +58,8 @@ org_apache_flex_html_SimpleList.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
-    'dataProvider': {
+    /** @expose */
+    dataProvider: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {
             return this.model.dataProvider;
@@ -83,7 +84,8 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
             }
         }
     },
-    'selectedIndex': {
+    /** @expose */
+    selectedIndex: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {
             return this.model.selectedIndex;
@@ -93,7 +95,8 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
             this.model.selectedIndex = value;
         }
     },
-    'selectedItem': {
+    /** @expose */
+    selectedItem: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {
             return this.model.selectedItem;

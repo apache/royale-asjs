@@ -94,7 +94,8 @@ org_apache_flex_createjs_CheckBox.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
             return this.checkBoxLabel.text;
@@ -104,7 +105,8 @@ Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
             this.checkBoxLabel.text = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
             return this.selected;

@@ -57,13 +57,15 @@ org_apache_flex_html_beads_models_PanelModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_PanelModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'title': {
+    /** @expose */
+    title: {
         /** @this {org_apache_flex_html_beads_models_PanelModel} */
         get: function() {
             return this.title_;
@@ -76,7 +78,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, 
             }
         }
     },
-    'htmlTitle': {
+    /** @expose */
+    htmlTitle: {
         /** @this {org_apache_flex_html_beads_models_PanelModel} */
         get: function() {
             return this.htmlTitle_;
@@ -89,7 +92,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, 
             }
         }
     },
-    'showCloseButton': {
+    /** @expose */
+    showCloseButton: {
         /** @this {org_apache_flex_html_beads_models_PanelModel} */
         get: function() {
             return this.showCloseButton_;

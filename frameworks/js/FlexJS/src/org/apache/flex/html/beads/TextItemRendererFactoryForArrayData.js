@@ -50,7 +50,8 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
 
 
 Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_TextItemRendererFactoryForArrayData} */
         set: function(value) {
             this.strand_ = value;

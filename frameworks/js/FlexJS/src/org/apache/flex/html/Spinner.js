@@ -75,7 +75,8 @@ org_apache_flex_html_Spinner.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
-    'minimum': {
+    /** @expose */
+    minimum: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.minimum_;
@@ -88,7 +89,8 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    'maximum': {
+    /** @expose */
+    maximum: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.maximum_;
@@ -101,7 +103,8 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    'snapInterval': {
+    /** @expose */
+    snapInterval: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.snapInterval_;
@@ -114,7 +117,8 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    'stepSize': {
+    /** @expose */
+    stepSize: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.stepSize_;
@@ -127,7 +131,8 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    'value': {
+    /** @expose */
+    value: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
             return this.value_;

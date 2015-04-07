@@ -55,7 +55,8 @@ org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
 
 
 Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_binding_GenericBinding} */
         set: function(value) {
             this.destination = value;

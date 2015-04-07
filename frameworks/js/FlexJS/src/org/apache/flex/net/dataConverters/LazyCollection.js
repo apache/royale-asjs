@@ -71,7 +71,8 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         set: function(value) {
             if (this.strand_ !== value) {
@@ -81,13 +82,15 @@ Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.protot
             }
         }
     },
-    'length': {
+    /** @expose */
+    length: {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.rawData_ ? this.rawData_.length : 0;
         }
     },
-    'inputParser': {
+    /** @expose */
+    inputParser: {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.inputParser_;
@@ -97,7 +100,8 @@ Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.protot
             this.inputParser_ = value;
         }
     },
-    'itemConverter': {
+    /** @expose */
+    itemConverter: {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.itemConverter_;
@@ -107,7 +111,8 @@ Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.protot
             this.itemConverter_ = value;
         }
     },
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
         get: function() {
             return this.id_;

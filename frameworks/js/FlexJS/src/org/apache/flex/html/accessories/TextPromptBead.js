@@ -40,7 +40,8 @@ org_apache_flex_html_accessories_TextPromptBead.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         set: function(value) {
             if (this.strand_ !== value) {
@@ -49,7 +50,8 @@ Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototyp
             }
         }
     },
-    'prompt': {
+    /** @expose */
+    prompt: {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         get: function() {
             return this.prompt;

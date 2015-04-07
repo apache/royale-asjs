@@ -70,7 +70,8 @@ org_apache_flex_charts_core_ChartBase.prototype.series_ = null;
 
 
 Object.defineProperties(org_apache_flex_charts_core_ChartBase.prototype, {
-    'series': {
+    /** @expose */
+    series: {
         /** @this {org_apache_flex_charts_core_ChartBase} */
         get: function() {
              return this.series_;

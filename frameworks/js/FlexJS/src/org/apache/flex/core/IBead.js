@@ -41,7 +41,8 @@ org_apache_flex_core_IBead.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_IBead.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_binding_GenericBinding} */
         set: function(value) {}
     }

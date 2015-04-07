@@ -50,7 +50,8 @@ org_apache_flex_core_graphics_SolidColor.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
-    'color': {
+    /** @expose */
+    color: {
         /** @this {org_apache_flex_core_graphics_SolidColor} */
         get: function() {
             return this.color_;
@@ -60,7 +61,8 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
             this.color_ = value;
         }
     },
-    'alpha': {
+    /** @expose */
+    alpha: {
         /** @this {org_apache_flex_core_graphics_SolidColor} */
         get: function() {
             return this.alpha_;

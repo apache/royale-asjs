@@ -54,7 +54,8 @@ org_apache_flex_core_ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_ViewBaseDataBinding.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_core_ViewBaseDataBinding} */
         set: function(value) {
             if (this.strand_ !== value) {

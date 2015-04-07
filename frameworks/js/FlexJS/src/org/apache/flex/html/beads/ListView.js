@@ -51,7 +51,8 @@ org_apache_flex_html_beads_ListView.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_ListView} */
         set: function(value) {
             this.strand_ = value;
@@ -87,7 +88,8 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
             this.handleSizeChange(null);
         }
     },
-    'dataGroup': {
+    /** @expose */
+    dataGroup: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this.dataGroup_;
@@ -131,19 +133,22 @@ org_apache_flex_html_beads_ListView.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
-    'contentView': {
+    /** @expose */
+    contentView: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this.dataGroup_;
         }
     },
-    'border': {
+    /** @expose */
+    border: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return null;
         }
     },
-    'vScrollBar': {
+    /** @expose */
+    vScrollBar: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return null;
@@ -152,7 +157,8 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
         set: function(value) {
         }
     },
-    'resizeableView': {
+    /** @expose */
+    resizeableView: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this;

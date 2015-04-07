@@ -88,7 +88,8 @@ org_apache_flex_html_RadioButton.prototype.initSkin =
 
 
 Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(org_apache_flex_html_RadioButton, this, 'id', value);
@@ -96,7 +97,8 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.id = value;
         }
     },
-    'groupName': {
+    /** @expose */
+    groupName: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.name;
@@ -106,7 +108,8 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.name = value;
         }
     },
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.textNode.nodeValue;
@@ -116,7 +119,8 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.textNode.nodeValue = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.checked;
@@ -126,7 +130,8 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.checked = value;
         }
     },
-    'value': {
+    /** @expose */
+    value: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             return this.input.value;
@@ -136,7 +141,8 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.value = value;
         }
     },
-    'selectedValue': {
+    /** @expose */
+    selectedValue: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
             var buttons, groupName, i, n;

@@ -44,7 +44,8 @@ org_apache_flex_html_MultilineLabel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_MultilineLabel.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_MultilineLabel} */
         get: function() {
             return this.element.innerHTML;
@@ -54,7 +55,8 @@ Object.defineProperties(org_apache_flex_html_MultilineLabel.prototype, {
             this.element.innerHTML = value;
         }
     },
-    'html': {
+    /** @expose */
+    html: {
         /** @this {org_apache_flex_html_MultilineLabel} */
         get: function() {
             return this.element.innerHTML;

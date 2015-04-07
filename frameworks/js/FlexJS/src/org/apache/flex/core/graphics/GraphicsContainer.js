@@ -50,13 +50,15 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = fu
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototype, {
-    'numChildren': {
+    /** @expose */
+    numChildren: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         get: function() {
             return this.internalChildren().length;
         }
     },
-    'width': {
+    /** @expose */
+    width: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
@@ -65,7 +67,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.style.width = String(value) + 'px';
         }
     },
-    'height': {
+    /** @expose */
+    height: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
@@ -74,7 +77,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.style.height = String(value) + 'px';
         }
     },
-    'x': {
+    /** @expose */
+    x: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(
@@ -85,7 +89,8 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.offsetLeft = value;
         }
     },
-    'y': {
+    /** @expose */
+    y: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
             org_apache_flex_utils_Language.superSetter(

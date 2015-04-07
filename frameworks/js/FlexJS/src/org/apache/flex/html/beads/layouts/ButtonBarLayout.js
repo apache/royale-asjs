@@ -44,7 +44,8 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
@@ -63,7 +64,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.proto
             }
         }
     },
-    'buttonWidths': {
+    /** @expose */
+    buttonWidths: {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {
             this.buttonWidths_ = value;

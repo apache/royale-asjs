@@ -117,7 +117,8 @@ org_apache_flex_html_Alert.show =
 
 
 Object.defineProperties(org_apache_flex_html_Alert.prototype, {
-    'title': {
+    /** @expose */
+    title: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.titleBar.title;
@@ -127,7 +128,8 @@ Object.defineProperties(org_apache_flex_html_Alert.prototype, {
             this.titleBar.title = value;
         }
     },
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.message.text;
@@ -137,7 +139,8 @@ Object.defineProperties(org_apache_flex_html_Alert.prototype, {
             this.message.text = value;
         }
     },
-    'flags': {
+    /** @expose */
+    flags: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {
             return this.flags;

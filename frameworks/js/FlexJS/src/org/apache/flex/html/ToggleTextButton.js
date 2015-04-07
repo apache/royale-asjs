@@ -48,7 +48,8 @@ org_apache_flex_html_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_ToggleTextButton.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_html_ToggleTextButton} */
         get: function() {
             return this.element.innerHTML;
@@ -58,7 +59,8 @@ Object.defineProperties(org_apache_flex_html_ToggleTextButton.prototype, {
             this.element.innerHTML = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_html_ToggleTextButton} */
         get: function() {
              return this.selected_;

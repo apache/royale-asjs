@@ -32,19 +32,23 @@ org_apache_flex_core_IContentView = function() {
 
 
 Object.defineProperties(org_apache_flex_core_IContentView.prototype, {
-    'x': {
+    /** @expose */
+    x: {
         get: function() {},
         set: function(value) {}
     },
-    'y': {
+    /** @expose */
+    y: {
         get: function() {},
         set: function(value) {}
     },
-    'width': {
+    /** @expose */
+    width: {
         get: function() {},
         set: function(value) {}
     },
-    'height': {
+    /** @expose */
+    height: {
         get: function() {},
         set: function(value) {}
     }

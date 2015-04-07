@@ -37,7 +37,8 @@ goog.inherits(org_apache_flex_createjs_core_ViewBase,
 
 
 Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
-    'applicationModel': {
+    /** @expose */
+    applicationModel: {
         /** @this {org_apache_flex_createjs_core_ViewBase} */
         get: function() {
             return this.applicationModel_;

@@ -73,20 +73,23 @@ org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 
 Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_core_FormatBase} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'propertyValue': {
+    /** @expose */
+    propertyValue: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             var value = this.strand_[this.propertyName];
             return value;
         }
     },
-    'propertyName': {
+    /** @expose */
+    propertyName: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             if (this._propertyName == null) {
@@ -99,7 +102,8 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
             this._propertyName = value;
         }
     },
-    'eventName': {
+    /** @expose */
+    eventName: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
             if (this._eventName == null) {
@@ -112,7 +116,8 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
             this._eventName = value;
         }
     },
-    'formattedString': {
+    /** @expose */
+    formattedString: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
              return null;

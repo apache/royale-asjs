@@ -101,7 +101,8 @@ org_apache_flex_jquery_RadioButton.prototype.addedToParent =
 
 
 Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
-    'id': {
+    /** @expose */
+    id: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         set: function(value) {
             org_apache_flex_utils_Language(org_apache_flex_jquery_RadioButton.base, this, 'id', value);
@@ -109,7 +110,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.labelFor.htmlFor = value;
         }
     },
-    'groupName': {
+    /** @expose */
+    groupName: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
             return this.radioGroupName;
@@ -120,7 +122,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
            this.input.name = value;
         }
     },
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
             return this.labelFor.innerHTML;
@@ -130,7 +133,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.labelFor.innerHTML = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
             return this.input.checked;
@@ -140,7 +144,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.input.checked = value;
         }
     },
-    'value': {
+    /** @expose */
+    value: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
             return this.input.value;
@@ -150,7 +155,8 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.input.value = value;
         }
     },
-    'selectedValue': {
+    /** @expose */
+    selectedValue: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
             var buttons, groupName, i, n;

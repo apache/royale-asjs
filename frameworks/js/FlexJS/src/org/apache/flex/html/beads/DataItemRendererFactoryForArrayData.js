@@ -59,7 +59,8 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
 
 
 Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
         set: function(value) {
             this.strand_ = value;
@@ -87,7 +88,8 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
             this.dataProviderChangedHandler(null);
         }
     },
-    'itemRendererClass': {
+    /** @expose */
+    itemRendererClass: {
         /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
         get: function() {
             if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {

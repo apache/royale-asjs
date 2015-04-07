@@ -41,7 +41,8 @@ org_apache_flex_html_accessories_PasswordInputBead.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_accessories_PasswordInputBead.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_accessories_PasswordInputBead} */
         set: function(value) {
             if (this.strand_ !== value) {

@@ -75,7 +75,8 @@ org_apache_flex_svg_TextButton.prototype.finalizeElement =
 
 
 Object.defineProperties(org_apache_flex_svg_TextButton.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_svg_TextButton} */
         get: function() {
             return this.element.getAttribute('label');

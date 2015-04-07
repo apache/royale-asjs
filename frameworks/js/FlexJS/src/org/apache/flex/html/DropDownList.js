@@ -59,7 +59,8 @@ org_apache_flex_html_DropDownList.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
-    'dataProvider': {
+    /** @expose */
+    dataProvider: {
         /** @this {org_apache_flex_html_DropDownList} */
         set: function(value) {
             var dp, i, n, opt;
@@ -80,14 +81,16 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
             }
         }
     },
-    'selectedIndex': {
+    /** @expose */
+    selectedIndex: {
         /** @this {org_apache_flex_html_DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
             this.element.selectedIndex = value;
         }
     },
-    'selectedItem': {
+    /** @expose */
+    selectedItem: {
         /** @this {org_apache_flex_html_DropDownList} */
         get: function(value) {
             this.model.selectedItem = value;

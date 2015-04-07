@@ -80,13 +80,15 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
-    'token': {
+    /** @expose */
+    token: {
         /** @this {org_apache_flex_maps_google_Map} */
         set: function(value) {
             this.token = value;
         }
     },
-    'selectedMarker': {
+    /** @expose */
+    selectedMarker: {
         /** @this {org_apache_flex_maps_google_Map} */
         get: function() {
             return this._selectedMarker;

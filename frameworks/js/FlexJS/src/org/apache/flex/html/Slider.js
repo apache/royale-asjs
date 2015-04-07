@@ -74,7 +74,8 @@ org_apache_flex_html_Slider.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Slider.prototype, {
-    'value': {
+    /** @expose */
+    value: {
         /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.value;
@@ -85,7 +86,8 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
             this.setThumbFromValue(this.model.value);
         }
     },
-    'minimum': {
+    /** @expose */
+    minimum: {
         /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.minimum;
@@ -95,7 +97,8 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
             this.model.minimum = value;
         }
     },
-    'maximum': {
+    /** @expose */
+    maximum: {
         /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.maximum;
@@ -105,7 +108,8 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
             this.model.maximum = value;
         }
     },
-    'snapInterval': {
+    /** @expose */
+    snapInterval: {
         /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.snapInterval;
@@ -115,7 +119,8 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
             this.model.snapInterval = value;
         }
     },
-    'stepSize': {
+    /** @expose */
+    stepSize: {
         /** @this {org_apache_flex_html_Slider} */
         get: function() {
             return this.model.stepSize;

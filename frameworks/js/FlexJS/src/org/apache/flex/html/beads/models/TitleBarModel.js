@@ -60,13 +60,15 @@ org_apache_flex_html_beads_models_TitleBarModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_TitleBarModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'title': {
+    /** @expose */
+    title: {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         get: function() {
             return this.title_;
@@ -79,7 +81,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_TitleBarModel.prototyp
             }
         }
     },
-    'htmlTitle': {
+    /** @expose */
+    htmlTitle: {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         get: function() {
             return this.htmlTitle_;
@@ -92,7 +95,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_TitleBarModel.prototyp
             }
         }
     },
-    'showCloseButton': {
+    /** @expose */
+    showCloseButton: {
         /** @this {org_apache_flex_html_beads_models_TitleBarModel} */
         get: function() {
             return this.showCloseButton_;

@@ -66,7 +66,8 @@ org_apache_flex_core_Application.prototype.model = null;
 
 
 Object.defineProperties(org_apache_flex_core_Application.prototype, {
-    'valuesImpl': {
+    /** @expose */
+    valuesImpl: {
         /** @this {org_apache_flex_core_Application} */
         set: function(value) {
             org_apache_flex_core_ValuesManager.valuesImpl = value;
@@ -75,8 +76,9 @@ Object.defineProperties(org_apache_flex_core_Application.prototype, {
             }
         }
     },
-    'MXMLDescriptor': {
-            /** @this {org_apache_flex_core_Application} */
+    /** @expose */
+    MXMLDescriptor: {
+        /** @this {org_apache_flex_core_Application} */
         get: function() {
             return null;
         }

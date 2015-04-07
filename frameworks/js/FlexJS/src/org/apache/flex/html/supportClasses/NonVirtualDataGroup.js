@@ -45,13 +45,15 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype.FLEXJS_CLASS_I
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'numElements': {
+    /** @expose */
+    numElements: {
         /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
         get: function() {
 

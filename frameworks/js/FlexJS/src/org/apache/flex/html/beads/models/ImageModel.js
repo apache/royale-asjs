@@ -44,13 +44,15 @@ org_apache_flex_html_beads_models_ImageModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_ImageModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_ImageModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'source': {
+    /** @expose */
+    source: {
         /** @this {org_apache_flex_html_beads_models_ImageModel} */
         get: function() {
             return this.source_;

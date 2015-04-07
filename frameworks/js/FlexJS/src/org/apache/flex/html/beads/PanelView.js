@@ -49,7 +49,8 @@ org_apache_flex_html_beads_PanelView
 
 
 Object.defineProperties(org_apache_flex_html_beads_PanelView.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_PanelView} */
         set: function(value) {
             this.strand_ = value;
@@ -73,7 +74,8 @@ Object.defineProperties(org_apache_flex_html_beads_PanelView.prototype, {
                 goog.bind(this.changeHandler, this));
         }
     },
-    'titleBar': {
+    /** @expose */
+    titleBar: {
         /** @this {org_apache_flex_html_beads_PanelView} */
         get: function() {
             return this.titleBar_;

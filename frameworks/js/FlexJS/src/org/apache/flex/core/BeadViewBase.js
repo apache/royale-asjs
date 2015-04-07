@@ -51,7 +51,8 @@ org_apache_flex_core_BeadViewBase.prototype._strand = null;
 
 
 Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_core_BeadViewBase} */
         set: function(value) {
             if (this._strand !== value) {
@@ -59,7 +60,8 @@ Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
             }
         }
     },
-    'host': {
+    /** @expose */
+    host: {
         /** @this {org_apache_flex_core_BeadViewBase} */
         get: function() {
             return this._strand;

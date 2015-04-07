@@ -46,13 +46,15 @@ org_apache_flex_html_beads_models_ArraySelectionModel.prototype.FLEXJS_CLASS_INF
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'dataProvider': {
+    /** @expose */
+    dataProvider: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
             return this.dataProvider_;
@@ -63,7 +65,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('dataProviderChanged');
         }
     },
-    'selectedIndex': {
+    /** @expose */
+    selectedIndex: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
             return this.selectedIndex_;
@@ -74,7 +77,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('selectedIndexChanged');
         }
     },
-    'selectedItem': {
+    /** @expose */
+    selectedItem: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
             var si;
@@ -106,7 +110,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('selectedIndexChanged');
         }
     },
-    'labelField': {
+    /** @expose */
+    labelField: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
             return this.labelField_;

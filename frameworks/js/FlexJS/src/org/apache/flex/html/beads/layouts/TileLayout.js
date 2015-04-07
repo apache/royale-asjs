@@ -41,7 +41,8 @@ org_apache_flex_html_beads_layouts_TileLayout.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
@@ -53,7 +54,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
             }
         }
     },
-    'numColumns': {
+    /** @expose */
+    numColumns: {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         get: function() {
             return this._numColumns;
@@ -63,7 +65,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
             this._numColumns = value;
         }
     },
-    'columnWidth': {
+    /** @expose */
+    columnWidth: {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         get: function() {
             return this._columnWidth;
@@ -73,7 +76,8 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
             this._columnWidth = value;
         }
     },
-    'rowHeight': {
+    /** @expose */
+    rowHeight: {
         /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
         get: function() {
             return this._rowHeight;

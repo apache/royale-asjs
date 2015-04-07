@@ -89,10 +89,8 @@ org_apache_flex_core_graphics_GraphicShape.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
-    /**
-     * @type {org_apache_flex_core_graphics_IFill}
-     */
-    'fill': {
+    /** @expose */
+    fill: {
         /** @this {org_apache_flex_core_graphics_GraphicShape} */
         get: function() {
             return this.fill_;
@@ -102,10 +100,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
             this.fill_ = value;
         }
     },
-    /**
-     * @type {org_apache_flex_core_graphics_IStroke} The stroke object.
-     */
-    'stroke': {
+    stroke: {
         /** @this {org_apache_flex_core_graphics_GraphicShape} */
         get: function() {
             return this.stroke_;

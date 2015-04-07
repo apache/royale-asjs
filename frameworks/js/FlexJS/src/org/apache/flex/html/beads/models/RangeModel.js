@@ -48,13 +48,15 @@ org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    'minimum': {
+    /** @expose */
+    minimum: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
             return this.minimum_;
@@ -67,7 +69,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    'maximum': {
+    /** @expose */
+    maximum: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
             return this.maximum_;
@@ -80,7 +83,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    'value': {
+    /** @expose */
+    value: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
             return this.value_;
@@ -100,7 +104,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    'snapInterval': {
+    /** @expose */
+    snapInterval: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
             return this.snapInterval_;
@@ -113,7 +118,8 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    'stepSize': {
+    /** @expose */
+    stepSize: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
             return this.stepSize_;

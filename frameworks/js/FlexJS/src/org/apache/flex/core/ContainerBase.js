@@ -130,13 +130,15 @@ org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
 
 
 Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
             return this.mxmlDescriptor;
         }
     },
-    'states': {
+    /** @expose */
+    states: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
             return this.states_;
@@ -157,7 +159,8 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
             }
         }
     },
-    'currentState': {
+    /** @expose */
+    currentState: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
              return this.currentState_;
@@ -170,7 +173,8 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
              this.dispatchEvent(event);
         }
     },
-    'transitions': {
+    /** @expose */
+    transitions: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
              return this.transitions_;

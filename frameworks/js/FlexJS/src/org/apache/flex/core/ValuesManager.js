@@ -43,7 +43,8 @@ org_apache_flex_core_ValuesManager.prototype.valuesImpl = null;
 
 
 Object.defineProperties(org_apache_flex_core_ValuesManager.prototype, {
-    'valuesImpl': {
+    /** @expose */
+    valuesImpl: {
         /** @this {org_apache_flex_core_ValuesManager} */
         get: function() {
             return org_apache_flex_core_ValuesManager.valuesImpl;

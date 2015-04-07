@@ -77,13 +77,15 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAtt
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
-    'MXMLDescriptor': {
+    /** @expose */
+    MXMLDescriptor: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return null;
         }
     },
-    'data': {
+    /** @expose */
+    data: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.data_;
@@ -93,7 +95,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.data_ = value;
         }
     },
-    'labelField': {
+    /** @expose */
+    labelField: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.labelField_;
@@ -103,7 +106,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.labelField_ = value;
         }
     },
-    'index': {
+    /** @expose */
+    index: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.index_;
@@ -113,7 +117,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.index_ = value;
         }
     },
-    'hovered': {
+    /** @expose */
+    hovered: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.hovered_;
@@ -123,7 +128,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.hovered_ = value;
         }
     },
-    'selected': {
+    /** @expose */
+    selected: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.selected_;
@@ -133,7 +139,8 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.selected_ = value;
         }
     },
-    'down': {
+    /** @expose */
+    down: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return this.down_;

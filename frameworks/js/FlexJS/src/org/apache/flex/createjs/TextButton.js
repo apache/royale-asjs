@@ -76,7 +76,8 @@ org_apache_flex_createjs_TextButton.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_TextButton.prototype, {
-    'text': {
+    /** @expose */
+    text: {
         /** @this {org_apache_flex_createjs_TextButton} */
         get: function() {
             return this.buttonLabel.text;

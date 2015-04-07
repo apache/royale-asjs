@@ -42,7 +42,8 @@ org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout.
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout.prototype, {
-    'strand': {
+    /** @expose */
+    strand: {
         /** @this {org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
