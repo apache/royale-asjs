@@ -72,7 +72,7 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
   n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
-    child.positioner.internalDisplay = 'none';
+    child.positioner.internalDisplay = 'block';
     var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');
     var right = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'right');
     var top = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'top');

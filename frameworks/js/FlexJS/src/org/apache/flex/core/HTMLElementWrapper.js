@@ -62,7 +62,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.strand = null;
  * @protected
  * @type {boolean}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'none';
+org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'inline';
 
 
 /**
