@@ -155,12 +155,16 @@ org_apache_flex_utils_Language.is = function(leftOperand, rightOperand) {
  * trace()
  *
  * @expose
- * @param {string=} opt_value The message to be written to the console.
+ * @param {...Object} var_args The message(s) to be written to the console.
  */
-org_apache_flex_utils_Language.trace = function(opt_value) {
+org_apache_flex_utils_Language.trace = function(var_args) {
   var theConsole;
 
-  opt_value = (opt_value !== undefined) ? opt_value : '';
+  var msg = '';
+  for (var i = 0; i < arguments.length; i++) {
+    if (i > 0) msg += ' ';
+    msg += arguments[i];
+  }
 
   theConsole = goog.global.console;
 
@@ -169,7 +173,7 @@ org_apache_flex_utils_Language.trace = function(opt_value) {
 
   try {
     if (theConsole && theConsole.log) {
-      theConsole.log(opt_value);
+      theConsole.log(msg);
     }
   } catch (e) {
     // ignore; at least we tried ;-)
