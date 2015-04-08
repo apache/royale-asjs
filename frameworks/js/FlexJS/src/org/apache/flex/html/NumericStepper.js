@@ -26,9 +26,9 @@ goog.require('org_apache_flex_html_beads_models_RangeModel');
  * @extends {org_apache_flex_core_UIBase}
  */
 org_apache_flex_html_NumericStepper = function() {
+  org_apache_flex_html_NumericStepper.base(this, 'constructor');
   this.model =
       new org_apache_flex_html_beads_models_RangeModel();
-  org_apache_flex_html_NumericStepper.base(this, 'constructor');
 };
 goog.inherits(org_apache_flex_html_NumericStepper,
     org_apache_flex_core_UIBase);
@@ -79,9 +79,9 @@ org_apache_flex_html_NumericStepper.prototype.createElement =
       goog.bind(this.spinnerChange, this));
 
   this.element.flexjs_wrapper = this;
-  this.set_className('NumericStepper');
+  this.className = 'NumericStepper';
 
-  this.input.set_text(String(this.spinner.get_value()));
+  this.input.text = String(this.spinner.value);
 
   return this.element;
 };
@@ -93,110 +93,69 @@ org_apache_flex_html_NumericStepper.prototype.createElement =
 org_apache_flex_html_NumericStepper.prototype.spinnerChange =
     function(event)
     {
-  var newValue = this.spinner.get_value();
-  this.set_value(newValue);
-  this.input.set_text(String(this.spinner.get_value()));
+  var newValue = this.spinner.value;
+  this.value = newValue;
+  this.input.text = String(this.spinner.value);
   this.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
 };
 
 
-/**
- * @expose
- * @return {Number} The current minimum value.
- */
-org_apache_flex_html_NumericStepper.prototype.get_minimum =
-    function() {
-  return this.model.get_minimum();
-};
-
-
-/**
- * @expose
- * @param {Number} value The new minimum value.
- */
-org_apache_flex_html_NumericStepper.prototype.set_minimum =
-    function(value) {
-  this.model.set_minimum(value);
-};
-
-
-/**
- * @expose
- * @return {Number} The current maximum value.
- */
-org_apache_flex_html_NumericStepper.prototype.get_maximum =
-    function() {
-  return this.model.get_maximum();
-};
-
-
-/**
- * @expose
- * @param {Number} value The new maximum value.
- */
-org_apache_flex_html_NumericStepper.prototype.set_maximum =
-    function(value) {
-  this.model.set_maximum(value);
-};
-
-
-/**
- * @expose
- * @return {Number} The current value.
- */
-org_apache_flex_html_NumericStepper.prototype.get_value =
-    function() {
-  return this.model.get_value();
-};
-
-
-/**
- * @expose
- * @param {Number} newValue The new value.
- */
-org_apache_flex_html_NumericStepper.prototype.set_value =
-    function(newValue) {
-  this.model.set_value(newValue);
-  this.spinner.set_value(newValue);
-};
-
-
-/**
- * @expose
- * @return {Number} The current snapInterval value.
- */
-org_apache_flex_html_NumericStepper.prototype.get_snapInterval =
-    function() {
-  return this.model.get_snapInterval();
-};
-
-
-/**
- * @expose
- * @param {Number} value The new snapInterval value.
- */
-org_apache_flex_html_NumericStepper.prototype.set_snapInterval =
-    function(value) {
-  this.model.set_snapInterval(value);
-};
-
-
-/**
- * @expose
- * @return {Number} The current stepSize value.
- */
-org_apache_flex_html_NumericStepper.prototype.get_stepSize =
-    function() {
-  return this.model.get_stepSize();
-};
-
-
-/**
- * @expose
- * @param {Number} value The new stepSize value.
- */
-org_apache_flex_html_NumericStepper.prototype.set_stepSize =
-    function(value) {
-  this.model.set_stepSize(value);
-};
+Object.defineProperties(org_apache_flex_html_NumericStepper.prototype, {
+    /** @expose */
+    minimum: {
+        /** @this {org_apache_flex_html_NumericStepper} */
+        get: function() {
+            return this.model.minimum;
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(value) {
+            this.model.minimum = value;
+        }
+    },
+    /** @expose */
+    maximum: {
+        /** @this {org_apache_flex_html_NumericStepper} */
+        get: function() {
+            return this.model.maximum;
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(value) {
+            this.model.maximum = value;
+        }
+    },
+    /** @expose */
+    value: {
+        /** @this {org_apache_flex_html_NumericStepper} */
+        get: function() {
+            return this.model.value;
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(newValue) {
+            this.model.value = newValue;
+            this.spinner.value = newValue;
+        }
+    },
+    /** @expose */
+    snapInterval: {
+        /** @this {org_apache_flex_html_NumericStepper} */
+        get: function() {
+            return this.model.snapInterval;
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(value) {
+            this.model.snapInterval = value;
+        }
+    },
+    /** @expose */
+    stepSize: {
+        /** @this {org_apache_flex_html_NumericStepper} */
+        get: function() {
+            return this.model.stepSize;
+        },
+        /** @this {org_apache_flex_html_NumericStepper} */
+        set: function(value) {
+            this.model.stepSize = value;
+        }
+    }
+});
 

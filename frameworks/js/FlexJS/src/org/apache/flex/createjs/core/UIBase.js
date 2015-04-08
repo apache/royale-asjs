@@ -56,44 +56,69 @@ org_apache_flex_createjs_core_UIBase.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @param {number} pixels The pixel count from the left edge.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_x = function(pixels) {
-  this.positioner.x = pixels;
-  this.element.getStage().update();
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the top edge.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_y = function(pixels) {
-  this.positioner.y = pixels;
-  this.element.getStage().update();
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the left edge.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_width = function(pixels) {
-  this.positioner.width = pixels;
-  this.element.getStage().update();
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the top edge.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_height = function(pixels) {
-  this.positioner.height = pixels;
-  this.element.getStage().update();
-};
+Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
+    /** @expose */
+    x: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.x = pixels;
+            this.element.getStage().update();
+        }
+    },
+    /** @expose */
+    y: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.y = pixels;
+            this.element.getStage().update();
+        }
+    },
+    /** @expose */
+    width: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.width = pixels;
+            this.element.getStage().update();
+        }
+    },
+    /** @expose */
+    height: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.height = pixels;
+            this.element.getStage().update();
+        }
+    },
+    /** @expose */
+    id: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        get: function() {
+             return this.name;
+        },
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(value) {
+            if (this.name !== value) {
+              this.element.name = value;
+              this.name = value;
+              this.dispatchEvent('idChanged');
+            }
+        }
+    },
+    /** @expose */
+    model: {
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        get: function() {
+            return this.model;
+        },
+        /** @this {org_apache_flex_createjs_core_UIBase} */
+        set: function(value) {
+            if (this.model !== value) {
+              this.addBead(value);
+              this.dispatchEvent('modelChanged');
+            }
+        }
+    }
+});
 
 
 /**
@@ -105,52 +130,6 @@ org_apache_flex_createjs_core_UIBase.prototype.id = null;
 
 /**
  * @expose
- * @return {string} The id.
- */
-org_apache_flex_createjs_core_UIBase.prototype.get_id = function() {
-  return this.name;
-};
-
-
-/**
- * @expose
- * @param {object} value The new id.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_id = function(value) {
-  if (this.name !== value)
-  {
-    this.element.name = value;
-    this.name = value;
-    this.dispatchEvent('idChanged');
-  }
-};
-
-
-/**
- * @expose
  * @type {object}
  */
 org_apache_flex_createjs_core_UIBase.prototype.model = null;
-
-
-/**
- * @expose
- * @return {object} The model.
- */
-org_apache_flex_createjs_core_UIBase.prototype.get_model = function() {
-  return this.model;
-};
-
-
-/**
- * @expose
- * @param {object} value The new model.
- */
-org_apache_flex_createjs_core_UIBase.prototype.set_model = function(value) {
-  if (this.model !== value)
-  {
-    this.addBead(value);
-    this.dispatchEvent('modelChanged');
-  }
-};
-

@@ -31,41 +31,23 @@ goog.require('org_apache_flex_core_IBead');
 org_apache_flex_charts_core_IAxisBead = function() {
 };
 
-
-/**
- * @return {string}
- */
-org_apache_flex_charts_core_IAxisBead.prototype.get_placement = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_charts_core_IAxisBead.prototype.set_placement = function(value) {};
-
-
-/**
- * @return {Object}
- */
-org_apache_flex_charts_core_IAxisBead.prototype.get_axisStroke = function() {};
-
-
-/**
- * @param {Object} value
- */
-org_apache_flex_charts_core_IAxisBead.prototype.set_axisStroke = function(value) {};
-
-
-/**
- * @return {Object}
- */
-org_apache_flex_charts_core_IAxisBead.prototype.get_tickStroke = function() {};
-
-
-/**
- * @param {Object} value
- */
-org_apache_flex_charts_core_IAxisBead.prototype.set_tickStroke = function(value) {};
+Object.defineProperties(org_apache_flex_charts_core_IAxisBead.prototype, {
+    /** @expose */
+    placement: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    axisStroke: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    tickStroke: {
+        get: function() {},
+        set: function(value) {}
+    }
+});
 
 
 /**

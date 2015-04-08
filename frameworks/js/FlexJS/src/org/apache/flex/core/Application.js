@@ -65,17 +65,25 @@ org_apache_flex_core_Application.prototype.initialView = null;
 org_apache_flex_core_Application.prototype.model = null;
 
 
-/**
- * @expose
- * @param {org_apache_flex_core_IValuesImpl} value The IValuesImpl.
- */
-org_apache_flex_core_Application.prototype.set_valuesImpl =
-    function(value) {
-  org_apache_flex_core_ValuesManager.valuesImpl = value;
-  if (value.init) {
-    value.init(this);
-  }
-};
+Object.defineProperties(org_apache_flex_core_Application.prototype, {
+    /** @expose */
+    valuesImpl: {
+        /** @this {org_apache_flex_core_Application} */
+        set: function(value) {
+            org_apache_flex_core_ValuesManager.valuesImpl = value;
+            if (value.init) {
+              value.init(this);
+            }
+        }
+    },
+    /** @expose */
+    MXMLDescriptor: {
+        /** @this {org_apache_flex_core_Application} */
+        get: function() {
+            return null;
+        }
+    }
+});
 
 
 /**
@@ -86,7 +94,7 @@ org_apache_flex_core_Application.prototype.start = function() {
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.get_MXMLDescriptor());
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
 
   this.dispatchEvent('initialize');
 

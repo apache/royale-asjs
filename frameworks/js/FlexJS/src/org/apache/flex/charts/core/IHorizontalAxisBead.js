@@ -43,25 +43,18 @@ org_apache_flex_charts_core_IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
   };
 
 
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IHorizontalAxisBead.prototype.set_axisHeight = function(value) {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_axisHeight = function() {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_maximum = function() {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IHorizontalAxisBead.prototype.get_minimum = function() {};
+Object.defineProperties(org_apache_flex_charts_core_IHorizontalAxisBead.prototype, {
+    /** @expose */
+    axisHeight: {
+        set: function(value) {},
+        get: function() {}
+    },
+    /** @expose */
+    maximum: {
+        get: function() {}
+    },
+    /** @expose */
+    minimum: {
+        get: function() {}
+    }
+});

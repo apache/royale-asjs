@@ -57,8 +57,6 @@ org_apache_flex_html_Image.prototype.createElement =
   this.model = new
           org_apache_flex_html_beads_models_ImageModel();
 
-  this.addBead(this.model);
-
   this.addBead(new
       org_apache_flex_html_beads_ImageView());
 
@@ -66,21 +64,16 @@ org_apache_flex_html_Image.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {String} The source identifier for the Image.
- */
-org_apache_flex_html_Image.prototype.
-    get_source = function() {
-  return this.model.get_source();
-};
-
-
-/**
- * @expose
- * @param {String} value The source identifier for the Image.
- */
-org_apache_flex_html_Image.prototype.
-    set_source = function(value) {
-  this.model.set_source(value);
-};
+Object.defineProperties(org_apache_flex_html_Image.prototype, {
+    /** @expose */
+    source: {
+        /** @this {org_apache_flex_html_Image} */
+        get: function() {
+            return this.model.source;
+        },
+        /** @this {org_apache_flex_html_Image} */
+        set: function(value) {
+            this.model.source = value;
+        }
+    }
+});

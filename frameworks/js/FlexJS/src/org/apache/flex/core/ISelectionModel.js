@@ -35,46 +35,23 @@ org_apache_flex_core_ISelectionModel = function() {
 };
 
 
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectionModel.prototype.set_dataProvider = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} The dataProvider.
- */
-org_apache_flex_core_ISelectionModel.prototype.get_dataProvider = function() {};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_ISelectionModel.prototype.set_selectedIndex = function(value) {};
-
-
-/**
- * @expose
- * @return {number} The selected index.
- */
-org_apache_flex_core_ISelectionModel.prototype.get_selectedIndex = function() {};
-
-
-/**
- * @expose
- * @param {Object} value
- */
-org_apache_flex_core_ISelectionModel.prototype.set_selectedItem = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} The selected item.
- */
-org_apache_flex_core_ISelectionModel.prototype.get_selectedItem = function() {};
+Object.defineProperties(org_apache_flex_core_ISelectionModel.prototype, {
+    /** @expose */
+    dataProvider: {
+        set: function(value) {},
+        get: function() {}
+    },
+    /** @expose */
+    selectedIndex: {
+        set: function(value) {},
+        get: function() {}
+    },
+    /** @expose */
+    selectedItem: {
+        set: function(value) {},
+        get: function() {}
+    }
+});
 
 
 /**

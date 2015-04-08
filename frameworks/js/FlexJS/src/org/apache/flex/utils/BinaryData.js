@@ -46,13 +46,40 @@ org_apache_flex_utils_BinaryData.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_utils_BinaryData'}] };
 
 
-/**
- * @expose
- * @return {Object} The platform-specific data.
- */
-org_apache_flex_utils_BinaryData.prototype.get_data = function() {
-  return this.data_;
-};
+Object.defineProperties(org_apache_flex_utils_BinaryData.prototype, {
+    /** @expose */
+    data: {
+        /** @this {org_apache_flex_utils_BinaryData} */
+        get: function() {
+            return this.data_;
+        }
+    },
+    /** @expose */
+    position: {
+        /** @this {org_apache_flex_utils_BinaryData} */
+        get: function() {
+            return this.position_;
+        },
+        /** @this {org_apache_flex_utils_BinaryData} */
+        set: function(value) {
+            this.position_ = value;
+        }
+    },
+    /** @expose */
+    length: {
+        /** @this {org_apache_flex_utils_BinaryData} */
+        get: function() {
+            return this.data_.byteLength;
+        }
+    },
+    /** @expose */
+    bytesAvailable: {
+        /** @this {org_apache_flex_utils_BinaryData} */
+        get: function() {
+            return this.data_.byteLength - this.position_;
+        }
+    }
+});
 
 
 /**
@@ -166,42 +193,6 @@ org_apache_flex_utils_BinaryData.prototype.readUnsignedInteger =
   view = new Uint32Array(this.data_, this.position_, 1);
   this.position_ += 4;
   return view[0];
-};
-
-
-/**
- * @expose
- * @return {number} The offset to write to or read from.
- */
-org_apache_flex_utils_BinaryData.prototype.get_position = function() {
-  return this.position_;
-};
-
-
-/**
- * @expose
- * @param {number} value The offset to write to or read from.
- */
-org_apache_flex_utils_BinaryData.prototype.set_position = function(value) {
-  this.position_ = value;
-};
-
-
-/**
- * @expose
- * @return {number} The offset to write to or read from.
- */
-org_apache_flex_utils_BinaryData.prototype.get_length = function() {
-  return this.data_.byteLength;
-};
-
-
-/**
- * @expose
- * @return {number} The number of bytes that can still be read.
- */
-org_apache_flex_utils_BinaryData.prototype.get_bytesAvailable = function() {
-  return this.data_.byteLength - this.position_;
 };
 
 

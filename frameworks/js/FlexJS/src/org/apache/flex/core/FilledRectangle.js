@@ -50,25 +50,23 @@ org_apache_flex_core_FilledRectangle.prototype.FLEXJS_CLASS_INFO =
  */
 org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
   org_apache_flex_core_FilledRectangle.base(this, 'addedToParent');
-  this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+  this.drawRect(this.x, this.y, this.width, this.height);
 };
 
 
-/**
- * @expose
- * @return {number} The fill color.
- */
-org_apache_flex_core_UIBase.prototype.get_fillColor = function() {
-  return this.fillColor_;
-};
-
-
-/**
- * @param {number} value The fill color.
- */
-org_apache_flex_core_UIBase.prototype.set_fillColor = function(value) {
-  this.fillColor_ = value;
-};
+Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
+    /** @expose */
+    fillColor: {
+        /** @this {org_apache_flex_core_FilledRectangle} */
+        get: function() {
+             return this.fillColor_;
+        },
+        /** @this {org_apache_flex_core_FilledRectangle} */
+        set: function(value) {
+             this.fillColor_ = value;
+        }
+    }
+});
 
 
 /**
@@ -81,8 +79,8 @@ org_apache_flex_core_UIBase.prototype.set_fillColor = function(value) {
 org_apache_flex_core_UIBase.prototype.drawRect = function(x, y, width, height) {
   this.element.style.position = 'absolute';
   this.element.style.backgroundColor = '#' + this.fillColor_.toString(16);
-  if (!isNaN(x)) this.set_x(x);
-  if (!isNaN(y)) this.set_y(y);
-  if (!isNaN(width)) this.set_width(width);
-  if (!isNaN(height)) this.set_height(height);
+  if (!isNaN(x)) this.x = x;
+  if (!isNaN(y)) this.y = y;
+  if (!isNaN(width)) this.width = width;
+  if (!isNaN(height)) this.height = height;
 };

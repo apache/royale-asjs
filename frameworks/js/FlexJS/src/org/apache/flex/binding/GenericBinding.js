@@ -54,20 +54,21 @@ org_apache_flex_binding_GenericBinding.prototype.destinationData = null;
 org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
 
 
-/**
- * @expose
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_GenericBinding.prototype.set_strand =
-    function(value) {
-  this.destination = value;
+Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_binding_GenericBinding} */
+        set: function(value) {
+            this.destination = value;
 
-  try {
-    var val = this.getValueFromSource();
-    this.applyValue(val);
-  } catch (e) {
-  }
-};
+            try {
+              var val = this.getValueFromSource();
+              this.applyValue(val);
+            } catch (e) {
+            }
+        }
+    }
+});
 
 
 /**
@@ -82,12 +83,12 @@ org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
   {
     var arr = this.source;
     var n = arr.length;
-    obj = this.document['get_' + arr[0]]();
+    obj = this.document[arr[0]];
     if (obj == null)
       return null;
     for (var i = 1; i < n; i++)
     {
-      obj = obj['get_' + arr[i]]();
+      obj = obj[arr[i]];
       if (obj == null)
         return null;
     }
@@ -101,7 +102,7 @@ org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
   }
   else if (typeof(this.source) == 'string')
   {
-    obj = this.document['get_' + this.source]();
+    obj = this.document[this.source];
     return obj;
   }
   return null;
@@ -123,11 +124,8 @@ org_apache_flex_binding_GenericBinding.prototype.applyValue =
     var arr = this.destinationData;
     var n = arr.length;
     var obj;
-    var getter = 'get_' + arr[0];
-    if (typeof(this.document[getter]) === 'function')
-      obj = this.document[getter]();
-    else
-      obj = this.document[arr[0]];
+    var getter = arr[0];
+    obj = this.document[arr[0]];
     if (obj == null) {
        this.document.addEventListener(
            org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
@@ -136,18 +134,12 @@ org_apache_flex_binding_GenericBinding.prototype.applyValue =
     }
     for (var i = 1; i < n - 1; i++)
     {
-      getter = 'get_' + arr[i];
-      if (typeof(this.document[getter]) === 'function')
-        obj = obj[getter]();
-      else
-        obj = obj[arr[i]];
+      getter = arr[i];
+       obj = obj[arr[i]];
       if (obj == null)
         return;
     }
-    var setter = 'set_' + arr[n - 1];
-    if (typeof(obj[setter]) === 'function')
-      obj[setter](value);
-    else
+    var setter = arr[n - 1];
       obj[arr[n - 1]] = value;
   }
 };

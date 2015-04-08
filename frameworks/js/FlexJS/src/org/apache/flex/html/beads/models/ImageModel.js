@@ -14,6 +14,7 @@
 
 goog.provide('org_apache_flex_html_beads_models_ImageModel');
 
+goog.require('org_apache_flex_core_IBeadModel');
 goog.require('org_apache_flex_events_EventDispatcher');
 
 
@@ -38,35 +39,28 @@ goog.inherits(
  */
 org_apache_flex_html_beads_models_ImageModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageModel',
-                qName: 'org_apache_flex_html_beads_models_ImageModel'}] };
+                qName: 'org_apache_flex_html_beads_models_ImageModel'}],
+      interfaces: [org_apache_flex_core_IBeadModel]};
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_ImageModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {Object} value The image source.
- */
-org_apache_flex_html_beads_models_ImageModel.prototype.
-    get_source = function() {
-  return this.source;
-};
-
-
-/**
- * @expose
- * @param {Object} value The image source.
- */
-org_apache_flex_html_beads_models_ImageModel.prototype.
-    set_source = function(value) {
-  this.source = value;
-  this.dispatchEvent('sourceChanged');
-};
+Object.defineProperties(org_apache_flex_html_beads_models_ImageModel.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    source: {
+        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        get: function() {
+            return this.source_;
+        },
+        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        set: function(value) {
+            this.source_ = value;
+            this.dispatchEvent('sourceChanged');
+        }
+    }
+});

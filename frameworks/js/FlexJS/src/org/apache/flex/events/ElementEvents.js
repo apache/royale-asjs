@@ -11,15 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-goog.provide('org_apache_flex_net_JSONItemConverter');
+goog.provide('org_apache_flex_events_ElementEvents');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_net_JSONItemConverter = function() {
+org_apache_flex_events_ElementEvents = function() {
 };
 
 
@@ -28,21 +27,21 @@ org_apache_flex_net_JSONItemConverter = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_net_JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'JSONItemConverter',
-                qName: 'org_apache_flex_net_JSONItemConverter'}] };
+org_apache_flex_events_ElementEvents.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'ElementEvents',
+                qName: 'org_apache_flex_events_ElementEvents' }] };
 
 
 /**
- * @expose
- * @param {string} s The input string.
- * @return {*} The object.
+ * @type {Object}
  */
-org_apache_flex_net_JSONItemConverter.prototype.convertItem = function(s) {
-  var c = s.indexOf('{)');
-  if (c > 0)
-    s = s.substring(c);
-  if (s.indexOf('}') == -1)
-    s += '}';
-  return JSON.parse(s);
+org_apache_flex_events_ElementEvents.elementEvents = {
+  'mouseover': 1,
+  'mouseout': 1,
+  'mouseup': 1,
+  'mousedown': 1,
+  'mousemove': 1,
+  'rollover': 1,
+  'rollout': 1
 };
+

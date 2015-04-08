@@ -61,40 +61,27 @@ org_apache_flex_jquery_CheckBox.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_jquery_CheckBox.prototype.get_text = function() {
-  return this.element.childNodes.item(1).nodeValue;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_jquery_CheckBox.prototype.set_text =
-    function(value) {
-  this.element.childNodes.item(1).nodeValue = value;
-};
-
-
-/**
- * @expose
- * @return {boolean} The selected getter.
- */
-org_apache_flex_jquery_CheckBox.prototype.get_selected =
-    function() {
-  return this.element.childNodes.item(0).checked;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selected setter.
- */
-org_apache_flex_jquery_CheckBox.prototype.set_selected =
-    function(value) {
-  this.element.childNodes.item(0).checked = value;
-};
+Object.defineProperties(org_apache_flex_jquery_CheckBox.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_jquery_CheckBox} */
+        get: function() {
+            return this.element.childNodes.item(1).nodeValue;
+        },
+        /** @this {org_apache_flex_jquery_CheckBox} */
+        set: function(value) {
+            this.element.childNodes.item(1).nodeValue = value;
+        }
+    },
+    /** @expose */
+    selected: {
+        /** @this {org_apache_flex_jquery_CheckBox} */
+        get: function() {
+            return this.element.childNodes.item(0).checked;
+        },
+        /** @this {org_apache_flex_jquery_CheckBox} */
+        set: function(value) {
+            this.element.childNodes.item(0).checked = value;
+        }
+    }
+});

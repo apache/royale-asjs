@@ -56,102 +56,77 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
   this.positioner = this.element;
 
   this.element.flexjs_wrapper = this;
-  this.set_className('DataItemRenderer');
+  this.className = 'DataItemRenderer';
 
   // itemRenderers should provide something for the background to handle
   // the selection and highlight
   this.backgroundView = this.element;
 
   this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
-  this.controller.set_strand(this);
+  this.controller.strand = this;
 
   return this.element;
 };
 
 
-/**
- * @expose
- * @return {Object} The item renderer's parent.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.get_itemRendererParent = function() {
-  return this.rendererParent_;
-};
+Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
+    /** @expose */
+    itemRendererParent: {
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        get: function() {
+            return this.rendererParent_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        set: function(value) {
+            this.rendererParent_ = value;
+        }
+    },
+    /** @expose */
+    index: {
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        set: function(value) {
+            this.index_ = value;
+        }
+    },
+    /** @expose */
+    dataField: {
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        set: function(value) {
+            this.dataField_ = value;
+        },
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        get: function() {
+            return this.dataField_;
+        }
+    },
+    /** @expose */
+    selected: {
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        set: function(value) {
+            this.selected_ = value;
 
+            if (value) {
+                this.backgroundView.style.backgroundColor = '#9C9C9C';
+            } else {
+                this.backgroundView.style.backgroundColor = null;
+            }
+        }
+    },
+    /** @expose */
+    hovered: {
+        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        set: function(value) {
+            this.hovered_ = value;
 
-/**
- * @expose
- * @param {Object} value The item renderer's parent.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_itemRendererParent = function(value) {
-  this.rendererParent_ = value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The renderer's index.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_index = function(value) {
-  this.index_ = value;
-};
-
-
-/**
- * @expose
- * @param {string} value The name of field to use.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_dataField = function(value) {
-
-  this.dataField_ = value;
-};
-
-
-/**
- * @expose
- * @return {string} The name of the field to use.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.get_dataField = function() {
-
-  return this.dataField_;
-};
-
-
-/**
- * @override
- * @param {Boolean} value The selection state.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_selected = function(value) {
-  this.selected_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#9C9C9C';
-  } else {
-    this.backgroundView.style.backgroundColor = null;
-  }
-};
-
-
-/**
- * @override
- * @param {Boolean} value The hovered state.
- */
-org_apache_flex_html_supportClasses_DataItemRenderer.
-    prototype.set_hovered = function(value) {
-  this.hovered_ = value;
-
-  if (value) {
-    this.backgroundView.style.backgroundColor = '#ECECEC';
-  } else {
-    if (this.selected_) {
-      this.backgroundView.style.backgroundColor = '#9C9C9C';
-    } else {
-      this.backgroundView.style.backgroundColor = null;
+            if (value) {
+              this.backgroundView.style.backgroundColor = '#ECECEC';
+            } else {
+              if (this.selected_) {
+                this.backgroundView.style.backgroundColor = '#9C9C9C';
+              } else {
+                this.backgroundView.style.backgroundColor = null;
+              }
+            }
+        }
     }
-  }
-};
+});

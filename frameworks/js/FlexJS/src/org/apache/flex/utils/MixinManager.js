@@ -37,27 +37,24 @@ org_apache_flex_utils_MixinManager.prototype.FLEXJS_CLASS_INFO =
      interfaces: [org_apache_flex_core_IBead]};
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_utils_MixinManager.prototype.set_strand =
-function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_utils_MixinManager.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_utils_MixinManager} */
+        set: function(value) {
+            this.strand_ = value;
 
-  if (value)
-  {
-    if (typeof(value.info) == 'function')
-    {
-      var mixins = value.info()['mixins'];
-      if (mixins)
-      {
-        var n = mixins.length;
-        for (var i = 0; i < n; i++)
-        {
-          mixins[i].init(value);
+            if (value) {
+              if (typeof(value.info) == 'function') {
+                var mixins = value.info()['mixins'];
+                if (mixins) {
+                  var n = mixins.length;
+                  for (var i = 0; i < n; i++) {
+                    mixins[i].init(value);
+                  }
+                }
+              }
+            }
         }
-      }
     }
-  }
-};
+});

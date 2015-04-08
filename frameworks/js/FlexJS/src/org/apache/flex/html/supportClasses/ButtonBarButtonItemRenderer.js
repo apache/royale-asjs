@@ -16,6 +16,7 @@ goog.provide('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
 
 goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
 goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -57,56 +58,47 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
   this.element.appendChild(this.button);
 
   this.element.flexjs_wrapper = this;
-  this.set_className('ButtonBarButtonItemRenderer');
+  this.className = 'ButtonBarButtonItemRenderer';
 
   // itemRenderers should provide something for the background to handle
   // the selection and highlight
   this.backgroundView = this.element;
 
   this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
-  this.controller.set_strand(this);
+  this.controller.strand = this;
 
   return this.element;
 };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.set_strand = function(value) {
+Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        set: function(value) {
+            this.strand_ = value;
+        },
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        get: function() {
+            return this.strand_;
+        }
+    },
+    /** @expose */
+    data: {
+        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        set: function(value) {
+            org_apache_flex_utils_Language.superSetter(
+                org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer, this, 'data', value);
 
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The strand.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.get_strand = function() {
-  return this.strand_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The text to display.
- */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
-    prototype.set_data = function(value) {
-
-  org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'set_data', value);
-
-  if (value.hasOwnProperty('label')) {
-    this.button.innerHTML = value.label;
-  }
-  else if (value.hasOwnProperty('title')) {
-    this.button.innerHTML = value.title;
-  }
-  else {
-    this.button.innerHTML = value;
-  }
-};
+            if (value.hasOwnProperty('label')) {
+              this.button.innerHTML = value.label;
+            }
+            else if (value.hasOwnProperty('title')) {
+              this.button.innerHTML = value.title;
+            }
+            else {
+              this.button.innerHTML = value;
+            }
+        }
+    }
+});

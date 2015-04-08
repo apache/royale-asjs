@@ -36,24 +36,18 @@ goog.inherits(org_apache_flex_createjs_core_ViewBase,
     org_apache_flex_createjs_core_UIBase);
 
 
-/**
- * @expose
- * @return {Object} Returns the application model.
- */
-org_apache_flex_createjs_core_ViewBase.prototype.get_applicationModel =
-    function() {
-  return this.applicationModel;
-};
-
-
-/**
- * @expose
- * @param {Object} value The application model.
- */
-org_apache_flex_createjs_core_ViewBase.prototype.set_applicationModel =
-    function(value) {
-  this.applicationModel = value;
-};
+Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
+    /** @expose */
+    applicationModel: {
+        /** @this {org_apache_flex_createjs_core_ViewBase} */
+        get: function() {
+            return this.applicationModel_;
+        },
+        set: function(value) {
+            this.applicationModel = value;
+        }
+    }
+});
 
 
 /**
@@ -76,7 +70,7 @@ org_apache_flex_createjs_core_ViewBase.prototype.MXMLDescriptor = null;
 org_apache_flex_createjs_core_ViewBase.prototype.initUI = function(model) {
   this.applicationModel = model;
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
+      this.MXMLProperties);
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this,
-      this, this.get_MXMLDescriptor());
+      this, this.MXMLDescriptor);
 };

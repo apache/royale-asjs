@@ -42,20 +42,16 @@ org_apache_flex_html5_TextArea.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html5_TextArea.prototype.get_text = function() {
-  return this.element.value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html5_TextArea.prototype.set_text =
-    function(value) {
-  this.element.value = value;
-};
+Object.defineProperties(org_apache_flex_html5_TextArea.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html5_TextArea} */
+        get: function() {
+            return this.element.value;
+        },
+        /** @this {org_apache_flex_html5_TextArea} */
+        set: function(value) {
+            this.element.value = value;
+        }
+    }
+});

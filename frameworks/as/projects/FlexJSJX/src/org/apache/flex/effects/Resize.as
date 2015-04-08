@@ -153,7 +153,7 @@ public class Resize extends Tween implements IDocument
 	override public function play():void
 	{
         if (target != null)
-            actualTarget = getProperty(document, target);
+            actualTarget = document[target];
 		
 		if (isNaN(widthFrom))
 			widthStart = actualTarget.width;

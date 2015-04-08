@@ -36,24 +36,24 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype.FLEXJS_C
                 qName: 'org_apache_flex_html_beads_controllers_SpinnerMouseController' }] };
 
 
-/**
- * @expose
- *        SpinnerMouseController}
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_controllers_SpinnerMouseController.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_SpinnerMouseController.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_controllers_SpinnerMouseController} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.incrementButton = this.strand_.incrementButton;
-  this.decrementButton = this.strand_.decrementButton;
+            this.incrementButton = this.strand_.incrementButton;
+            this.decrementButton = this.strand_.decrementButton;
 
-  goog.events.listen(this.incrementButton.element, goog.events.EventType.CLICK,
-      goog.bind(this.handleIncrementClick, this));
+            goog.events.listen(this.incrementButton.element, goog.events.EventType.CLICK,
+                goog.bind(this.handleIncrementClick, this));
 
-  goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
-      goog.bind(this.handleDecrementClick, this));
-};
+            goog.events.listen(this.decrementButton.element, goog.events.EventType.CLICK,
+                goog.bind(this.handleDecrementClick, this));
+        }
+    }
+});
 
 
 /**
@@ -63,10 +63,10 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
 org_apache_flex_html_beads_controllers_SpinnerMouseController.
     prototype.handleIncrementClick = function(event)
     {
-  var newValue = this.strand_.snap(Math.min(this.strand_.get_maximum(),
-      this.strand_.get_value() +
-      this.strand_.get_stepSize()));
-  this.strand_.set_value(newValue);
+  var newValue = this.strand_.snap(Math.min(this.strand_.maximum,
+      this.strand_.value +
+      this.strand_.stepSize));
+  this.strand_.value = newValue;
 };
 
 
@@ -78,8 +78,8 @@ org_apache_flex_html_beads_controllers_SpinnerMouseController.
     prototype.handleDecrementClick =
     function(event)
     {
-  var newValue = this.strand_.snap(Math.max(this.strand_.get_minimum(),
-      this.strand_.get_value() -
-      this.strand_.get_stepSize()));
-  this.strand_.set_value(newValue);
+  var newValue = this.strand_.snap(Math.max(this.strand_.minimum,
+      this.strand_.value -
+      this.strand_.stepSize));
+  this.strand_.value = newValue;
 };

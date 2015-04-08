@@ -39,24 +39,20 @@ org_apache_flex_binding_ConstantBinding.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_binding_ConstantBinding'}] };
 
 
-/**
- * @override
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_ConstantBinding.prototype.set_strand = function(value) {
-  org_apache_flex_binding_ConstantBinding.base(this, 'set_strand', value);
+Object.defineProperties(org_apache_flex_binding_ConstantBinding.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_binding_ConstantBinding} */
+        set: function(value) {
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_binding_ConstantBinding, this, 'strand', value);
 
-  var val;
-  try {
-    val = this.source['get_' + this.sourcePropertyName]();
-  } catch (e) {
-    try {
-      val = this.source.constructor[this.sourcePropertyName];
-    } catch (e2) {
+            var val;
+            if (this.sourcePropertyName in this.source) {
+              val = this.source[this.sourcePropertyName];
+            } else if (this.sourcePropertyName in this.source.constructor) {
+              val = this.source.constructor[this.sourcePropertyName];
+            }
+            this.destination[this.destinationPropertyName] = val;
+        }
     }
-  }
-  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
-    this.destination['set_' + this.destinationPropertyName](val);
-  else
-    this.destination[this.destinationPropertyName] = val;
-};
+});

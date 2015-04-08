@@ -93,45 +93,31 @@ org_apache_flex_createjs_CheckBox.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_createjs_CheckBox.prototype.get_text =
-    function() {
-  return this.checkBoxLabel.text;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_createjs_CheckBox.prototype.set_text =
-    function(value) {
-  this.checkBoxLabel.text = value;
-};
-
-
-/**
- * @expose
- * @return {bool} The selected getter.
- */
-org_apache_flex_createjs_CheckBox.prototype.get_selected =
-    function() {
-  return this.selected;
-};
-
-
-/**
- * @expose
- * @param {bool} value The selected setter.
- */
-org_apache_flex_createjs_CheckBox.prototype.set_selected =
-    function(value) {
-  this.checkMark.visible = this.selected = value;
-  this.element.getStage().update();
-};
+Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_createjs_CheckBox} */
+        get: function() {
+            return this.checkBoxLabel.text;
+        },
+        /** @this {org_apache_flex_createjs_CheckBox} */
+        set: function(value) {
+            this.checkBoxLabel.text = value;
+        }
+    },
+    /** @expose */
+    selected: {
+        /** @this {org_apache_flex_createjs_CheckBox} */
+        get: function() {
+            return this.selected;
+        },
+        /** @this {org_apache_flex_createjs_CheckBox} */
+        set: function(value) {
+            this.checkMark.visible = this.selected = value;
+            this.element.getStage().update();
+        }
+    }
+});
 
 
 /**
@@ -140,5 +126,5 @@ org_apache_flex_createjs_CheckBox.prototype.set_selected =
  */
 org_apache_flex_createjs_CheckBox.prototype.clickHandler =
     function(event) {
-  this.set_selected(!this.get_selected());
+  this.selected = !this.selected;
 };

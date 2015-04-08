@@ -70,88 +70,69 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_events_IEventDispatcher]};
 
 
-/**
- * @expose
- * @return {Object} value The input parser.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.get_inputParser =
-    function() {
-  return this.inputParser_;
-};
+Object.defineProperties(org_apache_flex_net_dataConverters_LazyCollection.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('complete',
+              goog.bind(this.completeHandler, this));
+            }
+        }
+    },
+    /** @expose */
+    length: {
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        get: function() {
+            return this.rawData_ ? this.rawData_.length : 0;
+        }
+    },
+    /** @expose */
+    inputParser: {
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        get: function() {
+            return this.inputParser_;
+        },
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        set: function(value) {
+            this.inputParser_ = value;
+        }
+    },
+    /** @expose */
+    itemConverter: {
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        get: function() {
+            return this.itemConverter_;
+        },
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        set: function(value) {
+            this.itemConverter_ = value;
+        }
+    },
+    /** @expose */
+    id: {
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        get: function() {
+            return this.id_;
+        },
+        /** @this {org_apache_flex_net_dataConverters_LazyCollection} */
+        set: function(value) {
+            if (this.id_ !== value) {
+              this.id_ = value;
+              // this.dispatchEvent(new Event('idChanged'));
+            }
+        }
+    }
+});
 
 
 /**
- * @expose
- * @param {Object} value The input parser.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.set_inputParser =
-    function(value) {
-  this.inputParser_ = value;
-};
-
-
-/**
- * @expose
- * @return {Object} value The input parser.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.get_itemConverter =
-    function() {
-  return this.itemConverter_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The input parser.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.set_itemConverter =
-    function(value) {
-  this.itemConverter_ = value;
-};
-
-
-/**
- * @expose
+ * @private
  * @type {string}
  */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.id = '';
-
-
-/**
- * @expose
- * @return {string} The id.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.get_id =
-    function() {
-  return this.id;
-};
-
-
-/**
- * @expose
- * @param {string} value The new id.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.set_id =
-    function(value) {
-  if (this.id !== value) {
-    this.id = value;
-    // this.dispatchEvent(new Event('idChanged'));
-  }
-};
-
-
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.set_strand =
-    function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('complete',
-        goog.bind(this.completeHandler, this));
-  }
-};
+org_apache_flex_net_dataConverters_LazyCollection.prototype.id_ = '';
 
 
 /**
@@ -159,7 +140,7 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.set_strand =
  */
 org_apache_flex_net_dataConverters_LazyCollection.prototype.completeHandler =
     function() {
-  var results = this.strand_.get_data();
+  var results = this.strand_.data;
   this.rawData_ = this.inputParser_.parseItems(results);
   this.data_ = [];
   this.dispatchEvent('complete');
@@ -179,14 +160,4 @@ org_apache_flex_net_dataConverters_LazyCollection.prototype.getItemAt =
   }
 
   return this.data_[index];
-};
-
-
-/**
- * @expose
- * @return {string} The number of items in the collection.
- */
-org_apache_flex_net_dataConverters_LazyCollection.prototype.get_length =
-    function() {
-  return this.rawData_ ? this.rawData_.length : 0;
 };

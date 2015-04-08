@@ -43,37 +43,27 @@ org_apache_flex_html_Label.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_Label' }] };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_Label.prototype.get_text = function() {
-  return this.element.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_Label.prototype.set_text = function(value) {
-  this.element.innerHTML = value;
-};
-
-
-/**
- * @expose
- * @return {string} The html getter.
- */
-org_apache_flex_html_Label.prototype.get_html = function() {
-  return this.element.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {string} value The html setter.
- */
-org_apache_flex_html_Label.prototype.set_html = function(value) {
-  this.element.innerHTML = value;
-};
+Object.defineProperties(org_apache_flex_html_Label.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html_Label} */
+        get: function() {
+            return this.element.innerHTML;
+        },
+        /** @this {org_apache_flex_html_Label} */
+        set: function(value) {
+            this.element.innerHTML = value;
+        }
+    },
+    /** @expose */
+    html: {
+        /** @this {org_apache_flex_html_Label} */
+        get: function() {
+            return this.element.innerHTML;
+        },
+        /** @this {org_apache_flex_html_Label} */
+        set: function(value) {
+            this.element.innerHTML = value;
+        }
+    }
+});

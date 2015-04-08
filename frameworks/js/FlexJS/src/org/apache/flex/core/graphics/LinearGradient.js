@@ -42,22 +42,19 @@ goog.inherits(org_apache_flex_core_graphics_LinearGradient, org_apache_flex_core
 org_apache_flex_core_graphics_LinearGradient.prototype._scaleX = 1.0;
 
 
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_LinearGradient.prototype.get_scaleX = function() {
-  return this._scaleX;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_LinearGradient.prototype.set_scaleX = function(value) {
-  this._scaleX = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
+    /** @expose */
+    scaleX: {
+        /** @this {org_apache_flex_core_graphics_LinearGradient} */
+        get: function() {
+            return this._scaleX;
+        },
+        /** @this {org_apache_flex_core_graphics_LinearGradient} */
+        set: function(value) {
+            this._scaleX = value;
+        }
+    }
+});
 
 
 /**
@@ -71,7 +68,7 @@ org_apache_flex_core_graphics_LinearGradient.prototype.addFillAttrib = function(
   //Create and add a linear gradient def
   var svgNS = value.element.namespaceURI;
   var grad = document.createElementNS(svgNS, 'linearGradient');
-  var gradientId = this.get_newId();
+  var gradientId = this.newId;
   grad.setAttribute('id', gradientId);
 
   //Set x1, y1, x2, y2 of gradient
@@ -80,28 +77,28 @@ org_apache_flex_core_graphics_LinearGradient.prototype.addFillAttrib = function(
   grad.setAttribute('x2', '100%');
   grad.setAttribute('y2', '0%');
 
-  //Apply rotation to the gradient if get_rotatation() is a number
-  if (this.get_rotation())
+  //Apply rotation to the gradient if rotation is a number
+  if (this.rotation)
   {
-    grad.setAttribute('gradientTransform', 'rotate(' + this.get_rotation() + ' 0.5 0.5)');
+    grad.setAttribute('gradientTransform', 'rotate(' + this.rotation + ' 0.5 0.5)');
   }
 
   //Process gradient entries and create a stop for each entry
-  var entries = this.get_entries();
+  var entries = this.entries;
   for (var i = 0; i < entries.length; i++)
   {
     var gradientEntry = entries[i];
     var stop = document.createElementNS(svgNS, 'stop');
     //Set Offset
-    stop.setAttribute('offset', String(gradientEntry.get_ratio() * 100) + '%');
+    stop.setAttribute('offset', String(gradientEntry.ratio * 100) + '%');
     //Set Color
-    var color = Number(gradientEntry.get_color()).toString(16);
+    var color = Number(gradientEntry.color).toString(16);
     if (color.length == 1) color = '00' + color;
     if (color.length == 2) color = '00' + color;
     if (color.length == 4) color = '00' + color;
     stop.setAttribute('stop-color', '#' + String(color));
     //Set Alpha
-    stop.setAttribute('stop-opacity', String(gradientEntry.get_alpha()));
+    stop.setAttribute('stop-opacity', String(gradientEntry.alpha));
 
     grad.appendChild(stop);
   }

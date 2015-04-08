@@ -99,7 +99,7 @@ package org.apache.flex.core
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (hasProperty(_strand, binding.source[0]))
+                    if (binding.source[0] in _strand)
                     {
                         var destObject:Object;
                         var destination:IStrand;
@@ -118,7 +118,7 @@ package org.apache.flex.core
                                 sb.sourceID = binding.source[0];
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
-                                destObject = getProperty(_strand, binding.destination[0]);                                
+                                destObject = _strand[binding.destination[0]];                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(sb);
@@ -143,7 +143,7 @@ package org.apache.flex.core
                                 cb.sourceID = binding.source[0];
                                 cb.sourcePropertyName = binding.source[1];
                                 cb.setDocument(_strand);
-                                destObject = getProperty(_strand, binding.destination[0]);                                
+                                destObject = _strand[binding.destination[0]];                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(cb);
@@ -183,7 +183,7 @@ package org.apache.flex.core
                         cb.destinationPropertyName = binding.destination[1];
                         cb.sourcePropertyName = binding.source;
                         cb.setDocument(_strand);
-                        destObject = getProperty(_strand, binding.destination[0]);                                
+                        destObject = _strand[binding.destination[0]];                                
                         destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(cb);
@@ -208,7 +208,7 @@ package org.apache.flex.core
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
                         sb.setDocument(_strand);
-                        destObject = getProperty(_strand, binding.destination[0]);                                
+                        destObject = _strand[binding.destination[0]];                                
                         destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(sb);
@@ -365,9 +365,9 @@ package org.apache.flex.core
         {
             for (var p:String in deferredBindings)
             {
-                if (getProperty(_strand, p) != null)
+                if (_strand[p] != null)
                 {
-                    var destination:IStrand = getProperty(_strand, p) as IStrand;
+                    var destination:IStrand = _strand[p] as IStrand;
                     destination.addBead(deferredBindings[p]);
                     delete deferredBindings[p];
                 }

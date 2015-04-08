@@ -51,79 +51,53 @@ org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_List' }] };
 
 
-/**
- * @expose
- * @return {mx_core_IFactory} The itemRenderer generator.
- */
-org_apache_flex_html_List.prototype.get_itemRenderer =
-function() {
-  return this.itemRenderer_;
-};
-
-
-/**
- * @expose
- * @param {mx_core_IFactory} value The itemRenderer generator.
- */
-org_apache_flex_html_List.prototype.set_itemRenderer =
-function(value) {
-  this.itemRenderer_ = value;
-};
-
-
-/**
- * @expose
- * @return {String} The name of the field to use as a label.
- */
-org_apache_flex_html_List.prototype.get_labelField =
-function() {
-  return this.get_model().get_labelField();
-};
-
-
-/**
- * @expose
- * @param {String} value The name of the field to use as a label.
- */
-org_apache_flex_html_List.prototype.set_labelField =
-function(value) {
-  this.get_model().set_labelField(value);
-};
-
-
-/**
- * @expose
- * @return {number} The height of each row.
- */
-org_apache_flex_html_List.prototype.get_rowHeight =
-function() {
-  return this.get_presentationModel().get_rowHeight();
-};
-
-
-/**
- * @expose
- * @param {number} value The height of each row.
- */
-org_apache_flex_html_List.prototype.set_rowHeight =
-function(value) {
-  this.get_presentationModel().set_rowHeight(value);
-};
-
-
-/**
- * @expose
- * @return {Object} The model used to present some of the list's visual properties.
- */
-org_apache_flex_html_List.prototype.get_presentationModel =
-function() {
-  var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
-  if (presModel == null) {
-    presModel = new org_apache_flex_html_beads_models_ListPresentationModel();
-    this.addBead(presModel);
-  }
-  return presModel;
-};
+Object.defineProperties(org_apache_flex_html_List.prototype, {
+    /** @expose */
+    itemRenderer: {
+        /** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.itemRenderer_;
+        },
+        /** @this {org_apache_flex_html_List} */
+        set: function(value) {
+            this.itemRenderer_ = value;
+        }
+    },
+    /** @expose */
+    labelField: {
+        /** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.model.labelField;
+        },
+        /** @this {org_apache_flex_html_List} */
+        set: function(value) {
+            this.model.labelField = value;
+        }
+    },
+    /** @expose */
+    rowHeight: {
+        /** @this {org_apache_flex_html_List} */
+        get: function() {
+            return this.presentationModel.rowHeight;
+        },
+        /** @this {org_apache_flex_html_List} */
+        set: function(value) {
+            this.presentationModel.rowHeight = value;
+        }
+    },
+    /** @expose */
+    presentationModel: {
+        /** @this {org_apache_flex_html_List} */
+        get: function() {
+            var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
+            if (presModel == null) {
+              presModel = new org_apache_flex_html_beads_models_ListPresentationModel();
+              this.addBead(presModel);
+            }
+            return presModel;
+        }
+    }
+});
 
 
 /**
@@ -132,7 +106,7 @@ function() {
 org_apache_flex_html_List.prototype.createElement =
     function() {
   org_apache_flex_html_List.base(this, 'createElement');
-  this.set_className('List');
+  this.className = 'List';
 
   return this.element;
 };
@@ -170,7 +144,7 @@ org_apache_flex_html_List.prototype.internalChildren =
     function() {
   var listView =
       this.getBeadByType(org_apache_flex_html_beads_ListView);
-  var dg = listView.get_dataGroup();
+  var dg = listView.dataGroup;
   var items = null;
   if (dg.renderers) {
     items = dg.renderers;
@@ -192,11 +166,11 @@ org_apache_flex_html_List.prototype.selectedHandler =
     for (i = 0; i < n; i++) {
       var test = this.renderers[i];
       if (test == itemRenderer) {
-        this.model.set_selectedIndex(i);
-        itemRenderer.set_selected(true);
+        this.model.selectedIndex = i;
+        itemRenderer.selected = true;
       }
       else {
-        test.set_selected(false);
+        test.selected = false;
       }
     }
   }

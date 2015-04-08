@@ -45,22 +45,20 @@ org_apache_flex_core_graphics_Circle.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_graphics_Circle' }] };
 
 
-/**
- * @expose
- * @param {number} v The radius of the circle.
- */
-org_apache_flex_core_graphics_Circle.prototype.set_radius = function(v) {
-  this.radius_ = v;
-};
 
-
-/**
- * @expose
- * @return {number} The radius of the circle.
- */
-org_apache_flex_core_graphics_Circle.prototype.get_radius = function() {
-  return this.radius_;
-};
+Object.defineProperties(org_apache_flex_core_graphics_Circle.prototype, {
+    /** @expose */
+    radius: {
+        /** @this {org_apache_flex_core_graphics_Circle} */
+        set: function(v) {
+            this.radius_ = v;
+        },
+        /** @this {org_apache_flex_core_graphics_Circle} */
+        get: function() {
+            return this.radius_;
+        }
+    }
+});
 
 
 /**
@@ -74,11 +72,11 @@ org_apache_flex_core_graphics_Circle.prototype.drawCircle = function(x, y, radiu
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     circle.flexjs_wrapper = this;
     circle.setAttribute('style', style);
-    if (this.get_stroke())
+    if (this.stroke)
     {
-      circle.setAttribute('cx', String(radius + this.get_stroke().get_weight()));
-      circle.setAttribute('cy', String(radius + this.get_stroke().get_weight()));
-      this.setPosition(x - radius, y - radius, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+      circle.setAttribute('cx', String(radius + this.stroke.weight));
+      circle.setAttribute('cy', String(radius + this.stroke.weight));
+      this.setPosition(x - radius, y - radius, this.stroke.weight, this.stroke.weight);
     }
     else
     {
@@ -99,5 +97,5 @@ org_apache_flex_core_graphics_Circle.prototype.drawCircle = function(x, y, radiu
  * @override
  */
 org_apache_flex_core_graphics_Circle.prototype.draw = function() {
-    this.drawCircle(this.get_x(), this.get_y(), this.get_radius());
+    this.drawCircle(this.x, this.y, this.radius);
   };

@@ -56,82 +56,54 @@ org_apache_flex_html_beads_models_PanelModel.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_core_IBeadModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {string} The title.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    get_title = function() {
-  return this.title_;
-};
-
-
-/**
- * @expose
- * @param {string} value The title to set.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    set_title = function(value) {
-  if (this.title_ != value) {
-    this.title_ = value;
-    this.dispatchEvent('titleChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {string} The HTML title.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    get_htmlTitle = function() {
-  return this.htmlTitle_;
-};
-
-
-/**
- * @expose
- * @param {string} value The new HTML title.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    set_htmlTitle = function(value) {
-  if (this.htmlTitle_ != value) {
-    this.htmlTitle_ = value;
-    this.dispatchEvent('htmlTitleChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {boolean} Returns true if the close button should appear in
- * the TitleBar.
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    get_showCloseButton = function() {
-  return this.showCloseButton_;
-};
-
-
-/**
- * @expose
- * @param {boolean} value Determines if the close button shows (true) or
- * not (false).
- */
-org_apache_flex_html_beads_models_PanelModel.prototype.
-    set_showCloseButton = function(value) {
-  if (this.showCloseButton_ != value) {
-    this.showCloseButton_ = value;
-    this.dispatchEvent('showCloseButtonChange');
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    title: {
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        get: function() {
+            return this.title_;
+        },
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        set: function(value) {
+            if (this.title_ != value) {
+              this.title_ = value;
+              this.dispatchEvent('titleChange');
+            }
+        }
+    },
+    /** @expose */
+    htmlTitle: {
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        get: function() {
+            return this.htmlTitle_;
+        },
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        set: function(value) {
+            if (this.htmlTitle_ != value) {
+              this.htmlTitle_ = value;
+              this.dispatchEvent('htmlTitleChange');
+            }
+        }
+    },
+    /** @expose */
+    showCloseButton: {
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        get: function() {
+            return this.showCloseButton_;
+        },
+        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        set: function(value) {
+            if (this.showCloseButton_ != value) {
+              this.showCloseButton_ = value;
+              this.dispatchEvent('showCloseButtonChange');
+            }
+        }
+    }
+});

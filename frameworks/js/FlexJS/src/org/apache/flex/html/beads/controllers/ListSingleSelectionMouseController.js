@@ -39,23 +39,24 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
       interfaces: [org_apache_flex_core_IBeadController] };
 
 
-/**
- * @expose
- *        ListSingleSelectionMouseController}
- * @param {Object} value The strand for this component.
- */
-org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ArraySelectionModel);
-  this.listView = value.getBeadByType(
-      org_apache_flex_html_beads_ListView);
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ArraySelectionModel);
+            this.listView = value.getBeadByType(
+                org_apache_flex_html_beads_ListView);
 
-  this.dataGroup = this.listView.get_dataGroup();
-  this.dataGroup.addEventListener('selected',
-      goog.bind(this.selectedHandler, this));
-};
+            this.dataGroup = this.listView.dataGroup;
+            this.dataGroup.addEventListener('selected',
+                goog.bind(this.selectedHandler, this));
+        }
+    }
+});
 
 
 /**
@@ -66,8 +67,8 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
 org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype.selectedHandler =
         function(event) {
 
-  var index = event.target.get_index();
-  this.model.set_selectedIndex(index);
+  var index = event.target.index;
+  this.model.selectedIndex = index;
 
   var newEvent = new org_apache_flex_events_Event('change');
   this.strand_.dispatchEvent(newEvent);

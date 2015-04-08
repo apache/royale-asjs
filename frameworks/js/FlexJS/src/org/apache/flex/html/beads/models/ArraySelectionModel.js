@@ -45,116 +45,81 @@ org_apache_flex_html_beads_models_ArraySelectionModel.prototype.FLEXJS_CLASS_INF
       interfaces: [org_apache_flex_core_ISelectionModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    dataProvider: {
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        get: function() {
+            return this.dataProvider_;
+        },
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        set: function(value) {
+            this.dataProvider_ = value;
+            this.dispatchEvent('dataProviderChanged');
+        }
+    },
+    /** @expose */
+    selectedIndex: {
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        get: function() {
+            return this.selectedIndex_;
+        },
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        set: function(value) {
+            this.selectedIndex_ = value;
+            this.dispatchEvent('selectedIndexChanged');
+        }
+    },
+    /** @expose */
+    selectedItem: {
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        get: function() {
+            var si;
 
+            si = this.selectedIndex_;
 
-/**
- * @expose
- * @return {Object} value The dataProvider.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    get_dataProvider = function() {
-  return this.dataProvider_;
-};
+            if (!this.dataProvider_ || si < 0 ||
+                si >= this.dataProvider_.length) {
+              return null;
+            }
 
+            return this.dataProvider_[si];
+        },
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        set: function(value) {
+            // find item in dataProvider and set selectedIndex or -1 if not exists
 
-/**
- * @expose
- * @param {Object} value The dataProvider.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    set_dataProvider = function(value) {
-  this.dataProvider_ = value;
-  this.dispatchEvent('dataProviderChanged');
-};
+            this.selectedIndex_ = -1;
+            var n = this.dataProvider_.length;
+            for (var i = 0; i < n; i++) {
+              var item = this.dataProvider_[i];
+              if (item == value) {
+                this.selectedIndex_ = i;
+                break;
+              }
+            }
 
-
-/**
- * @expose
- * @return {number} value The selected index.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    get_selectedIndex = function() {
-  return this.selectedIndex_;
-};
-
-
-/**
- * @expose
- * @param {number} value The selected index.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    set_selectedIndex = function(value) {
-  this.selectedIndex_ = value;
-  this.dispatchEvent('selectedIndexChanged');
-};
-
-
-/**
- * @expose
- * @return {Object} value The selected item.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    get_selectedItem = function() {
-  var si;
-
-  si = this.selectedIndex_;
-
-  if (!this.dataProvider_ || si < 0 ||
-      si >= this.dataProvider_.length) {
-    return null;
-  }
-
-  return this.dataProvider_[si];
-};
-
-
-/**
- * @expose
- * @param {Object} value The selected item.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.
-    set_selectedItem = function(value) {
-  // find item in dataProvider and set selectedIndex or -1 if not exists
-
-  this.selectedIndex_ = -1;
-  var n = this.dataProvider_.length;
-  for (var i = 0; i < n; i++) {
-    var item = this.dataProvider_[i];
-    if (item == value) {
-      this.selectedIndex_ = i;
-      break;
+            this.dispatchEvent('selectedItemChanged');
+            this.dispatchEvent('selectedIndexChanged');
+        }
+    },
+    /** @expose */
+    labelField: {
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        get: function() {
+            return this.labelField_;
+        },
+        /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
+        set: function(value) {
+            this.labelField_ = value;
+            this.dispatchEvent('labelFieldChanged');
+        }
     }
-  }
-
-  this.dispatchEvent('selectedItemChanged');
-  this.dispatchEvent('selectedIndexChanged');
-};
-
-
-/**
- * @expose
- * @return {String} The name of the field to use as a label.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.get_labelField =
-function() {
-  return this.labelField_;
-};
-
-
-/**
- * @expose
- * @param {String} value The name of the field to use as a label.
- */
-org_apache_flex_html_beads_models_ArraySelectionModel.prototype.set_labelField =
-function(value) {
-  this.labelField_ = value;
-  this.dispatchEvent('labelFieldChanged');
-};
+});

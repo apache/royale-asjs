@@ -47,32 +47,6 @@ package org.apache.flex.core
 		}
 		
 		
-		private var _object:IStyleableObject;
-                
-        /**
-         *  The object to which these styles apply.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get object():IStyleableObject
-		{
-			return _object;
-		}
-        
-        /**
-         *  @private
-         */
-		public function set object(value:IStyleableObject):void
-		{
-			if (_object != value)
-			{
-                _object = value;
-			}
-		}
-		
         [Bindable]
         public var top:*;
         [Bindable]

@@ -74,21 +74,15 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
   var cName;
   var selectorName;
 
-  if (typeof(thisObject.get_style) === 'function')
-  {
-    var style = thisObject.get_style();
-    if (style != null)
-    {
-      try {
-         value = style[valueName];
-      }
-      catch (e) {
-        value = undefined;
-      }
+  try {
+    var style = thisObject.style;
+    if (style != null) {
+      value = style[valueName];
       if (value !== undefined)
         return value;
     }
   }
+  catch (e) {}
 
   if ('className' in thisObject)
   {
@@ -291,6 +285,14 @@ org_apache_flex_core_SimpleCSSValuesImpl.colorStyles = {
 
 
 /**
+ * The properties that enumerate that we skip
+ */
+org_apache_flex_core_SimpleCSSValuesImpl.skipStyles = {
+   'constructor': 1
+};
+
+
+/**
  * @param {Object} thisObject The object to apply styles to;
  * @param {Object} styles The styles.
  */
@@ -298,8 +300,11 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.applyStyles =
     function(thisObject, styles) {
   var styleList = org_apache_flex_core_SimpleCSSValuesImpl.perInstanceStyles;
   var colorStyles = org_apache_flex_core_SimpleCSSValuesImpl.colorStyles;
+  var skipStyles = org_apache_flex_core_SimpleCSSValuesImpl.skipStyles;
   for (var p in styles) {
     //if (styleList[p])
+    if (skipStyles[p])
+      continue;
     var value = styles[p];
     if (typeof(value) == 'number') {
       if (colorStyles[p])

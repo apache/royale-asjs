@@ -34,28 +34,29 @@ org_apache_flex_html_beads_SliderTrackView
                 qName: 'org_apache_flex_html_beads_SliderTrackView'}] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_SliderTrackView.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_SliderTrackView.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_SliderTrackView} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.element = document.createElement('div');
-  this.element.className = 'SliderTrack';
-  this.element.id = 'track';
-  this.element.style.backgroundColor = '#E4E4E4';
-  this.element.style.height = '10px';
-  this.element.style.width = '200px';
-  this.element.style.border = 'thin solid #C4C4C4';
-  this.element.style.position = 'relative';
-  this.element.style.left = '0px';
-  this.element.style.top = '10px';
-  this.element.style.zIndex = '1';
+            this.element = document.createElement('div');
+            this.element.className = 'SliderTrack';
+            this.element.id = 'track';
+            this.element.style.backgroundColor = '#E4E4E4';
+            this.element.style.height = '10px';
+            this.element.style.width = '200px';
+            this.element.style.border = 'thin solid #C4C4C4';
+            this.element.style.position = 'relative';
+            this.element.style.left = '0px';
+            this.element.style.top = '10px';
+            this.element.style.zIndex = '1';
 
-  this.strand_.element.appendChild(this.element);
+            this.strand_.element.appendChild(this.element);
 
-  this.positioner = this.element;
-  this.element.flexjs_wrapper = this;
-};
+            this.positioner = this.element;
+            this.element.flexjs_wrapper = this;
+        }
+    }
+});

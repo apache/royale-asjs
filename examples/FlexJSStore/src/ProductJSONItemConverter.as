@@ -34,7 +34,7 @@ package
             var obj:Object = super.convertItem(data);
             var product:Product = new Product();
             for (var p:String in obj)
-                setProperty(product, p, obj[p]);
+                product[p] = obj[p];
 			return product;
         }
     }

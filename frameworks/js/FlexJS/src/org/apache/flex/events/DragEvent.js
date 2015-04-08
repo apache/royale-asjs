@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_events_DragEvent');
 
 goog.require('goog.events.BrowserEvent');
+goog.require('org_apache_flex_events_ElementEvents');
 goog.require('org_apache_flex_events_EventDispatcher');
 
 
@@ -50,20 +51,16 @@ org_apache_flex_events_DragEvent.prototype.FLEXJS_CLASS_INFO =
 /**
  * @expose
  * @param {string} type The event type.
- * @param {Event} event The mouse event to base the DragEvent on.
+ * @param {Event} e The mouse event to base the DragEvent on.
  * @return {MouseEvent} The new event.
  */
 org_apache_flex_events_DragEvent.createDragEvent =
-    function(type, event) {
+    function(type, e) {
   var out = new MouseEvent(type);
-  out.initMouseEvent(type, true, true);
-  out.screenX = event.screenX;
-  out.screenY = event.screenY;
-  out.clientX = event.clientX;
-  out.clientY = event.clientY;
-  out.ctrlKey = event.ctrlKey;
-  out.shiftKey = event.shiftKey;
-  out.alttKey = event.altKey;
+  out.initMouseEvent(type, true, true,
+    e.view, e.detail, e.screenX, e.screenY,
+    e.clientX, e.clientY, e.ctrlKey, e.altKey,
+    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
   return out;
 };
 
@@ -132,7 +129,7 @@ org_apache_flex_events_DragEvent.DRAG_DROP = 'dragDrop';
  * @return {boolean}
  */
 org_apache_flex_events_DragEvent.installDragEventMixin = function() {
-  var o = org_apache_flex_events_EventDispatcher.elementEvents;
+  var o = org_apache_flex_events_ElementEvents.elementEvents;
   o['dragEnd'] = 1;
   o['dragMove'] = 1;
   return true;

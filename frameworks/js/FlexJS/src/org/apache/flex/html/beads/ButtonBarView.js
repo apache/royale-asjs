@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_html_beads_ButtonBarView');
 
 goog.require('org_apache_flex_html_beads_ListView');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -43,13 +44,14 @@ org_apache_flex_html_beads_ButtonBarView.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_html_beads_ButtonBarView' }] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_ButtonBarView.prototype.set_strand =
-    function(value) {
-
-  org_apache_flex_html_beads_ButtonBarView.base(this, 'set_strand', value);
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_beads_ButtonBarView.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_ButtonBarView} */
+        set: function(value) {
+            org_apache_flex_utils_Language.superSetter(
+                org_apache_flex_html_beads_ButtonBarView, this, 'strand', value);
+            this.strand_ = value;
+        }
+    }
+});

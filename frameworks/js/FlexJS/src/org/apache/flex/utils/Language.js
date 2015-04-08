@@ -198,8 +198,8 @@ org_apache_flex_utils_Language.uint = function(value) {
  * @return {number}
  */
 org_apache_flex_utils_Language.preincrement = function(obj, prop) {
-  var value = obj['get_' + prop]() + 1;
-  obj['set_' + prop](value);
+  var value = obj[prop] + 1;
+  obj[prop] = value;
   return value;
 };
 
@@ -213,8 +213,8 @@ org_apache_flex_utils_Language.preincrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.predecrement = function(obj, prop) {
-  var value = obj['get_' + prop]() - 1;
-  obj['set_' + prop](value);
+  var value = obj[prop] - 1;
+  obj[prop] = value;
   return value;
 };
 
@@ -228,8 +228,8 @@ org_apache_flex_utils_Language.predecrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.postincrement = function(obj, prop) {
-  var value = obj['get_' + prop]();
-  obj['set_' + prop](value + 1);
+  var value = obj[prop];
+  obj[prop] = value + 1;
   return value;
 };
 
@@ -243,7 +243,49 @@ org_apache_flex_utils_Language.postincrement = function(obj, prop) {
  * @return {number}
  */
 org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
-  var value = obj['get_' + prop]();
-  obj['set_' + prop](value + 1);
+  var value = obj[prop];
+  obj[prop] = value + 1;
   return value;
+};
+
+
+/**
+ * superGetter calls the getter on the given class' superclass.
+ *
+ * @expose
+ * @param {Object} clazz The class.
+ * @param {Object} pthis The this pointer.
+ * @param {string} prop The name of the getter.
+ * @return {Object}
+ */
+org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
+  var superClass = clazz.superClass_;
+  var superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
+  while (superdesc == null)
+  {
+    superClass = superClass.constructor.superClass_;
+    superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
+  }
+  return superdesc.get.call(pthis);
+};
+
+
+/**
+ * superSetter calls the setter on the given class' superclass.
+ *
+ * @expose
+ * @param {Object} clazz The class.
+ * @param {Object} pthis The this pointer.
+ * @param {string} prop The name of the getter.
+ * @param {Object} value The value.
+ */
+org_apache_flex_utils_Language.superSetter = function(clazz, pthis, prop, value) {
+  var superClass = clazz.superClass_;
+  var superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
+  while (superdesc == null)
+  {
+    superClass = superClass.constructor.superClass_;
+    superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
+  }
+  superdesc.set.apply(pthis, [value]);
 };

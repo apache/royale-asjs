@@ -51,7 +51,7 @@ org_apache_flex_charts_supportClasses_ChartDataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.flexjs_wrapper = this;
-  this.set_className('ChartDataGroup');
+  this.className = 'ChartDataGroup';
 
   this.positioner = this.element;
 
@@ -67,11 +67,11 @@ org_apache_flex_charts_supportClasses_ChartDataGroup.
  */
 org_apache_flex_charts_supportClasses_ChartDataGroup.prototype.getItemRendererForSeriesAtIndex =
 function(series, index) {
-  var n = this.get_numElements();
+  var n = this.numElements;
   for (var i = 0; i < n; i++)
   {
     var child = this.getElementAt(i);
-    if (child && child.get_series() == series) {
+    if (child && child.series == series) {
       if (index === 0) return child;
       --index;
     }

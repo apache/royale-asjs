@@ -55,64 +55,47 @@ org_apache_flex_core_graphics_GradientEntry.prototype._color = 0x000000;
 org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_alpha = function() {
-  return this._alpha;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_alpha = function(value) {
-  var /** @type {number} */ oldValue = this._alpha;
-  if (value != oldValue) {
-    this._alpha = value;
-  }
-};
-
-
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_color = function() {
-  return this._color;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_color = function(value) {
-  var /** @type {number} */ oldValue = this._color;
-  if (value != oldValue) {
-    this._color = value;
-  }
-};
-
-
-/**
- * @expose
- * @return {number}
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.get_ratio = function() {
-  return this._ratio;
-};
-
-
-/**
- * @expose
- * @param {number} value
- */
-org_apache_flex_core_graphics_GradientEntry.prototype.set_ratio = function(value) {
-  this._ratio = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
+    /** @expose */
+    alpha: {
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        get: function() {
+            return this._alpha;
+        },
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        set: function(value) {
+            var /** @type {number} */ oldValue = this._alpha;
+            if (value != oldValue) {
+                this._alpha = value;
+            }
+        }
+    },
+    /** @expose */
+    color: {
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        get: function() {
+            return this._color;
+        },
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        set: function(value) {
+            var /** @type {number} */ oldValue = this._color;
+            if (value != oldValue) {
+              this._color = value;
+            }
+        }
+    },
+    /** @expose */
+    ratio: {
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        get: function() {
+            return this._ratio;
+        },
+        /** @this {org_apache_flex_core_graphics_GradientEntry} */
+        set: function(value) {
+            this._ratio = value;
+        }
+    }
+});
 
 
 /**
@@ -120,7 +103,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype.set_ratio = function(value
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
-  s.get_graphics().beginFill(this.get_color(), this.get_alpha());
+  s.graphics.beginFill(this.color, this.alpha);
 };
 
 
@@ -129,7 +112,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.end = function(s) {
-  s.get_graphics().endFill();
+  s.graphics.endFill();
 };
 
 

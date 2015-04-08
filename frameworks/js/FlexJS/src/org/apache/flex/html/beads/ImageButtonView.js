@@ -34,12 +34,12 @@ org_apache_flex_html_beads_ImageButtonView
                 qName: 'org_apache_flex_html_beads_ImageButtonView'}] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_ImageButtonView.prototype.set_strand =
-    function(value) {
-
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_beads_ImageButtonView.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_ImageButtonView} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    }
+});

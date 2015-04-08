@@ -43,48 +43,39 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Array} value A set of widths to use for each button (optional).
- */
-org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype.set_buttonWidths =
-function(value) {
-  this.buttonWidths_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} A set of widths to use for each button.
- */
-org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype.get_buttonWidths =
-function() {
-  return this.buttonWidths_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_ButtonBarLayout.
-    prototype.set_strand =
-    function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('itemsCreated',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('widthChanged',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('heightChanged',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('sizeChanged',
-        goog.bind(this.changeHandler, this));
-    this.strand_.element.style.display = 'block';
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('itemsCreated',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('widthChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('heightChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('sizeChanged',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.element.style.display = 'block';
+            }
+        }
+    },
+    /** @expose */
+    buttonWidths: {
+        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        set: function(value) {
+            this.buttonWidths_ = value;
+        },
+        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        get: function() {
+            return this.buttonWidths_;
+        }
+    }
+});
 
 
 /**
@@ -94,34 +85,34 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout.
     prototype.changeHandler = function(event) {
 
   var layoutParent = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
-  var contentView = layoutParent.get_contentView();
+  var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
 
-  var n = itemRendererParent.get_numElements();
+  var n = itemRendererParent.numElements;
   var xpos = 0;
-  var useWidth = this.strand_.get_width() / n;
-  var useHeight = this.strand_.get_height();
+  var useWidth = this.strand_.width / n;
+  var useHeight = this.strand_.height;
 
   for (var i = 0; i < n; i++)
   {
     var ir = itemRendererParent.getElementAt(i);
-    ir.set_y(0);
-    ir.set_height(useHeight);
-    ir.set_x(xpos);
+    ir.y = 0;
+    ir.height = useHeight;
+    ir.x = xpos;
     ir.element.internalDisplay = 'inline-block';
     ir.element.style['vertical-align'] = 'middle';
     ir.element.style['text-align'] = 'center';
     ir.element.style['left-margin'] = 'auto';
     ir.element.style['right-margin'] = 'auto';
 
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.set_width(this.buttonWidths_[i]);
-    else ir.set_width(useWidth);
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i];
+    else ir.width = useWidth;
 
     if (ir.element.style.display == 'none')
       ir.lastDisplay_ = 'inline-block';
     else
       ir.element.style.display = 'inline-block';
 
-    xpos += ir.get_width();
+    xpos += ir.width;
   }
 };

@@ -54,47 +54,33 @@ org_apache_flex_html_TitleBar.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  this.set_className('TitleBar');
+  this.className = 'TitleBar';
 
   return this.element;
 };
 
 
-/**
- * @expose
- * @return {string} The title getter.
- */
-org_apache_flex_html_TitleBar.prototype.get_title =
-    function() {
-  return this.model.get_title();
-};
-
-
-/**
- * @expose
- * @param {string} value The title setter.
- */
-org_apache_flex_html_TitleBar.prototype.set_title =
-    function(value) {
-  this.model.set_title(value);
-};
-
-
-/**
- * @expose
- * @return {string} The showCloseButton getter.
- */
-org_apache_flex_html_TitleBar.prototype.get_showCloseButton =
-    function() {
-  return this.model.get_showCloseButton();
-};
-
-
-/**
- * @expose
- * @param {string} value The title setter.
- */
-org_apache_flex_html_TitleBar.prototype.set_showCloseButton =
-    function(value) {
-  this.model.set_showCloseButton(value);
-};
+Object.defineProperties(org_apache_flex_html_TitleBar.prototype, {
+    /** @expose */
+    title: {
+        /** @this {org_apache_flex_html_TitleBar} */
+        get: function() {
+            return this.model.title;
+        },
+        /** @this {org_apache_flex_html_TitleBar} */
+        set: function(value) {
+            this.model.title = value;
+        }
+    },
+    /** @expose */
+    showCloseButton: {
+        /** @this {org_apache_flex_html_TitleBar} */
+        get: function() {
+            return this.model.showCloseButton;
+        },
+        /** @this {org_apache_flex_html_TitleBar} */
+        set: function(value) {
+            this.model.showCloseButton = value;
+        }
+    }
+});

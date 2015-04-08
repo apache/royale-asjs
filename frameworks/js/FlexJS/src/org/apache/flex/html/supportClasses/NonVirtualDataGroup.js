@@ -44,14 +44,24 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype.FLEXJS_CLASS_I
                 qName: 'org_apache_flex_html_supportClasses_NonVirtualDataGroup' }] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    numElements: {
+        /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
+        get: function() {
+
+            var n = this.element.childNodes.length;
+            return n;
+        }
+    }
+});
 
 
 /**
@@ -64,7 +74,7 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
   this.element.style.display = 'inline-block';
   this.element.style.position = 'inherit';
   this.element.flexjs_wrapper = this;
-  this.set_className('NonVirtualDataGroup');
+  this.className = 'NonVirtualDataGroup';
 
   this.positioner = this.element;
 
@@ -82,8 +92,8 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
 
   var itemRenderer = org_apache_flex_utils_Language.as(value,
                            org_apache_flex_html_supportClasses_DataItemRenderer);
-  itemRenderer.set_index(this.renderers.length);
-  itemRenderer.set_itemRendererParent(this);
+  itemRenderer.index = this.renderers.length;
+  itemRenderer.itemRendererParent = this;
   this.renderers.push(value);
 };
 
@@ -97,18 +107,6 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
   while (this.element.hasChildNodes()) {
     this.element.removeChild(this.element.lastChild);
   }
-};
-
-
-/**
- * @expose
- * @return {number} The number of child nodes in the group.
- */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
-    prototype.get_numElements = function() {
-
-  var n = this.element.childNodes.length;
-  return n;
 };
 
 

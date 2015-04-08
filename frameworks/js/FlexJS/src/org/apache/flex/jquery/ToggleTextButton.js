@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_jquery_ToggleTextButton');
 
 goog.require('org_apache_flex_html_Button');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -92,66 +93,52 @@ org_apache_flex_jquery_ToggleTextButton.prototype.addedToParent =
 };
 
 
-/**
- * @override
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_id = function(value) {
-  org_apache_flex_jquery_ToggleTextButton.base(this, 'set_id', value);
-  this.labelFor.id = value;
-  this.labelFor.htmlFor = value;
-};
-
-
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.get_text = function() {
-  return this.labelFor.innerHTML;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_text =
-    function(value) {
-  this.labelFor.innerHTML = value;
-};
-
-
-/**
- * @expose
- * @return {boolean} The selected getter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.get_selected =
-    function() {
-  return this.input.selected_;
-};
-
-
-/**
- * @expose
- * @param {boolean} value The selected setter.
- */
-org_apache_flex_jquery_ToggleTextButton.prototype.set_selected =
-    function(value) {
-  if (this.input.selected_ != value) {
-    this.inputselected_ = value;
-/*
-    var className = this.className;
-    if (value) {
-      if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-        this.set_className(className.substring(0, className.length - this.SELECTED.length));
+Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
+    /** @expose */
+    id: {
+        /** @this {org_apache_flex_jquery_ToggleTextButton} */
+        set: function(value) {
+            org_apache_flex_utils_Language.superSetter(org_apache_flex_jquery_ToggleTextButton.base, this, 'id', value);
+            this.labelFor.id = value;
+            this.labelFor.htmlFor = value;
+        }
+    },
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_jquery_ToggleTextButton} */
+        get: function() {
+            return this.labelFor.innerHTML;
+        },
+        /** @this {org_apache_flex_jquery_ToggleTextButton} */
+        set: function(value) {
+            this.labelFor.innerHTML = value;
+        }
+    },
+    /** @expose */
+    selected: {
+        /** @this {org_apache_flex_jquery_ToggleTextButton} */
+        get: function() {
+            return this.input.selected_;
+        },
+        /** @this {org_apache_flex_jquery_ToggleTextButton} */
+        set: function(value) {
+            if (this.input.selected_ != value) {
+            this.inputselected_ = value;
+            /*
+              var className = this.className;
+              if (value) {
+                if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
+                  this.className = className.substring(0, className.length - this.SELECTED.length);
+              }
+              else {
+                if (className.indexOf(this.SELECTED) == -1)
+                  this.className = className + this.SELECTED;
+              }
+             */
+            }
+        }
     }
-    else {
-      if (className.indexOf(this.SELECTED) == -1)
-        this.set_className(className + this.SELECTED);
-    }
-*/
-  }
-};
+});
 
 
 /**

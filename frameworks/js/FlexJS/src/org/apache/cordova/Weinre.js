@@ -32,33 +32,29 @@ org_apache_cordova_Weinre = function() {
 };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_cordova_Weinre.prototype.set_strand =
-function(value) {
+Object.defineProperties(org_apache_cordova_Weinre.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_cordova_Weinre} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    guid: {
+        /** @this {org_apache_cordova_Weinre} */
+        set: function(value) {
 
-  this.strand_ = value;
-};
+            var scriptNode = document.createElement('SCRIPT');
+            scriptNode.type = 'text/javascript';
+            scriptNode.src = 'http://debug.phonegap.com/target/target-script-min.js#' + value;
 
-
-/**
- * @expose
- * @param {string} value The new guid.
- */
-org_apache_cordova_Weinre.prototype.set_guid =
-function(value) {
-
-  var scriptNode = document.createElement('SCRIPT');
-  scriptNode.type = 'text/javascript';
-  scriptNode.src = 'http://debug.phonegap.com/target/target-script-min.js#' + value;
-
-  var headNode = document.getElementsByTagName('HEAD');
-  if (headNode[0] != null)
-    headNode[0].appendChild(scriptNode);
-
-};
+            var headNode = document.getElementsByTagName('HEAD');
+            if (headNode[0] != null)
+              headNode[0].appendChild(scriptNode);
+        }
+    }
+});
 
 
 /**

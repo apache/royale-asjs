@@ -38,36 +38,22 @@ org_apache_flex_core_ILayoutParent.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org_apache_flex_core_ILayoutParent' }] };
 
 
-/**
- * @expose
- * @return {Object} The view that contains the layout objects.
- */
-org_apache_flex_core_ILayoutParent.prototype.get_contentView = function() {};
-
-
-/**
- * @expose
- * @return {Object} The border for the layout area.
- */
-org_apache_flex_core_ILayoutParent.prototype.get_border = function() {};
-
-
-/**
- * @expose
- * @return {Object} The vertical scrollbar.
- */
-org_apache_flex_core_ILayoutParent.prototype.get_vScrollBar = function() {};
-
-
-/**
- * @expose
- * @param {Object} value The vertical scrollbar.
- */
-org_apache_flex_core_ILayoutParent.prototype.set_vScrollBar = function(value) {};
-
-
-/**
- * @expose
- * @return {Object} The view that can be resized.
- */
-org_apache_flex_core_ILayoutParent.prototype.get_resizeableView = function() {};
+Object.defineProperties(org_apache_flex_core_ILayoutParent.prototype, {
+    /** @expose */
+    contentView: {
+        get: function() {}
+    },
+    /** @expose */
+    border: {
+        get: function() {}
+    },
+    /** @expose */
+    vScrollBar: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    resizeableView: {
+        get: function() {}
+    }
+});

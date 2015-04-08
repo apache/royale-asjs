@@ -63,15 +63,6 @@ org_apache_flex_binding_ChainBinding.prototype.source = null;
 
 
 /**
- * @expose
- * @param {Object} value The strand (owner) of the bead.
- */
-org_apache_flex_binding_ChainBinding.prototype.set_strand = function(value) {
-  this.applyBinding();
-};
-
-
-/**
  */
 org_apache_flex_binding_ChainBinding.prototype.applyBinding = function() {
   var chainSet = this.evaluateSourceChain();
@@ -90,10 +81,7 @@ org_apache_flex_binding_ChainBinding.prototype.evaluateSourceChain = function() 
   for (var i = 0; i < n - 1; i++) {
     propName = this.source[i];
     var propObj;
-    if (typeof(obj['get_' + propName]) === 'function')
-      propObj = obj['get_' + propName]();
-    else
-      propObj = obj[propName];
+    propObj = obj[propName];
     var watcher = new org_apache_flex_binding_ChainWatcher(propName, this.applyBinding);
     obj.addEventListener('valueChange', watcher.handler);
     if (propObj == null)
@@ -111,10 +99,7 @@ org_apache_flex_binding_ChainBinding.prototype.evaluateSourceChain = function() 
   obj.addEventListener('valueChange', valueChangeHandler);
 
   // we have a complete chain, get the value
-  if (typeof(obj['get_' + propName]) === 'function')
-    this.value = obj['get_' + propName]();
-  else
-    this.value = obj[propName];
+  this.value = obj[propName];
   return true;
 };
 
@@ -132,10 +117,7 @@ org_apache_flex_binding_ChainBinding.prototype.applyValue = function() {
   }
   if (typeof(this.destination) === 'string') {
     destinationName = this.destination;
-    if (typeof(this.document['set_' + destinationName]) === 'function')
-      this.document['set_' + destinationName](this.value);
-    else
-      this.document[destinationName] = this.value;
+    this.document[destinationName] = this.value;
     return;
   }
 
@@ -145,20 +127,14 @@ org_apache_flex_binding_ChainBinding.prototype.applyValue = function() {
   for (var i = 0; i < n - 1; i++) {
     var propName = this.destination[i];
     var propObj;
-    if (typeof(obj['get_' + propName]) === 'function')
-      propObj = obj['get_' + propName]();
-    else
-      propObj = obj[propName];
+    propObj = obj[propName];
     if (propObj == null) {
       obj.addEventListener('valueChange', handler);
       return;
     }
     obj = propObj;
   }
-  if (typeof(obj['set_' + this.destination[n - 1]]) === 'function')
-    obj['set_' + this.destination[n - 1]](this.value);
-  else
-    obj[this.destination[n - 1]] = this.value;
+  obj[this.destination[n - 1]] = this.value;
 };
 
 
@@ -218,3 +194,14 @@ org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
     event.oldValue.removeEventListener('valueChange', this.handler);
   this.callback();
 };
+
+
+Object.defineProperties(org_apache_flex_binding_ChainBinding.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_binding_ChainBinding} */
+        set: function(value) {
+            this.applyBinding();
+        }
+    }
+});

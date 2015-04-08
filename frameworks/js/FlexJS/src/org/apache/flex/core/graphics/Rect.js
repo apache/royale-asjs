@@ -52,11 +52,11 @@ org_apache_flex_core_graphics_Rect.prototype.drawRect = function(x, y, width, he
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.flexjs_wrapper = this;
     rect.setAttribute('style', style);
-    if (this.get_stroke())
+    if (this.stroke)
     {
-      rect.setAttribute('x', String(this.get_stroke().get_weight() / 2) + 'px');
-      rect.setAttribute('y', String(this.get_stroke().get_weight() / 2) + 'px');
-      this.setPosition(x, y, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+      rect.setAttribute('x', String(this.stroke.weight / 2) + 'px');
+      rect.setAttribute('y', String(this.stroke.weight / 2) + 'px');
+      this.setPosition(x, y, this.stroke.weight, this.stroke.weight);
     }
     else
     {
@@ -76,5 +76,5 @@ org_apache_flex_core_graphics_Rect.prototype.drawRect = function(x, y, width, he
  * @override
 */
 org_apache_flex_core_graphics_Rect.prototype.draw = function() {
-    this.drawRect(this.get_x(), this.get_y(), this.get_width(), this.get_height());
+    this.drawRect(this.x, this.y, this.width, this.height);
   };

@@ -86,6 +86,12 @@ org_apache_flex_net_HTTPService = function() {
    */
   this.contentType_ = 'application/x-www-form-urlencoded';
 
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.id_ = null;
+
   //try { // (erikdebruin) 'desperate' attempt to bypass XDR security in IE < 10
   //  this.contentType_ = 'text/plain';
   //  this.element = new XDomainRequest();
@@ -135,176 +141,156 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_PUT = 'PUT';
 org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 
-/**
- * @expose
- * @param {Array.<Object>} value The array of beads.
- */
-org_apache_flex_net_HTTPService.prototype.set_beads = function(value) {
-  this.beads_ = value;
-};
+Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
+    /** @expose */
+    beads: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.beads_ = value;
+        }
+    },
+    /** @expose */
+    data: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.element.responseText;
+        }
+    },
+    /** @expose */
+    contentData: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.contentData_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.contentData_ = value;
+        }
+    },
+    /** @expose */
+    contentType: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.contentType_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.contentType_ = value;
+        }
+    },
+    /** @expose */
+    headers: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            if (this.headers_ === undefined) {
+              this.headers_ = [];
+            }
 
+            return this.headers_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.headers_ = value;
+        }
+    },
+    /** @expose */
+    method: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.method_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.method_ = value;
+        }
+    },
+    /** @expose */
+    responseHeaders: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            var allHeaders, c, hdr, i, n, part1, part2;
 
-/**
- * @expose
- * @return {string} value The data.
- */
-org_apache_flex_net_HTTPService.prototype.get_data = function() {
-  return this.element.responseText;
-};
-
-
-/**
- * @expose
- * @return {?string} value The contentData.
- */
-org_apache_flex_net_HTTPService.prototype.get_contentData = function() {
-  return this.contentData_;
-};
-
-
-/**
- * @expose
- * @param {string} value The contentData.
- */
-org_apache_flex_net_HTTPService.prototype.set_contentData = function(value) {
-  this.contentData_ = value;
-};
-
-
-/**
- * @expose
- * @return {string} value The contentType.
- */
-org_apache_flex_net_HTTPService.prototype.get_contentType = function() {
-  return this.contentType_;
-};
-
-
-/**
- * @expose
- * @param {string} value The contentType.
- */
-org_apache_flex_net_HTTPService.prototype.set_contentType = function(value) {
-  this.contentType_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} value The array of HTTPHeaders.
- */
-org_apache_flex_net_HTTPService.prototype.get_headers = function() {
-  if (this.headers_ === undefined) {
-    this.headers_ = [];
-  }
-
-  return this.headers_;
-};
-
-
-/**
- * @expose
- * @param {Array} value The array of HTTPHeaders.
- */
-org_apache_flex_net_HTTPService.prototype.set_headers = function(value) {
-  this.headers_ = value;
-};
-
-
-/**
- * @expose
- * @return {string} value The method.
- */
-org_apache_flex_net_HTTPService.prototype.get_method = function() {
-  return this.method_;
-};
-
-
-/**
- * @expose
- * @param {string} value The method.
- */
-org_apache_flex_net_HTTPService.prototype.set_method = function(value) {
-  this.method_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} value The array of HTTPHeaders.
- */
-org_apache_flex_net_HTTPService.prototype.get_responseHeaders = function() {
-  var allHeaders, c, hdr, i, n, part1, part2;
-
-  if (typeof this.responseHeaders_ === 'undefined') {
-    allHeaders = this.element.getAllResponseHeaders();
-    this.responseHeaders_ = allHeaders.split('\n');
-    n = this.responseHeaders_.length;
-    for (i = 0; i < n; i++) {
-      hdr = this.responseHeaders_[i];
-      c = hdr.indexOf(':');
-      part1 = hdr.substring(0, c);
-      part2 = hdr.substring(c + 2);
-      this.responseHeaders_[i] =
-          new org_apache_flex_net_HTTPHeader(part1, part2);
+            if (typeof this.responseHeaders_ === 'undefined') {
+              allHeaders = this.element.getAllResponseHeaders();
+              this.responseHeaders_ = allHeaders.split('\n');
+              n = this.responseHeaders_.length;
+              for (i = 0; i < n; i++) {
+                hdr = this.responseHeaders_[i];
+                c = hdr.indexOf(':');
+                part1 = hdr.substring(0, c);
+                part2 = hdr.substring(c + 2);
+                this.responseHeaders_[i] =
+                    new org_apache_flex_net_HTTPHeader(part1, part2);
+              }
+            }
+            return this.responseHeaders_;
+        }
+    },
+    /** @expose */
+    responseURL: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.responseURL_;
+        }
+    },
+    /** @expose */
+    status: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.status_;
+        }
+    },
+    /** @expose */
+    timeout: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.timeout_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.timeout_ = value;
+        }
+    },
+    /** @expose */
+    url: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.url_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            this.url_ = value;
+        }
+    },
+    /** @expose */
+    id: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return this.id_;
+        },
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {
+            if (this.id_ !== value) {
+              this.id_ = value;
+              this.dispatchEvent('idChanged');
+            }
+        }
+    },
+    /** @expose */
+    MXMLDescriptor: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return null;
+        }
+    },
+    /** @expose */
+    MXMLProperties: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            return null;
+        }
     }
-  }
-  return this.responseHeaders_;
-};
-
-
-/**
- * @expose
- * @return {?string} value The url.
- */
-org_apache_flex_net_HTTPService.prototype.get_responseURL = function() {
-  return this.responseURL_;
-};
-
-
-/**
- * @expose
- * @return {number} value The status.
- */
-org_apache_flex_net_HTTPService.prototype.get_status = function() {
-  return this.status_;
-};
-
-
-/**
- * @expose
- * @return {number} value The timeout.
- */
-org_apache_flex_net_HTTPService.prototype.get_timeout = function() {
-  return this.timeout_;
-};
-
-
-/**
- * @expose
- * @param {number} value The timeout.
- */
-org_apache_flex_net_HTTPService.prototype.set_timeout = function(value) {
-  this.timeout_ = value;
-};
-
-
-/**
- * @expose
- * @return {?string} value The url.
- */
-org_apache_flex_net_HTTPService.prototype.get_url = function() {
-  return this.url_;
-};
-
-
-/**
- * @expose
- * @param {string} value The url to fetch.
- */
-org_apache_flex_net_HTTPService.prototype.set_url = function(value) {
-  this.url_ = value;
-};
+});
 
 
 /**
@@ -384,70 +370,9 @@ org_apache_flex_net_HTTPService.prototype.progressHandler = function() {
 
 
 /**
- * @expose
- * @type {?string}
- */
-org_apache_flex_net_HTTPService.prototype.id = null;
-
-
-/**
- * @expose
- * @return {?string} The id.
- */
-org_apache_flex_net_HTTPService.prototype.get_id = function() {
-  return this.id;
-};
-
-
-/**
- * @expose
- * @param {string} value The new id.
- */
-org_apache_flex_net_HTTPService.prototype.set_id = function(value) {
-  if (this.id !== value) {
-    this.id = value;
-    this.dispatchEvent('idChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {Array} The array of descriptors.
- */
-org_apache_flex_net_HTTPService.prototype.get_MXMLDescriptor = function() {
-  return null;
-};
-
-
-/**
- * @expose
- * @return {Array} The array of properties.
- */
-org_apache_flex_net_HTTPService.prototype.get_MXMLProperties = function() {
-  return null;
-};
-
-
-/**
  * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */
 org_apache_flex_net_HTTPService.prototype.setDocument = function(document, id) {
   this.document = document;
-};
-
-
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_net_HTTPService.prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-  }
-  var n = this.beads_ ? this.beads_.length : 0;
-  for (var i = 0; i < n; i++) {
-    this.addBead(this.beads_[i]);
-  }
 };

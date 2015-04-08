@@ -70,7 +70,7 @@ org_apache_flex_maps_google_Map.prototype.createElement =
   this.addBead(model);
 
   this.element = document.createElement('div');
-  this.set_className('Map');
+  this.className = 'Map';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
@@ -79,23 +79,22 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @param {String} value Google API dev token.
- */
-org_apache_flex_maps_google_Map.prototype.set_token = function(value) {
-  this.token = value;
-};
-
-
-/**
- * @expose
- * @return {Object} The marker that was last selected.
- */
-org_apache_flex_maps_google_Map.prototype.get_selectedMarker =
-function() {
-  return this._selectedMarker;
-};
+Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
+    /** @expose */
+    token: {
+        /** @this {org_apache_flex_maps_google_Map} */
+        set: function(value) {
+            this.token = value;
+        }
+    },
+    /** @expose */
+    selectedMarker: {
+        /** @this {org_apache_flex_maps_google_Map} */
+        get: function() {
+            return this._selectedMarker;
+        }
+    }
+});
 
 
 /**
@@ -309,7 +308,7 @@ function(results, status) {
       this.markers.push(marker);
     }
     var model = this.model;
-    model.set_searchResults(this.searchResults);
+    model.searchResults = this.searchResults;
   }
 };
 

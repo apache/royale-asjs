@@ -16,6 +16,7 @@ goog.provide('org_apache_flex_core_HTMLElementWrapper');
 
 goog.require('org_apache_flex_core_IBeadModel');
 goog.require('org_apache_flex_core_IStrand');
+goog.require('org_apache_flex_events_BrowserEvent');
 goog.require('org_apache_flex_events_EventDispatcher');
 goog.require('org_apache_flex_utils_Language');
 
@@ -79,7 +80,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
     this.model = bead;
   }
 
-  bead.set_strand(this);
+  bead.strand = this;
 };
 
 
@@ -105,14 +106,14 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
 };
 
 
-/**
- * @expose
- * @return {Array} The array of descriptors.
- */
-org_apache_flex_core_HTMLElementWrapper.prototype.get_MXMLDescriptor =
-    function() {
-  return null;
-};
+Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
+    /** @expose */
+    MXMLDescriptor: {
+        get: function() {
+            return null;
+        }
+    }
+});
 
 
 /**
@@ -139,117 +140,38 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 
 /**
- * Hack to allow event.target expressions to work
- *
- * @expose
- * @return {Object} The wrapping object.
+ * @type {function((goog.events.Listener|null), (Object|null)):boolean}
  */
-Event.prototype.get_target = function() {
-  var obj = this.target;
-  if (!obj)
-    return this.currentTarget;
-  return obj.flexjs_wrapper;
+org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
+
+
+/**
+ * Fires a listener with a set of arguments
+ *
+ * @param {goog.events.Listener} listener The listener object to call.
+ * @param {Object} eventObject The event object to pass to the listener.
+ * @return {boolean} Result of listener.
+ */
+org_apache_flex_core_HTMLElementWrapper.fireListenerOverride = function(listener, eventObject) {
+  var e = new org_apache_flex_events_BrowserEvent();
+  e.wrappedEvent = eventObject;
+  return org_apache_flex_core_HTMLElementWrapper.googFireListener(listener, e);
 };
 
 
 /**
- * Hack to allow event.currentTarget to work
- * @return {Object} The wrapping object.
+ * Static initializer
  */
-Event.prototype.get_currentTarget = function() {
-  return this.currentTarget.flexjs_wrapper;
+org_apache_flex_core_HTMLElementWrapper.installOverride = function() {
+  org_apache_flex_core_HTMLElementWrapper.googFireListener =
+      goog.events.fireListener;
+  goog.events.fireListener = org_apache_flex_core_HTMLElementWrapper.fireListenerOverride;
 };
 
 
 /**
- * Hack to allow event.target expressions to work
- *
- * @expose
- * @return {Object} The wrapping object.
+ * The properties that triggers the static initializer
  */
-goog.events.BrowserEvent.prototype.get_target = function() {
-  // if it is a faked event so just return the target
-  if (!this.event_) return this.target;
-  // for true browser events, get the embedded event's target
-  return this.event_.get_target();
-};
+org_apache_flex_core_HTMLElementWrapper.installedOverride =
+    org_apache_flex_core_HTMLElementWrapper.installOverride();
 
-
-/**
- * Hack to allow event.currentTarget expressions to work
- *
- * @expose
- * @return {Node|Object} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_currentTarget = function() {
-  // if it is a faked event so just return the currentTarget
-  if (!this.event_) return this.currentTarget;
-  // for true browser events, get the embedded event's currentTarget
-  return this.event_.get_currentTarget();
-};
-
-
-/**
- * Hack to allow event.screenX expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_screenX = function() {
-  return this.screenX;
-};
-
-
-/**
- * Hack to allow event.screenY expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_screenY = function() {
-  return this.screenY;
-};
-
-
-/**
- * Hack to allow event.clientX expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_clientX = function() {
-  return this.clientX;
-};
-
-
-/**
- * Hack to allow event.clientY expressions to work
- *
- * @expose
- * @return {number} The wrapping object.
- */
-goog.events.BrowserEvent.prototype.get_clientY = function() {
-  return this.clientY;
-};
-
-
-/**
- * Hack to allow event.clientX expressions to work
- *
- * @expose
- * @param {number} value The value.
- */
-goog.events.BrowserEvent.prototype.set_clientX = function(value) {
-  this.clientX = value;
-};
-
-
-/**
- * Hack to allow event.clientY expressions to work
- *
- * @expose
- * @param {number} value The value.
- */
-goog.events.BrowserEvent.prototype.set_clientY = function(value) {
-  this.clientY = value;
-};

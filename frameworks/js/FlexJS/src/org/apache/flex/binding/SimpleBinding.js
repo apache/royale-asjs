@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_binding_SimpleBinding');
 
 goog.require('org_apache_flex_binding_BindingBase');
+goog.require('org_apache_flex_utils_Language');
 
 
 
@@ -50,30 +51,8 @@ org_apache_flex_binding_SimpleBinding.prototype.eventName = '';
  * @expose
  */
 org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
-  if (typeof(this.destination['set_' + this.destinationPropertyName]) === 'function')
-    this.destination['set_' + this.destinationPropertyName](
-        this.source['get_' + this.sourcePropertyName]()
-    );
-  else {
-    this.destination[this.destinationPropertyName] =
-        this.source['get_' + this.sourcePropertyName]();
-  }
-};
-
-
-/**
- * @override
- */
-org_apache_flex_binding_SimpleBinding.prototype.set_strand = function(value) {
-  org_apache_flex_binding_SimpleBinding.base(this, 'set_strand', value);
-
-  if (!this.source)
-    return;
-
-  this.source.addEventListener(this.eventName,
-      goog.bind(this.changeHandler, this));
-
-  this.changeHandler();
+  this.destination[this.destinationPropertyName] =
+      this.source[this.sourcePropertyName];
 };
 
 
@@ -88,3 +67,25 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
     this.changeHandler();
   }
 };
+
+
+Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_binding_SimpleBinding} */
+         set: function(value) {
+            org_apache_flex_utils_Language.superSetter(
+                org_apache_flex_binding_SimpleBinding, this, 'strand', value);
+
+            if (!this.source)
+                return;
+
+            this.source.addEventListener(this.eventName,
+                goog.bind(this.changeHandler, this));
+
+            this.changeHandler();
+         }
+    }
+});
+
+

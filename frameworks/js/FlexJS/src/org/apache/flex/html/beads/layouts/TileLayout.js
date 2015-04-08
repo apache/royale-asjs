@@ -40,80 +40,54 @@ org_apache_flex_html_beads_layouts_TileLayout.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @return {number} The number of columns wide for the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_numColumns = function() {
-  return this._numColumns;
-};
-
-
-/**
- * @expose
- * @param {number} value The number of columns wide for the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_numColumns = function(value) {
-  this._numColumns = value;
-};
-
-
-/**
- * @expose
- * @return {number} The width of each column in the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_columnWidth = function() {
-  return this._columnWidth;
-};
-
-
-/**
- * @expose
- * @param {number} value The width of each column in the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_columnWidth = function(value) {
-  this._columnWidth = value;
-};
-
-
-/**
- * @expose
- * @return {number} The height of each row of the layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  get_rowHeight = function() {
-  return this._rowHeight;
-};
-
-
-/**
- * @expose
- * @param {number} value The height of each row of the Tile layout.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_rowHeight = function(value) {
-  this._rowHeight = value;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.
-  set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('layoutNeeded',
+                  goog.bind(this.changeHandler, this));
+            }
+        }
+    },
+    /** @expose */
+    numColumns: {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        get: function() {
+            return this._numColumns;
+        },
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._numColumns = value;
+        }
+    },
+    /** @expose */
+    columnWidth: {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        get: function() {
+            return this._columnWidth;
+        },
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._columnWidth = value;
+        }
+    },
+    /** @expose */
+    rowHeight: {
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        get: function() {
+            return this._rowHeight;
+        },
+        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        set: function(value) {
+            this._rowHeight = value;
+        }
+    }
+});
 
 
 /**
@@ -121,7 +95,7 @@ org_apache_flex_html_beads_layouts_TileLayout.prototype.
  */
 org_apache_flex_html_beads_layouts_TileLayout.
     prototype.changeHandler = function(event) {
-  var children, i, n;
+  var children, i, n, child;
   var xpos, ypos, useWidth, useHeight;
 
   children = this.strand_.internalChildren();
@@ -131,35 +105,35 @@ org_apache_flex_html_beads_layouts_TileLayout.
   var realN = n;
   for (i = 0; i < n; i++)
   {
-    var child = children[i].flexjs_wrapper;
+    child = children[i].flexjs_wrapper;
     if (!child.get_visible()) realN--;
   }
 
   xpos = 0;
   ypos = 0;
-  useWidth = this.get_columnWidth();
-  useHeight = this.get_rowHeight();
+  useWidth = this.columnWidth;
+  useHeight = this.rowHeight;
 
-  if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.get_width() / this.get_numColumns()); // + gap
+  if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.width / this.numColumns); // + gap
   if (isNaN(useHeight)) {
     // given the width and total number of items, how many rows?
-    var numRows = Math.floor(realN / this.get_numColumns());
-    useHeight = Math.floor(this.strand_.get_height() / numRows);
+    var numRows = Math.floor(realN / this.numColumns);
+    useHeight = Math.floor(this.strand_.height / numRows);
   }
 
   for (i = 0; i < n; i++)
   {
-    var child = children[i].flexjs_wrapper;
-    if (!child.get_visible()) continue;
+    child = children[i].flexjs_wrapper;
+    if (!child.visible) continue;
     child.positioner.internalDisplay = 'inline-block';
-    child.set_width(useWidth);
-    child.set_height(useHeight);
-    child.set_x(xpos);
-    child.set_y(ypos);
+    child.width = useWidth;
+    child.height = useHeight;
+    child.x = xpos;
+    child.y = ypos;
 
     xpos += useWidth;
 
-    if (((i + 1) % this.get_numColumns()) === 0) {
+    if (((i + 1) % this.numColumns) === 0) {
       xpos = 0;
       ypos += useHeight;
     }

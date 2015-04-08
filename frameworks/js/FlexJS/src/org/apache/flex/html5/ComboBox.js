@@ -77,7 +77,7 @@ org_apache_flex_html5_ComboBox.prototype.selectChanged =
   var select;
 
   select = event.currentTarget;
-  this.set_selectedItem(select.value);
+  this.selectedItem = select.value;
 
   this.popup.parentNode.removeChild(this.popup);
   this.popup = null;
@@ -142,7 +142,7 @@ org_apache_flex_html5_ComboBox.prototype.buttonClicked =
   select.onchange = /** @type {function(Event)} */ (goog.bind(this.selectChanged, this));
   opts = select.options;
 
-  dp = /** @type {Array.<string>} */ (this.get_dataProvider());
+  dp = /** @type {Array.<string>} */ (this.dataProvider);
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('option');
@@ -152,7 +152,7 @@ org_apache_flex_html5_ComboBox.prototype.buttonClicked =
 
   select.size = n;
 
-  si = this.get_selectedIndex();
+  si = this.selectedIndex;
   if (si < 0) {
     select.value = null;
   } else {
@@ -166,31 +166,23 @@ org_apache_flex_html5_ComboBox.prototype.buttonClicked =
 };
 
 
-/**
- * @override
- * @expose
- * @param {Array.<Object>} value The collection of data.
- */
-org_apache_flex_html5_ComboBox.prototype.set_dataProvider =
-    function(value) {
-  this.dataProvider = value;
-};
-
-
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html5_ComboBox.prototype.get_text = function() {
-  return this.element.childNodes.item(0).value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html5_ComboBox.prototype.set_text =
-    function(value) {
-  this.element.childNodes.item(0).value = value;
-};
+Object.defineProperties(org_apache_flex_html5_ComboBox.prototype, {
+    /** @expose */
+    dataProvider: {
+        /** @this {org_apache_flex_html5_ComboBox} */
+        set: function(value) {
+            this.dataProvider = value;
+        }
+    },
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html5_ComboBox} */
+        get: function() {
+            return this.element.childNodes.item(0).value;
+        },
+        /** @this {org_apache_flex_html5_ComboBox} */
+        set: function(value) {
+            this.element.childNodes.item(0).value = value;
+        }
+    }
+});

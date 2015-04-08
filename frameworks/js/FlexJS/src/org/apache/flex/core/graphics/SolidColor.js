@@ -49,38 +49,30 @@ org_apache_flex_core_graphics_SolidColor.prototype.FLEXJS_CLASS_INFO =
                 interfaces: [org_apache_flex_core_graphics_IFill] };
 
 
-/**
- * @expose
- * @return {number} color.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.get_color = function() {
-  return this.color_;
-};
-
-
-/**
- * @param {number} value color.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.set_color = function(value) {
-  this.color_ = value;
-};
-
-
-/**
- * @expose
- * @return {number} alpha.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.get_alpha = function() {
-  return this.alpha_;
-};
-
-
-/**
- * @param {number} value alpha.
- */
-org_apache_flex_core_graphics_SolidColor.prototype.set_alpha = function(value) {
-  this.alpha_ = value;
-};
+Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
+    /** @expose */
+    color: {
+        /** @this {org_apache_flex_core_graphics_SolidColor} */
+        get: function() {
+            return this.color_;
+        },
+        /** @this {org_apache_flex_core_graphics_SolidColor} */
+        set: function(value) {
+            this.color_ = value;
+        }
+    },
+    /** @expose */
+    alpha: {
+        /** @this {org_apache_flex_core_graphics_SolidColor} */
+        get: function() {
+            return this.alpha_;
+        },
+        /** @this {org_apache_flex_core_graphics_SolidColor} */
+        set: function(value) {
+            this.alpha_ = value;
+        }
+    }
+});
 
 
 /**
@@ -91,10 +83,10 @@ org_apache_flex_core_graphics_SolidColor.prototype.set_alpha = function(value) {
  * @return {string}
  */
 org_apache_flex_core_graphics_SolidColor.prototype.addFillAttrib = function(value) {
-  var color = Number(this.get_color()).toString(16);
+  var color = Number(this.color).toString(16);
   if (color.length == 1) color = '00' + color;
   if (color.length == 2) color = '00' + color;
   if (color.length == 4) color = '00' + color;
-  return 'fill:#' + String(color) + ';fill-opacity:' + String(this.get_alpha());
+  return 'fill:#' + String(color) + ';fill-opacity:' + String(this.alpha);
 };
 

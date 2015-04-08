@@ -15,6 +15,7 @@
 goog.provide('org_apache_flex_events_EventDispatcher');
 
 goog.require('goog.events.EventTarget');
+goog.require('org_apache_flex_events_ElementEvents');
 goog.require('org_apache_flex_events_IEventDispatcher');
 
 
@@ -59,7 +60,7 @@ org_apache_flex_events_EventDispatcher.prototype.addEventListener =
       this.element.nodeName.toLowerCase() !== 'div' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
-  } else if (org_apache_flex_events_EventDispatcher.elementEvents[type]) {
+  } else if (org_apache_flex_events_ElementEvents.elementEvents[type]) {
     // mouse and keyboard events also dispatch off the element.
     source = this.element;
   }
@@ -67,48 +68,4 @@ org_apache_flex_events_EventDispatcher.prototype.addEventListener =
   goog.events.listen(source, type, handler);
 };
 
-
-/**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @return {Object} value The value of the property.
- */
-org_apache_flex_events_EventDispatcher.prototype.getProperty =
-    function(obj, propName) {
-  if (typeof obj['get_' + propName] === 'function') {
-    return obj['get_' + propName]();
-  }
-  return obj[propName];
-};
-
-
-/**
- * @expose
- * @param {Object} obj The object.
- * @param {string} propName The name of the property.
- * @param {Object} value The value of the property.
- */
-org_apache_flex_events_EventDispatcher.prototype.setProperty =
-function(obj, propName, value) {
-  if (typeof obj['set_' + propName] === 'function') {
-    obj['set_' + propName](value);
-  } else {
-    obj[propName] = value;
-  }
-};
-
-
-/**
- * @type {Object}
- */
-org_apache_flex_events_EventDispatcher.elementEvents = {
-  'mouseover': 1,
-  'mouseout': 1,
-  'mouseup': 1,
-  'mousedown': 1,
-  'mousemove': 1,
-  'rollover': 1,
-  'rollout': 1
-};
 

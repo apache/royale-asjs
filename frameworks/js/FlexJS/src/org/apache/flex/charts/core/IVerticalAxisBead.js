@@ -42,26 +42,18 @@ org_apache_flex_charts_core_IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
     interfaces: [org_apache_flex_charts_core_IAxisBead]
   };
 
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IVerticalAxisBead.prototype.set_axisWidth = function(value) {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_axisWidth = function() {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_maximum = function() {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IVerticalAxisBead.prototype.get_minimum = function() {};
+Object.defineProperties(org_apache_flex_charts_core_IVerticalAxisBead.prototype, {
+    /** @expose */
+    axisWidth: {
+        set: function(value) {},
+        get: function() {}
+    },
+    /** @expose */
+    maximum: {
+        get: function() {}
+    },
+    /** @expose */
+    minimum: {
+        get: function() {}
+    }
+});

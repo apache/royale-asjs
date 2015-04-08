@@ -99,7 +99,7 @@ org_apache_flex_createjs_Application.prototype.start = function() {
   this.stage = new createjs.Stage('flexjsCanvas');
 
   org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this,
-      this.get_MXMLProperties());
+      this.MXMLProperties);
 
   this.dispatchEvent('initialize');
 

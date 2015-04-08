@@ -27,12 +27,6 @@ org_apache_flex_core_ListBase = function() {
   org_apache_flex_core_ListBase.base(this, 'constructor');
 
   /**
-   * @protected
-   * @type {Array.<Object>}
-   */
-  this.dataProvider = null;
-
-  /**
    * @private
    * @type {number}
    */
@@ -71,64 +65,41 @@ org_apache_flex_core_ListBase.prototype.createElement = function() {
 };
 
 
-/**
- * @expose
- * @return {Array.<Object>} The collection of data.
- */
-org_apache_flex_core_ListBase.prototype.get_dataProvider =
-    function() {
-  return this.get_model().get_dataProvider();
-};
-
-
-/**
- * @expose
- * @param {Array.<Object>} value The text setter.
- */
-org_apache_flex_core_ListBase.prototype.set_dataProvider =
-    function(value) {
-  this.get_model().set_dataProvider(value);
-};
-
-
-/**
- * @expose
- * @return {number} The selected index.
- */
-org_apache_flex_core_ListBase.prototype.get_selectedIndex =
-    function() {
-  return this.get_model().get_selectedIndex();
-};
-
-
-/**
- * @expose
- * @param {number} value The selected index.
- */
-org_apache_flex_core_ListBase.prototype.set_selectedIndex =
-    function(value) {
-  this.get_model().set_selectedIndex(value);
-};
-
-
-/**
- * @expose
- * @return {Object} The selected item.
- */
-org_apache_flex_core_ListBase.prototype.get_selectedItem =
-    function() {
-  return this.get_model().get_selectedItem();
-};
-
-
-/**
- * @expose
- * @param {Object} value The selected item.
- */
-org_apache_flex_core_ListBase.prototype.set_selectedItem =
-    function(value) {
-  this.get_model().set_selectedItem(value);
-};
+Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
+    /** @expose */
+    dataProvider: {
+        /** @this {org_apache_flex_core_ListBase} */
+        get: function() {
+            return this.model.dataProvider;
+        },
+        /** @this {org_apache_flex_core_ListBase} */
+        set: function(value) {
+            this.model.dataProvider = value;
+        }
+    },
+    /** @expose */
+    selectedIndex: {
+        /** @this {org_apache_flex_core_ListBase} */
+        get: function() {
+            return this.model.selectedIndex;
+        },
+        /** @this {org_apache_flex_core_ListBase} */
+        set: function(value) {
+            this.model.selectedIndex = value;
+        }
+    },
+    /** @expose */
+    selectedItem: {
+        /** @this {org_apache_flex_core_ListBase} */
+        get: function() {
+            return this.model.selectedItem;
+        },
+        /** @this {org_apache_flex_core_ListBase} */
+        set: function(value) {
+            this.model.selectedItem = value;
+        }
+    }
+});
 
 
 /**

@@ -50,65 +50,56 @@ org_apache_flex_html_beads_ListView.prototype.
       interfaces: [org_apache_flex_html_beads_IListView, org_apache_flex_core_ILayoutParent] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_ListView.prototype.set_strand =
-    function(value) {
+Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.strand_ = value;
+            this.strand_.addEventListener('sizeChanged',
+                goog.bind(this.handleSizeChange, this));
+            this.strand_.addEventListener('widthChanged',
+                goog.bind(this.handleSizeChange, this));
+            this.strand_.addEventListener('heightChanged',
+                goog.bind(this.handleSizeChange, this));
 
-  this.strand_.addEventListener('sizeChanged',
-      goog.bind(this.handleSizeChange, this));
-  this.strand_.addEventListener('widthChanged',
-      goog.bind(this.handleSizeChange, this));
-  this.strand_.addEventListener('heightChanged',
-      goog.bind(this.handleSizeChange, this));
+            this.model = this.strand_.model;
+            this.model.addEventListener('selectedIndexChanged',
+                goog.bind(this.selectionChangeHandler, this));
+            this.model.addEventListener('dataProviderChanged',
+                goog.bind(this.dataProviderChangeHandler, this));
 
-  this.model = this.strand_.get_model();
-  this.model.addEventListener('selectedIndexChanged',
-      goog.bind(this.selectionChangeHandler, this));
-  this.model.addEventListener('dataProviderChanged',
-      goog.bind(this.dataProviderChangeHandler, this));
+            if (this.dataGroup_ == null) {
+              var m2 = org_apache_flex_core_ValuesManager.valuesImpl.
+                  getValue(this.strand_, 'iDataGroup');
+              this.dataGroup_ = new m2();
+            }
+            this.dataGroup_.strand = this;
+            this.strand_.addElement(this.dataGroup_);
 
-  if (this.dataGroup_ == null) {
-    var m2 = org_apache_flex_core_ValuesManager.valuesImpl.
-        getValue(this.strand_, 'iDataGroup');
-    this.dataGroup_ = new m2();
-  }
-  this.dataGroup_.set_strand(this);
-  this.strand_.addElement(this.dataGroup_);
+            if (this.strand_.getBeadByType(org_apache_flex_core_IBeadLayout) == null) {
+              var m3 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+              this.layout_ = new m3();
+              this.strand_.addBead(this.layout_);
+              //this.layout_.strand = this.strand_;
+            }
 
-  if (this.strand_.getBeadByType(org_apache_flex_core_IBeadLayout) == null) {
-    var m3 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
-    this.layout_ = new m3();
-    this.strand_.addBead(this.layout_);
-    //this.layout_.set_strand(this.strand_);
-  }
-
-  this.handleSizeChange(null);
-};
-
-
-/**
- * @expose
- * @return {Object} The DataGroup instance.
- */
-org_apache_flex_html_beads_ListView.prototype.get_dataGroup =
-    function() {
-  return this.dataGroup_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The DataGroup instance.
- */
-org_apache_flex_html_beads_ListView.prototype.set_dataGroup =
-    function(value) {
-  this.dataGroup_ = value;
-};
+            this.handleSizeChange(null);
+        }
+    },
+    /** @expose */
+    dataGroup: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        get: function() {
+            return this.dataGroup_;
+        },
+        /** @this {org_apache_flex_html_beads_ListView} */
+        set: function(value) {
+            this.dataGroup_ = value;
+        }
+    }
+});
 
 
 /**
@@ -120,14 +111,14 @@ org_apache_flex_html_beads_ListView.prototype.
   var ir;
   if (this.lastSelectedIndex != -1) {
     ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
-    if (ir) ir.set_selected(false);
+    if (ir) ir.selected = false;
   }
-  if (this.model.get_selectedIndex() != -1) {
+  if (this.model.selectedIndex != -1) {
     ir = this.dataGroup_.getItemRendererForIndex(
-        this.model.get_selectedIndex());
-    if (ir) ir.set_selected(true);
+        this.model.selectedIndex);
+    if (ir) ir.selected = true;
   }
-  this.lastSelectedIndex = this.model.get_selectedIndex();
+  this.lastSelectedIndex = this.model.selectedIndex;
 };
 
 
@@ -141,48 +132,39 @@ org_apache_flex_html_beads_ListView.prototype.
 };
 
 
-/**
- * @expose
- * @return {Object} The view that contains the layout objects.
- */
-org_apache_flex_html_beads_ListView.prototype.get_contentView = function() {
-  return this.dataGroup_;
-};
-
-
-/**
- * @expose
- * @return {Object} The border for the layout area.
- */
-org_apache_flex_html_beads_ListView.prototype.get_border = function() {
-  return null;
-};
-
-
-/**
- * @expose
- * @return {Object} The vertical scrollbar.
- */
-org_apache_flex_html_beads_ListView.prototype.get_vScrollBar = function() {
-  return null;
-};
-
-
-/**
- * @expose
- * @param {Object} value The vertical scrollbar.
- */
-org_apache_flex_html_beads_ListView.prototype.set_vScrollBar = function(value) {
-};
-
-
-/**
- * @expose
- * @return {Object} The view that can be resized.
- */
-org_apache_flex_html_beads_ListView.prototype.get_resizeableView = function() {
-  return this;
-};
+Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
+    /** @expose */
+    contentView: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        get: function() {
+            return this.dataGroup_;
+        }
+    },
+    /** @expose */
+    border: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        get: function() {
+            return null;
+        }
+    },
+    /** @expose */
+    vScrollBar: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        get: function() {
+            return null;
+        },
+        /** @this {org_apache_flex_html_beads_ListView} */
+        set: function(value) {
+        }
+    },
+    /** @expose */
+    resizeableView: {
+        /** @this {org_apache_flex_html_beads_ListView} */
+        get: function() {
+            return this;
+        }
+    }
+});
 
 
 /**
@@ -190,6 +172,6 @@ org_apache_flex_html_beads_ListView.prototype.get_resizeableView = function() {
  * @param {Object} event The event that triggered the resize.
  */
 org_apache_flex_html_beads_ListView.prototype.handleSizeChange = function(event) {
-  this.dataGroup_.set_width(this.strand_.get_width());
-  this.dataGroup_.set_height(this.strand_.get_height());
+  this.dataGroup_.width = this.strand_.width;
+  this.dataGroup_.height = this.strand_.height;
 };

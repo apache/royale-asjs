@@ -47,21 +47,17 @@ org_apache_flex_createjs_Label.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_createjs_Label.prototype.get_text = function() {
-  return this.element.text;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_createjs_Label.prototype.set_text =
-    function(value) {
-  this.element.text = value;
-  this.element.getStage().update();
-};
+Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_createjs_Label} */
+        get: function() {
+            return this.element.text;
+        },
+        /** @this {org_apache_flex_createjs_Label} */
+        set: function(value) {
+            this.element.text = value;
+            this.element.getStage().update();
+        }
+    }
+});

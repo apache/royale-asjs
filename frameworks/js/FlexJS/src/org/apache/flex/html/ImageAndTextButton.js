@@ -62,44 +62,32 @@ org_apache_flex_html_ImageAndTextButton.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html_ImageAndTextButton.prototype.get_text = function() {
-  return this._text;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html_ImageAndTextButton.prototype.set_text =
-    function(value) {
-  this._text = value;
-  this.setInnerHTML();
-};
-
-
-/**
- * @expose
- * @return {string} The image url.
- */
-org_apache_flex_html_ImageAndTextButton.prototype.get_image = function() {
-  return this._src;
-};
-
-
-/**
- * @expose
- * @param {string} value The image url.
- */
-org_apache_flex_html_ImageAndTextButton.prototype.set_image =
-    function(value) {
-  this._src = value;
-  this.setInnerHTML();
-};
+Object.defineProperties(org_apache_flex_html_ImageAndTextButton.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html_ImageAndTextButton} */
+        get: function() {
+            return this._text;
+        },
+        /** @this {org_apache_flex_html_ImageAndTextButton} */
+        set: function(value) {
+            this._text = value;
+            this.setInnerHTML();
+        }
+    },
+    /** @expose */
+    image: {
+        /** @this {org_apache_flex_html_ImageAndTextButton} */
+        get: function() {
+            return this._src;
+        },
+        /** @this {org_apache_flex_html_ImageAndTextButton} */
+        set: function(value) {
+            this._src = value;
+            this.setInnerHTML();
+        }
+    }
+});
 
 
 /**

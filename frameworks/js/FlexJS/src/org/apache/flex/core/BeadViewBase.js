@@ -50,23 +50,23 @@ org_apache_flex_core_BeadViewBase.prototype.FLEXJS_CLASS_INFO =
 org_apache_flex_core_BeadViewBase.prototype._strand = null;
 
 
-/**
- * @expose
- * @param {Object} value The new strand.
- */
-org_apache_flex_core_BeadViewBase.prototype.set_strand =
-function(value) {
-  if (this._strand !== value) {
-    this._strand = value;
-  }
-};
+Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_core_BeadViewBase} */
+        set: function(value) {
+            if (this._strand !== value) {
+              this._strand = value;
+            }
+        }
+    },
+    /** @expose */
+    host: {
+        /** @this {org_apache_flex_core_BeadViewBase} */
+        get: function() {
+            return this._strand;
+        }
+    }
+});
 
 
-/**
- * @expose
- * @return {Object} value The strand.
- */
-org_apache_flex_core_BeadViewBase.prototype.get_host =
-function() {
-  return this._strand;
-};

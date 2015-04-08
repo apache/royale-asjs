@@ -16,8 +16,10 @@ goog.provide('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
 
 goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
 goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org_apache_flex_events_Event');
 goog.require('org_apache_flex_events_EventDispatcher');
 goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
+goog.require('org_apache_flex_html_supportClasses_StringItemRenderer');
 
 
 
@@ -47,26 +49,27 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
       interfaces: [org_apache_flex_core_IItemRenderer] };
 
 
-/**
- * @expose
- * @param {Object} value The component strand.
- */
-org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
-    prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_TextItemRendererFactoryForArrayData} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.model = value.getBeadByType(
-      org_apache_flex_html_beads_models_ArraySelectionModel);
+            this.model = value.getBeadByType(
+                org_apache_flex_html_beads_models_ArraySelectionModel);
 
-  this.listView = value.getBeadByType(
-      org_apache_flex_html_beads_ListView);
-  this.dataGroup = this.listView.get_dataGroup();
+            this.listView = value.getBeadByType(
+                org_apache_flex_html_beads_ListView);
+            this.dataGroup = this.listView.dataGroup;
 
-  this.model.addEventListener('dataProviderChanged',
-      goog.bind(this.dataProviderChangedHandler, this));
+            this.model.addEventListener('dataProviderChanged',
+                goog.bind(this.dataProviderChangedHandler, this));
 
-  this.dataProviderChangedHandler(null);
-};
+            this.dataProviderChangedHandler(null);
+        }
+    }
+});
 
 
 /**
@@ -77,13 +80,13 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
-  dp = this.model.get_dataProvider();
+  dp = this.model.dataProvider;
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = new
         org_apache_flex_html_supportClasses_StringItemRenderer();
     this.dataGroup.addElement(opt);
-    opt.set_text(dp[i]);
+    opt.text = dp[i];
   }
 
   var newEvent = new org_apache_flex_events_Event('itemsCreated');

@@ -30,34 +30,22 @@ org_apache_flex_core_IFormatBead = function() {
 };
 
 
-/**
- * @return {string}
- */
-org_apache_flex_core_IFormatBead.prototype.get_propertyName = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_core_IFormatBead.prototype.set_propertyName = function(value) {};
-
-
-/**
- * @return {string}
- */
-org_apache_flex_core_IFormatBead.prototype.get_eventName = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_core_IFormatBead.prototype.set_eventName = function(value) {};
-
-
-/**
- * @return {string}
- */
-org_apache_flex_core_IFormatBead.prototype.get_formattedString = function() {};
+Object.defineProperties(org_apache_flex_core_IFormatBead.prototype, {
+    /** @expose */
+    propertyName: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    eventName: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    formattedString: {
+        get: function() {}
+    }
+});
 
 
 /**

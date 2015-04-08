@@ -73,10 +73,10 @@ org_apache_flex_core_ViewBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @private
  * @type {Object}
  */
-org_apache_flex_core_ViewBase.prototype.applicationModel = null;
+org_apache_flex_core_ViewBase.prototype.applicationModel_ = null;
 
 
 /**
@@ -90,25 +90,9 @@ org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) 
 
 /**
  * @expose
- * @type {Array}
- */
-org_apache_flex_core_ViewBase.prototype.MXMLDescriptor = null;
-
-
-/**
- * @expose
  * @type {Object} The document.
  */
 org_apache_flex_core_ViewBase.prototype.document = null;
-
-
-/**
- * @expose
- * @return {Array} An array of descriptors.
- */
-org_apache_flex_core_ViewBase.prototype.get_MXMLDescriptor = function() {
-  return this.MXMLDescriptor;
-};
 
 
 /**
@@ -138,51 +122,13 @@ org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
 
   if (!this.initialized_) {
     org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
-      this, this.get_MXMLDescriptor());
+      this, this.MXMLDescriptor);
 
     this.dispatchEvent(new org_apache_flex_events_Event('initBindings'));
     this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
     this.initialized_ = true;
   }
   this.dispatchEvent(new org_apache_flex_events_Event('childrenAdded'));
-};
-
-
-/**
- * @expose
- * @return {Object} The application model.
- */
-org_apache_flex_core_ViewBase.prototype.get_applicationModel = function() {
-  return this.applicationModel;
-};
-
-
-/**
- * @expose
- * @return {Array} The array of State objects.
- */
-org_apache_flex_core_ViewBase.prototype.get_states = function() {
-  return this.states_;
-};
-
-
-/**
- * @expose
- * @param {Array} value The array of State objects.
- */
-org_apache_flex_core_ViewBase.prototype.set_states = function(value) {
-  this.states_ = value;
-  this.currentState_ = value[0].name;
-
-  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-    /**
-     * @type {Function}
-     */
-    var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
-        getValue(this, 'iStatesImpl'));
-    // TODO: (aharui) check if bead already exists
-    this.addBead(new impl());
-  }
 };
 
 
@@ -202,41 +148,74 @@ org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
 };
 
 
-/**
- * @expose
- * @return {string} The name of the current state.
- */
-org_apache_flex_core_ViewBase.prototype.get_currentState = function() {
-  return this.currentState_;
-};
+Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
+    /** @expose */
+    MXMLDescriptor: {
+        /** @this {org_apache_flex_core_ViewBase} */
+        get: function() {
+            return this.mxmldd;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.mxmldd = value;
+        }
+    },
+    /** @expose */
+    applicationModel: {
+        /** @this {org_apache_flex_core_ViewBase} */
+        get: function() {
+            return this.applicationModel_;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.applicationModel_ = value;
+        }
+    },
+    /** @expose */
+    states: {
+        /** @this {org_apache_flex_core_ViewBase} */
+        get: function() {
+            return this.states_;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.states_ = value;
+            this.currentState_ = value[0].name;
 
-
-/**
- * @expose
- * @param {string} value The name of the current state.
- */
-org_apache_flex_core_ViewBase.prototype.set_currentState = function(value) {
-  var event = new org_apache_flex_events_ValueChangeEvent(
-      'currentStateChange', false, false, this.currentState_, value);
-  this.currentState_ = value;
-  this.dispatchEvent(event);
-};
-
-
-/**
- * @expose
- * @return {Array} The array of transitions.
- */
-org_apache_flex_core_ViewBase.prototype.get_transitions = function() {
-  return this.transitions_;
-};
-
-
-/**
- * @expose
- * @param {Array} value The array of transitions.
- */
-org_apache_flex_core_ViewBase.prototype.set_transitions = function(value) {
-  this.transitions_ = value;
-};
-
+            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+              /**
+               * @type {Function}
+               */
+              var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+                  getValue(this, 'iStatesImpl'));
+              // TODO: (aharui) check if bead already exists
+              this.addBead(new impl());
+            }
+        }
+    },
+    /** @expose */
+    currentState: {
+        /** @this {org_apache_flex_core_ViewBase} */
+        get: function() {
+            return this.currentState_;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            var event = new org_apache_flex_events_ValueChangeEvent(
+                'currentStateChange', false, false, this.currentState_, value);
+            this.currentState_ = value;
+            this.dispatchEvent(event);
+        }
+    },
+    /** @expose */
+    transitions: {
+        /** @this {org_apache_flex_core_ViewBase} */
+        get: function() {
+            return this.transitions_;
+        },
+        /** @this {org_apache_flex_core_ViewBase} */
+        set: function(value) {
+            this.transitions_ = value;
+        }
+    }
+});

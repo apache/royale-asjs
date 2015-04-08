@@ -75,21 +75,16 @@ org_apache_flex_createjs_TextButton.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_createjs_TextButton.prototype.get_text =
-    function() {
-  return this.buttonLabel.text;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_createjs_TextButton.prototype.set_text =
-    function(value) {
-  this.buttonLabel.text = value;
-};
+Object.defineProperties(org_apache_flex_createjs_TextButton.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_createjs_TextButton} */
+        get: function() {
+            return this.buttonLabel.text;
+        },
+        /** @this {org_apache_flex_createjs_TextButton} */
+        set: function(value) {
+            this.buttonLabel.text = value;
+        }
+    }
+});

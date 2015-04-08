@@ -56,7 +56,7 @@ org_apache_flex_core_graphics_Line.prototype.drawLine = function(x1, y1, x2, y2)
     line.setAttribute('y1', y1);
     line.setAttribute('x2', x2 - x1);
     line.setAttribute('y2', y2);
-    this.setPosition(x1, y2, this.get_stroke().get_weight(), this.get_stroke().get_weight());
+    this.setPosition(x1, y2, this.stroke.weight, this.stroke.weight);
     this.element.appendChild(line);
 
     this.resize(x, y, line.getBBox());

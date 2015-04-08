@@ -37,25 +37,27 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLE
       interfaces: [org_apache_flex_core_IBeadController] };
 
 
-/**
- * @expose
- * @param {Object} value The strand for this component.
- */
-org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.set_strand = function(value) {
-  this.strand_ = value;
+Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_controllers_ItemRendererMouseController} */
+        set: function(value) {
+            this.strand_ = value;
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
-      goog.bind(this.handleMouseOver, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOVER,
+                goog.bind(this.handleMouseOver, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOUT,
-      goog.bind(this.handleMouseOut, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEOUT,
+                goog.bind(this.handleMouseOut, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEDOWN,
-      goog.bind(this.handleMouseDown, this));
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEDOWN,
+                goog.bind(this.handleMouseDown, this));
 
-  goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
-      goog.bind(this.handleMouseUp, this));
-};
+            goog.events.listen(this.strand_.element, goog.events.EventType.MOUSEUP,
+                goog.bind(this.handleMouseUp, this));
+        }
+    }
+});
 
 
 /**
@@ -64,11 +66,11 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.set
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOver = function(event) {
 
-  this.strand_.set_hovered(true);
+  this.strand_.hovered = true;
 
   var newEvent = new goog.events.Event('rollover');
   newEvent.target = this.strand_;
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 
 
@@ -78,11 +80,11 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOut = function(event) {
 
-  this.strand_.set_hovered(false);
+  this.strand_.hovered = false;
 
   var newEvent = new goog.events.Event('rollout');
   newEvent.target = this.strand_;
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 
 
@@ -113,5 +115,5 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
   // since the event is not going to up the chain, we also have to dispatch
   // it against its final destination.
 
-  this.strand_.get_itemRendererParent().dispatchEvent(newEvent);
+  this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };

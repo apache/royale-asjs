@@ -49,8 +49,8 @@ org_apache_flex_utils_PointUtils.globalToLocal =
   do {
     x -= element.offsetLeft;
     y -= element.offsetTop;
-    if (local.get_parent) {
-      local = local.get_parent();
+    if (local.hasOwnProperty('parent')) {
+      local = local.parent;
       element = local.element;
     } else {
       element = null;
@@ -75,8 +75,8 @@ org_apache_flex_utils_PointUtils.localToGlobal =
   do {
     x += element.offsetLeft;
     y += element.offsetTop;
-    if (local.get_parent) {
-      local = local.get_parent();
+    if (local.hasOwnProperty('parent')) {
+      local = local.parent;
       element = local.element;
     } else {
       element = null;

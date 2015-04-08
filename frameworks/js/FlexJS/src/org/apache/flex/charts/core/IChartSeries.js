@@ -31,52 +31,28 @@ org_apache_flex_charts_core_IChartSeries = function() {
 };
 
 
-/**
- * @return {string}
- */
-org_apache_flex_charts_core_IChartSeries.prototype.get_xField = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_charts_core_IChartSeries.prototype.set_xField = function(value) {};
-
-
-/**
- * @return {string}
- */
-org_apache_flex_charts_core_IChartSeries.prototype.get_yField = function() {};
-
-
-/**
- * @param {string} value
- */
-org_apache_flex_charts_core_IChartSeries.prototype.set_yField = function(value) {};
-
-
-/**
- * @return {number}
- */
-org_apache_flex_charts_core_IChartSeries.prototype.get_fillColor = function() {};
-
-
-/**
- * @param {number} value
- */
-org_apache_flex_charts_core_IChartSeries.prototype.set_fillColor = function(value) {};
-
-
-/**
- * @return {mx_core_IFactory}
- */
-org_apache_flex_charts_core_IChartSeries.prototype.get_itemRenderer = function() {};
-
-
-/**
- * @param {mx_core_IFactory} value
- */
-org_apache_flex_charts_core_IChartSeries.prototype.set_itemRenderer = function(value) {};
+Object.defineProperties(org_apache_flex_charts_core_IChartSeries.prototype, {
+    /** @expose */
+    xField: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    yField: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    fillColor: {
+        get: function() {},
+        set: function(value) {}
+    },
+    /** @expose */
+    itemRenderer: {
+        get: function() {},
+        set: function(value) {}
+    }
+});
 
 
 /**

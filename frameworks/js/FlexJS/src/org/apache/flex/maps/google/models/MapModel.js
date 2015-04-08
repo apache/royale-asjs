@@ -49,95 +49,52 @@ FLEXJS_CLASS_INFO =
     interfaces: [org_apache_flex_core_IBeadModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {Array} The search results list.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.get_searchResults =
-function() {
-  return this._searchResults;
-};
-
-
-/**
- * @expose
- * @param {Array} value A list of search results.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.set_searchResults =
-function(value) {
-  this._searchResults = value;
-  this.dispatchEvent('searchResultsChanged');
-};
-
-
-/**
- * @expose
- * @return {Number} Map zoom level.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.get_zoom =
-function() {
-  return this._zoom;
-};
-
-
-/**
- * @expose
- * @param {Number} value Map zoom level.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.set_zoom =
-function(value) {
-  this._zoom = value;
-  this.dispatchEvent('zoomChanged');
-};
-
-
-/**
- * @expose
- * @return {Object} The currently selected map Marker.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.get_selectedMarker =
-function() {
-  return this._selectedMarker;
-};
-
-
-/**
- * @expose
- * @param {Object} value A marker to be made the selected marker.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.set_selectedMarker =
-function(value) {
-  this._selectedMarker = value;
-  this.dispatchEvent('selectedMarkerChanged');
-};
-
-
-/**
- * @expose
- * @return {Object} The map's current center.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.get_currentLocation =
-function() {
-  return this._currentLocation;
-};
-
-
-/**
- * @expose
- * @param {Object} value The map's new current center.
- */
-org_apache_flex_maps_google_models_MapModel.prototype.set_currentLocation =
-function(value) {
-  this._currentLocation = value;
-  this.dispatchEvent('currentLocationChanged');
-};
+Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_maps_google_models_MapModel} */
+        set: function(value) {
+           this.strand_ = value;
+        }
+    },
+    /** @expose */
+    searchResults: {
+        get: function() {
+            return this._searchResults;
+        },
+        set: function(value) {
+            this._searchResults = value;
+            this.dispatchEvent('searchResultsChanged');
+        }
+    },
+    /** @expose */
+    zoom: {
+        get: function() {
+            return this._zoom;
+        },
+        set: function(value) {
+            this._zoom = value;
+            this.dispatchEvent('zoomChanged');
+        }
+    },
+    /** @expose */
+    selectedMarker: {
+        get: function() {
+            return this._selectedMarker;
+        },
+        set: function(value) {
+            this._selectedMarker = value;
+            this.dispatchEvent('selectedMarkerChanged');
+        }
+    },
+    /** @expose */
+    currentLocation: {
+        get: function() {
+            return this._currentLocation;
+        },
+        set: function(value) {
+            this._currentLocation = value;
+            this.dispatchEvent('currentLocationChanged');
+        }
+    }
+});

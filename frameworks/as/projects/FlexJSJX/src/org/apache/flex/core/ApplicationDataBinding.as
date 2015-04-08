@@ -97,7 +97,7 @@ package org.apache.flex.core
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (hasProperty(_strand, binding.source[0]))
+                    if (binding.source[0] in _strand)
                     {
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
@@ -115,7 +115,7 @@ package org.apache.flex.core
                                 sb.sourceID = binding.source[0];
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
-                                destObject = getProperty(_strand, binding.destination[0]);                                
+                                destObject = _strand[binding.destination[0]];                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(sb);
@@ -140,7 +140,7 @@ package org.apache.flex.core
                                 cb.sourceID = binding.source[0];
                                 cb.sourcePropertyName = binding.source[1];
                                 cb.setDocument(_strand);
-                                destObject = getProperty(_strand, binding.destination[0]);                                
+                                destObject = _strand[binding.destination[0]];                                
                                 destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(cb);
@@ -171,7 +171,7 @@ package org.apache.flex.core
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
                         sb.setDocument(_strand);
-                        destObject = getProperty(_strand, binding.destination[0]);                                
+                        destObject = _strand[binding.destination[0]];                                
                         destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(sb);

@@ -46,23 +46,19 @@ org_apache_flex_html_beads_ContainerView.prototype.FLEXJS_CLASS_INFO =
     };
 
 
-/**
- * @expose
- * @return {Object} value The content view.
- */
-org_apache_flex_html_beads_ContainerView.prototype.get_contentView =
-    function() {
-
-  return this._strand;
-};
-
-
-/**
- * @expose
- * @return {Object} value The resizeable view.
- */
-org_apache_flex_html_beads_ContainerView.prototype.get_resizableView =
-function() {
-
-  return this._strand;
-};
+Object.defineProperties(org_apache_flex_html_beads_ContainerView.prototype, {
+    /** @expose */
+    contentView: {
+        /** @this {org_apache_flex_html_beads_ContainerView} */
+        get: function() {
+            return this._strand;
+        }
+    },
+    /** @expose */
+    resizableView: {
+        /** @this {org_apache_flex_html_beads_ContainerView} */
+        get: function() {
+            return this._strand;
+        }
+    }
+});

@@ -43,20 +43,16 @@ org_apache_flex_html5_TextInput.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {string} The text getter.
- */
-org_apache_flex_html5_TextInput.prototype.get_text = function() {
-  return this.element.value;
-};
-
-
-/**
- * @expose
- * @param {string} value The text setter.
- */
-org_apache_flex_html5_TextInput.prototype.set_text =
-    function(value) {
-  this.element.value = value;
-};
+Object.defineProperties(org_apache_flex_html5_TextInput.prototype, {
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html5_TextInput} */
+        get: function() {
+            return this.element.value;
+        },
+        /** @this {org_apache_flex_html5_TextInput} */
+        set: function(value) {
+            this.element.value = value;
+        }
+    }
+});

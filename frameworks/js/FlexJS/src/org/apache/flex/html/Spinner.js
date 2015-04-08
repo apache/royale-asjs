@@ -58,11 +58,11 @@ org_apache_flex_html_Spinner.prototype.createElement =
   this.element.style.verticalAlign = 'middle';
 
   this.incrementButton = new org_apache_flex_html_TextButton();
-  this.incrementButton.set_text('\u25B2');
+  this.incrementButton.text = '\u25B2';
   this.addElement(this.incrementButton);
 
   this.decrementButton = new org_apache_flex_html_TextButton();
-  this.decrementButton.set_text('\u25BC');
+  this.decrementButton.text = '\u25BC';
   this.addElement(this.decrementButton);
 
   this.controller = new org_apache_flex_html_beads_controllers_SpinnerMouseController();
@@ -74,118 +74,78 @@ org_apache_flex_html_Spinner.prototype.createElement =
 };
 
 
-/**
- * @expose
- * @return {number} The current value.
- */
-org_apache_flex_html_Spinner.prototype.get_value =
-    function() {
-  return this.value_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new value.
- */
-org_apache_flex_html_Spinner.prototype.set_value =
-    function(value) {
-  if (value != this.value_) {
-    this.value_ = value;
-    this.dispatchEvent('valueChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The minimum value.
- */
-org_apache_flex_html_Spinner.prototype.get_minimum = function() {
-  return this.minimum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new minimum value.
- */
-org_apache_flex_html_Spinner.prototype.set_minimum =
-    function(value) {
-  if (value != this.minimum_) {
-    this.minimum_ = value;
-    this.dispatchEvent('minimumChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The maximum value.
- */
-org_apache_flex_html_Spinner.prototype.get_maximum =
-    function() {
-  return this.maximum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new maximum setter.
- */
-org_apache_flex_html_Spinner.prototype.set_maximum =
-    function(value) {
-  if (value != this.maximum_) {
-    this.maximum_ = value;
-    this.dispatchEvent('maximumChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The snapInterval.
- */
-org_apache_flex_html_Spinner.prototype.get_snapInterval =
-    function() {
-  return this.snapInterval_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new snapInterval value.
- */
-org_apache_flex_html_Spinner.prototype.set_snapInterval =
-    function(value) {
-  if (value != this.snapInterval_) {
-    this.snapInterval_ = value;
-    this.dispatchEvent('snapIntervalChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The stepSize.
- */
-org_apache_flex_html_Spinner.prototype.get_stepSize =
-    function() {
-  return this.stepSize_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new stepSize value.
- */
-org_apache_flex_html_Spinner.prototype.set_stepSize =
-    function(value) {
-  if (value != this.stepSize_) {
-    this.stepSize_ = value;
-    this.dispatchEvent('stepSizeChanged');
-  }
-};
+Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
+    /** @expose */
+    minimum: {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.minimum_;
+        },
+        /** @this {org_apache_flex_html_Spinner} */
+        set: function(value) {
+            if (value != this.minimum_) {
+              this.minimum_ = value;
+              this.dispatchEvent('minimumChanged');
+            }
+        }
+    },
+    /** @expose */
+    maximum: {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.maximum_;
+        },
+        /** @this {org_apache_flex_html_Spinner} */
+        set: function(value) {
+            if (value != this.maximum_) {
+              this.maximum_ = value;
+              this.dispatchEvent('maximumChanged');
+            }
+        }
+    },
+    /** @expose */
+    snapInterval: {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.snapInterval_;
+        },
+        /** @this {org_apache_flex_html_Spinner} */
+        set: function(value) {
+            if (value != this.snapInterval_) {
+              this.snapInterval_ = value;
+              this.dispatchEvent('snapIntervalChanged');
+            }
+        }
+    },
+    /** @expose */
+    stepSize: {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.stepSize_;
+        },
+        /** @this {org_apache_flex_html_Spinner} */
+        set: function(value) {
+            if (value != this.stepSize_) {
+              this.stepSize_ = value;
+              this.dispatchEvent('stepSizeChanged');
+            }
+        }
+    },
+    /** @expose */
+    value: {
+        /** @this {org_apache_flex_html_Spinner} */
+        get: function() {
+            return this.value_;
+        },
+        /** @this {org_apache_flex_html_Spinner} */
+        set: function(value) {
+            if (value != this.value_) {
+              this.value_ = value;
+              this.dispatchEvent('valueChange');
+            }
+        }
+    }
+});
 
 
 /**

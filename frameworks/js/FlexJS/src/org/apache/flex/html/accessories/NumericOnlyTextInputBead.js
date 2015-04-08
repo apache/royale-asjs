@@ -40,17 +40,18 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
                 qName: 'org_apache_flex_html_accessories_NumericOnlyTextInputBead' }] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_accessories_NumericOnlyTextInputBead.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    value.addEventListener('keypress', goog.bind(this.validateInput, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_accessories_NumericOnlyTextInputBead} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              value.addEventListener('keypress', goog.bind(this.validateInput, this));
+            }
+        }
+    }
+});
 
 
 /**

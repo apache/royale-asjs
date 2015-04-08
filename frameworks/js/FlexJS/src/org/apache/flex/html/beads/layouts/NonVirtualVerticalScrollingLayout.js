@@ -39,12 +39,14 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.F
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+            }
+        }
+    }
+});

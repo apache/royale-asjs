@@ -29,16 +29,13 @@ org_apache_flex_charts_core_IChart = function() {
 };
 
 
-/**
- * @return {Array}
- */
-org_apache_flex_charts_core_IChart.prototype.get_series = function() {};
-
-
-/**
- * @param {Array} value
- */
-org_apache_flex_charts_core_IChart.prototype.set_series = function(value) {};
+Object.defineProperties(org_apache_flex_charts_core_IChart.prototype, {
+    /** @expose */
+    series: {
+        get: function() {},
+        set: function(value) {}
+    }
+});
 
 
 /**

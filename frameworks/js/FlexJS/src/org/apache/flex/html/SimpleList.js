@@ -51,78 +51,60 @@ org_apache_flex_html_SimpleList.prototype.
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
-  this.set_className('SimpleList');
+  this.className = 'SimpleList';
 
   return this.element;
 };
 
 
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_dataProvider = function() {
-  return this.model.get_dataProvider();
-};
+Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
+    /** @expose */
+    dataProvider: {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
+            return this.model.dataProvider;
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            var dp, i, n, opt;
 
+            this.model.dataProvider = value;
 
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_dataProvider = function(value) {
-  var dp, i, n, opt;
+            dp = this.element.options;
+            n = dp.length;
+            for (i = 0; i < n; i++) {
+              dp.remove(0);
+            }
 
-  this.model.set_dataProvider(value);
-
-  dp = this.element.options;
-  n = dp.length;
-  for (i = 0; i < n; i++) {
-    dp.remove(0);
-  }
-
-  n = value.length;
-  for (i = 0; i < n; i++) {
-    opt = document.createElement('option');
-    opt.text = value[i].toString();
-    dp.add(opt);
-  }
-
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_selectedIndex = function() {
-  return this.model.get_selectedIndex();
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_selectedIndex = function(value) {
-  this.model.set_selectedIndex(value);
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    get_selectedItem = function() {
-  return this.model.get_selectedItem();
-};
-
-
-/**
- * @override
- */
-org_apache_flex_html_SimpleList.prototype.
-    set_selectedItem = function(value) {
-  this.model.set_selectedItem(value);
-};
+            n = value.length;
+            for (i = 0; i < n; i++) {
+              opt = document.createElement('option');
+              opt.text = value[i].toString();
+              dp.add(opt);
+            }
+        }
+    },
+    /** @expose */
+    selectedIndex: {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
+            return this.model.selectedIndex;
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            this.model.selectedIndex = value;
+        }
+    },
+    /** @expose */
+    selectedItem: {
+        /** @this {org_apache_flex_html_SimpleList} */
+        get: function() {
+            return this.model.selectedItem;
+        },
+        /** @this {org_apache_flex_html_SimpleList} */
+        set: function(value) {
+            this.model.selectedItem = value;
+        }
+    }
+});
 

@@ -14,6 +14,7 @@
 
 goog.provide('org_apache_flex_html_beads_models_RangeModel');
 
+goog.require('org_apache_flex_core_IBeadModel');
 goog.require('org_apache_flex_events_EventDispatcher');
 
 
@@ -42,139 +43,96 @@ goog.inherits(org_apache_flex_html_beads_models_RangeModel,
  */
 org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
-                qName: 'org_apache_flex_html_beads_models_RangeModel'}] };
+                qName: 'org_apache_flex_html_beads_models_RangeModel'}],
+      interfaces: [org_apache_flex_core_IBeadModel]};
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
+Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    minimum: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        get: function() {
+            return this.minimum_;
+        },
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(value) {
+            if (this.minimum_ != value) {
+              this.minimum_ = value;
+              this.dispatchEvent('minimumChange');
+            }
+        }
+    },
+    /** @expose */
+    maximum: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        get: function() {
+            return this.maximum_;
+        },
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(value) {
+            if (this.maximum_ != value) {
+              this.maximum_ = value;
+              this.dispatchEvent('maximumChange');
+            }
+        }
+    },
+    /** @expose */
+    value: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        get: function() {
+            return this.value_;
+        },
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(newValue) {
+            if (this.value_ != newValue) {
 
+              // value must lie within the boundaries of minimum & maximum
+              // and be on a step interval, so the value is adjusted to
+              // what is coming in.
+              newValue = Math.max(this.minimum_, newValue - this.stepSize_);
+              newValue = Math.min(this.maximum_, newValue + this.stepSize_);
+              this.value_ = this.snap(newValue);
 
-/**
- * @expose
- * @return {number} The current minimum value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    get_minimum = function() {
-  return this.minimum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new minimum value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_minimum = function(value) {
-  if (this.minimum_ != value) {
-    this.minimum_ = value;
-    this.dispatchEvent('minimumChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The current maximu value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    get_maximum = function() {
-  return this.maximum_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new maximum value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_maximum = function(value) {
-  if (this.maximum_ != value) {
-    this.maximum_ = value;
-    this.dispatchEvent('maximumChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The current value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    get_value = function() {
-  return this.value_;
-};
-
-
-/**
- * @expose
- * @param {number} newValue The new value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_value = function(newValue) {
-  if (this.value_ != newValue) {
-
-    // value must lie within the boundaries of minimum & maximum
-    // and be on a step interval, so the value is adjusted to
-    // what is coming in.
-    newValue = Math.max(this.minimum_, newValue - this.stepSize_);
-    newValue = Math.min(this.maximum_, newValue + this.stepSize_);
-    this.value_ = this.snap(newValue);
-
-    this.dispatchEvent('valueChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The current snapInterval value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    get_snapInterval = function() {
-  return this.snapInterval_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new snapInterval value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_snapInterval = function(value) {
-  if (this.snapInterval_ != value) {
-    this.snapInterval_ = value;
-    this.dispatchEvent('snapIntervalChange');
-  }
-};
-
-
-/**
- * @expose
- * @return {number} The current stepSize value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    get_stepSize = function() {
-  return this.stepSize_;
-};
-
-
-/**
- * @expose
- * @param {number} value The new stepSize value.
- */
-org_apache_flex_html_beads_models_RangeModel.prototype.
-    set_stepSize = function(value) {
-  if (this.stepSize_ != value) {
-    this.stepSize_ = value;
-    this.dispatchEvent('stepSizeChange');
-  }
-};
+              this.dispatchEvent('valueChange');
+            }
+        }
+    },
+    /** @expose */
+    snapInterval: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        get: function() {
+            return this.snapInterval_;
+        },
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(value) {
+            if (this.snapInterval_ != value) {
+              this.snapInterval_ = value;
+              this.dispatchEvent('snapIntervalChange');
+            }
+        }
+    },
+    /** @expose */
+    stepSize: {
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        get: function() {
+            return this.stepSize_;
+        },
+        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        set: function(value) {
+            if (this.stepSize_ != value) {
+              this.stepSize_ = value;
+              this.dispatchEvent('stepSizeChange');
+            }
+        }
+    }
+});
 
 
 /**

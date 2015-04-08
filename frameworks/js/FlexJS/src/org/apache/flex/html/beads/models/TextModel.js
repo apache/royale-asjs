@@ -45,32 +45,24 @@ org_apache_flex_html_beads_models_TextModel.prototype.FLEXJS_CLASS_INFO =
       interfaces: [org_apache_flex_core_ITextModel] };
 
 
-/**
- * @expose
- * @param {Object} value The strand.
- */
-org_apache_flex_html_beads_models_TextModel.prototype.
-    set_strand = function(value) {
-  this.strand_ = value;
-};
-
-
-/**
- * @expose
- * @return {Object} value The text.
- */
-org_apache_flex_html_beads_models_TextModel.prototype.
-    get_text = function() {
-  return this.text_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The text.
- */
-org_apache_flex_html_beads_models_TextModel.prototype.
-    set_text = function(value) {
-  this.text_ = value;
-  this.dispatchEvent('textChange');
-};
+Object.defineProperties(org_apache_flex_html_beads_models_TextModel.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        set: function(value) {
+            this.strand_ = value;
+        }
+    },
+    /** @expose */
+    text: {
+        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        get: function() {
+            return this.text_;
+        },
+        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        set: function(value) {
+            this.text_ = value;
+            this.dispatchEvent('textChange');
+        }
+    }
+});

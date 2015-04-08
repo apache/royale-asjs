@@ -117,7 +117,7 @@ public class Wipe extends Tween implements IDocument
 	override public function play():void
 	{
         if (target != null)
-            actualTarget = getProperty(document, target);
+            actualTarget = document[target];
         
 		
         wiper.target = actualTarget;

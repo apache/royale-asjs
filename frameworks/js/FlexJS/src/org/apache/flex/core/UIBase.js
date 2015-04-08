@@ -82,6 +82,24 @@ org_apache_flex_core_UIBase = function() {
    */
   this.style_ = null;
 
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.id_ = null;
+
+  /**
+   * @private
+   * @type {?string}
+   */
+  this.className_ = '';
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.model_ = null;
+
   this.createElement();
 };
 goog.inherits(org_apache_flex_core_UIBase,
@@ -100,15 +118,6 @@ org_apache_flex_core_UIBase.prototype.FLEXJS_CLASS_INFO =
                    org_apache_flex_core_IParentIUIBase,
                    org_apache_flex_core_ILayoutChild,
                    org_apache_flex_core_IStyleableObject] };
-
-
-/**
- * @expose
- * @param {Array.<Object>} value The list of beads from MXML.
- */
-org_apache_flex_core_UIBase.prototype.set_beads = function(value) {
-  this.mxmlBeads_ = value;
-};
 
 
 /**
@@ -212,29 +221,10 @@ org_apache_flex_core_UIBase.prototype.removeElement = function(c) {
 
 
 /**
- * @return {number} The number of child elements.
- */
-org_apache_flex_core_UIBase.prototype.get_numElements = function() {
-  var children = this.internalChildren();
-  return children.length;
-};
-
-
-/**
- * @return {Object} The parent of this object.
- */
-org_apache_flex_core_UIBase.prototype.get_parent = function() {
-  var p = this.positioner.parentNode;
-  var wrapper = p.flexjs_wrapper;
-  return wrapper;
-};
-
-
-/**
  */
 org_apache_flex_core_UIBase.prototype.addedToParent = function() {
 
-  var styles = this.get_style();
+  var styles = this.style;
   if (styles)
     org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, styles);
 
@@ -314,13 +304,13 @@ org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
   this.beads_.push(bead);
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel))
-    this.model = bead;
+    this.model_ = bead;
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadView)) {
     this.dispatchEvent(new org_apache_flex_events_Event('viewChanged'));
   }
 
-  bead.set_strand(this);
+  bead.strand = this;
 };
 
 
@@ -363,216 +353,289 @@ org_apache_flex_core_UIBase.prototype.removeBead =
 };
 
 
-/**
- * @expose
- * @param {number} alpha The alpha or opacity.
- */
-org_apache_flex_core_UIBase.prototype.set_alpha = function(alpha) {
-  this.positioner.style.opacity = alpha;
-};
-
-
-/**
- * @expose
- * @return {number} The alpha or opacity.
- */
-org_apache_flex_core_UIBase.prototype.get_alpha = function() {
-  var stralpha = this.positioner.style.opacity;
-  var alpha = parseFloat(stralpha);
-  return alpha;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the left edge.
- */
-org_apache_flex_core_UIBase.prototype.set_x = function(pixels) {
-  this.positioner.style.position = 'absolute';
-  this.positioner.style.left = pixels.toString() + 'px';
-};
-
-
-/**
- * @expose
- * @return {number} The pixel count from the left edge.
- */
-org_apache_flex_core_UIBase.prototype.get_x = function() {
-  var strpixels = this.positioner.style.left;
-  var pixels = parseFloat(strpixels);
-  if (isNaN(pixels))
-    pixels = this.positioner.offsetLeft;
-  return pixels;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the top edge.
- */
-org_apache_flex_core_UIBase.prototype.set_y = function(pixels) {
-  this.positioner.style.position = 'absolute';
-  this.positioner.style.top = pixels.toString() + 'px';
-};
-
-
-/**
- * @expose
- * @return {number} The pixel count from the top edge.
- */
-org_apache_flex_core_UIBase.prototype.get_y = function() {
-  var strpixels = this.positioner.style.top;
-  var pixels = parseFloat(strpixels);
-  if (isNaN(pixels))
-    pixels = this.positioner.offsetTop;
-  return pixels;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the left edge.
- */
-org_apache_flex_core_UIBase.prototype.set_width = function(pixels) {
-  this.set_explicitWidth(pixels);
-  this.setWidth(pixels);
-};
-
-
-/**
- * @expose
- * @return {number} The width of the object in pixels.
- */
-org_apache_flex_core_UIBase.prototype.get_width = function() {
-  var pixels;
-  var strpixels = this.positioner.style.width;
-  if (strpixels !== null && strpixels.indexOf('%') != -1)
-    pixels = NaN;
-  else
-    pixels = parseFloat(strpixels);
-  if (isNaN(pixels)) {
-    pixels = this.positioner.offsetWidth;
-    if (pixels === 0 && this.positioner.scrollWidth !== 0) {
-      // invisible child elements cause offsetWidth to be 0.
-      pixels = this.positioner.scrollWidth;
+Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
+    /** @expose */
+    beads: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            this.mxmlBeads_ = value;
+        }
+    },
+    /** @expose */
+    numElements: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var children = this.internalChildren();
+            return children.length;
+        }
+    },
+    /** @expose */
+    parent: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var p = this.positioner.parentNode;
+            var wrapper = p.flexjs_wrapper;
+            return wrapper;
+        }
+    },
+    /** @expose */
+    alpha: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(alpha) {
+            this.positioner.style.opacity = alpha;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var stralpha = this.positioner.style.opacity;
+            var alpha = parseFloat(stralpha);
+            return alpha;
+        }
+    },
+    /** @expose */
+    x: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.style.position = 'absolute';
+            this.positioner.style.left = pixels.toString() + 'px';
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var strpixels = this.positioner.style.left;
+            var pixels = parseFloat(strpixels);
+            if (isNaN(pixels))
+              pixels = this.positioner.offsetLeft;
+            return pixels;
+        }
+    },
+    /** @expose */
+    y: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.positioner.style.position = 'absolute';
+            this.positioner.style.top = pixels.toString() + 'px';
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var strpixels = this.positioner.style.top;
+            var pixels = parseFloat(strpixels);
+            if (isNaN(pixels))
+              pixels = this.positioner.offsetTop;
+            return pixels;
+        }
+    },
+    /** @expose */
+    width: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.explicitWidth = pixels;
+            this.setWidth(pixels);
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var pixels;
+            var strpixels = this.positioner.style.width;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+              pixels = NaN;
+            else
+              pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+              pixels = this.positioner.offsetWidth;
+              if (pixels === 0 && this.positioner.scrollWidth !== 0) {
+                // invisible child elements cause offsetWidth to be 0.
+                pixels = this.positioner.scrollWidth;
+              }
+            }
+            return pixels;
+        }
+    },
+    /** @expose */
+    explicitWidth: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.explicitWidth_ = pixels;
+            if (!isNaN(pixels))
+              this.percentWidth_ = NaN;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.explicitWidth_;
+        }
+    },
+    /** @expose */
+    percentWidth: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.percentWidth_ = pixels;
+            this.positioner.style.width = pixels.toString() + '%';
+            if (!isNaN(pixels))
+              this.explicitWidth_ = NaN;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.percentWidth_;
+        }
+    },
+    /** @expose */
+    height: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.explicitHeight = pixels;
+            this.setHeight(pixels);
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var pixels;
+            var strpixels = this.positioner.style.height;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+              pixels = NaN;
+            else
+              pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+              pixels = this.positioner.offsetHeight;
+              if (pixels === 0 && this.positioner.scrollHeight !== 0) {
+                // invisible child elements cause offsetHeight to be 0.
+                pixels = this.positioner.scrollHeight;
+              }
+            }
+            return pixels;
+        }
+    },
+    /** @expose */
+    explicitHeight: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.explicitHeight_ = pixels;
+            if (!isNaN(pixels))
+                this.percentHeight_ = NaN;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.explicitHeight_;
+        }
+    },
+    /** @expose */
+    percentHeight: {
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(pixels) {
+            this.percentHeight_ = pixels;
+            this.positioner.style.height = pixels.toString() + '%';
+            if (!isNaN(pixels))
+              this.explicitHeight_ = NaN;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.percentHeight_;
+        }
+    },
+    /** @expose */
+    id: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.id_;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            if (this.id_ !== value) {
+              this.element.id = value;
+              this.id_ = value;
+              this.dispatchEvent('idChanged');
+            }
+        }
+    },
+    /** @expose */
+    className: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.className_;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            if (this.className_ !== value) {
+              this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
+              this.className_ = value;
+              this.dispatchEvent('classNameChanged');
+            }
+        }
+    },
+    /** @expose */
+    model: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            if (this.model_ == null) {
+              // addbead will set _model
+              if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+                /**
+                 * @type {Function}
+                 */
+                var m = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+                    getValue(this, 'iBeadModel'));
+                var b = new m();
+                this.addBead(b);
+              }
+            }
+            return this.model_;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            if (this.model_ !== value) {
+              this.addBead(value);
+              this.dispatchEvent('modelChanged');
+            }
+        }
+    },
+    /** @expose */
+    style: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.style_;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            if (this.style_ !== value) {
+              if (typeof(value) == 'string')
+                value = org_apache_flex_core_ValuesManager.valuesImpl.parseStyles(value);
+              this.style_ = value;
+              if (value.addEventListener)
+                value.addEventListener(org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
+                    goog.bind(this.styleChangeHandler, this));
+              this.dispatchEvent('stylesChanged');
+            }
+        }
+    },
+    /** @expose */
+    visible: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.positioner.style.display !== 'none';
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            var oldValue = this.positioner.style.display !== 'none';
+            if (value !== oldValue) {
+              if (!value) {
+                this.lastDisplay_ = this.positioner.style.display;
+                this.positioner.style.display = 'none';
+                this.dispatchEvent(new org_apache_flex_events_Event('hide'));
+              } else {
+                if (this.lastDisplay_) {
+                  this.positioner.style.display = this.lastDisplay_;
+                } else {
+                  this.positioner.style.display = this.positioner.internalDisplay;
+                }
+                this.dispatchEvent(new org_apache_flex_events_Event('show'));
+              }
+              this.dispatchEvent(new org_apache_flex_events_Event('visibleChanged'));
+           }
+        }
+    },
+    /** @expose */
+    topMostEventDispatcher: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return document.body.flexjs_wrapper;
+        }
     }
-  }
-  return pixels;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the left edge.
- */
-org_apache_flex_core_UIBase.prototype.set_explicitWidth = function(pixels) {
-  this.explicitWidth_ = pixels;
-  if (!isNaN(pixels))
-    this.percentWidth_ = NaN;
-};
-
-
-/**
- * @expose
- * @return {number} The width of the object in pixels.
- */
-org_apache_flex_core_UIBase.prototype.get_explicitWidth = function() {
-  return this.explicitWidth_;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The percent width of the object.
- */
-org_apache_flex_core_UIBase.prototype.set_percentWidth = function(pixels) {
-  this.percentWidth_ = pixels;
-  this.positioner.style.width = pixels.toString() + '%';
-  if (!isNaN(pixels))
-    this.explicitWidth_ = NaN;
-};
-
-
-/**
- * @expose
- * @return {number} The percent width of the object.
- */
-org_apache_flex_core_UIBase.prototype.get_percentWidth = function() {
-  return this.percentWidth_;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The pixel count from the top edge.
- */
-org_apache_flex_core_UIBase.prototype.set_height = function(pixels) {
-  this.set_explicitHeight(pixels);
-  this.setHeight(pixels);
-};
-
-
-/**
- * @expose
- * @return {number} The height of the object in pixels.
- */
-org_apache_flex_core_UIBase.prototype.get_height = function() {
-  var pixels;
-  var strpixels = this.positioner.style.height;
-  if (strpixels !== null && strpixels.indexOf('%') != -1)
-    pixels = NaN;
-  else
-    pixels = parseFloat(strpixels);
-  if (isNaN(pixels)) {
-    pixels = this.positioner.offsetHeight;
-    if (pixels === 0 && this.positioner.scrollHeight !== 0) {
-      // invisible child elements cause offsetHeight to be 0.
-      pixels = this.positioner.scrollHeight;
-    }
-  }
-  return pixels;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The height of the object in pixels.
- */
-org_apache_flex_core_UIBase.prototype.set_explicitHeight = function(pixels) {
-  this.explicitHeight_ = pixels;
-  if (!isNaN(pixels))
-    this.percentHeight_ = NaN;
-};
-
-
-/**
- * @expose
- * @return {number} The height of the object in pixels.
- */
-org_apache_flex_core_UIBase.prototype.get_explicitHeight = function() {
-  return this.explicitHeight_;
-};
-
-
-/**
- * @expose
- * @param {number} pixels The percentage height.
- */
-org_apache_flex_core_UIBase.prototype.set_percentHeight = function(pixels) {
-  this.percentHeight_ = pixels;
-  this.positioner.style.height = pixels.toString() + '%';
-  if (!isNaN(pixels))
-    this.explicitHeight_ = NaN;
-};
-
-
-/**
- * @expose
- * @return {number} The percentage height of the object.
- */
-org_apache_flex_core_UIBase.prototype.get_percentHeight = function() {
-  return this.percentHeight_;
-};
+});
 
 
 /**
@@ -586,7 +649,7 @@ org_apache_flex_core_UIBase.prototype.setHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _height = this.get_height();
+  var _height = this.height;
   if (_height != value) {
     this.positioner.style.height = value.toString() + 'px';
     if (!opt_noEvent)
@@ -606,7 +669,7 @@ org_apache_flex_core_UIBase.prototype.setWidth =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.get_width();
+  var _width = this.width;
   if (_width != value) {
     this.positioner.style.width = value.toString() + 'px';
     if (!opt_noEvent)
@@ -627,13 +690,13 @@ org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.get_width();
+  var _width = this.width;
   if (_width != newWidth) {
     this.positioner.style.width = newWidth.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('widthChanged');
   }
-  var _height = this.get_height();
+  var _height = this.height;
   if (_height != newHeight) {
     this.positioner.style.height = newHeight.toString() + 'px';
     if (!opt_noEvent)
@@ -667,133 +730,7 @@ org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
  * @expose
  * @type {string}
  */
-org_apache_flex_core_UIBase.prototype.id = '';
-
-
-/**
- * @expose
- * @return {string} The id.
- */
-org_apache_flex_core_UIBase.prototype.get_id = function() {
-  return this.id;
-};
-
-
-/**
- * @expose
- * @param {string} value The new id.
- */
-org_apache_flex_core_UIBase.prototype.set_id = function(value) {
-  if (this.id !== value) {
-    this.element.id = value;
-    this.id = value;
-    this.dispatchEvent('idChanged');
-  }
-};
-
-
-/**
- * @expose
- * @type {string}
- */
 org_apache_flex_core_UIBase.prototype.typeNames = '';
-
-
-/**
- * @expose
- * @type {string}
- */
-org_apache_flex_core_UIBase.prototype.className = '';
-
-
-/**
- * @expose
- * @return {string} The className.
- */
-org_apache_flex_core_UIBase.prototype.get_className = function() {
-  return this.className;
-};
-
-
-/**
- * @expose
- * @param {string} value The new className.
- */
-org_apache_flex_core_UIBase.prototype.set_className = function(value) {
-  if (this.className !== value)
-  {
-    this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
-    this.className = value;
-    this.dispatchEvent('classNameChanged');
-  }
-};
-
-
-/**
- * @expose
- * @type {Object}
- */
-org_apache_flex_core_UIBase.prototype.model = null;
-
-
-/**
- * @expose
- * @return {Object} The model.
- */
-org_apache_flex_core_UIBase.prototype.get_model = function() {
-  if (this.model == null)
-  {
-    // addbead will set _model
-    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-      /**
-       * @type {Function}
-       */
-      var m = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
-          getValue(this, 'iBeadModel'));
-      var b = new m();
-      this.addBead(b);
-    }
-  }
-  return this.model;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new model.
- */
-org_apache_flex_core_UIBase.prototype.set_model = function(value) {
-  if (this.model !== value) {
-    this.addBead(value);
-    this.dispatchEvent('modelChanged');
-  }
-};
-
-
-/**
- * @expose
- * @return {Object} The style properties.
- */
-org_apache_flex_core_UIBase.prototype.get_style = function() {
-  return this.style_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The new style properties.
- */
-org_apache_flex_core_UIBase.prototype.set_style = function(value) {
-  if (this.style_ !== value) {
-    if (typeof(value) == 'string')
-      value = org_apache_flex_core_ValuesManager.valuesImpl.parseStyles(value);
-    this.style_ = value;
-    if (value.addEventListener)
-      value.addEventListener(org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
-          goog.bind(this.styleChangeHandler, this));
-    this.dispatchEvent('stylesChanged');
-  }
-};
 
 
 /**
@@ -804,46 +741,4 @@ org_apache_flex_core_UIBase.prototype.styleChangeHandler = function(value) {
   var newStyle = {};
   newStyle[value.propertyName] = value.newValue;
   org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, newStyle);
-};
-
-
-/**
- * @expose
- * @return {boolean} True if visible.
- */
-org_apache_flex_core_UIBase.prototype.get_visible = function() {
-  return this.positioner.style.display !== 'none';
-};
-
-
-/**
- * @expose
- * @param {boolean} value The new model.
- */
-org_apache_flex_core_UIBase.prototype.set_visible = function(value) {
-  var oldValue = this.positioner.style.display !== 'none';
-  if (value !== oldValue) {
-    if (!value) {
-      this.lastDisplay_ = this.positioner.style.display;
-      this.positioner.style.display = 'none';
-      this.dispatchEvent(new org_apache_flex_events_Event('hide'));
-    } else {
-      if (this.lastDisplay_) {
-        this.positioner.style.display = this.lastDisplay_;
-      } else {
-        this.positioner.style.display = this.positioner.internalDisplay;
-      }
-      this.dispatchEvent(new org_apache_flex_events_Event('show'));
-    }
-    this.dispatchEvent(new org_apache_flex_events_Event('visibleChanged'));
-  }
-};
-
-
-/**
- * @expose
- * @return {Object} The top most EventDispatcher.
- */
-org_apache_flex_core_UIBase.prototype.get_topMostEventDispatcher = function() {
-  return document.body.flexjs_wrapper;
 };

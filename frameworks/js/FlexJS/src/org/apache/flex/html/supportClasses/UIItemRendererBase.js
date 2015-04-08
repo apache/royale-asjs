@@ -61,7 +61,7 @@ function() {
   // each MXML file can also have styles in fx:Style block
   //? appropriate for JavaScript? ValuesManager.valuesImpl.init(this);
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, this, this.get_MXMLDescriptor());
+  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, this, this.MXMLDescriptor);
 
   this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
 };
@@ -76,124 +76,81 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAtt
 };
 
 
-/**
- * @expose
- * @return {Object} The data being used for the itemRenderer.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_data =
-function() {
-  return this.data_;
-};
-
-
-/**
- * @expose
- * @param {Object} value The data to use for the itemRenderer.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_data =
-function(value) {
-  this.data_ = value;
-};
-
-
-/**
- * @expose
- * @return {String} The name of the field being used to display the label.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_labelField =
-function() {
-  return this.labelField_;
-};
-
-
-/**
- * @expose
- * @param {String} value The name of the field to use for the label.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_labelField =
-function(value) {
-  this.labelField_ = value;
-};
-
-
-/**
- * @expose
- * @return {Number} The index value set for this itemRenderer.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_index =
-function() {
-  return this.index_;
-};
-
-
-/**
- * @expose
- * @param {Number} value The row index for this itemRenderer.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_index =
-function(value) {
-  this.index_ = value;
-};
-
-
-/**
- * @expose
- * @return {Boolean} The current value of the hovered state.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_hovered =
-function() {
-  return this.hovered_;
-};
-
-
-/**
- * @expose
- * @param {Boolean} value Set to true if the itemRenderer should go into hovered state.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_hovered =
-function(value) {
-  this.hovered_ = value;
-};
-
-
-/**
- * @expose
- * @return {Boolean} Whether or not the itemRenderer is selected.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_selected =
-function() {
-  return this.selected_;
-};
-
-
-/**
- * @expose
- * @param {Boolean} value True if this itemRenderer instance is selected.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_selected =
-function(value) {
-  this.selected_ = value;
-};
-
-
-/**
- * @expose
- * @return {Boolean} The value of the down selection.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.get_down =
-function() {
-  return this.down_;
-};
-
-
-/**
- * @expose
- * @param {Boolean} value True if the mouse is in the down position.
- */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.set_down =
-function(value) {
-  this.down_ = value;
-};
+Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
+    /** @expose */
+    MXMLDescriptor: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return null;
+        }
+    },
+    /** @expose */
+    data: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.data_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.data_ = value;
+        }
+    },
+    /** @expose */
+    labelField: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.labelField_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.labelField_ = value;
+        }
+    },
+    /** @expose */
+    index: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.index_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.index_ = value;
+        }
+    },
+    /** @expose */
+    hovered: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.hovered_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.hovered_ = value;
+        }
+    },
+    /** @expose */
+    selected: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.selected_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.selected_ = value;
+        }
+    },
+    /** @expose */
+    down: {
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        get: function() {
+            return this.down_;
+        },
+        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        set: function(value) {
+            this.down_ = value;
+        }
+    }
+});
 
 
 /**
@@ -201,12 +158,6 @@ function(value) {
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.updateRenderer =
 function() {
-  if (this.get_down()) {
-  }
-  else if (this.get_hovered()) {
-  }
-  else if (this.get_selected()) {
-  }
 };
 
 

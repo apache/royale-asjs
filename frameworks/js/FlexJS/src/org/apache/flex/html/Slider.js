@@ -67,116 +67,70 @@ org_apache_flex_html_Slider.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  this.set_className('Slider');
+  this.className = 'Slider';
 
   return this.element;
 };
 
 
-/**
- * @expose
- * @return {number} The value getter.
- */
-org_apache_flex_html_Slider.prototype.get_value =
-    function() {
-  return this.model.get_value();
-};
-
-
-/**
- * @expose
- * @param {Object} newValue The new value.
- * @return {void} The value setter.
- */
-org_apache_flex_html_Slider.prototype.set_value =
-    function(newValue) {
-  this.model.set_value(newValue);
-  this.setThumbFromValue(this.model.get_value());
-};
-
-
-/**
- * @expose
- * @return {number} The minimum getter.
- */
-org_apache_flex_html_Slider.prototype.get_minimum =
-    function() {
-  return this.model.get_minimum();
-};
-
-
-/**
- * @expose
- * @param {Object} value The new minimum value.
- * @return {void} The minimum setter.
- */
-org_apache_flex_html_Slider.prototype.set_minimum =
-    function(value) {
-  this.model.set_minimum(value);
-};
-
-
-/**
- * @expose
- * @return {number} The maximum getter.
- */
-org_apache_flex_html_Slider.prototype.get_maximum =
-    function() {
-  return this.model.get_maximum();
-};
-
-
-/**
- * @expose
- * @param {Object} value The new maximum value.
- * @return {void} The maximum setter.
- */
-org_apache_flex_html_Slider.prototype.set_maximum =
-    function(value) {
-  this.model.set_maximum(value);
-};
-
-
-/**
- * @expose
- * @return {number} The snapInterval getter.
- */
-org_apache_flex_html_Slider.prototype.get_snapInterval =
-    function() {
-  return this.model.get_snapInterval();
-};
-
-
-/**
- * @expose
- * @param {Object} value The new snapInterval value.
- * @return {void} The snapInterval setter.
- */
-org_apache_flex_html_Slider.prototype.set_snapInterval =
-    function(value) {
-  this.model.set_snapInterval(value);
-};
-
-
-/**
- * @expose
- * @return {number} The stepSize getter.
- */
-org_apache_flex_html_Slider.prototype.get_stepSize =
-    function() {
-  return this.model.get_stepSize();
-};
-
-
-/**
- * @expose
- * @param {Object} value The new stepSize value.
- * @return {void} The stepSize setter.
- */
-org_apache_flex_html_Slider.prototype.set_stepSize =
-    function(value) {
-  this.model.set_stepSize(value);
-};
+Object.defineProperties(org_apache_flex_html_Slider.prototype, {
+    /** @expose */
+    value: {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.value;
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(newValue) {
+            this.model.value = newValue;
+            this.setThumbFromValue(this.model.value);
+        }
+    },
+    /** @expose */
+    minimum: {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.minimum;
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.minimum = value;
+        }
+    },
+    /** @expose */
+    maximum: {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.maximum;
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.maximum = value;
+        }
+    },
+    /** @expose */
+    snapInterval: {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.snapInterval;
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.snapInterval = value;
+        }
+    },
+    /** @expose */
+    stepSize: {
+        /** @this {org_apache_flex_html_Slider} */
+        get: function() {
+            return this.model.stepSize;
+        },
+        /** @this {org_apache_flex_html_Slider} */
+        set: function(value) {
+            this.model.stepSize = value;
+        }
+    }
+});
 
 
 /**
@@ -185,9 +139,9 @@ org_apache_flex_html_Slider.prototype.set_stepSize =
  */
 org_apache_flex_html_Slider.prototype.snap = function(value)
     {
-  var si = this.get_snapInterval();
-  var n = Math.round((value - this.get_minimum()) / si) *
-      si + this.get_minimum();
+  var si = this.snapInterval;
+  var n = Math.round((value - this.minimum) / si) *
+      si + this.minimum;
   if (value > 0)
   {
     if (value - n < n + si - value)
@@ -207,8 +161,8 @@ org_apache_flex_html_Slider.prototype.snap = function(value)
 org_apache_flex_html_Slider.prototype.setThumbFromValue =
     function(value)
     {
-  var min = this.model.get_minimum();
-  var max = this.model.get_maximum();
+  var min = this.model.minimum;
+  var max = this.model.maximum;
   var p = (value - min) / (max - min);
   var xloc = p * (parseInt(this.track.element.style.width, 10) -
              parseInt(this.thumb.element.style.width, 10));

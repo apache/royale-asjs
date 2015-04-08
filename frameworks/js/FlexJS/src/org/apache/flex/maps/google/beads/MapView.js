@@ -37,29 +37,29 @@ FLEXJS_CLASS_INFO =
     interfaces: [org_apache_flex_core_IBeadView] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_maps_google_beads_MapView.prototype.set_strand =
-function(value) {
+Object.defineProperties(org_apache_flex_maps_google_beads_MapView.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_maps_google_beads_MapView} */
+        set: function(value) {
+            this.strand_ = value;
 
-  this.strand_ = value;
+            var token = this.strand_.token;
+            var src = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+            if (token)
+              src += '&key=' + token;
+            src += '&libraries=places&sensor=false&callback=mapInit';
 
-  var token = this.strand_.token;
-  var src = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
-  if (token)
-    src += '&key=' + token;
-  src += '&libraries=places&sensor=false&callback=mapInit';
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = src;
 
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = src;
-
-  window.mapView = this;
-  window['mapInit'] = function() {
-      this.mapView.strand_.finishInitalization();
-    };
-  document.head.appendChild(script);
-};
+            window.mapView = this;
+            window['mapInit'] = function() {
+                this.mapView.strand_.finishInitalization();
+            };
+            document.head.appendChild(script);
+        }
+    }
+});
 

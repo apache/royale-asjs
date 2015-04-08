@@ -40,20 +40,21 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype.FLEX
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-/**
- * @expose
- * @param {Object} value The new host.
- */
-org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
-    prototype.set_strand = function(value) {
-  if (this.strand_ !== value) {
-    this.strand_ = value;
-    this.strand_.addEventListener('childrenAdded',
-        goog.bind(this.changeHandler, this));
-    this.strand_.addEventListener('layoutNeeded',
-        goog.bind(this.changeHandler, this));
-  }
-};
+Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype, {
+    /** @expose */
+    strand: {
+        /** @this {org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout} */
+        set: function(value) {
+            if (this.strand_ !== value) {
+              this.strand_ = value;
+              this.strand_.addEventListener('childrenAdded',
+                  goog.bind(this.changeHandler, this));
+              this.strand_.addEventListener('layoutNeeded',
+                  goog.bind(this.changeHandler, this));
+            }
+        }
+    }
+});
 
 
 /**
@@ -64,11 +65,11 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
   var i, n, h, w;
 
   var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
-  var contentView = viewBead.get_contentView();
+  var contentView = viewBead.contentView;
   contentView.element.style.overflow = 'auto';
-  w = contentView.get_width();
-  h = contentView.get_height();
-  n = contentView.get_numElements();
+  w = contentView.width;
+  h = contentView.height;
+  n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
     child.positioner.internalDisplay = 'none';

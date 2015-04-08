@@ -45,56 +45,37 @@ org_apache_flex_html_beads_ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
     };
 
 
-/**
- * @expose
- * @return {Object} value The content view.
- */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.get_contentView =
-    function() {
-
-  return this._strand;
-};
-
-
-/**
- * @expose
- * @return {Object} value The resizeable view.
- */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.get_resizableView =
-function() {
-
-  return this._strand;
-};
-
-
-/**
- * @expose
- * @return {number} value The resizeable view.
- */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.get_verticalScrollPosition =
-function() {
-
-  return this._strand.scrollTop;
-};
-
-
-/**
- * @expose
- * @param {number} value The resizeable view.
- */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.set_verticalScrollPosition =
-function(value) {
-
-  this._strand.scrollTop = value;
-};
-
-
-/**
- * @expose
- * @return {number} value The resizeable view.
- */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.get_maxVerticalScrollPosition =
-function() {
-
-  return this._strand.scrollHeight - this._strand.clientHeight;
-};
+Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.prototype, {
+    /** @expose */
+    contentView: {
+        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        get: function() {
+            return this._strand;
+        }
+    },
+    /** @expose */
+    resizableView: {
+        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        get: function() {
+            return this._strand;
+        }
+    },
+    /** @expose */
+    verticalScrollPosition: {
+        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        get: function() {
+           return this._strand.scrollTop;
+        },
+        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        set: function(value) {
+           this._strand.scrollTop = value;
+        }
+    },
+    /** @expose */
+    maxVerticalScrollPosition: {
+        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        get: function() {
+            return this._strand.scrollHeight - this._strand.clientHeight;
+        }
+    }
+});
