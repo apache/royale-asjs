@@ -66,6 +66,12 @@ org_apache_flex_net_HTTPService = function() {
    * @private
    * @type {Array.<Object>}
    */
+  this.mxmlBeads_ = null;
+
+  /**
+   * @private
+   * @type {Array.<Object>}
+   */
   this.beads_ = null;
 
   /**
@@ -143,10 +149,15 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     /** @expose */
+    strand: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        set: function(value) {}
+    },
+    /** @expose */
     beads: {
         /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
-            this.beads_ = value;
+            this.mxmlBeads_ = value;
         }
     },
     /** @expose */
@@ -299,10 +310,10 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
 org_apache_flex_net_HTTPService.prototype.send = function() {
   var contentData, header, i, n, sawContentType, url;
 
-  if (this.strand == null && this.beads_) {
-    var m = this.beads_.length;
+  if (this.beads_ == null && this.mxmlBeads_) {
+    var m = this.mxmlBeads_.length;
     for (var j = 0; j < m; j++) {
-      this.addBead(this.beads_[j]);
+      this.addBead(this.mxmlBeads_[j]);
     }
   }
 
