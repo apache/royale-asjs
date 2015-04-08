@@ -83,6 +83,13 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
     },
     /** @expose */
     selectedIndex: {
+        // TODO: (aharui) copied from ListBase because you
+        // can't just override the setter in a defineProps
+        // structure.
+        /** @this {org_apache_flex_html_DropDownList} */
+        get: function() {
+            return this.model.selectedIndex;
+        },
         /** @this {org_apache_flex_html_DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
@@ -91,8 +98,15 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
     },
     /** @expose */
     selectedItem: {
+        // TODO: (aharui) copied from ListBase because you
+        // can't just override the setter in a defineProps
+        // structure.
         /** @this {org_apache_flex_html_DropDownList} */
-        get: function(value) {
+        get: function() {
+            return this.model.selectedItem;
+        },
+        /** @this {org_apache_flex_html_DropDownList} */
+        set: function(value) {
             this.model.selectedItem = value;
             this.element.selectedIndex = this.selectedIndex;
         }
