@@ -183,7 +183,10 @@ package org.apache.flex.core
                         cb.destinationPropertyName = binding.destination[1];
                         cb.sourcePropertyName = binding.source;
                         cb.setDocument(_strand);
-                        destObject = _strand[binding.destination[0]];                                
+                        if (binding.destination[0] == "this")
+                            destObject = _strand;
+                        else
+                            destObject = _strand[binding.destination[0]];                                
                         destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(cb);
