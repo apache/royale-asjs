@@ -65,8 +65,7 @@ public class AssertPropertyValue extends AssertStep {
 		
 		StringBuilder getScript = new StringBuilder();
 		insertTargetScript(getScript, target);
-		getScript.append("if (typeof(target['get_' + '" + propertyName + "']) == 'function') return target['get_' + '" + propertyName + "']();");
-		getScript.append(" else return target['" + propertyName + "'];");
+		getScript.append(" return target['" + propertyName + "'];");
 		if (TestStep.showScripts)
 			System.out.println(getScript.toString());
 		String actualValue = ((JavascriptExecutor)webDriver).executeScript(getScript.toString()).toString();

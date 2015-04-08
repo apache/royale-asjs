@@ -112,7 +112,7 @@ public class TestStep {
 		int n = parts.length;
 		for (int i = 0; i < n; i++)
 		{
-			sb.append("target = target['get_' + '" + parts[i] + "']();");
+			sb.append("target = target['" + parts[i] + "'];");
 		}
 
 	}
