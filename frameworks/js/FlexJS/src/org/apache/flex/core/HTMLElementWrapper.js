@@ -52,10 +52,10 @@ org_apache_flex_core_HTMLElementWrapper.prototype.element = null;
 
 
 /**
- * @protected
+ * @private
  * @type {Array.<Object>}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.strand = null;
+org_apache_flex_core_HTMLElementWrapper.prototype.beads_ = null;
 
 
 /**
@@ -70,11 +70,11 @@ org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'inline';
  * @param {Object} bead The new bead.
  */
 org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
-  if (!this.strand) {
-    this.strand = [];
+  if (!this.beads_) {
+    this.beads_ = [];
   }
 
-  this.strand.push(bead);
+  this.beads_.push(bead);
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel)) {
     this.model = bead;
@@ -93,9 +93,9 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
     function(classOrInterface) {
   var bead, i, n;
 
-  n = this.strand.length;
+  n = this.beads_.length;
   for (i = 0; i < n; i++) {
-    bead = this.strand[i];
+    bead = this.beads_[i];
 
     if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
       return bead;
@@ -124,12 +124,12 @@ Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
 org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
   var i, n, value;
 
-  n = this.strand.length;
+  n = this.beads_.length;
   for (i = 0; i < n; i++) {
-    value = this.strand[i];
+    value = this.beads_[i];
 
     if (bead === value) {
-      this.strand.splice(i, 1);
+      this.beads_.splice(i, 1);
 
       return bead;
     }
