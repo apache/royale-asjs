@@ -98,6 +98,9 @@ org_apache_flex_core_Application.prototype.start = function() {
 
   this.dispatchEvent('initialize');
 
+  if (this.model) this.addBead(this.model);
+  if (this.controller) this.addBead(this.controller);
+
   this.initialView.applicationModel = this.model;
   this.addElement(this.initialView);
 
