@@ -23,9 +23,9 @@
     build_framework.xml is renamed to build.xml when it is packaged.
     It is used to build the frameworks directory from the zip file. 
 -->
-<project name="frameworks-as" default="main" basedir=".">
+<project name="frameworks" default="main" basedir=".">
 
-    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="FLEXJS_HOME" location=".."/>
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -75,9 +75,23 @@
     </target>
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
-        <antcall target="flexjsui"/>
+        <!-- order may matter due to dependencies -->
         <antcall target="mxmlcclasses"/>
-        <antcall target="flexjsjx"/>
+        <antcall target="Core"/>
+        <antcall target="Graphics"/>
+        <antcall target="Binding"/>
+        <antcall target="HTML"/>
+        <antcall target="Charts"/>
+        <antcall target="Collections"/>
+        <antcall target="CreateJS"/>
+        <antcall target="DragDrop"/>
+        <antcall target="Effects"/>
+        <antcall target="Formatters"/>
+        <antcall target="GoogleMaps"/>
+        <antcall target="HTML5"/>
+        <antcall target="JQuery"/>
+        <antcall target="Mobile"/>
+        <antcall target="Network"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -85,7 +99,7 @@
     </target>
     
     <target name="doc" >
-        <ant dir="${basedir}/projects/FlexJSUI" target="doc" />
+        <ant dir="${basedir}/projects/Core" target="doc" />
     </target>
    
     <!--
@@ -100,8 +114,22 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
-        <ant dir="${basedir}/projects/FlexJSUI" target="clean"/>
-        <ant dir="${basedir}/projects/MXMLCClasses" target="clean"/>
+        <ant dir="${basedir}/projects/Binding" target="clean"/>
+        <ant dir="${basedir}/projects/Charts" target="clean"/>
+        <ant dir="${basedir}/projects/Collections" target="clean"/>
+        <ant dir="${basedir}/projects/Core" target="clean"/>
+        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
+        <ant dir="${basedir}/projects/DragDrop" target="clean"/>
+        <ant dir="${basedir}/projects/Effects" target="clean"/>
+        <ant dir="${basedir}/projects/Formatters" target="clean"/>
+        <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
+        <ant dir="${basedir}/projects/Graphics" target="clean"/>
+        <ant dir="${basedir}/projects/HTML" target="clean"/>
+        <ant dir="${basedir}/projects/HTML5" target="clean"/>
+        <ant dir="${basedir}/projects/JQuery" target="clean"/>
+        <ant dir="${basedir}/projects/Mobile" target="clean"/>
+        <ant dir="${basedir}/projects/Network" target="clean"/>
+        <ant dir="${basedir}/as/projects/MXMLCClasses" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
         <delete includeemptydirs="true" failonerror="false">
@@ -121,20 +149,72 @@
         </delete> 
     </target>
     
-    <target name="flexjsjx" description="Clean build of FlexJSJX.swc">
-        <ant dir="${basedir}/projects/FlexJSJX"/>
+    <target name="Binding" description="Clean build of Binding.swc">
+        <ant dir="${basedir}/projects/Binding"/>
     </target>
     
-    <target name="flexjsui" description="Clean build of FlexJSUI.swc">
-        <ant dir="${basedir}/projects/FlexJSUI"/>
+    <target name="Charts" description="Clean build of Charts.swc">
+        <ant dir="${basedir}/projects/Charts"/>
+    </target>
+
+    <target name="Core" description="Clean build of Core.swc">
+        <ant dir="${basedir}/projects/Core"/>
+    </target>
+
+    <target name="Collections" description="Clean build of Collections.swc">
+        <ant dir="${basedir}/projects/Collections"/>
+    </target>
+
+    <target name="CreateJS" description="Clean build of CreateJS.swc">
+        <ant dir="${basedir}/projects/CreateJS"/>
+    </target>
+
+    <target name="DragDrop" description="Clean build of DragDrop.swc">
+        <ant dir="${basedir}/projects/DragDrop"/>
+    </target>
+
+    <target name="Effects" description="Clean build of Effects.swc">
+        <ant dir="${basedir}/projects/Effects"/>
+    </target>
+
+    <target name="Formatters" description="Clean build of Formatters.swc">
+        <ant dir="${basedir}/projects/Formatters"/>
+    </target>
+
+    <target name="GoogleMaps" description="Clean build of GoogleMaps.swc">
+        <ant dir="${basedir}/projects/GoogleMaps"/>
+    </target>
+
+    <target name="Graphics" description="Clean build of Graphics.swc">
+        <ant dir="${basedir}/projects/Graphics"/>
+    </target>
+
+    <target name="HTML" description="Clean build of HTML.swc">
+        <ant dir="${basedir}/projects/HTML"/>
+    </target>
+
+    <target name="HTML5" description="Clean build of HTML5.swc">
+        <ant dir="${basedir}/projects/HTML5"/>
+    </target>
+
+    <target name="JQuery" description="Clean build of JQuery.swc">
+        <ant dir="${basedir}/projects/JQuery"/>
+    </target>
+
+    <target name="Mobile" description="Clean build of Mobile.swc">
+        <ant dir="${basedir}/projects/Mobile"/>
+    </target>
+
+    <target name="Network" description="Clean build of Network.swc">
+        <ant dir="${basedir}/projects/Network"/>
     </target>
 
     <target name="mxmlcclasses" description="Clean build of MXMLClasses.swc">
-        <ant dir="${basedir}/projects/MXMLCClasses"/>
+        <ant dir="${basedir}/as/projects/MXMLCClasses"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
-		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/../flex-config.xml" overwrite="true">
+		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/flex-config.xml" overwrite="true">
 			<filterset>
 				<filter token="playerversion" value="${playerglobal.version}"/>
 				<filter token="swfversion" value="${playerglobal.swfversion}"/>
@@ -144,7 +224,7 @@
 	</target>
 		
 	<target name="air-config" depends="playerglobal-setswfversion" description="Copy the air config template to air-config.xml and inject version numbers">
-		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/../air-config.xml" overwrite="true">
+		<copy file="${basedir}/air-config-template.xml" tofile="${basedir}/air-config.xml" overwrite="true">
 			<filterset>
 				<filter token="playerversion" value="${playerglobal.version}"/>
 				<filter token="swfversion" value="${playerglobal.swfversion}"/>

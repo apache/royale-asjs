@@ -160,8 +160,8 @@
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="thirdparty-downloads" description="Downloads all the required thirdparty code.">
-        <ant dir="${basedir}/frameworks/as" target="thirdparty-downloads"/>        
-        <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/>
+        <ant dir="${basedir}/frameworks" target="thirdparty-downloads"/>
+        <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
         <!-- don't ask again about these since we just did if these weren't already set -->	    
 	    <property name="build.noprompt" value="set" />
     </target>
@@ -316,8 +316,8 @@
     </target>
 	
     <target name="create-config" description="Create flex config file">
-        <ant dir="${basedir}/frameworks/as" target="flex-config" />
-        <ant dir="${basedir}/frameworks/as" target="air-config" />
+        <ant dir="${basedir}/frameworks" target="flex-config" />
+        <ant dir="${basedir}/frameworks" target="air-config" />
     </target>
 	
     <target name="setup-binary-release" depends="thirdparty-clean"
@@ -405,7 +405,7 @@
     -->
 
     <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes">
-        <ant dir="${basedir}/frameworks/as">
+        <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>

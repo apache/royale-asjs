@@ -25,29 +25,10 @@ package
  *  beyond those that are found by dependecy analysis starting
  *  from the classes specified in manifest.xml.
  */
-internal class FlexJSUIClasses
+internal class HTMLClasses
 {	
-	import org.apache.cordova.camera.Camera; Camera;
-	import org.apache.cordova.Application; Application;
-	import org.apache.cordova.Weinre; Weinre;
 	
-	import org.apache.flex.charts.core.CartesianChart; CartesianChart;
-	import org.apache.flex.charts.core.ChartBase; ChartBase;
-	import org.apache.flex.charts.core.IAxisBead; IAxisBead;
-	import org.apache.flex.charts.core.IAxisGroup; IAxisGroup;
-	import org.apache.flex.charts.core.IChart; IChart;
-	import org.apache.flex.charts.core.ICartesianChartLayout; ICartesianChartLayout;
-	import org.apache.flex.charts.core.IChartDataGroup; IChartDataGroup;
-	import org.apache.flex.charts.core.IChartSeries; IChartSeries;
-	import org.apache.flex.charts.core.IHorizontalAxisBead; IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead; IVerticalAxisBead;
-	import org.apache.flex.charts.core.IChartItemRenderer; IChartItemRenderer;
-	import org.apache.flex.charts.core.IConnectedItemRenderer; IConnectedItemRenderer;
-	import org.apache.flex.charts.core.PolarChart; PolarChart;
-	import org.apache.flex.charts.supportClasses.ChartAxisGroup; ChartAxisGroup;
-	import org.apache.flex.charts.supportClasses.ChartDataGroup; ChartDataGroup;
-	import org.apache.flex.maps.google.Map; Map;
-	
+    import org.apache.flex.core.IScrollingLayoutParent; IScrollingLayoutParent;
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
@@ -116,9 +97,6 @@ internal class FlexJSUIClasses
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
 	import org.apache.flex.html.supportClasses.NonVirtualDataGroup; NonVirtualDataGroup;
-    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
-	import org.apache.flex.core.FilledRectangle; FilledRectangle;
-	import org.apache.flex.core.FormatBase; FormatBase;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
@@ -126,32 +104,7 @@ internal class FlexJSUIClasses
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
-	import org.apache.flex.core.ISelectableItemRenderer; ISelectableItemRenderer;
-    import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
-	import org.apache.flex.core.graphics.GraphicShape; GraphicShape;
-	import org.apache.flex.core.graphics.Rect; Rect;
-	import org.apache.flex.core.graphics.Ellipse; Ellipse;
-	import org.apache.flex.core.graphics.Circle; Circle;
-	import org.apache.flex.core.graphics.Path; Path;
-	import org.apache.flex.core.graphics.SolidColor; SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke; SolidColorStroke;
-	import org.apache.flex.core.graphics.Text; Text;
-	import org.apache.flex.core.graphics.GraphicsContainer; GraphicsContainer;
-	import org.apache.flex.core.graphics.LinearGradient; LinearGradient;
-    import org.apache.flex.core.DataBindingBase; DataBindingBase;
-    import org.apache.flex.binding.ChainBinding; ChainBinding;
-    import org.apache.flex.effects.PlatformWiper; PlatformWiper;    
-    import org.apache.flex.events.DragEvent; DragEvent;   
 	import org.apache.flex.events.utils.MouseUtils; MouseUtils;
-    import org.apache.flex.geom.Rectangle; Rectangle;    
-	
-	import org.apache.flex.mobile.ManagerBase; ManagerBase;
-    
-	import mx.core.ClassFactory; ClassFactory;
-    import mx.states.AddItems; AddItems;
-    import mx.states.SetEventHandler; SetEventHandler;
-    import mx.states.SetProperty; SetProperty;
-    import mx.states.State; State;
 }
 
 }

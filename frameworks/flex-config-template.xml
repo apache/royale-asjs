@@ -78,7 +78,7 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-         <path-element>as/libs</path-element>
+         <path-element>libs</path-element>
          <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
       </library-path>
 
@@ -103,18 +103,18 @@
          <namespace>
             <uri>library://ns.apache.org/flexjs/basic</uri>
             
-            <manifest>as/projects/FlexJSUI/basic-manifest.xml</manifest>
+            <manifest>projects/Core/basic-manifest.xml</manifest>
          
         </namespace>                                                 
          <namespace>
             <uri>library://ns.apache.org/flexjs/html5</uri>
             
-            <manifest>as/projects/FlexJSUI/html5-manifest.xml</manifest>
+            <manifest>projects/HTML5/html5-manifest.xml</manifest>
          
         </namespace>
 		<namespace>
             <uri>library://ns.apache.org/flexjs/svg</uri>
-         	<manifest>as/projects/FlexJSUI/svg-manifest.xml</manifest>
+         	<manifest>projects/HTML/svg-manifest.xml</manifest>
         </namespace>   
    
       </namespaces>
