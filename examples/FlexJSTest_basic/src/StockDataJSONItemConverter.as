@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-    import org.apache.flex.net.JSONItemConverter;
+    import org.apache.flex.collections.converters.JSONItemConverter;
     
     public class StockDataJSONItemConverter extends JSONItemConverter
     {

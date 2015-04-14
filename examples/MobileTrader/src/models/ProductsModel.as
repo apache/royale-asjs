@@ -23,8 +23,8 @@ package models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.net.HTTPService;
-	import org.apache.flex.net.JSONInputParser;
-	import org.apache.flex.net.dataConverters.LazyCollection;
+	import org.apache.flex.collections.parsers.JSONInputParser;
+	import org.apache.flex.collections.LazyCollection;
 		
 	public class ProductsModel extends EventDispatcher implements IBeadModel
 	{
