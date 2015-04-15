@@ -99,6 +99,10 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
             this.index_ = value;
+        },
+        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        get: function() {
+            return this.index_;
         }
     },
     /** @expose */

@@ -47,14 +47,19 @@ org_apache_flex_mobile_ManagerBase.prototype.FLEXJS_CLASS_INFO =
 org_apache_flex_mobile_ManagerBase.prototype._contentArea = null;
 
 
-/**
- * @expose
- * @return {Object} The content area for this manager.
- */
-org_apache_flex_mobile_ManagerBase.prototype.get_contentArea =
-    function() {
-  return this._contentArea;
-};
+Object.defineProperties(org_apache_flex_mobile_ManagerBase.prototype, {
+    /** @expose */
+    contentArea: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this._contentArea;
+        },
+        /** @this {org_apache_flex_core_UIBase} */
+        set: function(value) {
+            this._contentArea = value;
+        }
+    }
+});
 
 
 /**
@@ -121,7 +126,7 @@ org_apache_flex_mobile_ManagerBase.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this._contentArea = new org_apache_flex_core_UIBase();
-  this._contentArea.set_className('ContentArea');
+  this._contentArea.className = 'ContentArea';
   org_apache_flex_core_UIBase.prototype.addElement.call(this, this._contentArea);
 
   return this.element;

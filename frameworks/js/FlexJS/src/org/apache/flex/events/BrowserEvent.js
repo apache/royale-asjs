@@ -53,6 +53,20 @@ org_apache_flex_events_BrowserEvent.prototype.preventDefault = function() {
 };
 
 
+/**
+ */
+org_apache_flex_events_BrowserEvent.prototype.stopPropagation = function() {
+  this.wrappedEvent.stopPropagation();
+};
+
+
+/**
+ */
+org_apache_flex_events_BrowserEvent.prototype.stopImmediatePropagation = function() {
+  this.wrappedEvent.stopImmediatePropagation();
+};
+
+
 Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
     /** @expose */
     currentTarget: {

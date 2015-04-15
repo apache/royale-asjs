@@ -46,35 +46,5 @@ package org.apache.flex.mobile.chrome
 			
 			className = "TabBar";
 		}
-		
-		/**
-		 *  Sets the width of the TabBar.
-		 * 
-		 *  @param value The new width in pixels.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set width(value:Number):void
-		{
-			super.width = value;
-		}
-		
-		/**
-		 *  Sets the height of the TabBar.
-		 * 
-		 *  @param value The new height in pixels.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set height(value:Number):void
-		{
-			super.height = value;
-		}
 	}
 }
