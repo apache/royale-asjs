@@ -1281,10 +1281,9 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
         </java>
         <fail>
