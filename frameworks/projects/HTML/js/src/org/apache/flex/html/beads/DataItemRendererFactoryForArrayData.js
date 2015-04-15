@@ -121,7 +121,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
   var presModel = this.strand_.getBeadByType(org_apache_flex_core_IListPresentationModel);
 
   dp = this.model.dataProvider;
-  if (dp == undefined) return;
+  if (dp === undefined) return;
 
   n = dp.length;
   for (i = 0; i < n; i++) {

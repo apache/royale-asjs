@@ -31,7 +31,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
         import org.apache.flex.events.Event;
-        import org.apache.flex.net.dataConverters.LazyCollection;
+        import org.apache.flex.collections.LazyCollection;
         import samples.flexstore.Product;
                 
         private var _catalog:LazyCollection;

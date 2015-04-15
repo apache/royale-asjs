@@ -27,6 +27,7 @@ package
  */
 internal class EffectsASJSClasses
 {	
+    import org.apache.flex.core.StatesWithTransitionsImpl; StatesWithTransitionsImpl;
 	import org.apache.flex.effects.Tween; Tween;
 	import org.apache.flex.effects.Move; Move;
 	import org.apache.flex.effects.Fade; Fade;

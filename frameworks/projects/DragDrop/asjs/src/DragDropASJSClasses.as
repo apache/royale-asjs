@@ -26,7 +26,8 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class DragDropASJSClasses
-{	
+{
+	import org.apache.flex.core.DropType; DropType;	
 }
 
 }

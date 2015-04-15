@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_net_JSONItemConverter');
+goog.provide('org_apache_flex_collections_converters_JSONItemConverter');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_net_JSONItemConverter = function() {
+org_apache_flex_collections_converters_JSONItemConverter = function() {
 };
 
 
@@ -28,9 +28,9 @@ org_apache_flex_net_JSONItemConverter = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_net_JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_collections_converters_JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'JSONItemConverter',
-                qName: 'org_apache_flex_net_JSONItemConverter'}] };
+                qName: 'org_apache_flex_collections_converters_JSONItemConverter'}] };
 
 
 /**
@@ -38,7 +38,7 @@ org_apache_flex_net_JSONItemConverter.prototype.FLEXJS_CLASS_INFO =
  * @param {string} s The input string.
  * @return {*} The object.
  */
-org_apache_flex_net_JSONItemConverter.prototype.convertItem = function(s) {
+org_apache_flex_collections_converters_JSONItemConverter.prototype.convertItem = function(s) {
   var c = s.indexOf('{)');
   if (c > 0)
     s = s.substring(c);
