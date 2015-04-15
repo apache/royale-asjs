@@ -33,7 +33,7 @@
     
     <target name="clean">
         <delete failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/as/libs">
+            <fileset dir="${FLEXJS_HOME}/frameworks/libs">
                 <include name="MXMLCClasses.swc"/>
             </fileset>
         </delete>
@@ -64,7 +64,7 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/frameworks/as/libs/MXMLCClasses.swc">
+               output="${FLEXJS_HOME}/frameworks/libs/MXMLCClasses.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />

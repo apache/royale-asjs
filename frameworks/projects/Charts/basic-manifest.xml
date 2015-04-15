@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- the MXML components in the Charts SWC -->
+
+<componentPackage>
+    <component id="BarChart" class="org.apache.flex.charts.BarChart" />
+    <component id="BarSeries" class="org.apache.flex.charts.supportClasses.BarSeries" />
+    <component id="ColumnChart" class="org.apache.flex.charts.ColumnChart" />
+    <component id="ColumnSeries" class="org.apache.flex.charts.supportClasses.ColumnSeries" />
+    <component id="LineChart" class="org.apache.flex.charts.LineChart" />
+    <component id="LineSeries" class="org.apache.flex.charts.supportClasses.LineSeries" />
+    <component id="PieChart" class="org.apache.flex.charts.PieChart" />
+    <component id="PieSeries" class="org.apache.flex.charts.supportClasses.PieSeries" />
+    <component id="StackedColumnChart" class="org.apache.flex.charts.StackedColumnChart" />
+    <component id="StackedBarChart" class="org.apache.flex.charts.StackedBarChart" />
+    <component id="DataTipBead" class="org.apache.flex.charts.beads.DataTipBead" />
+    <component id="HorizontalCategoryAxisBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisBead" />
+    <component id="HorizontalLinearAxisBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisBead" />
+    <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />
+    <component id="VerticalLinearAxisBead" class="org.apache.flex.charts.beads.VerticalLinearAxisBead" />
+    
+    <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
+    <component id="WedgeItemRenderer" class="org.apache.flex.charts.supportClasses.WedgeItemRenderer" />
+    <component id="LineSegmentItemRenderer" class="org.apache.flex.charts.supportClasses.LineSegmentItemRenderer" />
+    
+    <component id="LineChartCategoryVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout" />
+    <component id="LineChartLinearVsLinearLayout" class="org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout" />
+
+    <component id="SVGChartDataGroup" class="org.apache.flex.charts.optimized.SVGChartDataGroup"/>
+    <component id="SVGBoxItemRenderer" class="org.apache.flex.charts.optimized.SVGBoxItemRenderer"/>
+    <component id="SVGWedgeItemRenderer" class="org.apache.flex.charts.optimized.SVGWedgeItemRenderer"/>
+    <component id="SVGLineSegmentItemRenderer" class="org.apache.flex.charts.optimized.SVGLineSegmentItemRenderer"/>
+</componentPackage>

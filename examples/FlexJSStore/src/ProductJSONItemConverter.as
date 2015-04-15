@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-    import org.apache.flex.net.JSONItemConverter;
+    import org.apache.flex.collections.converters.JSONItemConverter;
     
     import samples.flexstore.Product;
     

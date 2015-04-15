@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:basic="library://ns.apache.org/flexjs/basic"
+                xmlns:google="library://ns.apache.org/flexjs/google"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:local="*"
 				initComplete="initControls()">
@@ -113,7 +114,7 @@ limitations under the License.
 			<basic:TextButton text="Go" click="orientMap()" />
 		</basic:Container>
 		
-		<basic:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+		<google:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
 		
 		<basic:Container>
 			<basic:beads>

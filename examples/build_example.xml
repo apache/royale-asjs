@@ -31,18 +31,6 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!--
-            Link in the classes (and their dependencies) for the MXML tags
-            listed in this project's manifest.xml.
-            Also link the additional classes (and their dependencies)
-            listed in FlexJSUIClasses.as,
-            because these aren't referenced by the manifest classes.
-            Keep the standard metadata when compiling.
-            Include the appropriate CSS files and assets in the SWC.
-            Don't include any resources in the SWC.
-            Write a bundle list of referenced resource bundles
-            into the file bundles.properties in this directory.
-        -->
         <mxmlc fork="true"
                file="${basedir}/src/${example}.mxml"
                output="${basedir}/bin-debug/${example}.swf">
@@ -82,18 +70,6 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!--
-         Link in the classes (and their dependencies) for the MXML tags
-         listed in this project's manifest.xml.
-         Also link the additional classes (and their dependencies)
-         listed in FlexJSUIClasses.as,
-         because these aren't referenced by the manifest classes.
-         Keep the standard metadata when compiling.
-         Include the appropriate CSS files and assets in the SWC.
-         Don't include any resources in the SWC.
-         Write a bundle list of referenced resource bundles
-         into the file bundles.properties in this directory.
-         -->
         <mxmlc fork="true"
             file="${basedir}/src/${example}.mxml"
             output="${basedir}/bin-debug/${example}.swf">
@@ -130,18 +106,6 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!--
-            Link in the classes (and their dependencies) for the MXML tags
-            listed in this project's manifest.xml.
-            Also link the additional classes (and their dependencies)
-            listed in FlexJSUIClasses.as,
-            because these aren't referenced by the manifest classes.
-            Keep the standard metadata when compiling.
-            Include the appropriate CSS files and assets in the SWC.
-            Don't include any resources in the SWC.
-            Write a bundle list of referenced resource bundles
-            into the file bundles.properties in this directory.
-        -->
         <mxmlc fork="true"
                file="${basedir}/src/${example}.as"
                output="${basedir}/bin-debug/${example}.swf">
@@ -170,7 +134,7 @@
  
     </target>
 
-    <target name="compilejs" description="Cross-compiles ${example}">
+    <target name="compilejs" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
@@ -190,10 +154,9 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/src/${example}.mxml" />      
         </java>
         <fail>
@@ -208,7 +171,7 @@
 		</fail>
     </target>
 
-    <target name="compilejsair" description="Cross-compiles ${example}">
+    <target name="compilejsair" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
@@ -229,10 +192,9 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
@@ -247,7 +209,7 @@
         </fail>
     </target>
 
-    <target name="compileasjs" description="Cross-compiles ${example}">
+    <target name="compileasjs" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
@@ -269,9 +231,9 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/src/createjs_externals.js" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
+            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/src/${example}.as" />      
         </java>
         <fail>
