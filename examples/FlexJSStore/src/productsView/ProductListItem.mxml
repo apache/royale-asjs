@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
-                    xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                    xmlns:js="library://ns.apache.org/flexjs/basic" 
                     xmlns:mx="library://ns.adobe.com/flex/mx" 
     className="listItem" 
     height="{HEIGHT}" implements="org.apache.flex.core.IItemRenderer">
@@ -93,39 +93,39 @@ limitations under the License.
     </fx:Script>
     
     <fx:Declarations>
-        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>
     </fx:Declarations>
     
-    <basic:beads>
-        <basic:ContainerDataBinding />
-    </basic:beads>
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
         
-    <basic:ImageButton id="removeButton" backgroundImage="assets/trashcan.png"
+    <js:ImageButton id="removeButton" backgroundImage="assets/trashcan.png"
         width="14" height="14" y="5"
         click="removeItem()">
-        <basic:beads>
-            <basic:ToolTipBead toolTip="Remove from cart" />
-        </basic:beads>
-    </basic:ImageButton>
+        <js:beads>
+            <js:ToolTipBead toolTip="Remove from cart" />
+        </js:beads>
+    </js:ImageButton>
     
-    <basic:Image id="productImage" x="16" y="6" width="12" height="12" source="{product.image}"/>
+    <js:Image id="productImage" x="16" y="6" width="12" height="12" source="{product.image}"/>
 
-    <basic:Label id="productName" x="30" width="100" y="4" text="{product.name}"/>
+    <js:Label id="productName" x="30" width="100" y="4" text="{product.name}"/>
 
-    <basic:Label id="productPrice" width="60" y="4"
+    <js:Label id="productPrice" width="60" y="4"
         text="{cf.format(product.price)}" style="textAlign:right;right:0"
                                 style.showQuantity="textAlign:right;right:25"/>
         
-    <basic:TextInput id="qty" width="25" y="3" text="{product.qty}" includeIn="showQuantity"
+    <js:TextInput id="qty" width="25" y="3" text="{product.qty}" includeIn="showQuantity"
                   style="textAlign:right;right:0;marginTop:0" change="qtyChange()" >
-        <basic:beads>
-            <basic:NumericOnlyTextInputBead maxChars="3" />
-        </basic:beads>
-    </basic:TextInput>
+        <js:beads>
+            <js:NumericOnlyTextInputBead maxChars="3" />
+        </js:beads>
+    </js:TextInput>
     
-    <basic:states>
+    <js:states>
         <mx:State name="compare" />
         <mx:State name="showQuantity" />
-    </basic:states>
+    </js:states>
     
-</basic:Container>
+</js:Container>

@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*"
 				>
@@ -84,104 +84,104 @@ limitations under the License.
 		}
 	</fx:Style>
 	
-	<basic:Container x="20" y="20">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:Label text="Points:" />
-		<basic:TextInput id="numPoints" text="300" />
-	</basic:Container>
+	<js:Container x="20" y="20">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:Label text="Points:" />
+		<js:TextInput id="numPoints" text="300" />
+	</js:Container>
 	
 	<!-- SVG Line Chart -->
 	
-	<basic:Label text="SVG Chart" x="250" y="80" />
+	<js:Label text="SVG Chart" x="250" y="80" />
 	
-	<basic:LineChart id="svgChart" x="21" y="100" width="400" height="200" className="hsline">
-		<basic:beads>
-			<!--<basic:ConstantBinding
+	<js:LineChart id="svgChart" x="21" y="100" width="400" height="200" className="hsline">
+		<js:beads>
+			<!--<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="wave"
 				destinationPropertyName="dataProvider" />-->
-			<basic:HorizontalLinearAxisBead valueField="x" />
-			<basic:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
-			<basic:LineChartLinearVsLinearLayout />
-		</basic:beads>
-		<basic:series>
-			<basic:LineSeries xField="x" yField="sin">
-				<basic:itemRenderer>
+			<js:HorizontalLinearAxisBead valueField="x" />
+			<js:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
+			<js:LineChartLinearVsLinearLayout />
+		</js:beads>
+		<js:series>
+			<js:LineSeries xField="x" yField="sin">
+				<js:itemRenderer>
 					<fx:Component>
-						<basic:SVGBoxItemRenderer>
-							<basic:fill>
-								<basic:SolidColor color="#FF44FF" alpha="1" />
-							</basic:fill>  
-						</basic:SVGBoxItemRenderer>
+						<js:SVGBoxItemRenderer>
+							<js:fill>
+								<js:SolidColor color="#FF44FF" alpha="1" />
+							</js:fill>  
+						</js:SVGBoxItemRenderer>
 					</fx:Component>
-				</basic:itemRenderer>
-				<basic:lineSegmentRenderer>
+				</js:itemRenderer>
+				<js:lineSegmentRenderer>
 					<fx:Component>
-						<basic:SVGLineSegmentItemRenderer>
-							<basic:stroke>
-								<basic:SolidColorStroke color="#964DFF" weight="2" alpha="1" />
-							</basic:stroke>
-						</basic:SVGLineSegmentItemRenderer>                        
+						<js:SVGLineSegmentItemRenderer>
+							<js:stroke>
+								<js:SolidColorStroke color="#964DFF" weight="2" alpha="1" />
+							</js:stroke>
+						</js:SVGLineSegmentItemRenderer>                        
 					</fx:Component>
-				</basic:lineSegmentRenderer>
-			</basic:LineSeries>
-		</basic:series>
-	</basic:LineChart>
+				</js:lineSegmentRenderer>
+			</js:LineSeries>
+		</js:series>
+	</js:LineChart>
 	
 	<!-- Regular Line Chart -->
 	
-	<basic:Label text="Reg Chart" x="650" y="80" />
+	<js:Label text="Reg Chart" x="650" y="80" />
 	
-	<basic:LineChart id="regChart" x="500" y="100" width="400" height="200">
-		<basic:beads>
-			<!--<basic:ConstantBinding
+	<js:LineChart id="regChart" x="500" y="100" width="400" height="200">
+		<js:beads>
+			<!--<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="wave2"
 				destinationPropertyName="dataProvider" />-->
-			<basic:HorizontalLinearAxisBead valueField="x" />
-			<basic:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
-			<basic:LineChartLinearVsLinearLayout />
-		</basic:beads>
-		<basic:series>
-			<basic:LineSeries xField="x" yField="sin">
-				<basic:itemRenderer>
+			<js:HorizontalLinearAxisBead valueField="x" />
+			<js:VerticalLinearAxisBead valueField="sin" minimum="-1" maximum="1" />
+			<js:LineChartLinearVsLinearLayout />
+		</js:beads>
+		<js:series>
+			<js:LineSeries xField="x" yField="sin">
+				<js:itemRenderer>
 					<fx:Component>
-						<basic:BoxItemRenderer>
-							<basic:fill>
-								<basic:SolidColor color="#99FF99" alpha="1" />
-							</basic:fill>  
-						</basic:BoxItemRenderer>
+						<js:BoxItemRenderer>
+							<js:fill>
+								<js:SolidColor color="#99FF99" alpha="1" />
+							</js:fill>  
+						</js:BoxItemRenderer>
 					</fx:Component>
-				</basic:itemRenderer>
-				<basic:lineSegmentRenderer>
+				</js:itemRenderer>
+				<js:lineSegmentRenderer>
 					<fx:Component>
-						<basic:LineSegmentItemRenderer>
-							<basic:stroke>
-								<basic:SolidColorStroke color="#33DD33" weight="2" alpha="1" />
-							</basic:stroke>
-						</basic:LineSegmentItemRenderer>                        
+						<js:LineSegmentItemRenderer>
+							<js:stroke>
+								<js:SolidColorStroke color="#33DD33" weight="2" alpha="1" />
+							</js:stroke>
+						</js:LineSegmentItemRenderer>                        
 					</fx:Component>
-				</basic:lineSegmentRenderer>
-			</basic:LineSeries>
-		</basic:series>
-	</basic:LineChart>
+				</js:lineSegmentRenderer>
+			</js:LineSeries>
+		</js:series>
+	</js:LineChart>
 	
-	<basic:Container x="150" y="325">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:TextButton text="SVG Go" click="startTimingSVG()" />
-		<basic:Label text="  (results)" id="svgChartResults" />
-	</basic:Container>
+	<js:Container x="150" y="325">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:TextButton text="SVG Go" click="startTimingSVG()" />
+		<js:Label text="  (results)" id="svgChartResults" />
+	</js:Container>
 	
-	<basic:Container x="650" y="325">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:TextButton text="Reg Go" click="startTimingReg()" />
-		<basic:Label text="  (results)" id="regChartResults" />
-	</basic:Container>
+	<js:Container x="650" y="325">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:TextButton text="Reg Go" click="startTimingReg()" />
+		<js:Label text="  (results)" id="regChartResults" />
+	</js:Container>
 	
-</basic:ViewBase>
+</js:ViewBase>

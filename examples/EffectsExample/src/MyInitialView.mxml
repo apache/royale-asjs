@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
 				xmlns:acc="org.apache.flex.html.accessories.*">
@@ -64,26 +64,26 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Container width="600" height="700" x="50" y="50">
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
+	<js:Container width="600" height="700" x="50" y="50">
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+		</js:beads>
 		
-		<basic:Container width="600" height="40">
-			<basic:beads>
-				<basic:NonVirtualHorizontalLayout />
-			</basic:beads>
-			<basic:TextButton text="swap" click="swapit()" />
-			<basic:TextButton text="fade out" click="fadeout()" />
-			<basic:TextButton text="fade in" click="fadein()" />
-		</basic:Container>
+		<js:Container width="600" height="40">
+			<js:beads>
+				<js:NonVirtualHorizontalLayout />
+			</js:beads>
+			<js:TextButton text="swap" click="swapit()" />
+			<js:TextButton text="fade out" click="fadeout()" />
+			<js:TextButton text="fade in" click="fadein()" />
+		</js:Container>
 		
-		<basic:Container width="500">
-			<basic:Image id="image1" source="twong.jpg" x="100" y="20" />
-			<basic:Label id="caption1" text="Dick" x="100" y="200" />
-			<basic:Image id="image2" source="jproctor.jpg" x="400" y="20" />
-			<basic:Label id="caption2" text="Jane" x="400" y="200" />
-		</basic:Container>		
-	</basic:Container>
+		<js:Container width="500">
+			<js:Image id="image1" source="twong.jpg" x="100" y="20" />
+			<js:Label id="caption1" text="Dick" x="100" y="200" />
+			<js:Image id="image2" source="jproctor.jpg" x="400" y="20" />
+			<js:Label id="caption2" text="Jane" x="400" y="200" />
+		</js:Container>		
+	</js:Container>
 	
-</basic:ViewBase>
+</js:ViewBase>

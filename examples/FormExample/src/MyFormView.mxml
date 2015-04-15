@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
 				xmlns:acc="org.apache.flex.html.accessories.*">
@@ -40,34 +40,34 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Container width="600" height="700" x="50" y="50">
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
+	<js:Container width="600" height="700" x="50" y="50">
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+		</js:beads>
 		
-		<basic:Label text="Loan Form" className="title" />
+		<js:Label text="Loan Form" className="title" />
 		
-		<basic:Container width="500">
-			<basic:beads>
-				<basic:VerticalColumnLayout numColumns="2" />
-			</basic:beads>
-			<basic:Label text="Name:" />
-			<basic:TextInput id="nameField" />
-			<basic:Label text="Age:" />
-			<basic:TextInput id="ageField">
-				<basic:beads>
-					<basic:NumericOnlyTextInputBead />
-				</basic:beads>
-			</basic:TextInput>
-			<basic:Label text="Phone Number:" />
-			<basic:TextInput id="phoneField" >
-			</basic:TextInput>
-			<basic:Label text="Date of Loan:" />
-			<basic:DateField id="dateOfLoan"/>
-			<basic:Label text="Loan Amount:" />
-			<basic:TextInput id="loanAmount">
-			</basic:TextInput>
-		</basic:Container>		
-	</basic:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:VerticalColumnLayout numColumns="2" />
+			</js:beads>
+			<js:Label text="Name:" />
+			<js:TextInput id="nameField" />
+			<js:Label text="Age:" />
+			<js:TextInput id="ageField">
+				<js:beads>
+					<js:NumericOnlyTextInputBead />
+				</js:beads>
+			</js:TextInput>
+			<js:Label text="Phone Number:" />
+			<js:TextInput id="phoneField" >
+			</js:TextInput>
+			<js:Label text="Date of Loan:" />
+			<js:DateField id="dateOfLoan"/>
+			<js:Label text="Loan Amount:" />
+			<js:TextInput id="loanAmount">
+			</js:TextInput>
+		</js:Container>		
+	</js:Container>
 	
-</basic:ViewBase>
+</js:ViewBase>

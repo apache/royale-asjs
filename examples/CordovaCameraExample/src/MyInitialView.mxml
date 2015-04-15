@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" >
     <fx:Script>
         <![CDATA[
@@ -63,13 +63,13 @@ limitations under the License.
 	
 	</fx:Style>
 	
-	<basic:Label id="status" x="20" y="140" width="400" text="loading..."/>
+	<js:Label id="status" x="20" y="140" width="400" text="loading..."/>
 	
-	<basic:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
-	<basic:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
+	<js:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
+	<js:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
 	
-	<basic:Label id="output" x="20" y="110" width="400"/>
+	<js:Label id="output" x="20" y="110" width="400"/>
 	
-	<basic:Image id="image" x="20" y="200" width="200" height="200" />
+	<js:Image id="image" x="20" y="200" width="200" height="200" />
 
-</basic:ViewBase>
+</js:ViewBase>

@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
-                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:js="library://ns.apache.org/flexjs/basic" 
                    xmlns:mx="library://ns.adobe.com/flex/mx"
     width="{COL_WIDTH_4}" height="{COL_HEIGHT_4}" height.compare="502"
     width.x4cols="{COL_WIDTH_4}" height.x4cols="{COL_HEIGHT_4}"
@@ -33,14 +33,14 @@ limitations under the License.
     currentState="x4cols"
     >
     <!-- automationName="{product.name}" -->
-    <basic:beads>
-        <basic:ContainerDataBinding />
-        <basic:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
-    </basic:beads>
-    <basic:style>
-        <basic:BindableCSSStyles id="borderStyles" borderStyle="solid"
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
+    </js:beads>
+    <js:style>
+        <js:BindableCSSStyles id="borderStyles" borderStyle="solid"
                                borderColor="#FFFFFF" backgroundColor="#FFFFFF"/>
-    </basic:style>
+    </js:style>
     <fx:Metadata>
         [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
         [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
@@ -132,82 +132,82 @@ limitations under the License.
 	]]>
     </fx:Script>
     <fx:Declarations>
-        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
     </fx:Declarations>
 
-    <basic:VContainer id="vb" width="100%" height="100%">
-        <basic:style>
-            <basic:SimpleCSSStyles paddingLeft="6" paddingTop="4" paddingRight="8" paddingBottom="4" />
+    <js:VContainer id="vb" width="100%" height="100%">
+        <js:style>
+            <js:SimpleCSSStyles paddingLeft="6" paddingTop="4" paddingRight="8" paddingBottom="4" />
                                  <!--  gap="0">  -->
-        </basic:style>
+        </js:style>
         
 
-        <basic:Label text="{product.name}" style="fontWeight:bold"/>
+        <js:Label text="{product.name}" style="fontWeight:bold"/>
 
-        <basic:HContainer width="100%" >
-            <basic:style>
-                <basic:SimpleCSSStyles paddingTop="0" /> <!-- gap="4 -->"
-            </basic:style>
+        <js:HContainer width="100%" >
+            <js:style>
+                <js:SimpleCSSStyles paddingTop="0" /> <!-- gap="4 -->"
+            </js:style>
 
-            <basic:Image id="img" height="45" width="45" 
+            <js:Image id="img" height="45" width="45" 
                      width.x3cols="60" height.x3cols="60"
                      width.x2cols="60" height.x2cols="60"
                      source="{product.image}" />
 
-            <basic:VContainer id="descr" height="100%" >
-                <basic:style>
-                    <basic:SimpleCSSStyles paddingTop="0" right="0" /> <!--  gap="0"  -->
-                </basic:style>
-                <basic:Label text="{product.featureString}" width="60" height="48" />
-                <basic:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
-				<basic:Spacer height="4"/>
-                <basic:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
-                <basic:Label text="{product.highlight2}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
-            </basic:VContainer>
+            <js:VContainer id="descr" height="100%" >
+                <js:style>
+                    <js:SimpleCSSStyles paddingTop="0" right="0" /> <!--  gap="0"  -->
+                </js:style>
+                <js:Label text="{product.featureString}" width="60" height="48" />
+                <js:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
+				<js:Spacer height="4"/>
+                <js:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+                <js:Label text="{product.highlight2}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
+            </js:VContainer>
 
-        </basic:HContainer>
+        </js:HContainer>
 
-        <basic:Spacer height="8"/>
+        <js:Spacer height="8"/>
 
-        <basic:Label id="compYears" text="Years: {product.experience}" includeIn="compare"/>
-        <basic:Label id="compBlaze" text="BlazeDS: {product.blazeds}" includeIn="compare"/>
-        <basic:Label id="compMobile" text="Mobile: {product.mobile}" includeIn="compare"/>
-        <basic:Label id="compVideo" text="Video: {product.video}" includeIn="compare"/>
-        <basic:Label id="compHigh1" text="Highlight: {product.highlight1}" includeIn="compare"/>
-        <basic:Label id="compHigh2" text="Highlight: {product.highlight2}" includeIn="compare"/>
-        <basic:Label text="Description:" includeIn="compare"/>
-        <basic:MultilineLabel id="compDesc" text="{product.description}" width="100%" includeIn="compare"/>
-    </basic:VContainer>
+        <js:Label id="compYears" text="Years: {product.experience}" includeIn="compare"/>
+        <js:Label id="compBlaze" text="BlazeDS: {product.blazeds}" includeIn="compare"/>
+        <js:Label id="compMobile" text="Mobile: {product.mobile}" includeIn="compare"/>
+        <js:Label id="compVideo" text="Video: {product.video}" includeIn="compare"/>
+        <js:Label id="compHigh1" text="Highlight: {product.highlight1}" includeIn="compare"/>
+        <js:Label id="compHigh2" text="Highlight: {product.highlight2}" includeIn="compare"/>
+        <js:Label text="Description:" includeIn="compare"/>
+        <js:MultilineLabel id="compDesc" text="{product.description}" width="100%" includeIn="compare"/>
+    </js:VContainer>
 
 
-    <basic:VContainer id="buttons" visible="false" width="30">
-        <basic:style>
-            <basic:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
-        </basic:style>
-        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" className="hoverButton"
+    <js:VContainer id="buttons" visible="false" width="30">
+        <js:style>
+            <js:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
+        </js:style>
+        <js:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
             width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Add to cart"/>
-            </basic:beads>
-        </basic:ImageButton>
-        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" className="hoverButton"
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to cart"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="compare" backgroundImage="assets/button_compare.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
             width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Add to compare list"/>
-            </basic:beads>
-        </basic:ImageButton>
-        <basic:ImageButton id="details" backgroundImage="assets/button_details.png" className="hoverButton"
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to compare list"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="details" backgroundImage="assets/button_details.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
             width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Show details"/>
-            </basic:beads>
-        </basic:ImageButton>
-    </basic:VContainer>
+            <js:beads>
+                <js:ToolTipBead toolTip="Show details"/>
+            </js:beads>
+        </js:ImageButton>
+    </js:VContainer>
 
-    <basic:states>
+    <js:states>
 
         <mx:State name="compare" />
 
@@ -216,6 +216,6 @@ limitations under the License.
         <mx:State name="x3cols" />
 
         <mx:State name="x2cols"/>
-    </basic:states>
+    </js:states>
 
-</basic:Container>
+</js:Container>

@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:jquery="library://ns.apache.org/flexjs/jquery"
 			   >
     <fx:Script>
@@ -83,36 +83,36 @@ limitations under the License.
 		}
 
 	</fx:Style>
-	<basic:Label id="lbl" x="100" y="25" >
-		<basic:beads>
-			<basic:SimpleBinding eventName="labelTextChanged"
+	<js:Label id="lbl" x="100" y="25" >
+		<js:beads>
+			<js:SimpleBinding eventName="labelTextChanged"
 								 sourceID="applicationModel"
 								 sourcePropertyName="labelText"
 								 destinationPropertyName="text" />
-		</basic:beads>
-	</basic:Label>
+		</js:beads>
+	</js:Label>
 	<jquery:TextButton text="Start Timer" x="100" y="75" click="startTimer()" />
 	<jquery:TextButton text="Stop Timer" x="100" y="100" click="timer.removeEventListener('timer', timerHandler);timer.stop()" />
-	<basic:Label id="timerLabel" x="100" y="125" />
+	<js:Label id="timerLabel" x="100" y="125" />
 	
-	<basic:List id="cityList"  x="200" y="75" width="100" height="75" change="dispatchEvent(new CustomEvent('cityListChanged'))">
-		<basic:beads>
-			<basic:ConstantBinding
+	<js:List id="cityList"  x="200" y="75" width="100" height="75" change="dispatchEvent(new CustomEvent('cityListChanged'))">
+		<js:beads>
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="cities"
 				destinationPropertyName="dataProvider" />
-		</basic:beads>
-	</basic:List>
+		</js:beads>
+	</js:List>
 	
-	<basic:TextArea x="320" y="25" width="150" height="75">
-		<basic:beads>
-			<basic:SimpleBinding eventName="labelTextChanged"
+	<js:TextArea x="320" y="25" width="150" height="75">
+		<js:beads>
+			<js:SimpleBinding eventName="labelTextChanged"
 								 sourceID="applicationModel"
 								 sourcePropertyName="labelText"
 								 destinationPropertyName="text" />
-		</basic:beads>
-	</basic:TextArea>
-	<basic:TextInput id="input" x="320" y="110" />
+		</js:beads>
+	</js:TextArea>
+	<js:TextInput id="input" x="320" y="110" />
 	<jquery:TextButton text="Transfer" x="320" y="138" click="dispatchEvent(new CustomEvent('transferClicked'))" />
 	
 	<jquery:CheckBox id="checkbox" x="320" y="170" text="Check Me" />
@@ -125,24 +125,24 @@ limitations under the License.
 	<jquery:RadioButton groupName="group2" text="Green" value="green" x="200" y="320" />
 	<jquery:RadioButton groupName="group2" text="Blue" value="blue" x="300" y="320"  />
 	
-	<basic:DropDownList id="list" x="200" y="200" width="100" height="18" change="dispatchEvent(new CustomEvent('listChanged'))">
-		<basic:beads>
-			<basic:ConstantBinding
+	<js:DropDownList id="list" x="200" y="200" width="100" height="18" change="dispatchEvent(new CustomEvent('listChanged'))">
+		<js:beads>
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="strings"
 				destinationPropertyName="dataProvider" />
-		</basic:beads>
-	</basic:DropDownList>
+		</js:beads>
+	</js:DropDownList>
 	<jquery:TextButton text="OK" x="200" y="230" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
 	<jquery:TextButton text="Skinned" x="200" y="260" width="80" height="24" className="skinned" click="dispatchEvent(new CustomEvent('buttonClicked'))" />
 	
-	<basic:ComboBox id="comboBox" x="320" y="200" width="100" change="dispatchEvent(new CustomEvent('comboBoxChanged'))">
-		<basic:beads>
-			<basic:ConstantBinding
+	<js:ComboBox id="comboBox" x="320" y="200" width="100" change="dispatchEvent(new CustomEvent('comboBoxChanged'))">
+		<js:beads>
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="cities"
 				destinationPropertyName="dataProvider" />
-		</basic:beads>
-	</basic:ComboBox>
+		</js:beads>
+	</js:ComboBox>
     
-</basic:ViewBase>
+</js:ViewBase>

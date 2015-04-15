@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" xmlns:mybeads="mybeads.*">
     <fx:Script>
@@ -32,21 +32,21 @@ limitations under the License.
 		]]>
     </fx:Script>
 	
-	<basic:Label id="output" x="450" y="30" width="100" />
+	<js:Label id="output" x="450" y="30" width="100" />
 		
-	<basic:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" >
-		<basic:beads>
-			<basic:ConstantBinding
+	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" >
+		<js:beads>
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 			<mybeads:RowHeightBead rowHeight="40" />
-		</basic:beads>
-		<basic:columns>
-			<basic:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
-			<basic:DataGridColumn label="Title" dataField="title" columnWidth="200" />
-			<basic:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
-		</basic:columns>
-	</basic:DataGrid>
+		</js:beads>
+		<js:columns>
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+		</js:columns>
+	</js:DataGrid>
 
-</basic:ViewBase>
+</js:ViewBase>

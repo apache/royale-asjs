@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
@@ -119,26 +119,26 @@ limitations under the License.
 	</fx:Style>
 	
 	
-	<basic:Panel title="Example" x="300" width="300" y="50" className="panel1" showCloseButton="true">
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
-		<basic:Label text="Displays a SimpleAlert that has an OK button." />
-		<basic:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
-		<basic:Label text="Displays an Alert which can have multiple buttons." />
-		<basic:TextButton text="Push Me" click="onButtonClick()" />
-		<basic:Label id="spinMe" />
-		<basic:NumericStepper id="stepper" 
+	<js:Panel title="Example" x="300" width="300" y="50" className="panel1" showCloseButton="true">
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+		</js:beads>
+		<js:Label text="Displays a SimpleAlert that has an OK button." />
+		<js:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
+		<js:Label text="Displays an Alert which can have multiple buttons." />
+		<js:TextButton text="Push Me" click="onButtonClick()" />
+		<js:Label id="spinMe" />
+		<js:NumericStepper id="stepper" 
 							  valueChange="spinnerChanged(stepper)" 
 							  className="numStepper"
 							  stepSize="10"/>
-		<basic:Label id="slideMe" />
-		<basic:Slider id="slider"
+		<js:Label id="slideMe" />
+		<js:Slider id="slider"
 					  valueChange="sliderChanged(slider)"
 					  minimum="20"
 					  maximum="80"
 					  stepSize="5" />
-	</basic:Panel>
+	</js:Panel>
 
 	
-</basic:ViewBase>
+</js:ViewBase>

@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:js="library://ns.apache.org/flexjs/basic" 
                 xmlns:mx="library://ns.adobe.com/flex/mx"
                 xmlns="*"
                 initialize="startService()"
@@ -167,30 +167,30 @@ limitations under the License.
     <fx:Style source="beige.css"/>
 	
     <fx:Declarations>
-        <basic:HTTPService id="productService" url="data/catalog.json">
-            <basic:LazyCollection id="catalog" complete="if (pView) pView.catalog = catalog">
-                <basic:inputParser>
-                    <basic:JSONInputParser />
-                </basic:inputParser>
-                <basic:itemConverter>
+        <js:HTTPService id="productService" url="data/catalog.json">
+            <js:LazyCollection id="catalog" complete="if (pView) pView.catalog = catalog">
+                <js:inputParser>
+                    <js:JSONInputParser />
+                </js:inputParser>
+                <js:itemConverter>
                     <ProductJSONItemConverter />
-                </basic:itemConverter> 
-            </basic:LazyCollection>
-        </basic:HTTPService>        
+                </js:itemConverter> 
+            </js:LazyCollection>
+        </js:HTTPService>        
     </fx:Declarations>
-    <basic:valuesImpl>
-        <basic:SimpleCSSValuesImpl />
-    </basic:valuesImpl>
-	<basic:beads>
-        <basic:ViewSourceContextMenuOption />
-        <basic:CallLaterBead id="callLater" />
-        <basic:ApplicationDataBinding />
-    </basic:beads>
-    <basic:initialView>
-        <basic:ViewBase	width="990" height="550"
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+	<js:beads>
+        <js:ViewSourceContextMenuOption />
+        <js:CallLaterBead id="callLater" />
+        <js:ApplicationDataBinding />
+    </js:beads>
+    <js:initialView>
+        <js:ViewBase	width="990" height="550"
                         initComplete="completeHandler(null)"
                         stateChangeComplete="chainStatesIfNeeded()">
-            <basic:states>
+            <js:states>
                 <mx:State name="HomeState" stateGroups="['Home']" />
                 <mx:State name="HomeWipeUp" stateGroups="['Home']" />
                 <mx:State name="HomeWipeDown" stateGroups="['Home']" />
@@ -201,60 +201,60 @@ limitations under the License.
                 <mx:State name="SupportState" stateGroups="['Support']" />
                 <mx:State name="SupportWipeUp" stateGroups="['Support']" />
                 <mx:State name="SupportWipeDown" stateGroups="['Support']" />
-            </basic:states>
+            </js:states>
             
-            <basic:transitions>
-                <basic:Transition fromState="HomeState" toState="HomeWipeUp">
-                    <basic:Wipe direction="up" target="homeView" />
-                </basic:Transition>
-                <basic:Transition fromState="HomeWipeDown" toState="HomeState">
-                    <basic:Wipe direction="down" target="homeView" />
-                </basic:Transition>
-                <basic:Transition fromState="ProductsState" toState="ProductsWipeUp">
-                    <basic:Wipe direction="up" target="pView" />
-                </basic:Transition>
-                <basic:Transition fromState="ProductsWipeDown" toState="ProductsState">
-                    <basic:Wipe direction="down" target="pView" />
-                </basic:Transition>
-                <basic:Transition fromState="SupportState" toState="SupportWipeUp">
-                    <basic:Wipe direction="up" target="supportView" />
-                </basic:Transition>
-                <basic:Transition fromState="SupportWipeDown" toState="SupportState">
-                    <basic:Wipe direction="down" target="supportView" />
-                </basic:Transition>
-            </basic:transitions>
-            <basic:beads>
-                <basic:NonVirtualVerticalLayout />
-            </basic:beads>
-            <basic:ControlBar id="acb" width="100%" className="storeControlBar" >
-                <basic:beads>
-                    <basic:NonVirtualHorizontalLayout />
-                    <basic:LayoutChangeNotifier watchedProperty="{image.width}" />
-                </basic:beads>
-                <basic:Image id="image" />
+            <js:transitions>
+                <js:Transition fromState="HomeState" toState="HomeWipeUp">
+                    <js:Wipe direction="up" target="homeView" />
+                </js:Transition>
+                <js:Transition fromState="HomeWipeDown" toState="HomeState">
+                    <js:Wipe direction="down" target="homeView" />
+                </js:Transition>
+                <js:Transition fromState="ProductsState" toState="ProductsWipeUp">
+                    <js:Wipe direction="up" target="pView" />
+                </js:Transition>
+                <js:Transition fromState="ProductsWipeDown" toState="ProductsState">
+                    <js:Wipe direction="down" target="pView" />
+                </js:Transition>
+                <js:Transition fromState="SupportState" toState="SupportWipeUp">
+                    <js:Wipe direction="up" target="supportView" />
+                </js:Transition>
+                <js:Transition fromState="SupportWipeDown" toState="SupportState">
+                    <js:Wipe direction="down" target="supportView" />
+                </js:Transition>
+            </js:transitions>
+            <js:beads>
+                <js:NonVirtualVerticalLayout />
+            </js:beads>
+            <js:ControlBar id="acb" width="100%" className="storeControlBar" >
+                <js:beads>
+                    <js:NonVirtualHorizontalLayout />
+                    <js:LayoutChangeNotifier watchedProperty="{image.width}" />
+                </js:beads>
+                <js:Image id="image" />
                          <!-- click="toggleTheme()" -->
                          <!-- toolTip="Change Theme"/ -->
-                <basic:ToggleTextButton id="homeButton"
+                <js:ToggleTextButton id="homeButton"
                                 text="Home"
                                 height="100%"
                                 selected="true"
                                 className="storeButtonBar"
                                 click="headHome()" />
-                <basic:ToggleTextButton id="productsButton"
+                <js:ToggleTextButton id="productsButton"
                                 text="Products"
                                 height="100%"
                                 className="storeButtonBar"
                                 click="headToProducts()"/>
-                <basic:ToggleTextButton id="supportButton"
+                <js:ToggleTextButton id="supportButton"
                                 text="Support"
                                 height="100%"
                                 className="storeButtonBar"
                                 click="headToSupport()"/>            
-            </basic:ControlBar>
-            <basic:Container width="990" >
-                <basic:style>
-                    <basic:SimpleCSSStyles paddingLeft="0" paddingRight="0" horizontalCenter="0"/>
-                </basic:style>
+            </js:ControlBar>
+            <js:Container width="990" >
+                <js:style>
+                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0" horizontalCenter="0"/>
+                </js:style>
                         
                 <HomeView id="homeView" width="100%" height="550" includeIn="Home"
                           />
@@ -264,7 +264,7 @@ limitations under the License.
                 <SupportView id="supportView" includeIn="Support"
                              width="100%" height="550"
                              />
-            </basic:Container>
-        </basic:ViewBase>        
-    </basic:initialView>    
-</basic:Application>
+            </js:Container>
+        </js:ViewBase>        
+    </js:initialView>    
+</js:Application>

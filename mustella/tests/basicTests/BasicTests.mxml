@@ -17,8 +17,8 @@
   limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:js="library://ns.apache.org/flexjs/basic" 
     xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:haloviews="halo.views.*"
     xmlns:sparkviews="spark.views.*"
@@ -32,7 +32,7 @@
     <fx:Style source="BasicTests.css"/>
 
     <!--  STEP 1: Add a state for your test here -->
-    <basic:states>
+    <js:states>
         <mx:State name="basicTest" />
         <mx:State name="haloButtonTest" />
         <mx:State name="haloCheckBoxTest" />
@@ -103,7 +103,7 @@
         <!--<mx:State name="sparkCurrencyValidatorTest" />-->
         <!--<mx:State name="sparkNumberValidatorTest" />-->
         <!--<mx:State name="sparkSortTest" /> -->
-    </basic:states>
+    </js:states>
     
     <!--  STEP 2: Add an mxml component with the widgets for your test here -->
     <haloviews:ButtonTests id="haloButtonTests" includeIn="haloButtonTest" />    
@@ -208,4 +208,4 @@
         <mx:TextInput id="newStateInput" text="" enter="{currentState=newStateInput.text}" />
     </s:Group>    
     -->    
-</basic:ViewBase>
+</js:ViewBase>

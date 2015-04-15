@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:svg="library://ns.apache.org/flexjs/svg"
 				initComplete="viewbase1_initCompleteHandler(event)"
 			   >
@@ -256,72 +256,72 @@ limitations under the License.
 			
 		]]>
     </fx:Script>
-	<basic:Rect x="0" y="0" width="200" height="200" >
-		<basic:fill>
-			<basic:SolidColor color="#FF0000" />
-		</basic:fill>
-	</basic:Rect>
+	<js:Rect x="0" y="0" width="200" height="200" >
+		<js:fill>
+			<js:SolidColor color="#FF0000" />
+		</js:fill>
+	</js:Rect>
 	
-	<basic:Rect x="300" y="0" width="200" height="200">
-		<basic:fill>
-			<basic:LinearGradient >
-				<basic:entries>
-					<basic:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
-					<basic:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
-				</basic:entries>
-			</basic:LinearGradient>
-		</basic:fill>
-	</basic:Rect>
+	<js:Rect x="300" y="0" width="200" height="200">
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Rect>
 	
-	<basic:Circle x="100" y="350" radius="100">
-		<basic:fill>
-			<basic:LinearGradient >
-				<basic:entries>
-					<basic:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
-					<basic:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
-				</basic:entries>
-			</basic:LinearGradient>
-		</basic:fill>
-	</basic:Circle>
+	<js:Circle x="100" y="350" radius="100">
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Circle>
 	
-	<basic:Circle x="400" y="350" radius="100">
-		<basic:fill>
-			<basic:SolidColor color="#0000FF" alpha="0.5" />
-		</basic:fill>
-	</basic:Circle>
+	<js:Circle x="400" y="350" radius="100">
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Circle>
 	
-	<basic:Ellipse x="0" y="500" width="200" height="100" >
-		<basic:fill>
-			<basic:LinearGradient >
-				<basic:entries>
-					<basic:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
-					<basic:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
-				</basic:entries>
-			</basic:LinearGradient>
-		</basic:fill>
-	</basic:Ellipse>
+	<js:Ellipse x="0" y="500" width="200" height="100" >
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Ellipse>
 	
-	<basic:Ellipse x="300" y="500" width="200" height="100" >
-		<basic:fill>
-			<basic:SolidColor color="#0000FF" alpha="0.5" />
-		</basic:fill>
-	</basic:Ellipse>
+	<js:Ellipse x="300" y="500" width="200" height="100" >
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Ellipse>
 	
-	<basic:Path x="0" y="0" width="1000" height="1000" data="M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z" >
-		<basic:fill>
-			<basic:LinearGradient >
-				<basic:entries>
-					<basic:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
-					<basic:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
-				</basic:entries>
-			</basic:LinearGradient>
-		</basic:fill>
-	</basic:Path>
+	<js:Path x="0" y="0" width="1000" height="1000" data="M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z" >
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Path>
 	
-	<basic:Path x="0" y="300" width="200" height="100" data="M 100 350 q 150 -300 300 0" >
-		<basic:fill>
-			<basic:SolidColor color="#0000FF" alpha="0.5" />
-		</basic:fill>
-	</basic:Path>
+	<js:Path x="0" y="300" width="200" height="100" data="M 100 350 q 150 -300 300 0" >
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Path>
 	
-</basic:ViewBase>
+</js:ViewBase>

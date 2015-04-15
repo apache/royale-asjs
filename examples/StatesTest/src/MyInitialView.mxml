@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
                 xmlns:core="library://ns.apache.org/flexjs/core"
 			    initComplete="initControls()" xmlns:mx="library://ns.adobe.com/flex/mx">
     <fx:Script>
@@ -93,72 +93,72 @@ limitations under the License.
             margin-bottom: 10px;
         }
 	</fx:Style>
-    <basic:states>
+    <js:states>
         <mx:State name="hideAll" />        
         <mx:State name="showAll" />        
-    </basic:states>
-    <basic:Container x="0" y="0" className="topContainer" >
-        <basic:beads>
-            <basic:NonVirtualVerticalLayout />
-        </basic:beads>
-        <basic:Label width="300" text="Enter Stock Symbol or choose from list:" />
-        <basic:Container>
-            <basic:beads>
-                <basic:NonVirtualHorizontalLayout />
-            </basic:beads>
-            <basic:Container className="leftSide">
-                <basic:beads>
-                    <basic:NonVirtualVerticalLayout />
-                </basic:beads>
-                <basic:TextInput id="symbolTI" >
-                    <basic:beads>
-                        <basic:SimpleBinding eventName="stockSymbolChanged"
+    </js:states>
+    <js:Container x="0" y="0" className="topContainer" >
+        <js:beads>
+            <js:NonVirtualVerticalLayout />
+        </js:beads>
+        <js:Label width="300" text="Enter Stock Symbol or choose from list:" />
+        <js:Container>
+            <js:beads>
+                <js:NonVirtualHorizontalLayout />
+            </js:beads>
+            <js:Container className="leftSide">
+                <js:beads>
+                    <js:NonVirtualVerticalLayout />
+                </js:beads>
+                <js:TextInput id="symbolTI" >
+                    <js:beads>
+                        <js:SimpleBinding eventName="stockSymbolChanged"
                                              sourceID="applicationModel"
                                              sourcePropertyName="stockSymbol"
                                              destinationPropertyName="text" />
-                    </basic:beads>
-                </basic:TextInput>
-                <basic:TextButton text="Get Quote" className="quoteButton" 
+                    </js:beads>
+                </js:TextInput>
+                <js:TextButton text="Get Quote" className="quoteButton" 
                                   click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
-                <basic:Label id="field" />
-                <basic:Label className="output" height="24">
-                    <basic:beads>
-                        <basic:SimpleBinding eventName="responseTextChanged"
+                <js:Label id="field" />
+                <js:Label className="output" height="24">
+                    <js:beads>
+                        <js:SimpleBinding eventName="responseTextChanged"
                                              sourceID="applicationModel"
                                              sourcePropertyName="responseText"
                                              destinationPropertyName="text" />
-                    </basic:beads>
-                </basic:Label>
-            </basic:Container>
-            <basic:Container className="rightSide">
-                <basic:beads>
-                    <basic:NonVirtualVerticalLayout />
-                </basic:beads>
-                <basic:DropDownList id="list" width="100" height="17"
+                    </js:beads>
+                </js:Label>
+            </js:Container>
+            <js:Container className="rightSide">
+                <js:beads>
+                    <js:NonVirtualVerticalLayout />
+                </js:beads>
+                <js:DropDownList id="list" width="100" height="17"
                                     change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">
-                    <basic:beads>
-                        <basic:ConstantBinding
+                    <js:beads>
+                        <js:ConstantBinding
                             sourceID="applicationModel"
                             sourcePropertyName="strings"
                             destinationPropertyName="dataProvider" />
-                    </basic:beads>
-                </basic:DropDownList>
-                <basic:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
-                <basic:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
-                <basic:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
-                <basic:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
-                <basic:CheckBox id="showAllData" text="Show All Data" change="setState()" />
-            </basic:Container>
-        </basic:Container>
-        <basic:Label width="300" text.showAll="110" includeIn="showAll" />
-        <basic:TextArea id="ta" width="300" height="100" height.showAll="110" 
+                    </js:beads>
+                </js:DropDownList>
+                <js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+                <js:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
+                <js:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
+                <js:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
+                <js:CheckBox id="showAllData" text="Show All Data" change="setState()" />
+            </js:Container>
+        </js:Container>
+        <js:Label width="300" text.showAll="110" includeIn="showAll" />
+        <js:TextArea id="ta" width="300" height="100" height.showAll="110" 
                         includeIn="showAll">
-            <basic:beads>
-                <basic:SimpleBinding eventName="responseDataChanged"
+            <js:beads>
+                <js:SimpleBinding eventName="responseDataChanged"
                                      sourceID="applicationModel"
                                      sourcePropertyName="allData"
                                      destinationPropertyName="text" />
-            </basic:beads>
-        </basic:TextArea>
-    </basic:Container>	
-</basic:ViewBase>
+            </js:beads>
+        </js:TextArea>
+    </js:Container>	
+</js:ViewBase>

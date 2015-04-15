@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*">
 	<fx:Script>
@@ -35,10 +35,10 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Label id="output" x="450" y="30" width="100" />
+	<js:Label id="output" x="450" y="30" width="100" />
 	
-	<basic:DateChooser id="dateChooser" x="20" y="30" width="280" height="240" change="dateChanged()" />
+	<js:DateChooser id="dateChooser" x="20" y="30" width="280" height="240" change="dateChanged()" />
 	
-	<basic:DateField id="dateField" x="450" y="90" />
+	<js:DateField id="dateField" x="450" y="90" />
 	
-</basic:ViewBase>
+</js:ViewBase>

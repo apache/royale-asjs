@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
-				 xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+				 xmlns:js="library://ns.apache.org/flexjs/basic"
 				 xmlns:local="*"
 				 className="LoginDialog"
 				 width="280" height="90" title="Login">
@@ -39,32 +39,32 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:beads>
-		<basic:NonVirtualVerticalLayout />
-	</basic:beads>
+	<js:beads>
+		<js:NonVirtualVerticalLayout />
+	</js:beads>
 
-	<basic:Container width="200">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:Label text="User Name:" />
-		<basic:TextInput />
-	</basic:Container>
+	<js:Container width="200">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:Label text="User Name:" />
+		<js:TextInput />
+	</js:Container>
 	
-	<basic:Container width="200">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:Label text="Password:" />
-		<basic:TextInput />
-	</basic:Container>
+	<js:Container width="200">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:Label text="Password:" />
+		<js:TextInput />
+	</js:Container>
 	
-	<basic:Container width="200">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:TextButton text="Login" click="cancelLogin()" />
-		<basic:TextButton text="Cancel" click="cancelLogin()" />
-	</basic:Container>
+	<js:Container width="200">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:TextButton text="Login" click="cancelLogin()" />
+		<js:TextButton text="Cancel" click="cancelLogin()" />
+	</js:Container>
 	
-</basic:Panel>
+</js:Panel>

@@ -30,8 +30,8 @@ using x and y, especially when percentage widths and heights are used.
 
 Width and height are hard-coded in the root tag to help the Design view.
 -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
-         xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:js="library://ns.apache.org/flexjs/basic" 
          xmlns:mx="library://ns.adobe.com/flex/mx"
          xmlns:jquery="library://ns.apache.org/flexjs/jquery"
            xmlns="*" width="990" height="550"
@@ -47,161 +47,161 @@ Width and height are hard-coded in the root tag to help the Design view.
 			}
 		]]>
 	</fx:Script>
-    <basic:beads>
-        <basic:ContainerDataBinding />
-    </basic:beads>
-	<basic:HContainer width="100%" height="100%" y="0" x="0" className="colorPanel">
-		<basic:VContainer width="230" height="100%">
-			<basic:Container width="100%" height="100%">
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+	<js:HContainer width="100%" height="100%" y="0" x="0" className="colorPanel">
+		<js:VContainer width="230" height="100%">
+			<js:Container width="100%" height="100%">
 			
-				<basic:Container height="60" className="homeSection">
-                    <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="10" right="10"/>
-                    </basic:style>
-					<basic:Label style="left:10;top:10" text="Search Developers" height="22" className="sectionHeader" />
+				<js:Container height="60" className="homeSection">
+                    <js:style>
+                        <js:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="10" right="10"/>
+                    </js:style>
+					<js:Label style="left:10;top:10" text="Search Developers" height="22" className="sectionHeader" />
 					<jquery:TextButton style="left:168;top:30" text="Go" width="27" height="20" className="glass" click="SimpleAlert.show('This feature is not implemented in this sample', 'Go')"/>
-					<basic:TextInput style="left:10;top:30" height="20" width="150"/>
-				</basic:Container>
+					<js:TextInput style="left:10;top:30" height="20" width="150"/>
+				</js:Container>
 				
-				<basic:Container height="280" className="homeSection">
-                    <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ffffff" left="10" top="78" right="10" />                        
-                    </basic:style>
-					<basic:VContainer width="100%" height="100%">
-                        <basic:style>
-                            <basic:SimpleCSSStyles left="10" top="10" />                        
-                        </basic:style>
-						<basic:Label text="Flex Experts That Can Help You" className="sectionHeader"/>
-						<basic:HRule height="5" width="187" style="marginLeft:0"/>
-						<basic:Label text="General" className="homeProgramHeader"/>
-						<basic:Label text="BlazeDS Experts" style="fontSize:9"/>
-						<basic:Spacer height="8" width="100%"/>
-						<basic:Label text="Server-side" className="homeProgramHeader"/>
-						<basic:Label text="Java, PHP Developers" style="fontSize:9"/>
-						<basic:Spacer height="8" width="100%"/>
-						<basic:Label text="Mobile" className="homeProgramHeader"/>
-						<basic:Label text="Android, IOS and more" style="fontSize:9"/>
-						<basic:Spacer height="8" width="100%"/>
-						<basic:Label text="Students" className="homeProgramHeader"/>
-						<basic:Label text="Free Assistance" style="fontSize:9"/>
-						<basic:Spacer height="8" width="100%"/>
-					</basic:VContainer>
-				</basic:Container>
+				<js:Container height="280" className="homeSection">
+                    <js:style>
+                        <js:SimpleCSSStyles backgroundColor="#ffffff" left="10" top="78" right="10" />                        
+                    </js:style>
+					<js:VContainer width="100%" height="100%">
+                        <js:style>
+                            <js:SimpleCSSStyles left="10" top="10" />                        
+                        </js:style>
+						<js:Label text="Flex Experts That Can Help You" className="sectionHeader"/>
+						<js:HRule height="5" width="187" style="marginLeft:0"/>
+						<js:Label text="General" className="homeProgramHeader"/>
+						<js:Label text="BlazeDS Experts" style="fontSize:9"/>
+						<js:Spacer height="8" width="100%"/>
+						<js:Label text="Server-side" className="homeProgramHeader"/>
+						<js:Label text="Java, PHP Developers" style="fontSize:9"/>
+						<js:Spacer height="8" width="100%"/>
+						<js:Label text="Mobile" className="homeProgramHeader"/>
+						<js:Label text="Android, IOS and more" style="fontSize:9"/>
+						<js:Spacer height="8" width="100%"/>
+						<js:Label text="Students" className="homeProgramHeader"/>
+						<js:Label text="Free Assistance" style="fontSize:9"/>
+						<js:Spacer height="8" width="100%"/>
+					</js:VContainer>
+				</js:Container>
 				
-				<basic:Container height="174" className="homeSection">
-                    <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="366" right="10" />
-                    </basic:style>
-					<basic:VContainer width="100%" height="100%">
-                        <basic:style>
-                            <basic:SimpleCSSStyles left="10" top="10" />
-                        </basic:style>
-						<basic:Label text="Manage My Account" className="sectionHeader"/>
+				<js:Container height="174" className="homeSection">
+                    <js:style>
+                        <js:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="366" right="10" />
+                    </js:style>
+					<js:VContainer width="100%" height="100%">
+                        <js:style>
+                            <js:SimpleCSSStyles left="10" top="10" />
+                        </js:style>
+						<js:Label text="Manage My Account" className="sectionHeader"/>
 						
-						<basic:Label text="Phone Number"/>
+						<js:Label text="Phone Number"/>
 						
-						<basic:HContainer width="100%" height="25" >
-                            <basic:style>
-                                <basic:SimpleCSSStyles horizontalAlign="left" verticalAlign="middle" />
-                            </basic:style>
-							<basic:TextInput height="20" width="40"/>
-							<basic:HRule width="8" height="2"/>
-							<basic:TextInput height="20" width="40"/>
-							<basic:HRule width="8" height="2"/>
-							<basic:TextInput height="20" width="40"/>
-						</basic:HContainer>
+						<js:HContainer width="100%" height="25" >
+                            <js:style>
+                                <js:SimpleCSSStyles horizontalAlign="left" verticalAlign="middle" />
+                            </js:style>
+							<js:TextInput height="20" width="40"/>
+							<js:HRule width="8" height="2"/>
+							<js:TextInput height="20" width="40"/>
+							<js:HRule width="8" height="2"/>
+							<js:TextInput height="20" width="40"/>
+						</js:HContainer>
 						
-						<basic:Label text="Password"/>
-						<basic:TextInput height="20"/>
-						<basic:Spacer height="8" width="100%"/>
+						<js:Label text="Password"/>
+						<js:TextInput height="20"/>
+						<js:Spacer height="8" width="100%"/>
 						
 						<jquery:CheckBox text="Remember my phone number" selected="true"/>
-						<basic:Spacer height="8" width="100%"/>
+						<js:Spacer height="8" width="100%"/>
 						
 						<jquery:TextButton text="Login" className="glass" height="20" width="55" click="SimpleAlert.show('This feature is not implemented in this sample', 'Login')"/>
 						
-					</basic:VContainer>
-				</basic:Container>
+					</js:VContainer>
+				</js:Container>
 				
-			</basic:Container>
+			</js:Container>
 			
-		</basic:VContainer>
+		</js:VContainer>
 		
-		<basic:VContainer width="750" height="100%">
-			<basic:Container width="100%" height="100%">
+		<js:VContainer width="750" height="100%">
+			<js:Container width="100%" height="100%">
 			
 			    <!-- can't use binding to set the mapImage source because the style isn't available early enough -->
-				<basic:Container id="mapCanvas" height="35%" className="homeMap">
-                    <basic:style>
-                        <basic:SimpleCSSStyles left="0" right="10" top="10" />
-                    </basic:style>
-					<basic:Image id="mapImage" width="487" height="100%" alpha="1.0" style="left:10;top:10"/>
-					<basic:Label y="110" text="US Developers . Flex . FlexJS" width="95%" height="40" style="horizontalCenter:0;fontWeight:'bold';fontSize:22;color:#ffffff;fontFamily:'Arial';textAlign:'center'"/>
-					<basic:Label text="Learn More &gt;&gt;" width="95" style="fontSize:12;fontFamily:'Arial';bottom:10;right:10"/>
-					<basic:Label text="$60/hr" style="color:#ffffff;fontWeight:'bold';fontFamily:'Arial';fontSize:20;right:10:top:10"/>
-					<basic:Label text="Rates as low as" x="551" y="16" style="fontSize:12"/>
-				</basic:Container>
+				<js:Container id="mapCanvas" height="35%" className="homeMap">
+                    <js:style>
+                        <js:SimpleCSSStyles left="0" right="10" top="10" />
+                    </js:style>
+					<js:Image id="mapImage" width="487" height="100%" alpha="1.0" style="left:10;top:10"/>
+					<js:Label y="110" text="US Developers . Flex . FlexJS" width="95%" height="40" style="horizontalCenter:0;fontWeight:'bold';fontSize:22;color:#ffffff;fontFamily:'Arial';textAlign:'center'"/>
+					<js:Label text="Learn More &gt;&gt;" width="95" style="fontSize:12;fontFamily:'Arial';bottom:10;right:10"/>
+					<js:Label text="$60/hr" style="color:#ffffff;fontWeight:'bold';fontFamily:'Arial';fontSize:20;right:10:top:10"/>
+					<js:Label text="Rates as low as" x="551" y="16" style="fontSize:12"/>
+				</js:Container>
 				
-				<basic:Container height="330" >
-                    <basic:style>
-                        <basic:SimpleCSSStyles backgroundColor="#ffffff" borderStyle="solid" bottom="10" right="10" left="0" /> <!-- cornerRadius="4" -->
-                    </basic:style>
+				<js:Container height="330" >
+                    <js:style>
+                        <js:SimpleCSSStyles backgroundColor="#ffffff" borderStyle="solid" bottom="10" right="10" left="0" /> <!-- cornerRadius="4" -->
+                    </js:style>
 					
-					<basic:Label style="left:10;top:10" text="Featured Developers" width="173" height="25" className="sectionHeader"/>
+					<js:Label style="left:10;top:10" text="Featured Developers" width="173" height="25" className="sectionHeader"/>
 					
-					<basic:HContainer style="left:10;top:43" width="100%" height="100%">
-						<basic:VContainer width="33%" height="100%">
-							<basic:beads>
-                                <basic:LayoutChangeNotifier watchedProperty="{image1.height}" />
-                            </basic:beads>
-							<basic:Container width="100%">
-								<basic:Image id="image1" source="assets/akotter.jpg" style="horizontalCenter:0;verticalCenter:0"/>
-							</basic:Container>
+					<js:HContainer style="left:10;top:43" width="100%" height="100%">
+						<js:VContainer width="33%" height="100%">
+							<js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image1.height}" />
+                            </js:beads>
+							<js:Container width="100%">
+								<js:Image id="image1" source="assets/akotter.jpg" style="horizontalCenter:0;verticalCenter:0"/>
+							</js:Container>
 							
-							<basic:Container width="100%">
-								<basic:Label text="Annette Kotter" id="feat_prod_1" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
-							</basic:Container>
+							<js:Container width="100%">
+								<js:Label text="Annette Kotter" id="feat_prod_1" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
+							</js:Container>
 							
-						</basic:VContainer>
+						</js:VContainer>
 						
-						<basic:VContainer width="33%" height="100%">
-                            <basic:beads>
-                                <basic:LayoutChangeNotifier watchedProperty="{image2.height}" />
-                            </basic:beads>
+						<js:VContainer width="33%" height="100%">
+                            <js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image2.height}" />
+                            </js:beads>
 							
-							<basic:Container width="100%">
-								<basic:Image id="image2" style="horizontalCenter:0;verticalCenter:0" source="assets/bcrater.jpg"/>
-							</basic:Container>
+							<js:Container width="100%">
+								<js:Image id="image2" style="horizontalCenter:0;verticalCenter:0" source="assets/bcrater.jpg"/>
+							</js:Container>
 							
-							<basic:Container width="100%">
-								<basic:Label text="Ben Crater" id="feat_prod_2" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
-							</basic:Container>
+							<js:Container width="100%">
+								<js:Label text="Ben Crater" id="feat_prod_2" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
+							</js:Container>
 							
-						</basic:VContainer>
+						</js:VContainer>
 						
-						<basic:VContainer width="33%" height="100%">
-                            <basic:beads>
-                                <basic:LayoutChangeNotifier watchedProperty="{image3.height}" />
-                            </basic:beads>
+						<js:VContainer width="33%" height="100%">
+                            <js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image3.height}" />
+                            </js:beads>
 							
-							<basic:Container width="100%">
-								<basic:Image id="image3" style="horizontalCenter:0;verticalCenter:0" source="assets/jproctor.jpg"/>
-							</basic:Container>
+							<js:Container width="100%">
+								<js:Image id="image3" style="horizontalCenter:0;verticalCenter:0" source="assets/jproctor.jpg"/>
+							</js:Container>
 							
-							<basic:Container width="100%">
-								<basic:Label text="Jane Proctor" id="feat_prod_3" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
-							</basic:Container>
+							<js:Container width="100%">
+								<js:Label text="Jane Proctor" id="feat_prod_3" style="horizontalCenter:0;fontWeight:'bold';fontSize:12"/>
+							</js:Container>
 							
-						</basic:VContainer>
+						</js:VContainer>
 						
-					</basic:HContainer>
+					</js:HContainer>
 					
-				</basic:Container>
+				</js:Container>
 				
-			</basic:Container>
+			</js:Container>
 		
-		</basic:VContainer>
+		</js:VContainer>
 		
-	</basic:HContainer>
+	</js:HContainer>
 	
-</basic:Container>
+</js:Container>

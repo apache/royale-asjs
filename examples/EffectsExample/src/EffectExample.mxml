@@ -18,16 +18,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
 				   xmlns:models="models.*"
-				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+				   xmlns:js="library://ns.apache.org/flexjs/basic" 
 				   >
 	
-	<basic:valuesImpl>
-		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	<basic:initialView>
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:initialView>
 		<local:MyInitialView />
-	</basic:initialView>
-</basic:Application>
+	</js:initialView>
+</js:Application>

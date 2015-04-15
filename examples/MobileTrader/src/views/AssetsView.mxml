@@ -17,9 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 			title="Assets"
-			xmlns:basic="library://ns.apache.org/flexjs/basic"
+			xmlns:js="library://ns.apache.org/flexjs/basic"
 			xmlns:models="models.*"
 			xmlns:local="*"
 			className="AssetsView">
@@ -33,62 +33,62 @@ limitations under the License.
 		[Event("next")]
 	</fx:Metadata>
 	
-	<basic:beads>
-		<basic:NonVirtualBasicLayout />
-	</basic:beads>
+	<js:beads>
+		<js:NonVirtualBasicLayout />
+	</js:beads>
 	
-	<basic:model>
+	<js:model>
 		<models:AssetsModel />
-	</basic:model>
+	</js:model>
 	
-	<basic:Container className="AssetsInner" width="480">
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
-		<basic:style>
-			<basic:SimpleCSSStyles top="0" left="0" right="0" />
-		</basic:style>
+	<js:Container className="AssetsInner" width="480">
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+		</js:beads>
+		<js:style>
+			<js:SimpleCSSStyles top="0" left="0" right="0" />
+		</js:style>
 		
-		<basic:Label text="Summary" />
+		<js:Label text="Summary" />
 		
-		<basic:DataGrid height="200" width="480">
-			<basic:style>
-				<basic:SimpleCSSStyles top="0" left="0" right="0" />
-			</basic:style>
-			<basic:beads>
-				<basic:ConstantBinding
+		<js:DataGrid height="200" width="480">
+			<js:style>
+				<js:SimpleCSSStyles top="0" left="0" right="0" />
+			</js:style>
+			<js:beads>
+				<js:ConstantBinding
 					sourceID="model"
 					sourcePropertyName="assetsData"
 					destinationPropertyName="dataProvider" />
-			</basic:beads>
-			<basic:columns>
-				<basic:DataGridColumn label="" dataField="label" />
-				<basic:DataGridColumn label="" dataField="value" />
-				<basic:DataGridColumn label="" dataField="netChange" />
-			</basic:columns>
-		</basic:DataGrid>
+			</js:beads>
+			<js:columns>
+				<js:DataGridColumn label="" dataField="label" />
+				<js:DataGridColumn label="" dataField="value" />
+				<js:DataGridColumn label="" dataField="netChange" />
+			</js:columns>
+		</js:DataGrid>
 		
-		<basic:Label text="Performance History" />
+		<js:Label text="Performance History" />
 		
-		<!--<basic:BarChart id="barChart" width="320" height="250">
-			<basic:beads>
-				<basic:ConstantBinding
+		<!--<js:BarChart id="barChart" width="320" height="250">
+			<js:beads>
+				<js:ConstantBinding
 					sourceID="model"
 					sourcePropertyName="assetsData"
 					destinationPropertyName="dataProvider" />
-				<basic:XAxisBead labelField="title" />
-			</basic:beads>
-			<basic:series>
-				<basic:BarChartSeries yField="value" 
+				<js:XAxisBead labelField="title" />
+			</js:beads>
+			<js:series>
+				<js:BarChartSeries yField="value" 
 									  fillColor="0xFF964D">
-					<basic:itemRenderer>
+					<js:itemRenderer>
 						<fx:Component>
-							<basic:BoxItemRenderer />                        
+							<js:BoxItemRenderer />                        
 						</fx:Component>
-					</basic:itemRenderer>
-				</basic:BarChartSeries>
-			</basic:series>
-		</basic:BarChart>-->
+					</js:itemRenderer>
+				</js:BarChartSeries>
+			</js:series>
+		</js:BarChart>-->
 		
-	</basic:Container>
-</basic:View>
+	</js:Container>
+</js:View>

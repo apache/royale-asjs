@@ -17,22 +17,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
-          xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:js="library://ns.apache.org/flexjs/basic" 
           xmlns:mx="library://ns.adobe.com/flex/mx" 
     xmlns:productsView="productsView.*"
     >
-    <basic:style>
-        <basic:SimpleCSSStyles horizontalAlign="right"
+    <js:style>
+        <js:SimpleCSSStyles horizontalAlign="right"
                                paddingTop="8"
                                paddingBottom="8"
                                paddingRight="4"
                                paddingLeft="4" />
-    </basic:style>
-    <basic:beads>
-        <basic:ContainerDataBinding />
-        <basic:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="{productList}" />
-    </basic:beads>
+    </js:style>
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="{productList}" />
+    </js:beads>
     <fx:Script>
         <![CDATA[
         
@@ -84,10 +84,10 @@ limitations under the License.
         ]]>
     </fx:Script>
     <fx:Declarations>
-        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
     </fx:Declarations>
     
-    <basic:Label width="100%" text="Your Shopping Cart" className="sectionHeader"/>
+    <js:Label width="100%" text="Your Shopping Cart" className="sectionHeader"/>
         
     <productsView:ProductList id="productList" width="100%"
         newItemStartX="-100" newItemStartY="-100" 
@@ -97,21 +97,21 @@ limitations under the License.
         removeProduct="productListEventHandler(event)"
         showQuantity="true" />
     
-    <basic:Container style="paddingRight:0" width="100%">
-        <basic:beads>
-            <basic:VerticalColumnLayout numColumns="2" />
-        </basic:beads>
-        <basic:Label text="Total:" width="100%" />
-        <basic:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
+    <js:Container style="paddingRight:0" width="100%">
+        <js:beads>
+            <js:VerticalColumnLayout numColumns="2" />
+        </js:beads>
+        <js:Label text="Total:" width="100%" />
+        <js:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
 
-        <basic:Label text="Service Fee:" width="100%" />
-        <basic:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
+        <js:Label text="Service Fee:" width="100%" />
+        <js:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
 
-        <basic:Label text="Grand Total:" style="fontWeight:'bold'" width="100%" />
-        <basic:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
+        <js:Label text="Grand Total:" style="fontWeight:'bold'" width="100%" />
+        <js:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
 
-    </basic:Container>
+    </js:Container>
 
-    <basic:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"/>
+    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"/>
 
-</basic:Container>
+</js:Container>

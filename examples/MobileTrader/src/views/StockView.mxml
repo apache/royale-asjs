@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-					   xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:js="library://ns.apache.org/flexjs/basic"
 					   xmlns:apache="org.apache.flex.html.beads.*"
 					   xmlns:local="*"
 					   className="StockView">
@@ -68,32 +68,32 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:Container>
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-			<basic:ViewBaseDataBinding />
-		</basic:beads>
-		<basic:style>
-			<basic:SimpleCSSStyles top="10px" left="10px" />
-		</basic:style>
+	<js:Container>
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+			<js:ViewBaseDataBinding />
+		</js:beads>
+		<js:style>
+			<js:SimpleCSSStyles top="10px" left="10px" />
+		</js:style>
 		
-		<basic:Label id="stockSymbol" text="{stock.symbol}" className="ViewTitle" />
-		<basic:Label id="stockName" text="{stock.name}" className="StockName"  />
+		<js:Label id="stockSymbol" text="{stock.symbol}" className="ViewTitle" />
+		<js:Label id="stockName" text="{stock.name}" className="StockName"  />
 		
-		<basic:Container className="StockDetailArea">
-			<basic:beads>
-				<basic:VerticalColumnLayout numColumns="2" />
-			</basic:beads>
+		<js:Container className="StockDetailArea">
+			<js:beads>
+				<js:VerticalColumnLayout numColumns="2" />
+			</js:beads>
 			
-			<basic:Label text="Last Price:" className="StockLabel" /> <basic:Label id="lastPrice" className="StockValue" />
-			<basic:Label text="Open Price:" className="StockLabel" /> <basic:Label id="openPrice" className="StockValue" />
-			<basic:Label text="Low  Price:" className="StockLabel" /> <basic:Label id="lowPrice" className="StockValue" />
-			<basic:Label text="High Price:" className="StockLabel" /> <basic:Label id="highPrice" className="StockValue" />
-			<basic:Label text="Change:    " className="StockLabel" /> <basic:Label id="changeAmount" className="StockValue" />
-		</basic:Container>
+			<js:Label text="Last Price:" className="StockLabel" /> <js:Label id="lastPrice" className="StockValue" />
+			<js:Label text="Open Price:" className="StockLabel" /> <js:Label id="openPrice" className="StockValue" />
+			<js:Label text="Low  Price:" className="StockLabel" /> <js:Label id="lowPrice" className="StockValue" />
+			<js:Label text="High Price:" className="StockLabel" /> <js:Label id="highPrice" className="StockValue" />
+			<js:Label text="Change:    " className="StockLabel" /> <js:Label id="changeAmount" className="StockValue" />
+		</js:Container>
 		
-		<basic:Container className="StockDetailArea">
-			<basic:TextButton text="Remove From List" width="200" className="StockRemoveButton" click="removeFromList()" />
-		</basic:Container>
-	</basic:Container>
-</basic:View>
+		<js:Container className="StockDetailArea">
+			<js:TextButton text="Remove From List" width="200" className="StockRemoveButton" click="removeFromList()" />
+		</js:Container>
+	</js:Container>
+</js:View>

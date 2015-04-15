@@ -18,26 +18,26 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                   xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:js="library://ns.apache.org/flexjs/basic"
                    xmlns:controllers="sample.todo.controllers.*"
                    xmlns:models="sample.todo.models.*"
                    xmlns:views="sample.todo.views.*">
 
-    <basic:valuesImpl>
-        <basic:SimpleCSSValuesImpl/>
-    </basic:valuesImpl>
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl/>
+    </js:valuesImpl>
 
-    <basic:controller>
+    <js:controller>
         <controllers:TodoListController/>
-    </basic:controller>
+    </js:controller>
 
-    <basic:model>
+    <js:model>
         <models:TodoListModel/>
-    </basic:model>
+    </js:model>
 
-    <basic:initialView>
+    <js:initialView>
         <views:TodoListView/>
-    </basic:initialView>
+    </js:initialView>
 
-</basic:Application>
+</js:Application>

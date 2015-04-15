@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*">
 	<fx:Script>
 		<![CDATA[
@@ -30,16 +30,16 @@ limitations under the License.
 		
 	</fx:Style>
 	
-	<basic:Container>
-		<basic:beads>
-			<basic:NonVirtualVerticalLayout />
-		</basic:beads>
+	<js:Container>
+		<js:beads>
+			<js:NonVirtualVerticalLayout />
+		</js:beads>
 		
-		<basic:Image width="48" height="48" source="smallbluerect.jpg" />
-		<basic:Image width="183" height="178" source="largegreenrect.png" />
-		<basic:Image width="48" height="48" source="smallorangerect.gif" />
-		<basic:Image width="48" height="48" source="smallgreenrect.jpg" />
+		<js:Image width="48" height="48" source="smallbluerect.jpg" />
+		<js:Image width="183" height="178" source="largegreenrect.png" />
+		<js:Image width="48" height="48" source="smallorangerect.gif" />
+		<js:Image width="48" height="48" source="smallgreenrect.jpg" />
 		
-	</basic:Container>
+	</js:Container>
 	
-</basic:ViewBase>
+</js:ViewBase>

@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                  xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:js="library://ns.apache.org/flexjs/basic" 
                   xmlns:mx="library://ns.adobe.com/flex/mx" width="17" height="100%" >
-    <basic:style>
-        <basic:SimpleCSSStyles paddingTop="10" horizontalAlign="center" />
-    </basic:style>
+    <js:style>
+        <js:SimpleCSSStyles paddingTop="10" horizontalAlign="center" />
+    </js:style>
 
     <fx:Script>
         <![CDATA[
@@ -33,17 +33,17 @@ limitations under the License.
            public var gripIcon:String;
         ]]>
     </fx:Script>
-    <basic:beads>
-        <basic:ContainerDataBinding />
-        <basic:LayoutChangeNotifier watchedProperty="{icon.height}" initialValue="0" />
-        <basic:LayoutChangeNotifier watchedProperty="{grip.height}" initialValue="0" />
-    </basic:beads>
+    <js:beads>
+        <js:ContainerDataBinding />
+        <js:LayoutChangeNotifier watchedProperty="{icon.height}" initialValue="0" />
+        <js:LayoutChangeNotifier watchedProperty="{grip.height}" initialValue="0" />
+    </js:beads>
 
-    <basic:Image id="icon" source="{gripIcon}" />
-    <basic:Image id="grip" source="assets/grip.png" >
-        <basic:beads>
-            <basic:ToolTipBead toolTip="{gripTip}" />
-        </basic:beads>
-    </basic:Image>
+    <js:Image id="icon" source="{gripIcon}" />
+    <js:Image id="grip" source="assets/grip.png" >
+        <js:beads>
+            <js:ToolTipBead toolTip="{gripTip}" />
+        </js:beads>
+    </js:Image>
     
-</basic:VContainer>
+</js:VContainer>

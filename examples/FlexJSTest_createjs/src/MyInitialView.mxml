@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <createjs:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic" 
+				xmlns:js="library://ns.apache.org/flexjs/basic" 
 				xmlns:createjs="library://ns.apache.org/flexjs/createjs"
 				>
 	<fx:Script>
@@ -45,7 +45,7 @@ limitations under the License.
 	
 	<createjs:Label id="lbl2" x="350" y="100">
 		<createjs:beads>
-			<basic:SimpleBinding eventName="labelTextChanged"
+			<js:SimpleBinding eventName="labelTextChanged"
 								 sourceID="applicationModel"
 								 sourcePropertyName="labelText"
 								 destinationPropertyName="text" />

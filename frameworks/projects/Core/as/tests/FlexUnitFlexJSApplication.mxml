@@ -18,8 +18,8 @@ limitations under the License.
 
 -->
 
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:js="library://ns.apache.org/flexjs/basic" 
                    applicationComplete="runTests()"
                    >
     <fx:Script>
@@ -39,8 +39,8 @@ limitations under the License.
             
         ]]>
     </fx:Script>
-    <basic:valuesImpl>
-        <basic:SimpleValuesImpl />
-    </basic:valuesImpl>
+    <js:valuesImpl>
+        <js:SimpleValuesImpl />
+    </js:valuesImpl>
 
-</basic:Application>
+</js:Application>

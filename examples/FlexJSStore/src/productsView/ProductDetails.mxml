@@ -17,14 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
-                 xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                 xmlns:js="library://ns.apache.org/flexjs/basic" 
                  xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:productsView="productsView.*"
     >
-    <basic:beads>
-        <basic:ContainerDataBinding />
-    </basic:beads>
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
 
     <fx:Metadata>
         [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
@@ -58,96 +58,96 @@ limitations under the License.
     </fx:Script>
 
     <fx:Declarations>
-        <basic:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
+        <js:CurrencyFormatter currencySymbol="$" id="cf" fractionalDigits="2"/>        
     </fx:Declarations>
 
-    <basic:states>
+    <js:states>
         <mx:State name="Features" />
         <mx:State name="Support" />
-    </basic:states>
+    </js:states>
     
-    <basic:transitions>
-        <basic:Transition>
-            <basic:Fade />
-        </basic:Transition>
-    </basic:transitions>
+    <js:transitions>
+        <js:Transition>
+            <js:Fade />
+        </js:Transition>
+    </js:transitions>
     
-    <basic:ButtonBar id="tn" width="100%" change="currentState = tn.selectedItem as String">
-        <basic:dataProvider>
+    <js:ButtonBar id="tn" width="100%" change="currentState = tn.selectedItem as String">
+        <js:dataProvider>
             <fx:Array>
                 <fx:String>Features</fx:String>
                 <fx:String>Support</fx:String>
             </fx:Array>
-        </basic:dataProvider>
-    </basic:ButtonBar>
-    <basic:Container >
-        <basic:style>
-            <basic:SimpleCSSStyles left="4" right="8" top="34" bottom="4" />
-        </basic:style>
+        </js:dataProvider>
+    </js:ButtonBar>
+    <js:Container >
+        <js:style>
+            <js:SimpleCSSStyles left="4" right="8" top="34" bottom="4" />
+        </js:style>
                     
 
-        <basic:VContainer includeIn="Features" >
-            <basic:style>
-                <!--<basic:SimpleCSSStyles gap="8"-->
-                <basic:SimpleCSSStyles
+        <js:VContainer includeIn="Features" >
+            <js:style>
+                <!--<js:SimpleCSSStyles gap="8"-->
+                <js:SimpleCSSStyles
                     left="8" top="8" right="8" bottom="8"/>
-            </basic:style>
-            <basic:Container style="left:0px;right:0px">
+            </js:style>
+            <js:Container style="left:0px;right:0px">
 
-                <basic:Image id="img" width="101" height="101" source="{product.image}"/>
+                <js:Image id="img" width="101" height="101" source="{product.image}"/>
 
-                <basic:VContainer id="descr" >
-                    <basic:style>
-                        <basic:SimpleCSSStyles top="0" left="105" right="0" bottom="20" />
-                        <!--<basic:SimpleCSSStyles paddingTop="0" gap="4" />-->
-                    </basic:style>
+                <js:VContainer id="descr" >
+                    <js:style>
+                        <js:SimpleCSSStyles top="0" left="105" right="0" bottom="20" />
+                        <!--<js:SimpleCSSStyles paddingTop="0" gap="4" />-->
+                    </js:style>
                     
-                    <basic:Label text="{product.name}" style="fontSize:11;fontWeight:'bold'"/>
+                    <js:Label text="{product.name}" style="fontSize:11;fontWeight:'bold'"/>
 
-	                <basic:Label text="{product.featureString}" width="80" height="48" />
+	                <js:Label text="{product.featureString}" width="80" height="48" />
 
-                    <basic:Label text="{product.highlight1}" style="color:#EE8D0C"/>
+                    <js:Label text="{product.highlight1}" style="color:#EE8D0C"/>
 
-                    <basic:Label text="{product.highlight2}" style="color:#EE8D0C"/>
+                    <js:Label text="{product.highlight2}" style="color:#EE8D0C"/>
 
-                    <basic:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
+                    <js:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
 
-                </basic:VContainer>
-            </basic:Container>
+                </js:VContainer>
+            </js:Container>
 
-            <basic:Label id="descriptionText" style="left:0px;right:0px;bottom:0px" text="{product.description}"/>
+            <js:Label id="descriptionText" style="left:0px;right:0px;bottom:0px" text="{product.description}"/>
 
-        </basic:VContainer>
+        </js:VContainer>
 
         <productsView:ProductSupport width="100%" height="100%" includeIn="Support" />
 
-    </basic:Container>
+    </js:Container>
 
-    <basic:VContainer>
-        <basic:beads>
-            <basic:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
-            <basic:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
-            <basic:LayoutChangeNotifier watchedProperty="{tiles.height}" initialValue="0" />
-        </basic:beads>
-        <basic:style>
-            <basic:SimpleCSSStyles marginTop="4" right="16" top="36" />
-        </basic:style>
-        <basic:Spacer width="100%"/>
-        <basic:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Add to cart"/>
-            </basic:beads>
-        </basic:ImageButton>
-        <basic:ImageButton id="compare" backgroundImage="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Add to compare list"/>
-            </basic:beads>
-        </basic:ImageButton>
-        <basic:ImageButton id="tiles" backgroundImage="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
-            <basic:beads>
-                <basic:ToolTipBead toolTip="Back to thumbnail view"/>
-            </basic:beads>
-        </basic:ImageButton>
-    </basic:VContainer>
+    <js:VContainer>
+        <js:beads>
+            <js:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
+            <js:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
+            <js:LayoutChangeNotifier watchedProperty="{tiles.height}" initialValue="0" />
+        </js:beads>
+        <js:style>
+            <js:SimpleCSSStyles marginTop="4" right="16" top="36" />
+        </js:style>
+        <js:Spacer width="100%"/>
+        <js:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to cart"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="compare" backgroundImage="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Add to compare list"/>
+            </js:beads>
+        </js:ImageButton>
+        <js:ImageButton id="tiles" backgroundImage="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
+            <js:beads>
+                <js:ToolTipBead toolTip="Back to thumbnail view"/>
+            </js:beads>
+        </js:ImageButton>
+    </js:VContainer>
 
-</basic:Container>
+</js:Container>

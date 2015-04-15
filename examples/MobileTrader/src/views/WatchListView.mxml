@@ -17,9 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 			title="Watch List"
-			xmlns:basic="library://ns.apache.org/flexjs/basic"
+			xmlns:js="library://ns.apache.org/flexjs/basic"
 			xmlns:controller="controller.*"
 			xmlns:local="*"
 			className="WatchListView"
@@ -84,71 +84,71 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:beads>
-		<basic:NonVirtualVerticalLayout />
-	</basic:beads>
+	<js:beads>
+		<js:NonVirtualVerticalLayout />
+	</js:beads>
 	
-	<basic:Container className="WatchListInputArea">
-		<basic:beads>
-			<basic:NonVirtualHorizontalLayout />
-		</basic:beads>
-		<basic:Label text="Symbol:" />
-		<basic:TextInput id="symbolName" />
-		<basic:TextButton text="Add" click="addSymbol()" />
-	</basic:Container>
+	<js:Container className="WatchListInputArea">
+		<js:beads>
+			<js:NonVirtualHorizontalLayout />
+		</js:beads>
+		<js:Label text="Symbol:" />
+		<js:TextInput id="symbolName" />
+		<js:TextButton text="Add" click="addSymbol()" />
+	</js:Container>
 	
-	<basic:Container x="0" y="0" className="WatchListInner">
-		<basic:beads>
-			<basic:ScrollingContainerView />
-			<basic:NonVirtualVerticalScrollingLayout />
-		</basic:beads>
+	<js:Container x="0" y="0" className="WatchListInner">
+		<js:beads>
+			<js:ScrollingContainerView />
+			<js:NonVirtualVerticalScrollingLayout />
+		</js:beads>
 		
-		<basic:DataGrid id="dataGrid" change="selectRow()" width="480" height="480" className="WatchListDataGrid">
-			<basic:beads>
-				<basic:SimpleBinding
+		<js:DataGrid id="dataGrid" change="selectRow()" width="480" height="480" className="WatchListDataGrid">
+			<js:beads>
+				<js:SimpleBinding
 					eventName="update"
 					sourceID="dataModel"
 					sourcePropertyName="watchList"
 					destinationPropertyName="dataProvider" />
-			</basic:beads>
-			<basic:columns>
-				<basic:DataGridColumn label="Symbol" dataField="symbol">
-					<basic:itemRenderer>
+			</js:beads>
+			<js:columns>
+				<js:DataGridColumn label="Symbol" dataField="symbol">
+					<js:itemRenderer>
 						<fx:Component>
-							<basic:StringItemRenderer />
+							<js:StringItemRenderer />
 						</fx:Component>
-					</basic:itemRenderer>
-				</basic:DataGridColumn>
-				<basic:DataGridColumn label="Open" dataField="open">
-					<basic:itemRenderer>
-						<fx:Component>
-							<renderers:StockRenderer />
-						</fx:Component>
-					</basic:itemRenderer>
-				</basic:DataGridColumn>
-				<basic:DataGridColumn label="Last" dataField="last" >
-					<basic:itemRenderer>
+					</js:itemRenderer>
+				</js:DataGridColumn>
+				<js:DataGridColumn label="Open" dataField="open">
+					<js:itemRenderer>
 						<fx:Component>
 							<renderers:StockRenderer />
 						</fx:Component>
-					</basic:itemRenderer>
-				</basic:DataGridColumn>
-				<basic:DataGridColumn label="High" dataField="high" >
-					<basic:itemRenderer>
+					</js:itemRenderer>
+				</js:DataGridColumn>
+				<js:DataGridColumn label="Last" dataField="last" >
+					<js:itemRenderer>
 						<fx:Component>
 							<renderers:StockRenderer />
 						</fx:Component>
-					</basic:itemRenderer>
-				</basic:DataGridColumn>
-				<basic:DataGridColumn label="Low" dataField="low" >
-					<basic:itemRenderer>
+					</js:itemRenderer>
+				</js:DataGridColumn>
+				<js:DataGridColumn label="High" dataField="high" >
+					<js:itemRenderer>
 						<fx:Component>
 							<renderers:StockRenderer />
 						</fx:Component>
-					</basic:itemRenderer>
-				</basic:DataGridColumn>
-			</basic:columns>
-		</basic:DataGrid>
-	</basic:Container>
+					</js:itemRenderer>
+				</js:DataGridColumn>
+				<js:DataGridColumn label="Low" dataField="low" >
+					<js:itemRenderer>
+						<fx:Component>
+							<renderers:StockRenderer />
+						</fx:Component>
+					</js:itemRenderer>
+				</js:DataGridColumn>
+			</js:columns>
+		</js:DataGrid>
+	</js:Container>
 
-</basic:View>
+</js:View>

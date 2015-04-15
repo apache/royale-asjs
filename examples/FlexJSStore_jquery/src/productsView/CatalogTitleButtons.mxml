@@ -17,19 +17,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:HContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                  xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:HContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:js="library://ns.apache.org/flexjs/basic" 
                   xmlns:mx="library://ns.adobe.com/flex/mx"
                   currentState="showFilter">
-    <basic:style>
-        <basic:SimpleCSSStyles verticalAlign="middle" 
+    <js:style>
+        <js:SimpleCSSStyles verticalAlign="middle" 
                                paddingTop="0" 
                                paddingBottom="0" />
-    </basic:style>
-    <basic:beads>
-        <basic:ParentDocumentBead id="pdb" />
-        <basic:ContainerDataBinding />
-    </basic:beads>
+    </js:style>
+    <js:beads>
+        <js:ParentDocumentBead id="pdb" />
+        <js:ContainerDataBinding />
+    </js:beads>
     <fx:Script>
         <![CDATA[
             [Bindable]
@@ -51,20 +51,20 @@ limitations under the License.
     <fx:Binding source="ProductsView(ProductCatalogPanel(pdb.parentDocument).pdb.parentDocument).currentState" destination="currentState" />
     <fx:Binding destination="ProductsView(ProductCatalogPanel(pdb.parentDocument).pdb.parentDocument).currentState" source="currentState" />    
 
-    <basic:Label id="findPhones" text="Find Developers" click="currentState = 'showFilter'"
+    <js:Label id="findPhones" text="Find Developers" click="currentState = 'showFilter'"
              className.showFilter="catalogTitleButtonSelected"
              className.showCart="catalogTitleButtonDeselected"
              rollOver.showCart="rollOverLabel(event)"
              rollOut.showCart="rollOutLabel(event)"/>
-    <basic:HRule height="{findPhones.height * .75}" alpha=".75" style="color:#333333" />
-    <basic:Label id="viewCart" text="View Cart ({cartCount} items)" click="currentState = 'showCart'"
+    <js:HRule height="{findPhones.height * .75}" alpha=".75" style="color:#333333" />
+    <js:Label id="viewCart" text="View Cart ({cartCount} items)" click="currentState = 'showCart'"
              className.showFilter="catalogTitleButtonDeselected"
              className.showCart="catalogTitleButtonSelected"
              rollOver.showFilter="rollOverLabel(event)"
              rollOut.showFilter="rollOutLabel(event)"/>
     
-    <basic:states>
+    <js:states>
         <mx:State name="showFilter" />
         <mx:State name="showCart" />
-    </basic:states>
-</basic:HContainer>
+    </js:states>
+</js:HContainer>

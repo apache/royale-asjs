@@ -20,7 +20,7 @@
 -->
 <jquery:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
-				   xmlns:basic="library://ns.apache.org/flexjs/basic"
+				   xmlns:js="library://ns.apache.org/flexjs/basic"
 				   xmlns:jquery="library://ns.apache.org/flexjs/jquery"
 				   xmlns:models="models.*" 
 				   xmlns:controllers="controllers.*"
@@ -37,7 +37,7 @@
 	
 	
 	<jquery:valuesImpl>
-		<basic:SimpleCSSValuesImpl />
+		<js:SimpleCSSValuesImpl />
 	</jquery:valuesImpl>
 	<jquery:initialView>
 		<local:MyInitialView />
@@ -49,16 +49,16 @@
 		<controllers:MyController />
 	</jquery:controller>
 	<jquery:beads>
-		<basic:HTTPService id="service">
-			<basic:LazyCollection id="collection">
-				<basic:inputParser>
-					<basic:JSONInputParser />
-				</basic:inputParser>
-				<basic:itemConverter>
+		<js:HTTPService id="service">
+			<js:LazyCollection id="collection">
+				<js:inputParser>
+					<js:JSONInputParser />
+				</js:inputParser>
+				<js:itemConverter>
 					<local:StockDataJSONItemConverter />
-				</basic:itemConverter> 
-			</basic:LazyCollection>
-		</basic:HTTPService>
+				</js:itemConverter> 
+			</js:LazyCollection>
+		</js:HTTPService>
 	</jquery:beads>
 	
 </jquery:Application>

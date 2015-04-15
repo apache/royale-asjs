@@ -20,8 +20,8 @@ limitations under the License.
 <!-- width and height hard-coded in the root tag to better support the 
      Design view in FlexBuilder since we know the width and height from the 
      settings in flexstore.mxml -->
-<basic:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
-         xmlns:basic="library://ns.apache.org/flexjs/basic" 
+<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:js="library://ns.apache.org/flexjs/basic" 
          xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:productsView="productsView.*"
     width="990" height="550"
@@ -69,10 +69,10 @@ limitations under the License.
         
         ]]>
     </fx:Script>
-    <basic:beads>
-        <basic:ContainerDataBinding />
-    </basic:beads>
-    <basic:Container 
+    <js:beads>
+        <js:ContainerDataBinding />
+    </js:beads>
+    <js:Container 
         className="colorPanel"
         height="100%" width="100%" 
         >
@@ -87,18 +87,18 @@ limitations under the License.
     
         <productsView:ProductCart id="cartPanel" width="265" height="100%">
             <productsView:style>
-                <basic:SimpleCSSStyles right="{cartGrip.width}" top="0" />
+                <js:SimpleCSSStyles right="{cartGrip.width}" top="0" />
             </productsView:style>
         </productsView:ProductCart>
 
         <productsView:Grip id="cartGrip" gripIcon="assets/icon_cart_empty.png"
             gripTip="Show cart" click="currentState = 'showCart'">
             <productsView:style>
-                <basic:SimpleCSSStyles right="0" top="0"/>
+                <js:SimpleCSSStyles right="0" top="0"/>
             </productsView:style>
         </productsView:Grip>
     
-    </basic:Container>
+    </js:Container>
         
     <productsView:ProductCatalogPanel id="catalogPanel" y="4" width="685" height="540"
                                       x.showFilter="288" x.showCart="0"
@@ -108,19 +108,19 @@ limitations under the License.
         cartCount="{cartPanel.numProducts}">
     </productsView:ProductCatalogPanel>
     
-    <basic:states>
+    <js:states>
        <mx:State name="showFilter" />
        <mx:State name="showCart" />
-    </basic:states>
+    </js:states>
     
     <!-- 
       make sure to use transitions here instead of applying a Move effect
       to the Panel itself which will result in odd behavior
     -->
-    <basic:transitions>
-       <basic:Transition fromState="*" toState="*">
-          <basic:Move target="catalogPanel" />
-       </basic:Transition>
-    </basic:transitions>
+    <js:transitions>
+       <js:Transition fromState="*" toState="*">
+          <js:Move target="catalogPanel" />
+       </js:Transition>
+    </js:transitions>
         
-</basic:Container>
+</js:Container>

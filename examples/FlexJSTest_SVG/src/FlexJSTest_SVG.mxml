@@ -17,23 +17,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
-				   xmlns:basic="library://ns.apache.org/flexjs/basic" 
+				   xmlns:js="library://ns.apache.org/flexjs/basic" 
 				   xmlns:models="models.*" 
 				   xmlns:controllers="controllers.*"
 				   initialize="MyModel(model).labelText='Hello SVG'"
 				   >
-	<basic:valuesImpl>
-		<basic:SimpleCSSValuesImpl />
-	</basic:valuesImpl>
-	<basic:initialView>
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:initialView>
 		<local:SkinsView />
-	</basic:initialView>
-	<basic:model>
+	</js:initialView>
+	<js:model>
 		<models:MyModel />
-	</basic:model>
-	<basic:controller>
+	</js:model>
+	<js:controller>
 		<controllers:MyController />
-	</basic:controller>
-</basic:Application>
+	</js:controller>
+</js:Application>

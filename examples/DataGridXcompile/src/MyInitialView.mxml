@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*"
 				xmlns:models="models.*"
 				initComplete="initControls()" 
@@ -63,16 +63,16 @@ limitations under the License.
 		]]>
     </fx:Script>
 	
-	<basic:Label id="output" text="here" x="450" y="30" width="100" />
+	<js:Label id="output" text="here" x="450" y="30" width="100" />
 	
 	<customControls:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" >
 		<customControls:beads>
 			<models:MyGridPresentation rowHeight="50" />
-			<basic:ConstantBinding
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
-			<basic:ConstantBinding
+			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="labelFields"
 				destinationPropertyName="labelFields" />
@@ -80,4 +80,4 @@ limitations under the License.
 		</customControls:beads>
 	</customControls:DataGrid>
 
-</basic:ViewBase>
+</js:ViewBase>
