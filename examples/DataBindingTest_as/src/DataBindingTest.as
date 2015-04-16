@@ -43,14 +43,14 @@ import org.apache.flex.html.beads.controllers.DropDownListController;
 import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
 import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController;
-import org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout;
+import org.apache.flex.html.beads.layouts.VerticalScrollingLayout;
 import org.apache.flex.html.beads.models.ArraySelectionModel;
 import org.apache.flex.html.beads.models.SingleLineBorderModel;
 import org.apache.flex.html.beads.models.TextModel;
 import org.apache.flex.html.beads.models.ToggleButtonModel;
 import org.apache.flex.html.beads.models.ValueToggleButtonModel;
 import org.apache.flex.html.supportClasses.DropDownListList;
-import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+import org.apache.flex.html.supportClasses.DataGroup;
 import org.apache.flex.html.supportClasses.StringItemRenderer;
 import org.apache.flex.net.HTTPService;
 import org.apache.flex.collections.parsers.JSONInputParser;
@@ -116,8 +116,8 @@ public class DataBindingTest extends Application
             iBeadModel: ArraySelectionModel,
             iBeadView:  ListView,		
             iBeadController: ListSingleSelectionMouseController,
-            iBeadLayout: NonVirtualVerticalScrollingLayout,
-            iDataGroup: NonVirtualDataGroup,
+            iBeadLayout: VerticalScrollingLayout,
+            iDataGroup: DataGroup,
             iDataProviderItemRendererMapper: DataItemRendererFactoryForArrayData,
             iItemRendererClassFactory: ItemRendererClassFactory,
             iItemRenderer: StringItemRenderer
@@ -229,8 +229,8 @@ public class DataBindingTest extends Application
                 iBeadModel: ArraySelectionModel,
                 iBeadView:  ListView,
                 iBeadController: ListSingleSelectionMouseController,
-                iBeadLayout: NonVirtualVerticalScrollingLayout,
-                iDataGroup: NonVirtualDataGroup,
+                iBeadLayout: VerticalScrollingLayout,
+                iDataGroup: DataGroup,
                 iDataProviderItemRendererMapper: TextItemRendererFactoryForArrayData,
                 iItemRendererClassFactory: ItemRendererClassFactory,
                 iItemRenderer: StringItemRenderer

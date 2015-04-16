@@ -22,7 +22,7 @@ package shim
 	import flash.display.DisplayObjectContainer;
 	
 	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout;
+	import org.apache.flex.html.beads.layouts.VerticalLayout;
 	
 	[DefaultProperty("mxmlContent")]
     
@@ -42,7 +42,7 @@ package shim
 		public function VBox()
 		{
 			super();
-			addBead(new NonVirtualVerticalLayout());
+			addBead(new VerticalLayout());
 		}
 		
 	}

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout');
+goog.provide('org_apache_flex_html_beads_layouts_VerticalScrollingLayout');
 
 goog.require('org_apache_flex_core_IBeadLayout');
 
@@ -22,9 +22,9 @@ goog.require('org_apache_flex_core_IBeadLayout');
  * @constructor
  * @implements {org_apache_flex_core_IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout = function() {
+org_apache_flex_html_beads_layouts_VerticalScrollingLayout = function() {
   this.strand_ = null;
-  this.className = 'NonVirtualVerticalScrollingLayout';
+  this.className = 'VerticalScrollingLayout';
 };
 
 
@@ -33,16 +33,16 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout = function(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'NonVirtualVerticalScrollingLayout',
-                qName: 'org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout' }],
+org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'VerticalScrollingLayout',
+                qName: 'org_apache_flex_html_beads_layouts_VerticalScrollingLayout' }],
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout.prototype, {
+Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype, {
     /** @expose */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_NonVirtualVerticalScrollingLayout} */
+        /** @this {org_apache_flex_html_beads_layouts_VerticalScrollingLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;

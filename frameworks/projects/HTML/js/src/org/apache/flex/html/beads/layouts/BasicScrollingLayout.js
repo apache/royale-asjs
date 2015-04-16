@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout');
+goog.provide('org_apache_flex_html_beads_layouts_BasicScrollingLayout');
 
 goog.require('org_apache_flex_core_IBeadLayout');
 
@@ -22,10 +22,10 @@ goog.require('org_apache_flex_core_IBeadLayout');
  * @constructor
  * @implements {org_apache_flex_core_IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout =
+org_apache_flex_html_beads_layouts_BasicScrollingLayout =
     function() {
   this.strand_ = null;
-  this.className = 'NonVirtualBasicScrollingLayout';
+  this.className = 'BasicScrollingLayout';
 };
 
 
@@ -34,16 +34,16 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'NonVirtualBasicScrollingLayout',
-                qName: 'org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout'}],
+org_apache_flex_html_beads_layouts_BasicScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'BasicScrollingLayout',
+                qName: 'org_apache_flex_html_beads_layouts_BasicScrollingLayout'}],
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.prototype, {
+Object.defineProperties(org_apache_flex_html_beads_layouts_BasicScrollingLayout.prototype, {
     /** @expose */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout} */
+        /** @this {org_apache_flex_html_beads_layouts_BasicScrollingLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -60,7 +60,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicScroll
 /**
  * @param {org_apache_flex_events_Event} event The text getter.
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicScrollingLayout.
+org_apache_flex_html_beads_layouts_BasicScrollingLayout.
     prototype.changeHandler = function(event) {
   var i, n, h, w;
 

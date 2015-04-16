@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout');
+goog.provide('org_apache_flex_html_beads_layouts_HorizontalLayout');
 
 goog.require('org_apache_flex_core_IBeadLayout');
 
@@ -22,10 +22,10 @@ goog.require('org_apache_flex_core_IBeadLayout');
  * @constructor
  * @implements {org_apache_flex_core_IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout =
+org_apache_flex_html_beads_layouts_HorizontalLayout =
     function() {
   this.strand_ = null;
-  this.className = 'NonVirtualVerticalLayout';
+  this.className = 'HorizontalLayout';
 };
 
 
@@ -34,21 +34,22 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'NonVirtualVerticalLayout',
-                qName: 'org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout'}],
+org_apache_flex_html_beads_layouts_HorizontalLayout.
+    prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'HorizontalLayout',
+                qName: 'org_apache_flex_html_beads_layouts_HorizontalLayout' }],
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.prototype, {
+Object.defineProperties(org_apache_flex_html_beads_layouts_HorizontalLayout.prototype, {
     /** @expose */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout} */
+        /** @this {org_apache_flex_html_beads_layouts_HorizontalLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
               if (this.strand_.isWidthSizedToContent() &&
-                this.strand_.isHeightSizedToContent())
+                  this.strand_.isHeightSizedToContent())
                 this.addOtherListeners();
               else {
                 this.strand_.addEventListener('heightChanged',
@@ -59,8 +60,9 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLay
                     goog.bind(this.sizeChangeHandler, this));
                 if (!isNaN(this.strand_.explicitWidth) &&
                     !isNaN(this.strand_.explicitHeight))
-                  this.addOtherListeners();
-               }
+                    this.addOtherListeners();
+              }
+              this.strand_.element.style.display = 'block';
             }
         }
     }
@@ -70,7 +72,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualVerticalLay
 /**
  *
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
+org_apache_flex_html_beads_layouts_HorizontalLayout.
     prototype.addOtherListeners = function() {
   this.strand_.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
@@ -84,7 +86,7 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
 /**
  * @param {org_apache_flex_events_Event} event The event.
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
+org_apache_flex_html_beads_layouts_HorizontalLayout.
     prototype.sizeChangeHandler = function(event) {
   this.addOtherListeners();
   this.changeHandler(event);
@@ -94,7 +96,7 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
 /**
  * @param {org_apache_flex_events_Event} event The text getter.
  */
-org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
+org_apache_flex_html_beads_layouts_HorizontalLayout.
     prototype.changeHandler = function(event) {
   var children, i, n;
 
@@ -103,12 +105,12 @@ org_apache_flex_html_beads_layouts_NonVirtualVerticalLayout.
   for (i = 0; i < n; i++)
   {
     var child = children[i];
-    child.internalDisplay = 'block';
-    if (child.style.display === 'none') {
-      child.lastDisplay_ = 'block';
-    } else {
-      child.style.display = 'block';
-    }
+    child.internalDisplay = 'inline-block';
+    if (child.style.display == 'none')
+      child.lastDisplay_ = 'inline-block';
+    else
+      child.style.display = 'inline-block';
+    child.style.verticalAlign = 'middle';
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
 };

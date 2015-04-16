@@ -70,7 +70,7 @@ limitations under the License.
 	
 	<js:Container>
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 			<js:ViewBaseDataBinding />
 		</js:beads>
 		<js:style>

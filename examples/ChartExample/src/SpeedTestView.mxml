@@ -86,7 +86,7 @@ limitations under the License.
 	
 	<js:Container x="20" y="20">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="Points:" />
 		<js:TextInput id="numPoints" text="300" />
@@ -170,7 +170,7 @@ limitations under the License.
 	
 	<js:Container x="150" y="325">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:TextButton text="SVG Go" click="startTimingSVG()" />
 		<js:Label text="  (results)" id="svgChartResults" />
@@ -178,7 +178,7 @@ limitations under the License.
 	
 	<js:Container x="650" y="325">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:TextButton text="Reg Go" click="startTimingReg()" />
 		<js:Label text="  (results)" id="regChartResults" />

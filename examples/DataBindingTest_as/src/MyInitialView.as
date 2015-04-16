@@ -38,8 +38,8 @@ import org.apache.flex.html.RadioButton;
 import org.apache.flex.html.TextArea;
 import org.apache.flex.html.TextButton;
 import org.apache.flex.html.TextInput;
-import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
-import org.apache.flex.html.beads.layouts.NonVirtualVerticalLayout;
+import org.apache.flex.html.beads.layouts.HorizontalLayout;
+import org.apache.flex.html.beads.layouts.VerticalLayout;
 
 public class MyInitialView extends ViewBase
 {
@@ -137,18 +137,18 @@ public class MyInitialView extends ViewBase
         c.x = 0;
         c.y = 0;
         c.className = "topContainer";
-        c.addBead(new NonVirtualVerticalLayout());
+        c.addBead(new VerticalLayout());
         addElement(c);
         var l:Label = new Label();
         l.width = 300;
         l.text = "Enter Stock Symbol or choose from list:";
         c.addElement(l);
         var c2:Container = new Container();
-        c2.addBead(new NonVirtualHorizontalLayout());
+        c2.addBead(new HorizontalLayout());
         c.addElement(c2);
         var c3:Container = new Container();
         c3.className = "leftSide";
-        c3.addBead(new NonVirtualVerticalLayout());
+        c3.addBead(new VerticalLayout());
         c2.addElement(c3);
         symbolTI = new TextInput();
         var sb:SimpleBinding = new SimpleBinding();
@@ -190,7 +190,7 @@ public class MyInitialView extends ViewBase
         
         c3 = new Container();
         c3.className="rightSide";
-        c3.addBead(new NonVirtualVerticalLayout());
+        c3.addBead(new VerticalLayout());
         c2.addElement(c3);
         list = new DropDownList();
         list.width=100;

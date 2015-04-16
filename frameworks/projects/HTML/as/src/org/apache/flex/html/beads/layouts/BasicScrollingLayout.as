@@ -38,7 +38,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.html.supportClasses.ScrollBar;
 
     /**
-     *  The NonVirtualBasicLayout class is a simple layout
+     *  The BasicLayout class is a simple layout
      *  bead.  It takes the set of children and lays them out
      *  as specified by CSS properties like left, right, top
      *  and bottom, and puts up a scrollbar if needed.
@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualBasicScrollingLayout implements IBeadLayout
+	public class BasicScrollingLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualBasicScrollingLayout()
+		public function BasicScrollingLayout()
 		{
 		}
 		

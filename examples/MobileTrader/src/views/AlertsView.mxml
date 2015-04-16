@@ -52,7 +52,7 @@ limitations under the License.
 		
 	<js:Container x="4" y="10" >
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="Symbol:" />
 		<js:TextInput id="symbolField" />

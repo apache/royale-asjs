@@ -85,12 +85,12 @@ limitations under the License.
 	</fx:Script>
 	
 	<js:beads>
-		<js:NonVirtualVerticalLayout />
+		<js:VerticalLayout />
 	</js:beads>
 	
 	<js:Container className="WatchListInputArea">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="Symbol:" />
 		<js:TextInput id="symbolName" />
@@ -100,7 +100,7 @@ limitations under the License.
 	<js:Container x="0" y="0" className="WatchListInner">
 		<js:beads>
 			<js:ScrollingContainerView />
-			<js:NonVirtualVerticalScrollingLayout />
+			<js:VerticalScrollingLayout />
 		</js:beads>
 		
 		<js:DataGrid id="dataGrid" change="selectRow()" width="480" height="480" className="WatchListDataGrid">

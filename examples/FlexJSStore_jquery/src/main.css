@@ -79,7 +79,7 @@ HRule
 
 basic|Container
 {
-    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualBasicLayout");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
 }
 
 .sectionHeader

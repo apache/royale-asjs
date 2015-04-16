@@ -56,7 +56,7 @@ limitations under the License.
 		.NavigationBar {
 			background-image: url("assets/background.png");
 			height: 55px;
-			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout");
+			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 		}
 		
 		.TabBar {

@@ -41,7 +41,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.html.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+	import org.apache.flex.html.supportClasses.DataGroup;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
 	/**

@@ -210,7 +210,7 @@ limitations under the License.
     <js:beads>
         <js:DropMouseController id="dmc" dragEnter="doDragEnter(event)" dragDrop="doDragDrop(event)" />
         <js:ScrollingContainerView id="scrollingView" />
-        <js:NonVirtualVerticalScrollingLayout />
+        <js:VerticalScrollingLayout />
     </js:beads>
     <js:Container id="viewport" width="100%" height="100%" >
     </js:Container>

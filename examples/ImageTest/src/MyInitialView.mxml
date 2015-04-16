@@ -32,7 +32,7 @@ limitations under the License.
 	
 	<js:Container>
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Image width="48" height="48" source="smallbluerect.jpg" />

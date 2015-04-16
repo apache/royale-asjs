@@ -34,7 +34,7 @@ limitations under the License.
 	</fx:Metadata>
 	
 	<js:beads>
-		<js:NonVirtualBasicLayout />
+		<js:BasicLayout />
 	</js:beads>
 	
 	<js:model>
@@ -43,7 +43,7 @@ limitations under the License.
 	
 	<js:Container className="AssetsInner" width="480">
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		<js:style>
 			<js:SimpleCSSStyles top="0" left="0" right="0" />

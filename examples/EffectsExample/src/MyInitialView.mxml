@@ -66,12 +66,12 @@ limitations under the License.
 	
 	<js:Container width="600" height="700" x="50" y="50">
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Container width="600" height="40">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:TextButton text="swap" click="swapit()" />
 			<js:TextButton text="fade out" click="fadeout()" />

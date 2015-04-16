@@ -40,12 +40,12 @@ limitations under the License.
 	</fx:Script>
 	
 	<js:beads>
-		<js:NonVirtualVerticalLayout />
+		<js:VerticalLayout />
 	</js:beads>
 
 	<js:Container width="200">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="User Name:" />
 		<js:TextInput />
@@ -53,7 +53,7 @@ limitations under the License.
 	
 	<js:Container width="200">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="Password:" />
 		<js:TextInput />
@@ -61,7 +61,7 @@ limitations under the License.
 	
 	<js:Container width="200">
 		<js:beads>
-			<js:NonVirtualHorizontalLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		<js:TextButton text="Login" click="cancelLogin()" />
 		<js:TextButton text="Cancel" click="cancelLogin()" />

@@ -30,13 +30,13 @@ package org.apache.flex.html
 	[DefaultProperty("mxmlContent")]
     
     /**
-     *  A Container that has a NonVirtualVerticalLayout.
+     *  A Container that has a VerticalLayout.
      * 
      *  This is effectively the same as the pattern
      *  <code>
      *  <basic:Container xmlns:basic="library://ns.apache.org/flexjs/basic">
      *    <basic:layout>
-     *       <basic:NonVirtualVerticalLayout />
+     *       <basic:VerticalLayout />
      *    </basic:layout>
      *  </basic:Container>
      *  </code>

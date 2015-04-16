@@ -23,7 +23,7 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.mobile.ManagerBase;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.TabBar;
@@ -82,7 +82,7 @@ package org.apache.flex.mobile.beads
 			{
 				_navigationBar = new NavigationBar();
 				_navigationBar.controls = model.navigationBarItems;
-				_navigationBar.addBead(new NonVirtualHorizontalLayout());
+				_navigationBar.addBead(new HorizontalLayout());
 				_strand.addElement(_navigationBar);
 			}
 			

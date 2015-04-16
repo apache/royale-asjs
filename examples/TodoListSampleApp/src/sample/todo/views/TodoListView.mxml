@@ -59,7 +59,7 @@ limitations under the License.
 
     <js:Panel title="FlexJS TODO List" width="600">
         <js:beads>
-            <js:NonVirtualVerticalLayout/>
+            <js:VerticalLayout/>
         </js:beads>
 
         <js:TextInput id="todoInput"
@@ -79,7 +79,7 @@ limitations under the License.
 
         <js:Container>
             <js:beads>
-                <js:NonVirtualHorizontalLayout/>
+                <js:HorizontalLayout/>
             </js:beads>
             <js:Label id="statusLabel" text="N items left"/>
             <svg:TextButton text="All" width="100" height="30" click="showAll()" />

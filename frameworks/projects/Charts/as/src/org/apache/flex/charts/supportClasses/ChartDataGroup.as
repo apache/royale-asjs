@@ -23,7 +23,7 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup;
+	import org.apache.flex.html.supportClasses.DataGroup;
 	
 	/**
 	 *  The ChartDataGroup class provides the actual space for rendering the
@@ -34,7 +34,7 @@ package org.apache.flex.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends NonVirtualDataGroup implements IChartDataGroup
+	public class ChartDataGroup extends DataGroup implements IChartDataGroup
 	{
 		/**
 		 *  constructor.

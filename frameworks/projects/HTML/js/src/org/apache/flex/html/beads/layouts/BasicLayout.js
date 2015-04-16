@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_NonVirtualBasicLayout');
+goog.provide('org_apache_flex_html_beads_layouts_BasicLayout');
 
 goog.require('org_apache_flex_core_IBeadLayout');
 goog.require('org_apache_flex_core_ILayoutChild');
@@ -25,10 +25,10 @@ goog.require('org_apache_flex_utils_Language');
  * @constructor
  * @implements {org_apache_flex_core_IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout =
+org_apache_flex_html_beads_layouts_BasicLayout =
     function() {
   this.strand_ = null;
-  this.className = 'NonVirtualBasicLayout';
+  this.className = 'BasicLayout';
 };
 
 
@@ -37,16 +37,16 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'NonVirtualBasicLayout',
-                qName: 'org_apache_flex_html_beads_layouts_NonVirtualBasicLayout'}],
+org_apache_flex_html_beads_layouts_BasicLayout.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'BasicLayout',
+                qName: 'org_apache_flex_html_beads_layouts_BasicLayout'}],
       interfaces: [org_apache_flex_core_IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.prototype, {
+Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype, {
     /** @expose */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_NonVirtualBasicLayout} */
+        /** @this {org_apache_flex_html_beads_layouts_BasicLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -72,7 +72,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_NonVirtualBasicLayout
 /**
  *
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_BasicLayout.
     prototype.addOtherListeners = function() {
   this.strand_.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
@@ -86,7 +86,7 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
 /**
  * @param {org_apache_flex_events_Event} event The event.
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_BasicLayout.
     prototype.sizeChangeHandler = function(event) {
   this.addOtherListeners();
   this.changeHandler(event);
@@ -96,7 +96,7 @@ org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
 /**
  * @param {org_apache_flex_events_Event} event The text getter.
  */
-org_apache_flex_html_beads_layouts_NonVirtualBasicLayout.
+org_apache_flex_html_beads_layouts_BasicLayout.
     prototype.changeHandler = function(event) {
   var i, n, h, w;
 

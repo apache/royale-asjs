@@ -34,7 +34,7 @@ package org.apache.flex.html.customControls.beads
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.SimpleList;
-	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	
 	public class DataGridView implements IDataGridView
@@ -67,7 +67,7 @@ package org.apache.flex.html.customControls.beads
 			UIBase(_strand).addElement(buttonBar);
 			
 			columnContainer = new Container();
-			var layout:NonVirtualHorizontalLayout = new NonVirtualHorizontalLayout();
+			var layout:HorizontalLayout = new HorizontalLayout();
 			columnContainer.addBead(layout);
 			UIBase(_strand).addElement(columnContainer);
 			

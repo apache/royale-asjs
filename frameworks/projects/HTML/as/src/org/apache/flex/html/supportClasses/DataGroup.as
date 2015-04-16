@@ -24,7 +24,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.UIBase;
 
     /**
-     *  The NonVirtualDataGroup class is the IItemRendererParent used internally
+     *  The DataGroup class is the IItemRendererParent used internally
      *  by org.apache.flex.html.List class.
      *  
      *  @langversion 3.0
@@ -32,7 +32,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualDataGroup extends UIBase implements IItemRendererParent, IContentView
+	public class DataGroup extends UIBase implements IItemRendererParent, IContentView
 	{
         /**
          *  Constructor.
@@ -42,7 +42,7 @@ package org.apache.flex.html.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualDataGroup()
+		public function DataGroup()
 		{
 			super();
 		}

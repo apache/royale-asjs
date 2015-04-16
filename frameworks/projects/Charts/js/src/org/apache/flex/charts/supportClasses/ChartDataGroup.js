@@ -15,13 +15,13 @@
 goog.provide('org_apache_flex_charts_supportClasses_ChartDataGroup');
 
 goog.require('org_apache_flex_charts_core_IChartDataGroup');
-goog.require('org_apache_flex_html_supportClasses_NonVirtualDataGroup');
+goog.require('org_apache_flex_html_supportClasses_DataGroup');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_supportClasses_NonVirtualDataGroup}
+ * @extends {org_apache_flex_html_supportClasses_DataGroup}
  * @implements {org_apache_flex_charts_core_IChartDataGroup}
  */
 org_apache_flex_charts_supportClasses_ChartDataGroup =
@@ -30,7 +30,7 @@ org_apache_flex_charts_supportClasses_ChartDataGroup =
 };
 goog.inherits(
     org_apache_flex_charts_supportClasses_ChartDataGroup,
-    org_apache_flex_html_supportClasses_NonVirtualDataGroup);
+    org_apache_flex_html_supportClasses_DataGroup);
 
 
 /**

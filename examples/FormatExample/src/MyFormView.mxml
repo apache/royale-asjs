@@ -60,14 +60,14 @@ limitations under the License.
 	
 	<js:Container width="600" height="700" x="50" y="50">
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Label text="Loan Form" className="title" />
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Your Name:" />
 			<js:TextInput id="nameField" />
@@ -75,7 +75,7 @@ limitations under the License.
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Your Age:" />
 			<js:TextInput id="ageField">
@@ -87,7 +87,7 @@ limitations under the License.
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Phone Number:" />
 			<js:TextInput id="phoneField" >
@@ -101,7 +101,7 @@ limitations under the License.
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Date of Loan:" />
 			<js:DateField id="dateOfLoan"/>
@@ -109,7 +109,7 @@ limitations under the License.
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Loan Amount:" />
 			<js:TextInput id="loanAmount">
@@ -123,7 +123,7 @@ limitations under the License.
 		
 		<js:Container width="500">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:TextButton text="Login" click="showLogin()" />
 		</js:Container>

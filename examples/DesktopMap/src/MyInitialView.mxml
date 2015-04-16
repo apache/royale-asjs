@@ -102,12 +102,12 @@ limitations under the License.
 	
 	<js:Container x="5" y="5" className="topContainer" >
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Container>
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Location:" />
 			<js:TextInput id="mapLocation" />
@@ -118,7 +118,7 @@ limitations under the License.
 		
 		<js:Container>
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label text="Search on Map:" />
 			<js:TextInput id="search" />

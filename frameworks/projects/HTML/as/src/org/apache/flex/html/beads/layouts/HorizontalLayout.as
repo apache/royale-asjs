@@ -30,7 +30,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
-     *  The NonVirtualHorizontalLayout class is a simple layout
+     *  The HorizontalLayout class is a simple layout
      *  bead.  It takes the set of children and lays them out
      *  horizontally in one row, separating them according to
      *  CSS layout rules for margin and vertical-align styles.
@@ -40,7 +40,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualHorizontalLayout implements IBeadLayout
+	public class HorizontalLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -50,7 +50,7 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualHorizontalLayout()
+		public function HorizontalLayout()
 		{
 		}
 		

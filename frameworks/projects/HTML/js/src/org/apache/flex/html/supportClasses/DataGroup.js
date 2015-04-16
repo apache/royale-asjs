@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_NonVirtualDataGroup');
+goog.provide('org_apache_flex_html_supportClasses_DataGroup');
 
 goog.require('org_apache_flex_core_UIBase');
 goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
@@ -24,13 +24,13 @@ goog.require('org_apache_flex_utils_Language');
  * @constructor
  * @extends {org_apache_flex_core_UIBase}
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup =
+org_apache_flex_html_supportClasses_DataGroup =
     function() {
   this.renderers = [];
-  org_apache_flex_html_supportClasses_NonVirtualDataGroup.base(this, 'constructor');
+  org_apache_flex_html_supportClasses_DataGroup.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_NonVirtualDataGroup,
+    org_apache_flex_html_supportClasses_DataGroup,
     org_apache_flex_core_UIBase);
 
 
@@ -39,22 +39,22 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'NonVirtualDataGroup',
-                qName: 'org_apache_flex_html_supportClasses_NonVirtualDataGroup' }] };
+org_apache_flex_html_supportClasses_DataGroup.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'DataGroup',
+                qName: 'org_apache_flex_html_supportClasses_DataGroup' }] };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_NonVirtualDataGroup.prototype, {
+Object.defineProperties(org_apache_flex_html_supportClasses_DataGroup.prototype, {
     /** @expose */
     strand: {
-        /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
+        /** @this {org_apache_flex_html_supportClasses_DataGroup} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @expose */
     numElements: {
-        /** @this {org_apache_flex_html_supportClasses_NonVirtualDataGroup} */
+        /** @this {org_apache_flex_html_supportClasses_DataGroup} */
         get: function() {
 
             var n = this.element.childNodes.length;
@@ -67,14 +67,14 @@ Object.defineProperties(org_apache_flex_html_supportClasses_NonVirtualDataGroup.
 /**
  * @override
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
+org_apache_flex_html_supportClasses_DataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
   this.element.style.display = 'inline-block';
   this.element.style.position = 'inherit';
   this.element.flexjs_wrapper = this;
-  this.className = 'NonVirtualDataGroup';
+  this.className = 'DataGroup';
 
   this.positioner = this.element;
 
@@ -86,9 +86,9 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
  * @override
  * @param {Object} value The child element being added.
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
+org_apache_flex_html_supportClasses_DataGroup.
     prototype.addElement = function(value) {
-  org_apache_flex_html_supportClasses_NonVirtualDataGroup.base(this, 'addElement', value);
+  org_apache_flex_html_supportClasses_DataGroup.base(this, 'addElement', value);
 
   var itemRenderer = org_apache_flex_utils_Language.as(value,
                            org_apache_flex_html_supportClasses_DataItemRenderer);
@@ -101,7 +101,7 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
 /**
  * @expose
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
+org_apache_flex_html_supportClasses_DataGroup.
     prototype.removeAllElements = function() {
 
   while (this.element.hasChildNodes()) {
@@ -115,7 +115,7 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
  * @param {number} index The index of the desired element.
  * @return {Object} The element at the given index.
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
+org_apache_flex_html_supportClasses_DataGroup.
     prototype.getElementAt = function(index) {
 
   var e = this.element.childNodes[index];
@@ -128,7 +128,7 @@ org_apache_flex_html_supportClasses_NonVirtualDataGroup.
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */
-org_apache_flex_html_supportClasses_NonVirtualDataGroup.
+org_apache_flex_html_supportClasses_DataGroup.
     prototype.getItemRendererForIndex = function(index) {
   return this.renderers[index];
 };

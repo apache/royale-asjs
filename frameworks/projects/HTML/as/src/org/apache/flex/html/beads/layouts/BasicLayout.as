@@ -31,7 +31,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
-     *  The NonVirtualBasicLayout class is a simple layout
+     *  The BasicLayout class is a simple layout
      *  bead.  It takes the set of children and lays them out
      *  as specified by CSS properties like left, right, top
      *  and bottom.
@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualBasicLayout implements IBeadLayout
+	public class BasicLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualBasicLayout()
+		public function BasicLayout()
 		{
 		}
 		

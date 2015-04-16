@@ -102,16 +102,16 @@ limitations under the License.
 	</fx:Style>
     <js:Container x="0" y="0" className="topContainer" >
         <js:beads>
-            <js:NonVirtualVerticalLayout />
+            <js:VerticalLayout />
         </js:beads>
         <js:Label width="300" text="Enter Stock Symbol or choose from list:" />
         <js:Container>
             <js:beads>
-                <js:NonVirtualHorizontalLayout />
+                <js:HorizontalLayout />
             </js:beads>
             <js:Panel title="Left Side" className="leftSide">
                 <js:beads>
-                    <js:NonVirtualVerticalLayout />
+                    <js:VerticalLayout />
                 </js:beads>
                 <js:TextInput id="symbolTI" >
                     <js:beads>
@@ -135,7 +135,7 @@ limitations under the License.
             </js:Panel>
             <js:Panel title="Right Side" className="rightSide">
                 <js:beads>
-                    <js:NonVirtualVerticalLayout />
+                    <js:VerticalLayout />
                 </js:beads>
                 <js:DropDownList id="list" width="100" height="17"
                                     change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))">

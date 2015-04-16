@@ -30,7 +30,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.supportClasses.ScrollBar;
 	
     /**
-     *  The NonVirtualHorizontalScrollingLayout class is a layout
+     *  The HorizontalScrollingLayout class is a layout
      *  bead that displays a set of children horizontally in one row, 
      *  separating them according to CSS layout rules for margin and 
      *  vertical-align styles and lays out a horizontal ScrollBar
@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualHorizontalScrollingLayout implements IBeadLayout
+	public class HorizontalScrollingLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualHorizontalScrollingLayout()
+		public function HorizontalScrollingLayout()
 		{
 		}
 		

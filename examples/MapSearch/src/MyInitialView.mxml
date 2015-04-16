@@ -168,12 +168,12 @@ limitations under the License.
 	
 	<js:Container x="5" y="5" className="topContainer" >
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Container className="InnerBox">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label id="label1" text="Location:" className="FormLabel"  />
 			<js:TextInput id="mapLocation" />
@@ -190,7 +190,7 @@ limitations under the License.
 		
 		<js:Container className="InnerBox">
 			<js:beads>
-				<js:NonVirtualHorizontalLayout />
+				<js:HorizontalLayout />
 			</js:beads>
 			<js:Label id="label2" text="Search on Map:" className="FormLabel" />
 			<js:TextInput id="search" />

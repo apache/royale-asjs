@@ -89,14 +89,14 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
     import org.apache.flex.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
-    import org.apache.flex.html.beads.layouts.NonVirtualVerticalScrollingLayout; NonVirtualVerticalScrollingLayout;  
-	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalScrollingLayout; NonVirtualHorizontalScrollingLayout;
-    import org.apache.flex.html.beads.layouts.NonVirtualBasicLayout; NonVirtualBasicLayout;
+    import org.apache.flex.html.beads.layouts.VerticalScrollingLayout; VerticalScrollingLayout;  
+	import org.apache.flex.html.beads.layouts.HorizontalScrollingLayout; HorizontalScrollingLayout;
+    import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
     import org.apache.flex.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
-	import org.apache.flex.html.supportClasses.NonVirtualDataGroup; NonVirtualDataGroup;
+	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
 	import org.apache.flex.events.Event; Event;
 	import org.apache.flex.events.MouseEvent; MouseEvent;

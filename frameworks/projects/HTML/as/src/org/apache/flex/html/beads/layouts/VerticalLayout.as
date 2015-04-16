@@ -31,7 +31,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
-     *  The NonVirtualVerticalLayout class is a simple layout
+     *  The VerticalLayout class is a simple layout
      *  bead.  It takes the set of children and lays them out
      *  vertically in one column, separating them according to
      *  CSS layout rules for margin and horizontal-align styles.
@@ -41,7 +41,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class NonVirtualVerticalLayout implements IBeadLayout
+	public class VerticalLayout implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function NonVirtualVerticalLayout()
+		public function VerticalLayout()
 		{
 		}
 		

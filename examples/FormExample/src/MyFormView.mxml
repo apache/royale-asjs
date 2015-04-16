@@ -42,7 +42,7 @@ limitations under the License.
 	
 	<js:Container width="600" height="700" x="50" y="50">
 		<js:beads>
-			<js:NonVirtualVerticalLayout />
+			<js:VerticalLayout />
 		</js:beads>
 		
 		<js:Label text="Loan Form" className="title" />

@@ -17,7 +17,7 @@ goog.provide('org_apache_flex_html_ButtonBar');
 goog.require('org_apache_flex_core_ListBase');
 goog.require('org_apache_flex_html_List');
 goog.require('org_apache_flex_html_beads_DataItemRendererFactoryForArrayData');
-goog.require('org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout');
+goog.require('org_apache_flex_html_beads_layouts_HorizontalLayout');
 goog.require('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
 
 
@@ -38,7 +38,7 @@ org_apache_flex_html_ButtonBar = function() {
   //        org_apache_flex_html_beads_ListView());
 
   //  this.addBead(new
-  //org_apache_flex_html_beads_layouts_NonVirtualHorizontalLayout());
+  //org_apache_flex_html_beads_layouts_HorizontalLayout());
 
   //  this.itemRendererFactory = new
   //        org_apache_flex_html_beads_

@@ -22,7 +22,7 @@ goog.require('org_apache_flex_core_ValuesManager');
 goog.require('org_apache_flex_html_beads_IListView');
 goog.require('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
 goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
-goog.require('org_apache_flex_html_supportClasses_NonVirtualDataGroup');
+goog.require('org_apache_flex_html_supportClasses_DataGroup');
 
 
 

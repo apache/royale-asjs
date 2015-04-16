@@ -32,7 +32,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.html.Label;
 	import org.apache.flex.html.Spinner;
 	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.beads.layouts.NonVirtualHorizontalLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 	
@@ -78,7 +78,7 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			
 			// add a horizontal layout bead
-			value.addBead(new NonVirtualHorizontalLayout());
+			value.addBead(new HorizontalLayout());
             
 			// add an input field
 			input = new TextInput();
