@@ -140,7 +140,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 
 
 /**
- * @type {function((goog.events.Listener|null), (Object|null)):boolean}
+ * @type {?function((goog.events.Listener), (?Object)):boolean}
  */
 org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
 

@@ -24,7 +24,7 @@ goog.require('org_apache_flex_net_HTTPHeader');
  * @extends {org_apache_flex_core_HTMLElementWrapper}
  */
 org_apache_flex_net_BinaryUploader = function() {
-  org_apache_flex_net_BinaryUploader .base(this, 'constructor');
+  org_apache_flex_net_BinaryUploader.base(this, 'constructor');
 
   /**
    * @private
