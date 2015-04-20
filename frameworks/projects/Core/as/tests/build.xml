@@ -100,8 +100,8 @@
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/as/projects/FlexJSUI/src" />
-            <arg value="-library-path+=${FLEXJS_HOME}/frameworks/as/libs" />
+            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/Core/as/src" />
+            <arg value="-library-path+=${FLEXJS_HOME}/frameworks/libs" />
             <arg value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target" />
             <arg value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
         </mxmlc>
@@ -124,8 +124,8 @@
 			verbose="true"
 			localTrusted="true"
 			command="${browser}">
-            <source dir="${FLEXJS_HOME}/frameworks/as/projects/FlexJSUI/src" />
-            <library dir="${FLEXJS_HOME}/frameworks/as/libs" />
+            <source dir="${FLEXJS_HOME}/frameworks/projects/Core/as/src" />
+            <library dir="${FLEXJS_HOME}/frameworks/libs" />
         </flexunit>
         
 		<!-- Generate readable JUnit-style reports -->

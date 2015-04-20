@@ -47,8 +47,8 @@
       <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
 
-    <target name="compile" description="Compiles FlexJSJX.swc">
-        <echo message="Compiling libs/FlexJSJX.swc"/>
+    <target name="compile" description="Compiles Core.swc">
+        <echo message="Compiling libs/Core.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
 
@@ -68,7 +68,7 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/frameworks/as/libs/FlexJSJX.swc">
+               output="${FLEXJS_HOME}/frameworks/libs/FlexJSJX.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
