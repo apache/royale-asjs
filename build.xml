@@ -72,14 +72,14 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="prebuild,frameworks-as,frameworks-js,post-build" description="Full build">
+    <target name="main" depends="prebuild,frameworks-as,frameworks-js,frameworks-as-recompile,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
+    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,frameworks-as-recompile,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -340,7 +340,7 @@
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
-        <ant dir="${basedir}/frameworks/as" target="thirdparty-clean"/>
+        <ant dir="${basedir}/frameworks" target="thirdparty-clean"/>
         <ant dir="${basedir}/frameworks/js" target="thirdparty-clean"/>
         <delete dir="${basedir}/in"/>
         <delete dir="${basedir}/lib"/>
@@ -372,7 +372,7 @@
     </target>
 
     <target name="frameworks-as-clean">
-        <ant dir="${basedir}/frameworks/as" target="clean"/>
+        <ant dir="${basedir}/frameworks" target="clean"/>
     </target>
 
 	<target name="frameworks-js-clean">
@@ -406,6 +406,12 @@
 
     <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes">
         <ant dir="${basedir}/frameworks">
+            <property name="locale" value="${locale}"/>
+        </ant>
+    </target>
+
+    <target name="frameworks-as-recompile" description="Full build of all Actionscript framework SWCs in order to pick up JS files from asjs">
+        <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
@@ -514,7 +520,7 @@
             </fileset>
         </copy>
          
-        <!-- frameworks/as -->
+        <!-- frameworks -->
         <antcall target="stage-framework-as"/>
         
         <!-- make the js output folder so copy doesn't complain if it isn't there -->
@@ -624,8 +630,28 @@
                 <exclude name="projects/**/*.DS_Store"/>
             </fileset>
         </copy>
-        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/as">
+        <copy todir="${basedir}/temp/frameworks/projects" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks/projects">
+                <include name="**"/>
+                <exclude name="**/libs/**"/>
+                <exclude name="**/*.swc"/>
+                <exclude name="**/*.pbj"/>
+                <exclude name="**/*.swf"/>
+                <exclude name="**/*.mxp"/>
+                <exclude name="test*/**"/>
+                <exclude name="javascript/**"/>
+                <exclude name="projects/air/**"/>
+                <exclude name="projects/spark/manifest.xml"/>
+                <exclude name="projects/*/bundles.properties"/>
+                <exclude name="projects/*/.settings/**"/>
+                <exclude name="projects/*/tests/out/**"/>
+                <exclude name="projects/**/*.actionScriptProperties"/>
+                <exclude name="projects/**/*.flexLibProperties"/>
+                <exclude name="projects/**/*.DS_Store"/>
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/temp/frameworks" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks">
                 <include name="air-config-template.xml"/>
                 <include name="flex-config-template.xml"/>
             </fileset>
@@ -638,20 +664,17 @@
 
         <!-- now that config xml files are in temp, fix them up for release. -->
         <echo message="Updating config file air-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/as/air-config-template.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
         <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/as/flex-config-template.xml" version="${build.version}" />
+        <fix-config-file file="${basedir}/temp/frameworks/flex-config-template.xml" version="${build.version}" />
         
         <!-- Update all Version.as files in the kit frameworks directory with build.number -->
         <!--<antcall target="version-update"/>-->
     </target>
     
-    <!-- tlf -->
+    <!-- js -->
     <target name="stage-framework-js">
         <copy todir="${basedir}/temp/frameworks/js/FlexJS/src" includeEmptyDirs="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/src">
-                <include name="**"/>
-            </fileset>
             <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
                 <include name="**"/>
                 <exclude name="FlexJSJXClasses.js"/>
@@ -789,8 +812,8 @@
         </concat-->
         
         <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/as/libs">
-            <fileset dir="${basedir}/frameworks/as/libs">
+        <copy todir="${basedir}/temp/frameworks/libs">
+            <fileset dir="${basedir}/frameworks/libs">
                 <include name="FlexJSUI.swc"/>
                 <include name="FlexJSJX.swc"/>
                 <include name="MXMLCClasses.swc"/>
@@ -863,8 +886,8 @@
         </concat-->
         
         <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/as/libs">
-            <fileset dir="${basedir}/frameworks/as/libs">
+        <copy todir="${basedir}/temp/frameworks/libs">
+            <fileset dir="${basedir}/frameworks/libs">
                 <include name="FlexJSUI.swc"/>
                 <include name="FlexJSJX.swc"/>
                 <include name="MXMLCClasses.swc"/>
