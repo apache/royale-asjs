@@ -64,6 +64,10 @@
         <name>defaults.css</name>
         <path>as/defaults.css</path>
     </include-file>
+    <include-file>
+        <name>js/src/*</name>
+        <path>js/src/*</path>
+    </include-file>
 
     <include-classes>
         <class>HTML5Classes</class>

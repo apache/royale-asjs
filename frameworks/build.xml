@@ -130,6 +130,25 @@
         <ant dir="${basedir}/projects/Network" target="lint-js"/>
     </target>
 
+    <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
+        <!-- order may matter due to dependencies -->
+        <ant dir="${basedir}/projects/Core" target="compile"/>
+        <ant dir="${basedir}/projects/Graphics" target="compile"/>
+        <ant dir="${basedir}/projects/Binding" target="compile"/>
+        <ant dir="${basedir}/projects/HTML" target="compile"/>
+        <ant dir="${basedir}/projects/Charts" target="compile"/>
+        <ant dir="${basedir}/projects/Collections" target="compile"/>
+        <ant dir="${basedir}/projects/CreateJS" target="compile"/>
+        <ant dir="${basedir}/projects/DragDrop" target="compile"/>
+        <ant dir="${basedir}/projects/Effects" target="compile"/>
+        <ant dir="${basedir}/projects/Formatters" target="compile"/>
+        <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
+        <ant dir="${basedir}/projects/HTML5" target="compile"/>
+        <ant dir="${basedir}/projects/JQuery" target="compile"/>
+        <ant dir="${basedir}/projects/Mobile" target="compile"/>
+        <ant dir="${basedir}/projects/Network" target="compile"/>
+    </target>
+
     <target name="js" depends="compile-asjs, lint-js" />
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">

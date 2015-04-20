@@ -70,6 +70,14 @@
         <name>defaults.css</name>
         <path>as/defaults.css</path>
     </include-file>
+    <include-file>
+        <name>js/out/*</name>
+        <path>js/out/*</path>
+    </include-file>
+    <include-file>
+        <name>js/src/*</name>
+        <path>js/src/*</path>
+    </include-file>
 
     <include-classes>
         <class>HTMLClasses</class>

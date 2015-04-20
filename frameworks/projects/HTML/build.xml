@@ -69,6 +69,8 @@
         <echo message="Compiling libs/HTML.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${basedir}/js/out" />
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -97,7 +99,6 @@
     <target name="compile-asjs" >
         <echo message="Cross-compiling HTML/asjs"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
@@ -106,7 +107,7 @@
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-output=${basedir}/js/out" />
             <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
@@ -118,6 +119,9 @@
     <target name="copy-js" >
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
             <fileset dir="${basedir}/js/src">
+                <include name="**/**" />
+            </fileset>
+            <fileset dir="${basedir}/js/out">
                 <include name="**/**" />
             </fileset>
         </copy>
