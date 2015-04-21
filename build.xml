@@ -72,14 +72,14 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="prebuild,frameworks-as,frameworks-js,frameworks-as-recompile,post-build" description="Full build">
+    <target name="main" depends="prebuild,frameworks-as,frameworks-js,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,frameworks-as-recompile,post-build" description="Full build">
+    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -341,12 +341,11 @@
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
         <ant dir="${basedir}/frameworks" target="thirdparty-clean"/>
-        <ant dir="${basedir}/frameworks/js" target="thirdparty-clean"/>
         <delete dir="${basedir}/in"/>
         <delete dir="${basedir}/lib"/>
     </target>
 
-    <target name="clean" depends="examples-clean,frameworks-as-clean,frameworks-js-clean,package-clean,checkintests-clean" 
+    <target name="clean" depends="examples-clean,frameworks-as-clean,package-clean,checkintests-clean"
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
@@ -375,10 +374,6 @@
         <ant dir="${basedir}/frameworks" target="clean"/>
     </target>
 
-	<target name="frameworks-js-clean">
-        <ant dir="${basedir}/frameworks/js" target="clean"/>
-	</target>
-
     <target name="package-clean">
         <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
         <antcall target="clean-temp"/>
@@ -406,12 +401,6 @@
 
     <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes">
         <ant dir="${basedir}/frameworks">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-
-    <target name="frameworks-as-recompile" description="Full build of all Actionscript framework SWCs in order to pick up JS files from asjs">
-        <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
@@ -523,12 +512,6 @@
         <!-- frameworks -->
         <antcall target="stage-framework-as"/>
         
-        <!-- make the js output folder so copy doesn't complain if it isn't there -->
-        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-
-        <!-- frameworks/js -->
-        <antcall target="stage-framework-js"/>
-
         <!-- asdoc -->
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
             <fileset dir="${basedir}/asdoc">
@@ -610,41 +593,21 @@
     <!-- frameworks -->
     <!-- javascript and test directories follow -->
     <target name="stage-framework-as">
-        <copy todir="${basedir}/temp/frameworks/as" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/as">
+        <copy todir="${basedir}/temp/frameworks" includeEmptyDirs="false">
+            <fileset dir="${basedir}/frameworks">
                 <include name="**"/>
                 <exclude name="**/libs/**"/>
+                <exclude name="**/out/**"/>
                 <exclude name="**/*.swc"/>
                 <exclude name="**/*.pbj"/>
                 <exclude name="**/*.swf"/>
                 <exclude name="**/*.mxp"/>
                 <exclude name="test*/**"/>
-                <exclude name="javascript/**"/>
+                <exclude name="js/VanillaSDK/**"/>
                 <exclude name="projects/air/**"/>
                 <exclude name="projects/spark/manifest.xml"/>
                 <exclude name="projects/*/bundles.properties"/>
                 <exclude name="projects/*/.settings/**"/>
-                <exclude name="projects/*/tests/out/**"/>
-                <exclude name="projects/**/*.actionScriptProperties"/>
-                <exclude name="projects/**/*.flexLibProperties"/>
-                <exclude name="projects/**/*.DS_Store"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/frameworks/projects" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/projects">
-                <include name="**"/>
-                <exclude name="**/libs/**"/>
-                <exclude name="**/*.swc"/>
-                <exclude name="**/*.pbj"/>
-                <exclude name="**/*.swf"/>
-                <exclude name="**/*.mxp"/>
-                <exclude name="test*/**"/>
-                <exclude name="javascript/**"/>
-                <exclude name="projects/air/**"/>
-                <exclude name="projects/spark/manifest.xml"/>
-                <exclude name="projects/*/bundles.properties"/>
-                <exclude name="projects/*/.settings/**"/>
-                <exclude name="projects/*/tests/out/**"/>
                 <exclude name="projects/**/*.actionScriptProperties"/>
                 <exclude name="projects/**/*.flexLibProperties"/>
                 <exclude name="projects/**/*.DS_Store"/>
@@ -671,109 +634,7 @@
         <!-- Update all Version.as files in the kit frameworks directory with build.number -->
         <!--<antcall target="version-update"/>-->
     </target>
-    
-    <!-- js -->
-    <target name="stage-framework-js">
-        <copy todir="${basedir}/temp/frameworks/js/FlexJS/src" includeEmptyDirs="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
-                <include name="**"/>
-                <exclude name="FlexJSJXClasses.js"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/frameworks/js" includeEmptyDirs="false">
-            <fileset dir="${FLEXJS_HOME}/frameworks/js">
-                <include name="build.xml"/>
-                <include name="jshint.properties"/>
-            </fileset>
-        </copy>
-    </target>
-    
-    <target name="stage-falcon">
-        <copy todir="${basedir}/temp/bin" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/bin">
-                <include name="*"/>
-                <exclude name="adl*"/>
-                <exclude name="adt*"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/bin-legacy" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/bin-legacy">
-                <include name="*"/>
-                <exclude name="adl*"/>
-                <exclude name="adt*"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/ant/lib" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/ant/lib">
-                <include name="*"/>
-                <exclude name="adl*"/>
-                <exclude name="adt*"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/lib" includeEmptyDirs="false">
-            <fileset dir="${FALCON_HOME}/lib">
-                <include name="**"/>
-                <exclude name="adl*"/>
-                <exclude name="adt*"/>
-            </fileset>
-        </copy>
-        
-        <fixcrlf srcdir="${basedir}/temp/bin" eol="crlf" fixlast="false">
-            <include name="**/*.bat"/>
-        </fixcrlf>
-  
-          <!-- Unix shell scripts need the correct line endings. -->      
-        <fixcrlf srcdir="${basedir}/temp/bin" eol="unix" fixlast="false">  
-            <exclude name="**/*.bat"/>
-        </fixcrlf>
-        
-        <fixcrlf srcdir="${basedir}/temp/bin-legacy" eol="crlf" fixlast="false">
-            <include name="**/*.bat"/>
-        </fixcrlf>
-  
-          <!-- Unix shell scripts need the correct line endings. -->      
-        <fixcrlf srcdir="${basedir}/temp/bin-legacy" eol="unix" fixlast="false">  
-            <exclude name="**/*.bat"/>
-        </fixcrlf>
 
-        <chmod dir="${basedir}/temp/bin" excludes="**/*.bat" perm="+x" />
-        <chmod dir="${basedir}/temp/bin-legacy" excludes="**/*.bat" perm="+x" />
-
-    </target>
-        
-    <target name="stage-falconjx">
-        <!-- modules -->
-        <copy todir="${basedir}/temp/js/bin" includeEmptyDirs="false">
-            <fileset dir="${basedir}/js/bin">
-                <include name="**"/>
-            </fileset>
-            
-        </copy>  
-
-        <!-- modules/thirdparty -->
-        <copy todir="${basedir}/temp/js/lib" includeEmptyDirs="true">
-            <fileset dir="${FALCONJX_HOME}/lib">
-                <include name="**"/>
-                <exclude name="**/classes/**"/>
-                <exclude name="**/.classpath"/>
-                <exclude name="**/.project"/>
-                <exclude name="*/test*/**"/>
-            </fileset>
-        </copy>  
-        
-        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="crlf" fixlast="false">
-            <include name="**/*.bat"/>
-        </fixcrlf>
-  
-          <!-- Unix shell scripts need the correct line endings. -->      
-        <fixcrlf srcdir="${basedir}/temp/js/bin" eol="unix" fixlast="false">  
-            <exclude name="**/*.bat"/>
-        </fixcrlf>
-
-        <chmod dir="${basedir}/temp/js/bin" excludes="**/*.bat" perm="+x" />
-
-    </target>
-    
     <target name="stage-scripts" description="package ide conversion scripts">
         <!-- deploy scripts -->
         <copy todir="${basedir}/temp/scripts">
@@ -814,9 +675,7 @@
         <!-- frameworks/libs -->
         <copy todir="${basedir}/temp/frameworks/libs">
             <fileset dir="${basedir}/frameworks/libs">
-                <include name="FlexJSUI.swc"/>
-                <include name="FlexJSJX.swc"/>
-                <include name="MXMLCClasses.swc"/>
+                <include name="**.swc"/>
             </fileset>
         </copy>
 
@@ -860,109 +719,7 @@
         <antcall target="binary-package-tgz"/>
         <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
     </target>
-  
-    <target name="package-sdk" depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home"
-        description="Package falcon and templates into binary package">
-        
-        <antcall target="clean-temp"/>
 
-        <antcall target="stage-source-no-scripts"/>
-                
-        <!-- delete any left-over empty directories -->
-        <delete includeemptydirs="true">
-            <fileset dir="${basedir}/temp/frameworks">
-                <and>
-                    <size value="0"/>
-                    <type type="dir"/>
-                </and>
-            </fileset>
-        </delete>
-
-        <!-- these files are in addition to the remaining source files -->
-        
-        <!-- concat the license file with the binary license file for the 3rd party deps -->
-        <!--concat destfile="${basedir}/temp/LICENSE">
-            <filelist dir="${FLEX_SDK_HOME}" files="LICENSE,LICENSE.bin"/>
-        </concat-->
-        
-        <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/libs">
-            <fileset dir="${basedir}/frameworks/libs">
-                <include name="FlexJSUI.swc"/>
-                <include name="FlexJSJX.swc"/>
-                <include name="MXMLCClasses.swc"/>
-            </fileset>
-        </copy>
-
-        <!-- frameworks config files -->
-        <copy todir="${basedir}/temp/frameworks">
-            <fileset dir="${basedir}/frameworks">
-                <include name="air-config.xml"/>
-                <include name="flex-config.xml"/>
-            </fileset>
-        </copy>
-        <replace file="${basedir}/temp/frameworks/air-config.xml">
-            <replacefilter
-                token="{airHome}/frameworks/libs"
-                value="libs"/>
-        </replace>
-        <replace file="${basedir}/temp/frameworks/flex-config.xml">
-            <replacefilter
-                token="{playerglobalHome}"
-                value="libs/player"/>
-        </replace>
-        
-        <!-- now that config xml files are in temp, fix them up for release. -->
-        <echo message="Updating config file air-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/air-config.xml" version="${build.version}" />
-        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/flex-config.xml" version="${build.version}" />
-        
-        <!-- falcon -->
-        <antcall target="stage-falcon"/>
-         
-        <!-- falconjx -->
-        <antcall target="stage-falconjx"/>
-         
-        <!-- ide
-        <copy todir="${basedir}/temp/ide">
-            <fileset dir="${basedir}/ide" >
-                <include name="flashbuilder/config"/>
-            </fileset>
-        </copy>
-         -->
-         
-        <!-- examples -->
-        <copy todir="${basedir}/temp/examples">
-            <fileset dir="${basedir}/examples" >
-                <exclude name="**/FlexJSTest_again/**" />
-                <exclude name="**/VanillaSDK_POC/**" />
-                <include name="**/build.xml"/>
-                <include name="**/*.swc"/>
-                <include name="**/*.swf"/>
-            </fileset>
-        </copy>
-
-        <!-- swfobject templates except for downloaded files -->
-        <copy todir="${basedir}/temp/templates/swfobject">
-            <fileset dir="${basedir}/templates/swfobject">
-            </fileset>
-        </copy>
-        
-        <!-- deploy scripts -->
-        <copy todir="${basedir}/temp">
-            <fileset dir="${basedir}/scripts" >
-                <include name="**/*"/>
-            </fileset>
-        </copy>
-                 
-        <chmod dir="${basedir}/temp" includes="**/*.sh" perm="+x" />
-
-        <mkdir dir="${basedir}/out"/>
-        <zip destfile="${basedir}/out/ApacheFlexJS.zip" basedir="${basedir}/temp"/>
-        <tar-gzip name="ApacheFlexJS" />
-    </target>
-            
     <!-- 
         Packages the binary distribution with ZIP. 
     -->
@@ -1524,8 +1281,11 @@
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
                 <!--          End of binary files           -->
+                <!--          JSON doesn't really have a comment format     -->
+                <exclude name="**/*.json"/>
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
+                <exclude name="frameworks/js/.jshintrc"/>
             </fileset>
         </rat:report>
     </target>

@@ -60,6 +60,11 @@
                 <include name="Formatters.swc"/>
             </fileset>
         </delete>
+        <delete failonerror="false">
+            <fileset dir="${basedir}/js/out">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
     </target>
     
     <path id="lib.path">
