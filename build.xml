@@ -679,6 +679,13 @@
             </fileset>
         </copy>
 
+        <!-- copy all js again to pick up cross-compiled files -->
+        <copy todir="${basedir}/temp/frameworks/projects">
+            <fileset dir="${basedir}/frameworks/projects">
+                <include name="**/**.js"/>
+            </fileset>
+        </copy>
+
         <!-- falcon
         <antcall target="stage-falcon"/>
          -->
