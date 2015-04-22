@@ -76,7 +76,6 @@
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
-        <antcall target="mxmlcclasses"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
@@ -186,7 +185,6 @@
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
-        <ant dir="${basedir}/as/projects/MXMLCClasses" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
         <delete includeemptydirs="true" failonerror="false">
@@ -264,10 +262,6 @@
 
     <target name="Network" description="Clean build of Network.swc">
         <ant dir="${basedir}/projects/Network"/>
-    </target>
-
-    <target name="mxmlcclasses" description="Clean build of MXMLClasses.swc">
-        <ant dir="${basedir}/as/projects/MXMLCClasses"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
