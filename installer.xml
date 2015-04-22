@@ -295,7 +295,7 @@
         <fail message="${basedir} is not an FlexJS binary package">
             <condition>
                 <not>
-                    <available file="${basedir}/frameworks/as/libs/FlexJSUI.swc" />
+                    <available file="${basedir}/frameworks/libs/Binding.swc" />
                 </not>
             </condition>
         </fail>
@@ -827,10 +827,10 @@
     
     <target name="fixup-config-files">
         <echo>${INFO_INSTALLING_CONFIG_FILES}</echo>
-        <copy file="${FLEXJS_HOME}/frameworks/as/flex-config-template.xml"
-            tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" />
-        <copy file="${FLEXJS_HOME}/frameworks/as/air-config-template.xml"
-            tofile="${FLEXJS_HOME}/frameworks/air-config.xml" />
+        <copy file="${FLEXJS_HOME}/frameworks/flex-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" overwrite="true"/>
+        <copy file="${FLEXJS_HOME}/frameworks/air-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/air-config.xml" overwrite="true"/>
         <replace file="${FLEXJS_HOME}/frameworks/flex-config.xml">
             <replacefilter token="@playerversion@"
                             value="${flash.sdk.version}"/>
@@ -952,7 +952,7 @@
         <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
-        <copy file="${FLEXJS_HOME}/frameworks/as/libs/MXMLCClasses.swc"
+        <copy file="${FLEXJS_HOME}/frameworks/libs/MXMLCClasses.swc"
 tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <touch file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css" />
         <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
