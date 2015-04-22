@@ -35,8 +35,6 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 
-		import mx.events.*;
-		
 		import samples.flexstore.Product;
 		import samples.flexstore.ProductThumbEvent;
 
