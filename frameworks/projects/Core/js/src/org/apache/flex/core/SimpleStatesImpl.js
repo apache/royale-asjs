@@ -14,15 +14,15 @@
 
 goog.provide('org_apache_flex_core_SimpleStatesImpl');
 
-goog.require('mx_states_AddItems');
-goog.require('mx_states_SetEventHandler');
-goog.require('mx_states_SetProperty');
-goog.require('mx_states_State');
 goog.require('org_apache_flex_core_IBead');
 goog.require('org_apache_flex_core_IStatesImpl');
 goog.require('org_apache_flex_core_IStrand');
 goog.require('org_apache_flex_core_UIBase');
 goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org_apache_flex_states_AddItems');
+goog.require('org_apache_flex_states_SetEventHandler');
+goog.require('org_apache_flex_states_SetProperty');
+goog.require('org_apache_flex_states_State');
 
 
 
@@ -122,7 +122,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.stateChangeHandler_ =
 
 /**
  * @private
- * @param {mx_states_State} s The State to revert.
+ * @param {org_apache_flex_states_State} s The State to revert.
  */
 org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
   var arr, item, o, p, q, target;
@@ -133,7 +133,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org_apache_flex_utils_Language.is(o, mx_states_AddItems)) {
+    if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_AddItems)) {
       for (q in o.items) {
         item = o.items[q];
 
@@ -146,10 +146,10 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
         parent.dispatchEvent(
             new org_apache_flex_events_Event('childrenAdded'));
       }
-    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty)) {
+    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetProperty)) {
       target = o.document[o.target];
       target[o.name] = o.previousValue;
-    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
+    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetEventHandler)) {
       target = o.document[o.target];
       target.removeEventListener(o.name, o.handlerFunction);
     }
@@ -159,7 +159,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
 
 /**
  * @private
- * @param {mx_states_State} s The State to apply.
+ * @param {org_apache_flex_states_State} s The State to apply.
  */
 org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
   var arr, child, index, item, o, p, q, target;
@@ -170,7 +170,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org_apache_flex_utils_Language.is(o, mx_states_AddItems)) {
+    if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_AddItems)) {
       if (!o.items) {
         o.items = o.itemsDescriptor.items;
         if (o.items == null) {
@@ -206,12 +206,12 @@ org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
             new org_apache_flex_events_Event('childrenAdded'));
       }
     }
-    else if (org_apache_flex_utils_Language.is(o, mx_states_SetProperty))
+    else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetProperty))
     {
       target = o.document[o.target];
       o.previousValue = target[o.name];
       target[o.name] = o.value;
-    } else if (org_apache_flex_utils_Language.is(o, mx_states_SetEventHandler)) {
+    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetEventHandler)) {
       target = o.document[o.target];
       target.addEventListener(o.name, o.handlerFunction);
     }

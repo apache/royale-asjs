@@ -19,8 +19,8 @@
 package org.apache.flex.core
 {
     
-    import mx.core.ClassFactory;
-    import mx.core.IFactory;
+    import org.apache.flex.core.ClassFactory;
+    import org.apache.flex.core.IFactory;
     
     import org.apache.flex.utils.MXMLDataInterpreter;
 

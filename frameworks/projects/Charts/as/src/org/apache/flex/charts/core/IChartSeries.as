@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	import mx.core.IFactory;
+	import org.apache.flex.core.IFactory;
 
 	/**
 	 *  The IChartSeries interface is the basic interface for any type of

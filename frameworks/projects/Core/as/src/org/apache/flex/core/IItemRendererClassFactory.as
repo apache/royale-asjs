@@ -21,7 +21,7 @@ package org.apache.flex.core
     /**
      *  The IItemRendererClassFactory interface is the basic interface for beads
      *  that generate instances of IItemRenderers.  Note that this is not the same
-     *  as an mx.core.IFactory which is a lower-level interface for generating
+     *  as an org.apache.flex.core.IFactory which is a lower-level interface for generating
      *  an instance of just about anything.  IItemRendererClassFactory implementations
      *  often use IFactory to generate the actual item renderer instance, but
      *  the IItemRendererClassFactory bead allows for more computation about which 

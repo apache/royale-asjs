@@ -209,13 +209,13 @@ limitations under the License.
 
     <js:states>
 
-        <mx:State name="compare" />
+        <js:State name="compare" />
 
-        <mx:State name="x4cols" />
+        <js:State name="x4cols" />
 
-        <mx:State name="x3cols" />
+        <js:State name="x3cols" />
 
-        <mx:State name="x2cols"/>
+        <js:State name="x2cols"/>
     </js:states>
 
 </js:Container>

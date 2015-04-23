@@ -60,8 +60,8 @@ limitations under the License.
     </fx:Declarations>
 
     <js:states>
-        <mx:State name="Features" />
-        <mx:State name="Support" />
+        <js:State name="Features" />
+        <js:State name="Support" />
     </js:states>
     
     <js:transitions>

@@ -87,11 +87,11 @@ internal class CoreClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
     
-	import mx.core.ClassFactory; ClassFactory;
-    import mx.states.AddItems; AddItems;
-    import mx.states.SetEventHandler; SetEventHandler;
-    import mx.states.SetProperty; SetProperty;
-    import mx.states.State; State;
+	import org.apache.flex.core.ClassFactory; ClassFactory;
+    import org.apache.flex.states.AddItems; AddItems;
+    import org.apache.flex.states.SetEventHandler; SetEventHandler;
+    import org.apache.flex.states.SetProperty; SetProperty;
+    import org.apache.flex.states.State; State;
 }
 
 }

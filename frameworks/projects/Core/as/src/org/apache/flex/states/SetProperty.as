@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 // shim the mx classes for states
-package mx.states
+package org.apache.flex.states
 {
     import org.apache.flex.core.IDocument;
     

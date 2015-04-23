@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('mx_states_SetEventHandler');
+goog.provide('org_apache_flex_states_SetEventHandler');
 
 goog.require('org_apache_flex_core_IDocument');
 
@@ -22,7 +22,7 @@ goog.require('org_apache_flex_core_IDocument');
  * @constructor
  * @implements {org_apache_flex_core_IDocument}
  */
-mx_states_SetEventHandler = function() {
+org_apache_flex_states_SetEventHandler = function() {
 };
 
 
@@ -31,9 +31,9 @@ mx_states_SetEventHandler = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_states_SetEventHandler.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_states_SetEventHandler.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SetEventHandler',
-                qName: 'mx_states_SetEventHandler' }],
+                qName: 'org_apache_flex_states_SetEventHandler' }],
       interfaces: [org_apache_flex_core_IDocument] };
 
 
@@ -41,7 +41,7 @@ mx_states_SetEventHandler.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-mx_states_SetEventHandler.prototype.setDocument = function(document, opt_id) {
+org_apache_flex_states_SetEventHandler.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
@@ -51,28 +51,28 @@ mx_states_SetEventHandler.prototype.setDocument = function(document, opt_id) {
  * @expose
  * @type {Object} document The MXML object.
  */
-mx_states_SetEventHandler.prototype.document = null;
+org_apache_flex_states_SetEventHandler.prototype.document = null;
 
 
 /**
  * @expose
  * @type {string} name The event to listen for.
  */
-mx_states_SetEventHandler.prototype.name = '';
+org_apache_flex_states_SetEventHandler.prototype.name = '';
 
 
 /**
  * @expose
  * @type {string} target The id of the object.
  */
-mx_states_SetEventHandler.prototype.target = '';
+org_apache_flex_states_SetEventHandler.prototype.target = '';
 
 
 /**
  * @expose
  * @type {Object} handlerFunction The listener to be added.
  */
-mx_states_SetEventHandler.prototype.handlerFunction = null;
+org_apache_flex_states_SetEventHandler.prototype.handlerFunction = null;
 
 
 /**
@@ -80,7 +80,7 @@ mx_states_SetEventHandler.prototype.handlerFunction = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-mx_states_SetEventHandler.prototype.initializeFromObject = function(properties) {
+org_apache_flex_states_SetEventHandler.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {

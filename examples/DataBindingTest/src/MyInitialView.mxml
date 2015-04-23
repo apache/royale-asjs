@@ -97,8 +97,8 @@ limitations under the License.
         }
 	</fx:Style>
     <js:states>
-        <mx:State name="hideAll" />        
-        <mx:State name="showAll" />        
+        <js:State name="hideAll" />        
+        <js:State name="showAll" />        
     </js:states>
     <js:beads>
         <js:ViewBaseDataBinding />

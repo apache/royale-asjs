@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.core
+package org.apache.flex.core
 {
     /**
      *  The IFactory interface is the basic interface used as the 

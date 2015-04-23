@@ -83,10 +83,22 @@
      
      <mxml>
          <children-as-data>true</children-as-data>
+         <imports>
+             <implicit-import>org.apache.flex.events.*</implicit-import>
+             <implicit-import>org.apache.flex.geom.*</implicit-import>
+             <implicit-import>org.apache.flex.core.ClassFactory</implicit-import>
+             <implicit-import>org.apache.flex.core.IFactory</implicit-import>
+         </imports>
      </mxml>
      <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
      <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
      <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+     <states-class>org.apache.flex.states.State</states-class>
+     <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
+     <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
+     <states-event-override-class>org.apache.flex.states.SetEventHandler</states-event-override-class>
+     <component-factory-class>org.apache.flex.core.ClassFactory</component-factory-class>
+     <component-factory-interface>org.apache.flex.core.IFactory</component-factory-interface>
 
      <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->

@@ -75,9 +75,9 @@ public class Tween extends Effect
 	 *       <code>onTweenEnd()</code> method.</td></tr>
 	 *  </table>
 	 *
-	 *  @see mx.effects.Effect
-	 *  @see mx.effects.TweenEffect 
-	 *  @see mx.events.EffectEvent
+	 *  @see org.apache.flex.effects.Effect
+	 *  @see org.apache.flex.effects.TweenEffect 
+	 *  @see org.apache.flex.events.EffectEvent
 	 *  @eventType tweenEnd 
 	 *  
 	 *  @langversion 3.0

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('mx_states_State');
+goog.provide('org_apache_flex_states_State');
 
 
 
@@ -20,7 +20,7 @@ goog.provide('mx_states_State');
  * @constructor
  * @param {Object=} opt_props The initial properties.
  */
-mx_states_State = function(opt_props) {
+org_apache_flex_states_State = function(opt_props) {
   opt_props = typeof opt_props !== 'undefined' ? opt_props : null;
 };
 
@@ -30,20 +30,20 @@ mx_states_State = function(opt_props) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_states_State.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_states_State.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'State',
-                qName: 'mx_states_State' }] };
+                qName: 'org_apache_flex_states_State' }] };
 
 
 /**
  * @expose
  * @type {string} name The state name.
  */
-mx_states_State.prototype.name = '';
+org_apache_flex_states_State.prototype.name = '';
 
 
 /**
  * @expose
  * @type {Array} overrides The state data.
  */
-mx_states_State.prototype.overrides = null;
+org_apache_flex_states_State.prototype.overrides = null;

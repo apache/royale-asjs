@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('mx_states_SetProperty');
+goog.provide('org_apache_flex_states_SetProperty');
 
 goog.require('org_apache_flex_core_IDocument');
 
@@ -22,7 +22,7 @@ goog.require('org_apache_flex_core_IDocument');
  * @constructor
  * @implements {org_apache_flex_core_IDocument}
  */
-mx_states_SetProperty = function() {
+org_apache_flex_states_SetProperty = function() {
 };
 
 
@@ -31,9 +31,9 @@ mx_states_SetProperty = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_states_SetProperty.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_states_SetProperty.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SetProperty',
-                qName: 'mx_states_SetProperty' }],
+                qName: 'org_apache_flex_states_SetProperty' }],
       interfaces: [org_apache_flex_core_IDocument] };
 
 
@@ -41,7 +41,7 @@ mx_states_SetProperty.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-mx_states_SetProperty.prototype.setDocument = function(document, opt_id) {
+org_apache_flex_states_SetProperty.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
@@ -51,35 +51,35 @@ mx_states_SetProperty.prototype.setDocument = function(document, opt_id) {
  * @expose
  * @type {Object} document The MXML object.
  */
-mx_states_SetProperty.prototype.document = null;
+org_apache_flex_states_SetProperty.prototype.document = null;
 
 
 /**
  * @expose
  * @type {string} name The target property name.
  */
-mx_states_SetProperty.prototype.name = '';
+org_apache_flex_states_SetProperty.prototype.name = '';
 
 
 /**
  * @expose
  * @type {?string} target The id of the object.
  */
-mx_states_SetProperty.prototype.target = null;
+org_apache_flex_states_SetProperty.prototype.target = null;
 
 
 /**
  * @expose
  * @type {Object} previousValue The value to revert to.
  */
-mx_states_SetProperty.prototype.previousValue = null;
+org_apache_flex_states_SetProperty.prototype.previousValue = null;
 
 
 /**
  * @expose
  * @type {Object} value The value to set.
  */
-mx_states_SetProperty.prototype.value = null;
+org_apache_flex_states_SetProperty.prototype.value = null;
 
 
 /**
@@ -87,7 +87,7 @@ mx_states_SetProperty.prototype.value = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-mx_states_SetProperty.prototype.initializeFromObject = function(properties) {
+org_apache_flex_states_SetProperty.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {

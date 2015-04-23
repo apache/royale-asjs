@@ -14,8 +14,8 @@
 
 goog.provide('org_apache_flex_html_List');
 
-goog.require('mx_core_IFactory');
 goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
+goog.require('org_apache_flex_core_IFactory');
 goog.require('org_apache_flex_core_IItemRendererClassFactory');
 goog.require('org_apache_flex_core_IListPresentationModel');
 goog.require('org_apache_flex_core_ItemRendererClassFactory');

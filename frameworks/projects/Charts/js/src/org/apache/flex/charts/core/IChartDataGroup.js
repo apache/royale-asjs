@@ -20,7 +20,7 @@
 
 goog.provide('org_apache_flex_charts_core_IChartDataGroup');
 
-goog.require('mx_core_IFactory');
+goog.require('org_apache_flex_core_IFactory');
 goog.require('org_apache_flex_core_IItemRendererParent');
 
 

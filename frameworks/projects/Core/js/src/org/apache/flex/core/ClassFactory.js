@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('mx_core_ClassFactory');
+goog.provide('org_apache_flex_core_ClassFactory');
 
-goog.require('mx_core_IFactory');
+goog.require('org_apache_flex_core_IFactory');
 
 
 
 /**
  * @constructor
- * @implements {mx_core_IFactory}
+ * @implements {org_apache_flex_core_IFactory}
  * @param {Function} generator The class definition to use for newInstance.
  */
-mx_core_ClassFactory = function(generator) {
+org_apache_flex_core_ClassFactory = function(generator) {
   /**
    * @private
    * @type {Function}
@@ -38,18 +38,18 @@ mx_core_ClassFactory = function(generator) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_core_ClassFactory.prototype.
+org_apache_flex_core_ClassFactory.prototype.
     FLEXJS_CLASS_INFO =
         { names: [{ name: 'ClassFactory',
-           qName: 'mx_core_ClassFactory' }],
-    interfaces: [mx_core_IFactory] };
+           qName: 'org_apache_flex_core_ClassFactory' }],
+    interfaces: [org_apache_flex_core_IFactory] };
 
 
 /**
  * @expose
  * @return {Object} The new instance of the class described by generator.
  */
-mx_core_ClassFactory.
+org_apache_flex_core_ClassFactory.
     prototype.newInstance = function() {
   var obj = new this.generator_();
 

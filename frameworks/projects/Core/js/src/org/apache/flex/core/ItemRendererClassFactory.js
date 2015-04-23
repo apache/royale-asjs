@@ -14,7 +14,7 @@
 
 goog.provide('org_apache_flex_core_ItemRendererClassFactory');
 
-goog.require('mx_core_ClassFactory');
+goog.require('org_apache_flex_core_ClassFactory');
 goog.require('org_apache_flex_core_IItemRendererClassFactory');
 goog.require('org_apache_flex_core_ValuesManager');
 
@@ -66,7 +66,7 @@ Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype,
               /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
                   getValue(this.strand_, 'iItemRenderer'));
               if (this.itemRendererClass) {
-                this.itemRendererClassFactory = new mx_core_ClassFactory(this.itemRendererClass);
+                this.itemRendererClassFactory = new org_apache_flex_core_ClassFactory(this.itemRendererClass);
                 this.createFunction = this.createFromClass;
               }
            }

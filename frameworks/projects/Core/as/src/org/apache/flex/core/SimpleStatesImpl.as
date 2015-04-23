@@ -20,10 +20,10 @@ package org.apache.flex.core
 {
     import flash.display.DisplayObject;
     
-    import mx.states.AddItems;
-    import mx.states.SetEventHandler;
-    import mx.states.SetProperty;
-    import mx.states.State;
+    import org.apache.flex.states.AddItems;
+    import org.apache.flex.states.SetEventHandler;
+    import org.apache.flex.states.SetProperty;
+    import org.apache.flex.states.State;
     
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStatesObject;

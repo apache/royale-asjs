@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import mx.states.State;
+	import org.apache.flex.states.State;
 	
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.ILayoutParent;
@@ -147,7 +147,7 @@ package org.apache.flex.html
         
         /**
          *  The array of view states. These should
-         *  be instances of mx.states.State.
+         *  be instances of org.apache.flex.states.State.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

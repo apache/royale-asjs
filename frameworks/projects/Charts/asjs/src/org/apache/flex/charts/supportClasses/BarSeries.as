@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {
-    import mx.core.IFactory;
+    import org.apache.flex.core.IFactory;
     
 	import org.apache.flex.charts.core.IChartSeries;
 	

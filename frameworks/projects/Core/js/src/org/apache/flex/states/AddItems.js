@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('mx_states_AddItems');
+goog.provide('org_apache_flex_states_AddItems');
 
 goog.require('org_apache_flex_core_IDocument');
 
@@ -22,7 +22,7 @@ goog.require('org_apache_flex_core_IDocument');
  * @constructor
  * @implements {org_apache_flex_core_IDocument}
  */
-mx_states_AddItems = function() {
+org_apache_flex_states_AddItems = function() {
 };
 
 
@@ -31,9 +31,9 @@ mx_states_AddItems = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_states_AddItems.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_states_AddItems.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'AddItems',
-                qName: 'mx_states_AddItems' }],
+                qName: 'org_apache_flex_states_AddItems' }],
       interfaces: [org_apache_flex_core_IDocument] };
 
 
@@ -41,7 +41,7 @@ mx_states_AddItems.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-mx_states_AddItems.prototype.setDocument = function(document, opt_id) {
+org_apache_flex_states_AddItems.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
   var data = document['mxmlsd'][this.itemsDescriptorIndex];
@@ -60,14 +60,14 @@ mx_states_AddItems.prototype.setDocument = function(document, opt_id) {
  * @expose
  * @type {Object} document The MXML object.
  */
-mx_states_AddItems.prototype.document = null;
+org_apache_flex_states_AddItems.prototype.document = null;
 
 
 /**
  * @expose
  * @type {Array} items The array of items to add.
  */
-mx_states_AddItems.prototype.items = null;
+org_apache_flex_states_AddItems.prototype.items = null;
 
 
 /**
@@ -75,42 +75,42 @@ mx_states_AddItems.prototype.items = null;
  * @type {number} itemsDescriptor The index into the array
  *                               of itemDescriptors on the document
  */
-mx_states_AddItems.prototype.itemsDescriptorIndex = -1;
+org_apache_flex_states_AddItems.prototype.itemsDescriptorIndex = -1;
 
 
 /**
  * @expose
  * @type {Object} itemsDescriptor The descriptors for items.
  */
-mx_states_AddItems.prototype.itemsDescriptor = null;
+org_apache_flex_states_AddItems.prototype.itemsDescriptor = null;
 
 
 /**
  * @expose
  * @type {string} destination The id of the parent.
  */
-mx_states_AddItems.prototype.destination = '';
+org_apache_flex_states_AddItems.prototype.destination = '';
 
 
 /**
  * @expose
  * @type {string} propertyName The child property name (e.g. mxmlContent).
  */
-mx_states_AddItems.prototype.propertyName = '';
+org_apache_flex_states_AddItems.prototype.propertyName = '';
 
 
 /**
  * @expose
  * @type {string} position Where the item goes relative to relativeTo.
  */
-mx_states_AddItems.prototype.position = '';
+org_apache_flex_states_AddItems.prototype.position = '';
 
 
 /**
  * @expose
  * @type {?string} relativeTo The id of the child where the item goes.
  */
-mx_states_AddItems.prototype.relativeTo = null;
+org_apache_flex_states_AddItems.prototype.relativeTo = null;
 
 
 /**
@@ -118,7 +118,7 @@ mx_states_AddItems.prototype.relativeTo = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-mx_states_AddItems.prototype.initializeFromObject = function(properties) {
+org_apache_flex_states_AddItems.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {

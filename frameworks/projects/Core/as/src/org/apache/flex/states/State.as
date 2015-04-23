@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // shim the mx classes for states
-package mx.states
+package org.apache.flex.states
 {
     /**
      *  The State class is one of the classes in the

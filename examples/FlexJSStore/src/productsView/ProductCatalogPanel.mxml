@@ -540,9 +540,9 @@ limitations under the License.
     </js:Container>
     
     <js:states>
-        <mx:State name="browse" />
-        <mx:State name="compare" />
-        <mx:State name="details" />
+        <js:State name="browse" />
+        <js:State name="compare" />
+        <js:State name="details" />
     </js:states>
     
 </js:Panel>

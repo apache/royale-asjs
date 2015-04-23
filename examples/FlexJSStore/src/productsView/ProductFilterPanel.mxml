@@ -209,8 +209,8 @@ limitations under the License.
                   image.showingComparison="assets/icon_tiles.png" />
     
     <js:states>
-       <mx:State name="showingThumbnails" />
-       <mx:State name="showingComparison" />
+       <js:State name="showingThumbnails" />
+       <js:State name="showingComparison" />
     </js:states>
 
 </js:VContainer>

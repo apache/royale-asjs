@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.core
+package org.apache.flex.core
 {
-	import mx.core.IFactory;
+	import org.apache.flex.core.IFactory;
 	
     /**
      *  The ClassFactory class is the basic implementation
@@ -66,7 +66,7 @@ package mx.core
 		}
 		
         /**
-         *  @copy mx.core.IFactory#newInstance()
+         *  @copy score.IFactory#newInstance()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 9

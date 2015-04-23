@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	import mx.core.IFactory;
+	import org.apache.flex.core.IFactory;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe

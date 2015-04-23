@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('mx_core_IFactory');
+goog.provide('org_apache_flex_core_IFactory');
 
 
 
 /**
  * @interface
  */
-mx_core_IFactory = function() {
+org_apache_flex_core_IFactory = function() {
 };
 
 
@@ -32,7 +32,7 @@ mx_core_IFactory = function() {
  * @expose
  * @return {Object} A new instance of the itemRenderer.
  */
-mx_core_IFactory.prototype.newInstance = function() {};
+org_apache_flex_core_IFactory.prototype.newInstance = function() {};
 
 
 /**
@@ -40,6 +40,6 @@ mx_core_IFactory.prototype.newInstance = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-mx_core_IFactory.prototype.FLEXJS_CLASS_INFO =
+org_apache_flex_core_IFactory.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IFactory',
-                qName: 'mx_core_IFactory' }] };
+                qName: 'org_apache_flex_core_IFactory' }] };

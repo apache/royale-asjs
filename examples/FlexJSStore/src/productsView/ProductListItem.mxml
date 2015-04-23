@@ -124,8 +124,8 @@ limitations under the License.
     </js:TextInput>
     
     <js:states>
-        <mx:State name="compare" />
-        <mx:State name="showQuantity" />
+        <js:State name="compare" />
+        <js:State name="showQuantity" />
     </js:states>
     
 </js:Container>

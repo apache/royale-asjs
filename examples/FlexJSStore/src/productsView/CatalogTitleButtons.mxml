@@ -64,7 +64,7 @@ limitations under the License.
              rollOut.showFilter="rollOutLabel(event)"/>
     
     <js:states>
-        <mx:State name="showFilter" />
-        <mx:State name="showCart" />
+        <js:State name="showFilter" />
+        <js:State name="showCart" />
     </js:states>
 </js:HContainer>

@@ -49,10 +49,6 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>basic-manifest.xml</manifest>
             </namespace>
-            <namespace>
-                <uri>library://ns.adobe.com/flex/mx</uri>
-                <manifest>mx-manifest.xml</manifest>
-            </namespace>
         </namespaces>
         
         <source-path>
@@ -79,7 +75,6 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.adobe.com/flex/mx</uri>
 		<uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>  
         
