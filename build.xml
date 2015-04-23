@@ -1198,6 +1198,8 @@
             <arg line="-compiler.mxml.children-as-data=true" />
             <library-path dir="${FLEX_SDK_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
+                <include name="frameworks/libs/framework.swc"/>
+                <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </library-path>
         </mxmlc>
         <!-- compile supporting swfs for basic tests
