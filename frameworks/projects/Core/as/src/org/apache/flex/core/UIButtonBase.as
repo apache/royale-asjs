@@ -246,6 +246,44 @@ package org.apache.flex.core
 			dispatchEvent(new Event("percentHeightChanged"));
 		}
 		
+		/**
+		 * Returns the inner width of the component which includes its padding but
+		 * not its margins. Basically, the width plus left and right padding.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get clientWidth():Number
+		{
+			var padding:Object = determinePadding();
+			var pl:Number = 0;
+			var pr:Number = 0;
+			if (!isNaN(padding.paddingLeft)) pl = padding.paddingLeft;
+			if (!isNaN(padding.paddingRight)) pr = padding.paddingRight;
+			return width + pl + pr;
+		}
+		
+		/**
+		 * Returns the inner height of the component which includes its padding
+		 * but not its margins. Basically, the height plus top and bottom padding.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get clientHeight():Number
+		{
+			var padding:Object = determinePadding();
+			var pt:Number = 0;
+			var pb:Number = 0;
+			if (!isNaN(padding.paddingTop)) pt = padding.paddingTop;
+			if (!isNaN(padding.paddingBottom)) pb = padding.paddingBottom;
+			return height + pt + pb;
+		}
+		
 		private var _width:Number;
         
         [PercentProxy("percentWidth")]
@@ -459,6 +497,60 @@ package org.apache.flex.core
         {
             return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
+		
+		/**
+		 *  Determines the top and left padding values, if any, as set by
+		 *  padding style values. This includes "padding" for all padding values
+		 *  as well as "padding-left" and "padding-top".
+		 * 
+		 *  Returns an object with paddingLeft and paddingTop properties.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function determinePadding():Object
+		{
+			var paddingLeft:Object;
+			var paddingTop:Object;
+			var paddingRight:Object;
+			var paddingBottom:Object;
+			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
+			if (padding is Array)
+			{
+				if (padding.length == 1)
+					paddingLeft = paddingTop = padding[0];
+				else if (padding.length <= 3)
+				{
+					paddingLeft = padding[1];
+					paddingTop = padding[0];
+				}
+				else if (padding.length == 4)
+				{
+					paddingLeft = padding[3];
+					paddingTop = padding[0];					
+				}
+			}
+			else if (padding == null)
+			{
+				paddingLeft = ValuesManager.valuesImpl.getValue(this, "padding-left");
+				paddingTop = ValuesManager.valuesImpl.getValue(this, "padding-top");
+				paddingRight = ValuesManager.valuesImpl.getValue(this, "padding-right");
+				paddingBottom = ValuesManager.valuesImpl.getValue(this, "padding-bottom");
+			}
+			else
+			{
+				paddingLeft = paddingTop = padding;
+				paddingRight = paddingBottom = padding;
+			}
+			var pl:Number = Number(paddingLeft);
+			var pt:Number = Number(paddingTop);
+			var pr:Number = Number(paddingRight);
+			var pb:Number = Number(paddingBottom);
+			
+			return {paddingLeft:pl, paddingTop:pt, paddingRight:pr, paddingBottom:pb};
+		}
         
         private var _model:IBeadModel;
 

@@ -148,7 +148,7 @@ package org.apache.flex.html.beads.layouts
                             child.width = ww - right;
                     }
                     else
-                        child.x = w - right - child.width;
+                        child.x = w - right - child.clientWidth;
                 }
                 if (child is ILayoutChild)
                 {
@@ -166,7 +166,7 @@ package org.apache.flex.html.beads.layouts
                             child.height = hh - bottom;
                     }
                     else
-                        child.y = h - bottom - child.height;
+                        child.y = h - bottom - child.clientHeight;
                 }
                 child.dispatchEvent(new Event("sizeChanged"));
 			}

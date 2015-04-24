@@ -178,7 +178,7 @@ package org.apache.flex.html.beads.layouts
 						mr = 0;
 				}
 				child.y = mt;
-				maxHeight = Math.max(maxHeight, ml + child.height + mr);
+				maxHeight = Math.max(maxHeight, ml + child.clientHeight + mr);
 				var xx:Number;
 				if (i == 0)
 					child.x = ml;
@@ -190,7 +190,7 @@ package org.apache.flex.html.beads.layouts
                     if (!isNaN(ilc.percentWidth))
                         ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
                 }
-				xx = child.x + child.width;
+				xx = child.x + child.clientWidth;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
 				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
@@ -207,9 +207,9 @@ package org.apache.flex.html.beads.layouts
                         ilc.setHeight(contentView.height * ilc.percentHeight / 100, true);
                 }
 				if (obj.valign == "middle")
-					child.y = (maxHeight - child.height) / 2;
+					child.y = (maxHeight - child.clientHeight) / 2;
 				else if (valign == "bottom")
-					child.y = maxHeight - child.height - obj.marginBottom;
+					child.y = maxHeight - child.clientHeight - obj.marginBottom;
 				else
 					child.y = obj.marginTop;
                 child.dispatchEvent(new Event("sizeChanged"));

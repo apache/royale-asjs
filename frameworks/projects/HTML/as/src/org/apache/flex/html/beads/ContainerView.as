@@ -272,10 +272,11 @@ package org.apache.flex.html.beads
 		 */
 		protected function contentAreaNeeded():Boolean
 		{
-			var padding:Object = determinePadding();
-			
-			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
-				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
+			return true;
+//			var padding:Object = determinePadding();
+//			
+//			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
+//				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
 		}
 		
         /**
@@ -302,6 +303,36 @@ package org.apache.flex.html.beads
 		public function get resizableView():IUIBase
 		{
 			return _strand as IUIBase;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IBeadView#viewHeight
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function get viewHeight():Number
+		{
+			// don't want to put $height in an interface
+			var vh:Number = contentView.height;
+			return vh;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IBeadView#viewWidth
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function get viewWidth():Number
+		{
+			// don't want to put $width in an interface
+			var vw:Number = contentView.width;
+			return vw;
 		}
 				
 	}

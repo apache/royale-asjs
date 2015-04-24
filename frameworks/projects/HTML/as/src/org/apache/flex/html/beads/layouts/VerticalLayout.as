@@ -173,7 +173,7 @@ package org.apache.flex.html.beads.layouts
                     if (!isNaN(ilc.percentHeight))
                         ilc.setHeight(contentView.height * ilc.percentHeight / 100, true);
                 }
-				yy = child.y + child.height;
+				yy = child.y + child.clientHeight;
 				lastmb = mb;
 				flexibleHorizontalMargins[i] = {};
 				if (marginLeft == "auto")
@@ -217,7 +217,7 @@ package org.apache.flex.html.beads.layouts
                     if (!isNaN(ilc.percentWidth))
                         ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
                 }
-				maxWidth = Math.max(maxWidth, ml + child.width + mr);
+				maxWidth = Math.max(maxWidth, ml + child.clientWidth + mr);
 			}
 			for (i = 0; i < n; i++)
 			{
@@ -227,9 +227,9 @@ package org.apache.flex.html.beads.layouts
                 {
 					var obj:Object = flexibleHorizontalMargins[i];
 					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-						child.x = maxWidth - child.width / 2;
+						child.x = maxWidth - child.clientWidth / 2;
 					else if (obj.marginLeft == "auto")
-						child.x = maxWidth - child.width - obj.marginRight;
+						child.x = maxWidth - child.clientWidth - obj.marginRight;
 				}
                 child.dispatchEvent(new Event("sizeChanged"));
 			}
