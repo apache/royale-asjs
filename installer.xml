@@ -952,7 +952,7 @@
         <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
-        <copy file="${FLEXJS_HOME}/frameworks/libs/MXMLCClasses.swc"
+        <copy file="${FLEXJS_HOME}/frameworks/libs/Binding.swc"
 tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <touch file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css" />
         <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
