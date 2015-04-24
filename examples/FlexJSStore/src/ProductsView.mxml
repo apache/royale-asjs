@@ -22,7 +22,6 @@ limitations under the License.
      settings in flexstore.mxml -->
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:js="library://ns.apache.org/flexjs/basic" 
-         xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:productsView="productsView.*"
     width="990" height="550"
     currentState="showFilter"

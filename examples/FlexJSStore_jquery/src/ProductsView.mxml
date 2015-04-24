@@ -22,7 +22,6 @@ limitations under the License.
      settings in flexstore.mxml -->
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:js="library://ns.apache.org/flexjs/basic" 
-         xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:productsView="productsView.*"
     width="990" height="550"
     currentState="showFilter"
@@ -31,7 +30,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
         import org.apache.flex.events.Event;
-        import org.apache.flex.net.dataConverters.LazyCollection;
+        import org.apache.flex.collections.LazyCollection;
         import samples.flexstore.Product;
                 
         private var _catalog:LazyCollection;
@@ -109,8 +108,8 @@ limitations under the License.
     </productsView:ProductCatalogPanel>
     
     <js:states>
-       <mx:State name="showFilter" />
-       <mx:State name="showCart" />
+       <js:State name="showFilter" />
+       <js:State name="showCart" />
     </js:states>
     
     <!-- 

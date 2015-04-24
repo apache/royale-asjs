@@ -60,10 +60,10 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	<js:states>
-		<mx:State name="up"/>
-		<mx:State name="over"/>
-		<mx:State name="down"/>
-		<mx:State name="disabled"/>
+		<js:State name="up"/>
+		<js:State name="over"/>
+		<js:State name="down"/>
+		<js:State name="disabled"/>
 	</js:states>
 	<!--<js:beads>
 		<js:ViewBaseDataBinding />

@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:js="library://ns.apache.org/flexjs/basic" 
-                   xmlns:mx="library://ns.adobe.com/flex/mx"
     width="{COL_WIDTH_4}" height="{COL_HEIGHT_4}" height.compare="502"
     width.x4cols="{COL_WIDTH_4}" height.x4cols="{COL_HEIGHT_4}"
     width.x3cols="{COL_WIDTH_3}" height.x3cols="{COL_HEIGHT_3}"

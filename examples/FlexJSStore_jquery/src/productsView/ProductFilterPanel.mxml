@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <js:VContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
                   xmlns:js="library://ns.apache.org/flexjs/basic" 
-                  xmlns:mx="library://ns.adobe.com/flex/mx" 
     xmlns:productsView="productsView.*"
     xmlns:flexstore="samples.flexstore.*"
     height="100%" 
@@ -209,8 +208,8 @@ limitations under the License.
                   image.showingComparison="assets/icon_tiles.png" />
     
     <js:states>
-       <mx:State name="showingThumbnails" />
-       <mx:State name="showingComparison" />
+       <js:State name="showingThumbnails" />
+       <js:State name="showingComparison" />
     </js:states>
 
 </js:VContainer>

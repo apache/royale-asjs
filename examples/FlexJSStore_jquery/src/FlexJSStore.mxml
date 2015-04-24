@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <jquery:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                 xmlns:js="library://ns.apache.org/flexjs/basic" 
-                xmlns:mx="library://ns.adobe.com/flex/mx"
                 xmlns:jquery="library://ns.apache.org/flexjs/jquery"
                 xmlns="*"
                 initialize="startService()"
@@ -191,16 +190,16 @@ limitations under the License.
                         initComplete="completeHandler(null)"
                         stateChangeComplete="chainStatesIfNeeded()">
             <js:states>
-                <mx:State name="HomeState" stateGroups="['Home']" />
-                <mx:State name="HomeWipeUp" stateGroups="['Home']" />
-                <mx:State name="HomeWipeDown" stateGroups="['Home']" />
-                <mx:State name="ProductsPreBake" stateGroups="['Home', 'Products']" />
-                <mx:State name="ProductsState" stateGroups="['Products']" />
-                <mx:State name="ProductsWipeUp" stateGroups="['Products']" />
-                <mx:State name="ProductsWipeDown" stateGroups="['Products']" />
-                <mx:State name="SupportState" stateGroups="['Support']" />
-                <mx:State name="SupportWipeUp" stateGroups="['Support']" />
-                <mx:State name="SupportWipeDown" stateGroups="['Support']" />
+                <js:State name="HomeState" stateGroups="['Home']" />
+                <js:State name="HomeWipeUp" stateGroups="['Home']" />
+                <js:State name="HomeWipeDown" stateGroups="['Home']" />
+                <js:State name="ProductsPreBake" stateGroups="['Home', 'Products']" />
+                <js:State name="ProductsState" stateGroups="['Products']" />
+                <js:State name="ProductsWipeUp" stateGroups="['Products']" />
+                <js:State name="ProductsWipeDown" stateGroups="['Products']" />
+                <js:State name="SupportState" stateGroups="['Support']" />
+                <js:State name="SupportWipeUp" stateGroups="['Support']" />
+                <js:State name="SupportWipeDown" stateGroups="['Support']" />
             </js:states>
             
             <js:transitions>

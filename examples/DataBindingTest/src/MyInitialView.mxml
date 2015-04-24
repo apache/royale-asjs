@@ -20,7 +20,7 @@ limitations under the License.
 <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
                 xmlns:core="library://ns.apache.org/flexjs/core"
-			    initComplete="initControls()" xmlns:mx="library://ns.adobe.com/flex/mx">
+			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
 			import models.MyModel;

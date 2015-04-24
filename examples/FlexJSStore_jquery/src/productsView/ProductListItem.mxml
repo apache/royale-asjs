@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
                     xmlns:js="library://ns.apache.org/flexjs/basic" 
-                    xmlns:mx="library://ns.adobe.com/flex/mx" 
     className="listItem" 
     height="{HEIGHT}" implements="org.apache.flex.core.IItemRenderer">
     <!--automationName="{product.name}">-->
@@ -124,8 +123,8 @@ limitations under the License.
     </js:TextInput>
     
     <js:states>
-        <mx:State name="compare" />
-        <mx:State name="showQuantity" />
+        <js:State name="compare" />
+        <js:State name="showQuantity" />
     </js:states>
     
 </js:Container>

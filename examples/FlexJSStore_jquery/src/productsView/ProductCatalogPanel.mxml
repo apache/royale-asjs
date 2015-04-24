@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <js:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:js="library://ns.apache.org/flexjs/basic" 
-         xmlns:mx="library://ns.adobe.com/flex/mx" 
          implements="org.apache.flex.core.IDragInitiator"
     xmlns:productsView="productsView.*"
     currentState="browse"
@@ -45,7 +44,7 @@ limitations under the License.
             import org.apache.flex.effects.Tween;
             import org.apache.flex.events.DragEvent;
             import org.apache.flex.events.Event;
-            import org.apache.flex.net.dataConverters.LazyCollection;
+            import org.apache.flex.collections.LazyCollection;
             
             import samples.flexstore.Product;
             import samples.flexstore.ProductFilter;
@@ -540,9 +539,9 @@ limitations under the License.
     </js:Container>
     
     <js:states>
-        <mx:State name="browse" />
-        <mx:State name="compare" />
-        <mx:State name="details" />
+        <js:State name="browse" />
+        <js:State name="compare" />
+        <js:State name="details" />
     </js:states>
     
 </js:Panel>

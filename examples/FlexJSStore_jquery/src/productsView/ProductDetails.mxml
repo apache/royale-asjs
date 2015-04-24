@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009" 
                  xmlns:js="library://ns.apache.org/flexjs/basic" 
-                 xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:productsView="productsView.*"
     >
     <js:beads>
@@ -34,8 +33,6 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-
-		import mx.events.*;
 		
 		import samples.flexstore.Product;
 		import samples.flexstore.ProductThumbEvent;
@@ -62,8 +59,8 @@ limitations under the License.
     </fx:Declarations>
 
     <js:states>
-        <mx:State name="Features" />
-        <mx:State name="Support" />
+        <js:State name="Features" />
+        <js:State name="Support" />
     </js:states>
     
     <js:transitions>
