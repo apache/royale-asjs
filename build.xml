@@ -519,6 +519,15 @@
             </fileset>
         </copy>
 
+        <!-- bundle the templates from the current Flex SDK -->
+        <copy todir="${basedir}/temp">
+            <fileset dir="${FLEX_SDK_HOME}" >
+                <include name="templates/swfobject/**"/>
+                <exclude name="**/expressInstall.swf"/>
+                <exclude name="**/swfobject.js"/>
+            </fileset>
+        </copy>
+
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
             	<include name="flashbuilder/**"/>

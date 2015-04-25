@@ -57,9 +57,8 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flex.sdk.version" value="4.12.1"/>
-    <property name="flexjs.version" value="0.0.2"/>
-    <property name="falcon.version" value="0.0.2"/>
+    <property name="flexjs.version" value="0.0.3"/>
+    <property name="falcon.version" value="0.0.3"/>
     
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
@@ -177,24 +176,6 @@
         <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version.ref}" />
         <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
         
-        <property name="latest.sdk.version" value="${config.products.ApacheFlexSDK.latestVersion}" />
-        <condition property="flex.server.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" >
-            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
-        </condition>
-        <condition property="flex.folder" value="flex/${latest.sdk.version}/binaries" >
-            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
-        </condition>
-        <condition property="flex.uses.mirror" value="true" >
-            <equals arg1="${latest.sdk.version}" arg2="${flex.sdk.version}" />
-        </condition>
-        <condition property="flex.md5.server.url" value="https://dist.apache.org/repos/dist/release" >
-            <equals arg1="${flex.uses.mirror}" arg2="true" />
-        </condition>
-        <property name="flex.server.url" value="http://archive.apache.org/dist" />
-        <property name="flex.md5.server.url" value="http://archive.apache.org/dist" />
-        <property name="flex.folder" value="flex/${flex.sdk.version}/binaries" />
-        <property name="flex.file" value="apache-flex-sdk-${flex.sdk.version}-bin.zip" />
-        
         <property name="flexjs.dev.version" value="${config.products.ApacheFlexJS.developmentVersion}" />
         <property name="falcon.dev.version" value="${config.products.ApacheFlexFalconJX.developmentVersion}" />
         <property name="falcon.latest.version" value="${config.products.ApacheFlexFalconJX.latestVersion}" />
@@ -238,7 +219,7 @@
         <property name="goog.lib.md5" value="${config.google-closure-library.md5}" />
     </target>
     
-    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-flex,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
 
@@ -384,9 +365,13 @@
         description="downloads and installs Falcon compiler">
         <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.file}</echo>
         <unzip src="${download.dir}/${falcon.file}" dest="${download.dir}/falcon"/>
-        <ant dir="${download.dir}/falcon" antfile="installer.xml" >
-        </ant>
+        <antcall target="falcon-install" />
         <antcall target="mac-chmod" />
+    </target>
+    <target name="falcon-install" >
+        <property name="flexjs" value="true" />
+        <property name="FLEX_HOME" value="${basedir}" />
+        <ant dir="${download.dir}/falcon" antfile="installer.xml" />
     </target>
     <target name="falcon-check" description="Checks if Falcon compiler has been downloaded.">
         <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" property="falcon.present"/>
@@ -437,71 +422,6 @@
 
     <target name="set-falcon-cache-flag" if="nightly" >
         <property name="skipCache" value="true" />
-    </target>
-    
-    <target name="get-flex" depends="flex-check,flex-get" unless="flex.sdk.present"
-        description="downloads and installs some pieces of the Flex SDK">
-        <echo>${INFO_UNZIPPING} ${download.dir}/${flex.file}</echo>
-        <unzip src="${download.dir}/${flex.file}" dest="${download.dir}/flex">
-            <patternset>
-                <include name="bin/**" />
-                <include name="lib/**" />
-                <include name="templates/swfobject/**" />
-            </patternset>
-        </unzip>
-        <copy todir="${FLEXJS_HOME}" >
-            <fileset dir="${download.dir}/flex">
-                <include name="bin/**" />
-                <include name="lib/**" />
-                <include name="templates/swfobject/**" />
-            </fileset>
-        </copy>
-    </target>
-    <target name="flex-check" description="Checks if Flex SDK has been downloaded.">
-        <mkdir dir="${download.dir}"/>
-        <available file="${FLEXJS_HOME}/lib/mxmlc.jar" property="flex.sdk.present"/>
-    </target>
-    <target name="flex-get-check" >
-        <available file="${download.dir}/${flex.file}" property="flex.downloaded" />
-    </target>
-    <target name="flex-get" depends="flex-get-check" unless="flex.downloaded" >
-        <echo>${INFO_INSTALLING_FLEX} ${flex.server.url}/${flex.folder}/${flex.file}</echo>
-        <antcall target="flex_get_from_mirror" >
-            <param name="md5server" value="${flex.md5.server.url}" />
-            <param name="server" value="${flex.server.url}" />
-            <param name="folder" value="${flex.folder}" />
-            <param name="file" value="${flex.file}" />
-            <param name="dest" value="${download.dir}/${flex.file}" />
-			<param name="message" value="${INFO_INSTALLING_FLEX}" />
-			<param name="failmessage" value="Flex SDK download failed" />
-        </antcall>
-        <antcall target="flex_get_download" >
-            <param name="md5server" value="${flex.md5.server.url}" />
-            <param name="server" value="${flex.server.url}" />
-            <param name="folder" value="${flex.folder}" />
-            <param name="file" value="${flex.file}" />
-            <param name="dest" value="${download.dir}/${flex.file}" />
-			<param name="message" value="${INFO_INSTALLING_FLEX}" />
-			<param name="failmessage" value="Flex SDK download failed" />
-        </antcall>
-    </target>
-
-    <target name="flex_get_from_mirror" if="flex.uses.mirror" >
-        <antcall target="download_using_mirror" >
-            <param name="srcMD5Domain" value="${md5server}" />
-            <param name="srcDomain" value="${server}" />
-            <param name="srcFolder" value="${folder}" />
-            <param name="srcFile" value="${file}" />
-        </antcall>
-    </target>
-
-    <target name="flex_get_download" unless="flex.uses.mirror" >
-        <antcall target="download_using_get" >
-            <param name="srcMD5Domain" value="${md5server}" />
-            <param name="srcDomain" value="${server}" />
-            <param name="srcFolder" value="${folder}" />
-            <param name="srcFile" value="${file}" />
-        </antcall>
     </target>
 
     <target name="get-third-party-files" depends="goog-download,air-download,flash-download,swfobject-download" />
@@ -1123,7 +1043,21 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     <target name="check-sum-from-file" if="srcMD5Domain" 
         description="Verifies MD5 checksum, and fails if checksum doesn't match">
         
-        <get src="${srcMD5Domain}/${srcFolder}/${srcFile}.md5?ts=${ts}" dest="${dest}.md5"/>
+        <antcall target="get-with-no-params">
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
+        <antcall target="get-with-params" >
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
+        <antcall target="get-local" >
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
         <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
         <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" />
         <fail message="${failmessage}">

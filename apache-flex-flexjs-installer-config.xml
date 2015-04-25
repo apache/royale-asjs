@@ -105,18 +105,6 @@
 		</string>
 	</strings>
 	<steps description="targets that should have a 'step' in the GUI progress indicator, in order of appearance.">
-		<step id="flex-get">
-			<el_GR>Λήψη Apache Flex SDK</el_GR>
-			<en_US>Apache Flex SDK (Required)</en_US>
-			<zh_CN>Apache Flex SDK (必须的)</zh_CN>
-			<zh_TW>Apache Flex SDK (必須的)</zh_TW>
-		</step>
-		<step id="get-flex">
-			<el_GR>Αποσυμπίεση του Apache Flex SDK</el_GR>
-			<en_US>Uncompress Apache Flex SDK</en_US>
-			<zh_CN>解压 Apache Flex SDK</zh_CN>
-			<zh_TW>解壓 Apache Flex SDK</zh_TW>
-		</step>
 		<step id="falcon-get">
 			<el_GR>Λήψη Apache Flex Falcon SDK</el_GR>
 			<en_US>Apache Flex Falcon SDK (Required)</en_US>
