@@ -120,6 +120,7 @@ package org.apache.flex.html.beads.layouts
             }
             contentView.x = (border) ? borderModel.offsets.left : 0;
             contentView.y = (border) ? borderModel.offsets.top : 0;
+			DisplayObject(contentView).scrollRect = new Rectangle(0,0,contentView.width,contentView.height);
             
             var w:Number = contentView.width;
             var h:Number = contentView.height;

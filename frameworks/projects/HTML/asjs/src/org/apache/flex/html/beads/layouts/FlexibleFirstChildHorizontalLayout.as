@@ -20,9 +20,9 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -72,6 +72,7 @@ package org.apache.flex.html.beads.layouts
 			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
 		}
 	
 		private function changeHandler(event:Event):void
@@ -89,7 +90,7 @@ package org.apache.flex.html.beads.layouts
 			var verticalMargins:Array = [];
 			
             var xx:Number = layoutParent.resizableView.width;
-            if (isNaN(xx))
+            if (isNaN(xx) || xx <= 0)
                 return;
             var padding:Object = determinePadding();
             // some browsers don't like it when you go all the way to the right edge.
@@ -155,15 +156,15 @@ package org.apache.flex.html.beads.layouts
 						mr = 0;
 				}
 				child.y = mt;
-				maxHeight = Math.max(maxHeight, mt + child.height + mb);
+				maxHeight = Math.max(maxHeight, mt + child.clientHeight + mb);
 				if (i == 0)
                 {
                     child.x = ml;
                     child.width = xx - mr;
                 }
 				else
-                    child.x = xx - child.width - mr;
-				xx -= child.width + mr + ml;
+                    child.x = xx - child.clientWidth - mr;
+				xx -= child.clientWidth + mr + ml;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
 				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
@@ -173,9 +174,9 @@ package org.apache.flex.html.beads.layouts
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
 				if (obj.valign == "middle")
-					child.y = (maxHeight - child.height) / 2;
+					child.y = (maxHeight - child.clientHeight) / 2;
 				else if (valign == "bottom")
-					child.y = maxHeight - child.height - obj.marginBottom;
+					child.y = maxHeight - child.clientHeight - obj.marginBottom;
 				else
 					child.y = obj.marginTop;
 			}
