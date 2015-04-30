@@ -428,4 +428,12 @@ svg|TextButton
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
 }
 
+/* ASJS */
+
+DataGrid 
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.DataGridView");
+}
+
 }

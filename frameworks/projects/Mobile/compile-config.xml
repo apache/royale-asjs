@@ -66,6 +66,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>asjs/defaults.css</path>
+    </include-file>
+    <include-file>
         <name>js/out/*</name>
         <path>js/out/*</path>
     </include-file>
@@ -76,6 +80,7 @@
 
     <include-classes>
         <class>MobileClasses</class>
+        <class>MobileASJSClasses</class>
     </include-classes>
     
     <include-namespaces>
