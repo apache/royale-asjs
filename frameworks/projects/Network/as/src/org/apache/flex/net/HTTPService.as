@@ -136,6 +136,52 @@ package org.apache.flex.net
 		public static const HTTP_METHOD_DELETE:String = URLRequestMethod.DELETE;
 		
         /**
+         *  Dispatched when the request is complete.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static const EVENT_COMPLETE:String = "complete";
+        
+        /**
+         *  Dispatched if an error occurs in the server communication.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static const EVENT_IO_ERROR:String = "ioError";
+        
+        /**
+         *  Dispatched when an httpStatus code is received from the server.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static const EVENT_HTTP_STATUS:String = "httpStatus";
+        
+        /**
+         *  Dispatched if Adobe AIR is able to detect and return the status 
+         *  code for the request.  Unlike the httpStatus event, the httpResponseStatus 
+         *  event is delivered before any response data. Also, the httpResponseStatus 
+         *  event includes values for the responseHeaders and responseURL properties 
+         *  (which are undefined for an httpStatus event. Note that the 
+         *  httpResponseStatus event (if any) will be sent before 
+         *  (and in addition to) any complete or error event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static const EVENT_HTTP_RESPONSE_STATUS:String = "httpResponseStatus";
+        
+        /**
          *  Constructor.
          *  
          *  @langversion 3.0
@@ -606,5 +652,24 @@ package org.apache.flex.net
         {
             return urlLoader.data;
         }
+        
+        
+        private var _json:Object;
+        
+        /**
+         *  A JSON object parsed from the data.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get json():Object
+        {
+            if (!_json)
+                _json = JSON.parse(data);
+            return _json;
+        }
+
     }
 }

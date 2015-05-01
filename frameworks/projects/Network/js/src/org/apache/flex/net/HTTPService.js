@@ -147,6 +147,34 @@ org_apache_flex_net_HTTPService.HTTP_METHOD_PUT = 'PUT';
 org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 
+/**
+ * @expose
+ * @type {string}
+ */
+org_apache_flex_net_HTTPService.EVENT_COMPLETE = 'complete';
+
+
+/**
+ * @expose
+ * @type {string}
+ */
+org_apache_flex_net_HTTPService.EVENT_IO_ERROR = 'ioError';
+
+
+/**
+ * @expose
+ * @type {string}
+ */
+org_apache_flex_net_HTTPService.EVENT_HTTP_STATUS = 'httpStatus';
+
+
+/**
+ * @expose
+ * @type {string}
+ */
+org_apache_flex_net_HTTPService.EVENT_HTTP_RESPONSE_STATUS = 'httpResponseStatus';
+
+
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     /** @expose */
     strand: {
@@ -165,6 +193,15 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.element.responseText;
+        }
+    },
+    /** @expose */
+    json: {
+        /** @this {org_apache_flex_net_HTTPService} */
+        get: function() {
+            if (!this._json)
+              _json = JSON.parse(this.data);
+            return _json;
         }
     },
     /** @expose */
