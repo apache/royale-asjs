@@ -99,6 +99,14 @@ ControlBar
     border-width: 1px;
 }
 
+/* ASJS */
+
+DataGrid 
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.DataGridView");
+}
+
 HContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
@@ -426,14 +434,6 @@ svg|TextButton
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
-}
-
-/* ASJS */
-
-DataGrid 
-{
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.DataGridView");
 }
 
 }
