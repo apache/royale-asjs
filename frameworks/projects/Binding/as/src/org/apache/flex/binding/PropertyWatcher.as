@@ -142,7 +142,7 @@ package org.apache.flex.binding
             if (source && source is IEventDispatcher)
                 removeEventListeners();
 
-            if (source is PropertyWatcher)
+            if (parent is PropertyWatcher)
                 source = PropertyWatcher(parent).value;
             else
                 source = parent;

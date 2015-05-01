@@ -213,7 +213,12 @@ package org.apache.flex.binding
             for (var i:int = 0; i < n; i++)
             {
                 var watcher:Object = watchers[i];
-                if (watcher.bindings.indexOf(index) != -1)
+                var isValidWatcher:Boolean = false;
+                if (typeof(watcher.bindings) == "number")
+                    isValidWatcher = (watcher.bindings == index);
+                else
+                    isValidWatcher = (watcher.bindings.indexOf(index) != -1);
+                if (isValidWatcher)
                 {
                     var type:String = watcher.type;
                     switch (type)
@@ -238,7 +243,7 @@ package org.apache.flex.binding
                     }
                     if (watcher.children)
                     {
-                        setupWatchers(gb, index, watcher.children, watcher.watcher);
+                        setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
                     }
                 }
             }
