@@ -46,6 +46,18 @@ package org.apache.flex.core
         function set className(value:String):void;
         
         /**
+         *  Get the id that will be used to
+         *  choose id selectors in most CSS style
+         *  implementations.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function get id():String;
+        
+        /**
          *  Get the object containing styles
          *  for this object.
          * 

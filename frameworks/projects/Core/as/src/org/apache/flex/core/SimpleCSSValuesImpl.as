@@ -292,6 +292,18 @@ package org.apache.flex.core
                     if (value !== undefined)
                         return value;
                 }
+                if (styleable.id != null)
+                {
+                    o = values["#" + styleable.id];
+                    if (o)
+                    {
+                        value = o[valueName];
+                        if (value == "inherit")
+                            return getInheritingValue(thisObject, valueName, state, attrs);
+                        if (value !== undefined)
+                            return value;
+                    }                    
+                }
 				className = styleable.className;
 				if (state)
 				{
