@@ -142,6 +142,10 @@ package org.apache.flex.core
             if (initialView)
             {
                 initialView.applicationModel =  model;
+                if (isNaN(initialView.explicitWidth))
+                    initialView.setWidth(stage.stageWidth);
+                if (isNaN(initialView.explicitHeight))
+                    initialView.setHeight(stage.stageHeight);
         	    this.addElement(initialView);
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
             }
