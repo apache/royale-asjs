@@ -79,6 +79,7 @@ package org.apache.flex.binding
             if (!("_bindings" in _strand))
                 return;
             var bindingData:Array = _strand["_bindings"];
+            var destObject:Object;
             var n:int = bindingData[0];
             var bindings:Array = [];
             var i:int;
@@ -113,13 +114,22 @@ package org.apache.flex.binding
                                 sb.sourceID = binding.source[0];
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
-                                destination = _strand[binding.destination[0]] as IStrand;
+                                destObject = _strand[binding.destination[0]];                                
+                                destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(sb);
                                 else
                                 {
-                                    deferredBindings[binding.destination[0]] = sb;
-                                    IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                                    if (destObject)
+                                    {
+                                        sb.destination = destObject;
+                                        _strand.addBead(sb);
+                                    }
+                                    else
+                                    {
+                                        deferredBindings[binding.destination[0]] = sb;
+                                        IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                                    }
                                 }
                             }
                             else if (fieldWatcher.eventNames == null)
@@ -129,13 +139,22 @@ package org.apache.flex.binding
                                 cb.sourceID = binding.source[0];
                                 cb.sourcePropertyName = binding.source[1];
                                 cb.setDocument(_strand);
-                                destination = _strand[binding.destination[0]] as IStrand;
+                                destObject = _strand[binding.destination[0]];                                
+                                destination = destObject as IStrand;
                                 if (destination)
                                     destination.addBead(cb);
                                 else
                                 {
-                                    deferredBindings[binding.destination[0]] = cb;
-                                    IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                                    if (destObject)
+                                    {
+                                        sb.destination = destObject;
+                                        _strand.addBead(sb);
+                                    }
+                                    else
+                                    {
+                                        deferredBindings[binding.destination[0]] = sb;
+                                        IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                                    }
                                 }
                             }
                         }
@@ -151,13 +170,22 @@ package org.apache.flex.binding
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
                         sb.setDocument(_strand);
-                        destination = _strand[binding.destination[0]] as IStrand;
+                        destObject = _strand[binding.destination[0]];                                
+                        destination = destObject as IStrand;
                         if (destination)
                             destination.addBead(sb);
                         else
                         {
-                            deferredBindings[binding.destination[0]] = sb;
-                            IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                            if (destObject)
+                            {
+                                sb.destination = destObject;
+                                _strand.addBead(sb);
+                            }
+                            else
+                            {
+                                deferredBindings[binding.destination[0]] = sb;
+                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                            }
                         }
                     }
                 }
