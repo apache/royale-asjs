@@ -28,6 +28,7 @@ package
 internal class CoreClasses
 {	
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
+    import org.apache.flex.core.BrowserWindow; BrowserWindow;
     import org.apache.flex.core.CSSTextField; CSSTextField;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
@@ -77,6 +78,7 @@ internal class CoreClasses
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
+    import org.apache.flex.utils.UIUtils; UIUtils;
     import org.apache.flex.utils.BinaryData; BinaryData;
     import org.apache.flex.utils.BeadMetrics; BeadMetrics;
     import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
