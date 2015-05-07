@@ -101,10 +101,31 @@ ControlBar
 
 /* ASJS */
 
-DataGrid 
+DataGrid
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.DataGridView");
+    IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.DataGridView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.DataGridLayout");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+
+    background-color: #FFFFFF;
+}
+
+DateChooser {
+    IBeadView:   ClassReference("org.apache.flex.html.beads.DateChooserView");
+    IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateChooserMouseController");
+    width:  280px;
+    height: 240px;
+}
+
+DateField {
+    IBeadView:   ClassReference("org.apache.flex.html.beads.DateFieldView");
+    IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateFieldMouseController");
+    IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatMMDDYYYYBead");
 }
 
 HContainer
