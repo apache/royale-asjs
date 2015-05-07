@@ -39,6 +39,11 @@ package products
 			addElement(image);
 		}
 		
+		override public function get data():Object
+		{
+			return super.data;
+		}
+		
 		override public function set data(value:Object):void
 		{
 			super.data = value;
