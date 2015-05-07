@@ -41,11 +41,13 @@ limitations under the License.
 						
 			public function set dataModel(value:IBeadModel):void
 			{
-				(controller as WatchListController).model = value;
+				var cm:IBeadController = controller;
+				(cm as WatchListController).model = value;
 			}
 			public function get dataModel():IBeadModel
 			{
-				return (controller as WatchListController).model;
+				var cm:IBeadController = controller;
+				return (cm as WatchListController).model;
 			}
 			
 			private function onSelectStock():void
@@ -74,6 +76,8 @@ limitations under the License.
 				stockView.stock = stock;
 				(viewManager as StackedViewManager).push(stockView);
 				
+				var cm:IBeadController = controller;
+				
 				return stockView;
 			}
 			
@@ -88,7 +92,7 @@ limitations under the License.
 		<js:VerticalLayout />
 	</js:beads>
 	
-	<js:Container className="WatchListInputArea">
+	<js:Container className="WatchListInputArea" width="480" height="50">
 		<js:beads>
 			<js:HorizontalLayout />
 		</js:beads>
@@ -97,7 +101,7 @@ limitations under the License.
 		<js:TextButton text="Add" click="addSymbol()" />
 	</js:Container>
 	
-	<js:Container x="0" y="0" className="WatchListInner">
+	<js:Container className="WatchListInner" width="480" height="480">
 		<js:beads>
 			<js:ScrollingContainerView />
 			<js:VerticalScrollingLayout />
