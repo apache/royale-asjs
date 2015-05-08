@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apache.flex.framework.flexjs</groupId>
-    <artifactId>flexjs-mxmlc-classes</artifactId>
+    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <artifactId>@ARTIFACT@</artifactId>
     <version>@VERSION@</version>
     <packaging>swc</packaging>
 

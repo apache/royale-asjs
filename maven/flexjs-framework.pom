@@ -9,8 +9,8 @@
         <version>14</version>
     </parent>
 
-    <groupId>org.apache.flex.framework.flexjs</groupId>
-    <artifactId>flexjs-framework</artifactId>
+    <groupId>org.apache.flex.flexjs</groupId>
+    <artifactId>framework</artifactId>
     <version>@VERSION@</version>
     <packaging>pom</packaging>
 
@@ -35,28 +35,94 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.flex.framework.flexjs</groupId>
-            <artifactId>flexjs-jx</artifactId>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>binding</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.flex.framework.flexjs</groupId>
-            <artifactId>flexjs-ui</artifactId>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>charts</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.flex.framework.flexjs</groupId>
-            <artifactId>flexjs-mxmlc-classes</artifactId>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>collections</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.flex.framework.flexjs</groupId>
-            <artifactId>flexjs-js</artifactId>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>core</artifactId>
             <version>@VERSION@</version>
-            <type>jar</type>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>createjs</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>dragdrop</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>effects</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>formatters</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>googlemaps</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>graphics</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>html</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>html5</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>jquery</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>mobile</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>network</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
         </dependency>
     </dependencies>
 

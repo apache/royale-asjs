@@ -49,24 +49,96 @@
         <mkdir dir="generated/maven"/>
 
         <antcall target="-pack-maven-artifact">
-            <param name="moduleName" value="FlexJSJX"/>
-            <param name="artifactName" value="flexjs-jx"/>
-            <param name="fileName" value="frameworks/as/libs/FlexJSJX.swc"/>
+            <param name="moduleName" value="Binding"/>
+            <param name="artifactName" value="binding"/>
+            <param name="fileName" value="frameworks/libs/Binding.swc"/>
         </antcall>
 
         <antcall target="-pack-maven-artifact">
-            <param name="moduleName" value="FlexJSUI"/>
-            <param name="artifactName" value="flexjs-ui"/>
-            <param name="fileName" value="frameworks/as/libs/FlexJSUI.swc"/>
+            <param name="moduleName" value="Charts"/>
+            <param name="artifactName" value="charts"/>
+            <param name="fileName" value="frameworks/libs/Charts.swc"/>
         </antcall>
 
         <antcall target="-pack-maven-artifact">
-            <param name="moduleName" value="MXMLCClasses"/>
-            <param name="artifactName" value="flexjs-mxmlc-classes"/>
-            <param name="fileName" value="frameworks/as/libs/MXMLCClasses.swc"/>
+            <param name="moduleName" value="Collections"/>
+            <param name="artifactName" value="collections"/>
+            <param name="fileName" value="frameworks/libs/Collections.swc"/>
         </antcall>
 
-        <copy file="maven/flexjs-js.pom" tofile="generated/maven/flexjs-js.pom">
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Core"/>
+            <param name="artifactName" value="core"/>
+            <param name="fileName" value="frameworks/libs/Core.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="CreateJS"/>
+            <param name="artifactName" value="createjs"/>
+            <param name="fileName" value="frameworks/libs/CreateJS.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="DragDrop"/>
+            <param name="artifactName" value="dragdrop"/>
+            <param name="fileName" value="frameworks/libs/DragDrop.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Effects"/>
+            <param name="artifactName" value="effects"/>
+            <param name="fileName" value="frameworks/libs/Effects.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Formatters"/>
+            <param name="artifactName" value="formatters"/>
+            <param name="fileName" value="frameworks/libs/Formatters.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="GoogleMaps"/>
+            <param name="artifactName" value="googlemaps"/>
+            <param name="fileName" value="frameworks/libs/GoogleMaps.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Graphics"/>
+            <param name="artifactName" value="graphics"/>
+            <param name="fileName" value="frameworks/libs/Graphics.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="HTML"/>
+            <param name="artifactName" value="html"/>
+            <param name="fileName" value="frameworks/libs/HTML.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="HTML5"/>
+            <param name="artifactName" value="html5"/>
+            <param name="fileName" value="frameworks/libs/HTML5.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="JQuery"/>
+            <param name="artifactName" value="jquery"/>
+            <param name="fileName" value="frameworks/libs/JQuery.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Mobile"/>
+            <param name="artifactName" value="mobile"/>
+            <param name="fileName" value="frameworks/libs/Mobile.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Network"/>
+            <param name="artifactName" value="network"/>
+            <param name="fileName" value="frameworks/libs/Network.swc"/>
+        </antcall>
+
+        <copy file="maven/flexjs-framework.pom" tofile="generated/maven/flexjs-framework.pom">
             <filterchain>
                 <tokenfilter>
                     <replacestring from="@VERSION@" to="${maven.version}"/>
@@ -87,23 +159,78 @@
         <echo message="Installing Maven artifacts ..."/>
 
         <antcall target="-install-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-jx"/>
+            <param name="artifactName" value="binding"/>
             <param name="artifactExtension" value="swc"/>
         </antcall>
 
         <antcall target="-install-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-ui"/>
+            <param name="artifactName" value="charts"/>
             <param name="artifactExtension" value="swc"/>
         </antcall>
 
         <antcall target="-install-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-mxmlc-classes"/>
+            <param name="artifactName" value="collections"/>
             <param name="artifactExtension" value="swc"/>
         </antcall>
 
-        <antcall target="-install-maven-artifact-file">
-            <param name="artifactName" value="flexjs-js"/>
-            <param name="artifactExtension" value="jar"/>
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="core"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="createjs"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="dragdrop"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="effects"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="formatters"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="googlemaps"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="graphics"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html5"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="jquery"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="mobile"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="network"/>
+            <param name="artifactExtension" value="swc"/>
         </antcall>
 
         <antcall target="-install-maven-artifact-pom">
@@ -115,19 +242,63 @@
         <echo message="Deploying Maven artifacts to repository with id ${maven.repositoryId} and url ${maven.repositoryUrl} ..."/>
 
         <antcall target="-deploy-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-jx"/>
+            <param name="artifactName" value="binding"/>
         </antcall>
 
         <antcall target="-deploy-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-ui"/>
+            <param name="artifactName" value="charts"/>
         </antcall>
 
         <antcall target="-deploy-maven-artifact-file-with-sources">
-            <param name="artifactName" value="flexjs-mxmlc-classes"/>
+            <param name="artifactName" value="collections"/>
         </antcall>
 
-        <antcall target="-deploy-maven-artifact-file">
-            <param name="artifactName" value="flexjs-js"/>
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="core"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="createjs"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="dragdrop"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="effects"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="formatters"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="googlemaps"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="graphics"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html5"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="jquery"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="mobile"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="network"/>
         </antcall>
 
         <antcall target="-deploy-maven-artifact-pom">
@@ -162,17 +333,19 @@
 
     <target name="-pack-maven-artifact">
         <echo message="Packing module ${moduleName} as Maven artifact ${artifactName}"/>
-        <copy file="maven/${artifactName}.pom" tofile="generated/maven/${artifactName}.pom">
+        <copy file="maven/flexjs-artifact.pom" tofile="generated/maven/${artifactName}.pom">
             <filterchain>
                 <tokenfilter>
+                    <replacestring from="@ARTIFACT@" to="${artifactName}"/>
                     <replacestring from="@VERSION@" to="${maven.version}"/>
                 </tokenfilter>
             </filterchain>
         </copy>
         <copy file="${fileName}" tofile="generated/maven/${artifactName}.swc"/>
         <zip destfile="generated/maven/${artifactName}-sources.jar">
-            <fileset dir="frameworks/as/projects/${moduleName}/src"/>
-            <!--fileset dir="${moduleName}/generated/src"/-->
+            <fileset dir="frameworks/projects/${moduleName}/as/src"/>
+            <fileset dir="frameworks/projects/${moduleName}/asjs/src" erroronmissingdir="false"/>
+            <fileset dir="frameworks/projects/${moduleName}/js/src"/>
         </zip>
     </target>
 
@@ -181,6 +354,7 @@
         <copy file="maven/${artifactName}.pom" tofile="generated/maven/${artifactName}.pom">
             <filterchain>
                 <tokenfilter>
+                    <replacestring from="@ARTIFACT@" to="${artifactName}"/>
                     <replacestring from="@VERSION@" to="${maven.version}"/>
                 </tokenfilter>
             </filterchain>
