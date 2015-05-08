@@ -513,7 +513,13 @@ package org.apache.flex.core
          */
         public function isWidthSizedToContent():Boolean
         {
-            return (isNaN(_explicitWidth) && isNaN(_percentWidth));
+            if (!isNaN(_explicitWidth))
+                return false;
+            if (!isNaN(_percentWidth))
+                return false;
+            var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+            return value === undefined;
+
         }
         
         /**
@@ -526,7 +532,12 @@ package org.apache.flex.core
          */
         public function isHeightSizedToContent():Boolean
         {
-            return (isNaN(_explicitHeight) && isNaN(_percentHeight));
+            if (!isNaN(_explicitHeight))
+                return false;
+            if (!isNaN(_percentHeight))
+                return false;
+            var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+            return value === undefined;            
         }
 		
 		/**

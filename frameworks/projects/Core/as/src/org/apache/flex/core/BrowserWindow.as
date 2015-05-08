@@ -16,51 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package products
+package org.apache.flex.core
 {
-	import org.apache.flex.html.Image;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	
-	public class ProductItemRenderer extends DataItemRenderer
+    import flash.net.navigateToURL;
+    import flash.net.URLRequest;
+    
+    /**
+     *  The BrowserWindow class opens a new browser window.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	public class BrowserWindow
 	{
-		public function ProductItemRenderer()
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function BrowserWindow()
 		{
-			super();
 		}
 		
-		private var image:Image;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			// add an image and two labels
-			image = new Image();
-			addElement(image);
-		}
-		
-		override public function get data():Object
-		{
-			return super.data;
-		}
-		
-		override public function set data(value:Object):void
-		{
-			super.data = value;
-			
-			image.source = value.image;
-		}
-		
-		override public function adjustSize():void
-		{
-			var cy:Number = this.height/2;
-			
-			image.x = 4;
-			image.y = cy - 16;
-			image.width = 32;
-			image.height = 32;
-			
-			updateRenderer();
-		}
+        public static function open(url:String, options:String):void
+        {
+            navigateToURL(new URLRequest(url), options);
+        }
 	}
 }

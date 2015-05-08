@@ -110,12 +110,12 @@ package org.apache.flex.html.beads
 			
 			host.addChild(bitmap);
 			
-            if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+            if (host.isWidthSizedToContent())
                 host.dispatchEvent(new Event("widthChanged"));
             else
                 bitmap.width = UIBase(_strand).width;
                 
-            if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
+            if (host.isHeightSizedToContent())
                 host.dispatchEvent(new Event("heightChanged"));
             else
                 bitmap.height = UIBase(_strand).height;
