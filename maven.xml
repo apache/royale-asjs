@@ -413,7 +413,7 @@
         <artifact:deploy>
             <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
             <artifact:pom file="generated/maven/${artifactName}.pom"/>
-            <artifact:artifact file="generated/maven/${artifactName}.${artifactExtension}"/>
+            <artifact:artifact file="generated/maven/${artifactName}.swc"/>
             <artifact:artifact file="generated/maven/${artifactName}-sources.jar" classifier="sources"/>
         </artifact:deploy>
     </target>
