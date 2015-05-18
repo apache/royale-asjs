@@ -95,6 +95,7 @@
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/MapSearch"/>
         <ant dir="${basedir}/MobileTrader"/>
+        <ant dir="${basedir}/RollEventsTest"/>
         <ant dir="${basedir}/StockQuote"/>
         <ant dir="${basedir}/ChartExample"/>
         <ant dir="${basedir}/TodoListSampleApp"/>
@@ -133,6 +134,7 @@
         <ant dir="${basedir}/ListsTest" target="clean"/>
         <ant dir="${basedir}/MapSearch" target="clean"/>
         <ant dir="${basedir}/MobileTrader" target="clean"/>
+        <ant dir="${basedir}/RollEventsTest" target="clean"/>
         <ant dir="${basedir}/StatesTest" target="clean"/>
         <ant dir="${basedir}/StockQuote" target="clean"/>
         <ant dir="${basedir}/ChartExample" target="clean"/>
