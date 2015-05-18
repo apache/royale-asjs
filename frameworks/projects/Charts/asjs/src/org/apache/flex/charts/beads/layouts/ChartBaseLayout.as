@@ -47,10 +47,6 @@ package org.apache.flex.charts.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
-			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		/**
@@ -122,12 +118,13 @@ package org.apache.flex.charts.beads.layouts
 			return _chartDataGroup;
 		}
 		
-		/**
-		 * @private
-		 */
-		private function changeHandler(event:Event):void
+        /**
+         * @copy org.apache.flex.core.IBeadLayout#layout
+         */
+		public function layout():Boolean
 		{
 			performLayout();
+            return true;
 		}
 		
 		/**

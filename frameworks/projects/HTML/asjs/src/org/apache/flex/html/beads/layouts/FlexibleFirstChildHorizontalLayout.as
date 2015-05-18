@@ -19,7 +19,8 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutChild;
+    import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -55,7 +56,10 @@ package org.apache.flex.html.beads.layouts
 		{
 		}
 		
-		private var _strand:IStrand;
+        // the strand/host container is also an ILayoutChild because
+        // can have its size dictated by the host's parent which is
+        // important to know for layout optimization
+        private var host:ILayoutChild;
 		
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -67,19 +71,18 @@ package org.apache.flex.html.beads.layouts
          */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
-            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
-			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
-			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
-			IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
+            host = value as ILayoutChild;
 		}
 	
-		private function changeHandler(event:Event):void
+        /**
+         * @copy org.apache.flex.core.IBeadLayout#layout
+         */
+		public function layout():Boolean
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParent = layoutParent.contentView;
-			
+            var hostSizedToContent:Boolean = host.isHeightSizedToContent();
+
 			var n:int = contentView.numElements;
 			var marginLeft:Object;
 			var marginRight:Object;
@@ -91,7 +94,7 @@ package org.apache.flex.html.beads.layouts
 			
             var xx:Number = layoutParent.resizableView.width;
             if (isNaN(xx) || xx <= 0)
-                return;
+                return true;
             var padding:Object = determinePadding();
             // some browsers don't like it when you go all the way to the right edge.
             xx -= padding.paddingLeft + padding.paddingRight + 1;
@@ -180,7 +183,10 @@ package org.apache.flex.html.beads.layouts
 				else
 					child.y = obj.marginTop;
 			}
-            layoutParent.resizableView.height = maxHeight;
+            if (hostSizedToContent)
+                ILayoutChild(contentView).setHeight(maxHeight, true);
+
+            return true;
 		}
 
         // TODO (aharui): utility class or base class
@@ -201,7 +207,7 @@ package org.apache.flex.html.beads.layouts
             var paddingLeft:Object;
             var paddingTop:Object;
             var paddingRight:Object;
-            var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
+            var padding:Object = ValuesManager.valuesImpl.getValue(host, "padding");
             if (typeof(padding) == "Array")
             {
                 if (padding.length == 1)
@@ -221,9 +227,9 @@ package org.apache.flex.html.beads.layouts
             }
             else if (padding == null)
             {
-                paddingLeft = ValuesManager.valuesImpl.getValue(_strand, "padding-left");
-                paddingTop = ValuesManager.valuesImpl.getValue(_strand, "padding-top");
-                paddingRight = ValuesManager.valuesImpl.getValue(_strand, "padding-right");
+                paddingLeft = ValuesManager.valuesImpl.getValue(host, "padding-left");
+                paddingTop = ValuesManager.valuesImpl.getValue(host, "padding-top");
+                paddingRight = ValuesManager.valuesImpl.getValue(host, "padding-right");
             }
             else
             {

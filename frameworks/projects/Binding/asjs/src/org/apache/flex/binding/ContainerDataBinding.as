@@ -153,11 +153,11 @@ package org.apache.flex.binding
                                     if (destObject)
                                     {
                                         cb.destination = destObject;
-                                        _strand.addBead(sb);
+                                        _strand.addBead(cb);
                                     }
                                     else
                                     {
-                                        deferredBindings[binding.destination[0]] = sb;
+                                        deferredBindings[binding.destination[0]] = cb;
                                         IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                                     }
                                 }

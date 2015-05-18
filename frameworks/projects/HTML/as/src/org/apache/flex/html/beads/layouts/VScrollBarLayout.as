@@ -69,19 +69,16 @@ package org.apache.flex.html.beads.layouts
 		{
 			_strand = value;
 			sbView = _strand.getBeadByType(IScrollBarView) as IScrollBarView;
-			sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel;
-			sbModel.addEventListener("maximumChange", changeHandler);
-			sbModel.addEventListener("minimumChange", changeHandler);
-			sbModel.addEventListener("snapIntervalChange", changeHandler);
-			sbModel.addEventListener("stepSizeChange", changeHandler);
-            sbModel.addEventListener("pageSizeChange", changeHandler);
-			sbModel.addEventListener("valueChange", changeHandler);
-			IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
-			changeHandler(null);
 		}
 	
-		private function changeHandler(event:Event):void
+        /**
+         * @copy org.apache.flex.core.IBeadLayout#layout
+         */
+		public function layout():Boolean
 		{
+            if (!sbModel)
+                sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
+                    
 			var h:Number = DisplayObject(_strand).height;
 			var increment:DisplayObject = sbView.increment;
 			var decrement:DisplayObject = sbView.decrement;
@@ -105,6 +102,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				thumb.visible = false;
 			}
+            return true;
 		}
 						
 	}

@@ -19,25 +19,25 @@
 package org.apache.flex.html.beads
 {
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.ContainerContentArea;
-	import org.apache.flex.html.supportClasses.ScrollBar;
+    import org.apache.flex.html.supportClasses.Border;
+    import org.apache.flex.html.supportClasses.ContainerContentArea;
+    import org.apache.flex.html.supportClasses.ScrollBar;
 	
     /**
      *  The ContainerView class is the default view for
-     *  the org.apache.flex.html.Container class.
+     *  the org.apache.flex.core.ContainerBase classes.
      *  It lets you use some CSS styles to manage the border, background
      *  and padding around the content area.
      *  
@@ -71,6 +71,20 @@ package org.apache.flex.html.beads
 		protected var actualParent:UIBase;
 				
         /**
+         *  The layout.  The layout may actually layout
+         *  the children of the internal content area
+         *  and not the pieces of the "chrome" like titlebars
+         *  and borders.  The ContainerView or its subclass will have some
+         *  baked-in logic for handling the chrome.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */        
+        protected var layout:IBeadLayout;
+        
+        /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
@@ -86,29 +100,30 @@ package org.apache.flex.html.beads
             
             if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
             {
+                // if both dimensions are sized to content, then only draw the
+                // borders, etc, after a child is added.  The children in an MXML
+                // document don't send this event until the last child is added.
                 host.addEventListener("childrenAdded", changeHandler);
-                checkActualParent();
+                host.addEventListener("layoutNeeded", changeHandler);
+                // listen for width and height changes as well in case the app
+                // switches away from content sizing via binding or other code
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("heightChanged", changeHandler);
             }
             else
             {
+                // otherwise, listen for size changes before drawing
+                // borders and laying out children.
                 host.addEventListener("widthChanged", changeHandler);
                 host.addEventListener("heightChanged", changeHandler);
                 host.addEventListener("sizeChanged", sizeChangeHandler);
+                // if we have fixed size in both dimensions, wait for children
+                // to be added then run a layout pass right then as the
+                // parent won't kick off any other event in the child
                 if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
-                    sizeChangeHandler(null);
-                else
-                    checkActualParent();
-            }
-            
-            if (_strand.getBeadByType(IBeadLayout) == null)
-            {
-                var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-                if (c)
-                {
-                    var layout:IBeadLayout = new c() as IBeadLayout;
-                    _strand.addBead(layout);
-                }
+                    host.addEventListener("childrenAdded", changeHandler);
             }            
+            checkActualParent();
         }
         
         private function checkActualParent():Boolean
@@ -120,8 +135,8 @@ package org.apache.flex.html.beads
                 {
                     actualParent = new ContainerContentArea();
 					actualParent.className = "ActualParent";
-                    host.addElement(actualParent);
-                    Container(host).setActualParent(actualParent);
+                    host.addElement(actualParent, false);
+                    ContainerBase(host).setActualParent(actualParent);
                 }
                 return true;
             }
@@ -137,6 +152,7 @@ package org.apache.flex.html.beads
             var host:UIBase = UIBase(_strand);
             host.addEventListener("childrenAdded", changeHandler);
             host.addEventListener("layoutNeeded", changeHandler);
+            host.addEventListener("itemsCreated", changeHandler);
             changeHandler(event);
         }
         
@@ -157,29 +173,73 @@ package org.apache.flex.html.beads
             inChangeHandler = true;
             
             var host:UIBase = UIBase(_strand);
-			
+
+            if (layout == null)
+            {
+                layout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
+                if (layout == null)
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+                    if (c)
+                    {
+                        layout = new c() as IBeadLayout;
+                        _strand.addBead(layout);
+                    }
+                }
+            }
+            
 			var padding:Object = determinePadding();
 			
 			if (checkActualParent())
 			{
 				actualParent.x = padding.paddingLeft;
 				actualParent.y = padding.paddingTop;
-                var pb:Number = padding.paddingBottom;
-                if (isNaN(pb))
-                    pb = 0;
-                var pr:Number = padding.paddingRight;
-                if (isNaN(pr))
-                    pr = 0;
-                if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
+            }
+            var pb:Number = padding.paddingBottom;
+            if (isNaN(pb))
+                pb = 0;
+            var pr:Number = padding.paddingRight;
+            if (isNaN(pr))
+                pr = 0;
+            // if the width is dictated by the parent
+            if (!host.isWidthSizedToContent())
+            {
+                if (actualParent != host)
+                {
+                    // force the width of the internal content area as desired.
                     actualParent.setWidth(host.width - padding.paddingLeft - pr);
+                }
+                // run the layout
+                layout.layout();
+            }
+            else 
+            {
+                // if the height is dictated by the parent
+                if (!host.isHeightSizedToContent())
+                {
+                    if (actualParent != host)
+                    {
+                        // force the height
+                        actualParent.setHeight(host.height - padding.paddingTop - pb);
+                    }
+                }
+                layout.layout();
+                if (actualParent != host)
+                {
+                    // actualParent.width should be the new width after layout.
+                    // set the host's width.  This should send a widthChanged event and
+                    // have it blocked at the beginning of this method
+                    host.setWidth(padding.paddingLeft + pr + actualParent.width);
+                }
+            }
+            // and if the height is sized to content, set the height now as well.
+            if (host != actualParent)
+            {
+                if (host.isHeightSizedToContent())
+                    host.setHeight(padding.paddingTop + pb + actualParent.height);
                 else
-                    host.dispatchEvent(new Event("widthChanged"));
-                
-                if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
                     actualParent.setHeight(host.height - padding.paddingTop - pb);
-                else
-                    host.dispatchEvent(new Event("heightChanged"));
-			}
+            }
 			
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
@@ -272,11 +332,10 @@ package org.apache.flex.html.beads
 		 */
 		protected function contentAreaNeeded():Boolean
 		{
-			return true;
-//			var padding:Object = determinePadding();
-//			
-//			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
-//				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
+			var padding:Object = determinePadding();
+			
+			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
+				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
 		}
 		
         /**
@@ -305,6 +364,8 @@ package org.apache.flex.html.beads
 			return _strand as IUIBase;
 		}
 		
+        private var inGetViewHeight:Boolean;
+        
 		/**
 		 *  @copy org.apache.flex.core.IBeadView#viewHeight
 		 *  
@@ -315,11 +376,19 @@ package org.apache.flex.html.beads
 		 */
 		override public function get viewHeight():Number
 		{
-			// don't want to put $height in an interface
+            if (inGetViewHeight)
+            {
+                trace("ContainerView: no height set for " + host);
+                return host["$height"];
+            }
+            inGetViewHeight = true;
 			var vh:Number = contentView.height;
-			return vh;
+            inGetViewHeight = false;
+            return vh;
 		}
 		
+        private var inGetViewWidth:Boolean;
+        
 		/**
 		 *  @copy org.apache.flex.core.IBeadView#viewWidth
 		 *  
@@ -330,10 +399,16 @@ package org.apache.flex.html.beads
 		 */
 		override public function get viewWidth():Number
 		{
-			// don't want to put $width in an interface
+            if (inGetViewWidth)
+            {
+                trace("ContainerView: no width set for " + host);
+                return host["$width"];
+            }
+            inGetViewWidth = true;
 			var vw:Number = contentView.width;
+            inGetViewWidth = false;
 			return vw;
 		}
-				
+		
 	}
 }

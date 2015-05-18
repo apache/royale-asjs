@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
@@ -29,7 +30,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.html.supportClasses.Border;
@@ -81,6 +82,20 @@ package org.apache.flex.html.beads
 		protected var actualParent:UIBase;
 				
         /**
+         *  The layout.  The layout may actually layout
+         *  the children of the internal content area
+         *  and not the pieces of the "chrome" like titlebars
+         *  and borders.  The ContainerView or its subclass will have some
+         *  baked-in logic for handling the chrome.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */        
+        protected var layout:IBeadLayout;
+        
+        /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
@@ -92,20 +107,72 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
             var host:UIBase = value as UIBase;
-            if (host.numChildren > 0)
-                childHandler(null);  
+            
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            {
+                // if both dimensions are sized to content, then only draw the
+                // borders, etc, after a child is added.  The children in an MXML
+                // document don't send this event until the last child is added.
+                host.addEventListener("childrenAdded", changeHandler);
+                host.addEventListener("layoutNeeded", changeHandler);
+                // listen for width and height changes as well in case the app
+                // switches away from content sizing via binding or other code
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("heightChanged", changeHandler);
+            }
             else
-                host.addEventListener("childrenAdded", childHandler);
+            {
+                // otherwise, listen for size changes before drawing
+                // borders and laying out children.
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("heightChanged", changeHandler);
+                host.addEventListener("sizeChanged", sizeChangeHandler);
+                // if we have fixed size in both dimensions, wait for children
+                // to be added then run a layout pass right then as the
+                // parent won't kick off any other event in the child
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                {
+                    if (host.numChildren > 0)
+                        changeHandler(null);
+                    else
+                        host.addEventListener("childrenAdded", changeHandler);
+                }
+            }
         }
         
-        private function childHandler(event:Event):void
+        private function sizeChangeHandler(event:Event):void
+        {
+            var host:UIBase = UIBase(_strand);
+            host.addEventListener("childrenAdded", changeHandler);
+            host.addEventListener("layoutNeeded", changeHandler);
+            host.addEventListener("itemsCreated", changeHandler);
+            changeHandler(event);
+        }
+
+        private function changeHandler(event:Event):void
         {
             var host:UIBase = _strand as UIBase;
+            if (layout == null)
+            {
+                layout = host.getBeadByType(IBeadLayout) as IBeadLayout;
+                if (layout == null)
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+                    if (c)
+                    {
+                        layout = new c() as IBeadLayout;
+                        host.addBead(layout);
+                    }
+                }
+            }
+            
             if (host.numChildren > 0)
             {
                 actualParent = host.getChildAt(0) as UIBase;   
             }
         
+            layout.layout();
+            
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
 			if (backgroundColor != null || backgroundImage != null)

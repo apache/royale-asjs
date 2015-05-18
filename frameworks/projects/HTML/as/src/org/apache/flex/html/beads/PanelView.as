@@ -93,6 +93,7 @@ package org.apache.flex.html.beads
             
             if (!_titleBar)
                 _titleBar = new TitleBar();
+            _titleBar.percentWidth = 100;
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
