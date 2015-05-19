@@ -124,7 +124,8 @@
 			haltonfailure="false"
 			verbose="true"
 			localTrusted="true"
-			command="${browser}">
+			command="${browser}"
+			timeout="90000">
             <source dir="${FLEXJS_HOME}/frameworks/projects/HTML/asjs/src" />
             <library dir="${FLEXJS_HOME}/frameworks/libs" />
         </flexunit>
