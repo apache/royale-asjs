@@ -378,7 +378,7 @@ package org.apache.flex.html.beads
 		{
             if (inGetViewHeight)
             {
-                trace("ContainerView: no height set for " + host);
+                //trace("ContainerView: no height set for " + host);
                 return host["$height"];
             }
             inGetViewHeight = true;
@@ -401,7 +401,7 @@ package org.apache.flex.html.beads
 		{
             if (inGetViewWidth)
             {
-                trace("ContainerView: no width set for " + host);
+                //trace("ContainerView: no width set for " + host);
                 return host["$width"];
             }
             inGetViewWidth = true;
