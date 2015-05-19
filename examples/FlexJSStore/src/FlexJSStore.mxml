@@ -228,7 +228,6 @@ limitations under the License.
             <js:ControlBar id="acb" width="100%" className="storeControlBar" >
                 <js:beads>
                     <js:HorizontalLayout />
-                    <js:LayoutChangeNotifier watchedProperty="{image.width}" />
                 </js:beads>
                 <js:Image id="image" />
                          <!-- click="toggleTheme()" -->
