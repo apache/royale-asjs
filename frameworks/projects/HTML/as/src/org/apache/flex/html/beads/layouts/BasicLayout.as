@@ -191,7 +191,7 @@ package org.apache.flex.html.beads.layouts
             {
                 if (hostHeightSizedToContent)
                     ILayoutChild(contentView).setHeight(maxHeight, true);
-                if (hostHeightSizedToContent)
+                if (hostWidthSizedToContent)
                     ILayoutChild(contentView).setWidth(maxWidth, true);
                 for (i = 0; i < n; i++)
                 {
