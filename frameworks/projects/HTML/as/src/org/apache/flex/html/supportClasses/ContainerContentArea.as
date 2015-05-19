@@ -19,6 +19,7 @@
 package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
 	
     /**
      *  The ContainerContentArea class implements the actualParent for
@@ -43,6 +44,13 @@ package org.apache.flex.html.supportClasses
 		public function ContainerContentArea()
 		{
 			super();
+            addEventListener("layoutNeeded", forwardEventHandler);
 		}
+        
+        private function forwardEventHandler(event:Event):void
+        {
+            if (parent)
+                parent.dispatchEvent(event);
+        }
 	}
 }

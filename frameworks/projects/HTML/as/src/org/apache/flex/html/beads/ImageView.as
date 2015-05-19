@@ -111,12 +111,20 @@ package org.apache.flex.html.beads
 			host.addChild(bitmap);
 			
             if (host.isWidthSizedToContent())
+            {
                 host.dispatchEvent(new Event("widthChanged"));
+                if (host.parent)
+                    host.parent.dispatchEvent(new Event("layoutNeeded"));
+            }
             else
                 bitmap.width = UIBase(_strand).width;
                 
             if (host.isHeightSizedToContent())
+            {
                 host.dispatchEvent(new Event("heightChanged"));
+                if (host.parent)
+                    host.parent.dispatchEvent(new Event("layoutNeeded"));
+            }
             else
                 bitmap.height = UIBase(_strand).height;
                 
