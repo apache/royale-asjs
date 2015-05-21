@@ -98,7 +98,7 @@ package org.apache.flex.html.beads
             
             var host:UIBase = value as UIBase;
             
-            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
             {
                 // if both dimensions are sized to content, then only draw the
                 // borders, etc, after a child is added.  The children in an MXML
@@ -117,11 +117,13 @@ package org.apache.flex.html.beads
                 host.addEventListener("widthChanged", changeHandler);
                 host.addEventListener("heightChanged", changeHandler);
                 host.addEventListener("sizeChanged", sizeChangeHandler);
-                // if we have fixed size in both dimensions, wait for children
-                // to be added then run a layout pass right then as the
-                // parent won't kick off any other event in the child
-                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                // if we have fixed size in both dimensions, listen for children
+				// being added, but also force an initial display to get the
+				// background, border, etc.
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight)) {
                     host.addEventListener("childrenAdded", changeHandler);
+					displayBackgroundAndBorder(host);
+				}
             }            
             checkActualParent();
         }
@@ -173,6 +175,8 @@ package org.apache.flex.html.beads
             inChangeHandler = true;
             
             var host:UIBase = UIBase(_strand);
+			var originalHostWidth:Number = host.width;
+			var originalHostHeight:Number = host.height;
 
             if (layout == null)
             {
@@ -201,6 +205,9 @@ package org.apache.flex.html.beads
             var pr:Number = padding.paddingRight;
             if (isNaN(pr))
                 pr = 0;
+			
+			var sizeChangedByLayout:Boolean;
+			
             // if the width is dictated by the parent
             if (!host.isWidthSizedToContent())
             {
@@ -210,7 +217,7 @@ package org.apache.flex.html.beads
                     actualParent.setWidth(host.width - padding.paddingLeft - pr);
                 }
                 // run the layout
-                layout.layout();
+                sizeChangedByLayout = layout.layout();
             }
             else 
             {
@@ -223,7 +230,7 @@ package org.apache.flex.html.beads
                         actualParent.setHeight(host.height - padding.paddingTop - pb);
                     }
                 }
-                layout.layout();
+                sizeChangedByLayout = layout.layout();
                 if (actualParent != host)
                 {
                     // actualParent.width should be the new width after layout.
@@ -234,19 +241,36 @@ package org.apache.flex.html.beads
             }
             // and if the height is sized to content, set the height now as well.
             if (host != actualParent)
-            {
-                if (host.isHeightSizedToContent())
+	        {
+                if (host.isHeightSizedToContent()) {
                     host.setHeight(padding.paddingTop + pb + actualParent.height);
+				}
                 else
                     actualParent.setHeight(host.height - padding.paddingTop - pb);
-            }
+		    }
+			// if host and actualParent are the same, determine if the layout changed
+			// the size and if, dispatch events based on what changed
+			else if (sizeChangedByLayout) 
+			{
+				if (originalHostWidth != host.width) 
+					host.dispatchEvent(new Event("widthChanged"));
+				if (originalHostHeight != host.height)
+					host.dispatchEvent(new Event("heightChanged"));
+			}
 			
+			displayBackgroundAndBorder(host);
+			            
+            inChangeHandler = false;
+		}
+		
+		protected function displayBackgroundAndBorder(host:UIBase) : void
+		{
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
 			if (backgroundColor != null || backgroundImage != null)
 			{
 				if (host.getBeadByType(IBackgroundBead) == null)
-                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
+					host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
 			}
 			
 			var borderStyle:String;
@@ -262,10 +286,8 @@ package org.apache.flex.html.beads
 			if (borderStyle != null && borderStyle != "none")
 			{
 				if (host.getBeadByType(IBorderBead) == null)
-                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
+					host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
 			}
-            
-            inChangeHandler = false;
 		}
 		
 		/**
