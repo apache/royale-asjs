@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
+    import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
@@ -42,7 +43,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class OneFlexibleChildHorizontalLayout implements IBeadLayout
+	public class OneFlexibleChildHorizontalLayout implements IBeadLayout, IDocument
 	{
         /**
          *  Constructor.
@@ -58,20 +59,28 @@ package org.apache.flex.html.beads.layouts
 		
         
         /**
-         *  The flexible child
+         *  The id of the flexible child
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var flexibleChild:IUIBase;
+        public var flexibleChild:String;
+        
+        private var actualChild:ILayoutChild;
         
         // the strand/host container is also an ILayoutChild because
         // can have its size dictated by the host's parent which is
         // important to know for layout optimization
         private var host:ILayoutChild;
 		
+        /**
+         *  @private
+         *  The document.
+         */
+        private var document:Object;
+        
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -85,6 +94,52 @@ package org.apache.flex.html.beads.layouts
             host = value as ILayoutChild;
 		}
 	
+        private var _maxWidth:Number;
+        
+        /**
+         *  @copy org.apache.flex.core.IBead#maxWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get maxWidth():Number
+        {
+            return _maxWidth;
+        }
+        
+        /**
+         *  @private 
+         */
+        public function set maxWidth(value:Number):void
+        {
+            _maxWidth = value;
+        }
+        
+        private var _maxHeight:Number;
+        
+        /**
+         *  @copy org.apache.flex.core.IBead#maxHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get maxHeight():Number
+        {
+            return _maxHeight;
+        }
+        
+        /**
+         *  @private 
+         */
+        public function set maxHeight(value:Number):void
+        {
+            _maxHeight = value;
+        }
+        
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -92,7 +147,8 @@ package org.apache.flex.html.beads.layouts
 		{
             var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
-			
+            actualChild = document[flexibleChild];
+
             var ilc:ILayoutChild;
 			var n:int = contentView.numElements;
 			var marginLeft:Object;
@@ -100,7 +156,7 @@ package org.apache.flex.html.beads.layouts
 			var marginTop:Object;
 			var marginBottom:Object;
 			var margin:Object;
-			var maxHeight:Number = 0;
+			maxHeight = 0;
 			var verticalMargins:Array = new Array(n);
 			
             var ww:Number = layoutParent.resizableView.width;
@@ -121,7 +177,7 @@ package org.apache.flex.html.beads.layouts
             for (var i:int = 0; i < n; i++)
             {
                 var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-                if (child == flexibleChild)
+                if (child == actualChild)
                 {
                     flexChildIndex = i;
                     break;
@@ -401,6 +457,10 @@ package org.apache.flex.html.beads.layouts
             return {paddingLeft:pl, paddingTop:pt, paddingRight:pr};
         }
 
+        public function setDocument(document:Object, id:String = null):void
+        {
+            this.document = document;	
+        }
     }
         
 }

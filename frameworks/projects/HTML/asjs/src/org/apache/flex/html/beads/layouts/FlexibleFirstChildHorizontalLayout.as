@@ -74,6 +74,52 @@ package org.apache.flex.html.beads.layouts
             host = value as ILayoutChild;
 		}
 	
+        private var _maxWidth:Number;
+        
+        /**
+         *  @copy org.apache.flex.core.IBead#maxWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get maxWidth():Number
+        {
+            return _maxWidth;
+        }
+        
+        /**
+         *  @private 
+         */
+        public function set maxWidth(value:Number):void
+        {
+            _maxWidth = value;
+        }
+        
+        private var _maxHeight:Number;
+        
+        /**
+         *  @copy org.apache.flex.core.IBead#maxHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get maxHeight():Number
+        {
+            return _maxHeight;
+        }
+        
+        /**
+         *  @private 
+         */
+        public function set maxHeight(value:Number):void
+        {
+            _maxHeight = value;
+        }
+        
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -89,7 +135,7 @@ package org.apache.flex.html.beads.layouts
 			var marginTop:Object;
 			var marginBottom:Object;
 			var margin:Object;
-			var maxHeight:Number = 0;
+			maxHeight = 0;
 			var verticalMargins:Array = [];
 			
             var xx:Number = layoutParent.resizableView.width;
