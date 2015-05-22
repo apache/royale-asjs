@@ -264,7 +264,7 @@ package org.apache.flex.html.beads.layouts
             else 
             {
                 child.x = ml;
-                ww -= left;
+                ww -= ml;
             }
             if (!isNaN(right))
             {

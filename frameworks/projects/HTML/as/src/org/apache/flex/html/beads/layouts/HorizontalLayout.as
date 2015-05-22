@@ -250,7 +250,7 @@ package org.apache.flex.html.beads.layouts
             else 
             {
                 child.y = mt;
-                hh -= top;
+                hh -= mt;
             }
             if (!isNaN(bottom))
             {
