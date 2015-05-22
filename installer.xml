@@ -359,6 +359,14 @@
             <arg value="+x" />
             <arg value="${FLEXJS_HOME}/js/bin/compc"/>
         </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+             <arg value="+x" />
+             <arg value="${FLEXJS_HOME}/bin/mxmlc"/>
+         </exec>
+         <exec executable="chmod" dir="${FLEXJS_HOME}">
+             <arg value="+x" />
+             <arg value="${FLEXJS_HOME}/bin/compc"/>
+         </exec>
     </target>
 
     <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
