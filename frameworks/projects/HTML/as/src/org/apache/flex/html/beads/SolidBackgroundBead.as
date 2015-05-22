@@ -86,7 +86,12 @@ package org.apache.flex.html.beads
 			if( bgAlpha != null ) {
 				opacity = Number(bgAlpha);
 			}
-            changeHandler(null);
+            var ilc:ILayoutChild = value as ILayoutChild;
+            if (ilc)
+            {
+                if (!isNaN(ilc.explicitWidth) && !isNaN(ilc.explicitHeight))
+                    changeHandler(null);
+            }
 		}
 		
 		private var _backgroundColor:uint;

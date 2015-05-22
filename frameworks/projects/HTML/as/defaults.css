@@ -89,7 +89,6 @@ ButtonBarButtonItemRenderer
 Container
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
-    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
 }
 
 ControlBar
@@ -213,13 +212,6 @@ ToolTip
 {
     background-color: #FFFFCC;
 }
-
-ViewBase
-{
-    IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
-    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
-}
-
 
 /* Global Style Declaration */
 global
@@ -456,11 +448,6 @@ ToggleTextButton
     IBeadView:  ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
 }
 
-ViewBase
-{
-    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-    iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
-}
 
 /* SVG */
 

@@ -149,6 +149,9 @@ Width and height are hard-coded in the root tag to help the Design view.
 					
 					<js:HContainer style="left:10;top:43" width="100%" height="100%">
 						<js:VContainer width="33%" height="100%">
+							<js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image1.height}" />
+                            </js:beads>
 							<js:Container width="100%">
 								<js:Image id="image1" source="assets/akotter.jpg" style="horizontalCenter:0;verticalCenter:0"/>
 							</js:Container>
@@ -159,7 +162,11 @@ Width and height are hard-coded in the root tag to help the Design view.
 							
 						</js:VContainer>
 						
-						<js:VContainer width="33%" height="100%">							
+						<js:VContainer width="33%" height="100%">
+                            <js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image2.height}" />
+                            </js:beads>
+							
 							<js:Container width="100%">
 								<js:Image id="image2" style="horizontalCenter:0;verticalCenter:0" source="assets/bcrater.jpg"/>
 							</js:Container>
@@ -171,6 +178,10 @@ Width and height are hard-coded in the root tag to help the Design view.
 						</js:VContainer>
 						
 						<js:VContainer width="33%" height="100%">
+                            <js:beads>
+                                <js:LayoutChangeNotifier watchedProperty="{image3.height}" />
+                            </js:beads>
+							
 							<js:Container width="100%">
 								<js:Image id="image3" style="horizontalCenter:0;verticalCenter:0" source="assets/jproctor.jpg"/>
 							</js:Container>

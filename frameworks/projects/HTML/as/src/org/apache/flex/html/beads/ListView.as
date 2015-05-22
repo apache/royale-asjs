@@ -147,8 +147,6 @@ package org.apache.flex.html.beads
 			return _strand as IUIBase;
 		}
 		
-        private var _layout:IBeadLayout;
-        
         /**
          * @private
          */
@@ -172,14 +170,11 @@ package org.apache.flex.html.beads
 			_strand = value;
 			
             for each (var bead:IBead in beads)
-                addBead(bead);
+            addBead(bead);
             
             dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
-            
-            // this gets sent at least once after the beads are all in place.
-            IEventDispatcher(_strand).addEventListener("layoutNeeded",handleSizeChange);
             
             listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
@@ -196,6 +191,13 @@ package org.apache.flex.html.beads
 			}
 			IParent(_strand).addElement(_dataGroup);
             
+            if (_strand.getBeadByType(IBeadLayout) == null)
+            {
+                var mapper:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
+				_strand.addBead(mapper);
+            }  
+			
+			handleSizeChange(null);
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -266,46 +268,16 @@ package org.apache.flex.html.beads
             IParent(_strand).addElement(vsb);
 			return vsb;
 		}
-
-        /**
-         *  Layout everything except the DataGroup, 
-         *  but size the DataGroup as needed
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected function layoutList():void
-        {
-            UIBase(_dataGroup).x = 0;
-            UIBase(_dataGroup).y = 0;
-            UIBase(_dataGroup).width = UIBase(_strand).width;
-            UIBase(_dataGroup).height = UIBase(_strand).height;
-        }
-        
-        /**
-         *  respond to a change in size or request to re-layout everything
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		protected function handleSizeChange(event:Event):void
+		
+		/**
+		 * @private
+		 */
+		private function handleSizeChange(event:Event):void
 		{
-            layoutList();
-            
-            if (_layout == null)
-            {
-                _layout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-                if (_layout == null)
-                {
-                    _layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                    _strand.addBead(_layout);
-                }  
-            }
-            _layout.layout();
+			UIBase(_dataGroup).x = 0;
+			UIBase(_dataGroup).y = 0;
+			UIBase(_dataGroup).width = UIBase(_strand).width;
+			UIBase(_dataGroup).height = UIBase(_strand).height;
 		}
 				
         /**
