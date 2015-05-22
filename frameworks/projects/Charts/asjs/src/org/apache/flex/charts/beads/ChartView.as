@@ -56,9 +56,7 @@ package org.apache.flex.charts.beads
 			super.strand = value;
 			
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener("widthChanged", handleLocalChange);
-			IEventDispatcher(_strand).addEventListener("heightChanged",handleLocalChange);
-			
+            
 			var listModel:ISelectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
@@ -77,15 +75,7 @@ package org.apache.flex.charts.beads
 				vaxis.axisGroup = _verticalAxisGroup;
 				IParent(_strand).addElement(_verticalAxisGroup);
 			}
-			
-			if (_strand.getBeadByType(IBeadLayout) == null)
-			{
-				var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-				_strand.addBead(layout);
-			}
-			
-			handleLocalChange(null);
-			
+						
 			IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
 		}
 		
@@ -118,7 +108,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		private function handleLocalChange(event:Event):void
+		override protected function layoutList():void
 		{	
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;

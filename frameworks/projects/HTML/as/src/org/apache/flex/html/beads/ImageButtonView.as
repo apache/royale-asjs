@@ -32,6 +32,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIButtonBase;
     import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -111,12 +112,20 @@ package org.apache.flex.html.beads
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
                     var host:UIButtonBase = UIButtonBase(_strand);
                     if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+                    {
                         host.setWidth(loader.content.width);
+                        if (host.parent)
+                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                    }
                     else
                         loader.content.width = host.width;
                     
                     if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
+                    {
                         host.setHeight(loader.content.height);
+                        if (host.parent)
+                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                    }
                     else
                         loader.content.height = host.height;
                     updateHitArea();

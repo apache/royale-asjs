@@ -256,13 +256,10 @@ package org.apache.flex.core
 		 *  @productversion FlexJS 0.0
 		 */
 		public function get clientWidth():Number
-		{
-			var padding:Object = determinePadding();
-			var pl:Number = 0;
-			var pr:Number = 0;
-			if (!isNaN(padding.paddingLeft)) pl = padding.paddingLeft;
-			if (!isNaN(padding.paddingRight)) pr = padding.paddingRight;
-			return width + pl + pr;
+		{			
+            // button views should already factor in padding to set
+            // the borders
+			return width;
 		}
 		
 		/**
@@ -276,12 +273,9 @@ package org.apache.flex.core
 		 */
 		public function get clientHeight():Number
 		{
-			var padding:Object = determinePadding();
-			var pt:Number = 0;
-			var pb:Number = 0;
-			if (!isNaN(padding.paddingTop)) pt = padding.paddingTop;
-			if (!isNaN(padding.paddingBottom)) pb = padding.paddingBottom;
-			return height + pt + pb;
+            // button views should already factor in padding to set
+            // the borders
+			return height;
 		}
 		
 		private var _width:Number;

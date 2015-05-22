@@ -19,15 +19,15 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
-    import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.dbg.DOMPathUtil;
+	import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
      *  The HorizontalLayout class is a simple layout
@@ -70,44 +70,19 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			host = value as ILayoutChild;
-            
-            // if host is going to be sized by its parent, then don't
-            // run layout when the children are added until after the
-            // initial sizing by the parent.
-            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
-            {
-                addOtherListeners();
-            }
-            else
-            {
-        		host.addEventListener("widthChanged", changeHandler);
-                host.addEventListener("heightChanged", changeHandler);
-                host.addEventListener("sizeChanged", sizeChangeHandler);
-                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
-                    addOtherListeners();
-            }
 		}
 	
-        private function addOtherListeners():void
-        {
-            host.addEventListener("childrenAdded", changeHandler);
-            host.addEventListener("layoutNeeded", changeHandler);
-            host.addEventListener("itemsCreated", changeHandler);
-        }
-        
-        private function sizeChangeHandler(event:Event):void
-        {
-            addOtherListeners();
-            changeHandler(event);
-        }
-        
-		private function changeHandler(event:Event):void
+        /**
+         * @copy org.apache.flex.core.IBeadLayout#layout
+         */
+		public function layout():Boolean
 		{
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent.contentView;
 			
 			var n:int = contentView.numElements;
+            var hostSizedToContent:Boolean = host.isHeightSizedToContent();
             var ilc:ILayoutChild;
 			var marginLeft:Object;
 			var marginRight:Object;
@@ -115,12 +90,18 @@ package org.apache.flex.html.beads.layouts
 			var marginBottom:Object;
 			var margin:Object;
 			var maxHeight:Number = 0;
+            // asking for contentView.width can result in infinite loop if host isn't sized already
+            var h:Number = hostSizedToContent ? 0 : contentView.height;
 			var verticalMargins:Array = [];
+            var hasVerticalAlign:Boolean;
 			
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				if (child == null || !child.visible) continue;
+                var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
+                var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
+                ilc = child as ILayoutChild;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -161,6 +142,16 @@ package org.apache.flex.html.beads.layouts
 				mb = Number(marginBottom);
 				if (isNaN(mb))
 					mb = 0;
+                var xx:Number;
+                if (i == 0)
+                    child.x = ml;
+                else
+                    child.x = xx + ml + lastmr;
+                if (ilc)
+                {
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
+                }
 				if (marginLeft == "auto")
 					ml = 0;
 				else
@@ -177,43 +168,112 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(mr))
 						mr = 0;
 				}
-				child.y = mt;
-				maxHeight = Math.max(maxHeight, ml + child.clientHeight + mr);
-				var xx:Number;
-				if (i == 0)
-					child.x = ml;
-				else
-					child.x = xx + ml + lastmr;
-                if (child is ILayoutChild)
+                lastmr = mr;
+                var marginObject:Object = {};
+                verticalMargins[i] = marginObject;
+                if (!hostSizedToContent)
                 {
-                    ilc = child as ILayoutChild;
-                    if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth(contentView.width * ilc.percentWidth / 100, true);
+                    // if host is sized by parent,
+                    // we can position and size children horizontally now
+                    setPositionAndHeight(child, top, mt, bottom, mb, h);
+                }
+                else
+                {
+                    if (!isNaN(top))
+                    {
+                        mt = top;
+                        marginObject.top = mt;
+                    }
+                    if (!isNaN(bottom))
+                    {
+                        mb = bottom;
+                        marginObject.bottom = mb;
+                    }
+                    maxHeight = Math.max(maxHeight, mt + child.clientHeight + mb);
                 }
 				xx = child.x + child.clientWidth;
-				lastmr = mr;
-				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
+				var valign:* = ValuesManager.valuesImpl.getValue(child, "vertical-align");
+				marginObject.valign = valign;
+                if (valign !== undefined)
+                    hasVerticalAlign = true;
 			}
-			for (i = 0; i < n; i++)
-			{
-				var obj:Object = verticalMargins[0]
-				child = contentView.getElementAt(i) as IUIBase;
-				if (child == null || !child.visible) continue;
-                if (child is ILayoutChild)
+            if (hostSizedToContent)
+            {
+                ILayoutChild(contentView).setHeight(maxHeight, true);
+                if (host.isWidthSizedToContent())
+                    ILayoutChild(contentView).setWidth(xx, true);
+                for (i = 0; i < n; i++)
                 {
-                    ilc = child as ILayoutChild;
-                    if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(contentView.height * ilc.percentHeight / 100, true);
+                    child = contentView.getElementAt(i) as IUIBase;
+                    if (child == null || !child.visible) continue;
+                    var obj:Object = verticalMargins[i];
+                    setPositionAndHeight(child, obj.top, obj.marginTop,
+                        obj.bottom, obj.marginBottom, maxHeight);
                 }
-				if (obj.valign == "middle")
-					child.y = (maxHeight - child.clientHeight) / 2;
-				else if (valign == "bottom")
-					child.y = maxHeight - child.clientHeight - obj.marginBottom;
-				else
-					child.y = obj.marginTop;
-                child.dispatchEvent(new Event("sizeChanged"));
-			}
+            }
+            if (hasVerticalAlign)
+            {
+    			for (i = 0; i < n; i++)
+    			{
+    				child = contentView.getElementAt(i) as IUIBase;
+    				if (child == null || !child.visible) continue;
+                    obj = verticalMargins[i];
+                    if (child is ILayoutChild)
+                    {
+                        ilc = child as ILayoutChild;
+                        if (!isNaN(ilc.percentHeight))
+                            ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentHeight));
+                    }
+    				if (obj.valign == "middle")
+    					child.y = (maxHeight - child.clientHeight) / 2;
+    				else if (valign == "bottom")
+    					child.y = maxHeight - child.clientHeight - obj.marginBottom;
+    				else
+    					child.y = obj.marginTop;
+    			}
+            }
+            return true;
 		}
+        
+        private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number,
+                                             bottom:Number, mb:Number, h:Number):void
+        {
+            var heightSet:Boolean = false;
+            
+            var hh:Number = h;
+            var ilc:ILayoutChild = child as ILayoutChild;
+            if (!isNaN(top))
+            {
+                child.y = top + mt;
+                hh -= top + mt;
+            }
+            else 
+            {
+                child.y = mt;
+                hh -= top;
+            }
+            if (!isNaN(bottom))
+            {
+                if (!isNaN(top))
+                {
+                    if (ilc)
+                        ilc.setHeight(hh - bottom - mb, true);
+                    else 
+                    {
+                        child.height = hh - bottom - mb;
+                        heightSet = true;
+                    }
+                }
+                else
+                    child.y = h - bottom - mb - child.clientHeight;
+            }
+            if (ilc)
+            {
+                if (!isNaN(ilc.percentHeight))
+                    ilc.setHeight(h * ilc.percentHeight / 100, true);
+            }
+            if (!heightSet)
+                child.dispatchEvent(new Event("sizeChanged"));
+        }
 	}
 }

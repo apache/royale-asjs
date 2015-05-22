@@ -32,6 +32,9 @@ package org.apache.flex.core
      */
 	public interface IBeadLayout extends IBead
 	{
-		
+        /**
+         * @return true if size changed 
+         */
+		function layout():Boolean;
 	}
 }

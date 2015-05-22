@@ -121,11 +121,6 @@ limitations under the License.
     </js:Container>
 
     <js:VContainer>
-        <js:beads>
-            <js:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
-            <js:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
-            <js:LayoutChangeNotifier watchedProperty="{tiles.height}" initialValue="0" />
-        </js:beads>
         <js:style>
             <js:SimpleCSSStyles marginTop="4" right="16" top="36" />
         </js:style>

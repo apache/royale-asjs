@@ -63,6 +63,8 @@ package org.apache.flex.core
 		{
 			super();
 			
+            supportsChromeChildren = false;
+            
 			className = "flexjs";
 		}
 		

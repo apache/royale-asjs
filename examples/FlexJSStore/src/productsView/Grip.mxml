@@ -35,8 +35,6 @@ limitations under the License.
     </fx:Script>
     <js:beads>
         <js:ContainerDataBinding />
-        <js:LayoutChangeNotifier watchedProperty="{icon.height}" initialValue="0" />
-        <js:LayoutChangeNotifier watchedProperty="{grip.height}" initialValue="0" />
     </js:beads>
 
     <js:Image id="icon" source="{gripIcon}" />
