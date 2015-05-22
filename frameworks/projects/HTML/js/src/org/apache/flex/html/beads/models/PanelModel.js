@@ -14,6 +14,7 @@
 
 goog.provide('org_apache_flex_html_beads_models_PanelModel');
 
+goog.require('org_apache_flex_core_IBeadModel');
 goog.require('org_apache_flex_events_EventDispatcher');
 
 
