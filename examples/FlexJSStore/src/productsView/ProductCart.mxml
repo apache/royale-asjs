@@ -30,7 +30,7 @@ limitations under the License.
     </js:style>
     <js:beads>
         <js:ContainerDataBinding />
-        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="{productList}" />
+        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="productList" />
     </js:beads>
     <fx:Script>
         <![CDATA[
