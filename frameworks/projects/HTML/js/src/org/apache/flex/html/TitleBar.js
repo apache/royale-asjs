@@ -52,6 +52,7 @@ org_apache_flex_html_TitleBar.prototype.createElement =
   this.element = document.createElement('div');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   this.className = 'TitleBar';
