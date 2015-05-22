@@ -138,6 +138,16 @@ org_apache_flex_html_Panel.prototype.addedToParent =
 };
 
 
+/**
+ * @override
+ * @return {Array} the HTML DOM element children.
+ */
+org_apache_flex_html_Panel.prototype.internalChildren =
+    function(c, index) {
+  return this.contentArea.children;
+};
+
+
 Object.defineProperties(org_apache_flex_html_Panel.prototype, {
     /** @expose */
     showCloseButton: {
