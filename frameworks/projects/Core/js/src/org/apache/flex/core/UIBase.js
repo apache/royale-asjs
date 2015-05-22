@@ -424,6 +424,26 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         }
     },
     /** @expose */
+    clientWidth: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.positioner.clientWidth;
+        }
+    },
+    /** @expose */
+    CSSWidth: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var pixels;
+            var strpixels = this.positioner.style.width;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+              pixels = NaN;
+            else
+              pixels = parseFloat(strpixels);
+            return pixels;
+        }
+    },
+    /** @expose */
     width: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -473,6 +493,26 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.percentWidth_;
+        }
+    },
+    /** @expose */
+    clientHeight: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            return this.positioner.clientHeight;
+        }
+    },
+    /** @expose */
+    CSSHeight: {
+        /** @this {org_apache_flex_core_UIBase} */
+        get: function() {
+            var pixels;
+            var strpixels = this.positioner.style.height;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+              pixels = NaN;
+            else
+              pixels = parseFloat(strpixels);
+            return pixels;
         }
     },
     /** @expose */
@@ -649,8 +689,8 @@ org_apache_flex_core_UIBase.prototype.setHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _height = this.height;
-  if (_height != value) {
+  var _height = this.CSSHeight;
+  if (isNaN(_height) || _height != value) {
     this.positioner.style.height = value.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('heightChanged');
@@ -669,8 +709,8 @@ org_apache_flex_core_UIBase.prototype.setWidth =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.width;
-  if (_width != value) {
+  var _width = this.CSSWidth;
+  if (isNaN(_width) || _width != value) {
     this.positioner.style.width = value.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('widthChanged');
@@ -690,14 +730,14 @@ org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
-  var _width = this.width;
-  if (_width != newWidth) {
+  var _width = this.CSSWidth;
+  if (isNaN(_width) || _width != newWidth) {
     this.positioner.style.width = newWidth.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('widthChanged');
   }
-  var _height = this.height;
-  if (_height != newHeight) {
+  var _height = this.CSSHeight;
+  if (isNaN(_height) || _height != newHeight) {
     this.positioner.style.height = newHeight.toString() + 'px';
     if (!opt_noEvent)
       this.dispatchEvent('heightChanged');
