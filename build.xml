@@ -72,7 +72,7 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="prebuild,frameworks-as,frameworks-js,post-build" description="Full build">
+    <target name="main" depends="prebuild,frameworks-as,frameworks-js,frameworks-recompile,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -414,6 +414,12 @@
     
     <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint">
         <ant dir="${basedir}/frameworks" target="js">
+            <property name="locale" value="${locale}"/>
+        </ant>
+    </target>
+
+    <target name="frameworks-recompile" description="Full build of all Actionscript framework SWCs, which picks up JS files">
+        <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
