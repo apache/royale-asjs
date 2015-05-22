@@ -73,7 +73,6 @@ limitations under the License.
             borderStyles.borderColor = "#CCCCCC";
             //style["dropShadowEnabled"] = true;
             buttons.visible = true;
-            dispatchEvent(new Event("layoutNeeded"));
         }
 
         private function rollOutHandler(event:MouseEvent):void

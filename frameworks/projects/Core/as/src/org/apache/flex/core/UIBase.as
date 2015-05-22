@@ -518,11 +518,7 @@ package org.apache.flex.core
             if (!isNaN(_percentWidth))
                 return false;
             var value:* = ValuesManager.valuesImpl.getValue(this, "width");
-            if (value !== undefined)
-                return false;
-            var left:* = ValuesManager.valuesImpl.getValue(this, "left");
-            var right:* = ValuesManager.valuesImpl.getValue(this, "right");
-            return (left === undefined || right === undefined);
+            return value === undefined;
 
         }
         
@@ -541,11 +537,7 @@ package org.apache.flex.core
             if (!isNaN(_percentHeight))
                 return false;
             var value:* = ValuesManager.valuesImpl.getValue(this, "height");
-            if (value !== undefined)
-                return false;
-            var top:* = ValuesManager.valuesImpl.getValue(this, "top");
-            var bottom:* = ValuesManager.valuesImpl.getValue(this, "bottom");
-            return (top === undefined || bottom === undefined);          
+            return value === undefined;            
         }
 		
 		/**
@@ -1064,9 +1056,5 @@ package org.apache.flex.core
             _stageProxy = null;
         }
         
-        protected function repeaterListener(event:Event):void
-        {
-            dispatchEvent(event);
-        }
 	}
 }

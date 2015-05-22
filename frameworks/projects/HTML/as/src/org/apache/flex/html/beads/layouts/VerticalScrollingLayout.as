@@ -76,16 +76,23 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+            IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
+		private function changeHandler(event:Event):void
 		{            
             var layoutParent:IScrollingLayoutParent = 
                 _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
+            if (!contentView)
+                return;
+            IEventDispatcher(contentView).addEventListener("childrenAdded", changeHandler);
+            IEventDispatcher(contentView).addEventListener("layoutNeeded", changeHandler);
             
 			var border:Border = layoutParent.border;
    			var borderModel:IBorderModel;
@@ -147,7 +154,8 @@ package org.apache.flex.html.beads.layouts
                 DisplayObject(contentView).scrollRect = null;
 				vScrollBar.visible = false;
 			}
-			return true;
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 
         private function scrollHandler(event:Event):void

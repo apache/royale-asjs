@@ -71,25 +71,46 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
             host = value as ILayoutChild;
+            
+            // if host is going to be sized by its parent, then don't
+            // run layout when the children are added until after the
+            // initial sizing by the parent.
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            {
+                addOtherListeners();
+            }
+            else
+            {
+                host.addEventListener("heightChanged", changeHandler);
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("sizeChanged", sizeChangeHandler);
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                    addOtherListeners();
+            }
 		}
-	        
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
+	
+        private function addOtherListeners():void
+        {
+            host.addEventListener("childrenAdded", changeHandler);
+            host.addEventListener("layoutNeeded", changeHandler);
+            host.addEventListener("itemsCreated", changeHandler);
+        }
+        
+        private function sizeChangeHandler(event:Event):void
+        {
+            addOtherListeners();
+            changeHandler(event);
+        }
+        
+		private function changeHandler(event:Event):void
 		{
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
 			
-            var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
-            var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-            var w:Number = hostWidthSizedToContent ? 0 : contentView.width;
-            var h:Number = hostHeightSizedToContent ? 0 : contentView.height;
+            var w:Number = contentView.width;
+            var h:Number = contentView.height;
 			var n:int = contentView.numElements;
-            var maxWidth:Number = 0;
-            var maxHeight:Number = 0;
-            var childData:Array = [];
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
@@ -113,131 +134,42 @@ package org.apache.flex.html.beads.layouts
                 var ilc:ILayoutChild = child as ILayoutChild;
                 if (ilc)
                 {
-                    if (!hostWidthSizedToContent)
-                    {
-                        if (!isNaN(ilc.percentWidth))
-                            ilc.setWidth((ww - (isNaN(right) ? 0 : right)) * ilc.percentWidth / 100, true);
-                    }
-                    else
-                        childData[i] = { bottom: bottom, right: right, ww: ww, ilc: ilc, child: child };
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth((ww - (isNaN(right) ? 0 : right)) * ilc.percentWidth / 100, true);
                 }
                 if (!isNaN(right))
                 {
-                    if (!hostWidthSizedToContent)
+                    if (!isNaN(left))
                     {
-                        if (!isNaN(left))
-                        {
-                            if (ilc)
-                                ilc.setWidth(ww - right, true);
-                            else
-                                child.width = ww - right;
-                        }
+                        if (ilc)
+                            ilc.setWidth(ww - right);
                         else
-                            child.x = w - right - child.clientWidth;
+                            child.width = ww - right;
                     }
                     else
-                        childData[i] = { ww: ww, left: left, right: right, ilc: ilc, child: child };
+                        child.x = w - right - child.clientWidth;
                 }
-                if (ilc)
+                if (child is ILayoutChild)
                 {
-                    if (!hostHeightSizedToContent)
-                    {
-                        if (!isNaN(ilc.percentHeight))
-                            ilc.setHeight((hh - (isNaN(bottom) ? 0 : bottom)) * ilc.percentHeight / 100, true);
-                    }
-                    else
-                    {
-                        if (!childData[i])
-                            childData[i] = { hh: hh, bottom: bottom, ilc: ilc, child: child };
-                        else
-                        {
-                            childData[i].hh = hh;
-                            childData[i].bottom = bottom;
-                        }
-                    }
+                    ilc = child as ILayoutChild;
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight((hh - (isNaN(bottom) ? 0 : bottom)) * ilc.percentHeight / 100, true);
                 }
                 if (!isNaN(bottom))
                 {
-                    if (!hostHeightSizedToContent)
+                    if (!isNaN(top))
                     {
-                        if (!isNaN(top))
-                        {
-                            if (ilc)
-                                ilc.setHeight(hh - bottom, true);
-                            else
-                                child.height = hh - bottom;
-                        }
+                        if (ilc)
+                            ilc.setHeight(hh - bottom);
                         else
-                            child.y = h - bottom - child.clientHeight;
+                            child.height = hh - bottom;
                     }
                     else
-                    {
-                        if (!childData[i])
-                            childData[i] = { top: top, bottom: bottom, hh:hh, ilc: ilc, child: child };
-                        else
-                        {
-                            childData[i].top = top;
-                            childData[i].bottom = bottom;
-                            childData[i].hh = hh;
-                        }
-                    }
+                        child.y = h - bottom - child.clientHeight;
                 }
-                if (!childData[i])
-                    child.dispatchEvent(new Event("sizeChanged"));
-                maxWidth = Math.max(maxWidth, child.x + child.clientWidth);
-                maxHeight = Math.max(maxHeight, child.y + child.clientHeight);
+                child.dispatchEvent(new Event("sizeChanged"));
 			}
-            if (hostHeightSizedToContent || hostWidthSizedToContent)
-            {
-                if (hostHeightSizedToContent)
-                    ILayoutChild(contentView).setHeight(maxHeight, true);
-                if (hostWidthSizedToContent)
-                    ILayoutChild(contentView).setWidth(maxWidth, true);
-                for (i = 0; i < n; i++)
-                {
-                    var data:Object = childData[i];
-                    if (data)
-                    {
-                        if (hostWidthSizedToContent)
-                        {
-                            if (data.ilc && !isNaN(data.ilc.percentWidth))
-                                data.ilc.setWidth((data.ww - (isNaN(data.right) ? 0 : data.right)) * data.ilc.percentWidth / 100, true);
-                            if (!isNaN(data.right))
-                            {
-                                if (!isNaN(data.left))
-                                {
-                                    if (data.ilc)
-                                        data.ilc.setWidth(data.ww - data.right, true);
-                                    else
-                                        data.child.width = data.ww - data.right;
-                                }
-                                else
-                                    data.child.x = maxWidth - data.right - data.child.clientWidth;
-                            }
-                        }
-                        if (hostHeightSizedToContent)
-                        {
-                            if (data.ilc && !isNaN(data.ilc.percentHeight))
-                                data.ilc.setHeight((data.hh - (isNaN(data.bottom) ? 0 : data.bottom)) * data.ilc.percentHeight / 100, true);
-                            if (!isNaN(data.bottom))
-                            {
-                                if (!isNaN(data.top))
-                                {
-                                    if (data.ilc)
-                                        data.ilc.setHeight(data.hh - data.bottom, true);
-                                    else
-                                        data.child.height = data.hh - data.bottom;
-                                }
-                                else
-                                    data.child.y = maxHeight - data.bottom - data.child.clientHeight;
-                            }
-                        }
-                        child.dispatchEvent(new Event("sizeChanged"));
-                    }
-                }
-
-            }
-            return true;
 		}
 	}
 }

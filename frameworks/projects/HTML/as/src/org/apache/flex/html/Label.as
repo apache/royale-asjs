@@ -56,7 +56,6 @@ package org.apache.flex.html
 			super();
 		}
 		
-        [Bindable("textChange")]
         /**
          *  The text to display in the label.
          *  
@@ -78,7 +77,6 @@ package org.apache.flex.html
 			ITextModel(model).text = value;
 		}
 		
-        [Bindable("htmlChange")]
         /**
          *  The html-formatted text to display in the label.
          *  
@@ -99,17 +97,6 @@ package org.apache.flex.html
 		{
 			ITextModel(model).html = value;
 		}
-
-        
-        /**
-         *  @private
-         */
-        override public function addedToParent():void
-        {
-            super.addedToParent();
-            model.addEventListener("textChange", repeaterListener);
-            model.addEventListener("htmlChange", repeaterListener);
-        }
-
+				
 	}
 }

@@ -18,7 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-        
+    
+    import org.apache.flex.states.AddItems;
+    import org.apache.flex.states.SetEventHandler;
+    import org.apache.flex.states.SetProperty;
+    import org.apache.flex.states.State;
+    
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStatesObject;
     import org.apache.flex.effects.Effect;
@@ -26,10 +31,6 @@ package org.apache.flex.core
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.states.AddItems;
-    import org.apache.flex.states.SetEventHandler;
-    import org.apache.flex.states.SetProperty;
-    import org.apache.flex.states.State;
     import org.apache.flex.states.Transition;
     import org.apache.flex.utils.MXMLDataInterpreter;
 	
@@ -121,13 +122,11 @@ package org.apache.flex.core
                 }
             }
             var arr:Array = doc.states;
-            var oldState:State;
-            var newState:State;
             for each (var s:State in arr)
             {
                 if (s.name == event.oldValue)
                 {
-                    oldState = s;
+                    revert(s);
                     break;
                 }
             }
@@ -135,14 +134,10 @@ package org.apache.flex.core
             {
                 if (s.name == event.newValue)
                 {
-                    newState = s;
+                    apply(s);
                     break;
                 }
             }
-            if (oldState)
-                revert(oldState, newState);
-            if (newState)
-                apply(oldState, newState);
             if (transitionEffects && transitionEffects.length > 0)
             {
                 for each (e in transitionEffects)
@@ -190,39 +185,8 @@ package org.apache.flex.core
                 doc.dispatchEvent(new Event("stateChangeComplete"));
             }
         }
-        
-        private function isItemInState(child:Object, s:State):Boolean
-        {
-            if (s == null) return false;
             
-            var arr:Array = s.overrides;
-            for each (var o:Object in arr)
-            {
-                if (o is AddItems)
-                {
-                    var ai:AddItems = AddItems(o);
-                    if (ai.items == null)
-                    {
-                        ai.items = ai.itemsDescriptor.items as Array;
-                        if (ai.items == null)
-                        {
-                            ai.items = 
-                                MXMLDataInterpreter.generateMXMLArray(ai.document,
-                                    null, ai.itemsDescriptor.descriptor);
-                            ai.itemsDescriptor.items = ai.items;
-                        }
-                    }
-                    for each (var item:IChild in ai.items)
-                    {
-                        if (item == child)
-                            return true;
-                    }
-                }
-            }
-            return false;
-        }
-        
-        private function revert(s:State, newState:State):void
+        private function revert(s:State):void
         {
             var arr:Array = s.overrides;
             for each (var o:Object in arr)
@@ -230,17 +194,12 @@ package org.apache.flex.core
                 if (o is AddItems)
                 {
                     var ai:AddItems = AddItems(o);
-                    var childrenAdded:Boolean = false;
                     for each (var item:IChild in ai.items)
                     {
-                        if (!isItemInState(item, newState))
-                        {
-                            var parent:IParent = item.parent as IParent;
-                            parent.removeElement(item);
-                            childrenAdded = true;
-                        }
+                        var parent:IParent = item.parent as IParent;
+                        parent.removeElement(item);
                     }
-                    if (childrenAdded && parent is IContainer)
+                    if (parent is IContainer)
                         IContainer(parent).childrenAdded();
                 }
                 else if (o is SetProperty)
@@ -266,7 +225,7 @@ package org.apache.flex.core
             }
         }
         
-        private function apply(oldState:State, s:State):void
+        private function apply(s:State):void
         {
             var arr:Array = s.overrides;
             for each (var o:Object in arr)
@@ -285,33 +244,27 @@ package org.apache.flex.core
                             ai.itemsDescriptor.items = ai.items;
                         }
                     }
-                    var childrenAdded:Boolean = false;
                     for each (var item:Object in ai.items)
                     {
-                        if (!isItemInState(item, oldState))
+                        var parent:IParent = ai.document as IParent;
+                        if (ai.destination)
+                            parent = parent[ai.destination] as IParent;
+                        if (ai.relativeTo != null)
                         {
-                            var parent:IParent = ai.document as IParent;
+                            var child:Object = ai.document[ai.relativeTo];
                             if (ai.destination)
-                                parent = parent[ai.destination] as IParent;
-                            if (ai.relativeTo != null)
-                            {
-                                var child:Object = ai.document[ai.relativeTo];
-                                if (ai.destination)
-                                    parent = IChild(child).parent as IParent;
-                                var index:int = parent.getElementIndex(child);
-                                if (ai.position == "after")
-                                    index++;
-                                parent.addElementAt(item, index);
-                                childrenAdded = true;
-                            }
-                            else
-                            {
-                                parent.addElement(item);
-                                childrenAdded = true;
-                            }
+                                parent = IChild(child).parent as IParent;
+                            var index:int = parent.getElementIndex(child);
+                            if (ai.position == "after")
+                                index++;
+                            parent.addElementAt(item, index);
+                        }
+                        else
+                        {
+                            parent.addElement(item);
                         }
                     }
-                    if (childrenAdded && parent is IContainer)
+                    if (parent is IContainer)
                         IContainer(parent).childrenAdded();
                 }
                 else if (o is SetProperty)

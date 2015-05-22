@@ -269,7 +269,7 @@ public class MXMLDataInterpreter
         }
         if (parent && comp is DisplayObject)
         {
-            parent.addElement(comp, !(parent is IContainer));
+            parent.addElement(comp, !(comp is IContainer));
         }
         
         if (children)
@@ -277,6 +277,12 @@ public class MXMLDataInterpreter
             if (!(comp is IMXMLDocument))
             {
                 generateMXMLInstances(document, comp as IParent, children);
+            
+                // maybe we can remove this.  All IContainers should be IMXMLDocuments?
+                if (comp is IContainer)
+                {
+                    IContainer(comp).childrenAdded();
+                }
             }
         }
         
@@ -307,11 +313,6 @@ public class MXMLDataInterpreter
 		if (!data) return;
 		
         generateMXMLArray(document, parent, data);
-        // maybe we can remove this.  All IContainers should be IMXMLDocuments?
-        if (parent is IContainer)
-        {
-            IContainer(parent).childrenAdded();
-        }
     }
     
     /**

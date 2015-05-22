@@ -63,7 +63,11 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;			
+			_strand = value;
+			
+			IEventDispatcher(_strand).addEventListener("itemsCreated",handleCreated);
+			IEventDispatcher(_strand).addEventListener("childrenAdded",handleCreated);
+			IEventDispatcher(_strand).addEventListener("layoutNeeded",handleCreated);
 		}
 		
 		private var _numColumns:Number = 4;
@@ -125,21 +129,32 @@ package org.apache.flex.html.beads.layouts
 			_rowHeight = value;
 		}
 		
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
+		/**
+		 * @private
+		 */
+		private function handleCreated(event:Event):void
+		{
+			// this is where we know the strand has things in it and we want to
+			// get the part of the strand that holds the items for the layout
+			updateLayout();
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function updateLayout():void
 		{
 			// this is where the layout is calculated
 			var p:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var area:UIBase = p.contentView as UIBase;
+			if (area == null) return;
 			
 			var xpos:Number = 0;
 			var ypos:Number = 0;
 			var useWidth:Number = columnWidth;
 			var useHeight:Number = rowHeight;
 			var n:Number = area.numChildren;
-			if (n == 0) return false;
+			if (n == 0) return;
 			
 			var realN:Number = n;
 			for(var j:int=0; j < n; j++)
@@ -173,7 +188,6 @@ package org.apache.flex.html.beads.layouts
 					ypos += useHeight;
 				} 
 			}
-            return true;
 		}
 	}
 }

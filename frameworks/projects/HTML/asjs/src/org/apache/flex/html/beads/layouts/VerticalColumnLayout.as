@@ -64,6 +64,9 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
 		}
 		
 		
@@ -86,10 +89,10 @@ package org.apache.flex.html.beads.layouts
 			_numColumns = value;
 		}
 		
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
+		/**
+		 * @private
+		 */
+		private function changeHandler(event:Event):void
 		{			
 			var sw:Number = UIBase(_strand).width;
 			var sh:Number = UIBase(_strand).height;
@@ -142,7 +145,7 @@ package org.apache.flex.html.beads.layouts
 				}
 			}
 			
-			return true;
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

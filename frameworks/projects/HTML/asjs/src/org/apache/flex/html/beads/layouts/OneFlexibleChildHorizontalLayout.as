@@ -83,12 +83,38 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
             host = value as ILayoutChild;
+            
+            // if host is going to be sized by its parent, then don't
+            // run layout when the children are added until after the
+            // initial sizing by the parent.
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+            {
+                addOtherListeners();
+            }
+            else
+            {
+                host.addEventListener("widthChanged", changeHandler);
+                host.addEventListener("heightChanged", changeHandler);
+                host.addEventListener("sizeChanged", sizeChangeHandler);
+                if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
+                    addOtherListeners();
+            }
 		}
 	
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
-		public function layout():Boolean
+        private function addOtherListeners():void
+        {
+            host.addEventListener("childrenAdded", changeHandler);
+            host.addEventListener("layoutNeeded", changeHandler);
+            host.addEventListener("itemsCreated", changeHandler);
+        }
+        
+        private function sizeChangeHandler(event:Event):void
+        {
+            addOtherListeners();
+            changeHandler(event);
+        }
+        
+		private function changeHandler(event:Event):void
 		{
             var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
@@ -340,7 +366,7 @@ package org.apache.flex.html.beads.layouts
 				else
 					child.y = obj.marginTop;
 			}
-            return true;
+            ILayoutChild(layoutParent.resizableView).setHeight(maxHeight);
 		}
 
         // TODO (aharui): utility class or base class

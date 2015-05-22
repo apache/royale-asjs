@@ -58,7 +58,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase
+	public class Container extends ContainerBase implements IContainer
 	{
         /**
          *  Constructor.
@@ -71,7 +71,124 @@ package org.apache.flex.html
 		public function Container()
 		{
 			super();
+			actualParent = this;
+		}
+		
+		private var actualParent:DisplayObjectContainer;
+		
+        /**
+         *  Set a platform-specific object as the actual parent for 
+         *  children.  This must be public so it can be accessed
+         *  by beads.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function setActualParent(parent:DisplayObjectContainer):void
+		{
+			actualParent = parent;	
+		}
+		
+        /**
+         *  @private
+         */
+        override public function getElementIndex(c:Object):int
+        {
+            if (c is IUIBase)
+                return actualParent.getChildIndex(IUIBase(c).element as DisplayObject);
+            else
+                return actualParent.getChildIndex(c as DisplayObject);
+        }
+
+        /**
+         *  @private
+         */
+        override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        {
+            if (c is IUIBase)
+            {
+				if (c is IChrome ) {
+					addChild(IUIBase(c).element as DisplayObject);
+					IUIBase(c).addedToParent();
+				}
+				else {
+                	actualParent.addChild(IUIBase(c).element as DisplayObject);
+                	IUIBase(c).addedToParent();
+				}
+            }
+            else {
+				if (c is IChrome) {
+					addChild(c as DisplayObject);
+				}
+				else {
+					actualParent.addChild(c as DisplayObject);
+				}
+			}
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
+        }
+        
+        /**
+         *  @private
+         */
+        override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        {
+            if (c is IUIBase)
+            {
+				if (c is IChrome) {
+					addChildAt(IUIBase(c).element as DisplayObject, index);
+					IUIBase(c).addedToParent();
+				}
+				else {
+                	actualParent.addChildAt(IUIBase(c).element as DisplayObject, index);
+                	IUIBase(c).addedToParent();
+				}
+            }
+            else {
+				if (c is IChrome) {
+					addChildAt(c as DisplayObject, index);
+				} else {
+                	actualParent.addChildAt(c as DisplayObject, index);
+				}
+			}
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
+        }
+        
+        /**
+         *  @private
+         */
+        override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        {
+            if (c is IUIBase)
+                actualParent.removeChild(IUIBase(c).element as DisplayObject);
+            else
+                actualParent.removeChild(c as DisplayObject);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenRemoved"));
+        }
+        
+        /**
+         *  Get the array of children.  To change the children use
+         *  addElement, removeElement.
+         */
+        public function getChildren():Array
+		{
+			var children:Array = [];
+			var n:int = actualParent.numChildren;
+			for (var i:int = 0; i < n; i++)
+				children.push(actualParent.getChildAt(i));
+			return children;
 		}
 
+        /**
+         *  @private
+         */
+		public function childrenAdded():void
+		{
+			dispatchEvent(new Event("childrenAdded"));
+		}
 	}
 }

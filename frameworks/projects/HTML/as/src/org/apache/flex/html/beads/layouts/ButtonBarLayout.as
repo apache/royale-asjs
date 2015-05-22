@@ -71,6 +71,12 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+            IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("childrenAdded", changeHandler);
+			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
 		}
 		
 		private var _buttonWidths:Array = null;
@@ -94,9 +100,9 @@ package org.apache.flex.html.beads.layouts
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 * @private
 		 */
-		public function layout():Boolean
+		private function changeHandler(event:Event):void
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParent = layoutParent.contentView;
@@ -127,7 +133,6 @@ package org.apache.flex.html.beads.layouts
 				else UIBase(ir).width = useWidth;
 				xpos += UIBase(ir).width;
 			}
-            return true;
 		}
 	}
 }

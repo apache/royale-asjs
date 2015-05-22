@@ -147,14 +147,6 @@ package org.apache.flex.core
                 if (isNaN(initialView.explicitHeight))
                     initialView.setHeight(stage.stageHeight);
         	    this.addElement(initialView);
-                var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
-                if (bgColor != null)
-                {
-                    var backgroundColor:uint = ValuesManager.valuesImpl.convertColor(bgColor);
-                    graphics.beginFill(backgroundColor);
-                    graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
-                    graphics.endFill();
-                }
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
             }
             dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));

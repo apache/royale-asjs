@@ -70,17 +70,13 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			
+			IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("itemsCreated", changeHandler);
 		}
 		
-        /**
-         *  @copy org.apache.flex.core.IBeadLayout#layout
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function layout():Boolean
+		private function changeHandler(event:Event):void
 		{            
 			var layoutParent:IScrollingLayoutParent = 
                         _strand.getBeadByType(IScrollingLayoutParent) as IScrollingLayoutParent;
@@ -130,7 +126,6 @@ package org.apache.flex.html.beads.layouts
 				hScrollBar.visible = false;
 			}
 			*/
-            return true;
 		}
 		
 		/*private function scrollHandler(event:Event):void

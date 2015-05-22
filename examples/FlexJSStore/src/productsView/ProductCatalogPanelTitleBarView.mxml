@@ -38,12 +38,12 @@ limitations under the License.
     <js:beads>
         <js:MXMLBeadViewBaseDataBinding />
         <js:ParentDocumentBead id="pdb" />
-        <js:LayoutChangeNotifier watchedProperty="{buttons.width}" />
+        <js:LayoutChangeNotifier watchedProperty="{titleLabel.height}" />
     </js:beads>
     <js:Label id="titleLabel" text="{ITitleBarModel(model).title}" 
                  />
     <js:CloseButton id="closeButton" click="clickHandler()"
                        visible="{ITitleBarModel(model).showCloseButton}";
                        />
-    <productsView:CatalogTitleButtons id="buttons" />
+    <productsView:CatalogTitleButtons />
 </js:MXMLBeadViewBase>

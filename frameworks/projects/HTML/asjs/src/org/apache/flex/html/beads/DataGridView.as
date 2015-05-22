@@ -169,7 +169,7 @@ package org.apache.flex.html.beads
 			}
 			layout.header = buttonBar;
 			layout.columns = columns;
-			layout.layout();
+			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 		

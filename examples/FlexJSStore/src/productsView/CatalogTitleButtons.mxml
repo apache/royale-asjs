@@ -28,7 +28,6 @@ limitations under the License.
     <js:beads>
         <js:ParentDocumentBead id="pdb" />
         <js:ContainerDataBinding />
-        <js:LayoutChangeNotifier watchedProperty="{viewCart.text}" initialValue="#FFFFFF" />
     </js:beads>
     <fx:Script>
         <![CDATA[
