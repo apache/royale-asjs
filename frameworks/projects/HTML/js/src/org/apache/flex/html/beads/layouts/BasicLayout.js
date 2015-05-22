@@ -50,19 +50,6 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
-              if (this.strand_.isWidthSizedToContent() &&
-                this.strand_.isHeightSizedToContent())
-                this.addOtherListeners();
-              else {
-                this.strand_.addEventListener('heightChanged',
-                    goog.bind(this.changeHandler, this));
-                this.strand_.addEventListener('widthChanged',
-                    goog.bind(this.changeHandler, this));
-                this.strand_.addEventListener('sizeChanged',
-                    goog.bind(this.sizeChangeHandler, this));
-
-                this.addOtherListeners();
-              }
             }
         }
     }
@@ -70,34 +57,9 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype
 
 
 /**
- *
  */
 org_apache_flex_html_beads_layouts_BasicLayout.
-    prototype.addOtherListeners = function() {
-  this.strand_.addEventListener('childrenAdded',
-      goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('layoutNeeded',
-     goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('itemsCreated',
-     goog.bind(this.changeHandler, this));
-};
-
-
-/**
- * @param {org_apache_flex_events_Event} event The event.
- */
-org_apache_flex_html_beads_layouts_BasicLayout.
-    prototype.sizeChangeHandler = function(event) {
-  this.addOtherListeners();
-  this.changeHandler(event);
-};
-
-
-/**
- * @param {org_apache_flex_events_Event} event The text getter.
- */
-org_apache_flex_html_beads_layouts_BasicLayout.
-    prototype.changeHandler = function(event) {
+    prototype.layout = function() {
   var i, n, h, w;
 
   var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);

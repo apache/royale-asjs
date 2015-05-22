@@ -47,20 +47,6 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalLayout.protot
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
-              if (this.strand_.isWidthSizedToContent() &&
-                this.strand_.isHeightSizedToContent())
-                this.addOtherListeners();
-              else {
-                this.strand_.addEventListener('heightChanged',
-                    goog.bind(this.changeHandler, this));
-                this.strand_.addEventListener('widthChanged',
-                    goog.bind(this.changeHandler, this));
-                this.strand_.addEventListener('sizeChanged',
-                    goog.bind(this.sizeChangeHandler, this));
-                if (!isNaN(this.strand_.explicitWidth) &&
-                    !isNaN(this.strand_.explicitHeight))
-                  this.addOtherListeners();
-               }
             }
         }
     }
@@ -68,34 +54,9 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalLayout.protot
 
 
 /**
- *
  */
 org_apache_flex_html_beads_layouts_VerticalLayout.
-    prototype.addOtherListeners = function() {
-  this.strand_.addEventListener('childrenAdded',
-      goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('layoutNeeded',
-     goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('itemsCreated',
-     goog.bind(this.changeHandler, this));
-};
-
-
-/**
- * @param {org_apache_flex_events_Event} event The event.
- */
-org_apache_flex_html_beads_layouts_VerticalLayout.
-    prototype.sizeChangeHandler = function(event) {
-  this.addOtherListeners();
-  this.changeHandler(event);
-};
-
-
-/**
- * @param {org_apache_flex_events_Event} event The text getter.
- */
-org_apache_flex_html_beads_layouts_VerticalLayout.
-    prototype.changeHandler = function(event) {
+    prototype.layout = function() {
   var children, i, n;
 
   children = this.strand_.internalChildren();

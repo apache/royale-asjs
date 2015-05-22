@@ -29,6 +29,13 @@ org_apache_flex_html_beads_layouts_VerticalScrollingLayout = function() {
 
 
 /**
+ */
+org_apache_flex_html_beads_layouts_VerticalScrollingLayout.
+    prototype.layout = function() {
+};
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}

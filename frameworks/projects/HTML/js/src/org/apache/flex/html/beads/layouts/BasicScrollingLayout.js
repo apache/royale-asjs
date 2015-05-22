@@ -47,10 +47,6 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_BasicScrollingLayout.
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
-              this.strand_.addEventListener('childrenAdded',
-                  goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('layoutNeeded',
-                  goog.bind(this.changeHandler, this));
             }
         }
     }
@@ -58,10 +54,9 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_BasicScrollingLayout.
 
 
 /**
- * @param {org_apache_flex_events_Event} event The text getter.
  */
 org_apache_flex_html_beads_layouts_BasicScrollingLayout.
-    prototype.changeHandler = function(event) {
+    prototype.layout = function() {
   var i, n, h, w;
 
   var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
