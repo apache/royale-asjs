@@ -222,8 +222,12 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.setupWatchers =
   for (i = 0; i < n; i++)
   {
     var watcher = watchers[i];
-    if (watcher.bindings.indexOf(index) != -1)
-    {
+    var isValidWatcher = false;
+    if (typeof(watcher.bindings) === 'number')
+      isValidWatcher = (watcher.bindings == index);
+    else
+      isValidWatcher = (watcher.bindings.indexOf(index) != -1);
+    if (isValidWatcher) {
       var type = watcher.type;
       switch (type)
       {
@@ -248,7 +252,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.setupWatchers =
       }
       if (watcher.children)
       {
-        this.setupWatchers(gb, index, watcher.children,
+        this.setupWatchers(gb, index, watcher.children.watchers,
             watcher.watcher);
       }
     }
