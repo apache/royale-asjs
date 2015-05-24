@@ -200,8 +200,8 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             if (!this._json)
-              _json = JSON.parse(this.data);
-            return _json;
+              this._json = JSON.parse(this.data);
+            return this._json;
         }
     },
     /** @expose */
