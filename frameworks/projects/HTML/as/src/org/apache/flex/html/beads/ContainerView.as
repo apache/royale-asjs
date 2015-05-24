@@ -98,7 +98,7 @@ package org.apache.flex.html.beads
             
             var host:UIBase = value as UIBase;
             
-            if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+            if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
             {
                 // if both dimensions are sized to content, then only draw the
                 // borders, etc, after a child is added.  The children in an MXML
