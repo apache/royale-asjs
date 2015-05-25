@@ -20,10 +20,11 @@ package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.text.StyleSheet;
 	
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.IUIBase;
@@ -189,10 +190,63 @@ package org.apache.flex.html.beads
          */
         public function set html(value:String):void
 		{
-			_textField.htmlText = value;
+			convertToTextFieldHTML(value);
             autoSizeIfNeeded();
 		}
 		
+        private function convertToTextFieldHTML(input:String):void
+        {
+            var classCount:int = 0;
+            var ss:StyleSheet;
+            var c:int = input.indexOf("<span");
+            while (c != -1)
+            {
+                var c1:int = input.indexOf(">", c);
+                if (c1 == -1)
+                {
+                    trace("did not parse span correctly");
+                    return;
+                }
+                var tag:String = input.substring(c, c1 + 1);
+                var c2:int = tag.indexOf("style=");
+                if (c2 != -1)
+                {
+                    var quote:String = tag.charAt(c2 + 6);
+                    var c3:int = tag.indexOf(quote, c2 + 7);
+                    if (c3 != -1)
+                    {
+                        var styles:String = tag.substring(c2 + 7, c3);
+                        if (!ss)
+                            ss = new StyleSheet();
+                        var styleObject:Object = {};
+                        var list:Array = styles.split(";");
+                        for each (var pair:String in list)
+                        {
+                            var parts:Array = pair.split(":");
+                            var name:String = parts[0];
+                            var c4:int = name.indexOf("-");
+                            if (c4 != -1)
+                            {
+                                var firstChar:String = name.charAt(c4 + 1);
+                                firstChar = firstChar.toUpperCase();
+                                var tail:String = name.substring(c4 + 2);
+                                name = name.substring(0, c4) + firstChar + tail;
+                            }
+                            styleObject[name] = parts[1];
+                        }
+                        var className:String = "css" + classCount++;
+                        ss.setStyle("." + className, styleObject);
+                        var newTag:String = "<span class='" + className + "'>";
+                        input = input.replace(tag, newTag);
+                        c1 += newTag.length - tag.length;
+                    }
+                }
+                c = input.indexOf("<span", c1);
+            }
+            _textField.styleSheet = ss;   
+            _textField.htmlText = input;
+        }
+        
 		private function textChangeHandler(event:Event):void
 		{
 			text = _textModel.text;
