@@ -19,6 +19,10 @@
 -->
 <project name="ASDocs" default="main" basedir=".">
     <property environment="env"/>
+    <available file="${basedir}/../../sdk"
+        type="dir"
+        property="FLEX_HOME"
+        value="${basedir}/../../sdk" />
 	<property name="FLEX_HOME" value="${basedir}/../../flex-sdk"/>
 	<property name="lenient" value="true"/>
 	<property name="flexlib" location="${basedir}/../frameworks"/>
