@@ -125,7 +125,7 @@
 			<doc-sources path-element="${project_home}/GoogleMaps/as/src"/>
 			<doc-sources path-element="${project_home}/Graphics/as/src"/>
 			<doc-sources path-element="${project_home}/HTML/as/src"/>
-			<doc-sources path-element="${project_home}/HTML/asjs/src"/>
+			<!--<doc-sources path-element="${project_home}/HTML/asjs/src"/>-->
 			<doc-sources path-element="${project_home}/HTML5/as/src"/>
 			<doc-sources path-element="${project_home}/JQuery/as/src"/>
 			<doc-sources path-element="${project_home}/Mobile/as/src"/>
