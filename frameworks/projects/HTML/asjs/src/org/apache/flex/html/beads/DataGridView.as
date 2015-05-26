@@ -108,14 +108,11 @@ package org.apache.flex.html.beads
 			
 			// create an array of columnLabels for use by the ButtonBar/DataGrid header.
 			var columnLabels:Array = new Array();
-			var buttonWidths:Array = new Array();
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
 				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				columnLabels.push(dgc.label);
-				buttonWidths.push(dgc.columnWidth);
 			}
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
-			bblayout.buttonWidths = buttonWidths;
 			
 			buttonBarModel = new ArraySelectionModel();
 			buttonBarModel.dataProvider = columnLabels;
@@ -142,7 +139,6 @@ package org.apache.flex.html.beads
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;
 				list.addBead(presentationModel);
-				trace("List.rowHeight is "+list.rowHeight);
 				
 				var colWidth:Number = dataGridColumn.columnWidth;
 				if (!isNaN(colWidth)) list.width = colWidth;
