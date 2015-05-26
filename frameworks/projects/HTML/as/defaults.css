@@ -94,6 +94,8 @@ Container
 
 ControlBar
 {
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+	
     background-color: #CECECE;
     border-style: solid;
     border-color: #000000;
@@ -166,6 +168,7 @@ Panel
     border-style: solid;
     border-color: #000000;
     border-width: 1px;
+	padding: 2px;
 }
 
 PanelWithControlBar
@@ -177,6 +180,7 @@ PanelWithControlBar
     border-style: solid;
     border-color: #000000;
     border-width: 1px;
+	padding: 2px;
 }
 
 SimpleList

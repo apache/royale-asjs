@@ -99,30 +99,39 @@ package org.apache.flex.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;
+			var host:UIBase = UIBase(value);
 			
-            // TODO: (aharui) get class to instantiate from CSS
-            _titleBar = new TitleBar();
+			// TODO: (aharui) get class to instantiate from CSS
+			if (!_titleBar)
+				_titleBar = new TitleBar();
+			_titleBar.percentWidth = 100;
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
-			titleBar.model = UIBase(_strand).model as ITitleBarModel;
-			Container(_strand).addElement(titleBar, false);
+			titleBar.model = host.model;
+			host.addElement(titleBar, false);
+			titleBar.addEventListener("heightChanged", changeHandler);
+			if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+				titleBar.addEventListener("widthChanged", changeHandler);
 			
-			var controlBarItems:Array = IPanelModel(UIBase(_strand).model).controlBar;
+			var controlBarItems:Array = (host.model as IPanelModel).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
+				_controlBar.percentWidth = 100;
+				_controlBar.height = 30;
 				
 				for each(var comp:IUIBase in controlBarItems) {
 					_controlBar.addElement(comp, false);
 				}
+				_controlBar.dispatchEvent(new Event("layoutNeeded"));
 				
-				Container(_strand).addElement(controlBar, false);
+				host.addElement(controlBar, false);
+				controlBar.addEventListener("heightChanged", changeHandler);
+				if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
+					controlBar.addEventListener("widthChanged", changeHandler);
 			}
 			
-			layoutChromeElements();
-			
-			IEventDispatcher(_strand).addEventListener("childrenAdded", changeHandler);            
+			super.strand = value;
 		}
 		
 		/**
@@ -142,35 +151,16 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function layoutChromeElements():void
+		override protected function determinePadding():Object
 		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-						
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = UIBase(_strand).width;
+			var paddings:Object = super.determinePadding();
+			titleBar.width = UIBase(_strand).clientWidth;
+			paddings.paddingTop += titleBar.height;
 			
-			var ypos:Number = titleBar.y + titleBar.height;
-			
-			actualParent.x = 0;
-			actualParent.y = ypos;
-			
-			ypos = actualParent.y + actualParent.height;
-			trace("ypos is "+ypos+" because actualParent.height is "+actualParent.height);
-			
-			if (controlBar) {
-				controlBar.x = 0;
-				controlBar.width = UIBase(_strand).width;
-				
-				var expHeight:Number = UIBase(_strand).explicitHeight;
-				if (isNaN(expHeight)) {
-					controlBar.y = ypos;
-				} else {
-					controlBar.y = expHeight - controlBar.height;
-				}
-			}
-			
-			UIBase(_strand).dispatchEvent(new Event("widthChanged"));
+			controlBar.width = UIBase(_strand).clientWidth;
+			paddings.paddingBottom += controlBar.height;
+
+			return paddings;
 		}
 		
 		/**
@@ -178,42 +168,32 @@ package org.apache.flex.html.beads
 		 */
 		override protected function changeHandler(event:Event):void
 		{
-			layoutChromeElements();
+			super.changeHandler(event);
+			
+			controlBar.y = UIBase(_strand).clientHeight - controlBar.height;
 		}
-		private function changeHandlerOLD(event:Event):void
+		
+		/**
+		 * @private
+		 */
+		private function layoutChromeElements():void
 		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-			
-			var w:Number = UIBase(_strand).explicitWidth;
-			if (isNaN(w)) w = Math.max(titleBar.width,actualParent.width+metrics.left+metrics.right,controlBar?controlBar.width:0);
-			
-			var h:Number = UIBase(_strand).explicitHeight;
-			if (isNaN(h)) h = titleBar.height + actualParent.height + (controlBar ? controlBar.height : 0) +
-				metrics.top + metrics.bottom;
-			
+			var paddings:Object = determinePadding();
 			titleBar.x = 0;
 			titleBar.y = 0;
-			titleBar.width = w;
+			titleBar.width = UIBase(_strand).clientWidth;
 			
-			var remainingHeight:Number = h - titleBar.height;
-			
-			if( controlBar ) {
+			if (controlBar) {
 				controlBar.x = 0;
-				controlBar.y = h - controlBar.height;
-				//controlBar.y = actualParent.y + actualParent.height + metrics.bottom;
-				controlBar.width = w;
-				
-				remainingHeight -= controlBar.height;
+				controlBar.y = UIBase(_strand).clientHeight - controlBar.height;
+				controlBar.width = UIBase(_strand).clientWidth;
 			}
 			
-			actualParent.x = metrics.left;
-			actualParent.y = titleBar.y + titleBar.height + metrics.top;
-			actualParent.width = w;
-			actualParent.height = remainingHeight - metrics.top - metrics.bottom;
-			
-			UIBase(_strand).width = w;
-			UIBase(_strand).height = h;
+			actualParent.x = paddings.paddingLeft;
+			actualParent.y = titleBar.height + paddings.paddingTop;
+			actualParent.width = UIBase(_strand).clientWidth - paddings.paddingLeft - paddings.paddingRight;
+			actualParent.height = UIBase(_strand).clientHeight - titleBar.height - paddings.paddingTop - paddings.paddingBottom;
+			if (controlBar) actualParent.height -= controlBar.height;
 		}
-        
 	}
 }
