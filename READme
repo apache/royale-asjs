@@ -117,13 +117,12 @@ Install Prerequisites
         Set GOOG_HOME to the absolute path of the folder that contains the 
         third_party and closure sub-folders.
 
-    *4) The Google Closure Linter can be found here:
-            http://code.google.com/p/closure-linter/downloads/list
+    *4) The Google Closure Linter can be installed by following the directions here:
+            https://developers.google.com/closure/utilities/docs/linter_howto
 
-        Follow the instructions here to install it.  It should automatically
-        make the linter available.  No need to change paths or environment
-        variables.  Some folks on OSX had permission issues after the install.
-        See their support channels for assistance.
+        It should automatically make the linter available.  No need to change paths 
+        or environment variables.  Some folks on OSX had permission issues after the
+        install.  See their support channels for assistance.
 
     *5) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
@@ -151,7 +150,10 @@ Install Prerequisites
         These can be used with Apache FlexJS but not all have not been fully
         tested.
 
-    *6) The JSHint utility installed by following the instructions here:
+    *6) You will need npm (Node Package Manager) to install JSHint. You can get npm from here:
+            https://nodejs.org/
+    
+        The JSHint utility can be installed by following the instructions here:
             http://www.jshint.com/install/
 
         JSHint will also be automatically available.  No need to change paths or
