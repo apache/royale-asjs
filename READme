@@ -163,12 +163,17 @@ Install Prerequisites
     *7) Set FALCON_HOME to the root of its SDK.  When using the flex-falcon
         repository, set 
              FALCON_HOME=<repo-path>/compiler/generated/dist/sdk
+			 
+	    Look at flex-falcon/README for instructions on how to build Falcon
 
     *8) Set FALCONJX_HOME to the root of its SDK.  When using the flex-falcon
         repository, set 
              FALCONJX_HOME=<repo-path>/compiler.jx
-
-    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  
+        
+		Look at flex-falcon/README_JX for instructions on how to build FalconJX
+			 
+    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.
+	    Look at flex-flexunit/README for instructions on how to build FlexUnit
 
 Software Dependencies
 ---------------------
