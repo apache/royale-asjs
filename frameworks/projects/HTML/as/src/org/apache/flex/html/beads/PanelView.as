@@ -122,7 +122,7 @@ package org.apache.flex.html.beads
         override protected function determinePadding():Object
         {
             var paddings:Object = super.determinePadding();
-            titleBar.width = UIBase(_strand).clientWidth;
+            titleBar.width = UIBase(_strand).width;
             paddings.paddingTop += titleBar.height;
             return paddings;
         }

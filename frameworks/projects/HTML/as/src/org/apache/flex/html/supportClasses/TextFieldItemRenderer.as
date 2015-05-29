@@ -63,6 +63,158 @@ package org.apache.flex.html.supportClasses
         public var highlightColor:uint = 0xCEDBEF;
         public var selectedColor:uint = 0xA8C6EE;
         public var downColor:uint = 0x808080;
+		
+		private var _explicitWidth:Number;
+		
+		/**
+		 *  The explicitly set width (as opposed to measured width
+		 *  or percentage width).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get explicitWidth():Number
+		{
+			if (isNaN(_explicitWidth))
+			{
+				var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+				if (value !== undefined) {
+					_explicitWidth = Number(value);
+				}
+			}
+			
+			return _explicitWidth;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set explicitWidth(value:Number):void
+		{
+			if (_explicitWidth == value)
+				return;
+			
+			// width can be pixel or percent not both
+			if (!isNaN(value))
+				_percentWidth = NaN;
+			
+			_explicitWidth = value;
+			
+			dispatchEvent(new Event("explicitWidthChanged"));
+		}
+		
+		private var _explicitHeight:Number;
+		
+		/**
+		 *  The explicitly set width (as opposed to measured width
+		 *  or percentage width).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get explicitHeight():Number
+		{
+			if (isNaN(_explicitHeight))
+			{
+				var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+				if (value !== undefined) {
+					_explicitHeight = Number(value);
+				}
+			}
+			
+			return _explicitHeight;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set explicitHeight(value:Number):void
+		{
+			if (_explicitHeight == value)
+				return;
+			
+			// height can be pixel or percent not both
+			if (!isNaN(value))
+				_percentHeight = NaN;
+			
+			_explicitHeight = value;
+			
+			dispatchEvent(new Event("explicitHeightChanged"));
+		}
+		
+		private var _percentWidth:Number;
+		
+		/**
+		 *  The requested percentage width this component
+		 *  should have in the parent container.  Note that
+		 *  the actual percentage may be different if the 
+		 *  total is more than 100% or if there are other
+		 *  components with explicitly set widths.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get percentWidth():Number
+		{
+			return _percentWidth;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set percentWidth(value:Number):void
+		{
+			if (_percentWidth == value)
+				return;
+			
+			if (!isNaN(value))
+				_explicitWidth = NaN;
+			
+			_percentWidth = value;
+			
+			dispatchEvent(new Event("percentWidthChanged"));
+		}
+		
+		private var _percentHeight:Number;
+		
+		/**
+		 *  The requested percentage height this component
+		 *  should have in the parent container.  Note that
+		 *  the actual percentage may be different if the 
+		 *  total is more than 100% or if there are other
+		 *  components with explicitly set heights.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get percentHeight():Number
+		{
+			return _percentHeight;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set percentHeight(value:Number):void
+		{
+			if (_percentHeight == value)
+				return;
+			
+			if (!isNaN(value))
+				_explicitHeight = NaN;
+			
+			_percentHeight = value;
+			
+			dispatchEvent(new Event("percentHeightChanged"));
+		}
 
         private var _width:Number;
 		
@@ -71,24 +223,27 @@ package org.apache.flex.html.supportClasses
 		 */
         override public function get width():Number
         {
-            if (isNaN(_width))
-            {
-                var value:* = ValuesManager.valuesImpl.getValue(this, "width");
-                if (value === undefined)
-                    return $width;
-                _width = Number(value);
-                super.width = value;
-            }
-            return _width;
+			if (isNaN(explicitWidth))
+			{
+				var w:Number = _width;
+				if (isNaN(w)) w = $width;
+				var padding:Object = determinePadding();
+				return w + padding.paddingLeft + padding.paddingRight;
+			}
+			else
+				return explicitWidth;
         }
         override public function set width(value:Number):void
         {
-            if (_width != value)
-            {
-                _width = value;
-                super.width = value;
-                dispatchEvent(new Event("widthChanged"));
-            }
+			if (explicitWidth != value)
+			{
+				explicitWidth = value;
+			}
+			
+			if (value != _width) {
+				_width = value;
+				dispatchEvent( new Event("widthChanged") );
+			}
         }
 		
 		/**
@@ -106,24 +261,28 @@ package org.apache.flex.html.supportClasses
 		 */
         override public function get height():Number
         {
-            if (isNaN(_height))
-            {
-                var value:* = ValuesManager.valuesImpl.getValue(this, "height");
-                if (value === undefined)
-                    return $height;
-                _height = Number(value);
-                super.height = value;
-            }
-            return _height;
+			if (isNaN(explicitHeight))
+			{
+				var h:Number = _height;
+				if (isNaN(h)) h = $height;
+				var padding:Object = determinePadding();
+				return h + padding.paddingTop + padding.paddingBottom;
+			}
+			else
+				return explicitHeight;
         }
+
         override public function set height(value:Number):void
         {
-            if (_height != value)
-            {
-                _height = value;
-                super.height = value;
-                dispatchEvent(new Event("heightChanged"));
-            }
+			if (explicitHeight != value)
+			{
+				explicitHeight = value;
+			}
+			
+			if (_height != value) {
+				_height = value;
+				dispatchEvent(new Event("heightChanged"));
+			}
         }
 		
 		/**
@@ -133,44 +292,6 @@ package org.apache.flex.html.supportClasses
         {
             return super.height;
         }
-		
-		/**
-		 * Returns the inner width of the component which includes its padding but
-		 * not its margins. Basically, the width plus left and right padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get clientWidth():Number
-		{
-			var padding:Object = determinePadding();
-			var pl:Number = 0;
-			var pr:Number = 0;
-			if (!isNaN(padding.paddingLeft)) pl = padding.paddingLeft;
-			if (!isNaN(padding.paddingRight)) pr = padding.paddingRight;
-			return width + pl + pr;
-		}
-		
-		/**
-		 * Returns the inner height of the component which includes its padding
-		 * but not its margins. Basically, the height plus top and bottom padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get clientHeight():Number
-		{
-			var padding:Object = determinePadding();
-			var pt:Number = 0;
-			var pb:Number = 0;
-			if (!isNaN(padding.paddingTop)) pt = padding.paddingTop;
-			if (!isNaN(padding.paddingBottom)) pb = padding.paddingBottom;
-			return height + pt + pb;
-		}
 		
 		/**
 		 *  Determines the top and left padding values, if any, as set by

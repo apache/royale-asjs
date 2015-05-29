@@ -205,15 +205,15 @@ package org.apache.flex.html.beads.layouts
 						mr = 0;
 				}
 				child.y = mt;
-				maxHeight = Math.max(maxHeight, mt + child.clientHeight + mb);
+				maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				if (i == 0)
                 {
                     child.x = ml;
                     child.width = xx - mr;
                 }
 				else
-                    child.x = xx - child.clientWidth - mr;
-				xx -= child.clientWidth + mr + ml;
+                    child.x = xx - child.width - mr;
+				xx -= child.width + mr + ml;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
 				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
@@ -223,9 +223,9 @@ package org.apache.flex.html.beads.layouts
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
 				if (obj.valign == "middle")
-					child.y = (maxHeight - child.clientHeight) / 2;
+					child.y = (maxHeight - child.height) / 2;
 				else if (valign == "bottom")
-					child.y = maxHeight - child.clientHeight - obj.marginBottom;
+					child.y = maxHeight - child.height - obj.marginBottom;
 				else
 					child.y = obj.marginTop;
 			}

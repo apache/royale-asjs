@@ -123,6 +123,14 @@ package org.apache.flex.core
 		 */
 		public function get explicitWidth():Number
 		{
+			if (isNaN(_explicitWidth))
+			{
+				var value:* = ValuesManager.valuesImpl.getValue(this, "width");
+				if (value !== undefined) {
+					_explicitWidth = Number(value);
+				}
+			}
+			
 			return _explicitWidth;
 		}
 		
@@ -156,6 +164,14 @@ package org.apache.flex.core
 		 */
 		public function get explicitHeight():Number
 		{
+			if (isNaN(_explicitHeight))
+			{
+				var value:* = ValuesManager.valuesImpl.getValue(this, "height");
+				if (value !== undefined) {
+					_explicitHeight = Number(value);
+				}
+			}
+			
 			return _explicitHeight;
 		}
 		
@@ -246,38 +262,6 @@ package org.apache.flex.core
 			dispatchEvent(new Event("percentHeightChanged"));
 		}
 		
-		/**
-		 * Returns the inner width of the component which includes its padding but
-		 * not its margins. Basically, the width plus left and right padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get clientWidth():Number
-		{			
-            // button views should already factor in padding to set
-            // the borders
-			return width;
-		}
-		
-		/**
-		 * Returns the inner height of the component which includes its padding
-		 * but not its margins. Basically, the height plus top and bottom padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get clientHeight():Number
-		{
-            // button views should already factor in padding to set
-            // the borders
-			return height;
-		}
-		
 		private var _width:Number;
         
         [PercentProxy("percentWidth")]
@@ -291,18 +275,15 @@ package org.apache.flex.core
          */
 		override public function get width():Number
 		{
-            if (isNaN(_width))
-            {
-                var value:* = ValuesManager.valuesImpl.getValue(this, "width");
-                if (value === undefined)
-                {
-                    if (view)
-                        return view.viewWidth;
-                    return $width;
-                }
-                _width = Number(value);
-            }
-            return _width;
+			if (isNaN(explicitWidth))
+			{
+				var w:Number = _width;
+				if (isNaN(w)) w = $width;
+				var padding:Object = determinePadding();
+				return w + padding.paddingLeft + padding.paddingRight;
+			}
+			else
+				return explicitWidth;
 		}
 
         /**
@@ -315,11 +296,7 @@ package org.apache.flex.core
 				explicitWidth = value;
 			}
 			
-			if (_width != value)
-			{
-				_width = value;
-				dispatchEvent(new Event("widthChanged"));
-			}
+			setWidth(value);
 		}
 
         /**
@@ -349,18 +326,15 @@ package org.apache.flex.core
          */
 		override public function get height():Number
 		{
-            if (isNaN(_height))
-            {
-                var value:* = ValuesManager.valuesImpl.getValue(this, "height");
-                if (value === undefined)
-                {
-                    if (view)
-                        return view.viewHeight;
-                    return $height;
-                }
-                _height = Number(value);
-            }
-            return _height;
+			if (isNaN(explicitHeight))
+			{
+				var h:Number = _height;
+				if (isNaN(h)) h = $height;
+				var padding:Object = determinePadding();
+				return h + padding.paddingTop + padding.paddingBottom;
+			}
+			else
+				return explicitHeight;
 		}
         
         /**
@@ -373,11 +347,7 @@ package org.apache.flex.core
 				explicitHeight = value;
 			}
 			
-			if (_height != value)
-			{
-				_height = value;
-				dispatchEvent(new Event("heightChanged"));
-			}
+			setHeight(value);
 		}
         
         /**

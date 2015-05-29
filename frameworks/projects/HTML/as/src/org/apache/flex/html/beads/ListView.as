@@ -188,7 +188,7 @@ package org.apache.flex.html.beads
 
             _border = new Border();
             _border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
-            _border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
+            _strand.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(_strand).addElement(_border);
             
 			if (_dataGroup == null) {

@@ -107,28 +107,6 @@ package org.apache.flex.core
 		 */
 		function get height():Number;
 		function set height(value:Number):void;
-		
-		/**
-		 * The inner width of the component which is
-		 * the width plus left and right padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get clientWidth():Number;
-		
-		/**
-		 * The inner height of the component which is
-		 * the height plus top and bottom padding.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get clientHeight():Number;
         
         /**
          *  Whether the component is visible.

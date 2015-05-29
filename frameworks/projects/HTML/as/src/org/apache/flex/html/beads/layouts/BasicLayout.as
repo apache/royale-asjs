@@ -133,7 +133,7 @@ package org.apache.flex.html.beads.layouts
                                 child.width = ww - right;
                         }
                         else
-                            child.x = w - right - child.clientWidth;
+                            child.x = w - right - child.width;
                     }
                     else
                         childData[i] = { ww: ww, left: left, right: right, ilc: ilc, child: child };
@@ -168,7 +168,7 @@ package org.apache.flex.html.beads.layouts
                                 child.height = hh - bottom;
                         }
                         else
-                            child.y = h - bottom - child.clientHeight;
+                            child.y = h - bottom - child.height;
                     }
                     else
                     {
@@ -184,8 +184,8 @@ package org.apache.flex.html.beads.layouts
                 }
                 if (!childData[i])
                     child.dispatchEvent(new Event("sizeChanged"));
-                maxWidth = Math.max(maxWidth, child.x + child.clientWidth);
-                maxHeight = Math.max(maxHeight, child.y + child.clientHeight);
+                maxWidth = Math.max(maxWidth, child.x + child.width);
+                maxHeight = Math.max(maxHeight, child.y + child.height);
 			}
             if (hostHeightSizedToContent || hostWidthSizedToContent)
             {
@@ -212,7 +212,7 @@ package org.apache.flex.html.beads.layouts
                                         data.child.width = data.ww - data.right;
                                 }
                                 else
-                                    data.child.x = maxWidth - data.right - data.child.clientWidth;
+                                    data.child.x = maxWidth - data.right - data.child.width;
                             }
                         }
                         if (hostHeightSizedToContent)
@@ -229,7 +229,7 @@ package org.apache.flex.html.beads.layouts
                                         data.child.height = data.hh - data.bottom;
                                 }
                                 else
-                                    data.child.y = maxHeight - data.bottom - data.child.clientHeight;
+                                    data.child.y = maxHeight - data.bottom - data.child.height;
                             }
                         }
                         child.dispatchEvent(new Event("sizeChanged"));

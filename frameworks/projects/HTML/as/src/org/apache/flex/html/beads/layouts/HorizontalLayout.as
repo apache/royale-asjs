@@ -189,9 +189,9 @@ package org.apache.flex.html.beads.layouts
                         mb = bottom;
                         marginObject.bottom = mb;
                     }
-                    maxHeight = Math.max(maxHeight, mt + child.clientHeight + mb);
+                    maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 }
-				xx = child.x + child.clientWidth;
+				xx = child.x + child.width;
 				var valign:* = ValuesManager.valuesImpl.getValue(child, "vertical-align");
 				marginObject.valign = valign;
                 if (valign !== undefined)
@@ -225,9 +225,9 @@ package org.apache.flex.html.beads.layouts
                             ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentHeight));
                     }
     				if (obj.valign == "middle")
-    					child.y = (maxHeight - child.clientHeight) / 2;
+    					child.y = (maxHeight - child.height) / 2;
     				else if (valign == "bottom")
-    					child.y = maxHeight - child.clientHeight - obj.marginBottom;
+    					child.y = maxHeight - child.height - obj.marginBottom;
     				else
     					child.y = obj.marginTop;
     			}
@@ -265,7 +265,7 @@ package org.apache.flex.html.beads.layouts
                     }
                 }
                 else
-                    child.y = h - bottom - mb - child.clientHeight;
+                    child.y = h - bottom - mb - child.height;
             }
             if (ilc)
             {

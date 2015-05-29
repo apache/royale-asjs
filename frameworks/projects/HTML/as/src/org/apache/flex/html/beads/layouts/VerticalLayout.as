@@ -211,9 +211,9 @@ package org.apache.flex.html.beads.layouts
                         mr = right;
                         marginObject.right = mr;
                     }
-                    maxWidth = Math.max(maxWidth, ml + child.clientWidth + mr);                    
+                    maxWidth = Math.max(maxWidth, ml + child.width + mr);                    
                 }
-                yy = child.y + child.clientHeight;
+                yy = child.y + child.height;
 			}
             if (hostSizedToContent)
             {
@@ -240,9 +240,9 @@ package org.apache.flex.html.beads.layouts
                     if (hasHorizontalFlex)
                     {
                         if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-                            child.x = maxWidth - child.clientWidth / 2;
+                            child.x = maxWidth - child.width / 2;
                         else if (obj.marginLeft == "auto")
-                            child.x = maxWidth - child.clientWidth - obj.marginRight;
+                            child.x = maxWidth - child.width - obj.marginRight;
                     }
                 }
             }
@@ -279,7 +279,7 @@ package org.apache.flex.html.beads.layouts
                     }
                 }
                 else
-                    child.x = w - right - mr - child.clientWidth;
+                    child.x = w - right - mr - child.width;
             }
             if (ilc)
             {

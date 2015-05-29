@@ -158,7 +158,7 @@ package org.apache.flex.html.beads
             changeHandler(event);
         }
         
-        private var inChangeHandler:Boolean;
+        private var inChangeHandler:Boolean = false;
         
         /**
          *  React if the size changed or content changed 
@@ -214,7 +214,7 @@ package org.apache.flex.html.beads
                 if (actualParent != host)
                 {
                     // force the width of the internal content area as desired.
-                    actualParent.setWidth(host.width - padding.paddingLeft - pr);
+                    actualParent.setWidth(host.width);
                 }
                 // run the layout
                 sizeChangedByLayout = layout.layout();
@@ -227,7 +227,7 @@ package org.apache.flex.html.beads
                     if (actualParent != host)
                     {
                         // force the height
-                        actualParent.setHeight(host.height - padding.paddingTop - pb);
+                        actualParent.setHeight(host.height);
                     }
                 }
                 sizeChangedByLayout = layout.layout();
@@ -236,17 +236,18 @@ package org.apache.flex.html.beads
                     // actualParent.width should be the new width after layout.
                     // set the host's width.  This should send a widthChanged event and
                     // have it blocked at the beginning of this method
-                    host.setWidth(padding.paddingLeft + pr + actualParent.width);
+//old                    host.setWidth(padding.paddingLeft + pr + actualParent.width);
+					host.setWidth(actualParent.width);
                 }
             }
             // and if the height is sized to content, set the height now as well.
             if (host != actualParent)
 	        {
                 if (host.isHeightSizedToContent()) {
-                    host.setHeight(padding.paddingTop + pb + actualParent.height);
+                    host.setHeight(actualParent.height);
 				}
                 else
-                    actualParent.setHeight(host.height - padding.paddingTop - pb);
+                    actualParent.setHeight(host.height);
 		    }
 			// if host and actualParent are the same, determine if the layout changed
 			// the size and if, dispatch events based on what changed
@@ -424,7 +425,8 @@ package org.apache.flex.html.beads
             if (inGetViewWidth)
             {
                 //trace("ContainerView: no width set for " + host);
-                return host["$width"];
+				var padding:Object = determinePadding();
+                return host["$width"] + padding.paddingLeft + padding.paddingRight;
             }
             inGetViewWidth = true;
 			var vw:Number = contentView.width;

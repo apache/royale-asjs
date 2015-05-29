@@ -154,10 +154,10 @@ package org.apache.flex.html.beads
 		override protected function determinePadding():Object
 		{
 			var paddings:Object = super.determinePadding();
-			titleBar.width = UIBase(_strand).clientWidth;
+			titleBar.width = UIBase(_strand).width;
 			paddings.paddingTop += titleBar.height;
 			
-			controlBar.width = UIBase(_strand).clientWidth;
+			controlBar.width = UIBase(_strand).width;
 			paddings.paddingBottom += controlBar.height;
 
 			return paddings;
@@ -170,7 +170,7 @@ package org.apache.flex.html.beads
 		{
 			super.changeHandler(event);
 			
-			controlBar.y = UIBase(_strand).clientHeight - controlBar.height;
+			controlBar.y = UIBase(_strand).height - controlBar.height;
 		}
 		
 		/**
@@ -181,18 +181,18 @@ package org.apache.flex.html.beads
 			var paddings:Object = determinePadding();
 			titleBar.x = 0;
 			titleBar.y = 0;
-			titleBar.width = UIBase(_strand).clientWidth;
+			titleBar.width = UIBase(_strand).width;
 			
 			if (controlBar) {
 				controlBar.x = 0;
-				controlBar.y = UIBase(_strand).clientHeight - controlBar.height;
-				controlBar.width = UIBase(_strand).clientWidth;
+				controlBar.y = UIBase(_strand).height - controlBar.height;
+				controlBar.width = UIBase(_strand).width;
 			}
 			
 			actualParent.x = paddings.paddingLeft;
 			actualParent.y = titleBar.height + paddings.paddingTop;
-			actualParent.width = UIBase(_strand).clientWidth - paddings.paddingLeft - paddings.paddingRight;
-			actualParent.height = UIBase(_strand).clientHeight - titleBar.height - paddings.paddingTop - paddings.paddingBottom;
+			actualParent.width = UIBase(_strand).width - paddings.paddingLeft - paddings.paddingRight;
+			actualParent.height = UIBase(_strand).height - titleBar.height - paddings.paddingTop - paddings.paddingBottom;
 			if (controlBar) actualParent.height -= controlBar.height;
 		}
 	}

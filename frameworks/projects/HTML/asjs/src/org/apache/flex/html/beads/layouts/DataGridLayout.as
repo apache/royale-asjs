@@ -110,7 +110,7 @@ package org.apache.flex.html.beads.layouts
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
 		public function layout():Boolean
-		{			
+		{						
 			var sw:Number = UIBase(_strand).width;
 			var sh:Number = UIBase(_strand).height;
 			
@@ -149,7 +149,6 @@ package org.apache.flex.html.beads.layouts
 			header.x = 0;
 			header.y = 0;
 			header.width = sw;
-			header.height = 25;
 			
 			return true;
 		}

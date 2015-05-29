@@ -58,6 +58,8 @@ public class SolidBorderUtil
 									  color:uint, backgroundColor:Object = null, 
 									  thickness:int = 1, alpha:Number = 1.0):void
 	{
+		g.clear();
+		
 		g.lineStyle(thickness, color, alpha);
 		if (backgroundColor != null)
 			g.beginFill(uint(backgroundColor));	

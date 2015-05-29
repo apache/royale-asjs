@@ -55,21 +55,6 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
-		private var _border:Border;
-		
-		/**
-		 *  The ButtonBar's border.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function get border():Border
-		{
-			return _border;
-		}
-		
 		private var _strand:IStrand;
 		
 		/**
@@ -84,11 +69,6 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-			
-			_border = new Border();
-			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
-			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-			IParent(_strand).addElement(_border);
 		}
 	}
 }

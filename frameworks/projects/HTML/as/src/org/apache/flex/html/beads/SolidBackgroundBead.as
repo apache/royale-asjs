@@ -142,8 +142,8 @@ package org.apache.flex.html.beads
 		private function changeHandler(event:Event):void
 		{
             var g:Graphics = Sprite(host).graphics;
-            var w:Number = host.clientWidth;
-            var h:Number = host.clientHeight;
+            var w:Number = host.width;
+            var h:Number = host.height;
 			
 			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
