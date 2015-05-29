@@ -18,12 +18,12 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-			title="Watch List"
-			xmlns:js="library://ns.apache.org/flexjs/basic"
-			xmlns:controller="controller.*"
-			xmlns:local="*"
-			className="WatchListView"
-			xmlns:renderers="renderers.*">
+		 title="Watch List"
+		 xmlns:js="library://ns.apache.org/flexjs/basic"
+		 xmlns:controller="controller.*"
+		 xmlns:local="*"
+		 className="WatchListView"
+		 xmlns:renderers="renderers.*">
 	
 	<fx:Script>
 		<![CDATA[						
@@ -38,7 +38,7 @@ limitations under the License.
 			import org.apache.flex.events.Event;
 			import org.apache.flex.mobile.IViewManager;
 			import org.apache.flex.mobile.StackedViewManager;
-						
+			
 			public function set dataModel(value:IBeadModel):void
 			{
 				var cm:IBeadController = controller;
@@ -92,67 +92,57 @@ limitations under the License.
 		<js:VerticalLayout />
 	</js:beads>
 	
-	<js:Container className="WatchListInputArea" width="480" height="50">
-		<js:beads>
-			<js:HorizontalLayout />
-		</js:beads>
+	<js:HContainer className="WatchListInputArea">
 		<js:Label text="Symbol:" />
 		<js:TextInput id="symbolName" />
 		<js:TextButton text="Add" click="addSymbol()" />
-	</js:Container>
-	
-	<js:Container className="WatchListInner" width="480" height="480">
-		<js:beads>
-			<js:ScrollingContainerView />
-			<js:VerticalScrollingLayout />
-		</js:beads>
+	</js:HContainer>
 		
-		<js:DataGrid id="dataGrid" change="selectRow()" width="480" height="480" className="WatchListDataGrid">
-			<js:beads>
-				<js:SimpleBinding
-					eventName="update"
-					sourceID="dataModel"
-					sourcePropertyName="watchList"
-					destinationPropertyName="dataProvider" />
-			</js:beads>
-			<js:columns>
-				<js:DataGridColumn label="Symbol" dataField="symbol">
-					<js:itemRenderer>
-						<fx:Component>
-							<js:StringItemRenderer />
-						</fx:Component>
-					</js:itemRenderer>
-				</js:DataGridColumn>
-				<js:DataGridColumn label="Open" dataField="open">
-					<js:itemRenderer>
-						<fx:Component>
-							<renderers:StockRenderer />
-						</fx:Component>
-					</js:itemRenderer>
-				</js:DataGridColumn>
-				<js:DataGridColumn label="Last" dataField="last" >
-					<js:itemRenderer>
-						<fx:Component>
-							<renderers:StockRenderer />
-						</fx:Component>
-					</js:itemRenderer>
-				</js:DataGridColumn>
-				<js:DataGridColumn label="High" dataField="high" >
-					<js:itemRenderer>
-						<fx:Component>
-							<renderers:StockRenderer />
-						</fx:Component>
-					</js:itemRenderer>
-				</js:DataGridColumn>
-				<js:DataGridColumn label="Low" dataField="low" >
-					<js:itemRenderer>
-						<fx:Component>
-							<renderers:StockRenderer />
-						</fx:Component>
-					</js:itemRenderer>
-				</js:DataGridColumn>
-			</js:columns>
-		</js:DataGrid>
-	</js:Container>
-
+	<js:DataGrid id="dataGrid" change="selectRow()" className="WatchListDataGrid">
+		<js:beads>
+			<js:SimpleBinding
+				eventName="update"
+				sourceID="dataModel"
+				sourcePropertyName="watchList"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+		<js:columns>
+			<js:DataGridColumn label="Symbol" dataField="symbol">
+				<js:itemRenderer>
+					<fx:Component>
+						<js:StringItemRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Open" dataField="open">
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Last" dataField="last" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="High" dataField="high" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Low" dataField="low" >
+				<js:itemRenderer>
+					<fx:Component>
+						<renderers:StockRenderer />
+					</fx:Component>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+		</js:columns>
+	</js:DataGrid>
+	
 </js:View>

@@ -17,16 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:basic="library://ns.apache.org/flexjs/basic"
 				xmlns:views="views.*" 
 				xmlns:apache="org.apache.flex.html.beads.*"
 				xmlns:html="org.apache.flex.html.*"
 				xmlns:controller="controller.*"
 				initComplete="onInitComplete()" xmlns:models="models.*" >
-	
-	
 	
 	<fx:Style>
 		@namespace basic  "library://ns.apache.org/flexjs/basic";
@@ -79,7 +77,8 @@ limitations under the License.
 		}
 		
 		.AssetsInner {
-			padding: 10px;
+			padding-top: 5px;
+			background-color: #FFFFFF;
 		}
 		
 		views|AssetsView {
@@ -91,6 +90,7 @@ limitations under the License.
 			width: 480px;
 			height: 640px;
 			IBeadController:ClassReference('controller.WatchListController');
+			background-color: #FFFFFF;
 		}
 		
 		.WatchListInner {
@@ -105,8 +105,10 @@ limitations under the License.
 		
 		.WatchListInputArea {
 			background-color: #FFFFFF;
-			padding: 10px;
 			width: 480px;
+			height: 25px;
+			padding-top: 5px;
+			padding-bottom: 2px;
 		}
 		
 		views|StockView {
@@ -189,13 +191,6 @@ limitations under the License.
 			
 			private function onInitComplete():void
 			{
-				// Give the model to the WatchListView's dataModel; do not replace
-				// a component's model with a custom model as that can adversely
-				// affect a component's behavior.
-				watchListView.dataModel = applicationModel as IBeadModel;
-				
-				alertsView.dataModel = applicationModel as IBeadModel;
-				trace("alerts view set");
 			}
 			
 			private function onAssetsNext():void
@@ -227,30 +222,34 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<js:TabbedViewManager id="navController" width="480" height="640" x="0" y="0" viewChanged="tabbedViewChanged(event)">
-		<js:navigationBarItems>
-			<js:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
-				<js:beads>
-					<apache:ImageButtonView />
-				</js:beads>
-			</js:TextButton>
-			<js:Image source="assets/logo.png" width="218" height="55" />
-		</js:navigationBarItems>
-		<js:views>
-			<js:StackedViewManager title="Assets">
-				<js:views>
-					<views:AssetsView id="assetsView" title="Assets" next="onAssetsNext()" />
-				</js:views>
-			</js:StackedViewManager>
-			
-			<js:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
-				<js:views>
-					<views:WatchListView id="watchListView"/>
-				</js:views>
-			</js:StackedViewManager>
-			
-			<views:AlertsView id="alertsView" title="Alerts" />
-		</js:views>
-	</js:TabbedViewManager>
+	<basic:beads>
+		<!--<basic:ViewBaseDataBinding />-->
+	</basic:beads>
 	
-</js:ViewBase>
+	<basic:TabbedViewManager id="navController" width="480" height="640" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+		<basic:navigationBarItems>
+			<basic:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
+				<basic:beads>
+					<apache:ImageButtonView />
+				</basic:beads>
+			</basic:TextButton>
+			<basic:Image source="assets/logo.png" width="218" height="55" />
+		</basic:navigationBarItems>
+		<basic:views>
+			<basic:StackedViewManager title="Assets">
+				<basic:views>
+					<views:AssetsView id="assetsView" title="Assets" next="onAssetsNext()" />
+				</basic:views>
+			</basic:StackedViewManager>
+			
+			<basic:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
+				<basic:views>
+					<views:WatchListView id="watchListView" dataModel="{applicationModel}"/>
+				</basic:views>
+			</basic:StackedViewManager>
+			
+			<views:AlertsView id="alertsView" title="Alerts" dataModel="{applicationModel}" />
+		</basic:views>
+	</basic:TabbedViewManager>
+	
+</basic:ViewBase>

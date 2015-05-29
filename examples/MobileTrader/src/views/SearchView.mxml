@@ -17,8 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-					   xmlns:js="library://ns.apache.org/flexjs/basic"
+<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:basic="library://ns.apache.org/flexjs/basic"
 					   xmlns:apache="org.apache.flex.html.beads.*"
 					   xmlns:local="*"
 					   className="StockView">
@@ -33,5 +33,5 @@ limitations under the License.
 		]]>
 	</fx:Script>
 		
-	<js:Label text="Search View" x="20" y="100" />
-</js:View>
+	<basic:Label text="Search View" x="20" y="100" />
+</basic:View>
