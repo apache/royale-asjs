@@ -38,9 +38,20 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/flexjs/basic";
+		.AllCharts {
+			border-width: 0px;
+			padding-left: 2px;
+			padding-top: 10px;
+			padding-bottom: 2px;
+			padding-right: 10px;
+		}
+	</fx:Style>
+	
 	<js:Label id="output" x="50" y="30" width="100" />
 	
-	<js:ColumnChart id="columnChart" x="20" y="20" width="400" height="200">
+	<js:ColumnChart id="columnChart" x="20" y="20" width="400" height="200" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -75,7 +86,7 @@ limitations under the License.
 		</js:series>
 	</js:ColumnChart>
 	
-	<js:BarChart id="barChart" x="500" y="20" width="400" height="300">
+	<js:BarChart id="barChart" x="500" y="20" width="400" height="300" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -110,7 +121,7 @@ limitations under the License.
 		</js:series>
 	</js:BarChart>
 	
-	<js:StackedColumnChart id="stackedChart" x="20" y="300" width="400" height="200">
+	<js:StackedColumnChart id="stackedChart" x="20" y="300" width="400" height="200" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -150,7 +161,7 @@ limitations under the License.
 		</js:series>
 	</js:StackedColumnChart>
 	
-	<js:StackedBarChart id="stackedBarChart" x="500" y="400" width="400" height="300">
+	<js:StackedBarChart id="stackedBarChart" x="500" y="400" width="400" height="300" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -190,7 +201,7 @@ limitations under the License.
 		</js:series>
 	</js:StackedBarChart>
 	
-	<js:PieChart id="pieChart" x="20" y="550" width="200" height="200">
+	<js:PieChart id="pieChart" x="20" y="550" width="200" height="200" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -208,7 +219,7 @@ limitations under the License.
 		</js:series>
 	</js:PieChart>
 	
-	<js:LineChart id="lineChart" x="500" y="750" width="400" height="200">
+	<js:LineChart id="lineChart" x="500" y="750" width="400" height="200" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
@@ -262,7 +273,7 @@ limitations under the License.
 		</js:series>
 	</js:LineChart>
 	
-	<js:LineChart id="waveChart" x="20" y="800" width="400" height="200">
+	<js:LineChart id="waveChart" x="20" y="800" width="400" height="200" className="AllCharts">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
