@@ -166,7 +166,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function drawText(value:String, x:Number, y:Number):void
+		public function drawText(value:String, x:Number, y:Number):Object
 		{
 			var textField:CSSTextField = new CSSTextField();
 			addChild(textField);
@@ -185,6 +185,8 @@ package org.apache.flex.core.graphics
 			
 			textField.x = x;
 			textField.y = y + textField.textHeight/4;
+			
+			return textField;
 		}
 	}
 }

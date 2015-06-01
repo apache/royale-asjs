@@ -27,10 +27,12 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.ListView;
+	import org.apache.flex.utils.BeadMetrics;
 	
 	public class ChartView extends ListView implements IBeadView
 	{
@@ -56,6 +58,10 @@ package org.apache.flex.charts.beads
 			super.strand = value;
 			
 			_strand = value;
+			
+			if (border) {
+				IParent(_strand).removeElement(border);
+			}
             
 			var listModel:ISelectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -110,6 +116,8 @@ package org.apache.flex.charts.beads
 		 */
 		override protected function layoutList():void
 		{	
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;
 			
@@ -128,22 +136,22 @@ package org.apache.flex.charts.beads
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
 			
-			dg.x = widthAdjustment;
-			dg.y = 0;
-			dg.width = strandWidth - widthAdjustment;
-			dg.height= strandHeight - heightAdjustment;
+			dg.x = widthAdjustment + metrics.left;
+			dg.y = metrics.top;
+			dg.width = strandWidth - widthAdjustment - metrics.right - metrics.left;
+			dg.height= strandHeight - heightAdjustment - metrics.bottom - metrics.top;
 			
 			if (verticalAxisGroup) {
-				UIBase(verticalAxisGroup).x = 0;
-				UIBase(verticalAxisGroup).y = 0;
+				UIBase(verticalAxisGroup).x = metrics.left;
+				UIBase(verticalAxisGroup).y = metrics.top;
 				UIBase(verticalAxisGroup).width = widthAdjustment;
-				UIBase(verticalAxisGroup).height = strandHeight - heightAdjustment;
+				UIBase(verticalAxisGroup).height = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
 			}
 			
 			if (horizontalAxisGroup) {
-				UIBase(horizontalAxisGroup).x = widthAdjustment;
-				UIBase(horizontalAxisGroup).y = strandHeight - heightAdjustment;
-				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment;
+				UIBase(horizontalAxisGroup).x = widthAdjustment + metrics.left;
+				UIBase(horizontalAxisGroup).y = strandHeight - heightAdjustment - metrics.bottom;
+				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment - metrics.left - metrics.right;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
 		}

@@ -34,8 +34,8 @@ package org.apache.flex.charts.core
 	{
 		function removeAllElements():void;
 		
-		function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):void;
-		function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):void;
+		function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):Object;
+		function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, fill:IFill ):Object;
 		function drawTickMarks( originX:Number, originY:Number, width:Number, height:Number, marks:String, tickStroke:IStroke ):void;
 		function drawAxisLine( originX:Number, originY:Number, width:Number, height:Number, lineStroke:IStroke ):void;
 	}

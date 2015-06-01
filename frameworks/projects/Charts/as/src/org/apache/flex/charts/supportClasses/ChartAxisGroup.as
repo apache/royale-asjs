@@ -77,7 +77,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):void
+		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			var label:Label = new Label();
 			label.text = text;
@@ -85,6 +85,8 @@ package org.apache.flex.charts.supportClasses
 			label.y = ypos;
 			
 			addElement(label);
+			
+			return label;
 		}
 		
 		/**
@@ -102,7 +104,7 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):void
+		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			var label:Label = new Label();
 			label.text = text;
@@ -110,6 +112,8 @@ package org.apache.flex.charts.supportClasses
 			label.y = ypos - label.height/2;
 			
 			addElement(label);
+			
+			return label;
 		}
 		
 		/**

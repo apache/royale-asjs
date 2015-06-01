@@ -196,12 +196,16 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		protected function addTickLabel(text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number):void
+		protected function addTickLabel(text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number):Object
 		{
 			var isHorizontal:Boolean = (placement == "bottom") || (placement == "top");
 			
-			if (isHorizontal) axisGroup.drawHorizontalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
-			else axisGroup.drawVerticalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+			var label:Object;
+			
+			if (isHorizontal) label = axisGroup.drawHorizontalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+			else label = axisGroup.drawVerticalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+			
+			return label;
 		}
 		
 		/**

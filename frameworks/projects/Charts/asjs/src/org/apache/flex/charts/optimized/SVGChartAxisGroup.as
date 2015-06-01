@@ -71,10 +71,10 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):void
+		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			fill = tickFill;
-			drawText(text, xpos-boxWidth/2, ypos);
+			return drawText(text, xpos-boxWidth/2, ypos);
 		}
 		
 		/**
@@ -92,10 +92,10 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):void
+		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			fill = tickFill;
-			drawText(text, xpos, ypos-boxHeight/4);
+			return drawText(text, xpos, ypos-boxHeight/4);
 		}
 		
 		/**

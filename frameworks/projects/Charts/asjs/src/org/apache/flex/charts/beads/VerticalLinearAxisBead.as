@@ -207,7 +207,8 @@ package org.apache.flex.charts.beads
 			
 			for(i=0; i < numTicks+1; i++) 
 			{			
-				addTickLabel(formatLabel(tickValue), 0, ypos, 0, tickSpacing);
+				var label:Object = addTickLabel(formatLabel(tickValue), 0, ypos, 0, tickSpacing);
+				label.y = ypos - label.height/2;
 			
 				// add a tick mark, too.
 				addTickMark(useWidth-6, ypos, 5, 0);

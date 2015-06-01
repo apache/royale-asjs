@@ -166,7 +166,7 @@ package org.apache.flex.charts.beads
 			
 			for(var i:int=0; i < items.length; i++) 
 			{				
-				addTickLabel(items[i][categoryField], xpos + itemWidth/2, labelY, itemWidth, 0);
+				addTickLabel(items[i][categoryField], xpos, labelY, itemWidth, 0);
 				
 				// add a tick mark, too		
 				addTickMark(xpos + itemWidth/2, 0, 0, 5);
