@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.IParentIUIBase;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIMetrics;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
@@ -34,6 +35,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.html.supportClasses.Border;
     import org.apache.flex.html.supportClasses.ContainerContentArea;
     import org.apache.flex.html.supportClasses.ScrollBar;
+	import org.apache.flex.utils.BeadMetrics;
 	
     /**
      *  The ContainerView class is the default view for
@@ -192,17 +194,17 @@ package org.apache.flex.html.beads
                 }
             }
             
-			var padding:Object = determinePadding();
+			var metrics:UIMetrics = determineMetrics();
 			
 			if (checkActualParent())
 			{
-				actualParent.x = padding.paddingLeft;
-				actualParent.y = padding.paddingTop;
+				actualParent.x = metrics.left;
+				actualParent.y = metrics.top;
             }
-            var pb:Number = padding.paddingBottom;
+            var pb:Number = metrics.bottom;
             if (isNaN(pb))
                 pb = 0;
-            var pr:Number = padding.paddingRight;
+            var pr:Number = metrics.right;
             if (isNaN(pr))
                 pr = 0;
 			
@@ -292,60 +294,6 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  Determines the top and left padding values, if any, as set by
-		 *  padding style values. This includes "padding" for all padding values
-		 *  as well as "padding-left" and "padding-top".
-		 * 
-		 *  Returns an object with paddingLeft and paddingTop properties.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function determinePadding():Object
-		{
-			var paddingLeft:Object;
-			var paddingTop:Object;
-			var paddingRight:Object;
-			var paddingBottom:Object;
-			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
-			if (padding is Array)
-			{
-				if (padding.length == 1)
-					paddingLeft = paddingTop = padding[0];
-				else if (padding.length <= 3)
-				{
-					paddingLeft = padding[1];
-					paddingTop = padding[0];
-				}
-				else if (padding.length == 4)
-				{
-					paddingLeft = padding[3];
-					paddingTop = padding[0];					
-				}
-			}
-			else if (padding == null)
-			{
-				paddingLeft = ValuesManager.valuesImpl.getValue(_strand, "padding-left");
-				paddingTop = ValuesManager.valuesImpl.getValue(_strand, "padding-top");
-				paddingRight = ValuesManager.valuesImpl.getValue(_strand, "padding-right");
-				paddingBottom = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom");
-			}
-			else
-			{
-				paddingLeft = paddingTop = padding;
-				paddingRight = paddingBottom = padding;
-			}
-			var pl:Number = Number(paddingLeft);
-			var pt:Number = Number(paddingTop);
-			var pr:Number = Number(paddingRight);
-			var pb:Number = Number(paddingBottom);
-			
-			return {paddingLeft:pl, paddingTop:pt, paddingRight:pr, paddingBottom:pb};
-		}
-		
-		/**
 		 *  Returns true if container to create a separate ContainerContentArea.
 		 *  
 		 *  @langversion 3.0
@@ -355,10 +303,10 @@ package org.apache.flex.html.beads
 		 */
 		protected function contentAreaNeeded():Boolean
 		{
-			var padding:Object = determinePadding();
+			var metrics:UIMetrics = determineMetrics();
 			
-			return (!isNaN(padding.paddingLeft) && padding.paddingLeft > 0 ||
-				    !isNaN(padding.paddingTop) && padding.paddingTop > 0);
+			return (!isNaN(metrics.left) && metrics.left > 0 ||
+				    !isNaN(metrics.top) && metrics.top > 0);
 		}
 		
         /**
@@ -425,13 +373,18 @@ package org.apache.flex.html.beads
             if (inGetViewWidth)
             {
                 //trace("ContainerView: no width set for " + host);
-				var padding:Object = determinePadding();
-                return host["$width"] + padding.paddingLeft + padding.paddingRight;
+				var metrics:UIMetrics = determineMetrics();
+                return host["$width"] + metrics.left + metrics.right;
             }
             inGetViewWidth = true;
 			var vw:Number = contentView.width;
             inGetViewWidth = false;
 			return vw;
+		}
+		
+		protected function determineMetrics():UIMetrics
+		{
+			return BeadMetrics.getMetrics(_strand);
 		}
 		
 	}

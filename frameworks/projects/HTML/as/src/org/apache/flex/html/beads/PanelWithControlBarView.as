@@ -151,16 +151,16 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		override protected function determinePadding():Object
+		override protected function determineMetrics():UIMetrics
 		{
-			var paddings:Object = super.determinePadding();
+			var metrics:UIMetrics = super.determineMetrics();
 			titleBar.width = UIBase(_strand).width;
-			paddings.paddingTop += titleBar.height;
+			metrics.top += titleBar.height;
 			
 			controlBar.width = UIBase(_strand).width;
-			paddings.paddingBottom += controlBar.height;
+			metrics.bottom += controlBar.height;
 
-			return paddings;
+			return metrics;
 		}
 		
 		/**
@@ -178,7 +178,7 @@ package org.apache.flex.html.beads
 		 */
 		private function layoutChromeElements():void
 		{
-			var paddings:Object = determinePadding();
+			var metrics:UIMetrics = determineMetrics();
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = UIBase(_strand).width;
@@ -189,10 +189,10 @@ package org.apache.flex.html.beads
 				controlBar.width = UIBase(_strand).width;
 			}
 			
-			actualParent.x = paddings.paddingLeft;
-			actualParent.y = titleBar.height + paddings.paddingTop;
-			actualParent.width = UIBase(_strand).width - paddings.paddingLeft - paddings.paddingRight;
-			actualParent.height = UIBase(_strand).height - titleBar.height - paddings.paddingTop - paddings.paddingBottom;
+			actualParent.x = metrics.left;
+			actualParent.y = titleBar.height + metrics.top;
+			actualParent.width = UIBase(_strand).width - metrics.left - metrics.right;
+			actualParent.height = UIBase(_strand).height - titleBar.height - metrics.top - metrics.bottom;
 			if (controlBar) actualParent.height -= controlBar.height;
 		}
 	}

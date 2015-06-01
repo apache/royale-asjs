@@ -119,12 +119,12 @@ package org.apache.flex.html.beads
         /**
          * @private
          */
-        override protected function determinePadding():Object
+        override protected function determineMetrics():UIMetrics
         {
-            var paddings:Object = super.determinePadding();
+            var metrics:UIMetrics = super.determineMetrics();
             titleBar.width = UIBase(_strand).width;
-            paddings.paddingTop += titleBar.height;
-            return paddings;
+            metrics.top += titleBar.height;
+            return metrics;
         }
                 
 	}

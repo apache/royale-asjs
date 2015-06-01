@@ -25,6 +25,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIMetrics;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
@@ -32,6 +33,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.html.beads.ITextItemRenderer;
+	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
@@ -227,8 +229,8 @@ package org.apache.flex.html.supportClasses
 			{
 				var w:Number = _width;
 				if (isNaN(w)) w = $width;
-				var padding:Object = determinePadding();
-				return w + padding.paddingLeft + padding.paddingRight;
+				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
+				return w + metrics.left + metrics.right;
 			}
 			else
 				return explicitWidth;
@@ -265,8 +267,8 @@ package org.apache.flex.html.supportClasses
 			{
 				var h:Number = _height;
 				if (isNaN(h)) h = $height;
-				var padding:Object = determinePadding();
-				return h + padding.paddingTop + padding.paddingBottom;
+				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
+				return h + metrics.top + metrics.bottom;
 			}
 			else
 				return explicitHeight;
@@ -292,60 +294,6 @@ package org.apache.flex.html.supportClasses
         {
             return super.height;
         }
-		
-		/**
-		 *  Determines the top and left padding values, if any, as set by
-		 *  padding style values. This includes "padding" for all padding values
-		 *  as well as "padding-left" and "padding-top".
-		 * 
-		 *  Returns an object with paddingLeft and paddingTop properties.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function determinePadding():Object
-		{
-			var paddingLeft:Object;
-			var paddingTop:Object;
-			var paddingRight:Object;
-			var paddingBottom:Object;
-			var padding:Object = ValuesManager.valuesImpl.getValue(this, "padding");
-			if (padding is Array)
-			{
-				if (padding.length == 1)
-					paddingLeft = paddingTop = padding[0];
-				else if (padding.length <= 3)
-				{
-					paddingLeft = padding[1];
-					paddingTop = padding[0];
-				}
-				else if (padding.length == 4)
-				{
-					paddingLeft = padding[3];
-					paddingTop = padding[0];					
-				}
-			}
-			else if (padding == null)
-			{
-				paddingLeft = ValuesManager.valuesImpl.getValue(this, "padding-left");
-				paddingTop = ValuesManager.valuesImpl.getValue(this, "padding-top");
-				paddingRight = ValuesManager.valuesImpl.getValue(this, "padding-right");
-				paddingBottom = ValuesManager.valuesImpl.getValue(this, "padding-bottom");
-			}
-			else
-			{
-				paddingLeft = paddingTop = padding;
-				paddingRight = paddingBottom = padding;
-			}
-			var pl:Number = Number(paddingLeft);
-			var pt:Number = Number(paddingTop);
-			var pr:Number = Number(paddingRight);
-			var pb:Number = Number(paddingBottom);
-			
-			return {paddingLeft:pl, paddingTop:pt, paddingRight:pr, paddingBottom:pb};
-		}
 
 		/**
 		 *  The String(data) for the itemRenderer instance.
