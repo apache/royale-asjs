@@ -262,7 +262,9 @@ package org.apache.flex.html.beads
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
 			vsb.model = vsbm;
-			vsb.width = 16;
+			vsb.x = IUIBase(_strand).width - 16;
+			vsb.y = 0;
+			vsb.setWidthAndHeight(16, IUIBase(_strand).height, true);
             IParent(_strand).addElement(vsb);
 			return vsb;
 		}

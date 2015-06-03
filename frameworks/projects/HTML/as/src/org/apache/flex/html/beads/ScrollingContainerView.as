@@ -20,6 +20,7 @@ package org.apache.flex.html.beads
 {
 	
 	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
@@ -29,6 +30,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
@@ -36,6 +38,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ContainerContentArea;
 	import org.apache.flex.html.supportClasses.ScrollBar;
+	import org.apache.flex.utils.BeadMetrics;
 	
     /**
      *  The ContainerView class is the default view for
@@ -107,6 +110,13 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
             var host:UIBase = value as UIBase;
+			
+			actualParent = new ContainerContentArea();
+			actualParent.className = "ActualParent";
+			host.addElement(actualParent, false);
+			ContainerBase(host).setActualParent(actualParent);
+			
+			host.addEventListener("beadsAdded", changeHandler);
             
             if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
             {
@@ -132,12 +142,12 @@ package org.apache.flex.html.beads
                 // parent won't kick off any other event in the child
                 if (!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight))
                 {
-                    if (host.numChildren > 0)
-                        changeHandler(null);
-                    else
+                    if (host.numChildren == 0)
                         host.addEventListener("childrenAdded", changeHandler);
                 }
             }
+			
+			displayBackgroundAndBorder(host);
         }
         
         private function sizeChangeHandler(event:Event):void
@@ -146,11 +156,16 @@ package org.apache.flex.html.beads
             host.addEventListener("childrenAdded", changeHandler);
             host.addEventListener("layoutNeeded", changeHandler);
             host.addEventListener("itemsCreated", changeHandler);
-            changeHandler(event);
         }
+		
+		private var inChangeHandler:Boolean = false;
 
         private function changeHandler(event:Event):void
         {
+			if (inChangeHandler) return;
+			
+			inChangeHandler = true;
+			
             var host:UIBase = _strand as UIBase;
             if (layout == null)
             {
@@ -165,37 +180,19 @@ package org.apache.flex.html.beads
                     }
                 }
             }
-            
-            if (host.numChildren > 0)
-            {
-                actualParent = host.getChildAt(0) as UIBase;   
-            }
+			
+			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
+			
+			actualParent.x = metrics.left;
+			actualParent.y = metrics.top;
+			actualParent.width = host.width - metrics.left - metrics.right;
+			actualParent.height = host.height - metrics.top -metrics.bottom;
+			// note that adding a scrollbar will go against the host's right
+			// edge and be separated from the actualParent by padding-right
         
             layout.layout();
-            
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (host.getBeadByType(IBackgroundBead) == null)
-                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
-			}
 			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				if (host.getBeadByType(IBorderBead) == null)
-                    host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
-			}
+			inChangeHandler = false;
 		}
 		
         /**
@@ -276,7 +273,10 @@ package org.apache.flex.html.beads
             var vsb:ScrollBar;
             vsb = new ScrollBar();
             vsb.model = _vScrollBarModel;
-            vsb.width = 16;
+			// pin to right side by default
+			vsb.x = IUIBase(_strand).width - 16;
+			vsb.y = 0;
+			vsb.setWidthAndHeight(16, IUIBase(_strand).height, true);
             IParent(_strand).addElement(vsb, false);
             return vsb;
         }
@@ -315,7 +315,41 @@ package org.apache.flex.html.beads
             return _vScrollBarModel.maximum - 
                 _vScrollBarModel.pageSize;
         }
-        
+		
+		/**
+		 *  Sets up the border and background beads if necessary
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function displayBackgroundAndBorder(host:UIBase) : void
+		{
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				if (host.getBeadByType(IBackgroundBead) == null)
+					host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBackgroundBead")) as IBead);					
+			}
+			
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
+			if (borderStyles is Array)
+			{
+				borderStyle = borderStyles[1];
+			}
+			if (borderStyle == null)
+			{
+				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
+			}
+			if (borderStyle != null && borderStyle != "none")
+			{
+				if (host.getBeadByType(IBorderBead) == null)
+					host.addBead(new (ValuesManager.valuesImpl.getValue(host, "iBorderBead")) as IBead);	
+			}
+		}
     
     }
 }

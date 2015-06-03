@@ -112,7 +112,9 @@ package org.apache.flex.html.beads.layouts
             }
             contentView.x = (border) ? borderModel.offsets.left : 0;
             contentView.y = (border) ? borderModel.offsets.top : 0;
-			DisplayObject(contentView).scrollRect = new Rectangle(0,0,contentView.width,contentView.height);
+			if (DisplayObject(contentView).scrollRect == null) {
+				DisplayObject(contentView).scrollRect = new Rectangle(0,0,contentView.width,contentView.height);
+			}
             
             var w:Number = contentView.width;
             var h:Number = contentView.height;
@@ -179,7 +181,11 @@ package org.apache.flex.html.beads.layouts
 			}
             if (yy > contentView.height)
             {
-                vScrollBar = layoutParent.vScrollBar;
+				if (vScrollBar == null) {
+					vScrollBar = layoutParent.vScrollBar;
+					vScrollBar.addEventListener("scroll", scrollHandler);
+					contentView.width -= vScrollBar.width;
+				}
                 if (ilcv)
                     ilcv.setWidth(contentView.width - vScrollBar.width);
                 else
@@ -188,12 +194,14 @@ package org.apache.flex.html.beads.layouts
                 IScrollBarModel(vScrollBar.model).pageSize = contentView.height;
                 IScrollBarModel(vScrollBar.model).pageStepSize = contentView.height;
                 vScrollBar.visible = true;
-                vScrollBar.height = contentView.height;
-                vScrollBar.y = contentView.y;
-                vScrollBar.x = contentView.width;
                 var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-                DisplayObject(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
-                vScrollBar.addEventListener("scroll", scrollHandler);
+				if (DisplayObject(contentView).scrollRect == null) {
+					var rect:Rectangle = new Rectangle(0, 0, contentView.width, contentView.height);
+					DisplayObject(contentView).scrollRect = rect;
+				}
+				rect = DisplayObject(contentView).scrollRect;
+				rect.y = vpos;
+				DisplayObject(contentView).scrollRect = rect;
             }
             else if (vScrollBar)
             {
@@ -209,7 +217,9 @@ package org.apache.flex.html.beads.layouts
             var contentView:IParentIUIBase = layoutParent.contentView;
             
             var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-            DisplayObject(contentView).scrollRect = new Rectangle(0, vpos, contentView.width, vpos + contentView.height);
+			var rect:Rectangle = DisplayObject(contentView).scrollRect;
+			rect.y = vpos;
+			DisplayObject(contentView).scrollRect = rect;
         }
     }
 }

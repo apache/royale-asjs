@@ -23,9 +23,11 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IScrollBarView;
+	import org.apache.flex.utils.BeadMetrics;
 
     /**
      *  The VScrollBarLayout class is a layout
@@ -70,7 +72,7 @@ package org.apache.flex.html.beads.layouts
 			_strand = value;
 			sbView = _strand.getBeadByType(IScrollBarView) as IScrollBarView;
 		}
-	
+			
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -78,8 +80,10 @@ package org.apache.flex.html.beads.layouts
 		{
             if (!sbModel)
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
+					
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
                     
-			var h:Number = DisplayObject(_strand).height;
+			var h:Number = DisplayObject(_strand).height + metrics.top + metrics.bottom;
 			var increment:DisplayObject = sbView.increment;
 			var decrement:DisplayObject = sbView.decrement;
 			var track:DisplayObject = sbView.track;
@@ -87,8 +91,14 @@ package org.apache.flex.html.beads.layouts
 			
 			decrement.x = 0;
 			decrement.y = 0;
+			decrement.width = DisplayObject(_strand).width;
+			decrement.height = decrement.width;
+			
 			increment.x = 0;
-			increment.y = h - increment.height;
+			increment.width = DisplayObject(_strand).width;
+			increment.height = increment.width;
+			increment.y = h - increment.height - 1;
+
 			track.x = 0;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
@@ -102,6 +112,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				thumb.visible = false;
 			}
+			
             return true;
 		}
 						
