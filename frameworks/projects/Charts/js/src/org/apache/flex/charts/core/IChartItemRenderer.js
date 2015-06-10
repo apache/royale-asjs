@@ -32,7 +32,7 @@ org_apache_flex_charts_core_IChartItemRenderer = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_charts_core_IChart.prototype, {
+Object.defineProperties(org_apache_flex_charts_core_IChartItemRenderer.prototype, {
     /** @expose */
     xField: {
         get: function() {},
