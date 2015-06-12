@@ -61,11 +61,6 @@
                 <include name="swfobject/swfobject.js"/>
             </patternset>
         </unzip>
-        <copy toDir="${FLEXJS_HOME}/templates/swfobject" >
-            <fileset dir="${FLEX_HOME}/templates/swfobject">
-                <include name="index.template.html"/>
-            </fileset>
-        </copy>
         <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
         <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
             <fileset dir="${FLEX_HOME}/templates/swfobject/history">
