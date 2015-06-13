@@ -360,6 +360,10 @@
             <arg value="${FLEXJS_HOME}/js/bin/compc"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/jsc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
              <arg value="+x" />
              <arg value="${FLEXJS_HOME}/bin/mxmlc"/>
          </exec>
