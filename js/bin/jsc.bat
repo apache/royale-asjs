@@ -26,4 +26,4 @@ if "x%FALCON_HOME%"=="x"  (set FALCON_HOME=%~dp0..\..) else echo Using Falcon co
 
 if "x%FLEX_HOME%"=="x" (set FLEX_HOME=%~dp0..\..) else echo Using Flex SDK: %FLEX_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Dflexcompiler="%FALCON_HOME%" -Dflexlib="%FLEX_HOME%\frameworks" -jar "%FALCON_HOME%\lib\mxmlc.jar" -external-library-path="$FALCON_HOME\libs\JS.swc” %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Dflexcompiler="%FALCON_HOME%" -Dflexlib="%FLEX_HOME%\frameworks" -jar “%SCRIPT_HOME%\..\lib\mxmlc.jar" -external-library-path="$SCRIPT_HOME\..\libs\temp\externals\bin\JS.swc” %*
