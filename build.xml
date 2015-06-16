@@ -536,7 +536,7 @@
 
         <copy todir="${basedir}/temp/ide">
             <fileset dir="${basedir}/ide" >
-            	<include name="flashbuilder/**"/>
+            	<include name="**"/>
             </fileset>
         </copy>
         
