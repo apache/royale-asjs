@@ -617,7 +617,6 @@
                 <exclude name="**/*.pbj"/>
                 <exclude name="**/*.swf"/>
                 <exclude name="**/*.mxp"/>
-                <exclude name="mxml-2009-manifest.xml"/>
                 <exclude name="test*/**"/>
                 <exclude name="js/VanillaSDK/**"/>
                 <exclude name="projects/air/**"/>
