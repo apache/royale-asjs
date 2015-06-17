@@ -22,8 +22,8 @@ rem compc.bat script to launch falcon-compc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the compc shell script instead.
 rem
 
-if "x%FALCON_HOME%"=="x"  (set FALCON_HOME=%~dp0..\..) else echo Using Falcon codebase: %FALCON_HOME%
+if "x%FALCON_HOME%"=="x"  (set "FALCON_HOME=%~dp0..\..") else echo Using Falcon codebase: %FALCON_HOME%
 
-if "x%FLEX_HOME%"=="x" (set FLEX_HOME=%~dp0..\..) else echo Using Flex SDK: %FLEX_HOME%
+if "x%FLEX_HOME%"=="x" (set "FLEX_HOME=%~dp0..\..") else echo Using Flex SDK: %FLEX_HOME%
 
 @java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Dflexcompiler="%FALCON_HOME%" -Dflexlib="%FLEX_HOME%\frameworks" -jar "%FALCON_HOME%\js\lib\compc.jar" -js-output-type=FLEXJS -sdk-js-lib="%FLEX_HOME%\frameworks\js\FlexJS\src" %*
