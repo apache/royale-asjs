@@ -10,6 +10,13 @@ package org.apache.flex.core
 		// Layout and Content
 		
 		/**
+		 * Returns true (or set to true) when the contentArea is
+		 * actually the same as the host strand.
+		 */
+		function get contentIsHost():Boolean;
+		function set contentIsHost(value:Boolean):void;
+		
+		/**
 		 * The layout being used to size and shape the content area
 		 */
 		function get layout():IBeadLayout;

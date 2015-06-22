@@ -115,8 +115,10 @@ package org.apache.flex.html.supportClasses
 				_horizontalScroller.setWidthAndHeight(model.viewportHeight - hbarAdjustWidthBy, scrollerSize, false);
 			} 
 			
-			contentArea.x = model.contentX;
-			contentArea.y = model.contentY;
+			if (!model.contentIsHost) {
+				contentArea.x = model.contentX;
+				contentArea.y = model.contentY;
+			}
 			contentArea.setWidthAndHeight(model.contentWidth, model.contentHeight, true);
 		}
 		
@@ -184,10 +186,6 @@ package org.apache.flex.html.supportClasses
 					contentArea.scrollRect = rect;
 				}
 			}
-			
-			updateContentAreaSize();
-			
-			// NOTE: this might make the scrollbars go away OR it might make them needed!
 		}
 		
 		/**

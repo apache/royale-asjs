@@ -16,6 +16,7 @@ package org.apache.flex.html.beads.models
 		}
 		
 		private var _layout:IBeadLayout;
+		private var _contentIsHost:Boolean = false;
 		private var _contentArea:IUIBase;
 		private var _contentWidth:Number = 0;
 		private var _contentHeight:Number = 0;
@@ -46,6 +47,15 @@ package org.apache.flex.html.beads.models
 		{
 			_contentArea = value;
 			dispatchEvent( new Event("contentAreaChanged") );
+		}
+		
+		public function get contentIsHost():Boolean
+		{
+			return _contentIsHost;
+		}
+		public function set contentIsHost(value:Boolean):void
+		{
+			_contentIsHost = value;
 		}
 		
 		public function get viewportWidth():Number

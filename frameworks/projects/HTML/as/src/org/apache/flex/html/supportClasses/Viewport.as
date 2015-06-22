@@ -72,17 +72,16 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function updateContentAreaSize():void
 		{
-			contentArea.x = model.contentX;
-			contentArea.y = model.contentY;
+			if (!model.contentIsHost) {
+				contentArea.x = model.contentX;
+				contentArea.y = model.contentY;
+			}
 			contentArea.setWidthAndHeight(model.contentWidth, model.contentHeight, true);
 		}
 		
 		public function updateSize():void
 		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-			var host:UIBase = UIBase(_strand);
-			
-			updateContentAreaSize();
+			// not needed for this type of viewport
 		}
 		
 		/**

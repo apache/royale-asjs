@@ -105,15 +105,12 @@ package org.apache.flex.html.beads
 			// TODO: (aharui) get class to instantiate from CSS
 			if (!_titleBar)
 				_titleBar = new TitleBar();
-			_titleBar.percentWidth = 100;
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
 			host.addElement(titleBar, false);
 			titleBar.addEventListener("heightChanged", chromeHeightChanged);
-			if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
-				titleBar.addEventListener("widthChanged", changeHandler);
 			
 			var controlBarItems:Array = (host.model as IPanelModel).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
@@ -128,11 +125,15 @@ package org.apache.flex.html.beads
 				
 				host.addElement(controlBar, false);
 				controlBar.addEventListener("heightChanged", chromeHeightChanged);
-				if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
-					controlBar.addEventListener("widthChanged", changeHandler);
 			}
 			
 			super.strand = value;
+		}
+		
+		override protected function createViewport(metrics:UIMetrics):void
+		{
+			super.createViewport(metrics);
+			setupViewport(metrics);
 		}
 		
 		private function setupViewport(metrics:UIMetrics):void
@@ -159,30 +160,101 @@ package org.apache.flex.html.beads
 			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
 		}
 		
-		override protected function createViewport(metrics:UIMetrics):void
-		{
-			super.createViewport(metrics);
-			setupViewport(metrics);
-		}
-		
 		override protected function handleContentResize():void
 		{
-			super.handleContentResize();
-			
 			var host:UIBase = UIBase(_strand);
+			var viewportModel:IViewportModel = viewport.model;
+			
+			titleBar.x = 0;
+			titleBar.y = 0;
 			titleBar.width = host.width;
+			
 			if (controlBar) {
 				controlBar.width = host.width;
 				controlBar.y = host.height - controlBar.height;
 			}
+			
+			// If the host is being sized by its content, the change in the contentArea
+			// causes the host's size to change
+			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
+								
+				var metrics:UIMetrics = getMetrics();
+				
+				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
+				viewportModel.viewportWidth  = viewportModel.contentWidth + metrics.left + metrics.right;
+			}
+				
+				// if the width is fixed and the height is changing, then set up horizontal
+				// scrolling (if the viewport supports it).
+			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
+			{
+				viewport.needsHorizontalScroller();
+				
+				metrics = getMetrics();
+				
+				var cbHeight:Number = 0;
+				if (controlBar) {
+					controlBar.y = viewportModel.contentHeight + titleBar.height + metrics.top + metrics.bottom;
+					cbHeight = controlBar.height;
+				}
+				
+				host.setHeight(viewportModel.contentHeight + titleBar.height + cbHeight, false);
+				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
+				
+			}
+				
+				// if the height is fixed and the width can change, then set up
+				// vertical scrolling (if the viewport supports it).
+			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
+			{
+				viewport.needsVerticalScroller();
+				
+				metrics = getMetrics();
+				
+				host.setWidth(viewportModel.contentWidth+viewport.scrollerWidth(), false);
+				viewportModel.viewportWidth = viewportModel.contentWidth + metrics.left + metrics.right;
+			}
+				
+				// Otherwise the viewport needs to display some scrollers (or other elements
+				// allowing the rest of the contentArea to be visible)
+			else {
+				
+				viewport.needsScrollers();
+			}
 		}
 		
-		override protected function changeHandler(event:Event):void
+		override protected function resizeHandler(event:Event):void
 		{
-			titleBar.width = UIBase(_strand).width;	
-			controlBar.width = UIBase(_strand).width;
-			controlBar.y = UIBase(_strand).height - controlBar.height;	
-			super.changeHandler(event);
+			var host:UIBase = UIBase(_strand);
+			var viewportModel:IViewportModel = viewport.model;
+			var cbHeight:Number = 0;
+			
+			titleBar.width = host.width;
+			if (controlBar) {
+				controlBar.width = host.width;
+				controlBar.y = host.height - controlBar.height;
+				cbHeight = controlBar.height;
+			}
+			
+			// the viewport has to be adjusted to account for the change
+			// in the host size.			
+			viewportModel.viewportHeight = host.height - titleBar.height - cbHeight;
+			viewportModel.viewportWidth = host.width;
+			
+			// if the host has a fixed width, reset the contentWidth to match.
+			if (!host.isWidthSizedToContent()) viewportModel.contentWidth = host.width;
+			
+			// if the host has a fixed height, reset the contentHeight to match.
+			if (!host.isHeightSizedToContent()) viewportModel.contentHeight = host.height - titleBar.height - cbHeight;
+			
+			// the viewport's size and position also has to be adjusted since the
+			// host's size has changed.
+			viewport.updateSize();
+			
+			// the layout needs to be run to adjust the content for 
+			// the new host size.
+			changeHandler(event);
 		}
 		
 		private function chromeHeightChanged(event:Event):void
@@ -192,13 +264,8 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  Always returns true because Panel's content is separate from its chrome
-		 *  elements such as the title bar and optional control bar.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 * @private
+		 * Panel always needs content area.
 		 */
 		override protected function contentAreaNeeded():Boolean
 		{

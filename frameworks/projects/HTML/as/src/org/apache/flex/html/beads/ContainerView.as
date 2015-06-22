@@ -108,13 +108,12 @@ package org.apache.flex.html.beads
 			_strand = value;
 			
 			var host:UIBase = value as UIBase;
-			var metrics:UIMetrics = getMetrics();
 			
-			checkActualParent(true);
+			// determines if an offset child will act as the parent; this
+			// happens when there is padding or chrome elements.
+			checkActualParent(false);
 			
-			createViewport(metrics);
-			
-			viewport.updateContentAreaSize();
+			createViewport(getMetrics());
 			
 			if (!host.isWidthSizedToContent() && !host.isHeightSizedToContent()) {
 				displayBackgroundAndBorder(host);
@@ -137,7 +136,9 @@ package org.apache.flex.html.beads
 		 */
 		protected function createViewport(metrics:UIMetrics):void
 		{
-			viewportModel = new ViewportModel();
+			if (viewportModel == null) {
+				viewportModel = new ViewportModel();
+			}
 			
 			// the viewport takes the entire space as there is no default chrome.
 			// if chrome children get added the viewport will need to be adjusted
@@ -154,9 +155,8 @@ package org.apache.flex.html.beads
 			viewportModel.contentX = viewportModel.viewportX + metrics.left;
 			viewportModel.contentY = viewportModel.viewportY + metrics.top;
 			
-			viewportModel.horizontalScrollPosition = 0;
-			viewportModel.verticalScrollPosition = 0;
 			viewportModel.contentArea = actualParent;
+			viewportModel.contentIsHost = actualParent == UIBase(_strand);
 			
 			if (viewport == null) {
 				viewport = _strand.getBeadByType(IViewport) as IViewport;
@@ -175,9 +175,10 @@ package org.apache.flex.html.beads
 				viewport.model = viewportModel;
 			}
 		}
+		
 				
 		/**
-		 * Event handler invoked whenever the size or children are added.
+		 * Event handler invoked whenever the size or children are added/removed
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -208,7 +209,16 @@ package org.apache.flex.html.beads
 			// model's content size properties. 
 			if (viewport.runLayout()) 
 			{
+				// remove size change handlers so that any size changes internally
+				// are not picked up and processed which could result in an infinite
+				// chain of events.
+//				host.removeEventListener("widthChanged", resizeHandler);
+//				host.removeEventListener("heightChanged", resizeHandler);
+				
 				handleContentResize();
+				
+//				host.addEventListener("widthChanged", resizeHandler);
+//				host.addEventListener("heightChanged", resizeHandler);
 			}			
 			
 			// update the contentArea so that it exposes all of the items as placed
@@ -218,42 +228,48 @@ package org.apache.flex.html.beads
 			displayBackgroundAndBorder(host);
 		}
 		
+		/**
+		 * This function guides the resizing of the container and/or its viewport,
+		 * depending on the constraints on the container's size (being sized by
+		 * its content or sized externally).
+		 */
 		protected function handleContentResize():void
 		{
 			var host:UIBase = UIBase(_strand);
+			var metrics:UIMetrics = getMetrics();
 			
 			// If the host is being sized by its content, the change in the contentArea
 			// causes the host's size to change
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
 				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
 				
-				viewportModel.viewportHeight = host.height;
-				viewportModel.viewportWidth  = host.width;				
+				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
+				viewportModel.viewportWidth  = viewportModel.contentWidth + metrics.left + metrics.right;
 			}
 				
-				// if the width is fixed and the height is changing, then set up horizontal
-				// scrolling (if the viewport supports it).
+			// if the width is fixed and the height is changing, then set up horizontal
+			// scrolling (if the viewport supports it).
 			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
 			{
 				viewport.needsHorizontalScroller();
 				
 				host.setHeight(viewportModel.contentHeight, false);
-				viewportModel.viewportHeight = host.height;
+				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
 				
 			}
 				
-				// if the height is fixed and the width can change, then set up
-				// vertical scrolling (if the viewport supports it).
+			// if the height is fixed and the width can change, then set up
+			// vertical scrolling (if the viewport supports it).
 			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
 			{
 				viewport.needsVerticalScroller();
 				
 				host.setWidth(viewportModel.contentWidth+viewport.scrollerWidth(), false);
-				viewportModel.viewportWidth = host.width;
+				viewportModel.viewportWidth = viewportModel.contentWidth + metrics.left + metrics.right + viewport.scrollerWidth();
 			}
 				
-				// Otherwise the viewport needs to display some scrollers (or other elements
-				// allowing the rest of the contentArea to be visible)
+			// Otherwise the viewport needs to display some scrollers (or other elements
+			// allowing the rest of the contentArea to be visible)
 			else {
 				
 				viewport.needsScrollers();
@@ -263,24 +279,28 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function resizeHandler(event:Event):void
+		protected function resizeHandler(event:Event):void
 		{
-//			if (event.currentTarget == _strand) {
-//				return;
-//			}
-			
 			var host:UIBase = UIBase(_strand);
-			trace("host is now "+host.width + " x " +host.height);
 			
+			// the viewport has to be adjusted to account for the change
+			// in the host size.			
 			viewportModel.viewportHeight = host.height;
 			viewportModel.viewportWidth = host.width;
 			
+			// if the host has a fixed width, reset the contentWidth to match.
 			if (!host.isWidthSizedToContent()) viewportModel.contentWidth = host.width;
+			
+			// if the host has a fixed height, reset the contentHeight to match.
 			if (!host.isHeightSizedToContent()) viewportModel.contentHeight = host.height;
 			
-			changeHandler(event);
-			
+			// the viewport's size and position also has to be adjusted since the
+			// host's size has changed.
 			viewport.updateSize();
+			
+			// the layout needs to be run to adjust the content for 
+			// the new host size.
+			changeHandler(event);
 		}
 		
 		/**
