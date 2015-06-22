@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
@@ -110,7 +111,7 @@ package org.apache.flex.html.beads
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
 			host.addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", changeHandler);
+			titleBar.addEventListener("heightChanged", chromeHeightChanged);
 			if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
 				titleBar.addEventListener("widthChanged", changeHandler);
 			
@@ -126,12 +127,68 @@ package org.apache.flex.html.beads
 				_controlBar.dispatchEvent(new Event("layoutNeeded"));
 				
 				host.addElement(controlBar, false);
-				controlBar.addEventListener("heightChanged", changeHandler);
+				controlBar.addEventListener("heightChanged", chromeHeightChanged);
 				if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
 					controlBar.addEventListener("widthChanged", changeHandler);
 			}
 			
 			super.strand = value;
+		}
+		
+		private function setupViewport(metrics:UIMetrics):void
+		{
+			var host:UIBase = UIBase(_strand);
+			
+			titleBar.width = host.width;
+			if (controlBar) {
+				controlBar.width = host.width;
+				controlBar.y = host.height - controlBar.height;
+			}
+			
+			var model:IViewportModel = viewport.model;
+			model.viewportX = 0;
+			model.viewportY = titleBar.height;
+			model.viewportWidth = host.width;
+			model.viewportHeight = host.height - titleBar.height;
+			if (controlBar) {
+				model.viewportHeight -= controlBar.height;
+			}
+			model.contentX = model.viewportX + metrics.left;
+			model.contentY = model.viewportY + metrics.top;
+			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
+			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
+		}
+		
+		override protected function createViewport(metrics:UIMetrics):void
+		{
+			super.createViewport(metrics);
+			setupViewport(metrics);
+		}
+		
+		override protected function handleContentResize():void
+		{
+			super.handleContentResize();
+			
+			var host:UIBase = UIBase(_strand);
+			titleBar.width = host.width;
+			if (controlBar) {
+				controlBar.width = host.width;
+				controlBar.y = host.height - controlBar.height;
+			}
+		}
+		
+		override protected function changeHandler(event:Event):void
+		{
+			titleBar.width = UIBase(_strand).width;	
+			controlBar.width = UIBase(_strand).width;
+			controlBar.y = UIBase(_strand).height - controlBar.height;	
+			super.changeHandler(event);
+		}
+		
+		private function chromeHeightChanged(event:Event):void
+		{
+			var metrics:UIMetrics = this.getMetrics();
+			setupViewport(metrics);
 		}
 		
 		/**
@@ -146,54 +203,6 @@ package org.apache.flex.html.beads
 		override protected function contentAreaNeeded():Boolean
 		{
 			return true;
-		}
-		
-		/**
-		 * @private
-		 */
-		override protected function determineMetrics():UIMetrics
-		{
-			var metrics:UIMetrics = super.determineMetrics();
-			titleBar.width = UIBase(_strand).width;
-			metrics.top += titleBar.height;
-			
-			controlBar.width = UIBase(_strand).width;
-			metrics.bottom += controlBar.height;
-
-			return metrics;
-		}
-		
-		/**
-		 * @private
-		 */
-		override protected function changeHandler(event:Event):void
-		{
-			super.changeHandler(event);
-			
-			controlBar.y = UIBase(_strand).height - controlBar.height;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function layoutChromeElements():void
-		{
-			var metrics:UIMetrics = determineMetrics();
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = UIBase(_strand).width;
-			
-			if (controlBar) {
-				controlBar.x = 0;
-				controlBar.y = UIBase(_strand).height - controlBar.height;
-				controlBar.width = UIBase(_strand).width;
-			}
-			
-			actualParent.x = metrics.left;
-			actualParent.y = titleBar.height + metrics.top;
-			actualParent.width = UIBase(_strand).width - metrics.left - metrics.right;
-			actualParent.height = UIBase(_strand).height - titleBar.height - metrics.top - metrics.bottom;
-			if (controlBar) actualParent.height -= controlBar.height;
 		}
 	}
 }

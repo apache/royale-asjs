@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
+	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
 	
@@ -31,7 +32,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerContentArea extends UIBase
+	public class ContainerContentArea extends UIBase implements IContentView
 	{
         /**
          *  Constructor.
@@ -52,5 +53,18 @@ package org.apache.flex.html.supportClasses
             if (parent)
                 parent.dispatchEvent(event);
         }
+		
+		/**
+		 *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function removeAllElements():void
+		{
+			this.removeChildren(0);
+		}
 	}
 }

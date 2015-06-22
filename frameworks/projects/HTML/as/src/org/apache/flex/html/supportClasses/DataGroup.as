@@ -32,7 +32,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataGroup extends UIBase implements IItemRendererParent, IContentView
+	public class DataGroup extends ContainerContentArea implements IItemRendererParent, IContentView
 	{
         /**
          *  Constructor.
@@ -61,17 +61,25 @@ package org.apache.flex.html.supportClasses
             return getChildAt(index) as IItemRenderer;
         }
 		
-        /**
-         *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
+		/**
+		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */
-		public function removeAllElements():void
+		 */
+		public function updateAllItemRenderers():void
 		{
-			this.removeChildren(0);
+			var n:Number = numElements;
+			for (var i:Number = 0; i < n; i++)
+			{
+				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
+				if (renderer) {
+					renderer.setWidth(this.width,true);
+					renderer.adjustSize();
+				}
+			}
 		}
 	}
 }

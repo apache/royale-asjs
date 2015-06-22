@@ -60,6 +60,7 @@ package org.apache.flex.html.supportClasses
             // very common for item renderers to be resized by their containers,
             addEventListener("widthChanged", sizeChangeHandler);
             addEventListener("heightChanged", sizeChangeHandler);
+			addEventListener("sizeChanged", sizeChangeHandler);
 
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);

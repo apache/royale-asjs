@@ -19,11 +19,14 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewport;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -71,6 +74,25 @@ package org.apache.flex.html.beads.layouts
 		{
 			host = value as ILayoutChild;
 		}
+		
+		private var _viewportModel:IViewportModel;
+		
+		/**
+		 *  The data that describes the viewport used by this layout.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get viewportModel():IViewportModel
+		{
+			return _viewportModel;
+		}
+		public function set viewportModel(value:IViewportModel):void
+		{
+			_viewportModel = value;
+		}
 	
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
@@ -80,6 +102,10 @@ package org.apache.flex.html.beads.layouts
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent.contentView;
+			
+			// this layout will use and modify the IViewportMode
+			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
+			viewportModel = viewport.model;
 			
 			var n:int = contentView.numElements;
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -232,7 +258,24 @@ package org.apache.flex.html.beads.layouts
     					child.y = obj.marginTop;
     			}
             }
-            return true;
+			
+			// Only return true if the contentView needs to be larger; that new
+			// size is stored in the model.
+			var sizeChanged:Boolean = false;
+			if (viewportModel != null) {
+				if (viewportModel.contentHeight < maxHeight) {
+					viewportModel.contentHeight = maxHeight;
+					sizeChanged = true;
+				}
+				if (viewportModel.contentWidth < xx) {
+					viewportModel.contentWidth = xx;
+					sizeChanged = true;
+				}
+			}
+			
+			host.dispatchEvent( new Event("layoutComplete") );
+			
+			return sizeChanged;
 		}
         
         private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number,

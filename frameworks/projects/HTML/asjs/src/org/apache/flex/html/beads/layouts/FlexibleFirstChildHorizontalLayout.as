@@ -24,6 +24,9 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewport;
+	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -72,6 +75,25 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
             host = value as ILayoutChild;
+		}
+		
+		private var _viewportModel:IViewportModel;
+		
+		/**
+		 *  The data that describes the viewport used by this layout.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get viewportModel():IViewportModel
+		{
+			return _viewportModel;
+		}
+		public function set viewportModel(value:IViewportModel):void
+		{
+			_viewportModel = value;
 		}
 	
         private var _maxWidth:Number;
@@ -128,6 +150,10 @@ package org.apache.flex.html.beads.layouts
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParent = layoutParent.contentView;
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
+			
+			// this layout will use and modify the IViewportMode
+			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
+			if (viewport) viewportModel = viewport.model;
 
 			var n:int = contentView.numElements;
 			var marginLeft:Object;
@@ -231,8 +257,24 @@ package org.apache.flex.html.beads.layouts
 			}
             if (hostSizedToContent)
                 ILayoutChild(contentView).setHeight(maxHeight, true);
+			
+			// Only return true if the contentView needs to be larger; that new
+			// size is stored in the model.
+			var sizeChanged:Boolean = false;
+			if (viewportModel != null) {
+				if (viewportModel.contentHeight < maxHeight) {
+					viewportModel.contentHeight = maxHeight;
+					sizeChanged = true;
+				}
+				if (viewportModel.contentWidth < xx) {
+					viewportModel.contentWidth = xx;
+					sizeChanged = true;
+				}
+			} else {
+				sizeChanged = true;
+			}
 
-            return true;
+            return sizeChanged;
 		}
 
         // TODO (aharui): utility class or base class

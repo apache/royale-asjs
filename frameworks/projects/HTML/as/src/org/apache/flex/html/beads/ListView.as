@@ -19,11 +19,13 @@
 package org.apache.flex.html.beads
 {	
 	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ISelectableItemRenderer;
+	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IParent;
@@ -54,7 +56,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ListView extends Strand implements IBeadView, IStrand, IListView, IScrollingLayoutParent
+	public class ListView extends ContainerView implements IListView
 	{
 		public function ListView()
 		{
@@ -96,36 +98,6 @@ package org.apache.flex.html.beads
 			_dataGroup = value;
 		}
 		
-		private var _vScrollBar:ScrollBar;
-		
-		/**
-		 *  The vertical org.apache.flex.html.ScrollBar, if needed.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get vScrollBar():ScrollBar
-		{
-            if (!_vScrollBar)
-                _vScrollBar = createScrollBar();
-			return _vScrollBar;
-		}
-		
-		/**
-		 *  The horizontal org.apache.flex.html.ScrollBar, currently null.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get hScrollBar():ScrollBar
-		{
-			return null;
-		}
-		
 		/**
 		 *  The contentArea includes the dataGroup and scrollBars.
 		 *
@@ -134,7 +106,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get contentView():IParentIUIBase
+		override public function get contentView():IParentIUIBase
 		{
 			return _dataGroup as IParentIUIBase;
 		}
@@ -142,17 +114,15 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function get resizableView():IUIBase
+		override public function get resizableView():IUIBase
 		{
 			return _strand as IUIBase;
 		}
-		
-        private var _layout:IBeadLayout;
         
         /**
          * @private
          */
-        public function get host():IUIBase
+        override public function get host():IUIBase
         {
             return _strand as IUIBase;
         }
@@ -167,35 +137,32 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
-            for each (var bead:IBead in beads)
-                addBead(bead);
+			super.strand = value;
             
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
             
             // this gets sent at least once after the beads are all in place.
             IEventDispatcher(_strand).addEventListener("layoutNeeded",handleSizeChange);
-            
+			IEventDispatcher(_strand).addEventListener("itemsCreated", changeHandler);
+     
             listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-
-            _border = new Border();
-            _border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
-            _strand.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-            IParent(_strand).addElement(_border);
-            
+		}
+		
+		override protected function checkActualParent(force:Boolean=false):Boolean
+		{
 			if (_dataGroup == null) {
-				_dataGroup = new (ValuesManager.valuesImpl.getValue(value, "iDataGroup")) as IItemRendererParent;
+				_dataGroup = new (ValuesManager.valuesImpl.getValue(_strand, "iDataGroup")) as IItemRendererParent;
+				actualParent = _dataGroup as UIBase;
+				IParent(_strand).addElement(_dataGroup,false);
 			}
-			IParent(_strand).addElement(_dataGroup);
-            
+			return true;
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -206,6 +173,7 @@ package org.apache.flex.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// override if needed
+			changeHandler(event);
 		}
 		
 		/**
@@ -245,46 +213,6 @@ package org.apache.flex.html.beads
 			}
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
-			
-		/**
-		 * @private
-		 */
-		private function createScrollBar():ScrollBar
-		{
-			var vsb:ScrollBar;
-			vsb = new ScrollBar();
-			var vsbm:ScrollBarModel = new ScrollBarModel();
-			vsbm.maximum = 100;
-			vsbm.minimum = 0;
-			vsbm.pageSize = 10;
-			vsbm.pageStepSize = 10;
-			vsbm.snapInterval = 1;
-			vsbm.stepSize = 1;
-			vsbm.value = 0;
-			vsb.model = vsbm;
-			vsb.x = IUIBase(_strand).width - 16;
-			vsb.y = 0;
-			vsb.setWidthAndHeight(16, IUIBase(_strand).height, true);
-            IParent(_strand).addElement(vsb);
-			return vsb;
-		}
-
-        /**
-         *  Layout everything except the DataGroup, 
-         *  but size the DataGroup as needed
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected function layoutList():void
-        {
-            UIBase(_dataGroup).x = 0;
-            UIBase(_dataGroup).y = 0;
-            UIBase(_dataGroup).width = UIBase(_strand).width;
-            UIBase(_dataGroup).height = UIBase(_strand).height;
-        }
         
         /**
          *  respond to a change in size or request to re-layout everything
@@ -296,18 +224,7 @@ package org.apache.flex.html.beads
          */
 		protected function handleSizeChange(event:Event):void
 		{
-            layoutList();
-            
-            if (_layout == null)
-            {
-                _layout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-                if (_layout == null)
-                {
-                    _layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                    _strand.addBead(_layout);
-                }  
-            }
-            _layout.layout();
+			_dataGroup.updateAllItemRenderers();
 		}
 				
         /**
@@ -318,7 +235,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get viewHeight():Number
+        override public function get viewHeight():Number
         {
             // don't want to put $height in an interface
             return _strand["$height"];
@@ -332,7 +249,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get viewWidth():Number
+        override public function get viewWidth():Number
         {
             // don't want to put $width in an interface
             return _strand["$width"];

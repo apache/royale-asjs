@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
@@ -99,12 +100,57 @@ package org.apache.flex.html.beads
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
 			host.addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", changeHandler);
+			titleBar.addEventListener("heightChanged", titleBarHeightChanged);
             if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
                 titleBar.addEventListener("widthChanged", changeHandler);
+			
+			trace("TitleBar's height: "+titleBar.height);
             
             super.strand = value;
-            
+
+		}
+		
+		private function setupViewport(metrics:UIMetrics):void
+		{
+			var host:UIBase = UIBase(_strand);
+			
+			titleBar.width = host.width;
+			
+			var model:IViewportModel = viewport.model;
+			model.viewportX = 0;
+			model.viewportY = titleBar.height;
+			model.viewportWidth = host.width;
+			model.viewportHeight = host.height - titleBar.height;
+			model.contentX = model.viewportX + metrics.left;
+			model.contentY = model.viewportY + metrics.top;
+			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
+			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
+		}
+		
+		override protected function createViewport(metrics:UIMetrics):void
+		{
+			super.createViewport(metrics);
+			setupViewport(metrics);
+		}
+		
+		override protected function handleContentResize():void
+		{
+			super.handleContentResize();
+			
+			var host:UIBase = UIBase(_strand);
+			titleBar.width = host.width;
+		}
+		
+		override protected function changeHandler(event:Event):void
+		{
+			titleBar.width = UIBase(_strand).width;
+			super.changeHandler(event);
+		}
+		
+		private function titleBarHeightChanged(event:Event):void
+		{
+			var metrics:UIMetrics = this.getMetrics();
+			setupViewport(metrics);
 		}
         
         /**
@@ -114,17 +160,6 @@ package org.apache.flex.html.beads
         override protected function contentAreaNeeded():Boolean
         {
             return true;
-        }
-						
-        /**
-         * @private
-         */
-        override protected function determineMetrics():UIMetrics
-        {
-            var metrics:UIMetrics = super.determineMetrics();
-            titleBar.width = UIBase(_strand).width;
-            metrics.top += titleBar.height;
-            return metrics;
         }
                 
 	}

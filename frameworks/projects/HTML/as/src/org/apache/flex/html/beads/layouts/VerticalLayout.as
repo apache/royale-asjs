@@ -18,94 +18,112 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewport;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
-
-    /**
-     *  The VerticalLayout class is a simple layout
-     *  bead.  It takes the set of children and lays them out
-     *  vertically in one column, separating them according to
-     *  CSS layout rules for margin and horizontal-align styles.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
+	
+	/**
+	 *  The VerticalLayout class is a simple layout
+	 *  bead.  It takes the set of children and lays them out
+	 *  vertically in one column, separating them according to
+	 *  CSS layout rules for margin and horizontal-align styles.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class VerticalLayout implements IBeadLayout
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function VerticalLayout()
 		{
 		}
 		
-        // the strand/host container is also an ILayoutChild because
-        // can have its size dictated by the host's parent which is
-        // important to know for layout optimization
-        private var host:ILayoutChild;
-        		
-        /**
-         *  @copy org.apache.flex.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+		// the strand/host container is also an ILayoutChild because
+		// can have its size dictated by the host's parent which is
+		// important to know for layout optimization
+		private var host:ILayoutChild;
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function set strand(value:IStrand):void
 		{
-            host = value as ILayoutChild;            
+			host = value as ILayoutChild; 
 		}
-	
-        /**
-         *  @copy org.apache.flex.core.IBeadLayout#layout
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+		
+		private var _viewportModel:IViewportModel;
+		
+		/**
+		 *  The data that describes the viewport used by this layout.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get viewportModel():IViewportModel
+		{
+			return _viewportModel;
+		}
+		public function set viewportModel(value:IViewportModel):void
+		{
+			_viewportModel = value;
+		}
+		
 		public function layout():Boolean
 		{
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
 			
+			// this layout will use and modify the IViewportMode
+			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
+			viewportModel = viewport.model;
+
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
-            var hostSizedToContent:Boolean = host.isWidthSizedToContent();
+			var hostSizedToContent:Boolean = host.isWidthSizedToContent();
 			var flexibleHorizontalMargins:Array = [];
-            var ilc:ILayoutChild;
+			var ilc:ILayoutChild;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
 			var marginBottom:Object;
 			var margin:Object;
 			var maxWidth:Number = 0;
-            // asking for contentView.width can result in infinite loop if host isn't sized already
-            var w:Number = hostSizedToContent ? 0 : contentView.width;
+			// asking for contentView.width can result in infinite loop if host isn't sized already
+			var w:Number = hostSizedToContent ? 0 : contentView.width;
+			
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				if (child == null || !child.visible) continue;
-                ilc = child as ILayoutChild;
-                var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
-                var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
+				ilc = child as ILayoutChild;
+				var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
+				var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -151,18 +169,18 @@ package org.apache.flex.html.beads.layouts
 					child.y = mt;
 				else
 					child.y = yy + Math.max(mt, lastmb);
-                if (ilc)
-                {
-                    if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentWidth));
-                }
+				if (ilc)
+				{
+					if (!isNaN(ilc.percentHeight))
+						ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentWidth));
+				}
 				lastmb = mb;
-                var marginObject:Object = {};
+				var marginObject:Object = {};
 				flexibleHorizontalMargins[i] = marginObject;
 				if (marginLeft == "auto")
 				{
 					ml = 0;
-                    marginObject.marginLeft = marginLeft;
+					marginObject.marginLeft = marginLeft;
 					hasHorizontalFlex = true;
 				}
 				else
@@ -171,15 +189,15 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(ml))
 					{
 						ml = 0;
-                        marginObject.marginLeft = marginLeft;
+						marginObject.marginLeft = marginLeft;
 					}
 					else
-                        marginObject.marginLeft = ml;
+						marginObject.marginLeft = ml;
 				}
 				if (marginRight == "auto")
 				{
 					mr = 0;
-                    marginObject.marginRight = marginRight;
+					marginObject.marginRight = marginRight;
 					hasHorizontalFlex = true;
 				}
 				else
@@ -188,107 +206,123 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(mr))
 					{
 						mr = 0;
-                        marginObject.marginRight = marginRight;
+						marginObject.marginRight = marginRight;
 					}
 					else
-                        marginObject.marginRight = mr;
+						marginObject.marginRight = mr;
 				}
-                if (!hostSizedToContent)
-                {
-                    // if host is sized by parent,
-                    // we can position and size children horizontally now
-                    setPositionAndWidth(child, left, ml, right, mr, w);
-                }
-                else
-                {
-                    if (!isNaN(left))
-                    {
-                        ml = left;
-                        marginObject.left = ml;
-                    }
-                    if (!isNaN(right))
-                    {
-                        mr = right;
-                        marginObject.right = mr;
-                    }
-                    maxWidth = Math.max(maxWidth, ml + child.width + mr);                    
-                }
-                yy = child.y + child.height;
+				if (!hostSizedToContent)
+				{
+					// if host is sized by parent,
+					// we can position and size children horizontally now
+					setPositionAndWidth(child, left, ml, right, mr, w);
+				}
+				else
+				{
+					if (!isNaN(left))
+					{
+						ml = left;
+						marginObject.left = ml;
+					}
+					if (!isNaN(right))
+					{
+						mr = right;
+						marginObject.right = mr;
+					}
+					maxWidth = Math.max(maxWidth, ml + child.width + mr);                    
+				}
+				yy = child.y + child.height;
 			}
-            if (hostSizedToContent)
-            {
-                ILayoutChild(contentView).setWidth(maxWidth, true);
-                if (host.isHeightSizedToContent())
-                    ILayoutChild(contentView).setHeight(yy, true);
-    			for (i = 0; i < n; i++)
-    			{
-                    child = contentView.getElementAt(i) as IUIBase;
-    				if (child == null || !child.visible) continue;
-                    var obj:Object = flexibleHorizontalMargins[i];
-                    setPositionAndWidth(child, obj.left, obj.marginLeft,
-                        obj.right, obj.marginRight, maxWidth);
-    			}
-            }
-            if (hasHorizontalFlex)
-            {
-                for (i = 0; i < n; i++)
-                {
-                    child = contentView.getElementAt(i) as IUIBase;
-                    if (child == null || !child.visible) continue;
-                    ilc = child as ILayoutChild;
-                    obj = flexibleHorizontalMargins[i];
-                    if (hasHorizontalFlex)
-                    {
-                        if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-                            child.x = maxWidth - child.width / 2;
-                        else if (obj.marginLeft == "auto")
-                            child.x = maxWidth - child.width - obj.marginRight;
-                    }
-                }
-            }
-            return true;
-		}
-    
-        private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number,
-                                             right:Number, mr:Number, w:Number):void
-        {
-            var widthSet:Boolean = false;
-            
-            var ww:Number = w;
-            var ilc:ILayoutChild = child as ILayoutChild;
-            if (!isNaN(left))
-            {
-                child.x = left + ml;
-                ww -= left + ml;
-            }
-            else 
-            {
-                child.x = ml;
-                ww -= ml;
-            }
-            if (!isNaN(right))
-            {
-                if (!isNaN(left))
-                {
-                    if (ilc)
-                        ilc.setWidth(ww - right - mr, true);
-                    else
-                    {
-                        child.width = ww - right - mr;
-                        widthSet = true;
-                    }
-                }
-                else
-                    child.x = w - right - mr - child.width;
-            }
-            if (ilc)
-            {
-                if (!isNaN(ilc.percentWidth))
-                    ilc.setWidth(w * ilc.percentWidth / 100, true);
-            }
-            if (!widthSet)
-                child.dispatchEvent(new Event("sizeChanged"));
-        }
+			if (hostSizedToContent)
+			{
+				for (i = 0; i < n; i++)
+				{
+					child = contentView.getElementAt(i) as IUIBase;
+					if (child == null || !child.visible) continue;
+					var obj:Object = flexibleHorizontalMargins[i];
+					setPositionAndWidth(child, obj.left, obj.marginLeft,
+						obj.right, obj.marginRight, maxWidth);
+				}
+			}
+			if (hasHorizontalFlex)
+			{
+				for (i = 0; i < n; i++)
+				{
+					child = contentView.getElementAt(i) as IUIBase;
+					if (child == null || !child.visible) continue;
+					ilc = child as ILayoutChild;
+					obj = flexibleHorizontalMargins[i];
+					if (hasHorizontalFlex)
+					{
+						if (obj.marginLeft == "auto" && obj.marginRight == "auto")
+							child.x = maxWidth - child.width / 2;
+						else if (obj.marginLeft == "auto")
+							child.x = maxWidth - child.width - obj.marginRight;
+					}
+				}
+			}
+			
+			// Only return true if the contentView needs to be larger; that new
+			// size is stored in the model.
+			var sizeChanged:Boolean = false;
+			if (viewportModel != null) {
+				if (viewportModel.contentHeight < yy) {
+					viewportModel.contentHeight = yy;
+					sizeChanged = true;
+				}
+				if (viewportModel.contentWidth < maxWidth) {
+					viewportModel.contentWidth = maxWidth;
+					sizeChanged = true;
+				}
+			}
+			
+			host.dispatchEvent( new Event("layoutComplete") );
 
+			return sizeChanged;
+		}
+		
+		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number,
+											 right:Number, mr:Number, w:Number):void
+		{
+			var widthSet:Boolean = false;
+			
+			var ww:Number = w;
+			var ilc:ILayoutChild = child as ILayoutChild;
+			if (!isNaN(left))
+			{
+				child.x = left + ml;
+				ww -= left + ml;
+			}
+			else 
+			{
+				child.x = ml;
+				ww -= ml;
+			}
+			if (!isNaN(right))
+			{
+				if (!isNaN(left))
+				{
+					if (ilc)
+						ilc.setWidth(ww - right - mr, true);
+					else
+					{
+						child.width = ww - right - mr;
+						widthSet = true;
+					}
+				}
+				else
+					child.x = w - right - mr - child.width;
+			}
+			if (ilc)
+			{
+				if (!isNaN(ilc.percentWidth))
+					ilc.setWidth(w * ilc.percentWidth / 100, true);
+				else
+					ilc.setWidth(w, true);
+			}
+			if (!widthSet)
+				child.dispatchEvent(new Event("sizeChanged"));
+		}
+		
 	}
 }

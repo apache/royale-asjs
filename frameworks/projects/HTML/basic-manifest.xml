@@ -40,7 +40,6 @@
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
-    <component id="ScrollingContainerView" class="org.apache.flex.html.beads.ScrollingContainerView"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>
     <component id="VContainer" class="org.apache.flex.html.VContainer"/>
     <component id="Panel" class="org.apache.flex.html.Panel"/>
@@ -51,11 +50,8 @@
     <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.flex.html.ToolTip"/>
     <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"/>
-    <component id="BasicScrollingLayout" class="org.apache.flex.html.beads.layouts.BasicScrollingLayout"/>
     <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"/>
-    <component id="VerticalScrollingLayout" class="org.apache.flex.html.beads.layouts.VerticalScrollingLayout"/>
-    <component id="HorizontalScrollingLayout" class="org.apache.flex.html.beads.layouts.HorizontalScrollingLayout"/>
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
     <component id="ListViewNoSelectionState" class="org.apache.flex.html.beads.ListViewNoSelectionState"/>
@@ -78,6 +74,7 @@
     <component id="HRule" class="org.apache.flex.html.HRule" />
     <component id="Spacer" class="org.apache.flex.html.Spacer" />
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
+    <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>

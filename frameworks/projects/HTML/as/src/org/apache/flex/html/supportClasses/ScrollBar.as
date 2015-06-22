@@ -20,6 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.IChrome;
+	import org.apache.flex.core.IViewportScroller;
 	
 	/**
 	 *  The ScrollBar class represents either a vertical or horizontal control
@@ -31,7 +32,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ScrollBar extends UIBase implements IChrome
+	public class ScrollBar extends UIBase implements IChrome, IViewportScroller
 	{
 		/**
 		 *  constructor.

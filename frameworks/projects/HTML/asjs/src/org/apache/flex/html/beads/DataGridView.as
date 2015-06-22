@@ -120,6 +120,7 @@ package org.apache.flex.html.beads
 			buttonBar = new ButtonBar();
 			buttonBar.addBead(buttonBarModel);
 			buttonBar.addBead(bblayout);
+			buttonBar.height = 25;
 			UIBase(_strand).addElement(buttonBar);
 			
 			// Create a List for each column, storing a reference to each List in
@@ -147,6 +148,7 @@ package org.apache.flex.html.beads
 				columns.push(list);
 				list.addEventListener('change',columnListChangeHandler);
 				list.addEventListener('rollover',columnListRollOverHandler);
+				list.addEventListener('layoutComplete',forwardEvent);
 			}
 			
 			// TODO: allow a developer to specify their own DataGridLayout
@@ -221,5 +223,14 @@ package org.apache.flex.html.beads
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
 		}
+		
+		/**
+		 * @private
+		 */
+		private function forwardEvent(event:Event):void
+		{
+			IEventDispatcher(_strand).dispatchEvent(event);
+		}
+		 
 	}
 }
