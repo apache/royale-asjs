@@ -65,6 +65,9 @@ internal class CoreClasses
     import org.apache.flex.core.IToggleButtonModel; IToggleButtonModel;
     import org.apache.flex.core.IUIBase; IUIBase;
     import org.apache.flex.core.IValueToggleButtonModel; IValueToggleButtonModel;
+	import org.apache.flex.core.IViewport; IViewport;
+	import org.apache.flex.core.IViewportModel; IViewportModel;
+	import org.apache.flex.core.IViewportScroller; IViewportScroller;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.core.UIBase; UIBase;

@@ -190,9 +190,18 @@ package org.apache.flex.core
         override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
             if (c is IUIBase)
-                actualParent.removeChild(IUIBase(c).element as DisplayObject);
-            else
-                actualParent.removeChild(c as DisplayObject);
+			{
+				if (supportsChromeChildren && c is IChrome) {
+					removeChild(IUIBase(c).element as DisplayObject);
+				}
+				else {
+					actualParent.removeChild(IUIBase(c).element as DisplayObject);
+				}
+			}
+			else {
+				actualParent.removeChild(c as DisplayObject);
+			}    
+            
             if (dispatchEvent)
                 this.dispatchEvent(new Event("childrenRemoved"));
         }

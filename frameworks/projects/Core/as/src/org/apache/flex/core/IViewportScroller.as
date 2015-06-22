@@ -18,35 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
     /**
-     *  The IItemRendererParent interface is the basic interface for the 
-     *  container that parents item renderers.
+     *  The IViewportScroller interface describes an object that can be used to scroll
+	 *  or navigate around a system that uses an IViewport. This may be a traditional
+	 *  scroll bar, or it could be something completely different.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IItemRendererParent extends IParent, IEventDispatcher
+	public interface IViewportScroller
 	{
-        /**
-         *  The IItemRendererParent interface is the basic interface for the 
-         *  container that parents item renderers.
-         * 
-         *  @param index The index of the data item.
-         *  @return The item renderer for the data item.
-         * 
-         *  @see org.apache.flex.core.IItemRenderer
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function getItemRendererForIndex(index:int):IItemRenderer;
-		function removeAllElements():void;
-		function updateAllItemRenderers():void;
-	}
+        
+    }
 }

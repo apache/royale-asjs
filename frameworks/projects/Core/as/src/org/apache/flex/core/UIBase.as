@@ -463,7 +463,7 @@ package org.apache.flex.core
             if (_width != newWidth)
             {
                 _width = newWidth;
-                if (_height == newHeight)
+                if (_width == newWidth)
                     if (!noEvent) 
                         dispatchEvent(new Event("widthChanged"));
             }
