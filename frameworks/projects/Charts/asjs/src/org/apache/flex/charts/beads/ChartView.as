@@ -114,7 +114,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		override protected function layoutList():void
+		protected function layoutList():void
 		{	
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			

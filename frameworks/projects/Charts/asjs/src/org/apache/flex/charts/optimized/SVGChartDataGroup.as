@@ -179,5 +179,10 @@ package org.apache.flex.charts.optimized
 		{
 			return null;
 		}
+		
+		public function updateAllItemRenderers():void
+		{
+			
+		}
 	}
 }
