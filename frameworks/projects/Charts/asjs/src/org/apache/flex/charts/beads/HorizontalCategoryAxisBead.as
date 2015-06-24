@@ -157,6 +157,8 @@ package org.apache.flex.charts.beads
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;
 			
+			clearGraphics();
+			
 			var xpos:Number = 0;
 			var useWidth:Number = UIBase(axisGroup).width;
 		

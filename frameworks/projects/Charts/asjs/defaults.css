@@ -30,6 +30,7 @@ BarChart
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }
 
 BoxItemRenderer
@@ -48,6 +49,7 @@ ColumnChart
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }
 
 LineChart
@@ -62,6 +64,7 @@ LineChart
     IConnectedItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.LineSegmentItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }
 
 PieChart
@@ -73,6 +76,7 @@ PieChart
     IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.WedgeItemRenderer");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }
 
 StackedColumnChart
@@ -86,6 +90,7 @@ StackedColumnChart
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }
 
 StackedBarChart
@@ -99,4 +104,5 @@ StackedBarChart
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
 }

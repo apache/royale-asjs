@@ -24,6 +24,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.BarSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IViewport;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -82,14 +84,18 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
+			// this layout will use and modify the IViewportMode
+			var viewport:IViewport = chart.getBeadByType(IViewport) as IViewport;
+			var viewportModel:IViewportModel = viewport.model;
+			
 			var n:int = dp.length;			
 			var maxXValue:Number = 0;
 			var minXValue:Number = 0;
 			var determineScale:Boolean = true;
 			var seriesMaxes:Array = [];
 			
-			var useWidth:Number = UIBase(chartDataGroup).width;
-			var useHeight:Number = UIBase(chartDataGroup).height;
+			var useWidth:Number = viewportModel.contentWidth;
+			var useHeight:Number = viewportModel.contentHeight;
 			var itemHeight:Number = (useHeight - gap*(dp.length-1))/n;
 			var seriesHeight:Number = itemHeight;
 			var xpos:Number = 0;

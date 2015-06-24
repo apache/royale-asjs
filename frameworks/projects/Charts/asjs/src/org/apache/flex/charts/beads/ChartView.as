@@ -26,6 +26,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
@@ -55,8 +56,6 @@ package org.apache.flex.charts.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;
-			
 			_strand = value;
 			
 			if (border) {
@@ -81,6 +80,8 @@ package org.apache.flex.charts.beads
 				vaxis.axisGroup = _verticalAxisGroup;
 				IParent(_strand).addElement(_verticalAxisGroup);
 			}
+			
+			super.strand = value;
 						
 			IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
 		}
@@ -111,12 +112,9 @@ package org.apache.flex.charts.beads
 			dataGroup.removeAllElements();
 		}
 		
-		/**
-		 * @private
-		 */
-		protected function layoutList():void
-		{	
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+		override protected function createViewport(metrics:UIMetrics):void
+		{
+			super.createViewport(metrics);
 			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;
@@ -132,14 +130,18 @@ package org.apache.flex.charts.beads
 				heightAdjustment = haxis.axisHeight;
 			}
 			
-			var dg:UIBase = UIBase(dataGroup);
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
 			
-			dg.x = widthAdjustment + metrics.left;
-			dg.y = metrics.top;
-			dg.width = strandWidth - widthAdjustment - metrics.right - metrics.left;
-			dg.height= strandHeight - heightAdjustment - metrics.bottom - metrics.top;
+			var model:IViewportModel = viewport.model;
+			model.viewportX = widthAdjustment + metrics.left;
+			model.viewportY = metrics.top;
+			model.viewportWidth = strandWidth - widthAdjustment - metrics.right - metrics.left;
+			model.viewportHeight = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
+			model.contentX = model.viewportX;
+			model.contentY = model.viewportY;
+			model.contentWidth = model.viewportWidth;
+			model.contentHeight = model.viewportHeight;
 			
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = metrics.left;

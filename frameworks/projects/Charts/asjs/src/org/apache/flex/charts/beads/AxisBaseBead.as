@@ -186,6 +186,19 @@ package org.apache.flex.charts.beads
 		}
 		
 		/**
+		 * Removes all graphic elements.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function clearGraphics():void
+		{
+			axisGroup.removeAllElements();
+		}
+		
+		/**
 		 * @private
 		 */
 		protected function drawAxisPath(originX:Number, originY:Number, xoffset:Number, yoffset:Number):void

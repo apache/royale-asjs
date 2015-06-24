@@ -25,6 +25,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.LineSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IViewport;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -54,13 +56,17 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
+			// this layout will use and modify the IViewportMode
+			var viewport:IViewport = chart.getBeadByType(IViewport) as IViewport;
+			var viewportModel:IViewportModel = viewport.model;
+			
 			var n:int = dp.length;
 			var xAxisOffset:Number = 0;
 			var yAxisOffset:Number = 0;
 			
 			var xpos:Number = yAxisOffset;
-			var useWidth:Number = UIBase(chartDataGroup).width-yAxisOffset;;
-			var useHeight:Number = UIBase(chartDataGroup).height - xAxisOffset;
+			var useWidth:Number = viewportModel.contentWidth-yAxisOffset;;
+			var useHeight:Number = viewportModel.contentHeight - xAxisOffset;
 			var itemWidth:Number =  useWidth/dp.length;
 			
 			var maxYValue:Number = 0;
