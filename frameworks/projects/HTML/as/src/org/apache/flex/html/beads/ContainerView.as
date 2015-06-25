@@ -119,6 +119,7 @@ package org.apache.flex.html.beads
 				displayBackgroundAndBorder(host);
 			}
 			
+			host.addEventListener("childrenAdded", childrenChangedHandler);
 			host.addEventListener("childrenAdded", changeHandler);
 			host.addEventListener("layoutNeeded", changeHandler);
 			host.addEventListener("widthChanged", resizeHandler);
@@ -176,6 +177,54 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		/**
+		 * Whenever children are added, listeners are added to detect changes
+		 * in their size. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function childrenChangedHandler(event:Event):void
+		{
+			var host:UIBase = _strand as UIBase;
+			var n:Number = actualParent.numElements;
+			for (var i:int=0; i < n; i++) {
+				var child:IUIBase = actualParent.getElementAt(i) as IUIBase;
+				if (host.isWidthSizedToContent()) {
+					child.addEventListener("widthChanged",childResizeHandler);
+				}
+				if (host.isHeightSizedToContent()) {
+					child.addEventListener("heightChanged",childResizeHandler);
+				}
+			}
+		}
+		
+		private var resizingChildren:Boolean = false;
+		
+		/**
+		 * This event handles changes to the size of children of the container by running
+		 * the layout again and adjusting the size of the container or viewport as necessary. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function childResizeHandler(event:Event):void
+		{
+			// during this process we don't want the layout to trigger
+			// an endless event chain should any children get resized
+			// by the layout.
+			if (resizingChildren) return;
+			resizingChildren = true;
+			
+			var child:UIBase = event.target as UIBase;
+			changeHandler(event);
+			resizingChildren = false;
+		}
+		
 				
 		/**
 		 * Event handler invoked whenever the size or children are added/removed
@@ -209,16 +258,7 @@ package org.apache.flex.html.beads
 			// model's content size properties. 
 			if (viewport.runLayout()) 
 			{
-				// remove size change handlers so that any size changes internally
-				// are not picked up and processed which could result in an infinite
-				// chain of events.
-//				host.removeEventListener("widthChanged", resizeHandler);
-//				host.removeEventListener("heightChanged", resizeHandler);
-				
 				handleContentResize();
-				
-//				host.addEventListener("widthChanged", resizeHandler);
-//				host.addEventListener("heightChanged", resizeHandler);
 			}			
 			
 			// update the contentArea so that it exposes all of the items as placed

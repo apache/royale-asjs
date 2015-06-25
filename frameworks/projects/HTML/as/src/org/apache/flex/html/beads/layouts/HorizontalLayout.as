@@ -263,11 +263,11 @@ package org.apache.flex.html.beads.layouts
 			// size is stored in the model.
 			var sizeChanged:Boolean = false;
 			if (viewportModel != null) {
-				if (viewportModel.contentHeight < maxHeight) {
+				if (viewportModel.contentHeight != maxHeight) {
 					viewportModel.contentHeight = maxHeight;
 					sizeChanged = true;
 				}
-				if (viewportModel.contentWidth < xx) {
+				if (viewportModel.contentWidth != xx) {
 					viewportModel.contentWidth = xx;
 					sizeChanged = true;
 				}
