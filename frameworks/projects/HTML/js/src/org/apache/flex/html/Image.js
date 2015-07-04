@@ -65,7 +65,7 @@ org_apache_flex_html_Image.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Image.prototype, {
-    /** @expose */
+    /** @export */
     source: {
         /** @this {org_apache_flex_html_Image} */
         get: function() {

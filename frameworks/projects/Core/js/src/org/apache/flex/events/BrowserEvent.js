@@ -68,7 +68,7 @@ org_apache_flex_events_BrowserEvent.prototype.stopImmediatePropagation = functio
 
 
 Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
-    /** @expose */
+    /** @export */
     currentTarget: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
@@ -78,70 +78,70 @@ Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
             return o;
         }
     },
-    /** @expose */
+    /** @export */
     button: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.button;
         }
     },
-    /** @expose */
+    /** @export */
     charCode: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.charCode;
         }
     },
-    /** @expose */
+    /** @export */
     clientX: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.clientX;
         }
     },
-    /** @expose */
+    /** @export */
     clientY: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.clientY;
         }
     },
-    /** @expose */
+    /** @export */
     keyCode: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.keyCode;
         }
     },
-    /** @expose */
+    /** @export */
     offsetX: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.offsetX;
         }
     },
-    /** @expose */
+    /** @export */
     offsetY: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.offsetY;
         }
     },
-    /** @expose */
+    /** @export */
     screenX: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.screenX;
         }
     },
-    /** @expose */
+    /** @export */
     screenY: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
             return this.wrappedEvent.screenY;
         }
     },
-    /** @expose */
+    /** @export */
     relatedTarget: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {
@@ -151,7 +151,7 @@ Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
             return o;
         }
     },
-    /** @expose */
+    /** @export */
     target: {
         /** @this {org_apache_flex_events_BrowserEvent} */
         get: function() {

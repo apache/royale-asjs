@@ -37,7 +37,7 @@ org_apache_flex_utils_UIUtils.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} item The item to be centered.
  * @param {Object} relativeTo The object used as reference.
  */
@@ -57,7 +57,7 @@ org_apache_flex_utils_UIUtils.center =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} start A component to start the search.
  * @return {Object} A component that implements IPopUpHost.
  */
@@ -73,7 +73,7 @@ org_apache_flex_utils_UIUtils.findPopUpHost =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} popUp An IPopUpHost component looking to be removed.
  */
 org_apache_flex_utils_UIUtils.removePopUp =

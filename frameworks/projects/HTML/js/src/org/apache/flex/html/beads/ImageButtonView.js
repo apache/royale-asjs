@@ -35,7 +35,7 @@ org_apache_flex_html_beads_ImageButtonView
 
 
 Object.defineProperties(org_apache_flex_html_beads_ImageButtonView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_ImageButtonView} */
         set: function(value) {

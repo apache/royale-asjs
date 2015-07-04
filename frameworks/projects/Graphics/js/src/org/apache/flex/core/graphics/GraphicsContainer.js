@@ -39,7 +39,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = function() {
   var svg = this.element;
@@ -50,14 +50,14 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = fu
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototype, {
-    /** @expose */
+    /** @export */
     numChildren: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         get: function() {
             return this.internalChildren().length;
         }
     },
-    /** @expose */
+    /** @export */
     width: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
@@ -67,7 +67,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.style.width = String(value) + 'px';
         }
     },
-    /** @expose */
+    /** @export */
     height: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
@@ -77,7 +77,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.style.height = String(value) + 'px';
         }
     },
-    /** @expose */
+    /** @export */
     x: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
@@ -89,7 +89,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
             this.element.offsetLeft = value;
         }
     },
-    /** @expose */
+    /** @export */
     y: {
         /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
         set: function(value) {
@@ -105,7 +105,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The x position of the top-left corner of the rectangle.
  * @param {number} y The y position of the top-left corner.
  * @param {number} width The width of the rectangle.
@@ -128,7 +128,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawRect = function(x,
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The x position of the top-left corner of the bounding box of the ellipse.
  * @param {number} y The y position of the top-left corner of the bounding box of the ellipse.
  * @param {number} width The width of the ellipse.
@@ -151,7 +151,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawEllipse = function
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The x location of the center of the circle.
  * @param {number} y The y location of the center of the circle.
  * @param {number} radius The radius of the circle.
@@ -173,7 +173,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawCircle = function(
 
 
 /**
- * @expose
+ * @export
  * @param {string} data A string containing a compact represention of the path segments.
  *  The value is a space-delimited string describing each path segment. Each
  *  segment entry has a single character which denotes the segment type and
@@ -196,7 +196,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPath = function(da
 
 
 /**
- * @expose
+ * @export
  * @param {string} value The text string to draw.
  * @param {number} x The x position of the text.
  * @param {number} y The y position of the text.
@@ -220,14 +220,14 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawText = function(va
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_graphics_GraphicsContainer.prototype.drawLine = function() {
 };
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPolygon = function() {
 };

@@ -30,14 +30,14 @@ goog.inherits(org_apache_flex_createjs_CheckBox,
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_CheckBox.prototype.checkMark = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_CheckBox.prototype.checkMarkBackground =
@@ -45,7 +45,7 @@ org_apache_flex_createjs_CheckBox.prototype.checkMarkBackground =
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_CheckBox.prototype.checkBoxLabel = null;
@@ -94,7 +94,7 @@ org_apache_flex_createjs_CheckBox.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
@@ -105,7 +105,7 @@ Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
             this.checkBoxLabel.text = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_createjs_CheckBox} */
         get: function() {
@@ -121,7 +121,7 @@ Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {string|Object|goog.events.Event} event The event.
  */
 org_apache_flex_createjs_CheckBox.prototype.clickHandler =

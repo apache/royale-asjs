@@ -33,14 +33,14 @@ org_apache_cordova_Weinre = function() {
 
 
 Object.defineProperties(org_apache_cordova_Weinre.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_cordova_Weinre} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     guid: {
         /** @this {org_apache_cordova_Weinre} */
         set: function(value) {

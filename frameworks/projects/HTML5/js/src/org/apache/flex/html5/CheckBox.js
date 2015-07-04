@@ -50,7 +50,7 @@ org_apache_flex_html5_CheckBox.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html5_CheckBox.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html5_CheckBox} */
         get: function() {
@@ -61,7 +61,7 @@ Object.defineProperties(org_apache_flex_html5_CheckBox.prototype, {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_html5_CheckBox} */
         get: function() {

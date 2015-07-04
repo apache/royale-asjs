@@ -35,7 +35,7 @@ org_apache_flex_html_beads_SliderThumbView
 
 
 Object.defineProperties(org_apache_flex_html_beads_SliderThumbView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_SliderThumbView} */
         set: function(value) {

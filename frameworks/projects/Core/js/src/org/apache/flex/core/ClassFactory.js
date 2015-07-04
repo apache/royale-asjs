@@ -46,7 +46,7 @@ org_apache_flex_core_ClassFactory.prototype.
 
 
 /**
- * @expose
+ * @export
  * @return {Object} The new instance of the class described by generator.
  */
 org_apache_flex_core_ClassFactory.

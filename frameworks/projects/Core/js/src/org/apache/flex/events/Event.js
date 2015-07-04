@@ -56,14 +56,14 @@ org_apache_flex_events_Event.EventType = {
 
 
 /**
- * @expose
+ * @export
  * @type {string} type The event type.
  */
 org_apache_flex_events_Event.prototype.type = '';
 
 
 /**
- * @expose
+ * @export
  * @param {string} type The event type.
  */
 org_apache_flex_events_Event.prototype.init = function(type) {

@@ -48,14 +48,14 @@ org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     minimum: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
@@ -69,7 +69,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    /** @expose */
+    /** @export */
     maximum: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
@@ -83,7 +83,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    /** @expose */
+    /** @export */
     value: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
@@ -104,7 +104,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    /** @expose */
+    /** @export */
     snapInterval: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
@@ -118,7 +118,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
             }
         }
     },
-    /** @expose */
+    /** @export */
     stepSize: {
         /** @this {org_apache_flex_html_beads_models_RangeModel} */
         get: function() {
@@ -136,7 +136,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
 
 
 /**
- * @expose
+ * @export
  * @param {number} value The candidate number.
  * @return {number} Adjusted value.
  */

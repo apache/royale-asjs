@@ -81,7 +81,7 @@ org_apache_flex_html_ComboBox.prototype.createElement =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event.
  */
 org_apache_flex_html_ComboBox.prototype.selectChanged =
@@ -100,7 +100,7 @@ org_apache_flex_html_ComboBox.prototype.selectChanged =
 
 
 /**
- * @expose
+ * @export
  * @param {Object=} opt_event The event.
  */
 org_apache_flex_html_ComboBox.prototype.dismissPopup =
@@ -114,7 +114,7 @@ org_apache_flex_html_ComboBox.prototype.dismissPopup =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event.
  */
 org_apache_flex_html_ComboBox.prototype.buttonClicked =
@@ -181,7 +181,7 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
 
 
 Object.defineProperties(org_apache_flex_html_ComboBox.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_ComboBox} */
         get: function() {

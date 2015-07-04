@@ -31,17 +31,17 @@ org_apache_flex_core_IFormatBead = function() {
 
 
 Object.defineProperties(org_apache_flex_core_IFormatBead.prototype, {
-    /** @expose */
+    /** @export */
     propertyName: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     eventName: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     formattedString: {
         get: function() {}
     }

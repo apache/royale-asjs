@@ -65,7 +65,7 @@ org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
-    /** @expose */
+    /** @export */
     entries: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
@@ -76,7 +76,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._entries = value;
         }
     },
-    /** @expose */
+    /** @export */
     rotation: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
@@ -87,7 +87,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._rotation = value;
         }
     },
-    /** @expose */
+    /** @export */
     x: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {
@@ -98,7 +98,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             this._x = value;
         }
     },
-    /** @expose */
+    /** @export */
     y: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         set: function(value) {
@@ -109,7 +109,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
             return this._y;
         }
     },
-    /** @expose */
+    /** @export */
     newId: {
         /** @this {org_apache_flex_core_graphics_GradientBase} */
         get: function() {

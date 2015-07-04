@@ -34,7 +34,7 @@ org_apache_flex_collections_converters_JSONItemConverter.prototype.FLEXJS_CLASS_
 
 
 /**
- * @expose
+ * @export
  * @param {string} s The input string.
  * @return {*} The object.
  */

@@ -50,7 +50,7 @@ org_apache_flex_html5_RadioButton.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html5_RadioButton.prototype, {
-    /** @expose */
+    /** @export */
     groupName: {
         /** @this {org_apache_flex_html5_RadioButton} */
         get: function() {
@@ -61,7 +61,7 @@ Object.defineProperties(org_apache_flex_html5_RadioButton.prototype, {
             this.element.childNodes.item(0).name = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html5_RadioButton} */
         get: function() {
@@ -72,7 +72,7 @@ Object.defineProperties(org_apache_flex_html5_RadioButton.prototype, {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_html5_RadioButton} */
         get: function() {

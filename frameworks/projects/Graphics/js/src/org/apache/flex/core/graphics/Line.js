@@ -41,7 +41,7 @@ org_apache_flex_core_graphics_Line.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  *  @param {number} x1 The x1 attribute defines the start of the line on the x-axis.
  *  @param {number} y1 The y1 attribute defines the start of the line on the y-axis.
  *  @param {number} x2 The x2 attribute defines the end of the line on the x-axis.
@@ -65,7 +65,7 @@ org_apache_flex_core_graphics_Line.prototype.drawLine = function(x1, y1, x2, y2)
 
 /**
  * @override
- * @expose
+ * @export
  * @param {number} x X position.
  * @param {number} y Y position.
  * @param {Object} bbox The bounding box of the svg element.

@@ -51,7 +51,7 @@ org_apache_flex_html_beads_ListView.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_ListView} */
         set: function(value) {
@@ -88,7 +88,7 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
             this.handleSizeChange(null);
         }
     },
-    /** @expose */
+    /** @export */
     dataGroup: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
@@ -103,7 +103,7 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} value The event that triggered the selection.
  */
 org_apache_flex_html_beads_ListView.prototype.
@@ -123,7 +123,7 @@ org_apache_flex_html_beads_ListView.prototype.
 
 
 /**
- * @expose
+ * @export
  * @param {Object} value The event that triggeed the selection.
  */
 org_apache_flex_html_beads_ListView.prototype.
@@ -133,21 +133,21 @@ org_apache_flex_html_beads_ListView.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
-    /** @expose */
+    /** @export */
     contentView: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return this.dataGroup_;
         }
     },
-    /** @expose */
+    /** @export */
     border: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
             return null;
         }
     },
-    /** @expose */
+    /** @export */
     vScrollBar: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
@@ -157,7 +157,7 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
         set: function(value) {
         }
     },
-    /** @expose */
+    /** @export */
     resizeableView: {
         /** @this {org_apache_flex_html_beads_ListView} */
         get: function() {
@@ -168,7 +168,7 @@ Object.defineProperties(org_apache_flex_html_beads_ListView.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event that triggered the resize.
  */
 org_apache_flex_html_beads_ListView.prototype.handleSizeChange = function(event) {

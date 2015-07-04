@@ -59,7 +59,7 @@ org_apache_flex_html_DropDownList.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
-    /** @expose */
+    /** @export */
     dataProvider: {
         /** @this {org_apache_flex_html_DropDownList} */
         set: function(value) {
@@ -81,7 +81,7 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     selectedIndex: {
         // TODO: (aharui) copied from ListBase because you
         // can't just override the setter in a defineProps
@@ -96,7 +96,7 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
             this.element.selectedIndex = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedItem: {
         // TODO: (aharui) copied from ListBase because you
         // can't just override the setter in a defineProps

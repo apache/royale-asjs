@@ -50,7 +50,7 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
 
 
 Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_TextItemRendererFactoryForArrayData} */
         set: function(value) {
@@ -73,7 +73,7 @@ Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArr
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event that triggered the dataProvider change.
  */
 org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.

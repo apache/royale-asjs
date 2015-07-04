@@ -48,35 +48,35 @@ org_apache_flex_states_SetEventHandler.prototype.setDocument = function(document
 
 
 /**
- * @expose
+ * @private
  * @type {Object} document The MXML object.
  */
-org_apache_flex_states_SetEventHandler.prototype.document = null;
+org_apache_flex_states_SetEventHandler.prototype.document_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {string} name The event to listen for.
  */
-org_apache_flex_states_SetEventHandler.prototype.name = '';
+org_apache_flex_states_SetEventHandler.prototype.name_ = '';
 
 
 /**
- * @expose
+ * @private
  * @type {string} target The id of the object.
  */
-org_apache_flex_states_SetEventHandler.prototype.target = '';
+org_apache_flex_states_SetEventHandler.prototype.target_ = '';
 
 
 /**
- * @expose
+ * @private
  * @type {Object} handlerFunction The listener to be added.
  */
-org_apache_flex_states_SetEventHandler.prototype.handlerFunction = null;
+org_apache_flex_states_SetEventHandler.prototype.handlerFunction_ = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
@@ -89,3 +89,64 @@ org_apache_flex_states_SetEventHandler.prototype.initializeFromObject = function
 
   return this;
 };
+
+
+Object.defineProperties(org_apache_flex_states_SetEventHandler.prototype,
+  /** @lends {org_apache_flex_states_SetEventHandler.prototype} */ {
+  /** @export */
+  document: {
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    get: function() {
+      return this.document_;
+    },
+
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    set: function(value) {
+      if (value != this.document_) {
+        this.document_ = value;
+      }
+    }
+  },
+  /** @export */
+  name: {
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    get: function() {
+      return this.name_;
+    },
+
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    set: function(value) {
+      if (value != this.name_) {
+        this.name_ = value;
+      }
+    }
+  },
+  /** @export */
+  target: {
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    get: function() {
+      return this.target_;
+    },
+
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    set: function(value) {
+      if (value != this.target_) {
+        this.target_ = value;
+      }
+    }
+  },
+  /** @export */
+  handlerFunction: {
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    get: function() {
+      return this.handlerFunction_;
+    },
+
+    /** @this {org_apache_flex_states_SetEventHandler} */
+    set: function(value) {
+      if (value != this.handlerFunction_) {
+        this.handlerFunction_ = value;
+      }
+    }
+  }
+});

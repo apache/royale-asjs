@@ -36,7 +36,7 @@ function() {
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_IDataProviderItemRendererMapper.prototype.itemRendererFactory = null;
 

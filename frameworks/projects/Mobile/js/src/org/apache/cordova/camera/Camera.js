@@ -106,7 +106,7 @@ org_apache_cordova_camera_Camera.Direction = {BACK: 0, FRONT: 1};
 
 
 /**
- * @expose
+ * @export
  * @param {Function} cameraSuccess
  * @param {Function} cameraError
  * @param {Object} cameraOptions
@@ -117,7 +117,7 @@ org_apache_cordova_camera_Camera.prototype.getPicture = function(cameraSuccess, 
 
 
 /**
- * @expose
+ * @export
  * @param {Function} cameraSuccess
  * @param {Function} cameraError
  */

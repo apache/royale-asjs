@@ -45,42 +45,42 @@ goog.inherits(org_apache_flex_createjs_Application,
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_Application.prototype.controller = null;
 
 
 /**
- * @expose
+ * @export
  * @type {org_apache_flex_createjs_core_ViewBase}
  */
 org_apache_flex_createjs_Application.prototype.initialView = null;
 
 
 /**
- * @expose
+ * @export
  * @type {createjs.Stage}
  */
 org_apache_flex_createjs_Application.prototype.stage = null;
 
 
 /**
- * @expose
+ * @export
  * @type {org_apache_flex_events_EventDispatcher}
  */
 org_apache_flex_createjs_Application.prototype.model = null;
 
 
 /**
- * @expose
+ * @export
  * @type {org_apache_flex_core_SimpleValuesImpl}
  */
 org_apache_flex_createjs_Application.prototype.valuesImpl = null;
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_createjs_Application.prototype.start = function() {
   var body;

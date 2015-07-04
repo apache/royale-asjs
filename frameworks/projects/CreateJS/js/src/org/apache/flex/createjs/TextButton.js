@@ -30,14 +30,14 @@ goog.inherits(org_apache_flex_createjs_TextButton,
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_TextButton.prototype.buttonLabel = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_createjs_TextButton.prototype.buttonBackground =
@@ -76,7 +76,7 @@ org_apache_flex_createjs_TextButton.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_TextButton.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_createjs_TextButton} */
         get: function() {

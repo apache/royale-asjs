@@ -45,49 +45,28 @@ org_apache_flex_core_Application.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @private
  * @type {Object}
  */
-org_apache_flex_core_Application.prototype.controller = null;
+org_apache_flex_core_Application.prototype.controller_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {Object}
  */
-org_apache_flex_core_Application.prototype.initialView = null;
+org_apache_flex_core_Application.prototype.initialView_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {org_apache_flex_events_EventDispatcher}
  */
-org_apache_flex_core_Application.prototype.model = null;
-
-
-Object.defineProperties(org_apache_flex_core_Application.prototype, {
-    /** @expose */
-    valuesImpl: {
-        /** @this {org_apache_flex_core_Application} */
-        set: function(value) {
-            org_apache_flex_core_ValuesManager.valuesImpl = value;
-            if (value.init) {
-              value.init(this);
-            }
-        }
-    },
-    /** @expose */
-    MXMLDescriptor: {
-        /** @this {org_apache_flex_core_Application} */
-        get: function() {
-            return null;
-        }
-    }
-});
+org_apache_flex_core_Application.prototype.model_ = null;
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
@@ -109,7 +88,7 @@ org_apache_flex_core_Application.prototype.start = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {Array} data The data for the attributes.
  */
 org_apache_flex_core_Application.prototype.generateMXMLAttributes = function(data) {
@@ -126,3 +105,66 @@ org_apache_flex_core_Application.prototype.addElement =
   c.addedToParent();
 };
 
+
+Object.defineProperties(org_apache_flex_core_Application.prototype,
+  /** @lends {org_apache_flex_core_Application.prototype} */ {
+  /** @export */
+  valuesImpl: {
+      /** @this {org_apache_flex_core_Application} */
+      set: function(value) {
+          org_apache_flex_core_ValuesManager.valuesImpl = value;
+          if (value.init) {
+            value.init(this);
+          }
+      }
+  },
+  /** @export */
+  MXMLDescriptor: {
+      /** @this {org_apache_flex_core_Application} */
+      get: function() {
+          return null;
+      }
+  },
+  /** @export */
+  controller: {
+    /** @this {org_apache_flex_core_Application} */
+    get: function() {
+      return this.controller_;
+    },
+
+    /** @this {org_apache_flex_core_Application} */
+    set: function(value) {
+      if (value != this.controller_) {
+        this.controller_ = value;
+      }
+    }
+  },
+  /** @export */
+  initialView: {
+    /** @this {org_apache_flex_core_Application} */
+    get: function() {
+      return this.initialView_;
+    },
+
+    /** @this {org_apache_flex_core_Application} */
+    set: function(value) {
+      if (value != this.initialView_) {
+        this.initialView_ = value;
+      }
+    }
+  },
+  /** @export */
+  model: {
+    /** @this {org_apache_flex_core_Application} */
+    get: function() {
+      return this.model_;
+    },
+
+    /** @this {org_apache_flex_core_Application} */
+    set: function(value) {
+      if (value != this.model_) {
+        this.model_ = value;
+      }
+    }
+  }
+});

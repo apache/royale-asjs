@@ -43,7 +43,7 @@ org_apache_flex_core_IStrand.prototype.FLEXJS_CLASS_INFO =
 /**
  * addBead()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_IBead} bead The bead to add.
  */
 org_apache_flex_core_IStrand.prototype.addBead = function(bead) {};
@@ -52,7 +52,7 @@ org_apache_flex_core_IStrand.prototype.addBead = function(bead) {};
 /**
  * getBeadByType()
  *
- * @expose
+ * @export
  * @param {Object} classOrInterface The type of bead to look for.
  * @return {org_apache_flex_core_IBead} The bead.
  */
@@ -63,7 +63,7 @@ org_apache_flex_core_IStrand.prototype.getBeadByType =
 /**
  * removeBead()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_IBead} bead The bead to remove.
  * @return {org_apache_flex_core_IBead} The bead that was removed.
  */

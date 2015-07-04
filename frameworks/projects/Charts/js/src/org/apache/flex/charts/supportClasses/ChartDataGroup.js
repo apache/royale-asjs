@@ -60,7 +60,7 @@ org_apache_flex_charts_supportClasses_ChartDataGroup.
 
 
 /**
- * @expose
+ * @export
  * @param {Object} series The series containing the itemRenderer.
  * @param {number} index The position of the itemRenderer within the series.
  * @return {Object} The itemRenderer that matches the series and index.

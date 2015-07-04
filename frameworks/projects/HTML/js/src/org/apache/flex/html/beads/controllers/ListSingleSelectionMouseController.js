@@ -40,7 +40,7 @@ org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.protot
 
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController} */
         set: function(value) {
@@ -60,7 +60,7 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_ListSingleSelecti
 
 
 /**
- * @expose
+ * @export
  *        ListSingleSelectionMouseController}
  * @param {Object} event The event that triggered the selection.
  */

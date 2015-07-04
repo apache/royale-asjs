@@ -54,7 +54,7 @@ org_apache_flex_jquery_TextButton.prototype.addedToParent =
 
 
 Object.defineProperties(org_apache_flex_jquery_TextButton.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_jquery_TextButton} */
         get: function() {

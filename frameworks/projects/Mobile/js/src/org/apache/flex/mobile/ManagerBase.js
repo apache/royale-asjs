@@ -48,7 +48,7 @@ org_apache_flex_mobile_ManagerBase.prototype._contentArea = null;
 
 
 Object.defineProperties(org_apache_flex_mobile_ManagerBase.prototype, {
-    /** @expose */
+    /** @export */
     contentArea: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {

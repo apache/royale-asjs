@@ -36,27 +36,27 @@ org_apache_flex_core_ISelectableItemRenderer = function() {
 
 
 Object.defineProperties(org_apache_flex_core_ISelectableItemRenderer.prototype, {
-    /** @expose */
+    /** @export */
     labelField: {
         set: function(value) {},
         get: function() {}
     },
-    /** @expose */
+    /** @export */
     index: {
         set: function(value) {},
         get: function() {}
     },
-    /** @expose */
+    /** @export */
     selected: {
         set: function(value) {},
         get: function() {}
     },
-    /** @expose */
+    /** @export */
     hovered: {
         set: function(value) {},
         get: function() {}
     },
-    /** @expose */
+    /** @export */
     down: {
         set: function(value) {},
         get: function() {}

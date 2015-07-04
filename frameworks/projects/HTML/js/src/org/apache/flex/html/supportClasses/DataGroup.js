@@ -45,14 +45,14 @@ org_apache_flex_html_supportClasses_DataGroup.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataGroup.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_supportClasses_DataGroup} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     numElements: {
         /** @this {org_apache_flex_html_supportClasses_DataGroup} */
         get: function() {
@@ -99,7 +99,7 @@ org_apache_flex_html_supportClasses_DataGroup.
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_supportClasses_DataGroup.
     prototype.removeAllElements = function() {
@@ -111,7 +111,7 @@ org_apache_flex_html_supportClasses_DataGroup.
 
 
 /**
- * @expose
+ * @export
  * @param {number} index The index of the desired element.
  * @return {Object} The element at the given index.
  */
@@ -124,7 +124,7 @@ org_apache_flex_html_supportClasses_DataGroup.
 
 
 /**
- * @expose
+ * @export
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */

@@ -46,7 +46,7 @@ org_apache_flex_core_graphics_Path.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_Path.prototype, {
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_core_graphics_Path} */
         set: function(v) {
@@ -61,7 +61,7 @@ Object.defineProperties(org_apache_flex_core_graphics_Path.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The x location of the Path.
  * @param {number} y The y location of the Path.
  * @param {string} data A string containing a compact represention of the path segments.

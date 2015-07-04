@@ -41,7 +41,7 @@ org_apache_flex_core_IValuesImpl.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} thisObject The object to fetch a value for.
  * @param {string} valueName The name of the value to fetch.
  * @param {string=} opt_state The psuedo-state if any for.
@@ -54,7 +54,7 @@ org_apache_flex_core_IValuesImpl.prototype.getValue =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} thisObject The object to fetch a value for.
  * @param {string} valueName The name of the value to fetch.
  * @param {string=} opt_state The psuedo-state if any for.
@@ -67,7 +67,7 @@ function(thisObject, valueName, opt_state, opt_attrs) {};
 
 
 /**
- * @expose
+ * @export
  * @param {Object} mainclass The main class for the application.
  */
 org_apache_flex_core_IValuesImpl.prototype.init = function(mainclass) {};

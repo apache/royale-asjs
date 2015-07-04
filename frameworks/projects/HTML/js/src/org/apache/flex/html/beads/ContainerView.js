@@ -96,21 +96,21 @@ org_apache_flex_html_beads_ContainerView.
 
 
 Object.defineProperties(org_apache_flex_html_beads_ContainerView.prototype, {
-    /** @expose */
+    /** @export */
     contentView: {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    /** @expose */
+    /** @export */
     resizableView: {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         set: function(value) {

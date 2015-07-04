@@ -63,7 +63,7 @@ org_apache_flex_html_ImageAndTextButton.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_ImageAndTextButton.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_ImageAndTextButton} */
         get: function() {
@@ -75,7 +75,7 @@ Object.defineProperties(org_apache_flex_html_ImageAndTextButton.prototype, {
             this.setInnerHTML();
         }
     },
-    /** @expose */
+    /** @export */
     image: {
         /** @this {org_apache_flex_html_ImageAndTextButton} */
         get: function() {

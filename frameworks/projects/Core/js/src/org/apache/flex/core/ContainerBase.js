@@ -60,20 +60,20 @@ goog.inherits(org_apache_flex_core_ContainerBase,
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_ContainerBase.prototype.mxmlContent = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Array}
  */
 org_apache_flex_core_ContainerBase.prototype.mxmlDescriptor = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Array}
  */
 org_apache_flex_core_ContainerBase.prototype.mxmlsd = null;
@@ -109,7 +109,7 @@ org_apache_flex_core_ContainerBase.prototype.addedToParent = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {Array} data The data for the attributes.
  */
 org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(data) {
@@ -118,7 +118,7 @@ org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(d
 
 
 /**
- * @expose
+ * @export
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data.
  */
@@ -130,14 +130,14 @@ org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
 
 
 Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
             return this.mxmlDescriptor;
         }
     },
-    /** @expose */
+    /** @export */
     states: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
@@ -159,7 +159,7 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     currentState: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {
@@ -173,7 +173,7 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
              this.dispatchEvent(event);
         }
     },
-    /** @expose */
+    /** @export */
     transitions: {
         /** @this {org_apache_flex_core_ContainerBase} */
         get: function() {

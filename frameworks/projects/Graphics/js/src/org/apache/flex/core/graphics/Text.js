@@ -41,7 +41,7 @@ org_apache_flex_core_graphics_Text.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} value The text to be drawn.
  * @param {number} x The x position of the top-left corner of the rectangle.
  * @param {number} y The y position of the top-left corner.

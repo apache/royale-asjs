@@ -52,7 +52,7 @@ org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_List.prototype, {
-    /** @expose */
+    /** @export */
     itemRenderer: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
@@ -63,7 +63,7 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.itemRenderer_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     labelField: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
@@ -74,7 +74,7 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.model.labelField = value;
         }
     },
-    /** @expose */
+    /** @export */
     rowHeight: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
@@ -85,7 +85,7 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
             this.presentationModel.rowHeight = value;
         }
     },
-    /** @expose */
+    /** @export */
     presentationModel: {
         /** @this {org_apache_flex_html_List} */
         get: function() {
@@ -136,7 +136,7 @@ org_apache_flex_html_List.prototype.addedToParent =
 
 
 /**
- * @expose
+ * @export
  * @return {Array.<Object>} An array of objects that make up the actual
  *                          list (most likely itemRenderers).
  */
@@ -154,7 +154,7 @@ org_apache_flex_html_List.prototype.internalChildren =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event that triggered the selection.
  */
 org_apache_flex_html_List.prototype.selectedHandler =

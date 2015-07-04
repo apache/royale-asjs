@@ -37,7 +37,7 @@ goog.inherits(org_apache_flex_createjs_core_ViewBase,
 
 
 Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
-    /** @expose */
+    /** @export */
     applicationModel: {
         /** @this {org_apache_flex_createjs_core_ViewBase} */
         get: function() {
@@ -51,14 +51,14 @@ Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @type {Array}
  */
 org_apache_flex_createjs_core_ViewBase.prototype.MXMLProperties = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Array}
  */
 org_apache_flex_createjs_core_ViewBase.prototype.MXMLDescriptor = null;

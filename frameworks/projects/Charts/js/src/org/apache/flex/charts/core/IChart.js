@@ -30,7 +30,7 @@ org_apache_flex_charts_core_IChart = function() {
 
 
 Object.defineProperties(org_apache_flex_charts_core_IChart.prototype, {
-    /** @expose */
+    /** @export */
     series: {
         get: function() {},
         set: function(value) {}

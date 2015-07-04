@@ -46,14 +46,14 @@ org_apache_flex_html_beads_models_TextModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_TextModel.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_models_TextModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_beads_models_TextModel} */
         get: function() {

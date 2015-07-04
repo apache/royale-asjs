@@ -43,7 +43,7 @@ org_apache_flex_events_CustomEvent.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} type The event type.
  */
 org_apache_flex_events_CustomEvent.prototype.init = function(type) {
@@ -52,7 +52,7 @@ org_apache_flex_events_CustomEvent.prototype.init = function(type) {
 
 
 /**
- * @expose
+ * @export
  * @type {string} type The event type.
  */
 org_apache_flex_events_CustomEvent.prototype.type = '';

@@ -29,7 +29,7 @@ org_apache_flex_core_IFactory = function() {
 
 
 /**
- * @expose
+ * @export
  * @return {Object} A new instance of the itemRenderer.
  */
 org_apache_flex_core_IFactory.prototype.newInstance = function() {};

@@ -45,7 +45,7 @@ org_apache_flex_core_ItemRendererClassFactory.
 
 
 Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_core_ItemRendererClassFactory} */
         set: function(value) {
@@ -74,7 +74,7 @@ Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype,
 
 
 /**
- * @expose
+ * @export
  * @param {Object} parent The display parent of the new item renderer.
  * @return {Object} The new item renderer.
  */
@@ -85,7 +85,7 @@ org_apache_flex_core_ItemRendererClassFactory.
 
 
 /**
- * @expose
+ * @export
  * @param {Object} parent The parent of the new item renderer.
  * @return {Object} The new item renderer.
  */

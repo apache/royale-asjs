@@ -80,14 +80,14 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
-    /** @expose */
+    /** @export */
     token: {
         /** @this {org_apache_flex_maps_google_Map} */
         set: function(value) {
             this.token = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedMarker: {
         /** @this {org_apache_flex_maps_google_Map} */
         get: function() {
@@ -107,7 +107,7 @@ org_apache_flex_maps_google_Map.prototype.finishInitalization = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {number} centerLat center latitude.
  * @param {number} centerLong center longitude.
  * @param {number} zoom zoom level.
@@ -129,7 +129,7 @@ org_apache_flex_maps_google_Map.prototype.loadMap =
 
 
 /**
- * @expose
+ * @export
  * @param {Number} zoomLevel The level of magnification.
  */
 org_apache_flex_maps_google_Map.prototype.setZoom =
@@ -141,7 +141,7 @@ org_apache_flex_maps_google_Map.prototype.setZoom =
 
 
 /**
- * @expose
+ * @export
  * @param {string} address The new center of the map.
  */
 org_apache_flex_maps_google_Map.prototype.centerOnAddress = function(address) {
@@ -151,7 +151,7 @@ org_apache_flex_maps_google_Map.prototype.centerOnAddress = function(address) {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} location The new center of the map.
  */
 org_apache_flex_maps_google_Map.prototype.setCenter = function(location) {
@@ -161,7 +161,7 @@ org_apache_flex_maps_google_Map.prototype.setCenter = function(location) {
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_maps_google_Map.prototype.markCurrentLocation = function() {
   this.createMarker(this.currentCenter);
@@ -169,7 +169,7 @@ org_apache_flex_maps_google_Map.prototype.markCurrentLocation = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {string} address The address to locate and mark on the map.
  */
 org_apache_flex_maps_google_Map.prototype.markAddress =
@@ -182,7 +182,7 @@ org_apache_flex_maps_google_Map.prototype.markAddress =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} location A LatLng that denotes the position of the marker.
  * @return {Object} A marker object.
  */
@@ -198,7 +198,7 @@ org_apache_flex_maps_google_Map.prototype.createMarker =
 
 
 /**
- * @expose
+ * @export
  * @param {string} placeName A place to search for.
  */
 org_apache_flex_maps_google_Map.prototype.nearbySearch =
@@ -212,7 +212,7 @@ org_apache_flex_maps_google_Map.prototype.nearbySearch =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_maps_google_Map.prototype.clearSearchResults =
 function() {

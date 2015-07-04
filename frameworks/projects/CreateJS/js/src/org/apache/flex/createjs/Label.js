@@ -48,7 +48,7 @@ org_apache_flex_createjs_Label.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_createjs_Label} */
         get: function() {

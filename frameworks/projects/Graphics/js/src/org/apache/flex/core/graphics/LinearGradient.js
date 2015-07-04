@@ -43,7 +43,7 @@ org_apache_flex_core_graphics_LinearGradient.prototype._scaleX = 1.0;
 
 
 Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, {
-    /** @expose */
+    /** @export */
     scaleX: {
         /** @this {org_apache_flex_core_graphics_LinearGradient} */
         get: function() {
@@ -60,7 +60,7 @@ Object.defineProperties(org_apache_flex_core_graphics_LinearGradient.prototype, 
 /**
  * addFillAttrib()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string}
  */

@@ -36,14 +36,47 @@ org_apache_flex_states_State.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @private
  * @type {string} name The state name.
  */
-org_apache_flex_states_State.prototype.name = '';
+org_apache_flex_states_State.prototype.name_ = '';
 
 
 /**
- * @expose
+ * @private
  * @type {Array} overrides The state data.
  */
-org_apache_flex_states_State.prototype.overrides = null;
+org_apache_flex_states_State.prototype.overrides_ = null;
+
+
+Object.defineProperties(org_apache_flex_states_State.prototype,
+  /** @lends {org_apache_flex_states_State.prototype} */ {
+  /** @export */
+  name: {
+    /** @this {org_apache_flex_states_State} */
+    get: function() {
+      return this.name_;
+    },
+
+    /** @this {org_apache_flex_states_State} */
+    set: function(value) {
+      if (value != this.name_) {
+        this.name_ = value;
+      }
+    }
+  },
+  /** @export */
+  overrides: {
+    /** @this {org_apache_flex_states_State} */
+    get: function() {
+      return this.overrides_;
+    },
+
+    /** @this {org_apache_flex_states_State} */
+    set: function(value) {
+      if (value != this.overrides_) {
+        this.overrides_ = value;
+      }
+    }
+  }
+});

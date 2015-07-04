@@ -32,22 +32,22 @@ org_apache_flex_charts_core_IChartSeries = function() {
 
 
 Object.defineProperties(org_apache_flex_charts_core_IChartSeries.prototype, {
-    /** @expose */
+    /** @export */
     xField: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     yField: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     fillColor: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     itemRenderer: {
         get: function() {},
         set: function(value) {}

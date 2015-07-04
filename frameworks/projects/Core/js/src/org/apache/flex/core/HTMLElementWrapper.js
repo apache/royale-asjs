@@ -45,28 +45,28 @@ org_apache_flex_core_HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {EventTarget}
  */
 org_apache_flex_core_HTMLElementWrapper.prototype.element = null;
 
 
 /**
- * @private
+ * @protected
  * @type {Array.<Object>}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.beads_ = null;
+org_apache_flex_core_HTMLElementWrapper.prototype._beads = null;
 
 
 /**
  * @protected
- * @type {boolean}
+ * @type {string}
  */
 org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'inline';
 
 
 /**
- * @expose
+ * @export
  * @param {Object} bead The new bead.
  */
 org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
@@ -85,7 +85,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
 
 
 /**
- * @expose
+ * @export
  * @param {!Object} classOrInterface The requested bead type.
  * @return {Object} The bead.
  */
@@ -107,7 +107,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
 
 
 Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         get: function() {
             return null;
@@ -117,7 +117,7 @@ Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} bead The bead to remove.
  * @return {Object} The bead.
  */

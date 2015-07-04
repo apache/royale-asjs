@@ -72,7 +72,7 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
         set: function(value) {
@@ -83,7 +83,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemR
             return this.strand_;
         }
     },
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
         set: function(value) {

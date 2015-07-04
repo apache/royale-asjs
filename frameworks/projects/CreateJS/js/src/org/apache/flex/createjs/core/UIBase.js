@@ -57,7 +57,7 @@ org_apache_flex_createjs_core_UIBase.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
-    /** @expose */
+    /** @export */
     x: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
@@ -65,7 +65,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             this.element.getStage().update();
         }
     },
-    /** @expose */
+    /** @export */
     y: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
@@ -73,7 +73,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             this.element.getStage().update();
         }
     },
-    /** @expose */
+    /** @export */
     width: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
@@ -81,7 +81,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             this.element.getStage().update();
         }
     },
-    /** @expose */
+    /** @export */
     height: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         set: function(pixels) {
@@ -89,7 +89,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             this.element.getStage().update();
         }
     },
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         get: function() {
@@ -104,7 +104,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     model: {
         /** @this {org_apache_flex_createjs_core_UIBase} */
         get: function() {
@@ -122,14 +122,14 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_createjs_core_UIBase.prototype.id = null;
 
 
 /**
- * @expose
+ * @export
  * @type {object}
  */
 org_apache_flex_createjs_core_UIBase.prototype.model = null;

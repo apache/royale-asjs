@@ -80,7 +80,7 @@ org_apache_flex_core_ViewBase.prototype.applicationModel_ = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Array} data The data for the attributes.
  */
 org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) {
@@ -89,14 +89,14 @@ org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) 
 
 
 /**
- * @expose
+ * @export
  * @type {Object} The document.
  */
 org_apache_flex_core_ViewBase.prototype.document = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
@@ -108,7 +108,7 @@ org_apache_flex_core_ViewBase.prototype.setMXMLDescriptor =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
 
@@ -133,7 +133,7 @@ org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {string} state The name of the state.
  * @return {boolean} True if state in states array.
  */
@@ -149,7 +149,7 @@ org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
 
 
 Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
@@ -160,7 +160,7 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             this.mxmldd = value;
         }
     },
-    /** @expose */
+    /** @export */
     applicationModel: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
@@ -171,7 +171,7 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             this.applicationModel_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     states: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
@@ -193,7 +193,7 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     currentState: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {
@@ -207,7 +207,7 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
             this.dispatchEvent(event);
         }
     },
-    /** @expose */
+    /** @export */
     transitions: {
         /** @this {org_apache_flex_core_ViewBase} */
         get: function() {

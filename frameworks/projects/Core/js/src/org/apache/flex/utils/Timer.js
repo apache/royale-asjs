@@ -64,7 +64,7 @@ org_apache_flex_utils_Timer.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * Stops the timer and sets currentCount = 0.
  */
 org_apache_flex_utils_Timer.prototype.reset = function() {
@@ -74,7 +74,7 @@ org_apache_flex_utils_Timer.prototype.reset = function() {
 
 
 /**
- * @expose
+ * @export
  * Stops the timer.
  */
 org_apache_flex_utils_Timer.prototype.stop = function() {
@@ -84,7 +84,7 @@ org_apache_flex_utils_Timer.prototype.stop = function() {
 
 
 /**
- * @expose
+ * @export
  * Starts the timer.
  */
 org_apache_flex_utils_Timer.prototype.start = function() {
@@ -108,21 +108,21 @@ org_apache_flex_utils_Timer.prototype.timerHandler =
 };
 
 Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
-    /** @expose */
+    /** @export */
     currentCount: {
         /** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this._currentCount;
         }
     },
-    /** @expose */
+    /** @export */
     running: {
         /** @this {org_apache_flex_utils_Timer} */
         get: function() {
             return this.timerInterval !== -1;
         }
     },
-    /** @expose */
+    /** @export */
     delay: {
         /** @this {org_apache_flex_utils_Timer} */
         get: function() {
@@ -133,7 +133,7 @@ Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
             this._delay = value;
         }
     },
-    /** @expose */
+    /** @export */
     repeatCount: {
         /** @this {org_apache_flex_utils_Timer} */
         get: function() {

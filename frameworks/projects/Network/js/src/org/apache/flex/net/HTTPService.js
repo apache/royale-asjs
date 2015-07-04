@@ -70,12 +70,6 @@ org_apache_flex_net_HTTPService = function() {
 
   /**
    * @private
-   * @type {Array.<Object>}
-   */
-  this.beads_ = null;
-
-  /**
-   * @private
    * @type {number}
    */
   this.timeout_ = 0;
@@ -120,82 +114,82 @@ org_apache_flex_net_HTTPService.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.HTTP_METHOD_GET = 'GET';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.HTTP_METHOD_POST = 'POST';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.HTTP_METHOD_PUT = 'PUT';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.EVENT_COMPLETE = 'complete';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.EVENT_IO_ERROR = 'ioError';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.EVENT_HTTP_STATUS = 'httpStatus';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPService.EVENT_HTTP_RESPONSE_STATUS = 'httpResponseStatus';
 
 
 Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     beads: {
         /** @this {org_apache_flex_net_HTTPService} */
         set: function(value) {
             this.mxmlBeads_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.element.responseText;
         }
     },
-    /** @expose */
+    /** @export */
     json: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -204,7 +198,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             return this._json;
         }
     },
-    /** @expose */
+    /** @export */
     contentData: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -215,7 +209,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.contentData_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     contentType: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -226,7 +220,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.contentType_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     headers: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -241,7 +235,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.headers_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     method: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -252,7 +246,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.method_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     responseHeaders: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -274,21 +268,21 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             return this.responseHeaders_;
         }
     },
-    /** @expose */
+    /** @export */
     responseURL: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.responseURL_;
         }
     },
-    /** @expose */
+    /** @export */
     status: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return this.status_;
         }
     },
-    /** @expose */
+    /** @export */
     timeout: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -299,7 +293,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.timeout_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     url: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -310,7 +304,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             this.url_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -324,14 +318,14 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
             return null;
         }
     },
-    /** @expose */
+    /** @export */
     MXMLProperties: {
         /** @this {org_apache_flex_net_HTTPService} */
         get: function() {
@@ -342,12 +336,12 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_net_HTTPService.prototype.send = function() {
   var contentData, header, i, n, sawContentType, url;
 
-  if (this.beads_ == null && this.mxmlBeads_) {
+  if (this._beads == null && this.mxmlBeads_) {
     var m = this.mxmlBeads_.length;
     for (var j = 0; j < m; j++) {
       this.addBead(this.mxmlBeads_[j]);

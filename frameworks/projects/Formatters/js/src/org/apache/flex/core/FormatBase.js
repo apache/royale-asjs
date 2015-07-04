@@ -73,14 +73,14 @@ org_apache_flex_core_FormatBase.prototype._formattedResult = '';
 
 
 Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_core_FormatBase} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     propertyValue: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
@@ -88,7 +88,7 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
             return value;
         }
     },
-    /** @expose */
+    /** @export */
     propertyName: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
@@ -102,7 +102,7 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
             this._propertyName = value;
         }
     },
-    /** @expose */
+    /** @export */
     eventName: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {
@@ -116,7 +116,7 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
             this._eventName = value;
         }
     },
-    /** @expose */
+    /** @export */
     formattedString: {
         /** @this {org_apache_flex_core_FormatBase} */
         get: function() {

@@ -49,7 +49,7 @@ org_apache_flex_events_DragEvent.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} type The event type.
  * @param {Event} e The mouse event to base the DragEvent on.
  * @return {MouseEvent} The new event.
@@ -66,7 +66,7 @@ org_apache_flex_events_DragEvent.createDragEvent =
 
 
 /**
- * @expose
+ * @export
  * @param {Event} event The drag event.
  * @param {Object} target The target for the event.
  */
@@ -77,49 +77,49 @@ org_apache_flex_events_DragEvent.dispatchDragEvent =
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_START The event type for starting drag-drop.
  */
 org_apache_flex_events_DragEvent.DRAG_START = 'dragStart';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_MOVE The event type when moving mouse during drag-drop.
  */
 org_apache_flex_events_DragEvent.DRAG_MOVE = 'dragMove';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_END The event type for ending drag-drop.
  */
 org_apache_flex_events_DragEvent.DRAG_END = 'dragEnd';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_ENTER The event type for entering a potential drop target.
  */
 org_apache_flex_events_DragEvent.DRAG_ENTER = 'dragEnter';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_OVER The event type for moving over a potential drop target.
  */
 org_apache_flex_events_DragEvent.DRAG_OVER = 'dragOver';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_EXIT The event type for leaving a potential drop target.
  */
 org_apache_flex_events_DragEvent.DRAG_EXIT = 'dragExit';
 
 
 /**
- * @expose
+ * @export
  * @type {string} DRAG_DROP The event type for dropping on a target.
  */
 org_apache_flex_events_DragEvent.DRAG_DROP = 'dragDrop';

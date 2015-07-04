@@ -38,7 +38,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.FLE
 
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_controllers_ItemRendererMouseController} */
         set: function(value) {
@@ -61,7 +61,7 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_ItemRendererMouse
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The mouse event that triggered the hover.
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOver = function(event) {
@@ -75,7 +75,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The mouse-out event.
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseOut = function(event) {
@@ -89,7 +89,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The mouse-down event.
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseDown = function(event) {
@@ -99,7 +99,7 @@ org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.han
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The mouse-up event that triggers the selection.
  */
 org_apache_flex_html_beads_controllers_ItemRendererMouseController.prototype.handleMouseUp = function(event) {

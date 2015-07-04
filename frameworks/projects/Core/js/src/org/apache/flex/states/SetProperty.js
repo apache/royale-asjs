@@ -48,42 +48,42 @@ org_apache_flex_states_SetProperty.prototype.setDocument = function(document, op
 
 
 /**
- * @expose
+ * @private
  * @type {Object} document The MXML object.
  */
-org_apache_flex_states_SetProperty.prototype.document = null;
+org_apache_flex_states_SetProperty.prototype.document_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {string} name The target property name.
  */
-org_apache_flex_states_SetProperty.prototype.name = '';
+org_apache_flex_states_SetProperty.prototype.name_ = '';
 
 
 /**
- * @expose
+ * @private
  * @type {?string} target The id of the object.
  */
-org_apache_flex_states_SetProperty.prototype.target = null;
+org_apache_flex_states_SetProperty.prototype.target_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {Object} previousValue The value to revert to.
  */
-org_apache_flex_states_SetProperty.prototype.previousValue = null;
+org_apache_flex_states_SetProperty.prototype.previousValue_ = null;
 
 
 /**
- * @expose
+ * @private
  * @type {Object} value The value to set.
  */
-org_apache_flex_states_SetProperty.prototype.value = null;
+org_apache_flex_states_SetProperty.prototype.value_ = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
@@ -96,3 +96,78 @@ org_apache_flex_states_SetProperty.prototype.initializeFromObject = function(pro
 
   return this;
 };
+
+
+Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
+  /** @lends {org_apache_flex_states_SetProperty.prototype} */ {
+  /** @export */
+  document: {
+    /** @this {org_apache_flex_states_SetProperty} */
+    get: function() {
+      return this.document_;
+    },
+
+    /** @this {org_apache_flex_states_SetProperty} */
+    set: function(value) {
+      if (value != this.document_) {
+        this.document_ = value;
+      }
+    }
+  },
+  /** @export */
+  name: {
+    /** @this {org_apache_flex_states_SetProperty} */
+    get: function() {
+      return this.name_;
+    },
+
+    /** @this {org_apache_flex_states_SetProperty} */
+    set: function(value) {
+      if (value != this.name_) {
+        this.name_ = value;
+      }
+    }
+  },
+  /** @export */
+  target: {
+    /** @this {org_apache_flex_states_SetProperty} */
+    get: function() {
+      return this.target_;
+    },
+
+    /** @this {org_apache_flex_states_SetProperty} */
+    set: function(value) {
+      if (value != this.target_) {
+        this.target_ = value;
+      }
+    }
+  },
+  /** @export */
+  previousValue: {
+    /** @this {org_apache_flex_states_SetProperty} */
+    get: function() {
+      return this.previousValue_;
+    },
+
+    /** @this {org_apache_flex_states_SetProperty} */
+    set: function(value) {
+      if (value != this.previousValue_) {
+        this.previousValue_ = value;
+      }
+    }
+  },
+  /** @export */
+  value: {
+    /** @this {org_apache_flex_states_SetProperty} */
+    get: function() {
+      return this.value_;
+    },
+
+    /** @this {org_apache_flex_states_SetProperty} */
+    set: function(value) {
+      if (value != this.value_) {
+        this.value_ = value;
+      }
+    }
+  }
+});

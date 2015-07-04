@@ -47,7 +47,7 @@ org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype.FLEXJS_CLAS
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_layouts_VerticalScrollingLayout} */
         set: function(value) {

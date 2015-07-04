@@ -70,7 +70,7 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
-    /** @expose */
+    /** @export */
     itemRendererParent: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         get: function() {
@@ -81,14 +81,14 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             this.rendererParent_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     index: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
             this.index_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     dataField: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
@@ -99,7 +99,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             return this.dataField_;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {
@@ -112,7 +112,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
             }
         }
     },
-    /** @expose */
+    /** @export */
     hovered: {
         /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
         set: function(value) {

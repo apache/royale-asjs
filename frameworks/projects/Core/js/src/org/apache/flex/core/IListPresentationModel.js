@@ -36,7 +36,7 @@ org_apache_flex_core_IListPresentationModel = function() {
 
 
 Object.defineProperties(org_apache_flex_core_IListPresentationModel.prototype, {
-    /** @expose */
+    /** @export */
     rowHeight: {
         set: function(value) {},
         get: function() {}

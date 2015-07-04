@@ -66,7 +66,7 @@ org_apache_flex_core_ListBase.prototype.createElement = function() {
 
 
 Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
-    /** @expose */
+    /** @export */
     dataProvider: {
         /** @this {org_apache_flex_core_ListBase} */
         get: function() {
@@ -77,7 +77,7 @@ Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
             this.model.dataProvider = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedIndex: {
         /** @this {org_apache_flex_core_ListBase} */
         get: function() {
@@ -88,7 +88,7 @@ Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
             this.model.selectedIndex = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedItem: {
         /** @this {org_apache_flex_core_ListBase} */
         get: function() {

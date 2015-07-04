@@ -72,7 +72,7 @@ org_apache_flex_html_RadioButton.prototype.createElement =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_RadioButton.prototype.initModel =
     function() {
@@ -80,7 +80,7 @@ org_apache_flex_html_RadioButton.prototype.initModel =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_RadioButton.prototype.initSkin =
     function() {
@@ -88,7 +88,7 @@ org_apache_flex_html_RadioButton.prototype.initSkin =
 
 
 Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_html_RadioButton} */
         set: function(value) {
@@ -97,7 +97,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.id = value;
         }
     },
-    /** @expose */
+    /** @export */
     groupName: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
@@ -108,7 +108,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.name = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
@@ -119,7 +119,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.textNode.nodeValue = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
@@ -130,7 +130,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.checked = value;
         }
     },
-    /** @expose */
+    /** @export */
     value: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {
@@ -141,7 +141,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             this.input.value = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedValue: {
         /** @this {org_apache_flex_html_RadioButton} */
         get: function() {

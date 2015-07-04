@@ -59,7 +59,7 @@ org_apache_flex_html_TextInput.prototype.createElement = function() {
 
 
 Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_TextInput} */
         get: function() {
@@ -75,7 +75,7 @@ Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event.
  */
 /*org_apache_flex_html_TextInput.prototype.killChangeHandler = function(event) {

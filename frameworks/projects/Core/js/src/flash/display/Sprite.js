@@ -34,7 +34,7 @@ flash_display_Sprite.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  */
 flash_display_Sprite.prototype.start = function() {
 };

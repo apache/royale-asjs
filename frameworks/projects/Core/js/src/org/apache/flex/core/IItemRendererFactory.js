@@ -39,7 +39,7 @@ org_apache_flex_core_IItemRendererFactory.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @return {Object} A new instance of the itemRenderer.
  */
 org_apache_flex_core_IItemRendererFactory.prototype.newInstance = function() {};

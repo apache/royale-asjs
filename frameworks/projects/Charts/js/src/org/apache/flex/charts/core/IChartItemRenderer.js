@@ -33,34 +33,34 @@ org_apache_flex_charts_core_IChartItemRenderer = function() {
 
 
 Object.defineProperties(org_apache_flex_charts_core_IChartItemRenderer.prototype, {
-    /** @expose */
+    /** @export */
     xField: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     yField: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     fillColor: {
         get: function() {},
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     x: {
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     y: {
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     width: {
         set: function(value) {}
     },
-    /** @expose */
+    /** @export */
     height: {
         set: function(value) {}
     }

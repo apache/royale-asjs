@@ -46,14 +46,14 @@ org_apache_flex_html_beads_models_ArraySelectionModel.prototype.FLEXJS_CLASS_INF
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     dataProvider: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
@@ -65,7 +65,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('dataProviderChanged');
         }
     },
-    /** @expose */
+    /** @export */
     selectedIndex: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
@@ -77,7 +77,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('selectedIndexChanged');
         }
     },
-    /** @expose */
+    /** @export */
     selectedItem: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {
@@ -110,7 +110,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_ArraySelectionModel.pr
             this.dispatchEvent('selectedIndexChanged');
         }
     },
-    /** @expose */
+    /** @export */
     labelField: {
         /** @this {org_apache_flex_html_beads_models_ArraySelectionModel} */
         get: function() {

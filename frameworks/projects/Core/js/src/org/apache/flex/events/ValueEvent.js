@@ -45,7 +45,7 @@ org_apache_flex_events_ValueEvent.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} type The event type.
  */
 org_apache_flex_events_ValueEvent.prototype.init = function(type) {
@@ -54,14 +54,14 @@ org_apache_flex_events_ValueEvent.prototype.init = function(type) {
 
 
 /**
- * @expose
+ * @export
  * @type {string} type The event type.
  */
 org_apache_flex_events_ValueEvent.prototype.type = '';
 
 
 /**
- * @expose
+ * @export
  * @type {*} value The old value.
  */
 org_apache_flex_events_ValueEvent.prototype.value = null;

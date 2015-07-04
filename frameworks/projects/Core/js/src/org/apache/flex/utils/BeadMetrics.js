@@ -26,7 +26,7 @@ org_apache_flex_utils_BeadMetrics = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_core_IStrand} strand The strand whose bounds are required.
  * @return {org_apache_flex_core_UIMetrics} The bounding box.
  */

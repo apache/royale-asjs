@@ -48,7 +48,7 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.FLEXJS_CLASS_IN
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.addedToParent =
 function() {
@@ -68,7 +68,7 @@ function() {
 
 
 /**
- * @expose
+ * @export
  * @param {Array} data The data for the attributes.
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAttributes = function(data) {
@@ -77,14 +77,14 @@ org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAtt
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
             return null;
         }
     },
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -95,7 +95,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.data_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     labelField: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -106,7 +106,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.labelField_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     index: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -117,7 +117,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.index_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     hovered: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -128,7 +128,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.hovered_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -139,7 +139,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
             this.selected_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     down: {
         /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
         get: function() {
@@ -154,7 +154,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.updateRenderer =
 function() {
@@ -162,7 +162,7 @@ function() {
 
 
 /**
- * @expose
+ * @export
  * @param {Event} value The event that triggered the size change.
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.sizeChangeHandler =
@@ -172,7 +172,7 @@ function(value) {
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.adjustSize =
 function() {

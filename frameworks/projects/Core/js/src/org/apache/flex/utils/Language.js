@@ -36,7 +36,7 @@ org_apache_flex_utils_Language.prototype.FLEXJS_CLASS_INFO =
 /**
  * as()
  *
- * @expose
+ * @export
  * @param {?} leftOperand The lefthand operand of the
  *                        binary as operator in AS3.
  * @param {?} rightOperand The righthand operand of the
@@ -70,7 +70,7 @@ org_apache_flex_utils_Language.as = function(leftOperand, rightOperand, opt_coer
 /**
  * int()
  *
- * @expose
+ * @export
  * @param {?} value The value to be cast.
  * @return {number}
  */
@@ -82,7 +82,7 @@ org_apache_flex_utils_Language._int = function(value) {
 /**
  * is()
  *
- * @expose
+ * @export
  * @param {?} leftOperand The lefthand operand of the
  *     binary as operator in AS3.
  * @param {?} rightOperand The righthand operand of the
@@ -154,7 +154,7 @@ org_apache_flex_utils_Language.is = function(leftOperand, rightOperand) {
 /**
  * trace()
  *
- * @expose
+ * @export
  * @param {...Object} var_args The message(s) to be written to the console.
  */
 org_apache_flex_utils_Language.trace = function(var_args) {
@@ -184,7 +184,7 @@ org_apache_flex_utils_Language.trace = function(var_args) {
 /**
  * uint()
  *
- * @expose
+ * @export
  * @param {?} value The value to be cast.
  * @return {number}
  */
@@ -196,7 +196,7 @@ org_apache_flex_utils_Language.uint = function(value) {
 /**
  * preincrement handles --foo
  *
- * @expose
+ * @export
  * @param {Object} obj The object with the getter/setter.
  * @param {string} prop The name of a property.
  * @return {number}
@@ -211,7 +211,7 @@ org_apache_flex_utils_Language.preincrement = function(obj, prop) {
 /**
  * predecrement handles ++foo
  *
- * @expose
+ * @export
  * @param {Object} obj The object with the getter/setter.
  * @param {string} prop The name of a property.
  * @return {number}
@@ -226,7 +226,7 @@ org_apache_flex_utils_Language.predecrement = function(obj, prop) {
 /**
  * postincrement handles foo++
  *
- * @expose
+ * @export
  * @param {Object} obj The object with the getter/setter.
  * @param {string} prop The name of a property.
  * @return {number}
@@ -241,7 +241,7 @@ org_apache_flex_utils_Language.postincrement = function(obj, prop) {
 /**
  * postdecrement handles foo++
  *
- * @expose
+ * @export
  * @param {Object} obj The object with the getter/setter.
  * @param {string} prop The name of a property.
  * @return {number}
@@ -256,7 +256,7 @@ org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
 /**
  * superGetter calls the getter on the given class' superclass.
  *
- * @expose
+ * @export
  * @param {Object} clazz The class.
  * @param {Object} pthis The this pointer.
  * @param {string} prop The name of the getter.
@@ -277,7 +277,7 @@ org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
 /**
  * superSetter calls the setter on the given class' superclass.
  *
- * @expose
+ * @export
  * @param {Object} clazz The class.
  * @param {Object} pthis The this pointer.
  * @param {string} prop The name of the getter.

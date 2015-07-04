@@ -54,7 +54,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_binding_ViewBaseDataBinding.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_binding_ViewBaseDataBinding} */
         set: function(value) {

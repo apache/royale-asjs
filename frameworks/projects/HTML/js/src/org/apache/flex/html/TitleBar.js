@@ -62,7 +62,7 @@ org_apache_flex_html_TitleBar.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_TitleBar.prototype, {
-    /** @expose */
+    /** @export */
     title: {
         /** @this {org_apache_flex_html_TitleBar} */
         get: function() {
@@ -73,7 +73,7 @@ Object.defineProperties(org_apache_flex_html_TitleBar.prototype, {
             this.model.title = value;
         }
     },
-    /** @expose */
+    /** @export */
     showCloseButton: {
         /** @this {org_apache_flex_html_TitleBar} */
         get: function() {

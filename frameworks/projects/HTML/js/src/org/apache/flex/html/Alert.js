@@ -117,7 +117,7 @@ org_apache_flex_html_Alert.show =
 
 
 Object.defineProperties(org_apache_flex_html_Alert.prototype, {
-    /** @expose */
+    /** @export */
     title: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {
@@ -128,7 +128,7 @@ Object.defineProperties(org_apache_flex_html_Alert.prototype, {
             this.titleBar.title = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {
@@ -139,7 +139,7 @@ Object.defineProperties(org_apache_flex_html_Alert.prototype, {
             this.message.text = value;
         }
     },
-    /** @expose */
+    /** @export */
     flags: {
         /** @this {org_apache_flex_html_Alert} */
         get: function() {

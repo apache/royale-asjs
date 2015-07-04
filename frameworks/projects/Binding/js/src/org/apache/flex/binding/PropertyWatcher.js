@@ -95,7 +95,7 @@ org_apache_flex_binding_PropertyWatcher.prototype.changeHandler =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} parent The new parent watcher.
  */
 org_apache_flex_binding_PropertyWatcher.prototype.parentChanged =

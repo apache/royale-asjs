@@ -41,7 +41,7 @@ org_apache_flex_html_beads_layouts_BasicScrollingLayout.prototype.FLEXJS_CLASS_I
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_BasicScrollingLayout.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_layouts_BasicScrollingLayout} */
         set: function(value) {

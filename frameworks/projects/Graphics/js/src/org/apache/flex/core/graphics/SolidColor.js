@@ -50,7 +50,7 @@ org_apache_flex_core_graphics_SolidColor.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
-    /** @expose */
+    /** @export */
     color: {
         /** @this {org_apache_flex_core_graphics_SolidColor} */
         get: function() {
@@ -61,7 +61,7 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
             this.color_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     alpha: {
         /** @this {org_apache_flex_core_graphics_SolidColor} */
         get: function() {
@@ -78,7 +78,7 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColor.prototype, {
 /**
  * addFillAttrib()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string}
  */

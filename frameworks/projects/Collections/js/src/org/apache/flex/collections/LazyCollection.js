@@ -71,7 +71,7 @@ org_apache_flex_collections_LazyCollection.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_collections_LazyCollection} */
         set: function(value) {
@@ -82,14 +82,14 @@ Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     length: {
         /** @this {org_apache_flex_collections_LazyCollection} */
         get: function() {
             return this.rawData_ ? this.rawData_.length : 0;
         }
     },
-    /** @expose */
+    /** @export */
     inputParser: {
         /** @this {org_apache_flex_collections_LazyCollection} */
         get: function() {
@@ -100,7 +100,7 @@ Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
             this.inputParser_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     itemConverter: {
         /** @this {org_apache_flex_collections_LazyCollection} */
         get: function() {
@@ -111,7 +111,7 @@ Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
             this.itemConverter_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_collections_LazyCollection} */
         get: function() {
@@ -148,7 +148,7 @@ org_apache_flex_collections_LazyCollection.prototype.completeHandler =
 
 
 /**
- * @expose
+ * @export
  * @param {number} index The index in the collection.
  * @return {Object} An item in the collection.
  */

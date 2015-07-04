@@ -41,7 +41,7 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS
 
 
 Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_accessories_NumericOnlyTextInputBead} */
         set: function(value) {
@@ -55,7 +55,7 @@ Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBea
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The input to validate?
  */
 org_apache_flex_html_accessories_NumericOnlyTextInputBead.

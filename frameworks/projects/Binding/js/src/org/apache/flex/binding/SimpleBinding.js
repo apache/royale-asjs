@@ -41,14 +41,14 @@ org_apache_flex_binding_SimpleBinding.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_binding_SimpleBinding.prototype.eventName = '';
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
   this.destination[this.destinationPropertyName] =
@@ -70,7 +70,7 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
 
 
 Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_binding_SimpleBinding} */
          set: function(value) {

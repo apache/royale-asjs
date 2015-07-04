@@ -42,7 +42,7 @@ org_apache_flex_html_supportClasses_ScrollingViewport.prototype.FLEXJS_CLASS_INF
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_ScrollingViewport.prototype, {
-    /** @expose */
+    /** @export */
     model: {
         /** @this {org_apache_flex_html_supportClasses_ScrollingViewport} */
         get: function() {

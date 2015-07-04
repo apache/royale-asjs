@@ -102,42 +102,42 @@ org_apache_flex_net_BinaryUploader.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_BinaryUploader.HTTP_METHOD_GET = 'GET';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_BinaryUploader.HTTP_METHOD_POST = 'POST';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_BinaryUploader.HTTP_METHOD_PUT = 'PUT';
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_BinaryUploader.HTTP_METHOD_DELETE = 'DELETE';
 
 
 Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.element.responseText;
         }
     },
-    /** @expose */
+    /** @export */
     binaryData: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -148,7 +148,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.binaryData_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     contentType: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -159,7 +159,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.contentType_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     headers: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -174,7 +174,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.headers_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     method: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -185,7 +185,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.method_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     responseHeaders: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -207,21 +207,21 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             return this.responseHeaders_;
         }
     },
-    /** @expose */
+    /** @export */
     responseURL: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.responseURL_;
         }
     },
-    /** @expose */
+    /** @export */
     status: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return this.status_;
         }
     },
-    /** @expose */
+    /** @export */
     timeout: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -232,7 +232,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.timeout_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     url: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -243,7 +243,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             this.url_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -257,14 +257,14 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     MXMLDescriptor: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
             return null;
         }
     },
-    /** @expose */
+    /** @export */
     MXMLProperties: {
         /** @this {org_apache_flex_net_BinaryUploader} */
         get: function() {
@@ -275,7 +275,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_net_BinaryUploader.prototype.send = function() {
   var binaryData, header, i, n, sawContentType, url;
@@ -344,7 +344,7 @@ org_apache_flex_net_BinaryUploader.prototype.progressHandler = function() {
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_BinaryUploader.prototype.id = null;

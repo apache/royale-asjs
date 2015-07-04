@@ -49,7 +49,7 @@ org_apache_flex_jquery_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * Used to provide ids to the ToggleTextButton.
  */
 org_apache_flex_jquery_ToggleTextButton.toggleCounter = 0;
@@ -94,7 +94,7 @@ org_apache_flex_jquery_ToggleTextButton.prototype.addedToParent =
 
 
 Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_jquery_ToggleTextButton} */
         set: function(value) {
@@ -103,7 +103,7 @@ Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
             this.labelFor.htmlFor = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_jquery_ToggleTextButton} */
         get: function() {
@@ -114,7 +114,7 @@ Object.defineProperties(org_apache_flex_jquery_ToggleTextButton.prototype, {
             this.labelFor.innerHTML = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_jquery_ToggleTextButton} */
         get: function() {

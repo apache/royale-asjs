@@ -41,7 +41,7 @@ org_apache_flex_geom_Point.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * The x coordinate.
  * @type {number} value The x coordinate.
  */
@@ -49,7 +49,7 @@ org_apache_flex_geom_Point.prototype.x = 0;
 
 
 /**
- * @expose
+ * @export
  * The y coordinate.
  * @type {number} value The y coordinate.
  */

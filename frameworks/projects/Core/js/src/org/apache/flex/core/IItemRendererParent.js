@@ -39,7 +39,7 @@ org_apache_flex_core_IItemRendererParent.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {number} index The selected index.
  */
 org_apache_flex_core_IItemRendererParent.prototype.

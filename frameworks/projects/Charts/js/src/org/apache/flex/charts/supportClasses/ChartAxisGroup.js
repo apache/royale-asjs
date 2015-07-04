@@ -62,7 +62,7 @@ org_apache_flex_charts_supportClasses_ChartAxisGroup.
 
 
 /**
- * @expose
+ * @export
  * @param {string} text The label to display.
  * @param {number} xpos The x position of the label.
  * @param {number} ypos The y position of the label.
@@ -81,7 +81,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
 
 
 /**
- * @expose
+ * @export
  * @param {string} text The label to display.
  * @param {number} xpos The x position of the label.
  * @param {number} ypos The y position of the label.
@@ -100,7 +100,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
 
 
 /**
- * @expose
+ * @export
  * @param {number} originX The x position of the path.
  * @param {number} originY The y position of the path.
  * @param {number} width The size of the area for the path.
@@ -122,7 +122,7 @@ function(originX, originY, width, height, marks, tickStroke) {
 
 
 /**
- * @expose
+ * @export
  * @param {number} originX The x position of the path.
  * @param {number} originY The y position of the path.
  * @param {number} width The size of the area for the path.

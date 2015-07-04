@@ -27,7 +27,7 @@ org_apache_flex_html_supportClasses_DataGridColumn =
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.prototype, {
-    /** @expose */
+    /** @export */
     itemRenderer: {
         /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
@@ -38,7 +38,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.proto
             this.itemRenderer_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     columnWidth: {
         /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
@@ -49,7 +49,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.proto
             this.columnWidth_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     label: {
         /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {
@@ -60,7 +60,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.proto
             this.label_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     dataField: {
         /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
         get: function() {

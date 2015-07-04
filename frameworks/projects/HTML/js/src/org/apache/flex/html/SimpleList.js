@@ -58,7 +58,7 @@ org_apache_flex_html_SimpleList.prototype.
 
 
 Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
-    /** @expose */
+    /** @export */
     dataProvider: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {
@@ -84,7 +84,7 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     selectedIndex: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {
@@ -95,7 +95,7 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
             this.model.selectedIndex = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedItem: {
         /** @this {org_apache_flex_html_SimpleList} */
         get: function() {

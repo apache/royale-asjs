@@ -38,7 +38,7 @@ FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_maps_google_beads_MapView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_maps_google_beads_MapView} */
         set: function(value) {

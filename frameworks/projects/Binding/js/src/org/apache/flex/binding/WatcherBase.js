@@ -48,7 +48,7 @@ org_apache_flex_binding_WatcherBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- *  @expose
+ *  @export
  *  @type {Object|number|string|boolean}
  *  The value itself.
  */
@@ -56,7 +56,7 @@ org_apache_flex_binding_WatcherBase.prototype.value = null;
 
 
 /**
- *  @expose
+ *  @export
  *  This is an abstract method that subclasses implement.
  *  @this {org_apache_flex_binding_WatcherBase}
  *  @param {Object} parent The new parent.
@@ -67,7 +67,7 @@ org_apache_flex_binding_WatcherBase.prototype.parentChanged =
 
 
 /**
- *  @expose
+ *  @export
  *  Add a child to this watcher, meaning that the child
  *  is watching a sub value of ours.
  *  @this {org_apache_flex_binding_WatcherBase}
@@ -85,7 +85,7 @@ org_apache_flex_binding_WatcherBase.prototype.addChild =
 
 
 /**
- *  @expose
+ *  @export
  *  Add a binding to this watcher, meaning that the binding
  *  is notified when our value changes.
  *  @this {org_apache_flex_binding_WatcherBase}
@@ -103,7 +103,7 @@ org_apache_flex_binding_WatcherBase.prototype.addBinding =
 
 
 /**
- *  @expose
+ *  @export
  *  @this {org_apache_flex_binding_WatcherBase}
  *  We have probably changed, so go through
  *  and make sure our children are updated.

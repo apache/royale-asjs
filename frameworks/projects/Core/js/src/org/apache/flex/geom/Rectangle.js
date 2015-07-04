@@ -47,7 +47,7 @@ org_apache_flex_geom_Rectangle.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * The left coordinate.
  * @type {number} value The left coordinate.
  */
@@ -55,7 +55,7 @@ org_apache_flex_geom_Rectangle.prototype.left = 0;
 
 
 /**
- * @expose
+ * @export
  * The top coordinate.
  * @type {number} value The top coordinate.
  */
@@ -63,7 +63,7 @@ org_apache_flex_geom_Rectangle.prototype.top = 0;
 
 
 /**
- * @expose
+ * @export
  * The width coordinate.
  * @type {number} value The width coordinate.
  */
@@ -71,7 +71,7 @@ org_apache_flex_geom_Rectangle.prototype.width = 0;
 
 
 /**
- * @expose
+ * @export
  * The height coordinate.
  * @type {number} value The height coordinate.
  */

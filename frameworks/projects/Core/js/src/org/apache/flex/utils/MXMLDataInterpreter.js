@@ -99,7 +99,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLObject =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
@@ -124,7 +124,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Object} comp The component being initialized.
@@ -286,7 +286,7 @@ org_apache_flex_utils_MXMLDataInterpreter.initializeStrandBasedObject =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} document The MXML object.
  * @param {Object} parent The parent object.
  * @param {Array} data The data array.
@@ -301,7 +301,7 @@ org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} host The MXML object.
  * @param {Array} data The data array.
  */

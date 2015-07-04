@@ -43,7 +43,7 @@ org_apache_flex_core_graphics_IStroke.prototype.FLEXJS_CLASS_INFO =
 /**
  * addStrokeAttrib()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the stroke must be added.
  * @return {string} The stroke style attribute.
  */

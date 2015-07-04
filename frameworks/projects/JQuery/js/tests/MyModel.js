@@ -34,7 +34,7 @@ MyModel = function() {
 goog.inherits(MyModel, flash.events.EventDispatcher);
 
 /**
- * @expose
+ * @export
  * @this {MyModel}
  * @return {string} The labelText getter.
  */
@@ -43,7 +43,7 @@ MyModel.prototype.get_labelText = function() {
 };
 
 /**
- * @expose
+ * @export
  * @this {MyModel}
  * @param {string} value The labelText setter.
  */

@@ -42,21 +42,21 @@ org_apache_flex_binding_ChainBinding.prototype.document = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_ChainBinding.prototype.destination = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_ChainBinding.prototype.value = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_ChainBinding.prototype.source = null;
@@ -139,7 +139,7 @@ org_apache_flex_binding_ChainBinding.prototype.applyValue = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} document The MXML object.
  */
 org_apache_flex_binding_ChainBinding.prototype.setDocument = function(document) {
@@ -184,7 +184,7 @@ org_apache_flex_binding_ChainWatcher.prototype.callback = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event object.
  */
 org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
@@ -197,7 +197,7 @@ org_apache_flex_binding_ChainWatcher.prototype.handler = function(event) {
 
 
 Object.defineProperties(org_apache_flex_binding_ChainBinding.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_binding_ChainBinding} */
         set: function(value) {

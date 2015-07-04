@@ -44,7 +44,7 @@ org_apache_flex_html_Label.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_Label.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_Label} */
         get: function() {
@@ -55,7 +55,7 @@ Object.defineProperties(org_apache_flex_html_Label.prototype, {
             this.element.innerHTML = value;
         }
     },
-    /** @expose */
+    /** @export */
     html: {
         /** @this {org_apache_flex_html_Label} */
         get: function() {

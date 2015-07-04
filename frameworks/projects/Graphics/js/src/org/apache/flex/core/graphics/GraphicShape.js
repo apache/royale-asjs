@@ -64,7 +64,7 @@ org_apache_flex_core_graphics_GraphicShape = function() {
   this.yOffset_ = 0;
 
     /**
-   * @expose
+   * @export
    * @type {SVGElement}
    */
   this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -89,7 +89,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
-    /** @expose */
+    /** @export */
     fill: {
         /** @this {org_apache_flex_core_graphics_GraphicShape} */
         get: function() {
@@ -137,7 +137,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.draw = function() {
 
 
 /**
- * @expose
+ * @export
  * @return {string} The style attribute.
  */
 org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
@@ -167,7 +167,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
 
 
 /**
- * @expose
+ * @export
  * @param {number} x X position.
  * @param {number} y Y position.
  * @param {Object} bbox The bounding box of the svg element.
@@ -187,7 +187,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.resize = function(x, y, bbo
 
 
 /**
- * @expose
+ * @export
  * @param {number} x X position.
  * @param {number} y Y position.
  * @param {number} xOffset offset from x position.

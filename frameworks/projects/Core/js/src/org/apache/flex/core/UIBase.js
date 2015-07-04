@@ -121,7 +121,7 @@ org_apache_flex_core_UIBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_core_UIBase.prototype.positioner = null;
@@ -298,10 +298,10 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
  * @param {Object} bead The bead to be added.
  */
 org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
-  if (!this.beads_) {
-    this.beads_ = [];
+  if (!this._beads) {
+    this._beads = [];
   }
-  this.beads_.push(bead);
+  this._beads.push(bead);
 
   if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel))
     this.model_ = bead;
@@ -320,11 +320,11 @@ org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
  */
 org_apache_flex_core_UIBase.prototype.getBeadByType =
     function(classOrInterface) {
-  if (!this.beads_) {
-    this.beads_ = [];
+  if (!this._beads) {
+    this._beads = [];
   }
-  for (var i = 0; i < this.beads_.length; i++) {
-    var bead = this.beads_[i];
+  for (var i = 0; i < this._beads.length; i++) {
+    var bead = this._beads[i];
     if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
       return bead;
     }
@@ -339,12 +339,12 @@ org_apache_flex_core_UIBase.prototype.getBeadByType =
  */
 org_apache_flex_core_UIBase.prototype.removeBead =
     function(value) {
-  if (!this.beads_) return null;
-  var n = this.beads_.length;
+  if (!this._beads) return null;
+  var n = this._beads.length;
   for (var i = 0; i < n; i++) {
-    var bead = this.beads_[i];
+    var bead = this._beads[i];
     if (bead == value) {
-      this.beads_.splice(i, 1);
+      this._beads.splice(i, 1);
       return bead;
     }
   }
@@ -354,14 +354,14 @@ org_apache_flex_core_UIBase.prototype.removeBead =
 
 
 Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
-    /** @expose */
+    /** @export */
     beads: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(value) {
             this.mxmlBeads_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     numElements: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -369,7 +369,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return children.length;
         }
     },
-    /** @expose */
+    /** @export */
     parent: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -378,7 +378,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return wrapper;
         }
     },
-    /** @expose */
+    /** @export */
     alpha: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(alpha) {
@@ -391,7 +391,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return alpha;
         }
     },
-    /** @expose */
+    /** @export */
     x: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -407,7 +407,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     y: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -423,14 +423,14 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     clientWidth: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.positioner.clientWidth;
         }
     },
-    /** @expose */
+    /** @export */
     CSSWidth: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -443,7 +443,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     width: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -468,7 +468,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     explicitWidth: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -481,7 +481,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return this.explicitWidth_;
         }
     },
-    /** @expose */
+    /** @export */
     percentWidth: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -495,14 +495,14 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return this.percentWidth_;
         }
     },
-    /** @expose */
+    /** @export */
     clientHeight: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
             return this.positioner.clientHeight;
         }
     },
-    /** @expose */
+    /** @export */
     CSSHeight: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -515,7 +515,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     height: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -540,7 +540,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return pixels;
         }
     },
-    /** @expose */
+    /** @export */
     explicitHeight: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -553,7 +553,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return this.explicitHeight_;
         }
     },
-    /** @expose */
+    /** @export */
     percentHeight: {
         /** @this {org_apache_flex_core_UIBase} */
         set: function(pixels) {
@@ -567,7 +567,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             return this.percentHeight_;
         }
     },
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -582,7 +582,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     className: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -597,7 +597,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     model: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -623,7 +623,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     style: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -642,7 +642,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     visible: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -668,7 +668,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
            }
         }
     },
-    /** @expose */
+    /** @export */
     topMostEventDispatcher: {
         /** @this {org_apache_flex_core_UIBase} */
         get: function() {
@@ -679,7 +679,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {number} value The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
@@ -699,7 +699,7 @@ org_apache_flex_core_UIBase.prototype.setHeight =
 
 
 /**
- * @expose
+ * @export
  * @param {number} value The width of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
@@ -719,7 +719,7 @@ org_apache_flex_core_UIBase.prototype.setWidth =
 
 
 /**
- * @expose
+ * @export
  * @param {number} newWidth The width of the object in pixels.
  * @param {number} newHeight The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
@@ -747,7 +747,7 @@ org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
 
 
 /**
- * @expose
+ * @export
  * @return {boolean} True if width sized to content.
  */
 org_apache_flex_core_UIBase.prototype.isWidthSizedToContent = function()
@@ -757,7 +757,7 @@ org_apache_flex_core_UIBase.prototype.isWidthSizedToContent = function()
 
 
 /**
- * @expose
+ * @export
  * @return {boolean} True if height sized to content.
  */
 org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
@@ -767,14 +767,14 @@ org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_core_UIBase.prototype.typeNames = '';
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_events_ValueChangeEvent} value The new style properties.
  */
 org_apache_flex_core_UIBase.prototype.styleChangeHandler = function(value) {

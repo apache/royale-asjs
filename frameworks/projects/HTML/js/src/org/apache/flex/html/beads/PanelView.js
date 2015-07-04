@@ -52,14 +52,14 @@ org_apache_flex_html_beads_PanelView
 
 
 Object.defineProperties(org_apache_flex_html_beads_PanelView.prototype, {
-    /** @expose */
+    /** @export */
     contentView: {
         /** @this {org_apache_flex_html_beads_ContainerView} */
         get: function() {
             return this._strand.contentArea;
         }
     },
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_PanelView} */
         set: function(value) {
@@ -81,7 +81,7 @@ Object.defineProperties(org_apache_flex_html_beads_PanelView.prototype, {
                 goog.bind(this.changeHandler, this));
         }
     },
-    /** @expose */
+    /** @export */
     titleBar: {
         /** @this {org_apache_flex_html_beads_PanelView} */
         get: function() {

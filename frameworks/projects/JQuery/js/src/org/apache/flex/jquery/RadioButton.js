@@ -35,7 +35,7 @@ goog.inherits(org_apache_flex_jquery_RadioButton,
 
 
 /**
- * @expose
+ * @export
  * @type {?string}
  * The name of the radioGroup.
  */
@@ -43,14 +43,14 @@ org_apache_flex_jquery_RadioButton.prototype.radioGroupName = null;
 
 
 /**
- * @expose
+ * @export
  * Used to provide ids to the radio buttons.
  */
 org_apache_flex_jquery_RadioButton.radioCounter = 0;
 
 
 /**
- * @expose
+ * @export
  * Used to manage groups on the radio buttons.
  */
 org_apache_flex_jquery_RadioButton.groups = { };
@@ -101,7 +101,7 @@ org_apache_flex_jquery_RadioButton.prototype.addedToParent =
 
 
 Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
-    /** @expose */
+    /** @export */
     id: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         set: function(value) {
@@ -110,7 +110,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.labelFor.htmlFor = value;
         }
     },
-    /** @expose */
+    /** @export */
     groupName: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
@@ -122,7 +122,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
            this.input.name = value;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
@@ -133,7 +133,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.labelFor.innerHTML = value;
         }
     },
-    /** @expose */
+    /** @export */
     selected: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
@@ -144,7 +144,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.input.checked = value;
         }
     },
-    /** @expose */
+    /** @export */
     value: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {
@@ -155,7 +155,7 @@ Object.defineProperties(org_apache_flex_jquery_RadioButton.prototype, {
             this.input.value = value;
         }
     },
-    /** @expose */
+    /** @export */
     selectedValue: {
         /** @this {org_apache_flex_jquery_RadioButton} */
         get: function() {

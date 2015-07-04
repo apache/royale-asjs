@@ -75,7 +75,7 @@ org_apache_flex_html_Spinner.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
-    /** @expose */
+    /** @export */
     minimum: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
@@ -89,7 +89,7 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     maximum: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
@@ -103,7 +103,7 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     snapInterval: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
@@ -117,7 +117,7 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     stepSize: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {
@@ -131,7 +131,7 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     value: {
         /** @this {org_apache_flex_html_Spinner} */
         get: function() {

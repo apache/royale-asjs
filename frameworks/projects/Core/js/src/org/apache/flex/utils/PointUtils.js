@@ -36,7 +36,7 @@ org_apache_flex_utils_PointUtils.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_geom_Point} point The Point to be converted.
  * @param {Object} local The object used as reference.
  * @return {org_apache_flex_geom_Point} The converted Point.
@@ -62,7 +62,7 @@ org_apache_flex_utils_PointUtils.globalToLocal =
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_geom_Point} point The Point to be converted.
  * @param {Object} local The object used as reference.
  * @return {org_apache_flex_geom_Point} The converted Point.

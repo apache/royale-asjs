@@ -72,7 +72,7 @@ org_apache_flex_html_supportClasses_StringItemRenderer.
 
 
 Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
@@ -83,7 +83,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
              return this.strand_;
         }
     },
-    /** @expose */
+    /** @export */
     itemRendererParent: {
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         get: function() {
@@ -94,7 +94,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
             this.rendererParent_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     index: {
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
@@ -105,7 +105,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
             return this.index_;
         }
     },
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {
@@ -116,7 +116,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
             return this.element.innerHTML;
         }
     },
-    /** @expose */
+    /** @export */
     data: {
         /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
         set: function(value) {

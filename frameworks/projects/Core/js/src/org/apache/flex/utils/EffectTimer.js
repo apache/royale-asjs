@@ -59,7 +59,7 @@ org_apache_flex_utils_EffectTimer.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * Stops the timer.
  */
 org_apache_flex_utils_EffectTimer.prototype.stop = function() {
@@ -69,7 +69,7 @@ org_apache_flex_utils_EffectTimer.prototype.stop = function() {
 
 
 /**
- * @expose
+ * @export
  * Starts the timer.
  * @return {number} The start time.
  */

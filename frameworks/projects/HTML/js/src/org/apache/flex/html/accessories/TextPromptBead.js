@@ -40,7 +40,7 @@ org_apache_flex_html_accessories_TextPromptBead.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         set: function(value) {
@@ -50,7 +50,7 @@ Object.defineProperties(org_apache_flex_html_accessories_TextPromptBead.prototyp
             }
         }
     },
-    /** @expose */
+    /** @export */
     prompt: {
         /** @this {org_apache_flex_html_accessories_TextPromptBead} */
         get: function() {

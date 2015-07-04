@@ -58,7 +58,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_SimpleStatesImpl.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_core_SimpleStatesImpl} */
         set: function(value) {

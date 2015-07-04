@@ -44,7 +44,7 @@ org_apache_flex_html5_TextInput.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html5_TextInput.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html5_TextInput} */
         get: function() {

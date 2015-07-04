@@ -50,14 +50,14 @@ FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_maps_google_models_MapModel} */
         set: function(value) {
            this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     searchResults: {
         get: function() {
             return this._searchResults;
@@ -67,7 +67,7 @@ Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, 
             this.dispatchEvent('searchResultsChanged');
         }
     },
-    /** @expose */
+    /** @export */
     zoom: {
         get: function() {
             return this._zoom;
@@ -77,7 +77,7 @@ Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, 
             this.dispatchEvent('zoomChanged');
         }
     },
-    /** @expose */
+    /** @export */
     selectedMarker: {
         get: function() {
             return this._selectedMarker;
@@ -87,7 +87,7 @@ Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, 
             this.dispatchEvent('selectedMarkerChanged');
         }
     },
-    /** @expose */
+    /** @export */
     currentLocation: {
         get: function() {
             return this._currentLocation;

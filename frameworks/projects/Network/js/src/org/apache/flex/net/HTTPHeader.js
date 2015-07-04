@@ -43,21 +43,21 @@ org_apache_flex_net_HTTPHeader.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_net_HTTPHeader.CONTENT_TYPE = 'Content-type';
 
 
 /**
- * @expose
+ * @export
  * @type {?string}
  */
 org_apache_flex_net_HTTPHeader.prototype.value = null;
 
 
 /**
- * @expose
+ * @export
  * @type {?string}
  */
 org_apache_flex_net_HTTPHeader.prototype.name = null;

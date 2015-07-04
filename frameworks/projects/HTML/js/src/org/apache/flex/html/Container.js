@@ -74,7 +74,7 @@ org_apache_flex_html_Container.prototype.addElement =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_Container.prototype.childrenAdded =
     function() {
@@ -83,7 +83,7 @@ org_apache_flex_html_Container.prototype.childrenAdded =
 
 
 /**
- * @expose
+ * @export
  * @return {Array} the HTML DOM element children.
  */
 org_apache_flex_html_Container.prototype.internalChildren =

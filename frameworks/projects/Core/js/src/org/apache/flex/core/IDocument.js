@@ -43,7 +43,7 @@ org_apache_flex_core_IDocument.prototype.FLEXJS_CLASS_INFO =
 /**
  * setDocument()
  *
- * @expose
+ * @export
  * @param {Object} document The DOM document element.
  * @param {string=} opt_id The id (optional).
  */

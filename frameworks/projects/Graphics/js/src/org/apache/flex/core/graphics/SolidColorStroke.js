@@ -56,7 +56,7 @@ org_apache_flex_core_graphics_SolidColorStroke.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype, {
-    /** @expose */
+    /** @export */
     color: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
@@ -67,7 +67,7 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype
             this.color_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     alpha: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
@@ -78,7 +78,7 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype
             this.alpha_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     weight: {
         /** @this {org_apache_flex_core_graphics_SolidColorStroke} */
         get: function() {
@@ -95,7 +95,7 @@ Object.defineProperties(org_apache_flex_core_graphics_SolidColorStroke.prototype
 /**
  * addStrokeAttrib()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the stroke must be added.
  * @return {string}
  */

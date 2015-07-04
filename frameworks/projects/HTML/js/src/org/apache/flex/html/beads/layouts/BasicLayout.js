@@ -44,7 +44,7 @@ org_apache_flex_html_beads_layouts_BasicLayout.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_layouts_BasicLayout} */
         set: function(value) {

@@ -35,7 +35,7 @@ org_apache_flex_html_beads_TextInputWithBorderView
 
 
 Object.defineProperties(org_apache_flex_html_beads_TextInputWithBorderView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_TextInputWithBorderView} */
         set: function(value) {

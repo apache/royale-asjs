@@ -44,7 +44,7 @@ org_apache_flex_html5_TextButton.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html5_TextButton.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html5_TextButton} */
         get: function() {

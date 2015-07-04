@@ -47,7 +47,7 @@ org_apache_flex_core_graphics_Circle.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_core_graphics_Circle.prototype, {
-    /** @expose */
+    /** @export */
     radius: {
         /** @this {org_apache_flex_core_graphics_Circle} */
         set: function(v) {
@@ -62,7 +62,7 @@ Object.defineProperties(org_apache_flex_core_graphics_Circle.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The x location of the center of the circle.
  * @param {number} y The y location of the center of the circle.
  * @param {number} radius The radius of the circle.

@@ -41,21 +41,21 @@ org_apache_flex_binding_GenericBinding.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_GenericBinding.prototype.destinationData = null;
 
 
 /**
- * @expose
+ * @export
  * @type {?function(?): ?}
  */
 org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
 
 
 Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_binding_GenericBinding} */
         set: function(value) {
@@ -72,7 +72,7 @@ Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @return {Object} The value from the source as specified.
  */
 org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
@@ -110,7 +110,7 @@ org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} value The value from the source as specified.
  */
 org_apache_flex_binding_GenericBinding.prototype.applyValue =
@@ -146,7 +146,7 @@ org_apache_flex_binding_GenericBinding.prototype.applyValue =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} value The value from the source as specified.
  */
 org_apache_flex_binding_GenericBinding.prototype.valueChanged =
@@ -161,7 +161,7 @@ org_apache_flex_binding_GenericBinding.prototype.valueChanged =
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The change event.
  */
 org_apache_flex_binding_GenericBinding.prototype.destinationChangeHandler =

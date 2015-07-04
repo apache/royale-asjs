@@ -44,7 +44,7 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {
@@ -64,7 +64,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.proto
             }
         }
     },
-    /** @expose */
+    /** @export */
     buttonWidths: {
         /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
         set: function(value) {

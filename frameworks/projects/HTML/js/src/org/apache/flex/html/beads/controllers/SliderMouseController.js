@@ -38,7 +38,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.prototype.FLEXJS_CL
 
 
 Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseController.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_controllers_SliderMouseController} */
         set: function(value) {

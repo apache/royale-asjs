@@ -50,7 +50,7 @@ org_apache_flex_html_beads_models_DataGridModel.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_models_DataGridModel.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_models_DataGridModel} */
         set: function(value) {
@@ -58,7 +58,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_DataGridModel.prototyp
             this.strand_ = value;
         }
     },
-    /** @expose */
+    /** @export */
     columns: {
         /** @this {org_apache_flex_html_beads_models_DataGridModel} */
         set: function(value) {

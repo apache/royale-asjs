@@ -35,7 +35,7 @@ org_apache_flex_core_BrowserWindow.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} url The url.
  * @param {string} options The window name.
  */

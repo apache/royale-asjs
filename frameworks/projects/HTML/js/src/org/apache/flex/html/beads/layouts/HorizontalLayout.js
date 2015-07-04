@@ -42,7 +42,7 @@ org_apache_flex_html_beads_layouts_HorizontalLayout.
 
 
 Object.defineProperties(org_apache_flex_html_beads_layouts_HorizontalLayout.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_layouts_HorizontalLayout} */
         set: function(value) {

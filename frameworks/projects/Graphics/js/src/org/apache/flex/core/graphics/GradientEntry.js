@@ -56,7 +56,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype._ratio = 0x000000;
 
 
 Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
-    /** @expose */
+    /** @export */
     alpha: {
         /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
@@ -70,7 +70,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     color: {
         /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
@@ -84,7 +84,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     ratio: {
         /** @this {org_apache_flex_core_graphics_GradientEntry} */
         get: function() {
@@ -99,7 +99,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientEntry.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
@@ -108,7 +108,7 @@ org_apache_flex_core_graphics_GradientEntry.prototype.begin = function(s) {
 
 
 /**
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} s
  */
 org_apache_flex_core_graphics_GradientEntry.prototype.end = function(s) {

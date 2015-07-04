@@ -40,7 +40,7 @@ org_apache_flex_binding_ConstantBinding.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_binding_ConstantBinding.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_binding_ConstantBinding} */
         set: function(value) {

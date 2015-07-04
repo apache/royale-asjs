@@ -43,7 +43,7 @@ org_apache_flex_core_graphics_IFill.prototype.FLEXJS_CLASS_INFO =
 /**
  * addFillAttrib()
  *
- * @expose
+ * @export
  * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string} The fill style attribute.
  */

@@ -55,7 +55,7 @@ org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
 
 
 Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
-    /** @expose */
+    /** @export */
     fillColor: {
         /** @this {org_apache_flex_core_FilledRectangle} */
         get: function() {
@@ -70,7 +70,7 @@ Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {number} x The left coordinate.
  * @param {number} y The top coordinate.
  * @param {number} width The width.

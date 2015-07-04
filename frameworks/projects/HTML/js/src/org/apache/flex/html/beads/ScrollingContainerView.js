@@ -46,21 +46,21 @@ org_apache_flex_html_beads_ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.prototype, {
-    /** @expose */
+    /** @export */
     contentView: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    /** @expose */
+    /** @export */
     resizableView: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
-    /** @expose */
+    /** @export */
     verticalScrollPosition: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {
@@ -71,7 +71,7 @@ Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.protot
            this._strand.scrollTop = value;
         }
     },
-    /** @expose */
+    /** @export */
     maxVerticalScrollPosition: {
         /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
         get: function() {

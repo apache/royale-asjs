@@ -54,7 +54,7 @@ org_apache_flex_html_TextArea.prototype.createElement =
 
 
 Object.defineProperties(org_apache_flex_html_TextArea.prototype, {
-    /** @expose */
+    /** @export */
     text: {
         /** @this {org_apache_flex_html_TextArea} */
         get: function() {

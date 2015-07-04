@@ -24,28 +24,28 @@ org_apache_flex_core_UIMetrics = function() {
 
 
 /**
- * @expose
+ * @export
  * @type {number}
  */
 org_apache_flex_core_UIMetrics.prototype.top = 0;
 
 
 /**
- * @expose
+ * @export
  * @type {number}
  */
 org_apache_flex_core_UIMetrics.prototype.left = 0;
 
 
 /**
- * @expose
+ * @export
  * @type {number}
  */
 org_apache_flex_core_UIMetrics.prototype.bottom = 0;
 
 
 /**
- * @expose
+ * @export
  * @type {number}
  */
 org_apache_flex_core_UIMetrics.prototype.right = 0;

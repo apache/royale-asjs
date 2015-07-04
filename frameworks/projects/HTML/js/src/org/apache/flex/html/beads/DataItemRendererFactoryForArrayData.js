@@ -33,7 +33,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData =
 
 
 /**
- * @expose
+ * @export
  */
 org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
 
@@ -59,7 +59,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
 
 
 Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
         set: function(value) {
@@ -88,7 +88,7 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
             this.dataProviderChangedHandler(null);
         }
     },
-    /** @expose */
+    /** @export */
     itemRendererClass: {
         /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
         get: function() {
@@ -109,7 +109,7 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event that triggered the dataProvider change.
  */
 org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.

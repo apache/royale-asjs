@@ -49,7 +49,7 @@ org_apache_flex_events_ValueChangeEvent.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @param {string} type The event type.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.init = function(type) {
@@ -58,42 +58,42 @@ org_apache_flex_events_ValueChangeEvent.prototype.init = function(type) {
 
 
 /**
- * @expose
+ * @export
  * @type {string} type The event type.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.type = '';
 
 
 /**
- * @expose
+ * @export
  * @type {*} oldValue The old value.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.oldValue = null;
 
 
 /**
- * @expose
+ * @export
  * @type {*} newValue The new value.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.newValue = null;
 
 
 /**
- * @expose
+ * @export
  * @type {string} propertyName The property that changed.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.propertyName = '';
 
 
 /**
- * @expose
+ * @export
  * @type {Object} source The object that changed.
  */
 org_apache_flex_events_ValueChangeEvent.prototype.source = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} source The object that changed.
  * @param {string} name The property that changed.
  * @param {*} oldValue The old value.
@@ -113,7 +113,7 @@ org_apache_flex_events_ValueChangeEvent.createUpdateEvent =
 
 
 /**
- * @expose
+ * @export
  * @type {string} VALUE_CHANGE The type of the event.
  */
 org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE = 'valueChange';

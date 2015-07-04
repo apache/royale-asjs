@@ -50,7 +50,7 @@ org_apache_flex_effects_PlatformWiper.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
-    /** @expose */
+    /** @export */
     target: {
         /** @this {org_apache_flex_effects_PlatformWiper} */
         set: function(target) {
@@ -66,7 +66,7 @@ Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
             }
         }
     },
-    /** @expose */
+    /** @export */
     visibleRect: {
         /** @this {org_apache_flex_effects_PlatformWiper} */
         set: function(rect) {

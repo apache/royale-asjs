@@ -38,7 +38,7 @@ org_apache_flex_html_beads_ImageView
 
 
 Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_html_beads_ImageView} */
         set: function(value) {
@@ -54,7 +54,7 @@ Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
 
 
 /**
- * @expose
+ * @export
  * @param {Object} event The event triggered by the source change.
  */
 org_apache_flex_html_beads_ImageView.prototype.

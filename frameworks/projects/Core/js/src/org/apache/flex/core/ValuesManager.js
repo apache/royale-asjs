@@ -36,14 +36,14 @@ org_apache_flex_core_ValuesManager.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @expose
+ * @export
  * @type {org_apache_flex_core_IValuesImpl}
  */
 org_apache_flex_core_ValuesManager.prototype.valuesImpl = null;
 
 
 Object.defineProperties(org_apache_flex_core_ValuesManager.prototype, {
-    /** @expose */
+    /** @export */
     valuesImpl: {
         /** @this {org_apache_flex_core_ValuesManager} */
         get: function() {

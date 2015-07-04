@@ -41,42 +41,42 @@ org_apache_flex_binding_BindingBase.prototype.document = null;
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_BindingBase.prototype.destination = null;
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_binding_BindingBase.prototype.destinationPropertyName = '';
 
 
 /**
- * @expose
+ * @export
  * @type {Object}
  */
 org_apache_flex_binding_BindingBase.prototype.source = null;
 
 
 /**
- * @expose
+ * @export
  * @type {string}
  */
 org_apache_flex_binding_BindingBase.prototype.sourcePropertyName = '';
 
 
 /**
- * @expose
+ * @export
  * @type {?string}
  */
 org_apache_flex_binding_BindingBase.prototype.sourceID = null;
 
 
 /**
- * @expose
+ * @export
  * @param {Object} document The MXML object.
  */
 org_apache_flex_binding_BindingBase.prototype.setDocument = function(document) {
@@ -100,7 +100,7 @@ org_apache_flex_binding_BindingBase.prototype.sourceChangeHandler = function(eve
 
 
 Object.defineProperties(org_apache_flex_binding_BindingBase.prototype, {
-  /** @expose */
+  /** @export */
   strand: {
         /** @this {org_apache_flex_binding_BindingBase} */
       set: function(value) {

@@ -34,7 +34,7 @@ org_apache_flex_collections_parsers_JSONInputParser.prototype.FLEXJS_CLASS_INFO 
 
 
 /**
- * @expose
+ * @export
  * @param {string} s The input string.
  * @return {Array.<string>} The Array of unparsed objects.
  */

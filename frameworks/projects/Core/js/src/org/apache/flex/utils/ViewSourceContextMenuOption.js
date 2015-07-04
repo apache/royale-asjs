@@ -38,7 +38,7 @@ org_apache_flex_utils_ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
 
 
 Object.defineProperties(org_apache_flex_utils_ViewSourceContextMenuOption.prototype, {
-    /** @expose */
+    /** @export */
     strand: {
         /** @this {org_apache_flex_utils_ViewSourceContextMenuOption} */
         set: function(value) {}
