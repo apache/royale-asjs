@@ -28,7 +28,6 @@ package
 internal class HTMLClasses
 {	
 	
-    import org.apache.flex.core.IScrollingLayoutParent; IScrollingLayoutParent;
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
