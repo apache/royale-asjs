@@ -48,6 +48,16 @@ org_apache_flex_html_beads_ContainerView.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
+ * @protected
+ * @type {Object}
+ * This is also defined as protected on BeadViewBase, but GCC
+ * doesn't seem to allow the Object.defineProperties to use it
+ * without re-declaring it here.
+ */
+org_apache_flex_html_beads_ContainerView.prototype._strand = null;
+
+
+/**
  *
  */
 org_apache_flex_html_beads_ContainerView.
