@@ -14,20 +14,15 @@
 goog.provide('org_apache_flex_events_BrowserEvent');
 
 goog.require('goog.events.BrowserEvent');
-//goog.require('org_apache_flex_events_Event');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_Event}
  */
 org_apache_flex_events_BrowserEvent = function() {
-//  org_apache_flex_events_BrowserEvent.base(this, 'constructor');
 
 };
-//goog.inherits(org_apache_flex_events_BrowserEvent,
-//    org_apache_flex_events_Event);
 
 
 /**
@@ -63,7 +58,8 @@ org_apache_flex_events_BrowserEvent.prototype.stopPropagation = function() {
 /**
  */
 org_apache_flex_events_BrowserEvent.prototype.stopImmediatePropagation = function() {
-  this.wrappedEvent.stopImmediatePropagation();
+  //this.wrappedEvent.stopImmediatePropagation(); // not in goog.events.BrowserEvent
+  this.wrappedEvent.stopPropagation();
 };
 
 

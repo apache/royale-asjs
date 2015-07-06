@@ -154,7 +154,7 @@ org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
  */
 org_apache_flex_core_HTMLElementWrapper.fireListenerOverride = function(listener, eventObject) {
   var e = new org_apache_flex_events_BrowserEvent();
-  e.wrappedEvent = eventObject;
+  e.wrappedEvent = /** @type {goog.events.BrowserEvent} */ (eventObject);
   return org_apache_flex_core_HTMLElementWrapper.googFireListener(listener, e);
 };
 
