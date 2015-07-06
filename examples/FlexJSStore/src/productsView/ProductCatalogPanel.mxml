@@ -298,7 +298,7 @@ limitations under the License.
 			else
 			{
 			    //since movement is happening get the scrollbar back to the top
-				scv.verticalScrollPosition = 0;
+				scv.model.verticalScrollPosition = 0;
                 // Fade in newly selected thumbnails after the last
 				// visible thumbnail has moved to its new position.
                 move.addEventListener(Effect.EFFECT_END,
@@ -399,16 +399,16 @@ limitations under the License.
                 move.addEventListener(Effect.EFFECT_END,
 					function(e:org.apache.flex.events.Event):void
 					{
-					    var curpos:int = scv.verticalScrollPosition;
+					    var curpos:int = scv.model.verticalScrollPosition;
 					    if (selectedThumb.y < curpos)
 					    {
-					        scv.verticalScrollPosition = y;
+					        scv.model.verticalScrollPosition = y;
 					    }
 					    else if (selectedThumb.y + ProductCatalogThumbnail.COL_HEIGHT_4 > curpos + thumbContent.height)
 					    {
 					        //this logic doesn't seem to be perfect but it will do
 					        var diff:int = selectedThumb.y - (curpos + thumbContent.height)
-					        scv.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
+					        scv.model.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
 					    }
 					});
             }
@@ -523,8 +523,7 @@ limitations under the License.
     <js:Container width="100%" height="100%">
         <js:Container id="thumbContentGroup" width="100%" height="100%">
             <js:beads>
-                <js:ScrollingContainerView id="scv" />
-                <js:BasicScrollingLayout />
+				<js:ScrollingViewport id="scv" />
             </js:beads>
             <js:Container id="thumbContent" width="100%" height="100%" />
         </js:Container>
