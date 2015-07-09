@@ -81,14 +81,15 @@ internal class CoreClasses
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
-    import org.apache.flex.utils.UIUtils; UIUtils;
     import org.apache.flex.utils.BinaryData; BinaryData;
     import org.apache.flex.utils.BeadMetrics; BeadMetrics;
+    import org.apache.flex.utils.CSSUtils; CSSUtils;
     import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
     import org.apache.flex.utils.MixinManager; MixinManager;
     import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;
+    import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
     

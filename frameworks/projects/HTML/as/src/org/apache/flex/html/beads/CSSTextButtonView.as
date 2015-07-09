@@ -37,7 +37,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.TextButton;
-	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.SolidBorderUtil;
+    import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The CSSTextButtonView class is the default view for
@@ -106,6 +108,12 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
+            upTextField.styleParent = _strand;
+            downTextField.styleParent = _strand;
+            overTextField.styleParent = _strand;
+            upTextField.parentDrawsBackground = true;
+            downTextField.parentDrawsBackground = true;
+            overTextField.parentDrawsBackground = true;
 			SimpleButton(value).upState = upSprite;
 			SimpleButton(value).downState = downSprite;
 			SimpleButton(value).overState = overSprite;
@@ -125,7 +133,8 @@ package org.apache.flex.html.beads
         {
             setupSkin(overSprite, overTextField, "hover");
             setupSkin(downSprite, downTextField, "active");
-            setupSkin(upSprite, upTextField);            
+            setupSkin(upSprite, upTextField);
+            updateHitArea();
         }
         
 		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
@@ -146,6 +155,8 @@ package org.apache.flex.html.beads
 				borderStyle = borderStyles[1];
 				borderThickness = borderStyles[0];
 			}
+            else if (borderStyles is String)
+                borderStyle = borderStyles as String;
 			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
 			if (value != null)
 				borderStyle = value as String;
@@ -155,29 +166,66 @@ package org.apache.flex.html.beads
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
 			if (value != null)
 				borderThickness = value as uint;
+            if (borderStyle == "none")
+            {
+                borderStyle = "solid";
+                borderThickness = 0;
+            }
+            
+            var borderRadius:String;
+            var borderEllipseWidth:Number = NaN;
+            var borderEllipseHeight:Number = NaN;
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-radius", state);
+            if (value != null)
+            {
+                if (value is Number)
+                    borderEllipseWidth = value as Number;
+                else
+                {
+                    borderRadius = value as String;
+                    var arr:Array = StringTrimmer.splitAndTrim(borderRadius, "/");
+                    borderEllipseWidth = CSSUtils.toNumber(arr[0]);
+                    if (arr.length > 1)
+                        borderEllipseHeight = CSSUtils.toNumber(arr[1]);
+                } 
+            }
+
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
 			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-			if (paddingLeft == null) paddingLeft = padding;
-			if (paddingRight == null) paddingRight = padding;
-			if (paddingTop == null) paddingTop = padding;
-			if (paddingBottom == null) paddingBottom = padding;
+            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
+            
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
+            var bgColor:uint;
+            var bgAlpha:Number = 1;
+            if (backgroundColor != null)
+            {
+                bgColor = CSSUtils.toColorWithAlpha(backgroundColor);
+                if (bgColor & 0xFF000000)
+                {
+                    bgAlpha = bgColor >> 24 / 255;
+                    bgColor = bgColor & 0xFFFFFF;
+                }
+            }
 			if (borderStyle == "solid")
 			{
 				var useWidth:Number = Math.max(sw,textField.textWidth);
 				var useHeight:Number = Math.max(sh,textField.textHeight);
 				
-				if ((useWidth-Number(paddingLeft)-Number(paddingRight)-2*borderThickness) < textField.textWidth) 
-					useWidth = textField.textWidth+Number(paddingLeft)+Number(paddingRight)+2*borderThickness;
-				if ((useHeight-Number(paddingTop)-Number(paddingBottom)-2*borderThickness) < textField.textHeight) 
-					useHeight = textField.textHeight+Number(paddingTop)+Number(paddingBottom)+2*borderThickness;
+				if ((useWidth-pl-pr-2*borderThickness) < textField.textWidth) 
+					useWidth = textField.textWidth+pl+pr+2*borderThickness;
+				if ((useHeight-pt-pb-2*borderThickness) < textField.textHeight) 
+					useHeight = textField.textHeight+pt+pb+2*borderThickness;
 				
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, useWidth, useHeight,
-					borderColor, backgroundColor, borderThickness);
+					borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,
+                    borderEllipseWidth, borderEllipseHeight);
 				textField.y = (useHeight - textField.textHeight) / 2;
 				textField.x = (useWidth - textField.textWidth) / 2;
 			}			
@@ -207,16 +255,7 @@ package org.apache.flex.html.beads
 				textField.textColor = Number(textColor);
 			}
 		}
-		
-		private function drawSkin() : void
-		{
-			setupSkin(overSprite, overTextField, "hover");
-			setupSkin(downSprite, downTextField, "active");
-			setupSkin(upSprite, upTextField);
-			
-			updateHitArea();
-		}
-		
+				
 		private function textChangeHandler(event:org.apache.flex.events.Event):void
 		{
 			text = textModel.text;
@@ -229,7 +268,7 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangeHandler(event:org.apache.flex.events.Event):void
 		{
-			drawSkin();
+			setupSkins();
 		}
 		
 		private var upTextField:CSSTextField;

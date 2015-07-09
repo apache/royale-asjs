@@ -25,7 +25,8 @@ package org.apache.flex.core
 	
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
-	
+    import org.apache.flex.utils.CSSUtils;
+    
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
      *  CSS lookup rules that is sufficient for most applications.
@@ -481,13 +482,7 @@ package org.apache.flex.core
          */
         public function convertColor(value:Object):uint
         {
-            if (!(value is String))
-                return uint(value);
-            
-            var stringValue:String = value as String;
-            if (stringValue.charAt(0) == '#')
-                return uint(stringValue.substr(1));
-            return uint(stringValue);
+            return CSSUtils.toColor(value);
         }
         
         /**
@@ -518,10 +513,8 @@ package org.apache.flex.core
                     if (isNaN(n))
                     {
                         if (value.charAt(0) == "#")
-                        {
-                            value = value.replace("#", "0x");
-                            n = parseInt(value);
-                            obj[pieces[0]] = n;
+                        {                            
+                            obj[pieces[0]] = CSSUtils.toColor(value);
                         }
                         else
                         {

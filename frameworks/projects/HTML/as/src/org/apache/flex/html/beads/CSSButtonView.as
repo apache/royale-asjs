@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+    import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -25,12 +26,14 @@ package org.apache.flex.html.beads
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.utils.CSSUtils;
 	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The CSSButtonView class is the default view for
@@ -103,6 +106,8 @@ package org.apache.flex.html.beads
 				borderStyle = borderStyles[1];
 				borderThickness = borderStyles[0];
 			}
+            else if (borderStyles is String)
+                borderStyle = borderStyles as String;
 			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
 			if (value != null)
 				borderStyle = value as String;
@@ -112,23 +117,58 @@ package org.apache.flex.html.beads
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
 			if (value != null)
 				borderThickness = value as uint;
+            if (borderStyle == "none")
+            {
+                borderStyle = "solid";
+                borderThickness = 0;
+            }
+            
+            var borderRadius:String;
+            var borderEllipseWidth:Number = NaN;
+            var borderEllipseHeight:Number = NaN;
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-radius", state);
+            if (value != null)
+            {
+                if (value is Number)
+                    borderEllipseWidth = value as Number;
+                else
+                {
+                    borderRadius = value as String;
+                    var arr:Array = StringTrimmer.splitAndTrim(borderRadius, "/");
+                    borderEllipseWidth = CSSUtils.toNumber(arr[0]);
+                    if (arr.length > 1)
+                        borderEllipseHeight = CSSUtils.toNumber(arr[1]);
+                } 
+            }
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
 			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-			if (paddingLeft == null) paddingLeft = padding;
-			if (paddingRight == null) paddingRight = padding;
-			if (paddingTop == null) paddingTop = padding;
-			if (paddingBottom == null) paddingBottom = padding;
+			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
 			
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
+            var bgColor:uint;
+            var bgAlpha:Number = 1;
+            if (backgroundColor != null)
+            {
+                bgColor = CSSUtils.toColorWithAlpha(backgroundColor);
+                if (bgColor & 0xFF000000)
+                {
+                    bgAlpha = bgColor >> 24 / 255;
+                    bgColor = bgColor & 0xFFFFFF;
+                }
+            }
 			if (borderStyle == "solid")
 			{
 				SolidBorderUtil.drawBorder(sprite.graphics, 
-					0, 0, sprite.width + Number(paddingLeft) + Number(paddingRight), 
-					sprite.height + Number(paddingTop) + Number(paddingBottom),
-					borderColor, backgroundColor, borderThickness);
+					0, 0, sprite.width + pl + pr, 
+					sprite.height + pt + pb,
+					borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,
+                    borderEllipseWidth, borderEllipseHeight);
 			}			
 		}
 		

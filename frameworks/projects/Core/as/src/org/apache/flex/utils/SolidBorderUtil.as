@@ -56,15 +56,19 @@ public class SolidBorderUtil
 	public static function drawBorder(g:Graphics, x:Number, y:Number, 
 									  width:Number, height:Number,
 									  color:uint, backgroundColor:Object = null, 
-									  thickness:int = 1, alpha:Number = 1.0):void
+									  thickness:int = 1, alpha:Number = 1.0, 
+                                      ellipseWidth:Number = NaN, ellipseHeight:Number = NaN):void
 	{
 		g.clear();
 		
-		g.lineStyle(thickness, color, alpha);
+		g.lineStyle(thickness, color, thickness == 0 ? 0 : 1);
 		if (backgroundColor != null)
-			g.beginFill(uint(backgroundColor));	
+			g.beginFill(uint(backgroundColor), alpha);	
 		
-		g.drawRect(x, y, width, height);
+        if (!isNaN(ellipseWidth))
+            g.drawRoundRect(x, y, width, height, ellipseWidth, ellipseHeight);
+        else
+    		g.drawRect(x, y, width, height);
 		if (backgroundColor != null)
 			g.endFill();
 	}

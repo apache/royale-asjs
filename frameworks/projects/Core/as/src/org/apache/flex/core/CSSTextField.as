@@ -24,6 +24,7 @@ package org.apache.flex.core
 	
 	import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.utils.CSSUtils;
 		
     /**
      *  The CSSTextField class implements CSS text styles in a TextField.
@@ -64,11 +65,23 @@ package org.apache.flex.core
 		
         /**
          *  @private
+         *  The parentDrawsBackground property is set if the CSSTextField
+         *  shouldn't draw a background
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var parentDrawsBackground:Boolean;
+        
+        /**
+         *  @private
          */
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
-			if (!sp)
+			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);
             
@@ -96,16 +109,14 @@ package org.apache.flex.core
                 tf.align = "right";
 				autoSize = TextFieldAutoSize.NONE;	
 			}
-            var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color");
-            if (backgroundColor != null)
+            if (!parentDrawsBackground)
             {
-                this.background = true;
-                if (backgroundColor is String)
+                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color");
+                if (backgroundColor != null)
                 {
-                    backgroundColor = backgroundColor.replace("#", "0x");
-                    backgroundColor = uint(backgroundColor);
+                    this.background = true;
+                    this.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
-                this.backgroundColor = backgroundColor as uint;
             }
 			defaultTextFormat = tf;
 			super.text = value;
