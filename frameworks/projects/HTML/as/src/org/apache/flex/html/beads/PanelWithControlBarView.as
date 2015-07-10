@@ -130,15 +130,10 @@ package org.apache.flex.html.beads
 			super.strand = value;
 		}
 		
-		override protected function createViewport(metrics:UIMetrics):void
-		{
-			super.createViewport(metrics);
-			setupViewport(metrics);
-		}
-		
-		private function setupViewport(metrics:UIMetrics):void
+		override protected function resizeViewport():void
 		{
 			var host:UIBase = UIBase(_strand);
+			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 			
 			titleBar.width = host.width;
 			if (controlBar) {
@@ -158,9 +153,12 @@ package org.apache.flex.html.beads
 			model.contentY = model.viewportY + metrics.top;
 			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
 			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
+			
+			viewport.updateSize();
+			viewport.updateContentAreaSize();
 		}
 		
-		override protected function handleContentResize():void
+		override protected function adjustSizeAfterLayout():void
 		{
 			var host:UIBase = UIBase(_strand);
 			var viewportModel:IViewportModel = viewport.model;
@@ -178,11 +176,7 @@ package org.apache.flex.html.beads
 			// causes the host's size to change
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
 				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
-								
-				var metrics:UIMetrics = getMetrics();
-				
-				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
-				viewportModel.viewportWidth  = viewportModel.contentWidth + metrics.left + metrics.right;
+				resizeViewport();
 			}
 				
 				// if the width is fixed and the height is changing, then set up horizontal
@@ -191,7 +185,7 @@ package org.apache.flex.html.beads
 			{
 				viewport.needsHorizontalScroller();
 				
-				metrics = getMetrics();
+				var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 				
 				var cbHeight:Number = 0;
 				if (controlBar) {
@@ -200,20 +194,16 @@ package org.apache.flex.html.beads
 				}
 				
 				host.setHeight(viewportModel.contentHeight + titleBar.height + cbHeight, false);
-				viewportModel.viewportHeight = viewportModel.contentHeight + metrics.top + metrics.bottom;
-				
+				resizeViewport();
 			}
 				
 				// if the height is fixed and the width can change, then set up
 				// vertical scrolling (if the viewport supports it).
 			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
 			{
-				viewport.needsVerticalScroller();
-				
-				metrics = getMetrics();
-				
+				viewport.needsVerticalScroller();				
 				host.setWidth(viewportModel.contentWidth+viewport.scrollerWidth(), false);
-				viewportModel.viewportWidth = viewportModel.contentWidth + metrics.left + metrics.right;
+				resizeViewport();
 			}
 				
 				// Otherwise the viewport needs to display some scrollers (or other elements
@@ -221,55 +211,14 @@ package org.apache.flex.html.beads
 			else {
 				
 				viewport.needsScrollers();
+				viewport.updateSize();
+				viewport.updateContentAreaSize();
 			}
-		}
-		
-		override protected function resizeHandler(event:Event):void
-		{
-			var host:UIBase = UIBase(_strand);
-			var viewportModel:IViewportModel = viewport.model;
-			var cbHeight:Number = 0;
-			
-			titleBar.width = host.width;
-			if (controlBar) {
-				controlBar.width = host.width;
-				controlBar.y = host.height - controlBar.height;
-				cbHeight = controlBar.height;
-			}
-			
-			// the viewport has to be adjusted to account for the change
-			// in the host size.			
-			viewportModel.viewportHeight = host.height - titleBar.height - cbHeight;
-			viewportModel.viewportWidth = host.width;
-			
-			// if the host has a fixed width, reset the contentWidth to match.
-			if (!host.isWidthSizedToContent()) viewportModel.contentWidth = host.width;
-			
-			// if the host has a fixed height, reset the contentHeight to match.
-			if (!host.isHeightSizedToContent()) viewportModel.contentHeight = host.height - titleBar.height - cbHeight;
-			
-			// the viewport's size and position also has to be adjusted since the
-			// host's size has changed.
-			viewport.updateSize();
-			
-			// the layout needs to be run to adjust the content for 
-			// the new host size.
-			changeHandler(event);
 		}
 		
 		private function chromeHeightChanged(event:Event):void
 		{
-			var metrics:UIMetrics = this.getMetrics();
-			setupViewport(metrics);
-		}
-		
-		/**
-		 * @private
-		 * Panel always needs content area.
-		 */
-		override protected function contentAreaNeeded():Boolean
-		{
-			return true;
+			resizeViewport();
 		}
 	}
 }

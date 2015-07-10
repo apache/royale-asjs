@@ -17,12 +17,6 @@ package org.apache.flex.core
 		function set contentIsHost(value:Boolean):void;
 		
 		/**
-		 * The layout being used to size and shape the content area
-		 */
-		function get layout():IBeadLayout;
-		function set layout(value:IBeadLayout):void;
-		
-		/**
 		 * The content area being managed by the viewport
 		 */
 		function get contentArea():IUIBase;
