@@ -217,6 +217,16 @@ StringItemRenderer
     height: 16;
 }
 
+TextInput
+{
+  height: 35px;
+  padding: 6px 10px;
+  font-size: 13px;
+  line-height: 1.462;
+  border-radius: 6px;
+  border: 2px solid #1abc9c;
+}
+
 TitleBar
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TitleBarModel");
@@ -264,6 +274,12 @@ Alert
     border-style: solid;
     border-color: #000000;
     border-width: 1px;
+}
+
+Border
+{
+  border-radius: inherit;
+  border: inherit;
 }
 
 Button

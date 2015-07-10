@@ -114,6 +114,9 @@ package org.apache.flex.html.beads
             upTextField.parentDrawsBackground = true;
             downTextField.parentDrawsBackground = true;
             overTextField.parentDrawsBackground = true;
+            upTextField.parentHandlesPadding = true;
+            downTextField.parentHandlesPadding = true;
+            overTextField.parentHandlesPadding = true;
 			SimpleButton(value).upState = upSprite;
 			SimpleButton(value).downState = downSprite;
 			SimpleButton(value).overState = overSprite;
@@ -144,14 +147,16 @@ package org.apache.flex.html.beads
 			
 			textField.defaultTextFormat.leftMargin = 0;
 			textField.defaultTextFormat.rightMargin = 0;
-			
+            // set it again so it gets noticed
+			textField.defaultTextFormat = textField.defaultTextFormat;
+            
 			var borderColor:uint;
 			var borderThickness:uint;
 			var borderStyle:String;
 			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
 			if (borderStyles is Array)
 			{
-				borderColor = borderStyles[2];
+				borderColor = CSSUtils.toColor(borderStyles[2]);
 				borderStyle = borderStyles[1];
 				borderThickness = borderStyles[0];
 			}
@@ -162,7 +167,7 @@ package org.apache.flex.html.beads
 				borderStyle = value as String;
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
 			if (value != null)
-				borderColor = value as uint;
+				borderColor = CSSUtils.toColor(value);
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
 			if (value != null)
 				borderThickness = value as uint;
@@ -222,6 +227,7 @@ package org.apache.flex.html.beads
 				if ((useHeight-pt-pb-2*borderThickness) < textField.textHeight) 
 					useHeight = textField.textHeight+pt+pb+2*borderThickness;
 				
+                sprite.graphics.clear();
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, useWidth, useHeight,
 					borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,

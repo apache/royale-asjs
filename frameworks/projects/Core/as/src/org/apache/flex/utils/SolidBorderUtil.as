@@ -59,18 +59,40 @@ public class SolidBorderUtil
 									  thickness:int = 1, alpha:Number = 1.0, 
                                       ellipseWidth:Number = NaN, ellipseHeight:Number = NaN):void
 	{
-		g.clear();
+		g.lineStyle();  // don't draw the line, it tends to get aligned on half-pixels
 		
-		g.lineStyle(thickness, color, thickness == 0 ? 0 : 1);
-		if (backgroundColor != null)
-			g.beginFill(uint(backgroundColor), alpha);	
-		
-        if (!isNaN(ellipseWidth))
-            g.drawRoundRect(x, y, width, height, ellipseWidth, ellipseHeight);
-        else
-    		g.drawRect(x, y, width, height);
-		if (backgroundColor != null)
-			g.endFill();
+        if (thickness > 0)
+        {
+            g.beginFill(color, alpha);	
+            if (!isNaN(ellipseWidth))
+            {
+                g.drawRoundRect(x, y, width, height, ellipseWidth, ellipseHeight);
+                g.drawRoundRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2, 
+                    ellipseWidth, ellipseHeight);
+            }
+            else
+            {
+        		g.drawRect(x, y, width, height);
+                g.drawRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2);
+            }
+    		g.endFill();
+        }
+        
+        if (backgroundColor != null)
+        {
+            g.beginFill(uint(backgroundColor), alpha);	
+        
+            if (!isNaN(ellipseWidth))
+                g.drawRoundRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2, 
+                    ellipseWidth, ellipseHeight);
+            else
+                g.drawRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2);
+            g.endFill();
+        }
 	}
 }
 }

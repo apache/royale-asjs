@@ -77,6 +77,18 @@ package org.apache.flex.core
         
         /**
          *  @private
+         *  The parentHandlesPadding property is set if the CSSTextField
+         *  shouldn't worry about padding
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var parentHandlesPadding:Boolean;
+        
+        /**
+         *  @private
          */
 		override public function set text(value:String):void
 		{
@@ -89,15 +101,15 @@ package org.apache.flex.core
 			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily") as String;
 			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize");
 			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight") == "bold";
-			tf.color = ValuesManager.valuesImpl.getValue(sp, "color");
-			var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
-			if (padding == null) padding = 0;
-			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left");
-			if (paddingLeft == null) paddingLeft = padding;
-			var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right");
-			if (paddingRight == null) paddingRight = padding;
-			tf.leftMargin = paddingLeft;
-			tf.rightMargin = paddingRight;
+			tf.color = CSSUtils.toColor(ValuesManager.valuesImpl.getValue(sp, "color"));
+            if (!parentHandlesPadding)
+            {
+        		var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
+        		var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left");
+        		var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right");
+        		tf.leftMargin = CSSUtils.getLeftValue(paddingLeft, padding, width);
+        		tf.rightMargin = CSSUtils.getRightValue(paddingRight, padding, width);
+            }
             var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align");
             if (align == "center")
 			{

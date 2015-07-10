@@ -399,6 +399,7 @@ package org.apache.flex.core
                     if (value !== undefined)
                         return value;
                 }
+                return undefined;
             }
             return "inherit";
         }

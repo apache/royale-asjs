@@ -102,7 +102,7 @@ package org.apache.flex.html.beads
 			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
 			if (borderStyles is Array)
 			{
-				borderColor = borderStyles[2];
+				borderColor = CSSUtils.toColor(borderStyles[2]);
 				borderStyle = borderStyles[1];
 				borderThickness = borderStyles[0];
 			}
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads
 				borderStyle = value as String;
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
 			if (value != null)
-				borderColor = value as uint;
+				borderColor = CSSUtils.toColor(value);
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
 			if (value != null)
 				borderThickness = value as uint;
@@ -164,6 +164,7 @@ package org.apache.flex.html.beads
             }
 			if (borderStyle == "solid")
 			{
+                sprite.graphics.clear();
 				SolidBorderUtil.drawBorder(sprite.graphics, 
 					0, 0, sprite.width + pl + pr, 
 					sprite.height + pt + pb,

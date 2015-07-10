@@ -156,6 +156,8 @@ package org.apache.flex.utils
 
             if (value != null)
                 return toNumber(value as String, reference);
+            if (values == null)
+                return 0;
             if (values is Array)
             {
                 var arr:Array = values as Array;
@@ -191,6 +193,8 @@ package org.apache.flex.utils
 
             if (value != null)
                 return toNumber(value as String, reference);
+            if (values == null)
+                return 0;
             if (values is Array)
             {
                 var arr:Array = values as Array;
@@ -223,6 +227,8 @@ package org.apache.flex.utils
             
             if (value != null)
                 return toNumber(value as String, reference);
+            if (values == null)
+                return 0;
             if (values is Array)
             {
                 var arr:Array = values as Array;
@@ -255,6 +261,8 @@ package org.apache.flex.utils
             
             if (value != null)
                 return toNumber(value as String, reference);
+            if (values == null)
+                return 0;
             if (values is Array)
             {
                 var arr:Array = values as Array;

@@ -22,10 +22,14 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The SingleLineBorderBead class draws a single line solid border.
@@ -72,33 +76,65 @@ package org.apache.flex.html.beads
 		        
 		private function changeHandler(event:Event):void
 		{
-			var styleObject:* = ValuesManager.valuesImpl.getValue(_strand,"border-color");
-            if (styleObject is String)
-            {
-                if (styleObject.charAt(0) == "#")
-                    styleObject = styleObject.replace("#", "0x");
-            }
-			var borderColor:Number = Number(styleObject);
-			if( isNaN(borderColor) ) borderColor = 0x000000;
-			styleObject = ValuesManager.valuesImpl.getValue(_strand,"border-width");
-            if (styleObject is String)
-                styleObject = styleObject.replace("px", "");
-			var borderThickness:Number = Number(styleObject);
-			if( isNaN(borderThickness) ) borderThickness = 1;
-			
             var host:UIBase = UIBase(_strand);
             var g:Graphics = host.graphics;
             var w:Number = host.width;
             var h:Number = host.height;
+            var state:String;
+            if (host is IStatesObject)
+                state = IStatesObject(host).currentState;
 			
 			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
 			
-			g.lineStyle();
-            g.beginFill(borderColor);
-            g.drawRect(0, 0, w, h);
-            g.drawRect(borderThickness, borderThickness, w-2*borderThickness, h-2*borderThickness);
-            g.endFill();
+            var borderColor:uint;
+            var borderThickness:uint;
+            var borderStyle:String;
+            var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
+            if (borderStyles is Array)
+            {
+                borderColor = CSSUtils.toColor(borderStyles[2]);
+                borderStyle = borderStyles[1];
+                borderThickness = borderStyles[0];
+            }
+            else if (borderStyles is String)
+                borderStyle = borderStyles as String;
+            var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
+            if (value != null)
+                borderStyle = value as String;
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
+            if (value != null)
+                borderColor = CSSUtils.toColor(value);
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
+            if (value != null)
+                borderThickness = value as uint;
+            if (borderStyle == "none")
+            {
+                borderStyle = "solid";
+                borderThickness = 0;
+            }
+            
+            var borderRadius:String;
+            var borderEllipseWidth:Number = NaN;
+            var borderEllipseHeight:Number = NaN;
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-radius", state);
+            if (value != null)
+            {
+                if (value is Number)
+                    borderEllipseWidth = value as Number;
+                else
+                {
+                    borderRadius = value as String;
+                    var arr:Array = StringTrimmer.splitAndTrim(borderRadius, "/");
+                    borderEllipseWidth = CSSUtils.toNumber(arr[0]);
+                    if (arr.length > 1)
+                        borderEllipseHeight = CSSUtils.toNumber(arr[1]);
+                } 
+            }
+            SolidBorderUtil.drawBorder(g, 
+                0, 0, w, h,
+                borderColor, null, borderThickness, 1,
+                borderEllipseWidth, borderEllipseHeight);
 		}
 	}
 }
