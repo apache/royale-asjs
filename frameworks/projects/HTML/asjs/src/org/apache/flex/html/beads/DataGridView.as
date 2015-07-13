@@ -121,6 +121,7 @@ package org.apache.flex.html.beads
 			buttonBar.addBead(buttonBarModel);
 			buttonBar.addBead(bblayout);
 			buttonBar.height = 25;
+			buttonBar.width = UIBase(_strand).width;
 			UIBase(_strand).addElement(buttonBar);
 			
 			// Create a List for each column, storing a reference to each List in

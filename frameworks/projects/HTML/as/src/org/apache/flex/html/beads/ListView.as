@@ -146,7 +146,13 @@ package org.apache.flex.html.beads
 		override protected function completeSetup():void
 		{
 			super.completeSetup();
-			IEventDispatcher(_strand).addEventListener("itemsCreated", performLayout);
+			
+			// list is not interested in UI children, it wants to know when new items
+			// have been added or the dataProvider has changed.
+			
+			host.removeEventListener("childrenAdded", childrenChangedHandler);
+			host.removeEventListener("childrenAdded", performLayout);
+			host.addEventListener("itemsCreated", performLayout);
 			
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);

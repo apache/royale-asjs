@@ -94,8 +94,6 @@ package org.apache.flex.html.beads
 			(host as UIBase).addElement(_contentArea,false);
 			ContainerBase(host).setActualParent(_contentArea as DisplayObjectContainer);
 			
-			createViewport();
-			
 			displayBackgroundAndBorder(host as UIBase);
 			
 			if (isNaN((host as UIBase).percentHeight) && isNaN((host as UIBase).percentWidth)) {
@@ -124,7 +122,9 @@ package org.apache.flex.html.beads
 		
 		protected function completeSetup():void
 		{
-			(contentView as UIBase).setWidthAndHeight(host.width, host.height, true);
+			createViewport();
+			
+			(contentView as UIBase).setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
 			
 			host.addEventListener("childrenAdded", childrenChangedHandler);
 			host.addEventListener("childrenAdded", performLayout);
@@ -168,6 +168,10 @@ package org.apache.flex.html.beads
 			
 			viewportModel.contentArea = contentView;
 			viewportModel.contentIsHost = false;
+			viewportModel.contentWidth = host.width;
+			viewportModel.contentHeight = host.height;
+			viewportModel.contentX = 0;
+			viewportModel.contentY = 0;
 			
 			resizeViewport();
 		}

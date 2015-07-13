@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.supportClasses.Border;
@@ -69,6 +70,20 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
+		}
+		
+		override protected function resizeHandler(event:Event):void
+		{
+			// the ButtonBar is always matched to its size so it is
+			// important that the contentWidth/Height match the host's
+			// width/height
+			
+			trace("BBSize: "+UIBase(host).width);
+			
+			viewportModel.contentWidth = UIBase(host).width;
+			viewportModel.contentHeight = UIBase(host).height;
+			
+			super.resizeHandler(event);
 		}
 	}
 }
