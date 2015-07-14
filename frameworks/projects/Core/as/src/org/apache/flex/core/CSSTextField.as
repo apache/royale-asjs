@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFormat;
-	
-	import org.apache.flex.core.ValuesManager;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
+    
+    import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.utils.CSSUtils;
 		
@@ -65,6 +65,17 @@ package org.apache.flex.core
 		
         /**
          *  @private
+         *  The CSS pseudo-state for lookups.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var styleState:String;
+        
+        /**
+         *  @private
          *  The parentDrawsBackground property is set if the CSSTextField
          *  shouldn't draw a background
          *
@@ -98,19 +109,19 @@ package org.apache.flex.core
 			sp.addEventListener("classNameChanged", updateStyles);
             
 			var tf: TextFormat = new TextFormat();
-			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily") as String;
-			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize");
-			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight") == "bold";
-			tf.color = CSSUtils.toColor(ValuesManager.valuesImpl.getValue(sp, "color"));
+			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily", styleState) as String;
+			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize", styleState);
+			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight", styleState) == "bold";
+			tf.color = CSSUtils.toColor(ValuesManager.valuesImpl.getValue(sp, "color", styleState));
             if (!parentHandlesPadding)
             {
-        		var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
-        		var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left");
-        		var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right");
+        		var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding", styleState);
+        		var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left", styleState);
+        		var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right", styleState);
         		tf.leftMargin = CSSUtils.getLeftValue(paddingLeft, padding, width);
         		tf.rightMargin = CSSUtils.getRightValue(paddingRight, padding, width);
             }
-            var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align");
+            var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align", styleState);
             if (align == "center")
 			{
 				autoSize = TextFieldAutoSize.NONE;
@@ -123,7 +134,7 @@ package org.apache.flex.core
 			}
             if (!parentDrawsBackground)
             {
-                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color");
+                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
                 if (backgroundColor != null)
                 {
                     this.background = true;
@@ -139,5 +150,6 @@ package org.apache.flex.core
             // force styles to be re-calculated
             this.text = text;
         }
+        
 	}
 }
