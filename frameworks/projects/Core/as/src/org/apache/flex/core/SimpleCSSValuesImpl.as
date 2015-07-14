@@ -25,6 +25,7 @@ package org.apache.flex.core
 	
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
+    import org.apache.flex.events.ValueEvent;
     import org.apache.flex.utils.CSSUtils;
     
     /**
@@ -83,6 +84,9 @@ package org.apache.flex.core
 			}
 			c = mainClass.constructor as Class;
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
+            if (hasEventListener("init"))
+                dispatchEvent(new ValueEvent("init", false, false, c["fontFaces"]));
+            
             var i:int = 1;
             while (true)
             {
@@ -91,6 +95,8 @@ package org.apache.flex.core
                 if (ff == null)
                     break;
                 generateCSSStyleDeclarations(c[ffName], c["data" + i.toString()]);
+                if (hasEventListener("init"))
+                    dispatchEvent(new ValueEvent("init", false, false, c["fontFaces" + i.toString()]));
                 i++;
             }
         }
