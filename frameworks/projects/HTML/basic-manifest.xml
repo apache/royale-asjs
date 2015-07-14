@@ -74,6 +74,7 @@
     <component id="HRule" class="org.apache.flex.html.HRule" />
     <component id="Spacer" class="org.apache.flex.html.Spacer" />
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
+    <component id="CSSContentAndTextToggleButtonView" class="org.apache.flex.html.beads.CSSContentAndTextToggleButtonView"/>
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>

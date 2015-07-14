@@ -20,6 +20,13 @@
 @namespace "library://ns.apache.org/flexjs/basic";
 @namespace svg "library://ns.apache.org/flexjs/svg";
 
+@font-face {
+  font-family: 'Flat-UI-Icons';
+
+  src: url('../fonts/glyphicons/flat-ui-icons-regular.eot');
+  src: url('../fonts/glyphicons/flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons/flat-ui-icons-regular.woff') format('woff'), url('../fonts/glyphicons/flat-ui-icons-regular.ttf') format('truetype'), url('../fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
+}
+
 /* Global style declaration */
 *
 {
@@ -94,6 +101,30 @@ ButtonBarButtonItemRenderer
 {
     width: 80;
     height: 30;
+}
+
+CheckBox
+{
+  content: "\e60d";
+
+  /* .checkbox */
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-transition: color .25s linear;
+          transition: color .25s linear;
+}
+
+CheckBox:hover
+{
+  content: "\e60e";
+}
+
+CheckBox:checked
+{
+  content: "\e60e";
 }
 
 Container
@@ -199,6 +230,57 @@ PanelWithControlBar
 	padding: 2px;
 }
 
+.icon-checked 
+{
+  /* .radio .icon-checked:before */
+  /* .radio .icon-unchecked:before */
+  font-family: 'Flat-UI-Icons';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
+  
+  font-size: 20px;
+  line-height: 20px;
+  color: #bdc3c7;
+
+}
+
+.icon-checked:checked 
+{
+  color: #1abc9c;
+}
+
+RadioButton
+{
+  content: "\e60b";
+
+  /* .radio */
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-transition: color .25s linear;
+          transition: color .25s linear;
+}
+
+RadioButton:hover
+{
+  content: "\e60c";
+
+}
+
+RadioButton:checked
+{
+  content: "\e60c";
+
+}
+
 SimpleList
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
@@ -290,7 +372,7 @@ Button
 CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CSSContentAndTextToggleButtonView");			
 }
 
 CloseButton
@@ -404,7 +486,7 @@ PanelWithControlBar
 RadioButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CSSContentAndTextToggleButtonView");			
 }
 
 ScrollBar
