@@ -82,5 +82,46 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
 		public var right:Number;
+		
+		/**
+		 *  The extra spacing on top of the object.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var marginTop:Number;
+		
+		/**
+		 *  The extra spacing to the left of the object.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var marginLeft:Number;
+		
+		/**
+		 *  The extra spacing on bottom of the object.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var marginBottom:Number;
+		
+		/**
+		 *  The extra spacing to the right of the object.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var marginRight:Number;
+		
 	}
 }

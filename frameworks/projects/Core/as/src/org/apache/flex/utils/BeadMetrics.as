@@ -99,11 +99,78 @@ public class BeadMetrics
 		var pr:Number = Number(paddingRight);
 		var pb:Number = Number(paddingBottom);
 		
+		var marginLeft:Object;
+		var marginRight:Object;
+		var marginTop:Object;
+		var marginBottom:Object;
+		var margin:Object;
+		margin = ValuesManager.valuesImpl.getValue(object, "margin");
+		
+		if (margin is Array)
+		{
+			if (margin.length == 1)
+				marginLeft = marginTop = marginRight = marginBottom = margin[0];
+			else if (margin.length <= 3)
+			{
+				marginLeft = marginRight = margin[1];
+				marginTop = marginBottom = margin[0];
+			}
+			else if (margin.length == 4)
+			{
+				marginLeft = margin[3];
+				marginBottom = margin[2];
+				marginRight = margin[1];
+				marginTop = margin[0];					
+			}
+		}
+		else if (margin == null)
+		{
+			marginLeft = ValuesManager.valuesImpl.getValue(object, "margin-left");
+			marginTop = ValuesManager.valuesImpl.getValue(object, "margin-top");
+			marginRight = ValuesManager.valuesImpl.getValue(object, "margin-right");
+			marginBottom = ValuesManager.valuesImpl.getValue(object, "margin-bottom");
+		}
+		else
+		{
+			marginLeft = marginTop = marginBottom = marginRight = margin;
+		}
+		var ml:Number;
+		var mr:Number;
+		var mt:Number;
+		var mb:Number;
+		var lastmr:Number;
+		if (marginLeft == "auto")
+			ml = 0;
+		else
+		{
+			ml = Number(marginLeft);
+			if (isNaN(ml))
+				ml = 0;
+		}
+		if (marginRight == "auto")
+			mr = 0;
+		else
+		{
+			mr = Number(marginRight);
+			if (isNaN(mr))
+				mr = 0;
+		}
+		mt = Number(marginTop);
+		if (isNaN(mt))
+			mt = 0;
+		mb = Number(marginBottom);
+		if (isNaN(mb))
+			mb = 0;
+		
 		var result:UIMetrics = new UIMetrics();
 		result.top = borderOffset + pt;
 		result.left = borderOffset + pl;
 		result.bottom = borderOffset + pb;
 		result.right = borderOffset + pr;
+		result.marginTop = mt;
+		result.marginLeft = ml;
+		result.marginBottom = mb;
+		result.marginRight = mr;
 		
 		return result;
 	}

@@ -158,21 +158,25 @@ package org.apache.flex.html.beads
 			
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 
-			_titleBar.x = metrics.left;
-			_titleBar.y = metrics.top;
+			_titleBar.x = 0;
+			_titleBar.y = 0;
 			_titleBar.width = maxWidth;
+			_titleBar.height = 25;
+			_titleBar.dispatchEvent(new Event("layoutNeeded"));
 			
 			// content placement here
 			_label.x = metrics.left;
-			_label.y = _titleBar.y + _titleBar.height + 2;
-			_label.width = maxWidth;
+			_label.y = _titleBar.y + _titleBar.height + metrics.top;
+			_label.width = maxWidth - metrics.left - metrics.right;
 			
-			_controlBar.x = metrics.left;
-			_controlBar.y = _label.y + _label.height + 2;
+			_controlBar.x = 0;
+			_controlBar.y = _titleBar.height + _label.y + _label.height + metrics.bottom;
 			_controlBar.width = maxWidth;
+			_controlBar.height = 25;
+			_controlBar.dispatchEvent(new Event("layoutNeeded"));
 			
-			UIBase(_strand).width = maxWidth + metrics.left + metrics.right;
-			UIBase(_strand).height = _controlBar.y + _controlBar.height + metrics.bottom + 2;
+			UIBase(_strand).width = maxWidth;
+			UIBase(_strand).height = _titleBar.height + _label.height + _controlBar.height + metrics.top + metrics.bottom;
 		}
 		
 		/**

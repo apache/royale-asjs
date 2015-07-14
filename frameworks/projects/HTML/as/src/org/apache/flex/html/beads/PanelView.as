@@ -98,11 +98,16 @@ package org.apache.flex.html.beads
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
-			host.addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", titleBarHeightChanged);
 			            
             super.strand = value;
-
+		}
+		
+		override protected function completeSetup():void
+		{
+			super.completeSetup();
+			
+			UIBase(_strand).addElement(titleBar, false);
+			titleBar.addEventListener("heightChanged", titleBarHeightChanged);
 		}
 		
 		/**
@@ -114,6 +119,8 @@ package org.apache.flex.html.beads
 			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 			
 			titleBar.width = host.width;
+			titleBar.height = 25;
+			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			var model:IViewportModel = viewport.model;
 			model.viewportX = 0;

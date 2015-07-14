@@ -44,5 +44,16 @@ org_apache_flex_utils_BeadMetrics.getMetrics = function(strand) {
     if (style['padding_right']) box.right = Number(style.padding_right);
     if (style['padding_bottom']) box.bottom = Number(style.padding_bottom);
   }
+  if (style['margin']) {
+    box.marginLeft = Number(style.margin);
+    box.marginTop = Number(style.margin);
+    box.marginRight = Number(style.margin);
+    box.marginBottom = Number(style.margin);
+  } else {
+    if (style['margin_top']) box.marginTop = Number(style.margin_top);
+    if (style['margin_left']) box.marginLeft = Number(style.margin_left);
+    if (style['margin_bottom']) box.marginBottom = Number(style.margin_bottom);
+    if (style['margin_right']) box.marginRight = Number(style.margin_right);
+  }
   return box;
 };

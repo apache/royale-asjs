@@ -49,3 +49,31 @@ org_apache_flex_core_UIMetrics.prototype.bottom = 0;
  * @type {number}
  */
 org_apache_flex_core_UIMetrics.prototype.right = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org_apache_flex_core_UIMetrics.prototype.marginTop = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org_apache_flex_core_UIMetrics.prototype.marginLeft = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org_apache_flex_core_UIMetrics.prototype.marginBottom = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org_apache_flex_core_UIMetrics.prototype.marginRight = 0;

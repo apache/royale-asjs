@@ -109,12 +109,24 @@ package org.apache.flex.html.beads
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
-			host.addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", chromeHeightChanged);
 			
 			var controlBarItems:Array = (host.model as IPanelModel).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
+			}
+			
+			super.strand = value;
+		}
+		
+		override protected function completeSetup():void
+		{
+			super.completeSetup();
+			
+			UIBase(_strand).addElement(titleBar, false);
+			titleBar.addEventListener("heightChanged", chromeHeightChanged);
+			
+			var controlBarItems:Array = (UIBase(_strand).model as IPanelModel).controlBar;
+			if( _controlBar ) {
 				_controlBar.percentWidth = 100;
 				_controlBar.height = 30;
 				
@@ -123,11 +135,9 @@ package org.apache.flex.html.beads
 				}
 				_controlBar.dispatchEvent(new Event("layoutNeeded"));
 				
-				host.addElement(controlBar, false);
+				UIBase(_strand).addElement(controlBar, false);
 				controlBar.addEventListener("heightChanged", chromeHeightChanged);
 			}
-			
-			super.strand = value;
 		}
 		
 		override protected function resizeViewport():void
