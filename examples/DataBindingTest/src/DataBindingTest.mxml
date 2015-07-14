@@ -47,6 +47,7 @@ limitations under the License.
                 </js:itemConverter> 
             </js:LazyCollection>
         </js:HTTPService>
+        <js:CSSFontFaceBead />
         <js:ViewSourceContextMenuOption />
     </js:beads>
 </js:Application>
