@@ -30,6 +30,7 @@ internal class CoreClasses
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
     import org.apache.flex.core.CSSTextField; CSSTextField;
+    import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.IAlertModel; IAlertModel;
