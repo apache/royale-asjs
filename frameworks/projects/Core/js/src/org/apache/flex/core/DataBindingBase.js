@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_DataBindingBase');
+goog.provide('org.apache.flex.core.DataBindingBase');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_DataBindingBase = function() {
+org.apache.flex.core.DataBindingBase = function() {
 };
 
 
@@ -28,7 +28,7 @@ org_apache_flex_core_DataBindingBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_DataBindingBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.DataBindingBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataBindingBase',
-                qName: 'org_apache_flex_core_DataBindingBase'}] };
+                qName: 'org.apache.flex.core.DataBindingBase'}] };
 

@@ -13,29 +13,29 @@
  */
 
 /**
- * org_apache_flex_core_ITextModel
+ * org.apache.flex.core.ITextModel
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_ITextModel');
+goog.provide('org.apache.flex.core.ITextModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org.apache.flex.core.IBeadModel');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_events_IEventDispatcher}
- * @extends {org_apache_flex_core_IBeadModel}
+ * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org.apache.flex.core.IBeadModel}
  */
-org_apache_flex_core_ITextModel = function() {
+org.apache.flex.core.ITextModel = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_ITextModel.prototype, {
+Object.defineProperties(org.apache.flex.core.ITextModel.prototype, {
     /** @export */
     text: {
         set: function(value) {},
@@ -49,6 +49,6 @@ Object.defineProperties(org_apache_flex_core_ITextModel.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ITextModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'ITextModel', qName: 'org_apache_flex_core_ITextModel'}],
-  interfaces: [org_apache_flex_events_IEventDispatcher, org_apache_flex_core_IBeadModel] };
+org.apache.flex.core.ITextModel.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'ITextModel', qName: 'org.apache.flex.core.ITextModel'}],
+  interfaces: [org.apache.flex.events.IEventDispatcher, org.apache.flex.core.IBeadModel] };

@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_Timer');
+goog.provide('org.apache.flex.utils.Timer');
 
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  * @param {number} delay The delay.
  * @param {number=} opt_repeatCount The repeatCount.
  */
-org_apache_flex_utils_Timer = function(delay, opt_repeatCount) {
-  org_apache_flex_utils_Timer.base(this, 'constructor');
+org.apache.flex.utils.Timer = function(delay, opt_repeatCount) {
+  org.apache.flex.utils.Timer.base(this, 'constructor');
 
   if (opt_repeatCount !== undefined) {
     this._repeatCount = opt_repeatCount;
@@ -49,8 +49,8 @@ org_apache_flex_utils_Timer = function(delay, opt_repeatCount) {
    */
   this._currentCount = 0;
 };
-goog.inherits(org_apache_flex_utils_Timer,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.utils.Timer,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -58,16 +58,16 @@ goog.inherits(org_apache_flex_utils_Timer,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_Timer.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.Timer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Timer',
-                qName: 'org_apache_flex_utils_Timer'}] };
+                qName: 'org.apache.flex.utils.Timer'}] };
 
 
 /**
  * @export
  * Stops the timer and sets currentCount = 0.
  */
-org_apache_flex_utils_Timer.prototype.reset = function() {
+org.apache.flex.utils.Timer.prototype.reset = function() {
   this.stop();
   this._currentCount = 0;
 };
@@ -77,7 +77,7 @@ org_apache_flex_utils_Timer.prototype.reset = function() {
  * @export
  * Stops the timer.
  */
-org_apache_flex_utils_Timer.prototype.stop = function() {
+org.apache.flex.utils.Timer.prototype.stop = function() {
   clearInterval(this.timerInterval);
   this.timerInterval = -1;
 };
@@ -87,7 +87,7 @@ org_apache_flex_utils_Timer.prototype.stop = function() {
  * @export
  * Starts the timer.
  */
-org_apache_flex_utils_Timer.prototype.start = function() {
+org.apache.flex.utils.Timer.prototype.start = function() {
   this.timerInterval =
       setInterval(goog.bind(this.timerHandler, this), this._delay);
 };
@@ -96,50 +96,50 @@ org_apache_flex_utils_Timer.prototype.start = function() {
 /**
  * @protected
  */
-org_apache_flex_utils_Timer.prototype.timerHandler =
+org.apache.flex.utils.Timer.prototype.timerHandler =
     function() {
   this._currentCount++;
   if (this._repeatCount > 0 && this._currentCount >= this._repeatCount) {
     this.stop();
   }
 
-  this.dispatchEvent(new org_apache_flex_events_Event('timer'));
+  this.dispatchEvent(new org.apache.flex.events.Event('timer'));
 
 };
 
-Object.defineProperties(org_apache_flex_utils_Timer.prototype, {
+Object.defineProperties(org.apache.flex.utils.Timer.prototype, {
     /** @export */
     currentCount: {
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         get: function() {
             return this._currentCount;
         }
     },
     /** @export */
     running: {
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         get: function() {
             return this.timerInterval !== -1;
         }
     },
     /** @export */
     delay: {
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         get: function() {
             return this._delay;
         },
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         set: function(value) {
             this._delay = value;
         }
     },
     /** @export */
     repeatCount: {
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         get: function() {
             return this._repeatCount;
         },
-        /** @this {org_apache_flex_utils_Timer} */
+        /** @this {org.apache.flex.utils.Timer} */
         set: function(value) {
             this._repeatCount = value;
         }

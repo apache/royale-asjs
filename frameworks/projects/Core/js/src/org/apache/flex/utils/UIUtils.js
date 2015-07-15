@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_UIUtils');
+goog.provide('org.apache.flex.utils.UIUtils');
 
-goog.require('org_apache_flex_core_IPopUpHost');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IPopUpHost');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_utils_UIUtils = function() {
+org.apache.flex.utils.UIUtils = function() {
 };
 
 
@@ -31,9 +31,9 @@ org_apache_flex_utils_UIUtils = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_UIUtils.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.UIUtils.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIUtils',
-                qName: 'org_apache_flex_utils_UIUtils' }] };
+                qName: 'org.apache.flex.utils.UIUtils' }] };
 
 
 /**
@@ -41,7 +41,7 @@ org_apache_flex_utils_UIUtils.prototype.FLEXJS_CLASS_INFO =
  * @param {Object} item The item to be centered.
  * @param {Object} relativeTo The object used as reference.
  */
-org_apache_flex_utils_UIUtils.center =
+org.apache.flex.utils.UIUtils.center =
     function(item, relativeTo) {
 
   var rw = relativeTo.width;
@@ -61,10 +61,10 @@ org_apache_flex_utils_UIUtils.center =
  * @param {Object} start A component to start the search.
  * @return {Object} A component that implements IPopUpHost.
  */
-org_apache_flex_utils_UIUtils.findPopUpHost =
+org.apache.flex.utils.UIUtils.findPopUpHost =
     function(start) {
 
-  while (start != null && !org_apache_flex_utils_Language.is(start, org_apache_flex_core_IPopUpHost)) {
+  while (start != null && !org.apache.flex.utils.Language.is(start, org.apache.flex.core.IPopUpHost)) {
     start = start.parent;
   }
 
@@ -76,7 +76,7 @@ org_apache_flex_utils_UIUtils.findPopUpHost =
  * @export
  * @param {Object} popUp An IPopUpHost component looking to be removed.
  */
-org_apache_flex_utils_UIUtils.removePopUp =
+org.apache.flex.utils.UIUtils.removePopUp =
     function(popUp) {
 
   var p = popUp.parent;

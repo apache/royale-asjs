@@ -13,25 +13,25 @@
  */
 
 /**
- * org_apache_flex_core_IContentView
+ * org.apache.flex.core.IContentView
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IContentView');
+goog.provide('org.apache.flex.core.IContentView');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IContentView = function() {
+org.apache.flex.core.IContentView = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_IContentView.prototype, {
+Object.defineProperties(org.apache.flex.core.IContentView.prototype, {
     /** @export */
     x: {
         get: function() {},
@@ -59,14 +59,14 @@ Object.defineProperties(org_apache_flex_core_IContentView.prototype, {
  * Adds a new element to component.
  * @param {Object} value The child element being added.
  */
-org_apache_flex_core_IContentView.prototype.addElement = function(value) {};
+org.apache.flex.core.IContentView.prototype.addElement = function(value) {};
 
 
 /**
  * Removes all of the component's children.
  * @return {void}
  */
-org_apache_flex_core_IContentView.prototype.removeAllElements = function() {};
+org.apache.flex.core.IContentView.prototype.removeAllElements = function() {};
 
 
 /**
@@ -74,6 +74,6 @@ org_apache_flex_core_IContentView.prototype.removeAllElements = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IContentView.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IContentView', qName: 'org_apache_flex_core_IContentView'}]
+org.apache.flex.core.IContentView.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IContentView', qName: 'org.apache.flex.core.IContentView'}]
 };

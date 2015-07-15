@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Spinner');
+goog.provide('org.apache.flex.html.Spinner');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_TextButton');
-goog.require('org_apache_flex_html_beads_controllers_SpinnerMouseController');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.TextButton');
+goog.require('org.apache.flex.html.beads.controllers.SpinnerMouseController');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_Spinner = function() {
-  org_apache_flex_html_Spinner.base(this, 'constructor');
+org.apache.flex.html.Spinner = function() {
+  org.apache.flex.html.Spinner.base(this, 'constructor');
 
   this.minimum_ = 0;
   this.maximum_ = 100;
@@ -33,8 +33,8 @@ org_apache_flex_html_Spinner = function() {
   this.stepSize_ = 1;
   this.snapInterval_ = 1;
 };
-goog.inherits(org_apache_flex_html_Spinner,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.Spinner,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -42,30 +42,30 @@ goog.inherits(org_apache_flex_html_Spinner,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Spinner.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Spinner.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Spinner',
-                qName: 'org_apache_flex_html_Spinner'}] };
+                qName: 'org.apache.flex.html.Spinner'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_Spinner.prototype.createElement =
+org.apache.flex.html.Spinner.prototype.createElement =
     function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
 
   this.element.style.verticalAlign = 'middle';
 
-  this.incrementButton = new org_apache_flex_html_TextButton();
+  this.incrementButton = new org.apache.flex.html.TextButton();
   this.incrementButton.text = '\u25B2';
   this.addElement(this.incrementButton);
 
-  this.decrementButton = new org_apache_flex_html_TextButton();
+  this.decrementButton = new org.apache.flex.html.TextButton();
   this.decrementButton.text = '\u25BC';
   this.addElement(this.decrementButton);
 
-  this.controller = new org_apache_flex_html_beads_controllers_SpinnerMouseController();
+  this.controller = new org.apache.flex.html.beads.controllers.SpinnerMouseController();
   this.addBead(this.controller);
 
   this.element.flexjs_wrapper = this;
@@ -74,14 +74,14 @@ org_apache_flex_html_Spinner.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
+Object.defineProperties(org.apache.flex.html.Spinner.prototype, {
     /** @export */
     minimum: {
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         get: function() {
             return this.minimum_;
         },
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         set: function(value) {
             if (value != this.minimum_) {
               this.minimum_ = value;
@@ -91,11 +91,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     },
     /** @export */
     maximum: {
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         get: function() {
             return this.maximum_;
         },
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         set: function(value) {
             if (value != this.maximum_) {
               this.maximum_ = value;
@@ -105,11 +105,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     },
     /** @export */
     snapInterval: {
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         get: function() {
             return this.snapInterval_;
         },
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         set: function(value) {
             if (value != this.snapInterval_) {
               this.snapInterval_ = value;
@@ -119,11 +119,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     },
     /** @export */
     stepSize: {
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         get: function() {
             return this.stepSize_;
         },
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         set: function(value) {
             if (value != this.stepSize_) {
               this.stepSize_ = value;
@@ -133,11 +133,11 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
     },
     /** @export */
     value: {
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         get: function() {
             return this.value_;
         },
-        /** @this {org_apache_flex_html_Spinner} */
+        /** @this {org.apache.flex.html.Spinner} */
         set: function(value) {
             if (value != this.value_) {
               this.value_ = value;
@@ -153,7 +153,7 @@ Object.defineProperties(org_apache_flex_html_Spinner.prototype, {
  * @return {number} The new value based on snapInterval
  * and stepSize.
  */
-org_apache_flex_html_Spinner.prototype.snap = function(value)
+org.apache.flex.html.Spinner.prototype.snap = function(value)
     {
   var si = this.snapInterval_;
   var n = Math.round((value - this.minimum_) / si) * si + this.minimum_;

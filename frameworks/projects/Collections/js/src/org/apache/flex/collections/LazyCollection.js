@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_collections_LazyCollection');
+goog.provide('org.apache.flex.collections.LazyCollection');
 
-goog.require('org_apache_flex_events_EventDispatcher');
-goog.require('org_apache_flex_events_IEventDispatcher');
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_collections_LazyCollection = function() {
-  org_apache_flex_collections_LazyCollection.base(this, 'constructor');
+org.apache.flex.collections.LazyCollection = function() {
+  org.apache.flex.collections.LazyCollection.base(this, 'constructor');
   /**
    * @private
    * @type {Object}
@@ -56,7 +56,7 @@ org_apache_flex_collections_LazyCollection = function() {
    */
   this.strand_ = null;
 };
-goog.inherits(org_apache_flex_collections_LazyCollection, org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.collections.LazyCollection, org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -64,16 +64,16 @@ goog.inherits(org_apache_flex_collections_LazyCollection, org_apache_flex_events
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_collections_LazyCollection.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.collections.LazyCollection.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'LazyCollection',
-                qName: 'org_apache_flex_collections_LazyCollection'}],
-      interfaces: [org_apache_flex_events_IEventDispatcher]};
+                qName: 'org.apache.flex.collections.LazyCollection'}],
+      interfaces: [org.apache.flex.events.IEventDispatcher]};
 
 
-Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
+Object.defineProperties(org.apache.flex.collections.LazyCollection.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -84,40 +84,40 @@ Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
     },
     /** @export */
     length: {
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         get: function() {
             return this.rawData_ ? this.rawData_.length : 0;
         }
     },
     /** @export */
     inputParser: {
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         get: function() {
             return this.inputParser_;
         },
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         set: function(value) {
             this.inputParser_ = value;
         }
     },
     /** @export */
     itemConverter: {
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         get: function() {
             return this.itemConverter_;
         },
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         set: function(value) {
             this.itemConverter_ = value;
         }
     },
     /** @export */
     id: {
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         get: function() {
             return this.id_;
         },
-        /** @this {org_apache_flex_collections_LazyCollection} */
+        /** @this {org.apache.flex.collections.LazyCollection} */
         set: function(value) {
             if (this.id_ !== value) {
               this.id_ = value;
@@ -132,13 +132,13 @@ Object.defineProperties(org_apache_flex_collections_LazyCollection.prototype, {
  * @private
  * @type {string}
  */
-org_apache_flex_collections_LazyCollection.prototype.id_ = '';
+org.apache.flex.collections.LazyCollection.prototype.id_ = '';
 
 
 /**
  * @protected
  */
-org_apache_flex_collections_LazyCollection.prototype.completeHandler =
+org.apache.flex.collections.LazyCollection.prototype.completeHandler =
     function() {
   var results = this.strand_.data;
   this.rawData_ = this.inputParser_.parseItems(results);
@@ -152,7 +152,7 @@ org_apache_flex_collections_LazyCollection.prototype.completeHandler =
  * @param {number} index The index in the collection.
  * @return {Object} An item in the collection.
  */
-org_apache_flex_collections_LazyCollection.prototype.getItemAt =
+org.apache.flex.collections.LazyCollection.prototype.getItemAt =
     function(index) {
   if (this.data_[index] === undefined) {
     this.data_[index] =

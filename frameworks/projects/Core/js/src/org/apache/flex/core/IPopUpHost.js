@@ -13,24 +13,24 @@
  */
 
 /**
- * org_apache_flex_core_IPopUpHost
+ * org.apache.flex.core.IPopUpHost
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IPopUpHost');
+goog.provide('org.apache.flex.core.IPopUpHost');
 
-goog.require('org_apache_flex_core_IParent');
+goog.require('org.apache.flex.core.IParent');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IParent}
+ * @extends {org.apache.flex.core.IParent}
  */
-org_apache_flex_core_IPopUpHost = function() {
+org.apache.flex.core.IPopUpHost = function() {
 };
 
 
@@ -39,7 +39,7 @@ org_apache_flex_core_IPopUpHost = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IPopUpHost.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IPopUpHost', qName: 'org_apache_flex_core_IPopUpHost'}],
-  interfaces: [org_apache_flex_core_IParent]
+org.apache.flex.core.IPopUpHost.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IPopUpHost', qName: 'org.apache.flex.core.IPopUpHost'}],
+  interfaces: [org.apache.flex.core.IParent]
 };

@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_PointUtils');
+goog.provide('org.apache.flex.utils.PointUtils');
 
-goog.require('org_apache_flex_geom_Point');
+goog.require('org.apache.flex.geom.Point');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_utils_PointUtils = function() {
+org.apache.flex.utils.PointUtils = function() {
 };
 
 
@@ -30,18 +30,18 @@ org_apache_flex_utils_PointUtils = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_PointUtils.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.PointUtils.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PointUtils',
-                qName: 'org_apache_flex_utils_PointUtils' }] };
+                qName: 'org.apache.flex.utils.PointUtils' }] };
 
 
 /**
  * @export
- * @param {org_apache_flex_geom_Point} point The Point to be converted.
+ * @param {org.apache.flex.geom.Point} point The Point to be converted.
  * @param {Object} local The object used as reference.
- * @return {org_apache_flex_geom_Point} The converted Point.
+ * @return {org.apache.flex.geom.Point} The converted Point.
  */
-org_apache_flex_utils_PointUtils.globalToLocal =
+org.apache.flex.utils.PointUtils.globalToLocal =
     function(point, local) {
   var x = point.x, y = point.y;
   var element = local.element;
@@ -57,17 +57,17 @@ org_apache_flex_utils_PointUtils.globalToLocal =
     }
   }
   while (element);
-  return new org_apache_flex_geom_Point(x, y);
+  return new org.apache.flex.geom.Point(x, y);
 };
 
 
 /**
  * @export
- * @param {org_apache_flex_geom_Point} point The Point to be converted.
+ * @param {org.apache.flex.geom.Point} point The Point to be converted.
  * @param {Object} local The object used as reference.
- * @return {org_apache_flex_geom_Point} The converted Point.
+ * @return {org.apache.flex.geom.Point} The converted Point.
  */
-org_apache_flex_utils_PointUtils.localToGlobal =
+org.apache.flex.utils.PointUtils.localToGlobal =
     function(point, local) {
   var x = point.x, y = point.y;
   var element = local.element;
@@ -83,5 +83,5 @@ org_apache_flex_utils_PointUtils.localToGlobal =
     }
   }
   while (element);
-  return new org_apache_flex_geom_Point(x, y);
+  return new org.apache.flex.geom.Point(x, y);
 };

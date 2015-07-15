@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_WatcherBase');
+goog.provide('org.apache.flex.binding.WatcherBase');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_binding_WatcherBase = function() {
+org.apache.flex.binding.WatcherBase = function() {
 
   /**
      * @protected
@@ -42,9 +42,9 @@ org_apache_flex_binding_WatcherBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_WatcherBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.WatcherBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'WatcherBase',
-                qName: 'org_apache_flex_binding_WatcherBase'}] };
+                qName: 'org.apache.flex.binding.WatcherBase'}] };
 
 
 /**
@@ -52,16 +52,16 @@ org_apache_flex_binding_WatcherBase.prototype.FLEXJS_CLASS_INFO =
  *  @type {Object|number|string|boolean}
  *  The value itself.
  */
-org_apache_flex_binding_WatcherBase.prototype.value = null;
+org.apache.flex.binding.WatcherBase.prototype.value = null;
 
 
 /**
  *  @export
  *  This is an abstract method that subclasses implement.
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  @param {Object} parent The new parent.
  */
-org_apache_flex_binding_WatcherBase.prototype.parentChanged =
+org.apache.flex.binding.WatcherBase.prototype.parentChanged =
     function(parent) {
 };
 
@@ -70,10 +70,10 @@ org_apache_flex_binding_WatcherBase.prototype.parentChanged =
  *  @export
  *  Add a child to this watcher, meaning that the child
  *  is watching a sub value of ours.
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  @param {Object} child The new child.
  */
-org_apache_flex_binding_WatcherBase.prototype.addChild =
+org.apache.flex.binding.WatcherBase.prototype.addChild =
     function(child) {
   if (!this.children)
     this.children = [child];
@@ -88,10 +88,10 @@ org_apache_flex_binding_WatcherBase.prototype.addChild =
  *  @export
  *  Add a binding to this watcher, meaning that the binding
  *  is notified when our value changes.
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  @param {Object} binding The new binding.
  */
-org_apache_flex_binding_WatcherBase.prototype.addBinding =
+org.apache.flex.binding.WatcherBase.prototype.addBinding =
     function(binding) {
   if (!this.listeners)
     this.listeners = [binding];
@@ -104,11 +104,11 @@ org_apache_flex_binding_WatcherBase.prototype.addBinding =
 
 /**
  *  @export
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  We have probably changed, so go through
  *  and make sure our children are updated.
  */
-org_apache_flex_binding_WatcherBase.prototype.updateChildren = function() {
+org.apache.flex.binding.WatcherBase.prototype.updateChildren = function() {
   if (this.children)
   {
     var n = this.children.length;
@@ -122,11 +122,11 @@ org_apache_flex_binding_WatcherBase.prototype.updateChildren = function() {
 
 /**
  *  @protected
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  @param {Object} oldValue The prior value.
  *  @return {boolean} True if value changed.
  */
-org_apache_flex_binding_WatcherBase.prototype.valueChanged =
+org.apache.flex.binding.WatcherBase.prototype.valueChanged =
     function(oldValue) {
 
   if (oldValue == null && this.value == null)
@@ -169,10 +169,10 @@ org_apache_flex_binding_WatcherBase.prototype.valueChanged =
 
 /**
  *  @protected
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  *  @param {function(?): ?} wrappedFunction The function to call.
  */
-org_apache_flex_binding_WatcherBase.prototype.wrapUpdate =
+org.apache.flex.binding.WatcherBase.prototype.wrapUpdate =
     function(wrappedFunction) {
   try
   {
@@ -180,11 +180,11 @@ org_apache_flex_binding_WatcherBase.prototype.wrapUpdate =
   }
   catch (error)
   {
-    var staticClass = org_apache_flex_binding_WatcherBase;
+    var staticClass = org.apache.flex.binding.WatcherBase;
     var n = staticClass.allowedErrorTypes.length;
     for (var i = 0; i < n; i++)
     {
-      if (org_apache_flex_utils_Language.is(error, staticClass.allowedErrorTypes[i].type))
+      if (org.apache.flex.utils.Language.is(error, staticClass.allowedErrorTypes[i].type))
       {
         var handler = staticClass.allowedErrorTypes[i].handler;
         if (handler != null)
@@ -204,7 +204,7 @@ org_apache_flex_binding_WatcherBase.prototype.wrapUpdate =
 /**
  * Certain errors are normal when executing an update, so we swallow them:
  */
-org_apache_flex_binding_WatcherBase.allowedErrors = [
+org.apache.flex.binding.WatcherBase.allowedErrors = [
   1006, //   Error #1006: Call attempted on an object
   //                that is not a function.
   1009, //   Error #1009: null has no properties.
@@ -220,7 +220,7 @@ org_apache_flex_binding_WatcherBase.allowedErrors = [
  * Certain types of errors are normal when executing an update,
  * so we custom handle them or swallow them:
  */
-org_apache_flex_binding_WatcherBase.allowedErrorTypes = [
+org.apache.flex.binding.WatcherBase.allowedErrorTypes = [
   { type: RangeError /*,
               handler: function(w:WatcherBase,
                     wrappedFunction:Function):Object { return null }*/
@@ -230,9 +230,9 @@ org_apache_flex_binding_WatcherBase.allowedErrorTypes = [
 
 /**
  *  @protected
- *  @this {org_apache_flex_binding_WatcherBase}
+ *  @this {org.apache.flex.binding.WatcherBase}
  */
-org_apache_flex_binding_WatcherBase.prototype.notifyListeners = function()
+org.apache.flex.binding.WatcherBase.prototype.notifyListeners = function()
     {
   if (this.listeners)
   {

@@ -13,25 +13,25 @@
  */
 
 /**
- * org_apache_flex_core_IChild
+ * org.apache.flex.core.IChild
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IChild');
+goog.provide('org.apache.flex.core.IChild');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IChild = function() {
+org.apache.flex.core.IChild = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_IChild.prototype, {
+Object.defineProperties(org.apache.flex.core.IChild.prototype, {
     /** @export */
     parent: {
         get: function() {}
@@ -44,6 +44,6 @@ Object.defineProperties(org_apache_flex_core_IChild.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IChild.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IChild', qName: 'org_apache_flex_core_IChild'}]
+org.apache.flex.core.IChild.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IChild', qName: 'org.apache.flex.core.IChild'}]
 };

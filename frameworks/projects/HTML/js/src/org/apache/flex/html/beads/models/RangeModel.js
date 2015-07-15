@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_models_RangeModel');
+goog.provide('org.apache.flex.html.beads.models.RangeModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_html_beads_models_RangeModel = function() {
-  org_apache_flex_html_beads_models_RangeModel.base(this, 'constructor');
+org.apache.flex.html.beads.models.RangeModel = function() {
+  org.apache.flex.html.beads.models.RangeModel.base(this, 'constructor');
 
   this.minimum_ = 0;
   this.maximum_ = 100;
@@ -32,8 +32,8 @@ org_apache_flex_html_beads_models_RangeModel = function() {
   this.snapInterval_ = 1;
   this.stepSize_ = 1;
 };
-goog.inherits(org_apache_flex_html_beads_models_RangeModel,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.html.beads.models.RangeModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -41,27 +41,27 @@ goog.inherits(org_apache_flex_html_beads_models_RangeModel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_models_RangeModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.RangeModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RangeModel',
-                qName: 'org_apache_flex_html_beads_models_RangeModel'}],
-      interfaces: [org_apache_flex_core_IBeadModel]};
+                qName: 'org.apache.flex.html.beads.models.RangeModel'}],
+      interfaces: [org.apache.flex.core.IBeadModel]};
 
 
-Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.models.RangeModel.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     minimum: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         get: function() {
             return this.minimum_;
         },
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(value) {
             if (this.minimum_ != value) {
               this.minimum_ = value;
@@ -71,11 +71,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
     },
     /** @export */
     maximum: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         get: function() {
             return this.maximum_;
         },
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(value) {
             if (this.maximum_ != value) {
               this.maximum_ = value;
@@ -85,11 +85,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
     },
     /** @export */
     value: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         get: function() {
             return this.value_;
         },
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(newValue) {
             if (this.value_ != newValue) {
 
@@ -106,11 +106,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
     },
     /** @export */
     snapInterval: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         get: function() {
             return this.snapInterval_;
         },
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(value) {
             if (this.snapInterval_ != value) {
               this.snapInterval_ = value;
@@ -120,11 +120,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
     },
     /** @export */
     stepSize: {
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         get: function() {
             return this.stepSize_;
         },
-        /** @this {org_apache_flex_html_beads_models_RangeModel} */
+        /** @this {org.apache.flex.html.beads.models.RangeModel} */
         set: function(value) {
             if (this.stepSize_ != value) {
               this.stepSize_ = value;
@@ -140,7 +140,7 @@ Object.defineProperties(org_apache_flex_html_beads_models_RangeModel.prototype, 
  * @param {number} value The candidate number.
  * @return {number} Adjusted value.
  */
-org_apache_flex_html_beads_models_RangeModel.prototype.
+org.apache.flex.html.beads.models.RangeModel.prototype.
     snap = function(value) {
   var si = this.snapInterval_;
   var n = Math.round((value - this.minimum_) / si) *

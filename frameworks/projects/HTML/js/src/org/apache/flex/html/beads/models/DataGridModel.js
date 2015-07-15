@@ -12,30 +12,30 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_models_DataGridModel');
+goog.provide('org.apache.flex.html.beads.models.DataGridModel');
 
-goog.require('org_apache_flex_core_IDataGridModel');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IDataGridModel');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_beads_models_ArraySelectionModel}
- * @implements {org_apache_flex_core_IDataGridModel}
+ * @extends {org.apache.flex.html.beads.models.ArraySelectionModel}
+ * @implements {org.apache.flex.core.IDataGridModel}
  */
-org_apache_flex_html_beads_models_DataGridModel =
+org.apache.flex.html.beads.models.DataGridModel =
     function() {
-  org_apache_flex_html_beads_models_DataGridModel.base(this, 'constructor');
+  org.apache.flex.html.beads.models.DataGridModel.base(this, 'constructor');
 
   this.labelFields_ = [];
 
   this.className = 'DataGridModel';
 };
 goog.inherits(
-    org_apache_flex_html_beads_models_DataGridModel,
-    org_apache_flex_html_beads_models_ArraySelectionModel);
+    org.apache.flex.html.beads.models.DataGridModel,
+    org.apache.flex.html.beads.models.ArraySelectionModel);
 
 
 /**
@@ -43,28 +43,28 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_models_DataGridModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.DataGridModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataGridModel',
-                qName: 'org_apache_flex_html_beads_models_DataGridModel' }],
-      interfaces: [org_apache_flex_core_IDataGridModel] };
+                qName: 'org.apache.flex.html.beads.models.DataGridModel' }],
+      interfaces: [org.apache.flex.core.IDataGridModel] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_models_DataGridModel.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.models.DataGridModel.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+        /** @this {org.apache.flex.html.beads.models.DataGridModel} */
         set: function(value) {
-            org_apache_flex_utils_Language(org_apache_flex_html_beads_models_DataGridModel, this, 'strand', value);
+            org.apache.flex.utils.Language(org.apache.flex.html.beads.models.DataGridModel, this, 'strand', value);
             this.strand_ = value;
         }
     },
     /** @export */
     columns: {
-        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+        /** @this {org.apache.flex.html.beads.models.DataGridModel} */
         set: function(value) {
             this.columns_ = value;
         },
-        /** @this {org_apache_flex_html_beads_models_DataGridModel} */
+        /** @this {org.apache.flex.html.beads.models.DataGridModel} */
         get: function() {
             return this.columns_;
         }

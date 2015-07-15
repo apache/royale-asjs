@@ -12,42 +12,42 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_createjs_TextButton');
+goog.provide('org.apache.flex.createjs.TextButton');
 
-goog.require('org_apache_flex_createjs_core_UIBase');
+goog.require('org.apache.flex.createjs.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_createjs_core_UIBase}
+ * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org_apache_flex_createjs_TextButton = function() {
-  org_apache_flex_createjs_core_UIBase.call(this);
+org.apache.flex.createjs.TextButton = function() {
+  org.apache.flex.createjs.core.UIBase.call(this);
 };
-goog.inherits(org_apache_flex_createjs_TextButton,
-    org_apache_flex_createjs_core_UIBase);
+goog.inherits(org.apache.flex.createjs.TextButton,
+    org.apache.flex.createjs.core.UIBase);
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_createjs_TextButton.prototype.buttonLabel = null;
+org.apache.flex.createjs.TextButton.prototype.buttonLabel = null;
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_createjs_TextButton.prototype.buttonBackground =
+org.apache.flex.createjs.TextButton.prototype.buttonBackground =
     null;
 
 
 /**
  * @override
  */
-org_apache_flex_createjs_TextButton.prototype.createElement =
+org.apache.flex.createjs.TextButton.prototype.createElement =
     function(p) {
 
   this.buttonBackground = new createjs.Shape();
@@ -75,14 +75,14 @@ org_apache_flex_createjs_TextButton.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_createjs_TextButton.prototype, {
+Object.defineProperties(org.apache.flex.createjs.TextButton.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_createjs_TextButton} */
+        /** @this {org.apache.flex.createjs.TextButton} */
         get: function() {
             return this.buttonLabel.text;
         },
-        /** @this {org_apache_flex_createjs_TextButton} */
+        /** @this {org.apache.flex.createjs.TextButton} */
         set: function(value) {
             this.buttonLabel.text = value;
         }

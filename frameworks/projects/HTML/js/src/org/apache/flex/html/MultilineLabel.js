@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_MultilineLabel');
+goog.provide('org.apache.flex.html.MultilineLabel');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_MultilineLabel = function() {
-  org_apache_flex_html_MultilineLabel.base(this, 'constructor');
+org.apache.flex.html.MultilineLabel = function() {
+  org.apache.flex.html.MultilineLabel.base(this, 'constructor');
 
   this.element = document.createElement('div');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org_apache_flex_html_MultilineLabel,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.MultilineLabel,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -38,30 +38,30 @@ goog.inherits(org_apache_flex_html_MultilineLabel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_MultilineLabel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.MultilineLabel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'MultilineLabel',
-                qName: 'org_apache_flex_html_MultilineLabel' }] };
+                qName: 'org.apache.flex.html.MultilineLabel' }] };
 
 
-Object.defineProperties(org_apache_flex_html_MultilineLabel.prototype, {
+Object.defineProperties(org.apache.flex.html.MultilineLabel.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_MultilineLabel} */
+        /** @this {org.apache.flex.html.MultilineLabel} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html_MultilineLabel} */
+        /** @this {org.apache.flex.html.MultilineLabel} */
         set: function(value) {
             this.element.innerHTML = value;
         }
     },
     /** @export */
     html: {
-        /** @this {org_apache_flex_html_MultilineLabel} */
+        /** @this {org.apache.flex.html.MultilineLabel} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html_MultilineLabel} */
+        /** @this {org.apache.flex.html.MultilineLabel} */
         set: function(value) {
             this.element.innerHTML = value;
         }

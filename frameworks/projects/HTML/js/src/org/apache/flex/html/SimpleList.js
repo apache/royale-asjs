@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_SimpleList');
+goog.provide('org.apache.flex.html.SimpleList');
 
-goog.require('org_apache_flex_core_ListBase');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
+goog.require('org.apache.flex.core.ListBase');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html_SimpleList = function() {
-  org_apache_flex_html_SimpleList.base(this, 'constructor');
-  this.model = new org_apache_flex_html_beads.models.ArraySelectionModel();
+org.apache.flex.html.SimpleList = function() {
+  org.apache.flex.html.SimpleList.base(this, 'constructor');
+  this.model = new org.apache.flex.html.beads.models.ArraySelectionModel();
 };
-goog.inherits(org_apache_flex_html_SimpleList,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html.SimpleList,
+    org.apache.flex.core.ListBase);
 
 
 /**
@@ -36,15 +36,15 @@ goog.inherits(org_apache_flex_html_SimpleList,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_SimpleList.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.SimpleList.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleList',
-                qName: 'org_apache_flex_html_SimpleList'}] };
+                qName: 'org.apache.flex.html.SimpleList'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_SimpleList.prototype.
+org.apache.flex.html.SimpleList.prototype.
     createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 5;
@@ -57,14 +57,14 @@ org_apache_flex_html_SimpleList.prototype.
 };
 
 
-Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
+Object.defineProperties(org.apache.flex.html.SimpleList.prototype, {
     /** @export */
     dataProvider: {
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         get: function() {
             return this.model.dataProvider;
         },
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         set: function(value) {
             var dp, i, n, opt;
 
@@ -86,22 +86,22 @@ Object.defineProperties(org_apache_flex_html_SimpleList.prototype, {
     },
     /** @export */
     selectedIndex: {
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         get: function() {
             return this.model.selectedIndex;
         },
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         set: function(value) {
             this.model.selectedIndex = value;
         }
     },
     /** @export */
     selectedItem: {
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         get: function() {
             return this.model.selectedItem;
         },
-        /** @this {org_apache_flex_html_SimpleList} */
+        /** @this {org.apache.flex.html.SimpleList} */
         set: function(value) {
             this.model.selectedItem = value;
         }

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_ViewSourceContextMenuOption');
+goog.provide('org.apache.flex.utils.ViewSourceContextMenuOption');
 
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_utils_ViewSourceContextMenuOption = function() {
+org.apache.flex.utils.ViewSourceContextMenuOption = function() {
   // no implementation in JS since ViewSource is already in menu
 };
 
@@ -32,15 +32,15 @@ org_apache_flex_utils_ViewSourceContextMenuOption = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.ViewSourceContextMenuOption.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewSourceContextMenuOption',
-                qName: 'org_apache_flex_utils_ViewSourceContextMenuOption'}] };
+                qName: 'org.apache.flex.utils.ViewSourceContextMenuOption'}] };
 
 
-Object.defineProperties(org_apache_flex_utils_ViewSourceContextMenuOption.prototype, {
+Object.defineProperties(org.apache.flex.utils.ViewSourceContextMenuOption.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_utils_ViewSourceContextMenuOption} */
+        /** @this {org.apache.flex.utils.ViewSourceContextMenuOption} */
         set: function(value) {}
     }
 });

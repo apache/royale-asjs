@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_FilledRectangle');
+goog.provide('org.apache.flex.core.FilledRectangle');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_core_FilledRectangle = function() {
-  org_apache_flex_core_FilledRectangle.base(this, 'constructor');
+org.apache.flex.core.FilledRectangle = function() {
+  org.apache.flex.core.FilledRectangle.base(this, 'constructor');
 
   /**
    * @private
@@ -31,8 +31,8 @@ org_apache_flex_core_FilledRectangle = function() {
    */
   this.fillColor_ = 0;
 };
-goog.inherits(org_apache_flex_core_FilledRectangle,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.core.FilledRectangle,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -40,28 +40,28 @@ goog.inherits(org_apache_flex_core_FilledRectangle,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_FilledRectangle.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.FilledRectangle.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'FilledRectangle',
-                qName: 'org_apache_flex_core_FilledRectangle' }] };
+                qName: 'org.apache.flex.core.FilledRectangle' }] };
 
 
 /**
  * @override
  */
-org_apache_flex_core_FilledRectangle.prototype.addedToParent = function() {
-  org_apache_flex_core_FilledRectangle.base(this, 'addedToParent');
+org.apache.flex.core.FilledRectangle.prototype.addedToParent = function() {
+  org.apache.flex.core.FilledRectangle.base(this, 'addedToParent');
   this.drawRect(this.x, this.y, this.width, this.height);
 };
 
 
-Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
+Object.defineProperties(org.apache.flex.core.FilledRectangle.prototype, {
     /** @export */
     fillColor: {
-        /** @this {org_apache_flex_core_FilledRectangle} */
+        /** @this {org.apache.flex.core.FilledRectangle} */
         get: function() {
              return this.fillColor_;
         },
-        /** @this {org_apache_flex_core_FilledRectangle} */
+        /** @this {org.apache.flex.core.FilledRectangle} */
         set: function(value) {
              this.fillColor_ = value;
         }
@@ -76,7 +76,7 @@ Object.defineProperties(org_apache_flex_core_FilledRectangle.prototype, {
  * @param {number} width The width.
  * @param {number} height The height.
  */
-org_apache_flex_core_UIBase.prototype.drawRect = function(x, y, width, height) {
+org.apache.flex.core.UIBase.prototype.drawRect = function(x, y, width, height) {
   this.element.style.position = 'absolute';
   this.element.style.backgroundColor = '#' + this.fillColor_.toString(16);
   if (!isNaN(x)) this.x = x;

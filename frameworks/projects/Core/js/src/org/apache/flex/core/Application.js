@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_Application');
+goog.provide('org.apache.flex.core.Application');
 
-goog.require('org_apache_flex_core_HTMLElementWrapper');
-goog.require('org_apache_flex_core_IParent');
-goog.require('org_apache_flex_core_IValuesImpl');
-goog.require('org_apache_flex_core_ValuesManager');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.IParent');
+goog.require('org.apache.flex.core.IValuesImpl');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_HTMLElementWrapper}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
-org_apache_flex_core_Application = function() {
-  org_apache_flex_core_Application.base(this, 'constructor');
+org.apache.flex.core.Application = function() {
+  org.apache.flex.core.Application.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_core_Application,
-    org_apache_flex_core_HTMLElementWrapper);
+goog.inherits(org.apache.flex.core.Application,
+    org.apache.flex.core.HTMLElementWrapper);
 
 
 /**
@@ -38,42 +38,42 @@ goog.inherits(org_apache_flex_core_Application,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_Application.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.Application.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Application',
-                qName: 'org_apache_flex_core_Application' }],
-      interfaces: [org_apache_flex_core_IParent] };
+                qName: 'org.apache.flex.core.Application' }],
+      interfaces: [org.apache.flex.core.IParent] };
 
 
 /**
  * @private
  * @type {Object}
  */
-org_apache_flex_core_Application.prototype.controller_ = null;
+org.apache.flex.core.Application.prototype.controller_ = null;
 
 
 /**
  * @private
  * @type {Object}
  */
-org_apache_flex_core_Application.prototype.initialView_ = null;
+org.apache.flex.core.Application.prototype.initialView_ = null;
 
 
 /**
  * @private
- * @type {org_apache_flex_events_EventDispatcher}
+ * @type {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_core_Application.prototype.model_ = null;
+org.apache.flex.core.Application.prototype.model_ = null;
 
 
 /**
  * @export
  */
-org_apache_flex_core_Application.prototype.start = function() {
+org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
 
   this.dispatchEvent('initialize');
 
@@ -91,28 +91,28 @@ org_apache_flex_core_Application.prototype.start = function() {
  * @export
  * @param {Array} data The data for the attributes.
  */
-org_apache_flex_core_Application.prototype.generateMXMLAttributes = function(data) {
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
+org.apache.flex.core.Application.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
 /**
  * @param {Object} c The child element.
  */
-org_apache_flex_core_Application.prototype.addElement =
+org.apache.flex.core.Application.prototype.addElement =
     function(c) {
   this.element.appendChild(c.element);
   c.addedToParent();
 };
 
 
-Object.defineProperties(org_apache_flex_core_Application.prototype,
-  /** @lends {org_apache_flex_core_Application.prototype} */ {
+Object.defineProperties(org.apache.flex.core.Application.prototype,
+  /** @lends {org.apache.flex.core.Application.prototype} */ {
   /** @export */
   valuesImpl: {
-      /** @this {org_apache_flex_core_Application} */
+      /** @this {org.apache.flex.core.Application} */
       set: function(value) {
-          org_apache_flex_core_ValuesManager.valuesImpl = value;
+          org.apache.flex.core.ValuesManager.valuesImpl = value;
           if (value.init) {
             value.init(this);
           }
@@ -120,19 +120,19 @@ Object.defineProperties(org_apache_flex_core_Application.prototype,
   },
   /** @export */
   MXMLDescriptor: {
-      /** @this {org_apache_flex_core_Application} */
+      /** @this {org.apache.flex.core.Application} */
       get: function() {
           return null;
       }
   },
   /** @export */
   controller: {
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     get: function() {
       return this.controller_;
     },
 
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     set: function(value) {
       if (value != this.controller_) {
         this.controller_ = value;
@@ -141,12 +141,12 @@ Object.defineProperties(org_apache_flex_core_Application.prototype,
   },
   /** @export */
   initialView: {
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     get: function() {
       return this.initialView_;
     },
 
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     set: function(value) {
       if (value != this.initialView_) {
         this.initialView_ = value;
@@ -155,12 +155,12 @@ Object.defineProperties(org_apache_flex_core_Application.prototype,
   },
   /** @export */
   model: {
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     get: function() {
       return this.model_;
     },
 
-    /** @this {org_apache_flex_core_Application} */
+    /** @this {org.apache.flex.core.Application} */
     set: function(value) {
       if (value != this.model_) {
         this.model_ = value;

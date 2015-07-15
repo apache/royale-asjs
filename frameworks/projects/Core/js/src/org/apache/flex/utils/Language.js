@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_Language');
+goog.provide('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_utils_Language = function() {
+org.apache.flex.utils.Language = function() {
 };
 
 
@@ -28,9 +28,9 @@ org_apache_flex_utils_Language = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_Language.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.Language.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Language',
-                qName: 'org_apache_flex_utils_Language'}] };
+                qName: 'org.apache.flex.utils.Language'}] };
 
 
 /**
@@ -46,12 +46,12 @@ org_apache_flex_utils_Language.prototype.FLEXJS_CLASS_INFO =
  * @return {?} Returns the lefthand operand if it is of the
  *             type of the righthand operand, otherwise null.
  */
-org_apache_flex_utils_Language.as = function(leftOperand, rightOperand, opt_coercion) {
+org.apache.flex.utils.Language.as = function(leftOperand, rightOperand, opt_coercion) {
   var error, itIs, message;
 
   opt_coercion = (opt_coercion !== undefined) ? opt_coercion : false;
 
-  itIs = org_apache_flex_utils_Language.is(leftOperand, rightOperand);
+  itIs = org.apache.flex.utils.Language.is(leftOperand, rightOperand);
 
   if (!itIs && opt_coercion) {
     message = 'Type Coercion failed';
@@ -74,7 +74,7 @@ org_apache_flex_utils_Language.as = function(leftOperand, rightOperand, opt_coer
  * @param {?} value The value to be cast.
  * @return {number}
  */
-org_apache_flex_utils_Language._int = function(value) {
+org.apache.flex.utils.Language._int = function(value) {
   return value >> 0;
 };
 
@@ -89,7 +89,7 @@ org_apache_flex_utils_Language._int = function(value) {
  *     binary operator in AS3.
  * @return {boolean}
  */
-org_apache_flex_utils_Language.is = function(leftOperand, rightOperand) {
+org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
   if (!leftOperand)
@@ -157,7 +157,7 @@ org_apache_flex_utils_Language.is = function(leftOperand, rightOperand) {
  * @export
  * @param {...Object} var_args The message(s) to be written to the console.
  */
-org_apache_flex_utils_Language.trace = function(var_args) {
+org.apache.flex.utils.Language.trace = function(var_args) {
   var theConsole;
 
   var msg = '';
@@ -188,7 +188,7 @@ org_apache_flex_utils_Language.trace = function(var_args) {
  * @param {?} value The value to be cast.
  * @return {number}
  */
-org_apache_flex_utils_Language.uint = function(value) {
+org.apache.flex.utils.Language.uint = function(value) {
   return value >>> 0;
 };
 
@@ -201,7 +201,7 @@ org_apache_flex_utils_Language.uint = function(value) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org_apache_flex_utils_Language.preincrement = function(obj, prop) {
+org.apache.flex.utils.Language.preincrement = function(obj, prop) {
   var value = obj[prop] + 1;
   obj[prop] = value;
   return value;
@@ -216,7 +216,7 @@ org_apache_flex_utils_Language.preincrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org_apache_flex_utils_Language.predecrement = function(obj, prop) {
+org.apache.flex.utils.Language.predecrement = function(obj, prop) {
   var value = obj[prop] - 1;
   obj[prop] = value;
   return value;
@@ -231,7 +231,7 @@ org_apache_flex_utils_Language.predecrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org_apache_flex_utils_Language.postincrement = function(obj, prop) {
+org.apache.flex.utils.Language.postincrement = function(obj, prop) {
   var value = obj[prop];
   obj[prop] = value + 1;
   return value;
@@ -246,7 +246,7 @@ org_apache_flex_utils_Language.postincrement = function(obj, prop) {
  * @param {string} prop The name of a property.
  * @return {number}
  */
-org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
+org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
   var value = obj[prop];
   obj[prop] = value + 1;
   return value;
@@ -262,7 +262,7 @@ org_apache_flex_utils_Language.postdecrement = function(obj, prop) {
  * @param {string} prop The name of the getter.
  * @return {Object}
  */
-org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
+org.apache.flex.utils.Language.superGetter = function(clazz, pthis, prop) {
   var superClass = clazz.superClass_;
   var superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
   while (superdesc == null)
@@ -283,7 +283,7 @@ org_apache_flex_utils_Language.superGetter = function(clazz, pthis, prop) {
  * @param {string} prop The name of the getter.
  * @param {Object} value The value.
  */
-org_apache_flex_utils_Language.superSetter = function(clazz, pthis, prop, value) {
+org.apache.flex.utils.Language.superSetter = function(clazz, pthis, prop, value) {
   var superClass = clazz.superClass_;
   var superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
   while (superdesc == null)

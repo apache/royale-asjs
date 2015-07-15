@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_List');
+goog.provide('org.apache.flex.html5.List');
 
-goog.require('org_apache_flex_core_ListBase');
+goog.require('org.apache.flex.core.ListBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html5_List = function() {
-  org_apache_flex_html5_List.base(this, 'constructor');
+org.apache.flex.html5.List = function() {
+  org.apache.flex.html5.List.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_List,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html5.List,
+    org.apache.flex.core.ListBase);
 
 
 /**
  * @override
  */
-org_apache_flex_html5_List.prototype.createElement =
+org.apache.flex.html5.List.prototype.createElement =
     function() {
-  org_apache_flex_html5_List.base(this, 'createElement');
+  org.apache.flex.html5.List.base(this, 'createElement');
 
   this.element.size = 5;
 

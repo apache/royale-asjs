@@ -14,35 +14,35 @@
 
 
 /**
- * org_apache_cordova_Application
+ * org.apache.cordova.Application
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_cordova_Weinre');
+goog.provide('org.apache.cordova.Weinre');
 
 
 
 /**
  * @constructor
  */
-org_apache_cordova_Weinre = function() {
+org.apache.cordova.Weinre = function() {
 };
 
 
-Object.defineProperties(org_apache_cordova_Weinre.prototype, {
+Object.defineProperties(org.apache.cordova.Weinre.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_cordova_Weinre} */
+        /** @this {org.apache.cordova.Weinre} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     guid: {
-        /** @this {org_apache_cordova_Weinre} */
+        /** @this {org.apache.cordova.Weinre} */
         set: function(value) {
 
             var scriptNode = document.createElement('SCRIPT');
@@ -62,6 +62,6 @@ Object.defineProperties(org_apache_cordova_Weinre.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_cordova_Weinre.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'Weinre', qName: 'org_apache_cordova_Weinre'}]
+org.apache.cordova.Weinre.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'Weinre', qName: 'org.apache.cordova.Weinre'}]
 };

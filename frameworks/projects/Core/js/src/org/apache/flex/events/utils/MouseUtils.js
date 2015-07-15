@@ -13,14 +13,14 @@
  */
 
 
-goog.provide('org_apache_flex_events_utils_MouseUtils');
+goog.provide('org.apache.flex.events.utils.MouseUtils');
 
 
 /**
  * @param {Object} event The event.
  * @return {Object} class instance associated with the event.target.
  */
-org_apache_flex_events_utils_MouseUtils.eventTarget = function(event) {
+org.apache.flex.events.utils.MouseUtils.eventTarget = function(event) {
   var target = event.target;
   return target.flexjs_wrapper;
 };
@@ -30,7 +30,7 @@ org_apache_flex_events_utils_MouseUtils.eventTarget = function(event) {
  * @param {Object} event The event.
  * @return {number} The x position of the mouse with respect to its parent.
  */
-org_apache_flex_events_utils_MouseUtils.localX = function(event) {
+org.apache.flex.events.utils.MouseUtils.localX = function(event) {
   return event.offsetX;
 };
 
@@ -39,7 +39,7 @@ org_apache_flex_events_utils_MouseUtils.localX = function(event) {
  * @param {Object} event The event.
  * @return {number} The y position of the mouse with respect to its parent.
  */
-org_apache_flex_events_utils_MouseUtils.localY = function(event) {
+org.apache.flex.events.utils.MouseUtils.localY = function(event) {
   return event.offsetY;
 };
 
@@ -48,7 +48,7 @@ org_apache_flex_events_utils_MouseUtils.localY = function(event) {
  * @param {Object} event The event.
  * @return {number} The x position of the mouse with respect to the screen.
  */
-org_apache_flex_events_utils_MouseUtils.globalX = function(event) {
+org.apache.flex.events.utils.MouseUtils.globalX = function(event) {
   return event.clientX;
 };
 
@@ -57,6 +57,6 @@ org_apache_flex_events_utils_MouseUtils.globalX = function(event) {
  * @param {Object} event The event.
  * @return {number} The y position of the mouse with respect to the screen.
  */
-org_apache_flex_events_utils_MouseUtils.globalY = function(event) {
+org.apache.flex.events.utils.MouseUtils.globalY = function(event) {
   return event.clientY;
 };

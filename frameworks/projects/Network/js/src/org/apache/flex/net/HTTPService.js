@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_net_HTTPService');
+goog.provide('org.apache.flex.net.HTTPService');
 
-goog.require('org_apache_flex_core_HTMLElementWrapper');
-goog.require('org_apache_flex_net_HTTPHeader');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.net.HTTPHeader');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_HTMLElementWrapper}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
-org_apache_flex_net_HTTPService = function() {
-  org_apache_flex_net_HTTPService.base(this, 'constructor');
+org.apache.flex.net.HTTPService = function() {
+  org.apache.flex.net.HTTPService.base(this, 'constructor');
 
   /**
    * @private
@@ -99,8 +99,8 @@ org_apache_flex_net_HTTPService = function() {
 
   this.element = new XMLHttpRequest();
 };
-goog.inherits(org_apache_flex_net_HTTPService,
-    org_apache_flex_core_HTMLElementWrapper);
+goog.inherits(org.apache.flex.net.HTTPService,
+    org.apache.flex.core.HTMLElementWrapper);
 
 
 /**
@@ -108,90 +108,90 @@ goog.inherits(org_apache_flex_net_HTTPService,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_net_HTTPService.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.net.HTTPService.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HTTPService',
-                qName: 'org_apache_flex_net_HTTPService'}] };
+                qName: 'org.apache.flex.net.HTTPService'}] };
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.HTTP_METHOD_GET = 'GET';
+org.apache.flex.net.HTTPService.HTTP_METHOD_GET = 'GET';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.HTTP_METHOD_POST = 'POST';
+org.apache.flex.net.HTTPService.HTTP_METHOD_POST = 'POST';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.HTTP_METHOD_PUT = 'PUT';
+org.apache.flex.net.HTTPService.HTTP_METHOD_PUT = 'PUT';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.HTTP_METHOD_DELETE = 'DELETE';
+org.apache.flex.net.HTTPService.HTTP_METHOD_DELETE = 'DELETE';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.EVENT_COMPLETE = 'complete';
+org.apache.flex.net.HTTPService.EVENT_COMPLETE = 'complete';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.EVENT_IO_ERROR = 'ioError';
+org.apache.flex.net.HTTPService.EVENT_IO_ERROR = 'ioError';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.EVENT_HTTP_STATUS = 'httpStatus';
+org.apache.flex.net.HTTPService.EVENT_HTTP_STATUS = 'httpStatus';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_HTTPService.EVENT_HTTP_RESPONSE_STATUS = 'httpResponseStatus';
+org.apache.flex.net.HTTPService.EVENT_HTTP_RESPONSE_STATUS = 'httpResponseStatus';
 
 
-Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
+Object.defineProperties(org.apache.flex.net.HTTPService.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {}
     },
     /** @export */
     beads: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.mxmlBeads_ = value;
         }
     },
     /** @export */
     data: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.element.responseText;
         }
     },
     /** @export */
     json: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             if (!this._json)
               this._json = JSON.parse(this.data);
@@ -200,29 +200,29 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     },
     /** @export */
     contentData: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.contentData_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.contentData_ = value;
         }
     },
     /** @export */
     contentType: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.contentType_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.contentType_ = value;
         }
     },
     /** @export */
     headers: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             if (this.headers_ === undefined) {
               this.headers_ = [];
@@ -230,25 +230,25 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
 
             return this.headers_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.headers_ = value;
         }
     },
     /** @export */
     method: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.method_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.method_ = value;
         }
     },
     /** @export */
     responseHeaders: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
 
@@ -262,7 +262,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
                 part1 = hdr.substring(0, c);
                 part2 = hdr.substring(c + 2);
                 this.responseHeaders_[i] =
-                    new org_apache_flex_net_HTTPHeader(part1, part2);
+                    new org.apache.flex.net.HTTPHeader(part1, part2);
               }
             }
             return this.responseHeaders_;
@@ -270,47 +270,47 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     },
     /** @export */
     responseURL: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.responseURL_;
         }
     },
     /** @export */
     status: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.status_;
         }
     },
     /** @export */
     timeout: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.timeout_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.timeout_ = value;
         }
     },
     /** @export */
     url: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.url_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             this.url_ = value;
         }
     },
     /** @export */
     id: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return this.id_;
         },
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         set: function(value) {
             if (this.id_ !== value) {
               this.id_ = value;
@@ -320,14 +320,14 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
     },
     /** @export */
     MXMLDescriptor: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return null;
         }
     },
     /** @export */
     MXMLProperties: {
-        /** @this {org_apache_flex_net_HTTPService} */
+        /** @this {org.apache.flex.net.HTTPService} */
         get: function() {
             return null;
         }
@@ -338,7 +338,7 @@ Object.defineProperties(org_apache_flex_net_HTTPService.prototype, {
 /**
  * @export
  */
-org_apache_flex_net_HTTPService.prototype.send = function() {
+org.apache.flex.net.HTTPService.prototype.send = function() {
   var contentData, header, i, n, sawContentType, url;
 
   if (this._beads == null && this.mxmlBeads_) {
@@ -354,7 +354,7 @@ org_apache_flex_net_HTTPService.prototype.send = function() {
 
   contentData = null;
   if (this.contentData_ !== undefined) {
-    if (this.method_ === org_apache_flex_net_HTTPService.HTTP_METHOD_GET) {
+    if (this.method_ === org.apache.flex.net.HTTPService.HTTP_METHOD_GET) {
       if (url.indexOf('?') !== -1) {
         url += this.contentData_;
       } else {
@@ -373,7 +373,7 @@ org_apache_flex_net_HTTPService.prototype.send = function() {
     n = this.headers_.length;
     for (i = 0; i < n; i++) {
       header = this.headers_[i];
-      if (header.name === org_apache_flex_net_HTTPHeader.CONTENT_TYPE) {
+      if (header.name === org.apache.flex.net.HTTPHeader.CONTENT_TYPE) {
         sawContentType = true;
       }
 
@@ -381,10 +381,10 @@ org_apache_flex_net_HTTPService.prototype.send = function() {
     }
   }
 
-  if (this.method_ !== org_apache_flex_net_HTTPService.HTTP_METHOD_GET &&
+  if (this.method_ !== org.apache.flex.net.HTTPService.HTTP_METHOD_GET &&
       !sawContentType && contentData) {
     this.element.setRequestHeader(
-        org_apache_flex_net_HTTPHeader.CONTENT_TYPE, this.contentType_);
+        org.apache.flex.net.HTTPHeader.CONTENT_TYPE, this.contentType_);
   }
 
   if (contentData) {
@@ -400,7 +400,7 @@ org_apache_flex_net_HTTPService.prototype.send = function() {
 /**
  * @protected
  */
-org_apache_flex_net_HTTPService.prototype.progressHandler = function() {
+org.apache.flex.net.HTTPService.prototype.progressHandler = function() {
   if (this.element.readyState === 2) {
     this.status_ = this.element.status;
     this.dispatchEvent('httpResponseStatus');
@@ -415,6 +415,6 @@ org_apache_flex_net_HTTPService.prototype.progressHandler = function() {
  * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */
-org_apache_flex_net_HTTPService.prototype.setDocument = function(document, id) {
+org.apache.flex.net.HTTPService.prototype.setDocument = function(document, id) {
   this.document = document;
 };

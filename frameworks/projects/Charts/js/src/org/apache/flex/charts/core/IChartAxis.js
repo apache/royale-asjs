@@ -11,21 +11,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IChartAxis
+ * org.apache.flex.charts.core.IChartAxis
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IChartAxis');
+goog.provide('org.apache.flex.charts.core.IChartAxis');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_charts_core_IChartAxis = function() {
+org.apache.flex.charts.core.IChartAxis = function() {
 };
 
 
@@ -34,6 +34,6 @@ org_apache_flex_charts_core_IChartAxis = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IChartAxis.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChartAxis', qName: 'org_apache_flex_charts_core_IChartAxis'}]
+org.apache.flex.charts.core.IChartAxis.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChartAxis', qName: 'org.apache.flex.charts.core.IChartAxis'}]
   };

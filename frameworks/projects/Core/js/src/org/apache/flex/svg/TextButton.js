@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_svg_TextButton');
+goog.provide('org.apache.flex.svg.TextButton');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_svg_TextButton = function() {
-  org_apache_flex_svg_TextButton.base(this, 'constructor');
+org.apache.flex.svg.TextButton = function() {
+  org.apache.flex.svg.TextButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_svg_TextButton,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.svg.TextButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org_apache_flex_svg_TextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_svg_TextButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.svg.TextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextButton',
-                qName: 'org_apache_flex_svg_TextButton'}] };
+                qName: 'org.apache.flex.svg.TextButton'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_svg_TextButton.prototype.createElement =
+org.apache.flex.svg.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('embed');
   this.element.setAttribute('src', 'org/apache/flex/svg/assets/TextButton_Skin.svg');
@@ -56,7 +56,7 @@ org_apache_flex_svg_TextButton.prototype.createElement =
 /**
  * @override
  */
-org_apache_flex_svg_TextButton.prototype.finalizeElement =
+org.apache.flex.svg.TextButton.prototype.finalizeElement =
     function() {
   var listenersArray;
   if (goog.events.hasListener(this.element, goog.events.EventType.CLICK)) {
@@ -74,14 +74,14 @@ org_apache_flex_svg_TextButton.prototype.finalizeElement =
 };
 
 
-Object.defineProperties(org_apache_flex_svg_TextButton.prototype, {
+Object.defineProperties(org.apache.flex.svg.TextButton.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_svg_TextButton} */
+        /** @this {org.apache.flex.svg.TextButton} */
         get: function() {
             return this.element.getAttribute('label');
         },
-        /** @this {org_apache_flex_svg_TextButton} */
+        /** @this {org.apache.flex.svg.TextButton} */
         set: function(value) {
             this.element.setAttribute('label', value);
         }

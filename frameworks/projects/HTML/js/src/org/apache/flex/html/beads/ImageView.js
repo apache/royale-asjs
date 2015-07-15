@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_ImageView');
+goog.provide('org.apache.flex.html.beads.ImageView');
 
 
-goog.require('org_apache_flex_html_beads_models_ImageModel');
+goog.require('org.apache.flex.html.beads.models.ImageModel');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_beads_ImageView = function() {
+org.apache.flex.html.beads.ImageView = function() {
 };
 
 
@@ -31,21 +31,21 @@ org_apache_flex_html_beads_ImageView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_ImageView
+org.apache.flex.html.beads.ImageView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageView',
-                qName: 'org_apache_flex_html_beads_ImageView'}] };
+                qName: 'org.apache.flex.html.beads.ImageView'}] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.ImageView.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_ImageView} */
+        /** @this {org.apache.flex.html.beads.ImageView} */
         set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
-                org_apache_flex_html_beads_models_ImageModel);
+                org.apache.flex.html.beads.models.ImageModel);
             this.model.addEventListener('sourceChanged',
                 goog.bind(this.sourceChangeHandler, this));
         }
@@ -57,7 +57,7 @@ Object.defineProperties(org_apache_flex_html_beads_ImageView.prototype, {
  * @export
  * @param {Object} event The event triggered by the source change.
  */
-org_apache_flex_html_beads_ImageView.prototype.
+org.apache.flex.html.beads.ImageView.prototype.
     sourceChangeHandler = function(event) {
   this.strand_.element.src = this.model.source;
 };

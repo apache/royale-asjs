@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_BeadMetrics');
+goog.provide('org.apache.flex.utils.BeadMetrics');
 
-goog.require('org_apache_flex_core_UIMetrics');
+goog.require('org.apache.flex.core.UIMetrics');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_utils_BeadMetrics = function() {
+org.apache.flex.utils.BeadMetrics = function() {
 };
 
 
 /**
  * @export
- * @param {org_apache_flex_core_IStrand} strand The strand whose bounds are required.
- * @return {org_apache_flex_core_UIMetrics} The bounding box.
+ * @param {org.apache.flex.core.IStrand} strand The strand whose bounds are required.
+ * @return {org.apache.flex.core.UIMetrics} The bounding box.
  */
-org_apache_flex_utils_BeadMetrics.getMetrics = function(strand) {
-  var box = new org_apache_flex_core_UIMetrics();
+org.apache.flex.utils.BeadMetrics.getMetrics = function(strand) {
+  var box = new org.apache.flex.core.UIMetrics();
   var style = strand.element.style;
   if (style['padding']) {
     box.top = Number(style.padding);

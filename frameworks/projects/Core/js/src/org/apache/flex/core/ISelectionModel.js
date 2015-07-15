@@ -13,29 +13,29 @@
  */
 
 /**
- * org_apache_flex_core_ISelectionModel
+ * org.apache.flex.core.ISelectionModel
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_ISelectionModel');
+goog.provide('org.apache.flex.core.ISelectionModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
+goog.require('org.apache.flex.core.IBeadModel');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_events_IEventDispatcher}
- * @extends {org_apache_flex_core_IBeadModel}
+ * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org.apache.flex.core.IBeadModel}
  */
-org_apache_flex_core_ISelectionModel = function() {
+org.apache.flex.core.ISelectionModel = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_ISelectionModel.prototype, {
+Object.defineProperties(org.apache.flex.core.ISelectionModel.prototype, {
     /** @export */
     dataProvider: {
         set: function(value) {},
@@ -59,6 +59,6 @@ Object.defineProperties(org_apache_flex_core_ISelectionModel.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ISelectionModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'ISelectionModel', qName: 'org_apache_flex_core_ISelectionModel'}],
-  interfaces: [org_apache_flex_events_IEventDispatcher, org_apache_flex_core_IBeadModel] };
+org.apache.flex.core.ISelectionModel.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'ISelectionModel', qName: 'org.apache.flex.core.ISelectionModel'}],
+  interfaces: [org.apache.flex.events.IEventDispatcher, org.apache.flex.core.IBeadModel] };

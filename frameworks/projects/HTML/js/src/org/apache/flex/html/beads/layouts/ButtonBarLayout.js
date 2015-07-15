@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_ButtonBarLayout');
+goog.provide('org.apache.flex.html.beads.layouts.ButtonBarLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
-goog.require('org_apache_flex_html_beads_ListView');
+goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.html.beads.ListView');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_ButtonBarLayout =
+org.apache.flex.html.beads.layouts.ButtonBarLayout =
     function() {
   this.strand_ = null;
 
@@ -36,17 +36,17 @@ org_apache_flex_html_beads_layouts_ButtonBarLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_ButtonBarLayout
+org.apache.flex.html.beads.layouts.ButtonBarLayout
     .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarLayout',
-                qName: 'org_apache_flex_html_beads_layouts_ButtonBarLayout' }],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.ButtonBarLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.ButtonBarLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.ButtonBarLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -66,11 +66,11 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.proto
     },
     /** @export */
     buttonWidths: {
-        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.ButtonBarLayout} */
         set: function(value) {
             this.buttonWidths_ = value;
         },
-        /** @this {org_apache_flex_html_beads_layouts_ButtonBarLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.ButtonBarLayout} */
         get: function() {
             return this.buttonWidths_;
         }
@@ -79,12 +79,12 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_ButtonBarLayout.proto
 
 
 /**
- * @param {org_apache_flex_events_Event} event The text getter.
+ * @param {org.apache.flex.events.Event} event The text getter.
  */
-org_apache_flex_html_beads_layouts_ButtonBarLayout.
+org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.changeHandler = function(event) {
 
-  var layoutParent = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
+  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
 

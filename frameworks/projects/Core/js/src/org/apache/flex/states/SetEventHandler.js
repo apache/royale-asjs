@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_states_SetEventHandler');
+goog.provide('org.apache.flex.states.SetEventHandler');
 
-goog.require('org_apache_flex_core_IDocument');
+goog.require('org.apache.flex.core.IDocument');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IDocument}
+ * @implements {org.apache.flex.core.IDocument}
  */
-org_apache_flex_states_SetEventHandler = function() {
+org.apache.flex.states.SetEventHandler = function() {
 };
 
 
@@ -31,17 +31,17 @@ org_apache_flex_states_SetEventHandler = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_states_SetEventHandler.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.states.SetEventHandler.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SetEventHandler',
-                qName: 'org_apache_flex_states_SetEventHandler' }],
-      interfaces: [org_apache_flex_core_IDocument] };
+                qName: 'org.apache.flex.states.SetEventHandler' }],
+      interfaces: [org.apache.flex.core.IDocument] };
 
 
 /**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-org_apache_flex_states_SetEventHandler.prototype.setDocument = function(document, opt_id) {
+org.apache.flex.states.SetEventHandler.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
@@ -51,28 +51,28 @@ org_apache_flex_states_SetEventHandler.prototype.setDocument = function(document
  * @private
  * @type {Object} document The MXML object.
  */
-org_apache_flex_states_SetEventHandler.prototype.document_ = null;
+org.apache.flex.states.SetEventHandler.prototype.document_ = null;
 
 
 /**
  * @private
  * @type {string} name The event to listen for.
  */
-org_apache_flex_states_SetEventHandler.prototype.name_ = '';
+org.apache.flex.states.SetEventHandler.prototype.name_ = '';
 
 
 /**
  * @private
  * @type {string} target The id of the object.
  */
-org_apache_flex_states_SetEventHandler.prototype.target_ = '';
+org.apache.flex.states.SetEventHandler.prototype.target_ = '';
 
 
 /**
  * @private
  * @type {Object} handlerFunction The listener to be added.
  */
-org_apache_flex_states_SetEventHandler.prototype.handlerFunction_ = null;
+org.apache.flex.states.SetEventHandler.prototype.handlerFunction_ = null;
 
 
 /**
@@ -80,7 +80,7 @@ org_apache_flex_states_SetEventHandler.prototype.handlerFunction_ = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-org_apache_flex_states_SetEventHandler.prototype.initializeFromObject = function(properties) {
+org.apache.flex.states.SetEventHandler.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {
@@ -91,16 +91,16 @@ org_apache_flex_states_SetEventHandler.prototype.initializeFromObject = function
 };
 
 
-Object.defineProperties(org_apache_flex_states_SetEventHandler.prototype,
-  /** @lends {org_apache_flex_states_SetEventHandler.prototype} */ {
+Object.defineProperties(org.apache.flex.states.SetEventHandler.prototype,
+  /** @lends {org.apache.flex.states.SetEventHandler.prototype} */ {
   /** @export */
   document: {
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     get: function() {
       return this.document_;
     },
 
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     set: function(value) {
       if (value != this.document_) {
         this.document_ = value;
@@ -109,12 +109,12 @@ Object.defineProperties(org_apache_flex_states_SetEventHandler.prototype,
   },
   /** @export */
   name: {
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     get: function() {
       return this.name_;
     },
 
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     set: function(value) {
       if (value != this.name_) {
         this.name_ = value;
@@ -123,12 +123,12 @@ Object.defineProperties(org_apache_flex_states_SetEventHandler.prototype,
   },
   /** @export */
   target: {
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     get: function() {
       return this.target_;
     },
 
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     set: function(value) {
       if (value != this.target_) {
         this.target_ = value;
@@ -137,12 +137,12 @@ Object.defineProperties(org_apache_flex_states_SetEventHandler.prototype,
   },
   /** @export */
   handlerFunction: {
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     get: function() {
       return this.handlerFunction_;
     },
 
-    /** @this {org_apache_flex_states_SetEventHandler} */
+    /** @this {org.apache.flex.states.SetEventHandler} */
     set: function(value) {
       if (value != this.handlerFunction_) {
         this.handlerFunction_ = value;

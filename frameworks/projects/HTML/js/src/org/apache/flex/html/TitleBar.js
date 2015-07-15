@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_TitleBar');
+goog.provide('org.apache.flex.html.TitleBar');
 
-goog.require('org_apache_flex_html_Container');
-goog.require('org_apache_flex_html_Label');
-goog.require('org_apache_flex_html_TextButton');
-goog.require('org_apache_flex_html_beads_models_TitleBarModel');
+goog.require('org.apache.flex.html.Container');
+goog.require('org.apache.flex.html.Label');
+goog.require('org.apache.flex.html.TextButton');
+goog.require('org.apache.flex.html.beads.models.TitleBarModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Container}
+ * @extends {org.apache.flex.html.Container}
  */
-org_apache_flex_html_TitleBar = function() {
+org.apache.flex.html.TitleBar = function() {
 
-  org_apache_flex_html_TitleBar.base(this, 'constructor');
+  org.apache.flex.html.TitleBar.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_TitleBar,
-    org_apache_flex_html_Container);
+goog.inherits(org.apache.flex.html.TitleBar,
+    org.apache.flex.html.Container);
 
 
 /**
@@ -38,15 +38,15 @@ goog.inherits(org_apache_flex_html_TitleBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_TitleBar.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TitleBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TitleBar',
-                qName: 'org_apache_flex_html_TitleBar'}] };
+                qName: 'org.apache.flex.html.TitleBar'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_TitleBar.prototype.createElement =
+org.apache.flex.html.TitleBar.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -61,25 +61,25 @@ org_apache_flex_html_TitleBar.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html_TitleBar.prototype, {
+Object.defineProperties(org.apache.flex.html.TitleBar.prototype, {
     /** @export */
     title: {
-        /** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org.apache.flex.html.TitleBar} */
         get: function() {
             return this.model.title;
         },
-        /** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org.apache.flex.html.TitleBar} */
         set: function(value) {
             this.model.title = value;
         }
     },
     /** @export */
     showCloseButton: {
-        /** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org.apache.flex.html.TitleBar} */
         get: function() {
             return this.model.showCloseButton;
         },
-        /** @this {org_apache_flex_html_TitleBar} */
+        /** @this {org.apache.flex.html.TitleBar} */
         set: function(value) {
             this.model.showCloseButton = value;
         }

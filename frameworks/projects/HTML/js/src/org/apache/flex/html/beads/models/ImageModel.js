@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_models_ImageModel');
+goog.provide('org.apache.flex.html.beads.models.ImageModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_html_beads_models_ImageModel =
+org.apache.flex.html.beads.models.ImageModel =
     function() {
-  org_apache_flex_html_beads_models_ImageModel.base(this, 'constructor');
+  org.apache.flex.html.beads.models.ImageModel.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_beads_models_ImageModel,
-    org_apache_flex_events_EventDispatcher);
+    org.apache.flex.html.beads.models.ImageModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -37,27 +37,27 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_models_ImageModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.ImageModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageModel',
-                qName: 'org_apache_flex_html_beads_models_ImageModel'}],
-      interfaces: [org_apache_flex_core_IBeadModel]};
+                qName: 'org.apache.flex.html.beads.models.ImageModel'}],
+      interfaces: [org.apache.flex.core.IBeadModel]};
 
 
-Object.defineProperties(org_apache_flex_html_beads_models_ImageModel.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.models.ImageModel.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        /** @this {org.apache.flex.html.beads.models.ImageModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     source: {
-        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        /** @this {org.apache.flex.html.beads.models.ImageModel} */
         get: function() {
             return this.source_;
         },
-        /** @this {org_apache_flex_html_beads_models_ImageModel} */
+        /** @this {org.apache.flex.html.beads.models.ImageModel} */
         set: function(value) {
             this.source_ = value;
             this.dispatchEvent('sourceChanged');

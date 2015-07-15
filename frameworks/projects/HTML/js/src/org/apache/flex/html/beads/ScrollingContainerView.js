@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_ScrollingContainerView');
+goog.provide('org.apache.flex.html.beads.ScrollingContainerView');
 
-goog.require('org_apache_flex_html_beads_ContainerView');
+goog.require('org.apache.flex.html.beads.ContainerView');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_beads_ContainerView}
+ * @extends {org.apache.flex.html.beads.ContainerView}
  */
-org_apache_flex_html_beads_ScrollingContainerView = function() {
+org.apache.flex.html.beads.ScrollingContainerView = function() {
   this.lastSelectedIndex = -1;
-  org_apache_flex_html_beads_ScrollingContainerView.base(this, 'constructor');
+  org.apache.flex.html.beads.ScrollingContainerView.base(this, 'constructor');
 
   this.className = 'ScrollingContainerView';
 };
 goog.inherits(
-    org_apache_flex_html_beads_ScrollingContainerView,
-    org_apache_flex_html_beads_ContainerView);
+    org.apache.flex.html.beads.ScrollingContainerView,
+    org.apache.flex.html.beads.ContainerView);
 
 
 /**
@@ -38,42 +38,42 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ScrollingContainerView',
-                qName: 'org_apache_flex_html_beads_ScrollingContainerView' }],
-    interfaces: [org_apache_flex_core_ILayoutParent]
+                qName: 'org.apache.flex.html.beads.ScrollingContainerView' }],
+    interfaces: [org.apache.flex.core.ILayoutParent]
     };
 
 
-Object.defineProperties(org_apache_flex_html_beads_ScrollingContainerView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.ScrollingContainerView.prototype, {
     /** @export */
     contentView: {
-        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        /** @this {org.apache.flex.html.beads.ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
     /** @export */
     resizableView: {
-        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        /** @this {org.apache.flex.html.beads.ScrollingContainerView} */
         get: function() {
             return this._strand;
         }
     },
     /** @export */
     verticalScrollPosition: {
-        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        /** @this {org.apache.flex.html.beads.ScrollingContainerView} */
         get: function() {
            return this._strand.scrollTop;
         },
-        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        /** @this {org.apache.flex.html.beads.ScrollingContainerView} */
         set: function(value) {
            this._strand.scrollTop = value;
         }
     },
     /** @export */
     maxVerticalScrollPosition: {
-        /** @this {org_apache_flex_html_beads_ScrollingContainerView} */
+        /** @this {org.apache.flex.html.beads.ScrollingContainerView} */
         get: function() {
             return this._strand.scrollHeight - this._strand.clientHeight;
         }

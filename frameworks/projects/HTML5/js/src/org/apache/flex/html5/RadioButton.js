@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_RadioButton');
+goog.provide('org.apache.flex.html5.RadioButton');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html5_RadioButton = function() {
-  org_apache_flex_html5_RadioButton.base(this, 'constructor');
+org.apache.flex.html5.RadioButton = function() {
+  org.apache.flex.html5.RadioButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_RadioButton,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html5.RadioButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_html5_RadioButton.prototype.createElement =
+org.apache.flex.html5.RadioButton.prototype.createElement =
     function() {
   var rb;
 
@@ -49,36 +49,36 @@ org_apache_flex_html5_RadioButton.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html5_RadioButton.prototype, {
+Object.defineProperties(org.apache.flex.html5.RadioButton.prototype, {
     /** @export */
     groupName: {
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         get: function() {
             return this.element.childNodes.item(0).name;
         },
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         set: function(value) {
             this.element.childNodes.item(0).name = value;
         }
     },
     /** @export */
     text: {
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;
         },
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         set: function(value) {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         get: function() {
             return this.element.childNodes.item(0).checked;
         },
-        /** @this {org_apache_flex_html5_RadioButton} */
+        /** @this {org.apache.flex.html5.RadioButton} */
         set: function(value) {
             this.element.childNodes.item(0).checked = value;
         }

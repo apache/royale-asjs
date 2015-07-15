@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
+goog.provide('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
-goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
-goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_supportClasses_DataItemRenderer}
+ * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
  */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer =
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer =
     function() {
-  org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.base(this, 'constructor');
+  org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer,
-    org_apache_flex_html_supportClasses_DataItemRenderer);
+    org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer,
+    org.apache.flex.html.supportClasses.DataItemRenderer);
 
 
 /**
@@ -38,15 +38,15 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarButtonItemRenderer',
-                qName: 'org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer' }] };
+                qName: 'org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer' }] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
+org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -64,31 +64,31 @@ org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
+  this.controller = new org.apache.flex.html.beads.controllers.ItemRendererMouseController();
   this.controller.strand = this;
 
   return this.element;
 };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer} */
         set: function(value) {
             this.strand_ = value;
         },
-        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer} */
         get: function() {
             return this.strand_;
         }
     },
     /** @export */
     data: {
-        /** @this {org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer, this, 'data', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer, this, 'data', value);
 
             if (value.hasOwnProperty('label')) {
               this.button.innerHTML = value.label;

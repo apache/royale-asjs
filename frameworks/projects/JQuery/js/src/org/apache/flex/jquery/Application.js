@@ -24,19 +24,19 @@ FalconJX will inject html into the index.html file.  Surround with
 </inject_html>
 */
 
-goog.provide('org_apache_flex_jquery_Application');
+goog.provide('org.apache.flex.jquery.Application');
 
-goog.require('org_apache_flex_core_Application');
+goog.require('org.apache.flex.core.Application');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_Application}
+ * @extends {org.apache.flex.core.Application}
  */
-org_apache_flex_jquery_Application = function() {
-  org_apache_flex_jquery_Application.base(this, 'constructor');
+org.apache.flex.jquery.Application = function() {
+  org.apache.flex.jquery.Application.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_jquery_Application,
-    org_apache_flex_core_Application);
+goog.inherits(org.apache.flex.jquery.Application,
+    org.apache.flex.core.Application);
 

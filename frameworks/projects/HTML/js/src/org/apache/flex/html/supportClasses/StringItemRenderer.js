@@ -12,28 +12,28 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_StringItemRenderer');
+goog.provide('org.apache.flex.html.supportClasses.StringItemRenderer');
 
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
-goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_supportClasses_DataItemRenderer}
- * @implements {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.html.supportClasses.DataItemRenderer}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_html_supportClasses_StringItemRenderer =
+org.apache.flex.html.supportClasses.StringItemRenderer =
     function() {
-  org_apache_flex_html_supportClasses_StringItemRenderer.base(this, 'constructor');
+  org.apache.flex.html.supportClasses.StringItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_StringItemRenderer,
-    org_apache_flex_html_supportClasses_DataItemRenderer);
+    org.apache.flex.html.supportClasses.StringItemRenderer,
+    org.apache.flex.html.supportClasses.DataItemRenderer);
 
 
 /**
@@ -41,17 +41,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'StringItemRenderer',
-                qName: 'org_apache_flex_html_supportClasses_StringItemRenderer' }],
-      interfaces: [org_apache_flex_core_IItemRenderer] };
+                qName: 'org.apache.flex.html.supportClasses.StringItemRenderer' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_supportClasses_StringItemRenderer.
+org.apache.flex.html.supportClasses.StringItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -64,64 +64,64 @@ org_apache_flex_html_supportClasses_StringItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
+  this.controller = new org.apache.flex.html.beads.controllers.ItemRendererMouseController();
   this.controller.strand = this;
 
   return this.element;
 };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.StringItemRenderer.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         set: function(value) {
             this.strand_ = value;
         },
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         get: function() {
              return this.strand_;
         }
     },
     /** @export */
     itemRendererParent: {
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         get: function() {
             return this.rendererParent_;
         },
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         set: function(value) {
             this.rendererParent_ = value;
         }
     },
     /** @export */
     index: {
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         set: function(value) {
             this.index_ = value;
         },
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         get: function() {
             return this.index_;
         }
     },
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         set: function(value) {
             this.element.innerHTML = value;
         },
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         get: function() {
             return this.element.innerHTML;
         }
     },
     /** @export */
     data: {
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_html_supportClasses_StringItemRenderer, this, 'data', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.html.supportClasses.StringItemRenderer, this, 'data', value);
 
             if (this.labelField) {
               this.element.innerHTML = String(value[this.labelField]);
@@ -135,7 +135,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_StringItemRenderer.p
               this.element.innerHTML = String(value);
             }
         },
-        /** @this {org_apache_flex_html_supportClasses_StringItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.StringItemRenderer} */
         get: function() {
             return this.element.innerHTML;
         }

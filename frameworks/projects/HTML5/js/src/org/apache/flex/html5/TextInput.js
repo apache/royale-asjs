@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_TextInput');
+goog.provide('org.apache.flex.html5.TextInput');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html5_TextInput = function() {
-  org_apache_flex_html5_TextInput.base(this, 'constructor');
+org.apache.flex.html5.TextInput = function() {
+  org.apache.flex.html5.TextInput.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_TextInput,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html5.TextInput,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_html5_TextInput.prototype.createElement =
+org.apache.flex.html5.TextInput.prototype.createElement =
     function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
@@ -43,14 +43,14 @@ org_apache_flex_html5_TextInput.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html5_TextInput.prototype, {
+Object.defineProperties(org.apache.flex.html5.TextInput.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html5_TextInput} */
+        /** @this {org.apache.flex.html5.TextInput} */
         get: function() {
             return this.element.value;
         },
-        /** @this {org_apache_flex_html5_TextInput} */
+        /** @this {org.apache.flex.html5.TextInput} */
         set: function(value) {
             this.element.value = value;
         }

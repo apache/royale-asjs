@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_mobile_ManagerBase');
+goog.provide('org.apache.flex.mobile.ManagerBase');
 
-goog.require('org_apache_flex_core_IChrome');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IChrome');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_mobile_ManagerBase = function() {
-  org_apache_flex_mobile_ManagerBase.base(this, 'constructor');
+org.apache.flex.mobile.ManagerBase = function() {
+  org.apache.flex.mobile.ManagerBase.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_mobile_ManagerBase,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.mobile.ManagerBase,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -36,25 +36,25 @@ goog.inherits(org_apache_flex_mobile_ManagerBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_mobile_ManagerBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.mobile.ManagerBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ManagerBase',
-                qName: 'org_apache_flex_mobile_ManagerBase' }] };
+                qName: 'org.apache.flex.mobile.ManagerBase' }] };
 
 
 /**
- * @type {org_apache_flex_core_UIBase}
+ * @type {org.apache.flex.core.UIBase}
  */
-org_apache_flex_mobile_ManagerBase.prototype._contentArea = null;
+org.apache.flex.mobile.ManagerBase.prototype._contentArea = null;
 
 
-Object.defineProperties(org_apache_flex_mobile_ManagerBase.prototype, {
+Object.defineProperties(org.apache.flex.mobile.ManagerBase.prototype, {
     /** @export */
     contentArea: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this._contentArea;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             this._contentArea = value;
         }
@@ -66,9 +66,9 @@ Object.defineProperties(org_apache_flex_mobile_ManagerBase.prototype, {
  * @override
  * @param {Object} c Element being added.
  */
-org_apache_flex_mobile_ManagerBase.prototype.addElement = function(c) {
-  if (org_apache_flex_utils_Language.is(c, org_apache_flex_core_IChrome)) {
-     org_apache_flex_mobile_ManagerBase.base(this, 'addElement', c);
+org.apache.flex.mobile.ManagerBase.prototype.addElement = function(c) {
+  if (org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     org.apache.flex.mobile.ManagerBase.base(this, 'addElement', c);
   }
   else {
     this._contentArea.addElement(c);
@@ -81,10 +81,10 @@ org_apache_flex_mobile_ManagerBase.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org_apache_flex_mobile_ManagerBase.prototype.addElementAt =
+org.apache.flex.mobile.ManagerBase.prototype.addElementAt =
     function(c, index) {
-  if (org_apache_flex_utils_Language.is(c, org_apache_flex_core_IChrome)) {
-     org_apache_flex_mobile_ManagerBase.base(this, 'addElementAt', c, index);
+  if (org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     org.apache.flex.mobile.ManagerBase.base(this, 'addElementAt', c, index);
   }
   else {
     this._contentArea.addElementAt(c, index);
@@ -97,7 +97,7 @@ org_apache_flex_mobile_ManagerBase.prototype.addElementAt =
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org_apache_flex_mobile_ManagerBase.prototype.getElementIndex =
+org.apache.flex.mobile.ManagerBase.prototype.getElementIndex =
     function(c) {
   return this._contentArea.getElementIndex(c);
 };
@@ -107,7 +107,7 @@ org_apache_flex_mobile_ManagerBase.prototype.getElementIndex =
  * @override
  * @param {Object} c The child element.
  */
-org_apache_flex_mobile_ManagerBase.prototype.removeElement =
+org.apache.flex.mobile.ManagerBase.prototype.removeElement =
     function(c) {
   this._contentArea.removeElement(c);
 };
@@ -116,7 +116,7 @@ org_apache_flex_mobile_ManagerBase.prototype.removeElement =
 /**
  * @override
  */
-org_apache_flex_mobile_ManagerBase.prototype.createElement =
+org.apache.flex.mobile.ManagerBase.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -125,9 +125,9 @@ org_apache_flex_mobile_ManagerBase.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  this._contentArea = new org_apache_flex_core_UIBase();
+  this._contentArea = new org.apache.flex.core.UIBase();
   this._contentArea.className = 'ContentArea';
-  org_apache_flex_core_UIBase.prototype.addElement.call(this, this._contentArea);
+  org.apache.flex.core.UIBase.prototype.addElement.call(this, this._contentArea);
 
   return this.element;
 };

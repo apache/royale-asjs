@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_TextButton');
+goog.provide('org.apache.flex.html5.TextButton');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html5_TextButton = function() {
-  org_apache_flex_html5_TextButton.base(this, 'constructor');
+org.apache.flex.html5.TextButton = function() {
+  org.apache.flex.html5.TextButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_TextButton,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html5.TextButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_html5_TextButton.prototype.createElement =
+org.apache.flex.html5.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -43,14 +43,14 @@ org_apache_flex_html5_TextButton.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html5_TextButton.prototype, {
+Object.defineProperties(org.apache.flex.html5.TextButton.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html5_TextButton} */
+        /** @this {org.apache.flex.html5.TextButton} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html5_TextButton} */
+        /** @this {org.apache.flex.html5.TextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }

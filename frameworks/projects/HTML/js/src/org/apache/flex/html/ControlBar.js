@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_ControlBar');
+goog.provide('org.apache.flex.html.ControlBar');
 
-goog.require('org_apache_flex_html_Container');
+goog.require('org.apache.flex.html.Container');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Container}
+ * @extends {org.apache.flex.html.Container}
  */
-org_apache_flex_html_ControlBar = function() {
-  org_apache_flex_html_ControlBar.base(this, 'constructor');
+org.apache.flex.html.ControlBar = function() {
+  org.apache.flex.html.ControlBar.base(this, 'constructor');
 
 };
-goog.inherits(org_apache_flex_html_ControlBar,
-    org_apache_flex_html_Container);
+goog.inherits(org.apache.flex.html.ControlBar,
+    org.apache.flex.html.Container);
 
 
 /**
@@ -35,15 +35,15 @@ goog.inherits(org_apache_flex_html_ControlBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_ControlBar.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ControlBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ControlBar',
-                qName: 'org_apache_flex_html_ControlBar'}] };
+                qName: 'org.apache.flex.html.ControlBar'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_ControlBar.prototype.createElement =
+org.apache.flex.html.ControlBar.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');

@@ -13,24 +13,24 @@
  */
 
 /**
- * org_apache_flex_core_IEffectTimer
+ * org.apache.flex.core.IEffectTimer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IEffectTimer');
+goog.provide('org.apache.flex.core.IEffectTimer');
 
-goog.require('org_apache_flex_events_IEventDispatcher');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_events_IEventDispatcher}
+ * @extends {org.apache.flex.events.IEventDispatcher}
  */
-org_apache_flex_core_IEffectTimer = function() {
+org.apache.flex.core.IEffectTimer = function() {
 };
 
 
@@ -39,7 +39,7 @@ org_apache_flex_core_IEffectTimer = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IEffectTimer.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IEffectTimer', qName: 'org_apache_flex_core_IEffectTimer'}],
-  interfaces: [org_apache_flex_events_IEventDispatcher]
+org.apache.flex.core.IEffectTimer.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IEffectTimer', qName: 'org.apache.flex.core.IEffectTimer'}],
+  interfaces: [org.apache.flex.events.IEventDispatcher]
 };

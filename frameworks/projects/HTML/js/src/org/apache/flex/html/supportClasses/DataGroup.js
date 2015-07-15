@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_DataGroup');
+goog.provide('org.apache.flex.html.supportClasses.DataGroup');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_supportClasses_DataGroup =
+org.apache.flex.html.supportClasses.DataGroup =
     function() {
   this.renderers = [];
-  org_apache_flex_html_supportClasses_DataGroup.base(this, 'constructor');
+  org.apache.flex.html.supportClasses.DataGroup.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_DataGroup,
-    org_apache_flex_core_UIBase);
+    org.apache.flex.html.supportClasses.DataGroup,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -39,22 +39,22 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_DataGroup.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.DataGroup.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataGroup',
-                qName: 'org_apache_flex_html_supportClasses_DataGroup' }] };
+                qName: 'org.apache.flex.html.supportClasses.DataGroup' }] };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_DataGroup.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.DataGroup.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_supportClasses_DataGroup} */
+        /** @this {org.apache.flex.html.supportClasses.DataGroup} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     numElements: {
-        /** @this {org_apache_flex_html_supportClasses_DataGroup} */
+        /** @this {org.apache.flex.html.supportClasses.DataGroup} */
         get: function() {
 
             var n = this.element.childNodes.length;
@@ -67,7 +67,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataGroup.prototype,
 /**
  * @override
  */
-org_apache_flex_html_supportClasses_DataGroup.
+org.apache.flex.html.supportClasses.DataGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
@@ -86,12 +86,12 @@ org_apache_flex_html_supportClasses_DataGroup.
  * @override
  * @param {Object} value The child element being added.
  */
-org_apache_flex_html_supportClasses_DataGroup.
+org.apache.flex.html.supportClasses.DataGroup.
     prototype.addElement = function(value) {
-  org_apache_flex_html_supportClasses_DataGroup.base(this, 'addElement', value);
+  org.apache.flex.html.supportClasses.DataGroup.base(this, 'addElement', value);
 
-  var itemRenderer = org_apache_flex_utils_Language.as(value,
-                           org_apache_flex_html_supportClasses_DataItemRenderer);
+  var itemRenderer = org.apache.flex.utils.Language.as(value,
+                           org.apache.flex.html.supportClasses.DataItemRenderer);
   itemRenderer.index = this.renderers.length;
   itemRenderer.itemRendererParent = this;
   this.renderers.push(value);
@@ -101,7 +101,7 @@ org_apache_flex_html_supportClasses_DataGroup.
 /**
  * @export
  */
-org_apache_flex_html_supportClasses_DataGroup.
+org.apache.flex.html.supportClasses.DataGroup.
     prototype.removeAllElements = function() {
 
   while (this.element.hasChildNodes()) {
@@ -115,7 +115,7 @@ org_apache_flex_html_supportClasses_DataGroup.
  * @param {number} index The index of the desired element.
  * @return {Object} The element at the given index.
  */
-org_apache_flex_html_supportClasses_DataGroup.
+org.apache.flex.html.supportClasses.DataGroup.
     prototype.getElementAt = function(index) {
 
   var e = this.element.childNodes[index];
@@ -128,7 +128,7 @@ org_apache_flex_html_supportClasses_DataGroup.
  * @param {Object} index The index for the itemRenderer.
  * @return {Object} The itemRenderer that matches the index.
  */
-org_apache_flex_html_supportClasses_DataGroup.
+org.apache.flex.html.supportClasses.DataGroup.
     prototype.getItemRendererForIndex = function(index) {
   return this.renderers[index];
 };

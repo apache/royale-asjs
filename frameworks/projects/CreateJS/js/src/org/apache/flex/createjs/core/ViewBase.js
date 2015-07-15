@@ -12,34 +12,34 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_createjs_core_ViewBase');
+goog.provide('org.apache.flex.createjs.core.ViewBase');
 
-goog.require('org_apache_flex_createjs_core_UIBase');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.createjs.core.UIBase');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_createjs_core_UIBase}
+ * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org_apache_flex_createjs_core_ViewBase = function() {
-  org_apache_flex_createjs_core_ViewBase.base(this, 'constructor');
+org.apache.flex.createjs.core.ViewBase = function() {
+  org.apache.flex.createjs.core.ViewBase.base(this, 'constructor');
 
   /**
       * @private
-      * @type {org_apache_flex_createjs_core_ViewBase}
+      * @type {org.apache.flex.createjs.core.ViewBase}
       */
   this.currentObject_ = null;
 };
-goog.inherits(org_apache_flex_createjs_core_ViewBase,
-    org_apache_flex_createjs_core_UIBase);
+goog.inherits(org.apache.flex.createjs.core.ViewBase,
+    org.apache.flex.createjs.core.UIBase);
 
 
-Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
+Object.defineProperties(org.apache.flex.createjs.core.ViewBase.prototype, {
     /** @export */
     applicationModel: {
-        /** @this {org_apache_flex_createjs_core_ViewBase} */
+        /** @this {org.apache.flex.createjs.core.ViewBase} */
         get: function() {
             return this.applicationModel_;
         },
@@ -54,23 +54,23 @@ Object.defineProperties(org_apache_flex_createjs_core_ViewBase.prototype, {
  * @export
  * @type {Array}
  */
-org_apache_flex_createjs_core_ViewBase.prototype.MXMLProperties = null;
+org.apache.flex.createjs.core.ViewBase.prototype.MXMLProperties = null;
 
 
 /**
  * @export
  * @type {Array}
  */
-org_apache_flex_createjs_core_ViewBase.prototype.MXMLDescriptor = null;
+org.apache.flex.createjs.core.ViewBase.prototype.MXMLDescriptor = null;
 
 
 /**
  * @param {Object} model The model for this view.
  */
-org_apache_flex_createjs_core_ViewBase.prototype.initUI = function(model) {
+org.apache.flex.createjs.core.ViewBase.prototype.initUI = function(model) {
   this.applicationModel = model;
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this,
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this,
       this.MXMLProperties);
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this,
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this,
       this, this.MXMLDescriptor);
 };

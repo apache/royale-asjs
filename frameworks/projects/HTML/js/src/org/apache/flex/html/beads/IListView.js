@@ -17,9 +17,9 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_html_beads_IListView');
+goog.provide('org.apache.flex.html.beads.IListView');
 
-goog.require('org_apache_flex_core_IBeadView');
+goog.require('org.apache.flex.core.IBeadView');
 
 
 
@@ -28,7 +28,7 @@ goog.require('org_apache_flex_core_IBeadView');
  *
  * @interface
  */
-org_apache_flex_html_beads_IListView = function() {
+org.apache.flex.html.beads.IListView = function() {
 };
 
 
@@ -37,7 +37,7 @@ org_apache_flex_html_beads_IListView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_IListView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.IListView.prototype.FLEXJS_CLASS_INFO =
 { names: [{ name: 'IListView',
-            qName: 'org_apache_flex_html_beads_IListView'}],
-  interfaces: [org_apache_flex_core_IBeadView] };
+            qName: 'org.apache.flex.html.beads.IListView'}],
+  interfaces: [org.apache.flex.core.IBeadView] };

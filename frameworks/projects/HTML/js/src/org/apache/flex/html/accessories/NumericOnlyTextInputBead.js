@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_accessories_NumericOnlyTextInputBead');
+goog.provide('org.apache.flex.html.accessories.NumericOnlyTextInputBead');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_accessories_NumericOnlyTextInputBead =
+org.apache.flex.html.accessories.NumericOnlyTextInputBead =
     function() {
 
   /**
@@ -35,15 +35,15 @@ org_apache_flex_html_accessories_NumericOnlyTextInputBead =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.accessories.NumericOnlyTextInputBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NumericOnlyTextInputBead',
-                qName: 'org_apache_flex_html_accessories_NumericOnlyTextInputBead' }] };
+                qName: 'org.apache.flex.html.accessories.NumericOnlyTextInputBead' }] };
 
 
-Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBead.prototype, {
+Object.defineProperties(org.apache.flex.html.accessories.NumericOnlyTextInputBead.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_accessories_NumericOnlyTextInputBead} */
+        /** @this {org.apache.flex.html.accessories.NumericOnlyTextInputBead} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -58,7 +58,7 @@ Object.defineProperties(org_apache_flex_html_accessories_NumericOnlyTextInputBea
  * @export
  * @param {Object} event The input to validate?
  */
-org_apache_flex_html_accessories_NumericOnlyTextInputBead.
+org.apache.flex.html.accessories.NumericOnlyTextInputBead.
     prototype.validateInput = function(event) {
 
   var code = event.charCode;

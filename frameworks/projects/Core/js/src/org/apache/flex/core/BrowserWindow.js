@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_BrowserWindow');
+goog.provide('org.apache.flex.core.BrowserWindow');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_BrowserWindow = function() {
-    org_apache_flex_core_BrowserWindow.base(this, 'constructor');
+org.apache.flex.core.BrowserWindow = function() {
+    org.apache.flex.core.BrowserWindow.base(this, 'constructor');
   };
 
 
@@ -29,9 +29,9 @@ org_apache_flex_core_BrowserWindow = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_BrowserWindow.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.BrowserWindow.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BrowserWindow',
-                qName: 'org_apache_flex_core_BrowserWindow'}]};
+                qName: 'org.apache.flex.core.BrowserWindow'}]};
 
 
 /**
@@ -39,7 +39,7 @@ org_apache_flex_core_BrowserWindow.prototype.FLEXJS_CLASS_INFO =
  * @param {string} url The url.
  * @param {string} options The window name.
  */
-org_apache_flex_core_BrowserWindow.open = function(url, options) {
+org.apache.flex.core.BrowserWindow.open = function(url, options) {
   window.open(url, options);
 };
 

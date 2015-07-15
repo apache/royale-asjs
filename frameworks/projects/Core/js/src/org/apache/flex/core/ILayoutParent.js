@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_ILayoutParent');
+goog.provide('org.apache.flex.core.ILayoutParent');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_ILayoutParent = function() {
+org.apache.flex.core.ILayoutParent = function() {
 };
 
 
@@ -33,12 +33,12 @@ org_apache_flex_core_ILayoutParent = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ILayoutParent.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.ILayoutParent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ILayoutParent',
-                qName: 'org_apache_flex_core_ILayoutParent' }] };
+                qName: 'org.apache.flex.core.ILayoutParent' }] };
 
 
-Object.defineProperties(org_apache_flex_core_ILayoutParent.prototype, {
+Object.defineProperties(org.apache.flex.core.ILayoutParent.prototype, {
     /** @export */
     contentView: {
         get: function() {}

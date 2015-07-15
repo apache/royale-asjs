@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_ImageButtonView');
+goog.provide('org.apache.flex.html.beads.ImageButtonView');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_beads_ImageButtonView = function() {
+org.apache.flex.html.beads.ImageButtonView = function() {
 };
 
 
@@ -28,16 +28,16 @@ org_apache_flex_html_beads_ImageButtonView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_ImageButtonView
+org.apache.flex.html.beads.ImageButtonView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ImageButtonView',
-                qName: 'org_apache_flex_html_beads_ImageButtonView'}] };
+                qName: 'org.apache.flex.html.beads.ImageButtonView'}] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_ImageButtonView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.ImageButtonView.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_ImageButtonView} */
+        /** @this {org.apache.flex.html.beads.ImageButtonView} */
         set: function(value) {
             this.strand_ = value;
         }

@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_SimpleBinding');
+goog.provide('org.apache.flex.binding.SimpleBinding');
 
-goog.require('org_apache_flex_binding_BindingBase');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.binding.BindingBase');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_binding_BindingBase}
+ * @extends {org.apache.flex.binding.BindingBase}
  */
-org_apache_flex_binding_SimpleBinding = function() {
-  org_apache_flex_binding_SimpleBinding.base(this, 'constructor');
+org.apache.flex.binding.SimpleBinding = function() {
+  org.apache.flex.binding.SimpleBinding.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_binding_SimpleBinding,
-    org_apache_flex_binding_BindingBase);
+goog.inherits(org.apache.flex.binding.SimpleBinding,
+    org.apache.flex.binding.BindingBase);
 
 
 /**
@@ -35,22 +35,22 @@ goog.inherits(org_apache_flex_binding_SimpleBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_SimpleBinding.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.SimpleBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleBinding',
-                qName: 'org_apache_flex_binding_SimpleBinding'}] };
+                qName: 'org.apache.flex.binding.SimpleBinding'}] };
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_binding_SimpleBinding.prototype.eventName = '';
+org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
 
 
 /**
  * @export
  */
-org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
+org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
   this.destination[this.destinationPropertyName] =
       this.source[this.sourcePropertyName];
 };
@@ -59,8 +59,8 @@ org_apache_flex_binding_SimpleBinding.prototype.changeHandler = function() {
 /**
  * @param {Object} event The event.
  */
-org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(event) {
-  org_apache_flex_binding_SimpleBinding.base(this, 'sourceChangeHandler', event);
+org.apache.flex.binding.SimpleBinding.prototype.sourceChangeHandler = function(event) {
+  org.apache.flex.binding.SimpleBinding.base(this, 'sourceChangeHandler', event);
   if (this.source) {
     this.source.addEventListener(this.eventName,
         goog.bind(this.changeHandler, this));
@@ -69,13 +69,13 @@ org_apache_flex_binding_SimpleBinding.prototype.sourceChangeHandler = function(e
 };
 
 
-Object.defineProperties(org_apache_flex_binding_SimpleBinding.prototype, {
+Object.defineProperties(org.apache.flex.binding.SimpleBinding.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_SimpleBinding} */
+        /** @this {org.apache.flex.binding.SimpleBinding} */
          set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_binding_SimpleBinding, this, 'strand', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.binding.SimpleBinding, this, 'strand', value);
 
             if (!this.source)
                 return;

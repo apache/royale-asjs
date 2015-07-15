@@ -13,29 +13,29 @@
  */
 
 /**
- * org_apache_flex_core_ISelectableItemRenderer
+ * org.apache.flex.core.ISelectableItemRenderer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_ISelectableItemRenderer');
+goog.provide('org.apache.flex.core.ISelectableItemRenderer');
 
-goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org.apache.flex.core.IItemRenderer');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_events_IEventDispatcher}
- * @extends {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_core_ISelectableItemRenderer = function() {
+org.apache.flex.core.ISelectableItemRenderer = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_ISelectableItemRenderer.prototype, {
+Object.defineProperties(org.apache.flex.core.ISelectableItemRenderer.prototype, {
     /** @export */
     labelField: {
         set: function(value) {},
@@ -69,6 +69,6 @@ Object.defineProperties(org_apache_flex_core_ISelectableItemRenderer.prototype, 
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ISelectableItemRenderer.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'ISelectableItemRenderer', qName: 'org_apache_flex_core_ISelectableItemRenderer'}],
-  interfaces: [org_apache_flex_core_IItemRenderer] };
+org.apache.flex.core.ISelectableItemRenderer.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'ISelectableItemRenderer', qName: 'org.apache.flex.core.ISelectableItemRenderer'}],
+  interfaces: [org.apache.flex.core.IItemRenderer] };

@@ -13,21 +13,21 @@
  */
 
 /**
- * org_apache_flex_core_graphics_GradientBase
+ * org.apache.flex.core.graphics.GradientBase
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_graphics_GradientBase');
+goog.provide('org.apache.flex.core.graphics.GradientBase');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_graphics_GradientBase = function() {
+org.apache.flex.core.graphics.GradientBase = function() {
 };
 
 
@@ -35,83 +35,83 @@ org_apache_flex_core_graphics_GradientBase = function() {
  * @protected
  * @type {Array}
  */
-org_apache_flex_core_graphics_GradientBase.prototype.colors = [];
+org.apache.flex.core.graphics.GradientBase.prototype.colors = [];
 
 
 /**
  * @protected
  * @type {Array}
  */
-org_apache_flex_core_graphics_GradientBase.prototype.ratios = [];
+org.apache.flex.core.graphics.GradientBase.prototype.ratios = [];
 
 
 /**
  * @protected
  * @type {Array}
  */
-org_apache_flex_core_graphics_GradientBase.prototype.alphas = [];
+org.apache.flex.core.graphics.GradientBase.prototype.alphas = [];
 
 
 /**
  * @type {Array}
  */
-org_apache_flex_core_graphics_GradientBase.prototype._entries = [];
+org.apache.flex.core.graphics.GradientBase.prototype._entries = [];
 
 
 /**
  * @type {number}
  */
-org_apache_flex_core_graphics_GradientBase.prototype._rotation = 0.0;
+org.apache.flex.core.graphics.GradientBase.prototype._rotation = 0.0;
 
 
-Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
+Object.defineProperties(org.apache.flex.core.graphics.GradientBase.prototype, {
     /** @export */
     entries: {
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         get: function() {
             return this._entries;
         },
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         set: function(value) {
             this._entries = value;
         }
     },
     /** @export */
     rotation: {
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         get: function() {
             return this._rotation;
         },
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         set: function(value) {
             this._rotation = value;
         }
     },
     /** @export */
     x: {
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         get: function() {
             return this._x;
         },
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         set: function(value) {
             this._x = value;
         }
     },
     /** @export */
     y: {
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         set: function(value) {
             this._y = value;
         },
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         get: function() {
             return this._y;
         }
     },
     /** @export */
     newId: {
-        /** @this {org_apache_flex_core_graphics_GradientBase} */
+        /** @this {org.apache.flex.core.graphics.GradientBase} */
         get: function() {
             return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
         }
@@ -122,13 +122,13 @@ Object.defineProperties(org_apache_flex_core_graphics_GradientBase.prototype, {
 /**
  * @type {number}
  */
-org_apache_flex_core_graphics_GradientBase.prototype._x = 0;
+org.apache.flex.core.graphics.GradientBase.prototype._x = 0;
 
 
 /**
  * @type {number}
  */
-org_apache_flex_core_graphics_GradientBase.prototype._y = 0;
+org.apache.flex.core.graphics.GradientBase.prototype._y = 0;
 
 
 /**
@@ -136,6 +136,6 @@ org_apache_flex_core_graphics_GradientBase.prototype._y = 0;
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_graphics_GradientBase.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'GradientBase', qName: 'org_apache_flex_core_graphics_GradientBase'}]
+org.apache.flex.core.graphics.GradientBase.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'GradientBase', qName: 'org.apache.flex.core.graphics.GradientBase'}]
   };

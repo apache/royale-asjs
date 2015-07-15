@@ -12,28 +12,28 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_UIItemRendererBase');
+goog.provide('org.apache.flex.html.supportClasses.UIItemRendererBase');
 
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_core_IItemRendererFactory');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.IItemRendererFactory');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
- * @implements {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.core.UIBase}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase =
+org.apache.flex.html.supportClasses.UIItemRendererBase =
 function() {
-  org_apache_flex_html_supportClasses_UIItemRendererBase.base(this, 'constructor');
+  org.apache.flex.html.supportClasses.UIItemRendererBase.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_UIItemRendererBase,
-    org_apache_flex_core_UIBase);
+    org.apache.flex.html.supportClasses.UIItemRendererBase,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -41,18 +41,18 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIItemRendererBase',
-                qName: 'org_apache_flex_html_supportClasses_UIItemRendererBase' }],
-      interfaces: [org_apache_flex_core_IItemRenderer, org_apache_flex_core_IItemRendererFactory]};
+                qName: 'org.apache.flex.html.supportClasses.UIItemRendererBase' }],
+      interfaces: [org.apache.flex.core.IItemRenderer, org.apache.flex.core.IItemRendererFactory]};
 
 
 /**
  * @export
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.addedToParent =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.addedToParent =
 function() {
-  org_apache_flex_html_supportClasses_UIItemRendererBase.base(this, 'addedToParent');
+  org.apache.flex.html.supportClasses.UIItemRendererBase.base(this, 'addedToParent');
 
   // very common for item renderers to be resized by their containers,
   this.addEventListener('widthChanged', goog.bind(this.sizeChangeHandler, this));
@@ -61,9 +61,9 @@ function() {
   // each MXML file can also have styles in fx:Style block
   //? appropriate for JavaScript? ValuesManager.valuesImpl.init(this);
 
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this, this, this.MXMLDescriptor);
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, this, this.MXMLDescriptor);
 
-  this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
+  this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
 };
 
 
@@ -71,81 +71,81 @@ function() {
  * @export
  * @param {Array} data The data for the attributes.
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.generateMXMLAttributes = function(data) {
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.UIItemRendererBase.prototype, {
     /** @export */
     MXMLDescriptor: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return null;
         }
     },
     /** @export */
     data: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.data_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.data_ = value;
         }
     },
     /** @export */
     labelField: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.labelField_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.labelField_ = value;
         }
     },
     /** @export */
     index: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.index_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.index_ = value;
         }
     },
     /** @export */
     hovered: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.hovered_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.hovered_ = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.selected_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.selected_ = value;
         }
     },
     /** @export */
     down: {
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         get: function() {
             return this.down_;
         },
-        /** @this {org_apache_flex_html_supportClasses_UIItemRendererBase} */
+        /** @this {org.apache.flex.html.supportClasses.UIItemRendererBase} */
         set: function(value) {
             this.down_ = value;
         }
@@ -156,7 +156,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_UIItemRendererBase.p
 /**
  * @export
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.updateRenderer =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.updateRenderer =
 function() {
 };
 
@@ -165,7 +165,7 @@ function() {
  * @export
  * @param {Event} value The event that triggered the size change.
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.sizeChangeHandler =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.sizeChangeHandler =
 function(value) {
   //this.adjustSize();
 };
@@ -174,7 +174,7 @@ function(value) {
 /**
  * @export
  */
-org_apache_flex_html_supportClasses_UIItemRendererBase.prototype.adjustSize =
+org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.adjustSize =
 function() {
   // handle in sub-class
 };

@@ -17,20 +17,20 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IFormatBead');
+goog.provide('org.apache.flex.core.IFormatBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IBead}
- * @extends {org_apache_flex_events_IEventDispatcher}
+ * @extends {org.apache.flex.core.IBead}
+ * @extends {org.apache.flex.events.IEventDispatcher}
  */
-org_apache_flex_core_IFormatBead = function() {
+org.apache.flex.core.IFormatBead = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_IFormatBead.prototype, {
+Object.defineProperties(org.apache.flex.core.IFormatBead.prototype, {
     /** @export */
     propertyName: {
         get: function() {},
@@ -53,7 +53,7 @@ Object.defineProperties(org_apache_flex_core_IFormatBead.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IFormatBead.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IFormatBead', qName: 'org_apache_flex_core_IFormatBead'}],
-  interfaces: [org_apache_flex_core_IBead, org_apache_flex_events_IEventDispatcher]
+org.apache.flex.core.IFormatBead.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IFormatBead', qName: 'org.apache.flex.core.IFormatBead'}],
+  interfaces: [org.apache.flex.core.IBead, org.apache.flex.events.IEventDispatcher]
 };

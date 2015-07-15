@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_ValuesManager');
+goog.provide('org.apache.flex.core.ValuesManager');
 
-goog.require('org_apache_flex_core_IValuesImpl');
+goog.require('org.apache.flex.core.IValuesImpl');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_ValuesManager = function() {
+org.apache.flex.core.ValuesManager = function() {
 };
 
 
@@ -30,28 +30,28 @@ org_apache_flex_core_ValuesManager = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ValuesManager.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.ValuesManager.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ValuesManager',
-                qName: 'org_apache_flex_core_ValuesManager' }] };
+                qName: 'org.apache.flex.core.ValuesManager' }] };
 
 
 /**
  * @export
- * @type {org_apache_flex_core_IValuesImpl}
+ * @type {org.apache.flex.core.IValuesImpl}
  */
-org_apache_flex_core_ValuesManager.prototype.valuesImpl = null;
+org.apache.flex.core.ValuesManager.prototype.valuesImpl = null;
 
 
-Object.defineProperties(org_apache_flex_core_ValuesManager.prototype, {
+Object.defineProperties(org.apache.flex.core.ValuesManager.prototype, {
     /** @export */
     valuesImpl: {
-        /** @this {org_apache_flex_core_ValuesManager} */
+        /** @this {org.apache.flex.core.ValuesManager} */
         get: function() {
-            return org_apache_flex_core_ValuesManager.valuesImpl;
+            return org.apache.flex.core.ValuesManager.valuesImpl;
         },
-        /** @this {org_apache_flex_core_ValuesManager} */
+        /** @this {org.apache.flex.core.ValuesManager} */
         set: function(value) {
-            org_apache_flex_core_ValuesManager.valuesImpl = value;
+            org.apache.flex.core.ValuesManager.valuesImpl = value;
         }
     }
 });

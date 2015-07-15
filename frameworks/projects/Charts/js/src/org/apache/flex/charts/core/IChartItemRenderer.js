@@ -11,28 +11,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IChartItemRenderer
+ * org.apache.flex.charts.core.IChartItemRenderer
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IChartItemRenderer');
+goog.provide('org.apache.flex.charts.core.IChartItemRenderer');
 
-goog.require('org_apache_flex_core_IItemRenderer');
+goog.require('org.apache.flex.core.IItemRenderer');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_charts_core_IChartItemRenderer = function() {
+org.apache.flex.charts.core.IChartItemRenderer = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_charts_core_IChartItemRenderer.prototype, {
+Object.defineProperties(org.apache.flex.charts.core.IChartItemRenderer.prototype, {
     /** @export */
     xField: {
         get: function() {},
@@ -72,7 +72,7 @@ Object.defineProperties(org_apache_flex_charts_core_IChartItemRenderer.prototype
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IChartItemRenderer.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChartItemRenderer', qName: 'org_apache_flex_charts_core_IChartItemRenderer'}],
-    interfaces: [org_apache_flex_core_IItemRenderer]
+org.apache.flex.charts.core.IChartItemRenderer.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChartItemRenderer', qName: 'org.apache.flex.charts.core.IChartItemRenderer'}],
+    interfaces: [org.apache.flex.core.IItemRenderer]
   };

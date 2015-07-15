@@ -12,31 +12,31 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_UIBase');
+goog.provide('org.apache.flex.core.UIBase');
 
-goog.require('org_apache_flex_core_HTMLElementWrapper');
-goog.require('org_apache_flex_core_IBeadController');
-goog.require('org_apache_flex_core_IBeadLayout');
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_core_IBeadView');
-goog.require('org_apache_flex_core_ILayoutChild');
-goog.require('org_apache_flex_core_IParentIUIBase');
-goog.require('org_apache_flex_core_IStyleableObject');
-goog.require('org_apache_flex_core_IUIBase');
-goog.require('org_apache_flex_core_ValuesManager');
-goog.require('org_apache_flex_events_ValueChangeEvent');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.core.IBeadController');
+goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.IBeadView');
+goog.require('org.apache.flex.core.ILayoutChild');
+goog.require('org.apache.flex.core.IParentIUIBase');
+goog.require('org.apache.flex.core.IStyleableObject');
+goog.require('org.apache.flex.core.IUIBase');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IUIBase}
- * @implements {org_apache_flex_core_ILayoutChild}
- * @implements {org_apache_flex_core_IParentIUIBase}
- * @extends {org_apache_flex_core_HTMLElementWrapper}
+ * @implements {org.apache.flex.core.IUIBase}
+ * @implements {org.apache.flex.core.ILayoutChild}
+ * @implements {org.apache.flex.core.IParentIUIBase}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
-org_apache_flex_core_UIBase = function() {
-  org_apache_flex_core_UIBase.base(this, 'constructor');
+org.apache.flex.core.UIBase = function() {
+  org.apache.flex.core.UIBase.base(this, 'constructor');
 
   /**
    * @private
@@ -102,8 +102,8 @@ org_apache_flex_core_UIBase = function() {
 
   this.createElement();
 };
-goog.inherits(org_apache_flex_core_UIBase,
-    org_apache_flex_core_HTMLElementWrapper);
+goog.inherits(org.apache.flex.core.UIBase,
+    org.apache.flex.core.HTMLElementWrapper);
 
 
 /**
@@ -111,26 +111,26 @@ goog.inherits(org_apache_flex_core_UIBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_UIBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.UIBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIBase',
-                qName: 'org_apache_flex_core_UIBase' }],
-      interfaces: [org_apache_flex_core_IUIBase,
-                   org_apache_flex_core_IParentIUIBase,
-                   org_apache_flex_core_ILayoutChild,
-                   org_apache_flex_core_IStyleableObject] };
+                qName: 'org.apache.flex.core.UIBase' }],
+      interfaces: [org.apache.flex.core.IUIBase,
+                   org.apache.flex.core.IParentIUIBase,
+                   org.apache.flex.core.ILayoutChild,
+                   org.apache.flex.core.IStyleableObject] };
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_core_UIBase.prototype.positioner = null;
+org.apache.flex.core.UIBase.prototype.positioner = null;
 
 
 /**
  * @return {Object} The array of children.
  */
-org_apache_flex_core_UIBase.prototype.internalChildren =
+org.apache.flex.core.UIBase.prototype.internalChildren =
     function() {
   return this.element.childNodes;
 };
@@ -140,7 +140,7 @@ org_apache_flex_core_UIBase.prototype.internalChildren =
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org_apache_flex_core_UIBase.prototype.createElement = function() {
+org.apache.flex.core.UIBase.prototype.createElement = function() {
   if (this.element == null)
     this.element = document.createElement('div');
   if (this.positioner == null)
@@ -157,13 +157,13 @@ org_apache_flex_core_UIBase.prototype.createElement = function() {
  * @protected
  * @type {?function()}
  */
-org_apache_flex_core_UIBase.prototype.finalizeElement = null;
+org.apache.flex.core.UIBase.prototype.finalizeElement = null;
 
 
 /**
  * @param {Object} c The child element.
  */
-org_apache_flex_core_UIBase.prototype.addElement = function(c) {
+org.apache.flex.core.UIBase.prototype.addElement = function(c) {
   this.element.appendChild(c.positioner);
   c.addedToParent();
 };
@@ -173,7 +173,7 @@ org_apache_flex_core_UIBase.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org_apache_flex_core_UIBase.prototype.addElementAt = function(c, index) {
+org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
@@ -190,7 +190,7 @@ org_apache_flex_core_UIBase.prototype.addElementAt = function(c, index) {
  * @param {number} index The index in parent.
  * @return {Object} The child element.
  */
-org_apache_flex_core_UIBase.prototype.getElementAt = function(index) {
+org.apache.flex.core.UIBase.prototype.getElementAt = function(index) {
   var children = this.internalChildren();
   return children[index].flexjs_wrapper;
 };
@@ -200,7 +200,7 @@ org_apache_flex_core_UIBase.prototype.getElementAt = function(index) {
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org_apache_flex_core_UIBase.prototype.getElementIndex = function(c) {
+org.apache.flex.core.UIBase.prototype.getElementIndex = function(c) {
   var children = this.internalChildren();
   var n = children.length;
   for (var i = 0; i < n; i++)
@@ -215,18 +215,18 @@ org_apache_flex_core_UIBase.prototype.getElementIndex = function(c) {
 /**
  * @param {Object} c The child element.
  */
-org_apache_flex_core_UIBase.prototype.removeElement = function(c) {
+org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
   this.element.removeChild(c.element);
 };
 
 
 /**
  */
-org_apache_flex_core_UIBase.prototype.addedToParent = function() {
+org.apache.flex.core.UIBase.prototype.addedToParent = function() {
 
   var styles = this.style;
   if (styles)
-    org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, styles);
+    org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, styles);
 
   if (this.mxmlBeads_) {
     var n = this.mxmlBeads_.length;
@@ -239,10 +239,10 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
    * @type {Function}
    */
   var c;
-  if (this.getBeadByType(org_apache_flex_core_IBeadModel) == null)
+  if (this.getBeadByType(org.apache.flex.core.IBeadModel) == null)
   {
-    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
           getValue(this, 'iBeadModel'));
       if (c)
       {
@@ -252,10 +252,10 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org_apache_flex_core_IBeadView) == null)
+  if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
   {
-    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
           getValue(this, 'iBeadView'));
       if (c)
       {
@@ -265,10 +265,10 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org_apache_flex_core_IBeadLayout) == null)
+  if (this.getBeadByType(org.apache.flex.core.IBeadLayout) == null)
   {
-    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
           getValue(this, 'iBeadLayout'));
       if (c)
       {
@@ -278,10 +278,10 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org_apache_flex_core_IBeadController) == null)
+  if (this.getBeadByType(org.apache.flex.core.IBeadController) == null)
   {
-    if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-      c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+    if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+      c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
           getValue(this, 'iBeadController'));
       if (c)
       {
@@ -297,17 +297,17 @@ org_apache_flex_core_UIBase.prototype.addedToParent = function() {
 /**
  * @param {Object} bead The bead to be added.
  */
-org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
+org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
   if (!this._beads) {
     this._beads = [];
   }
   this._beads.push(bead);
 
-  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel))
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel))
     this.model_ = bead;
 
-  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadView)) {
-    this.dispatchEvent(new org_apache_flex_events_Event('viewChanged'));
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadView)) {
+    this.dispatchEvent(new org.apache.flex.events.Event('viewChanged'));
   }
 
   bead.strand = this;
@@ -318,14 +318,14 @@ org_apache_flex_core_UIBase.prototype.addBead = function(bead) {
  * @param {Object} classOrInterface A type or interface.
  * @return {Object} The bead of the given type or null.
  */
-org_apache_flex_core_UIBase.prototype.getBeadByType =
+org.apache.flex.core.UIBase.prototype.getBeadByType =
     function(classOrInterface) {
   if (!this._beads) {
     this._beads = [];
   }
   for (var i = 0; i < this._beads.length; i++) {
     var bead = this._beads[i];
-    if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
+    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
@@ -337,7 +337,7 @@ org_apache_flex_core_UIBase.prototype.getBeadByType =
  * @param {Object} value The bead to be removed.
  * @return {Object} The bead that was removed.
  */
-org_apache_flex_core_UIBase.prototype.removeBead =
+org.apache.flex.core.UIBase.prototype.removeBead =
     function(value) {
   if (!this._beads) return null;
   var n = this._beads.length;
@@ -353,17 +353,17 @@ org_apache_flex_core_UIBase.prototype.removeBead =
 };
 
 
-Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
+Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
     /** @export */
     beads: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             this.mxmlBeads_ = value;
         }
     },
     /** @export */
     numElements: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var children = this.internalChildren();
             return children.length;
@@ -371,7 +371,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     parent: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var p = this.positioner.parentNode;
             var wrapper = p.flexjs_wrapper;
@@ -380,11 +380,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     alpha: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(alpha) {
             this.positioner.style.opacity = alpha;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var stralpha = this.positioner.style.opacity;
             var alpha = parseFloat(stralpha);
@@ -393,12 +393,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     x: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.left = pixels.toString() + 'px';
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var strpixels = this.positioner.style.left;
             var pixels = parseFloat(strpixels);
@@ -409,12 +409,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     y: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.positioner.style.position = 'absolute';
             this.positioner.style.top = pixels.toString() + 'px';
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var strpixels = this.positioner.style.top;
             var pixels = parseFloat(strpixels);
@@ -425,14 +425,14 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     clientWidth: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.positioner.clientWidth;
         }
     },
     /** @export */
     CSSWidth: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.width;
@@ -445,12 +445,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     width: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.explicitWidth = pixels;
             this.setWidth(pixels);
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.width;
@@ -470,41 +470,41 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     explicitWidth: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.explicitWidth_ = pixels;
             if (!isNaN(pixels))
               this.percentWidth_ = NaN;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.explicitWidth_;
         }
     },
     /** @export */
     percentWidth: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.percentWidth_ = pixels;
             this.positioner.style.width = pixels.toString() + '%';
             if (!isNaN(pixels))
               this.explicitWidth_ = NaN;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.percentWidth_;
         }
     },
     /** @export */
     clientHeight: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.positioner.clientHeight;
         }
     },
     /** @export */
     CSSHeight: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.height;
@@ -517,12 +517,12 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     height: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.explicitHeight = pixels;
             this.setHeight(pixels);
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var pixels;
             var strpixels = this.positioner.style.height;
@@ -542,38 +542,38 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     explicitHeight: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.explicitHeight_ = pixels;
             if (!isNaN(pixels))
                 this.percentHeight_ = NaN;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.explicitHeight_;
         }
     },
     /** @export */
     percentHeight: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(pixels) {
             this.percentHeight_ = pixels;
             this.positioner.style.height = pixels.toString() + '%';
             if (!isNaN(pixels))
               this.explicitHeight_ = NaN;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.percentHeight_;
         }
     },
     /** @export */
     id: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.id_;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             if (this.id_ !== value) {
               this.element.id = value;
@@ -584,11 +584,11 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     className: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.className_;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             if (this.className_ !== value) {
               this.element.className = this.typeNames ? value + ' ' + this.typeNames : value;
@@ -599,15 +599,15 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     model: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             if (this.model_ == null) {
               // addbead will set _model
-              if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+              if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
                 /**
                  * @type {Function}
                  */
-                var m = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+                var m = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
                     getValue(this, 'iBeadModel'));
                 var b = new m();
                 this.addBead(b);
@@ -615,7 +615,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
             }
             return this.model_;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             if (this.model_ !== value) {
               this.addBead(value);
@@ -625,18 +625,18 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     style: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.style_;
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             if (this.style_ !== value) {
               if (typeof(value) == 'string')
-                value = org_apache_flex_core_ValuesManager.valuesImpl.parseStyles(value);
+                value = org.apache.flex.core.ValuesManager.valuesImpl.parseStyles(value);
               this.style_ = value;
               if (value.addEventListener)
-                value.addEventListener(org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
+                value.addEventListener(org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
                     goog.bind(this.styleChangeHandler, this));
               this.dispatchEvent('stylesChanged');
             }
@@ -644,33 +644,33 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
     },
     /** @export */
     visible: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return this.positioner.style.display !== 'none';
         },
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         set: function(value) {
             var oldValue = this.positioner.style.display !== 'none';
             if (value !== oldValue) {
               if (!value) {
                 this.lastDisplay_ = this.positioner.style.display;
                 this.positioner.style.display = 'none';
-                this.dispatchEvent(new org_apache_flex_events_Event('hide'));
+                this.dispatchEvent(new org.apache.flex.events.Event('hide'));
               } else {
                 if (this.lastDisplay_) {
                   this.positioner.style.display = this.lastDisplay_;
                 } else {
                   this.positioner.style.display = this.positioner.internalDisplay;
                 }
-                this.dispatchEvent(new org_apache_flex_events_Event('show'));
+                this.dispatchEvent(new org.apache.flex.events.Event('show'));
               }
-              this.dispatchEvent(new org_apache_flex_events_Event('visibleChanged'));
+              this.dispatchEvent(new org.apache.flex.events.Event('visibleChanged'));
            }
         }
     },
     /** @export */
     topMostEventDispatcher: {
-        /** @this {org_apache_flex_core_UIBase} */
+        /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             return document.body.flexjs_wrapper;
         }
@@ -683,7 +683,7 @@ Object.defineProperties(org_apache_flex_core_UIBase.prototype, {
  * @param {number} value The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org_apache_flex_core_UIBase.prototype.setHeight =
+org.apache.flex.core.UIBase.prototype.setHeight =
     function(value, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -703,7 +703,7 @@ org_apache_flex_core_UIBase.prototype.setHeight =
  * @param {number} value The width of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org_apache_flex_core_UIBase.prototype.setWidth =
+org.apache.flex.core.UIBase.prototype.setWidth =
     function(value, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -724,7 +724,7 @@ org_apache_flex_core_UIBase.prototype.setWidth =
  * @param {number} newHeight The height of the object in pixels.
  * @param {boolean=} opt_noEvent Whether to skip sending a change event.
  */
-org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
+org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
     function(newWidth, newHeight, opt_noEvent)
 {
   if (opt_noEvent === undefined)
@@ -750,7 +750,7 @@ org_apache_flex_core_UIBase.prototype.setWidthAndHeight =
  * @export
  * @return {boolean} True if width sized to content.
  */
-org_apache_flex_core_UIBase.prototype.isWidthSizedToContent = function()
+org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
 {
   return (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_));
 };
@@ -760,7 +760,7 @@ org_apache_flex_core_UIBase.prototype.isWidthSizedToContent = function()
  * @export
  * @return {boolean} True if height sized to content.
  */
-org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
+org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
 {
   return (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_));
 };
@@ -770,15 +770,15 @@ org_apache_flex_core_UIBase.prototype.isHeightSizedToContent = function()
  * @export
  * @type {string}
  */
-org_apache_flex_core_UIBase.prototype.typeNames = '';
+org.apache.flex.core.UIBase.prototype.typeNames = '';
 
 
 /**
  * @export
- * @param {org_apache_flex_events_ValueChangeEvent} value The new style properties.
+ * @param {org.apache.flex.events.ValueChangeEvent} value The new style properties.
  */
-org_apache_flex_core_UIBase.prototype.styleChangeHandler = function(value) {
+org.apache.flex.core.UIBase.prototype.styleChangeHandler = function(value) {
   var newStyle = {};
   newStyle[value.propertyName] = value.newValue;
-  org_apache_flex_core_ValuesManager.valuesImpl.applyStyles(this, newStyle);
+  org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, newStyle);
 };

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_controllers_SliderMouseController');
+goog.provide('org.apache.flex.html.beads.controllers.SliderMouseController');
 
-goog.require('org_apache_flex_html_beads_SliderThumbView');
-goog.require('org_apache_flex_html_beads_SliderTrackView');
+goog.require('org.apache.flex.html.beads.SliderThumbView');
+goog.require('org.apache.flex.html.beads.SliderTrackView');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_beads_controllers_SliderMouseController =
+org.apache.flex.html.beads.controllers.SliderMouseController =
     function() {
 };
 
@@ -32,22 +32,22 @@ org_apache_flex_html_beads_controllers_SliderMouseController =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.controllers.SliderMouseController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SliderMouseController',
-                qName: 'org_apache_flex_html_beads_controllers_SliderMouseController' }] };
+                qName: 'org.apache.flex.html.beads.controllers.SliderMouseController' }] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseController.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.controllers.SliderMouseController.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_controllers_SliderMouseController} */
+        /** @this {org.apache.flex.html.beads.controllers.SliderMouseController} */
         set: function(value) {
             this.strand_ = value;
 
             this.track = this.strand_.getBeadByType(
-                org_apache_flex_html_beads_SliderTrackView);
+                org.apache.flex.html.beads.SliderTrackView);
             this.thumb = this.strand_.getBeadByType(
-                org_apache_flex_html_beads_SliderThumbView);
+                org.apache.flex.html.beads.SliderThumbView);
 
             goog.events.listen(this.track.element, goog.events.EventType.CLICK,
                      this.handleTrackClick, false, this);
@@ -64,7 +64,7 @@ Object.defineProperties(org_apache_flex_html_beads_controllers_SliderMouseContro
  * @param {Event} event The event triggering the function.
  * @return {void} Handles click on track.
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleTrackClick =
     function(event)
     {
@@ -80,7 +80,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
 
   this.calcValFromMousePosition(event, true);
 
-  this.strand_.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
@@ -89,7 +89,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-down on the thumb.
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbDown =
     function(event)
     {
@@ -108,7 +108,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-up on the thumb.
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbUp =
     function(event)
     {
@@ -119,7 +119,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
 
   this.calcValFromMousePosition(event, false);
 
-  this.strand_.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
@@ -128,13 +128,13 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
  * @param {Event} event The event triggering the function.
  * @return {void} Handles mouse-move on the thumb.
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.handleThumbMove =
     function(event)
     {
   this.calcValFromMousePosition(event, false);
 
-  this.strand_.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
+  this.strand_.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
@@ -145,7 +145,7 @@ org_apache_flex_html_beads_controllers_SliderMouseController.
  * @return {void} Determines the new value based on the movement of the mouse
  * along the slider.
  */
-org_apache_flex_html_beads_controllers_SliderMouseController.
+org.apache.flex.html.beads.controllers.SliderMouseController.
     prototype.calcValFromMousePosition =
     function(event, useOffset)
     {

@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_effects_PlatformWiper');
+goog.provide('org.apache.flex.effects.PlatformWiper');
 
-goog.require('org_apache_flex_geom_Rectangle');
+goog.require('org.apache.flex.geom.Rectangle');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_effects_PlatformWiper = function() {
+org.apache.flex.effects.PlatformWiper = function() {
 
   /**
    * @private
@@ -44,15 +44,15 @@ org_apache_flex_effects_PlatformWiper = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_effects_PlatformWiper.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.effects.PlatformWiper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PlatformWiper',
-                qName: 'org_apache_flex_effects_PlatformWiper'}] };
+                qName: 'org.apache.flex.effects.PlatformWiper'}] };
 
 
-Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
+Object.defineProperties(org.apache.flex.effects.PlatformWiper.prototype, {
     /** @export */
     target: {
-        /** @this {org_apache_flex_effects_PlatformWiper} */
+        /** @this {org.apache.flex.effects.PlatformWiper} */
         set: function(target) {
             if (target == null) {
               if (this.overflow_ == null)
@@ -68,7 +68,7 @@ Object.defineProperties(org_apache_flex_effects_PlatformWiper.prototype, {
     },
     /** @export */
     visibleRect: {
-        /** @this {org_apache_flex_effects_PlatformWiper} */
+        /** @this {org.apache.flex.effects.PlatformWiper} */
         set: function(rect) {
             /*
             var styleString = 'rect(';

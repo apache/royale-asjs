@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_ButtonBarView');
+goog.provide('org.apache.flex.html.beads.ButtonBarView');
 
-goog.require('org_apache_flex_html_beads_ListView');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_beads_ListView}
+ * @extends {org.apache.flex.html.beads.ListView}
  */
-org_apache_flex_html_beads_ButtonBarView = function() {
+org.apache.flex.html.beads.ButtonBarView = function() {
   this.lastSelectedIndex = -1;
-  org_apache_flex_html_beads_ButtonBarView.base(this, 'constructor');
+  org.apache.flex.html.beads.ButtonBarView.base(this, 'constructor');
 
   this.className = 'ButtonBarView';
 };
 goog.inherits(
-    org_apache_flex_html_beads_ButtonBarView,
-    org_apache_flex_html_beads_ListView);
+    org.apache.flex.html.beads.ButtonBarView,
+    org.apache.flex.html.beads.ListView);
 
 
 /**
@@ -39,18 +39,18 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_ButtonBarView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.ButtonBarView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBarView',
-                qName: 'org_apache_flex_html_beads_ButtonBarView' }] };
+                qName: 'org.apache.flex.html.beads.ButtonBarView' }] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_ButtonBarView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.ButtonBarView.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_ButtonBarView} */
+        /** @this {org.apache.flex.html.beads.ButtonBarView} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_html_beads_ButtonBarView, this, 'strand', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.html.beads.ButtonBarView, this, 'strand', value);
             this.strand_ = value;
         }
     }

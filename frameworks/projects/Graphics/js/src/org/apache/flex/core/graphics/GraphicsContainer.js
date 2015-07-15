@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_graphics_GraphicsContainer');
+goog.provide('org.apache.flex.core.graphics.GraphicsContainer');
 
-goog.require('org_apache_flex_core_graphics_GraphicShape');
+goog.require('org.apache.flex.core.graphics.GraphicShape');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_graphics_GraphicShape}
+ * @extends {org.apache.flex.core.graphics.GraphicShape}
  */
-org_apache_flex_core_graphics_GraphicsContainer = function() {
-  org_apache_flex_core_graphics_GraphicsContainer.base(this, 'constructor');
+org.apache.flex.core.graphics.GraphicsContainer = function() {
+  org.apache.flex.core.graphics.GraphicsContainer.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_core_graphics_GraphicsContainer, org_apache_flex_core_graphics_GraphicShape);
+goog.inherits(org.apache.flex.core.graphics.GraphicsContainer, org.apache.flex.core.graphics.GraphicShape);
 
 
 /**
@@ -33,15 +33,15 @@ goog.inherits(org_apache_flex_core_graphics_GraphicsContainer, org_apache_flex_c
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.graphics.GraphicsContainer.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'GraphicsContainer',
-      qName: 'org_apache_flex_core_graphics_GraphicsContainer'}] };
+      qName: 'org.apache.flex.core.graphics.GraphicsContainer'}] };
 
 
 /**
  * @export
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = function() {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.removeAllElements = function() {
   var svg = this.element;
   while (svg.lastChild) {
     svg.removeChild(svg.lastChild);
@@ -49,40 +49,40 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.removeAllElements = fu
 };
 
 
-Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototype, {
+Object.defineProperties(org.apache.flex.core.graphics.GraphicsContainer.prototype, {
     /** @export */
     numChildren: {
-        /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
+        /** @this {org.apache.flex.core.graphics.GraphicsContainer} */
         get: function() {
             return this.internalChildren().length;
         }
     },
     /** @export */
     width: {
-        /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
+        /** @this {org.apache.flex.core.graphics.GraphicsContainer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_core_graphics_GraphicsContainer, this, 'width', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.core.graphics.GraphicsContainer, this, 'width', value);
             this.element.setAttribute('width', String(value) + 'px');
             this.element.style.width = String(value) + 'px';
         }
     },
     /** @export */
     height: {
-        /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
+        /** @this {org.apache.flex.core.graphics.GraphicsContainer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_core_graphics_GraphicsContainer, this, 'height', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.core.graphics.GraphicsContainer, this, 'height', value);
             this.element.setAttribute('height', String(value) + 'px');
             this.element.style.height = String(value) + 'px';
         }
     },
     /** @export */
     x: {
-        /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
+        /** @this {org.apache.flex.core.graphics.GraphicsContainer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_core_graphics_GraphicsContainer, this, 'x', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.core.graphics.GraphicsContainer, this, 'x', value);
             this.element.setAttribute('x', String(value) + 'px');
             this.element.style.position = 'absolute';
             this.element.style.left = String(value) + 'px';
@@ -91,10 +91,10 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
     },
     /** @export */
     y: {
-        /** @this {org_apache_flex_core_graphics_GraphicsContainer} */
+        /** @this {org.apache.flex.core.graphics.GraphicsContainer} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(
-                org_apache_flex_core_graphics_GraphicsContainer, this, 'y', value);
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.core.graphics.GraphicsContainer, this, 'y', value);
             this.element.setAttribute('y', String(value) + 'px');
             this.element.style.position = 'absolute';
             this.element.style.top = String(value) + 'px';
@@ -111,7 +111,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicsContainer.prototyp
  * @param {number} width The width of the rectangle.
  * @param {number} height The height of the rectangle.
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawRect = function(x, y, width, height) {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawRect = function(x, y, width, height) {
   var style = this.getStyleStr();
   var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
   rect.flexjs_wrapper = this;
@@ -134,7 +134,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawRect = function(x,
  * @param {number} width The width of the ellipse.
  * @param {number} height The height of the ellipse.
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawEllipse = function(x, y, width, height) {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawEllipse = function(x, y, width, height) {
   var style = this.getStyleStr();
   var ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
   ellipse.flexjs_wrapper = this;
@@ -156,7 +156,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawEllipse = function
  * @param {number} y The y location of the center of the circle.
  * @param {number} radius The radius of the circle.
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawCircle = function(x, y, radius) {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawCircle = function(x, y, radius) {
   var style = this.getStyleStr();
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
   circle.flexjs_wrapper = this;
@@ -182,7 +182,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawCircle = function(
  *  If the segment command is upper-case, the parameters are absolute values.
  *  If the segment command is lower-case, the parameters are relative values.
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPath = function(data) {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(data) {
   var style = this.getStyleStr();
   var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.flexjs_wrapper = this;
@@ -202,7 +202,7 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPath = function(da
  * @param {number} y The y position of the text.
  * @return {object} The text node created to display the graphics.
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawText = function(value, x, y) {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(value, x, y) {
   var style = this.getStyleStr();
   var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   text.flexjs_wrapper = this;
@@ -222,13 +222,13 @@ org_apache_flex_core_graphics_GraphicsContainer.prototype.drawText = function(va
 /**
  * @export
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawLine = function() {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawLine = function() {
 };
 
 
 /**
  * @export
  */
-org_apache_flex_core_graphics_GraphicsContainer.prototype.drawPolygon = function() {
+org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPolygon = function() {
 };
 

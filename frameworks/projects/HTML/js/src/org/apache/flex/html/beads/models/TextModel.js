@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_models_TextModel');
+goog.provide('org.apache.flex.html.beads.models.TextModel');
 
-goog.require('org_apache_flex_core_ITextModel');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.ITextModel');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
- * @implements {org_apache_flex_core_ITextModel}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.ITextModel}
  */
-org_apache_flex_html_beads_models_TextModel =
+org.apache.flex.html.beads.models.TextModel =
     function() {
-  org_apache_flex_html_beads_models_TextModel.base(this, 'constructor');
+  org.apache.flex.html.beads.models.TextModel.base(this, 'constructor');
   this.className = 'TextModel';
 };
 goog.inherits(
-    org_apache_flex_html_beads_models_TextModel,
-    org_apache_flex_events_EventDispatcher);
+    org.apache.flex.html.beads.models.TextModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -39,27 +39,27 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_models_TextModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.TextModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextModel',
-                qName: 'org_apache_flex_html_beads_models_TextModel' }],
-      interfaces: [org_apache_flex_core_ITextModel] };
+                qName: 'org.apache.flex.html.beads.models.TextModel' }],
+      interfaces: [org.apache.flex.core.ITextModel] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_models_TextModel.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.models.TextModel.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        /** @this {org.apache.flex.html.beads.models.TextModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        /** @this {org.apache.flex.html.beads.models.TextModel} */
         get: function() {
             return this.text_;
         },
-        /** @this {org_apache_flex_html_beads_models_TextModel} */
+        /** @this {org.apache.flex.html.beads.models.TextModel} */
         set: function(value) {
             this.text_ = value;
             this.dispatchEvent('textChange');

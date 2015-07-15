@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
+goog.provide('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 
-goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_events_EventDispatcher');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
-goog.require('org_apache_flex_html_supportClasses_StringItemRenderer');
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
- * @implements {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_html_beads_TextItemRendererFactoryForArrayData =
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData =
     function() {
-  org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.base(this, 'constructor');
+  org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_beads_TextItemRendererFactoryForArrayData,
-    org_apache_flex_events_EventDispatcher);
+    org.apache.flex.html.beads.TextItemRendererFactoryForArrayData,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -42,25 +42,25 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextItemRendererFactoryForArrayData',
-                qName: 'org_apache_flex_html_beads_TextItemRendererFactoryForArrayData' }],
-      interfaces: [org_apache_flex_core_IItemRenderer] };
+                qName: 'org.apache.flex.html.beads.TextItemRendererFactoryForArrayData' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_TextItemRendererFactoryForArrayData} */
+        /** @this {org.apache.flex.html.beads.TextItemRendererFactoryForArrayData} */
         set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
-                org_apache_flex_html_beads_models_ArraySelectionModel);
+                org.apache.flex.html.beads.models.ArraySelectionModel);
 
             this.listView = value.getBeadByType(
-                org_apache_flex_html_beads_ListView);
+                org.apache.flex.html.beads.ListView);
             this.dataGroup = this.listView.dataGroup;
 
             this.model.addEventListener('dataProviderChanged',
@@ -76,7 +76,7 @@ Object.defineProperties(org_apache_flex_html_beads_TextItemRendererFactoryForArr
  * @export
  * @param {Object} event The event that triggered the dataProvider change.
  */
-org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
@@ -84,11 +84,11 @@ org_apache_flex_html_beads_TextItemRendererFactoryForArrayData.
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = new
-        org_apache_flex_html_supportClasses_StringItemRenderer();
+        org.apache.flex.html.supportClasses.StringItemRenderer();
     this.dataGroup.addElement(opt);
     opt.text = dp[i];
   }
 
-  var newEvent = new org_apache_flex_events_Event('itemsCreated');
+  var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };

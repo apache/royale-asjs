@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_ToggleTextButton');
+goog.provide('org.apache.flex.html.ToggleTextButton');
 
-goog.require('org_apache_flex_html_Button');
+goog.require('org.apache.flex.html.Button');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Button}
+ * @extends {org.apache.flex.html.Button}
  */
-org_apache_flex_html_ToggleTextButton = function() {
-  org_apache_flex_html_ToggleTextButton.base(this, 'constructor');
+org.apache.flex.html.ToggleTextButton = function() {
+  org.apache.flex.html.ToggleTextButton.base(this, 'constructor');
 
 
 
@@ -33,8 +33,8 @@ org_apache_flex_html_ToggleTextButton = function() {
    */
   this.selected_ = false;
 };
-goog.inherits(org_apache_flex_html_ToggleTextButton,
-    org_apache_flex_html_Button);
+goog.inherits(org.apache.flex.html.ToggleTextButton,
+    org.apache.flex.html.Button);
 
 
 /**
@@ -42,30 +42,30 @@ goog.inherits(org_apache_flex_html_ToggleTextButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ToggleTextButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ToggleTextButton',
-                qName: 'org_apache_flex_html_ToggleTextButton'}] };
+                qName: 'org.apache.flex.html.ToggleTextButton'}] };
 
 
-Object.defineProperties(org_apache_flex_html_ToggleTextButton.prototype, {
+Object.defineProperties(org.apache.flex.html.ToggleTextButton.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org.apache.flex.html.ToggleTextButton} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org.apache.flex.html.ToggleTextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org.apache.flex.html.ToggleTextButton} */
         get: function() {
              return this.selected_;
         },
-        /** @this {org_apache_flex_html_ToggleTextButton} */
+        /** @this {org.apache.flex.html.ToggleTextButton} */
         set: function(value) {
             if (this.selected_ != value) {
               this.selected_ = value;
@@ -88,5 +88,5 @@ Object.defineProperties(org_apache_flex_html_ToggleTextButton.prototype, {
 /**
  * @type {string} The selected setter.
  */
-org_apache_flex_html_ToggleTextButton.prototype.SELECTED = '_Selected';
+org.apache.flex.html.ToggleTextButton.prototype.SELECTED = '_Selected';
 

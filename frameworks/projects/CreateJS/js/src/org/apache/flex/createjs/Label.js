@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_createjs_Label');
+goog.provide('org.apache.flex.createjs.Label');
 
-goog.require('org_apache_flex_createjs_core_UIBase');
+goog.require('org.apache.flex.createjs.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_createjs_core_UIBase}
+ * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org_apache_flex_createjs_Label = function() {
-  org_apache_flex_createjs_core_UIBase.call(this);
+org.apache.flex.createjs.Label = function() {
+  org.apache.flex.createjs.core.UIBase.call(this);
 };
-goog.inherits(org_apache_flex_createjs_Label,
-    org_apache_flex_createjs_core_UIBase);
+goog.inherits(org.apache.flex.createjs.Label,
+    org.apache.flex.createjs.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_createjs_Label.prototype.createElement =
+org.apache.flex.createjs.Label.prototype.createElement =
     function(p) {
-  org_apache_flex_createjs_Label.base(this, 'createElement');
+  org.apache.flex.createjs.Label.base(this, 'createElement');
 
   this.element = new createjs.Text('default text', '20px Arial', '#ff7700');
   this.element.x = 0;
@@ -47,14 +47,14 @@ org_apache_flex_createjs_Label.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_createjs_Label.prototype, {
+Object.defineProperties(org.apache.flex.createjs.Label.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_createjs_Label} */
+        /** @this {org.apache.flex.createjs.Label} */
         get: function() {
             return this.element.text;
         },
-        /** @this {org_apache_flex_createjs_Label} */
+        /** @this {org.apache.flex.createjs.Label} */
         set: function(value) {
             this.element.text = value;
             this.element.getStage().update();

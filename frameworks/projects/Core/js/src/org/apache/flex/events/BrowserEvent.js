@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-goog.provide('org_apache_flex_events_BrowserEvent');
+goog.provide('org.apache.flex.events.BrowserEvent');
 
 goog.require('goog.events.BrowserEvent');
 
@@ -20,7 +20,7 @@ goog.require('goog.events.BrowserEvent');
 /**
  * @constructor
  */
-org_apache_flex_events_BrowserEvent = function() {
+org.apache.flex.events.BrowserEvent = function() {
 
 };
 
@@ -30,43 +30,43 @@ org_apache_flex_events_BrowserEvent = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_BrowserEvent.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.BrowserEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BrowserEvent',
-                qName: 'org_apache_flex_events_BrowserEvent' }] };
+                qName: 'org.apache.flex.events.BrowserEvent' }] };
 
 
 /**
  * @type {?goog.events.BrowserEvent}
  */
-org_apache_flex_events_BrowserEvent.prototype.wrappedEvent = null;
+org.apache.flex.events.BrowserEvent.prototype.wrappedEvent = null;
 
 
 /**
  */
-org_apache_flex_events_BrowserEvent.prototype.preventDefault = function() {
+org.apache.flex.events.BrowserEvent.prototype.preventDefault = function() {
   this.wrappedEvent.preventDefault();
 };
 
 
 /**
  */
-org_apache_flex_events_BrowserEvent.prototype.stopPropagation = function() {
+org.apache.flex.events.BrowserEvent.prototype.stopPropagation = function() {
   this.wrappedEvent.stopPropagation();
 };
 
 
 /**
  */
-org_apache_flex_events_BrowserEvent.prototype.stopImmediatePropagation = function() {
+org.apache.flex.events.BrowserEvent.prototype.stopImmediatePropagation = function() {
   //this.wrappedEvent.stopImmediatePropagation(); // not in goog.events.BrowserEvent
   this.wrappedEvent.stopPropagation();
 };
 
 
-Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
+Object.defineProperties(org.apache.flex.events.BrowserEvent.prototype, {
     /** @export */
     currentTarget: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             var o = this.wrappedEvent.currentTarget;
             if (o && o.flexjs_wrapper)
@@ -76,70 +76,70 @@ Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
     },
     /** @export */
     button: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.button;
         }
     },
     /** @export */
     charCode: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.charCode;
         }
     },
     /** @export */
     clientX: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.clientX;
         }
     },
     /** @export */
     clientY: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.clientY;
         }
     },
     /** @export */
     keyCode: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.keyCode;
         }
     },
     /** @export */
     offsetX: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.offsetX;
         }
     },
     /** @export */
     offsetY: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.offsetY;
         }
     },
     /** @export */
     screenX: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.screenX;
         }
     },
     /** @export */
     screenY: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             return this.wrappedEvent.screenY;
         }
     },
     /** @export */
     relatedTarget: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             var o = this.wrappedEvent.relatedTarget;
             if (o && o.flexjs_wrapper)
@@ -149,7 +149,7 @@ Object.defineProperties(org_apache_flex_events_BrowserEvent.prototype, {
     },
     /** @export */
     target: {
-        /** @this {org_apache_flex_events_BrowserEvent} */
+        /** @this {org.apache.flex.events.BrowserEvent} */
         get: function() {
             var o = this.wrappedEvent.target;
             if (o && o.flexjs_wrapper)

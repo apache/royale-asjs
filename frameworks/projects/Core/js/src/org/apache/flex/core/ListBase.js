@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_ListBase');
+goog.provide('org.apache.flex.core.ListBase');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_supportClasses_StringItemRenderer');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_core_ListBase = function() {
-  org_apache_flex_core_ListBase.base(this, 'constructor');
+org.apache.flex.core.ListBase = function() {
+  org.apache.flex.core.ListBase.base(this, 'constructor');
 
   /**
    * @private
@@ -32,8 +32,8 @@ org_apache_flex_core_ListBase = function() {
    */
   this.selectedIndex_ = -1;
 };
-goog.inherits(org_apache_flex_core_ListBase,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.core.ListBase,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -41,15 +41,15 @@ goog.inherits(org_apache_flex_core_ListBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ListBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.ListBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListBase',
-                qName: 'org_apache_flex_core_ListBase' }] };
+                qName: 'org.apache.flex.core.ListBase' }] };
 
 
 /**
  * @override
  */
-org_apache_flex_core_ListBase.prototype.createElement = function() {
+org.apache.flex.core.ListBase.prototype.createElement = function() {
   //  this.element = document.createElement('select');
   //  goog.events.listen(this.element, 'change',
   //      goog.bind(this.changeHandler, this));
@@ -65,36 +65,36 @@ org_apache_flex_core_ListBase.prototype.createElement = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
+Object.defineProperties(org.apache.flex.core.ListBase.prototype, {
     /** @export */
     dataProvider: {
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         get: function() {
             return this.model.dataProvider;
         },
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         set: function(value) {
             this.model.dataProvider = value;
         }
     },
     /** @export */
     selectedIndex: {
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         get: function() {
             return this.model.selectedIndex;
         },
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         set: function(value) {
             this.model.selectedIndex = value;
         }
     },
     /** @export */
     selectedItem: {
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         get: function() {
             return this.model.selectedItem;
         },
-        /** @this {org_apache_flex_core_ListBase} */
+        /** @this {org.apache.flex.core.ListBase} */
         set: function(value) {
             this.model.selectedItem = value;
         }
@@ -105,7 +105,7 @@ Object.defineProperties(org_apache_flex_core_ListBase.prototype, {
 /**
  * @protected
  */
-org_apache_flex_core_ListBase.prototype.changeHandler =
+org.apache.flex.core.ListBase.prototype.changeHandler =
     function() {
   this.dispatchEvent('change');
 };

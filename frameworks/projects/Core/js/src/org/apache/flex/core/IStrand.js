@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IStrand');
+goog.provide('org.apache.flex.core.IStrand');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_IStrand');
  *
  * @interface
  */
-org_apache_flex_core_IStrand = function() {
+org.apache.flex.core.IStrand = function() {
 };
 
 
@@ -35,18 +35,18 @@ org_apache_flex_core_IStrand = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IStrand.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IStrand.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IStrand',
-                qName: 'org_apache_flex_core_IStrand' }] };
+                qName: 'org.apache.flex.core.IStrand' }] };
 
 
 /**
  * addBead()
  *
  * @export
- * @param {org_apache_flex_core_IBead} bead The bead to add.
+ * @param {org.apache.flex.core.IBead} bead The bead to add.
  */
-org_apache_flex_core_IStrand.prototype.addBead = function(bead) {};
+org.apache.flex.core.IStrand.prototype.addBead = function(bead) {};
 
 
 /**
@@ -54,9 +54,9 @@ org_apache_flex_core_IStrand.prototype.addBead = function(bead) {};
  *
  * @export
  * @param {Object} classOrInterface The type of bead to look for.
- * @return {org_apache_flex_core_IBead} The bead.
+ * @return {org.apache.flex.core.IBead} The bead.
  */
-org_apache_flex_core_IStrand.prototype.getBeadByType =
+org.apache.flex.core.IStrand.prototype.getBeadByType =
     function(classOrInterface) {};
 
 
@@ -64,7 +64,7 @@ org_apache_flex_core_IStrand.prototype.getBeadByType =
  * removeBead()
  *
  * @export
- * @param {org_apache_flex_core_IBead} bead The bead to remove.
- * @return {org_apache_flex_core_IBead} The bead that was removed.
+ * @param {org.apache.flex.core.IBead} bead The bead to remove.
+ * @return {org.apache.flex.core.IBead} The bead that was removed.
  */
-org_apache_flex_core_IStrand.prototype.removeBead = function(bead) {};
+org.apache.flex.core.IStrand.prototype.removeBead = function(bead) {};

@@ -11,24 +11,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IHorizontalAxisBead
+ * org.apache.flex.charts.core.IHorizontalAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IHorizontalAxisBead');
+goog.provide('org.apache.flex.charts.core.IHorizontalAxisBead');
 
-goog.require('org_apache_flex_charts_core_IAxisBead');
+goog.require('org.apache.flex.charts.core.IAxisBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_charts_core_IAxisBead}
+ * @extends {org.apache.flex.charts.core.IAxisBead}
  */
-org_apache_flex_charts_core_IHorizontalAxisBead = function() {
+org.apache.flex.charts.core.IHorizontalAxisBead = function() {
 };
 
 
@@ -37,13 +37,13 @@ org_apache_flex_charts_core_IHorizontalAxisBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IHorizontalAxisBead', qName: 'org_apache_flex_charts_core_IHorizontalAxisBead'}],
-    interfaces: [org_apache_flex_charts_core_IAxisBead]
+org.apache.flex.charts.core.IHorizontalAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IHorizontalAxisBead', qName: 'org.apache.flex.charts.core.IHorizontalAxisBead'}],
+    interfaces: [org.apache.flex.charts.core.IAxisBead]
   };
 
 
-Object.defineProperties(org_apache_flex_charts_core_IHorizontalAxisBead.prototype, {
+Object.defineProperties(org.apache.flex.charts.core.IHorizontalAxisBead.prototype, {
     /** @export */
     axisHeight: {
         set: function(value) {},

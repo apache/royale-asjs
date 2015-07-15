@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_events_EventDispatcher');
+goog.provide('org.apache.flex.events.EventDispatcher');
 
 goog.require('goog.events.EventTarget');
-goog.require('org_apache_flex_events_ElementEvents');
-goog.require('org_apache_flex_events_IEventDispatcher');
+goog.require('org.apache.flex.events.ElementEvents');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 
 /**
  * @constructor
  * @extends {goog.events.EventTarget}
- * @implements {org_apache_flex_events_IEventDispatcher}
+ * @implements {org.apache.flex.events.IEventDispatcher}
  */
-org_apache_flex_events_EventDispatcher = function() {
-  org_apache_flex_events_EventDispatcher.base(this, 'constructor');
+org.apache.flex.events.EventDispatcher = function() {
+  org.apache.flex.events.EventDispatcher.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_events_EventDispatcher,
+goog.inherits(org.apache.flex.events.EventDispatcher,
     goog.events.EventTarget);
 
 
@@ -37,16 +37,16 @@ goog.inherits(org_apache_flex_events_EventDispatcher,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_EventDispatcher.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.EventDispatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'EventDispatcher',
-                qName: 'org_apache_flex_events_EventDispatcher'}],
-      interfaces: [org_apache_flex_events_IEventDispatcher] };
+                qName: 'org.apache.flex.events.EventDispatcher'}],
+      interfaces: [org.apache.flex.events.IEventDispatcher] };
 
 
 /**
  * @override
  */
-org_apache_flex_events_EventDispatcher.prototype.addEventListener =
+org.apache.flex.events.EventDispatcher.prototype.addEventListener =
     function(type, handler, opt_capture, opt_handlerScope) {
   var source;
 
@@ -60,7 +60,7 @@ org_apache_flex_events_EventDispatcher.prototype.addEventListener =
       this.element.nodeName.toLowerCase() !== 'div' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
-  } else if (org_apache_flex_events_ElementEvents.elementEvents[type]) {
+  } else if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
     // mouse and keyboard events also dispatch off the element.
     source = this.element;
   }

@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_jquery_TextButton');
+goog.provide('org.apache.flex.jquery.TextButton');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_jquery_TextButton = function() {
-  org_apache_flex_jquery_TextButton.base(this, 'constructor');
+org.apache.flex.jquery.TextButton = function() {
+  org.apache.flex.jquery.TextButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_jquery_TextButton,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.jquery.TextButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_jquery_TextButton.prototype.createElement =
+org.apache.flex.jquery.TextButton.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -46,21 +46,21 @@ org_apache_flex_jquery_TextButton.prototype.createElement =
 /**
  * @override
  */
-org_apache_flex_jquery_TextButton.prototype.addedToParent =
+org.apache.flex.jquery.TextButton.prototype.addedToParent =
     function() {
-  org_apache_flex_jquery_TextButton.base(this, 'addedToParent');
+  org.apache.flex.jquery.TextButton.base(this, 'addedToParent');
   $(this.element).button();
 };
 
 
-Object.defineProperties(org_apache_flex_jquery_TextButton.prototype, {
+Object.defineProperties(org.apache.flex.jquery.TextButton.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_jquery_TextButton} */
+        /** @this {org.apache.flex.jquery.TextButton} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_jquery_TextButton} */
+        /** @this {org.apache.flex.jquery.TextButton} */
         set: function(value) {
             this.element.innerHTML = value;
         }

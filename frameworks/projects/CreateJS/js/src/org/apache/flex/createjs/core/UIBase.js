@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_createjs_core_UIBase');
+goog.provide('org.apache.flex.createjs.core.UIBase');
 
-goog.require('org_apache_flex_core_HTMLElementWrapper');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_HTMLElementWrapper}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
-org_apache_flex_createjs_core_UIBase = function() {
-  org_apache_flex_createjs_core_UIBase.base(this, 'constructor');
+org.apache.flex.createjs.core.UIBase = function() {
+  org.apache.flex.createjs.core.UIBase.base(this, 'constructor');
 
   /**
      * @protected
@@ -33,14 +33,14 @@ org_apache_flex_createjs_core_UIBase = function() {
 
   this.createElement();
 };
-goog.inherits(org_apache_flex_createjs_core_UIBase,
-    org_apache_flex_core_HTMLElementWrapper);
+goog.inherits(org.apache.flex.createjs.core.UIBase,
+    org.apache.flex.core.HTMLElementWrapper);
 
 
 /**
  * @param {Object} c The child element.
  */
-org_apache_flex_createjs_core_UIBase.prototype.addElement =
+org.apache.flex.createjs.core.UIBase.prototype.addElement =
     function(c) {
   this.addChild(c.element);
 };
@@ -48,7 +48,7 @@ org_apache_flex_createjs_core_UIBase.prototype.addElement =
 
 /**
  */
-org_apache_flex_createjs_core_UIBase.prototype.createElement =
+org.apache.flex.createjs.core.UIBase.prototype.createElement =
     function() {
   this.element = new createjs.Container();
 
@@ -56,10 +56,10 @@ org_apache_flex_createjs_core_UIBase.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
+Object.defineProperties(org.apache.flex.createjs.core.UIBase.prototype, {
     /** @export */
     x: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(pixels) {
             this.positioner.x = pixels;
             this.element.getStage().update();
@@ -67,7 +67,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
     },
     /** @export */
     y: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(pixels) {
             this.positioner.y = pixels;
             this.element.getStage().update();
@@ -75,7 +75,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
     },
     /** @export */
     width: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(pixels) {
             this.positioner.width = pixels;
             this.element.getStage().update();
@@ -83,7 +83,7 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
     },
     /** @export */
     height: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(pixels) {
             this.positioner.height = pixels;
             this.element.getStage().update();
@@ -91,11 +91,11 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
     },
     /** @export */
     id: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         get: function() {
              return this.name;
         },
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(value) {
             if (this.name !== value) {
               this.element.name = value;
@@ -106,11 +106,11 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
     },
     /** @export */
     model: {
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         get: function() {
             return this.model;
         },
-        /** @this {org_apache_flex_createjs_core_UIBase} */
+        /** @this {org.apache.flex.createjs.core.UIBase} */
         set: function(value) {
             if (this.model !== value) {
               this.addBead(value);
@@ -125,11 +125,11 @@ Object.defineProperties(org_apache_flex_createjs_core_UIBase.prototype, {
  * @export
  * @type {string}
  */
-org_apache_flex_createjs_core_UIBase.prototype.id = null;
+org.apache.flex.createjs.core.UIBase.prototype.id = null;
 
 
 /**
  * @export
  * @type {object}
  */
-org_apache_flex_createjs_core_UIBase.prototype.model = null;
+org.apache.flex.createjs.core.UIBase.prototype.model = null;

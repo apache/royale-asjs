@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_states_State');
+goog.provide('org.apache.flex.states.State');
 
 
 
@@ -20,7 +20,7 @@ goog.provide('org_apache_flex_states_State');
  * @constructor
  * @param {Object=} opt_props The initial properties.
  */
-org_apache_flex_states_State = function(opt_props) {
+org.apache.flex.states.State = function(opt_props) {
   opt_props = typeof opt_props !== 'undefined' ? opt_props : null;
 };
 
@@ -30,35 +30,35 @@ org_apache_flex_states_State = function(opt_props) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_states_State.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.states.State.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'State',
-                qName: 'org_apache_flex_states_State' }] };
+                qName: 'org.apache.flex.states.State' }] };
 
 
 /**
  * @private
  * @type {string} name The state name.
  */
-org_apache_flex_states_State.prototype.name_ = '';
+org.apache.flex.states.State.prototype.name_ = '';
 
 
 /**
  * @private
  * @type {Array} overrides The state data.
  */
-org_apache_flex_states_State.prototype.overrides_ = null;
+org.apache.flex.states.State.prototype.overrides_ = null;
 
 
-Object.defineProperties(org_apache_flex_states_State.prototype,
-  /** @lends {org_apache_flex_states_State.prototype} */ {
+Object.defineProperties(org.apache.flex.states.State.prototype,
+  /** @lends {org.apache.flex.states.State.prototype} */ {
   /** @export */
   name: {
-    /** @this {org_apache_flex_states_State} */
+    /** @this {org.apache.flex.states.State} */
     get: function() {
       return this.name_;
     },
 
-    /** @this {org_apache_flex_states_State} */
+    /** @this {org.apache.flex.states.State} */
     set: function(value) {
       if (value != this.name_) {
         this.name_ = value;
@@ -67,12 +67,12 @@ Object.defineProperties(org_apache_flex_states_State.prototype,
   },
   /** @export */
   overrides: {
-    /** @this {org_apache_flex_states_State} */
+    /** @this {org.apache.flex.states.State} */
     get: function() {
       return this.overrides_;
     },
 
-    /** @this {org_apache_flex_states_State} */
+    /** @this {org.apache.flex.states.State} */
     set: function(value) {
       if (value != this.overrides_) {
         this.overrides_ = value;
