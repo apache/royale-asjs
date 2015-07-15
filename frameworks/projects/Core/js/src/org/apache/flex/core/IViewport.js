@@ -13,28 +13,28 @@
  */
 
 /**
- * org_apache_flex_core_IViewport
+ * org.apache.flex.core.IViewport
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IViewport');
+goog.provide('org.apache.flex.core.IViewport');
 
-goog.require('org_apache_flex_core_IBead');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IBead}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_core_IViewport = function() {
+org.apache.flex.core.IViewport = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_IViewport.prototype, {
+Object.defineProperties(org.apache.flex.core.IViewport.prototype, {
     /** @export */
     model: {
         set: function(value) {},
@@ -48,6 +48,6 @@ Object.defineProperties(org_apache_flex_core_IViewport.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IViewport.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'IViewport', qName: 'org_apache_flex_core_IViewport'}],
-  interfaces: [org_apache_flex_core_IBead] };
+org.apache.flex.core.IViewport.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'IViewport', qName: 'org.apache.flex.core.IViewport'}],
+  interfaces: [org.apache.flex.core.IBead] };
