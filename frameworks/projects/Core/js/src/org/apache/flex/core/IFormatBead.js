@@ -19,6 +19,9 @@
 
 goog.provide('org.apache.flex.core.IFormatBead');
 
+goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.events.IEventDispatcher');
+
 
 
 /**
