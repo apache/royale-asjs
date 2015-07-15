@@ -43,7 +43,7 @@ org.apache.flex.core.IBead.prototype.FLEXJS_CLASS_INFO =
 Object.defineProperties(org.apache.flex.core.IBead.prototype, {
     /** @export */
     strand: {
-        /** @this {org.apache.flex.binding.GenericBinding} */
+        /** @this {org.apache.flex.core.IBead} */
         set: function(value) {}
     }
 });
