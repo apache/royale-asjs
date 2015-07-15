@@ -23,10 +23,6 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../libs/Binding.swc</path-element>
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/Graphics.swc</path-element>
-            <path-element>../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -46,7 +42,15 @@
 	  
         <locale/>
         
-        <library-path/>
+        <library-path>
+            <!-- compjsc won't 'link' these classes in, but will list their requires
+                 if these swcs are on the external-library-path then their requires
+                 will not be listed -->
+            <path-element>../../libs/Binding.swc</path-element>
+            <path-element>../../libs/Core.swc</path-element>
+            <path-element>../../libs/Graphics.swc</path-element>
+            <path-element>../../libs/HTML.swc</path-element>
+        </library-path>
         
         <source-path>
             <path-element>asjs/src</path-element>
