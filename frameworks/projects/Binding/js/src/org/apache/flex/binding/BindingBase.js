@@ -91,10 +91,6 @@ org.apache.flex.binding.BindingBase.prototype.sourceChangeHandler = function(eve
   if (event.propertyName != this.sourceID)
     return;
 
-  if (this.source)
-    this.source.removeEventListener(this.eventName,
-        goog.bind(this.changeHandler, this));
-
   this.source = this.document[this.sourceID];
 };
 
