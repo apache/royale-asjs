@@ -44,7 +44,6 @@ org.apache.flex.core.BeadViewBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @protected
  * @type {Object}
  */
 org.apache.flex.core.BeadViewBase.prototype._strand = null;

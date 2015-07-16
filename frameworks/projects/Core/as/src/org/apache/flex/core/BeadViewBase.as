@@ -46,14 +46,15 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  The strand
+         *  The strand.  Do not modify except
+         *  via the strand setter.  For reading only.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        protected var _strand:IStrand;
+        public var _strand:IStrand;
         
         /**
          *  Get the strand for this bead
