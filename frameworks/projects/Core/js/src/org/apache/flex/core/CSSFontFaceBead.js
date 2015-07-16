@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_CSSFontFaceBead');
+goog.provide('org.apache.flex.core.CSSFontFaceBead');
 
 
 
@@ -20,7 +20,7 @@ goog.provide('org_apache_flex_core_CSSFontFaceBead');
  * @constructor
  * This is just a stub.
  */
-org_apache_flex_core_CSSFontFaceBead = function() {
+org.apache.flex.core.CSSFontFaceBead = function() {
 
   /**
    * @private
@@ -36,15 +36,15 @@ org_apache_flex_core_CSSFontFaceBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_CSSFontFaceBead.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'CSSFontFaceBead.js',
-                qName: 'org_apache_flex_core_CSSFontFaceBead'}] };
+org.apache.flex.core.CSSFontFaceBead.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'CSSFontFaceBead',
+                qName: 'org.apache.flex.core.CSSFontFaceBead'}] };
 
 
-Object.defineProperties(org_apache_flex_core_CSSFontFaceBead.prototype, {
+Object.defineProperties(org.apache.flex.core.CSSFontFaceBead.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_GenericBinding} */
+        /** @this {org.apache.flex.core.CSSFontFaceBead} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
