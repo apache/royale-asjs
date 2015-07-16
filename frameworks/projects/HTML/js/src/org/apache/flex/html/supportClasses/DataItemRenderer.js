@@ -82,13 +82,6 @@ Object.defineProperties(org.apache.flex.html.supportClasses.DataItemRenderer.pro
         }
     },
     /** @export */
-    index: {
-        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
-        set: function(value) {
-            this.index_ = value;
-        }
-    },
-    /** @export */
     dataField: {
         /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
@@ -110,6 +103,10 @@ Object.defineProperties(org.apache.flex.html.supportClasses.DataItemRenderer.pro
             } else {
                 this.backgroundView.style.backgroundColor = null;
             }
+        },
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
+        get: function(value) {
+            return this.selected_;
         }
     },
     /** @export */
@@ -127,6 +124,10 @@ Object.defineProperties(org.apache.flex.html.supportClasses.DataItemRenderer.pro
                 this.backgroundView.style.backgroundColor = null;
               }
             }
+        },
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
+        get: function() {
+            return this.hovered_;
         }
     }
 });

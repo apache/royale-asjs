@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.supportClasses.UIItemRendererBase');
 
 goog.require('org.apache.flex.core.IItemRenderer');
 goog.require('org.apache.flex.core.IItemRendererFactory');
+goog.require('org.apache.flex.core.ISelectableItemRenderer');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.utils.MXMLDataInterpreter');
@@ -25,7 +26,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
- * @implements {org.apache.flex.core.IItemRenderer}
+ * @implements {org.apache.flex.core.ISelectableItemRenderer}
  */
 org.apache.flex.html.supportClasses.UIItemRendererBase =
 function() {
@@ -44,7 +45,7 @@ goog.inherits(
 org.apache.flex.html.supportClasses.UIItemRendererBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'UIItemRendererBase',
                 qName: 'org.apache.flex.html.supportClasses.UIItemRendererBase' }],
-      interfaces: [org.apache.flex.core.IItemRenderer, org.apache.flex.core.IItemRendererFactory]};
+      interfaces: [org.apache.flex.core.ISelectableItemRenderer, org.apache.flex.core.IItemRendererFactory]};
 
 
 /**

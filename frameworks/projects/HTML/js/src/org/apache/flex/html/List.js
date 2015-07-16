@@ -64,6 +64,17 @@ Object.defineProperties(org.apache.flex.html.List.prototype, {
         }
     },
     /** @export */
+    selectedItem: {
+        /** @this {org.apache.flex.html.List} */
+        get: function() {
+            return this.model.selectedItem;
+        },
+        /** @this {org.apache.flex.html.List} */
+        set: function(value) {
+            this.model.selectedItem = value;
+        }
+    },
+    /** @export */
     labelField: {
         /** @this {org.apache.flex.html.List} */
         get: function() {
