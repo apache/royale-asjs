@@ -147,23 +147,23 @@ package org.apache.flex.html.supportClasses
 			if (addVbar) needsVerticalScroller();
 			if (_verticalScroller) {
 				ScrollBarModel(_verticalScroller.model).maximum = model.contentHeight;
-				ScrollBarModel(_verticalScroller.model).pageSize = model.viewportHeight - metrics.top - metrics.bottom;
-				ScrollBarModel(_verticalScroller.model).pageStepSize = model.viewportHeight - metrics.top - metrics.bottom;
+				ScrollBarModel(_verticalScroller.model).pageSize = model.viewportHeight;// - metrics.top - metrics.bottom;
+				ScrollBarModel(_verticalScroller.model).pageStepSize = model.viewportHeight;// - metrics.top - metrics.bottom;
 			}
 			
 			if (addHbar) needsHorizontalScroller();
 			if (_horizontalScroller) {
 				ScrollBarModel(_horizontalScroller.model).maximum = model.contentWidth;
-				ScrollBarModel(_horizontalScroller.model).pageSize = model.viewportWidth - metrics.left - metrics.right;
-				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth - metrics.left - metrics.right
+				ScrollBarModel(_horizontalScroller.model).pageSize = model.viewportWidth;// - metrics.left - metrics.right;
+				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth;// - metrics.left - metrics.right
 			}
 			
 			var rect:Rectangle = contentArea.scrollRect;
 			if (rect) {
 				rect.x = 0;
 				rect.y = 0;
-				rect.width = model.viewportWidth - metrics.left - metrics.right;
-				rect.height = model.viewportHeight - 2*metrics.top - 2*metrics.bottom;
+				rect.width = model.viewportWidth - metrics.left;// - metrics.right;
+				rect.height = model.viewportHeight - 2*metrics.top;// - 2*metrics.bottom;
 				contentArea.scrollRect = rect;
 			}
 		}

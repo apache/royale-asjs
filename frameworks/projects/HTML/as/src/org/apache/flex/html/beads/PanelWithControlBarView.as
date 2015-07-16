@@ -103,16 +103,25 @@ package org.apache.flex.html.beads
 			var host:UIBase = UIBase(value);
 			
 			// TODO: (aharui) get class to instantiate from CSS
-			if (!_titleBar)
+			if (!_titleBar) {
 				_titleBar = new TitleBar();
+				_titleBar.id = "panelTitleBar";
+				_titleBar.height = 30;
+			}
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
-			titleBar.model = host.model;
+			_titleBar.model = host.model;
 			
 			var controlBarItems:Array = (host.model as IPanelModel).controlBar;
 			if( controlBarItems && controlBarItems.length > 0 ) {
 				_controlBar = new ControlBar();
+				_controlBar.id = "panelControlBar";
+				_controlBar.height = 30;
+				
+				for each(var comp:IUIBase in controlBarItems) {
+					_controlBar.addElement(comp, false);
+				}
 			}
 			
 			super.strand = value;
@@ -123,20 +132,9 @@ package org.apache.flex.html.beads
 			super.completeSetup();
 			
 			UIBase(_strand).addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", chromeHeightChanged);
 			
-			var controlBarItems:Array = (UIBase(_strand).model as IPanelModel).controlBar;
-			if( _controlBar ) {
-				_controlBar.percentWidth = 100;
-				_controlBar.height = 30;
-				
-				for each(var comp:IUIBase in controlBarItems) {
-					_controlBar.addElement(comp, false);
-				}
-				_controlBar.dispatchEvent(new Event("layoutNeeded"));
-				
-				UIBase(_strand).addElement(controlBar, false);
-				controlBar.addEventListener("heightChanged", chromeHeightChanged);
+			if (controlBar) {
+				UIBase(_strand).addElement(_controlBar, false);
 			}
 		}
 		
@@ -146,8 +144,11 @@ package org.apache.flex.html.beads
 			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 			
 			titleBar.width = host.width;
+			titleBar.dispatchEvent( new Event("layoutNeeded") );
+			
 			if (controlBar) {
 				controlBar.width = host.width;
+				controlBar.dispatchEvent( new Event("layoutNeeded") );
 				controlBar.y = host.height - controlBar.height;
 			}
 			
@@ -176,10 +177,12 @@ package org.apache.flex.html.beads
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
+			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			if (controlBar) {
 				controlBar.width = host.width;
 				controlBar.y = host.height - controlBar.height;
+				controlBar.dispatchEvent( new Event("layoutNeeded") );
 			}
 			
 			// If the host is being sized by its content, the change in the contentArea
@@ -224,11 +227,6 @@ package org.apache.flex.html.beads
 				viewport.updateSize();
 				viewport.updateContentAreaSize();
 			}
-		}
-		
-		private function chromeHeightChanged(event:Event):void
-		{
-			resizeViewport();
 		}
 	}
 }

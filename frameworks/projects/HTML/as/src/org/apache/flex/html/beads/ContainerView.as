@@ -96,28 +96,32 @@ package org.apache.flex.html.beads
 			
 			displayBackgroundAndBorder(host as UIBase);
 			
+			// listen for initComplete to signal that the strand is set with its size
+			// and beads.
+			host.addEventListener("initComplete", initCompleteHandler);
+		}
+		
+		protected function initCompleteHandler(event:Event):void
+		{
+			trace("initCompleteHandler: completeSetup for "+UIBase(_strand).id);
+			// if the host component is not being sized by percentage, go ahead and complete the setup.
 			if (isNaN((host as UIBase).percentHeight) && isNaN((host as UIBase).percentWidth)) {
 				completeSetup();
-				IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
+				performLayout(event);
 			}
 			else {
+				trace(" -- deferring setup for "+UIBase(_strand).id);
+				// otherwise, wait until the size has been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
 			}
 		}
 		
-		protected function createContentView():IParentIUIBase
-		{
-			var area:ContainerContentArea = new ContainerContentArea();
-			area.className = "ActualParent";
-			return area;
-		}
-		
 		protected function deferredSizeHandler(event:Event):void
 		{
+			trace("deferredSizeHandler ("+event.type+"): "+UIBase(_strand).id);
 			host.removeEventListener(event.type, deferredSizeHandler);
-			
 			completeSetup();
-			IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
+			performLayout(event);
 		}
 		
 		protected function completeSetup():void
@@ -132,6 +136,13 @@ package org.apache.flex.html.beads
 			host.addEventListener("widthChanged", resizeHandler);
 			host.addEventListener("heightChanged", resizeHandler);
 			host.addEventListener("viewCreated", viewCreatedHandler);
+		}
+		
+		protected function createContentView():IParentIUIBase
+		{
+			var area:ContainerContentArea = new ContainerContentArea();
+			area.className = "ActualParent";
+			return area;
 		}
 		
 		protected function viewCreatedHandler(event:Event):void
@@ -166,12 +177,14 @@ package org.apache.flex.html.beads
 				viewport.model = viewportModel;
 			}
 			
+			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
+			
 			viewportModel.contentArea = contentView;
 			viewportModel.contentIsHost = false;
-			viewportModel.contentWidth = host.width;
-			viewportModel.contentHeight = host.height;
-			viewportModel.contentX = 0;
-			viewportModel.contentY = 0;
+			viewportModel.contentWidth = host.width - metrics.left - metrics.right;
+			viewportModel.contentHeight = host.height - metrics.top - metrics.bottom;
+			viewportModel.contentX = metrics.left;
+			viewportModel.contentY = metrics.top;
 			
 			resizeViewport();
 		}
@@ -199,21 +212,23 @@ package org.apache.flex.html.beads
 		protected function adjustSizeAfterLayout():void
 		{
 			var host:UIBase = _strand as UIBase;
+			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 			
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
-				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
+				host.setWidthAndHeight(viewportModel.contentWidth+metrics.left+metrics.right, 
+					viewportModel.contentHeight+metrics.top+metrics.bottom, false);
 				resizeViewport();
 			}
 			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
 			{
 				viewport.needsHorizontalScroller();
-				host.setHeight(viewportModel.contentHeight, false);
+				host.setHeight(viewportModel.contentHeight-metrics.top-metrics.bottom, false);
 				resizeViewport();
 			}
 			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
 			{
 				viewport.needsVerticalScroller();
-				host.setWidth(viewportModel.contentWidth, false);
+				host.setWidth(viewportModel.contentWidth-metrics.left-metrics.right, false);
 				resizeViewport();
 			}
 			else {
