@@ -48,21 +48,31 @@ package org.apache.flex.html.beads
 	public class CSSContentAndTextToggleButtonView extends BeadViewBase implements IBeadView
 	{
         /**
-         *  map of pseudo states.
+         *  map of classname suffixes.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        private static var statesMap:Object = {
-            "upSprite": null,
-            "downSprite": "active",
-            "overSprite": "hover",
-            "upAndSelectedSprite": "checked",
-            "downAndSelectedSprite": "checked",
-            "overAndSelectedSprite": "checked"
+        private static var suffixMap:Object = {
+            "upSprite": "",
+            "downSprite": "-checked",
+            "overSprite": "-hover",
+            "upAndSelectedSprite": "-checked",
+            "downAndSelectedSprite": "-checked",
+            "overAndSelectedSprite": "-checked"
         }
+        
+        /**
+         *  className to use for styling.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var className:String;
         
         /**
          *  Constructor.
@@ -74,24 +84,6 @@ package org.apache.flex.html.beads
          */
 		public function CSSContentAndTextToggleButtonView()
 		{
-            for (var p:String in statesMap)
-            {
-                var s:Sprite = new Sprite();
-                sprites.push(s);
-                this[p] = s;
-                
-				var tf:CSSTextField = new CSSTextField();
-				tf.type = TextFieldType.DYNAMIC;
-				tf.autoSize = TextFieldAutoSize.LEFT;
-				tf.name = "textField";
-                tf.parentHandlesPadding = true;
-				var icon:StyleableCSSTextField = new StyleableCSSTextField();
-				icon.name = "icon";
-                icon.className = "icon-checked";
-                icon.styleState = statesMap[p];
-				s.addChild(icon);
-				s.addChild(tf);
-			}
 		}
 		
 		private var upSprite:Sprite;
@@ -122,6 +114,24 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+            
+            for (var p:String in suffixMap)
+            {
+                var s:Sprite = new Sprite();
+                sprites.push(s);
+                this[p] = s;
+                
+                var tf:CSSTextField = new CSSTextField();
+                tf.type = TextFieldType.DYNAMIC;
+                tf.autoSize = TextFieldAutoSize.LEFT;
+                tf.name = "textField";
+                tf.parentHandlesPadding = true;
+                var icon:StyleableCSSTextField = new StyleableCSSTextField();
+                icon.name = "icon";
+                icon.className = className + suffixMap[p];
+                s.addChild(icon);
+                s.addChild(tf);
+            }
             
 			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
@@ -267,22 +277,21 @@ package org.apache.flex.html.beads
 		protected function layoutControl() : void
 		{
             // TODO: Layout using descendant selectors (.checkbox .icons)
-			for (var p:String in statesMap)
+			for (var p:String in suffixMap)
 			{
                 var s:Sprite = this[p];
-                var state:String = statesMap[p];
 				var icon:StyleableCSSTextField = s.getChildByName("icon") as StyleableCSSTextField;
                 icon.autoSize = TextFieldAutoSize.LEFT;
 				var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
 				
                 icon.CSSParent = _strand;
-                var content:String = ValuesManager.valuesImpl.getValue(_strand, "content", state);
+                var content:String = ValuesManager.valuesImpl.getValue(icon, "content", "before");
                 if (content != null)
                     icon.text = content;
 				var mh:Number = Math.max(icon.height,tf.height);
 				
-                var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
-                var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left", state);
+                var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
+                var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left");
                 icon.x = CSSUtils.getLeftValue(paddingLeft, padding, s.width);
 				icon.y = (mh - icon.height)/2;
 				

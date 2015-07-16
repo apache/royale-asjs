@@ -103,10 +103,73 @@ ButtonBarButtonItemRenderer
     height: 30;
 }
 
-CheckBox
+.checkbox-icon,
+.checkbox-icon-hover,
+.checkbox-icon-checked
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: #bdc3c7;
+  text-align: center;
+  cursor: pointer;
+  
+  /* .radio .icon-checked:before */
+  /* .radio .icon-unchecked:before */
+  font-family: 'Flat-UI-Icons';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
+  
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.checkbox-icon:before
 {
   content: "\e60d";
+}
 
+.checkbox-icon-hover:before
+{
+  content: "\e60e";
+}
+
+.checkbox-icon-checked:before 
+{
+  content: "\e60e";
+}
+
+.checkbox-icon-checked 
+{
+  color: #1abc9c;
+}
+
+.checkbox-input
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  outline: none !important;
+  opacity: 0;
+}
+
+CheckBox
+{
   /* .checkbox */
   position: relative;
   padding-left: 32px;
@@ -115,16 +178,6 @@ CheckBox
   line-height: 1.5;
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
-}
-
-CheckBox:hover
-{
-  content: "\e60e";
-}
-
-CheckBox:checked
-{
-  content: "\e60e";
 }
 
 Container
@@ -231,8 +284,22 @@ PanelWithControlBar
 	padding: 2px;
 }
 
-.icon-checked 
+.radio-icon,
+.radio-icon-hover,
+.radio-icon-checked
 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: #bdc3c7;
+  text-align: center;
+  cursor: pointer;
+  
   /* .radio .icon-checked:before */
   /* .radio .icon-unchecked:before */
   font-family: 'Flat-UI-Icons';
@@ -247,19 +314,43 @@ PanelWithControlBar
   
   font-size: 20px;
   line-height: 20px;
-  color: #bdc3c7;
-
 }
 
-.icon-checked:checked 
+.radio-icon:before
+{
+  content: "\e60b";
+}
+
+.radio-icon-hover:before
+{
+  content: "\e60c";
+}
+
+.radio-icon-checked:before
+{
+  content: "\e60c";
+}
+
+.radio-icon-checked
 {
   color: #1abc9c;
 }
 
+.radio-input
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  outline: none !important;
+  opacity: 0;
+}
+
 RadioButton
 {
-  content: "\e60b";
-
   /* .radio */
   position: relative;
   padding-left: 32px;
@@ -268,18 +359,6 @@ RadioButton
   line-height: 1.5;
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
-}
-
-RadioButton:hover
-{
-  content: "\e60c";
-
-}
-
-RadioButton:checked
-{
-  content: "\e60c";
-
 }
 
 SimpleList
@@ -374,7 +453,7 @@ Button
 CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.CSSContentAndTextToggleButtonView");			
+    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckboxCSSContentAndTextToggleButtonView");			
 }
 
 CloseButton
@@ -488,7 +567,7 @@ PanelWithControlBar
 RadioButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.CSSContentAndTextToggleButtonView");			
+    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioCSSContentAndTextToggleButtonView");			
 }
 
 ScrollBar
