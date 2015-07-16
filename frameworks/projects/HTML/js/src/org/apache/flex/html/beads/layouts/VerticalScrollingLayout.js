@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_VerticalScrollingLayout');
+goog.provide('org.apache.flex.html.beads.layouts.VerticalScrollingLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org.apache.flex.core.IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_VerticalScrollingLayout = function() {
+org.apache.flex.html.beads.layouts.VerticalScrollingLayout = function() {
   this.strand_ = null;
   this.className = 'VerticalScrollingLayout';
 };
@@ -30,7 +30,7 @@ org_apache_flex_html_beads_layouts_VerticalScrollingLayout = function() {
 
 /**
  */
-org_apache_flex_html_beads_layouts_VerticalScrollingLayout.
+org.apache.flex.html.beads.layouts.VerticalScrollingLayout.
     prototype.layout = function() {
 };
 
@@ -40,16 +40,16 @@ org_apache_flex_html_beads_layouts_VerticalScrollingLayout.
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.VerticalScrollingLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'VerticalScrollingLayout',
-                qName: 'org_apache_flex_html_beads_layouts_VerticalScrollingLayout' }],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.VerticalScrollingLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalScrollingLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.VerticalScrollingLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_VerticalScrollingLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.VerticalScrollingLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_VerticalLayout');
+goog.provide('org.apache.flex.html.beads.layouts.VerticalLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org.apache.flex.core.IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_VerticalLayout =
+org.apache.flex.html.beads.layouts.VerticalLayout =
     function() {
   this.strand_ = null;
   this.className = 'VerticalLayout';
@@ -34,16 +34,16 @@ org_apache_flex_html_beads_layouts_VerticalLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_VerticalLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.VerticalLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'VerticalLayout',
-                qName: 'org_apache_flex_html_beads_layouts_VerticalLayout'}],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.VerticalLayout'}],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.VerticalLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_VerticalLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.VerticalLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -55,7 +55,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_VerticalLayout.protot
 
 /**
  */
-org_apache_flex_html_beads_layouts_VerticalLayout.
+org.apache.flex.html.beads.layouts.VerticalLayout.
     prototype.layout = function() {
   var children, i, n;
 

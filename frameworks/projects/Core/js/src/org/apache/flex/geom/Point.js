@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_geom_Point');
+goog.provide('org.apache.flex.geom.Point');
 
 
 
@@ -21,7 +21,7 @@ goog.provide('org_apache_flex_geom_Point');
  * @param {number} x
  * @param {number} y
  */
-org_apache_flex_geom_Point = function(x, y) {
+org.apache.flex.geom.Point = function(x, y) {
 
   this.x = x;
 
@@ -35,9 +35,9 @@ org_apache_flex_geom_Point = function(x, y) {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_geom_Point.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.geom.Point.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Point',
-                qName: 'org_apache_flex_geom_Point'}] };
+                qName: 'org.apache.flex.geom.Point'}] };
 
 
 /**
@@ -45,7 +45,7 @@ org_apache_flex_geom_Point.prototype.FLEXJS_CLASS_INFO =
  * The x coordinate.
  * @type {number} value The x coordinate.
  */
-org_apache_flex_geom_Point.prototype.x = 0;
+org.apache.flex.geom.Point.prototype.x = 0;
 
 
 /**
@@ -53,4 +53,4 @@ org_apache_flex_geom_Point.prototype.x = 0;
  * The y coordinate.
  * @type {number} value The y coordinate.
  */
-org_apache_flex_geom_Point.prototype.y = 0;
+org.apache.flex.geom.Point.prototype.y = 0;

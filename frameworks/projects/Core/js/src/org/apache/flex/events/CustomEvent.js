@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_events_CustomEvent');
+goog.provide('org.apache.flex.events.CustomEvent');
 
 goog.require('goog.events.Event');
 
@@ -23,12 +23,12 @@ goog.require('goog.events.Event');
  * @extends {goog.events.Event}
  * @param {string} type The event type.
  */
-org_apache_flex_events_CustomEvent = function(type) {
-  org_apache_flex_events_CustomEvent.base(this, 'constructor', type);
+org.apache.flex.events.CustomEvent = function(type) {
+  org.apache.flex.events.CustomEvent.base(this, 'constructor', type);
 
   this.type = type;
 };
-goog.inherits(org_apache_flex_events_CustomEvent,
+goog.inherits(org.apache.flex.events.CustomEvent,
     goog.events.Event);
 
 
@@ -37,16 +37,16 @@ goog.inherits(org_apache_flex_events_CustomEvent,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_CustomEvent.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.CustomEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CustomEvent',
-                qName: 'org_apache_flex_events_CustomEvent'}] };
+                qName: 'org.apache.flex.events.CustomEvent'}] };
 
 
 /**
  * @export
  * @param {string} type The event type.
  */
-org_apache_flex_events_CustomEvent.prototype.init = function(type) {
+org.apache.flex.events.CustomEvent.prototype.init = function(type) {
   this.type = type;
 };
 
@@ -55,4 +55,4 @@ org_apache_flex_events_CustomEvent.prototype.init = function(type) {
  * @export
  * @type {string} type The event type.
  */
-org_apache_flex_events_CustomEvent.prototype.type = '';
+org.apache.flex.events.CustomEvent.prototype.type = '';

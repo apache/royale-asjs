@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_events_ValueChangeEvent');
+goog.provide('org.apache.flex.events.ValueChangeEvent');
 
 goog.require('goog.events.Event');
 
@@ -27,14 +27,14 @@ goog.require('goog.events.Event');
  * @param {*} ov The old value.
  * @param {*} nv The new value.
  */
-org_apache_flex_events_ValueChangeEvent = function(type, b, c, ov, nv) {
-  org_apache_flex_events_ValueChangeEvent.base(this, 'constructor', type);
+org.apache.flex.events.ValueChangeEvent = function(type, b, c, ov, nv) {
+  org.apache.flex.events.ValueChangeEvent.base(this, 'constructor', type);
 
   this.type = type;
   this.oldValue = ov;
   this.newValue = nv;
 };
-goog.inherits(org_apache_flex_events_ValueChangeEvent,
+goog.inherits(org.apache.flex.events.ValueChangeEvent,
     goog.events.Event);
 
 
@@ -43,16 +43,16 @@ goog.inherits(org_apache_flex_events_ValueChangeEvent,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_ValueChangeEvent.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.ValueChangeEvent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ValueChangeEvent',
-                qName: 'org_apache_flex_events_ValueChangeEvent' }] };
+                qName: 'org.apache.flex.events.ValueChangeEvent' }] };
 
 
 /**
  * @export
  * @param {string} type The event type.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.init = function(type) {
+org.apache.flex.events.ValueChangeEvent.prototype.init = function(type) {
   this.type = type;
 };
 
@@ -61,35 +61,35 @@ org_apache_flex_events_ValueChangeEvent.prototype.init = function(type) {
  * @export
  * @type {string} type The event type.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.type = '';
+org.apache.flex.events.ValueChangeEvent.prototype.type = '';
 
 
 /**
  * @export
  * @type {*} oldValue The old value.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.oldValue = null;
+org.apache.flex.events.ValueChangeEvent.prototype.oldValue = null;
 
 
 /**
  * @export
  * @type {*} newValue The new value.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.newValue = null;
+org.apache.flex.events.ValueChangeEvent.prototype.newValue = null;
 
 
 /**
  * @export
  * @type {string} propertyName The property that changed.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.propertyName = '';
+org.apache.flex.events.ValueChangeEvent.prototype.propertyName = '';
 
 
 /**
  * @export
  * @type {Object} source The object that changed.
  */
-org_apache_flex_events_ValueChangeEvent.prototype.source = null;
+org.apache.flex.events.ValueChangeEvent.prototype.source = null;
 
 
 /**
@@ -100,11 +100,11 @@ org_apache_flex_events_ValueChangeEvent.prototype.source = null;
  * @param {*} newValue The new value.
  * @return {Object} An event object.
  */
-org_apache_flex_events_ValueChangeEvent.createUpdateEvent =
+org.apache.flex.events.ValueChangeEvent.createUpdateEvent =
     function(source, name, oldValue, newValue)
     {
-  var event = new org_apache_flex_events_ValueChangeEvent(
-      org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
+  var event = new org.apache.flex.events.ValueChangeEvent(
+      org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
       false, false, oldValue, newValue);
   event.propertyName = name;
   event.source = source;
@@ -116,4 +116,4 @@ org_apache_flex_events_ValueChangeEvent.createUpdateEvent =
  * @export
  * @type {string} VALUE_CHANGE The type of the event.
  */
-org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE = 'valueChange';
+org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE = 'valueChange';

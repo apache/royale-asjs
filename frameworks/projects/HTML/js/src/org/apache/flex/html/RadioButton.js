@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_RadioButton');
+goog.provide('org.apache.flex.html.RadioButton');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_RadioButton = function() {
-  org_apache_flex_html_RadioButton.base(this, 'constructor');
+org.apache.flex.html.RadioButton = function() {
+  org.apache.flex.html.RadioButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_RadioButton,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.RadioButton,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -34,26 +34,26 @@ goog.inherits(org_apache_flex_html_RadioButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_RadioButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.RadioButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'RadioButton',
-                qName: 'org_apache_flex_html_RadioButton'}] };
+                qName: 'org.apache.flex.html.RadioButton'}] };
 
 
 /**
  * Provides unique name
  */
-org_apache_flex_html_RadioButton.radioCounter = 0;
+org.apache.flex.html.RadioButton.radioCounter = 0;
 
 
 /**
  * @override
  */
-org_apache_flex_html_RadioButton.prototype.createElement =
+org.apache.flex.html.RadioButton.prototype.createElement =
     function() {
 
   this.input = document.createElement('input');
   this.input.type = 'radio';
-  this.input.id = '_radio_' + org_apache_flex_html_RadioButton.radioCounter++;
+  this.input.id = '_radio_' + org.apache.flex.html.RadioButton.radioCounter++;
 
   this.textNode = document.createTextNode('radio button');
 
@@ -74,7 +74,7 @@ org_apache_flex_html_RadioButton.prototype.createElement =
 /**
  * @export
  */
-org_apache_flex_html_RadioButton.prototype.initModel =
+org.apache.flex.html.RadioButton.prototype.initModel =
     function() {
 };
 
@@ -82,68 +82,68 @@ org_apache_flex_html_RadioButton.prototype.initModel =
 /**
  * @export
  */
-org_apache_flex_html_RadioButton.prototype.initSkin =
+org.apache.flex.html.RadioButton.prototype.initSkin =
     function() {
 };
 
 
-Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
+Object.defineProperties(org.apache.flex.html.RadioButton.prototype, {
     /** @export */
     id: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(org_apache_flex_html_RadioButton, this, 'id', value);
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.html.RadioButton, this, 'id', value);
             this.labelFor.id = value;
             this.input.id = value;
         }
     },
     /** @export */
     groupName: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         get: function() {
             return this.input.name;
         },
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             this.input.name = value;
         }
     },
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         get: function() {
             return this.textNode.nodeValue;
         },
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             this.textNode.nodeValue = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         get: function() {
             return this.input.checked;
         },
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             this.input.checked = value;
         }
     },
     /** @export */
     value: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         get: function() {
             return this.input.value;
         },
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             this.input.value = value;
         }
     },
     /** @export */
     selectedValue: {
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         get: function() {
             var buttons, groupName, i, n;
 
@@ -158,7 +158,7 @@ Object.defineProperties(org_apache_flex_html_RadioButton.prototype, {
             }
             return null;
         },
-        /** @this {org_apache_flex_html_RadioButton} */
+        /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             var buttons, groupName, i, n;
 

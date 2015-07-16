@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_ComboBox');
+goog.provide('org.apache.flex.html.ComboBox');
 
-goog.require('org_apache_flex_core_ListBase');
+goog.require('org.apache.flex.core.ListBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html_ComboBox = function() {
-  org_apache_flex_html_ComboBox.base(this, 'constructor');
+org.apache.flex.html.ComboBox = function() {
+  org.apache.flex.html.ComboBox.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_ComboBox,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html.ComboBox,
+    org.apache.flex.core.ListBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org_apache_flex_html_ComboBox,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_ComboBox.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ComboBox.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ComboBox',
-                qName: 'org_apache_flex_html_ComboBox'}] };
+                qName: 'org.apache.flex.html.ComboBox'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_ComboBox.prototype.createElement =
+org.apache.flex.html.ComboBox.prototype.createElement =
     function() {
   var button, input;
 
@@ -84,7 +84,7 @@ org_apache_flex_html_ComboBox.prototype.createElement =
  * @export
  * @param {Object} event The event.
  */
-org_apache_flex_html_ComboBox.prototype.selectChanged =
+org.apache.flex.html.ComboBox.prototype.selectChanged =
     function(event) {
   var select;
 
@@ -103,7 +103,7 @@ org_apache_flex_html_ComboBox.prototype.selectChanged =
  * @export
  * @param {Object=} opt_event The event.
  */
-org_apache_flex_html_ComboBox.prototype.dismissPopup =
+org.apache.flex.html.ComboBox.prototype.dismissPopup =
     function(opt_event) {
   // remove the popup if it already exists
   if (this.popup) {
@@ -117,7 +117,7 @@ org_apache_flex_html_ComboBox.prototype.dismissPopup =
  * @export
  * @param {Object} event The event.
  */
-org_apache_flex_html_ComboBox.prototype.buttonClicked =
+org.apache.flex.html.ComboBox.prototype.buttonClicked =
     function(event) {
   /**
    * @type {Array.<string>}
@@ -180,14 +180,14 @@ org_apache_flex_html_ComboBox.prototype.buttonClicked =
 };
 
 
-Object.defineProperties(org_apache_flex_html_ComboBox.prototype, {
+Object.defineProperties(org.apache.flex.html.ComboBox.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_ComboBox} */
+        /** @this {org.apache.flex.html.ComboBox} */
         get: function() {
             return this.element.childNodes.item(0).value;
         },
-        /** @this {org_apache_flex_html_ComboBox} */
+        /** @this {org.apache.flex.html.ComboBox} */
         set: function(value) {
             this.element.childNodes.item(0).value = value;
         }

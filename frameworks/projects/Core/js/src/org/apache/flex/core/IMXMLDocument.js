@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IMXMLDocument');
+goog.provide('org.apache.flex.core.IMXMLDocument');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_IMXMLDocument');
  *
  * @interface
  */
-org_apache_flex_core_IMXMLDocument = function() {
+org.apache.flex.core.IMXMLDocument = function() {
 };
 
 
@@ -35,7 +35,7 @@ org_apache_flex_core_IMXMLDocument = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IMXMLDocument.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IMXMLDocument.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IMXMLDocument',
-                qName: 'org_apache_flex_core_IMXMLDocument' }] };
+                qName: 'org.apache.flex.core.IMXMLDocument' }] };
 

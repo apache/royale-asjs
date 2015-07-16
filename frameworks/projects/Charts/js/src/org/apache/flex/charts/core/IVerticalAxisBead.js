@@ -11,24 +11,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IVerticalAxisBead
+ * org.apache.flex.charts.core.IVerticalAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IVerticalAxisBead');
+goog.provide('org.apache.flex.charts.core.IVerticalAxisBead');
 
-goog.require('org_apache_flex_charts_core_IAxisBead');
+goog.require('org.apache.flex.charts.core.IAxisBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_charts_core_IAxisBead}
+ * @extends {org.apache.flex.charts.core.IAxisBead}
  */
-org_apache_flex_charts_core_IVerticalAxisBead = function() {
+org.apache.flex.charts.core.IVerticalAxisBead = function() {
 };
 
 
@@ -37,12 +37,12 @@ org_apache_flex_charts_core_IVerticalAxisBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IVerticalAxisBead', qName: 'org_apache_flex_charts_core_IVerticalAxisBead'}],
-    interfaces: [org_apache_flex_charts_core_IAxisBead]
+org.apache.flex.charts.core.IVerticalAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IVerticalAxisBead', qName: 'org.apache.flex.charts.core.IVerticalAxisBead'}],
+    interfaces: [org.apache.flex.charts.core.IAxisBead]
   };
 
-Object.defineProperties(org_apache_flex_charts_core_IVerticalAxisBead.prototype, {
+Object.defineProperties(org.apache.flex.charts.core.IVerticalAxisBead.prototype, {
     /** @export */
     axisWidth: {
         set: function(value) {},

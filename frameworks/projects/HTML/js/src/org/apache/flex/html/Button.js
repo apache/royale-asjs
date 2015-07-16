@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Button');
+goog.provide('org.apache.flex.html.Button');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_Button = function() {
-  org_apache_flex_html_Button.base(this, 'constructor');
+org.apache.flex.html.Button = function() {
+  org.apache.flex.html.Button.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_Button,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.Button,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org_apache_flex_html_Button,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Button.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Button.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Button',
-                qName: 'org_apache_flex_html_Button'}] };
+                qName: 'org.apache.flex.html.Button'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_Button.prototype.createElement =
+org.apache.flex.html.Button.prototype.createElement =
     function() {
   this.element = document.createElement('button');
   this.element.setAttribute('type', 'button');
@@ -50,8 +50,8 @@ org_apache_flex_html_Button.prototype.createElement =
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 
-  if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
-    var impl = org_apache_flex_core_ValuesManager.valuesImpl.
+  if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+    var impl = org.apache.flex.core.ValuesManager.valuesImpl.
         getValue(this, 'iStatesImpl');
   }
 

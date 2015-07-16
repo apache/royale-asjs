@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_DataItemRenderer');
+goog.provide('org.apache.flex.html.supportClasses.DataItemRenderer');
 
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_html_beads_controllers_ItemRendererMouseController');
-goog.require('org_apache_flex_html_supportClasses_UIItemRendererBase');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
+goog.require('org.apache.flex.html.supportClasses.UIItemRendererBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_supportClasses_UIItemRendererBase}
- * @implements {org_apache_flex_core_IItemRenderer}
+ * @extends {org.apache.flex.html.supportClasses.UIItemRendererBase}
+ * @implements {org.apache.flex.core.IItemRenderer}
  */
-org_apache_flex_html_supportClasses_DataItemRenderer =
+org.apache.flex.html.supportClasses.DataItemRenderer =
     function() {
-  org_apache_flex_html_supportClasses_DataItemRenderer.base(this, 'constructor');
+  org.apache.flex.html.supportClasses.DataItemRenderer.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_html_supportClasses_DataItemRenderer,
-    org_apache_flex_html_supportClasses_UIItemRendererBase);
+    org.apache.flex.html.supportClasses.DataItemRenderer,
+    org.apache.flex.html.supportClasses.UIItemRendererBase);
 
 
 /**
@@ -39,17 +39,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_DataItemRenderer.
+org.apache.flex.html.supportClasses.DataItemRenderer.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataItemRenderer',
-                qName: 'org_apache_flex_html_supportClasses_DataItemRenderer' }],
-      interfaces: [org_apache_flex_core_IItemRenderer] };
+                qName: 'org.apache.flex.html.supportClasses.DataItemRenderer' }],
+      interfaces: [org.apache.flex.core.IItemRenderer] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_supportClasses_DataItemRenderer.
+org.apache.flex.html.supportClasses.DataItemRenderer.
     prototype.createElement = function() {
 
   this.element = document.createElement('div');
@@ -62,46 +62,46 @@ org_apache_flex_html_supportClasses_DataItemRenderer.
   // the selection and highlight
   this.backgroundView = this.element;
 
-  this.controller = new org_apache_flex_html_beads_controllers_ItemRendererMouseController();
+  this.controller = new org.apache.flex.html.beads.controllers.ItemRendererMouseController();
   this.controller.strand = this;
 
   return this.element;
 };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.DataItemRenderer.prototype, {
     /** @export */
     itemRendererParent: {
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         get: function() {
             return this.rendererParent_;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
             this.rendererParent_ = value;
         }
     },
     /** @export */
     index: {
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
             this.index_ = value;
         }
     },
     /** @export */
     dataField: {
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
             this.dataField_ = value;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         get: function() {
             return this.dataField_;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
             this.selected_ = value;
 
@@ -114,7 +114,7 @@ Object.defineProperties(org_apache_flex_html_supportClasses_DataItemRenderer.pro
     },
     /** @export */
     hovered: {
-        /** @this {org_apache_flex_html_supportClasses_DataItemRenderer} */
+        /** @this {org.apache.flex.html.supportClasses.DataItemRenderer} */
         set: function(value) {
             this.hovered_ = value;
 

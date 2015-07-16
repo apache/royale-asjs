@@ -12,47 +12,47 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_ButtonBar');
+goog.provide('org.apache.flex.html.ButtonBar');
 
-goog.require('org_apache_flex_core_ListBase');
-goog.require('org_apache_flex_html_List');
-goog.require('org_apache_flex_html_beads_DataItemRendererFactoryForArrayData');
-goog.require('org_apache_flex_html_beads_layouts_HorizontalLayout');
-goog.require('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
+goog.require('org.apache.flex.core.ListBase');
+goog.require('org.apache.flex.html.List');
+goog.require('org.apache.flex.html.beads.DataItemRendererFactoryForArrayData');
+goog.require('org.apache.flex.html.beads.layouts.HorizontalLayout');
+goog.require('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_List}
+ * @extends {org.apache.flex.html.List}
  */
-org_apache_flex_html_ButtonBar = function() {
+org.apache.flex.html.ButtonBar = function() {
 
   //  this.model = new
-  //        org_apache_flex_html_beads_models_ArraySelectionModel();
+  //        org.apache.flex.html.beads.models.ArraySelectionModel();
   //  this.addBead(this.model);
 
-  org_apache_flex_html_ButtonBar.base(this, 'constructor');
+  org.apache.flex.html.ButtonBar.base(this, 'constructor');
 
   //  this.addBead(new
-  //        org_apache_flex_html_beads_ListView());
+  //        org.apache.flex.html.beads.ListView());
 
   //  this.addBead(new
-  //org_apache_flex_html_beads_layouts_HorizontalLayout());
+  //org.apache.flex.html.beads.layouts.HorizontalLayout());
 
   //  this.itemRendererFactory = new
-  //        org_apache_flex_html_beads_
+  //        org.apache.flex.html.beads.
   //        DataItemRendererFactoryForArrayData();
-  //  this.itemRendererFactory.itemRendererClass = 'org_apache_flex_html_' +
+  //  this.itemRendererFactory.itemRendererClass = 'org.apache.flex.html.' +
   //        'supportClasses_ButtonBarButtonItemRenderer';
   //  this.addBead(this.itemRendererFactory);
 
   //  this.addBead(new
-  //        org_apache_flex_html_beads_controllers_
+  //        org.apache.flex.html.beads.controllers.
   //        ListSingleSelectionMouseController());
 };
-goog.inherits(org_apache_flex_html_ButtonBar,
-    org_apache_flex_html_List);
+goog.inherits(org.apache.flex.html.ButtonBar,
+    org.apache.flex.html.List);
 
 
 /**
@@ -60,17 +60,17 @@ goog.inherits(org_apache_flex_html_ButtonBar,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_ButtonBar.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ButtonBar.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ButtonBar',
-                qName: 'org_apache_flex_html_ButtonBar'}] };
+                qName: 'org.apache.flex.html.ButtonBar'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_ButtonBar.prototype.createElement =
+org.apache.flex.html.ButtonBar.prototype.createElement =
     function() {
-  //org_apache_flex_html_ButtonBar.base(this, 'createElement');
+  //org.apache.flex.html.ButtonBar.base(this, 'createElement');
 
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';

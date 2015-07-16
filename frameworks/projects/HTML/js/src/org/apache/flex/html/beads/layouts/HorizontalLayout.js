@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_HorizontalLayout');
+goog.provide('org.apache.flex.html.beads.layouts.HorizontalLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org.apache.flex.core.IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_HorizontalLayout =
+org.apache.flex.html.beads.layouts.HorizontalLayout =
     function() {
   this.strand_ = null;
   this.className = 'HorizontalLayout';
@@ -34,17 +34,17 @@ org_apache_flex_html_beads_layouts_HorizontalLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_HorizontalLayout.
+org.apache.flex.html.beads.layouts.HorizontalLayout.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HorizontalLayout',
-                qName: 'org_apache_flex_html_beads_layouts_HorizontalLayout' }],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.HorizontalLayout' }],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_HorizontalLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.HorizontalLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_HorizontalLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.HorizontalLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -57,7 +57,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_HorizontalLayout.prot
 
 /**
  */
-org_apache_flex_html_beads_layouts_HorizontalLayout.
+org.apache.flex.html.beads.layouts.HorizontalLayout.
     prototype.layout = function() {
   var children, i, n;
 

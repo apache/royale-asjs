@@ -12,30 +12,30 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_SimpleCSSValuesImpl');
+goog.provide('org.apache.flex.core.SimpleCSSValuesImpl');
 
-goog.require('org_apache_flex_core_IValuesImpl');
+goog.require('org.apache.flex.core.IValuesImpl');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IValuesImpl};
+ * @implements {org.apache.flex.core.IValuesImpl};
  */
-org_apache_flex_core_SimpleCSSValuesImpl = function() {
+org.apache.flex.core.SimpleCSSValuesImpl = function() {
 };
 
 
 /**
  * @type {string}
  */
-org_apache_flex_core_SimpleCSSValuesImpl.GLOBAL_SELECTOR = 'global';
+org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR = 'global';
 
 
 /**
  * @type {string}
  */
-org_apache_flex_core_SimpleCSSValuesImpl.UNIVERSAL_SELECTOR = '*';
+org.apache.flex.core.SimpleCSSValuesImpl.UNIVERSAL_SELECTOR = '*';
 
 
 /**
@@ -43,10 +43,10 @@ org_apache_flex_core_SimpleCSSValuesImpl.UNIVERSAL_SELECTOR = '*';
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleCSSValuesImpl',
-               qName: 'org_apache_flex_core_SimpleCSSValuesImpl'}],
-    interfaces: [org_apache_flex_core_IValuesImpl]};
+               qName: 'org.apache.flex.core.SimpleCSSValuesImpl'}],
+    interfaces: [org.apache.flex.core.IValuesImpl]};
 
 
 /**
@@ -57,7 +57,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.FLEXJS_CLASS_INFO =
  *                       might make a difference.
  * @return {Object} The value.
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.getValue =
     function(thisObject, valueName, opt_state, opt_attrs) {
   var c = valueName.indexOf('-');
   while (c != -1)
@@ -156,10 +156,10 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
 
     cName = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
   }
-  o = values[org_apache_flex_core_SimpleCSSValuesImpl.GLOBAL_SELECTOR];
+  o = values[org.apache.flex.core.SimpleCSSValuesImpl.GLOBAL_SELECTOR];
   if (o)
     return o[valueName];
-  o = values[org_apache_flex_core_SimpleCSSValuesImpl.UNIVERSAL_SELECTOR];
+  o = values[org.apache.flex.core.SimpleCSSValuesImpl.UNIVERSAL_SELECTOR];
   if (o)
     return o[valueName];
   return undefined;
@@ -175,7 +175,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.getValue =
  * @return {Object} The value.
  * @suppress {checkTypes}
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.newInstance =
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.newInstance =
 function(thisObject, valueName, opt_state, opt_attrs) {
   var f = this.getValue(thisObject, valueName, opt_state, opt_attrs);
   if (f)
@@ -187,7 +187,7 @@ function(thisObject, valueName, opt_state, opt_attrs) {
 /**
  * @param {Object} mainclass The main class for the application.
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.init = function(mainclass) {
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.init = function(mainclass) {
   var cssData = mainclass.cssData;
   var values = this.values;
   if (values == null)
@@ -231,7 +231,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.init = function(mainclass) {
  * @param {string} styles The styles as HTML style syntax.
  * @return {Object} The styles object.
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.parseStyles = function(styles) {
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.parseStyles = function(styles) {
   var obj = {};
   var parts = styles.split(';');
   var l = parts.length;
@@ -263,7 +263,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.prototype.parseStyles = function(styles
 /**
  * The styles that apply to each UI widget
  */
-org_apache_flex_core_SimpleCSSValuesImpl.perInstanceStyles = {
+org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles = {
    'backgroundColor': 1,
    'backgroundImage': 1,
    'color': 1,
@@ -277,7 +277,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.perInstanceStyles = {
 /**
  * The styles that use color format #RRGGBB
  */
-org_apache_flex_core_SimpleCSSValuesImpl.colorStyles = {
+org.apache.flex.core.SimpleCSSValuesImpl.colorStyles = {
    'backgroundColor': 1,
    'borderColor': 1,
    'color': 1
@@ -287,7 +287,7 @@ org_apache_flex_core_SimpleCSSValuesImpl.colorStyles = {
 /**
  * The properties that enumerate that we skip
  */
-org_apache_flex_core_SimpleCSSValuesImpl.skipStyles = {
+org.apache.flex.core.SimpleCSSValuesImpl.skipStyles = {
    'constructor': 1
 };
 
@@ -296,11 +296,11 @@ org_apache_flex_core_SimpleCSSValuesImpl.skipStyles = {
  * @param {Object} thisObject The object to apply styles to;
  * @param {Object} styles The styles.
  */
-org_apache_flex_core_SimpleCSSValuesImpl.prototype.applyStyles =
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
     function(thisObject, styles) {
-  var styleList = org_apache_flex_core_SimpleCSSValuesImpl.perInstanceStyles;
-  var colorStyles = org_apache_flex_core_SimpleCSSValuesImpl.colorStyles;
-  var skipStyles = org_apache_flex_core_SimpleCSSValuesImpl.skipStyles;
+  var styleList = org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles;
+  var colorStyles = org.apache.flex.core.SimpleCSSValuesImpl.colorStyles;
+  var skipStyles = org.apache.flex.core.SimpleCSSValuesImpl.skipStyles;
   for (var p in styles) {
     //if (styleList[p])
     if (skipStyles[p])

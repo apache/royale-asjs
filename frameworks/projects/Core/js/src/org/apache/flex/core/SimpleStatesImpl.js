@@ -12,39 +12,39 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_SimpleStatesImpl');
+goog.provide('org.apache.flex.core.SimpleStatesImpl');
 
-goog.require('org_apache_flex_core_IBead');
-goog.require('org_apache_flex_core_IStatesImpl');
-goog.require('org_apache_flex_core_IStrand');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_events_EventDispatcher');
-goog.require('org_apache_flex_events_ValueChangeEvent');
-goog.require('org_apache_flex_states_AddItems');
-goog.require('org_apache_flex_states_SetEventHandler');
-goog.require('org_apache_flex_states_SetProperty');
-goog.require('org_apache_flex_states_State');
+goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.core.IStatesImpl');
+goog.require('org.apache.flex.core.IStrand');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.events.ValueChangeEvent');
+goog.require('org.apache.flex.states.AddItems');
+goog.require('org.apache.flex.states.SetEventHandler');
+goog.require('org.apache.flex.states.SetProperty');
+goog.require('org.apache.flex.states.State');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
- * @implements {org_apache_flex_core_IBead}
- * @implements {org_apache_flex_core_IStatesImpl}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IBead}
+ * @implements {org.apache.flex.core.IStatesImpl}
  */
-org_apache_flex_core_SimpleStatesImpl = function() {
-  org_apache_flex_core_SimpleStatesImpl.base(this, 'constructor');
+org.apache.flex.core.SimpleStatesImpl = function() {
+  org.apache.flex.core.SimpleStatesImpl.base(this, 'constructor');
 
   /**
    * @private
-   * @type {org_apache_flex_core_IStrand}
+   * @type {org.apache.flex.core.IStrand}
    */
   this.strand_ = null;
 };
-goog.inherits(org_apache_flex_core_SimpleStatesImpl,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.core.SimpleStatesImpl,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -52,17 +52,17 @@ goog.inherits(org_apache_flex_core_SimpleStatesImpl,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.SimpleStatesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleStatesImpl',
-                qName: 'org_apache_flex_core_SimpleStatesImpl' }],
-      interfaces: [org_apache_flex_core_IBead,
-                   org_apache_flex_core_IStatesImpl] };
+                qName: 'org.apache.flex.core.SimpleStatesImpl' }],
+      interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.core.IStatesImpl] };
 
 
-Object.defineProperties(org_apache_flex_core_SimpleStatesImpl.prototype, {
+Object.defineProperties(org.apache.flex.core.SimpleStatesImpl.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_core_SimpleStatesImpl} */
+        /** @this {org.apache.flex.core.SimpleStatesImpl} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -82,13 +82,13 @@ Object.defineProperties(org_apache_flex_core_SimpleStatesImpl.prototype, {
  * @private
  * @param {Object} event The event.
  */
-org_apache_flex_core_SimpleStatesImpl.prototype.initialStateHandler_ =
+org.apache.flex.core.SimpleStatesImpl.prototype.initialStateHandler_ =
     function(event) {
     /**
      *  @type {Object}
     **/
     var host = this.strand_;
-    this.dispatchEvent(new org_apache_flex_events_ValueChangeEvent('currentStateChange',
+    this.dispatchEvent(new org.apache.flex.events.ValueChangeEvent('currentStateChange',
         false, false, null,
         host.currentState));
   };
@@ -98,7 +98,7 @@ org_apache_flex_core_SimpleStatesImpl.prototype.initialStateHandler_ =
  * @private
  * @param {Object} event The event.
  */
-org_apache_flex_core_SimpleStatesImpl.prototype.stateChangeHandler_ =
+org.apache.flex.core.SimpleStatesImpl.prototype.stateChangeHandler_ =
     function(event) {
   var arr, doc, p, s;
 
@@ -124,18 +124,18 @@ org_apache_flex_core_SimpleStatesImpl.prototype.stateChangeHandler_ =
 
 /**
  * @private
- * @param {org_apache_flex_states_State} s The State to revert.
+ * @param {org.apache.flex.states.State} s The State to revert.
  */
-org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
+org.apache.flex.core.SimpleStatesImpl.prototype.revert_ = function(s) {
   var arr, item, o, p, q, target;
   /**
-   * @type {org_apache_flex_core_UIBase}
+   * @type {org.apache.flex.core.UIBase}
    */
   var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_AddItems)) {
+    if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.AddItems)) {
       for (q in o.items) {
         item = o.items[q];
 
@@ -146,12 +146,12 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
 
         parent.removeElement(item);
         parent.dispatchEvent(
-            new org_apache_flex_events_Event('childrenAdded'));
+            new org.apache.flex.events.Event('childrenAdded'));
       }
-    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetProperty)) {
+    } else if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.SetProperty)) {
       target = o.document[o.target];
       target[o.name] = o.previousValue;
-    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetEventHandler)) {
+    } else if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.SetEventHandler)) {
       target = o.document[o.target];
       target.removeEventListener(o.name, o.handlerFunction);
     }
@@ -161,23 +161,23 @@ org_apache_flex_core_SimpleStatesImpl.prototype.revert_ = function(s) {
 
 /**
  * @private
- * @param {org_apache_flex_states_State} s The State to apply.
+ * @param {org.apache.flex.states.State} s The State to apply.
  */
-org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
+org.apache.flex.core.SimpleStatesImpl.prototype.apply_ = function(s) {
   var arr, child, index, item, o, p, q, target;
   /**
-   * type {org_apache_flex_core_UIBase}
+   * type {org.apache.flex.core.UIBase}
    */
   var parent;
   arr = s.overrides;
   for (p in arr) {
     o = arr[p];
-    if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_AddItems)) {
+    if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.AddItems)) {
       if (!o.items) {
         o.items = o.itemsDescriptor.items;
         if (o.items == null) {
           o.items =
-              org_apache_flex_utils_MXMLDataInterpreter.generateMXMLArray(o.document,
+              org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray(o.document,
                                     null, o.itemsDescriptor.descriptor);
           o.itemsDescriptor.items = o.items;
         }
@@ -205,15 +205,15 @@ org_apache_flex_core_SimpleStatesImpl.prototype.apply_ = function(s) {
         }
 
         parent.dispatchEvent(
-            new org_apache_flex_events_Event('childrenAdded'));
+            new org.apache.flex.events.Event('childrenAdded'));
       }
     }
-    else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetProperty))
+    else if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.SetProperty))
     {
       target = o.document[o.target];
       o.previousValue = target[o.name];
       target[o.name] = o.value;
-    } else if (org_apache_flex_utils_Language.is(o, org_apache_flex_states_SetEventHandler)) {
+    } else if (org.apache.flex.utils.Language.is(o, org.apache.flex.states.SetEventHandler)) {
       target = o.document[o.target];
       target.addEventListener(o.name, o.handlerFunction);
     }

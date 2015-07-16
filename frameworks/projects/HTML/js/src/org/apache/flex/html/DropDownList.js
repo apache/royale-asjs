@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_DropDownList');
+goog.provide('org.apache.flex.html.DropDownList');
 
-goog.require('org_apache_flex_core_ListBase');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
+goog.require('org.apache.flex.core.ListBase');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html_DropDownList = function() {
-  org_apache_flex_html_DropDownList.base(this, 'constructor');
-  this.model = new org_apache_flex_html_beads_models_ArraySelectionModel();
+org.apache.flex.html.DropDownList = function() {
+  org.apache.flex.html.DropDownList.base(this, 'constructor');
+  this.model = new org.apache.flex.html.beads.models.ArraySelectionModel();
 };
-goog.inherits(org_apache_flex_html_DropDownList,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html.DropDownList,
+    org.apache.flex.core.ListBase);
 
 
 /**
@@ -36,15 +36,15 @@ goog.inherits(org_apache_flex_html_DropDownList,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_DropDownList.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.DropDownList.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DropDownList',
-                qName: 'org_apache_flex_html_DropDownList'}] };
+                qName: 'org.apache.flex.html.DropDownList'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_DropDownList.prototype.
+org.apache.flex.html.DropDownList.prototype.
     createElement = function() {
   this.element = document.createElement('select');
   this.element.size = 1;
@@ -58,10 +58,10 @@ org_apache_flex_html_DropDownList.prototype.
 };
 
 
-Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
+Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
     /** @export */
     dataProvider: {
-        /** @this {org_apache_flex_html_DropDownList} */
+        /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             var dp, i, n, opt;
 
@@ -86,11 +86,11 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
         // TODO: (aharui) copied from ListBase because you
         // can't just override the setter in a defineProps
         // structure.
-        /** @this {org_apache_flex_html_DropDownList} */
+        /** @this {org.apache.flex.html.DropDownList} */
         get: function() {
             return this.model.selectedIndex;
         },
-        /** @this {org_apache_flex_html_DropDownList} */
+        /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
             this.element.selectedIndex = value;
@@ -101,11 +101,11 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
         // TODO: (aharui) copied from ListBase because you
         // can't just override the setter in a defineProps
         // structure.
-        /** @this {org_apache_flex_html_DropDownList} */
+        /** @this {org.apache.flex.html.DropDownList} */
         get: function() {
             return this.model.selectedItem;
         },
-        /** @this {org_apache_flex_html_DropDownList} */
+        /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             this.model.selectedItem = value;
             this.element.selectedIndex = this.selectedIndex;
@@ -117,7 +117,7 @@ Object.defineProperties(org_apache_flex_html_DropDownList.prototype, {
 /**
  * @protected
  */
-org_apache_flex_html_DropDownList.prototype.changeHandler =
+org.apache.flex.html.DropDownList.prototype.changeHandler =
     function() {
   this.model.selectedIndex = this.element.selectedIndex;
   this.dispatchEvent('change');

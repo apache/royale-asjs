@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_maps_google_Place');
+goog.provide('org.apache.flex.maps.google.Place');
 
-goog.require('org_apache_flex_maps_google_Geometry');
+goog.require('org.apache.flex.maps.google.Geometry');
 
 
 // IMPORTANT:
@@ -26,8 +26,8 @@ goog.require('org_apache_flex_maps_google_Geometry');
 /**
  * @constructor
  */
-org_apache_flex_maps_google_Place = function() {
-  this.geometry = new org_apache_flex_maps_google_Geometry();
+org.apache.flex.maps.google.Place = function() {
+  this.geometry = new org.apache.flex.maps.google.Geometry();
 };
 
 
@@ -36,54 +36,54 @@ org_apache_flex_maps_google_Place = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_maps_google_Place.prototype.
+org.apache.flex.maps.google.Place.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'Place',
-           qName: 'org_apache_flex_maps_google_Place' }],
+           qName: 'org.apache.flex.maps.google.Place' }],
     interfaces: [] };
 
 
 /**
  * @type {Object} The current location
  */
-org_apache_flex_maps_google_Place.prototype.geometry = null;
+org.apache.flex.maps.google.Place.prototype.geometry = null;
 
 
 /**
  * @type {String} The icon representing the place.
  */
-org_apache_flex_maps_google_Place.prototype.icon = null;
+org.apache.flex.maps.google.Place.prototype.icon = null;
 
 
 /**
  * @type {String} A unique identifier for the place.
  */
-org_apache_flex_maps_google_Place.prototype.id = null;
+org.apache.flex.maps.google.Place.prototype.id = null;
 
 
 /**
  * @type {String} The name of the place.
  */
-org_apache_flex_maps_google_Place.prototype.name = null;
+org.apache.flex.maps.google.Place.prototype.name = null;
 
 
 /**
  * @type {String} A reference identifier.
  */
-org_apache_flex_maps_google_Place.prototype.reference = null;
+org.apache.flex.maps.google.Place.prototype.reference = null;
 
 
 /**
  * @type {String} A description of the area of the place.
  */
-org_apache_flex_maps_google_Place.prototype.vicinity = null;
+org.apache.flex.maps.google.Place.prototype.vicinity = null;
 
 
 /**
  * @override
  * @return {string} A description of the area of the place.
  */
-org_apache_flex_maps_google_Place.prototype.toString = function PlaceToString() {
+org.apache.flex.maps.google.Place.prototype.toString = function PlaceToString() {
   var results = '';
   if (this.name) results = this.name;
   if (this.vicinity) results += ' ' + this.vicinity;

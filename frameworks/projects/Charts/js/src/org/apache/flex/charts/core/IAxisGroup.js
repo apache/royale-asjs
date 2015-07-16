@@ -11,28 +11,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IAxisGroup
+ * org.apache.flex.charts.core.IAxisGroup
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IAxisGroup');
+goog.provide('org.apache.flex.charts.core.IAxisGroup');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_charts_core_IAxisGroup = function() {
+org.apache.flex.charts.core.IAxisGroup = function() {
 };
 
 
 /**
  * @return {void}
  */
-org_apache_flex_charts_core_IAxisGroup.prototype.removeAllElements = function() {};
+org.apache.flex.charts.core.IAxisGroup.prototype.removeAllElements = function() {};
 
 
 /**
@@ -40,6 +40,6 @@ org_apache_flex_charts_core_IAxisGroup.prototype.removeAllElements = function() 
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IAxisGroup.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IAxisGroup', qName: 'org_apache_flex_charts_core_IAxisGroup'}]
+org.apache.flex.charts.core.IAxisGroup.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IAxisGroup', qName: 'org.apache.flex.charts.core.IAxisGroup'}]
   };

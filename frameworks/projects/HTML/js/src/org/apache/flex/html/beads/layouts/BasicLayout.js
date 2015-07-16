@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_BasicLayout');
+goog.provide('org.apache.flex.html.beads.layouts.BasicLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
-goog.require('org_apache_flex_core_ILayoutChild');
-goog.require('org_apache_flex_core_ValuesManager');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutChild');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_BasicLayout =
+org.apache.flex.html.beads.layouts.BasicLayout =
     function() {
   this.strand_ = null;
   this.className = 'BasicLayout';
@@ -37,16 +37,16 @@ org_apache_flex_html_beads_layouts_BasicLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_BasicLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.BasicLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BasicLayout',
-                qName: 'org_apache_flex_html_beads_layouts_BasicLayout'}],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.BasicLayout'}],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.BasicLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_BasicLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.BasicLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -58,11 +58,11 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_BasicLayout.prototype
 
 /**
  */
-org_apache_flex_html_beads_layouts_BasicLayout.
+org.apache.flex.html.beads.layouts.BasicLayout.
     prototype.layout = function() {
   var i, n, h, w;
 
-  var viewBead = this.strand_.getBeadByType(org_apache_flex_core_ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = viewBead.contentView;
   w = contentView.width;
   h = contentView.height;
@@ -70,10 +70,10 @@ org_apache_flex_html_beads_layouts_BasicLayout.
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
     child.positioner.internalDisplay = 'block';
-    var left = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'left');
-    var right = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'right');
-    var top = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'top');
-    var bottom = org_apache_flex_core_ValuesManager.valuesImpl.getValue(child, 'bottom');
+    var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
+    var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
+    var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
+    var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
 
     if (!isNaN(left)) {
       child.positioner.style.position = 'absolute';

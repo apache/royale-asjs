@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_DropDownList');
+goog.provide('org.apache.flex.html5.DropDownList');
 
-goog.require('org_apache_flex_core_ListBase');
+goog.require('org.apache.flex.core.ListBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html5_DropDownList = function() {
-  org_apache_flex_html5_DropDownList.base(this, 'constructor');
+org.apache.flex.html5.DropDownList = function() {
+  org.apache.flex.html5.DropDownList.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_DropDownList,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html5.DropDownList,
+    org.apache.flex.core.ListBase);

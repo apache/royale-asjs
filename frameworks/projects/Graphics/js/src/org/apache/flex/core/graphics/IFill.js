@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_graphics_IFill');
+goog.provide('org.apache.flex.core.graphics.IFill');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_graphics_IFill');
  *
  * @interface
  */
-org_apache_flex_core_graphics_IFill = function() {
+org.apache.flex.core.graphics.IFill = function() {
 };
 
 
@@ -35,18 +35,18 @@ org_apache_flex_core_graphics_IFill = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_graphics_IFill.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.graphics.IFill.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IFill',
-                qName: 'org_apache_flex_core_graphics_IFill' }] };
+                qName: 'org.apache.flex.core.graphics.IFill' }] };
 
 
 /**
  * addFillAttrib()
  *
  * @export
- * @param {org_apache_flex_core_graphics_GraphicShape} value The GraphicShape object on which the fill must be added.
+ * @param {org.apache.flex.core.graphics.GraphicShape} value The GraphicShape object on which the fill must be added.
  * @return {string} The fill style attribute.
  */
-org_apache_flex_core_graphics_IFill.prototype.addFillAttrib =
+org.apache.flex.core.graphics.IFill.prototype.addFillAttrib =
     function(value) {};
 

@@ -11,34 +11,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IChart
+ * org.apache.flex.charts.core.IChart
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_ChartBase');
+goog.provide('org.apache.flex.charts.core.ChartBase');
 
-goog.require('org_apache_flex_charts_core_IChart');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_html_List');
+goog.require('org.apache.flex.charts.core.IChart');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.html.List');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_List}
- * @implements {org_apache_flex_charts_core_IChart}
+ * @extends {org.apache.flex.html.List}
+ * @implements {org.apache.flex.charts.core.IChart}
  */
-org_apache_flex_charts_core_ChartBase =
+org.apache.flex.charts.core.ChartBase =
     function() {
-  org_apache_flex_charts_core_ChartBase.base(this, 'constructor');
+  org.apache.flex.charts.core.ChartBase.base(this, 'constructor');
   this.className = 'ChartBase';
 };
 goog.inherits(
-    org_apache_flex_charts_core_ChartBase,
-    org_apache_flex_html_List);
+    org.apache.flex.charts.core.ChartBase,
+    org.apache.flex.html.List);
 
 
 /**
@@ -46,16 +46,16 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_ChartBase.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'ChartBase', qName: 'org_apache_flex_charts_core_ChartBase'}]
+org.apache.flex.charts.core.ChartBase.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'ChartBase', qName: 'org.apache.flex.charts.core.ChartBase'}]
   };
 
 
 /**
  * @override
  */
-org_apache_flex_charts_core_ChartBase.prototype.createElement = function() {
-    org_apache_flex_charts_core_ChartBase.base(this, 'createElement');
+org.apache.flex.charts.core.ChartBase.prototype.createElement = function() {
+    org.apache.flex.charts.core.ChartBase.base(this, 'createElement');
     this.element.style.border = 'none';
     this.element.style.overflow = 'visible';
     return this.element;
@@ -66,20 +66,20 @@ org_apache_flex_charts_core_ChartBase.prototype.createElement = function() {
  * @private
  * @type {Array}
  */
-org_apache_flex_charts_core_ChartBase.prototype.series_ = null;
+org.apache.flex.charts.core.ChartBase.prototype.series_ = null;
 
 
-Object.defineProperties(org_apache_flex_charts_core_ChartBase.prototype, {
+Object.defineProperties(org.apache.flex.charts.core.ChartBase.prototype, {
     /** @export */
     series: {
-        /** @this {org_apache_flex_charts_core_ChartBase} */
+        /** @this {org.apache.flex.charts.core.ChartBase} */
         get: function() {
              return this.series_;
         },
-        /** @this {org_apache_flex_charts_core_ChartBase} */
+        /** @this {org.apache.flex.charts.core.ChartBase} */
         set: function(value) {
              this.series_ = value;
-             this.dispatchEvent(new org_apache_flex_events_Event('seriesChanged'));
+             this.dispatchEvent(new org.apache.flex.events.Event('seriesChanged'));
         }
     }
 });

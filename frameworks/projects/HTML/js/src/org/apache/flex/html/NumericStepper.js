@@ -12,26 +12,26 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_NumericStepper');
+goog.provide('org.apache.flex.html.NumericStepper');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_Spinner');
-goog.require('org_apache_flex_html_TextInput');
-goog.require('org_apache_flex_html_beads_models_RangeModel');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.Spinner');
+goog.require('org.apache.flex.html.TextInput');
+goog.require('org.apache.flex.html.beads.models.RangeModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_NumericStepper = function() {
-  org_apache_flex_html_NumericStepper.base(this, 'constructor');
+org.apache.flex.html.NumericStepper = function() {
+  org.apache.flex.html.NumericStepper.base(this, 'constructor');
   this.model =
-      new org_apache_flex_html_beads_models_RangeModel();
+      new org.apache.flex.html.beads.models.RangeModel();
 };
-goog.inherits(org_apache_flex_html_NumericStepper,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.NumericStepper,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -39,25 +39,25 @@ goog.inherits(org_apache_flex_html_NumericStepper,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_NumericStepper.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.NumericStepper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'NumericStepper',
-                qName: 'org_apache_flex_html_NumericStepper' }] };
+                qName: 'org.apache.flex.html.NumericStepper' }] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_NumericStepper.prototype.createElement =
+org.apache.flex.html.NumericStepper.prototype.createElement =
     function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
 
-  this.input = new org_apache_flex_html_TextInput();
+  this.input = new org.apache.flex.html.TextInput();
   this.addElement(this.input);
   this.input.positioner.style.display = 'inline-block';
   this.input.positioner.style.width = '100px';
 
-  this.spinner = new org_apache_flex_html_Spinner();
+  this.spinner = new org.apache.flex.html.Spinner();
   this.spinner.positioner.style.display = 'inline-block';
   this.spinner.positioner.style.height = '24px';
   this.spinner.positioner.style.marginLeft = '-2px';
@@ -90,46 +90,46 @@ org_apache_flex_html_NumericStepper.prototype.createElement =
 /**
  * @param {Object} event The input event.
  */
-org_apache_flex_html_NumericStepper.prototype.spinnerChange =
+org.apache.flex.html.NumericStepper.prototype.spinnerChange =
     function(event)
     {
   var newValue = this.spinner.value;
   this.value = newValue;
   this.input.text = String(this.spinner.value);
-  this.dispatchEvent(new org_apache_flex_events_Event('valueChange'));
+  this.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
 };
 
 
-Object.defineProperties(org_apache_flex_html_NumericStepper.prototype, {
+Object.defineProperties(org.apache.flex.html.NumericStepper.prototype, {
     /** @export */
     minimum: {
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         get: function() {
             return this.model.minimum;
         },
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         set: function(value) {
             this.model.minimum = value;
         }
     },
     /** @export */
     maximum: {
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         get: function() {
             return this.model.maximum;
         },
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         set: function(value) {
             this.model.maximum = value;
         }
     },
     /** @export */
     value: {
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         get: function() {
             return this.model.value;
         },
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         set: function(newValue) {
             this.model.value = newValue;
             this.spinner.value = newValue;
@@ -137,22 +137,22 @@ Object.defineProperties(org_apache_flex_html_NumericStepper.prototype, {
     },
     /** @export */
     snapInterval: {
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         get: function() {
             return this.model.snapInterval;
         },
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         set: function(value) {
             this.model.snapInterval = value;
         }
     },
     /** @export */
     stepSize: {
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         get: function() {
             return this.model.stepSize;
         },
-        /** @this {org_apache_flex_html_NumericStepper} */
+        /** @this {org.apache.flex.html.NumericStepper} */
         set: function(value) {
             this.model.stepSize = value;
         }

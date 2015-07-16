@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_jquery_CheckBox');
+goog.provide('org.apache.flex.jquery.CheckBox');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_jquery_CheckBox = function() {
-  org_apache_flex_jquery_CheckBox.base(this, 'constructor');
+org.apache.flex.jquery.CheckBox = function() {
+  org.apache.flex.jquery.CheckBox.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_jquery_CheckBox,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.jquery.CheckBox,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org_apache_flex_jquery_CheckBox,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_jquery_CheckBox.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.jquery.CheckBox.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CheckBox',
-                qName: 'org_apache_flex_jquery_CheckBox'}] };
+                qName: 'org.apache.flex.jquery.CheckBox'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_jquery_CheckBox.prototype.createElement =
+org.apache.flex.jquery.CheckBox.prototype.createElement =
     function() {
   var cb;
 
@@ -61,25 +61,25 @@ org_apache_flex_jquery_CheckBox.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_jquery_CheckBox.prototype, {
+Object.defineProperties(org.apache.flex.jquery.CheckBox.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org.apache.flex.jquery.CheckBox} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;
         },
-        /** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org.apache.flex.jquery.CheckBox} */
         set: function(value) {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org.apache.flex.jquery.CheckBox} */
         get: function() {
             return this.element.childNodes.item(0).checked;
         },
-        /** @this {org_apache_flex_jquery_CheckBox} */
+        /** @this {org.apache.flex.jquery.CheckBox} */
         set: function(value) {
             this.element.childNodes.item(0).checked = value;
         }

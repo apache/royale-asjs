@@ -14,7 +14,7 @@
 // EventHandler and ErrorHandler are not listed as deps for
 // some of the event classes because they would cause
 // circularities so we force them in here.
-goog.provide('org_apache_flex_events_Event');
+goog.provide('org.apache.flex.events.Event');
 
 goog.require('goog.debug.ErrorHandler');
 goog.require('goog.events.Event');
@@ -27,12 +27,12 @@ goog.require('goog.events.EventHandler');
  * @extends {goog.events.Event}
  * @param {string} type The event type.
  */
-org_apache_flex_events_Event = function(type) {
-  org_apache_flex_events_Event.base(this, 'constructor', type);
+org.apache.flex.events.Event = function(type) {
+  org.apache.flex.events.Event.base(this, 'constructor', type);
 
   this.type = type;
 };
-goog.inherits(org_apache_flex_events_Event,
+goog.inherits(org.apache.flex.events.Event,
     goog.events.Event);
 
 
@@ -41,16 +41,16 @@ goog.inherits(org_apache_flex_events_Event,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_Event.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.Event.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Event',
-                qName: 'org_apache_flex_events_Event' }] };
+                qName: 'org.apache.flex.events.Event' }] };
 
 
 /**
  * Enum type for the events fired by the FlexJS Event
  * @enum {string}
  */
-org_apache_flex_events_Event.EventType = {
+org.apache.flex.events.Event.EventType = {
     CHANGE: 'change'
   };
 
@@ -59,13 +59,13 @@ org_apache_flex_events_Event.EventType = {
  * @export
  * @type {string} type The event type.
  */
-org_apache_flex_events_Event.prototype.type = '';
+org.apache.flex.events.Event.prototype.type = '';
 
 
 /**
  * @export
  * @param {string} type The event type.
  */
-org_apache_flex_events_Event.prototype.init = function(type) {
+org.apache.flex.events.Event.prototype.init = function(type) {
   this.type = type;
 };

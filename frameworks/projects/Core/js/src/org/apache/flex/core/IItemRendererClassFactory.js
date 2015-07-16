@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IItemRendererClassFactory');
+goog.provide('org.apache.flex.core.IItemRendererClassFactory');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IItemRendererClassFactory = function() {
+org.apache.flex.core.IItemRendererClassFactory = function() {
 };
 
 
@@ -33,6 +33,6 @@ org_apache_flex_core_IItemRendererClassFactory = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IItemRendererClassFactory.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IItemRendererClassFactory.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IItemRendererClassFactory',
-                qName: 'org_apache_flex_core_IItemRendererClassFactory' }] };
+                qName: 'org.apache.flex.core.IItemRendererClassFactory' }] };

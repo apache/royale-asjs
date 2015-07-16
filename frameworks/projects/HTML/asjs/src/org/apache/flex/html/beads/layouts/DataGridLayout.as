@@ -149,6 +149,7 @@ package org.apache.flex.html.beads.layouts
 			header.x = 0;
 			header.y = 0;
 			header.width = sw;
+			header.dispatchEvent(new Event("layoutNeeded"));
 			
 			return true;
 		}

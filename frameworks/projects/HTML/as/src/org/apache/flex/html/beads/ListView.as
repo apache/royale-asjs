@@ -141,28 +141,31 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-            
-			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
-			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
-            
-            // this gets sent at least once after the beads are all in place.
-            IEventDispatcher(_strand).addEventListener("layoutNeeded",handleSizeChange);
-			IEventDispatcher(_strand).addEventListener("itemsCreated", changeHandler);
-     
-            listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-            listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-            listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+		}
+		
+		override protected function completeSetup():void
+		{
+			super.completeSetup();
+			
+			// list is not interested in UI children, it wants to know when new items
+			// have been added or the dataProvider has changed.
+			
+			host.removeEventListener("childrenAdded", childrenChangedHandler);
+			host.removeEventListener("childrenAdded", performLayout);
+			host.addEventListener("itemsCreated", performLayout);
+			
+			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
 		
-		override protected function checkActualParent(force:Boolean=false):Boolean
+		override protected function createContentView():IParentIUIBase
 		{
 			if (_dataGroup == null) {
 				_dataGroup = new (ValuesManager.valuesImpl.getValue(_strand, "iDataGroup")) as IItemRendererParent;
-				actualParent = _dataGroup as UIBase;
-				IParent(_strand).addElement(_dataGroup,false);
 			}
-			return true;
+			return _dataGroup as IParentIUIBase;
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -173,7 +176,7 @@ package org.apache.flex.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// override if needed
-			changeHandler(event);
+			performLayout(event);
 		}
 		
 		/**
@@ -222,8 +225,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		protected function handleSizeChange(event:Event):void
+		override protected function resizeHandler(event:Event):void
 		{
+			super.resizeHandler(event);
 			_dataGroup.updateAllItemRenderers();
 		}
 				

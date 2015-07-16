@@ -17,13 +17,6 @@ package org.apache.flex.core
 		function set model(value:IViewportModel):void;
 		
 		/**
-		 * Runs the layout that has been set in the IViewportModel. The function
-		 * returns true if the layout changed the size of the content area as
-		 * specified by the IViewportModel.
-		 */
-		function runLayout():Boolean;
-		
-		/**
 		 * Invoke this function to actually change the contentArea (specified in
 		 * the IViewportModel.
 		 */

@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_ConstantBinding');
+goog.provide('org.apache.flex.binding.ConstantBinding');
 
-goog.require('org_apache_flex_binding_BindingBase');
+goog.require('org.apache.flex.binding.BindingBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_binding_BindingBase}
+ * @extends {org.apache.flex.binding.BindingBase}
  */
-org_apache_flex_binding_ConstantBinding = function() {
-  org_apache_flex_binding_ConstantBinding.base(this, 'constructor');
+org.apache.flex.binding.ConstantBinding = function() {
+  org.apache.flex.binding.ConstantBinding.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_binding_ConstantBinding,
-    org_apache_flex_binding_BindingBase);
+goog.inherits(org.apache.flex.binding.ConstantBinding,
+    org.apache.flex.binding.BindingBase);
 
 
 /**
@@ -34,17 +34,17 @@ goog.inherits(org_apache_flex_binding_ConstantBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_ConstantBinding.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.ConstantBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ConstantBinding',
-                qName: 'org_apache_flex_binding_ConstantBinding'}] };
+                qName: 'org.apache.flex.binding.ConstantBinding'}] };
 
 
-Object.defineProperties(org_apache_flex_binding_ConstantBinding.prototype, {
+Object.defineProperties(org.apache.flex.binding.ConstantBinding.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_ConstantBinding} */
+        /** @this {org.apache.flex.binding.ConstantBinding} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(org_apache_flex_binding_ConstantBinding, this, 'strand', value);
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.binding.ConstantBinding, this, 'strand', value);
 
             var val;
             if (this.sourcePropertyName in this.source) {

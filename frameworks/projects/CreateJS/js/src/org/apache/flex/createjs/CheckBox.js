@@ -12,35 +12,35 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_createjs_CheckBox');
+goog.provide('org.apache.flex.createjs.CheckBox');
 
-goog.require('org_apache_flex_createjs_core_UIBase');
+goog.require('org.apache.flex.createjs.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_createjs_core_UIBase}
+ * @extends {org.apache.flex.createjs.core.UIBase}
  */
-org_apache_flex_createjs_CheckBox = function() {
-  org_apache_flex_createjs_CheckBox.base(this, 'constructor');
+org.apache.flex.createjs.CheckBox = function() {
+  org.apache.flex.createjs.CheckBox.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_createjs_CheckBox,
-    org_apache_flex_createjs_core_UIBase);
+goog.inherits(org.apache.flex.createjs.CheckBox,
+    org.apache.flex.createjs.core.UIBase);
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_createjs_CheckBox.prototype.checkMark = null;
+org.apache.flex.createjs.CheckBox.prototype.checkMark = null;
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_createjs_CheckBox.prototype.checkMarkBackground =
+org.apache.flex.createjs.CheckBox.prototype.checkMarkBackground =
     null;
 
 
@@ -48,13 +48,13 @@ org_apache_flex_createjs_CheckBox.prototype.checkMarkBackground =
  * @export
  * @type {Object}
  */
-org_apache_flex_createjs_CheckBox.prototype.checkBoxLabel = null;
+org.apache.flex.createjs.CheckBox.prototype.checkBoxLabel = null;
 
 
 /**
  * @override
  */
-org_apache_flex_createjs_CheckBox.prototype.createElement =
+org.apache.flex.createjs.CheckBox.prototype.createElement =
     function() {
   this.checkMarkBackground = new createjs.Shape();
   this.checkMarkBackground.name = 'checkmarkbackground';
@@ -93,25 +93,25 @@ org_apache_flex_createjs_CheckBox.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
+Object.defineProperties(org.apache.flex.createjs.CheckBox.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_createjs_CheckBox} */
+        /** @this {org.apache.flex.createjs.CheckBox} */
         get: function() {
             return this.checkBoxLabel.text;
         },
-        /** @this {org_apache_flex_createjs_CheckBox} */
+        /** @this {org.apache.flex.createjs.CheckBox} */
         set: function(value) {
             this.checkBoxLabel.text = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_createjs_CheckBox} */
+        /** @this {org.apache.flex.createjs.CheckBox} */
         get: function() {
             return this.selected;
         },
-        /** @this {org_apache_flex_createjs_CheckBox} */
+        /** @this {org.apache.flex.createjs.CheckBox} */
         set: function(value) {
             this.checkMark.visible = this.selected = value;
             this.element.getStage().update();
@@ -124,7 +124,7 @@ Object.defineProperties(org_apache_flex_createjs_CheckBox.prototype, {
  * @export
  * @param {string|Object|goog.events.Event} event The event.
  */
-org_apache_flex_createjs_CheckBox.prototype.clickHandler =
+org.apache.flex.createjs.CheckBox.prototype.clickHandler =
     function(event) {
   this.selected = !this.selected;
 };

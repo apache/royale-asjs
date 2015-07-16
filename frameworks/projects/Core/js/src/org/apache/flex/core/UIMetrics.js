@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_UIMetrics');
+goog.provide('org.apache.flex.core.UIMetrics');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_UIMetrics = function() {
+org.apache.flex.core.UIMetrics = function() {
 };
 
 
@@ -27,25 +27,53 @@ org_apache_flex_core_UIMetrics = function() {
  * @export
  * @type {number}
  */
-org_apache_flex_core_UIMetrics.prototype.top = 0;
+org.apache.flex.core.UIMetrics.prototype.top = 0;
 
 
 /**
  * @export
  * @type {number}
  */
-org_apache_flex_core_UIMetrics.prototype.left = 0;
+org.apache.flex.core.UIMetrics.prototype.left = 0;
 
 
 /**
  * @export
  * @type {number}
  */
-org_apache_flex_core_UIMetrics.prototype.bottom = 0;
+org.apache.flex.core.UIMetrics.prototype.bottom = 0;
 
 
 /**
  * @export
  * @type {number}
  */
-org_apache_flex_core_UIMetrics.prototype.right = 0;
+org.apache.flex.core.UIMetrics.prototype.right = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org.apache.flex.core.UIMetrics.prototype.marginTop = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org.apache.flex.core.UIMetrics.prototype.marginLeft = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org.apache.flex.core.UIMetrics.prototype.marginBottom = 0;
+
+
+/**
+ * @export
+ * @type {number}
+ */
+org.apache.flex.core.UIMetrics.prototype.marginRight = 0;

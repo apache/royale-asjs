@@ -18,29 +18,25 @@ limitations under the License.
 
 -->
 <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
-				xmlns:local="*" 
-				xmlns:models="models.*" xmlns:mybeads="mybeads.*">
+				xmlns:js="library://ns.apache.org/flexjs/basic">
     <fx:Script>
         <![CDATA[
-			
-			private function dataGridChange() : void
-			{
-				output.text = "Clicked on row "+dataGrid.selectedIndex;
-				trace("Click on row "+dataGrid.selectedIndex);
-			}
+		 private function dataGridChange() : void
+		 {
+			 output.text = "Clicked on row "+dataGrid.selectedIndex;
+			 trace("Click on row "+dataGrid.selectedIndex);
+		 }
 		]]>
     </fx:Script>
 	
 	<js:Label id="output" x="450" y="30" width="100" />
 		
-	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" >
+	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" rowHeight="30">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
-			<mybeads:RowHeightBead rowHeight="40" />
 		</js:beads>
 		<js:columns>
 			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />

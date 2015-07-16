@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_ContainerView');
+goog.provide('org.apache.flex.html.beads.ContainerView');
 
-goog.require('org_apache_flex_core_BeadViewBase');
-goog.require('org_apache_flex_core_IBeadLayout');
-goog.require('org_apache_flex_core_ILayoutParent');
+goog.require('org.apache.flex.core.BeadViewBase');
+goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutParent');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_BeadViewBase}
+ * @extends {org.apache.flex.core.BeadViewBase}
  */
-org_apache_flex_html_beads_ContainerView = function() {
+org.apache.flex.html.beads.ContainerView = function() {
   this.lastSelectedIndex = -1;
-  org_apache_flex_html_beads_ContainerView.base(this, 'constructor');
+  org.apache.flex.html.beads.ContainerView.base(this, 'constructor');
 
   this.className = 'ContainerView';
 };
 goog.inherits(
-    org_apache_flex_html_beads_ContainerView,
-    org_apache_flex_core_BeadViewBase);
+    org.apache.flex.html.beads.ContainerView,
+    org.apache.flex.core.BeadViewBase);
 
 
 /**
@@ -40,10 +40,10 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_ContainerView.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerView',
-                qName: 'org_apache_flex_html_beads_ContainerView' }],
-    interfaces: [org_apache_flex_core_ILayoutParent]
+                qName: 'org.apache.flex.html.beads.ContainerView' }],
+    interfaces: [org.apache.flex.core.ILayoutParent]
     };
 
 
@@ -54,13 +54,13 @@ org_apache_flex_html_beads_ContainerView.prototype.FLEXJS_CLASS_INFO =
  * doesn't seem to allow the Object.defineProperties to use it
  * without re-declaring it here.
  */
-org_apache_flex_html_beads_ContainerView.prototype._strand = null;
+org.apache.flex.html.beads.ContainerView.prototype._strand = null;
 
 
 /**
  *
  */
-org_apache_flex_html_beads_ContainerView.
+org.apache.flex.html.beads.ContainerView.
     prototype.addOtherListeners = function() {
   this._strand.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
@@ -72,14 +72,14 @@ org_apache_flex_html_beads_ContainerView.
 
 
 /**
- * @param {org_apache_flex_events_Event} event The event.
+ * @param {org.apache.flex.events.Event} event The event.
  */
-org_apache_flex_html_beads_ContainerView.
+org.apache.flex.html.beads.ContainerView.
     prototype.changeHandler = function(event) {
   if (this.layout_ == null) {
-    this.layout_ = this._strand.getBeadByType(org_apache_flex_core_IBeadLayout);
+    this.layout_ = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
     if (this.layout_ == null) {
-      var m3 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
       this.layout_ = new m3();
       this._strand.addBead(this.layout_);
       //this.layout_.strand = this.strand_;
@@ -96,35 +96,35 @@ org_apache_flex_html_beads_ContainerView.
 
 
 /**
- * @param {org_apache_flex_events_Event} event The event.
+ * @param {org.apache.flex.events.Event} event The event.
  */
-org_apache_flex_html_beads_ContainerView.
+org.apache.flex.html.beads.ContainerView.
     prototype.sizeChangeHandler = function(event) {
   this.addOtherListeners();
   this.changeHandler(event);
 };
 
 
-Object.defineProperties(org_apache_flex_html_beads_ContainerView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     /** @export */
     contentView: {
-        /** @this {org_apache_flex_html_beads_ContainerView} */
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this._strand;
         }
     },
     /** @export */
     resizableView: {
-        /** @this {org_apache_flex_html_beads_ContainerView} */
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this._strand;
         }
     },
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_ContainerView} */
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
-            org_apache_flex_utils_Language.superSetter(org_apache_flex_html_beads_ContainerView, this, 'strand', value);
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
             if (this._strand.isWidthSizedToContent() &&
                 this._strand.isHeightSizedToContent())
               this.addOtherListeners();

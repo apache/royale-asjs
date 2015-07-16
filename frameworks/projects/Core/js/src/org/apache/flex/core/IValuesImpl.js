@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IValuesImpl');
+goog.provide('org.apache.flex.core.IValuesImpl');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_IValuesImpl');
  *
  * @interface
  */
-org_apache_flex_core_IValuesImpl = function() {
+org.apache.flex.core.IValuesImpl = function() {
 };
 
 
@@ -35,9 +35,9 @@ org_apache_flex_core_IValuesImpl = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IValuesImpl.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IValuesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IValuesImpl',
-                qName: 'org_apache_flex_core_IValuesImpl' }]};
+                qName: 'org.apache.flex.core.IValuesImpl' }]};
 
 
 /**
@@ -49,7 +49,7 @@ org_apache_flex_core_IValuesImpl.prototype.FLEXJS_CLASS_INFO =
  *                       might make a difference.
  * @return {?Object} The value.
  */
-org_apache_flex_core_IValuesImpl.prototype.getValue =
+org.apache.flex.core.IValuesImpl.prototype.getValue =
   function(thisObject, valueName, opt_state, opt_attrs) {};
 
 
@@ -62,7 +62,7 @@ org_apache_flex_core_IValuesImpl.prototype.getValue =
  *                       might make a difference.
  * @return {Object} The new instance.
  */
-org_apache_flex_core_IValuesImpl.prototype.newInstance =
+org.apache.flex.core.IValuesImpl.prototype.newInstance =
 function(thisObject, valueName, opt_state, opt_attrs) {};
 
 
@@ -70,4 +70,4 @@ function(thisObject, valueName, opt_state, opt_attrs) {};
  * @export
  * @param {Object} mainclass The main class for the application.
  */
-org_apache_flex_core_IValuesImpl.prototype.init = function(mainclass) {};
+org.apache.flex.core.IValuesImpl.prototype.init = function(mainclass) {};

@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_SliderTrackView');
+goog.provide('org.apache.flex.html.beads.SliderTrackView');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_beads_SliderTrackView = function() {
+org.apache.flex.html.beads.SliderTrackView = function() {
 };
 
 
@@ -28,16 +28,16 @@ org_apache_flex_html_beads_SliderTrackView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_SliderTrackView
+org.apache.flex.html.beads.SliderTrackView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SliderTrackView',
-                qName: 'org_apache_flex_html_beads_SliderTrackView'}] };
+                qName: 'org.apache.flex.html.beads.SliderTrackView'}] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_SliderTrackView.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.SliderTrackView.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_SliderTrackView} */
+        /** @this {org.apache.flex.html.beads.SliderTrackView} */
         set: function(value) {
             this.strand_ = value;
 

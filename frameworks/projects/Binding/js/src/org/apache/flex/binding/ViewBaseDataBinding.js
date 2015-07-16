@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_ViewBaseDataBinding');
+goog.provide('org.apache.flex.binding.ViewBaseDataBinding');
 
-goog.require('org_apache_flex_binding_ConstantBinding');
-goog.require('org_apache_flex_binding_GenericBinding');
-goog.require('org_apache_flex_binding_PropertyWatcher');
-goog.require('org_apache_flex_binding_SimpleBinding');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_events_ValueChangeEvent');
+goog.require('org.apache.flex.binding.ConstantBinding');
+goog.require('org.apache.flex.binding.GenericBinding');
+goog.require('org.apache.flex.binding.PropertyWatcher');
+goog.require('org.apache.flex.binding.SimpleBinding');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_binding_ViewBaseDataBinding = function() {
+org.apache.flex.binding.ViewBaseDataBinding = function() {
 
   /**
    * @private
@@ -48,15 +48,15 @@ org_apache_flex_binding_ViewBaseDataBinding = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewBaseDataBinding',
-                qName: 'org_apache_flex_binding_ViewBaseDataBinding'}] };
+                qName: 'org.apache.flex.binding.ViewBaseDataBinding'}] };
 
 
-Object.defineProperties(org_apache_flex_binding_ViewBaseDataBinding.prototype, {
+Object.defineProperties(org.apache.flex.binding.ViewBaseDataBinding.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_ViewBaseDataBinding} */
+        /** @this {org.apache.flex.binding.ViewBaseDataBinding} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -72,7 +72,7 @@ Object.defineProperties(org_apache_flex_binding_ViewBaseDataBinding.prototype, {
  * @protected
  * @param {Object} event The event.
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.initCompleteHandler =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.initCompleteHandler =
     function(event) {
 
   var prop;
@@ -113,7 +113,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.initCompleteHandler =
           fieldWatcher = childMap[binding.source[1]];
           if (typeof(fieldWatcher.eventNames) == 'string')
           {
-            sb = new org_apache_flex_binding_SimpleBinding();
+            sb = new org.apache.flex.binding.SimpleBinding();
             sb.destinationPropertyName =
                 binding.destination[1];
             sb.eventName = fieldWatcher.eventNames;
@@ -137,7 +137,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.initCompleteHandler =
           else if (fieldWatcher.eventNames == null)
           {
             var cb;
-            cb = org_apache_flex_binding_ConstantBinding;
+            cb = org.apache.flex.binding.ConstantBinding;
             cb = new cb();
             cb.destinationPropertyName =
                 binding.destination[1];
@@ -165,7 +165,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.initCompleteHandler =
       fieldWatcher = watchers.watcherMap[binding.source];
       if (typeof(fieldWatcher.eventNames) == 'string')
       {
-        sb = new org_apache_flex_binding_SimpleBinding();
+        sb = new org.apache.flex.binding.SimpleBinding();
         sb.destinationPropertyName = binding.destination[1];
         sb.eventName = fieldWatcher.eventNames;
         sb.sourcePropertyName = binding.source;
@@ -197,9 +197,9 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.initCompleteHandler =
  * @param {number} index The offset in the Binding database.
  * @param {Object} watchers The database of Watchers.
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.makeGenericBinding =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.makeGenericBinding =
     function(binding, index, watchers) {
-  var gb = new org_apache_flex_binding_GenericBinding();
+  var gb = new org.apache.flex.binding.GenericBinding();
   gb.setDocument(this.strand_);
   gb.destinationData = binding.destination;
   gb.destinationFunction = binding.destFunc;
@@ -215,7 +215,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.makeGenericBinding =
  * @param {Object} watchers The array of Watchers.
  * @param {Object} parentWatcher The parent Watcher or null if top.
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.setupWatchers =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.setupWatchers =
     function(gb, index, watchers, parentWatcher) {
   var i, n;
   n = watchers.length;
@@ -233,7 +233,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.setupWatchers =
       {
         case 'property':
           {
-            var pw = new org_apache_flex_binding_PropertyWatcher(
+            var pw = new org.apache.flex.binding.PropertyWatcher(
                 this,
                 watcher.propertyName,
                 watcher.eventNames,
@@ -265,7 +265,7 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.setupWatchers =
  * @param {Object} bindingData The watcher data to decode.
  * @return {Object} The watcher tree structure.
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.decodeWatcher =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.decodeWatcher =
     function(bindingData) {
   var watcherMap = {};
   var watchers = [];
@@ -332,9 +332,9 @@ org_apache_flex_binding_ViewBaseDataBinding.prototype.decodeWatcher =
 
 /**
  * @protected
- * @param {org_apache_flex_events_ValueChangeEvent} event The event.
+ * @param {org.apache.flex.events.ValueChangeEvent} event The event.
  */
-org_apache_flex_binding_ViewBaseDataBinding.prototype.deferredBindingsHandler =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.deferredBindingsHandler =
     function(event) {
   var p;
   var destination;

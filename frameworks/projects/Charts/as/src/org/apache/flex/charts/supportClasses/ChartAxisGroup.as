@@ -19,6 +19,7 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IAxisGroup;
+	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
@@ -34,7 +35,7 @@ package org.apache.flex.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartAxisGroup extends UIBase implements IAxisGroup
+	public class ChartAxisGroup extends UIBase implements IAxisGroup, IChrome
 	{
 		/**
 		 * Constructor.

@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IItemRendererFactory');
+goog.provide('org.apache.flex.core.IItemRendererFactory');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IItemRendererFactory = function() {
+org.apache.flex.core.IItemRendererFactory = function() {
 };
 
 
@@ -33,13 +33,13 @@ org_apache_flex_core_IItemRendererFactory = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IItemRendererFactory.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IItemRendererFactory.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IItemRendererFactory',
-                qName: 'org_apache_flex_core_IItemRendererFactory' }] };
+                qName: 'org.apache.flex.core.IItemRendererFactory' }] };
 
 
 /**
  * @export
  * @return {Object} A new instance of the itemRenderer.
  */
-org_apache_flex_core_IItemRendererFactory.prototype.newInstance = function() {};
+org.apache.flex.core.IItemRendererFactory.prototype.newInstance = function() {};

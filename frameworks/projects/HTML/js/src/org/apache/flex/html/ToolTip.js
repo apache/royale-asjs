@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_ToolTip');
+goog.provide('org.apache.flex.html.ToolTip');
 
-goog.require('org_apache_flex_html_Label');
+goog.require('org.apache.flex.html.Label');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Label}
+ * @extends {org.apache.flex.html.Label}
  */
-org_apache_flex_html_ToolTip = function() {
-  org_apache_flex_html_ToolTip.base(this, 'constructor');
+org.apache.flex.html.ToolTip = function() {
+  org.apache.flex.html.ToolTip.base(this, 'constructor');
   this.element.className = 'ToolTip';
 };
-goog.inherits(org_apache_flex_html_ToolTip,
-    org_apache_flex_html_Label);
+goog.inherits(org.apache.flex.html.ToolTip,
+    org.apache.flex.html.Label);
 
 
 /**
@@ -35,6 +35,6 @@ goog.inherits(org_apache_flex_html_ToolTip,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_ToolTip.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.ToolTip.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ToolTip',
-                qName: 'org_apache_flex_html_ToolTip' }]};
+                qName: 'org.apache.flex.html.ToolTip' }]};

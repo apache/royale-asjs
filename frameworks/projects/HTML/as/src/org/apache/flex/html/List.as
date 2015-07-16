@@ -20,6 +20,7 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IFactory;
 	
+	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IListPresentationModel;
@@ -50,7 +51,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends UIBase
+	public class List extends ContainerBase
 	{
 		/**
 		 *  constructor.

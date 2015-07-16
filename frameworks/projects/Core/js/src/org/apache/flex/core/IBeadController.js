@@ -17,17 +17,17 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IBeadController');
+goog.provide('org.apache.flex.core.IBeadController');
 
-goog.require('org_apache_flex_core_IBead');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IBead}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_core_IBeadController = function() {
+org.apache.flex.core.IBeadController = function() {
 };
 
 
@@ -36,7 +36,7 @@ org_apache_flex_core_IBeadController = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IBeadController.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IBeadController.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IBeadController',
-                qName: 'org_apache_flex_core_IBeadController' }],
-      interfaces: [org_apache_flex_core_IBead] };
+                qName: 'org.apache.flex.core.IBeadController' }],
+      interfaces: [org.apache.flex.core.IBead] };

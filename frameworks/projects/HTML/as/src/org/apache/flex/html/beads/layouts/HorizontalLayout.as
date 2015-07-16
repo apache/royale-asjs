@@ -105,7 +105,7 @@ package org.apache.flex.html.beads.layouts
 			
 			// this layout will use and modify the IViewportMode
 			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
-			viewportModel = viewport.model;
+			if (viewport) viewportModel = viewport.model;
 			
 			var n:int = contentView.numElements;
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -162,22 +162,6 @@ package org.apache.flex.html.beads.layouts
 				var mt:Number;
 				var mb:Number;
 				var lastmr:Number;
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
-                var xx:Number;
-                if (i == 0)
-                    child.x = ml;
-                else
-                    child.x = xx + ml + lastmr;
-                if (ilc)
-                {
-                    if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
-                }
 				if (marginLeft == "auto")
 					ml = 0;
 				else
@@ -194,6 +178,22 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(mr))
 						mr = 0;
 				}
+				mt = Number(marginTop);
+				if (isNaN(mt))
+					mt = 0;
+				mb = Number(marginBottom);
+				if (isNaN(mb))
+					mb = 0;
+                var xx:Number;
+                if (i == 0)
+                    child.x = ml;
+                else
+                    child.x = xx + ml + lastmr;
+                if (ilc)
+                {
+                    if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
+                }
                 lastmr = mr;
                 var marginObject:Object = {};
                 verticalMargins[i] = marginObject;

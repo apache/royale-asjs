@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Slider');
+goog.provide('org.apache.flex.html.Slider');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_beads_SliderThumbView');
-goog.require('org_apache_flex_html_beads_SliderTrackView');
-goog.require('org_apache_flex_html_beads_controllers_SliderMouseController');
-goog.require('org_apache_flex_html_beads_models_RangeModel');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.beads.SliderThumbView');
+goog.require('org.apache.flex.html.beads.SliderTrackView');
+goog.require('org.apache.flex.html.beads.controllers.SliderMouseController');
+goog.require('org.apache.flex.html.beads.models.RangeModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_Slider = function() {
+org.apache.flex.html.Slider = function() {
   this.model =
-      new org_apache_flex_html_beads_models_RangeModel();
-  org_apache_flex_html_Slider.base(this, 'constructor');
+      new org.apache.flex.html.beads.models.RangeModel();
+  org.apache.flex.html.Slider.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_Slider,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.Slider,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -40,28 +40,28 @@ goog.inherits(org_apache_flex_html_Slider,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Slider.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Slider.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Slider',
-                qName: 'org_apache_flex_html_Slider'}] };
+                qName: 'org.apache.flex.html.Slider'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_Slider.prototype.createElement =
+org.apache.flex.html.Slider.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
   this.element.style.width = '200px';
   this.element.style.height = '30px';
 
-  this.track = new org_apache_flex_html_beads_SliderTrackView();
+  this.track = new org.apache.flex.html.beads.SliderTrackView();
   this.addBead(this.track);
 
-  this.thumb = new org_apache_flex_html_beads_SliderThumbView();
+  this.thumb = new org.apache.flex.html.beads.SliderThumbView();
   this.addBead(this.thumb);
 
-  this.controller = new org_apache_flex_html_beads_controllers_SliderMouseController();
+  this.controller = new org.apache.flex.html.beads.controllers.SliderMouseController();
   this.addBead(this.controller);
 
   this.positioner = this.element;
@@ -73,14 +73,14 @@ org_apache_flex_html_Slider.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html_Slider.prototype, {
+Object.defineProperties(org.apache.flex.html.Slider.prototype, {
     /** @export */
     value: {
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         get: function() {
             return this.model.value;
         },
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         set: function(newValue) {
             this.model.value = newValue;
             this.setThumbFromValue(this.model.value);
@@ -88,44 +88,44 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
     },
     /** @export */
     minimum: {
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         get: function() {
             return this.model.minimum;
         },
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         set: function(value) {
             this.model.minimum = value;
         }
     },
     /** @export */
     maximum: {
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         get: function() {
             return this.model.maximum;
         },
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         set: function(value) {
             this.model.maximum = value;
         }
     },
     /** @export */
     snapInterval: {
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         get: function() {
             return this.model.snapInterval;
         },
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         set: function(value) {
             this.model.snapInterval = value;
         }
     },
     /** @export */
     stepSize: {
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         get: function() {
             return this.model.stepSize;
         },
-        /** @this {org_apache_flex_html_Slider} */
+        /** @this {org.apache.flex.html.Slider} */
         set: function(value) {
             this.model.stepSize = value;
         }
@@ -137,7 +137,7 @@ Object.defineProperties(org_apache_flex_html_Slider.prototype, {
  * @param {Object} value The current value.
  * @return {number} Calculates the new value based snapInterval and stepSize.
  */
-org_apache_flex_html_Slider.prototype.snap = function(value)
+org.apache.flex.html.Slider.prototype.snap = function(value)
     {
   var si = this.snapInterval;
   var n = Math.round((value - this.minimum) / si) *
@@ -158,7 +158,7 @@ org_apache_flex_html_Slider.prototype.snap = function(value)
  * @param {number} value The value used to calculate new position of the thumb.
  * @return {void} Moves the thumb to the corresponding position.
  */
-org_apache_flex_html_Slider.prototype.setThumbFromValue =
+org.apache.flex.html.Slider.prototype.setThumbFromValue =
     function(value)
     {
   var min = this.model.minimum;

@@ -1,7 +1,5 @@
 package org.apache.flex.html.beads.models
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
@@ -15,7 +13,6 @@ package org.apache.flex.html.beads.models
 			super();
 		}
 		
-		private var _layout:IBeadLayout;
 		private var _contentIsHost:Boolean = false;
 		private var _contentArea:IUIBase;
 		private var _contentWidth:Number = 0;
@@ -28,16 +25,6 @@ package org.apache.flex.html.beads.models
 		private var _viewportY:Number = 0;
 		private var _verticalScrollPosition:Number = 0;
 		private var _horizontalScrollPosition:Number = 0;
-		
-		public function get layout():IBeadLayout
-		{
-			return _layout;
-		}
-		public function set layout(value:IBeadLayout):void
-		{
-			_layout = value;
-			dispatchEvent( new Event("layoutChanged") );
-		}
 		
 		public function get contentArea():IUIBase
 		{

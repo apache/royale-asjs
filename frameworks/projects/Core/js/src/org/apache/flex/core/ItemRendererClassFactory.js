@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_ItemRendererClassFactory');
+goog.provide('org.apache.flex.core.ItemRendererClassFactory');
 
-goog.require('org_apache_flex_core_ClassFactory');
-goog.require('org_apache_flex_core_IItemRendererClassFactory');
-goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org.apache.flex.core.ClassFactory');
+goog.require('org.apache.flex.core.IItemRendererClassFactory');
+goog.require('org.apache.flex.core.ValuesManager');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IItemRendererClassFactory}
+ * @implements {org.apache.flex.core.IItemRendererClassFactory}
  */
-org_apache_flex_core_ItemRendererClassFactory = function() {
+org.apache.flex.core.ItemRendererClassFactory = function() {
   /**
    * @type {Function}
    */
@@ -37,17 +37,17 @@ org_apache_flex_core_ItemRendererClassFactory = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ItemRendererClassFactory.
+org.apache.flex.core.ItemRendererClassFactory.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ItemRendererClassFactory',
-                qName: 'org_apache_flex_core_ItemRendererClassFactory'}],
-      interfaces: [org_apache_flex_core_IItemRendererClassFactory] };
+                qName: 'org.apache.flex.core.ItemRendererClassFactory'}],
+      interfaces: [org.apache.flex.core.IItemRendererClassFactory] };
 
 
-Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype, {
+Object.defineProperties(org.apache.flex.core.ItemRendererClassFactory.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_core_ItemRendererClassFactory} */
+        /** @this {org.apache.flex.core.ItemRendererClassFactory} */
         set: function(value) {
             this.strand_ = value;
 
@@ -59,12 +59,12 @@ Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype,
               return;
             }
 
-            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
               this.itemRendererClass =
-              /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+              /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
                   getValue(this.strand_, 'iItemRenderer'));
               if (this.itemRendererClass) {
-                this.itemRendererClassFactory = new org_apache_flex_core_ClassFactory(this.itemRendererClass);
+                this.itemRendererClassFactory = new org.apache.flex.core.ClassFactory(this.itemRendererClass);
                 this.createFunction = this.createFromClass;
               }
            }
@@ -78,7 +78,7 @@ Object.defineProperties(org_apache_flex_core_ItemRendererClassFactory.prototype,
  * @param {Object} parent The display parent of the new item renderer.
  * @return {Object} The new item renderer.
  */
-org_apache_flex_core_ItemRendererClassFactory.
+org.apache.flex.core.ItemRendererClassFactory.
     prototype.createItemRenderer = function(parent) {
   return this.createFunction(parent);
 };
@@ -89,7 +89,7 @@ org_apache_flex_core_ItemRendererClassFactory.
  * @param {Object} parent The parent of the new item renderer.
  * @return {Object} The new item renderer.
  */
-org_apache_flex_core_ItemRendererClassFactory.
+org.apache.flex.core.ItemRendererClassFactory.
     prototype.createFromClass = function(parent) {
   var renderer = this.itemRendererClassFactory.newInstance();
   parent.addElement(renderer);

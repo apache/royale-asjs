@@ -3,7 +3,6 @@ package org.apache.flex.html.supportClasses
 	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -26,7 +25,6 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		private var contentArea:UIBase;
-		private var layout:IBeadLayout;
 		
 		private var _strand:IStrand;
 		
@@ -41,10 +39,8 @@ package org.apache.flex.html.supportClasses
 		{
 			_model = value;
 			
-			if (model.layout) layout = model.layout as IBeadLayout;
 			if (model.contentArea) contentArea = model.contentArea as UIBase;
 			
-			model.addEventListener("layoutChanged", handleLayoutChange);
 			model.addEventListener("contentAreaChanged", handleContentChange);
 			model.addEventListener("verticalScrollPositionChanged", handleVerticalScrollChange);
 			model.addEventListener("horizontalScrollPositionChanged", handleHorizontalScrollChange);
@@ -64,11 +60,6 @@ package org.apache.flex.html.supportClasses
 		public function get horizontalScroller():IViewportScroller
 		{
 			return _horizontalScroller;
-		}
-		
-		public function runLayout():Boolean
-		{
-			return layout.layout();
 		}
 		
 		/**
@@ -126,8 +117,6 @@ package org.apache.flex.html.supportClasses
 		{
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			var host:UIBase = UIBase(_strand);
-			var vbarGone:Boolean = _verticalScroller == null;
-			var hbarGone:Boolean = _horizontalScroller == null;
 			var addVbar:Boolean = false;
 			var addHbar:Boolean = false;
 			
@@ -135,13 +124,11 @@ package org.apache.flex.html.supportClasses
 				if (_verticalScroller) {
 					host.removeElement(_verticalScroller);
 					_verticalScroller = null;
-					vbarGone = true;
 				}
 			}
 			else if (model.contentHeight > model.viewportHeight) {
 				if (_verticalScroller == null) {
 					addVbar = true;
-					vbarGone = false;
 				}
 			}
 			
@@ -149,13 +136,11 @@ package org.apache.flex.html.supportClasses
 				if (_horizontalScroller) {
 					host.removeElement(_horizontalScroller);
 					_horizontalScroller = null;
-					hbarGone = true;
 				}
 			}
 			else if (model.contentWidth > model.viewportWidth) {
 				if (_horizontalScroller == null) {
 					addHbar = true;
-					hbarGone = false;
 				}
 			}
 			
@@ -173,18 +158,13 @@ package org.apache.flex.html.supportClasses
 				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth - metrics.left - metrics.right
 			}
 			
-			if (hbarGone && vbarGone) {
-				contentArea.scrollRect = null;
-			}
-			else {
-				var rect:Rectangle = contentArea.scrollRect;
-				if (rect) {
-					rect.x = 0;
-					rect.y = 0;
-					rect.width = model.viewportWidth - metrics.left - metrics.right;
-					rect.height = model.viewportHeight - 2*metrics.top - 2*metrics.bottom;
-					contentArea.scrollRect = rect;
-				}
+			var rect:Rectangle = contentArea.scrollRect;
+			if (rect) {
+				rect.x = 0;
+				rect.y = 0;
+				rect.width = model.viewportWidth - metrics.left - metrics.right;
+				rect.height = model.viewportHeight - 2*metrics.top - 2*metrics.bottom;
+				contentArea.scrollRect = rect;
 			}
 		}
 		
@@ -336,11 +316,6 @@ package org.apache.flex.html.supportClasses
 			contentArea.scrollRect = rect;
 			
 			model.horizontalScrollPosition = hpos;
-		}
-		
-		private function handleLayoutChange(event:Event):void
-		{
-			layout = model.layout as IBeadLayout;
 		}
 		
 		private function handleContentChange(event:Event):void

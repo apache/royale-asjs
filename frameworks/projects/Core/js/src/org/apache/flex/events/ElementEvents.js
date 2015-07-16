@@ -11,14 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-goog.provide('org_apache_flex_events_ElementEvents');
+goog.provide('org.apache.flex.events.ElementEvents');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_events_ElementEvents = function() {
+org.apache.flex.events.ElementEvents = function() {
 };
 
 
@@ -27,15 +27,15 @@ org_apache_flex_events_ElementEvents = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_ElementEvents.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.ElementEvents.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ElementEvents',
-                qName: 'org_apache_flex_events_ElementEvents' }] };
+                qName: 'org.apache.flex.events.ElementEvents' }] };
 
 
 /**
  * @type {Object}
  */
-org_apache_flex_events_ElementEvents.elementEvents = {
+org.apache.flex.events.ElementEvents.elementEvents = {
   'mouseover': 1,
   'mouseout': 1,
   'mouseup': 1,

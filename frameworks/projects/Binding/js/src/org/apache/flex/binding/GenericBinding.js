@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_GenericBinding');
+goog.provide('org.apache.flex.binding.GenericBinding');
 
-goog.require('org_apache_flex_binding_BindingBase');
-goog.require('org_apache_flex_events_ValueChangeEvent');
+goog.require('org.apache.flex.binding.BindingBase');
+goog.require('org.apache.flex.events.ValueChangeEvent');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_binding_BindingBase}
+ * @extends {org.apache.flex.binding.BindingBase}
  */
-org_apache_flex_binding_GenericBinding = function() {
-  org_apache_flex_binding_GenericBinding.base(this, 'constructor');
+org.apache.flex.binding.GenericBinding = function() {
+  org.apache.flex.binding.GenericBinding.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_binding_GenericBinding,
-    org_apache_flex_binding_BindingBase);
+goog.inherits(org.apache.flex.binding.GenericBinding,
+    org.apache.flex.binding.BindingBase);
 
 
 /**
@@ -35,29 +35,29 @@ goog.inherits(org_apache_flex_binding_GenericBinding,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_GenericBinding.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.GenericBinding.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'GenericBinding',
-                qName: 'org_apache_flex_binding_GenericBinding'}] };
+                qName: 'org.apache.flex.binding.GenericBinding'}] };
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_binding_GenericBinding.prototype.destinationData = null;
+org.apache.flex.binding.GenericBinding.prototype.destinationData = null;
 
 
 /**
  * @export
  * @type {?function(?): ?}
  */
-org_apache_flex_binding_GenericBinding.prototype.destinationFunction = null;
+org.apache.flex.binding.GenericBinding.prototype.destinationFunction = null;
 
 
-Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
+Object.defineProperties(org.apache.flex.binding.GenericBinding.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_GenericBinding} */
+        /** @this {org.apache.flex.binding.GenericBinding} */
         set: function(value) {
             this.destination = value;
 
@@ -75,7 +75,7 @@ Object.defineProperties(org_apache_flex_binding_GenericBinding.prototype, {
  * @export
  * @return {Object} The value from the source as specified.
  */
-org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
+org.apache.flex.binding.GenericBinding.prototype.getValueFromSource =
     function() {
   var obj;
   if (typeof(this.source) == 'object' &&
@@ -113,7 +113,7 @@ org_apache_flex_binding_GenericBinding.prototype.getValueFromSource =
  * @export
  * @param {Object} value The value from the source as specified.
  */
-org_apache_flex_binding_GenericBinding.prototype.applyValue =
+org.apache.flex.binding.GenericBinding.prototype.applyValue =
     function(value) {
   if (this.destinationFunction != null)
   {
@@ -128,7 +128,7 @@ org_apache_flex_binding_GenericBinding.prototype.applyValue =
     obj = this.document[arr[0]];
     if (obj == null) {
        this.document.addEventListener(
-           org_apache_flex_events_ValueChangeEvent.VALUE_CHANGE,
+           org.apache.flex.events.ValueChangeEvent.VALUE_CHANGE,
            goog.bind(this.destinationChangeHandler, this));
        return;
     }
@@ -149,7 +149,7 @@ org_apache_flex_binding_GenericBinding.prototype.applyValue =
  * @export
  * @param {Object} value The value from the source as specified.
  */
-org_apache_flex_binding_GenericBinding.prototype.valueChanged =
+org.apache.flex.binding.GenericBinding.prototype.valueChanged =
     function(value) {
 
   try {
@@ -164,7 +164,7 @@ org_apache_flex_binding_GenericBinding.prototype.valueChanged =
  * @export
  * @param {Object} event The change event.
  */
-org_apache_flex_binding_GenericBinding.prototype.destinationChangeHandler =
+org.apache.flex.binding.GenericBinding.prototype.destinationChangeHandler =
     function(event) {
   if (event.propertyName == this.destinationData[0])
     this.valueChanged(null);

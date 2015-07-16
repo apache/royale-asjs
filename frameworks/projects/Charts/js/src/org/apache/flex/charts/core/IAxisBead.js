@@ -11,27 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IAxisBead
+ * org.apache.flex.charts.core.IAxisBead
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IAxisBead');
+goog.provide('org.apache.flex.charts.core.IAxisBead');
 
-goog.require('org_apache_flex_core_IBead');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IBead}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_charts_core_IAxisBead = function() {
+org.apache.flex.charts.core.IAxisBead = function() {
 };
 
-Object.defineProperties(org_apache_flex_charts_core_IAxisBead.prototype, {
+Object.defineProperties(org.apache.flex.charts.core.IAxisBead.prototype, {
     /** @export */
     placement: {
         get: function() {},
@@ -55,7 +55,7 @@ Object.defineProperties(org_apache_flex_charts_core_IAxisBead.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IAxisBead.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IAxisBead', qName: 'org_apache_flex_charts_core_IAxisBead'}],
-    interfaces: [org_apache_flex_core_IBead]
+org.apache.flex.charts.core.IAxisBead.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IAxisBead', qName: 'org.apache.flex.charts.core.IAxisBead'}],
+    interfaces: [org.apache.flex.core.IBead]
   };

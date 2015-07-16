@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_models_PanelModel');
+goog.provide('org.apache.flex.html.beads.models.PanelModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_html_beads_models_PanelModel = function() {
-  org_apache_flex_html_beads_models_PanelModel.base(this, 'constructor');
+org.apache.flex.html.beads.models.PanelModel = function() {
+  org.apache.flex.html.beads.models.PanelModel.base(this, 'constructor');
 
   /**
    * @private
@@ -42,8 +42,8 @@ org_apache_flex_html_beads_models_PanelModel = function() {
    */
   this.showCloseButton_ = false;
 };
-goog.inherits(org_apache_flex_html_beads_models_PanelModel,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.html.beads.models.PanelModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -51,27 +51,27 @@ goog.inherits(org_apache_flex_html_beads_models_PanelModel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_models_PanelModel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.models.PanelModel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelModel',
-                qName: 'org_apache_flex_html_beads_models_PanelModel'}],
-      interfaces: [org_apache_flex_core_IBeadModel] };
+                qName: 'org.apache.flex.html.beads.models.PanelModel'}],
+      interfaces: [org.apache.flex.core.IBeadModel] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.models.PanelModel.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     title: {
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         get: function() {
             return this.title_;
         },
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         set: function(value) {
             if (this.title_ != value) {
               this.title_ = value;
@@ -81,11 +81,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, 
     },
     /** @export */
     htmlTitle: {
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         get: function() {
             return this.htmlTitle_;
         },
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         set: function(value) {
             if (this.htmlTitle_ != value) {
               this.htmlTitle_ = value;
@@ -95,11 +95,11 @@ Object.defineProperties(org_apache_flex_html_beads_models_PanelModel.prototype, 
     },
     /** @export */
     showCloseButton: {
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         get: function() {
             return this.showCloseButton_;
         },
-        /** @this {org_apache_flex_html_beads_models_PanelModel} */
+        /** @this {org.apache.flex.html.beads.models.PanelModel} */
         set: function(value) {
             if (this.showCloseButton_ != value) {
               this.showCloseButton_ = value;

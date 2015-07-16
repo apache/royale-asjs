@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html5_CheckBox');
+goog.provide('org.apache.flex.html5.CheckBox');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html5_CheckBox = function() {
-  org_apache_flex_html5_CheckBox.base(this, 'constructor');
+org.apache.flex.html5.CheckBox = function() {
+  org.apache.flex.html5.CheckBox.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html5_CheckBox,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html5.CheckBox,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @override
  */
-org_apache_flex_html5_CheckBox.prototype.createElement =
+org.apache.flex.html5.CheckBox.prototype.createElement =
     function() {
   var cb;
 
@@ -49,25 +49,25 @@ org_apache_flex_html5_CheckBox.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html5_CheckBox.prototype, {
+Object.defineProperties(org.apache.flex.html5.CheckBox.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html5_CheckBox} */
+        /** @this {org.apache.flex.html5.CheckBox} */
         get: function() {
             return this.element.childNodes.item(1).nodeValue;
         },
-        /** @this {org_apache_flex_html5_CheckBox} */
+        /** @this {org.apache.flex.html5.CheckBox} */
         set: function(value) {
             this.element.childNodes.item(1).nodeValue = value;
         }
     },
     /** @export */
     selected: {
-        /** @this {org_apache_flex_html5_CheckBox} */
+        /** @this {org.apache.flex.html5.CheckBox} */
         get: function() {
             return this.element.childNodes.item(0).checked;
         },
-        /** @this {org_apache_flex_html5_CheckBox} */
+        /** @this {org.apache.flex.html5.CheckBox} */
         set: function(value) {
             this.element.childNodes.item(0).checked = value;
         }

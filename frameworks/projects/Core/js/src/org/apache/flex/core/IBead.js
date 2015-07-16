@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IBead');
+goog.provide('org.apache.flex.core.IBead');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_IBead');
  *
  * @interface
  */
-org_apache_flex_core_IBead = function() {
+org.apache.flex.core.IBead = function() {
 };
 
 
@@ -35,15 +35,15 @@ org_apache_flex_core_IBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IBead.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IBead',
-                qName: 'org_apache_flex_core_IBead' }] };
+                qName: 'org.apache.flex.core.IBead' }] };
 
 
-Object.defineProperties(org_apache_flex_core_IBead.prototype, {
+Object.defineProperties(org.apache.flex.core.IBead.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_GenericBinding} */
+        /** @this {org.apache.flex.core.IBead} */
         set: function(value) {}
     }
 });

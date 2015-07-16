@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_net_BinaryUploader');
+goog.provide('org.apache.flex.net.BinaryUploader');
 
-goog.require('org_apache_flex_core_HTMLElementWrapper');
-goog.require('org_apache_flex_net_HTTPHeader');
+goog.require('org.apache.flex.core.HTMLElementWrapper');
+goog.require('org.apache.flex.net.HTTPHeader');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_HTMLElementWrapper}
+ * @extends {org.apache.flex.core.HTMLElementWrapper}
  */
-org_apache_flex_net_BinaryUploader = function() {
-  org_apache_flex_net_BinaryUploader.base(this, 'constructor');
+org.apache.flex.net.BinaryUploader = function() {
+  org.apache.flex.net.BinaryUploader.base(this, 'constructor');
 
   /**
    * @private
@@ -87,8 +87,8 @@ org_apache_flex_net_BinaryUploader = function() {
 
   this.element = new XMLHttpRequest();
 };
-goog.inherits(org_apache_flex_net_BinaryUploader,
-    org_apache_flex_core_HTMLElementWrapper);
+goog.inherits(org.apache.flex.net.BinaryUploader,
+    org.apache.flex.core.HTMLElementWrapper);
 
 
 /**
@@ -96,72 +96,72 @@ goog.inherits(org_apache_flex_net_BinaryUploader,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_net_BinaryUploader.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.net.BinaryUploader.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BinaryUploader',
-                qName: 'org_apache_flex_net_BinaryUploader'}] };
+                qName: 'org.apache.flex.net.BinaryUploader'}] };
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_BinaryUploader.HTTP_METHOD_GET = 'GET';
+org.apache.flex.net.BinaryUploader.HTTP_METHOD_GET = 'GET';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_BinaryUploader.HTTP_METHOD_POST = 'POST';
+org.apache.flex.net.BinaryUploader.HTTP_METHOD_POST = 'POST';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_BinaryUploader.HTTP_METHOD_PUT = 'PUT';
+org.apache.flex.net.BinaryUploader.HTTP_METHOD_PUT = 'PUT';
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_net_BinaryUploader.HTTP_METHOD_DELETE = 'DELETE';
+org.apache.flex.net.BinaryUploader.HTTP_METHOD_DELETE = 'DELETE';
 
 
-Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
+Object.defineProperties(org.apache.flex.net.BinaryUploader.prototype, {
     /** @export */
     data: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.element.responseText;
         }
     },
     /** @export */
     binaryData: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.binaryData_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.binaryData_ = value;
         }
     },
     /** @export */
     contentType: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.contentType_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.contentType_ = value;
         }
     },
     /** @export */
     headers: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             if (this.headers_ === 'undefined') {
               this.headers_ = [];
@@ -169,25 +169,25 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
 
             return this.headers_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.headers_ = value;
         }
     },
     /** @export */
     method: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.method_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.method_ = value;
         }
     },
     /** @export */
     responseHeaders: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             var allHeaders, c, hdr, i, n, part1, part2;
 
@@ -201,7 +201,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
                 part1 = hdr.substring(0, c);
                 part2 = hdr.substring(c + 2);
                 this.responseHeaders_[i] =
-                    new org_apache_flex_net_HTTPHeader(part1, part2);
+                    new org.apache.flex.net.HTTPHeader(part1, part2);
                }
             }
             return this.responseHeaders_;
@@ -209,47 +209,47 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
     },
     /** @export */
     responseURL: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.responseURL_;
         }
     },
     /** @export */
     status: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.status_;
         }
     },
     /** @export */
     timeout: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.timeout_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.timeout_ = value;
         }
     },
     /** @export */
     url: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.url_;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             this.url_ = value;
         }
     },
     /** @export */
     id: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return this.id;
         },
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         set: function(value) {
             if (this.id !== value) {
               this.id = value;
@@ -259,14 +259,14 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
     },
     /** @export */
     MXMLDescriptor: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return null;
         }
     },
     /** @export */
     MXMLProperties: {
-        /** @this {org_apache_flex_net_BinaryUploader} */
+        /** @this {org.apache.flex.net.BinaryUploader} */
         get: function() {
             return null;
         }
@@ -277,7 +277,7 @@ Object.defineProperties(org_apache_flex_net_BinaryUploader.prototype, {
 /**
  * @export
  */
-org_apache_flex_net_BinaryUploader.prototype.send = function() {
+org.apache.flex.net.BinaryUploader.prototype.send = function() {
   var binaryData, header, i, n, sawContentType, url;
 
   this.element.onreadystatechange = goog.bind(this.progressHandler, this);
@@ -286,7 +286,7 @@ org_apache_flex_net_BinaryUploader.prototype.send = function() {
 
   binaryData = null;
   if (this.binaryData_ !== undefined) {
-    if (this.method_ === org_apache_flex_net_BinaryUploader.HTTP_METHOD_GET) {
+    if (this.method_ === org.apache.flex.net.BinaryUploader.HTTP_METHOD_GET) {
       if (url.indexOf('?') !== -1) {
         url += this.binaryData_.data;
       } else {
@@ -305,7 +305,7 @@ org_apache_flex_net_BinaryUploader.prototype.send = function() {
     n = this.headers_.length;
     for (i = 0; i < n; i++) {
       header = this.headers_[i];
-      if (header.name === org_apache_flex_net_HTTPHeader.CONTENT_TYPE) {
+      if (header.name === org.apache.flex.net.HTTPHeader.CONTENT_TYPE) {
         sawContentType = true;
       }
 
@@ -313,10 +313,10 @@ org_apache_flex_net_BinaryUploader.prototype.send = function() {
     }
   }
 
-  if (this.method_ !== org_apache_flex_net_BinaryUploader.HTTP_METHOD_GET &&
+  if (this.method_ !== org.apache.flex.net.BinaryUploader.HTTP_METHOD_GET &&
       !sawContentType && binaryData) {
     this.element.setRequestHeader(
-        org_apache_flex_net_HTTPHeader.CONTENT_TYPE, this.binaryType_);
+        org.apache.flex.net.HTTPHeader.CONTENT_TYPE, this.binaryType_);
   }
 
   if (binaryData) {
@@ -332,7 +332,7 @@ org_apache_flex_net_BinaryUploader.prototype.send = function() {
 /**
  * @protected
  */
-org_apache_flex_net_BinaryUploader.prototype.progressHandler = function() {
+org.apache.flex.net.BinaryUploader.prototype.progressHandler = function() {
   if (this.element.readyState === 2) {
     this.status_ = this.element.status;
     this.dispatchEvent('httpResponseStatus');
@@ -347,14 +347,14 @@ org_apache_flex_net_BinaryUploader.prototype.progressHandler = function() {
  * @export
  * @type {string}
  */
-org_apache_flex_net_BinaryUploader.prototype.id = null;
+org.apache.flex.net.BinaryUploader.prototype.id = null;
 
 
 /**
  * @param {Object} document The MXML object.
  * @param {string} id The id for the instance.
  */
-org_apache_flex_net_BinaryUploader.prototype.setDocument =
+org.apache.flex.net.BinaryUploader.prototype.setDocument =
     function(document, id) {
   this.document = document;
 };

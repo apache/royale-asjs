@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_BeadViewBase');
+goog.provide('org.apache.flex.core.BeadViewBase');
 
-goog.require('org_apache_flex_core_IBeadView');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IBeadView');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
- * @implements {org_apache_flex_core_IBeadView}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IBeadView}
  */
-org_apache_flex_core_BeadViewBase = function() {
-    org_apache_flex_core_BeadViewBase.base(this, 'constructor');
+org.apache.flex.core.BeadViewBase = function() {
+    org.apache.flex.core.BeadViewBase.base(this, 'constructor');
   };
 goog.inherits(
-              org_apache_flex_core_BeadViewBase,
-              org_apache_flex_events_EventDispatcher);
+              org.apache.flex.core.BeadViewBase,
+              org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -37,23 +37,22 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_BeadViewBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.BeadViewBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BeadViewBase',
-                qName: 'org_apache_flex_core_BeadViewBase'}],
-    interfaces: [org_apache_flex_core_IBeadView]};
+                qName: 'org.apache.flex.core.BeadViewBase'}],
+    interfaces: [org.apache.flex.core.IBeadView]};
 
 
 /**
- * @protected
  * @type {Object}
  */
-org_apache_flex_core_BeadViewBase.prototype._strand = null;
+org.apache.flex.core.BeadViewBase.prototype._strand = null;
 
 
-Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
+Object.defineProperties(org.apache.flex.core.BeadViewBase.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_core_BeadViewBase} */
+        /** @this {org.apache.flex.core.BeadViewBase} */
         set: function(value) {
             if (this._strand !== value) {
               this._strand = value;
@@ -62,7 +61,7 @@ Object.defineProperties(org_apache_flex_core_BeadViewBase.prototype, {
     },
     /** @export */
     host: {
-        /** @this {org_apache_flex_core_BeadViewBase} */
+        /** @this {org.apache.flex.core.BeadViewBase} */
         get: function() {
             return this._strand;
         }

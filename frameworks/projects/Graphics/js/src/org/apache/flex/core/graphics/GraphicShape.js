@@ -12,30 +12,30 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_graphics_GraphicShape');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_core_graphics_SolidColor');
-goog.require('org_apache_flex_core_graphics_SolidColorStroke');
+goog.provide('org.apache.flex.core.graphics.GraphicShape');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.graphics.SolidColor');
+goog.require('org.apache.flex.core.graphics.SolidColorStroke');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_core_graphics_GraphicShape = function() {
+org.apache.flex.core.graphics.GraphicShape = function() {
 
-  org_apache_flex_core_graphics_GraphicShape.base(this, 'constructor');
+  org.apache.flex.core.graphics.GraphicShape.base(this, 'constructor');
 
   /**
    * @private
-   * @type {org_apache_flex_core_graphics_IFill}
+   * @type {org.apache.flex.core.graphics.IFill}
    */
   this.fill_ = null;
 
   /**
    * @private
-   * @type {org_apache_flex_core_graphics_IStroke}
+   * @type {org.apache.flex.core.graphics.IStroke}
    */
   this.stroke_ = null;
 
@@ -74,8 +74,8 @@ org_apache_flex_core_graphics_GraphicShape = function() {
   this.element.offsetParent = null;
   this.positioner = this.element;
 };
-goog.inherits(org_apache_flex_core_graphics_GraphicShape,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.core.graphics.GraphicShape,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -83,29 +83,29 @@ goog.inherits(org_apache_flex_core_graphics_GraphicShape,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.graphics.GraphicShape.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'GraphicShape',
-                qName: 'org_apache_flex_core_graphics_GraphicShape' }] };
+                qName: 'org.apache.flex.core.graphics.GraphicShape' }] };
 
 
-Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
+Object.defineProperties(org.apache.flex.core.graphics.GraphicShape.prototype, {
     /** @export */
     fill: {
-        /** @this {org_apache_flex_core_graphics_GraphicShape} */
+        /** @this {org.apache.flex.core.graphics.GraphicShape} */
         get: function() {
             return this.fill_;
         },
-        /** @this {org_apache_flex_core_graphics_GraphicShape} */
+        /** @this {org.apache.flex.core.graphics.GraphicShape} */
         set: function(value) {
             this.fill_ = value;
         }
     },
     stroke: {
-        /** @this {org_apache_flex_core_graphics_GraphicShape} */
+        /** @this {org.apache.flex.core.graphics.GraphicShape} */
         get: function() {
             return this.stroke_;
         },
-        /** @this {org_apache_flex_core_graphics_GraphicShape} */
+        /** @this {org.apache.flex.core.graphics.GraphicShape} */
         set: function(value) {
             this.stroke_ = value;
         }
@@ -116,7 +116,7 @@ Object.defineProperties(org_apache_flex_core_graphics_GraphicShape.prototype, {
 /**
  *
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.addedToParent = function() {
+org.apache.flex.core.graphics.GraphicShape.prototype.addedToParent = function() {
   this.draw();
   this.element.style.overflow = 'visible';
   /*
@@ -131,7 +131,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.addedToParent = function() 
 /**
  * This is where the drawing methods get called from.
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.draw = function() {
+org.apache.flex.core.graphics.GraphicShape.prototype.draw = function() {
   //Overwrite in subclass
 };
 
@@ -140,7 +140,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.draw = function() {
  * @export
  * @return {string} The style attribute.
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
+org.apache.flex.core.graphics.GraphicShape.prototype.getStyleStr = function() {
   var fillStr;
   if (this.fill)
   {
@@ -172,7 +172,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.getStyleStr = function() {
  * @param {number} y Y position.
  * @param {Object} bbox The bounding box of the svg element.
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.resize = function(x, y, bbox) {
+org.apache.flex.core.graphics.GraphicShape.prototype.resize = function(x, y, bbox) {
   var width = Math.max(this.width, bbox.width);
   var height = Math.max(this.height, bbox.height);
 
@@ -193,7 +193,7 @@ org_apache_flex_core_graphics_GraphicShape.prototype.resize = function(x, y, bbo
  * @param {number} xOffset offset from x position.
  * @param {number} yOffset offset from y position.
  */
-org_apache_flex_core_graphics_GraphicShape.prototype.setPosition = function(x, y, xOffset, yOffset) {
+org.apache.flex.core.graphics.GraphicShape.prototype.setPosition = function(x, y, xOffset, yOffset) {
   this.x_ = x;
   this.y_ = y;
   this.xOffset_ = xOffset;

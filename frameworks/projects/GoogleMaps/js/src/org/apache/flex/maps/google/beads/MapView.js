@@ -14,14 +14,14 @@
 /* MapView isn't really the view, but is a bead used to trigger
    the loading of the map JS files */
 
-goog.provide('org_apache_flex_maps_google_beads_MapView');
+goog.provide('org.apache.flex.maps.google.beads.MapView');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_maps_google_beads_MapView = function() {
+org.apache.flex.maps.google.beads.MapView = function() {
 };
 
 
@@ -30,17 +30,17 @@ org_apache_flex_maps_google_beads_MapView = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_maps_google_beads_MapView.prototype.
+org.apache.flex.maps.google.beads.MapView.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'MapView',
-           qName: 'org_apache_flex_maps_google_beads_MapView' }],
-    interfaces: [org_apache_flex_core_IBeadView] };
+           qName: 'org.apache.flex.maps.google.beads.MapView' }],
+    interfaces: [org.apache.flex.core.IBeadView] };
 
 
-Object.defineProperties(org_apache_flex_maps_google_beads_MapView.prototype, {
+Object.defineProperties(org.apache.flex.maps.google.beads.MapView.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_maps_google_beads_MapView} */
+        /** @this {org.apache.flex.maps.google.beads.MapView} */
         set: function(value) {
             this.strand_ = value;
 

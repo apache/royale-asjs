@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_Viewport');
+goog.provide('org.apache.flex.html.supportClasses.Viewport');
 
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_core_IItemRendererFactory');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.IItemRendererFactory');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_supportClasses_Viewport =
+org.apache.flex.html.supportClasses.Viewport =
 function() {
 };
 
@@ -35,20 +35,20 @@ function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_Viewport.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.Viewport.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Viewport',
-                qName: 'org_apache_flex_html_supportClasses_Viewport' }]};
+                qName: 'org.apache.flex.html.supportClasses.Viewport' }]};
 
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_Viewport.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.Viewport.prototype, {
     /** @export */
     model: {
-        /** @this {org_apache_flex_html_supportClasses_Viewport} */
+        /** @this {org.apache.flex.html.supportClasses.Viewport} */
         get: function() {
             return this.model_;
         },
-        /** @this {org_apache_flex_html_supportClasses_Viewport} */
+        /** @this {org.apache.flex.html.supportClasses.Viewport} */
         set: function(value) {
             this.model_ = value;
         }

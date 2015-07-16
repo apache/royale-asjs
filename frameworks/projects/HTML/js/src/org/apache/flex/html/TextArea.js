@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_TextArea');
+goog.provide('org.apache.flex.html.TextArea');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_TextArea = function() {
-  org_apache_flex_html_TextArea.base(this, 'constructor');
+org.apache.flex.html.TextArea = function() {
+  org.apache.flex.html.TextArea.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_TextArea,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.TextArea,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -34,15 +34,15 @@ goog.inherits(org_apache_flex_html_TextArea,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_TextArea.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TextArea.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextArea',
-                qName: 'org_apache_flex_html_TextArea'}] };
+                qName: 'org.apache.flex.html.TextArea'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_TextArea.prototype.createElement =
+org.apache.flex.html.TextArea.prototype.createElement =
     function() {
 
   this.element = document.createElement('textarea');
@@ -53,14 +53,14 @@ org_apache_flex_html_TextArea.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_html_TextArea.prototype, {
+Object.defineProperties(org.apache.flex.html.TextArea.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_TextArea} */
+        /** @this {org.apache.flex.html.TextArea} */
         get: function() {
             return this.element.value;
         },
-        /** @this {org_apache_flex_html_TextArea} */
+        /** @this {org.apache.flex.html.TextArea} */
         set: function(value) {
             this.element.value = value;
         }

@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_ContainerBase');
+goog.provide('org.apache.flex.core.ContainerBase');
 
-goog.require('org_apache_flex_core_IMXMLDocument');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_core_ValuesManager');
+goog.require('org.apache.flex.core.IMXMLDocument');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ValuesManager');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_core_ContainerBase = function() {
+org.apache.flex.core.ContainerBase = function() {
   this.mxmlProperties = null;
-  org_apache_flex_core_ContainerBase.base(this, 'constructor');
+  org.apache.flex.core.ContainerBase.base(this, 'constructor');
 
   /**
    * @private
@@ -55,28 +55,28 @@ org_apache_flex_core_ContainerBase = function() {
   this.document = this;
 
 };
-goog.inherits(org_apache_flex_core_ContainerBase,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.core.ContainerBase,
+    org.apache.flex.core.UIBase);
 
 
 /**
  * @export
  */
-org_apache_flex_core_ContainerBase.prototype.mxmlContent = null;
-
-
-/**
- * @export
- * @type {Array}
- */
-org_apache_flex_core_ContainerBase.prototype.mxmlDescriptor = null;
+org.apache.flex.core.ContainerBase.prototype.mxmlContent = null;
 
 
 /**
  * @export
  * @type {Array}
  */
-org_apache_flex_core_ContainerBase.prototype.mxmlsd = null;
+org.apache.flex.core.ContainerBase.prototype.mxmlDescriptor = null;
+
+
+/**
+ * @export
+ * @type {Array}
+ */
+org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
 
 
 /**
@@ -84,20 +84,20 @@ org_apache_flex_core_ContainerBase.prototype.mxmlsd = null;
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ContainerBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerBase',
-                qName: 'org_apache_flex_core_ContainerBase'}] ,
-      interfaces: [org_apache_flex_core_IMXMLDocument]};
+                qName: 'org.apache.flex.core.ContainerBase'}] ,
+      interfaces: [org.apache.flex.core.IMXMLDocument]};
 
 
 /**
  * @override
  */
-org_apache_flex_core_ContainerBase.prototype.addedToParent = function() {
-  org_apache_flex_core_ContainerBase.base(this, 'addedToParent');
+org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
+  org.apache.flex.core.ContainerBase.base(this, 'addedToParent');
 
   if (!this.initialized_) {
-    org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
         this, this.MXMLDescriptor);
 
     this.dispatchEvent('initBindings');
@@ -112,8 +112,8 @@ org_apache_flex_core_ContainerBase.prototype.addedToParent = function() {
  * @export
  * @param {Array} data The data for the attributes.
  */
-org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(data) {
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
+org.apache.flex.core.ContainerBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
@@ -122,37 +122,37 @@ org_apache_flex_core_ContainerBase.prototype.generateMXMLAttributes = function(d
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data.
  */
-org_apache_flex_core_ContainerBase.prototype.setMXMLDescriptor =
+org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
 };
 
 
-Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
+Object.defineProperties(org.apache.flex.core.ContainerBase.prototype, {
     /** @export */
     MXMLDescriptor: {
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         get: function() {
             return this.mxmlDescriptor;
         }
     },
     /** @export */
     states: {
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         get: function() {
             return this.states_;
         },
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
             this.states_ = s;
             this.currentState_ = s[0].name;
 
-            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
               /**
                * @type {Function}
                */
-              var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+              var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
                   getValue(this, 'iStatesImpl'));
               // TODO: (aharui) check if bead already exists
               this.addBead(new impl());
@@ -161,13 +161,13 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
     },
     /** @export */
     currentState: {
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         get: function() {
              return this.currentState_;
         },
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
-             var event = new org_apache_flex_events_ValueChangeEvent(
+             var event = new org.apache.flex.events.ValueChangeEvent(
                   'currentStateChange', false, false, this.currentState_, s);
              this.currentState_ = s;
              this.dispatchEvent(event);
@@ -175,11 +175,11 @@ Object.defineProperties(org_apache_flex_core_ContainerBase.prototype, {
     },
     /** @export */
     transitions: {
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         get: function() {
              return this.transitions_;
         },
-        /** @this {org_apache_flex_core_ContainerBase} */
+        /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
            this.transitions_ = s;
         }

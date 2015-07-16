@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_SimpleValuesImpl');
+goog.provide('org.apache.flex.core.SimpleValuesImpl');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_SimpleValuesImpl = function() {
+org.apache.flex.core.SimpleValuesImpl = function() {
 };
 
 
@@ -28,6 +28,6 @@ org_apache_flex_core_SimpleValuesImpl = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_SimpleValuesImpl.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.SimpleValuesImpl.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SimpleValuesImpl',
-                qName: 'org_apache_flex_core_SimpleValuesImpl' }] };
+                qName: 'org.apache.flex.core.SimpleValuesImpl' }] };

@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_CloseButton');
+goog.provide('org.apache.flex.html.CloseButton');
 
-goog.require('org_apache_flex_html_Button');
+goog.require('org.apache.flex.html.Button');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Button}
+ * @extends {org.apache.flex.html.Button}
  */
-org_apache_flex_html_CloseButton = function() {
-  org_apache_flex_html_CloseButton.base(this, 'constructor');
+org.apache.flex.html.CloseButton = function() {
+  org.apache.flex.html.CloseButton.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_CloseButton,
-    org_apache_flex_html_Button);
+goog.inherits(org.apache.flex.html.CloseButton,
+    org.apache.flex.html.Button);
 
 
 /**
@@ -34,17 +34,17 @@ goog.inherits(org_apache_flex_html_CloseButton,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_CloseButton.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.CloseButton.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CloseButton',
-                qName: 'org_apache_flex_html_CloseButton'}] };
+                qName: 'org.apache.flex.html.CloseButton'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_CloseButton.prototype.createElement =
+org.apache.flex.html.CloseButton.prototype.createElement =
     function() {
-  org_apache_flex_html_CloseButton.base(this, 'createElement');
+  org.apache.flex.html.CloseButton.base(this, 'createElement');
   this.element.innerHTML = 'x';
 
   this.element.style.padding = 0;

@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Panel');
+goog.provide('org.apache.flex.html.Panel');
 
-goog.require('org_apache_flex_html_Container');
-goog.require('org_apache_flex_html_ControlBar');
-goog.require('org_apache_flex_html_TitleBar');
-goog.require('org_apache_flex_html_beads_PanelView');
-goog.require('org_apache_flex_html_beads_models_PanelModel');
+goog.require('org.apache.flex.html.Container');
+goog.require('org.apache.flex.html.ControlBar');
+goog.require('org.apache.flex.html.TitleBar');
+goog.require('org.apache.flex.html.beads.PanelView');
+goog.require('org.apache.flex.html.beads.models.PanelModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_html_Container}
+ * @extends {org.apache.flex.html.Container}
  */
-org_apache_flex_html_Panel = function() {
-  org_apache_flex_html_Panel.base(this, 'constructor');
+org.apache.flex.html.Panel = function() {
+  org.apache.flex.html.Panel.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_Panel,
-    org_apache_flex_html_Container);
+goog.inherits(org.apache.flex.html.Panel,
+    org.apache.flex.html.Container);
 
 
 /**
@@ -38,16 +38,16 @@ goog.inherits(org_apache_flex_html_Panel,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Panel.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Panel.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Panel',
-                qName: 'org_apache_flex_html_Panel' }] };
+                qName: 'org.apache.flex.html.Panel' }] };
 
 
 /**
  * @override
  * @param {Object} c Element being added.
  */
-org_apache_flex_html_Panel.prototype.addElement = function(c) {
+org.apache.flex.html.Panel.prototype.addElement = function(c) {
   if (c == this.titleBar) {
     this.element.insertBefore(this.titleBar.element, this.contentArea);
   }
@@ -66,7 +66,7 @@ org_apache_flex_html_Panel.prototype.addElement = function(c) {
  * @param {Object} c The child element.
  * @param {number} index The index.
  */
-org_apache_flex_html_Panel.prototype.addElementAt =
+org.apache.flex.html.Panel.prototype.addElementAt =
     function(c, index) {
   var children = this.internalChildren();
   if (index >= children.length)
@@ -85,7 +85,7 @@ org_apache_flex_html_Panel.prototype.addElementAt =
  * @param {Object} c The child element.
  * @return {number} The index in parent.
  */
-org_apache_flex_html_Panel.prototype.getElementIndex =
+org.apache.flex.html.Panel.prototype.getElementIndex =
     function(c) {
   var children = this.internalChildren();
   var n = children.length;
@@ -102,7 +102,7 @@ org_apache_flex_html_Panel.prototype.getElementIndex =
  * @override
  * @param {Object} c The child element.
  */
-org_apache_flex_html_Panel.prototype.removeElement =
+org.apache.flex.html.Panel.prototype.removeElement =
     function(c) {
   this.contentArea.removeChild(c.element);
 };
@@ -111,7 +111,7 @@ org_apache_flex_html_Panel.prototype.removeElement =
 /**
  * @override
  */
-org_apache_flex_html_Panel.prototype.createElement =
+org.apache.flex.html.Panel.prototype.createElement =
     function() {
 
   this.element = document.createElement('div');
@@ -132,9 +132,9 @@ org_apache_flex_html_Panel.prototype.createElement =
 /**
  * @override
  */
-org_apache_flex_html_Panel.prototype.addedToParent =
+org.apache.flex.html.Panel.prototype.addedToParent =
     function() {
-  org_apache_flex_html_Panel.base(this, 'addedToParent');
+  org.apache.flex.html.Panel.base(this, 'addedToParent');
 };
 
 
@@ -142,42 +142,42 @@ org_apache_flex_html_Panel.prototype.addedToParent =
  * @override
  * @return {Array} the HTML DOM element children.
  */
-org_apache_flex_html_Panel.prototype.internalChildren =
+org.apache.flex.html.Panel.prototype.internalChildren =
     function(c, index) {
   return this.contentArea.children;
 };
 
 
-Object.defineProperties(org_apache_flex_html_Panel.prototype, {
+Object.defineProperties(org.apache.flex.html.Panel.prototype, {
     /** @export */
     showCloseButton: {
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         get: function() {
             return this.model.showCloseButton;
         },
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         set: function(value) {
             this.model.showCloseButton = value;
         }
     },
     /** @export */
     title: {
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         get: function() {
             return this.model.title;
         },
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         set: function(value) {
             this.model.title = value;
         }
     },
     /** @export */
     controlBar: {
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         get: function() {
             return this.controlBarChildren;
         },
-        /** @this {org_apache_flex_html_Panel} */
+        /** @this {org.apache.flex.html.Panel} */
         set: function(value) {
             this.controlBarChildren = value;
 

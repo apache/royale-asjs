@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Label');
+goog.provide('org.apache.flex.html.Label');
 
-goog.require('org_apache_flex_core_UIBase');
+goog.require('org.apache.flex.core.UIBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_Label = function() {
-  org_apache_flex_html_Label.base(this, 'constructor');
+org.apache.flex.html.Label = function() {
+  org.apache.flex.html.Label.base(this, 'constructor');
 
   this.element = document.createElement('span');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
 };
-goog.inherits(org_apache_flex_html_Label,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.Label,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -38,30 +38,30 @@ goog.inherits(org_apache_flex_html_Label,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Label.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Label.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Label',
-                qName: 'org_apache_flex_html_Label' }] };
+                qName: 'org.apache.flex.html.Label' }] };
 
 
-Object.defineProperties(org_apache_flex_html_Label.prototype, {
+Object.defineProperties(org.apache.flex.html.Label.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_Label} */
+        /** @this {org.apache.flex.html.Label} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html_Label} */
+        /** @this {org.apache.flex.html.Label} */
         set: function(value) {
             this.element.innerHTML = value;
         }
     },
     /** @export */
     html: {
-        /** @this {org_apache_flex_html_Label} */
+        /** @this {org.apache.flex.html.Label} */
         get: function() {
             return this.element.innerHTML;
         },
-        /** @this {org_apache_flex_html_Label} */
+        /** @this {org.apache.flex.html.Label} */
         set: function(value) {
             this.element.innerHTML = value;
         }

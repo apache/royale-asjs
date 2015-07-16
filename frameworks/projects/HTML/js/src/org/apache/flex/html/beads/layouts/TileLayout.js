@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_layouts_TileLayout');
+goog.provide('org.apache.flex.html.beads.layouts.TileLayout');
 
-goog.require('org_apache_flex_core_IBeadLayout');
+goog.require('org.apache.flex.core.IBeadLayout');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBeadLayout}
+ * @implements {org.apache.flex.core.IBeadLayout}
  */
-org_apache_flex_html_beads_layouts_TileLayout =
+org.apache.flex.html.beads.layouts.TileLayout =
     function() {
   this.strand_ = null;
   this.className = 'TileLayout';
@@ -34,16 +34,16 @@ org_apache_flex_html_beads_layouts_TileLayout =
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_layouts_TileLayout.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.beads.layouts.TileLayout.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TileLayout',
-                qName: 'org_apache_flex_html_beads_layouts_TileLayout'}],
-      interfaces: [org_apache_flex_core_IBeadLayout] };
+                qName: 'org.apache.flex.html.beads.layouts.TileLayout'}],
+      interfaces: [org.apache.flex.core.IBeadLayout] };
 
 
-Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.layouts.TileLayout.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -52,33 +52,33 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
     },
     /** @export */
     numColumns: {
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         get: function() {
             return this._numColumns;
         },
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         set: function(value) {
             this._numColumns = value;
         }
     },
     /** @export */
     columnWidth: {
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         get: function() {
             return this._columnWidth;
         },
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         set: function(value) {
             this._columnWidth = value;
         }
     },
     /** @export */
     rowHeight: {
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         get: function() {
             return this._rowHeight;
         },
-        /** @this {org_apache_flex_html_beads_layouts_TileLayout} */
+        /** @this {org.apache.flex.html.beads.layouts.TileLayout} */
         set: function(value) {
             this._rowHeight = value;
         }
@@ -88,7 +88,7 @@ Object.defineProperties(org_apache_flex_html_beads_layouts_TileLayout.prototype,
 
 /**
  */
-org_apache_flex_html_beads_layouts_TileLayout.
+org.apache.flex.html.beads.layouts.TileLayout.
     prototype.layout = function() {
   var children, i, n, child;
   var xpos, ypos, useWidth, useHeight;

@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_TextInput');
+goog.provide('org.apache.flex.html.TextInput');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_events_Event');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_TextInput = function() {
-  org_apache_flex_html_TextInput.base(this, 'constructor');
+org.apache.flex.html.TextInput = function() {
+  org.apache.flex.html.TextInput.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_TextInput,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.TextInput,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -35,15 +35,15 @@ goog.inherits(org_apache_flex_html_TextInput,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_TextInput.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.TextInput.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'TextInput',
-                qName: 'org_apache_flex_html_TextInput'}] };
+                qName: 'org.apache.flex.html.TextInput'}] };
 
 
 /**
  * @override
  */
-org_apache_flex_html_TextInput.prototype.createElement = function() {
+org.apache.flex.html.TextInput.prototype.createElement = function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
 
@@ -58,17 +58,17 @@ org_apache_flex_html_TextInput.prototype.createElement = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
+Object.defineProperties(org.apache.flex.html.TextInput.prototype, {
     /** @export */
     text: {
-        /** @this {org_apache_flex_html_TextInput} */
+        /** @this {org.apache.flex.html.TextInput} */
         get: function() {
             return this.element.value;
         },
-        /** @this {org_apache_flex_html_TextInput} */
+        /** @this {org.apache.flex.html.TextInput} */
         set: function(value) {
             this.element.value = value;
-            this.dispatchEvent(new org_apache_flex_events_Event('textChange'));
+            this.dispatchEvent(new org.apache.flex.events.Event('textChange'));
         }
     }
 });
@@ -78,7 +78,7 @@ Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
  * @export
  * @param {Object} event The event.
  */
-/*org_apache_flex_html_TextInput.prototype.killChangeHandler = function(event) {
+/*org.apache.flex.html.TextInput.prototype.killChangeHandler = function(event) {
     //event.preventDefault();
 };*/
 
@@ -87,9 +87,9 @@ Object.defineProperties(org_apache_flex_html_TextInput.prototype, {
  * @private
  * @param {Object} event The event.
  */
-org_apache_flex_html_TextInput.prototype.inputChangeHandler_ = function(event) {
+org.apache.flex.html.TextInput.prototype.inputChangeHandler_ = function(event) {
   event.stopPropagation();
 
-  this.dispatchEvent(new org_apache_flex_events_Event(org_apache_flex_events_Event.EventType.CHANGE));
-  this.dispatchEvent(new org_apache_flex_events_Event('textChange'));
+  this.dispatchEvent(new org.apache.flex.events.Event(org.apache.flex.events.Event.EventType.CHANGE));
+  this.dispatchEvent(new org.apache.flex.events.Event('textChange'));
 };

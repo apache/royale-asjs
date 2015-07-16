@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_states_AddItems');
+goog.provide('org.apache.flex.states.AddItems');
 
-goog.require('org_apache_flex_core_IDocument');
+goog.require('org.apache.flex.core.IDocument');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IDocument}
+ * @implements {org.apache.flex.core.IDocument}
  */
-org_apache_flex_states_AddItems = function() {
+org.apache.flex.states.AddItems = function() {
 };
 
 
@@ -31,17 +31,17 @@ org_apache_flex_states_AddItems = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_states_AddItems.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.states.AddItems.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'AddItems',
-                qName: 'org_apache_flex_states_AddItems' }],
-      interfaces: [org_apache_flex_core_IDocument] };
+                qName: 'org.apache.flex.states.AddItems' }],
+      interfaces: [org.apache.flex.core.IDocument] };
 
 
 /**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-org_apache_flex_states_AddItems.prototype.setDocument = function(document, opt_id) {
+org.apache.flex.states.AddItems.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
   var data = document['mxmlsd'][this.itemsDescriptorIndex];
@@ -60,14 +60,14 @@ org_apache_flex_states_AddItems.prototype.setDocument = function(document, opt_i
  * @private
  * @type {Object} document The MXML object.
  */
-org_apache_flex_states_AddItems.prototype.document_ = null;
+org.apache.flex.states.AddItems.prototype.document_ = null;
 
 
 /**
  * @private
  * @type {Array} items The array of items to add.
  */
-org_apache_flex_states_AddItems.prototype.items_ = null;
+org.apache.flex.states.AddItems.prototype.items_ = null;
 
 
 /**
@@ -75,42 +75,42 @@ org_apache_flex_states_AddItems.prototype.items_ = null;
  * @type {number} itemsDescriptor The index into the array
  *                               of itemDescriptors on the document
  */
-org_apache_flex_states_AddItems.prototype.itemsDescriptorIndex_ = -1;
+org.apache.flex.states.AddItems.prototype.itemsDescriptorIndex_ = -1;
 
 
 /**
  * @private
  * @type {Object} itemsDescriptor The descriptors for items.
  */
-org_apache_flex_states_AddItems.prototype.itemsDescriptor_ = null;
+org.apache.flex.states.AddItems.prototype.itemsDescriptor_ = null;
 
 
 /**
  * @private
  * @type {string} destination The id of the parent.
  */
-org_apache_flex_states_AddItems.prototype.destination_ = '';
+org.apache.flex.states.AddItems.prototype.destination_ = '';
 
 
 /**
  * @private
  * @type {string} propertyName The child property name (e.g. mxmlContent).
  */
-org_apache_flex_states_AddItems.prototype.propertyName_ = '';
+org.apache.flex.states.AddItems.prototype.propertyName_ = '';
 
 
 /**
  * @private
  * @type {string} position Where the item goes relative to relativeTo.
  */
-org_apache_flex_states_AddItems.prototype.position_ = '';
+org.apache.flex.states.AddItems.prototype.position_ = '';
 
 
 /**
  * @private
  * @type {?string} relativeTo The id of the child where the item goes.
  */
-org_apache_flex_states_AddItems.prototype.relativeTo_ = null;
+org.apache.flex.states.AddItems.prototype.relativeTo_ = null;
 
 
 /**
@@ -118,7 +118,7 @@ org_apache_flex_states_AddItems.prototype.relativeTo_ = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-org_apache_flex_states_AddItems.prototype.initializeFromObject = function(properties) {
+org.apache.flex.states.AddItems.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {
@@ -129,16 +129,16 @@ org_apache_flex_states_AddItems.prototype.initializeFromObject = function(proper
 };
 
 
-Object.defineProperties(org_apache_flex_states_AddItems.prototype,
-  /** @lends {org_apache_flex_states_AddItems.prototype} */ {
+Object.defineProperties(org.apache.flex.states.AddItems.prototype,
+  /** @lends {org.apache.flex.states.AddItems.prototype} */ {
   /** @export */
   document: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.document_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.document_) {
         this.document_ = value;
@@ -147,12 +147,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   items: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.items_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.items_) {
         this.items_ = value;
@@ -161,13 +161,13 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   itemsDescriptorIndex: {
-    /** @this {org_apache_flex_states_AddItems}
+    /** @this {org.apache.flex.states.AddItems}
         @return {number} */
     get: function() {
       return this.itemsDescriptorIndex_;
     },
 
-    /** @this {org_apache_flex_states_AddItems}
+    /** @this {org.apache.flex.states.AddItems}
         @param {number} value The value.  */
     set: function(value) {
       if (value != this.itemsDescriptorIndex_) {
@@ -177,12 +177,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   itemsDescriptor: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.itemsDescriptor_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.itemsDescriptor_) {
         this.itemsDescriptor_ = value;
@@ -191,12 +191,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   destination: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.destination_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.destination_) {
         this.destination_ = value;
@@ -205,12 +205,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   propertyName: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.propertyName_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.propertyName_) {
         this.propertyName_ = value;
@@ -219,12 +219,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   position: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.position_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.position_) {
         this.position_ = value;
@@ -233,12 +233,12 @@ Object.defineProperties(org_apache_flex_states_AddItems.prototype,
   },
   /** @export */
   relativeTo: {
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     get: function() {
       return this.relativeTo_;
     },
 
-    /** @this {org_apache_flex_states_AddItems} */
+    /** @this {org.apache.flex.states.AddItems} */
     set: function(value) {
       if (value != this.relativeTo_) {
         this.relativeTo_ = value;

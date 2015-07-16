@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IItemRendererParent');
+goog.provide('org.apache.flex.core.IItemRendererParent');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IItemRendererParent = function() {
+org.apache.flex.core.IItemRendererParent = function() {
 };
 
 
@@ -33,15 +33,15 @@ org_apache_flex_core_IItemRendererParent = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IItemRendererParent.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IItemRendererParent.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IItemRendererParent',
-                qName: 'org_apache_flex_core_IItemRendererParent' }] };
+                qName: 'org.apache.flex.core.IItemRendererParent' }] };
 
 
 /**
  * @export
  * @param {number} index The selected index.
  */
-org_apache_flex_core_IItemRendererParent.prototype.
+org.apache.flex.core.IItemRendererParent.prototype.
     getItemRendererForIndex = function(index) {
 };

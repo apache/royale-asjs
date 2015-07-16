@@ -12,25 +12,25 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_HTMLElementWrapper');
+goog.provide('org.apache.flex.core.HTMLElementWrapper');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_core_IStrand');
-goog.require('org_apache_flex_events_BrowserEvent');
-goog.require('org_apache_flex_events_EventDispatcher');
-goog.require('org_apache_flex_utils_Language');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.IStrand');
+goog.require('org.apache.flex.events.BrowserEvent');
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.utils.Language');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_core_HTMLElementWrapper = function() {
-  org_apache_flex_core_HTMLElementWrapper.base(this, 'constructor');
+org.apache.flex.core.HTMLElementWrapper = function() {
+  org.apache.flex.core.HTMLElementWrapper.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_core_HTMLElementWrapper,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.core.HTMLElementWrapper,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -38,45 +38,45 @@ goog.inherits(org_apache_flex_core_HTMLElementWrapper,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.HTMLElementWrapper.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'HTMLElementWrapper',
-                qName: 'org_apache_flex_core_HTMLElementWrapper' }],
-      interfaces: [org_apache_flex_core_IStrand] };
+                qName: 'org.apache.flex.core.HTMLElementWrapper' }],
+      interfaces: [org.apache.flex.core.IStrand] };
 
 
 /**
  * @export
  * @type {EventTarget}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.element = null;
+org.apache.flex.core.HTMLElementWrapper.prototype.element = null;
 
 
 /**
  * @protected
  * @type {Array.<Object>}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype._beads = null;
+org.apache.flex.core.HTMLElementWrapper.prototype._beads = null;
 
 
 /**
  * @protected
  * @type {string}
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.internalDisplay = 'inline';
+org.apache.flex.core.HTMLElementWrapper.prototype.internalDisplay = 'inline';
 
 
 /**
  * @export
  * @param {Object} bead The new bead.
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
+org.apache.flex.core.HTMLElementWrapper.prototype.addBead = function(bead) {
   if (!this.beads_) {
     this.beads_ = [];
   }
 
   this.beads_.push(bead);
 
-  if (org_apache_flex_utils_Language.is(bead, org_apache_flex_core_IBeadModel)) {
+  if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadModel)) {
     this.model = bead;
   }
 
@@ -89,7 +89,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.addBead = function(bead) {
  * @param {!Object} classOrInterface The requested bead type.
  * @return {Object} The bead.
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
+org.apache.flex.core.HTMLElementWrapper.prototype.getBeadByType =
     function(classOrInterface) {
   var bead, i, n;
 
@@ -97,7 +97,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
   for (i = 0; i < n; i++) {
     bead = this.beads_[i];
 
-    if (org_apache_flex_utils_Language.is(bead, classOrInterface)) {
+    if (org.apache.flex.utils.Language.is(bead, classOrInterface)) {
       return bead;
     }
   }
@@ -106,7 +106,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.getBeadByType =
 };
 
 
-Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
+Object.defineProperties(org.apache.flex.core.HTMLElementWrapper.prototype, {
     /** @export */
     MXMLDescriptor: {
         get: function() {
@@ -121,7 +121,7 @@ Object.defineProperties(org_apache_flex_core_HTMLElementWrapper.prototype, {
  * @param {Object} bead The bead to remove.
  * @return {Object} The bead.
  */
-org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
+org.apache.flex.core.HTMLElementWrapper.prototype.removeBead = function(bead) {
   var i, n, value;
 
   n = this.beads_.length;
@@ -142,7 +142,7 @@ org_apache_flex_core_HTMLElementWrapper.prototype.removeBead = function(bead) {
 /**
  * @type {?function((goog.events.Listener), (?Object)):boolean}
  */
-org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
+org.apache.flex.core.HTMLElementWrapper.googFireListener = null;
 
 
 /**
@@ -152,26 +152,26 @@ org_apache_flex_core_HTMLElementWrapper.googFireListener = null;
  * @param {Object} eventObject The event object to pass to the listener.
  * @return {boolean} Result of listener.
  */
-org_apache_flex_core_HTMLElementWrapper.fireListenerOverride = function(listener, eventObject) {
-  var e = new org_apache_flex_events_BrowserEvent();
+org.apache.flex.core.HTMLElementWrapper.fireListenerOverride = function(listener, eventObject) {
+  var e = new org.apache.flex.events.BrowserEvent();
   e.wrappedEvent = /** @type {goog.events.BrowserEvent} */ (eventObject);
-  return org_apache_flex_core_HTMLElementWrapper.googFireListener(listener, e);
+  return org.apache.flex.core.HTMLElementWrapper.googFireListener(listener, e);
 };
 
 
 /**
  * Static initializer
  */
-org_apache_flex_core_HTMLElementWrapper.installOverride = function() {
-  org_apache_flex_core_HTMLElementWrapper.googFireListener =
+org.apache.flex.core.HTMLElementWrapper.installOverride = function() {
+  org.apache.flex.core.HTMLElementWrapper.googFireListener =
       goog.events.fireListener;
-  goog.events.fireListener = org_apache_flex_core_HTMLElementWrapper.fireListenerOverride;
+  goog.events.fireListener = org.apache.flex.core.HTMLElementWrapper.fireListenerOverride;
 };
 
 
 /**
  * The properties that triggers the static initializer
  */
-org_apache_flex_core_HTMLElementWrapper.installedOverride =
-    org_apache_flex_core_HTMLElementWrapper.installOverride();
+org.apache.flex.core.HTMLElementWrapper.installedOverride =
+    org.apache.flex.core.HTMLElementWrapper.installOverride();
 

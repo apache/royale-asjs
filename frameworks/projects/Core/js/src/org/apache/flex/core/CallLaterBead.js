@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_CallLaterBead');
+goog.provide('org.apache.flex.core.CallLaterBead');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_core_CallLaterBead = function() {
+org.apache.flex.core.CallLaterBead = function() {
 
   /**
    * @private
@@ -41,15 +41,15 @@ org_apache_flex_core_CallLaterBead = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_CallLaterBead.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.CallLaterBead.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'CallLaterBead.js',
-                qName: 'org_apache_flex_core_CallLaterBead'}] };
+                qName: 'org.apache.flex.core.CallLaterBead'}] };
 
 
-Object.defineProperties(org_apache_flex_core_CallLaterBead.prototype, {
+Object.defineProperties(org.apache.flex.core.CallLaterBead.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_binding_GenericBinding} */
+        /** @this {org.apache.flex.binding.GenericBinding} */
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
@@ -64,7 +64,7 @@ Object.defineProperties(org_apache_flex_core_CallLaterBead.prototype, {
  * @param {Array=} opt_args The optional array of arguments.
  * @param {Object=} opt_thisArg The optional 'this' object.
  */
-org_apache_flex_core_CallLaterBead.prototype.callLater =
+org.apache.flex.core.CallLaterBead.prototype.callLater =
     function(fn, opt_args, opt_thisArg) {
 
   if (this.calls_ == null)
@@ -79,7 +79,7 @@ org_apache_flex_core_CallLaterBead.prototype.callLater =
 /**
  * @protected
  */
-org_apache_flex_core_CallLaterBead.prototype.callback =
+org.apache.flex.core.CallLaterBead.prototype.callback =
     function() {
   var list = this.calls_;
   var n = list.length;

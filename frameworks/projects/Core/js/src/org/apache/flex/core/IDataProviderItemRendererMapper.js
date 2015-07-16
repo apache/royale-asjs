@@ -13,24 +13,24 @@
  */
 
 /**
- * org_apache_flex_html_beads_IDataProviderItemRendererMapper
+ * org.apache.flex.html.beads.IDataProviderItemRendererMapper
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IDataProviderItemRendererMapper');
+goog.provide('org.apache.flex.core.IDataProviderItemRendererMapper');
 
-goog.require('org_apache_flex_core_IBead');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IBead}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_core_IDataProviderItemRendererMapper =
+org.apache.flex.core.IDataProviderItemRendererMapper =
 function() {
 };
 
@@ -38,7 +38,7 @@ function() {
 /**
  * @export
  */
-org_apache_flex_core_IDataProviderItemRendererMapper.prototype.itemRendererFactory = null;
+org.apache.flex.core.IDataProviderItemRendererMapper.prototype.itemRendererFactory = null;
 
 
 /**
@@ -46,8 +46,8 @@ org_apache_flex_core_IDataProviderItemRendererMapper.prototype.itemRendererFacto
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IDataProviderItemRendererMapper.prototype.FLEXJS_CLASS_INFO = {
+org.apache.flex.core.IDataProviderItemRendererMapper.prototype.FLEXJS_CLASS_INFO = {
   names: [{ name: 'IDataProviderItemRendererMapper',
-             qName: 'org_apache_flex_core_IDataProviderItemRendererMapper'}],
-  interfaces: [org_apache_flex_core_IBead]
+             qName: 'org.apache.flex.core.IDataProviderItemRendererMapper'}],
+  interfaces: [org.apache.flex.core.IBead]
 };

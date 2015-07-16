@@ -12,33 +12,33 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_List');
+goog.provide('org.apache.flex.html.List');
 
-goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
-goog.require('org_apache_flex_core_IFactory');
-goog.require('org_apache_flex_core_IItemRendererClassFactory');
-goog.require('org_apache_flex_core_IListPresentationModel');
-goog.require('org_apache_flex_core_ItemRendererClassFactory');
-goog.require('org_apache_flex_core_ListBase');
-goog.require('org_apache_flex_core_ValuesManager');
-goog.require('org_apache_flex_html_beads_ListView');
-goog.require('org_apache_flex_html_beads_TextItemRendererFactoryForArrayData');
-goog.require('org_apache_flex_html_beads_controllers_ListSingleSelectionMouseController');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
-goog.require('org_apache_flex_html_beads_models_ListPresentationModel');
-goog.require('org_apache_flex_html_supportClasses_DataItemRenderer');
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IFactory');
+goog.require('org.apache.flex.core.IItemRendererClassFactory');
+goog.require('org.apache.flex.core.IListPresentationModel');
+goog.require('org.apache.flex.core.ItemRendererClassFactory');
+goog.require('org.apache.flex.core.ListBase');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
+goog.require('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.beads.models.ListPresentationModel');
+goog.require('org.apache.flex.html.supportClasses.DataItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_ListBase}
+ * @extends {org.apache.flex.core.ListBase}
  */
-org_apache_flex_html_List = function() {
-  org_apache_flex_html_List.base(this, 'constructor');
+org.apache.flex.html.List = function() {
+  org.apache.flex.html.List.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_List,
-    org_apache_flex_core_ListBase);
+goog.inherits(org.apache.flex.html.List,
+    org.apache.flex.core.ListBase);
 
 
 /**
@@ -46,52 +46,52 @@ goog.inherits(org_apache_flex_html_List,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_List.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.List.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'List',
-                qName: 'org_apache_flex_html_List' }] };
+                qName: 'org.apache.flex.html.List' }] };
 
 
-Object.defineProperties(org_apache_flex_html_List.prototype, {
+Object.defineProperties(org.apache.flex.html.List.prototype, {
     /** @export */
     itemRenderer: {
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         get: function() {
             return this.itemRenderer_;
         },
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         set: function(value) {
             this.itemRenderer_ = value;
         }
     },
     /** @export */
     labelField: {
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         get: function() {
             return this.model.labelField;
         },
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         set: function(value) {
             this.model.labelField = value;
         }
     },
     /** @export */
     rowHeight: {
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         get: function() {
             return this.presentationModel.rowHeight;
         },
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         set: function(value) {
             this.presentationModel.rowHeight = value;
         }
     },
     /** @export */
     presentationModel: {
-        /** @this {org_apache_flex_html_List} */
+        /** @this {org.apache.flex.html.List} */
         get: function() {
-            var presModel = this.getBeadByType(org_apache_flex_core_IListPresentationModel);
+            var presModel = this.getBeadByType(org.apache.flex.core.IListPresentationModel);
             if (presModel == null) {
-              presModel = new org_apache_flex_html_beads_models_ListPresentationModel();
+              presModel = new org.apache.flex.html.beads.models.ListPresentationModel();
               this.addBead(presModel);
             }
             return presModel;
@@ -103,9 +103,9 @@ Object.defineProperties(org_apache_flex_html_List.prototype, {
 /**
  * @override
  */
-org_apache_flex_html_List.prototype.createElement =
+org.apache.flex.html.List.prototype.createElement =
     function() {
-  org_apache_flex_html_List.base(this, 'createElement');
+  org.apache.flex.html.List.base(this, 'createElement');
   this.className = 'List';
 
   return this.element;
@@ -115,20 +115,20 @@ org_apache_flex_html_List.prototype.createElement =
 /**
  * @override
  */
-org_apache_flex_html_List.prototype.addedToParent =
+org.apache.flex.html.List.prototype.addedToParent =
     function() {
-  org_apache_flex_html_List.base(this, 'addedToParent');
+  org.apache.flex.html.List.base(this, 'addedToParent');
 
-  var dataFactory = this.getBeadByType(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData);
+  var dataFactory = this.getBeadByType(org.apache.flex.html.beads.DataItemRendererFactoryForArrayData);
   if (dataFactory == null) {
-    var m1 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this, 'iDataProviderItemRendererMapper');
+    var m1 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iDataProviderItemRendererMapper');
     dataFactory = new m1();
     this.addBead(dataFactory);
   }
 
-  var itemRendererFactory = this.getBeadByType(org_apache_flex_core_IItemRendererClassFactory);
+  var itemRendererFactory = this.getBeadByType(org.apache.flex.core.IItemRendererClassFactory);
   if (itemRendererFactory == null) {
-    var m2 = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this, 'iItemRendererClassFactory');
+    var m2 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iItemRendererClassFactory');
     itemRendererFactory = new m2();
     this.addBead(itemRendererFactory);
   }
@@ -140,10 +140,10 @@ org_apache_flex_html_List.prototype.addedToParent =
  * @return {Array.<Object>} An array of objects that make up the actual
  *                          list (most likely itemRenderers).
  */
-org_apache_flex_html_List.prototype.internalChildren =
+org.apache.flex.html.List.prototype.internalChildren =
     function() {
   var listView =
-      this.getBeadByType(org_apache_flex_html_beads_ListView);
+      this.getBeadByType(org.apache.flex.html.beads.ListView);
   var dg = listView.dataGroup;
   var items = null;
   if (dg.renderers) {
@@ -157,7 +157,7 @@ org_apache_flex_html_List.prototype.internalChildren =
  * @export
  * @param {Object} event The event that triggered the selection.
  */
-org_apache_flex_html_List.prototype.selectedHandler =
+org.apache.flex.html.List.prototype.selectedHandler =
     function(event) {
   var itemRenderer = event.currentTarget;
   if (this.renderers) {

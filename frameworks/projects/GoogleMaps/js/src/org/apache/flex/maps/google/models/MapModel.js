@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_maps_google_models_MapModel');
+goog.provide('org.apache.flex.maps.google.models.MapModel');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 // IMPORTANT:
@@ -26,15 +26,15 @@ goog.require('org_apache_flex_events_EventDispatcher');
 
 /**
  * @constructor
- * @extends {org_apache_flex_events_EventDispatcher}
- * @implements {org_apache_flex_core_IBeadModel}
+ * @extends {org.apache.flex.events.EventDispatcher}
+ * @implements {org.apache.flex.core.IBeadModel}
  */
-org_apache_flex_maps_google_models_MapModel = function() {
-  org_apache_flex_maps_google_models_MapModel.base(this, 'constructor');
+org.apache.flex.maps.google.models.MapModel = function() {
+  org.apache.flex.maps.google.models.MapModel.base(this, 'constructor');
 };
 goog.inherits(
-    org_apache_flex_maps_google_models_MapModel,
-    org_apache_flex_events_EventDispatcher);
+    org.apache.flex.maps.google.models.MapModel,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -42,17 +42,17 @@ goog.inherits(
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_maps_google_models_MapModel.prototype.
+org.apache.flex.maps.google.models.MapModel.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'MapModel',
-           qName: 'org_apache_flex_maps_google_models_MapModel' }],
-    interfaces: [org_apache_flex_core_IBeadModel] };
+           qName: 'org.apache.flex.maps.google.models.MapModel' }],
+    interfaces: [org.apache.flex.core.IBeadModel] };
 
 
-Object.defineProperties(org_apache_flex_maps_google_models_MapModelv.prototype, {
+Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_maps_google_models_MapModel} */
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         set: function(value) {
            this.strand_ = value;
         }

@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_collections_parsers_JSONInputParser');
+goog.provide('org.apache.flex.collections.parsers.JSONInputParser');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_collections_parsers_JSONInputParser = function() {
+org.apache.flex.collections.parsers.JSONInputParser = function() {
 };
 
 
@@ -28,9 +28,9 @@ org_apache_flex_collections_parsers_JSONInputParser = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_collections_parsers_JSONInputParser.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.collections.parsers.JSONInputParser.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'JSONInputParser',
-                qName: 'org_apache_flex_collections_parsers_JSONInputParser'}] };
+                qName: 'org.apache.flex.collections.parsers.JSONInputParser'}] };
 
 
 /**
@@ -38,7 +38,7 @@ org_apache_flex_collections_parsers_JSONInputParser.prototype.FLEXJS_CLASS_INFO 
  * @param {string} s The input string.
  * @return {Array.<string>} The Array of unparsed objects.
  */
-org_apache_flex_collections_parsers_JSONInputParser.prototype.parseItems = function(s) {
+org.apache.flex.collections.parsers.JSONInputParser.prototype.parseItems = function(s) {
   var c = s.indexOf('[');
   if (c != -1) {
     var c2 = s.lastIndexOf(']');

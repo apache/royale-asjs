@@ -12,61 +12,61 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_DataGridColumn');
+goog.provide('org.apache.flex.html.supportClasses.DataGridColumn');
 
-goog.require('org_apache_flex_core_IFactory');
+goog.require('org.apache.flex.core.IFactory');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_supportClasses_DataGridColumn =
+org.apache.flex.html.supportClasses.DataGridColumn =
     function() {
 };
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_DataGridColumn.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.DataGridColumn.prototype, {
     /** @export */
     itemRenderer: {
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         get: function() {
             return this.itemRenderer_;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         set: function(value) {
             this.itemRenderer_ = value;
         }
     },
     /** @export */
     columnWidth: {
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         get: function() {
             return this.columnWidth_;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         set: function(value) {
             this.columnWidth_ = value;
         }
     },
     /** @export */
     label: {
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         get: function() {
             return this.label_;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         set: function(value) {
             this.label_ = value;
         }
     },
     /** @export */
     dataField: {
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         get: function() {
             return this.dataField_;
         },
-        /** @this {org_apache_flex_html_supportClasses_DataGridColumn} */
+        /** @this {org.apache.flex.html.supportClasses.DataGridColumn} */
         set: function(value) {
             this.dataField_ = value;
         }

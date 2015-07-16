@@ -3,7 +3,6 @@ package org.apache.flex.html.supportClasses
 	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -22,9 +21,7 @@ package org.apache.flex.html.supportClasses
 		{
 		}
 		
-		private var contentArea:UIBase;
-		private var layout:IBeadLayout;
-		
+		private var contentArea:UIBase;		
 		private var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
@@ -38,10 +35,8 @@ package org.apache.flex.html.supportClasses
 		{
 			_model = value;
 			
-			if (model.layout) layout = model.layout as IBeadLayout;
 			if (model.contentArea) contentArea = model.contentArea as UIBase;
 			
-			model.addEventListener("layoutChanged", handleLayoutChange);
 			model.addEventListener("contentAreaChanged", handleContentChange);
 		}
 		public function get model():IViewportModel
@@ -59,11 +54,6 @@ package org.apache.flex.html.supportClasses
 			return null;
 		}
 		
-		public function runLayout():Boolean
-		{
-			return layout.layout();
-		}
-		
 		/**
 		 * Invoke this function to reshape and set the contentArea being managed by
 		 * this viewport. If scrollers are present this will update them as well to
@@ -76,7 +66,7 @@ package org.apache.flex.html.supportClasses
 				contentArea.x = model.contentX;
 				contentArea.y = model.contentY;
 			}
-			contentArea.setWidthAndHeight(model.contentWidth, model.contentHeight, true);
+			//contentArea.setWidthAndHeight(model.contentWidth, model.contentHeight, true);
 		}
 		
 		public function updateSize():void
@@ -116,11 +106,6 @@ package org.apache.flex.html.supportClasses
 		public function scrollerHeight():Number
 		{
 			return 0;
-		}
-		
-		private function handleLayoutChange(event:Event):void
-		{
-			layout = model.layout as IBeadLayout;
 		}
 		
 		private function handleContentChange(event:Event):void

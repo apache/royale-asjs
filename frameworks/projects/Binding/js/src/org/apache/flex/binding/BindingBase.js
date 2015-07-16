@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_BindingBase');
+goog.provide('org.apache.flex.binding.BindingBase');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_binding_BindingBase = function() {
+org.apache.flex.binding.BindingBase = function() {
 };
 
 
@@ -28,58 +28,58 @@ org_apache_flex_binding_BindingBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_BindingBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.BindingBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'BindingBase',
-                qName: 'org_apache_flex_binding_BindingBase'}] };
+                qName: 'org.apache.flex.binding.BindingBase'}] };
 
 
 /**
  * @protected
  * @type {Object}
  */
-org_apache_flex_binding_BindingBase.prototype.document = null;
+org.apache.flex.binding.BindingBase.prototype.document = null;
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_binding_BindingBase.prototype.destination = null;
+org.apache.flex.binding.BindingBase.prototype.destination = null;
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_binding_BindingBase.prototype.destinationPropertyName = '';
+org.apache.flex.binding.BindingBase.prototype.destinationPropertyName = '';
 
 
 /**
  * @export
  * @type {Object}
  */
-org_apache_flex_binding_BindingBase.prototype.source = null;
+org.apache.flex.binding.BindingBase.prototype.source = null;
 
 
 /**
  * @export
  * @type {string}
  */
-org_apache_flex_binding_BindingBase.prototype.sourcePropertyName = '';
+org.apache.flex.binding.BindingBase.prototype.sourcePropertyName = '';
 
 
 /**
  * @export
  * @type {?string}
  */
-org_apache_flex_binding_BindingBase.prototype.sourceID = null;
+org.apache.flex.binding.BindingBase.prototype.sourceID = null;
 
 
 /**
  * @export
  * @param {Object} document The MXML object.
  */
-org_apache_flex_binding_BindingBase.prototype.setDocument = function(document) {
+org.apache.flex.binding.BindingBase.prototype.setDocument = function(document) {
   this.document = document;
 };
 
@@ -87,22 +87,18 @@ org_apache_flex_binding_BindingBase.prototype.setDocument = function(document) {
 /**
  * @param {Object} event The event.
  */
-org_apache_flex_binding_BindingBase.prototype.sourceChangeHandler = function(event) {
+org.apache.flex.binding.BindingBase.prototype.sourceChangeHandler = function(event) {
   if (event.propertyName != this.sourceID)
     return;
-
-  if (this.source)
-    this.source.removeEventListener(this.eventName,
-        goog.bind(this.changeHandler, this));
 
   this.source = this.document[this.sourceID];
 };
 
 
-Object.defineProperties(org_apache_flex_binding_BindingBase.prototype, {
+Object.defineProperties(org.apache.flex.binding.BindingBase.prototype, {
   /** @export */
   strand: {
-        /** @this {org_apache_flex_binding_BindingBase} */
+        /** @this {org.apache.flex.binding.BindingBase} */
       set: function(value) {
           if (this.destination == null)
             this.destination = value;

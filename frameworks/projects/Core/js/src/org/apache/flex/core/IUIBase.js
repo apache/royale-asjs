@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IUIBase');
+goog.provide('org.apache.flex.core.IUIBase');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_core_IUIBase');
  *
  * @interface
  */
-org_apache_flex_core_IUIBase = function() {
+org.apache.flex.core.IUIBase = function() {
 };
 
 
@@ -35,6 +35,6 @@ org_apache_flex_core_IUIBase = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IUIBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IUIBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IUIBase',
-                qName: 'org_apache_flex_core_IUIBase' }] };
+                qName: 'org.apache.flex.core.IUIBase' }] };

@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_Image');
+goog.provide('org.apache.flex.html.Image');
 
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_html_beads_ImageView');
-goog.require('org_apache_flex_html_beads_models_ImageModel');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.html.beads.ImageView');
+goog.require('org.apache.flex.html.beads.models.ImageModel');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_html_Image = function() {
-  org_apache_flex_html_Image.base(this, 'constructor');
+org.apache.flex.html.Image = function() {
+  org.apache.flex.html.Image.base(this, 'constructor');
 };
-goog.inherits(org_apache_flex_html_Image,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.html.Image,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -36,9 +36,9 @@ goog.inherits(org_apache_flex_html_Image,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_Image.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.Image.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Image',
-                qName: 'org_apache_flex_html_Image' }] };
+                qName: 'org.apache.flex.html.Image' }] };
 
 
 /**
@@ -46,7 +46,7 @@ org_apache_flex_html_Image.prototype.FLEXJS_CLASS_INFO =
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org_apache_flex_html_Image.prototype.createElement =
+org.apache.flex.html.Image.prototype.createElement =
     function() {
 
   this.element = document.createElement('img');
@@ -55,23 +55,23 @@ org_apache_flex_html_Image.prototype.createElement =
   this.element.flexjs_wrapper = this;
 
   this.model = new
-          org_apache_flex_html_beads_models_ImageModel();
+          org.apache.flex.html.beads.models.ImageModel();
 
   this.addBead(new
-      org_apache_flex_html_beads_ImageView());
+      org.apache.flex.html.beads.ImageView());
 
   return this.element;
 };
 
 
-Object.defineProperties(org_apache_flex_html_Image.prototype, {
+Object.defineProperties(org.apache.flex.html.Image.prototype, {
     /** @export */
     source: {
-        /** @this {org_apache_flex_html_Image} */
+        /** @this {org.apache.flex.html.Image} */
         get: function() {
             return this.model.source;
         },
-        /** @this {org_apache_flex_html_Image} */
+        /** @this {org.apache.flex.html.Image} */
         set: function(value) {
             this.model.source = value;
         }

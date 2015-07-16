@@ -17,7 +17,7 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_events_IEventDispatcher');
+goog.provide('org.apache.flex.events.IEventDispatcher');
 
 
 
@@ -26,7 +26,7 @@ goog.provide('org_apache_flex_events_IEventDispatcher');
  *
  * @interface
  */
-org_apache_flex_events_IEventDispatcher = function() {
+org.apache.flex.events.IEventDispatcher = function() {
 };
 
 
@@ -35,6 +35,6 @@ org_apache_flex_events_IEventDispatcher = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_events_IEventDispatcher.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.events.IEventDispatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IEventDispatcher',
-                qName: 'org_apache_flex_events_IEventDispatcher'}] };
+                qName: 'org.apache.flex.events.IEventDispatcher'}] };

@@ -13,48 +13,48 @@
  */
 
 /**
- * org_apache_flex_core_IParent
+ * org.apache.flex.core.IParent
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IParent');
+goog.provide('org.apache.flex.core.IParent');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IParent = function() {
+org.apache.flex.core.IParent = function() {
 };
 
 
 /**
  * @param {Object} c
  */
-org_apache_flex_core_IParent.prototype.addElement = function(c) {};
+org.apache.flex.core.IParent.prototype.addElement = function(c) {};
 
 
 /**
  * @param {Object} c
  * @param {number} index
  */
-org_apache_flex_core_IParent.prototype.addElementAt = function(c, index) {};
+org.apache.flex.core.IParent.prototype.addElementAt = function(c, index) {};
 
 
 /**
  * @return {number}
  * @param {Object} c
  */
-org_apache_flex_core_IParent.prototype.getElementIndex = function(c) {};
+org.apache.flex.core.IParent.prototype.getElementIndex = function(c) {};
 
 
 /**
  * @param {Object} c
  */
-org_apache_flex_core_IParent.prototype.removeElement = function(c) {};
+org.apache.flex.core.IParent.prototype.removeElement = function(c) {};
 
 
 /**
@@ -62,6 +62,6 @@ org_apache_flex_core_IParent.prototype.removeElement = function(c) {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IParent.prototype.FLEXJS_CLASS_INFO = {
-  names: [{ name: 'IParent', qName: 'org_apache_flex_core_IParent'}]
+org.apache.flex.core.IParent.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IParent', qName: 'org.apache.flex.core.IParent'}]
 };

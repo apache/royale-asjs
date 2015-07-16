@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_supportClasses_ScrollingViewport');
+goog.provide('org.apache.flex.html.supportClasses.ScrollingViewport');
 
-goog.require('org_apache_flex_core_IItemRenderer');
-goog.require('org_apache_flex_core_IItemRendererFactory');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.IItemRendererFactory');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
  */
-org_apache_flex_html_supportClasses_ScrollingViewport =
+org.apache.flex.html.supportClasses.ScrollingViewport =
 function() {
 };
 
@@ -35,20 +35,20 @@ function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_supportClasses_ScrollingViewport.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ScrollingViewport',
-                qName: 'org_apache_flex_html_supportClasses_ScrollingViewport' }]};
+                qName: 'org.apache.flex.html.supportClasses.ScrollingViewport' }]};
 
 
 
-Object.defineProperties(org_apache_flex_html_supportClasses_ScrollingViewport.prototype, {
+Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.prototype, {
     /** @export */
     model: {
-        /** @this {org_apache_flex_html_supportClasses_ScrollingViewport} */
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {
             return this.model_;
         },
-        /** @this {org_apache_flex_html_supportClasses_ScrollingViewport} */
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
             this.model_ = value;
         }

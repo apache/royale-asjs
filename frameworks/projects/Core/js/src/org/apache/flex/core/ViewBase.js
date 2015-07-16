@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_core_ViewBase');
+goog.provide('org.apache.flex.core.ViewBase');
 
-goog.require('org_apache_flex_core_IPopUpHost');
-goog.require('org_apache_flex_core_UIBase');
-goog.require('org_apache_flex_core_ValuesManager');
-goog.require('org_apache_flex_events_Event');
-goog.require('org_apache_flex_events_ValueChangeEvent');
-goog.require('org_apache_flex_utils_MXMLDataInterpreter');
+goog.require('org.apache.flex.core.IPopUpHost');
+goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.ValueChangeEvent');
+goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IPopUpHost}
- * @extends {org_apache_flex_core_UIBase}
+ * @implements {org.apache.flex.core.IPopUpHost}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_core_ViewBase = function() {
-  org_apache_flex_core_ViewBase.base(this, 'constructor');
+org.apache.flex.core.ViewBase = function() {
+  org.apache.flex.core.ViewBase.base(this, 'constructor');
 
   /**
    * @private
@@ -58,7 +58,7 @@ org_apache_flex_core_ViewBase = function() {
   this.document = this;
 
 };
-goog.inherits(org_apache_flex_core_ViewBase, org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
 
 
 /**
@@ -66,25 +66,25 @@ goog.inherits(org_apache_flex_core_ViewBase, org_apache_flex_core_UIBase);
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_ViewBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.ViewBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewBase',
-                qName: 'org_apache_flex_core_ViewBase' }],
-      interfaces: [org_apache_flex_core_IPopUpHost] };
+                qName: 'org.apache.flex.core.ViewBase' }],
+      interfaces: [org.apache.flex.core.IPopUpHost] };
 
 
 /**
  * @private
  * @type {Object}
  */
-org_apache_flex_core_ViewBase.prototype.applicationModel_ = null;
+org.apache.flex.core.ViewBase.prototype.applicationModel_ = null;
 
 
 /**
  * @export
  * @param {Array} data The data for the attributes.
  */
-org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) {
-  org_apache_flex_utils_MXMLDataInterpreter.generateMXMLProperties(this, data);
+org.apache.flex.core.ViewBase.prototype.generateMXMLAttributes = function(data) {
+  org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties(this, data);
 };
 
 
@@ -92,7 +92,7 @@ org_apache_flex_core_ViewBase.prototype.generateMXMLAttributes = function(data) 
  * @export
  * @type {Object} The document.
  */
-org_apache_flex_core_ViewBase.prototype.document = null;
+org.apache.flex.core.ViewBase.prototype.document = null;
 
 
 /**
@@ -100,7 +100,7 @@ org_apache_flex_core_ViewBase.prototype.document = null;
  * @param {Object} doc The document.
  * @param {Array} desc The descriptor data;
  */
-org_apache_flex_core_ViewBase.prototype.setMXMLDescriptor =
+org.apache.flex.core.ViewBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.MXMLDescriptor = desc;
   this.document = doc;
@@ -110,25 +110,25 @@ org_apache_flex_core_ViewBase.prototype.setMXMLDescriptor =
 /**
  * @export
  */
-org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
+org.apache.flex.core.ViewBase.prototype.addedToParent = function() {
 
-  //org_apache_flex_core_ViewBase.base(this,'addedToParent');
+  //org.apache.flex.core.ViewBase.base(this,'addedToParent');
   this.element.flexjs_wrapper = this;
-  if (org_apache_flex_core_ValuesManager.valuesImpl.init) {
-    org_apache_flex_core_ValuesManager.valuesImpl.init(this);
+  if (org.apache.flex.core.ValuesManager.valuesImpl.init) {
+    org.apache.flex.core.ValuesManager.valuesImpl.init(this);
   }
 
-  org_apache_flex_core_ViewBase.base(this, 'addedToParent');
+  org.apache.flex.core.ViewBase.base(this, 'addedToParent');
 
   if (!this.initialized_) {
-    org_apache_flex_utils_MXMLDataInterpreter.generateMXMLInstances(this.document,
+    org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this.document,
       this, this.MXMLDescriptor);
 
-    this.dispatchEvent(new org_apache_flex_events_Event('initBindings'));
-    this.dispatchEvent(new org_apache_flex_events_Event('initComplete'));
+    this.dispatchEvent(new org.apache.flex.events.Event('initBindings'));
+    this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
     this.initialized_ = true;
   }
-  this.dispatchEvent(new org_apache_flex_events_Event('childrenAdded'));
+  this.dispatchEvent(new org.apache.flex.events.Event('childrenAdded'));
 };
 
 
@@ -137,7 +137,7 @@ org_apache_flex_core_ViewBase.prototype.addedToParent = function() {
  * @param {string} state The name of the state.
  * @return {boolean} True if state in states array.
  */
-org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
+org.apache.flex.core.ViewBase.prototype.hasState = function(state) {
   for (var p in this.states_)
   {
     var s = this.states_[p];
@@ -148,45 +148,45 @@ org_apache_flex_core_ViewBase.prototype.hasState = function(state) {
 };
 
 
-Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
+Object.defineProperties(org.apache.flex.core.ViewBase.prototype, {
     /** @export */
     MXMLDescriptor: {
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         get: function() {
             return this.mxmldd;
         },
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         set: function(value) {
             this.mxmldd = value;
         }
     },
     /** @export */
     applicationModel: {
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         get: function() {
             return this.applicationModel_;
         },
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         set: function(value) {
             this.applicationModel_ = value;
         }
     },
     /** @export */
     states: {
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         get: function() {
             return this.states_;
         },
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         set: function(value) {
             this.states_ = value;
             this.currentState_ = value[0].name;
 
-            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue) {
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
               /**
                * @type {Function}
                */
-              var impl = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.
+              var impl = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
                   getValue(this, 'iStatesImpl'));
               // TODO: (aharui) check if bead already exists
               this.addBead(new impl());
@@ -195,13 +195,13 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
     },
     /** @export */
     currentState: {
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         get: function() {
             return this.currentState_;
         },
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         set: function(value) {
-            var event = new org_apache_flex_events_ValueChangeEvent(
+            var event = new org.apache.flex.events.ValueChangeEvent(
                 'currentStateChange', false, false, this.currentState_, value);
             this.currentState_ = value;
             this.dispatchEvent(event);
@@ -209,11 +209,11 @@ Object.defineProperties(org_apache_flex_core_ViewBase.prototype, {
     },
     /** @export */
     transitions: {
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         get: function() {
             return this.transitions_;
         },
-        /** @this {org_apache_flex_core_ViewBase} */
+        /** @this {org.apache.flex.core.ViewBase} */
         set: function(value) {
             this.transitions_ = value;
         }

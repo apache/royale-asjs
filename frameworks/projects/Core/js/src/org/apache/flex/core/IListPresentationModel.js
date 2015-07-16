@@ -13,29 +13,29 @@
  */
 
 /**
- * org_apache_flex_core_IListPresentationModel
+ * org.apache.flex.core.IListPresentationModel
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IListPresentationModel');
+goog.provide('org.apache.flex.core.IListPresentationModel');
 
-goog.require('org_apache_flex_core_IBead');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_events_IEventDispatcher}
- * @extends {org_apache_flex_core_IBead}
+ * @extends {org.apache.flex.events.IEventDispatcher}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_core_IListPresentationModel = function() {
+org.apache.flex.core.IListPresentationModel = function() {
 };
 
 
-Object.defineProperties(org_apache_flex_core_IListPresentationModel.prototype, {
+Object.defineProperties(org.apache.flex.core.IListPresentationModel.prototype, {
     /** @export */
     rowHeight: {
         set: function(value) {},
@@ -49,6 +49,6 @@ Object.defineProperties(org_apache_flex_core_IListPresentationModel.prototype, {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IListPresentationModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'IListPresentationModel', qName: 'org_apache_flex_core_IListPresentationModel'}],
-  interfaces: [org_apache_flex_events_IEventDispatcher, org_apache_flex_core_IBead] };
+org.apache.flex.core.IListPresentationModel.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'IListPresentationModel', qName: 'org.apache.flex.core.IListPresentationModel'}],
+  interfaces: [org.apache.flex.events.IEventDispatcher, org.apache.flex.core.IBead] };

@@ -13,19 +13,19 @@
  */
 
 /**
- * org_apache_flex_core_IChrome
+ * org.apache.flex.core.IChrome
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IChrome');
+goog.provide('org.apache.flex.core.IChrome');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IChrome = function() {
+org.apache.flex.core.IChrome = function() {
 };

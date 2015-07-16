@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_html_beads_DataItemRendererFactoryForArrayData');
+goog.provide('org.apache.flex.html.beads.DataItemRendererFactoryForArrayData');
 
-goog.require('org_apache_flex_core_IDataProviderItemRendererMapper');
-goog.require('org_apache_flex_core_IListPresentationModel');
-goog.require('org_apache_flex_events_EventDispatcher');
-goog.require('org_apache_flex_html_beads_ListView');
-goog.require('org_apache_flex_html_beads_models_ArraySelectionModel');
-goog.require('org_apache_flex_html_supportClasses_ButtonBarButtonItemRenderer');
+goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
+goog.require('org.apache.flex.core.IListPresentationModel');
+goog.require('org.apache.flex.events.EventDispatcher');
+goog.require('org.apache.flex.html.beads.ListView');
+goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IDataProviderItemRendererMapper}
+ * @implements {org.apache.flex.core.IDataProviderItemRendererMapper}
  */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData =
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData =
     function() {
 };
 
@@ -35,7 +35,7 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData =
 /**
  * @export
  */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.prototype.itemRendererFactory = null;
 
 
 /**
@@ -43,43 +43,43 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype.itemRen
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'DataItemRendererFactoryForArrayData',
-                qName: 'org_apache_flex_html_beads_DataItemRendererFactoryForArrayData' }],
-      interfaces: [org_apache_flex_core_IDataProviderItemRendererMapper] };
+                qName: 'org.apache.flex.html.beads.DataItemRendererFactoryForArrayData' }],
+      interfaces: [org.apache.flex.core.IDataProviderItemRendererMapper] };
 
 
 /**
  * @private
  * @type {Object}
  */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.itemRendererClass_ = null;
 
 
-Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.prototype, {
+Object.defineProperties(org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
+        /** @this {org.apache.flex.html.beads.DataItemRendererFactoryForArrayData} */
         set: function(value) {
             this.strand_ = value;
 
             this.model = value.getBeadByType(
-                org_apache_flex_html_beads_models_ArraySelectionModel);
+                org.apache.flex.html.beads.models.ArraySelectionModel);
 
             this.listView = value.getBeadByType(
-                org_apache_flex_html_beads_ListView);
+                org.apache.flex.html.beads.ListView);
             this.dataGroup = this.listView.dataGroup;
 
             this.model.addEventListener('dataProviderChanged',
                 goog.bind(this.dataProviderChangedHandler, this));
 
-            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererFactory_) {
               /**
                * @type {Function}
                */
-              var c = /** @type {Function} */ (org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_,
+              var c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_,
                   'iItemRendererClassFactory'));
               this.itemRendererFactory_ = new c();
               this.strand_.addBead(this.itemRendererFactory_);
@@ -90,17 +90,17 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
     },
     /** @export */
     itemRendererClass: {
-        /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
+        /** @this {org.apache.flex.html.beads.DataItemRendererFactoryForArrayData} */
         get: function() {
-            if (org_apache_flex_core_ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
-              var c = org_apache_flex_core_ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue && !this.itemRendererClass_) {
+              var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iItemRenderer');
               if (c) {
                 this.itemRendererClass_ = c;
               }
             }
             return this.itemRendererClass_;
         },
-        /** @this {org_apache_flex_html_beads_DataItemRendererFactoryForArrayData} */
+        /** @this {org.apache.flex.html.beads.DataItemRendererFactoryForArrayData} */
         set: function(value) {
             this.itemRendererClass_ = value;
         }
@@ -112,13 +112,13 @@ Object.defineProperties(org_apache_flex_html_beads_DataItemRendererFactoryForArr
  * @export
  * @param {Object} event The event that triggered the dataProvider change.
  */
-org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
+org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     prototype.dataProviderChangedHandler = function(event) {
   var dp, i, n, opt;
 
   this.dataGroup.removeAllElements();
 
-  var presModel = this.strand_.getBeadByType(org_apache_flex_core_IListPresentationModel);
+  var presModel = this.strand_.getBeadByType(org.apache.flex.core.IListPresentationModel);
 
   dp = this.model.dataProvider;
   if (dp === undefined) return;
@@ -132,6 +132,6 @@ org_apache_flex_html_beads_DataItemRendererFactoryForArrayData.
     if (presModel) ir.height = presModel.rowHeight;
   }
 
-  var newEvent = new org_apache_flex_events_Event('itemsCreated');
+  var newEvent = new org.apache.flex.events.Event('itemsCreated');
   this.strand_.dispatchEvent(newEvent);
 };

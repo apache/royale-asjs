@@ -12,31 +12,31 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_binding_PropertyWatcher');
+goog.provide('org.apache.flex.binding.PropertyWatcher');
 
-goog.require('org_apache_flex_binding_WatcherBase');
+goog.require('org.apache.flex.binding.WatcherBase');
 
 
 
 /**
  * @constructor
- * @extends {org_apache_flex_binding_WatcherBase}
+ * @extends {org.apache.flex.binding.WatcherBase}
  * @param {Object} source The source object.
  * @param {string} propertyName The property in the source.
  * @param {Object} eventNames An array of event names or an event name.
  * @param {function(?): ?} getterFunction A function to get the source property.
  */
-org_apache_flex_binding_PropertyWatcher =
+org.apache.flex.binding.PropertyWatcher =
     function(source, propertyName, eventNames, getterFunction) {
-  org_apache_flex_binding_PropertyWatcher.base(this, 'constructor');
+  org.apache.flex.binding.PropertyWatcher.base(this, 'constructor');
 
   this.source = source;
   this.propertyName = propertyName;
   this.getterFunction = getterFunction;
   this.eventNames = eventNames;
 };
-goog.inherits(org_apache_flex_binding_PropertyWatcher,
-    org_apache_flex_binding_WatcherBase);
+goog.inherits(org.apache.flex.binding.PropertyWatcher,
+    org.apache.flex.binding.WatcherBase);
 
 
 /**
@@ -44,40 +44,40 @@ goog.inherits(org_apache_flex_binding_PropertyWatcher,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_binding_PropertyWatcher.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.binding.PropertyWatcher.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PropertyWatcher',
-                qName: 'org_apache_flex_binding_PropertyWatcher'}] };
+                qName: 'org.apache.flex.binding.PropertyWatcher'}] };
 
 
 /**
  * @type {Object}
  */
-org_apache_flex_binding_PropertyWatcher.prototype.source = null;
+org.apache.flex.binding.PropertyWatcher.prototype.source = null;
 
 
 /**
  * @type {?string}
  */
-org_apache_flex_binding_PropertyWatcher.prototype.propertyName = null;
+org.apache.flex.binding.PropertyWatcher.prototype.propertyName = null;
 
 
 /**
  * @type {Object}
  */
-org_apache_flex_binding_PropertyWatcher.prototype.eventNames = null;
+org.apache.flex.binding.PropertyWatcher.prototype.eventNames = null;
 
 
 /**
  * @type {?function(?): ?}
  */
-org_apache_flex_binding_PropertyWatcher.prototype.getterFunction = null;
+org.apache.flex.binding.PropertyWatcher.prototype.getterFunction = null;
 
 
 /**
  * @protected
  * @param {Object} event The event.
  */
-org_apache_flex_binding_PropertyWatcher.prototype.changeHandler =
+org.apache.flex.binding.PropertyWatcher.prototype.changeHandler =
     function(event) {
   if (typeof(event.propertyName) == 'string')
   {
@@ -98,7 +98,7 @@ org_apache_flex_binding_PropertyWatcher.prototype.changeHandler =
  * @export
  * @param {Object} parent The new parent watcher.
  */
-org_apache_flex_binding_PropertyWatcher.prototype.parentChanged =
+org.apache.flex.binding.PropertyWatcher.prototype.parentChanged =
     function(parent) {
 
   if (this.source &&
@@ -118,7 +118,7 @@ org_apache_flex_binding_PropertyWatcher.prototype.parentChanged =
 /**
  * @protected
  */
-org_apache_flex_binding_PropertyWatcher.prototype.addEventListeners =
+org.apache.flex.binding.PropertyWatcher.prototype.addEventListeners =
     function() {
   if (typeof(this.eventNames) == 'string')
     this.source.addEventListener(this.eventNames,
@@ -140,7 +140,7 @@ org_apache_flex_binding_PropertyWatcher.prototype.addEventListeners =
 /**
  * @protected
  */
-org_apache_flex_binding_PropertyWatcher.prototype.removeEventListeners =
+org.apache.flex.binding.PropertyWatcher.prototype.removeEventListeners =
     function() {
   if (typeof(this.eventNames) == 'string')
     this.source.removeEventListener(this.eventNames,
@@ -164,7 +164,7 @@ org_apache_flex_binding_PropertyWatcher.prototype.removeEventListeners =
  * Gets the actual property then updates
  * the Watcher's children appropriately.
  */
-org_apache_flex_binding_PropertyWatcher.prototype.updateProperty =
+org.apache.flex.binding.PropertyWatcher.prototype.updateProperty =
     function() {
 
   if (this.source)

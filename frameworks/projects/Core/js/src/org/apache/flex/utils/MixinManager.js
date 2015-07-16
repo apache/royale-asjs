@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_utils_MixinManager');
+goog.provide('org.apache.flex.utils.MixinManager');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IBead}
+ * @implements {org.apache.flex.core.IBead}
  * Initialize mixins.
  * Compiler may not be generating list of mixins right now.
  */
-org_apache_flex_utils_MixinManager = function() {
+org.apache.flex.utils.MixinManager = function() {
 };
 
 
@@ -31,16 +31,16 @@ org_apache_flex_utils_MixinManager = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_utils_MixinManager.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.utils.MixinManager.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'MixinManager',
-                qName: 'org_apache_flex_utils_MixinManager'}],
-     interfaces: [org_apache_flex_core_IBead]};
+                qName: 'org.apache.flex.utils.MixinManager'}],
+     interfaces: [org.apache.flex.core.IBead]};
 
 
-Object.defineProperties(org_apache_flex_utils_MixinManager.prototype, {
+Object.defineProperties(org.apache.flex.utils.MixinManager.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_utils_MixinManager} */
+        /** @this {org.apache.flex.utils.MixinManager} */
         set: function(value) {
             this.strand_ = value;
 

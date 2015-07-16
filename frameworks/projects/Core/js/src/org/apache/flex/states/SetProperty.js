@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_states_SetProperty');
+goog.provide('org.apache.flex.states.SetProperty');
 
-goog.require('org_apache_flex_core_IDocument');
+goog.require('org.apache.flex.core.IDocument');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IDocument}
+ * @implements {org.apache.flex.core.IDocument}
  */
-org_apache_flex_states_SetProperty = function() {
+org.apache.flex.states.SetProperty = function() {
 };
 
 
@@ -31,17 +31,17 @@ org_apache_flex_states_SetProperty = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_states_SetProperty.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.states.SetProperty.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'SetProperty',
-                qName: 'org_apache_flex_states_SetProperty' }],
-      interfaces: [org_apache_flex_core_IDocument] };
+                qName: 'org.apache.flex.states.SetProperty' }],
+      interfaces: [org.apache.flex.core.IDocument] };
 
 
 /**
  * @param {Object} document The MXML object.
  * @param {?string=} opt_id The id.
  */
-org_apache_flex_states_SetProperty.prototype.setDocument = function(document, opt_id) {
+org.apache.flex.states.SetProperty.prototype.setDocument = function(document, opt_id) {
   opt_id = typeof opt_id !== 'undefined' ? opt_id : null;
   this.document = document;
 };
@@ -51,35 +51,35 @@ org_apache_flex_states_SetProperty.prototype.setDocument = function(document, op
  * @private
  * @type {Object} document The MXML object.
  */
-org_apache_flex_states_SetProperty.prototype.document_ = null;
+org.apache.flex.states.SetProperty.prototype.document_ = null;
 
 
 /**
  * @private
  * @type {string} name The target property name.
  */
-org_apache_flex_states_SetProperty.prototype.name_ = '';
+org.apache.flex.states.SetProperty.prototype.name_ = '';
 
 
 /**
  * @private
  * @type {?string} target The id of the object.
  */
-org_apache_flex_states_SetProperty.prototype.target_ = null;
+org.apache.flex.states.SetProperty.prototype.target_ = null;
 
 
 /**
  * @private
  * @type {Object} previousValue The value to revert to.
  */
-org_apache_flex_states_SetProperty.prototype.previousValue_ = null;
+org.apache.flex.states.SetProperty.prototype.previousValue_ = null;
 
 
 /**
  * @private
  * @type {Object} value The value to set.
  */
-org_apache_flex_states_SetProperty.prototype.value_ = null;
+org.apache.flex.states.SetProperty.prototype.value_ = null;
 
 
 /**
@@ -87,7 +87,7 @@ org_apache_flex_states_SetProperty.prototype.value_ = null;
  * @param {Object} properties The properties for the new object.
  * @return {Object} The new object.
  */
-org_apache_flex_states_SetProperty.prototype.initializeFromObject = function(properties) {
+org.apache.flex.states.SetProperty.prototype.initializeFromObject = function(properties) {
   var p;
 
   for (p in properties) {
@@ -98,16 +98,16 @@ org_apache_flex_states_SetProperty.prototype.initializeFromObject = function(pro
 };
 
 
-Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
-  /** @lends {org_apache_flex_states_SetProperty.prototype} */ {
+Object.defineProperties(org.apache.flex.states.SetProperty.prototype,
+  /** @lends {org.apache.flex.states.SetProperty.prototype} */ {
   /** @export */
   document: {
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     get: function() {
       return this.document_;
     },
 
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     set: function(value) {
       if (value != this.document_) {
         this.document_ = value;
@@ -116,12 +116,12 @@ Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
   },
   /** @export */
   name: {
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     get: function() {
       return this.name_;
     },
 
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     set: function(value) {
       if (value != this.name_) {
         this.name_ = value;
@@ -130,12 +130,12 @@ Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
   },
   /** @export */
   target: {
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     get: function() {
       return this.target_;
     },
 
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     set: function(value) {
       if (value != this.target_) {
         this.target_ = value;
@@ -144,12 +144,12 @@ Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
   },
   /** @export */
   previousValue: {
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     get: function() {
       return this.previousValue_;
     },
 
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     set: function(value) {
       if (value != this.previousValue_) {
         this.previousValue_ = value;
@@ -158,12 +158,12 @@ Object.defineProperties(org_apache_flex_states_SetProperty.prototype,
   },
   /** @export */
   value: {
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     get: function() {
       return this.value_;
     },
 
-    /** @this {org_apache_flex_states_SetProperty} */
+    /** @this {org.apache.flex.states.SetProperty} */
     set: function(value) {
       if (value != this.value_) {
         this.value_ = value;

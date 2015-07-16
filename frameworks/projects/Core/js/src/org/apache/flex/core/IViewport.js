@@ -13,29 +13,41 @@
  */
 
 /**
+ * org.apache.flex.core.IViewport
+ *
  * @fileoverview
+ *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IDataGridModel');
+goog.provide('org.apache.flex.core.IViewport');
 
-goog.require('org_apache_flex_core_ISelectionModel');
+goog.require('org.apache.flex.core.IBead');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_ISelectionModel}
+ * @extends {org.apache.flex.core.IBead}
  */
-org_apache_flex_core_IDataGridModel = function() {
+org.apache.flex.core.IViewport = function() {
 };
 
 
+Object.defineProperties(org.apache.flex.core.IViewport.prototype, {
+    /** @export */
+    model: {
+        set: function(value) {},
+        get: function() {}
+    }
+});
+
+
 /**
- * @const
+ * Metadata
+ *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IDataGridModel.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'IDataGridModel',
-                qName: 'org_apache_flex_core_IDataGridModel' }],
-      interfaces: [org_apache_flex_core_ISelectionModel] };
+org.apache.flex.core.IViewport.prototype.FLEXJS_CLASS_INFO =
+{ names: [{ name: 'IViewport', qName: 'org.apache.flex.core.IViewport'}],
+  interfaces: [org.apache.flex.core.IBead] };

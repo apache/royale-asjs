@@ -17,14 +17,14 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_IFactory');
+goog.provide('org.apache.flex.core.IFactory');
 
 
 
 /**
  * @interface
  */
-org_apache_flex_core_IFactory = function() {
+org.apache.flex.core.IFactory = function() {
 };
 
 
@@ -32,7 +32,7 @@ org_apache_flex_core_IFactory = function() {
  * @export
  * @return {Object} A new instance of the itemRenderer.
  */
-org_apache_flex_core_IFactory.prototype.newInstance = function() {};
+org.apache.flex.core.IFactory.prototype.newInstance = function() {};
 
 
 /**
@@ -40,6 +40,6 @@ org_apache_flex_core_IFactory.prototype.newInstance = function() {};
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_IFactory.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.IFactory.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'IFactory',
-                qName: 'org_apache_flex_core_IFactory' }] };
+                qName: 'org.apache.flex.core.IFactory' }] };

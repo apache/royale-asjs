@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-goog.provide('org_apache_flex_maps_google_Map');
+goog.provide('org.apache.flex.maps.google.Map');
 
-goog.require('org_apache_flex_core_IBeadModel');
-goog.require('org_apache_flex_maps_google_Geometry');
-goog.require('org_apache_flex_maps_google_LatLng');
-goog.require('org_apache_flex_maps_google_Marker');
-goog.require('org_apache_flex_maps_google_Place');
-goog.require('org_apache_flex_maps_google_models_MapModel');
+goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.maps.google.Geometry');
+goog.require('org.apache.flex.maps.google.LatLng');
+goog.require('org.apache.flex.maps.google.Marker');
+goog.require('org.apache.flex.maps.google.Place');
+goog.require('org.apache.flex.maps.google.models.MapModel');
 
 
 // IMPORTANT:
@@ -30,14 +30,14 @@ goog.require('org_apache_flex_maps_google_models_MapModel');
 
 /**
  * @constructor
- * @extends {org_apache_flex_core_UIBase}
+ * @extends {org.apache.flex.core.UIBase}
  */
-org_apache_flex_maps_google_Map = function() {
-  org_apache_flex_maps_google_Map.base(this, 'constructor');
+org.apache.flex.maps.google.Map = function() {
+  org.apache.flex.maps.google.Map.base(this, 'constructor');
   this.initialized = false;
 };
-goog.inherits(org_apache_flex_maps_google_Map,
-    org_apache_flex_core_UIBase);
+goog.inherits(org.apache.flex.maps.google.Map,
+    org.apache.flex.core.UIBase);
 
 
 /**
@@ -45,17 +45,17 @@ goog.inherits(org_apache_flex_maps_google_Map,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_maps_google_Map.prototype.
+org.apache.flex.maps.google.Map.prototype.
 FLEXJS_CLASS_INFO =
 { names: [{ name: 'Map',
-           qName: 'org_apache_flex_maps_google_Map' }],
+           qName: 'org.apache.flex.maps.google.Map' }],
     interfaces: [] };
 
 
 /**
  *
  */
-org_apache_flex_maps_google_Map.prototype.searchResults = null;
+org.apache.flex.maps.google.Map.prototype.searchResults = null;
 
 
 /**
@@ -63,10 +63,10 @@ org_apache_flex_maps_google_Map.prototype.searchResults = null;
  * @protected
  * @return {Object} The actual element to be parented.
  */
-org_apache_flex_maps_google_Map.prototype.createElement =
+org.apache.flex.maps.google.Map.prototype.createElement =
     function() {
 
-  var model = new org_apache_flex_maps_google_models_MapModel();
+  var model = new org.apache.flex.maps.google.models.MapModel();
   this.addBead(model);
 
   this.element = document.createElement('div');
@@ -79,17 +79,17 @@ org_apache_flex_maps_google_Map.prototype.createElement =
 };
 
 
-Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
+Object.defineProperties(org.apache.flex.maps.google.Map.prototype, {
     /** @export */
     token: {
-        /** @this {org_apache_flex_maps_google_Map} */
+        /** @this {org.apache.flex.maps.google.Map} */
         set: function(value) {
             this.token = value;
         }
     },
     /** @export */
     selectedMarker: {
-        /** @this {org_apache_flex_maps_google_Map} */
+        /** @this {org.apache.flex.maps.google.Map} */
         get: function() {
             return this._selectedMarker;
         }
@@ -99,7 +99,7 @@ Object.defineProperties(org_apache_flex_maps_google_Map.prototype, {
 
 /**
  */
-org_apache_flex_maps_google_Map.prototype.finishInitalization = function() {
+org.apache.flex.maps.google.Map.prototype.finishInitalization = function() {
   this.loadMap(37.333, -121.900, 12);
   this.initialized = true;
   this.dispatchEvent('ready');
@@ -112,7 +112,7 @@ org_apache_flex_maps_google_Map.prototype.finishInitalization = function() {
  * @param {number} centerLong center longitude.
  * @param {number} zoom zoom level.
  */
-org_apache_flex_maps_google_Map.prototype.loadMap =
+org.apache.flex.maps.google.Map.prototype.loadMap =
     function(centerLat, centerLong, zoom) {
   if (!this.initialized) {
     this.currentCenter = new window['google']['maps']['LatLng'](centerLat, centerLong);
@@ -132,7 +132,7 @@ org_apache_flex_maps_google_Map.prototype.loadMap =
  * @export
  * @param {Number} zoomLevel The level of magnification.
  */
-org_apache_flex_maps_google_Map.prototype.setZoom =
+org.apache.flex.maps.google.Map.prototype.setZoom =
     function(zoomLevel) {
   if (this.initialized) {
     this.map.setZoom(zoomLevel);
@@ -144,7 +144,7 @@ org_apache_flex_maps_google_Map.prototype.setZoom =
  * @export
  * @param {string} address The new center of the map.
  */
-org_apache_flex_maps_google_Map.prototype.centerOnAddress = function(address) {
+org.apache.flex.maps.google.Map.prototype.centerOnAddress = function(address) {
   if (!this.geocoder) this.geocoder = new window['google']['maps']['Geocoder']();
   this.geocoder.geocode({ 'address': address}, goog.bind(this.positionHandler, this));
 };
@@ -154,7 +154,7 @@ org_apache_flex_maps_google_Map.prototype.centerOnAddress = function(address) {
  * @export
  * @param {Object} location The new center of the map.
  */
-org_apache_flex_maps_google_Map.prototype.setCenter = function(location) {
+org.apache.flex.maps.google.Map.prototype.setCenter = function(location) {
   this.currentCenter = new window['google']['maps']['LatLng'](location.lat, location.lng);
   this.map.setCenter(this.currentCenter);
 };
@@ -163,7 +163,7 @@ org_apache_flex_maps_google_Map.prototype.setCenter = function(location) {
 /**
  * @export
  */
-org_apache_flex_maps_google_Map.prototype.markCurrentLocation = function() {
+org.apache.flex.maps.google.Map.prototype.markCurrentLocation = function() {
   this.createMarker(this.currentCenter);
 };
 
@@ -172,7 +172,7 @@ org_apache_flex_maps_google_Map.prototype.markCurrentLocation = function() {
  * @export
  * @param {string} address The address to locate and mark on the map.
  */
-org_apache_flex_maps_google_Map.prototype.markAddress =
+org.apache.flex.maps.google.Map.prototype.markAddress =
     function(address) {
   if (this.initialized) {
     if (!this.geocoder) this.geocoder = new window['google']['maps']['Geocoder']();
@@ -186,7 +186,7 @@ org_apache_flex_maps_google_Map.prototype.markAddress =
  * @param {Object} location A LatLng that denotes the position of the marker.
  * @return {Object} A marker object.
  */
-org_apache_flex_maps_google_Map.prototype.createMarker =
+org.apache.flex.maps.google.Map.prototype.createMarker =
     function(location) {
   var marker = new window['google']['maps']['Marker']({
     map: this.map,
@@ -201,7 +201,7 @@ org_apache_flex_maps_google_Map.prototype.createMarker =
  * @export
  * @param {string} placeName A place to search for.
  */
-org_apache_flex_maps_google_Map.prototype.nearbySearch =
+org.apache.flex.maps.google.Map.prototype.nearbySearch =
     function(placeName) {
   if (this.markers == null) this.markers = [];
   this.service = new window['google']['maps']['places']['PlacesService'](this.map);
@@ -214,7 +214,7 @@ org_apache_flex_maps_google_Map.prototype.nearbySearch =
 /**
  * @export
  */
-org_apache_flex_maps_google_Map.prototype.clearSearchResults =
+org.apache.flex.maps.google.Map.prototype.clearSearchResults =
 function() {
   if (this.markers) {
     for (var i = 0; i < this.markers.length; i++) {
@@ -229,9 +229,9 @@ function() {
  * @param {Object} marker The marker that was clicked.
  * @param {Object} event The mouse event for the marker click.
  */
-org_apache_flex_maps_google_Map.prototype.markerClicked =
+org.apache.flex.maps.google.Map.prototype.markerClicked =
 function(marker, event) {
-  var newMarker = new org_apache_flex_maps_google_Marker();
+  var newMarker = new org.apache.flex.maps.google.Marker();
   newMarker.position.lat = marker.position.lat();
   newMarker.position.lng = marker.position.lng();
   newMarker.title = marker.title;
@@ -239,7 +239,7 @@ function(marker, event) {
 
   this._selectedMarker = newMarker;
 
-  var newEvent = new org_apache_flex_events_Event('markerClicked');
+  var newEvent = new org.apache.flex.events.Event('markerClicked');
   newEvent.marker = newMarker;
   this.dispatchEvent(newEvent);
 };
@@ -249,7 +249,7 @@ function(marker, event) {
  * @param {Array} results The found location(s).
  * @param {string} status Status of the call.
  */
-org_apache_flex_maps_google_Map.prototype.positionHandler =
+org.apache.flex.maps.google.Map.prototype.positionHandler =
     function(results, status) {
   if (status == window['google']['maps']['GeocoderStatus']['OK']) {
     this.currentCenter = results[0]['geometry']['location'];
@@ -268,7 +268,7 @@ org_apache_flex_maps_google_Map.prototype.positionHandler =
  * @param {Array} results The found location(s).
  * @param {string} status Status of the call.
  */
-org_apache_flex_maps_google_Map.prototype.geoCodeHandler =
+org.apache.flex.maps.google.Map.prototype.geoCodeHandler =
     function(results, status) {
   if (status == window['google']['maps']['GeocoderStatus']['OK']) {
     this.currentCenter = results[0]['geometry']['location'];
@@ -287,12 +287,12 @@ org_apache_flex_maps_google_Map.prototype.geoCodeHandler =
  * @param {Array} results The result of the search.
  * @param {string} status Status of the search.
  */
-org_apache_flex_maps_google_Map.prototype.searchResultHandler =
+org.apache.flex.maps.google.Map.prototype.searchResultHandler =
 function(results, status) {
   this.searchResults = [];
   if (status == window['google']['maps']['places']['PlacesServiceStatus']['OK']) {
     for (var i = 0; i < results.length; i++) {
-      var place = new org_apache_flex_maps_google_Place();
+      var place = new org.apache.flex.maps.google.Place();
       place.geometry.location.lat = results[i]['geometry']['location']['lat'];
       place.geometry.location.lng = results[i]['geometry']['location']['lng'];
       place.icon = results[i]['icon'];
@@ -316,11 +316,11 @@ function(results, status) {
 /**
  * Handles changes in map center
  */
-org_apache_flex_maps_google_Map.prototype.centerChangeHandler =
+org.apache.flex.maps.google.Map.prototype.centerChangeHandler =
     function() {
   this.currentCenter = this.map['getCenter']();
 
-  var newEvent = new org_apache_flex_events_Event('centered');
+  var newEvent = new org.apache.flex.events.Event('centered');
   this.dispatchEvent(newEvent);
 };
 
@@ -328,11 +328,11 @@ org_apache_flex_maps_google_Map.prototype.centerChangeHandler =
 /**
  * Handles changes in map bounds
  */
-org_apache_flex_maps_google_Map.prototype.boundsChangeHandler =
+org.apache.flex.maps.google.Map.prototype.boundsChangeHandler =
     function() {
   this.currentCenter = this.map['getCenter']();
 
-  var newEvent = new org_apache_flex_events_Event('boundsChanged');
+  var newEvent = new org.apache.flex.events.Event('boundsChanged');
   this.dispatchEvent(newEvent);
 };
 
@@ -340,10 +340,10 @@ org_apache_flex_maps_google_Map.prototype.boundsChangeHandler =
 /**
  * Handles changes in map bounds
  */
-org_apache_flex_maps_google_Map.prototype.zoomChangeHandler =
+org.apache.flex.maps.google.Map.prototype.zoomChangeHandler =
     function() {
   this.currentCenter = this.map['getCenter']();
 
-  var newEvent = new org_apache_flex_events_Event('zoomChanged');
+  var newEvent = new org.apache.flex.events.Event('zoomChanged');
   this.dispatchEvent(newEvent);
 };

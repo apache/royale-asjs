@@ -11,25 +11,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * org_apache_flex_charts_core_IChartDataGroup
+ * org.apache.flex.charts.core.IChartDataGroup
  *
  * @fileoverview
  *
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_charts_core_IChartDataGroup');
+goog.provide('org.apache.flex.charts.core.IChartDataGroup');
 
-goog.require('org_apache_flex_core_IFactory');
-goog.require('org_apache_flex_core_IItemRendererParent');
+goog.require('org.apache.flex.core.IFactory');
+goog.require('org.apache.flex.core.IItemRendererParent');
 
 
 
 /**
  * @interface
- * @extends {org_apache_flex_core_IItemRendererParent}
+ * @extends {org.apache.flex.core.IItemRendererParent}
  */
-org_apache_flex_charts_core_IChartDataGroup = function() {
+org.apache.flex.charts.core.IChartDataGroup = function() {
 };
 
 
@@ -38,7 +38,7 @@ org_apache_flex_charts_core_IChartDataGroup = function() {
  * @param {number} index The position of the itemRenderer within the series.
  * @return {Object} The itemRenderer matching the series and index.
  */
-org_apache_flex_charts_core_IChartDataGroup.prototype.getItemRendererForSeriesAtIndex =
+org.apache.flex.charts.core.IChartDataGroup.prototype.getItemRendererForSeriesAtIndex =
   function(series, index) {};
 
 
@@ -47,7 +47,7 @@ org_apache_flex_charts_core_IChartDataGroup.prototype.getItemRendererForSeriesAt
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_charts_core_IChartDataGroup.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'IChartDataGroup', qName: 'org_apache_flex_charts_core_IChartDataGroup'}],
-    interfaces: [org_apache_flex_core_IItemRendererParent]
+org.apache.flex.charts.core.IChartDataGroup.prototype.FLEXJS_CLASS_INFO = {
+    names: [{ name: 'IChartDataGroup', qName: 'org.apache.flex.charts.core.IChartDataGroup'}],
+    interfaces: [org.apache.flex.core.IItemRendererParent]
   };

@@ -58,32 +58,40 @@ package org.apache.flex.charts.beads
 		{
 			_strand = value;
 			
-			if (border) {
-				IParent(_strand).removeElement(border);
-			}
-            
-			var listModel:ISelectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+			var listModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			if (haxis && _horizontalAxisGroup == null) {
-				var m1:Class = ValuesManager.valuesImpl.getValue(value, "iHorizontalAxisGroup");
+				var m1:Class = ValuesManager.valuesImpl.getValue(_strand, "iHorizontalAxisGroup");
 				_horizontalAxisGroup = new m1();
 				haxis.axisGroup = _horizontalAxisGroup;
-				IParent(_strand).addElement(_horizontalAxisGroup);
+				IParent(_strand).addElement(_horizontalAxisGroup, false);
 			}
 			
 			var vaxis:IVerticalAxisBead = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			if (vaxis && _verticalAxisGroup == null) {
-				var m2:Class = ValuesManager.valuesImpl.getValue(value, "iVerticalAxisGroup");
+				var m2:Class = ValuesManager.valuesImpl.getValue(_strand, "iVerticalAxisGroup");
 				_verticalAxisGroup = new m2();
 				vaxis.axisGroup = _verticalAxisGroup;
-				IParent(_strand).addElement(_verticalAxisGroup);
+				IParent(_strand).addElement(_verticalAxisGroup, false);
 			}
 			
 			super.strand = value;
-						
-			IEventDispatcher(_strand).dispatchEvent( new Event("viewCreated") );
+		}
+		
+		override protected function completeSetup():void
+		{
+			super.completeSetup();
+			
+			if (border) {
+				IParent(_strand).removeElement(border);
+			}
+		}
+		
+		override protected function viewCreatedHandler(event:Event):void
+		{
+			// prevented because itemsCreated needs to happen first
 		}
 		
 		public function get horizontalAxisGroup():IAxisGroup
@@ -112,9 +120,9 @@ package org.apache.flex.charts.beads
 			dataGroup.removeAllElements();
 		}
 		
-		override protected function createViewport(metrics:UIMetrics):void
+		override protected function resizeViewport():void
 		{
-			super.createViewport(metrics);
+			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;
@@ -156,6 +164,9 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment - metrics.left - metrics.right;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
+			
+			viewport.updateSize();
+			viewport.updateContentAreaSize();
 		}
 	}
 }

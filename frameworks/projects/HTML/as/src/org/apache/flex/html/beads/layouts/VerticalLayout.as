@@ -101,7 +101,7 @@ package org.apache.flex.html.beads.layouts
 			
 			// this layout will use and modify the IViewportMode
 			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
-			viewportModel = viewport.model;
+			if (viewport) viewportModel = viewport.model;
 
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;

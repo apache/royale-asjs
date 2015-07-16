@@ -17,23 +17,23 @@
  * @suppress {checkTypes}
  */
 
-goog.provide('org_apache_flex_core_FormatBase');
+goog.provide('org.apache.flex.core.FormatBase');
 
-goog.require('org_apache_flex_core_IFormatBead');
-goog.require('org_apache_flex_events_EventDispatcher');
+goog.require('org.apache.flex.core.IFormatBead');
+goog.require('org.apache.flex.events.EventDispatcher');
 
 
 
 /**
  * @constructor
- * @implements {org_apache_flex_core_IFormatBead}
- * @extends {org_apache_flex_events_EventDispatcher}
+ * @implements {org.apache.flex.core.IFormatBead}
+ * @extends {org.apache.flex.events.EventDispatcher}
  */
-org_apache_flex_core_FormatBase = function() {
+org.apache.flex.core.FormatBase = function() {
   goog.base(this);
 };
-goog.inherits(org_apache_flex_core_FormatBase,
-    org_apache_flex_events_EventDispatcher);
+goog.inherits(org.apache.flex.core.FormatBase,
+    org.apache.flex.events.EventDispatcher);
 
 
 /**
@@ -41,48 +41,48 @@ goog.inherits(org_apache_flex_core_FormatBase,
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org_apache_flex_core_FormatBase.prototype.FLEXJS_CLASS_INFO =
+org.apache.flex.core.FormatBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'FormatBase',
-                qName: 'org_apache_flex_core_FormatBase' }],
-      interfaces: [org_apache_flex_core_IFormatBead] };
+                qName: 'org.apache.flex.core.FormatBase' }],
+      interfaces: [org.apache.flex.core.IFormatBead] };
 
 
 /**
  * @private
- * @type {org_apache_flex_core_IStrand}
+ * @type {org.apache.flex.core.IStrand}
  */
-org_apache_flex_core_FormatBase.prototype.strand_ = null;
+org.apache.flex.core.FormatBase.prototype.strand_ = null;
 
 
 /**
  * @type {string}
  */
-org_apache_flex_core_FormatBase.prototype._propertyName = 'text';
+org.apache.flex.core.FormatBase.prototype._propertyName = 'text';
 
 
 /**
  * @type {string}
  */
-org_apache_flex_core_FormatBase.prototype._eventName = 'textChange';
+org.apache.flex.core.FormatBase.prototype._eventName = 'textChange';
 
 
 /**
  * @type {string}
  */
-org_apache_flex_core_FormatBase.prototype._formattedResult = '';
+org.apache.flex.core.FormatBase.prototype._formattedResult = '';
 
 
-Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
+Object.defineProperties(org.apache.flex.core.FormatBase.prototype, {
     /** @export */
     strand: {
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         set: function(value) {
             this.strand_ = value;
         }
     },
     /** @export */
     propertyValue: {
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         get: function() {
             var value = this.strand_[this.propertyName];
             return value;
@@ -90,35 +90,35 @@ Object.defineProperties(org_apache_flex_core_FormatBase.prototype, {
     },
     /** @export */
     propertyName: {
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         get: function() {
             if (this._propertyName == null) {
               this._propertyName = 'text';
             }
             return this._propertyName;
         },
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         set: function(value) {
             this._propertyName = value;
         }
     },
     /** @export */
     eventName: {
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         get: function() {
             if (this._eventName == null) {
                  return this._propertyName + 'Change';
             }
             return this._eventName;
         },
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         set: function(value) {
             this._eventName = value;
         }
     },
     /** @export */
     formattedString: {
-        /** @this {org_apache_flex_core_FormatBase} */
+        /** @this {org.apache.flex.core.FormatBase} */
         get: function() {
              return null;
         }
