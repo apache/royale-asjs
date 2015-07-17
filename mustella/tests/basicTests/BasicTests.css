@@ -76,6 +76,7 @@ mx|Button {
 
 mx|CheckBox {
     color: #000000;
+	padding-left: 0px;
     font-size: 10px;
     font-weight: "normal";
 }
