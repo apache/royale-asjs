@@ -60,7 +60,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}" />
  
-    <target name="main" depends="check-compile-env,clean,prepare,compile" 
+    <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
         description="Clean build of all SWCs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
@@ -150,6 +150,10 @@
 
     <target name="js" depends="compile-asjs, lint-js" />
     
+    <target name="fonts">
+        <ant dir="${basedir}/fontsrc" target="main"/>
+    </target>
+    
     <target name="other.locales" description ="Builds resource SWCs for all locales">
         <!--<ant dir="${basedir}/projects/FlexJSUI" target="other.locales"/>-->
     </target>
@@ -185,6 +189,7 @@
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
+        <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
         <delete includeemptydirs="true" failonerror="false">

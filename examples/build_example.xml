@@ -61,6 +61,11 @@
                 <include name="**/*.jpg" />
             </fileset>
         </copy>
+        <copy todir="${basedir}/bin-debug/fonts">
+            <fileset dir="${FLEX_HOME}/frameworks/fonts">
+                <include name="**/*.swf" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="compileair" description="Compiles ${example}">
