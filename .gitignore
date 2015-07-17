@@ -25,6 +25,7 @@ dist
 test-output
 build.log
 release
+fonts
 out
 gen
 bin-debug
