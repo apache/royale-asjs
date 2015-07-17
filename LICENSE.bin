@@ -1,0 +1,13 @@
+Below are the licenses for components included in the binary distribution.
+
+------------------------------------------------------------------------------------------
+
+frameworks/fonts/flat-ui-icons-regular.eot
+frameworks/fonts/flat-ui-icons-regular.ttf
+frameworks/fonts/flat-ui-icons-regular.svg
+frameworks/fonts/flat-ui-icons-regular.woff
+
+This product bundles designmodo’s (http://designmodo.com/flat-free/)
+Flat UI glyph fonts available under an MIT license. For details, see 
+
+frameworks/fonts/README.md

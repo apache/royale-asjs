@@ -201,3 +201,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
+--------------------------------------------------------------------------------
+
+APACHE FLEXJS SUBCOMPONENTS:
+
+The Apache FlexJS SDK includes a number of subcomponents with
+separate copyright notices and license terms. Your use of the source
+code for the these subcomponents is subject to the terms and
+conditions of the following licenses. 
+
+Portions of frameworks/projects/HTML/src/defaults.css is based on
+designmodo’s (http://designmodo.com/flat-free/) Flat UI which is 
+available under an MIT license.  
