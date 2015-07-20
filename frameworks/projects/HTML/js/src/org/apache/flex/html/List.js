@@ -158,7 +158,12 @@ org.apache.flex.html.List.prototype.internalChildren =
   var dg = listView.dataGroup;
   var items = null;
   if (dg.renderers) {
-    items = dg.renderers;
+    items = [];
+    for (var i = 0; i < dg.renderers.length; i++) {
+      var r = dg.renderers[i];
+      var element = r.element;
+      items.push(element);
+    }
   }
   return items;
 };

@@ -80,6 +80,8 @@ package org.apache.flex.html.beads
 			return columns;
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -90,6 +92,7 @@ package org.apache.flex.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
+			_strand = value;
 			super.strand = value;
 			
 			// see if there is a presentation model already in place. if not, add one.

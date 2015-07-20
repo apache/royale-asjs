@@ -59,6 +59,8 @@ package org.apache.flex.html
 			super();
 		}
 		
+		private var _strand:IStrand;
+		
         [Bindable("strandChanged")]
         /**
          *  An MXMLBeadViewBase doesn't create its children until it is added to

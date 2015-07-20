@@ -56,7 +56,7 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
     contentView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this._strand.contentArea;
+            return this.strand_.contentArea;
         }
     },
     /** @export */
@@ -68,16 +68,16 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
             if (!this.titleBar_)
               this.titleBar_ = new org.apache.flex.html.TitleBar();
 
-            this._strand.titleBar = this.titleBar_;
+            this.strand_.titleBar = this.titleBar_;
             this.titleBar_.id = 'titleBar';
-            this.titleBar_.model = this._strand.model;
+            this.titleBar_.model = this.strand_.model;
 
-            this._strand.controlBar =
+            this.strand_.controlBar =
                 new org.apache.flex.html.ControlBar();
 
             // listen for changes to the strand's model so items can be changed
             // in the view
-            this._strand.model.addEventListener('titleChange',
+            this.strand_.model.addEventListener('titleChange',
                 goog.bind(this.changeHandler, this));
         }
     },
@@ -101,7 +101,7 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
  */
 org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
-  var strand = this._strand;
+  var strand = this.strand_;
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
@@ -114,7 +114,7 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     this.titleBar_.title = strand.model.title;
   }
 
-  var p = this._strand.positioner;
+  var p = this.strand_.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.width;
     w -= p.offsetWidth - p.clientWidth;

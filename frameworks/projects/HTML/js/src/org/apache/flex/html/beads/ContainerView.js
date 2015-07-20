@@ -48,13 +48,13 @@ org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @protected
+ * @private
  * @type {Object}
  * This is also defined as protected on BeadViewBase, but GCC
  * doesn't seem to allow the Object.defineProperties to use it
  * without re-declaring it here.
  */
-org.apache.flex.html.beads.ContainerView.prototype._strand = null;
+org.apache.flex.html.beads.ContainerView.prototype.strand_ = null;
 
 
 /**
@@ -62,11 +62,11 @@ org.apache.flex.html.beads.ContainerView.prototype._strand = null;
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.addOtherListeners = function() {
-  this._strand.addEventListener('childrenAdded',
+  this.strand_.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('layoutNeeded',
+  this.strand_.addEventListener('layoutNeeded',
      goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('itemsCreated',
+  this.strand_.addEventListener('itemsCreated',
      goog.bind(this.changeHandler, this));
 };
 
@@ -77,11 +77,11 @@ org.apache.flex.html.beads.ContainerView.
 org.apache.flex.html.beads.ContainerView.
     prototype.changeHandler = function(event) {
   if (this.layout_ == null) {
-    this.layout_ = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
+    this.layout_ = this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout);
     if (this.layout_ == null) {
-      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
       this.layout_ = new m3();
-      this._strand.addBead(this.layout_);
+      this.strand_.addBead(this.layout_);
       //this.layout_.strand = this.strand_;
     }
   }
@@ -110,14 +110,16 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     contentView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this._strand;
+            return this.strand_;
         }
     },
     /** @export */
     resizableView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this._strand;
+            return this.strand_;
+        },
+        set: function(value) {
         }
     },
     /** @export */
@@ -125,18 +127,18 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
-            if (this._strand.isWidthSizedToContent() &&
-                this._strand.isHeightSizedToContent())
+            if (this.strand_.isWidthSizedToContent() &&
+                this.strand_.isHeightSizedToContent())
               this.addOtherListeners();
             else {
-              this._strand.addEventListener('heightChanged',
+              this.strand_.addEventListener('heightChanged',
                   goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('widthChanged',
+              this.strand_.addEventListener('widthChanged',
                   goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('sizeChanged',
+              this.strand_.addEventListener('sizeChanged',
                   goog.bind(this.sizeChangeHandler, this));
-              if (!isNaN(this._strand.explicitWidth) &&
-                  !isNaN(this._strand.explicitHeight))
+              if (!isNaN(this.strand_.explicitWidth) &&
+                  !isNaN(this.strand_.explicitHeight))
                 this.addOtherListeners();
             }
          }
