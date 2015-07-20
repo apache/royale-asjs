@@ -21,8 +21,8 @@ package org.apache.flex.html.beads
 	import flash.display.Graphics;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -105,14 +105,9 @@ package org.apache.flex.html.beads
             value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
             if (value != null)
                 borderColor = CSSUtils.toColor(value);
-            value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
+            value = ValuesManager.valuesImpl.getValue(_strand, "border-width", state);
             if (value != null)
                 borderThickness = value as uint;
-            if (borderStyle == "none")
-            {
-                borderStyle = "solid";
-                borderThickness = 0;
-            }
             
             var borderRadius:String;
             var borderEllipseWidth:Number = NaN;
@@ -131,10 +126,70 @@ package org.apache.flex.html.beads
                         borderEllipseHeight = CSSUtils.toNumber(arr[1]);
                 } 
             }
-            SolidBorderUtil.drawBorder(g, 
-                0, 0, w, h,
-                borderColor, null, borderThickness, 1,
-                borderEllipseWidth, borderEllipseHeight);
+            if (borderStyle == "none")
+            {
+                var n:int;
+                var values:Array;
+                var colorTop:uint;
+                var colorLeft:uint;
+                var colorRight:uint;
+                var colorBottom:uint;
+                var widthTop:int = -1;
+                var widthLeft:int = -1;
+                var widthBottom:int = -1;
+                var widthRight:int = -1;
+                value = ValuesManager.valuesImpl.getValue(_strand, "border-top", state);
+                if (value != null)
+                {
+                    values = value.split(" ");
+                    n = values.length;
+                    widthTop = CSSUtils.toNumber(values[0]);
+                    // assume solid for now
+                    if (n > 2)
+                        colorTop = CSSUtils.toColorWithAlpha(values[2]);
+                }
+                value = ValuesManager.valuesImpl.getValue(_strand, "border-left", state);
+                if (value != null)
+                {
+                    values = value.split(" ");
+                    n = values.length;
+                    widthLeft = CSSUtils.toNumber(values[0]);
+                    // assume solid for now
+                    if (n > 2)
+                        colorLeft = CSSUtils.toColorWithAlpha(values[2]);
+                }
+                value = ValuesManager.valuesImpl.getValue(_strand, "border-bottom", state);
+                if (value != null)
+                {
+                    values = value.split(" ");
+                    n = values.length;
+                    widthBottom = CSSUtils.toNumber(values[0]);
+                    // assume solid for now
+                    if (n > 2)
+                        colorBottom = CSSUtils.toColorWithAlpha(values[2]);
+                }
+                value = ValuesManager.valuesImpl.getValue(_strand, "border-right", state);
+                if (value != null)
+                {
+                    values = value.split(" ");
+                    n = values.length;
+                    widthRight = CSSUtils.toNumber(values[0]);
+                    // assume solid for now
+                    if (n > 2)
+                        colorRight = CSSUtils.toColorWithAlpha(values[2]);
+                }
+                SolidBorderUtil.drawDetailedBorder(g, 0, 0, w, h,
+                    colorTop, colorRight, colorBottom, colorLeft,
+                    widthTop, widthRight, widthBottom, widthLeft);
+            }
+            else
+            {
+                borderThickness = 0;
+                SolidBorderUtil.drawBorder(g, 
+                    0, 0, w, h,
+                    borderColor, null, borderThickness, 1,
+                    borderEllipseWidth, borderEllipseHeight);
+            }
 		}
 	}
 }

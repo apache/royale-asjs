@@ -36,7 +36,8 @@ public class SolidBorderUtil
 {
     /**
      *  Draw a solid color border as specified.  Will fill with
-     *  the backgroundColor if specified.
+     *  the backgroundColor if specified.  The border draws
+     *  inside with given width/height.
      * 
      *  @param g The flash.display.DisplayObject#graphics
      *  @param x The x position
@@ -94,5 +95,82 @@ public class SolidBorderUtil
             g.endFill();
         }
 	}
+    
+    /**
+     *  Draw a solid color border as specified.  Only square corners
+     *  are supported as the real usage for this is to handle
+     *  CSS triangles.  The border is drawn around the given
+     *  width and height.
+     * 
+     *  @param g The flash.display.DisplayObject#graphics
+     *  @param x The x position
+     *  @param y The y position
+     *  @param width The width 
+     *  @param height The height 
+     *  @param colorTop The rgba color (alpha is in highest order byte)
+     *  @param colorRight The rgba color
+     *  @param colorBottom The rgba color
+     *  @param colorLeft The rgba color
+     *  @param backgroundColor The optional fill color
+     *  @param thicknessTop The thickness of the border
+     *  @param thicknessRight The thickness of the border
+     *  @param thicknessBottom The thickness of the border
+     *  @param thicknessLeft The thickness of the border
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public static function drawDetailedBorder(g:Graphics, x:Number, y:Number, 
+                                      width:Number, height:Number,
+                                      colorTop:uint, colorRight:uint, colorBottom:uint, colorLeft:uint,
+                                      thicknessTop:int = 0, thicknessRight:int = 0, thicknessBottom:int = 0, thicknessLeft:int = 0  
+                                      ):void
+    {
+        g.lineStyle();  // don't draw the line, it tends to get aligned on half-pixels
+        
+        if (thicknessTop > 0)
+        {
+            g.beginFill(colorTop & 0xFFFFFF, colorTop >> 24 / 255);
+            g.moveTo(-thicknessLeft, -thicknessTop);
+            g.lineTo(width + thicknessRight, -thicknessTop);
+            g.lineTo(width, 0);
+            g.lineTo(0, 0);
+            g.lineTo(-thicknessLeft, -thicknessTop);
+            g.endFill();
+        }
+        if (thicknessLeft > 0)
+        {
+            g.beginFill(colorLeft & 0xFFFFFF, colorLeft >> 24 / 255);
+            g.moveTo(-thicknessLeft, -thicknessTop);
+            g.lineTo(0, 0);
+            g.lineTo(0, height);
+            g.lineTo(-thicknessLeft, height + thicknessBottom);
+            g.lineTo(-thicknessLeft, -thicknessTop);
+            g.endFill();
+        }
+        if (thicknessRight > 0)
+        {
+            g.beginFill(colorRight & 0xFFFFFF, colorRight >> 24 / 255);
+            g.moveTo(width + thicknessRight, -thicknessTop);
+            g.lineTo(width + thicknessRight, height + thicknessBottom);
+            g.lineTo(width, height);
+            g.lineTo(width, 0);
+            g.lineTo(width + thicknessRight, -thicknessTop);
+            g.endFill();
+        }
+        if (thicknessBottom > 0)
+        {
+            g.beginFill(colorBottom & 0xFFFFFF, colorBottom >> 24 / 255);
+            g.moveTo(-thicknessLeft, height + thicknessBottom);
+            g.lineTo(0, height);
+            g.lineTo(width, height);
+            g.lineTo(width + thicknessRight, height + thicknessBottom);
+            g.lineTo(-thicknessLeft, height + thicknessBottom);
+            g.endFill();
+        }
+    }
+
 }
 }

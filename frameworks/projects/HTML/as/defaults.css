@@ -228,6 +228,48 @@ DateField {
     IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatMMDDYYYYBead");
 }
 
+.dropdown-menu {
+  z-index: 1000;
+  min-width: 220px;
+  padding: 0;
+  margin-top: 9px;
+  font-size: 14px;
+  background-color: #f3f4f5;
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+  }
+.dropdown-menu-divider {
+  height: 2px;
+  margin: 3px 0;
+  overflow: hidden;
+  background-color: rgba(202, 206, 209, .5);
+  }
+.dropdown-menu-item-renderer {
+  padding: 8px 16px;
+  line-height: 1.429;
+  color: #606d7a;
+}
+
+.dropdown-toggle-open-btn {
+  color: #fff;
+  background-color: #48c9b0;
+  border-color: #48c9b0;
+  }
+  
+.dropdown-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-top: 8px solid;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  -webkit-transition: border-color .25s, color .25s;
+          transition: border-color .25s, color .25s;
+  }
+
 HContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");

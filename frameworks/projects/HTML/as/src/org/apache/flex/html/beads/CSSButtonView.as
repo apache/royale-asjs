@@ -114,7 +114,7 @@ package org.apache.flex.html.beads
 			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
 			if (value != null)
 				borderColor = CSSUtils.toColor(value);
-			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
+			value = ValuesManager.valuesImpl.getValue(_strand, "border-width", state);
 			if (value != null)
 				borderThickness = value as uint;
             if (borderStyle == "none")
