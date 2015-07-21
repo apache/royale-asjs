@@ -146,6 +146,10 @@ package org.apache.flex.charts.beads
 			// in order to draw or create the labels, need to know when the series has been created.
 			IEventDispatcher(value).addEventListener("layoutComplete",handleItemsCreated);
 		}
+        override public function get strand():IStrand
+        {
+            return super.strand;
+        }
 		
 		/**
 		 * @private
