@@ -22,6 +22,7 @@ goog.provide('org.apache.flex.charts.core.ChartBase');
 
 goog.require('org.apache.flex.charts.core.IChart');
 goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.events.IEventDispatcher');
 goog.require('org.apache.flex.html.List');
 
 
@@ -47,7 +48,8 @@ goog.inherits(
  * @type {Object.<string, Array.<Object>>}
  */
 org.apache.flex.charts.core.ChartBase.prototype.FLEXJS_CLASS_INFO = {
-    names: [{ name: 'ChartBase', qName: 'org.apache.flex.charts.core.ChartBase'}]
+    names: [{ name: 'ChartBase', qName: 'org.apache.flex.charts.core.ChartBase'}],
+    interfaces: [org.apache.flex.events.IEventDispatcher]
   };
 
 
