@@ -101,6 +101,34 @@ org.apache.flex.html.beads.layouts.TileLayout.
   for (i = 0; i < n; i++)
   {
     child = children[i].flexjs_wrapper;
+    if (!child.visible) realN--;
+  }
+
+  xpos = 0;
+  ypos = 0;
+  useWidth = this.columnWidth;
+  useHeight = this.rowHeight;
+
+  if (isNaN(useWidth)) useWidth = Math.floor(this.strand_.width / this.numColumns); // + gap
+  if (isNaN(useHeight)) {
+    // given the width and total number of items, how many rows?
+    var numRows = Math.floor(realN / this.numColumns);
+    useHeight = Math.floor(this.strand_.height / numRows);
+  }
+
+  for (i = 0; i < n; i++)
+  {
+    child = children[i].flexjs_wrapper;
+    if (!child.visible) continue;
+    child.positioner.internalDisplay = 'inline-block';
+    child.width = useWidth;
+    child.height = useHeight;
+  }
+/*
+  var realN = n;
+  for (i = 0; i < n; i++)
+  {
+    child = children[i].flexjs_wrapper;
     if (!child.get_visible()) realN--;
   }
 
@@ -133,4 +161,5 @@ org.apache.flex.html.beads.layouts.TileLayout.
       ypos += useHeight;
     }
   }
+*/
 };

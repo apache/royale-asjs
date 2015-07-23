@@ -103,14 +103,12 @@ package org.apache.flex.html.beads
 		
 		protected function initCompleteHandler(event:Event):void
 		{
-			trace("initCompleteHandler: completeSetup for "+UIBase(_strand).id);
 			// if the host component is not being sized by percentage, go ahead and complete the setup.
 			if (isNaN((host as UIBase).percentHeight) && isNaN((host as UIBase).percentWidth)) {
 				completeSetup();
 				performLayout(event);
 			}
 			else {
-				trace(" -- deferring setup for "+UIBase(_strand).id);
 				// otherwise, wait until the size has been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
 			}
@@ -118,7 +116,6 @@ package org.apache.flex.html.beads
 		
 		protected function deferredSizeHandler(event:Event):void
 		{
-			trace("deferredSizeHandler ("+event.type+"): "+UIBase(_strand).id);
 			host.removeEventListener(event.type, deferredSizeHandler);
 			completeSetup();
 			performLayout(event);
@@ -204,6 +201,7 @@ package org.apache.flex.html.beads
 			
 			if (layout) {
 				layout.layout();
+				determineContentSizeFromChildren();
 			}
 			
 			adjustSizeAfterLayout();
@@ -213,7 +211,7 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = _strand as UIBase;
 			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
+						
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
 				host.setWidthAndHeight(viewportModel.contentWidth+metrics.left+metrics.right, 
 					viewportModel.contentHeight+metrics.top+metrics.bottom, false);
@@ -236,6 +234,28 @@ package org.apache.flex.html.beads
 				viewport.updateSize();
 				viewport.updateContentAreaSize();
 			}
+		}
+		
+		protected function determineContentSizeFromChildren():void
+		{
+			// pass through all of the children and determine the maxWidth and maxHeight
+			// note: this is not done on the JavaScript side because the browser handles
+			// this automatically.
+			var maxWidth:Number = 0;
+			var maxHeight:Number = 0;
+			var num:Number = contentView.numElements;
+			
+			for (var i:int=0; i < num; i++) {
+				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
+				var childXMax:Number = child.x + child.width;
+				var childYMax:Number = child.y + child.height;
+				maxWidth = Math.max(maxWidth, childXMax);
+				maxHeight = Math.max(maxHeight, childYMax);
+			}
+			
+			viewportModel.contentWidth = Math.max(maxWidth,contentView.width);
+			viewportModel.contentHeight = Math.max(maxHeight,contentView.height);
 		}
 		
 		protected function resizeViewport():void

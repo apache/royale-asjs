@@ -56,6 +56,7 @@ org.apache.flex.html.Panel.prototype.addElement = function(c) {
   }
   else {
     this.contentArea.appendChild(c.element);
+    this.dispatchEvent('childrenAdded');
   }
   c.addedToParent();
 };
@@ -76,6 +77,7 @@ org.apache.flex.html.Panel.prototype.addElementAt =
     this.contentArea.insertBefore(c.element,
         children[index]);
     c.addedToParent();
+    this.dispatchEvent('childrenAdded');
   }
 };
 

@@ -26,6 +26,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
@@ -33,6 +34,8 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.ListView;
+	import org.apache.flex.html.beads.models.ViewportModel;
+	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.utils.BeadMetrics;
 	
 	public class ChartView extends ListView implements IBeadView
@@ -92,6 +95,7 @@ package org.apache.flex.charts.beads
 		override protected function viewCreatedHandler(event:Event):void
 		{
 			// prevented because itemsCreated needs to happen first
+			createViewport();
 		}
 		
 		public function get horizontalAxisGroup():IAxisGroup

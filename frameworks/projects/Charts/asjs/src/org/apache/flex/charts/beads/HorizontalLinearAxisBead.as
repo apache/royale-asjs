@@ -134,6 +134,8 @@ package org.apache.flex.charts.beads
 			_maximum = value;
 		}
 		
+		private var _strand:IStrand;
+		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -144,15 +146,16 @@ package org.apache.flex.charts.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
+			_strand = value;
 			super.strand = value;
 			
 			// in order to draw or create the labels, need to know when the series has been created.
 			IEventDispatcher(strand).addEventListener("layoutComplete",handleItemsCreated);
 		}
-        override public function get strand():IStrand
-        {
-            return super.strand;
-        }
+		override public function get strand():IStrand
+		{
+			return _strand;
+		}
 		
 		/**
 		 * @private

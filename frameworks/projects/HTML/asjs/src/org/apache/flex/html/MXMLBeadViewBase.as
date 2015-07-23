@@ -73,6 +73,7 @@ package org.apache.flex.html
          */
         override public function set strand(value:IStrand):void
         {
+			_strand = value;
             super.strand = value;
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);

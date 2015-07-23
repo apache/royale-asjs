@@ -77,9 +77,7 @@ package org.apache.flex.html.beads
 			// the ButtonBar is always matched to its size so it is
 			// important that the contentWidth/Height match the host's
 			// width/height
-			
-			trace("BBSize: "+UIBase(host).width);
-			
+						
 			viewportModel.contentWidth = UIBase(host).width;
 			viewportModel.contentHeight = UIBase(host).height;
 			

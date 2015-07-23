@@ -14,11 +14,7 @@
 
 goog.provide('org.apache.flex.html.supportClasses.ScrollingViewport');
 
-goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.core.IItemRendererFactory');
-goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.events.Event');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 
 
 
@@ -40,6 +36,27 @@ org.apache.flex.html.supportClasses.ScrollingViewport.prototype.FLEXJS_CLASS_INF
                 qName: 'org.apache.flex.html.supportClasses.ScrollingViewport' }]};
 
 
+/**
+ * @private
+ * @type {Object}
+ */
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.strand_ = null;
+
+
+/**
+ *
+ */
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.updateSize = function() {
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.updateContentAreaSize = function() {
+};
+
+
 
 Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.prototype, {
     /** @export */
@@ -51,6 +68,18 @@ Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.pr
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
             this.model_ = value;
+        }
+    },
+    /** @export */
+    strand: {
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        get: function() {
+            return this.strand_;
+        },
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        set: function(value) {
+            this.strand_ = value;
+            this.strand_.element.style['overflow'] = 'auto';
         }
     }
 });

@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.PanelView');
 
 goog.require('org.apache.flex.html.beads.ContainerView');
+goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 
 
 
@@ -51,14 +52,17 @@ org.apache.flex.html.beads.PanelView
                 qName: 'org.apache.flex.html.beads.PanelView'}]};
 
 
+/**
+ * @override
+ */
+org.apache.flex.html.beads.PanelView.
+    prototype.createContentView = function() {
+  var ca = new org.apache.flex.html.supportClasses.ContainerContentArea();
+  return ca;
+};
+
+
 Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
-    /** @export */
-    contentView: {
-        /** @this {org.apache.flex.html.beads.ContainerView} */
-        get: function() {
-            return this.strand_.contentArea;
-        }
-    },
     /** @export */
     strand: {
         /** @this {org.apache.flex.html.beads.PanelView} */

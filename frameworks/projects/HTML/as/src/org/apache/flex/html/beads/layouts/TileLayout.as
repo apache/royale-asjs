@@ -22,8 +22,6 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -66,25 +64,6 @@ package org.apache.flex.html.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;			
-		}
-		
-		private var _viewportModel:IViewportModel;
-		
-		/**
-		 *  The data that describes the viewport used by this layout.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get viewportModel():IViewportModel
-		{
-			return _viewportModel;
-		}
-		public function set viewportModel(value:IViewportModel):void
-		{
-			_viewportModel = value;
 		}
 		
 		private var _numColumns:Number = 4;
@@ -156,10 +135,6 @@ package org.apache.flex.html.beads.layouts
 			var p:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var area:UIBase = p.contentView as UIBase;
 			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = _strand.getBeadByType(IViewport) as IViewport;
-			if (viewport) viewportModel = viewport.model;
-			
 			var xpos:Number = 0;
 			var ypos:Number = 0;
 			var useWidth:Number = columnWidth;
@@ -210,17 +185,7 @@ package org.apache.flex.html.beads.layouts
 			
 			// Only return true if the contentView needs to be larger; that new
 			// size is stored in the model.
-			var sizeChanged:Boolean = false;
-			if (viewportModel != null) {
-				if (viewportModel.contentHeight != maxHeight) {
-					viewportModel.contentHeight = maxHeight;
-					sizeChanged = true;
-				}
-				if (viewportModel.contentWidth != maxWidth) {
-					viewportModel.contentWidth = maxWidth;
-					sizeChanged = true;
-				}
-			}
+			var sizeChanged:Boolean = true;
 			
 			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
 			

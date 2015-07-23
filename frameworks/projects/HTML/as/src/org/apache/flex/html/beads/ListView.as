@@ -152,7 +152,7 @@ package org.apache.flex.html.beads
 			
 			host.removeEventListener("childrenAdded", childrenChangedHandler);
 			host.removeEventListener("childrenAdded", performLayout);
-			host.addEventListener("itemsCreated", performLayout);
+			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
@@ -173,9 +173,16 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
+		protected function itemsCreatedHandler(event:Event):void
+		{
+			performLayout(event);
+		}
+		
+		/**
+		 * @private
+		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			// override if needed
 			performLayout(event);
 		}
 		

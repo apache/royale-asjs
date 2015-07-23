@@ -226,7 +226,7 @@ package org.apache.flex.html
 				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				addBead(itemRendererFactory);
 			}
-			IEventDispatcher(this).dispatchEvent(new Event("layoutNeeded"));
+//			IEventDispatcher(this).dispatchEvent(new Event("layoutNeeded"));
 		}
         
 	}

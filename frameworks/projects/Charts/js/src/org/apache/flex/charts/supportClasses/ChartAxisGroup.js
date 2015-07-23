@@ -69,6 +69,7 @@ org.apache.flex.charts.supportClasses.ChartAxisGroup.
  * @param {number} boxWidth The size of the area for the label.
  * @param {number} boxHeight The size of the area for the label.
  * @param {org.apache.flex.core.graphics.IStroke} tickFill The color of the path.
+ * @return {Object} The label.
  */
 org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawHorizontalTickLabel =
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
@@ -77,6 +78,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   label.text = text;
   label.x = xpos - label.width / 2;
   label.y = ypos;
+  return label;
 };
 
 
@@ -88,6 +90,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
  * @param {number} boxWidth The size of the area for the label.
  * @param {number} boxHeight The size of the area for the label.
  * @param {org.apache.flex.core.graphics.IStroke} tickFill The color of the path.
+ * @return {Object} The label.
  */
 org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawVerticalTickLabel =
 function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
@@ -96,6 +99,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
   label.text = text;
   label.x = xpos;
   label.y = ypos - label.height / 2;
+  return label;
 };
 
 
@@ -107,6 +111,7 @@ function(text, xpos, ypos, boxWidth, boxHeight, tickFill) {
  * @param {number} height The size of the area for the path.
  * @param {string} marks The path to draw.
  * @param {org.apache.flex.core.graphics.IStroke} tickStroke The color of the path.
+ * @return {Object} The tick path.
  */
 org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.drawTickMarks =
 function(originX, originY, width, height, marks, tickStroke) {
@@ -118,6 +123,7 @@ function(originX, originY, width, height, marks, tickStroke) {
   this.addElement(tickPath);
   tickPath.stroke = tickStroke;
   tickPath.drawPath(0, 0, marks);
+  return tickPath;
 };
 
 

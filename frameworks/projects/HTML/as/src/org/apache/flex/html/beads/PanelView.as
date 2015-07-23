@@ -148,7 +148,7 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = UIBase(_strand);
 			var viewportModel:IViewportModel = viewport.model;
-			
+						
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
