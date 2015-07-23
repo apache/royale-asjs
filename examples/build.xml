@@ -75,6 +75,7 @@
     
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/CordovaCameraExample"/>
+        <ant dir="${basedir}/ContainerTest"/>
         <ant dir="${basedir}/DataBindingTest"/>
         <ant dir="${basedir}/DataBindingTest_as"/>
         <ant dir="${basedir}/DataGridExample"/>
@@ -113,6 +114,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/CordovaCameraExample" target="clean"/>
+        <ant dir="${basedir}/ContainerTest" target="clean"/>
         <ant dir="${basedir}/DataBindingTest" target="clean"/>
         <ant dir="${basedir}/DataBindingTest_as" target="clean"/>
         <ant dir="${basedir}/DataGridExample" target="clean"/>
