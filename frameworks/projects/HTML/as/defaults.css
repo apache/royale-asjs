@@ -36,18 +36,6 @@
     background-color: #fff;
 }
 
-*:active
-{
-    font-family: "Arial";
-    font-size: 12px;
-}
-
-*:hover
-{
-    font-family: "Arial";
-    font-size: 12px;
-}
-
 .flexjs *, . flexjs *:before, . flexjs *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -229,6 +217,7 @@ DateField {
 }
 
 .dropdown-menu {
+  position: absolute;
   z-index: 1000;
   min-width: 220px;
   padding: 0;
@@ -238,6 +227,7 @@ DateField {
   border: none;
   border-radius: 4px;
   box-shadow: none;
+  list-style: none;
   }
 .dropdown-menu-divider {
   height: 2px;
@@ -248,10 +238,32 @@ DateField {
 .dropdown-menu-item-renderer {
   padding: 8px 16px;
   line-height: 1.429;
+  font-size: inherit;
   color: #606d7a;
+  background-color: transparent;
+}
+.dropdown-menu-item-renderer-selected {
+  padding: 8px 16px;
+  line-height: 1.875;
+  font-size: inherit;
+  color: #fff;
+  background-color: #1abc9c;
+}
+.dropdown-menu-item-renderer:hover {
+  font-size: inherit;
+  color: #55606c;
+  background-color: rgba(202, 206, 209, .5);
 }
 
 .dropdown-toggle-open-btn {
+  border-radius: 4px;
+  color: #fff;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  }
+  
+.dropdown-toggle-open-btn:hover {
+  border-radius: 4px;
   color: #fff;
   background-color: #48c9b0;
   border-color: #48c9b0;
@@ -259,6 +271,8 @@ DateField {
   
 .dropdown-caret {
   display: inline-block;
+  color: inherit;
+  background-color: inherit;
   width: 0;
   height: 0;
   margin-left: 5px;

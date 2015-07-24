@@ -96,7 +96,7 @@ package org.apache.flex.utils
         public static function toColorWithAlpha(value:Object):uint
         {
             if (!(value is String))
-                return uint(value);
+                return uint(value) | 0xFF000000; // css parser converted #rrggbb without alpha channel
             
             var c:int;
             var c2:int;
@@ -108,6 +108,8 @@ package org.apache.flex.utils
                     return uint("0x" + stringValue.charAt(1) + stringValue.charAt(1) +
                         stringValue.charAt(2) + stringValue.charAt(2) +
                         stringValue.charAt(3) + stringValue.charAt(3));
+                if (stringValue.length == 7)
+                    return uint("0xFF" + stringValue.substr(1));
                 return uint("0x" + stringValue.substr(1));
             }
             else if ((c = stringValue.indexOf("rgb(")) != -1)

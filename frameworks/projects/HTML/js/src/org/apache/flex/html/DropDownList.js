@@ -83,14 +83,14 @@ org.apache.flex.html.DropDownList.prototype.selectChanged =
     function(event) {
   var select;
 
-  select = event.currentTarget;
+  select = event.target;
 
-  this.selectedItem = select.options[select.selectedIndex].value;
+  this.selectedIndex = parseInt(select.id, 10);
 
-  this.popup.parentNode.removeChild(this.popup);
-  this.popup = null;
+  this.menu.parentNode.removeChild(this.menu);
+  this.menu = null;
 
-  this.dispatchEvent(event);
+  this.dispatchEvent('change');
 };
 
 
@@ -101,9 +101,9 @@ org.apache.flex.html.DropDownList.prototype.selectChanged =
 org.apache.flex.html.DropDownList.prototype.dismissPopup =
     function(opt_event) {
   // remove the popup if it already exists
-  if (this.popup) {
-    this.popup.parentNode.removeChild(this.popup);
-    this.popup = null;
+  if (this.menu) {
+    this.menu.parentNode.removeChild(this.menu);
+    this.menu = null;
   }
 };
 
@@ -135,6 +135,7 @@ org.apache.flex.html.DropDownList.prototype.buttonClicked =
   left = pn.offsetLeft;
   width = pn.offsetWidth;
 
+  /*
   popup = document.createElement('div');
   popup.className = 'dropdown-menu';
   popup.id = 'test';
@@ -145,39 +146,39 @@ org.apache.flex.html.DropDownList.prototype.buttonClicked =
   popup.style.margin = '0px auto';
   popup.style.padding = '0px';
   popup.style.zIndex = '10000';
+  */
 
-  this.menu = select = document.createElement('select');
+  this.menu = select = document.createElement('ul');
   select.style.width = width.toString() + 'px';
-  goog.events.listen(select, 'change', goog.bind(this.selectChanged, this));
-  opts = select.options;
+  goog.events.listen(select, 'click', goog.bind(this.selectChanged, this));
+  select.className = 'dropdown-menu';
 
   dp = /** @type {Array.<string>} */ (this.dataProvider);
   n = dp.length;
   for (i = 0; i < n; i++) {
-    opt = document.createElement('option');
-    opt.className = 'dropdown-menu-item-renderer';
-    opt.text = dp[i];
-    opts.add(opt);
+    opt = document.createElement('li');
+    opt.style.backgroundColor = 'transparent';
+    var ir = document.createElement('a');
+    ir.innerHTML = dp[i];
+    ir.id = i.toString();
+    if (i == this.selectedIndex)
+      ir.className = 'dropdown-menu-item-renderer-selected';
+    else
+      ir.className = 'dropdown-menu-item-renderer';
+    opt.appendChild(ir);
+    select.appendChild(opt);
   }
 
-  select.size = n;
-
-  si = this.selectedIndex;
-  if (si < 0) {
-    select.value = null;
-  } else {
-    select.value = dp[si];
-  }
-
-  this.popup = popup;
-
-  popup.appendChild(select);
-  document.body.appendChild(popup);
+  this.element.appendChild(select);
 };
 
 
 Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
     dataProvider: {
+        /** @this {org.apache.flex.html.DropDownList} */
+        get: function() {
+            return this.model.dataProvider;
+        },
         /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             var dp, i, n, opt;

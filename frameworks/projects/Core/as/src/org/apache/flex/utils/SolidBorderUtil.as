@@ -130,44 +130,58 @@ public class SolidBorderUtil
     {
         g.lineStyle();  // don't draw the line, it tends to get aligned on half-pixels
         
+        var color:uint;
+        var alpha:Number;
         if (thicknessTop > 0)
         {
-            g.beginFill(colorTop & 0xFFFFFF, colorTop >> 24 / 255);
-            g.moveTo(-thicknessLeft, -thicknessTop);
-            g.lineTo(width + thicknessRight, -thicknessTop);
-            g.lineTo(width, 0);
+            color = colorTop & 0xFFFFFF;
+            alpha = (colorTop >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, 0);
+            g.lineTo(width + thicknessRight + thicknessLeft, 0);
+            if (width > 0)
+                g.lineTo(width + thicknessLeft, thicknessTop);
+            g.lineTo(thicknessLeft, thicknessTop);
             g.lineTo(0, 0);
-            g.lineTo(-thicknessLeft, -thicknessTop);
             g.endFill();
         }
         if (thicknessLeft > 0)
         {
-            g.beginFill(colorLeft & 0xFFFFFF, colorLeft >> 24 / 255);
-            g.moveTo(-thicknessLeft, -thicknessTop);
+            color = colorLeft & 0xFFFFFF;
+            alpha = (colorLeft >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, 0);
+            g.lineTo(thicknessLeft, thicknessTop);
+            if (height > 0)
+                g.lineTo(thicknessLeft, thicknessTop + height);
+            g.lineTo(0, height + thicknessBottom);
             g.lineTo(0, 0);
-            g.lineTo(0, height);
-            g.lineTo(-thicknessLeft, height + thicknessBottom);
-            g.lineTo(-thicknessLeft, -thicknessTop);
             g.endFill();
         }
         if (thicknessRight > 0)
         {
-            g.beginFill(colorRight & 0xFFFFFF, colorRight >> 24 / 255);
-            g.moveTo(width + thicknessRight, -thicknessTop);
-            g.lineTo(width + thicknessRight, height + thicknessBottom);
-            g.lineTo(width, height);
-            g.lineTo(width, 0);
-            g.lineTo(width + thicknessRight, -thicknessTop);
+            color = colorRight & 0xFFFFFF;
+            alpha = (colorRight >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(width + thicknessRight + thicknessLeft, 0);
+            g.lineTo(width + thicknessRight + thicknessLeft, height + thicknessBottom + thicknessTop);
+            if (height > 0)
+                g.lineTo(width + thicknessLeft, height + thicknessTop);
+            g.lineTo(width + thicknessLeft, thicknessTop);
+            g.lineTo(width + thicknessRight + thicknessLeft, 0);
             g.endFill();
         }
         if (thicknessBottom > 0)
         {
-            g.beginFill(colorBottom & 0xFFFFFF, colorBottom >> 24 / 255);
-            g.moveTo(-thicknessLeft, height + thicknessBottom);
-            g.lineTo(0, height);
-            g.lineTo(width, height);
-            g.lineTo(width + thicknessRight, height + thicknessBottom);
-            g.lineTo(-thicknessLeft, height + thicknessBottom);
+            color = colorBottom & 0xFFFFFF;
+            alpha = (colorBottom >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, height + thicknessBottom + thicknessTop);
+            g.lineTo(thicknessLeft, height + thicknessBottom);
+            if (width > 0)
+                g.lineTo(width + thicknessLeft, height + thicknessTop);
+            g.lineTo(width + thicknessRight + thicknessLeft + thicknessLeft, height + thicknessBottom);
+            g.lineTo(-0, height + thicknessRight + thicknessBottom);
             g.endFill();
         }
     }

@@ -29,6 +29,8 @@ internal class CoreClasses
 {	
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
+    import org.apache.flex.core.CSSShape; CSSShape;
+    import org.apache.flex.core.CSSSprite; CSSSprite;
     import org.apache.flex.core.CSSTextField; CSSTextField;
     import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
@@ -85,6 +87,7 @@ internal class CoreClasses
     import org.apache.flex.utils.BinaryData; BinaryData;
     import org.apache.flex.utils.BeadMetrics; BeadMetrics;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
+    import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
     import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
     import org.apache.flex.utils.MixinManager; MixinManager;

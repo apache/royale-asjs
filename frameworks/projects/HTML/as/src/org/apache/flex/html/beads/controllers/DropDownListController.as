@@ -82,8 +82,7 @@ package org.apache.flex.html.beads.controllers
             popUpModel.dataProvider = selectionModel.dataProvider;
             popUpModel.selectedIndex = selectionModel.selectedIndex;
 			DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
-			DisplayObject(viewBead.popUp).height = 200;
-            var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y);
+            var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y + DisplayObject(_strand).height);
             pt = DisplayObject(_strand).parent.localToGlobal(pt);
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
