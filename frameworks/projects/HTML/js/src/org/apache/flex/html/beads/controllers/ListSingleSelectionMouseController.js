@@ -15,8 +15,10 @@
 goog.provide('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
 
 goog.require('org.apache.flex.core.IBeadController');
+goog.require('org.apache.flex.core.ISelectableItemRenderer');
 goog.require('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -67,7 +69,8 @@ Object.defineProperties(org.apache.flex.html.beads.controllers.ListSingleSelecti
 org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController.prototype.selectedHandler =
         function(event) {
 
-  var index = event.target.index;
+  var renderer = org.apache.flex.utils.Language.as(event.target, org.apache.flex.core.ISelectableItemRenderer);
+  var index = renderer.index;
   this.model.selectedIndex = index;
 
   var newEvent = new org.apache.flex.events.Event('change');

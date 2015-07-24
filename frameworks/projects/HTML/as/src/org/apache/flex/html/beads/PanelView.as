@@ -92,8 +92,11 @@ package org.apache.flex.html.beads
 		{
             var host:UIBase = UIBase(value);
             
-            if (!_titleBar)
+            if (!_titleBar) {
                 _titleBar = new TitleBar();
+				_titleBar.id = "panelTitleBar";
+				_titleBar.height = 30;
+			}
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
@@ -107,7 +110,6 @@ package org.apache.flex.html.beads
 			super.completeSetup();
 			
 			UIBase(_strand).addElement(titleBar, false);
-			titleBar.addEventListener("heightChanged", titleBarHeightChanged);
 		}
 		
 		/**
@@ -119,7 +121,6 @@ package org.apache.flex.html.beads
 			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
 			
 			titleBar.width = host.width;
-			titleBar.height = 25;
 			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			var model:IViewportModel = viewport.model;
@@ -130,7 +131,7 @@ package org.apache.flex.html.beads
 			model.contentX = model.viewportX + metrics.left;
 			model.contentY = model.viewportY + metrics.top;
 			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
-			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
+			model.contentHeight = model.viewportHeight - metrics.bottom;
 			model.contentArea = contentView;
 			model.contentIsHost = false;
 			
@@ -147,10 +148,11 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = UIBase(_strand);
 			var viewportModel:IViewportModel = viewport.model;
-			
+						
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
+			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			// If the host is being sized by its content, the change in the contentArea
 			// causes the host's size to change
@@ -184,11 +186,6 @@ package org.apache.flex.html.beads
 				viewport.updateSize();
 				viewport.updateContentAreaSize();
 			}
-		}
-		
-		private function titleBarHeightChanged(event:Event):void
-		{
-			resizeViewport();
 		}
                 
 	}

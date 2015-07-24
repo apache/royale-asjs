@@ -75,7 +75,8 @@ package org.apache.flex.html.beads
             
             IEventDispatcher(host).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(host).addEventListener("widthChanged", changeHandler);
-            IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
+			IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
+			IEventDispatcher(host).addEventListener("initComplete", changeHandler);
 			
 			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			if( bgColor != null ) {

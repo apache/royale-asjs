@@ -19,6 +19,7 @@ goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
 goog.require('org.apache.flex.core.ILayoutParent');
 goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.html.beads.ContainerView');
 goog.require('org.apache.flex.html.beads.IListView');
 goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
@@ -28,6 +29,7 @@ goog.require('org.apache.flex.html.supportClasses.DataGroup');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.html.beads.ContainerView}
  * @implements {org.apache.flex.core.ILayoutParent}
  * @implements {org.apache.flex.html.beads.IListView}
  */
@@ -35,7 +37,11 @@ org.apache.flex.html.beads.ListView = function() {
   this.lastSelectedIndex = -1;
 
   this.className = 'ListView';
+  org.apache.flex.html.beads.ListView.base(this, 'constructor');
 };
+goog.inherits(
+    org.apache.flex.html.beads.ListView,
+    org.apache.flex.html.beads.ContainerView);
 
 
 /**
@@ -56,13 +62,8 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
         /** @this {org.apache.flex.html.beads.ListView} */
         set: function(value) {
             this.strand_ = value;
-
-            this.strand_.addEventListener('sizeChanged',
-                goog.bind(this.handleSizeChange, this));
-            this.strand_.addEventListener('widthChanged',
-                goog.bind(this.handleSizeChange, this));
-            this.strand_.addEventListener('heightChanged',
-                goog.bind(this.handleSizeChange, this));
+            org.apache.flex.utils.Language.superSetter(
+                org.apache.flex.html.beads.ListView, this, 'strand', value);
 
             this.model = this.strand_.model;
             this.model.addEventListener('selectedIndexChanged',
@@ -82,10 +83,7 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
               var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
               this.layout_ = new m3();
               this.strand_.addBead(this.layout_);
-              //this.layout_.strand = this.strand_;
             }
-
-            this.handleSizeChange(null);
         }
     },
     /** @export */
@@ -129,6 +127,7 @@ org.apache.flex.html.beads.ListView.prototype.
 org.apache.flex.html.beads.ListView.prototype.
     dataProviderChangeHandler = function(value) {
     // override in subclass
+    this.changeHandler(value);
 };
 
 

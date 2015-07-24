@@ -177,7 +177,7 @@ Container
 ControlBar
 {
 	IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	
     background-color: #CECECE;
     border-style: solid;
@@ -536,7 +536,7 @@ Container
 
 ControlBar
 {
-    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");    

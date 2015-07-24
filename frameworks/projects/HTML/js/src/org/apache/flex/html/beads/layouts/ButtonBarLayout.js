@@ -50,16 +50,6 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.ButtonBarLayout.proto
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
-              this.strand_.addEventListener('childrenAdded',
-                  goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('itemsCreated',
-                  goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('widthChanged',
-                  goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('heightChanged',
-                  goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('sizeChanged',
-                  goog.bind(this.changeHandler, this));
               this.strand_.element.style.display = 'block';
             }
         }
@@ -79,10 +69,10 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.ButtonBarLayout.proto
 
 
 /**
- * @param {org.apache.flex.events.Event} event The text getter.
+ * Performs the layout.
  */
 org.apache.flex.html.beads.layouts.ButtonBarLayout.
-    prototype.changeHandler = function(event) {
+    prototype.layout = function() {
 
   var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = layoutParent.contentView;
@@ -96,22 +86,22 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
   for (var i = 0; i < n; i++)
   {
     var ir = itemRendererParent.getElementAt(i);
-    ir.y = 0;
     ir.height = useHeight;
-    ir.x = xpos;
-    ir.element.internalDisplay = 'inline-block';
-    ir.element.style['vertical-align'] = 'middle';
-    ir.element.style['text-align'] = 'center';
-    ir.element.style['left-margin'] = 'auto';
-    ir.element.style['right-margin'] = 'auto';
+    ir.positioner.internalDisplay = 'inline-block';
+    ir.positioner.style['vertical-align'] = 'middle';
+    ir.positioner.style['text-align'] = 'center';
+    ir.positioner.style['left-margin'] = 'auto';
+    ir.positioner.style['right-margin'] = 'auto';
+    ir.positioner.style['top-margin'] = 'auto';
+    ir.positioner.style['bottom-margin'] = 'auto';
 
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i];
-    else ir.width = useWidth;
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i] - 2;
+    else ir.width = useWidth - 2;
 
-    if (ir.element.style.display == 'none')
-      ir.lastDisplay_ = 'inline-block';
+    if (ir.positioner.style.display == 'none')
+      ir.positioner.lastDisplay_ = 'inline-block';
     else
-      ir.element.style.display = 'inline-block';
+      ir.positioner.style.display = 'inline-block';
 
     xpos += ir.width;
   }

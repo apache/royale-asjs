@@ -25,8 +25,6 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -74,25 +72,6 @@ package org.apache.flex.html.beads.layouts
 		{
             host = value as ILayoutChild;
 		}
-		
-		private var _viewportModel:IViewportModel;
-		
-		/**
-		 *  The data that describes the viewport used by this layout.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get viewportModel():IViewportModel
-		{
-			return _viewportModel;
-		}
-		public function set viewportModel(value:IViewportModel):void
-		{
-			_viewportModel = value;
-		}
 	        
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
@@ -102,10 +81,6 @@ package org.apache.flex.html.beads.layouts
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
-			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
-			viewportModel = viewport.model;
 			
             var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
             var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -257,11 +232,6 @@ package org.apache.flex.html.beads.layouts
                     }
                 }
             }
-			
-			if (viewportModel != null) {
-				viewportModel.contentWidth = maxWidth;
-				viewportModel.contentHeight = maxHeight;
-			}
 			
             return true;
 		}

@@ -59,6 +59,8 @@ package org.apache.flex.html
 			super();
 		}
 		
+		private var _strand:IStrand;
+		
         [Bindable("strandChanged")]
         /**
          *  An MXMLBeadViewBase doesn't create its children until it is added to
@@ -71,6 +73,7 @@ package org.apache.flex.html
          */
         override public function set strand(value:IStrand):void
         {
+			_strand = value;
             super.strand = value;
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);

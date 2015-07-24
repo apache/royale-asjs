@@ -64,6 +64,17 @@ Object.defineProperties(org.apache.flex.html.List.prototype, {
         }
     },
     /** @export */
+    selectedItem: {
+        /** @this {org.apache.flex.html.List} */
+        get: function() {
+            return this.model.selectedItem;
+        },
+        /** @this {org.apache.flex.html.List} */
+        set: function(value) {
+            this.model.selectedItem = value;
+        }
+    },
+    /** @export */
     labelField: {
         /** @this {org.apache.flex.html.List} */
         get: function() {
@@ -147,7 +158,12 @@ org.apache.flex.html.List.prototype.internalChildren =
   var dg = listView.dataGroup;
   var items = null;
   if (dg.renderers) {
-    items = dg.renderers;
+    items = [];
+    for (var i = 0; i < dg.renderers.length; i++) {
+      var r = dg.renderers[i];
+      var element = r.element;
+      items.push(element);
+    }
   }
   return items;
 };
