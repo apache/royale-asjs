@@ -106,7 +106,9 @@ package org.apache.flex.html.beads
 			// if the host component is not being sized by percentage, go ahead and complete the setup.
 			if (isNaN((host as UIBase).percentHeight) && isNaN((host as UIBase).percentWidth)) {
 				completeSetup();
-				performLayout(event);
+				
+				var num:Number = contentView.numElements;
+				if (num > 0) performLayout(event);
 			}
 			else {
 				// otherwise, wait until the size has been set and then finish
@@ -118,7 +120,9 @@ package org.apache.flex.html.beads
 		{
 			host.removeEventListener(event.type, deferredSizeHandler);
 			completeSetup();
-			performLayout(event);
+			
+			var num:Number = contentView.numElements;
+			if (num > 0) performLayout(event);
 		}
 		
 		protected function completeSetup():void
