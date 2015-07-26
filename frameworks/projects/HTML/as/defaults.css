@@ -436,6 +436,14 @@ StringItemRenderer
     height: 16;
 }
 
+TextArea
+{
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 2px solid #1abc9c;
+}
+
 TextInput
 {
   height: 35px;
@@ -555,7 +563,7 @@ DropDownListList
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DropDownListStringItemRenderer");
 }
 
 Image
@@ -626,11 +634,97 @@ RadioButton
     IBeadView:  ClassReference("org.apache.flex.html.beads.RadioCSSContentAndTextToggleButtonView");			
 }
 
+.vscrollbar-uparrow {
+  padding: 0px;
+  display: inline-block;
+  border-color: #16a085;
+  border-radius: initial;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-bottom: 8px solid;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  -webkit-transition: border-color .25s, color .25s;
+          transition: border-color .25s, color .25s;
+  }
+.vscrollbar-downarrow-btn {
+  padding: 2px;
+  display: inline-block;
+  border-style: none;
+  border-radius: initial;
+  background-color: transparent;
+  width: 12;
+  height: 12;
+  margin-left: 5px;
+  vertical-align: middle;
+  }
+.vscrollbar-uparrow-btn {
+  padding: 2px;
+  display: inline-block;
+  border-style: none;
+  border-radius: initial;
+  background-color: transparent;
+  width: 12;
+  height: 12;
+  margin-left: 5px;
+  vertical-align: middle;
+  }
+.vscrollbar-downarrow {
+  padding: 0px;
+  display: inline-block;
+  border-color: #16a085;
+  border-radius: initial;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-top: 8px solid;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  -webkit-transition: border-color .25s, color .25s;
+          transition: border-color .25s, color .25s;
+  }
+.vscrollbar-track {
+  padding: 0px;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  /*margin-bottom: 20px;*/
+  cursor: pointer;
+  background-color: #ebedef;
+  border-radius: 4px;
+  /*border-radius: 32px;*/
+  box-shadow: none;
+  }
+.vscrollbar-thumb {
+  padding: 0px;
+  position: absolute;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  background-color: #16a085;
+  border-radius: 6px;
+  -webkit-transition: background .25s;
+          transition: background .25s;
+  }
+.vscrollbar-thumb:hover {
+  background-color: #48c9b0;
+  outline: none;
+  }
+.vscrollbar-thumb:active {
+  background-color: #16a085;
+  }
+
 ScrollBar
 {
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VScrollBarLayout");
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ScrollBarModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.ScrollBarView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSScrollBarView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.VScrollBarMouseController");
 }
 

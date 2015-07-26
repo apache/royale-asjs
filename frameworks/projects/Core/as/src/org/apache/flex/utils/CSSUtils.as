@@ -157,6 +157,9 @@ package org.apache.flex.utils
             if (value is Number)
                 return value as Number;
 
+            if (values is Number)
+                return values as Number;
+            
             if (value != null)
                 return toNumber(value as String, reference);
             if (values == null)
@@ -194,6 +197,9 @@ package org.apache.flex.utils
             if (value is Number)
                 return value as Number;
 
+            if (values is Number)
+                return values as Number;
+            
             if (value != null)
                 return toNumber(value as String, reference);
             if (values == null)
@@ -228,6 +234,9 @@ package org.apache.flex.utils
             if (value is Number)
                 return value as Number;
             
+            if (values is Number)
+                return values as Number;
+            
             if (value != null)
                 return toNumber(value as String, reference);
             if (values == null)
@@ -261,6 +270,9 @@ package org.apache.flex.utils
         {
             if (value is Number)
                 return value as Number;
+            
+            if (values is Number)
+                return values as Number;
             
             if (value != null)
                 return toNumber(value as String, reference);

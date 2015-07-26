@@ -127,10 +127,10 @@ package org.apache.flex.utils
                 var colorLeft:uint;
                 var colorRight:uint;
                 var colorBottom:uint;
-                var widthTop:int = -1;
-                var widthLeft:int = -1;
-                var widthBottom:int = -1;
-                var widthRight:int = -1;
+                var widthTop:int = 0;
+                var widthLeft:int = 0;
+                var widthBottom:int = 0;
+                var widthRight:int = 0;
                 value = ValuesManager.valuesImpl.getValue(host, "border-top", state);
                 if (value != null)
                 {

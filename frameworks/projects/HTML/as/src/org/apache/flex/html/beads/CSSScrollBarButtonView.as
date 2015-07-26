@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
     import flash.net.URLRequest;
     
     import org.apache.flex.core.BeadViewBase;
+    import org.apache.flex.core.CSSShape;
     import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.ITextModel;
@@ -50,7 +51,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class CSSButtonView extends BeadViewBase implements IBeadView
+	public class CSSScrollBarButtonView extends BeadViewBase implements IBeadView
 	{
         /**
          *  Constructor.
@@ -60,11 +61,18 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function CSSButtonView()
+		public function CSSScrollBarButtonView()
 		{
 			upSprite = new Sprite();
 			downSprite = new Sprite();
 			overSprite = new Sprite();
+            upArrowShape = new CSSShape();
+            downArrowShape = new CSSShape();
+            overArrowShape = new CSSShape();
+            overArrowShape.state = "hover";
+            upSprite.addChild(upArrowShape);
+            downSprite.addChild(downArrowShape);
+            overSprite.addChild(overArrowShape);
 		}
 		
 		private var textModel:ITextModel;
@@ -91,9 +99,9 @@ package org.apache.flex.html.beads
 			SimpleButton(value).overState = overSprite;
 			SimpleButton(value).hitTestState = shape;
 
-            setupBackground(overSprite, "hover");
-            setupBackground(downSprite, "active");
-            setupBackground(upSprite);
+            setupBackground(overSprite, overArrowShape, "hover");
+            setupBackground(downSprite, downArrowShape, "active");
+            setupBackground(upSprite, upArrowShape);
             
             IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
@@ -106,13 +114,13 @@ package org.apache.flex.html.beads
         
         protected function setupSkins():void
         {
-            setupSkin(overSprite, "hover");
-            setupSkin(downSprite, "active");
-            setupSkin(upSprite);
+            setupSkin(overSprite, overArrowShape, "hover");
+            setupSkin(downSprite, downArrowShape, "active");
+            setupSkin(upSprite, upArrowShape);
             updateHitArea();
         }
 
-		private function setupSkin(sprite:Sprite, state:String = null):void
+		private function setupSkin(sprite:Sprite, shape:CSSShape, state:String = null):void
 		{
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
 			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
@@ -124,14 +132,18 @@ package org.apache.flex.html.beads
             var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
             var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
 			
+            var w:Object = ValuesManager.valuesImpl.getValue(shape, "width", state);
+            var h:Object = ValuesManager.valuesImpl.getValue(shape, "height", state);
+            shape.draw(Number(w), Number(h));
+            
 		    CSSBorderUtils.draw(sprite.graphics, 
-					DisplayObject(_strand).width + pl + pr, 
-					DisplayObject(_strand).height + pt + pb,
+					shape.width + pl + pr, 
+					shape.height + pt + pb,
                     _strand as DisplayObject,
                     state, true);
 		}
 		
-        private function setupBackground(sprite:Sprite, state:String = null):void
+        private function setupBackground(sprite:Sprite, shape:CSSShape, state:String = null):void
         {
             var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
             if (backgroundImage)
@@ -141,12 +153,12 @@ package org.apache.flex.html.beads
                 var url:String = backgroundImage as String;
                 loader.load(new URLRequest(url));
                 loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
-                    setupSkin(sprite, state);
+                    setupSkin(sprite, shape, state);
                     updateHitArea();
                 });
             }
             else {
-                setupSkin(sprite, state);
+                setupSkin(sprite, shape, state);
                 updateHitArea();
             }
         }
@@ -154,6 +166,9 @@ package org.apache.flex.html.beads
 		private var upSprite:Sprite;
 		private var downSprite:Sprite;
 		private var overSprite:Sprite;
+        public var upArrowShape:CSSShape;
+        public var downArrowShape:CSSShape;
+        public var overArrowShape:CSSShape;
 				
 		private function updateHitArea():void
 		{

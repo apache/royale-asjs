@@ -177,11 +177,11 @@ public class SolidBorderUtil
             alpha = (colorBottom >>> 24 & 0xFF) / 255;
             g.beginFill(color, alpha);
             g.moveTo(0, height + thicknessBottom + thicknessTop);
-            g.lineTo(thicknessLeft, height + thicknessBottom);
+            g.lineTo(thicknessLeft, height + thicknessTop);
             if (width > 0)
                 g.lineTo(width + thicknessLeft, height + thicknessTop);
-            g.lineTo(width + thicknessRight + thicknessLeft + thicknessLeft, height + thicknessBottom);
-            g.lineTo(-0, height + thicknessRight + thicknessBottom);
+            g.lineTo(width + thicknessRight + thicknessLeft, height + thicknessBottom + thicknessTop);
+            g.lineTo(0, height + thicknessBottom + thicknessTop);
             g.endFill();
         }
     }

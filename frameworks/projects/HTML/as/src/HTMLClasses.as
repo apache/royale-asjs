@@ -52,7 +52,9 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.PanelView; PanelView;
     import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
-	import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
+    import org.apache.flex.html.beads.CSSScrollBarView; CSSScrollBarView;
+    import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
+    import org.apache.flex.html.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
 	import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;
     import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
 	import org.apache.flex.html.beads.SliderView; SliderView;
@@ -96,6 +98,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
+    import org.apache.flex.html.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
