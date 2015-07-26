@@ -79,9 +79,9 @@ package org.apache.flex.html.beads.controllers
             viewBead.popUpVisible = true;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
+            DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
             popUpModel.dataProvider = selectionModel.dataProvider;
             popUpModel.selectedIndex = selectionModel.selectedIndex;
-			DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
             var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y + DisplayObject(_strand).height);
             pt = DisplayObject(_strand).parent.localToGlobal(pt);
 			DisplayObject(viewBead.popUp).x = pt.x;
