@@ -48,6 +48,8 @@ org.apache.flex.html.TextArea.prototype.createElement =
   this.element = document.createElement('textarea');
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
+  this.element.className = 'TextArea';
+  this.typeNames = 'TextArea';
 
   return this.element;
 };
