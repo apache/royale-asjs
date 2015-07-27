@@ -88,6 +88,12 @@ package org.apache.flex.core
         {
             if (!loaders)
                 loaders = [];
+
+            if (!fontFaces || fontFaces.length == 0)
+            {
+                IEventDispatcher(_strand).removeEventListener("preinitialize", preinitHandler);
+                return;
+            }
             
             for each (var url:String in fontFaces)
             {
