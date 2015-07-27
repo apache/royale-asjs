@@ -51,25 +51,15 @@ org.apache.flex.html.RadioButton.radioCounter = 0;
 org.apache.flex.html.RadioButton.prototype.createElement =
     function() {
 
-  // hide this eleement
   this.input = document.createElement('input');
   this.input.type = 'radio';
-  this.input.className = 'radio-input';
   this.input.id = '_radio_' + org.apache.flex.html.RadioButton.radioCounter++;
-  this.input.addEventListener('change', goog.bind(this.selectionChangeHandler, this));
-
-  this.radio = document.createElement('span');
-  this.radio.className = 'radio-icon';
-  this.radio.addEventListener('mouseover', goog.bind(this.mouseOverHandler, this));
-  this.radio.addEventListener('mouseout', goog.bind(this.mouseOutHandler, this));
 
   this.textNode = document.createTextNode('radio button');
 
   this.labelFor = document.createElement('label');
   this.labelFor.appendChild(this.input);
-  this.labelFor.appendChild(this.radio);
   this.labelFor.appendChild(this.textNode);
-  this.labelFor.style.position = 'relative';
 
   this.element = this.labelFor;
   this.element.className = 'RadioButton';
@@ -77,42 +67,10 @@ org.apache.flex.html.RadioButton.prototype.createElement =
 
   this.positioner = this.element;
   this.input.flexjs_wrapper = this;
-  this.radio.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
   this.textNode.flexjs_wrapper = this;
 
   return this.element;
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.RadioButton.prototype.mouseOverHandler =
-    function(e) {
-  this.radio.className = 'radio-icon-hover';
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.RadioButton.prototype.mouseOutHandler =
-    function(e) {
-  if (this.input.checked)
-    this.radio.className = 'radio-icon-checked';
-  else
-    this.radio.className = 'radio-icon';
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.RadioButton.prototype.selectionChangeHandler =
-    function(e) {
-  // this should reset the icons in the non-selected radio
-  this.selectedValue = this.value;
 };
 
 
@@ -173,10 +131,6 @@ Object.defineProperties(org.apache.flex.html.RadioButton.prototype, {
         /** @this {org.apache.flex.html.RadioButton} */
         set: function(value) {
             this.input.checked = value;
-            if (this.input.checked)
-              this.radio.className = 'radio-icon-checked';
-            else
-              this.radio.className = 'radio-icon';
         }
     },
     /** @export */
@@ -217,10 +171,8 @@ Object.defineProperties(org.apache.flex.html.RadioButton.prototype, {
             for (i = 0; i < n; i++) {
               if (buttons[i].value === value) {
                 buttons[i].checked = true;
-                buttons[i].flexjs_wrapper.selected = true;
+                break;
               }
-              else
-                buttons[i].flexjs_wrapper.selected = false;
             }
         }
     }

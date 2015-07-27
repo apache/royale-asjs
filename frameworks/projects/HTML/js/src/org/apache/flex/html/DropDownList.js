@@ -46,144 +46,39 @@ org.apache.flex.html.DropDownList.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.html.DropDownList.prototype.createElement =
     function() {
-  var button, input;
-
-  this.element = document.createElement('div');
-
-  this.button = button = document.createElement('button');
-  button.className = 'dropdown-toggle-open-btn';
-  goog.events.listen(button, 'click', goog.bind(this.buttonClicked, this));
-  this.element.appendChild(button);
-
-  var caret = document.createElement('span');
-  caret.className = 'dropdown-caret';
-
-  this.element.style.position = 'relative';
+  this.element = document.createElement('select');
+  this.element.size = 1;
+  goog.events.listen(this.element, 'change',
+      goog.bind(this.changeHandler, this));
 
   this.positioner = this.element;
 
-  // add a click handler so that a click outside of the combo box can
-  // dismiss the pop-up should it be visible.
-  goog.events.listen(document, 'click',
-      goog.bind(this.dismissPopup, this));
-
-  button.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
-  caret.flexjs_wrapper = this;
 
   return this.element;
 };
 
 
-/**
- * @export
- * @param {Object} event The event.
- */
-org.apache.flex.html.DropDownList.prototype.selectChanged =
-    function(event) {
-  var select;
-
-  select = event.target;
-
-  this.selectedIndex = parseInt(select.id, 10);
-
-  this.menu.parentNode.removeChild(this.menu);
-  this.menu = null;
-
-  this.dispatchEvent('change');
-};
-
-
-/**
- * @export
- * @param {Object=} opt_event The event.
- */
-org.apache.flex.html.DropDownList.prototype.dismissPopup =
-    function(opt_event) {
-  // remove the popup if it already exists
-  if (this.menu) {
-    this.menu.parentNode.removeChild(this.menu);
-    this.menu = null;
-  }
-};
-
-
-/**
- * @export
- * @param {Object} event The event.
- */
-org.apache.flex.html.DropDownList.prototype.buttonClicked =
-    function(event) {
-  /**
-   * @type {Array.<string>}
-   */
-  var dp;
-  var i, button, left, n, opt, opts, pn, popup, select, si, top, width;
-
-  event.stopPropagation();
-
-  if (this.popup) {
-    this.dismissPopup();
-
-    return;
-  }
-
-  button = this.element.childNodes.item(0);
-
-  pn = this.element;
-  top = pn.offsetTop + button.offsetHeight;
-  left = pn.offsetLeft;
-  width = pn.offsetWidth;
-
-  /*
-  popup = document.createElement('div');
-  popup.className = 'dropdown-menu';
-  popup.id = 'test';
-  popup.style.position = 'absolute';
-  popup.style.top = top.toString() + 'px';
-  popup.style.left = left.toString() + 'px';
-  popup.style.width = width.toString() + 'px';
-  popup.style.margin = '0px auto';
-  popup.style.padding = '0px';
-  popup.style.zIndex = '10000';
-  */
-
-  this.menu = select = document.createElement('ul');
-  select.style.width = width.toString() + 'px';
-  goog.events.listen(select, 'click', goog.bind(this.selectChanged, this));
-  select.className = 'dropdown-menu';
-
-  dp = /** @type {Array.<string>} */ (this.dataProvider);
-  n = dp.length;
-  for (i = 0; i < n; i++) {
-    opt = document.createElement('li');
-    opt.style.backgroundColor = 'transparent';
-    var ir = document.createElement('a');
-    ir.innerHTML = dp[i];
-    ir.id = i.toString();
-    if (i == this.selectedIndex)
-      ir.className = 'dropdown-menu-item-renderer-selected';
-    else
-      ir.className = 'dropdown-menu-item-renderer';
-    opt.appendChild(ir);
-    select.appendChild(opt);
-  }
-
-  this.element.appendChild(select);
-};
-
-
 Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
+    /** @export */
     dataProvider: {
-        /** @this {org.apache.flex.html.DropDownList} */
-        get: function() {
-            return this.model.dataProvider;
-        },
         /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             var dp, i, n, opt;
 
             this.model.dataProvider = value;
+            dp = this.element.options;
+            n = dp.length;
+            for (i = 0; i < n; i++) {
+              dp.remove(0);
+            }
+
+            n = value.length;
+            for (i = 0; i < n; i++) {
+              opt = document.createElement('option');
+              opt.text = value[i];
+              dp.add(opt);
+            }
         }
     },
     /** @export */
@@ -198,7 +93,7 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
         /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+            this.element.selectedIndex = value;
         }
     },
     /** @export */
@@ -213,7 +108,17 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
         /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             this.model.selectedItem = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
-         }
+            this.element.selectedIndex = this.selectedIndex;
+        }
     }
 });
+
+
+/**
+ * @protected
+ */
+org.apache.flex.html.DropDownList.prototype.changeHandler =
+    function() {
+  this.model.selectedIndex = this.element.selectedIndex;
+  this.dispatchEvent('change');
+};

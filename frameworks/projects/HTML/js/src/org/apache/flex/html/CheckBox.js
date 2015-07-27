@@ -48,62 +48,19 @@ org.apache.flex.html.CheckBox.prototype.createElement =
 
   this.element = document.createElement('label');
 
-  this.input = document.createElement('input');
-  this.input.type = 'checkbox';
-  this.input.className = 'checkbox-input';
-  this.input.addEventListener('change', goog.bind(this.selectionChangeHandler, this));
-  this.element.appendChild(this.input);
+  cb = document.createElement('input');
+  cb.type = 'checkbox';
+  this.element.appendChild(cb);
+  this.element.appendChild(document.createTextNode(''));
 
-  this.checkbox = document.createElement('span');
-  this.checkbox.className = 'checkbox-icon';
-  this.checkbox.addEventListener('mouseover', goog.bind(this.mouseOverHandler, this));
-  this.checkbox.addEventListener('mouseout', goog.bind(this.mouseOutHandler, this));
-  this.element.appendChild(this.checkbox);
-
-  this.textNode = document.createTextNode('');
-  this.element.appendChild(this.textNode);
   this.element.className = 'CheckBox';
   this.typeNames = 'CheckBox';
 
   this.positioner = this.element;
-  this.input.flexjs_wrapper = this;
-  this.checkbox.flexjs_wrapper = this;
+  cb.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
 
   return this.element;
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.CheckBox.prototype.mouseOverHandler =
-    function(e) {
-  this.checkbox.className = 'checkbox-icon-hover';
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.CheckBox.prototype.mouseOutHandler =
-    function(e) {
-  if (this.input.checked)
-    this.checkbox.className = 'checkbox-icon-checked';
-  else
-    this.checkbox.className = 'checkbox-icon';
-};
-
-
-/**
- * @param {Event} e The event object.
- */
-org.apache.flex.html.CheckBox.prototype.selectionChangeHandler =
-    function(e) {
-  if (this.input.checked)
-    this.checkbox.className = 'checkbox-icon-checked';
-  else
-    this.checkbox.className = 'checkbox-icon';
 };
 
 
@@ -112,26 +69,22 @@ Object.defineProperties(org.apache.flex.html.CheckBox.prototype, {
     text: {
         /** @this {org.apache.flex.html.CheckBox} */
         get: function() {
-            return this.textNode.nodeValue;
+            return this.element.childNodes.item(1).nodeValue;
         },
         /** @this {org.apache.flex.html.CheckBox} */
         set: function(value) {
-            this.textNode.nodeValue = value;
+            this.element.childNodes.item(1).nodeValue = value;
         }
     },
     /** @export */
     selected: {
         /** @this {org.apache.flex.html.CheckBox} */
         get: function() {
-            return this.input.checked;
+            return this.element.childNodes.item(0).checked;
         },
         /** @this {org.apache.flex.html.CheckBox} */
         set: function(value) {
-            this.input.checked = value;
-            if (value)
-              this.checkbox.className = 'checkbox-icon-checked';
-            else
-              this.checkbox.className = 'checkbox-icon';
+            this.element.childNodes.item(0).checked = value;
         }
     }
 });

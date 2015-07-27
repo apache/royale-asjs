@@ -58,7 +58,6 @@ package org.apache.flex.html.supportClasses
 		public function DropDownListList()
 		{
 			super();
-            className = "dropdown-menu";
 		}
 		
         /**

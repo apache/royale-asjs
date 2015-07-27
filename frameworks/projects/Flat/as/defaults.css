@@ -59,13 +59,17 @@ Button
 
 Button:hover
 {
+  border: none;
   color: #fff;
   background-color: #48c9b0;
   border-color: #48c9b0;
+  padding: 10px 15px;
 }
 
 Button:active
 {
+  border: none;
+  padding: 10px 15px;
   outline: none;
   box-shadow: none;
 }
@@ -552,9 +556,10 @@ ControlBar
 DropDownList
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.DropDownListView");
+    IBeadView: ClassReference("org.apache.flex.flat.beads.DropDownListView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DropDownListController");
-    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
+    IPopUp: ClassReference("org.apache.flex.flat.supportClasses.DropDownListList");
+	height: 43px;
 }
 
 DropDownListList
@@ -562,7 +567,7 @@ DropDownListList
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DropDownListStringItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer");
 }
 
 Image

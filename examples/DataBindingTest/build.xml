@@ -22,6 +22,7 @@
 <project name="databindingtest" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="DataBindingTest" />
+    <property name="theme_arg" value="-theme=${FLEXJS_HOME}/frameworks/libs/Flat.swc" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>

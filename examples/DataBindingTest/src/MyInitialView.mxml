@@ -125,7 +125,7 @@ limitations under the License.
                 <js:beads>
                     <js:VerticalLayout />
                 </js:beads>
-                <js:DropDownList id="list" width="100" height="43"
+                <js:DropDownList id="list" width="100"
                                     change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
                                     dataProvider="{MyModel(applicationModel).strings}" />
                 <js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>

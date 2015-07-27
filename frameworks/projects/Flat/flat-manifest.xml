@@ -65,6 +65,8 @@
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper"  lookupOnly="true" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer" lookupOnly="true" />
+    <component id="DropDownListView" class="org.apache.flex.flat.beads.DropDownListView" />
+    <component id="DropDownListStringItemRenderer" class="org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer" />
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer" lookupOnly="true" />
     <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer" lookupOnly="true" />
     <component id="ScrollBar" class="org.apache.flex.html.supportClasses.ScrollBar" lookupOnly="true" />

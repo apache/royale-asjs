@@ -28,14 +28,11 @@ package org.apache.flex.html.beads
 	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
-    import org.apache.flex.core.CSSShape;
-    import org.apache.flex.core.CSSSprite;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IPopUpHost;
-    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -64,42 +61,47 @@ package org.apache.flex.html.beads
          */
 		public function DropDownListView()
 		{
-            upSprite = new CSSSprite();
-            upSprite.className = 'dropdown-toggle-open-btn';
-            downSprite = new CSSSprite();
-            downSprite.className = 'dropdown-toggle-open-btn';
-            overSprite = new CSSSprite();
-            overSprite.className = 'dropdown-toggle-open-btn';
-            overSprite.state = 'hover';
+            upSprite = new Sprite();
+            downSprite = new Sprite();
+            overSprite = new Sprite();
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
 			overTextField = new CSSTextField();
             upSprite.addChild(upTextField);
             overSprite.addChild(overTextField);
             downSprite.addChild(downTextField);
+            upTextField.border = true;
+            downTextField.border = true;
+            overTextField.border = true;
+            upTextField.background = true;
+            downTextField.background = true;
+            overTextField.background = true;
+            upTextField.borderColor = 0;
+            downTextField.borderColor = 0;
+            overTextField.borderColor = 0;
+            upTextField.backgroundColor = 0xEEEEEE;
+            downTextField.backgroundColor = 0x808080;
+            overTextField.backgroundColor = 0xFFFFFF;
 			upTextField.selectable = false;
-            upTextField.parentDrawsBackground = true;
 			upTextField.type = TextFieldType.DYNAMIC;
 			downTextField.selectable = false;
-            downTextField.parentDrawsBackground = true;
 			downTextField.type = TextFieldType.DYNAMIC;
 			overTextField.selectable = false;
-            overTextField.parentDrawsBackground = true;
-			overTextField.type = TextFieldType.DYNAMIC;
+            overTextField.type = TextFieldType.DYNAMIC;
             // auto-size collapses if no text
 			//upTextField.autoSize = "left";
 			//downTextField.autoSize = "left";
 			//overTextField.autoSize = "left";
 
-            upArrows = new CSSShape();
-            upArrows.className = 'dropdown-caret';
-            overArrows = new CSSShape();
-            overArrows.className = 'dropdown-caret';
-            downArrows = new CSSShape();
-            downArrows.className = 'dropdown-caret';
+            upArrows = new Shape();
+            overArrows = new Shape();
+            downArrows = new Shape();
             upSprite.addChild(upArrows);
 			overSprite.addChild(overArrows);
 			downSprite.addChild(downArrows);
+            drawArrows(upArrows, 0xEEEEEE);
+            drawArrows(overArrows, 0xFFFFFF);
+            drawArrows(downArrows, 0x808080);
 
 		}
 
@@ -153,29 +155,17 @@ package org.apache.flex.html.beads
         {
             var ww:Number = DisplayObject(_strand).width;
             var hh:Number = DisplayObject(_strand).height;
-            upArrows.draw(0, 0);
-            overArrows.draw(0, 0);
-            downArrows.draw(0, 0);
-            upSprite.draw(ww, hh);
-            overSprite.draw(ww, hh);
-            downSprite.draw(ww, hh);
             
             upArrows.x = ww - upArrows.width;            
             overArrows.x = ww - overArrows.width;            
             downArrows.x = ww - downArrows.width;
-            upArrows.y = (hh - upArrows.height) / 2;            
-            overArrows.y = (hh - overArrows.height) / 2;            
-            downArrows.y = (hh - downArrows.height) / 2;
             
 			upTextField.width = upArrows.x;
 			downTextField.width = downArrows.x;
 			overTextField.width = overArrows.x;
-			upTextField.height = upTextField.textHeight + 5;
-			downTextField.height = downTextField.textHeight + 5;
-			overTextField.height = overTextField.textHeight + 5;
-            upTextField.y = (hh - upTextField.height) / 2;
-            downTextField.y =  (hh - downTextField.height) / 2;
-            overTextField.y =  (hh - overTextField.height) / 2;
+			upTextField.height = hh;
+			downTextField.height = hh;
+			overTextField.height = hh;
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, ww, hh);
@@ -185,14 +175,36 @@ package org.apache.flex.html.beads
 		private var upTextField:CSSTextField;
 		private var downTextField:CSSTextField;
 		private var overTextField:CSSTextField;
-        private var upSprite:CSSSprite;
-        private var downSprite:CSSSprite;
-        private var overSprite:CSSSprite;
-        private var upArrows:CSSShape;
-        private var downArrows:CSSShape;
-        private var overArrows:CSSShape;
+        private var upSprite:Sprite;
+        private var downSprite:Sprite;
+        private var overSprite:Sprite;
+        private var upArrows:Shape;
+        private var downArrows:Shape;
+        private var overArrows:Shape;
 		
-        /**
+        private function drawArrows(shape:Shape, color:uint):void
+        {
+            var g:Graphics = shape.graphics;
+            g.beginFill(color);
+            g.drawRect(0, 0, 16, 17);
+            g.endFill();
+            g.beginFill(0);
+            g.moveTo(8, 2);
+            g.lineTo(12, 6);
+            g.lineTo(4, 6);
+            g.lineTo(8, 2);
+            g.endFill();
+            g.beginFill(0);
+            g.moveTo(8, 14);
+            g.lineTo(12, 10);
+            g.lineTo(4, 10);
+            g.lineTo(8, 14);
+            g.endFill();
+            g.lineStyle(1, 0);
+            g.drawRect(0, 0, 16, 17);
+        }
+            
+       /**
          *  The text that is displayed in the view.
          *  
          *  @langversion 3.0
@@ -215,12 +227,6 @@ package org.apache.flex.html.beads
 			upTextField.text = value;
 			downTextField.text = value;
 			overTextField.text = value;
-            upTextField.height = upTextField.textHeight + 5;
-            downTextField.height = downTextField.textHeight + 5;
-            overTextField.height = overTextField.textHeight + 5;
-            upTextField.y = (hh - upTextField.height) / 2;
-            downTextField.y =  (hh - downTextField.height) / 2;
-            overTextField.y =  (hh - overTextField.height) / 2;
 		}
 		
         private var _popUp:IStrand;

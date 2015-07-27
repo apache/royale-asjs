@@ -39,6 +39,7 @@ package org.apache.flex.flat.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.html.beads.IDropDownListView;
     
     /**
      *  The DropDownListView class is the default view for
