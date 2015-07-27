@@ -79,6 +79,11 @@
 				var label3:Label = new Label();
 				label3.text = "Random: " + Math.round(Math.random()*100);
 				tiler.addElement(label3);
+				
+				var label4:Label = new Label();
+				label4.text = " /HCon: " + Math.random();
+				label4.height = 50;
+				hcon.addElement(label4);
 			}
 		]]>
 	</fx:Script>
@@ -88,7 +93,12 @@
 	
 	<!-- FIRST COLUMN -->
 	
-	<js:HContainer id="hcon" x="20" y="40" width="400" height="100" className="Container1">
+	<js:TextButton text="Add Child" x="20" y="20" click="addAChild()" />
+	
+	<js:HContainer id="hcon" x="20" y="80" width="400" height="100" className="Container1">
+		<js:beads>
+			<js:ScrollingViewport />
+		</js:beads>
 		<js:Label text="Line 1" height="30" />
 		<js:Label text="Line 2" height="30" />
 		<js:Label text="Line 3 is wider" height="30" />
@@ -96,8 +106,6 @@
 		<js:Label text="Line 5" height="30" />
 		<js:Label text="Line 6" height="30" />
 	</js:HContainer>
-	
-	<js:TextButton text="Add Child" x="20" y="180" click="addAChild()" />
 	
 	<js:VContainer id="vcon" x="20" y="220" width="200" height="275" className="Container1">
 		<js:beads>
