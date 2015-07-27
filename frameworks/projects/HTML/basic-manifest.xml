@@ -67,7 +67,8 @@
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
     <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
-    <component id="ScrollBar" class="org.apache.flex.html.supportClasses.ScrollBar"/>
+    <component id="HScrollBar" class="org.apache.flex.html.supportClasses.HScrollBar"/>
+    <component id="VScrollBar" class="org.apache.flex.html.supportClasses.VScrollBar"/>
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />

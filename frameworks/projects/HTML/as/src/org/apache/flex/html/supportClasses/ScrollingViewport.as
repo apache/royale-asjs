@@ -103,7 +103,7 @@ package org.apache.flex.html.supportClasses
 				_verticalScroller.setWidthAndHeight(scrollerSize, model.viewportHeight - vbarAdjustHeightBy, false);
 			}
 			if (_horizontalScroller) {
-				_horizontalScroller.setWidthAndHeight(model.viewportHeight - hbarAdjustWidthBy, scrollerSize, false);
+				_horizontalScroller.setWidthAndHeight(model.viewportWidth - hbarAdjustWidthBy, scrollerSize, false);
 			} 
 			
 			if (!model.contentIsHost) {
@@ -246,8 +246,8 @@ package org.apache.flex.html.supportClasses
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
 			
-			var vsb:ScrollBar;
-			vsb = new ScrollBar();
+			var vsb:VScrollBar;
+			vsb = new VScrollBar();
 			vsb.model = vsbm;
 			vsb.visible = false;
 			
@@ -278,8 +278,8 @@ package org.apache.flex.html.supportClasses
 			hsbm.stepSize = 1;
 			hsbm.value = 0;
 			
-			var hsb:ScrollBar;
-			hsb = new ScrollBar();
+			var hsb:HScrollBar;
+			hsb = new HScrollBar();
 			hsb.model = hsbm;
 			hsb.visible = false;
 			

@@ -383,12 +383,20 @@ RadioButton
     IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
 }
 
-ScrollBar
+VScrollBar
 {
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VScrollBarLayout");
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ScrollBarModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.ScrollBarView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.VScrollBarView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.VScrollBarMouseController");
+}
+
+HScrollBar
+{
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HScrollBarLayout");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ScrollBarModel");
+	IBeadView: ClassReference("org.apache.flex.html.beads.HScrollBarView");
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.HScrollBarMouseController");
 }
 
 SimpleAlert
