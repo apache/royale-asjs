@@ -60,21 +60,56 @@ package org.apache.flex.html.beads
 		{
 		}
 		
+		/**
+		 * The sub-element used as the parent of the container's elements. This does not
+		 * include the chrome elements.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get contentView():IParentIUIBase
 		{
 			return _contentArea;
 		}
 		
+		/**
+		 * The view that can be resized.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get resizableView():IUIBase
 		{
 			return host;
 		}
 		
+		/**
+		 * The viewport used to present the content and may display
+		 * scroll bars (depending on the actual type of viewport).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get viewport():IViewport
 		{
 			return _viewport;
 		}
 		
+		/**
+		 * The data model used by the viewport to determine how it should
+		 * present the content area.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get viewportModel():IViewportModel
 		{
 			return _viewportModel;
@@ -85,6 +120,14 @@ package org.apache.flex.html.beads
 		private var _viewport:IViewport;
 		private var _strand:IStrand;
 		
+		/**
+		 * Strand setter.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -101,6 +144,15 @@ package org.apache.flex.html.beads
 			host.addEventListener("initComplete", initCompleteHandler);
 		}
 		
+		/**
+		 * Handles the initComplete event by completing the setup and kicking off the
+		 * presentation of the Container.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function initCompleteHandler(event:Event):void
 		{
 			// if the host component is not being sized by percentage, go ahead and complete the setup.
@@ -116,6 +168,15 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		/**
+		 * Handles the case where the size of the host is not immediately known, usually do
+		 * to one of its dimensions being indicated as a percent size.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function deferredSizeHandler(event:Event):void
 		{
 			host.removeEventListener(event.type, deferredSizeHandler);
@@ -125,6 +186,15 @@ package org.apache.flex.html.beads
 			if (num > 0) performLayout(event);
 		}
 		
+		/**
+		 * Called when the host is ready to complete its setup (usually after its size has been
+		 * determined).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function completeSetup():void
 		{
 			createViewport();
@@ -139,6 +209,15 @@ package org.apache.flex.html.beads
 			host.addEventListener("viewCreated", viewCreatedHandler);
 		}
 		
+		/**
+		 * Creates the contentView or actual parent, of the items being contained. This
+		 * is done for ActionScript to provide offsets for padding within the host.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function createContentView():IParentIUIBase
 		{
 			var area:ContainerContentArea = new ContainerContentArea();
@@ -146,6 +225,15 @@ package org.apache.flex.html.beads
 			return area;
 		}
 		
+		/**
+		 * Handles the viewCreated event by performing the first layout if
+		 * there are children already present (ie, from MXML).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function viewCreatedHandler(event:Event):void
 		{
 			resizeViewport();
@@ -155,6 +243,15 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		/**
+		 * Creates the Viewport (or ScrollableViewport) through which the content
+		 * area is presented.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function createViewport():void
 		{
 			if (viewportModel == null) {
@@ -190,6 +287,16 @@ package org.apache.flex.html.beads
 			resizeViewport();
 		}
 		
+		/**
+		 * Executes the layout associated with this container. Once the layout has been
+		 * run, it may affect the size of the host or may cause the host to present scroll
+		 * bars view its viewport.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function performLayout(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;
@@ -211,10 +318,26 @@ package org.apache.flex.html.beads
 			adjustSizeAfterLayout();
 		}
 		
+		/**
+		 * @private
+		 */
+		private var adjusting:Boolean = false;
+		
+		/**
+		 * Adjusts the size of the host, or adds scrollbars to the viewport, after
+		 * the layout has been run.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function adjustSizeAfterLayout():void
 		{
 			var host:UIBase = _strand as UIBase;
 			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
+			
+			adjusting = true;
 						
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
 				host.setWidthAndHeight(viewportModel.contentWidth+metrics.left+metrics.right, 
@@ -238,8 +361,19 @@ package org.apache.flex.html.beads
 				viewport.updateSize();
 				viewport.updateContentAreaSize();
 			}
+			
+			adjusting = false;
 		}
 		
+		/**
+		 * Determines the size of the contentArea after the layout has been run. The
+		 * size of the content area might be used to adjust the size of the host.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function determineContentSizeFromChildren():void
 		{
 			// pass through all of the children and determine the maxWidth and maxHeight
@@ -262,6 +396,14 @@ package org.apache.flex.html.beads
 			viewportModel.contentHeight = Math.max(maxHeight,contentView.height);
 		}
 		
+		/**
+		 * Resizes the viewport opening in case the host has been resized.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function resizeViewport():void
 		{
 			// the viewport takes the entire space as there is no default chrome.
@@ -276,10 +418,19 @@ package org.apache.flex.html.beads
 			viewport.updateContentAreaSize();
 		}
 		
+		/**
+		 * Handles dynamic changes to the host's size by running the layout once
+		 * the viewport has been adjusted.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		protected function resizeHandler(event:Event):void
 		{
 			resizeViewport();
-			if (event.target != this.resizableView) {
+			if (!adjusting) {
 				performLayout(event);
 			}
 		}

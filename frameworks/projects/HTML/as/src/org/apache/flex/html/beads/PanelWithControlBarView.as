@@ -177,12 +177,10 @@ package org.apache.flex.html.beads
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			if (controlBar) {
 				controlBar.width = host.width;
 				controlBar.y = host.height - controlBar.height;
-				controlBar.dispatchEvent( new Event("layoutNeeded") );
 			}
 			
 			// If the host is being sized by its content, the change in the contentArea
