@@ -184,14 +184,14 @@ package org.apache.flex.html.beads
             if (value != null)
             {
                 if (value is Number)
-                    borderEllipseWidth = value as Number;
+                    borderEllipseWidth = 2 * (value as Number);
                 else
                 {
                     borderRadius = value as String;
                     var arr:Array = StringTrimmer.splitAndTrim(borderRadius, "/");
-                    borderEllipseWidth = CSSUtils.toNumber(arr[0]);
+                    borderEllipseWidth = 2 * CSSUtils.toNumber(arr[0]);
                     if (arr.length > 1)
-                        borderEllipseHeight = CSSUtils.toNumber(arr[1]);
+                        borderEllipseHeight = 2 * CSSUtils.toNumber(arr[1]);
                 } 
             }
 

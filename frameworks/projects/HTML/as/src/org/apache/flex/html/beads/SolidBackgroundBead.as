@@ -184,7 +184,7 @@ package org.apache.flex.html.beads
             if (isNaN(borderRadius))
                 g.drawRect(0, 0, w, h);
             else
-                g.drawRoundRect(0, 0, w, h, borderRadius);
+                g.drawRoundRect(0, 0, w, h, borderRadius * 2);
             g.endFill();
 		}
 	}
