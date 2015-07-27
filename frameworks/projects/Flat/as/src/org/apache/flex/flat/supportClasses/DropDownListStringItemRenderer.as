@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.flex.flat.supportClasses
 {
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
@@ -25,6 +25,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ITextItemRenderer;
+    import org.apache.flex.html.supportClasses.StringItemRenderer;
 
 	/**
 	 *  The DropDownListStringItemRenderer is a StringItemRenderer with a particular

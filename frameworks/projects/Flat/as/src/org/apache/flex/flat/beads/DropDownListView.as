@@ -1,0 +1,287 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+package org.apache.flex.flat.beads
+{
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.SimpleButton;
+	import flash.display.Sprite;
+	import flash.text.TextFieldType;
+	
+    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.CSSTextField;
+    import org.apache.flex.core.CSSShape;
+    import org.apache.flex.core.CSSSprite;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IPopUpHost;
+	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IPopUpHost;
+    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+    
+    /**
+     *  The DropDownListView class is the default view for
+     *  the org.apache.flex.flat.DropDownList class.
+     *  It displays a simple text label with what appears to be a
+     *  down arrow button on the right, but really, the entire
+     *  view is the button that will display or dismiss the dropdown.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	public class DropDownListView extends BeadViewBase implements IDropDownListView, IBeadView
+	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function DropDownListView()
+		{
+            upSprite = new CSSSprite();
+            upSprite.className = 'dropdown-toggle-open-btn';
+            downSprite = new CSSSprite();
+            downSprite.className = 'dropdown-toggle-open-btn';
+            overSprite = new CSSSprite();
+            overSprite.className = 'dropdown-toggle-open-btn';
+            overSprite.state = 'hover';
+			upTextField = new CSSTextField();
+			downTextField = new CSSTextField();
+			overTextField = new CSSTextField();
+            upSprite.addChild(upTextField);
+            overSprite.addChild(overTextField);
+            downSprite.addChild(downTextField);
+			upTextField.selectable = false;
+            upTextField.parentDrawsBackground = true;
+			upTextField.type = TextFieldType.DYNAMIC;
+			downTextField.selectable = false;
+            downTextField.parentDrawsBackground = true;
+			downTextField.type = TextFieldType.DYNAMIC;
+			overTextField.selectable = false;
+            overTextField.parentDrawsBackground = true;
+			overTextField.type = TextFieldType.DYNAMIC;
+            // auto-size collapses if no text
+			//upTextField.autoSize = "left";
+			//downTextField.autoSize = "left";
+			//overTextField.autoSize = "left";
+
+            upArrows = new CSSShape();
+            upArrows.className = 'dropdown-caret';
+            overArrows = new CSSShape();
+            overArrows.className = 'dropdown-caret';
+            downArrows = new CSSShape();
+            downArrows.className = 'dropdown-caret';
+            upSprite.addChild(upArrows);
+			overSprite.addChild(overArrows);
+			downSprite.addChild(downArrows);
+
+		}
+
+        
+		private var selectionModel:ISelectionModel;
+		
+		private var shape:Shape;
+		
+        /**
+         *  @copy org.apache.flex.core.IBead#strand
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;;
+            selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+            selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			shape = new Shape();
+			shape.graphics.beginFill(0xCCCCCC);
+			shape.graphics.drawRect(0, 0, 10, 10);
+			shape.graphics.endFill();
+			SimpleButton(value).upState = upSprite;
+			SimpleButton(value).downState = downSprite;
+			SimpleButton(value).overState = overSprite;
+			SimpleButton(value).hitTestState = shape;
+			if (selectionModel.selectedIndex !== -1)
+				text = selectionModel.selectedItem.toString();
+            else
+                text = "^W_";
+            upTextField.height = upTextField.textHeight + 4;
+            downTextField.height = downTextField.textHeight + 4;
+            overTextField.height = overTextField.textHeight + 4;
+            if (selectionModel.selectedIndex == -1)
+                text = "";
+            
+            IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
+            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
+			changeHandler(null);
+		}
+		
+		private function selectionChangeHandler(event:Event):void
+		{
+			text = selectionModel.selectedItem.toString();
+		}
+		
+        private function changeHandler(event:Event):void
+        {
+            var ww:Number = DisplayObject(_strand).width;
+            var hh:Number = DisplayObject(_strand).height;
+            upArrows.draw(0, 0);
+            overArrows.draw(0, 0);
+            downArrows.draw(0, 0);
+            upSprite.draw(ww, hh);
+            overSprite.draw(ww, hh);
+            downSprite.draw(ww, hh);
+            
+            upArrows.x = ww - upArrows.width;            
+            overArrows.x = ww - overArrows.width;            
+            downArrows.x = ww - downArrows.width;
+            upArrows.y = (hh - upArrows.height) / 2;            
+            overArrows.y = (hh - overArrows.height) / 2;            
+            downArrows.y = (hh - downArrows.height) / 2;
+            
+			upTextField.width = upArrows.x;
+			downTextField.width = downArrows.x;
+			overTextField.width = overArrows.x;
+			upTextField.height = upTextField.textHeight + 5;
+			downTextField.height = downTextField.textHeight + 5;
+			overTextField.height = overTextField.textHeight + 5;
+            upTextField.y = (hh - upTextField.height) / 2;
+            downTextField.y =  (hh - downTextField.height) / 2;
+            overTextField.y =  (hh - overTextField.height) / 2;
+			shape.graphics.clear();
+			shape.graphics.beginFill(0xCCCCCC);
+			shape.graphics.drawRect(0, 0, ww, hh);
+			shape.graphics.endFill();
+        }
+        
+		private var upTextField:CSSTextField;
+		private var downTextField:CSSTextField;
+		private var overTextField:CSSTextField;
+        private var upSprite:CSSSprite;
+        private var downSprite:CSSSprite;
+        private var overSprite:CSSSprite;
+        private var upArrows:CSSShape;
+        private var downArrows:CSSShape;
+        private var overArrows:CSSShape;
+		
+        /**
+         *  The text that is displayed in the view.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function get text():String
+		{
+			return upTextField.text;
+		}
+        
+        /**
+         *  @private
+         */
+		public function set text(value:String):void
+		{
+            var ww:Number = DisplayObject(_strand).width;
+            var hh:Number = DisplayObject(_strand).height;
+			upTextField.text = value;
+			downTextField.text = value;
+			overTextField.text = value;
+            upTextField.height = upTextField.textHeight + 5;
+            downTextField.height = downTextField.textHeight + 5;
+            overTextField.height = overTextField.textHeight + 5;
+            upTextField.y = (hh - upTextField.height) / 2;
+            downTextField.y =  (hh - downTextField.height) / 2;
+            overTextField.y =  (hh - overTextField.height) / 2;
+		}
+		
+        private var _popUp:IStrand;
+        
+        /**
+         *  The dropdown/popup that displays the set of choices.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get popUp():IStrand
+        {
+            return _popUp;
+        }
+        
+        private var _popUpVisible:Boolean;
+        
+        /**
+         *  A flag that indicates whether the dropdown/popup is
+         *  visible.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get popUpVisible():Boolean
+        {
+            return _popUpVisible;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set popUpVisible(value:Boolean):void
+        {
+            if (value != _popUpVisible)
+            {
+                _popUpVisible = value;
+                if (value)
+                {
+                    if (!_popUp)
+                    {
+                        var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+                        _popUp = new popUpClass() as IStrand;
+                    }
+					var root:Object = DisplayObject(_strand).root;
+					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
+                    while (host && !(host is IPopUpHost))
+                        host = host.parent;
+                    if (host)
+                        IPopUpHost(host).addElement(popUp);
+                }
+                else
+                {
+                    DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
+                }
+            }
+        }
+        
+	}
+}

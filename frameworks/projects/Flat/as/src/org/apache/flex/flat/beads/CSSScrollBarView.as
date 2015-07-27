@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.flat.beads
 {
 	import flash.display.DisplayObject;
 	
@@ -33,6 +33,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.events.Event;
 	import org.apache.flex.html.Button;
 	import org.apache.flex.html.beads.controllers.ButtonAutoRepeatController;
+    import org.apache.flex.html.beads.IScrollBarView;
 
     /**
      *  The ScrollBarView class is the default view for

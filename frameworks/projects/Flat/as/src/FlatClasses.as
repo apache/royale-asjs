@@ -16,33 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package
 {
+
+/**
+ *  @private
+ *  This class is used to link additional classes into rpc.swc
+ *  beyond those that are found by dependecy analysis starting
+ *  from the classes specified in manifest.xml.
+ */
+internal class FlatClasses
+{	
 	
-    /**
-     *  The CheckboxCSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.html.Checkbox class.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-	public class CheckboxCSSContentAndTextToggleButtonView extends CSSContentAndTextToggleButtonView
-	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function CheckboxCSSContentAndTextToggleButtonView()
-		{
-			super();
-			
-			className = "checkbox-icon";
-		}
-	}
+    import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
+    import org.apache.flex.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
+    import org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
 }
+
+}
+

@@ -16,18 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.flat.supportClasses
 {
+    import org.apache.flex.core.IPopUp;
+    import org.apache.flex.html.SimpleList;
+    import org.apache.flex.html.beads.SolidBackgroundBead;
+    
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
     /**
-     *  The RadioCSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.html.RadioButton class.
+     *  @copy org.apache.flex.core.ISelectionModel#change
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class RadioCSSContentAndTextToggleButtonView extends CSSContentAndTextToggleButtonView
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  The DropDownListList class is the List class used internally
+     *  by DropDownList as the dropdown/popup.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	public class DropDownListList extends SimpleList implements IPopUp
 	{
         /**
          *  Constructor.
@@ -37,11 +55,22 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function RadioCSSContentAndTextToggleButtonView()
+		public function DropDownListList()
 		{
 			super();
+            className = "dropdown-menu";
+		}
+		
+        /**
+         *  @private
+         */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
 			
-			className = "radio-icon";
+			var bb:SolidBackgroundBead = new SolidBackgroundBead();
+			bb.backgroundColor = 0xffffff;
+			addBead(bb);
 		}
 	}
 }

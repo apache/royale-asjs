@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.flat.beads
 {
     import flash.display.DisplayObject;
     import flash.display.Loader;
@@ -39,12 +39,8 @@ package org.apache.flex.html.beads
     import org.apache.flex.utils.StringTrimmer;
 
     /**
-     *  The CSSButtonView class is the default view for
-     *  the org.apache.flex.html.Button class.
-     *  It allows the look of the button to be expressed
-     *  in CSS via the background-image style.  This view
-     *  does not display text.  Use CSSTextButtonView and
-     *  TextButton instead.
+     *  The CSSScrollBarButtonView class is the default view for
+     *  the buttons in a org.apache.flex.html.ScrollBar class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

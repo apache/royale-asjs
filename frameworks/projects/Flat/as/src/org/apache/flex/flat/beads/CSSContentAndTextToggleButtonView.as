@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.flat.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -36,7 +36,7 @@ package org.apache.flex.html.beads
 	
     /**
      *  The CSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.html.CheckBox and RadioButton classes.
+     *  the org.apache.flex.flat.CheckBox and RadioButton classes.
      *  It supports CSS content property for the
      *  icon.
      * 
