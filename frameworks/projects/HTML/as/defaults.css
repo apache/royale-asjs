@@ -451,8 +451,6 @@ TextArea
     border-color: #000000;
     border-width: 1px;
     background-color: #FFFFFF;
-    width: 135;
-    height: 20;
 }
 
 TextButton
@@ -479,8 +477,6 @@ TextInput
     border-color: #000000;
     border-width: 1px;
     background-color: #FFFFFF;
-	width: 135;
-	height: 20;
 }
 
 TitleBar

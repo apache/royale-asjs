@@ -102,7 +102,6 @@ package org.apache.flex.html.beads
 				html = _textModel.html;
             
             var ilc:ILayoutChild = host as ILayoutChild;
-            
             autoHeight = ilc.isHeightSizedToContent();
             autoWidth = ilc.isWidthSizedToContent();
             if (!autoWidth && !isNaN(ilc.explicitWidth))
@@ -268,11 +267,11 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoWidth = false;
-    			textField.width = DisplayObject(_strand).width;
+    			textField.width = host.width;
                 if (autoHeight)
         	        autoSizeIfNeeded()
                 else
-                    textField.height = DisplayObject(_strand).height;
+                    textField.height = host.height;
             }
 		}
 
@@ -282,30 +281,29 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoHeight = false;
-                textField.height = DisplayObject(_strand).height;
+                textField.height = host.height;
                 if (autoWidth)
                     autoSizeIfNeeded();
                 else
-                    textField.width = DisplayObject(_strand).width;
+                    textField.width = host.width;
             }
         }
         
         private function sizeChangeHandler(event:Event):void
         {
             var ilc:ILayoutChild = host as ILayoutChild;
-
             autoHeight = ilc.isHeightSizedToContent();
             if (!autoHeight)
             {
                 textField.autoSize = "none";
-                textField.height = DisplayObject(_strand).height;
+                textField.height = host.height;
             }
             
             autoWidth = ilc.isWidthSizedToContent();
             if (!autoWidth)
             {
                 textField.autoSize = "none";
-                textField.width = DisplayObject(_strand).width;
+                textField.width = host.width;
             }
         }
         
