@@ -30,10 +30,20 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[			
 			import org.apache.flex.core.IBeadModel;
+			import org.apache.flex.core.IBeadController;
 			import org.apache.flex.events.Event;
+			import controller.AlertsViewController;
 			
-			[Bindable]
-			public var dataModel:IBeadModel;
+			public function set dataModel(value:IBeadModel):void
+			{
+				var cm:IBeadController = controller;
+				(cm as AlertsViewController).model = value;
+			}
+			public function get dataModel():IBeadModel
+			{
+				var cm:IBeadController = controller;
+				return (cm as AlertsViewController).model;
+			}
 
 			private function onAlertSet():void
 			{

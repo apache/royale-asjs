@@ -223,7 +223,7 @@ limitations under the License.
 	</fx:Script>
 	
 	<basic:beads>
-		<!--<basic:ViewBaseDataBinding />-->
+		<basic:ViewBaseDataBinding />
 	</basic:beads>
 	
 	<basic:TabbedViewManager id="navController" width="480" height="640" x="0" y="0" viewChanged="tabbedViewChanged(event)">
