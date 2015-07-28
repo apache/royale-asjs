@@ -568,6 +568,11 @@ DropDownListList
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer");
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #000000;
+    border-width: 1px;
+    background-color: #FFFFFF;
 }
 
 Image
