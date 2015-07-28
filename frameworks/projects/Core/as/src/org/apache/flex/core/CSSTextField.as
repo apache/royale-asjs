@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFormat;
-	
-	import org.apache.flex.core.ValuesManager;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
+    
+    import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.utils.CSSUtils;
 		
     /**
      *  The CSSTextField class implements CSS text styles in a TextField.
@@ -64,28 +65,63 @@ package org.apache.flex.core
 		
         /**
          *  @private
+         *  The CSS pseudo-state for lookups.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var styleState:String;
+        
+        /**
+         *  @private
+         *  The parentDrawsBackground property is set if the CSSTextField
+         *  shouldn't draw a background
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var parentDrawsBackground:Boolean;
+        
+        /**
+         *  @private
+         *  The parentHandlesPadding property is set if the CSSTextField
+         *  shouldn't worry about padding
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var parentHandlesPadding:Boolean;
+        
+        /**
+         *  @private
          */
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
-			if (!sp)
+			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);
             
 			var tf: TextFormat = new TextFormat();
-			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily") as String;
-			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize");
-			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight") == "bold";
-			tf.color = ValuesManager.valuesImpl.getValue(sp, "color");
-			var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding");
-			if (padding == null) padding = 0;
-			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left");
-			if (paddingLeft == null) paddingLeft = padding;
-			var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right");
-			if (paddingRight == null) paddingRight = padding;
-			tf.leftMargin = paddingLeft;
-			tf.rightMargin = paddingRight;
-            var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align");
+			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily", styleState) as String;
+			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize", styleState);
+			tf.bold = ValuesManager.valuesImpl.getValue(sp, "fontWeight", styleState) == "bold";
+			tf.color = CSSUtils.toColor(ValuesManager.valuesImpl.getValue(sp, "color", styleState));
+            if (!parentHandlesPadding)
+            {
+        		var padding:Object = ValuesManager.valuesImpl.getValue(sp, "padding", styleState);
+        		var paddingLeft:Object = ValuesManager.valuesImpl.getValue(sp,"padding-left", styleState);
+        		var paddingRight:Object = ValuesManager.valuesImpl.getValue(sp,"padding-right", styleState);
+        		tf.leftMargin = CSSUtils.getLeftValue(paddingLeft, padding, width);
+        		tf.rightMargin = CSSUtils.getRightValue(paddingRight, padding, width);
+            }
+            var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align", styleState);
             if (align == "center")
 			{
 				autoSize = TextFieldAutoSize.NONE;
@@ -96,16 +132,14 @@ package org.apache.flex.core
                 tf.align = "right";
 				autoSize = TextFieldAutoSize.NONE;	
 			}
-            var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color");
-            if (backgroundColor != null)
+            if (!parentDrawsBackground)
             {
-                this.background = true;
-                if (backgroundColor is String)
+                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
+                if (backgroundColor != null)
                 {
-                    backgroundColor = backgroundColor.replace("#", "0x");
-                    backgroundColor = uint(backgroundColor);
+                    this.background = true;
+                    this.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
-                this.backgroundColor = backgroundColor as uint;
             }
 			defaultTextFormat = tf;
 			super.text = value;
@@ -116,5 +150,6 @@ package org.apache.flex.core
             // force styles to be re-calculated
             this.text = text;
         }
+        
 	}
 }

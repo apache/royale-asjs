@@ -87,6 +87,12 @@ package org.apache.flex.html.beads
 			if( bgAlpha != null ) {
 				opacity = Number(bgAlpha);
 			}
+            
+            var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
+            if( corner != null ) {
+                borderRadius = Number(corner);
+            }
+            
             changeHandler(null);
 		}
 		
@@ -140,6 +146,31 @@ package org.apache.flex.html.beads
 				changeHandler(null);
 		}
 		
+        private var _borderRadius:Number;
+        
+        /**
+         *  The opacity (alpha).
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get borderRadius():Number
+        {
+            return _borderRadius;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set borderRadius(value:Number):void
+        {
+            _borderRadius = value;
+            if( _strand )
+                changeHandler(null);
+        }
+        
 		private function changeHandler(event:Event):void
 		{
             var g:Graphics = Sprite(host).graphics;
@@ -150,7 +181,10 @@ package org.apache.flex.html.beads
 			if( this == gd ) g.clear();
 
             g.beginFill(backgroundColor,opacity);
-            g.drawRect(0, 0, w, h);
+            if (isNaN(borderRadius))
+                g.drawRect(0, 0, w, h);
+            else
+                g.drawRoundRect(0, 0, w, h, borderRadius * 2);
             g.endFill();
 		}
 	}

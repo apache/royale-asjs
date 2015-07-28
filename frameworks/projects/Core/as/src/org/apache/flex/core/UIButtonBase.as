@@ -280,8 +280,7 @@ package org.apache.flex.core
 			{
 				var w:Number = _width;
 				if (isNaN(w)) w = $width;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
-				return w + metrics.left + metrics.right;
+				return w;
 			}
 			else
 				return explicitWidth;
@@ -331,8 +330,7 @@ package org.apache.flex.core
 			{
 				var h:Number = _height;
 				if (isNaN(h)) h = $height;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
-				return h + metrics.top + metrics.bottom;
+				return h;
 			}
 			else
 				return explicitHeight;

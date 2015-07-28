@@ -32,12 +32,12 @@
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="main" 
-        depends="swfobject-download" 
+        depends="swfobject-download,flat-ui-download"
         description="Copies third-party software into place for build">
         <echo message="Use thirdparty-clean or super-clean to remove these."/> 
     </target>
     
-    <target name="clean" depends="swfobject-clean" 
+    <target name="clean" depends="swfobject-clean,flat-ui-clean"
         description="Cleans thirdparty downloaded files.">
      </target>
     
@@ -73,6 +73,46 @@
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/templates/swfobject">
                 <include name="**/**"/>
+            </fileset>
+        </delete>
+    </target>
+        
+    <!-- swfobject.js (Version 2.2) -->
+    <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
+    <target name="flat-ui-check" description="Checks if SWFObject has been downloaded.">
+        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat-ui.present"/>
+    </target>
+    
+    <target name="flat-ui-download" depends="flat-ui-check" unless="flat-ui.present"
+        description="Copies FlatUI from github">
+        
+        <mkdir dir="${download.dir}"/>
+        <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
+        dest="${download.dir}/flat-ui_2_2.zip"
+        verbose="false"/>
+        
+        <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
+            <patternset>
+                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"/>
+                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"/>
+                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg"/>
+                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff"/>
+            </patternset>
+            <flattenmapper />
+        </unzip>
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
+            <patternset>
+                <include name="Flat-UI-2.2.2/README.md"/>
+            </patternset>
+            <flattenmapper />
+        </unzip>
+    </target>
+    
+    <target name="flat-ui-clean" description="Deletes flat-ui fonts.">
+        <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+                <include name="**"/>
             </fileset>
         </delete>
     </target>

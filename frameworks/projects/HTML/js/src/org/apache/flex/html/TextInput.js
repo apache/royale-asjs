@@ -46,6 +46,8 @@ org.apache.flex.html.TextInput.prototype.FLEXJS_CLASS_INFO =
 org.apache.flex.html.TextInput.prototype.createElement = function() {
   this.element = document.createElement('input');
   this.element.setAttribute('type', 'input');
+  this.element.className = 'TextInput';
+  this.typeNames = 'TextInput';
 
   //attach input handler to dispatch flexjs change event when user write in textinput
   //goog.events.listen(this.element, 'change', goog.bind(this.killChangeHandler, this));

@@ -54,6 +54,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
 	import org.apache.flex.html.beads.VScrollBarView; VScrollBarView;
 	import org.apache.flex.html.beads.HScrollBarView; HScrollBarView;
+    import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;
     import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
 	import org.apache.flex.html.beads.SliderView; SliderView;

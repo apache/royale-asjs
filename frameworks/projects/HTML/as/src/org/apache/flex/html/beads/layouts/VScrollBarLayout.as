@@ -91,15 +91,11 @@ package org.apache.flex.html.beads.layouts
 			
 			decrement.x = 0;
 			decrement.y = 0;
-			decrement.width = DisplayObject(_strand).width;
-			decrement.height = decrement.width;
 			
 			increment.x = 0;
-			increment.width = DisplayObject(_strand).width;
-			increment.height = increment.width;
 			increment.y = h - increment.height - 1;
 
-			track.x = 0;
+			track.x = (thumb.width - track.width) / 2;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
             thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;

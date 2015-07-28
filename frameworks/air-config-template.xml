@@ -115,6 +115,12 @@
             <manifest>projects/HTML5/html5-manifest.xml</manifest>
          
         </namespace>   
+         <namespace>
+             <uri>library://ns.apache.org/flexjs/flat</uri>
+             
+             <manifest>projects/Flat/flat-manifest.xml</manifest>
+             
+         </namespace>
       </namespaces>
       
       <!-- Enable post-link SWF optimization. -->

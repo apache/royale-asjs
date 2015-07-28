@@ -18,19 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.Loader;
-	import flash.display.Shape;
-	import flash.display.SimpleButton;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.net.URLRequest;
-	
+    import flash.display.DisplayObject;
+    import flash.display.Loader;
+    import flash.display.Shape;
+    import flash.display.SimpleButton;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.net.URLRequest;
+    
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.utils.SolidBorderUtil;
+    import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.ITextModel;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.CSSBorderUtils;
+    import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The CSSButtonView class is the default view for
@@ -89,47 +94,41 @@ package org.apache.flex.html.beads
             setupBackground(overSprite, "hover");
             setupBackground(downSprite, "active");
             setupBackground(upSprite);
+            
+            IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
+            IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
 		}
 	
+        private function sizeChangeHandler(event:org.apache.flex.events.Event):void
+        {
+            setupSkins();
+        }
+        
+        protected function setupSkins():void
+        {
+            setupSkin(overSprite, "hover");
+            setupSkin(downSprite, "active");
+            setupSkin(upSprite);
+            updateHitArea();
+        }
+
 		private function setupSkin(sprite:Sprite, state:String = null):void
 		{
-			var borderColor:uint;
-			var borderThickness:uint;
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border", state);
-			if (borderStyles is Array)
-			{
-				borderColor = borderStyles[2];
-				borderStyle = borderStyles[1];
-				borderThickness = borderStyles[0];
-			}
-			var value:Object = ValuesManager.valuesImpl.getValue(_strand, "border-style", state);
-			if (value != null)
-				borderStyle = value as String;
-			value = ValuesManager.valuesImpl.getValue(_strand, "border-color", state);
-			if (value != null)
-				borderColor = value as uint;
-			value = ValuesManager.valuesImpl.getValue(_strand, "border-thickness", state);
-			if (value != null)
-				borderThickness = value as uint;
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
 			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-			if (paddingLeft == null) paddingLeft = padding;
-			if (paddingRight == null) paddingRight = padding;
-			if (paddingTop == null) paddingTop = padding;
-			if (paddingBottom == null) paddingBottom = padding;
+			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
 			
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
-			if (borderStyle == "solid")
-			{
-				SolidBorderUtil.drawBorder(sprite.graphics, 
-					0, 0, sprite.width + Number(paddingLeft) + Number(paddingRight), 
-					sprite.height + Number(paddingTop) + Number(paddingBottom),
-					borderColor, backgroundColor, borderThickness);
-			}			
+		    CSSBorderUtils.draw(sprite.graphics, 
+					DisplayObject(_strand).width + pl + pr, 
+					DisplayObject(_strand).height + pt + pb,
+                    _strand as DisplayObject,
+                    state, true);
 		}
 		
         private function setupBackground(sprite:Sprite, state:String = null):void
@@ -145,6 +144,10 @@ package org.apache.flex.html.beads
                     setupSkin(sprite, state);
                     updateHitArea();
                 });
+            }
+            else {
+                setupSkin(sprite, state);
+                updateHitArea();
             }
         }
         
