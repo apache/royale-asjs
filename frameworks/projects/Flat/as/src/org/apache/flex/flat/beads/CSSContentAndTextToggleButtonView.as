@@ -292,10 +292,10 @@ package org.apache.flex.flat.beads
 				
                 var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
                 var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left");
-                icon.x = CSSUtils.getLeftValue(paddingLeft, padding, s.width);
+                icon.x = 0;
 				icon.y = (mh - icon.height)/2;
 				
-				tf.x = icon.x + icon.width + 1;
+				tf.x = CSSUtils.getLeftValue(paddingLeft, padding, s.width);
 				tf.y = (mh - tf.height)/2;
 			}
 			

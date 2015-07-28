@@ -26,20 +26,21 @@ package org.apache.flex.flat.beads
 	import flash.display.Sprite;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.CSSShape;
+	import org.apache.flex.core.CSSSprite;
 	import org.apache.flex.core.CSSTextField;
-    import org.apache.flex.core.CSSShape;
-    import org.apache.flex.core.CSSSprite;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IPopUpHost;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.html.beads.IDropDownListView;
+	import org.apache.flex.html.beads.IDropDownListView;
+	import org.apache.flex.utils.CSSUtils;
     
     /**
      *  The DropDownListView class is the default view for
@@ -80,12 +81,15 @@ package org.apache.flex.flat.beads
             downSprite.addChild(downTextField);
 			upTextField.selectable = false;
             upTextField.parentDrawsBackground = true;
+            upTextField.parentHandlesPadding = true;
 			upTextField.type = TextFieldType.DYNAMIC;
 			downTextField.selectable = false;
             downTextField.parentDrawsBackground = true;
+            downTextField.parentHandlesPadding = true;
 			downTextField.type = TextFieldType.DYNAMIC;
 			overTextField.selectable = false;
             overTextField.parentDrawsBackground = true;
+            overTextField.parentHandlesPadding = true;
 			overTextField.type = TextFieldType.DYNAMIC;
             // auto-size collapses if no text
 			//upTextField.autoSize = "left";
@@ -154,29 +158,47 @@ package org.apache.flex.flat.beads
         {
             var ww:Number = DisplayObject(_strand).width;
             var hh:Number = DisplayObject(_strand).height;
+            var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
+            var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left");
+            var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-right");
+            var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-top");
+            var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-bottom");
+            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, ww);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, ww);
+            var pt:Number = CSSUtils.getLeftValue(paddingTop, padding, hh);
+            var pb:Number = CSSUtils.getRightValue(paddingBottom, padding, hh);
+            
             upArrows.draw(0, 0);
             overArrows.draw(0, 0);
             downArrows.draw(0, 0);
+            if (ILayoutChild(_strand).isHeightSizedToContent() && text != "")
+            {
+                hh = upTextField.textHeight + pt + pb;
+                ILayoutChild(_strand).setHeight(hh, true);
+            }
             upSprite.draw(ww, hh);
             overSprite.draw(ww, hh);
             downSprite.draw(ww, hh);
             
-            upArrows.x = ww - upArrows.width;            
-            overArrows.x = ww - overArrows.width;            
-            downArrows.x = ww - downArrows.width;
+            upArrows.x = ww - upArrows.width - pr;            
+            overArrows.x = ww - overArrows.width - pr;            
+            downArrows.x = ww - downArrows.width - pr;
             upArrows.y = (hh - upArrows.height) / 2;            
             overArrows.y = (hh - overArrows.height) / 2;            
             downArrows.y = (hh - downArrows.height) / 2;
             
-			upTextField.width = upArrows.x;
-			downTextField.width = downArrows.x;
-			overTextField.width = overArrows.x;
+			upTextField.width = upTextField.textWidth + 4;
+			downTextField.width = downTextField.textWidth + 4;
+			overTextField.width = overTextField.textWidth + 4;
 			upTextField.height = upTextField.textHeight + 5;
 			downTextField.height = downTextField.textHeight + 5;
 			overTextField.height = overTextField.textHeight + 5;
             upTextField.y = (hh - upTextField.height) / 2;
-            downTextField.y =  (hh - downTextField.height) / 2;
-            overTextField.y =  (hh - overTextField.height) / 2;
+            downTextField.y = (hh - downTextField.height) / 2;
+            overTextField.y = (hh - overTextField.height) / 2;
+            upTextField.x = pl;
+            downTextField.x = pl;
+            overTextField.x = pl;
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, ww, hh);
@@ -211,17 +233,10 @@ package org.apache.flex.flat.beads
          */
 		public function set text(value:String):void
 		{
-            var ww:Number = DisplayObject(_strand).width;
-            var hh:Number = DisplayObject(_strand).height;
 			upTextField.text = value;
 			downTextField.text = value;
 			overTextField.text = value;
-            upTextField.height = upTextField.textHeight + 5;
-            downTextField.height = downTextField.textHeight + 5;
-            overTextField.height = overTextField.textHeight + 5;
-            upTextField.y = (hh - upTextField.height) / 2;
-            downTextField.y =  (hh - downTextField.height) / 2;
-            overTextField.y =  (hh - overTextField.height) / 2;
+            changeHandler(null);
 		}
 		
         private var _popUp:IStrand;

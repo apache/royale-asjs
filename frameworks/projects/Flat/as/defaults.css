@@ -260,6 +260,7 @@ DateField {
 
 .dropdown-toggle-open-btn {
   border-radius: 4px;
+  font-size: 14px;
   color: #fff;
   background-color: #1abc9c;
   border-color: #1abc9c;
@@ -267,6 +268,7 @@ DateField {
   
 .dropdown-toggle-open-btn:hover {
   border-radius: 4px;
+  font-size: 14px;
   color: #fff;
   background-color: #48c9b0;
   border-color: #48c9b0;
@@ -559,7 +561,6 @@ DropDownList
     IBeadView: ClassReference("org.apache.flex.flat.beads.DropDownListView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DropDownListController");
     IPopUp: ClassReference("org.apache.flex.flat.supportClasses.DropDownListList");
-	height: 43px;
 }
 
 DropDownListList
@@ -568,6 +569,7 @@ DropDownListList
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer");
+    iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
     border-style: solid;
     border-radius: 4px;
     border-color: #000000;
@@ -774,8 +776,6 @@ TextArea
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");
     iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
     iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
-    width: 135;
-    height: 20;
 }
 
 TextButton
@@ -798,8 +798,6 @@ TextInput
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");
     iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
     iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
-	width: 135;
-	height: 20;
 }
 
 TitleBar
