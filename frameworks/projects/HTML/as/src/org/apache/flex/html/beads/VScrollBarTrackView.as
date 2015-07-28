@@ -58,9 +58,9 @@ package org.apache.flex.html.beads
 		private function drawView(g:Graphics, bgColor:uint, h:Number):void
 		{
 			g.clear();
-			g.lineStyle(1);
+			g.lineStyle(1, 0x808080);
 			g.beginFill(bgColor);
-			g.drawRect(0, 0, 16, h);
+			g.drawRect(0, 0, 12, h);
 			g.endFill();
 			g.lineStyle(0);
 		}
@@ -72,12 +72,12 @@ package org.apache.flex.html.beads
 			
 			var h:Number = SimpleButton(_strand).height;
 			
-			drawView(upView.graphics, 0xCCCCCC, h);
-			drawView(downView.graphics, 0x808080, h);
-			drawView(overView.graphics, 0xEEEEEE, h);	
+			drawView(upView.graphics, 0xf8f8f8, h);
+			drawView(downView.graphics, 0xd8d8d8, h);
+			drawView(overView.graphics, 0xe8e8e8, h);	
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 16, h);
+			shape.graphics.drawRect(0, 0, 12, h);
 			shape.graphics.endFill();
 			
 		}

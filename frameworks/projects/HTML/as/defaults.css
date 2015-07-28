@@ -35,22 +35,23 @@
 
 Button
 {
-  background-color: #d8d8d8;
-  border: 1px solid #000000;
+  background-color: #f8f8f8;
+  border: 1px solid #808080;
+  border-radius: 2px;
   padding: 4px;
 }
 
 Button:hover
 {
-  background-color: #9fa0a1;
-  border: 1px solid #000000;
+  background-color: #e8e8e8;
+  border: 1px solid #808080;
   padding: 4px;
 }
 
 Button:active
 {
-  background-color: #929496;
-  border: 1px solid #000000;
+  background-color: #d8d8d8;
+  border: 1px solid #808080;
   padding: 4px;
 }
 
@@ -197,6 +198,21 @@ StringItemRenderer
     height: 16;
 }
 
+TextInput
+{
+  border: 1px solid #808080;
+  border-radius: 2px;
+  padding: 4px;
+}
+
+TextArea
+{
+  border: 1px solid #808080;
+  border-radius: 2px;
+  padding: 4px;
+  resize: none;
+}
+
 TitleBar
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TitleBarModel");
@@ -310,6 +326,12 @@ DropDownListList
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+    iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #000000;
+    border-width: 1px;
+    background-color: #FFFFFF;
 }
 
 Image

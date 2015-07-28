@@ -82,7 +82,12 @@ package org.apache.flex.html.beads
 			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
 			
 			var hh:Number = DisplayObject(host).height;
-			if( !isNaN(hh) && hh > 0 ) textField.height = hh;
+			if( !isNaN(hh) && hh > 0 ) 
+            {
+                textField.height = textField.textHeight + 5;
+            }
+            
+            textField.y = ((hh - textField.height) / 2);
 		}
 	}
 }

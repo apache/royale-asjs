@@ -232,8 +232,8 @@ package org.apache.flex.html.beads
 					0, 0, useWidth, useHeight,
 					borderColor, backgroundColor == null ? null : bgColor, borderThickness, bgAlpha,
                     borderEllipseWidth, borderEllipseHeight);
-				textField.y = (useHeight - textField.textHeight) / 2;
-				textField.x = (useWidth - textField.textWidth) / 2;
+				textField.y = ((useHeight - textField.textHeight) / 2) - 2;
+				textField.x = ((useWidth - textField.textWidth) / 2) - 2;
 			}			
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
 			if (backgroundImage)

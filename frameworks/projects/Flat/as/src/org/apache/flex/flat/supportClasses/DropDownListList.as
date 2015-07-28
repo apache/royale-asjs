@@ -60,17 +60,5 @@ package org.apache.flex.flat.supportClasses
 			super();
             className = "dropdown-menu";
 		}
-		
-        /**
-         *  @private
-         */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			var bb:SolidBackgroundBead = new SolidBackgroundBead();
-			bb.backgroundColor = 0xffffff;
-			addBead(bb);
-		}
 	}
 }
