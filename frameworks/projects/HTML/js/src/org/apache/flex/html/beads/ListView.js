@@ -101,7 +101,7 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
 
 /**
  * @export
- * @param {Object} value The event that triggered the selection.
+ * @param {org.apache.flex.events.Event} value The event that triggered the selection.
  */
 org.apache.flex.html.beads.ListView.prototype.
     selectionChangeHandler = function(value) {
@@ -121,7 +121,7 @@ org.apache.flex.html.beads.ListView.prototype.
 
 /**
  * @export
- * @param {Object} value The event that triggeed the selection.
+ * @param {org.apache.flex.events.Event} value The event that triggered the selection.
  */
 org.apache.flex.html.beads.ListView.prototype.
     dataProviderChangeHandler = function(value) {
@@ -167,7 +167,7 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
 
 /**
  * @export
- * @param {Object} event The event that triggered the resize.
+ * @param {org.apache.flex.events.Event} event The event that triggered the resize.
  */
 org.apache.flex.html.beads.ListView.prototype.handleSizeChange = function(event) {
   this.dataGroup_.width = this._strand.width;

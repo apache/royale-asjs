@@ -111,7 +111,7 @@ org.apache.flex.html.beads.ContainerView.
     prototype.changeHandler = function(event) {
   this.createViewport();
 
-  this.performLayout();
+  this.performLayout(null);
 };
 
 
