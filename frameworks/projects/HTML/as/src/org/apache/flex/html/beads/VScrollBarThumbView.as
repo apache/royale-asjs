@@ -58,7 +58,7 @@ package org.apache.flex.html.beads
             g.clear();
 			g.lineStyle(1);
 			g.beginFill(bgColor);
-			g.drawRoundRect(0, 0, 12, hh, 6);
+			g.drawRoundRect(0, 0, ScrollBarView.FullSize, hh, ScrollBarView.HalfSize);
 			g.endFill();
 		}
 		
@@ -81,12 +81,12 @@ package org.apache.flex.html.beads
             overView = new Shape();
             
             drawView(upView.graphics, 0xc8c8c8);
-            drawView(downView.graphics, 0xa8a8a8);
+            drawView(downView.graphics, 0xc8c8c8);
             drawView(overView.graphics, 0xb8b8b8);
 
             shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 12, 12);
+			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
 			SimpleButton(value).upState = upView;
 			SimpleButton(value).downState = downView;
@@ -101,13 +101,13 @@ package org.apache.flex.html.beads
 			DisplayObject(_strand).scaleX = 1.0;
 			
             var hh:Number = DisplayObject(_strand).height;
-            drawView(upView.graphics, 0xC8c8c8);
-            drawView(downView.graphics, 0xa8a8a8);
+            drawView(upView.graphics, 0xc8c8c8);
+            drawView(downView.graphics, 0xc8c8c8);
             drawView(overView.graphics, 0xb8b8b8);
             
             shape.graphics.clear();
             shape.graphics.beginFill(0xCCCCCC);
-            shape.graphics.drawRect(0, 0, 12, hh);
+            shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, hh);
             shape.graphics.endFill();
         }
         

@@ -46,7 +46,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class HScrollBarView extends Strand implements IBeadView, IStrand, IScrollBarView
+	public class HScrollBarView extends ScrollBarView implements IBeadView, IStrand, IScrollBarView
 	{
         /**
          *  Constructor.
@@ -59,33 +59,6 @@ package org.apache.flex.html.beads
 		public function HScrollBarView()
 		{
 		}
-				
-		private var sbModel:IScrollBarModel;
-		
-		private var _strand:IStrand;
-		
-        /**
-         *  The layout. 
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        private var layout:IBeadLayout;
-        
-        /**
-         *  The host component. 
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get host():IUIBase
-        {
-            return _strand as IUIBase;
-        }
 
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -95,21 +68,11 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-            
-            for each (var bead:IBead in beads)
-                addBead(bead);
-                        
-			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
-            sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel;
-            sbModel.addEventListener("maximumChange", changeHandler);
-            sbModel.addEventListener("minimumChange", changeHandler);
-            sbModel.addEventListener("snapIntervalChange", changeHandler);
-            sbModel.addEventListener("stepSizeChange", changeHandler);
-            sbModel.addEventListener("pageSizeChange", changeHandler);
-            sbModel.addEventListener("valueChange", changeHandler);
+			super.strand = value;
+			
+			UIBase(value).setHeight(ScrollBarView.FullSize, true);
             
             // TODO: (aharui) put in values impl
 			_increment = new Button();
@@ -129,102 +92,8 @@ package org.apache.flex.html.beads
             UIBase(value).addChild(_thumb);
             
             IEventDispatcher(_strand).addEventListener("widthChanged", changeHandler);
-            
-            if( _strand.getBeadByType(IBeadLayout) == null ) {
-                layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
-                _strand.addBead(layout);
-            }
+
             layout.layout();
 		}
-						
-        private function changeHandler(event:Event):void
-        {
-            layout.layout();    
-        }
-        
-		private var _decrement:DisplayObject;
-		private var _increment:DisplayObject;
-		private var _track:DisplayObject;
-		private var _thumb:DisplayObject;
-		
-        /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#decrement
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get decrement():DisplayObject
-		{
-			return _decrement;
-		}
-
-        /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#increment
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get increment():DisplayObject
-		{
-			return _increment;
-		}
-        
-        /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#track
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get track():DisplayObject
-		{
-			return _track;
-		}
-        
-        /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#thumb
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get thumb():DisplayObject
-		{
-			return _thumb;
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewHeight():Number
-        {
-            // don't want to put $height in an interface
-            return _strand["$height"];
-        }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewWidth():Number
-        {
-            // don't want to put $width in an interface
-            return _strand["$width"];
-        }
 	}
 }

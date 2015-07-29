@@ -12,14 +12,12 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.utils.BeadMetrics;
 	
 	public class ScrollingViewport implements IBead, IViewport
-	{
-		static private const scrollerSize:int = 16;
-		static private const scrollerSizeWithBorder:int = 17;
-		
+	{		
 		public function ScrollingViewport()
 		{
 		}
@@ -77,33 +75,33 @@ package org.apache.flex.html.supportClasses
 			
 			if (_verticalScroller) {
 				ScrollBarModel(_verticalScroller.model).maximum = model.contentHeight;
-				_verticalScroller.x = model.viewportWidth - scrollerSizeWithBorder;
+				_verticalScroller.x = model.viewportWidth - _verticalScroller.width + 1;
 				_verticalScroller.y = model.viewportY;
 				
 				rect = contentArea.scrollRect;
 				rect.y = ScrollBarModel(_verticalScroller.model).value;
 				contentArea.scrollRect = rect;
 				
-				hbarAdjustWidthBy = scrollerSizeWithBorder;
+				hbarAdjustWidthBy = _verticalScroller.width + 1;
 			}
 			
 			if (_horizontalScroller) {
 				ScrollBarModel(_horizontalScroller.model).maximum = model.contentWidth;
 				_horizontalScroller.x = model.viewportX;
-				_horizontalScroller.y = model.viewportHeight - scrollerSizeWithBorder;
+				_horizontalScroller.y = model.viewportHeight - _horizontalScroller.height + 1;
 				
 				rect = contentArea.scrollRect;
 				rect.x = ScrollBarModel(_horizontalScroller.model).value;
 				contentArea.scrollRect = rect;
 				
-				vbarAdjustHeightBy = scrollerSizeWithBorder;
+				vbarAdjustHeightBy = _horizontalScroller.height + 1;
 			}
 			
 			if (_verticalScroller) {
-				_verticalScroller.setWidthAndHeight(scrollerSize, model.viewportHeight - vbarAdjustHeightBy, false);
+				_verticalScroller.setHeight(model.viewportHeight - vbarAdjustHeightBy, false);
 			}
 			if (_horizontalScroller) {
-				_horizontalScroller.setWidthAndHeight(model.viewportWidth - hbarAdjustWidthBy, scrollerSize, false);
+				_horizontalScroller.setWidth(model.viewportWidth - hbarAdjustWidthBy, false);
 			} 
 			
 			if (!model.contentIsHost) {
@@ -147,23 +145,23 @@ package org.apache.flex.html.supportClasses
 			if (addVbar) needsVerticalScroller();
 			if (_verticalScroller) {
 				ScrollBarModel(_verticalScroller.model).maximum = model.contentHeight;
-				ScrollBarModel(_verticalScroller.model).pageSize = model.viewportHeight;// - metrics.top - metrics.bottom;
-				ScrollBarModel(_verticalScroller.model).pageStepSize = model.viewportHeight;// - metrics.top - metrics.bottom;
+				ScrollBarModel(_verticalScroller.model).pageSize = model.viewportHeight;
+				ScrollBarModel(_verticalScroller.model).pageStepSize = model.viewportHeight;
 			}
 			
 			if (addHbar) needsHorizontalScroller();
 			if (_horizontalScroller) {
 				ScrollBarModel(_horizontalScroller.model).maximum = model.contentWidth;
-				ScrollBarModel(_horizontalScroller.model).pageSize = model.viewportWidth;// - metrics.left - metrics.right;
-				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth;// - metrics.left - metrics.right
+				ScrollBarModel(_horizontalScroller.model).pageSize = model.viewportWidth;
+				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth;
 			}
 			
 			var rect:Rectangle = contentArea.scrollRect;
 			if (rect) {
 				rect.x = 0;
 				rect.y = 0;
-				rect.width = model.viewportWidth - metrics.left;// - metrics.right;
-				rect.height = model.viewportHeight - 2*metrics.top;// - 2*metrics.bottom;
+				rect.width = model.viewportWidth - metrics.left;
+				rect.height = model.viewportHeight - 2*metrics.top;
 				contentArea.scrollRect = rect;
 			}
 		}
@@ -191,9 +189,9 @@ package org.apache.flex.html.supportClasses
 				_verticalScroller = createVerticalScrollBar();
 				var vMetrics:UIMetrics = BeadMetrics.getMetrics(_verticalScroller);
 				_verticalScroller.visible = true;
-				_verticalScroller.x = model.viewportWidth - scrollerSizeWithBorder - vMetrics.left - vMetrics.right;
+				_verticalScroller.x = model.viewportWidth - (_verticalScroller.width+1) - vMetrics.left - vMetrics.right;
 				_verticalScroller.y = model.viewportY;
-				_verticalScroller.setWidthAndHeight(scrollerSize, model.viewportHeight, true);
+				_verticalScroller.setHeight(model.viewportHeight, true);
 				
 				host.addElement(_verticalScroller, false);
 			}
@@ -213,8 +211,8 @@ package org.apache.flex.html.supportClasses
 				var hMetrics:UIMetrics = BeadMetrics.getMetrics(_horizontalScroller);
 				_horizontalScroller.visible = true;
 				_horizontalScroller.x = model.viewportX;
-				_horizontalScroller.y = model.viewportHeight - scrollerSizeWithBorder - hMetrics.top - hMetrics.bottom;
-				_horizontalScroller.setWidthAndHeight(model.viewportWidth, scrollerSize, true);
+				_horizontalScroller.y = model.viewportHeight - (_horizontalScroller.height+1) - hMetrics.top - hMetrics.bottom;
+				_horizontalScroller.setWidth(model.viewportWidth, true);
 				
 				host.addElement(_horizontalScroller, false);
 			}

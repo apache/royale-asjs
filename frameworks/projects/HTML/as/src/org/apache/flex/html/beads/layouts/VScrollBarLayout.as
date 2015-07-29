@@ -27,6 +27,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IScrollBarView;
+	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.utils.BeadMetrics;
 
     /**
@@ -95,7 +96,7 @@ package org.apache.flex.html.beads.layouts
 			increment.x = 0;
 			increment.y = h - increment.height - 1;
 
-			track.x = (thumb.width - track.width) / 2;
+			track.x = 0;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
             thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;

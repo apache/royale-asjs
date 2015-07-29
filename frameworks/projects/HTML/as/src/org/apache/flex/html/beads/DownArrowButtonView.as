@@ -37,7 +37,7 @@ package org.apache.flex.html.beads
      *  @productversion FlexJS 0.0
      */
 	public class DownArrowButtonView extends BeadViewBase implements IBeadView
-	{
+	{		
         /**
          *  Constructor.
          *  
@@ -61,14 +61,14 @@ package org.apache.flex.html.beads
 		{
 			g.lineStyle(1, 0x808080);
 			g.beginFill(bgColor);
-			g.drawRoundRect(0, 0, 12, 12, 4);
+			g.drawRoundRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize, ScrollBarView.ThirdSize);
 			g.endFill();
 			g.lineStyle(0);
 			g.beginFill(0);
-			g.moveTo(3, 3);
-			g.lineTo(9, 3);
-			g.lineTo(6, 9);
-			g.lineTo(3, 3);
+			g.moveTo(ScrollBarView.QuarterSize, ScrollBarView.QuarterSize);
+			g.lineTo(ScrollBarView.ThreeQuarterSize, ScrollBarView.QuarterSize);
+			g.lineTo(ScrollBarView.HalfSize, ScrollBarView.ThreeQuarterSize);
+			g.lineTo(ScrollBarView.QuarterSize, ScrollBarView.QuarterSize);
 			g.endFill();
 		}
 		
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 12, 12);
+			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
 			SimpleButton(value).upState = upView;
 			SimpleButton(value).downState = downView;
@@ -104,8 +104,8 @@ package org.apache.flex.html.beads
         
         private function sizeChangeHandler(event:Event):void
         {
-            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / 12;
-            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / 12;
+            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / ScrollBarView.FullSize;
+            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / ScrollBarView.FullSize;
         }
 	}
 }

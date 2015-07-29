@@ -48,6 +48,12 @@ package org.apache.flex.html.beads
      */
 	public class ScrollBarView extends Strand implements IBeadView, IStrand, IScrollBarView
 	{
+		public static const FullSize:int = 12;
+		public static const ThreeQuarterSize:int = 9;
+		public static const HalfSize:int = 6;
+		public static const ThirdSize:int = 4;
+		public static const QuarterSize:int = 3;
+		
         /**
          *  Constructor.
          *  
@@ -60,9 +66,9 @@ package org.apache.flex.html.beads
 		{
 		}
 				
-		private var sbModel:IScrollBarModel;
+		protected var sbModel:IScrollBarModel;
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
         /**
          *  The layout. 
@@ -72,7 +78,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        private var layout:IBeadLayout;
+        protected var layout:IBeadLayout;
         
         /**
          *  The host component. 
@@ -111,41 +117,21 @@ package org.apache.flex.html.beads
             sbModel.addEventListener("pageSizeChange", changeHandler);
             sbModel.addEventListener("valueChange", changeHandler);
             
-            // TODO: (aharui) put in values impl
-			_increment = new Button();
-			Button(_increment).addBead(new DownArrowButtonView());
-            Button(_increment).addBead(new ButtonAutoRepeatController());
-			_decrement = new Button();
-			Button(_decrement).addBead(new UpArrowButtonView());
-            Button(_decrement).addBead(new ButtonAutoRepeatController());
-			_track = new Button();				
-			Button(_track).addBead(new VScrollBarTrackView());
-			_thumb = new Button();				
-			Button(_thumb).addBead(new VScrollBarThumbView());
-            
-            UIBase(value).addChild(_decrement);
-            UIBase(value).addChild(_increment);
-            UIBase(value).addChild(_track);
-            UIBase(value).addChild(_thumb);
-            
-            IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
-            
             if( _strand.getBeadByType(IBeadLayout) == null ) {
                 layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
                 _strand.addBead(layout);
             }
-            layout.layout();
 		}
 						
-        private function changeHandler(event:Event):void
+        protected function changeHandler(event:Event):void
         {
             layout.layout();    
         }
         
-		private var _decrement:DisplayObject;
-		private var _increment:DisplayObject;
-		private var _track:DisplayObject;
-		private var _thumb:DisplayObject;
+		protected var _decrement:DisplayObject;
+		protected var _increment:DisplayObject;
+		protected var _track:DisplayObject;
+		protected var _thumb:DisplayObject;
 		
         /**
          *  @copy org.apache.flex.html.beads.IScrollBarView#decrement

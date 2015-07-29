@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
-    import flash.display.DisplayObject;
-
-    import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.IBeadView;
+	
+	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;	
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.supportClasses.ScrollBar;
 	
     /**
      *  The HScrollBarThumbView class is the view for
@@ -58,15 +59,8 @@ package org.apache.flex.html.beads
             g.clear();
 			g.lineStyle(1);
 			g.beginFill(bgColor);
-			g.drawRect(0, 0, ww, 16);
+			g.drawRoundRect(0, 0, ww, ScrollBarView.FullSize, ScrollBarView.HalfSize);
 			g.endFill();
-            ww = Math.round(ww / 2);
-			g.moveTo(ww, 4);
-			g.lineTo(ww, 12);
-			g.moveTo(ww - 4, 4);
-			g.lineTo(ww - 4, 12);
-			g.moveTo(ww + 4, 4);
-			g.lineTo(ww + 4, 12);
 		}
 		
 		private var shape:Shape;
@@ -87,13 +81,13 @@ package org.apache.flex.html.beads
             downView = new Shape();
             overView = new Shape();
             
-            drawView(upView.graphics, 0xCCCCCC);
-            drawView(downView.graphics, 0x808080);
-            drawView(overView.graphics, 0xEEEEEE);
+            drawView(upView.graphics, 0xc8c8c8);
+            drawView(downView.graphics, 0xc8c8c8);
+            drawView(overView.graphics, 0xb8b8b8);
 
             shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 16, 16);
+			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
 			SimpleButton(value).upState = upView;
 			SimpleButton(value).downState = downView;
@@ -108,13 +102,13 @@ package org.apache.flex.html.beads
 			DisplayObject(_strand).scaleX = 1.0;
 			
             var ww:Number = DisplayObject(_strand).width;
-            drawView(upView.graphics, 0xCCCCCC);
-            drawView(downView.graphics, 0x808080);
-            drawView(overView.graphics, 0xEEEEEE);
+            drawView(upView.graphics, 0xc8c8c8);
+            drawView(downView.graphics, 0xc8c8c8);
+            drawView(overView.graphics, 0xb8b8b8);
             
             shape.graphics.clear();
             shape.graphics.beginFill(0xCCCCCC);
-            shape.graphics.drawRect(0, 0, ww, 16);
+            shape.graphics.drawRect(0, 0, ww, ScrollBarView.FullSize);
             shape.graphics.endFill();
         }
         

@@ -60,7 +60,7 @@ package org.apache.flex.html.beads
 			g.clear();
 			g.lineStyle(1, 0x808080);
 			g.beginFill(bgColor);
-			g.drawRect(0, 0, 12, h);
+			g.drawRect(0, 0, ScrollBarView.FullSize, h);
 			g.endFill();
 			g.lineStyle(0);
 		}
@@ -77,7 +77,7 @@ package org.apache.flex.html.beads
 			drawView(overView.graphics, 0xe8e8e8, h);	
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 12, h);
+			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, h);
 			shape.graphics.endFill();
 			
 		}
