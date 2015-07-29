@@ -50,13 +50,12 @@ org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @private
  * @type {Object}
  * This is also defined as protected on BeadViewBase, but GCC
  * doesn't seem to allow the Object.defineProperties to use it
  * without re-declaring it here.
  */
-org.apache.flex.html.beads.ContainerView.prototype.strand_ = null;
+org.apache.flex.html.beads.ContainerView.prototype._strand = null;
 
 
 /**
@@ -85,13 +84,13 @@ org.apache.flex.html.beads.ContainerView.prototype.contentArea_ = null;
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.addOtherListeners = function() {
-  this.strand_.addEventListener('childrenAdded',
+  this._strand.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('elementAdded',
+  this._strand.addEventListener('elementAdded',
       goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('layoutNeeded',
+  this._strand.addEventListener('layoutNeeded',
      goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('itemsCreated',
+  this._strand.addEventListener('itemsCreated',
      goog.bind(this.changeHandler, this));
 };
 
@@ -101,7 +100,7 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.createContentView = function() {
-  return this.strand_;
+  return this._strand;
 };
 
 
@@ -132,11 +131,11 @@ org.apache.flex.html.beads.ContainerView.
 org.apache.flex.html.beads.ContainerView.
     prototype.performLayout = function(event) {
   if (this.layout_ == null) {
-    this.layout_ = this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout);
+    this.layout_ = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
     if (this.layout_ == null) {
-      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
       this.layout_ = new m3();
-      this.strand_.addBead(this.layout_);
+      this._strand.addBead(this.layout_);
     }
   }
   this.layout_.layout();
@@ -177,15 +176,15 @@ org.apache.flex.html.beads.ContainerView.
     this.viewportModel_ = new org.apache.flex.html.beads.models.ViewportModel();
     this.viewportModel_.contentArea = this.contentView;
     this.viewportModel_.contentIsHost = true;
-    this.viewportModel_.contentWidth = this.strand_.width;
-    this.viewportModel_.contentHeight = this.strand_.height;
+    this.viewportModel_.contentWidth = this._strand.width;
+    this.viewportModel_.contentHeight = this._strand.height;
     this.viewportModel_.contentX = 0;
     this.viewportModel_.contentY = 0;
   }
   if (this.viewport_ == null) {
     this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
     this.viewport_.model = this.viewportModel_;
-    this.strand_.addBead(this.viewport_);
+    this._strand.addBead(this.viewport_);
   }
   this.resizeViewport();
 };
@@ -197,8 +196,8 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.resizeViewport = function() {
-  this.viewportModel_.viewportHeight = this.strand_.height;
-  this.viewportModel_.viewportWidth = this.strand_.width;
+  this.viewportModel_.viewportHeight = this._strand.height;
+  this.viewportModel_.viewportWidth = this._strand.width;
   this.viewportModel_.viewportX = 0;
   this.viewportModel_.viewportY = 0;
 };
@@ -216,7 +215,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     resizableView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this.strand_;
+            return this._strand;
         },
         set: function(value) {
         }
@@ -227,25 +226,21 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
             this.contentArea_ = this.createContentView();
-            if (this.strand_.isWidthSizedToContent() &&
-                this.strand_.isHeightSizedToContent())
+            if (this._strand.isWidthSizedToContent() &&
+                this._strand.isHeightSizedToContent())
               this.addOtherListeners();
             else {
-              this.strand_.addEventListener('heightChanged',
+              this._strand.addEventListener('heightChanged',
                   goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('widthChanged',
+              this._strand.addEventListener('widthChanged',
                   goog.bind(this.changeHandler, this));
-              this.strand_.addEventListener('sizeChanged',
+              this._strand.addEventListener('sizeChanged',
                   goog.bind(this.sizeChangeHandler, this));
-              if (!isNaN(this.strand_.explicitWidth) &&
-                  !isNaN(this.strand_.explicitHeight))
+              if (!isNaN(this._strand.explicitWidth) &&
+                  !isNaN(this._strand.explicitHeight))
                 this.addOtherListeners();
             }
-         },
-        /** @this {org.apache.flex.html.beads.ContainerView} */
-         get: function() {
-             return this.strand_;
-        }
+         }
     },
     /** @export */
     viewport: {
