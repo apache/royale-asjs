@@ -112,6 +112,17 @@ package org.apache.flex.html.beads
             {
                 heightChangeHandler(null);
             }
+            
+            // textfield's collapse to height==4 if no text
+            if (autoHeight && _textModel.text === null)
+            {
+                var fontHeight:Number = ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
+                if (textField.height != fontHeight) 
+                {
+                    textField.autoSize = "none";
+                    textField.height = fontHeight;
+                }
+            }
 		}
 		
         /**
@@ -150,13 +161,27 @@ package org.apache.flex.html.beads
         {
             var host:UIBase = UIBase(_strand);
             if (autoHeight)
-            {            
-                if (textField.height != textField.textHeight + 4)
+            {   
+                if (textField.text != "")
                 {
-                    textField.height = textField.textHeight + 4;
-                    inHeightChange = true;
-                    host.dispatchEvent(new Event("heightChanged"));
-                    inHeightChange = false;
+                    if (textField.height != textField.textHeight + 4)
+                    {
+                        textField.height = textField.textHeight + 4;
+                        inHeightChange = true;
+                        host.dispatchEvent(new Event("heightChanged"));
+                        inHeightChange = false;
+                    }
+                }
+                else
+                {
+                    var fontHeight:Number = ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
+                    if (textField.height != fontHeight)
+                    {
+                        textField.height = fontHeight;
+                        inHeightChange = true;
+                        host.dispatchEvent(new Event("heightChanged"));
+                        inHeightChange = false;                        
+                    }
                 }
             }
             if (autoWidth)
