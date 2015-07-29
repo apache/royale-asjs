@@ -242,6 +242,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
                 this.addOtherListeners();
             }
          },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
          get: function() {
              return this.strand_;
         }
@@ -252,6 +253,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         set: function(value) {
             this.viewport_ = value;
         },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this.viewport_;
         }
@@ -262,6 +264,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         set: function(value) {
             this.viewportModel_ = value;
         },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this.viewportModel_;
         }

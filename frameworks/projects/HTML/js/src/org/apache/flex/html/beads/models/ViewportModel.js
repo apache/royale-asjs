@@ -54,10 +54,9 @@ org.apache.flex.html.beads.models.ViewportModel.prototype.strand_ = null;
 
 
 /**
- * @public
- * @type {Object}
+ * @type {boolean}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentIsHost = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.contentIsHost = false;
 
 
 /**
@@ -68,73 +67,63 @@ org.apache.flex.html.beads.models.ViewportModel.prototype.contentArea_ = null;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentWidth = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.contentWidth = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentHeight = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.contentHeight = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentX = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.contentX = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentY = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.contentY = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportWidth = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.viewportWidth = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportHeight = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.viewportHeight = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportX = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.viewportX = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportY = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.viewportY = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.verticalScrollPosition = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.verticalScrollPosition = NaN;
 
 
 /**
- * @public
- * @type {Number}
+ * @type {number}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.horizontalScrollPosition = null;
+org.apache.flex.html.beads.models.ViewportModel.prototype.horizontalScrollPosition = NaN;
 
 
 Object.defineProperties(org.apache.flex.html.beads.models.ViewportModel.prototype, {
@@ -144,6 +133,7 @@ Object.defineProperties(org.apache.flex.html.beads.models.ViewportModel.prototyp
         get: function() {
             return this.contentArea_;
         },
+        /** @this {org.apache.flex.html.beads.models.ViewportModel} */
         set: function(value) {
             this.contentArea_ = value;
         }
@@ -154,6 +144,7 @@ Object.defineProperties(org.apache.flex.html.beads.models.ViewportModel.prototyp
         set: function(value) {
             this.strand_ = value;
          },
+        /** @this {org.apache.flex.html.beads.models.ViewportModel} */
          get: function() {
              return this.strand_;
         }
