@@ -321,15 +321,11 @@ package org.apache.flex.core
          */
         override public function get width():Number
 		{
-			if (isNaN(explicitWidth))
-			{
-				var w:Number = _width;
-				if (isNaN(w)) w = $width;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
-				return w + metrics.left + metrics.right;
+			var w:Number = _width;
+			if (isNaN(w)) {
+				w = $width;
 			}
-			else
-				return explicitWidth;
+			return w;
 		}
 
         /**
@@ -376,15 +372,11 @@ package org.apache.flex.core
          */
 		override public function get height():Number
 		{
-			if (isNaN(explicitHeight))
-			{
-				var h:Number = _height;
-				if (isNaN(h)) h = $height;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
-				return h + metrics.top + metrics.bottom;
+			var h:Number = _height;
+			if (isNaN(h)) {
+				h = $height;
 			}
-			else
-				return explicitHeight;
+			return h;
 		}
 
         /**
@@ -902,6 +894,33 @@ package org.apache.flex.core
         public function addedToParent():void
         {
             var c:Class;
+			
+			if (isNaN(_width)) {
+				var value:* = ValuesManager.valuesImpl.getValue(this,"width");
+				if (value !== undefined) {
+					var s:String = String(value);
+					var lastChar:String = s.substr(s.length-1,s.length);
+					if (lastChar == "%") {
+						_percentWidth = Number(s);
+					}
+					else {
+						_width = Number(s);
+					}
+				}
+			}
+			
+			if (isNaN(_height)) {
+				value = ValuesManager.valuesImpl.getValue(this,"height");
+				if (value !== undefined) {
+					s = String(value);
+					lastChar = s.substr(s.length-1,s.length);
+					if (lastChar == "%") {
+						_percentHeight = Number(s);
+					} else {
+						_height = Number(s);
+					}
+				}
+			}
             
             for each (var bead:IBead in beads)
                 addBead(bead);

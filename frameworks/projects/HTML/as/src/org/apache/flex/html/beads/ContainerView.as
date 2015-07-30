@@ -483,16 +483,6 @@ package org.apache.flex.html.beads
 			resizingChildren = false;
 		}
 		
-		override public function get viewWidth():Number
-		{
-			return 0;
-		}
-		
-		override public function get viewHeight():Number
-		{
-			return 0;
-		}
-		
 		protected function displayBackgroundAndBorder(host:UIBase) : void
 		{
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");

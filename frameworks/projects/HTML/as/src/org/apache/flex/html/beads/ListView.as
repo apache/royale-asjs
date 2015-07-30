@@ -237,33 +237,5 @@ package org.apache.flex.html.beads
 			super.resizeHandler(event);
 			_dataGroup.updateAllItemRenderers();
 		}
-				
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        override public function get viewHeight():Number
-        {
-            // don't want to put $height in an interface
-            return _strand["$height"];
-        }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        override public function get viewWidth():Number
-        {
-            // don't want to put $width in an interface
-            return _strand["$width"];
-        }
 	}
 }

@@ -42,25 +42,5 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get host():IUIBase
-
-        /**
-         *  The width of the view. 
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        function get viewWidth():Number;
-        
-        /**
-         *  The height of the view. 
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        function get viewHeight():Number;
 	}
 }
