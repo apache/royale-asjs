@@ -242,6 +242,11 @@ package org.apache.flex.html.beads
          */
         public function get popUp():IStrand
         {
+            if (!_popUp)
+            {
+                var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+                _popUp = new popUpClass() as IStrand;
+            }
             return _popUp;
         }
         
@@ -271,11 +276,6 @@ package org.apache.flex.html.beads
                 _popUpVisible = value;
                 if (value)
                 {
-                    if (!_popUp)
-                    {
-                        var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-                        _popUp = new popUpClass() as IStrand;
-                    }
 					var root:Object = DisplayObject(_strand).root;
 					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
                     while (host && !(host is IPopUpHost))

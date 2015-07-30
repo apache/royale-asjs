@@ -25,6 +25,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IDropDownListView;
@@ -76,11 +77,11 @@ package org.apache.flex.html.beads.controllers
         private function clickHandler(event:Event):void
         {
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
-            viewBead.popUpVisible = true;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
+            var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
             popUpModel.dataProvider = selectionModel.dataProvider;
+            viewBead.popUpVisible = true; // adds to display list as well
             popUpModel.selectedIndex = selectionModel.selectedIndex;
             var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y + DisplayObject(_strand).height);
             pt = DisplayObject(_strand).parent.localToGlobal(pt);
@@ -94,7 +95,7 @@ package org.apache.flex.html.beads.controllers
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             viewBead.popUpVisible = false;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
+            var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             selectionModel.selectedIndex = popUpModel.selectedIndex;
 			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
         }
