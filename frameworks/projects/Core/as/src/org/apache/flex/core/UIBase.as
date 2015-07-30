@@ -165,14 +165,6 @@ package org.apache.flex.core
          */
 		public function get explicitWidth():Number
 		{
-			if (isNaN(_explicitWidth))
-			{
-				var value:* = ValuesManager.valuesImpl.getValue(this, "width");
-				if (value !== undefined) {
-					_explicitWidth = Number(value);
-				}
-			}
-			
 			return _explicitWidth;
 		}
 
@@ -206,14 +198,6 @@ package org.apache.flex.core
          */
         public function get explicitHeight():Number
 		{
-			if (isNaN(_explicitHeight))
-			{
-				var value:* = ValuesManager.valuesImpl.getValue(this, "height");
-				if (value !== undefined) {
-					_explicitHeight = Number(value);
-				}
-			}
-			
 			return _explicitHeight;
 		}
         
@@ -482,9 +466,6 @@ package org.apache.flex.core
                 return false;
             if (!isNaN(_percentWidth))
                 return false;
-            var value:* = ValuesManager.valuesImpl.getValue(this, "width");
-            if (value !== undefined)
-                return false;
             var left:* = ValuesManager.valuesImpl.getValue(this, "left");
             var right:* = ValuesManager.valuesImpl.getValue(this, "right");
             return (left === undefined || right === undefined);
@@ -504,9 +485,6 @@ package org.apache.flex.core
             if (!isNaN(_explicitHeight))
                 return false;
             if (!isNaN(_percentHeight))
-                return false;
-            var value:* = ValuesManager.valuesImpl.getValue(this, "height");
-            if (value !== undefined)
                 return false;
             var top:* = ValuesManager.valuesImpl.getValue(this, "top");
             var bottom:* = ValuesManager.valuesImpl.getValue(this, "bottom");
@@ -895,30 +873,33 @@ package org.apache.flex.core
         {
             var c:Class;
 			
-			if (isNaN(_width)) {
+			if (isNaN(_width) && isNaN(_percentWidth)) 
+            {
 				var value:* = ValuesManager.valuesImpl.getValue(this,"width");
-				if (value !== undefined) {
-					var s:String = String(value);
-					var lastChar:String = s.substr(s.length-1,s.length);
-					if (lastChar == "%") {
-						_percentWidth = Number(s);
-					}
-					else {
-						_width = Number(s);
-					}
+				if (value !== undefined) 
+                {
+					if (value is String)
+                    {
+                        var s:String = String(value);
+    					_percentWidth = Number(s.substring(0, s.length - 1));
+                    }
+					else 
+						_width = value as Number;
 				}
 			}
 			
-			if (isNaN(_height)) {
+			if (isNaN(_height) && isNaN(_percentHeight)) 
+            {
 				value = ValuesManager.valuesImpl.getValue(this,"height");
-				if (value !== undefined) {
-					s = String(value);
-					lastChar = s.substr(s.length-1,s.length);
-					if (lastChar == "%") {
-						_percentHeight = Number(s);
-					} else {
-						_height = Number(s);
-					}
+				if (value !== undefined) 
+                {
+                    if (value is String)
+                    {
+    					s = String(value);
+						_percentHeight = Number(s.substring(0, s.length - 1));
+					} 
+                    else
+						_height = value as Number;
 				}
 			}
             
