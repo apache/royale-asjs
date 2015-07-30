@@ -222,7 +222,6 @@ DateField {
 .dropdown-menu {
   position: absolute;
   z-index: 1000;
-  min-width: 220px;
   padding: 0;
   margin-top: 9px;
   font-size: 14px;
@@ -239,16 +238,20 @@ DateField {
   background-color: rgba(202, 206, 209, .5);
   }
 .dropdown-menu-item-renderer {
-  padding: 8px 16px;
+  padding: 3px 16px;
   line-height: 1.429;
+  display: block;
+  width: 100%;
   font-size: inherit;
   color: #606d7a;
   background-color: transparent;
 }
 .dropdown-menu-item-renderer-selected {
-  padding: 8px 16px;
+  padding: 3px 16px;
   line-height: 1.875;
   font-size: inherit;
+  display: block;
+  width: 100%;
   color: #fff;
   background-color: #1abc9c;
 }

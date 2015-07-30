@@ -51,7 +51,6 @@ package org.apache.flex.flat.supportClasses
 			super();
 			
             className = 'dropdown-menu-item-renderer';
-            percentWidth = 90;
 		}
 		
 		/**
