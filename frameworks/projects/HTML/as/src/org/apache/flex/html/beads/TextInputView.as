@@ -22,8 +22,10 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.BeadMetrics;
 	
     /**
      *  The TextInputView class is the view for
@@ -69,27 +71,27 @@ package org.apache.flex.html.beads
             var w:Number;
             var h:Number;
             var ilc:ILayoutChild = host as ILayoutChild;
-            
             if (ilc.isWidthSizedToContent())
             {
                 // use default width of 20
                 var s:String = textField.text;
                 textField.text = "0";
                 w = textField.textWidth * 20;
-                h = textField.textHeight + 4;
+                h = textField.textHeight;
                 textField.text = s;
                 ilc.setWidth(w, true);
             }
             if (ilc.isHeightSizedToContent())
             {
+                var uiMetrics:UIMetrics = BeadMetrics.getMetrics(host);
                 if (isNaN(h))
                 {
                     s = textField.text;
                     textField.text = "0";
-                    h = textField.textHeight + 4;
+                    h = textField.textHeight;
                     textField.text = s;                    
                 }
-                ilc.setHeight(h, true);
+                ilc.setHeight(h + uiMetrics.top + uiMetrics.bottom, true);
             }
 			
 			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
