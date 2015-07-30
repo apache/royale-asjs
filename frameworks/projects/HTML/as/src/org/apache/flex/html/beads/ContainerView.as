@@ -279,8 +279,8 @@ package org.apache.flex.html.beads
 			
 			viewportModel.contentArea = contentView;
 			viewportModel.contentIsHost = false;
-			viewportModel.contentWidth = host.width - metrics.left - metrics.right;
-			viewportModel.contentHeight = host.height - metrics.top - metrics.bottom;
+			viewportModel.contentWidth = Math.max(host.width - metrics.left - metrics.right, 0);
+			viewportModel.contentHeight = Math.max(host.height - metrics.top - metrics.bottom, 0);
 			viewportModel.contentX = metrics.left;
 			viewportModel.contentY = metrics.top;
 			
@@ -347,13 +347,13 @@ package org.apache.flex.html.beads
 			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
 			{
 				viewport.needsHorizontalScroller();
-				host.setHeight(viewportModel.contentHeight-metrics.top-metrics.bottom, false);
+				host.setHeight(viewportModel.contentHeight+metrics.top+metrics.bottom, false);
 				resizeViewport();
 			}
 			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
 			{
 				viewport.needsVerticalScroller();
-				host.setWidth(viewportModel.contentWidth-metrics.left-metrics.right, false);
+				host.setWidth(viewportModel.contentWidth+metrics.left+metrics.right, false);
 				resizeViewport();
 			}
 			else {

@@ -48,25 +48,37 @@ public class BeadMetrics
 	public static function getMetrics(object:Object) : UIMetrics
 	{
 		var borderThickness:Object = ValuesManager.valuesImpl.getValue(object,"border-width");
+        var borderStyle:Object = ValuesManager.valuesImpl.getValue(object,"border-style");
+        var border:Object = ValuesManager.valuesImpl.getValue(object,"border");
 		var borderOffset:Number;
-		if( borderThickness == null ) 
+        if (borderStyle == "none")
+            borderOffset = 0;
+        else if (borderThickness != null)
         {
-            borderThickness = ValuesManager.valuesImpl.getValue(object,"border");
-            if (borderThickness != null)
+            borderOffset = Number(borderThickness);
+            if( isNaN(borderOffset) ) borderOffset = 0;            
+        }
+        else // no style and/or no width
+        {
+            border = ValuesManager.valuesImpl.getValue(object,"border");
+            if (border != null)
             {
-                if (borderThickness is Array)
-                    borderOffset = CSSUtils.toNumber(borderThickness[0], object.width);
+                if (border is Array)
+                {
+                    borderOffset = CSSUtils.toNumber(border[0], object.width);
+                    borderStyle = border[1];
+                }
+                else if (border == "none")
+                    borderOffset = 0;
+                else if (border is String)
+                    borderOffset = CSSUtils.toNumber(border as String, object.width);
                 else
-                    borderOffset = CSSUtils.toNumber(borderThickness as String, object.width);
+                    borderOffset = Number(border);
             }
-            else
+            else // no border style set at all so default to none
                 borderOffset = 0;
-		}
-		else {
-			borderOffset = Number(borderThickness);
-			if( isNaN(borderOffset) ) borderOffset = 0;
-		}
-		
+        }
+        
 		var paddingLeft:Object;
 		var paddingTop:Object;
 		var paddingRight:Object;
