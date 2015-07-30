@@ -331,40 +331,5 @@ package org.apache.flex.html.beads
                 textField.width = host.width;
             }
         }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewHeight():Number
-        {
-            // textfields with autosize collapse if no text
-            if (_textField.text == "" && autoHeight)
-                return ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
-
-            return _textField.height;
-        }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewWidth():Number
-        {
-            // textfields with autosize collapse if no text
-            if (_textField.text == "" && autoWidth)
-                return 0;
-            
-            return _textField.width;
-        }
-
     }
 }
