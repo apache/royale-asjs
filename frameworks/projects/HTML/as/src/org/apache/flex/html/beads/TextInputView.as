@@ -70,20 +70,23 @@ package org.apache.flex.html.beads
 			
             var w:Number;
             var h:Number;
+            var uiMetrics:UIMetrics;
             var ilc:ILayoutChild = host as ILayoutChild;
             if (ilc.isWidthSizedToContent())
             {
+                uiMetrics = BeadMetrics.getMetrics(host);
                 // use default width of 20
                 var s:String = textField.text;
                 textField.text = "0";
                 w = textField.textWidth * 20;
                 h = textField.textHeight;
                 textField.text = s;
-                ilc.setWidth(w, true);
+                ilc.setWidth(w + uiMetrics.left + uiMetrics.right, true);
             }
             if (ilc.isHeightSizedToContent())
             {
-                var uiMetrics:UIMetrics = BeadMetrics.getMetrics(host);
+                if (!uiMetrics)
+                    uiMetrics = BeadMetrics.getMetrics(host);
                 if (isNaN(h))
                 {
                     s = textField.text;
