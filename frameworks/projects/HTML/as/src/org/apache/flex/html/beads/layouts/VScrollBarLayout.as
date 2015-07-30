@@ -96,7 +96,12 @@ package org.apache.flex.html.beads.layouts
 			increment.x = 0;
 			increment.y = h - increment.height - 1;
 
-			track.x = 0;
+            if (track.width < thumb.width)
+                track.x = (thumb.width - track.width) / 2;
+            else if (track.width > thumb.width)
+                thumb.x = (track.width - thumb.width) / 2;
+            else
+                track.x = 0;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
             thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;
