@@ -49,14 +49,12 @@ package org.apache.flex.html.beads
          */
 		public function HScrollBarTrackView()
 		{
-			upView = new Shape();
-			downView = new Shape();
-			overView = new Shape();
-
 		}
 		
-		private function drawView(g:Graphics, bgColor:uint, w:Number):void
+		private function drawView(g:Graphics, bgColor:uint):void
 		{
+			var w:Number = SimpleButton(_strand).width;
+			
 			g.clear();
 			g.lineStyle(1, 0x808080);
 			g.beginFill(bgColor);
@@ -72,9 +70,9 @@ package org.apache.flex.html.beads
 			
 			var w:Number = SimpleButton(_strand).width;
 			
-			drawView(upView.graphics, 0xf8f8f8, w);
-			drawView(downView.graphics, 0xd8d8d8, w);
-			drawView(overView.graphics, 0xe8e8e8, w);	
+			drawView(upView.graphics, 0xf8f8f8);
+			drawView(downView.graphics, 0xd8d8d8);
+			drawView(overView.graphics, 0xe8e8e8);	
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, w);
@@ -95,6 +93,15 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			
+			upView = new Shape();
+			downView = new Shape();
+			overView = new Shape();
+			
+			drawView(upView.graphics, 0xf8f8f8);
+			drawView(downView.graphics, 0xd8d8d8);
+			drawView(overView.graphics, 0xe8e8e8);
+			
 			SimpleButton(value).addEventListener("widthChanged", widthChangeHandler);
 			shape = new Shape();
 			SimpleButton(value).upState = upView;
