@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.html.beads.PanelView');
 
+goog.require('org.apache.flex.html.ControlBar');
+goog.require('org.apache.flex.html.TitleBar');
 goog.require('org.apache.flex.html.beads.ContainerView');
 goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 
@@ -21,6 +23,7 @@ goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 
 /**
  * @constructor
+ * @extends {org.apache.flex.html.beads.ContainerView}
  */
 org.apache.flex.html.beads.PanelView = function() {
   org.apache.flex.html.beads.PanelView.base(this, 'constructor');
@@ -101,7 +104,7 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
 
 /**
  * @override
- * @param {Object} event The event that triggered this handler.
+ * @param {org.apache.flex.events.Event} event The event that triggered this handler.
  */
 org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {

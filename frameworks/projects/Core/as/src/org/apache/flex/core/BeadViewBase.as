@@ -48,6 +48,13 @@ package org.apache.flex.core
         /**
          *  The strand.  Do not modify except
          *  via the strand setter.  For reading only.
+         * 
+         *  Because Object.defineProperties in JS
+         *  doesn't allow you to just override the setter
+         *  (you have to override the getter as well even
+         *  if it just calls the super getter) it is
+         *  more efficient to expose this variable than
+         *  have all of the layers of simple overrides.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

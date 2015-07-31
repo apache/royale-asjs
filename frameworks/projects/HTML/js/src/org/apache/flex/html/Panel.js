@@ -15,8 +15,6 @@
 goog.provide('org.apache.flex.html.Panel');
 
 goog.require('org.apache.flex.html.Container');
-goog.require('org.apache.flex.html.ControlBar');
-goog.require('org.apache.flex.html.TitleBar');
 goog.require('org.apache.flex.html.beads.PanelView');
 goog.require('org.apache.flex.html.beads.models.PanelModel');
 
@@ -145,7 +143,7 @@ org.apache.flex.html.Panel.prototype.addedToParent =
  * @return {Array} the HTML DOM element children.
  */
 org.apache.flex.html.Panel.prototype.internalChildren =
-    function(c, index) {
+    function() {
   return this.contentArea.children;
 };
 
