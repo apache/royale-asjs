@@ -115,6 +115,7 @@ package models
 		}
 
         private var _strings:Array = ["AAPL", "ADBE", "GOOG", "MSFT", "YHOO"];
+        [Bindable("__NoChangeEvent__")]
         public function get strings():Array
         {
             return _strings;
