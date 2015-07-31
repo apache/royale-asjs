@@ -24,6 +24,11 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	
 	/**
+	 * The change event is dispatched when the selectedDate is changed.
+	 */
+	[Event(name="change", type="org.apache.flex.events.Event")]
+	
+	/**
 	 * The DateField class provides an input field where a date can be entered
 	 * and a pop-up calendar control for picking a date as an alternative to
 	 * the text field.
