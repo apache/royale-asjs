@@ -26,6 +26,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -155,15 +156,18 @@ package org.apache.flex.html.beads
 		 */
 		protected function initCompleteHandler(event:Event):void
 		{
-			// if the host component is not being sized by percentage, go ahead and complete the setup.
-			if (isNaN((host as UIBase).percentHeight) && isNaN((host as UIBase).percentWidth)) {
+            var ilc:ILayoutChild = host as ILayoutChild;
+			// Complete the setup if the height is sized to content or has been explicitly set
+            // and the width is sized to content or has been explicitly set
+			if ((ilc.isHeightSizedToContent() || !isNaN(ilc.explicitHeight)) &&
+                (ilc.isWidthSizedToContent() || !isNaN(ilc.explicitWidth))) {
 				completeSetup();
 				
 				var num:Number = contentView.numElements;
 				if (num > 0) performLayout(event);
 			}
 			else {
-				// otherwise, wait until the size has been set and then finish
+				// otherwise, wait until the unknown sizes hav been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
 			}
 		}
