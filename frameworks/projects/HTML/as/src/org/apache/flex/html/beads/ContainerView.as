@@ -167,7 +167,7 @@ package org.apache.flex.html.beads
 				if (num > 0) performLayout(event);
 			}
 			else {
-				// otherwise, wait until the unknown sizes hav been set and then finish
+				// otherwise, wait until the unknown sizes have been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
 			}
 		}
@@ -187,7 +187,11 @@ package org.apache.flex.html.beads
 			completeSetup();
 			
 			var num:Number = contentView.numElements;
-			if (num > 0) performLayout(event);
+			if (num > 0) 
+            {
+                performLayout(event);
+                childrenChangedHandler(event);
+            }
 		}
 		
 		/**
@@ -454,12 +458,8 @@ package org.apache.flex.html.beads
 			var n:Number = contentView.numElements;
 			for (var i:int=0; i < n; i++) {
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-				if (host.isWidthSizedToContent()) {
-					child.addEventListener("widthChanged",childResizeHandler);
-				}
-				if (host.isHeightSizedToContent()) {
-					child.addEventListener("heightChanged",childResizeHandler);
-				}
+				child.addEventListener("widthChanged", childResizeHandler);
+				child.addEventListener("heightChanged", childResizeHandler);
 			}
 		}
 		
