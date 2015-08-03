@@ -193,28 +193,6 @@
 			<license>Apache V2 授權合約</license>
 		</zh_TW>
 	</component>
-	<component id="STEP_REQUIRED_INSTALL_GOOGLE_CLOSURE_LIBRARY" required="true" property="do.goog.install">
-		<el_GR>
-			<label>Google Closure Library (Απαιτούμενο)</label>
-			<message>Για το Google Closure Library ισχύει η συμφωνία χρήσης του Apache License V2. Θέλετε να εγκαταστήσετε το Google Closure Library;</message>
-		</el_GR>
-		<en_US>
-			<label>Google Closure Library (Required)</label>
-			<message>The Apache License V2 applies to the Google Closure Library.  Do you want to install the Google Closure Library?</message>
-			<license>Apache V2 License</license>
-			<licenseURL>http://www.apache.org/licenses/LICENSE-2.0.html</licenseURL>
-		</en_US>
-		<zh_CN>
-			<label>Google Closure Library (必须的)</label>
-			<message>Apache V2 许可协议适用于 Google Closure Library. 您想要安装 Google Closure Library 吗?</message>
-			<license>Apache V2 许可协议</license>
-		</zh_CN>
-		<zh_TW>
-			<label>Google Closure Library (必須的)</label>
-			<message>Apache V2 授權合約適用於 Google Closure Library. 您想要安裝 Google Closure Library 嗎?</message>
-			<license>Apache V2 授權合約</license>
-		</zh_TW>
-	</component>
 	<component id="STEP_REQUIRED_INSTALL_ADOBE_AIR_SDK" required="true" property="do.air.install">
 		<el_GR>
 			<label>Adobe AIR SDK (Απαιτούμενο)</label>

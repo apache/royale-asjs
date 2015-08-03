@@ -280,16 +280,16 @@ package org.apache.flex.html.beads
 		protected function drawCheckBox(icon:Shape) : void
 		{
 			icon.graphics.clear();
-			icon.graphics.beginFill(0xCCCCCC);
-			icon.graphics.lineStyle(1,0x333333);
+			icon.graphics.beginFill(0xf8f8f8);
+			icon.graphics.lineStyle(1,0x808080);
 			icon.graphics.drawRect(0,0,10,10);
 			icon.graphics.endFill();
 			
 			if( _toggleButtonModel.selected ) {
-				icon.graphics.moveTo(0,0);
-				icon.graphics.lineTo(10,10);
-				icon.graphics.moveTo(10,0);
-				icon.graphics.lineTo(0,10);
+                icon.graphics.lineStyle(2,0);
+				icon.graphics.moveTo(3,4);
+				icon.graphics.lineTo(5,7);
+				icon.graphics.lineTo(9,0);
 			}
 		}
 	}

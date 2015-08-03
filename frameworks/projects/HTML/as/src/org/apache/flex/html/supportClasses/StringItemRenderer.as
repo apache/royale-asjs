@@ -52,6 +52,7 @@ package org.apache.flex.html.supportClasses
 			textField.type = TextFieldType.DYNAMIC;
 			textField.autoSize = TextFieldAutoSize.LEFT;
 			textField.selectable = false;
+            textField.parentDrawsBackground = true;
 		}
 		
 		public var textField:CSSTextField;
@@ -118,15 +119,5 @@ package org.apache.flex.html.supportClasses
 			else textField.text = String(value);
 		}
 		
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			
-			textField.background = (down || selected || hovered);
-			textField.backgroundColor = backgroundColor;
-		}
 	}
 }

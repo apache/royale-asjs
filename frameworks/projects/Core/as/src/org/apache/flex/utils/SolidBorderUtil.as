@@ -36,7 +36,8 @@ public class SolidBorderUtil
 {
     /**
      *  Draw a solid color border as specified.  Will fill with
-     *  the backgroundColor if specified.
+     *  the backgroundColor if specified.  The border draws
+     *  inside with given width/height.
      * 
      *  @param g The flash.display.DisplayObject#graphics
      *  @param x The x position
@@ -56,17 +57,134 @@ public class SolidBorderUtil
 	public static function drawBorder(g:Graphics, x:Number, y:Number, 
 									  width:Number, height:Number,
 									  color:uint, backgroundColor:Object = null, 
-									  thickness:int = 1, alpha:Number = 1.0):void
+									  thickness:int = 1, alpha:Number = 1.0, 
+                                      ellipseWidth:Number = NaN, ellipseHeight:Number = NaN):void
 	{
-		g.clear();
+		g.lineStyle();  // don't draw the line, it tends to get aligned on half-pixels
 		
-		g.lineStyle(thickness, color, alpha);
-		if (backgroundColor != null)
-			g.beginFill(uint(backgroundColor));	
-		
-		g.drawRect(x, y, width, height);
-		if (backgroundColor != null)
-			g.endFill();
+        if (thickness > 0)
+        {
+            g.beginFill(color, alpha);	
+            if (!isNaN(ellipseWidth))
+            {
+                g.drawRoundRect(x, y, width, height, ellipseWidth, ellipseHeight);
+                g.drawRoundRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2, 
+                    ellipseWidth, ellipseHeight);
+            }
+            else
+            {
+        		g.drawRect(x, y, width, height);
+                g.drawRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2);
+            }
+    		g.endFill();
+        }
+        
+        if (backgroundColor != null)
+        {
+            g.beginFill(uint(backgroundColor), alpha);	
+        
+            if (!isNaN(ellipseWidth))
+                g.drawRoundRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2, 
+                    ellipseWidth, ellipseHeight);
+            else
+                g.drawRect(x + thickness, y + thickness, 
+                    width - thickness * 2, height - thickness * 2);
+            g.endFill();
+        }
 	}
+    
+    /**
+     *  Draw a solid color border as specified.  Only square corners
+     *  are supported as the real usage for this is to handle
+     *  CSS triangles.  The border is drawn around the given
+     *  width and height.
+     * 
+     *  @param g The flash.display.DisplayObject#graphics
+     *  @param x The x position
+     *  @param y The y position
+     *  @param width The width 
+     *  @param height The height 
+     *  @param colorTop The rgba color (alpha is in highest order byte)
+     *  @param colorRight The rgba color
+     *  @param colorBottom The rgba color
+     *  @param colorLeft The rgba color
+     *  @param backgroundColor The optional fill color
+     *  @param thicknessTop The thickness of the border
+     *  @param thicknessRight The thickness of the border
+     *  @param thicknessBottom The thickness of the border
+     *  @param thicknessLeft The thickness of the border
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public static function drawDetailedBorder(g:Graphics, x:Number, y:Number, 
+                                      width:Number, height:Number,
+                                      colorTop:uint, colorRight:uint, colorBottom:uint, colorLeft:uint,
+                                      thicknessTop:int = 0, thicknessRight:int = 0, thicknessBottom:int = 0, thicknessLeft:int = 0  
+                                      ):void
+    {
+        g.lineStyle();  // don't draw the line, it tends to get aligned on half-pixels
+        
+        var color:uint;
+        var alpha:Number;
+        if (thicknessTop > 0)
+        {
+            color = colorTop & 0xFFFFFF;
+            alpha = (colorTop >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, 0);
+            g.lineTo(width + thicknessRight + thicknessLeft, 0);
+            if (width > 0)
+                g.lineTo(width + thicknessLeft, thicknessTop);
+            g.lineTo(thicknessLeft, thicknessTop);
+            g.lineTo(0, 0);
+            g.endFill();
+        }
+        if (thicknessLeft > 0)
+        {
+            color = colorLeft & 0xFFFFFF;
+            alpha = (colorLeft >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, 0);
+            g.lineTo(thicknessLeft, thicknessTop);
+            if (height > 0)
+                g.lineTo(thicknessLeft, thicknessTop + height);
+            g.lineTo(0, height + thicknessBottom);
+            g.lineTo(0, 0);
+            g.endFill();
+        }
+        if (thicknessRight > 0)
+        {
+            color = colorRight & 0xFFFFFF;
+            alpha = (colorRight >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(width + thicknessRight + thicknessLeft, 0);
+            g.lineTo(width + thicknessRight + thicknessLeft, height + thicknessBottom + thicknessTop);
+            if (height > 0)
+                g.lineTo(width + thicknessLeft, height + thicknessTop);
+            g.lineTo(width + thicknessLeft, thicknessTop);
+            g.lineTo(width + thicknessRight + thicknessLeft, 0);
+            g.endFill();
+        }
+        if (thicknessBottom > 0)
+        {
+            color = colorBottom & 0xFFFFFF;
+            alpha = (colorBottom >>> 24 & 0xFF) / 255;
+            g.beginFill(color, alpha);
+            g.moveTo(0, height + thicknessBottom + thicknessTop);
+            g.lineTo(thicknessLeft, height + thicknessTop);
+            if (width > 0)
+                g.lineTo(width + thicknessLeft, height + thicknessTop);
+            g.lineTo(width + thicknessRight + thicknessLeft, height + thicknessBottom + thicknessTop);
+            g.lineTo(0, height + thicknessBottom + thicknessTop);
+            g.endFill();
+        }
+    }
+
 }
 }

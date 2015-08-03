@@ -52,7 +52,9 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.PanelView; PanelView;
     import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
-	import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
+	import org.apache.flex.html.beads.VScrollBarView; VScrollBarView;
+	import org.apache.flex.html.beads.HScrollBarView; HScrollBarView;
+    import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
 	import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;
     import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
 	import org.apache.flex.html.beads.SliderView; SliderView;
@@ -88,10 +90,12 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
 	import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
     import org.apache.flex.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
+	import org.apache.flex.html.beads.controllers.HScrollBarMouseController; HScrollBarMouseController;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
     import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;  
 	import org.apache.flex.html.beads.layouts.HorizontalLayout; HorizontalLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
+	import org.apache.flex.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
     import org.apache.flex.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;

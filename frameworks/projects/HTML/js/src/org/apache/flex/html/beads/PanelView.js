@@ -14,12 +14,16 @@
 
 goog.provide('org.apache.flex.html.beads.PanelView');
 
+goog.require('org.apache.flex.html.ControlBar');
+goog.require('org.apache.flex.html.TitleBar');
 goog.require('org.apache.flex.html.beads.ContainerView');
+goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 
 
 
 /**
  * @constructor
+ * @extends {org.apache.flex.html.beads.ContainerView}
  */
 org.apache.flex.html.beads.PanelView = function() {
   org.apache.flex.html.beads.PanelView.base(this, 'constructor');
@@ -51,14 +55,17 @@ org.apache.flex.html.beads.PanelView
                 qName: 'org.apache.flex.html.beads.PanelView'}]};
 
 
+/**
+ * @override
+ */
+org.apache.flex.html.beads.PanelView.
+    prototype.createContentView = function() {
+  var ca = new org.apache.flex.html.supportClasses.ContainerContentArea();
+  return ca;
+};
+
+
 Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
-    /** @export */
-    contentView: {
-        /** @this {org.apache.flex.html.beads.ContainerView} */
-        get: function() {
-            return this.strand_.contentArea;
-        }
-    },
     /** @export */
     strand: {
         /** @this {org.apache.flex.html.beads.PanelView} */
@@ -68,16 +75,16 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
             if (!this.titleBar_)
               this.titleBar_ = new org.apache.flex.html.TitleBar();
 
-            this.strand_.titleBar = this.titleBar_;
+            this._strand.titleBar = this.titleBar_;
             this.titleBar_.id = 'titleBar';
-            this.titleBar_.model = this.strand_.model;
+            this.titleBar_.model = this._strand.model;
 
-            this.strand_.controlBar =
+            this._strand.controlBar =
                 new org.apache.flex.html.ControlBar();
 
             // listen for changes to the strand's model so items can be changed
             // in the view
-            this.strand_.model.addEventListener('titleChange',
+            this._strand.model.addEventListener('titleChange',
                 goog.bind(this.changeHandler, this));
         }
     },
@@ -97,11 +104,11 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
 
 /**
  * @override
- * @param {Object} event The event that triggered this handler.
+ * @param {org.apache.flex.events.Event} event The event that triggered this handler.
  */
 org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
-  var strand = this.strand_;
+  var strand = this._strand;
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
@@ -114,7 +121,7 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     this.titleBar_.title = strand.model.title;
   }
 
-  var p = this.strand_.positioner;
+  var p = this._strand.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.width;
     w -= p.offsetWidth - p.clientWidth;

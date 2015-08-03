@@ -20,9 +20,12 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ILayoutChild;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.BeadMetrics;
 	
     /**
      *  The TextInputView class is the view for
@@ -65,11 +68,34 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-			// Default size
-			var ww:Number = DisplayObject(host).width;
-			if( isNaN(ww) || ww == 0 ) DisplayObject(host).width = 100;
-			var hh:Number = DisplayObject(host).height;
-			if( isNaN(hh) || hh == 0 ) DisplayObject(host).height = 18;
+            var w:Number;
+            var h:Number;
+            var uiMetrics:UIMetrics;
+            var ilc:ILayoutChild = host as ILayoutChild;
+            if (ilc.isWidthSizedToContent())
+            {
+                uiMetrics = BeadMetrics.getMetrics(host);
+                // use default width of 20
+                var s:String = textField.text;
+                textField.text = "0";
+                w = textField.textWidth * 20;
+                h = textField.textHeight;
+                textField.text = s;
+                ilc.setWidth(w + uiMetrics.left + uiMetrics.right, true);
+            }
+            if (ilc.isHeightSizedToContent())
+            {
+                if (!uiMetrics)
+                    uiMetrics = BeadMetrics.getMetrics(host);
+                if (isNaN(h))
+                {
+                    s = textField.text;
+                    textField.text = "0";
+                    h = textField.textHeight;
+                    textField.text = s;                    
+                }
+                ilc.setHeight(h + uiMetrics.top + uiMetrics.bottom, true);
+            }
 			
 			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
@@ -78,11 +104,16 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(host).width;
+			var ww:Number = host.width;
 			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
 			
-			var hh:Number = DisplayObject(host).height;
-			if( !isNaN(hh) && hh > 0 ) textField.height = hh;
+			var hh:Number = host.height;
+			if( !isNaN(hh) && hh > 0 ) 
+            {
+                textField.height = textField.textHeight + 5;
+            }
+            
+            textField.y = ((hh - textField.height) / 2);
 		}
 	}
 }

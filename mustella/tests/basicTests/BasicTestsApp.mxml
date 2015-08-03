@@ -39,18 +39,6 @@ limitations under the License.
     -->
     <js:beads>
         <js:MixinManager />
-        <!--
-        <js:HTTPService id="service">
-            <js:LazyCollection id="collection">
-                <js:inputParser>
-                    <js:JSONInputParser />
-                </js:inputParser>
-                <js:itemConverter>
-                    <local:StockDataJSONItemConverter />
-                </js:itemConverter> 
-            </js:LazyCollection>
-        </js:HTTPService>
-        <js:ViewSourceContextMenuOption />    
-    -->
+        <js:CSSFontFaceBead />
     </js:beads>
 </js:Application>

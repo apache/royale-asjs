@@ -27,6 +27,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IScrollBarView;
+	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.utils.BeadMetrics;
 
     /**
@@ -91,15 +92,16 @@ package org.apache.flex.html.beads.layouts
 			
 			decrement.x = 0;
 			decrement.y = 0;
-			decrement.width = DisplayObject(_strand).width;
-			decrement.height = decrement.width;
 			
 			increment.x = 0;
-			increment.width = DisplayObject(_strand).width;
-			increment.height = increment.width;
 			increment.y = h - increment.height - 1;
 
-			track.x = 0;
+            if (track.width < thumb.width)
+                track.x = (thumb.width - track.width) / 2;
+            else if (track.width > thumb.width)
+                thumb.x = (track.width - thumb.width) / 2;
+            else
+                track.x = 0;
 			track.y = decrement.height;
 			track.height = increment.y - decrement.height;
             thumb.height = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.height;

@@ -74,6 +74,7 @@ package org.apache.flex.mobile.beads
 			_strand = value as ManagerBase;
 			_strand.addEventListener("widthChanged", changeHandler);
 			_strand.addEventListener("heightChanged", changeHandler);
+			_strand.addEventListener("sizeChanged", changeHandler);
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.addEventListener("viewsChanged", changeHandler);
@@ -94,7 +95,6 @@ package org.apache.flex.mobile.beads
 			_tabBar.addEventListener("change",handleButtonBarChange);
 			
 			layoutReady = true;
-			layoutChromeElements();			
 		}
 		
 		/**
@@ -124,7 +124,7 @@ package org.apache.flex.mobile.beads
 				_tabBar.x = 0;
 				_tabBar.y = _strand.height - _tabBar.height;
 				_tabBar.width = _strand.width;
-				
+								
 				contentAreaHeight -= _tabBar.height;
 				
 				model.tabBar = _tabBar;

@@ -436,7 +436,7 @@
         <property name="skipCache" value="true" />
     </target>
 
-    <target name="get-third-party-files" depends="goog-download,air-download,flash-download,swfobject-download" />
+    <target name="get-third-party-files" depends="air-download,flash-download,swfobject-download" />
     
     <!-- Because this requires a network connection it downloads artifacts only if it doesn't already exist. -->
     <target name="goog-check" description="Checks if Google Closure Library has been downloaded.">

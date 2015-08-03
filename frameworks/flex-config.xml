@@ -122,6 +122,12 @@
             <uri>library://ns.apache.org/flexjs/svg</uri>
          	<manifest>projects/HTML/svg-manifest.xml</manifest>
         </namespace>   
+        <namespace>
+            <uri>library://ns.apache.org/flexjs/flat</uri>
+            
+            <manifest>projects/Flat/flat-manifest.xml</manifest>
+            
+        </namespace>
    
       </namespaces>
 

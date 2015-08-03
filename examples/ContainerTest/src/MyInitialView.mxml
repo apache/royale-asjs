@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:local="*"
+				xmlns:models="models.*"
+				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:controller="controller.*"
+				xmlns:views="views.*" 
+				xmlns:beads="org.apache.flex.html.beads.*" xmlns:trial="trial.*"
+				>
+	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/flexjs/basic";
+		@namespace sample "products.*";
+		
+		/* use className="productList" on the List element in place of itemRenderer if you want to specify
+		* the itemRenderer in a style definition along with other settings.
+		*/
+		.productList {
+			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+			IItemRenderer: ClassReference("products.ProductItemRenderer");
+		}
+		
+		sample|ProductItemRenderer {
+			height: 50;
+			IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+		}
+		
+		.Container1 {
+			background-color: #FFCC22;
+			padding: 2px;
+		}
+		
+		.Panel1 {
+			background-color: #CCFFCC;
+			padding: 2px;
+		}
+		
+		.Container2 {
+			background-color: #AADDAA;
+		}
+		
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.flex.html.Label;
+			
+			private function addAChild() : void
+			{
+				var label1:Label = new Label();
+				label1.text = "Item: " + Math.random();
+				label1.height = 50;
+				vcon.addElement(label1);
+				
+				var label2:Label = new Label();
+				label2.text = "Panel: " + Math.random();
+				label2.height = 50;
+				panel1.addElement(label2);
+				
+				var label3:Label = new Label();
+				label3.text = "Random: " + Math.round(Math.random()*100);
+				tiler.addElement(label3);
+				
+				var label4:Label = new Label();
+				label4.text = " /HCon: " + Math.random();
+				label4.height = 50;
+				hcon.addElement(label4);
+			}
+		]]>
+	</fx:Script>
+	<js:beads>
+		<js:MXMLBeadViewBaseDataBinding />
+	</js:beads>
+	
+	<!-- FIRST COLUMN -->
+	
+	<js:TextButton text="Add Child" x="20" y="20" click="addAChild()" />
+	
+	<js:HContainer id="hcon" x="20" y="80" width="400" height="100" className="Container1">
+		<js:beads>
+			<js:ScrollingViewport />
+		</js:beads>
+		<js:Label text="Line 1" height="30" />
+		<js:Label text="Line 2" height="30" />
+		<js:Label text="Line 3 is wider" height="30" />
+		<js:Label text="Line 4" height="30" />
+		<js:Label text="Line 5" height="30" />
+		<js:Label text="Line 6" height="30" />
+	</js:HContainer>
+	
+	<js:VContainer id="vcon" x="20" y="220" width="200" height="275" className="Container1">
+		<js:beads>
+			<js:ScrollingViewport />
+		</js:beads>
+		<js:Label text="Line 1" height="30" />
+		<js:Label text="Line 2" height="30" />
+		<js:Label text="Line 3 is wider" height="30" />
+		<js:Label text="Line 4" height="30" />
+		<js:Label text="Line 5" height="30" />
+		<js:Label text="Line 6" height="30" />
+	</js:VContainer>
+	
+	<js:Container id="tiler" x="20" y="530" width="400" height="200" className="Container2">
+		<js:beads>
+			<js:TileLayout numColumns="4" rowHeight="50" />
+			<js:ScrollingViewport />
+		</js:beads>
+		<js:TextButton text="Button 1" />
+		<js:TextButton text="Button 2" />
+		<js:TextButton text="Button 3" />
+		<js:TextButton text="Button 4" />
+		<js:TextButton text="Button 5" />
+		<js:TextButton text="Button 6" />
+		<js:TextButton text="Button 7" />
+		<js:TextButton text="Button 8" />
+		<js:TextButton text="Button 9" />
+		<js:TextButton text="Button 10" />
+		<js:TextButton text="Button 11" />
+		<!--<js:TextButton text="Button 12" />
+		<js:TextButton text="Button 13" />
+		<js:TextButton text="Button 14" />
+		<js:TextButton text="Button 15" />
+		<js:TextButton text="Button 16" />
+		<js:TextButton text="Button 17" />-->
+	</js:Container>
+	
+	<!-- SECOND COLUMN -->
+	
+	<js:List id="productList" itemRenderer="products.ProductItemRenderer" className="productList" 
+				   x="500" y="40" width="200" height="150">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+	</js:List>
+	
+	<js:ButtonBar id="bbar" x="500" y="240" width="400" height="30">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productList"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+	</js:ButtonBar>
+	
+	<js:Panel id="panel1" title="Hello World" x="500" y="300" width="400" height="300" showCloseButton="true" className="Panel1">
+		<js:beads>
+			<js:ScrollingViewport />
+			<js:VerticalLayout />
+		</js:beads>
+		<js:Label text="Inside Panel" />
+		<js:Container id="nested" width="100%" height="50" className="Container2">
+			<js:Label text="Inside Nested" />
+		</js:Container>
+		<js:Label text="Bottom of Panel 1" height="30" />
+		<js:Label text="Bottom of Panel 2" height="30" />
+		<js:Label text="Bottom of Panel 3" height="30" />
+		<js:Label text="Bottom of Panel 4" height="30" />
+		<!--<js:Label text="Bottom of Panel 5" height="30" />
+		<js:Label text="Bottom of Panel 6" height="30" />
+		<js:Label text="Bottom of Panel 7" height="30" />
+		<js:Label text="Bottom of Panel 8" height="30" />
+		<js:Label text="Bottom of Panel 9" height="30" />-->
+	</js:Panel>
+			
+			
+</js:ViewBase>

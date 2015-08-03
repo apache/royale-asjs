@@ -31,12 +31,16 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!-- this is a dummy var placeholder in case some example needs to define a theme
+            then they would set theme_arg=-theme=<path to theme> -->
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
                file="${basedir}/src/${example}.mxml"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -61,6 +65,11 @@
                 <include name="**/*.jpg" />
             </fileset>
         </copy>
+        <copy todir="${basedir}/bin-debug/fonts">
+            <fileset dir="${FLEX_HOME}/frameworks/fonts">
+                <include name="**/*.swf" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="compileair" description="Compiles ${example}">
@@ -70,6 +79,7 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
             file="${basedir}/src/${example}.mxml"
             output="${basedir}/bin-debug/${example}.swf">
@@ -77,6 +87,7 @@
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="+configname=air" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-target-player=${playerglobal.version}" />
             <arg value="-swf-version=${swf.version}" />
             <arg value="-compiler.mxml.children-as-data" />
@@ -106,12 +117,14 @@
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
                file="${basedir}/src/${example}.as"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,true" />
             <arg value="-define=CONFIG::js_only,false" />
             <arg value="-compiler.mxml.children-as-data" />
@@ -139,6 +152,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
 
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -146,6 +160,7 @@
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -176,6 +191,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
         
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -184,6 +200,7 @@
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+configname=air" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -214,6 +231,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <property name="theme_arg" value="-define=CONFIG::theme,false" />
 
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -221,6 +239,7 @@
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
+            <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,false" />
             <arg value="-define=CONFIG::js_only,true" />
             <arg value="-compiler.mxml.children-as-data" />

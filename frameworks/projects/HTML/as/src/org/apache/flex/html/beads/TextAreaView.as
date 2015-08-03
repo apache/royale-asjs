@@ -31,7 +31,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
 	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.ScrollBar;
+	import org.apache.flex.html.supportClasses.VScrollBar;
 
     /**
      *  The TextAreaView class is the default view for
@@ -80,7 +80,7 @@ package org.apache.flex.html.beads
 			return _border;
 		}
 		
-		private var _vScrollBar:ScrollBar;
+		private var _vScrollBar:VScrollBar;
 		
         /**
          *  The vertical ScrollBar.
@@ -90,7 +90,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get vScrollBar():ScrollBar
+		public function get vScrollBar():VScrollBar
 		{
 			if (!_vScrollBar)
 				_vScrollBar = createScrollBar();
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads
 			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
             IParent(host).addElement(border);
 			
-			var vb:ScrollBar = vScrollBar;
+			var vb:VScrollBar = vScrollBar;
 			
 			// Default size
 			var ww:Number = DisplayObject(host).width;
@@ -130,10 +130,10 @@ package org.apache.flex.html.beads
 			sizeChangedHandler(null);
 		}
 				
-		private function createScrollBar():ScrollBar
+		private function createScrollBar():VScrollBar
 		{
-			var vsb:ScrollBar;
-			vsb = new ScrollBar();
+			var vsb:VScrollBar;
+			vsb = new VScrollBar();
 			var vsbm:ScrollBarModel = new ScrollBarModel();
 			vsbm.maximum = 100;
 			vsbm.minimum = 0;
@@ -143,7 +143,6 @@ package org.apache.flex.html.beads
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
 			vsb.model = vsbm;
-			vsb.width = 16;
             IParent(host).addElement(vsb);
 			
 			vsb.addEventListener("scroll", scrollHandler);
@@ -165,20 +164,23 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(host).width - DisplayObject(vScrollBar).width;
-			if( !isNaN(ww) && ww > 0 ) {
+			var ww:Number = DisplayObject(host).width;
+            if( !isNaN(ww) && ww > 0 )
+                _border.width = ww;
+            
+            ww -= DisplayObject(vScrollBar).width;
+			if( !isNaN(ww) && ww > 0 )
 				textField.width = ww;
-				_border.width = ww;
-			}
 			
 			var hh:Number = DisplayObject(host).height;
-			if( !isNaN(hh) && hh > 0 ) {
+			if( !isNaN(hh) && hh > 0 ) 
+            {
 				textField.height = hh;
 				_border.height = hh;
 			}
 			
 			var sb:DisplayObject = DisplayObject(vScrollBar);
-			sb.y = 0;
+			sb.y = 1;
 			sb.x = textField.width - 1;
 			sb.height = textField.height;
 		}

@@ -102,7 +102,6 @@ package org.apache.flex.html.beads
 				html = _textModel.html;
             
             var ilc:ILayoutChild = host as ILayoutChild;
-            
             autoHeight = ilc.isHeightSizedToContent();
             autoWidth = ilc.isWidthSizedToContent();
             if (!autoWidth && !isNaN(ilc.explicitWidth))
@@ -112,6 +111,17 @@ package org.apache.flex.html.beads
             if (!autoHeight && !isNaN(ilc.explicitHeight))
             {
                 heightChangeHandler(null);
+            }
+            
+            // textfield's collapse to height==4 if no text
+            if (autoHeight && _textModel.text === null)
+            {
+                var fontHeight:Number = ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
+                if (textField.height != fontHeight) 
+                {
+                    textField.autoSize = "none";
+                    textField.height = fontHeight;
+                }
             }
 		}
 		
@@ -151,13 +161,27 @@ package org.apache.flex.html.beads
         {
             var host:UIBase = UIBase(_strand);
             if (autoHeight)
-            {            
-                if (textField.height != textField.textHeight + 4)
+            {   
+                if (textField.text != "")
                 {
-                    textField.height = textField.textHeight + 4;
-                    inHeightChange = true;
-                    host.dispatchEvent(new Event("heightChanged"));
-                    inHeightChange = false;
+                    if (textField.height != textField.textHeight + 4)
+                    {
+                        textField.height = textField.textHeight + 4;
+                        inHeightChange = true;
+                        host.dispatchEvent(new Event("heightChanged"));
+                        inHeightChange = false;
+                    }
+                }
+                else
+                {
+                    var fontHeight:Number = ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
+                    if (textField.height != fontHeight)
+                    {
+                        textField.height = fontHeight;
+                        inHeightChange = true;
+                        host.dispatchEvent(new Event("heightChanged"));
+                        inHeightChange = false;                        
+                    }
                 }
             }
             if (autoWidth)
@@ -268,11 +292,11 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoWidth = false;
-    			textField.width = DisplayObject(_strand).width;
+    			textField.width = host.width;
                 if (autoHeight)
         	        autoSizeIfNeeded()
                 else
-                    textField.height = DisplayObject(_strand).height;
+                    textField.height = host.height;
             }
 		}
 
@@ -282,66 +306,30 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoHeight = false;
-                textField.height = DisplayObject(_strand).height;
+                textField.height = host.height;
                 if (autoWidth)
                     autoSizeIfNeeded();
                 else
-                    textField.width = DisplayObject(_strand).width;
+                    textField.width = host.width;
             }
         }
         
         private function sizeChangeHandler(event:Event):void
         {
             var ilc:ILayoutChild = host as ILayoutChild;
-
             autoHeight = ilc.isHeightSizedToContent();
             if (!autoHeight)
             {
                 textField.autoSize = "none";
-                textField.height = DisplayObject(_strand).height;
+                textField.height = host.height;
             }
             
             autoWidth = ilc.isWidthSizedToContent();
             if (!autoWidth)
             {
                 textField.autoSize = "none";
-                textField.width = DisplayObject(_strand).width;
+                textField.width = host.width;
             }
         }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewHeight():Number
-        {
-            // textfields with autosize collapse if no text
-            if (_textField.text == "" && autoHeight)
-                return ValuesManager.valuesImpl.getValue(_strand, "fontSize") + 4;
-
-            return _textField.height;
-        }
-        
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewWidth():Number
-        {
-            // textfields with autosize collapse if no text
-            if (_textField.text == "" && autoWidth)
-                return 0;
-            
-            return _textField.width;
-        }
-
     }
 }

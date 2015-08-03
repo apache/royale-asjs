@@ -266,14 +266,14 @@ package org.apache.flex.html.beads
 		protected function drawRadioButton(icon:Shape) : void
 		{
 			icon.graphics.clear();
-			icon.graphics.beginFill(0xCCCCCC);
-			icon.graphics.lineStyle(1,0x333333);
+			icon.graphics.beginFill(0xf8f8f8);
+			icon.graphics.lineStyle(1,0x808080);
 			icon.graphics.drawEllipse(0,0,10,10);
 			icon.graphics.endFill();
 			
 			if( selected ) {
-				icon.graphics.beginFill(0x555555);
-				icon.graphics.drawEllipse(2,2,6,6);
+				icon.graphics.beginFill(0);
+				icon.graphics.drawEllipse(3,3,4,4);
 				icon.graphics.endFill();
 			}
 		}

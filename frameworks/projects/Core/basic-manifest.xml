@@ -27,6 +27,7 @@
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
     <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
+    <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>

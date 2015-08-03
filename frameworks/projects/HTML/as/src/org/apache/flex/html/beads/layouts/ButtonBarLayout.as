@@ -27,8 +27,6 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -75,25 +73,6 @@ package org.apache.flex.html.beads.layouts
 			_strand = value;
 		}
 		
-		private var _viewportModel:IViewportModel;
-		
-		/**
-		 *  The data that describes the viewport used by this layout.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get viewportModel():IViewportModel
-		{
-			return _viewportModel;
-		}
-		public function set viewportModel(value:IViewportModel):void
-		{
-			_viewportModel = value;
-		}
-		
 		private var _buttonWidths:Array = null;
 		
 		/**
@@ -123,11 +102,7 @@ package org.apache.flex.html.beads.layouts
 			var contentView:IParent = layoutParent.contentView;
 			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
 			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = _strand.getBeadByType(IViewport) as IViewport;
-			if (viewport) viewportModel = viewport.model;
-			
-			var n:int = itemRendererParent.numElements;
+			var n:int = contentView.numElements;
 			var realN:int = n;
 			
 			for (var j:int=0; j < n; j++)
@@ -137,19 +112,23 @@ package org.apache.flex.html.beads.layouts
 			}
 			
 			var xpos:Number = 0;
-			var useWidth:Number = viewportModel.contentWidth / realN;
-			var useHeight:Number = viewportModel.contentHeight;
+			var useWidth:Number = UIBase(contentView).width / realN;
+			var useHeight:Number = UIBase(contentView).height;
 			
 			for (var i:int=0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
 				if (ir == null || !UIBase(ir).visible) continue;
 				UIBase(ir).y = 0;
-				UIBase(ir).height = useHeight;
 				UIBase(ir).x = xpos;
+				if (!isNaN(useHeight) && useHeight > 0) {
+					UIBase(ir).height = useHeight;
+				}
 				
 				if (buttonWidths) UIBase(ir).width = Number(buttonWidths[i]);
-				else UIBase(ir).width = useWidth;
+				else if (!isNaN(useWidth) && useWidth > 0) {
+					UIBase(ir).width = useWidth;
+				}
 				xpos += UIBase(ir).width;
 			}
             return true;

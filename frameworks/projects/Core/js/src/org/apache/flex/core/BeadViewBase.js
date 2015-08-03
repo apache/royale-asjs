@@ -44,10 +44,9 @@ org.apache.flex.core.BeadViewBase.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @private
  * @type {Object}
  */
-org.apache.flex.core.BeadViewBase.prototype.strand_ = null;
+org.apache.flex.core.BeadViewBase.prototype._strand = null;
 
 
 Object.defineProperties(org.apache.flex.core.BeadViewBase.prototype, {
@@ -55,8 +54,8 @@ Object.defineProperties(org.apache.flex.core.BeadViewBase.prototype, {
     strand: {
         /** @this {org.apache.flex.core.BeadViewBase} */
         set: function(value) {
-            if (this.strand_ !== value) {
-              this.strand_ = value;
+            if (this._strand !== value) {
+              this._strand = value;
             }
         }
     },
@@ -64,7 +63,7 @@ Object.defineProperties(org.apache.flex.core.BeadViewBase.prototype, {
     host: {
         /** @this {org.apache.flex.core.BeadViewBase} */
         get: function() {
-            return this.strand_;
+            return this._strand;
         }
     }
 });

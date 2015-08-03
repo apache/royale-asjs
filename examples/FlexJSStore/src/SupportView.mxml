@@ -36,7 +36,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 	
 	<fx:Script>
 	    <![CDATA[
-	       import org.apache.flex.html.SimpleAlert; 
+	       import org.apache.flex.html.SimpleAlert;
 	    ]]>
 	</fx:Script>
 	
@@ -115,8 +115,18 @@ The width and height are hard-coded in the root tag to help the Design view.
                         <js:itemRenderer>
                             <fx:Component>
                                 <js:DataItemRenderer className="listItem" width="100%">
-                                    <js:Image width="21" height="25" source="{data.image}" />
-                                    <js:Label width="100%" text="{data.name}" />
+                                    <fx:Script>
+                                        <![CDATA[
+                                            import samples.flexstore.Product;
+                                            [Bindable("__NoChangeEvent__")]
+                                            private function get product():Product
+                                            {
+                                                return data as Product;
+                                            }
+                                        ]]>
+                                    </fx:Script>
+                                    <js:Image width="21" height="25" source="{product.image}" />
+                                    <js:Label width="100%" text="{product.name}" />
                                 </js:DataItemRenderer>                                                            
                             </fx:Component>
                         </js:itemRenderer>

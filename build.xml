@@ -511,6 +511,7 @@
                 <include name="READme"/>
                 <include name="RELEASE_NOTES"/>
                 <include name="LICENSE"/>
+                <include name="LICENSE.bin"/>
                 <include name="NOTICE"/>
             </fileset>
         </copy>
@@ -617,6 +618,7 @@
                 <exclude name="**/*.pbj"/>
                 <exclude name="**/*.swf"/>
                 <exclude name="**/*.mxp"/>
+                <exclude name="fonts/**"/>
                 <exclude name="test*/**"/>
                 <exclude name="js/VanillaSDK/**"/>
                 <exclude name="projects/air/**"/>
@@ -683,9 +685,9 @@
         <!-- these files are in addition to the remaining source files -->
         
         <!-- concat the license file with the binary license file for the 3rd party deps -->
-        <!--concat destfile="${basedir}/temp/LICENSE">
-            <filelist dir="${FLEX_SDK_HOME}" files="LICENSE,LICENSE.bin"/>
-        </concat-->
+        <concat destfile="${basedir}/temp/LICENSE">
+            <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
+        </concat>
         
         <!-- frameworks/libs -->
         <copy todir="${basedir}/temp/frameworks/libs">
@@ -717,6 +719,13 @@
         </copy>
          -->
          
+         <!-- fonts -->
+          <copy todir="${basedir}/temp/frameworks/fonts">
+              <fileset dir="${basedir}/frameworks/fonts" >
+                  <include name="**/**"/>
+              </fileset>
+          </copy>
+         
         <!-- examples -->
         <copy todir="${basedir}/temp/examples">
             <fileset dir="${basedir}/examples" >
@@ -736,6 +745,12 @@
             </fileset>
         </copy>
          -->
+    	
+    	<!-- Google Closure Library -->
+    	<copy todir="${basedir}/temp/js/lib/google/closure-library">
+    	            <fileset dir="${basedir}/js/lib/google/closure-library" />
+		</copy>
+    	
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
@@ -1217,6 +1232,12 @@
                 <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </library-path>
         </mxmlc>
+        <mkdir dir="${basedir}/mustella/tests/basicTests/fonts" />
+        <copy todir="${basedir}/mustella/tests/basicTests/fonts" >
+            <fileset dir="${FLEX_HOME}/frameworks/fonts">
+                <include name="**/*.swf" />
+            </fileset>
+        </copy>
         <!-- compile supporting swfs for basic tests
         <mxmlc fork="true"
                file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
@@ -1297,6 +1318,7 @@
              
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
+                <exclude name="LICENSE.bin"/>
                 <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>

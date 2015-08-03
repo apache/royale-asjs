@@ -14,11 +14,8 @@
 
 goog.provide('org.apache.flex.html.supportClasses.Viewport');
 
-goog.require('org.apache.flex.core.IItemRenderer');
-goog.require('org.apache.flex.core.IItemRendererFactory');
-goog.require('org.apache.flex.core.UIBase');
-goog.require('org.apache.flex.events.Event');
-goog.require('org.apache.flex.utils.MXMLDataInterpreter');
+goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.core.IViewport');
 
 
 
@@ -37,8 +34,23 @@ function() {
  */
 org.apache.flex.html.supportClasses.Viewport.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'Viewport',
-                qName: 'org.apache.flex.html.supportClasses.Viewport' }]};
+                qName: 'org.apache.flex.html.supportClasses.Viewport' }],
+      interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.core.IViewport]};
 
+
+/**
+ *
+ */
+org.apache.flex.html.supportClasses.Viewport.prototype.updateSize = function() {
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.supportClasses.Viewport.prototype.updateContentAreaSize = function() {
+};
 
 
 Object.defineProperties(org.apache.flex.html.supportClasses.Viewport.prototype, {

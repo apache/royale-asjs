@@ -44,12 +44,13 @@ org.apache.flex.html.DropDownList.prototype.FLEXJS_CLASS_INFO =
 /**
  * @override
  */
-org.apache.flex.html.DropDownList.prototype.
-    createElement = function() {
+org.apache.flex.html.DropDownList.prototype.createElement =
+    function() {
   this.element = document.createElement('select');
   this.element.size = 1;
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
+
   this.positioner = this.element;
 
   this.element.flexjs_wrapper = this;
@@ -66,7 +67,6 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
             var dp, i, n, opt;
 
             this.model.dataProvider = value;
-
             dp = this.element.options;
             n = dp.length;
             for (i = 0; i < n; i++) {

@@ -21,11 +21,13 @@ package org.apache.flex.html.beads
 	import flash.display.Graphics;
 	
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.CSSBorderUtils;
 
     /**
      *  The SingleLineBorderBead class draws a single line solid border.
@@ -72,33 +74,18 @@ package org.apache.flex.html.beads
 		        
 		private function changeHandler(event:Event):void
 		{
-			var styleObject:* = ValuesManager.valuesImpl.getValue(_strand,"border-color");
-            if (styleObject is String)
-            {
-                if (styleObject.charAt(0) == "#")
-                    styleObject = styleObject.replace("#", "0x");
-            }
-			var borderColor:Number = Number(styleObject);
-			if( isNaN(borderColor) ) borderColor = 0x000000;
-			styleObject = ValuesManager.valuesImpl.getValue(_strand,"border-width");
-            if (styleObject is String)
-                styleObject = styleObject.replace("px", "");
-			var borderThickness:Number = Number(styleObject);
-			if( isNaN(borderThickness) ) borderThickness = 1;
-			
             var host:UIBase = UIBase(_strand);
             var g:Graphics = host.graphics;
             var w:Number = host.width;
             var h:Number = host.height;
+            var state:String;
+            if (host is IStatesObject)
+                state = IStatesObject(host).currentState;
 			
 			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
-			
-			g.lineStyle();
-            g.beginFill(borderColor);
-            g.drawRect(0, 0, w, h);
-            g.drawRect(borderThickness, borderThickness, w-2*borderThickness, h-2*borderThickness);
-            g.endFill();
+            
+            CSSBorderUtils.draw(g, w, h, host, state, false, false);
 		}
 	}
 }

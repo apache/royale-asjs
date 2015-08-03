@@ -75,8 +75,6 @@ package org.apache.flex.html.beads.controllers
 		{
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
-			UIBase(viewBead.popUp).x = UIBase(_strand).x + UIBase(_strand).width - 20;
-			UIBase(viewBead.popUp).y = UIBase(_strand).y + UIBase(_strand).height;			
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
 		}
 		

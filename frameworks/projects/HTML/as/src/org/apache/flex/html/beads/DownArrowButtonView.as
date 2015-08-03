@@ -37,7 +37,7 @@ package org.apache.flex.html.beads
      *  @productversion FlexJS 0.0
      */
 	public class DownArrowButtonView extends BeadViewBase implements IBeadView
-	{
+	{		
         /**
          *  Constructor.
          *  
@@ -52,23 +52,23 @@ package org.apache.flex.html.beads
 			downView = new Shape();
 			overView = new Shape();
 
-			drawView(upView.graphics, 0xCCCCCC);
-			drawView(downView.graphics, 0x808080);
-			drawView(overView.graphics, 0xEEEEEE);
+			drawView(upView.graphics, 0xf8f8f8);
+			drawView(downView.graphics, 0xd8d8d8);
+			drawView(overView.graphics, 0xe8e8e8);
 		}
 		
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
-			g.lineStyle(1);
+			g.lineStyle(1, 0x808080);
 			g.beginFill(bgColor);
-			g.drawRect(0, 0, 16, 16);
+			g.drawRoundRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize, ScrollBarView.ThirdSize);
 			g.endFill();
 			g.lineStyle(0);
 			g.beginFill(0);
-			g.moveTo(4, 4);
-			g.lineTo(12, 4);
-			g.lineTo(8, 12);
-			g.lineTo(4, 4);
+			g.moveTo(ScrollBarView.QuarterSize, ScrollBarView.QuarterSize);
+			g.lineTo(ScrollBarView.ThreeQuarterSize, ScrollBarView.QuarterSize);
+			g.lineTo(ScrollBarView.HalfSize, ScrollBarView.ThreeQuarterSize);
+			g.lineTo(ScrollBarView.QuarterSize, ScrollBarView.QuarterSize);
 			g.endFill();
 		}
 		
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 16, 16);
+			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
 			SimpleButton(value).upState = upView;
 			SimpleButton(value).downState = downView;
@@ -104,8 +104,8 @@ package org.apache.flex.html.beads
         
         private function sizeChangeHandler(event:Event):void
         {
-            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / 16;
-            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / 16;
+            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / ScrollBarView.FullSize;
+            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / ScrollBarView.FullSize;
         }
 	}
 }

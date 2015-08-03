@@ -59,8 +59,6 @@ package org.apache.flex.html
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
         [Bindable("strandChanged")]
         /**
          *  An MXMLBeadViewBase doesn't create its children until it is added to
@@ -89,15 +87,6 @@ package org.apache.flex.html
             dispatchEvent(new Event("initBindings"))
             dispatchEvent(new Event("initComplete"))
             dispatchEvent(new Event("childrenAdded"));
-        }
-        
-        /**
-         *  @private
-         *  Needed for databinding expressions
-         */
-        public function get strand():IStrand
-        {
-            return _strand;
         }
         
         [Bindable("__NoChangeEvent__")]

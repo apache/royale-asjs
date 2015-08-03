@@ -62,6 +62,9 @@ org.apache.flex.html.RadioButton.prototype.createElement =
   this.labelFor.appendChild(this.textNode);
 
   this.element = this.labelFor;
+  this.element.className = 'RadioButton';
+  this.typeNames = 'RadioButton';
+
   this.positioner = this.element;
   this.input.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;

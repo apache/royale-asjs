@@ -148,11 +148,10 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = UIBase(_strand);
 			var viewportModel:IViewportModel = viewport.model;
-			
+						
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
 			// If the host is being sized by its content, the change in the contentArea
 			// causes the host's size to change

@@ -30,6 +30,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.DateChooser;
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.TextInput;
@@ -166,14 +168,18 @@ package org.apache.flex.html.beads
 						_popUp = new DateChooser();
 						_popUp.width = 210;
 						_popUp.height = 220;
-						_popUp.x = UIBase(_strand).x;
-						_popUp.y = UIBase(_strand).y + 30;
 					}
 					
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
 					
 					var host:IPopUpHost = UIUtils.findPopUpHost(UIBase(_strand));
+					var point:Point = new Point(_button.x, _button.y+_button.height);
+					var p2:Point = PointUtils.localToGlobal(point, _strand);
+					var p3:Point = PointUtils.globalToLocal(p2, host);
+					_popUp.x = p3.x;
+					_popUp.y = p3.y;
+					
 					host.addElement(_popUp);
 				}
 				else

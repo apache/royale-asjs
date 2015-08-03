@@ -24,8 +24,6 @@ package org.apache.flex.core
     import flash.display.StageQuality;
     import flash.display.StageScaleMode;
     import flash.events.Event;
-    import flash.events.IOErrorEvent;
-    import flash.events.MouseEvent;
     import flash.system.ApplicationDomain;
     import flash.utils.getQualifiedClassName;
     
@@ -51,6 +49,20 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Dispatched at startup before the instances get created.
+     *  Beads can call preventDefault and defer initialization.
+     *  This event will be dispatched on every frame until no
+     *  listeners call preventDefault(), then the initialize()
+     *  method will be called.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="preinitialize", type="org.apache.flex.events.Event")]
     
     /**
      *  Dispatched at startup after the initial view has been
@@ -135,6 +147,34 @@ package org.apache.flex.core
                 
             dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 
+            if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+                initialize();
+            else
+                addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+            
+        }
+        
+        private function enterFrameHandler(event:flash.events.Event):void
+        {
+            if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+            {
+                removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
+                initialize();
+            }    
+        }
+        
+        /**
+         *  This method gets called when all preinitialize handlers
+         *  no longer call preventDefault();
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function initialize():void
+        {
+            
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
             
             dispatchEvent(new org.apache.flex.events.Event("initialize"));

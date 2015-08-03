@@ -59,17 +59,5 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 		}
-		
-        /**
-         *  @private
-         */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			var bb:SolidBackgroundBead = new SolidBackgroundBead();
-			bb.backgroundColor = 0xffffff;
-			addBead(bb);
-		}
 	}
 }

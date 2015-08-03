@@ -48,6 +48,13 @@ package org.apache.flex.core
         /**
          *  The strand.  Do not modify except
          *  via the strand setter.  For reading only.
+         * 
+         *  Because Object.defineProperties in JS
+         *  doesn't allow you to just override the setter
+         *  (you have to override the getter as well even
+         *  if it just calls the super getter) it is
+         *  more efficient to expose this variable than
+         *  have all of the layers of simple overrides.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -85,34 +92,6 @@ package org.apache.flex.core
         public function get host():IUIBase
         {
             return _strand as IUIBase;
-        }
-		
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get viewHeight():Number
-		{
-            // don't want to put $height in an interface
-			return _strand["$height"];
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get viewWidth():Number
-        {
-            // don't want to put $width in an interface
-            return _strand["$width"];
         }
    }
 }
