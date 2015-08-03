@@ -213,3 +213,6 @@ conditions of the following licenses.
 Portions of frameworks/projects/HTML/src/defaults.css is based on
 designmodo’s (http://designmodo.com/flat-free/) Flat UI which is 
 available under an MIT license.  
+
+Google Closure Library is available under Apache License 2.0.  For details
+see https://developers.google.com/closure/library/
