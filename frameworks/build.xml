@@ -172,7 +172,7 @@
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
 	
     <target name="thirdparty-clean" unless="no.thirdparty-clean" description="Removes all thirdparty downloads.">
-        <!--<ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>-->
+        <ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">

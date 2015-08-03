@@ -745,6 +745,12 @@
             </fileset>
         </copy>
          -->
+    	
+    	<!-- Google Closure Library -->
+    	<copy todir="${basedir}/temp/js/lib/google/closure-library">
+    	            <fileset dir="${basedir}/js/lib/google/closure-library" />
+		</copy>
+    	
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>

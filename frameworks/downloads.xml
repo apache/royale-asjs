@@ -32,12 +32,12 @@
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="main" 
-        depends="swfobject-download,flat-ui-download"
+        depends="swfobject-download,flat-ui-download,gcl-download"
         description="Copies third-party software into place for build">
         <echo message="Use thirdparty-clean or super-clean to remove these."/> 
     </target>
     
-    <target name="clean" depends="swfobject-clean,flat-ui-clean"
+    <target name="clean" depends="swfobject-clean,flat-ui-clean,gcl-clean"
         description="Cleans thirdparty downloaded files.">
      </target>
     
@@ -63,7 +63,7 @@
         </unzip>
         <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
         <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
-            <fileset dir="${FLEX_HOME}/templates/swfobject/history">
+            <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
                 <include name="**"/>
             </fileset>
         </copy>
@@ -115,6 +115,24 @@
                 <include name="**"/>
             </fileset>
         </delete>
+    </target>
+	
+	<!-- Google Closure Library -->
+    <target name="gcl-download" description="Downloads Google Closure Library">
+    	<mkdir dir="${download.dir}"/>
+    	<get src="https://github.com/google/closure-library/archive/master.zip"
+    	        dest="${download.dir}/google-closure-library-master.zip"
+    	        verbose="false"/>
+    	
+    	<mkdir dir="${FLEXJS_HOME}/js/lib/google/closure-library"/>
+    	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${FLEXJS_HOME}/js/lib/google/closure-library">
+    		<cutdirsmapper dirs="1" />
+    	</unzip>
+    </target>
+	
+    <target name="gcl-clean" description="Deletes Google Closure Library">
+    	<echo message="Deleting Google Closure Library"/>
+        <delete dir="${FLEXJS_HOME}/js/lib" failonerror="false" />
     </target>
         
 </project>
