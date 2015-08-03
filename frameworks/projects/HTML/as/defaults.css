@@ -225,6 +225,34 @@ TitleBar
     border-width: 1px;
 }
 
+.toggleTextButton
+{
+  background-color: #f8f8f8;
+  border: 1px solid #808080;
+  padding: 4px;
+}
+
+.toggleTextButton:hover
+{
+  background-color: #e8e8e8;
+  border: 1px solid #808080;
+  padding: 4px;
+}
+
+.toggleTextButton_Selected
+{
+  background-color: #d8d8d8;
+  border: 1px solid #808080;
+  padding: 4px;
+}
+
+.toggleTextButton_Selected:hover
+{
+  background-color: #e8e8e8;
+  border: 1px solid #808080;
+  padding: 4px;
+}
+
 ToolTip
 {
     background-color: #FFFFCC;

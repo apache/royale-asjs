@@ -25,7 +25,7 @@ goog.require('org.apache.flex.html.Button');
 org.apache.flex.html.ToggleTextButton = function() {
   org.apache.flex.html.ToggleTextButton.base(this, 'constructor');
 
-
+  this.typeNames = 'toggleTextButton';
 
   /**
    * @private
@@ -71,13 +71,24 @@ Object.defineProperties(org.apache.flex.html.ToggleTextButton.prototype, {
               this.selected_ = value;
 
               var className = this.className;
+              var typeNames = this.typeNames;
               if (value) {
-                 if (className.indexOf(this.SELECTED) == className.length - this.SELECTED.length)
-                   this.className = className.substring(0, className.length - this.SELECTED.length);
+                if (typeNames.indexOf(this.SELECTED) == -1) {
+                  this.typeNames = typeNames + this.SELECTED;
+                  if (className)
+                    this.element.className = this.typeNames + ' ' + className;
+                  else
+                    this.element.className = this.typeNames;
+                }
               }
               else {
-                if (className.indexOf(this.SELECTED) == -1)
-                  this.className = className + this.SELECTED;
+                if (typeNames.indexOf(this.SELECTED) == typeNames.length - this.SELECTED.length) {
+                  this.typeNames = typeNames.substring(0, typeNames.length - this.SELECTED.length);
+                  if (className)
+                    this.element.className = this.typeNames + ' ' + className;
+                  else
+                    this.element.className = this.typeNames;
+                }
               }
            }
         }
@@ -89,4 +100,23 @@ Object.defineProperties(org.apache.flex.html.ToggleTextButton.prototype, {
  * @type {string} The selected setter.
  */
 org.apache.flex.html.ToggleTextButton.prototype.SELECTED = '_Selected';
+
+
+/**
+ * @override
+ */
+org.apache.flex.html.ToggleTextButton.prototype.createElement = function() {
+  org.apache.flex.html.ToggleTextButton.base(this, 'createElement');
+  this.addEventListener('click', goog.bind(this.clickHandler_, this));
+  return this.element;
+};
+
+
+/**
+ * @private.
+ * @param {Object} e The event object.
+ */
+org.apache.flex.html.ToggleTextButton.prototype.clickHandler_ = function(e) {
+  this.selected = !this.selected;
+};
 
