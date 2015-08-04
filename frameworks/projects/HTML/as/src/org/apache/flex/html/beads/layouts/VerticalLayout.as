@@ -282,8 +282,6 @@ package org.apache.flex.html.beads.layouts
 			{
 				if (!isNaN(ilc.percentWidth))
 					ilc.setWidth(w * ilc.percentWidth / 100, true);
-				else
-					ilc.setWidth(w, true);
 			}
 			if (!widthSet)
 				child.dispatchEvent(new Event("sizeChanged"));
