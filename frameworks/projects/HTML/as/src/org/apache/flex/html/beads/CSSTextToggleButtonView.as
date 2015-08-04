@@ -66,6 +66,8 @@ package org.apache.flex.html.beads
 		
 		private var toggleButtonModel:IToggleButtonModel;
 		
+        private var _selected:Boolean;
+        
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -79,7 +81,7 @@ package org.apache.flex.html.beads
             super.strand = value;
             
 			toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
-            toggleButtonModel.addEventListener("selectedChanged", selectedChangeHandler);
+            toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
 		}
 	
 		private function selectedChangeHandler(event:org.apache.flex.events.Event):void

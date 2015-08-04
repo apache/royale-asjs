@@ -311,30 +311,37 @@ package org.apache.flex.core
                             return value;
                     }                    
                 }
-				className = styleable.className;
-				if (state)
-				{
-					selectorName = className + ":" + state;
-					o = values["." + selectorName];
-					if (o)
-					{
-						value = o[valueName];
-                        if (value == "inherit")
-                            return getInheritingValue(thisObject, valueName, state, attrs);
-						if (value !== undefined)
-							return value;
-					}
-				}
-				
-				o = values["." + className];
-				if (o)
-				{
-					value = o[valueName];
-                    if (value == "inherit")
-                        return getInheritingValue(thisObject, valueName, state, attrs);
-					if (value !== undefined)
-						return value;
-				}
+				var classNames:String = styleable.className;
+                if (classNames)
+                {
+                    var classNameList:Array = classNames.split(" ");
+                    for each (className in classNameList)
+                    {
+                        if (state)
+                        {
+                            selectorName = className + ":" + state;
+                            o = values["." + selectorName];
+                            if (o)
+                            {
+                                value = o[valueName];
+                                if (value == "inherit")
+                                    return getInheritingValue(thisObject, valueName, state, attrs);
+                                if (value !== undefined)
+                                    return value;
+                            }
+                        }
+                        
+                        o = values["." + className];
+                        if (o)
+                        {
+                            value = o[valueName];
+                            if (value == "inherit")
+                                return getInheritingValue(thisObject, valueName, state, attrs);
+                            if (value !== undefined)
+                                return value;
+                        }                        
+                    }
+                }
 			}
 			
 			className = getQualifiedClassName(thisObject);

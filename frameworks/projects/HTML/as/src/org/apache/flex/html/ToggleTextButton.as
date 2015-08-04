@@ -19,7 +19,7 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IToggleButtonModel;
+	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIButtonBase;
 	import org.apache.flex.core.ValuesManager;
@@ -82,6 +82,23 @@ package org.apache.flex.html
         public function set selected(value:Boolean):void
         {
             IToggleButtonModel(model).selected = value;
+        }
+        
+        /**
+         *  @private
+         *  add another class selector
+         */
+        override public function get className():String
+        {
+            // we don't have a model yet so just pass through otherwise you will loop
+            if (!parent)
+                return super.className;
+            
+            var name:String = super.className;            
+            if (selected)
+                return "toggleTextButton_Selected" + (name ? " " + name : "");
+            else
+                return "toggleTextButton" + (name ? " " + name : "");
         }
         
         
