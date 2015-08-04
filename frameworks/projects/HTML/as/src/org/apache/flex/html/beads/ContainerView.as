@@ -190,7 +190,6 @@ package org.apache.flex.html.beads
 			if (num > 0) 
             {
                 performLayout(event);
-                childrenChangedHandler(event);
             }
 		}
 		
@@ -210,6 +209,7 @@ package org.apache.flex.html.beads
 			(contentView as UIBase).setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
 			
 			host.addEventListener("childrenAdded", childrenChangedHandler);
+            childrenChangedHandler(null);
 			host.addEventListener("childrenAdded", performLayout);
 			host.addEventListener("layoutNeeded", performLayout);
 			host.addEventListener("widthChanged", resizeHandler);
