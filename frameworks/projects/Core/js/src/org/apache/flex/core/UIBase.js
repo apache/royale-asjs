@@ -689,6 +689,9 @@ org.apache.flex.core.UIBase.prototype.setHeight =
   if (opt_noEvent === undefined)
     opt_noEvent = false;
 
+  if (value === undefined)
+    value = 0;
+
   var _height = this.CSSHeight;
   if (isNaN(_height) || _height != value) {
     this.positioner.style.height = value.toString() + 'px';
@@ -708,6 +711,9 @@ org.apache.flex.core.UIBase.prototype.setWidth =
 {
   if (opt_noEvent === undefined)
     opt_noEvent = false;
+
+  if (value === undefined)
+    value = 0;
 
   var _width = this.CSSWidth;
   if (isNaN(_width) || _width != value) {
@@ -729,6 +735,11 @@ org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
 {
   if (opt_noEvent === undefined)
     opt_noEvent = false;
+
+  if (newWidth === undefined)
+    newWidth = 0;
+  if (newHeight === undefined)
+    newHeight = 0;
 
   var _width = this.CSSWidth;
   if (isNaN(_width) || _width != newWidth) {

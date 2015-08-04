@@ -72,6 +72,10 @@ package org.apache.flex.charts.beads
 			
 			dataProviderChangeHandler(null);
 		}
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
 		
 		/**
 		 * For series data, the 'global' itemRendererFactory is not used. Each series supplies

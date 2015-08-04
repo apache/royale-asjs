@@ -65,6 +65,10 @@ Object.defineProperties(org.apache.flex.core.graphics.GraphicsContainer.prototyp
                 org.apache.flex.core.graphics.GraphicsContainer, this, 'width', value);
             this.element.setAttribute('width', String(value) + 'px');
             this.element.style.width = String(value) + 'px';
+        },
+        get: function() {
+          return org.apache.flex.utils.Language.superGetter(
+              org.apache.flex.core.graphics.GraphicsContainer, this, 'width');
         }
     },
     /** @export */
@@ -75,6 +79,10 @@ Object.defineProperties(org.apache.flex.core.graphics.GraphicsContainer.prototyp
                 org.apache.flex.core.graphics.GraphicsContainer, this, 'height', value);
             this.element.setAttribute('height', String(value) + 'px');
             this.element.style.height = String(value) + 'px';
+        },
+        get: function() {
+          return org.apache.flex.utils.Language.superGetter(
+              org.apache.flex.core.graphics.GraphicsContainer, this, 'height');
         }
     },
     /** @export */
@@ -87,6 +95,10 @@ Object.defineProperties(org.apache.flex.core.graphics.GraphicsContainer.prototyp
             this.element.style.position = 'absolute';
             this.element.style.left = String(value) + 'px';
             this.element.offsetLeft = value;
+        },
+        get: function() {
+          return org.apache.flex.utils.Language.superGetter(
+              org.apache.flex.core.graphics.GraphicsContainer, this, 'x');
         }
     },
     /** @export */
@@ -99,6 +111,10 @@ Object.defineProperties(org.apache.flex.core.graphics.GraphicsContainer.prototyp
             this.element.style.position = 'absolute';
             this.element.style.top = String(value) + 'px';
             this.element.offsetTop = value;
+        },
+        get: function() {
+          return org.apache.flex.utils.Language.superGetter(
+              org.apache.flex.core.graphics.GraphicsContainer, this, 'y');
         }
     }
 });

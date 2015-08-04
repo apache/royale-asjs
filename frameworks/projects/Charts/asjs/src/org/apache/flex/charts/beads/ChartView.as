@@ -169,6 +169,13 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
 			
+			if (dataGroup) {
+				UIBase(dataGroup).x = model.contentX;
+				UIBase(dataGroup).y = model.contentY;
+				UIBase(dataGroup).width = model.contentWidth;
+				UIBase(dataGroup).height = model.contentHeight;
+			}
+			
 			viewport.updateSize();
 			viewport.updateContentAreaSize();
 		}

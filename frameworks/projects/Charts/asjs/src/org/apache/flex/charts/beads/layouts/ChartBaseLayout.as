@@ -48,6 +48,10 @@ package org.apache.flex.charts.beads.layouts
 		{
 			_strand = value;
 		}
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
 		
 		/**
 		 *  Returns the strand, cast as an instance of ChartBase.

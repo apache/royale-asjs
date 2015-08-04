@@ -114,6 +114,10 @@ package org.apache.flex.charts.optimized
 		{
 			super.data = value;	
 		}
+		override public function get data():Object
+		{
+			return super.data;
+		}
 		
 		/**
 		 *  The name of the field containing the value for the Y axis. This is not implemented by this class.

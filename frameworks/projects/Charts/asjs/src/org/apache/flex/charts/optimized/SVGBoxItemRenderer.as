@@ -123,6 +123,10 @@ package org.apache.flex.charts.optimized
 			super.data = value;	
 			drawBar();
 		}
+		override public function get data():Object
+		{
+			return super.data;
+		}
 		
 		/**
 		 *  @copy org.apache.flex.core.UIBase#width
@@ -137,6 +141,10 @@ package org.apache.flex.charts.optimized
 			super.width = value;
 			drawBar();
 		}
+		override public function get width():Number
+		{
+			return super.width;
+		}
 		
 		/**
 		 *  @copy org.apache.flex.core.UIBase#height
@@ -150,6 +158,10 @@ package org.apache.flex.charts.optimized
 		{
 			super.height = value;
 			drawBar();
+		}
+		override public function get height():Number
+		{
+			return super.height;
 		}
 		
 		/**

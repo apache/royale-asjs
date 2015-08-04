@@ -50,6 +50,9 @@ Object.defineProperties(org.apache.flex.html.supportClasses.DataGroup.prototype,
         /** @this {org.apache.flex.html.supportClasses.DataGroup} */
         set: function(value) {
             this.strand_ = value;
+        },
+        get: function() {
+            return this.strand_;
         }
     },
     /** @export */

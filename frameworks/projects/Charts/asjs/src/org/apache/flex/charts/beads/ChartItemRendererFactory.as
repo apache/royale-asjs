@@ -74,6 +74,10 @@ package org.apache.flex.charts.beads
 		{
 			return _seriesRenderers;
 		}
+		public function set seriesRenderers(value:Array):void
+		{
+			_seriesRenderers = value;
+		}
 		
 		private var _strand:IStrand;
 		
@@ -127,6 +131,10 @@ package org.apache.flex.charts.beads
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+		}
+		public function get strand():IStrand
+		{
+			return _strand;
 		}
 		
 		/**

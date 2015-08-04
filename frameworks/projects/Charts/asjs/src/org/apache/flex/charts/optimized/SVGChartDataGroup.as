@@ -75,6 +75,10 @@ package org.apache.flex.charts.optimized
 		{
 			_strand = value;
 		}
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
 		
 		/**
 		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
