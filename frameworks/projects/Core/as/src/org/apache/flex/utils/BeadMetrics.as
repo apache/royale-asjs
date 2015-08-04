@@ -132,7 +132,6 @@ public class BeadMetrics
 		if (isNaN(mb))
 			mb = 0;
 		
-        borderOffset *= 2; // border on each side
 		var result:UIMetrics = new UIMetrics();
 		result.top = borderOffset + pt;
 		result.left = borderOffset + pl;
