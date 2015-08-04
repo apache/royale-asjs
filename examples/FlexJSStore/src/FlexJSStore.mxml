@@ -186,7 +186,7 @@ limitations under the License.
         <js:ApplicationDataBinding />
     </js:beads>
     <js:initialView>
-        <js:ViewBase	width="990" height="550"
+        <js:ViewBase	width="990" height="585"
                         initComplete="completeHandler(null)"
                         stateChangeComplete="chainStatesIfNeeded()">
             <js:states>
