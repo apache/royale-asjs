@@ -130,6 +130,7 @@ package org.apache.flex.html.beads
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
+            IEventDispatcher(_strand).addEventListener("sizeChanged",sizeChangeHandler);
 		}
 	
         protected function setupSkins():void
