@@ -118,7 +118,7 @@
     </target>
 	
 	<!-- Google Closure Library -->
-    <target name="gcl-download" description="Downloads Google Closure Library">
+    <target name="gcl-download" depends="check-goog-home" unless="GOOG_HOME" description="Downloads Google Closure Library">
     	<mkdir dir="${download.dir}"/>
     	<get src="https://github.com/google/closure-library/archive/master.zip"
     	        dest="${download.dir}/google-closure-library-master.zip"
@@ -133,6 +133,14 @@
     <target name="gcl-clean" description="Deletes Google Closure Library">
     	<echo message="Deleting Google Closure Library"/>
         <delete dir="${FLEXJS_HOME}/js/lib" failonerror="false" />
+    </target>
+	
+    <target name="check-goog-home" description="Check that GOOG_HOME is a directory">
+        <echo message="GOOG_HOME is ${env.GOOG_HOME}"/>
+        <available file="${env.GOOG_HOME}" 
+            type="dir" 
+            property="GOOG_HOME"
+            value="${env.GOOG_HOME}" />
     </target>
         
 </project>

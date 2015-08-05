@@ -747,16 +747,29 @@
          -->
     	
     	<!-- Google Closure Library -->
-    	<copy todir="${basedir}/temp/js/lib/google/closure-library">
-    	            <fileset dir="${basedir}/js/lib/google/closure-library" />
-		</copy>
-    	
+    	<!-- If GOOG_HOME is set, copy GCL from there, else copy from the downloaded folder -->
+    	<antcall target="copy-gcl-from-goog-home" if="${GOOG_HOME}" />
+    	<antcall target="copy-gcl-from-downloaded" unless="${GOOG_HOME}" />
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
         <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
     </target>
 
+	<target name="copy-gcl-from-goog-home">
+		<echo message="Copying GCL from ${GOOG_HOME}"></echo>
+		<copy todir="${basedir}/temp/js/lib/google/closure-library">
+			<fileset dir="${GOOG_HOME}" />
+		</copy>
+	</target>
+	
+	<target name="copy-gcl-from-downloaded">
+		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
+		<copy todir="${basedir}/temp/js/lib/google/closure-library">
+			<fileset dir="${GOOG_HOME}/js/lib/google/closure-library" />
+		</copy>
+	</target>
+	
     <!-- 
         Packages the binary distribution with ZIP. 
     -->
