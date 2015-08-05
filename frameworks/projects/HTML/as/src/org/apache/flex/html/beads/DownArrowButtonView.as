@@ -59,7 +59,7 @@ package org.apache.flex.html.beads
 		
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
-			g.lineStyle(1, 0x808080);
+			g.lineStyle(1);
 			g.beginFill(bgColor);
 			g.drawRoundRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize, ScrollBarView.ThirdSize);
 			g.endFill();
