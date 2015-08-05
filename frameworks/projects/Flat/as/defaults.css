@@ -800,7 +800,7 @@ TextInput
     IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");
     iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-    iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
+    iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 }
 
 TitleBar
