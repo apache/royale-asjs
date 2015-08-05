@@ -128,7 +128,7 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release" 
-        depends="setup-binary-release,main,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        depends="setup-binary-release,main,sample-themes,checkintests,doc,other.locales,check-goog-home,binary-package,additional-packages" 
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
@@ -229,9 +229,6 @@
             type="dir" 
             property="GOOG_HOME"
             value="${env.GOOG_HOME}" />
-        
-        <fail message="The environment variable GOOG_HOME must be set to the Google Closure Library folder containg a 'closure' and 'third_party' folder" 
-            unless="GOOG_HOME"/>
     </target>
     
     <target name="check-flex-home" unless="mxmlc.jar.exists"
@@ -748,25 +745,25 @@
     	
     	<!-- Google Closure Library -->
     	<!-- If GOOG_HOME is set, copy GCL from there, else copy from the downloaded folder -->
-    	<antcall target="copy-gcl-from-goog-home" if="${GOOG_HOME}" />
-    	<antcall target="copy-gcl-from-downloaded" unless="${GOOG_HOME}" />
+    	<antcall target="copy-gcl-from-goog-home"/>
+    	<antcall target="copy-gcl-from-downloaded"/>
                  
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
         <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
     </target>
 
-	<target name="copy-gcl-from-goog-home">
+	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
 		<echo message="Copying GCL from ${GOOG_HOME}"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
 			<fileset dir="${GOOG_HOME}" />
 		</copy>
 	</target>
 	
-	<target name="copy-gcl-from-downloaded">
+	<target name="copy-gcl-from-downloaded" unless="GOOG_HOME">
 		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${GOOG_HOME}/js/lib/google/closure-library" />
+			<fileset dir="${basedir}/js/lib/google/closure-library" />
 		</copy>
 	</target>
 	
