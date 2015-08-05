@@ -20,7 +20,8 @@ package org.apache.flex.html.beads
 {
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutChild;
+    import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRangeModel;
@@ -88,7 +89,6 @@ package org.apache.flex.html.beads
 			spinner = new Spinner();
 			spinner.addBead( UIBase(value).model );
 			IParent(value).addElement(spinner);
-			spinner.width = 17;
 			spinner.height = input.height;
 			
 			// listen for changes to the text input field which will reset the
@@ -102,6 +102,7 @@ package org.apache.flex.html.beads
 			spinner.addEventListener("valueChange",spinnerValueChanged);
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+            IEventDispatcher(value).addEventListener("sizeChanged",sizeChangeHandler);
 			
 			// listen for changes to the model itself and update the UI accordingly
 			IEventDispatcher(UIBase(value).model).addEventListener("valueChange",modelChangeHandler);
@@ -112,11 +113,10 @@ package org.apache.flex.html.beads
 			
 			input.text = String(spinner.value);
 			
-			// set a default size which will trigger the sizeChangeHandler
-			var minWidth:Number = Math.max(50+spinner.width,UIBase(value).width);
-			
-			UIBase(value).width = minWidth;
-			UIBase(value).height = spinner.height;
+            var host:ILayoutChild = ILayoutChild(value);
+            if ((host.isWidthSizedToContent() || isNaN(host.explicitWidth)) &&
+                (host.isHeightSizedToContent() || isNaN(host.explicitHeight)))
+                sizeChangeHandler(null);
 		}
 		
 		/**
@@ -177,30 +177,6 @@ package org.apache.flex.html.beads
 		public function get contentView():IParentIUIBase
 		{
 			return _strand as IParentIUIBase;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function get border():Border
-		{
-			return null;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get vScrollBar():ScrollBar
-		{
-			return null;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get hScrollBar():ScrollBar
-		{
-			return null;
 		}
 		
 		/**
