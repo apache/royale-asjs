@@ -509,7 +509,7 @@ limitations under the License.
         <js:ParentDocumentBead id="pdb" />
         <js:PanelView>
             <js:titleBar>
-                <js:TitleBar>
+                <js:TitleBar height="20" >
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="0xA65904" />
                     </js:style>
