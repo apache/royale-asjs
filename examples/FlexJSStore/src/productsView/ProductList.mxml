@@ -21,7 +21,7 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic" 
     > 
     <js:style>
-        <js:SimpleCSSStyles borderStyle="solid" backgroundColor="#BCB29F" />
+        <js:SimpleCSSStyles borderStyle="solid" borderWidth="1" backgroundColor="#BCB29F" />
     </js:style>
     <!-- need a background color for drag and drop but can set alpha to 0 -->
     

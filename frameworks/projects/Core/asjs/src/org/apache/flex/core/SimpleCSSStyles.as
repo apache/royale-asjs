@@ -75,5 +75,6 @@ package org.apache.flex.core
         public var borderColor:*;
         public var borderStyle:*;
         public var borderRadius:*;
+        public var borderWidth:*;
 	}
 }
