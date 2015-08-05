@@ -47,8 +47,6 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
-		private var _border:Border;
-				
         /**
          *  @private
          */        
@@ -56,24 +54,61 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-			// add a border to this
-			_border = new Border();
-			_border.model = new (ValuesManager.valuesImpl.getValue(value, "iBorderModel")) as IBeadModel;
-			_border.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-            IParent(host).addElement(_border);
-			
-			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
-			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
-			sizeChangedHandler(null);
+            value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);
+			value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
 		}
-		
-		private function sizeChangedHandler(event:Event):void
-		{
-			var ww:Number = DisplayObject(host).width;
-			_border.width = ww;
-			
-			var hh:Number = DisplayObject(host).height;
-			_border.height = hh;
-		}
-	}
+
+        /**
+         *  Determine the width of the TextField.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function widthChangeHandler(event:Event):void
+        {
+            if (!inWidthChange)
+            {
+                textField.autoSize = "none";
+                autoWidth = false;
+                textField.width = host.width - 2;
+                textField.x = 1;
+                if (autoHeight)
+                    autoSizeIfNeeded()
+                else 
+                {
+                    textField.height = host.height - 2;
+                    textField.y = 1;
+                }
+            }
+        }
+        
+        /**
+         *  Determine the height of the TextField.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function heightChangeHandler(event:Event):void
+        {
+            if (!inHeightChange)
+            {
+                textField.autoSize = "none";
+                autoHeight = false;
+                textField.height = host.height - 2;
+                textField.y = 1;
+                if (autoWidth)
+                    autoSizeIfNeeded();
+                else
+                {
+                    textField.width = host.width;
+                    textField.x = 1;
+                }
+            }
+        }
+
+    }
 }

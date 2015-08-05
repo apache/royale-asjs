@@ -157,7 +157,17 @@ package org.apache.flex.html.beads
             autoSizeIfNeeded();
 		}
 
-        private function autoSizeIfNeeded():void
+        /**
+         *  Handle autosizing.  The built-in player algorithm
+         *  doesn't work the way we would like, especially
+         *  when it collapses Textfields with empty strings.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function autoSizeIfNeeded():void
         {
             var host:UIBase = UIBase(_strand);
             if (autoHeight)
@@ -281,12 +291,55 @@ package org.apache.flex.html.beads
 			html = _textModel.html;
 		}
 		
-        private var autoHeight:Boolean;
-        private var autoWidth:Boolean;
-        private var inHeightChange:Boolean = false;
-        private var inWidthChange:Boolean = false;
+        /**
+         *  Whether we are autosizing the height.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var autoHeight:Boolean;
+
+        /**
+         *  Whether we are autosizing the width.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var autoWidth:Boolean;
         
-		private function widthChangeHandler(event:Event):void
+        /**
+         *  A flag to prevent looping.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var inHeightChange:Boolean = false;
+        
+        /**
+         *  A flag to prevent looping.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var inWidthChange:Boolean = false;
+        
+        /**
+         *  Determine the width of the TextField.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		protected function widthChangeHandler(event:Event):void
 		{
             if (!inWidthChange)
             {
@@ -300,7 +353,15 @@ package org.apache.flex.html.beads
             }
 		}
 
-        private function heightChangeHandler(event:Event):void
+        /**
+         *  Determine the height of the TextField.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function heightChangeHandler(event:Event):void
         {
             if (!inHeightChange)
             {
