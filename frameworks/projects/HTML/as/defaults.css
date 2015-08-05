@@ -376,7 +376,7 @@ ImageButton
 ImageAndTextButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageAndTextModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.ImageAndTextButtonView");
+    IBeadView: ClassReference("org.apache.flex.html.beads.CSSImageAndTextButtonView");
 }
 
 Label

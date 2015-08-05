@@ -40,6 +40,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.ContainerView; ContainerView;
     import org.apache.flex.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
     import org.apache.flex.html.beads.CSSButtonView; CSSButtonView;
+    import org.apache.flex.html.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
 	import org.apache.flex.html.beads.CSSTextButtonView; CSSTextButtonView;
     import org.apache.flex.html.beads.CSSTextToggleButtonView; CSSTextToggleButtonView;
 	import org.apache.flex.html.beads.DropDownListView; DropDownListView;
