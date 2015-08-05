@@ -105,5 +105,7 @@ package org.apache.flex.core
         public var borderStyle:*;
         [Bindable]
         public var borderRadius:*;
+        [Bindable]
+        public var borderWidth:*;
 	}
 }

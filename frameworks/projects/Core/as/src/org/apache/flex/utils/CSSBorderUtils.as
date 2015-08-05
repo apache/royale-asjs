@@ -208,7 +208,7 @@ package org.apache.flex.utils
                 }
                 SolidBorderUtil.drawBorder(g, 
                     0, 0, width, height,
-                    borderColor, backgroundColor, borderThickness, 1,
+                    borderColor & 0xFFFFFF, backgroundColor, borderThickness, borderColor >>> 24 / 255,
                     borderEllipseWidth, borderEllipseHeight);
             }
             
