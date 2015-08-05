@@ -20,14 +20,17 @@ package org.apache.flex.html.beads
 {
 	import flash.display.DisplayObject;
 	
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IParent;
-    import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.supportClasses.Border;
+	import org.apache.flex.utils.BeadMetrics;
 
     /**
      *  The TextInputWithBorderView class is the default view for
@@ -72,43 +75,24 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoWidth = false;
-                textField.width = host.width - 2;
-                textField.x = 1;
-                if (autoHeight)
-                    autoSizeIfNeeded()
-                else 
-                {
-                    textField.height = host.height - 2;
-                    textField.y = 1;
-                }
+                var uiMetrics:UIMetrics = BeadMetrics.getMetrics(host);
+                textField.width = host.width - uiMetrics.left - uiMetrics.right;
+                textField.x = uiMetrics.left;
             }
         }
         
         /**
-         *  Determine the height of the TextField.
+         *  Determine the size of the TextField.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        override protected function heightChangeHandler(event:Event):void
+        override protected function sizeChangeHandler(event:Event):void
         {
-            if (!inHeightChange)
-            {
-                textField.autoSize = "none";
-                autoHeight = false;
-                textField.height = host.height - 2;
-                textField.y = 1;
-                if (autoWidth)
-                    autoSizeIfNeeded();
-                else
-                {
-                    textField.width = host.width;
-                    textField.x = 1;
-                }
-            }
+            super.sizeChangeHandler(event);
+            widthChangeHandler(event);
         }
-
     }
 }

@@ -97,16 +97,14 @@ package org.apache.flex.html.beads
                 ilc.setHeight(h + uiMetrics.top + uiMetrics.bottom, true);
             }
 			
-			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
-			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
-			sizeChangedHandler(null);
+			heightChangeHandler(null);
 		}
 		
-		private function sizeChangedHandler(event:Event):void
+        /**
+         *  @private
+         */
+        override protected function heightChangeHandler(event:Event):void
 		{
-			var ww:Number = host.width;
-			if( !isNaN(ww) && ww > 0 ) textField.width = ww;
-			
 			var hh:Number = host.height;
 			if( !isNaN(hh) && hh > 0 ) 
             {
@@ -115,5 +113,21 @@ package org.apache.flex.html.beads
             
             textField.y = ((hh - textField.height) / 2);
 		}
+        
+        /**
+         *  @private
+         */
+        override protected function sizeChangeHandler(event:Event):void
+        {
+            var ww:Number = host.width;
+            if( !isNaN(ww) && ww > 0 ) textField.width = ww;
+            
+            var hh:Number = host.height;
+            if( !isNaN(hh) && hh > 0 ) 
+            {
+                textField.height = textField.textHeight + 5;
+                textField.y = ((hh - textField.height) / 2);
+            }
+        }
 	}
 }

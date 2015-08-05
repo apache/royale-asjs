@@ -375,7 +375,15 @@ package org.apache.flex.html.beads
             }
         }
         
-        private function sizeChangeHandler(event:Event):void
+        /**
+         *  Determine the size of the TextField.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected function sizeChangeHandler(event:Event):void
         {
             var ilc:ILayoutChild = host as ILayoutChild;
             autoHeight = ilc.isHeightSizedToContent();
