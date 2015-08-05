@@ -122,12 +122,14 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
-			_increment.width = UIBase(_strand).width;
-			_increment.height = UIBase(_strand).height/2;
+            var w:Number = UIBase(_strand).width;
+            var h:Number =  UIBase(_strand).height / 2;
+			_increment.width = w;
+			_increment.height = h;
 			_increment.y      = 0;
-			_decrement.width = UIBase(_strand).width;
-			_decrement.height = UIBase(_strand).height/2;
-			_decrement.y      = _increment.height;
+			_decrement.width = w;
+			_decrement.height = h;
+			_decrement.y      = h;
 		}
 	}
 }
