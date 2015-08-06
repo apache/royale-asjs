@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.VerticalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -48,6 +49,9 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.VerticalLayout.protot
             if (this.strand_ !== value) {
               this.strand_ = value;
             }
+        },
+        get: function() {
+            return this.strand_;
         }
     }
 });
@@ -65,6 +69,7 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
   {
     var child = children[i];
     child.internalDisplay = 'block';
+    child.style.position = 'relative';
     if (child.style.display === 'none') {
       child.lastDisplay_ = 'block';
     } else {

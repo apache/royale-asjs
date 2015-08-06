@@ -67,6 +67,7 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
   {
     var child = children[i];
     child.internalDisplay = 'inline-block';
+    child.style.position = 'relative';
     if (child.style.display == 'none')
       child.lastDisplay_ = 'inline-block';
     else
