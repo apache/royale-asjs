@@ -491,6 +491,60 @@ package org.apache.flex.core
             return (top === undefined || bottom === undefined);          
         }
 		
+        private var _x:Number;
+        
+        /**
+         *  @private
+         */
+        override public function set x(value:Number):void
+        {
+            super.x = _x = value;
+            if (!style)
+                style = { left: value };
+            else
+                style.left = value;
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setX
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setX(value:Number):void
+        {
+            super.x = value;
+        }
+        
+        private var _y:Number;
+        
+        /**
+         *  @private
+         */
+        override public function set y(value:Number):void
+        {
+            super.y = _y = value;
+            if (!style)
+                style = { top: value };
+            else
+                style.top = value;
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setY
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setY(value:Number):void
+        {
+            super.y = value;
+        }
+        
 		/**
 		 * @private
 		 */
@@ -631,6 +685,10 @@ package org.apache.flex.core
                 }
                 else
                     _styles = value;
+                if (!isNaN(_y))
+                    _styles.top = _y;
+                if (!isNaN(_x))
+                    _styles.left = _x;
                 dispatchEvent(new Event("stylesChanged"));
             }
         }

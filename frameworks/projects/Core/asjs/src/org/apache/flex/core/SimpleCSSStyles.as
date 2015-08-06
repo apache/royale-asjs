@@ -60,9 +60,6 @@ package org.apache.flex.core
         public var marginRight:*;
         public var marginTop:*;
         public var marginBottom:*;
-        public var horizontalCenter:*;
-        public var verticalCenter:*;
-        public var horizontalAlign:*;
         public var verticalAlign:*;
         public var fontFamily:*;
         public var fontSize:*;

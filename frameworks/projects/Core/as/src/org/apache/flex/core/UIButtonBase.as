@@ -76,24 +76,40 @@ package org.apache.flex.core
             MouseEventConverter.setupInstanceConverters(this);
 		}
 				
+        private var _x:Number;
+        
 		/**
 		 *  @private
 		 */
 		override public function set x(value:Number):void
 		{
 			if (super.x != value) {
-				super.x = value;
+				super.x = _x = value;
+                if (!style)
+                    style = { left: value };
+                else
+                    style.left = value;
 				dispatchEvent(new Event("xChanged"));
 			}
 		}
 		
-		/**
+        private var _y:Number;
+
+        /**
 		 *  @private
 		 */
 		override public function set y(value:Number):void
 		{
 			if (super.y != value) {
-				super.y = value;
+				super.y = _y = value;
+                if (!style)
+                    style = { top: value };
+                else
+                    style.top = value;
+                if (!isNaN(_y))
+                    _styles.top = _y;
+                if (!isNaN(_x))
+                    _styles.left = _x;
 				dispatchEvent(new Event("yChanged"));
 			}
 		}
@@ -437,7 +453,33 @@ package org.apache.flex.core
         {
             return (isNaN(_explicitWidth) && isNaN(_percentWidth));
         }
-		
+		        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setX
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setX(value:Number):void
+        {
+            super.x = value;
+        }
+                
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setY
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setY(value:Number):void
+        {
+            super.y = value;
+        }
+        
 		/**
 		 * @private
 		 */

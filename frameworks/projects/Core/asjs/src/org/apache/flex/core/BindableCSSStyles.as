@@ -76,12 +76,6 @@ package org.apache.flex.core
         [Bindable]
         public var marginBottom:*;
         [Bindable]
-        public var horizontalCenter:*;
-        [Bindable]
-        public var verticalCenter:*;
-        [Bindable]
-        public var horizontalAlign:*;
-        [Bindable]
         public var verticalAlign:*;
         [Bindable]
         public var fontFamily:*;

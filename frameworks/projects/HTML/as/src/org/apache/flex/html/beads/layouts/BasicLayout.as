@@ -28,7 +28,8 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.dbg.DOMPathUtil;
+    import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
      *  The BasicLayout class is a simple layout
@@ -82,6 +83,16 @@ package org.apache.flex.html.beads.layouts
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
 			
+            var gotMargin:Boolean;
+            var marginLeft:Object;
+            var marginRight:Object;
+            var marginTop:Object;
+            var marginBottom:Object;
+            var margin:Object;
+            var ml:Number;
+            var mr:Number;
+            var mt:Number;
+            var mb:Number;
             var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
             var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
             var w:Number = hostWidthSizedToContent ? 0 : contentView.width;
@@ -100,17 +111,23 @@ package org.apache.flex.html.beads.layouts
                 var ww:Number = w;
                 var hh:Number = h;
                 
+                var ilc:ILayoutChild = child as ILayoutChild;
                 if (!isNaN(left))
                 {
-                    child.x = left;
+                    if (ilc)
+                        ilc.setX(left);
+                    else
+                        child.x = left;
                     ww -= left;
                 }
                 if (!isNaN(top))
                 {
-                    child.y = top;
+                    if (ilc)
+                        ilc.setY(top);
+                    else
+                        child.y = top;
                     hh -= top;
                 }
-                var ilc:ILayoutChild = child as ILayoutChild;
                 if (ilc)
                 {
                     if (!hostWidthSizedToContent)
@@ -133,11 +150,101 @@ package org.apache.flex.html.beads.layouts
                                 child.width = ww - right;
                         }
                         else
-                            child.x = w - right - child.width;
+                        {
+                            if (ilc)
+                                ilc.setX( w - right - child.width);
+                            else
+                                child.x = w - right - child.width;
+                        }
                     }
                     else
                         childData[i] = { ww: ww, left: left, right: right, ilc: ilc, child: child };
                 }
+                
+                if (isNaN(right) && isNaN(left))
+                {
+                    margin = ValuesManager.valuesImpl.getValue(child, "margin");
+                    gotMargin = true;
+                    marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+                    marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+                    var horizontalCenter:Boolean = 
+                        (marginLeft == "auto" && marginRight == "auto") ||
+                        (margin is String && margin == "auto") ||
+                        (margin is Array && 
+                            ((margin.length < 4 && margin[1] == "auto") ||
+                             (margin.length == 4 && margin[1] == "auto" && margin[3] == "auto")));
+                    if (!hostWidthSizedToContent)
+                    {
+                        if (!horizontalCenter)
+                        {
+                            mr = CSSUtils.getRightValue(marginRight, margin, ww);
+                            ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
+                            if (ilc)
+                                ilc.setX(ml);
+                            else
+                                child.x = ml;
+                            if (ilc && isNaN(ilc.percentWidth) && isNaN(ilc.explicitWidth))
+                                child.width = ww - child.x - mr;
+                        }
+                        else
+                        {
+                            if (ilc)
+                                ilc.setX((ww - child.width) / 2);
+                            else
+                                child.x = (ww - child.width) / 2;    
+                        }
+                    }
+                    else 
+                    {
+                        if (!horizontalCenter)
+                        {
+                            mr = CSSUtils.getRightValue(marginRight, margin, ww);
+                            ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
+                            if (ilc)
+                                ilc.setX(ml);
+                            else
+                                child.x = ml;
+                            if (ilc && isNaN(ilc.percentWidth) && isNaN(ilc.explicitWidth))
+                                childData[i] = { ww: ww, left: ml, right: mr, ilc: ilc, child: child };
+                        }
+                        else
+                        {
+                            childData[i] = { ww: ww, center: true, ilc: ilc, child: child };                            
+                        }
+                    }
+
+                }
+                if (isNaN(top) && isNaN(bottom))
+                {
+                    if (!gotMargin)
+                        margin = ValuesManager.valuesImpl.getValue(child, "margin");
+                    marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+                    marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+                    mt = CSSUtils.getTopValue(marginTop, margin, hh);
+                    mb = CSSUtils.getTopValue(marginBottom, margin, hh);
+                    if (ilc)
+                        ilc.setY(mt);
+                    else
+                        child.y = mt;
+                    /* browsers don't use margin-bottom to stretch things vertically
+                    if (!hostHeightSizedToContent)
+                    {
+                        if (ilc && isNaN(ilc.percentHeight) && isNaN(ilc.explicitHeight))
+                            child.height = hh - child.y - mb;
+                    }
+                    else
+                    {
+                        if (!childData[i])
+                            childData[i] = { hh: hh, bottom: mb, ilc: ilc, child: child };
+                        else
+                        {
+                            childData[i].hh = hh;
+                            childData[i].bottom = mb;
+                        }
+                    }
+                    */
+                }
+                
                 if (ilc)
                 {
                     if (!hostHeightSizedToContent)
@@ -168,7 +275,12 @@ package org.apache.flex.html.beads.layouts
                                 child.height = hh - bottom;
                         }
                         else
-                            child.y = h - bottom - child.height;
+                        {
+                            if (ilc)
+                                ilc.setY(h - bottom - child.height);
+                            else
+                                child.y = h - bottom - child.height;
+                        }
                     }
                     else
                     {
@@ -198,7 +310,14 @@ package org.apache.flex.html.beads.layouts
                         {
                             if (data.ilc && !isNaN(data.ilc.percentWidth))
                                 data.ilc.setWidth((data.ww - (isNaN(data.right) ? 0 : data.right)) * data.ilc.percentWidth / 100, true);
-                            if (!isNaN(data.right))
+                            if (data.center)
+                            {
+                                if (data.ilc)
+                                    data.ilc.setX((data.ww - data.child.width) / 2);
+                                else
+                                    data.child.x = (data.ww - data.child.width) / 2; 
+                            }
+                            else if (!isNaN(data.right))
                             {
                                 if (!isNaN(data.left))
                                 {
@@ -208,7 +327,12 @@ package org.apache.flex.html.beads.layouts
                                         data.child.width = data.ww - data.right;
                                 }
                                 else
-                                    data.child.x = maxWidth - data.right - data.child.width;
+                                {
+                                    if (data.ilc)
+                                        data.ilc.setX(maxWidth - data.right - data.child.width);
+                                    else
+                                        data.child.x = maxWidth - data.right - data.child.width;
+                                }
                             }
                         }
                         if (hostHeightSizedToContent)
@@ -225,7 +349,12 @@ package org.apache.flex.html.beads.layouts
                                         data.child.height = data.hh - data.bottom;
                                 }
                                 else
-                                    data.child.y = maxHeight - data.bottom - data.child.height;
+                                {
+                                    if (data.ilc)
+                                        data.ilc.setY(maxHeight - data.bottom - data.child.height);
+                                    else
+                                        data.child.y = maxHeight - data.bottom - data.child.height;
+                                }
                             }
                         }
                         child.dispatchEvent(new Event("sizeChanged"));

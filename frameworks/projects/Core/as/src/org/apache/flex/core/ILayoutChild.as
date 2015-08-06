@@ -106,6 +106,30 @@ package org.apache.flex.core
         function setWidth(value:Number, noEvent:Boolean = false):void;
         
         /**
+         * Sets the X value of the component without setting the 'left' style
+         * 
+         *  @param value The new x value.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function setX(value:Number):void;
+        
+        /**
+         * Sets the Y value of the component without setting the 'top' style
+         * 
+         *  @param value The new y value.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function setY(value:Number):void;
+        
+        /**
          * Sets the width and height of the component 
          * without setting explicitWidth or explicitHeight.
          * It also sends one change event.  If both
