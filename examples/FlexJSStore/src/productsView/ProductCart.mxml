@@ -22,7 +22,7 @@ limitations under the License.
     xmlns:productsView="productsView.*"
     >
     <js:style>
-        <js:SimpleCSSStyles horizontalAlign="right"
+        <js:SimpleCSSStyles 
                                paddingTop="8"
                                paddingBottom="8"
                                paddingRight="4"

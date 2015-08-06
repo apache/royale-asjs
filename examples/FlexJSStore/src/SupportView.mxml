@@ -56,7 +56,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 			
 				<js:Label y="10" text="Check Location" className="sectionHeader" x="20"/>
 				
-				<js:Container width="95%" height="150" y="64" style="horizontalCenter:0">
+				<js:Container width="95%" height="150" y="64" style="margin:auto">
                     <js:beads>
                         <js:VerticalColumnLayout numColumns="2" />
                     </js:beads>
@@ -83,32 +83,32 @@ The width and height are hard-coded in the root tag to help the Design view.
 					
 				</js:Container>
 				
-				<js:Label y="38" text="Option1: Enter Address" style="horizontalCenter:0" className="instructions"/>
+				<js:Label y="38" text="Option1: Enter Address" style="margin:auto" className="instructions"/>
 				
 				<js:TextButton y="297" text="Locate" click="SimpleAlert.show('This feature is not implemented in this sample', 'Locate')" 
-                                  style="horizontalCenter:0"/>
+                                  style="margin:auto"/>
 				
 				<js:HContainer y="327" width="80%" height="20" >
                     <js:style>
-                        <js:SimpleCSSStyles horizontalAlign="center" verticalAlign="middle" horizontalCenter="0" />
+                        <js:SimpleCSSStyles margin="auto" verticalAlign="middle" />
                     </js:style>
 					<js:HRule width="60" />
 					<js:Label text="OR"/>
                     <js:HRule width="60" />
 				</js:HContainer>
 				
-				<js:Label y="355" text="Option 2: Drag this marker into the map" style="horizontalCenter:0" className="instructions"/>
+				<js:Label y="355" text="Option 2: Drag this marker into the map" style="margin:auto" className="instructions"/>
 				
-				<js:Image y="380" style="horizontalCenter:0" source="assets/support_mapmarker_plus.png"/>
+				<js:Image y="380" style="margin:auto" source="assets/support_mapmarker_plus.png"/>
 				
-				<js:HRule y="415" style="horizontalCenter:0" width="200" alpha="0.6"/>
+				<js:HRule y="415" style="margin:auto" width="200" alpha="0.6"/>
 				
 			</js:Container>
 			
 			<js:Container width="100%" height="40%">
 				<js:VContainer width="80%" height="90%" >
                     <js:style>
-                        <js:SimpleCSSStyles horizontalCenter="0" top="0"/>
+                        <js:SimpleCSSStyles margin="auto" top="0"/>
                     </js:style>
 					<js:Label text="Location" className="instructions"/>
 					<js:List width="100%" dataProvider="{locations}">

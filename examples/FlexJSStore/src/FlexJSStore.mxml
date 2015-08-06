@@ -249,9 +249,9 @@ limitations under the License.
                                 className="storeButtonBar"
                                 click="headToSupport()"/>            
             </js:ControlBar>
-            <js:Container width="990" >
+            <js:Container width="990" id="viewholder">
                 <js:style>
-                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0" horizontalCenter="0"/>
+                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0"/>
                 </js:style>
                         
                 <HomeView id="homeView" width="100%" height="550" includeIn="Home"

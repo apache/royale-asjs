@@ -21,7 +21,7 @@ limitations under the License.
                   xmlns:js="library://ns.apache.org/flexjs/basic" 
                   width="17" height="100%" >
     <js:style>
-        <js:SimpleCSSStyles paddingTop="10" horizontalAlign="center" />
+        <js:SimpleCSSStyles paddingTop="10" />
     </js:style>
 
     <fx:Script>
