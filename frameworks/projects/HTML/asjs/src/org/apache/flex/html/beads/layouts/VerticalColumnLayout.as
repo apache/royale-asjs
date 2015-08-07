@@ -19,13 +19,15 @@
 package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.CSSUtils;
 	
 	/**
 	 * ColumnLayout is a class that organizes the positioning of children
@@ -91,52 +93,84 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{			
-			var sw:Number = UIBase(_strand).width;
-			var sh:Number = UIBase(_strand).height;
+            var host:UIBase = UIBase(_strand);
+			var sw:Number = host.width;
+			var sh:Number = host.height;
 				
 			var e:IUIBase;
 			var i:int;
 			var col:int = 0;
 			var columns:Array = [];
+            var rows:Array = [];
+            var data:Array = [];
 			for (i = 0; i < numColumns; i++)
 				columns[i] = 0;
 
+            var marginLeft:Object;
+            var marginRight:Object;
+            var marginTop:Object;
+            var marginBottom:Object;
+            var margin:Object;
+            var ml:Number;
+            var mr:Number;
+            var mt:Number;
+            var mb:Number;
 			var children:Array = IContainer(_strand).getChildren();
 			var n:int = children.length;
+            var rowData:Object = { rowHeight: 0 };
 			
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
 				e = children[i];
+                margin = ValuesManager.valuesImpl.getValue(e, "margin");
+                marginLeft = ValuesManager.valuesImpl.getValue(e, "margin-left");
+                marginTop = ValuesManager.valuesImpl.getValue(e, "margin-top");
+                marginRight = ValuesManager.valuesImpl.getValue(e, "margin-right");
+                marginBottom = ValuesManager.valuesImpl.getValue(e, "margin-bottom");
+                mt = CSSUtils.getTopValue(marginTop, margin, sh);
+                mb = CSSUtils.getBottomValue(marginBottom, margin, sh);
+                mr = CSSUtils.getRightValue(marginRight, margin, sw);
+                ml = CSSUtils.getLeftValue(marginLeft, margin, sw);
+                data.push({ mt: mt, mb: mb, mr: mr, ml: ml});
 				var thisPrefWidth:int = 0;
 				if (e is IStrand)
 				{
-					var mb:IMeasurementBead = e.getBeadByType(IMeasurementBead) as IMeasurementBead;
-					if (mb)
-						thisPrefWidth = mb.measuredWidth;
+					var measure:IMeasurementBead = e.getBeadByType(IMeasurementBead) as IMeasurementBead;
+					if (measure)
+						thisPrefWidth = measure.measuredWidth + ml + mr;
 					else
-						thisPrefWidth = e.width;						
+						thisPrefWidth = e.width + ml + mr;						
 				}
 				else
-					thisPrefWidth = e.width;
+					thisPrefWidth = e.width + ml + mr;
 				
+                rowData.rowHeight = Math.max(rowData.rowHeight, e.height + mt + mb);
 				columns[col] = Math.max(columns[col], thisPrefWidth);
-				col = (col + 1) % numColumns;
+                col = col + 1;
+                if (col == numColumns)
+                {
+                    rows.push(rowData);
+                    rowData = {rowHeight: 0};
+                    col = 0;
+                }
 			}
 			
+            var lastmb:Number = 0;
 			var curx:int = 0;
 			var cury:int = 0;
 			var maxHeight:int = 0;
 			col = 0;
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++) 
+            {
 				e = children[i];
-				e.x = curx;
-				e.y = cury;
+				e.x = curx + ml;
+				e.y = cury + data[i].mt;
 				curx += columns[col++];
-				maxHeight = Math.max(e.height, maxHeight);
+                maxHeight = Math.max(maxHeight, e.y + e.height + data[i].mb);
 				if (col == numColumns)
 				{
-					cury += maxHeight;
-					maxHeight = 0;
+					cury += rows[0].rowHeight;
+                    rows.shift();
 					col = 0;
 					curx = 0;
 				}
