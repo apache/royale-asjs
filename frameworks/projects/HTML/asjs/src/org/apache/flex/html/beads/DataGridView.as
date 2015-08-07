@@ -36,6 +36,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.html.beads.models.ArraySelectionModel;
     import org.apache.flex.html.beads.models.DataGridPresentationModel;
     import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.flex.html.supportClasses.Viewport;
 	
 	/**
 	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid. 
@@ -95,6 +96,10 @@ package org.apache.flex.html.beads
 			_strand = value;
 			super.strand = value;
 			
+			IEventDispatcher(_strand).addEventListener("sizeChanged", onSizeChanged);
+			IEventDispatcher(_strand).addEventListener("widthChanged", onSizeChanged);
+			IEventDispatcher(_strand).addEventListener("heightChanged", onSizeChanged);
+			
 			// see if there is a presentation model already in place. if not, add one.
 			var modBead:IBead = _strand.getBeadByType(DataGridPresentationModel);
 			var presentationModel:DataGridPresentationModel;
@@ -123,6 +128,7 @@ package org.apache.flex.html.beads
 			buttonBar = new ButtonBar();
 			buttonBar.addBead(buttonBarModel);
 			buttonBar.addBead(bblayout);
+			buttonBar.addBead(new Viewport());
 			buttonBar.height = 25;
 			buttonBar.width = UIBase(_strand).width;
 			UIBase(_strand).addElement(buttonBar);
@@ -158,6 +164,12 @@ package org.apache.flex.html.beads
 			// TODO: allow a developer to specify their own DataGridLayout
 			// possibly by seeing if a bead already exists
 			
+			onSizeChanged(null);
+			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+		}
+		
+		private function onSizeChanged(event:Event):void
+		{
 			var bead:IBead = _strand.getBeadByType(IDataGridLayout);
 			var layout:IDataGridLayout;
 			if (bead == null) {
@@ -172,7 +184,6 @@ package org.apache.flex.html.beads
 			layout.header = buttonBar;
 			layout.columns = columns;
 			layout.layout();
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
 		
 		/**
