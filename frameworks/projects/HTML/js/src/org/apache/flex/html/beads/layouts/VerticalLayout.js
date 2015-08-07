@@ -50,6 +50,7 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.VerticalLayout.protot
               this.strand_ = value;
             }
         },
+        /** @this {org.apache.flex.html.beads.layouts.VerticalLayout} */
         get: function() {
             return this.strand_;
         }
