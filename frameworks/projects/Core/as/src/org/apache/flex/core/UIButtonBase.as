@@ -106,10 +106,6 @@ package org.apache.flex.core
                     style = { top: value };
                 else
                     style.top = value;
-                if (!isNaN(_y))
-                    _styles.top = _y;
-                if (!isNaN(_x))
-                    _styles.left = _x;
 				dispatchEvent(new Event("yChanged"));
 			}
 		}
@@ -626,6 +622,10 @@ package org.apache.flex.core
                 _styles = ValuesManager.valuesImpl.parseStyles(value as String);
             else
                 _styles = value;
+            if (!isNaN(_y))
+                _styles.top = _y;
+            if (!isNaN(_x))
+                _styles.left = _x;
             dispatchEvent(new Event("stylesChanged"));
         }
         
