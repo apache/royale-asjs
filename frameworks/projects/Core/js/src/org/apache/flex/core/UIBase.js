@@ -146,6 +146,7 @@ org.apache.flex.core.UIBase.prototype.createElement = function() {
   if (this.positioner == null)
     this.positioner = this.element;
   this.positioner.style.display = 'block';
+  this.positioner.style.position = 'relative';
 
   this.element.flexjs_wrapper = this;
 

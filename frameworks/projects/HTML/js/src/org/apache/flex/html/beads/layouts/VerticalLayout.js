@@ -69,7 +69,6 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
   {
     var child = children[i];
     child.internalDisplay = 'block';
-    child.style.position = 'relative';
     if (child.style.display === 'none') {
       child.lastDisplay_ = 'block';
     } else {
