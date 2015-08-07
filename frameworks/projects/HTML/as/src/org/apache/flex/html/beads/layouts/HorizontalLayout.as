@@ -94,7 +94,6 @@ package org.apache.flex.html.beads.layouts
             // asking for contentView.width can result in infinite loop if host isn't sized already
             var h:Number = hostSizedToContent ? 0 : contentView.height;
 			var verticalMargins:Array = [];
-            var hasVerticalAlign:Boolean;
 			
 			for (var i:int = 0; i < n; i++)
 			{
@@ -161,9 +160,19 @@ package org.apache.flex.html.beads.layouts
 					mb = 0;
                 var xx:Number;
                 if (i == 0)
-                    child.x = ml;
+                {
+                    if (ilc)
+                        ilc.setX(ml);
+                    else
+                        child.x = ml;
+                }
                 else
-                    child.x = xx + ml + lastmr;
+                {
+                    if (ilc)
+                        ilc.setX(xx + ml + lastmr);
+                    else
+                        child.x = xx + ml + lastmr;
+                }
                 if (ilc)
                 {
                     if (!isNaN(ilc.percentWidth))
@@ -177,6 +186,7 @@ package org.apache.flex.html.beads.layouts
                     // if host is sized by parent,
                     // we can position and size children horizontally now
                     setPositionAndHeight(child, top, mt, bottom, mb, h);
+                    maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 }
                 else
                 {
@@ -195,8 +205,6 @@ package org.apache.flex.html.beads.layouts
 				xx = child.x + child.width;
 				var valign:* = ValuesManager.valuesImpl.getValue(child, "vertical-align");
 				marginObject.valign = valign;
-                if (valign !== undefined)
-                    hasVerticalAlign = true;
 			}
             if (hostSizedToContent)
             {
@@ -212,27 +220,36 @@ package org.apache.flex.html.beads.layouts
                         obj.bottom, obj.marginBottom, maxHeight);
                 }
             }
-            if (hasVerticalAlign)
-            {
-    			for (i = 0; i < n; i++)
-    			{
-    				child = contentView.getElementAt(i) as IUIBase;
-    				if (child == null || !child.visible) continue;
-                    obj = verticalMargins[i];
-                    if (child is ILayoutChild)
-                    {
-                        ilc = child as ILayoutChild;
-                        if (!isNaN(ilc.percentHeight))
-                            ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentHeight));
-                    }
-    				if (obj.valign == "middle")
-    					child.y = (maxHeight - child.height) / 2;
+			for (i = 0; i < n; i++)
+			{
+				child = contentView.getElementAt(i) as IUIBase;
+                ilc = child as ILayoutChild;
+				if (child == null || !child.visible) continue;
+                obj = verticalMargins[i];
+                if (ilc)
+                {
+                    if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentHeight));
+                }
+                if (ilc)
+                {
+    				if (obj.valign == "top")
+                        ilc.setY(obj.marginTop);
     				else if (valign == "bottom")
-    					child.y = maxHeight - child.height - obj.marginBottom;
-    				else
-    					child.y = obj.marginTop;
-    			}
-            }
+                        ilc.setY(maxHeight - child.height - obj.marginBottom);
+    				else // TODO: aharui - baseline
+                        ilc.setY((maxHeight - child.height) / 2);
+                }
+                else
+                {
+                    if (obj.valign == "top")
+                        child.y = obj.marginTop;
+                    else if (valign == "bottom")
+                        child.y = maxHeight - child.height - obj.marginBottom;
+                    else // TODO: aharui - baseline
+                        child.y = (maxHeight - child.height) / 2;                    
+                }
+			}
 			
 			// Only return true if the contentView needs to be larger; that new
 			// size is stored in the model.
@@ -252,12 +269,18 @@ package org.apache.flex.html.beads.layouts
             var ilc:ILayoutChild = child as ILayoutChild;
             if (!isNaN(top))
             {
-                child.y = top + mt;
+                if (ilc)
+                    ilc.setY(top + mt);
+                else
+                    child.y = top + mt;
                 hh -= top + mt;
             }
             else 
             {
-                child.y = mt;
+                if (ilc)
+                    ilc.setY(mt);
+                else
+                    child.y = mt;
                 hh -= mt;
             }
             if (!isNaN(bottom))
@@ -273,7 +296,12 @@ package org.apache.flex.html.beads.layouts
                     }
                 }
                 else
-                    child.y = h - bottom - mb - child.height;
+                {
+                    if (ilc)
+                        ilc.setY(h - bottom - mb - child.height);
+                    else
+                        child.y = h - bottom - mb - child.height;
+                }
             }
             if (ilc)
             {

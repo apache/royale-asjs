@@ -141,9 +141,19 @@ package org.apache.flex.html.beads.layouts
 					mb = 0;
 				var yy:Number;
 				if (i == 0)
-					child.y = mt;
+                {
+                    if (ilc)
+                        ilc.setY(mt);
+                    else
+    					child.y = mt;
+                }
 				else
-					child.y = yy + Math.max(mt, lastmb);
+                {
+                    if (ilc)
+                        ilc.setY(yy + Math.max(mt, lastmb));
+                    else
+    					child.y = yy + Math.max(mt, lastmb);
+                }
 				if (ilc)
 				{
 					if (!isNaN(ilc.percentHeight))
@@ -229,10 +239,20 @@ package org.apache.flex.html.beads.layouts
 					obj = flexibleHorizontalMargins[i];
 					if (hasHorizontalFlex)
 					{
-						if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-							child.x = maxWidth - child.width / 2;
-						else if (obj.marginLeft == "auto")
-							child.x = maxWidth - child.width - obj.marginRight;
+                        if (ilc)
+                        {
+                            if (obj.marginLeft == "auto" && obj.marginRight == "auto")
+                                ilc.setX(maxWidth - child.width / 2);
+                            else if (obj.marginLeft == "auto")
+                                ilc.setX(maxWidth - child.width - obj.marginRight);                            
+                        }
+                        else
+                        {
+        					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
+        						child.x = maxWidth - child.width / 2;
+        					else if (obj.marginLeft == "auto")
+        						child.x = maxWidth - child.width - obj.marginRight;
+                        }
 					}
 				}
 			}
@@ -255,12 +275,18 @@ package org.apache.flex.html.beads.layouts
 			var ilc:ILayoutChild = child as ILayoutChild;
 			if (!isNaN(left))
 			{
-				child.x = left + ml;
+                if (ilc)
+                    ilc.setX(left + ml);
+                else
+    				child.x = left + ml;
 				ww -= left + ml;
 			}
 			else 
 			{
-				child.x = ml;
+                if (ilc)
+                    ilc.setX(ml);
+                else
+    				child.x = ml;
 				ww -= ml;
 			}
 			if (!isNaN(right))
@@ -276,7 +302,12 @@ package org.apache.flex.html.beads.layouts
 					}
 				}
 				else
-					child.x = w - right - mr - child.width;
+                {
+                    if (ilc)
+                        ilc.setX(w - right - mr - child.width);
+                    else
+    					child.x = w - right - mr - child.width;
+                }
 			}
 			if (ilc)
 			{
