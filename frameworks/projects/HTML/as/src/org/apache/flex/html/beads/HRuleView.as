@@ -67,6 +67,7 @@ package org.apache.flex.html.beads
 			
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
+            IEventDispatcher(_strand).addEventListener("sizeChanged",handleSizeChange);
 			
 			handleSizeChange(null);
 		}

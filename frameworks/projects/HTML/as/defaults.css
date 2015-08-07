@@ -362,6 +362,11 @@ DropDownListList
     background-color: #FFFFFF;
 }
 
+HRule
+{
+    IBeadView:  ClassReference("org.apache.flex.html.beads.HRuleView");
+}
+
 Image
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
