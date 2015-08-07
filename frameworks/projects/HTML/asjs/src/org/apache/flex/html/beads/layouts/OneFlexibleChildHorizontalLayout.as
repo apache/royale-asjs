@@ -187,7 +187,7 @@ package org.apache.flex.html.beads.layouts
                 marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
                 marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
                 mt = CSSUtils.getTopValue(marginTop, margin, hh);
-                mb = CSSUtils.getTopValue(marginBottom, margin, hh);
+                mb = CSSUtils.getBottomValue(marginBottom, margin, hh);
                 mr = CSSUtils.getRightValue(marginRight, margin, ww);
                 ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
                 child.y = mt;
