@@ -49,6 +49,7 @@ package org.apache.flex.html.beads
 		{
 			super();
             textField.parentDrawsBackground = true;
+            textField.parentHandlesPadding = true;
 		}
 		
         /**
