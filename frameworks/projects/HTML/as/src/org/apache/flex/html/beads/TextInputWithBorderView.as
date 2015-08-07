@@ -48,6 +48,7 @@ package org.apache.flex.html.beads
 		public function TextInputWithBorderView()
 		{
 			super();
+            textField.parentDrawsBackground = true;
 		}
 		
         /**

@@ -68,6 +68,8 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+            autoWidth = autoHeight = false;
+
             var w:Number;
             var h:Number;
             var uiMetrics:UIMetrics;
