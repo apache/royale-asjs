@@ -95,7 +95,7 @@ limitations under the License.
     
     </js:Container>
         
-    <productsView:ProductCatalogPanel id="catalogPanel" y="10" width="685" height="540"
+    <productsView:ProductCatalogPanel id="catalogPanel" y="4" width="685" height="540"
                                       x.showFilter="288" x.showCart="0"
         catalog="{catalog}"
         compare="addToCompare(event.product)"

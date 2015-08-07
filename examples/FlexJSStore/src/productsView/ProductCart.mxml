@@ -96,7 +96,7 @@ limitations under the License.
         removeProduct="productListEventHandler(event)"
         showQuantity="true" />
     
-    <js:Container style="paddingRight:0" width="100%">
+    <js:Container style="right:0" id="totalContainer">
         <js:beads>
             <js:VerticalColumnLayout numColumns="2" />
         </js:beads>
@@ -111,6 +111,7 @@ limitations under the License.
 
     </js:Container>
 
-    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"/>
+    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"
+                   style="right:0"/>
 
 </js:Container>

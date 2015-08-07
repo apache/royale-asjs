@@ -52,22 +52,22 @@ The width and height are hard-coded in the root tag to help the Design view.
 	<js:HContainer x="0" y="0" width="100%" height="100%" className="colorPanel">
 	
 		<js:VContainer width="32%" height="100%">
-			<js:Container width="100%" height="60%">
+			<js:Container width="100%" height="75%">
 			
 				<js:Label y="10" text="Check Location" className="sectionHeader" x="20"/>
 				
-				<js:Container width="95%" height="150" y="64" style="margin:auto">
+				<js:Container height="150" y="64" style="margin:auto">
                     <js:beads>
                         <js:VerticalColumnLayout numColumns="2" />
                     </js:beads>
 					<js:Label text="Address:" width="100%"/>
 					<js:TextInput id="address" width="90%"/>
 					
-					<js:Label text="City:" width="100%"/>
-					<js:TextInput id="city" width="60%"/>						
+					<js:Label text="City:" width="100%" style="marginTop:20"/>
+					<js:TextInput id="city" width="60%" style="marginTop:20"/>						
 					
-					<js:Label text="State:" width="100%"/>
-					<js:DropDownList id="state" width="50%">
+					<js:Label text="State:" width="100%" style="marginTop:20"/>
+					<js:DropDownList id="state" width="50%" style="marginTop:20">
 						<js:dataProvider>
                             <fx:Array>
                                 <fx:String>California</fx:String>
@@ -78,8 +78,8 @@ The width and height are hard-coded in the root tag to help the Design view.
             			</js:dataProvider>
 					</js:DropDownList>
 					
-					<js:Label text="ZIP Code:" width="100%" />
-					<js:TextInput id="zip" width="30%"/>
+					<js:Label text="ZIP Code:" width="100%" style="marginTop:20"/>
+					<js:TextInput id="zip" width="30%" style="marginTop:20"/>
 					
 				</js:Container>
 				
@@ -105,7 +105,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 				
 			</js:Container>
 			
-			<js:Container width="100%" height="40%">
+			<js:Container width="100%" height="25%">
 				<js:VContainer width="80%" height="90%" >
                     <js:style>
                         <js:SimpleCSSStyles margin="auto" top="0"/>
