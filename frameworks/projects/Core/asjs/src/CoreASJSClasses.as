@@ -32,6 +32,7 @@ internal class CoreASJSClasses
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
     import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+    import org.apache.flex.utils.CSSUtils; CSSUtils;
 }
 
 }

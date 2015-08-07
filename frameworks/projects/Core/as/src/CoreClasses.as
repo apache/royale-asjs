@@ -86,7 +86,6 @@ internal class CoreClasses
     import org.apache.flex.geom.Rectangle; Rectangle;
     import org.apache.flex.utils.BinaryData; BinaryData;
     import org.apache.flex.utils.BeadMetrics; BeadMetrics;
-    import org.apache.flex.utils.CSSUtils; CSSUtils;
     import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
     import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
