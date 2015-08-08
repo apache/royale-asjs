@@ -130,6 +130,11 @@ HContainer
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 }
 
+Image
+{
+	vertical-align: top;
+}
+
 ImageButton
 {
     border-style: none;
