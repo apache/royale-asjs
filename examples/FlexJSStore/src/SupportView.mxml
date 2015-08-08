@@ -60,14 +60,14 @@ The width and height are hard-coded in the root tag to help the Design view.
                     <js:beads>
                         <js:VerticalColumnLayout numColumns="2" />
                     </js:beads>
-					<js:Label text="Address:" width="100%"/>
-					<js:TextInput id="address" width="90%"/>
+					<js:Label text="Address:"/>
+					<js:TextInput id="address"/>
 					
-					<js:Label text="City:" width="100%" style="marginTop:20"/>
-					<js:TextInput id="city" width="60%" style="marginTop:20"/>						
+					<js:Label text="City:" style="marginTop:20"/>
+					<js:TextInput id="city" style="marginTop:20"/>						
 					
-					<js:Label text="State:" width="100%" style="marginTop:20"/>
-					<js:DropDownList id="state" width="50%" style="marginTop:20">
+					<js:Label text="State:" style="marginTop:20"/>
+					<js:DropDownList id="state" style="marginTop:20">
 						<js:dataProvider>
                             <fx:Array>
                                 <fx:String>California</fx:String>
@@ -78,8 +78,8 @@ The width and height are hard-coded in the root tag to help the Design view.
             			</js:dataProvider>
 					</js:DropDownList>
 					
-					<js:Label text="ZIP Code:" width="100%" style="marginTop:20"/>
-					<js:TextInput id="zip" width="30%" style="marginTop:20"/>
+					<js:Label text="ZIP Code:" style="marginTop:20"/>
+					<js:TextInput id="zip" style="marginTop:20"/>
 					
 				</js:Container>
 				
