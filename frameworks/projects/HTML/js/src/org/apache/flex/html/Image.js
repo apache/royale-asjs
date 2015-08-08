@@ -50,6 +50,8 @@ org.apache.flex.html.Image.prototype.createElement =
     function() {
 
   this.element = document.createElement('img');
+  this.element.className = 'Image';
+  this.typeNames = 'Image';
 
   this.positioner = this.element;
   this.element.flexjs_wrapper = this;
