@@ -60,4 +60,16 @@ Object.defineProperties(org.apache.flex.html.beads.ImageView.prototype, {
 org.apache.flex.html.beads.ImageView.prototype.
     sourceChangeHandler = function(event) {
   this.strand_.element.src = this.model.source;
+  this.strand_.element.addEventListener('load',
+      goog.bind(this.loadHandler, this));
+};
+
+
+/**
+ * @export
+ * @param {Object} event The event triggered by the source change.
+ */
+org.apache.flex.html.beads.ImageView.prototype.
+    loadHandler = function(event) {
+  this.strand_.parent.dispatchEvent('layoutNeeded');
 };
