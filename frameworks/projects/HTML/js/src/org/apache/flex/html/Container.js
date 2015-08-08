@@ -60,7 +60,7 @@ org.apache.flex.html.Container.prototype.createElement =
   this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
-  this.addEventListener('elementAdded',
+  this.addEventListener('childrenAdded',
               goog.bind(this.runLayoutHandler, this));
   this.addEventListener('elementRemoved',
               goog.bind(this.runLayoutHandler, this));
