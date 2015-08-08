@@ -74,6 +74,15 @@ org.apache.flex.html.beads.layouts.BasicLayout.
     var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
     var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
     var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
+    var margin = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin');
+    var marginLeft = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-left');
+    var marginRight = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-right');
+    var horizontalCenter =
+        (marginLeft == 'auto' && marginRight == 'auto') ||
+          (typeof(margin) === 'string' && margin == 'auto') ||
+          (margin && margin.hasOwnProperty('length') &&
+            ((margin.length < 4 && margin[1] == 'auto') ||
+            (margin.length == 4 && margin[1] == 'auto' && margin[3] == 'auto')));
 
     if (!isNaN(left)) {
       child.positioner.style.position = 'absolute';
@@ -90,6 +99,11 @@ org.apache.flex.html.beads.layouts.BasicLayout.
     if (!isNaN(bottom)) {
       child.positioner.style.position = 'absolute';
       child.positioner.style.bottom = bottom.toString() + 'px';
+    }
+    if (horizontalCenter)
+    {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.left = ((w - child.width) / 2).toString() + 'px';
     }
     child.dispatchEvent('sizeChanged');
   }
