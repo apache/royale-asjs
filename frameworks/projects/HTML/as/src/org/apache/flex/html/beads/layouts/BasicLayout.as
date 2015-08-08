@@ -221,7 +221,7 @@ package org.apache.flex.html.beads.layouts
                     marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
                     marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
                     mt = CSSUtils.getTopValue(marginTop, margin, hh);
-                    mb = CSSUtils.getTopValue(marginBottom, margin, hh);
+                    mb = CSSUtils.getBottomValue(marginBottom, margin, hh);
                     if (ilc)
                         ilc.setY(mt);
                     else
