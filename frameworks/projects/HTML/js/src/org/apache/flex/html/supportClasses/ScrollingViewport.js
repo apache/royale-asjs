@@ -71,6 +71,28 @@ Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.pr
         }
     },
     /** @export */
+    verticalScrollPosition: {
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        get: function() {
+            return this.strand.positioner.scrollTop;
+        },
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        set: function(value) {
+             this.strand.positioner.scrollTop = value;
+        }
+    },
+    /** @export */
+    horizontalScrollPosition: {
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        get: function() {
+            return this.strand.positioner.scrollLeft;
+        },
+        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
+        set: function(value) {
+             this.strand.positioner.scrollLeft = value;
+        }
+    },
+    /** @export */
     strand: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {

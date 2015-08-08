@@ -59,6 +59,24 @@ package org.apache.flex.html.supportClasses
 		{
 			return _horizontalScroller;
 		}
+        
+        public function get verticalScrollPosition():Number
+        {
+            return _model.verticalScrollPosition;
+        }
+        public function set verticalScrollPosition(value:Number):void
+        {
+            _model.verticalScrollPosition = value;
+        }
+        
+        public function get horizontalScrollPosition():Number
+        {
+            return _model.horizontalScrollPosition;
+        }
+        public function set horizontalScrollPosition(value:Number):void
+        {
+            _model.horizontalScrollPosition = value;
+        }
 		
 		/**
 		 * Invoke this function to reshape and set the contentArea being managed by

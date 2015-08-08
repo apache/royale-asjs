@@ -298,7 +298,7 @@ limitations under the License.
 			else
 			{
 			    //since movement is happening get the scrollbar back to the top
-				scv.model.verticalScrollPosition = 0;
+				scv.verticalScrollPosition = 0;
                 // Fade in newly selected thumbnails after the last
 				// visible thumbnail has moved to its new position.
                 move.addEventListener(Effect.EFFECT_END,
@@ -399,16 +399,16 @@ limitations under the License.
                 move.addEventListener(Effect.EFFECT_END,
 					function(e:org.apache.flex.events.Event):void
 					{
-					    var curpos:int = scv.model.verticalScrollPosition;
+					    var curpos:int = scv.verticalScrollPosition;
 					    if (selectedThumb.y < curpos)
 					    {
-					        scv.model.verticalScrollPosition = y;
+					        scv.verticalScrollPosition = y;
 					    }
 					    else if (selectedThumb.y + ProductCatalogThumbnail.COL_HEIGHT_4 > curpos + thumbContentGroup.height)
 					    {
 					        //this logic doesn't seem to be perfect but it will do
 					        var diff:int = selectedThumb.y - (curpos + thumbContentGroup.height)
-					        scv.model.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
+					        scv.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
 					    }
 					});
             }
