@@ -58,6 +58,8 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
   source = this;
   if (this.element && this.element.nodeName &&
       this.element.nodeName.toLowerCase() !== 'div' &&
+      // we don't use any native img events right now, we wrapthem
+      this.element.nodeName.toLowerCase() !== 'img' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
   } else if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
