@@ -26,11 +26,13 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.html.supportClasses.Viewport;
+    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.html.supportClasses.Viewport;
+    import org.apache.flex.utils.BeadMetrics;
 
     /**
      *  The FlexibleFirstChildHorizontalLayout class is a simple layout
@@ -167,9 +169,8 @@ package org.apache.flex.html.beads.layouts
             var xx:Number = layoutParent.resizableView.width;
             if (isNaN(xx) || xx <= 0)
                 return true;
-            var padding:Object = determinePadding();
-            // some browsers don't like it when you go all the way to the right edge.
-            xx -= padding.paddingLeft + padding.paddingRight + 1;
+            var uiMetrics:UIMetrics = BeadMetrics.getMetrics(layoutParent.resizableView);
+            xx -= uiMetrics.left + uiMetrics.right + 1; // some browsers won't layout to the edge
             
             for (var i:int = n - 1; i >= 0; i--)
 			{
@@ -276,64 +277,6 @@ package org.apache.flex.html.beads.layouts
 
             return sizeChanged;
 		}
-
-        // TODO (aharui): utility class or base class
-        /**
-         *  Determines the top and left padding values, if any, as set by
-         *  padding style values. This includes "padding" for all padding values
-         *  as well as "padding-left" and "padding-top".
-         * 
-         *  Returns an object with paddingLeft and paddingTop properties.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected function determinePadding():Object
-        {
-            var paddingLeft:Object;
-            var paddingTop:Object;
-            var paddingRight:Object;
-            var padding:Object = ValuesManager.valuesImpl.getValue(host, "padding");
-            if (typeof(padding) == "Array")
-            {
-                if (padding.length == 1)
-                    paddingLeft = paddingTop = paddingRight = padding[0];
-                else if (padding.length <= 3)
-                {
-                    paddingLeft = padding[1];
-                    paddingTop = padding[0];
-                    paddingRight = padding[1];
-                }
-                else if (padding.length == 4)
-                {
-                    paddingLeft = padding[3];
-                    paddingTop = padding[0];					
-                    paddingRight = padding[1];
-                }
-            }
-            else if (padding == null)
-            {
-                paddingLeft = ValuesManager.valuesImpl.getValue(host, "padding-left");
-                paddingTop = ValuesManager.valuesImpl.getValue(host, "padding-top");
-                paddingRight = ValuesManager.valuesImpl.getValue(host, "padding-right");
-            }
-            else
-            {
-                paddingLeft = paddingTop = paddingRight = padding;
-            }
-            var pl:Number = Number(paddingLeft);
-            var pt:Number = Number(paddingTop);
-            var pr:Number = Number(paddingRight);
-            if (isNaN(pl))
-                pl = 0;
-            if (isNaN(pt))
-                pt = 0;
-            if (isNaN(pr))
-                pr = 0;
-            return {paddingLeft:pl, paddingTop:pt, paddingRight:pr};
-        }
 
     }
         
