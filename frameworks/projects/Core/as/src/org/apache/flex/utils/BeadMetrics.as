@@ -55,7 +55,10 @@ public class BeadMetrics
             borderOffset = 0;
         else if (borderThickness != null)
         {
-            borderOffset = Number(borderThickness);
+            if (borderThickness is String)
+                borderOffset = CSSUtils.toNumber(borderThickness as String, object.width);
+            else
+                borderOffset = Number(borderThickness);
             if( isNaN(borderOffset) ) borderOffset = 0;            
         }
         else // no style and/or no width

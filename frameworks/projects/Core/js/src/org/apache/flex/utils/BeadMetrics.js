@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.utils.BeadMetrics');
 
 goog.require('org.apache.flex.core.UIMetrics');
+goog.require('org.apache.flex.utils.CSSUtils');
 
 
 
@@ -27,33 +28,57 @@ org.apache.flex.utils.BeadMetrics = function() {
 
 /**
  * @export
- * @param {org.apache.flex.core.IStrand} strand The strand whose bounds are required.
+ * @param {Object} object The strand whose bounds are required.
  * @return {org.apache.flex.core.UIMetrics} The bounding box.
  */
-org.apache.flex.utils.BeadMetrics.getMetrics = function(strand) {
+org.apache.flex.utils.BeadMetrics.getMetrics = function(object) {
   var box = new org.apache.flex.core.UIMetrics();
-  var style = strand.element.style;
-  if (style['padding']) {
-    box.top = Number(style.padding);
-    box.left = Number(style.padding);
-    box.right = Number(style.padding);
-    box.bottom = Number(style.padding);
-  } else {
-    if (style['padding_top']) box.top = Number(style.padding_top);
-    if (style['padding_left']) box.left = Number(style.padding_left);
-    if (style['padding_right']) box.right = Number(style.padding_right);
-    if (style['padding_bottom']) box.bottom = Number(style.padding_bottom);
+  var style = getComputedStyle(object.element);
+  var borderThickness = style['border-width'];
+  var borderStyle = style['border-style'];
+  var border = style['border'];
+  var borderOffset;
+  if (borderStyle == 'none')
+    borderOffset = 0;
+  else if (borderThickness != null) {
+    if (typeof(borderThickness) === 'string')
+      borderOffset = org.apache.flex.utils.CSSUtils.toNumber(borderThickness, object.width);
+    else
+      borderOffset = borderThickness;
+    if (isNaN(borderOffset)) borderOffset = 0;
   }
-  if (style['margin']) {
-    box.marginLeft = Number(style.margin);
-    box.marginTop = Number(style.margin);
-    box.marginRight = Number(style.margin);
-    box.marginBottom = Number(style.margin);
-  } else {
-    if (style['margin_top']) box.marginTop = Number(style.margin_top);
-    if (style['margin_left']) box.marginLeft = Number(style.margin_left);
-    if (style['margin_bottom']) box.marginBottom = Number(style.margin_bottom);
-    if (style['margin_right']) box.marginRight = Number(style.margin_right);
+  else {// no style and/or no width
+    border = style['border'];
+    if (border != null) {
+      if (typeof(border) !== 'string') {
+         borderOffset = org.apache.flex.utils.CSSUtils.toNumber(border[0], object.width);
+         borderStyle = border[1];
+       }
+       else if (border == 'none')
+         borderOffset = 0;
+       else if (typeof(border) === 'string')
+         borderOffset = org.apache.flex.utils.CSSUtils.toNumber(border, object.width);
+       else
+         borderOffset = Number(border);
+     }
+     else // no border style set at all so default to none
+       borderOffset = 0;
+   }
+
+  if (style['padding'] != null) {
+    var p = style['padding'];
+    box.top = org.apache.flex.utils.CSSUtils.getTopValue(style['padding_top'], p, object.height) + borderOffset;
+    box.left = org.apache.flex.utils.CSSUtils.getLeftValue(style['padding_left'], p, object.width) + borderOffset;
+    box.right = org.apache.flex.utils.CSSUtils.getRightValue(style['padding_right'], p, object.width) + borderOffset;
+    box.bottom = org.apache.flex.utils.CSSUtils.getBottomValue(style['padding_bottom'], p, object.height) +
+        borderOffset;
+  }
+  if (style['margin'] != null) {
+    var m = style['margin'];
+    box.marginTop = org.apache.flex.utils.CSSUtils.getTopValue(style['margin_top'], m, object.height);
+    box.marginLeft = org.apache.flex.utils.CSSUtils.getLeftValue(style['margin_left'], m, object.width);
+    box.marginBottom = org.apache.flex.utils.CSSUtils.getBottomValue(style['margin_bottom'], m, object.height);
+    box.marginRight = org.apache.flex.utils.CSSUtils.getRightValue(style['margin_right'], m, object.width);
   }
   return box;
 };
