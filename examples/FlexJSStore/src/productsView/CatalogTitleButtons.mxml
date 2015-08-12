@@ -56,7 +56,7 @@ limitations under the License.
              className.showCart="catalogTitleButtonDeselected"
              rollOver.showCart="rollOverLabel(event)"
              rollOut.showCart="rollOutLabel(event)"/>
-    <js:HRule height="{findPhones.height * .75}" alpha=".75" style="color:#333333" />
+    <js:VRule height="{findPhones.height * .75}" alpha=".75" style="color:#333333" />
     <js:Label id="viewCart" text="View Cart ({cartCount} items)" click="currentState = 'showCart'"
              className.showFilter="catalogTitleButtonDeselected"
              className.showCart="catalogTitleButtonSelected"
