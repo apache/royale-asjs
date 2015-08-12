@@ -544,6 +544,11 @@ ViewBase
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 }
 
+VRule
+{
+    IBeadView:  ClassReference("org.apache.flex.html.beads.VRuleView");
+}
+
 /* SVG */
 
 svg|TextButton
