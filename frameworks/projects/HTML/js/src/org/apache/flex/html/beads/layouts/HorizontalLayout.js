@@ -26,6 +26,7 @@ org.apache.flex.html.beads.layouts.HorizontalLayout =
     function() {
   this.strand_ = null;
   this.className = 'HorizontalLayout';
+  this.lastHeight_ = '';
 };
 
 
@@ -62,6 +63,10 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
   var children, i, n;
 
   children = this.strand_.internalChildren();
+  var sps = this.strand_.positioner.style;
+  var scv = getComputedStyle(this.strand_.positioner);
+  var hasHeight = sps.height !== undefined && sps.height != this.lastHeight_;
+  var maxHeight = 0;
   n = children.length;
   for (i = 0; i < n; i++)
   {
@@ -71,6 +76,12 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
       child.lastDisplay_ = 'inline-block';
     else
       child.style.display = 'inline-block';
+    maxHeight = Math.max(maxHeight, child.offsetTop + child.offsetHeight);
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
+  }
+  // if there are children and maxHeight is ok, use it.
+  // maxHeight can be NaN if the child hasn't been rendered yet.
+  if (!hasHeight && n > 0 && !isNaN(maxHeight) && (!(scv.top != 'auto' && scv.bottom != 'auto'))) {
+    this.lastHeight_ = sps.height = maxHeight.toString() + 'px';
   }
 };

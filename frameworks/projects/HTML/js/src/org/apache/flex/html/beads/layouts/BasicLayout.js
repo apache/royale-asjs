@@ -28,6 +28,8 @@ goog.require('org.apache.flex.utils.Language');
 org.apache.flex.html.beads.layouts.BasicLayout =
     function() {
   this.strand_ = null;
+  this.lastWidth_ = '';
+  this.lastHeight_ = '';
   this.className = 'BasicLayout';
 };
 
@@ -64,8 +66,14 @@ org.apache.flex.html.beads.layouts.BasicLayout.
 
   var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = viewBead.contentView;
+  var cvs = contentView.positioner.style;
+  var cv = getComputedStyle(contentView.positioner);
   w = contentView.width;
+  var hasWidth = cvs.width !== undefined && cvs.width != this.lastWidth_;
   h = contentView.height;
+  var hasHeight = cvs.height !== undefined && cvs.height != this.lastHeight_;
+  var maxHeight = 0;
+  var maxWidth = 0;
   n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
@@ -106,5 +114,15 @@ org.apache.flex.html.beads.layouts.BasicLayout.
       child.positioner.style.left = ((w - child.width) / 2).toString() + 'px';
     }
     child.dispatchEvent('sizeChanged');
+    maxWidth = Math.max(maxWidth, child.positioner.offsetLeft + child.positioner.offsetWidth);
+    maxHeight = Math.max(maxHeight, child.positioner.offsetTop + child.positioner.offsetHeight);
+  }
+  // if there are children and maxHeight is ok, use it.
+  // maxHeight can be NaN if the child hasn't been rendered yet.
+  if (!hasWidth && n > 0 && !isNaN(maxWidth) && (!(cv.left != 'auto' && cv.right != 'auto'))) {
+    this.lastWidth_ = cvs.width = maxWidth.toString() + 'px';
+  }
+  if (!hasHeight && n > 0 && !isNaN(maxHeight) && (!(cv.top != 'auto' && cv.bottom != 'auto'))) {
+    this.lastHeight_ = cvs.height = maxHeight.toString() + 'px';
   }
 };

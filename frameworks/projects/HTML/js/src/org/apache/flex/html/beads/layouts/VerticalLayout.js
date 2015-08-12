@@ -27,6 +27,7 @@ org.apache.flex.html.beads.layouts.VerticalLayout =
     function() {
   this.strand_ = null;
   this.className = 'VerticalLayout';
+  this.lastWidth_ = '';
 };
 
 
@@ -65,6 +66,10 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
   var children, i, n;
 
   children = this.strand_.internalChildren();
+  var sps = this.strand_.positioner.style;
+  var scv = getComputedStyle(this.strand_.positioner);
+  var hasWidth = sps.width !== undefined && sps.width != this.lastWidth_;
+  var maxWidth = 0;
   n = children.length;
   for (i = 0; i < n; i++)
   {
@@ -75,6 +80,10 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     } else {
       child.style.display = 'block';
     }
+    maxWidth = Math.max(maxWidth, child.offsetLeft + child.offsetWidth);
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
+  }
+  if (!hasWidth && n > 0 && !isNaN(maxWidth) && (!(scv.left != 'auto' && scv.right != 'auto'))) {
+    this.lastWidth_ = sps.width = maxWidth.toString() + 'px';
   }
 };
