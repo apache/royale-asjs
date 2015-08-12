@@ -22,6 +22,7 @@ limitations under the License.
          implements="org.apache.flex.core.IDragInitiator"
     xmlns:productsView="productsView.*"
     currentState="browse"
+    title="SpaceHolder"
     title.browse="Browse"
     title.compare="Product Comparison"
     title.details="Product Details"
