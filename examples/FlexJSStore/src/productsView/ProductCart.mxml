@@ -100,13 +100,13 @@ limitations under the License.
         <js:beads>
             <js:VerticalColumnLayout numColumns="2" />
         </js:beads>
-        <js:Label text="Total:" width="100%" />
+        <js:Label text="Total:" />
         <js:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
 
-        <js:Label text="Service Fee:" width="100%" />
+        <js:Label text="Service Fee:" />
         <js:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
 
-        <js:Label text="Grand Total:" style="fontWeight:'bold'" width="100%" />
+        <js:Label text="Grand Total:" style="fontWeight:'bold'" />
         <js:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
 
     </js:Container>
