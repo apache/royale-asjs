@@ -35,6 +35,7 @@ limitations under the License.
     </fx:Script>
     <js:beads>
         <js:ContainerDataBinding />
+        <js:OneFlexibleChildVerticalLayout flexibleChild="grip" />
     </js:beads>
 
     <js:Image id="icon" source="{gripIcon}" />
@@ -42,9 +43,6 @@ limitations under the License.
         <js:beads>
             <js:ToolTipBead toolTip="{gripTip}" />
         </js:beads>
-        <js:style>
-            <js:SimpleCSSStyles bottom="0" />
-        </js:style>
     </js:Image>
     
 </js:Container>
