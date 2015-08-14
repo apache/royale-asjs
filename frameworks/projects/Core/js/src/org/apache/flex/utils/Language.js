@@ -92,10 +92,10 @@ org.apache.flex.utils.Language._int = function(value) {
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
-  if (!leftOperand)
+  if (leftOperand == null)
     return false;
 
-  if (leftOperand && !rightOperand) {
+  if (leftOperand && rightOperand == null) {
     return false;
   }
 
