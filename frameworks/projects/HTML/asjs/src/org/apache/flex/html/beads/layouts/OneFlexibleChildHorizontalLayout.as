@@ -244,7 +244,6 @@ package org.apache.flex.html.beads.layouts
                 mb = CSSUtils.getTopValue(marginBottom, margin, hh);
                 mr = CSSUtils.getRightValue(marginRight, margin, ww);
                 ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
-                child.y = mt;
                 if (child is ILayoutChild)
                 {
                     ilc = child as ILayoutChild;
@@ -302,7 +301,7 @@ package org.apache.flex.html.beads.layouts
                 }
                 else
                 {
-                    child.y = h - bottom - mb - child.height;
+                    child.y = h - bottom - mb - child.height - 1; // some browsers don't like going to the edge
                     ySet = true;
                 }
             }

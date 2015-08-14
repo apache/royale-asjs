@@ -239,7 +239,6 @@ package org.apache.flex.html.beads.layouts
                     if (isNaN(mr))
                         mr = 0;
                 }
-                child.x = ml;
                 if (child is ILayoutChild)
                 {
                     ilc = child as ILayoutChild;
@@ -419,7 +418,8 @@ package org.apache.flex.html.beads.layouts
             }
             else 
             {
-                child.x = ml;
+                if (isNaN(right))
+                    child.x = ml;
                 ww -= ml;
             }
             if (!isNaN(right))
@@ -435,7 +435,7 @@ package org.apache.flex.html.beads.layouts
                     }
                 }
                 else
-                    child.x = w - right - mr - child.width;
+                    child.x = w - right - mr - child.width - 1; // some browsers don't like going all the way to the edge
             }
             if (ilc)
             {
