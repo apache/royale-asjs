@@ -24,7 +24,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.CSSUtils;
@@ -88,6 +88,9 @@ package org.apache.flex.html.beads.layouts
 			_numColumns = value;
 		}
 		
+        private var lastWidth:Number = 0;
+        private var lastHeight:Number = 0;
+        
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -96,7 +99,11 @@ package org.apache.flex.html.beads.layouts
             var host:UIBase = UIBase(_strand);
 			var sw:Number = host.width;
 			var sh:Number = host.height;
-				
+			
+            var hostWidth:* = ValuesManager.valuesImpl.getValue(host, "width");
+            var hasWidth:Boolean = (hostWidth !== undefined) && hostWidth != lastWidth;
+            var hostHeight:* = ValuesManager.valuesImpl.getValue(host, "height");
+            var hasHeight:Boolean = (hostHeight !== undefined) && hostHeight != lastHeight;
 			var e:IUIBase;
 			var i:int;
 			var col:int = 0;
@@ -159,6 +166,7 @@ package org.apache.flex.html.beads.layouts
 			var curx:int = 0;
 			var cury:int = 0;
 			var maxHeight:int = 0;
+            var maxWidth:int = 0;
 			col = 0;
 			for (i = 0; i < n; i++) 
             {
@@ -167,6 +175,7 @@ package org.apache.flex.html.beads.layouts
 				e.y = cury + data[i].mt;
 				curx += columns[col++];
                 maxHeight = Math.max(maxHeight, e.y + e.height + data[i].mb);
+                maxWidth = Math.max(maxWidth, e.x + e.width + data[i].mr);
 				if (col == numColumns)
 				{
 					cury += rows[0].rowHeight;
@@ -175,7 +184,20 @@ package org.apache.flex.html.beads.layouts
 					curx = 0;
 				}
 			}
-			
+			if (!hasWidth && n > 0 && !isNaN(maxWidth) && 
+                (!(ValuesManager.valuesImpl.getValue(host, "left") !== undefined) &&
+                  (ValuesManager.valuesImpl.getValue(host, "right") !== undefined)))
+            {
+                lastWidth = maxWidth;
+                host.setWidth(maxWidth, true);
+            }
+            if (!hasHeight && n > 0 && !isNaN(maxHeight) && 
+                (!(ValuesManager.valuesImpl.getValue(host, "top") !== undefined) &&
+                    (ValuesManager.valuesImpl.getValue(host, "bottom") !== undefined)))
+            {
+                lastHeight = maxHeight;
+                host.setHeight(maxHeight, true);
+            }
 			return true;
 		}
 	}
