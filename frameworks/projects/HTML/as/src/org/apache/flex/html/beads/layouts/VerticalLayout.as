@@ -29,6 +29,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
+    import org.apache.flex.utils.CSSUtils;
 	
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -91,6 +92,7 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			// asking for contentView.width can result in infinite loop if host isn't sized already
 			var w:Number = hostSizedToContent ? 0 : contentView.width;
+            var h = contentView.height;
 			
 			for (var i:int = 0; i < n; i++)
 			{
@@ -100,45 +102,15 @@ package org.apache.flex.html.beads.layouts
 				var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
 				var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-				if (margin is Array)
-				{
-					if (margin.length == 1)
-						marginLeft = marginTop = marginRight = marginBottom = margin[0];
-					else if (margin.length <= 3)
-					{
-						marginLeft = marginRight = margin[1];
-						marginTop = marginBottom = margin[0];
-					}
-					else if (margin.length == 4)
-					{
-						marginLeft = margin[3];
-						marginBottom = margin[2];
-						marginRight = margin[1];
-						marginTop = margin[0];					
-					}
-				}
-				else if (margin == null)
-				{
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				}
-				else
-				{
-					marginLeft = marginTop = marginBottom = marginRight = margin;
-				}
-				var ml:Number;
-				var mr:Number;
-				var mt:Number;
-				var mb:Number;
+                marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+                marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+                marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+                marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+				var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, w);
+				var mr:Number = CSSUtils.getRightValue(marginRight, margin, w);
+				var mt:Number = CSSUtils.getTopValue(marginTop, margin, h);
+				var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, h);
 				var lastmb:Number;
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
 				var yy:Number;
 				if (i == 0)
                 {
