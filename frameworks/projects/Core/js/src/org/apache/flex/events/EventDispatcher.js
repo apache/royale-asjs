@@ -45,6 +45,7 @@ org.apache.flex.events.EventDispatcher.prototype.FLEXJS_CLASS_INFO =
 
 /**
  * @override
+ * @export
  */
 org.apache.flex.events.EventDispatcher.prototype.addEventListener =
     function(type, handler, opt_capture, opt_handlerScope) {
