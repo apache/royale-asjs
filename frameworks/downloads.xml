@@ -73,6 +73,7 @@
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/templates/swfobject">
                 <include name="**/**"/>
+                <exclude name="index.template.html"/>
             </fileset>
         </delete>
     </target>

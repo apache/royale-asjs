@@ -527,6 +527,7 @@
         <copy todir="${basedir}/temp">
             <fileset dir="${FLEX_SDK_HOME}" >
                 <include name="templates/swfobject/**"/>
+                <exclude name="templates/swfobject/index.template.html"/>
                 <exclude name="**/expressInstall.swf"/>
                 <exclude name="**/swfobject.js"/>
             </fileset>
@@ -565,7 +566,7 @@
             </fileset>
         </copy>
         
-        <!-- templates
+        <!-- templates -->
         <copy todir="${basedir}/temp/templates">
             <fileset dir="${basedir}/templates" >
                 <include name="swfobject/**"/>
@@ -573,7 +574,6 @@
                 <exclude name="**/swfobject.js"/>
             </fileset>
         </copy>
-        -->
         
         <!-- 
              Source files have Windows line endings.  Most UNIX editors can handle
