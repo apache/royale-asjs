@@ -51,6 +51,20 @@ Object.defineProperties(org.apache.flex.binding.ConstantBinding.prototype, {
               val = this.source[this.sourcePropertyName];
             } else if (this.sourcePropertyName in this.source.constructor) {
               val = this.source.constructor[this.sourcePropertyName];
+            } else {
+              // GCC optimizer only puts exported class constants on
+              // Window and not on the class itself (which got renamed)
+              var cname = this.source.FLEXJS_CLASS_INFO;
+              if (cname) {
+                cname = cname.names[0].qName;
+                var parts = cname.split('.');
+                var n = parts.length;
+                var o = window;
+                for (var i = 0; i < n; i++) {
+                  o = o[parts[i]];
+                }
+                val = o[this.sourcePropertyName];
+              }
             }
             this.destination[this.destinationPropertyName] = val;
         }
