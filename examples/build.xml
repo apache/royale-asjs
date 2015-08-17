@@ -78,6 +78,7 @@
         <ant dir="${basedir}/ContainerTest"/>
         <ant dir="${basedir}/DataBindingTest"/>
         <ant dir="${basedir}/DataBindingTest_as"/>
+        <ant dir="${basedir}/DataBindingTest_Flat"/>
         <ant dir="${basedir}/DataGridExample"/>
 		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/DesktopMap"/>
@@ -117,6 +118,7 @@
         <ant dir="${basedir}/ContainerTest" target="clean"/>
         <ant dir="${basedir}/DataBindingTest" target="clean"/>
         <ant dir="${basedir}/DataBindingTest_as" target="clean"/>
+        <ant dir="${basedir}/DataBindingTest_Flat" target="clean"/>
         <ant dir="${basedir}/DataGridExample" target="clean"/>
         <ant dir="${basedir}/DateChooserExample" target="clean"/>
         <ant dir="${basedir}/DesktopMap" target="clean"/>
