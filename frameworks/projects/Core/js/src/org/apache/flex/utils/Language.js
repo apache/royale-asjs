@@ -293,3 +293,24 @@ org.apache.flex.utils.Language.superSetter = function(clazz, pthis, prop, value)
   }
   superdesc.set.apply(pthis, [value]);
 };
+
+
+/**
+ * caches closures and returns the one closure
+ *
+ * @export
+ * @param {Function} fn The method on the instance.
+ * @param {Object} object The instance.
+ * @param {string} boundMethodName The name to use to cache the closure.
+ * @return {Function} The closure.
+ */
+org.apache.flex.utils.Language.closure = function(fn, object, boundMethodName) {
+  if (object.hasOwnProperty(boundMethodName)) {
+    return object[boundMethodName];
+  }
+  var boundMethod = goog.bind(fn, object);
+  Object.defineProperty(object, boundMethodName, {
+    value: boundMethod
+  });
+  return boundMethod;
+};
