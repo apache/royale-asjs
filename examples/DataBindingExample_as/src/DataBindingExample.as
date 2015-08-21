@@ -25,6 +25,7 @@ import org.apache.flex.core.SimpleCSSValuesImpl;
 import org.apache.flex.events.Event;
 import org.apache.flex.html.beads.CSSButtonView;
 import org.apache.flex.html.beads.CSSTextButtonView;
+import org.apache.flex.html.beads.CSSTextToggleButtonView;
 import org.apache.flex.html.beads.CheckBoxView;
 import org.apache.flex.html.beads.ContainerView;
 import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData;
@@ -43,7 +44,7 @@ import org.apache.flex.html.beads.controllers.DropDownListController;
 import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
 import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController;
-import org.apache.flex.html.beads.layouts.VerticalScrollingLayout;
+import org.apache.flex.html.beads.layouts.VerticalLayout;
 import org.apache.flex.html.beads.models.ArraySelectionModel;
 import org.apache.flex.html.beads.models.SingleLineBorderModel;
 import org.apache.flex.html.beads.models.TextModel;
@@ -51,6 +52,7 @@ import org.apache.flex.html.beads.models.ToggleButtonModel;
 import org.apache.flex.html.beads.models.ValueToggleButtonModel;
 import org.apache.flex.html.supportClasses.DropDownListList;
 import org.apache.flex.html.supportClasses.DataGroup;
+import org.apache.flex.html.supportClasses.ScrollingViewport;
 import org.apache.flex.html.supportClasses.StringItemRenderer;
 import org.apache.flex.net.HTTPService;
 import org.apache.flex.collections.parsers.JSONInputParser;
@@ -116,9 +118,10 @@ public class DataBindingExample extends Application
             iBeadModel: ArraySelectionModel,
             iBeadView:  ListView,		
             iBeadController: ListSingleSelectionMouseController,
-            iBeadLayout: VerticalScrollingLayout,
+            iBeadLayout: VerticalLayout,
             iDataGroup: DataGroup,
             iDataProviderItemRendererMapper: DataItemRendererFactoryForArrayData,
+			IViewport: ScrollingViewport,
             iItemRendererClassFactory: ItemRendererClassFactory,
             iItemRenderer: StringItemRenderer
         };
@@ -167,7 +170,13 @@ public class DataBindingExample extends Application
                 iBeadModel: ArraySelectionModel,
                 iDataProviderItemRendererMapper: TextItemRendererFactoryForArrayData,
                 iItemRendererClassFactory: ItemRendererClassFactory,
-                iItemRenderer: StringItemRenderer
+                iItemRenderer: StringItemRenderer,
+			    iBackgroundBead: SolidBackgroundBead,
+				borderStyle: "solid",
+    			borderRadius: 4,
+			    borderColor: 0,
+			    borderWidth: 1,
+			    backgroundColor: 0xFFFFFF
             };
             
             viv["org.apache.flex.html::Label"] =
@@ -196,8 +205,10 @@ public class DataBindingExample extends Application
                 iBeadController: EditableTextKeyboardController,
                 iBorderBead: SingleLineBorderBead,
                 iBorderModel: SingleLineBorderModel,
-                width: 135,
-                height: 20
+			    borderStyle: "solid",
+    			borderColor: 0,
+    			borderWidth: 1,
+    			backgroundColor: 0xFFFFFF
             };
             
             viv["org.apache.flex.html::TextButton"] =
@@ -213,15 +224,17 @@ public class DataBindingExample extends Application
                 iBeadView: TextInputWithBorderView,
                 iBeadController: EditableTextKeyboardController,
                 iBorderBead: SingleLineBorderBead,
-                iBorderModel: SingleLineBorderModel,
-                width: 135,
-                height: 20
+			    iBackgroundBead: SolidBackgroundBead,
+			    borderStyle: "solid",
+    			borderColor: 0,
+    			borderWidth: 1,
+    			backgroundColor: 0xFFFFFF
             };
             
             viv["org.apache.flex.html::ToggleTextButton"] =
             {
                 iBeadModel: ToggleButtonModel,
-                iBeadView:  CSSTextButtonView
+                iBeadView:  CSSTextToggleButtonView
             };
     
             viv["org.apache.flex.html::SimpleList"] =
@@ -229,9 +242,10 @@ public class DataBindingExample extends Application
                 iBeadModel: ArraySelectionModel,
                 iBeadView:  ListView,
                 iBeadController: ListSingleSelectionMouseController,
-                iBeadLayout: VerticalScrollingLayout,
+                iBeadLayout: VerticalLayout,
                 iDataGroup: DataGroup,
                 iDataProviderItemRendererMapper: TextItemRendererFactoryForArrayData,
+	    		IViewport: ScrollingViewport,
                 iItemRendererClassFactory: ItemRendererClassFactory,
                 iItemRenderer: StringItemRenderer
             }
@@ -247,8 +261,7 @@ public class DataBindingExample extends Application
     private function makeDefinitionName(s:String):String
     {
         CONFIG::js_only {
-            s = s.replace(/\./g, "_");
-            s = s.replace("::", "_");
+            s = s.replace("::", ".");
         }
         return s;
     }
