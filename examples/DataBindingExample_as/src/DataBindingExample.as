@@ -60,10 +60,10 @@ import org.apache.flex.utils.ViewSourceContextMenuOption;
 import models.MyModel;
 import controllers.MyController;
 
-public class DataBindingTest extends Application
+public class DataBindingExample extends Application
 {
     
-    public function DataBindingTest()
+    public function DataBindingExample()
     {
         addEventListener("initialize", initializeHandler);
         var vi:SimpleCSSValuesImpl = new SimpleCSSValuesImpl();

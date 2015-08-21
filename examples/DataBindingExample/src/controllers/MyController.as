@@ -31,14 +31,14 @@ package controllers
 		{
 			if (app)
 			{
-				this.app = app as DataBindingTest;
+				this.app = app as DataBindingExample;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
         private var queryBegin:String = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
         private var queryEnd:String = "%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json";
-		private var app:DataBindingTest;
+		private var app:DataBindingExample;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -73,7 +73,7 @@ package controllers
         
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as DataBindingTest;
+			this.app = document as DataBindingExample;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

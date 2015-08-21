@@ -19,9 +19,9 @@
 -->
 
 
-<project name="databindingtest_as" default="main" basedir=".">
+<project name="databindingexample_as" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="DataBindingTest" />
+    <property name="example" value="DataBindingExample" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>

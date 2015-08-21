@@ -19,14 +19,15 @@
 
 DESCRIPTION
 
-The DataBindingTest example shows a Flex application that can communicate with
+The DataBindingExample shows a Flex application that can communicate with
 a third-party data source (in this case, yahoo.finance) and display the values
-returned using data binding. 
+returned using data binding. It also demonstrates that you can use “states” to
+control the UI.
 
 This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
 into JavaScript and HTML and run without Flash.
 
-The DataBindingTest example also shows how the model-view-controller (MVC) pattern
+The DataBindingExample  also shows how the model-view-controller (MVC) pattern
 can be used to separate the parts of the application. This is facilitated by
 the use of FlexJS beads added to the main application that provide the
 data connection (via HTTPService) and interacting with the rest of the application
