@@ -92,7 +92,7 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			// asking for contentView.width can result in infinite loop if host isn't sized already
 			var w:Number = hostSizedToContent ? 0 : contentView.width;
-            var h = contentView.height;
+            var h:Number = contentView.height;
 			
 			for (var i:int = 0; i < n; i++)
 			{
