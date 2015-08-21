@@ -19,7 +19,8 @@
 package
 {
 
-import flash.display.Sprite;
+import org.apache.flex.core.SimpleApplication;
+import org.apache.flex.events.Event;
 
 import classes.B;
 
@@ -30,7 +31,7 @@ import interfaces.ID;
 import interfaces.IE;
 import interfaces.IF;
 
-public class LanguageTests extends Sprite implements IA, IE
+public class LanguageTests extends SimpleApplication implements IA, IE
 {
 	public function LanguageTests()
 	{
@@ -39,8 +40,8 @@ public class LanguageTests extends Sprite implements IA, IE
 		
 		var b:B = new B();
 		
-		testResult = this instanceof Sprite;
-		trace('this instanceof Sprite - true: ' + testResult.toString());
+		testResult = this instanceof SimpleApplication;
+		trace('this instanceof SimpleApplication - true: ' + testResult.toString());
 		testResult = this instanceof B;
 		trace('this instanceof classes.B - false: ' + testResult.toString());
 		testResult = b instanceof classes.B;
@@ -62,8 +63,8 @@ public class LanguageTests extends Sprite implements IA, IE
 		testResult = this instanceof IE;
 		trace('this instanceof interfaces.IE - false: ' + testResult.toString());
 		trace();
-		testResult = this is Sprite;
-		trace('this is Sprite - true: ' + testResult.toString());
+		testResult = this is SimpleApplication;
+		trace('this is SimpleApplication - true: ' + testResult.toString());
 		testResult = this is B;
 		trace('this is classes.B - false: ' + testResult.toString());
 		testResult = b is classes.B;
@@ -85,8 +86,8 @@ public class LanguageTests extends Sprite implements IA, IE
 		testResult = this is IE;
 		trace('this is interfaces.IE - true: ' + testResult.toString());
 		trace();
-		testObject = (this as Sprite) ? this as Sprite : 'null';
-		trace('this as Sprite - [object ...]: ' + testObject.toString());
+		testObject = (this as SimpleApplication) ? this as SimpleApplication : 'null';
+		trace('this as SimpleApplication - [object ...]: ' + testObject.toString());
 		testObject = (this as B) ? this as B : 'null';
 		trace('this as classes.B - null: ' + testObject.toString());
 		testObject = (b as classes.B) ? b as classes.B : 'null';
@@ -109,8 +110,8 @@ public class LanguageTests extends Sprite implements IA, IE
 		trace('this as interfaces.IE - [object ...]: ' + testObject.toString());
 		trace();
 		try {
-			testObject = Sprite(this);
-			trace('Sprite(this) - [object ...]: ' + testObject.toString());
+			testObject = SimpleApplication(this);
+			trace('SimpleApplication(this) - [object ...]: ' + testObject.toString());
 		} catch (e:Error) 
 		{
 			trace("This shouldn't show!");
@@ -136,6 +137,23 @@ public class LanguageTests extends Sprite implements IA, IE
 		{
 			trace("This shouldn't show!");
 		}
+        
+        addEventListener("foo", eventHandler);
+        if (hasEventListener("foo"))
+            trace("addEventListener worked");
+        else
+            trace("This shouldn't show!");
+            
+        removeEventListener("foo", eventHandler);
+        if (!hasEventListener("foo"))
+            trace("removeEventListener worked");
+        else
+            trace("This shouldn't show!");
 	}
+    
+    public function eventHandler(e:Event):void
+    {
+        
+    }
 }
 }
