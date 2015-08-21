@@ -84,6 +84,11 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
   if (!hasWidth && n > 0 && !isNaN(maxWidth) && (!(scv.left != 'auto' && scv.right != 'auto'))) {
+    var pl = scv['padding-left'];
+    var pr = scv['padding-right'];
+    pl = parseInt(pl.substring(0, pl.length - 2), 10);
+    pr = parseInt(pr.substring(0, pr.length - 2), 10);
+    maxWidth += scv.paddingLeft + pl + pr;
     this.lastWidth_ = sps.width = maxWidth.toString() + 'px';
   }
 };
