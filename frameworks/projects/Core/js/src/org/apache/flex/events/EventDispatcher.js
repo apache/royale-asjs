@@ -72,3 +72,60 @@ org.apache.flex.events.EventDispatcher.prototype.addEventListener =
 };
 
 
+/**
+ * @override
+ * @export
+ */
+org.apache.flex.events.EventDispatcher.prototype.removeEventListener =
+    function(type, handler, opt_capture, opt_handlerScope) {
+  var source;
+
+  /**
+   *  A bit of a hack, but for 'native' HTML element based controls, we
+   *  want to listen to the 'native' events from the element; for other
+   *  types of controls, we listen to 'custom' events.
+   */
+  source = this;
+  if (this.element && this.element.nodeName &&
+      this.element.nodeName.toLowerCase() !== 'div' &&
+      // we don't use any native img events right now, we wrapthem
+      this.element.nodeName.toLowerCase() !== 'img' &&
+      this.element.nodeName.toLowerCase() !== 'body') {
+    source = this.element;
+  } else if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
+    // mouse and keyboard events also dispatch off the element.
+    source = this.element;
+  }
+
+  goog.events.unlisten(source, type, handler);
+};
+
+
+/**
+ * @export
+ * @param {string} type The event name.
+ * @return {boolean} True if there is a listener.
+ */
+org.apache.flex.events.EventDispatcher.prototype.hasEventListener =
+    function(type) {
+  var source;
+
+  /**
+   *  A bit of a hack, but for 'native' HTML element based controls, we
+   *  want to listen to the 'native' events from the element; for other
+   *  types of controls, we listen to 'custom' events.
+   */
+  source = this;
+  if (this.element && this.element.nodeName &&
+      this.element.nodeName.toLowerCase() !== 'div' &&
+      // we don't use any native img events right now, we wrapthem
+      this.element.nodeName.toLowerCase() !== 'img' &&
+      this.element.nodeName.toLowerCase() !== 'body') {
+    source = this.element;
+  } else if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
+    // mouse and keyboard events also dispatch off the element.
+    source = this.element;
+  }
+
+  return goog.events.hasListener(source, type);
+};
