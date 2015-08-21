@@ -72,6 +72,7 @@ internal class CoreClasses
 	import org.apache.flex.core.IViewportModel; IViewportModel;
 	import org.apache.flex.core.IViewportScroller; IViewportScroller;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
+    import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.core.UIBase; UIBase;
     import org.apache.flex.core.UIButtonBase; UIButtonBase;
