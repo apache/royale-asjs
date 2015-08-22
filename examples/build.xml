@@ -76,9 +76,9 @@
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/CordovaCameraExample"/>
         <ant dir="${basedir}/ContainerTest"/>
-        <ant dir="${basedir}/DataBindingTest"/>
-        <ant dir="${basedir}/DataBindingTest_as"/>
-        <ant dir="${basedir}/DataBindingTest_Flat"/>
+        <ant dir="${basedir}/DataBindingExample"/>
+        <ant dir="${basedir}/DataBindingExample_as"/>
+        <ant dir="${basedir}/DataBindingExample_Flat"/>
         <ant dir="${basedir}/DataGridExample"/>
 		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/DesktopMap"/>
@@ -116,9 +116,9 @@
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/ContainerTest" target="clean"/>
-        <ant dir="${basedir}/DataBindingTest" target="clean"/>
-        <ant dir="${basedir}/DataBindingTest_as" target="clean"/>
-        <ant dir="${basedir}/DataBindingTest_Flat" target="clean"/>
+        <ant dir="${basedir}/DataBindingExample" target="clean"/>
+        <ant dir="${basedir}/DataBindingExample_as" target="clean"/>
+        <ant dir="${basedir}/DataBindingExample_Flat" target="clean"/>
         <ant dir="${basedir}/DataGridExample" target="clean"/>
         <ant dir="${basedir}/DateChooserExample" target="clean"/>
         <ant dir="${basedir}/DesktopMap" target="clean"/>
