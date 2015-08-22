@@ -47,7 +47,22 @@
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
       
-    <!-- 
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+        <and>
+            <os family="unix" />
+            <not>
+                <isset property="isMac" />
+            </not>
+        </and>
+    </condition>
+      
+    <!--
         Optional jars but should be in place for a real release build.
         
         For <grep> put AntelopeTasks_*.jar in this path.
@@ -72,7 +87,7 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="prebuild,frameworks-as,frameworks-js,frameworks-recompile,post-build" description="Full build">
+    <target name="main" depends="check-if-ide,prebuild,frameworks-as,frameworks-js,frameworks-recompile,post-build,last-message-if-airsdk" description="Full build" unless="airsdk.found">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -86,7 +101,7 @@
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="dump-config" >
+    <target name="dump-config" unless="airsdk.found" >
         <property name="is.jenkins" value="true" />
         <echo>env.USERNAME is: ${env.USERNAME}</echo>
         <condition property="FLASHLOG"
@@ -159,17 +174,17 @@
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
        clean does not remove these since they don't change often and the downloads take time.
     -->
-    <target name="thirdparty-downloads" description="Downloads all the required thirdparty code.">
+    <target name="thirdparty-downloads" description="Downloads all the required thirdparty code." unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="thirdparty-downloads"/>
         <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
         <!-- don't ask again about these since we just did if these weren't already set -->	    
 	    <property name="build.noprompt" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config" 
-        description="Stuff that needs to be done before any builds." />
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config"
+        description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
-    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home,check-falconjx-home"
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
         description="Check for the required environment variables for compilation.">
             <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
             <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
@@ -241,7 +256,12 @@
             property="FLEX_SDK_HOME"
             value="${env.FLEX_HOME}" />
 
-        <fail message="The environment variable FLEX_HOME is not set to a directory" 
+        <available file="${basedir}/../flex-sdk"
+            type="dir"
+            property="FLEX_SDK_HOME"
+            value="${basedir}/../flex-sdk" />
+
+        <fail message="The environment variable FLEX_HOME is not set to a directory"
             unless="FLEX_SDK_HOME"/>
 
         <condition property="mxmlc.jar.exists">
@@ -262,7 +282,12 @@
             property="FALCON_HOME"
             value="${env.FALCON_HOME}"/>
 
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler/generated/dist/sdk folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK" 
+        <available file="${basedir}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
+            type="file"
+            property="FALCON_HOME"
+            value="${basedir}/../flex-falcon/compiler/generated/dist/sdk"/>
+
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler/generated/dist/sdk folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_HOME"/>
     </target>
 
@@ -276,11 +301,16 @@
             property="FALCONJX_HOME"
             value="${env.FALCONJX_HOME}"/>
 
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK" 
+        <available file="${basedir}/../flex-falcon/compiler.jx/lib/jsc.jar"
+            type="file"
+            property="FALCONJX_HOME"
+            value="${basedir}/../flex-falcon/compiler.jx"/>
+
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_HOME"/>
     </target>
 
-    <target name="create-description" description="Generate flex-sdk-description.xml">
+    <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
         </tstamp>
@@ -312,7 +342,7 @@
         </echo>
     </target>
 	
-    <target name="create-config" description="Create flex config file">
+    <target name="create-config" description="Create flex config file" unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="flex-config" />
         <ant dir="${basedir}/frameworks" target="air-config" />
     </target>
@@ -396,7 +426,7 @@
         Build framework SWCs
     -->
 
-    <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes">
+    <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
         <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
         </ant>
@@ -409,13 +439,13 @@
         </ant>
     </target>
     
-    <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint">
+    <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint" unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="js">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
 
-    <target name="frameworks-recompile" description="Full build of all Actionscript framework SWCs, which picks up JS files">
+    <target name="frameworks-recompile" description="Full build of all Actionscript framework SWCs, which picks up JS files" unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
@@ -447,11 +477,11 @@
         <delete dir="${basedir}/javadoc" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
-	<target name="ide" description="Build any ide specific files">
+	<target name="ide" description="Build any ide specific files" unless="airsdk.found">
         <!--<ant dir="${basedir}/ide/flashbuilder" />-->
     </target>
     
-    <target name="post-build" depends="ide" description="Handle post-build activities" />
+    <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found"/>
 
     <!--
         Build the ASDoc html pages.
@@ -1456,4 +1486,188 @@
         </exec>
 	</target>
 	
+    <target name="check-if-ide" depends="check-for-airsdk, ask-about-downloading-repos, block-main" />
+    <target name="check-for-airsdk" >
+        <available file="${basedir}/airsdk.xml"
+        type="file"
+        property="airsdk.found"/>
+    </target>
+    <target name="block-main" description="set flags so main targets don't do anything" if="airsdk.found">
+        <!-- these keep the main target from doing other checks -->
+        <property name="mxmlc.jar.exists" value="set" />
+        <property name="FALCON_HOME" value="set" />
+        <property name="FALCONJX_HOME" value="set" />
+    </target>
+    
+    <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
+    <target name="ask-or-fail" if="airsdk.found" >
+        <echo>This folder appears to be an IDE-compatible FlexJS SDK.</echo>
+        <input
+        message="Do you want to download and setup the build environment?"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="input.all.download"/>
+        <condition property="do.all.download">
+            <equals arg1="y" arg2="${input.all.download}"/>
+        </condition>
+        <fail message="Cancelling build.  Builds are not supported in ide-compatible configurations."
+        unless="do.all.download"/>
+    </target>
+    
+    <target name="check-git">
+        <echo>Checking for Git...</echo>
+        <exec executable="git" failonerror="true" >
+            <arg value="version" />
+        </exec>
+    </target>
+    
+    <target name="get-download-folder" depends="check-git" if="airsdk.found">
+        <condition property="defaultPath" value="${env.HOME}/git/apache/flex">
+            <os family="mac" />
+        </condition>
+        <property name="defaultPath" value="${env.HOME}\\git\\apache\\flex" />
+        <input
+        message="Enter absolute path to a folder.  The folder will be created if it doesn't exist."
+        defaultvalue="${defaultPath}"
+        addproperty="base.folder.name"/>
+    </target>
+    
+    <target name="download-all" depends="get-download-folder" if="airsdk.found" >
+        <echo>Using folder ${base.folder.name}</echo>
+        <mkdir dir="${base.folder.name}" />
+        <antcall target="clone-flex-asjs" />
+        <antcall target="clone-flex-falcon" />
+        <antcall target="clone-flex-flexunit" />
+        <antcall target="clone-flex-sdk" />
+        <antcall target="clone-flex-tlf" />
+        <antcall target="clone-flex-blazeds" />
+        <antcall target="build-all" />
+    </target>
+
+    <target name="check-flex-asjs">
+        <available file="${base.folder.name}/flex-asjs"
+        type="dir"
+        property="flex-asjs-exists"/>
+    </target>
+    
+    <target name="clone-flex-asjs" depends="check-flex-asjs" unless="flex-asjs-exists">
+        <echo>cloning flex-asjs repo into ${base.folder.name}/flex-asjs</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-asjs.git" />
+            <arg value="flex-asjs" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-asjs">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+        <echo>change directory to ${base.folder.name}/flex-asjs and run ant for future builds.</echo>
+    </target>
+
+    <target name="check-flex-falcon">
+        <available file="${base.folder.name}/flex-falcon"
+        type="dir"
+        property="flex-falcon-exists"/>
+    </target>
+
+    <target name="clone-flex-falcon" depends="check-flex-falcon" unless="flex-falcon-exists">
+        <echo>cloning flex-falcon repo into ${base.folder.name}/flex-falcon</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-falcon.git" />
+            <arg value="flex-falcon" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-falcon">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-sdk">
+        <available file="${base.folder.name}/flex-sdk"
+        type="dir"
+        property="flex-sdk-exists"/>
+    </target>
+
+    <target name="clone-flex-sdk" depends="check-flex-sdk" unless="flex-sdk-exists">
+        <echo>cloning flex-sdk repo into ${base.folder.name}/flex-sdk</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-sdk.git" />
+            <arg value="flex-sdk" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-sdk">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-flexunit">
+        <available file="${base.folder.name}/flex-flexunit"
+        type="dir"
+        property="flex-flexunit-exists"/>
+    </target>
+
+    <target name="clone-flex-flexunit" depends="check-flex-flexunit" unless="flex-flexunit-exists">
+        <echo>cloning flex-flexunit repo into ${base.folder.name}/flex-flexunit</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-flexunit.git" />
+            <arg value="flex-flexunit" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-flexunit">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-blazeds">
+        <available file="${base.folder.name}/flex-blazeds"
+        type="dir"
+        property="flex-blazeds-exists"/>
+    </target>
+
+    <target name="clone-flex-blazeds" depends="check-flex-blazeds" unless="flex-blazeds-exists">
+        <echo>cloning flex-blazeds repo into ${base.folder.name}/flex-blazeds</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-blazeds.git" />
+            <arg value="flex-blazeds" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-blazeds">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-tlf">
+        <available file="${base.folder.name}/flex-tlf"
+        type="dir"
+        property="flex-tlf-exists"/>
+    </target>
+
+    <target name="clone-flex-tlf" depends="check-flex-tlf" unless="flex-tlf-exists">
+        <echo>cloning flex-tlf repo into ${base.folder.name}/flex-tlf</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-tlf.git" />
+            <arg value="flex-tlf" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-tlf">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+    
+    <target name="build-all" depends="check-playerglobal-home,check-air-home">
+        <ant dir="${base.folder.name}/flex-sdk" />
+        <ant dir="${base.folder.name}/flex-falcon/compiler" />
+        <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
+        <ant dir="${base.folder.name}/flex-flexunit" />
+    </target>
+    
+    <target name="last-message-if-airsdk" if="airsdk.found" >
+        <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
+    </target>
+
 </project>
