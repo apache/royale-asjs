@@ -1535,6 +1535,7 @@
     <target name="download-all" depends="get-download-folder" if="airsdk.found" >
         <echo>Using folder ${base.folder.name}</echo>
         <mkdir dir="${base.folder.name}" />
+        <antcall target="warn-before-clone" />
         <antcall target="clone-flex-asjs" />
         <antcall target="clone-flex-falcon" />
         <antcall target="clone-flex-flexunit" />
@@ -1544,6 +1545,12 @@
         <antcall target="build-all" />
     </target>
 
+    <target name="warn-before-clone" depends="check-flex-asjs" unless="flex-asjs-exists">
+        <input
+        message="This script will clone 6 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
+        />
+    </target>
+    
     <target name="check-flex-asjs">
         <available file="${base.folder.name}/flex-asjs"
         type="dir"
@@ -1660,6 +1667,20 @@
     </target>
     
     <target name="build-all" depends="check-playerglobal-home,check-air-home">
+        <!-- get the questions out of the way -->
+        <ant dir="${base.folder.name}/flex-sdk/frameworks" antfile="downloads.xml">
+            <target name="font-jars-check" />
+            <target name="ask-font" />
+        </ant>
+        <property name="font.donot.ask" value="set" />
+        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4Test" antfile="downloads.xml"
+            target="saxon9he-jar" />
+        <mkdir dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks/lib" />
+        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks" antfile="downloads.xml"
+            target="junit-jar" />
+        <input
+            message="This script will now download and compile lots of files.  This can take several minutes.   No interaction should be required.  Press the enter key to continue."
+            />
         <ant dir="${base.folder.name}/flex-sdk" />
         <ant dir="${base.folder.name}/flex-falcon/compiler" />
         <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
