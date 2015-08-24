@@ -265,10 +265,10 @@
             unless="FLEX_SDK_HOME"/>
 
         <condition property="mxmlc.jar.exists">
-            <available file="${env.FLEX_HOME}/lib/mxmlc.jar" type="file"/> 
+            <available file="${FLEX_SDK_HOME}/lib/mxmlc.jar" type="file"/>
         </condition>
         	
-        <fail message="The directory ${env.FLEX_HOME} does not contain mxmlc.jar" 
+        <fail message="The directory ${FLEX_SDK_HOME} does not contain mxmlc.jar" 
             unless="mxmlc.jar.exists"/>
     </target>
 
@@ -1526,7 +1526,7 @@
         <condition property="defaultPath" value="${env.HOME}/git/apache/flex">
             <os family="mac" />
         </condition>
-        <property name="defaultPath" value="${env.HOME}\\git\\apache\\flex" />
+        <property name="defaultPath" value="c:\git\apache\flex" />
         <input
         message="Enter absolute path to a folder.  The folder will be created if it doesn't exist."
         defaultvalue="${defaultPath}"
@@ -1683,6 +1683,7 @@
             message="This script will now download and compile lots of files.  This can take several minutes.   No interaction should be required.  Press the enter key to continue."
             />
         <ant dir="${base.folder.name}/flex-sdk" />
+        <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
         <ant dir="${base.folder.name}/flex-falcon/compiler" />
         <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
         <ant dir="${base.folder.name}/flex-flexunit" />
