@@ -51,15 +51,16 @@
         description="Copies SWFObject from code.google.com">
         
         <mkdir dir="${download.dir}"/>
-        <get src="http://swfobject.googlecode.com/files/swfobject_2_2.zip" 
+        <get src="https://codeload.github.com/swfobject/swfobject/zip/2.2"
             dest="${download.dir}/swfobject_2_2.zip" 
             verbose="false"/>
         
-        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates">
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
             <patternset>
-                <include name="swfobject/expressInstall.swf"/>
-                <include name="swfobject/swfobject.js"/>
+                <include name="swfobject-2.2/swfobject/expressInstall.swf"/>
+                <include name="swfobject-2.2/swfobject/swfobject.js"/>
             </patternset>
+            <flattenmapper />
         </unzip>
         <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
         <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
