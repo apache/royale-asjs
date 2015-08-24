@@ -20,7 +20,7 @@
 
 
 <project name="databindingexample" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="FLEXJS_HOME" location="../../.."/>
     <property name="example" value="DataBindingExample" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
@@ -57,7 +57,7 @@
         property="GOOG_HOME"
         value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
 
-    <include file="${basedir}/../build_example.xml" />
+    <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
     </target>

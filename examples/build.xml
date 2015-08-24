@@ -74,33 +74,20 @@
     </target>
     
     <target name="compile" description="Compile Examples" >
-        <ant dir="${basedir}/CordovaCameraExample"/>
-        <ant dir="${basedir}/ContainerTest"/>
-        <ant dir="${basedir}/DataBindingExample"/>
-        <ant dir="${basedir}/DataBindingExample_as"/>
-        <ant dir="${basedir}/DataBindingExample_Flat"/>
-        <ant dir="${basedir}/DataGridExample"/>
-		<ant dir="${basedir}/DateChooserExample"/>
-        <ant dir="${basedir}/DesktopMap"/>
-        <ant dir="${basedir}/EffectsExample"/>
-        <ant dir="${basedir}/FlexJSStore"/>
-        <ant dir="${basedir}/FlexJSStore_jquery"/>
-        <ant dir="${basedir}/FlexJSTest_basic"/>
-        <ant dir="${basedir}/FlexJSTest_createjs"/>
-        <ant dir="${basedir}/FlexJSTest_HTML5"/>
-        <ant dir="${basedir}/FlexJSTest_jquery"/>
-        <ant dir="${basedir}/FlexJSTest_Panel"/>
-        <ant dir="${basedir}/FlexJSTest_SVG"/>
-        <ant dir="${basedir}/FormExample"/>
-        <ant dir="${basedir}/ImageTest"/>
-        <ant dir="${basedir}/LanguageTests"/>
-        <ant dir="${basedir}/ListsTest"/>
-        <ant dir="${basedir}/MapSearch"/>
-        <ant dir="${basedir}/MobileTrader"/>
-        <ant dir="${basedir}/RollEventsTest"/>
-        <ant dir="${basedir}/StockQuote"/>
-        <ant dir="${basedir}/ChartExample"/>
-        <ant dir="${basedir}/TodoListSampleApp"/>
+        <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_as"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
+        <ant dir="${basedir}/flexjs/DataGridExample"/>
+        <ant dir="${basedir}/flexjs/DesktopMap"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore_jquery"/>
+        <ant dir="${basedir}/flexjs/MapSearch"/>
+        <ant dir="${basedir}/flexjs/MobileTrader"/>
+        <ant dir="${basedir}/flexjs/ChartExample"/>
+        <ant dir="${basedir}/flexjs/TodoListSampleApp"/>
+        <ant dir="${basedir}/native/ButtonExample"/>
+        <ant dir="${basedir}/native/USStatesMap"/>
     </target>
 	   
     <!--
@@ -114,35 +101,20 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
-        <ant dir="${basedir}/CordovaCameraExample" target="clean"/>
-        <ant dir="${basedir}/ContainerTest" target="clean"/>
-        <ant dir="${basedir}/DataBindingExample" target="clean"/>
-        <ant dir="${basedir}/DataBindingExample_as" target="clean"/>
-        <ant dir="${basedir}/DataBindingExample_Flat" target="clean"/>
-        <ant dir="${basedir}/DataGridExample" target="clean"/>
-        <ant dir="${basedir}/DateChooserExample" target="clean"/>
-        <ant dir="${basedir}/DesktopMap" target="clean"/>
-        <ant dir="${basedir}/EffectsExample" target="clean"/>
-        <ant dir="${basedir}/FlexJSStore" target="clean"/>
-        <ant dir="${basedir}/FlexJSStore_jquery" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_HTML5" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_jquery" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_Panel" target="clean"/>
-        <ant dir="${basedir}/FlexJSTest_SVG" target="clean"/>
-        <ant dir="${basedir}/FormatExample" target="clean"/>
-        <ant dir="${basedir}/FormExample" target="clean"/>
-        <ant dir="${basedir}/ImageTest" target="clean"/>
-        <ant dir="${basedir}/LanguageTests" target="clean"/>
-        <ant dir="${basedir}/ListsTest" target="clean"/>
-        <ant dir="${basedir}/MapSearch" target="clean"/>
-        <ant dir="${basedir}/MobileTrader" target="clean"/>
-        <ant dir="${basedir}/RollEventsTest" target="clean"/>
-        <ant dir="${basedir}/StatesTest" target="clean"/>
-        <ant dir="${basedir}/StockQuote" target="clean"/>
-        <ant dir="${basedir}/ChartExample" target="clean"/>
-        <ant dir="${basedir}/TodoListSampleApp" target="clean"/>
+        <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_as" target="clean"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
+        <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="clean"/>
+        <ant dir="${basedir}/flexjs/MapSearch" target="clean"/>
+        <ant dir="${basedir}/flexjs/MobileTrader" target="clean"/>
+        <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/TodoListSampleApp" target="clean"/>
+        <ant dir="${basedir}/native/ButtonExample" target="clean"/>
+        <ant dir="${basedir}/native/USStatesMap" target="clean"/>
     </target>
     
 </project>

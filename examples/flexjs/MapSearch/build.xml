@@ -20,7 +20,7 @@
 
 
 <project name="mapsearch" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="FLEXJS_HOME" location="../../.."/>
     <property name="example" value="MapSearch" />
     
     <!-- this project needs AIR 3.4 FP 11.4 -->
@@ -79,7 +79,7 @@
         <os family="mac"/>
     </condition>
 
-    <include file="${basedir}/../build_example.xml" />
+    <include file="${basedir}/../../build_example.xml" />
 
     <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
     </target>
