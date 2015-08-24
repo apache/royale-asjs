@@ -37,7 +37,7 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
     </js:beads>
     <js:style>
-        <js:BindableCSSStyles id="borderStyles" borderStyle="solid"
+        <js:BindableCSSStyles id="borderStyles" borderStyle="solid" borderWidth="1"
                                borderColor="#FFFFFF" backgroundColor="#FFFFFF"/>
     </js:style>
     <fx:Metadata>

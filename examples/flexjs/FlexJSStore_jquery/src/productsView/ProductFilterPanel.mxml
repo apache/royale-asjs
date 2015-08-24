@@ -161,7 +161,7 @@ limitations under the License.
         thumbPress="thumbBeingPressed=true"
         thumbRelease="thumbBeingPressed=false;dispatchFilter()"
         />-->
-    <js:HContainer>
+    <js:HContainer id="nsholder" width="100%">
         <js:NumericStepper width="48%" id="loPrice" minimum="0" maximum="{hiPrice.value}" value="0" valueChange="dispatchFilter()" />
         <js:NumericStepper width="48%" id="hiPrice" minimum="{loPrice.value}" maximum="200" value="200" valueChange="dispatchFilter()" />
     </js:HContainer>

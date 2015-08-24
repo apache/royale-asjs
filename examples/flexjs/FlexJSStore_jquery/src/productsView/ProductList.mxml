@@ -21,7 +21,7 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic" 
     > 
     <js:style>
-        <js:SimpleCSSStyles borderStyle="solid" backgroundColor="#BCB29F" />
+        <js:SimpleCSSStyles borderStyle="solid" borderWidth="1" backgroundColor="#BCB29F" />
     </js:style>
     <!-- need a background color for drag and drop but can set alpha to 0 -->
     
@@ -44,7 +44,7 @@ limitations under the License.
         import samples.flexstore.Product;
         import samples.flexstore.ProductListEvent;
         
-        public var items:Array = [];
+        public var items:Array;
         
         public var newItemStartX:int;
         public var newItemStartY:int;
@@ -56,6 +56,9 @@ limitations under the License.
         
         public function addProduct(product:Product):void
 		{
+            if (items == null)
+                items = [];
+            
             var index:int = indexOf(product.productId);
             var event:ProductListEvent;
             var item:ProductListItem;
@@ -169,7 +172,7 @@ limitations under the License.
             {
                 e.addEventListener(Effect.EFFECT_END, function(event:Event):void
                 {
-                    scrollingView.verticalScrollPosition = scrollingView.maxVerticalScrollPosition;    
+  //TODO                  scrollingView.model.verticalScrollPosition = scrollingView.maxVerticalScrollPosition;    
                 });
             }
         }
@@ -208,8 +211,8 @@ limitations under the License.
     </fx:Script>
     <js:beads>
         <js:DropMouseController id="dmc" dragEnter="doDragEnter(event)" dragDrop="doDragDrop(event)" />
-        <js:ScrollingContainerView id="scrollingView" />
-        <js:VerticalScrollingLayout />
+        <js:VerticalLayout />
+		<js:ScrollingViewport id="scrollingView" />
     </js:beads>
     <js:Container id="viewport" width="100%" height="100%" >
     </js:Container>

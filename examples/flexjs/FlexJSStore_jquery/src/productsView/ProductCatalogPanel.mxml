@@ -22,6 +22,7 @@ limitations under the License.
          implements="org.apache.flex.core.IDragInitiator"
     xmlns:productsView="productsView.*"
     currentState="browse"
+    title="SpaceHolder"
     title.browse="Browse"
     title.compare="Product Comparison"
     title.details="Product Details"
@@ -89,7 +90,7 @@ limitations under the License.
             {
                 for (i=0; i < thumbnails.length; i++)
                 {
-                    thumbContent.removeElement(thumbnails[i]);
+                    thumbContentGroup.removeElement(thumbnails[i]);
                 }
             }
             
@@ -108,7 +109,7 @@ limitations under the License.
                 // thumbnails[i].showInAutomationHierarchy = true;
                 thumb.product = catalog.getItemAt(i) as Product;
                 accepted[thumb.product.productId.toString()] = true;
-                thumbContent.addElement(thumb);
+                thumbContentGroup.addElement(thumb);
                 thumb.addEventListener(ProductThumbEvent.PURCHASE, productThumbEventHandler);
                 thumb.addEventListener(ProductThumbEvent.COMPARE, productThumbEventHandler);
                 thumb.addEventListener(ProductThumbEvent.DETAILS, productThumbEventHandler);
@@ -350,7 +351,7 @@ limitations under the License.
             var row:int = -1;
 
             //should be computed using border metrics instead of hard-coding the 20, but...
-			var xTo:Number = thumbContent.width - ProductCatalogThumbnail.COL_WIDTH_4 - 20;
+			var xTo:Number = thumbContentGroup.width - ProductCatalogThumbnail.COL_WIDTH_4 - 20;
             var yTo:Number;
 
             var move:Move;
@@ -404,10 +405,10 @@ limitations under the License.
 					    {
 					        scv.verticalScrollPosition = y;
 					    }
-					    else if (selectedThumb.y + ProductCatalogThumbnail.COL_HEIGHT_4 > curpos + thumbContent.height)
+					    else if (selectedThumb.y + ProductCatalogThumbnail.COL_HEIGHT_4 > curpos + thumbContentGroup.height)
 					    {
 					        //this logic doesn't seem to be perfect but it will do
-					        var diff:int = selectedThumb.y - (curpos + thumbContent.height)
+					        var diff:int = selectedThumb.y - (curpos + thumbContentGroup.height)
 					        scv.verticalScrollPosition += diff + ProductCatalogThumbnail.COL_HEIGHT_4 + ProductCatalogThumbnail.VERTICAL_GAP;
 					    }
 					});
@@ -509,7 +510,7 @@ limitations under the License.
         <js:ParentDocumentBead id="pdb" />
         <js:PanelView>
             <js:titleBar>
-                <js:TitleBar>
+                <js:TitleBar height="20" >
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="0xA65904" />
                     </js:style>
@@ -523,12 +524,10 @@ limitations under the License.
     <js:Container width="100%" height="100%">
         <js:Container id="thumbContentGroup" width="100%" height="100%">
             <js:beads>
-                <js:ScrollingContainerView id="scv" />
-                <js:BasicScrollingLayout />
+				<js:ScrollingViewport id="scv" />
             </js:beads>
-            <js:Container id="thumbContent" width="100%" height="100%" />
         </js:Container>
-        <productsView:ProductDetails id="details"
+        <productsView:ProductDetails id="details" y="0"
             width="{ProductCatalogThumbnail.COL_WIDTH_4 * 3}"
             height="100%"
             visible="false"

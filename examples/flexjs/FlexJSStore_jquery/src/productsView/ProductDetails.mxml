@@ -33,7 +33,7 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-		
+
 		import samples.flexstore.Product;
 		import samples.flexstore.ProductThumbEvent;
 
@@ -77,25 +77,25 @@ limitations under the License.
             </fx:Array>
         </js:dataProvider>
     </js:ButtonBar>
-    <js:Container width="100%" height="100%" >
+    <js:Container >
         <js:style>
             <js:SimpleCSSStyles left="4" right="8" top="34" bottom="4" />
         </js:style>
                     
 
-        <js:VContainer width="100%" height="100%" includeIn="Features" >
+        <js:VContainer includeIn="Features" >
             <js:style>
                 <!--<js:SimpleCSSStyles gap="8"-->
                 <js:SimpleCSSStyles
-                    paddingLeft="8" paddingTop="8" paddingRight="8" paddingBottom="8"/>
+                    left="8" top="8" right="8" bottom="8"/>
             </js:style>
-            <js:HContainer width="100%" style="gap:12">
+            <js:Container style="left:0px;right:0px">
 
                 <js:Image id="img" width="101" height="101" source="{product.image}"/>
 
-                <js:VContainer id="descr" width="100%" height="100%">
+                <js:VContainer id="descr" >
                     <js:style>
-                        <js:SimpleCSSStyles paddingTop="0" />
+                        <js:SimpleCSSStyles top="0" left="105" right="0" bottom="20" />
                         <!--<js:SimpleCSSStyles paddingTop="0" gap="4" />-->
                     </js:style>
                     
@@ -110,9 +110,9 @@ limitations under the License.
                     <js:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
 
                 </js:VContainer>
-            </js:HContainer>
+            </js:Container>
 
-            <js:Label id="descriptionText" width="100%" height="100%" text="{product.description}"/>
+            <js:Label id="descriptionText" style="left:0px;right:0px;bottom:0px" text="{product.description}"/>
 
         </js:VContainer>
 
@@ -121,11 +121,6 @@ limitations under the License.
     </js:Container>
 
     <js:VContainer>
-        <js:beads>
-            <js:LayoutChangeNotifier watchedProperty="{purchase.height}" initialValue="0" />
-            <js:LayoutChangeNotifier watchedProperty="{compare.height}" initialValue="0" />
-            <js:LayoutChangeNotifier watchedProperty="{tiles.height}" initialValue="0" />
-        </js:beads>
         <js:style>
             <js:SimpleCSSStyles marginTop="4" right="16" top="36" />
         </js:style>

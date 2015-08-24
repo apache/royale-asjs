@@ -168,7 +168,7 @@ limitations under the License.
 	
     <fx:Declarations>
         <js:HTTPService id="productService" url="data/catalog.json">
-            <js:LazyCollection id="catalog">
+            <js:LazyCollection id="catalog" complete="if (pView) pView.catalog = catalog">
                 <js:inputParser>
                     <js:JSONInputParser />
                 </js:inputParser>
@@ -186,7 +186,7 @@ limitations under the License.
         <js:ApplicationDataBinding />
     </jquery:beads>
     <jquery:initialView>
-        <js:ViewBase	width="990" height="550"
+        <js:ViewBase	width="990" height="585"
                         initComplete="completeHandler(null)"
                         stateChangeComplete="chainStatesIfNeeded()">
             <js:states>
@@ -228,7 +228,6 @@ limitations under the License.
             <js:ControlBar id="acb" width="100%" className="storeControlBar" >
                 <js:beads>
                     <js:HorizontalLayout />
-                    <js:LayoutChangeNotifier watchedProperty="{image.width}" />
                 </js:beads>
                 <js:Image id="image" />
                          <!-- click="toggleTheme()" -->
@@ -252,13 +251,13 @@ limitations under the License.
             </js:ControlBar>
             <js:Container width="990" >
                 <js:style>
-                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0" horizontalCenter="0"/>
+                    <js:SimpleCSSStyles paddingLeft="0" paddingRight="0"/>
                 </js:style>
                         
                 <HomeView id="homeView" width="100%" height="550" includeIn="Home"
                           />
                 <ProductsView id="pView" includeIn="Products" visible.ProductsPreBake="false"
-                              width="100%" height="550" initComplete="pView.catalog = catalog"
+                              width="100%" height="550" initComplete="if (catalog.length) pView.catalog = catalog"
                               />
                 <SupportView id="supportView" includeIn="Support"
                              width="100%" height="550"

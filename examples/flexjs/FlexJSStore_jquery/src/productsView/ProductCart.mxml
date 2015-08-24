@@ -22,7 +22,7 @@ limitations under the License.
     xmlns:productsView="productsView.*"
     >
     <js:style>
-        <js:SimpleCSSStyles horizontalAlign="right"
+        <js:SimpleCSSStyles 
                                paddingTop="8"
                                paddingBottom="8"
                                paddingRight="4"
@@ -30,7 +30,7 @@ limitations under the License.
     </js:style>
     <js:beads>
         <js:ContainerDataBinding />
-        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="{productList}" />
+        <js:OneFlexibleChildVerticalLayout id="flexLayout" flexibleChild="productList" />
     </js:beads>
     <fx:Script>
         <![CDATA[
@@ -96,21 +96,22 @@ limitations under the License.
         removeProduct="productListEventHandler(event)"
         showQuantity="true" />
     
-    <js:Container style="paddingRight:0" width="100%">
+    <js:Container style="right:0" id="totalContainer">
         <js:beads>
             <js:VerticalColumnLayout numColumns="2" />
         </js:beads>
-        <js:Label text="Total:" width="100%" />
+        <js:Label text="Total:" />
         <js:Label width="70" text="{cf.format(total)}" id="lblTotal" style="textAlign:'right'"/>
 
-        <js:Label text="Service Fee:" width="100%" />
+        <js:Label text="Service Fee:" />
         <js:Label width="70" text="{cf.format(numProducts * SHIPPING)}" id="lblFee" style="textAlign:'right'"/>
 
-        <js:Label text="Grand Total:" style="fontWeight:'bold'" width="100%" />
+        <js:Label text="Grand Total:" style="fontWeight:'bold'" />
         <js:Label width="70" text="{cf.format(total + (numProducts * SHIPPING))}" id="lblGrandTotal" style="textAlign:'right'"/>
 
     </js:Container>
 
-    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"/>
+    <js:TextButton text="Submit Order" click="SimpleAlert.show('This feature is not implemented in this sample', 'Submit Order')"
+                   style="right:0"/>
 
 </js:Container>
