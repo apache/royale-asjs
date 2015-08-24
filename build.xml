@@ -395,6 +395,7 @@
 
     <target name="examples-clean">
         <ant dir="${basedir}/examples" target="clean"/>
+        <ant dir="${basedir}/manualtests" target="clean"/>
     </target>
 
     <target name="frameworks-as-clean">
