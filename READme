@@ -81,13 +81,17 @@ Install Prerequisites
 
     Adobe Flash Player playerglobal swcs (*5)   PLAYERGLOBAL_HOME
 
-    JSHint (*6)                                 see note
+    Adobe AIR Integration Kit (* 6)             AIR_HOME
 
-    Apache Flex 'Falcon' Compiler (*7)          FALCON_HOME
+    Adobe Flash Player Content Debugger (* 7)   FLASHPLAYER_DEBUGGER
 
-    Apache Flex 'FalconJX' Compiler (*8)        FALCONJX_HOME
+    JSHint (*8)                                 see note
 
-    Apache Flex FlexUnit (*9)                   FLEXUNIT_HOME
+    Apache Flex 'Falcon' Compiler (*9)          FALCON_HOME
+
+    Apache Flex 'FalconJX' Compiler (*10)       FALCONJX_HOME
+
+    Apache Flex FlexUnit (*11)                  FLEXUNIT_HOME
 
     Apache Flex SDK or repository               FLEX_HOME
 
@@ -137,20 +141,56 @@ Install Prerequisites
 
         Other more recent versions of Adobe Flash Player playerglobal.swc can be
         downloaded from:
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_2.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_3.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_4.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_5.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_6.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_7.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_8.swc
-            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_9.swc
-            http://download.macromedia.com/get/flashplayer/updaters/12/playerglobal12_0.swc
+            http://download.macromedia.com/get/flashplayer/updaters/<version.major>/playerglobal<version.major>_<version.minor>.swc
+
+        (e.g. http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc)
 
         These can be used with Apache FlexJS but not all have not been fully
         tested.
 
-    *6) You will need npm (Node Package Manager) to install JSHint. You can get npm from here:
+
+         Copy the target playerglobal.swc to the directory:
+
+            frameworks/libs/player/<version.major>.<version.minor>/playerglobal.swc
+
+    *6) The Adobe AIR integration kit for Windows can be downloaded from:
+
+           http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip
+
+        The Adobe AIR integration kit for Mac can be downloaded from:
+
+           http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2
+
+        The Adobe AIR integration kit for Linux can be downloaded from:
+
+           http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2
+
+        Download the AIR SDK for your platform and unzip it. Set AIR_HOME to the
+        absolute path of the AIR SDK directory.
+
+        This version of Apache FlexJS was certified for use with Adobe AIR 16
+        and is compatible with version 3.1 and up.
+
+    *7) The Adobe Flash Player content debuggers can be found here:
+
+           http://www.adobe.com/support/flashplayer/downloads.html
+
+        This version of Apache FlexJS was certified for use with Adobe Flash
+        Player 11.1, and is compatible with version 10.2 and up. It has been tested
+        with versions 16.0 on Windows and Mac. It has been compiled, but not fully
+        tested, with other Adobe Flash Player versions. It has not been 
+        fully tested on Linux.
+
+        On Windows, set FLASHPLAYER_DEBUGGER to the absolute path including the
+        filename of the FlashPlayerDebugger.exe. Note the filename of flash player
+        debugger may be different, e.g. C:\MyPath\FlashPlayerDebugger.exe.
+
+        On the Mac, set FLASHPLAYER_DEBUGGER to the absolute path of
+        'Flash Player Debugger.app/Contents/MacOS/Flash Player Debugger'
+
+        On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
+
+    *8) You will need npm (Node Package Manager) to install JSHint. You can get npm from here:
             https://nodejs.org/
     
         The JSHint utility can be installed by following the instructions here:
@@ -160,20 +200,20 @@ Install Prerequisites
         environment variables.  On OSX some folks had permission issues after
         the install.  See their documentation on using -g and sudo.
 
-    *7) Set FALCON_HOME to the root of its SDK.  When using the flex-falcon
+    *9) Set FALCON_HOME to the root of its SDK.  When using the flex-falcon
         repository, set 
              FALCON_HOME=<repo-path>/compiler/generated/dist/sdk
 			 
 	    Look at flex-falcon/README for instructions on how to build Falcon
 
-    *8) Set FALCONJX_HOME to the root of its SDK.  When using the flex-falcon
-        repository, set 
+    *10) Set FALCONJX_HOME to the root of its SDK.  When using the flex-falcon
+         repository, set 
              FALCONJX_HOME=<repo-path>/compiler.jx
         
-		Look at flex-falcon/README_JX for instructions on how to build FalconJX
+	 Look at flex-falcon/README_JX for instructions on how to build FalconJX
 			 
-    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.
-	    Look at flex-flexunit/README for instructions on how to build FlexUnit
+    *11) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.
+	 Look at flex-flexunit/README for instructions on how to build FlexUnit
 
 Software Dependencies
 ---------------------
