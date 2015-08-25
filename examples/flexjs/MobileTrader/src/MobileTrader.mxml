@@ -34,6 +34,6 @@
 	</js:model>
 	
 	<js:initialView>
-	   <local:MyInitialView />
+	   <local:MyInitialView width="480" height="640" />
 	</js:initialView>
 </js:Application>

@@ -100,7 +100,7 @@ limitations under the License.
 	
 	<js:Spacer height="10" />
 		
-	<js:DataGrid id="dataGrid" width="50%" height="90%" change="selectRow()" className="WatchListDataGrid">
+	<js:DataGrid id="dataGrid" width="100%" height="85%" change="selectRow()" className="WatchListDataGrid">
 		<js:beads>
 			<js:SimpleBinding
 				eventName="update"

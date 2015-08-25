@@ -17,9 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 			 title="Alerts"
-				       xmlns:basic="library://ns.apache.org/flexjs/basic"
+				       xmlns:js="library://ns.apache.org/flexjs/basic"
 				       xmlns:local="*"
 				       className="AlertsView" xmlns:renderers="renderers.*">
 	
@@ -52,49 +52,49 @@ limitations under the License.
 		]]>
 	</fx:Script>
 		
-	<basic:Container x="4" y="10" >
-		<basic:beads>
-			<basic:HorizontalLayout />
-		</basic:beads>
-		<basic:Label text="Symbol:" />
-		<basic:TextInput id="symbolField" />
-		<basic:Label text="Value:" />
-		<basic:TextInput id="valueField" />
-		<basic:CheckBox text="Higher?" id="higherCheck" />
-		<basic:TextButton text="Set" click="onAlertSet()" />
-	</basic:Container>
+	<js:Container x="4" y="10" >
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:Label text="Symbol:" />
+		<js:TextInput id="symbolField" />
+		<js:Label text="Value:" />
+		<js:TextInput id="valueField" />
+		<js:CheckBox text="Higher?" id="higherCheck" />
+		<js:TextButton text="Set" click="onAlertSet()" />
+	</js:Container>
 	
-	<basic:DataGrid x="0" y="40" width="480" height="200">
-		<basic:beads>
-			<basic:SimpleBinding
+	<js:DataGrid x="0" y="40" width="100%" height="200">
+		<js:beads>
+			<js:SimpleBinding
 				eventName="alertsUpdate"
 				sourceID="dataModel"
 				sourcePropertyName="alerts"
 				destinationPropertyName="dataProvider" />
-		</basic:beads>
-		<basic:columns>
-			<basic:DataGridColumn label="Symbol" dataField="symbol">
-				<basic:itemRenderer>
+		</js:beads>
+		<js:columns>
+			<js:DataGridColumn label="Symbol" dataField="symbol">
+				<js:itemRenderer>
 					<fx:Component>
-						<basic:StringItemRenderer />
+						<js:StringItemRenderer />
 					</fx:Component>
-				</basic:itemRenderer>
-			</basic:DataGridColumn>
-			<basic:DataGridColumn label="Alert" dataField="greaterThan">
-				<basic:itemRenderer>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Alert" dataField="greaterThan">
+				<js:itemRenderer>
 					<fx:Component>
 						<renderers:AlertRenderer />
 					</fx:Component>
-				</basic:itemRenderer>
-			</basic:DataGridColumn>
-			<basic:DataGridColumn label="Message" dataField="message">
-				<basic:itemRenderer>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+			<js:DataGridColumn label="Message" dataField="message">
+				<js:itemRenderer>
 					<fx:Component>
-						<basic:StringItemRenderer />
+						<js:StringItemRenderer />
 					</fx:Component>
-				</basic:itemRenderer>
-			</basic:DataGridColumn>
-		</basic:columns>
-	</basic:DataGrid>
+				</js:itemRenderer>
+			</js:DataGridColumn>
+		</js:columns>
+	</js:DataGrid>
 	
-</basic:View>
+</js:View>
