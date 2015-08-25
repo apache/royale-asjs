@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.core.ViewBase');
 
+goog.require('org.apache.flex.core.ContainerBase');
 goog.require('org.apache.flex.core.IPopUpHost');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.ValuesManager');
@@ -26,7 +27,7 @@ goog.require('org.apache.flex.utils.MXMLDataInterpreter');
 /**
  * @constructor
  * @implements {org.apache.flex.core.IPopUpHost}
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.core.ContainerBase}
  */
 org.apache.flex.core.ViewBase = function() {
   org.apache.flex.core.ViewBase.base(this, 'constructor');
@@ -58,7 +59,7 @@ org.apache.flex.core.ViewBase = function() {
   this.document = this;
 
 };
-goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
+goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.ContainerBase);
 
 
 /**
@@ -68,7 +69,7 @@ goog.inherits(org.apache.flex.core.ViewBase, org.apache.flex.core.UIBase);
  */
 org.apache.flex.core.ViewBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ViewBase',
-                qName: 'org.apache.flex.core.ViewBase' }],
+                qName: 'org.apache.flex.core.ContainerBase' }],
       interfaces: [org.apache.flex.core.IPopUpHost] };
 
 

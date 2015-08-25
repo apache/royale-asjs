@@ -60,7 +60,7 @@ package org.apache.flex.charts.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+						
 			var listModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
@@ -85,17 +85,11 @@ package org.apache.flex.charts.beads
 		
 		override protected function completeSetup():void
 		{
-			super.completeSetup();
-			
 			if (border) {
 				IParent(_strand).removeElement(border);
 			}
-		}
-		
-		override protected function viewCreatedHandler(event:Event):void
-		{
-			// prevented because itemsCreated needs to happen first
-			createViewport();
+					
+			super.completeSetup();
 		}
 		
 		public function get horizontalAxisGroup():IAxisGroup
@@ -123,9 +117,14 @@ package org.apache.flex.charts.beads
 			
 			dataGroup.removeAllElements();
 		}
-		
-		override protected function resizeViewport():void
-		{
+				
+		/**
+		 * ChartView overrides performLayout so that the exact area of the ChartDataGroup can
+		 * be calculated so the chart's layout algorithm knows precisely the dimensions of 
+		 * chart for its item renderers.
+		 */
+		override protected function adjustSizeBeforeLayout():void
+		{			
 			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
 			
 			var widthAdjustment:Number = 0;
@@ -144,16 +143,16 @@ package org.apache.flex.charts.beads
 			
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
+						
+			viewportModel.viewportHeight = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
+			viewportModel.viewportWidth = strandWidth - widthAdjustment - metrics.right - metrics.left;
+			viewportModel.viewportX = widthAdjustment + metrics.left;
+			viewportModel.viewportY = metrics.top;
 			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = widthAdjustment + metrics.left;
-			model.viewportY = metrics.top;
-			model.viewportWidth = strandWidth - widthAdjustment - metrics.right - metrics.left;
-			model.viewportHeight = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
-			model.contentX = model.viewportX;
-			model.contentY = model.viewportY;
-			model.contentWidth = model.viewportWidth;
-			model.contentHeight = model.viewportHeight;
+			viewportModel.contentX = viewportModel.viewportX;
+			viewportModel.contentY = viewportModel.viewportY;
+			viewportModel.contentWidth = viewportModel.viewportWidth;
+			viewportModel.contentHeight = viewportModel.viewportHeight;
 			
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = metrics.left;
@@ -170,14 +169,27 @@ package org.apache.flex.charts.beads
 			}
 			
 			if (dataGroup) {
-				UIBase(dataGroup).x = model.contentX;
-				UIBase(dataGroup).y = model.contentY;
-				UIBase(dataGroup).width = model.contentWidth;
-				UIBase(dataGroup).height = model.contentHeight;
+				UIBase(dataGroup).x = viewportModel.contentX;
+				UIBase(dataGroup).y = viewportModel.contentY;
+				UIBase(dataGroup).width = viewportModel.contentWidth;
+				UIBase(dataGroup).height = viewportModel.contentHeight;
 			}
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
+		}
+		
+		/**
+		 * Charts do not need adjustment after layout.
+		 */
+		override protected function adjustSizeAfterLayout():void
+		{
+			// not used for charts
+		}
+		
+		/**
+		 * Charts do not need their contents changed once determined prior to layout.
+		 */
+		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
+		{
+			// not used for charts
 		}
 	}
 }

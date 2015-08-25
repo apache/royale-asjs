@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 
 goog.require('org.apache.flex.core.IDataProviderItemRendererMapper');
 goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.events.EventDispatcher');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
@@ -66,9 +67,30 @@ Object.defineProperties(org.apache.flex.html.beads.TextItemRendererFactoryForArr
             this.model.addEventListener('dataProviderChanged',
                 goog.bind(this.dataProviderChangedHandler, this));
 
+            if (!this.itemRendererFactory)
+            {
+                var m2 = org.apache.flex.core.ValuesManager.valuesImpl.
+                    getValue(this.strand_, 'iItemRendererClassFactory');
+                this.itemRendererFactory = new m2();
+                this.strand_.addBead(this.itemRendererFactory);
+            }
+
             this.dataProviderChangedHandler(null);
+        },
+        get: function() {
+            return this.strand_;
         }
-    }
+    },
+    itemRendererFactory: {
+        /** @this {org.apache.flex.html.beads.TextItemRendererFactoryForArrayData} */
+        set: function(value) {
+           this.itemRendererFactory_ = value;
+        },
+        /** @this {org.apache.flex.html.beads.TextItemRendererFactoryForArrayData} */
+        get: function() {
+           return this.itemRendererFactory_;
+        }
+     }
 });
 
 
@@ -83,10 +105,10 @@ org.apache.flex.html.beads.TextItemRendererFactoryForArrayData.
   dp = this.model.dataProvider;
   n = dp.length;
   for (i = 0; i < n; i++) {
-    opt = new
-        org.apache.flex.html.supportClasses.StringItemRenderer();
-    this.dataGroup.addElement(opt);
-    opt.text = dp[i];
+    var tf = this.itemRendererFactory.createItemRenderer(this.dataGroup);
+    this.dataGroup.addElement(tf);
+    tf.data = dp[i];
+    tf.index = i;
   }
 
   var newEvent = new org.apache.flex.events.Event('itemsCreated');

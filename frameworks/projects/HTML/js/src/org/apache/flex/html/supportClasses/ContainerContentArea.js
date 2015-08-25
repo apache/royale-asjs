@@ -47,6 +47,7 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.FLEXJS_CLASS_
 org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement =
     function() {
   this.element = document.createElement('div');
+  this.element.className = 'ContainerContentArea';
 
   this.positioner = this.element;
   // absolute positioned children need a non-null

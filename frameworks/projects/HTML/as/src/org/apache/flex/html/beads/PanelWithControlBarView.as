@@ -138,11 +138,12 @@ package org.apache.flex.html.beads
 			}
 		}
 		
-		override protected function resizeViewport():void
+		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
 		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
+			var adjustHeight:Number = titleBar.height;
 			
+			titleBar.x = 0;
+			titleBar.y = 0;
 			titleBar.width = host.width;
 			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
@@ -150,81 +151,17 @@ package org.apache.flex.html.beads
 				controlBar.width = host.width;
 				controlBar.dispatchEvent( new Event("layoutNeeded") );
 				controlBar.y = host.height - controlBar.height;
+				adjustHeight += controlBar.height;
 			}
 			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = 0;
-			model.viewportY = titleBar.height;
-			model.viewportWidth = host.width;
-			model.viewportHeight = host.height - titleBar.height;
-			if (controlBar) {
-				model.viewportHeight -= controlBar.height;
-			}
-			model.contentX = model.viewportX + metrics.left;
-			model.contentY = model.viewportY + metrics.top;
-			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
-			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
-		
-		override protected function adjustSizeAfterLayout():void
-		{
-			var host:UIBase = UIBase(_strand);
-			var viewportModel:IViewportModel = viewport.model;
-			
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = host.width;
-			
-			if (controlBar) {
-				controlBar.width = host.width;
-				controlBar.y = host.height - controlBar.height;
+			if (heightSizedToContent) {
+				host.height = host.height + adjustHeight;
 			}
 			
-			// If the host is being sized by its content, the change in the contentArea
-			// causes the host's size to change
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
-				resizeViewport();
-			}
-				
-				// if the width is fixed and the height is changing, then set up horizontal
-				// scrolling (if the viewport supports it).
-			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
-			{
-				viewport.needsHorizontalScroller();
-				
-				var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-				
-				var cbHeight:Number = 0;
-				if (controlBar) {
-					controlBar.y = viewportModel.contentHeight + titleBar.height + metrics.top + metrics.bottom;
-					cbHeight = controlBar.height;
-				}
-				
-				host.setHeight(viewportModel.contentHeight + titleBar.height + cbHeight, false);
-				resizeViewport();
-			}
-				
-				// if the height is fixed and the width can change, then set up
-				// vertical scrolling (if the viewport supports it).
-			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
-			{
-				viewport.needsVerticalScroller();				
-				host.setWidth(viewportModel.contentWidth+viewport.scrollerWidth(), false);
-				resizeViewport();
-			}
-				
-				// Otherwise the viewport needs to display some scrollers (or other elements
-				// allowing the rest of the contentArea to be visible)
-			else {
-				
-				viewport.needsScrollers();
-				viewport.updateSize();
-				viewport.updateContentAreaSize();
-			}
+			viewportModel.viewportHeight = host.height - adjustHeight;
+			viewportModel.viewportWidth = host.width;
+			viewportModel.viewportX = 0;
+			viewportModel.viewportY = titleBar.height;
 		}
 	}
 }

@@ -57,6 +57,17 @@ org.apache.flex.html.supportClasses.ScrollingViewport.prototype.updateContentAre
 };
 
 
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.handleInitComplete =
+  function(event) {
+    var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+    var contentView = viewBead.contentView;
+    contentView.element.style['overflow'] = 'auto';
+};
+
+
 
 Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.prototype, {
     /** @export */
@@ -74,22 +85,30 @@ Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.pr
     verticalScrollPosition: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {
-            return this.strand.positioner.scrollTop;
+             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+             var contentView = viewBead.contentView;
+            return contentView.positioner.scrollTop;
         },
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
-             this.strand.positioner.scrollTop = value;
+             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+             var contentView = viewBead.contentView;
+             contentView.positioner.scrollTop = value;
         }
     },
     /** @export */
     horizontalScrollPosition: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {
-            return this.strand.positioner.scrollLeft;
+             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+             var contentView = viewBead.contentView;
+            return contentView.positioner.scrollLeft;
         },
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
-             this.strand.positioner.scrollLeft = value;
+             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+             var contentView = viewBead.contentView;
+             contentView.positioner.scrollLeft = value;
         }
     },
     /** @export */
@@ -101,7 +120,8 @@ Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.pr
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
             this.strand_ = value;
-            this.strand_.element.style['overflow'] = 'auto';
+            this.strand_.addEventListener('initComplete',
+              goog.bind(this.handleInitComplete, this));
         }
     }
 });

@@ -130,7 +130,7 @@ org.apache.flex.html.List.prototype.addedToParent =
     function() {
   org.apache.flex.html.List.base(this, 'addedToParent');
 
-  var dataFactory = this.getBeadByType(org.apache.flex.html.beads.DataItemRendererFactoryForArrayData);
+  var dataFactory = this.getBeadByType(org.apache.flex.core.IDataProviderItemRendererMapper);
   if (dataFactory == null) {
     var m1 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'iDataProviderItemRendererMapper');
     dataFactory = new m1();

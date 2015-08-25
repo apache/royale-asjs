@@ -77,11 +77,12 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
   var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
+  var viewportModel = layoutParent.viewportModel;
 
   var n = itemRendererParent.numElements;
   var xpos = 0;
-  var useWidth = this.strand_.width / n;
-  var useHeight = this.strand_.height;
+  var useWidth = viewportModel.contentWidth / n;
+  var useHeight = viewportModel.contentHeight;
 
   for (var i = 0; i < n; i++)
   {
@@ -95,8 +96,8 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
     ir.positioner.style['top-margin'] = 'auto';
     ir.positioner.style['bottom-margin'] = 'auto';
 
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i] - 2;
-    else ir.width = useWidth - 2;
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i];
+    else ir.width = useWidth;
 
     if (ir.positioner.style.display == 'none')
       ir.positioner.lastDisplay_ = 'inline-block';

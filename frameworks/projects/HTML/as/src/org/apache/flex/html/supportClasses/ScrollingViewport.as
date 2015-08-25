@@ -194,8 +194,8 @@ package org.apache.flex.html.supportClasses
 			
 			var rect:Rectangle = contentArea.scrollRect;
 			if (rect) {
-				rect.x = 0;
-				rect.y = 0;
+				rect.x = model.viewportX;//0;
+				rect.y = model.viewportY;//0;
 				rect.width = model.viewportWidth - metrics.left;
 				rect.height = model.viewportHeight - 2*metrics.top;
 				contentArea.scrollRect = rect;
@@ -289,7 +289,7 @@ package org.apache.flex.html.supportClasses
 			
 			var rect:Rectangle = contentArea.scrollRect;
 			if (rect == null) {
-				rect = new Rectangle(0, 0, 
+				rect = new Rectangle(model.viewportX, model.viewportY,//0, 0, 
 					                 model.viewportWidth - metrics.left - metrics.right, 
 									 model.viewportHeight - metrics.top - metrics.bottom);
 				contentArea.scrollRect = rect;
@@ -321,7 +321,7 @@ package org.apache.flex.html.supportClasses
 			
 			var rect:Rectangle = contentArea.scrollRect;
 			if (rect == null) {
-				rect = new Rectangle(0, 0, 
+				rect = new Rectangle(model.viewportX, model.viewportY,//0, 0, 
 					model.viewportWidth - metrics.left - metrics.right, 
 					model.viewportHeight - metrics.top - metrics.bottom);
 				contentArea.scrollRect = rect;

@@ -18,6 +18,7 @@ goog.require('org.apache.flex.core.BeadViewBase');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.ILayoutParent');
 goog.require('org.apache.flex.html.beads.models.ViewportModel');
+goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 goog.require('org.apache.flex.html.supportClasses.Viewport');
 
 
@@ -31,6 +32,7 @@ org.apache.flex.html.beads.ContainerView = function() {
   org.apache.flex.html.beads.ContainerView.base(this, 'constructor');
 
   this.className = 'ContainerView';
+  this.resizingChildren = false;
 };
 goog.inherits(
     org.apache.flex.html.beads.ContainerView,
@@ -47,6 +49,13 @@ org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
                 qName: 'org.apache.flex.html.beads.ContainerView' }],
     interfaces: [org.apache.flex.core.ILayoutParent]
     };
+
+
+/**
+ * @private
+ * @type {Object}
+ */
+org.apache.flex.html.beads.ContainerView.prototype.strand_ = null;
 
 
 /**
@@ -71,27 +80,48 @@ org.apache.flex.html.beads.ContainerView.prototype.contentArea_ = null;
 
 
 /**
- *
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.addOtherListeners = function() {
-  this._strand.addEventListener('childrenAdded',
-      goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('elementAdded',
-      goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('layoutNeeded',
-     goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('itemsCreated',
-     goog.bind(this.changeHandler, this));
-};
-
-
-/**
  * @return {Object} The container's child content area.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.createContentView = function() {
-  return this._strand;
+  return new org.apache.flex.html.supportClasses.ContainerContentArea();
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.initCompleteHandler = function(event) {
+  if ((this.host.isHeightSizedToContent() || !isNaN(this.host.explicitHeight)) &&
+      (this.host.isWidthSizedToContent() || !isNaN(this.host.explicitWidth))) {
+         this.completeSetup();
+
+         var num = this.contentView.numElements;
+         if (num > 0) {
+           this.performLayout(event);
+         }
+   }
+   else {
+     this.strand_.addEventListener('sizeChanged',
+       goog.bind(this.deferredSizeHandler, this));
+   }
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.deferredSizeHandler = function(event) {
+    this.strand_.removeEventListener('sizeChanged',
+      goog.bind(this.deferredSizeHandler, this));
+    this.completeSetup();
+
+    var num = this.contentView.numElements;
+    if (num > 0) {
+      this.performLayout(event);
+    }
 };
 
 
@@ -100,9 +130,23 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.changeHandler = function(event) {
-  this.createViewport();
+  this.performLayout(event);
+};
 
-  this.performLayout(null);
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.childrenChangedHandler = function(event) {
+    var num = this.contentView.numElements;
+    for (var i = 0; i < num; i++) {
+      var child = this.contentView.getElementAt(i);
+      child.addEventListener('widthChanged',
+          goog.bind(this.childResizeHandler, this));
+      child.addEventListener('heightChanged',
+          goog.bind(this.childResizeHandler, this));
+    }
 };
 
 
@@ -111,8 +155,83 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.sizeChangeHandler = function(event) {
-  this.addOtherListeners();
-  this.changeHandler(event);
+  this.performLayout(event);
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.resizeHandler = function(event) {
+  this.performLayout(event);
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+ org.apache.flex.html.beads.ContainerView.
+    prototype.childResizeHandler = function(event) {
+    if (this.resizingChildren) return;
+    this.resizingChildren = true;
+    this.performLayout(event);
+    this.resizingChildren = false;
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.completeSetup = function() {
+  this.createViewport();
+
+   this.strand_.addEventListener('childrenAdded',
+      goog.bind(this.childrenChangedHandler, this));
+   this.childrenChangedHandler(null);
+   this.strand_.addEventListener('childrenAdded',
+      goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('childrenRemoved',
+      goog.bind(this.changeHandler, this));
+  this.strand_.addEventListener('layoutNeeded',
+     goog.bind(this.performLayout, this));
+  this.strand_.addEventListener('widthChanged',
+     goog.bind(this.resizeHandler, this));
+  this.strand_.addEventListener('heightChanged',
+     goog.bind(this.resizeHandler, this));
+  this.strand_.addEventListener('sizeChanged',
+     goog.bind(this.resizeHandler, this));
+};
+
+
+/**
+ * Creates the viewport and viewportModel.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.createViewport = function() {
+  if (this.viewportModel_ == null) {
+    this.viewportModel_ = new org.apache.flex.html.beads.models.ViewportModel();
+    this.viewportModel_.contentArea = this.contentView;
+    this.viewportModel_.contentIsHost = false;
+  }
+  if (this.viewport_ == null) {
+    this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
+    this.viewport_.model = this.viewportModel_;
+    this.strand_.addBead(this.viewport_);
+  }
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.adjustSizeBeforeLayout = function() {
+    this.viewportModel_.contentWidth = this.strand_.width;
+    this.viewportModel_.contentHeight = this.strand_.height;
+    this.viewportModel_.contentX = 0;
+    this.viewportModel_.contentY = 0;
 };
 
 
@@ -121,15 +240,16 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.performLayout = function(event) {
-  if (this.layout_ == null) {
-    this.layout_ = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
-    if (this.layout_ == null) {
-      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
-      this.layout_ = new m3();
-      this._strand.addBead(this.layout_);
+  this.adjustSizeBeforeLayout();
+  if (this.layout == null) {
+    this.layout = this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout);
+    if (this.layout == null) {
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+      this.layout = new m3();
+      this.strand_.addBead(this.layout);
     }
   }
-  this.layout_.layout();
+  this.layout.layout();
 
   this.adjustSizeAfterLayout();
 };
@@ -140,12 +260,48 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.adjustSizeAfterLayout = function() {
-  var max = this.layout_.maxWidth;
+  var max = this.contentView.width;//this.layout.maxWidth;
   if (isNaN(this.resizableView.explicitWidth) && !isNaN(max))
     this.resizableView.setWidth(max, true);
-  max = this.layout_.maxHeight;
+  max = this.contentView.height;//this.layout.maxHeight;
   if (isNaN(this.resizableView.explicitHeight) && !isNaN(max))
     this.resizableView.setHeight(max, true);
+
+  this.layoutContainer(false, false);
+
+  // The JS version of Panel matches the content space to the viewport since HTML
+  // takes care of scrollbars
+  this.viewportModel_.contentX = this.viewportModel_.viewportX;
+  this.viewportModel_.contentY = this.viewportModel_.viewportY;
+  this.viewportModel_.contentWidth = this.viewportModel_.viewportWidth;
+  this.viewportModel_.contentHeight = this.viewportModel_.viewportHeight;
+
+  this.contentView.x = this.viewportModel_.contentX;
+  this.contentView.y = this.viewportModel_.contentY;
+  this.contentView.width = this.viewportModel_.contentWidth;
+  this.contentView.height = this.viewportModel_.contentHeight;
+
+  this.viewport_.updateSize();
+  this.viewport_.updateContentAreaSize();
+};
+
+
+/**
+ * @expose
+ * This function determines the size and placement of the viewport by adjusting the viewport
+ * values in the viewportModel. Subclasses can use this to position additional items. If either
+ * of the two parameters are true, the subclass should adjust the size of the host accordingly
+ * to account for any additional elements.
+ *
+ * @param {boolean} widthSizedToContent True if the width of the container is being sized by its content.
+ * @param {boolean} heightSizedToContent True if the height of the container is being sized by its content.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.layoutContainer = function(widthSizedToContent, heightSizedToContent) {
+  this.viewportModel_.viewportHeight = this.strand_.height;
+  this.viewportModel_.viewportWidth = this.strand_.width;
+  this.viewportModel_.viewportX = 0;
+  this.viewportModel_.viewportY = 0;
 };
 
 
@@ -159,38 +315,15 @@ org.apache.flex.html.beads.ContainerView.
 
 
 /**
- * Creates the viewport and viewportModel.
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.createViewport = function() {
-  if (this.viewportModel_ == null) {
-    this.viewportModel_ = new org.apache.flex.html.beads.models.ViewportModel();
-    this.viewportModel_.contentArea = this.contentView;
-    this.viewportModel_.contentIsHost = true;
-    this.viewportModel_.contentWidth = this._strand.width;
-    this.viewportModel_.contentHeight = this._strand.height;
-    this.viewportModel_.contentX = 0;
-    this.viewportModel_.contentY = 0;
-  }
-  if (this.viewport_ == null) {
-    this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
-    this.viewport_.model = this.viewportModel_;
-    this._strand.addBead(this.viewport_);
-  }
-  this.resizeViewport();
-};
-
-
-/**
  * Adjusts the size of the viewportModel's viewport parameters to match those
  * of the strand.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.resizeViewport = function() {
-  this.viewportModel_.viewportHeight = this._strand.height;
-  this.viewportModel_.viewportWidth = this._strand.width;
+/*  this.viewportModel_.viewportHeight = this.strand_.height;
+  this.viewportModel_.viewportWidth = this.strand_.width;
   this.viewportModel_.viewportX = 0;
-  this.viewportModel_.viewportY = 0;
+  this.viewportModel_.viewportY = 0;*/
 };
 
 
@@ -200,13 +333,16 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this.contentArea_;
+        },
+        set: function(value) {
+            this.contentArea_ = value;
         }
     },
     /** @export */
     resizableView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this._strand;
+            return this.strand_;
         },
         set: function(value) {
         }
@@ -215,22 +351,15 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     strand: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
+            this.strand_ = value;
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
-            this.contentArea_ = this.createContentView();
-            if (this._strand.isWidthSizedToContent() &&
-                this._strand.isHeightSizedToContent())
-              this.addOtherListeners();
-            else {
-              this._strand.addEventListener('heightChanged',
-                  goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('widthChanged',
-                  goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('sizeChanged',
-                  goog.bind(this.sizeChangeHandler, this));
-              if (!isNaN(this._strand.explicitWidth) &&
-                  !isNaN(this._strand.explicitHeight))
-                this.addOtherListeners();
-            }
+            this.contentView = this.createContentView();
+            this.contentView.percentWidth = 100;
+            this.contentView.percentHeight = 100;
+            this.host.addElement(this.contentView);
+            this.host.setActualParent(this.contentView);
+            this.strand_.addEventListener('initComplete',
+                  goog.bind(this.initCompleteHandler, this));
          }
     },
     /** @export */
@@ -253,6 +382,17 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this.viewportModel_;
+        }
+    },
+    /** @export */
+    layout: {
+        /** @this {org.apache.flex.html.beads.ContainerView} */
+        set: function(value) {
+            this.layout_ = value;
+        },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
+        get: function() {
+            return this.layout_;
         }
     }
 

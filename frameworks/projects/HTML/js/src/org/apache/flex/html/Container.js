@@ -53,6 +53,7 @@ org.apache.flex.html.Container.prototype.createElement =
   this.element = document.createElement('div');
 
   this.positioner = this.element;
+
   // absolute positioned children need a non-null
   // position value in the parent.  It might
   // get set to 'absolute' if the container is
@@ -60,10 +61,10 @@ org.apache.flex.html.Container.prototype.createElement =
   this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
-  this.addEventListener('childrenAdded',
+  /*this.addEventListener('childrenAdded',
               goog.bind(this.runLayoutHandler, this));
   this.addEventListener('elementRemoved',
-              goog.bind(this.runLayoutHandler, this));
+              goog.bind(this.runLayoutHandler, this));*/
 
   return this.element;
 };
@@ -71,22 +72,22 @@ org.apache.flex.html.Container.prototype.createElement =
 
 /**
  * @override
- */
+ *
 org.apache.flex.html.Container.prototype.addElement =
     function(child) {
   org.apache.flex.html.Container.base(this, 'addElement', child);
   this.dispatchEvent('elementAdded');
-};
+};*/
 
 
 /**
  * @override
- */
+ *
 org.apache.flex.html.Container.prototype.removeElement =
     function(child) {
   org.apache.flex.html.Container.base(this, 'removeElement', child);
   this.dispatchEvent('elementRemoved');
-};
+};*/
 
 
 /**
@@ -101,14 +102,14 @@ org.apache.flex.html.Container.prototype.childrenAdded =
 /**
  * @export
  * @param {Object} event The event invoking the layout.
- */
+ *
 org.apache.flex.html.Container.prototype.runLayoutHandler =
   function(event) {
   var layout = this.getBeadByType(org.apache.flex.core.IBeadLayout);
   if (layout) {
     layout.layout();
   }
-};
+};*/
 
 
 /**

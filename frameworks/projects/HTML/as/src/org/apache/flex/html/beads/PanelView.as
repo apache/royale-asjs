@@ -55,6 +55,7 @@ package org.apache.flex.html.beads
 		 */
 		public function PanelView()
 		{
+			super();
 		}
 		
 		private var _titleBar:TitleBar;
@@ -72,6 +73,7 @@ package org.apache.flex.html.beads
 		{
 			return _titleBar;
 		}
+		
         /**
          *  @private
          */
@@ -107,85 +109,25 @@ package org.apache.flex.html.beads
 		
 		override protected function completeSetup():void
 		{
+			UIBase(_strand).addElement(titleBar);
 			super.completeSetup();
-			
-			UIBase(_strand).addElement(titleBar, false);
 		}
 		
-		/**
-		 * Sets up the viewport and model to reflect the addition of the titlebar.
-		 */
-		override protected function resizeViewport():void
+		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
 		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
-			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
-			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = 0;
-			model.viewportY = titleBar.height;
-			model.viewportWidth = host.width;
-			model.viewportHeight = host.height - titleBar.height;
-			model.contentX = model.viewportX + metrics.left;
-			model.contentY = model.viewportY + metrics.top;
-			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
-			model.contentHeight = model.viewportHeight - metrics.bottom;
-			model.contentArea = contentView;
-			model.contentIsHost = false;
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
-		
-		/**
-		 * This function is called when the layout has changed the size of the contentArea
-		 * (aka, actualParent). Depending on how the Panel is being sized, the contentArea
-		 * affects how the panel is presented.
-		 */
-		override protected function adjustSizeAfterLayout():void
-		{
-			var host:UIBase = UIBase(_strand);
-			var viewportModel:IViewportModel = viewport.model;
-						
 			titleBar.x = 0;
 			titleBar.y = 0;
 			titleBar.width = host.width;
+			titleBar.dispatchEvent( new Event("layoutNeeded") );
 			
-			// If the host is being sized by its content, the change in the contentArea
-			// causes the host's size to change
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
-				titleBar.setWidth(host.width, true);
-				resizeViewport();
+			if (heightSizedToContent) {
+				host.height = host.height + titleBar.height;
 			}
-				
-			// if the width is fixed and the height is changing, then set up horizontal
-			// scrolling (if the viewport supports it).
-			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
-			{
-				viewport.needsHorizontalScroller();
-				resizeViewport();
-				
-			}
-				
-				// if the height is fixed and the width can change, then set up
-				// vertical scrolling (if the viewport supports it).
-			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
-			{
-				viewport.needsVerticalScroller();
-				resizeViewport();
-			}
-				
-				// Otherwise the viewport needs to display some scrollers (or other elements
-				// allowing the rest of the contentArea to be visible)
-			else {
-				viewport.needsScrollers();
-				viewport.updateSize();
-				viewport.updateContentAreaSize();
-			}
-		}
-                
+			
+			viewportModel.viewportHeight = host.height - titleBar.height;
+			viewportModel.viewportWidth = host.width;
+			viewportModel.viewportX = 0;
+			viewportModel.viewportY = titleBar.height;
+		}       
 	}
 }

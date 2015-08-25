@@ -14,14 +14,14 @@
 
 goog.provide('org.apache.flex.core.ListBase');
 
-goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.core.ContainerBase');
 goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 
 
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.UIBase}
+ * @extends {org.apache.flex.core.ContainerBase}
  */
 org.apache.flex.core.ListBase = function() {
   org.apache.flex.core.ListBase.base(this, 'constructor');
@@ -33,7 +33,7 @@ org.apache.flex.core.ListBase = function() {
   this.selectedIndex_ = -1;
 };
 goog.inherits(org.apache.flex.core.ListBase,
-    org.apache.flex.core.UIBase);
+    org.apache.flex.core.ContainerBase);
 
 
 /**

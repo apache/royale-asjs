@@ -65,7 +65,9 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     prototype.layout = function() {
   var children, i, n;
 
-  children = this.strand_.internalChildren();
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var contentView = viewBead.contentView;
+  children = contentView.internalChildren();
   var sps = this.strand_.positioner.style;
   var scv = getComputedStyle(this.strand_.positioner);
   var hasWidth = sps.width !== undefined && sps.width != this.lastWidth_;

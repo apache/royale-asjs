@@ -38,6 +38,8 @@ org.apache.flex.html.beads.PanelView = function() {
    * @type {?Object}
   */
   this.titleBar_ = null;
+
+  this.className = 'PanelView';
 };
 goog.inherits(
     org.apache.flex.html.beads.PanelView,
@@ -56,6 +58,13 @@ org.apache.flex.html.beads.PanelView
 
 
 /**
+ * @private
+ * @type {Object}
+ */
+org.apache.flex.html.beads.PanelView.prototype.strand_ = null;
+
+
+/**
  * @override
  */
 org.apache.flex.html.beads.PanelView.
@@ -70,22 +79,25 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
     strand: {
         /** @this {org.apache.flex.html.beads.PanelView} */
         set: function(value) {
-            org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.PanelView, this, 'strand', value);
-
+            this.strand_ = value;
             if (!this.titleBar_)
               this.titleBar_ = new org.apache.flex.html.TitleBar();
 
-            this._strand.titleBar = this.titleBar_;
-            this.titleBar_.id = 'titleBar';
-            this.titleBar_.model = this._strand.model;
+            this.strand_.titleBar = this.titleBar_;
+            this.titleBar_.id = 'panelTitleBar';
+            this.titleBar_.model = this.strand_.model;
+            this.titleBarAdded_ = true;
+            this.strand_.addElement(this.titleBar_);
 
-            this._strand.controlBar =
-                new org.apache.flex.html.ControlBar();
+//            this.strand_.controlBar =
+//                new org.apache.flex.html.ControlBar();
 
             // listen for changes to the strand's model so items can be changed
             // in the view
-            this._strand.model.addEventListener('titleChange',
+            this.strand_.model.addEventListener('titleChange',
                 goog.bind(this.changeHandler, this));
+
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.PanelView, this, 'strand', value);
         }
     },
     /** @export */
@@ -104,11 +116,35 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
 
 /**
  * @override
+ * @param {boolean} widthSizedToContent True if the width is determined by content.
+ * @param {boolean} heightSizedToContent True if the height is determined by content.
+ */
+org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
+    function(widthSizedToContent, heightSizedToContent) {
+
+  this.titleBar_.x = 0;
+  this.titleBar_.y = 0;
+  this.titleBar_.width = this.strand_.width;
+  this.titleBar_.dispatchEvent('layoutNeeded');
+
+  if (heightSizedToContent) {
+    this.strand_.height = this.strand_.height + this.titleBar_.height;
+  }
+
+  this.viewportModel.viewportHeight = this.strand_.height - this.titleBar_.height;
+  this.viewportModel.viewportWidth = this.strand_.width;
+  this.viewportModel.viewportX = 0;
+  this.viewportModel.viewportY = this.titleBar_.height;
+};
+
+
+/**
+ * @override
  * @param {org.apache.flex.events.Event} event The event that triggered this handler.
  */
-org.apache.flex.html.beads.PanelView.prototype.changeHandler =
+/**org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
-  var strand = this._strand;
+  var strand = this.strand_;
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
@@ -121,7 +157,7 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     this.titleBar_.title = strand.model.title;
   }
 
-  var p = this._strand.positioner;
+  var p = this.strand_.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.width;
     w -= p.offsetWidth - p.clientWidth;
@@ -141,4 +177,4 @@ org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     strand.contentArea.style.height = h.toString() + 'px';
   }
   org.apache.flex.html.beads.PanelView.base(this, 'changeHandler', event);
-};
+};**/

@@ -27,11 +27,13 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
+	import org.apache.flex.html.beads.ButtonBarView;
 	
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
@@ -101,6 +103,7 @@ package org.apache.flex.html.beads.layouts
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParent = layoutParent.contentView;
 			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
+			var viewportModel:IViewportModel = (layoutParent as ButtonBarView).viewportModel;
 			
 			var n:int = contentView.numElements;
 			var realN:int = n;
@@ -112,8 +115,8 @@ package org.apache.flex.html.beads.layouts
 			}
 			
 			var xpos:Number = 0;
-			var useWidth:Number = UIBase(contentView).width / realN;
-			var useHeight:Number = UIBase(contentView).height;
+			var useWidth:Number = viewportModel.contentWidth / realN;
+			var useHeight:Number = viewportModel.contentHeight;
 			
 			for (var i:int=0; i < n; i++)
 			{
@@ -131,6 +134,9 @@ package org.apache.flex.html.beads.layouts
 				}
 				xpos += UIBase(ir).width;
 			}
+			
+			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
+			
             return true;
 		}
 	}

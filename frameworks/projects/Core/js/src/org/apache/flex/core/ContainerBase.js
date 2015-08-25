@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.core.ContainerBase');
 
+goog.require('org.apache.flex.core.IChrome');
 goog.require('org.apache.flex.core.IMXMLDocument');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.ValuesManager');
@@ -53,6 +54,7 @@ org.apache.flex.core.ContainerBase = function() {
   this.currentState_ = null;
 
   this.document = this;
+  this.actualParent_ = this;
 
 };
 goog.inherits(org.apache.flex.core.ContainerBase,
@@ -80,6 +82,20 @@ org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
 
 
 /**
+ * @private
+ * @type {Object}
+ */
+org.apache.flex.core.ContainerBase.prototype.actualParent_ = null;
+
+
+/**
+ * @export
+ * @type {boolean}
+ */
+org.apache.flex.core.ContainerBase.prototype.supportsChrome = true;
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
@@ -104,7 +120,7 @@ org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
     this.dispatchEvent('initComplete');
     this.initialized_ = true;
   }
-  this.dispatchEvent('childrenAdded');
+//??  this.dispatchEvent('childrenAdded');
 };
 
 
@@ -126,6 +142,70 @@ org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
+};
+
+
+/**
+ * @expose
+ * @param {Object} parent The component to use as the parent of the children for the container.
+ */
+org.apache.flex.core.ContainerBase.prototype.setActualParent = function(parent) {
+  this.actualParent_ = parent;
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.addElement = function(c) {
+  if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     //org.apache.flex.core.ContainerBase.base(this, 'addElement', c);
+     this.element.appendChild(c.positioner);
+     c.addedToParent();
+  }
+  else {
+     //this.actualParent.addElement(c);
+     this.actualParent.element.appendChild(c.positioner);
+     c.addedToParent();
+  }
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index) {
+  if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     //org.apache.flex.core.ContainerBase.base(this, 'addElementAt', c, index);
+     var children1 = this.internalChildren();
+     if (index >= children1.length) {
+       this.addElement(c);
+     } else {
+       this.element.insertBefore(c.positioner,
+           children1[index]);
+       c.addedToParent();
+     }
+   } else {
+     //this.actualParent.addElementAt(c, index);
+     var children2 = this.actualParent.internalChildren();
+     if (index >= children2.length) {
+       this.actualParent.element.appendChild(c);
+       c.addedToParent();
+     } else {
+       this.actualParent.element.insertBefore(c.positioner,
+           children2[index]);
+       c.addedToParent();
+     }
+   }
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.getElementAt = function(index) {
+  var children = this.actualParent.internalChildren();
+  return children[index].flexjs_wrapper;
 };
 
 
@@ -182,6 +262,17 @@ Object.defineProperties(org.apache.flex.core.ContainerBase.prototype, {
         /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
            this.transitions_ = s;
+        }
+    },
+    /** @export */
+    actualParent: {
+        /** @this {org.apache.flex.core.ContainerBase} */
+        get: function() {
+             return this.actualParent_;
+        },
+        /** @this {org.apache.flex.core.ContainerBase} */
+        set: function(s) {
+             this.actualParent_ = s;
         }
     }
 });

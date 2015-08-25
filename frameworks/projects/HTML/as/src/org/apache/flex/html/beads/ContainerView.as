@@ -44,6 +44,22 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.utils.BeadMetrics;
 	
+	/**
+	 * This class creates and manages the contents of a Container. On the ActionScript
+	 * side, a Container has a contentView into which the offical children can be
+	 * placed. When adding an element that implements IChrome, that element is not
+	 * placed into the contentView, but is made a child of the Container directly.
+	 * 
+	 * Containers also have a layout associated with them which controls the size and
+	 * placement of the elements in the contentView. When a Container does not have an
+	 * explicit size (including a percent size), the content dictates the size of the
+	 * Container.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+	 */
 	public class ContainerView extends BeadViewBase implements IBeadView, ILayoutParent
 	{
 		/**
@@ -97,7 +113,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get viewport():IViewport
+		protected function get viewport():IViewport
 		{
 			return _viewport;
 		}
@@ -181,7 +197,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function deferredSizeHandler(event:Event):void
+		private function deferredSizeHandler(event:Event):void
 		{
 			host.removeEventListener(event.type, deferredSizeHandler);
 			completeSetup();
@@ -208,12 +224,15 @@ package org.apache.flex.html.beads
 			
 			(contentView as UIBase).setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
 			
-			host.addEventListener("childrenAdded", childrenChangedHandler);
-            childrenChangedHandler(null);
+			// when the first layout is complete, set up listeners for changes
+			// to the childrens' sizes.
+			host.addEventListener("layoutComplete", childrenChangedHandler);
+			
 			host.addEventListener("childrenAdded", performLayout);
 			host.addEventListener("layoutNeeded", performLayout);
 			host.addEventListener("widthChanged", resizeHandler);
 			host.addEventListener("heightChanged", resizeHandler);
+			host.addEventListener("sizeChanged", resizeHandler);
 			host.addEventListener("viewCreated", viewCreatedHandler);
 		}
 		
@@ -243,9 +262,7 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
 		protected function viewCreatedHandler(event:Event):void
-		{
-			resizeViewport();
-			
+		{			
 			if ((host as UIBase).numElements > 0) {
 				performLayout(null);
 			}
@@ -260,7 +277,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function createViewport():void
+		private function createViewport():void
 		{
 			if (viewportModel == null) {
 				_viewportModel = new ViewportModel();
@@ -283,16 +300,33 @@ package org.apache.flex.html.beads
 				viewport.model = viewportModel;
 			}
 			
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
 			viewportModel.contentArea = contentView;
 			viewportModel.contentIsHost = false;
+		}
+		
+		/**
+		 * Adjusts the size of the contentArea via the viewportModel. Subclasses may wish to fix the
+		 * size of the content area here or let the layout determine the size and adjust the size
+		 * of the content to fit the layout.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function adjustSizeBeforeLayout():void
+		{
+			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
+			
 			viewportModel.contentWidth = Math.max(host.width - metrics.left - metrics.right, 0);
 			viewportModel.contentHeight = Math.max(host.height - metrics.top - metrics.bottom, 0);
 			viewportModel.contentX = metrics.left;
 			viewportModel.contentY = metrics.top;
 			
-			resizeViewport();
+			contentView.x = viewportModel.contentX;
+			contentView.y = viewportModel.contentY;
+			contentView.width = viewportModel.contentWidth;
+			contentView.height = viewportModel.contentHeight;
 		}
 		
 		/**
@@ -307,6 +341,8 @@ package org.apache.flex.html.beads
 		 */
 		protected function performLayout(event:Event):void
 		{
+			adjustSizeBeforeLayout();
+			
 			var host:UIBase = _strand as UIBase;
 			
 			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
@@ -330,7 +366,7 @@ package org.apache.flex.html.beads
 		 * @private
 		 */
 		private var adjusting:Boolean = false;
-		
+
 		/**
 		 * Adjusts the size of the host, or adds scrollbars to the viewport, after
 		 * the layout has been run.
@@ -350,27 +386,47 @@ package org.apache.flex.html.beads
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
 				host.setWidthAndHeight(viewportModel.contentWidth+metrics.left+metrics.right, 
 					viewportModel.contentHeight+metrics.top+metrics.bottom, false);
-				resizeViewport();
 			}
 			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
 			{
 				viewport.needsHorizontalScroller();
 				host.setHeight(viewportModel.contentHeight+metrics.top+metrics.bottom, false);
-				resizeViewport();
 			}
 			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
 			{
 				viewport.needsVerticalScroller();
 				host.setWidth(viewportModel.contentWidth+metrics.left+metrics.right, false);
-				resizeViewport();
 			}
 			else {
 				viewport.needsScrollers();
-				viewport.updateSize();
-				viewport.updateContentAreaSize();
 			}
 			
+			layoutContainer(host.isWidthSizedToContent(), host.isHeightSizedToContent());
+			
+			viewportModel.contentX = viewportModel.viewportX+metrics.left;
+			viewportModel.contentY = viewportModel.viewportY+metrics.top;
+			
+			viewport.updateSize();
+			viewport.updateContentAreaSize();
+			
 			adjusting = false;
+		}
+		
+		/**
+		 * The job of layoutContainer() is to size and position of the viewport using the
+		 * ViewportModel's viewport properties. This base class function simply sets the
+		 * viewport to cover the entire Container host.
+		 * 
+		 * If either of the parameters is true, layoutContainer should adjust the size of
+		 * the host component Container accordingly, to accomodate whatever additions the
+		 * subclass is making.
+		 */
+		protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
+		{
+			viewportModel.viewportHeight = host.height;
+			viewportModel.viewportWidth = host.width;
+			viewportModel.viewportX = 0;
+			viewportModel.viewportY = 0;
 		}
 		
 		/**
@@ -405,28 +461,6 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * Resizes the viewport opening in case the host has been resized.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function resizeViewport():void
-		{
-			// the viewport takes the entire space as there is no default chrome.
-			// if chrome children get added the viewport will need to be adjusted
-			// accordingly.
-			viewportModel.viewportHeight = host.height;
-			viewportModel.viewportWidth = host.width;
-			viewportModel.viewportX = 0;
-			viewportModel.viewportY = 0;
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
-		
-		/**
 		 * Handles dynamic changes to the host's size by running the layout once
 		 * the viewport has been adjusted.
 		 *  
@@ -437,7 +471,6 @@ package org.apache.flex.html.beads
 		 */
 		protected function resizeHandler(event:Event):void
 		{
-			resizeViewport();
 			if (!adjusting) {
 				performLayout(event);
 			}
@@ -455,11 +488,14 @@ package org.apache.flex.html.beads
 		protected function childrenChangedHandler(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;
+			host.removeEventListener(event.type, childrenChangedHandler);
+			
 			var n:Number = contentView.numElements;
 			for (var i:int=0; i < n; i++) {
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				child.addEventListener("widthChanged", childResizeHandler);
 				child.addEventListener("heightChanged", childResizeHandler);
+				child.addEventListener("sizeChanged", childResizeHandler);
 			}
 		}
 		
@@ -483,7 +519,7 @@ package org.apache.flex.html.beads
 			resizingChildren = true;
 			
 			var child:UIBase = event.target as UIBase;
-			performLayout(event);
+//			performLayout(event);
 			resizingChildren = false;
 		}
 		
