@@ -58,13 +58,6 @@ org.apache.flex.html.beads.PanelView
 
 
 /**
- * @private
- * @type {Object}
- */
-org.apache.flex.html.beads.PanelView.prototype.strand_ = null;
-
-
-/**
  * @override
  */
 org.apache.flex.html.beads.PanelView.
@@ -79,22 +72,21 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
     strand: {
         /** @this {org.apache.flex.html.beads.PanelView} */
         set: function(value) {
-            this.strand_ = value;
             if (!this.titleBar_)
               this.titleBar_ = new org.apache.flex.html.TitleBar();
 
-            this.strand_.titleBar = this.titleBar_;
+            value.titleBar = this.titleBar_;
             this.titleBar_.id = 'panelTitleBar';
-            this.titleBar_.model = this.strand_.model;
+            this.titleBar_.model = value.model;
             this.titleBarAdded_ = true;
-            this.strand_.addElement(this.titleBar_);
+            value.addElement(this.titleBar_);
 
-//            this.strand_.controlBar =
+//            this._strand.controlBar =
 //                new org.apache.flex.html.ControlBar();
 
             // listen for changes to the strand's model so items can be changed
             // in the view
-            this.strand_.model.addEventListener('titleChange',
+            value.model.addEventListener('titleChange',
                 goog.bind(this.changeHandler, this));
 
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.PanelView, this, 'strand', value);
@@ -124,15 +116,15 @@ org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
 
   this.titleBar_.x = 0;
   this.titleBar_.y = 0;
-  this.titleBar_.width = this.strand_.width;
+  this.titleBar_.width = this._strand.width;
   this.titleBar_.dispatchEvent('layoutNeeded');
 
   if (heightSizedToContent) {
-    this.strand_.height = this.strand_.height + this.titleBar_.height;
+    this._strand.height = this._strand.height + this.titleBar_.height;
   }
 
-  this.viewportModel.viewportHeight = this.strand_.height - this.titleBar_.height;
-  this.viewportModel.viewportWidth = this.strand_.width;
+  this.viewportModel.viewportHeight = this._strand.height - this.titleBar_.height;
+  this.viewportModel.viewportWidth = this._strand.width;
   this.viewportModel.viewportX = 0;
   this.viewportModel.viewportY = this.titleBar_.height;
 };
@@ -144,7 +136,7 @@ org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
  */
 /**org.apache.flex.html.beads.PanelView.prototype.changeHandler =
     function(event) {
-  var strand = this.strand_;
+  var strand = this._strand;
   if (!this.titleBarAdded_)
   {
     this.titleBarAdded_ = true;
@@ -157,7 +149,7 @@ org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
     this.titleBar_.title = strand.model.title;
   }
 
-  var p = this.strand_.positioner;
+  var p = this._strand.positioner;
   if (!strand.isWidthSizedToContent()) {
     var w = strand.width;
     w -= p.offsetWidth - p.clientWidth;

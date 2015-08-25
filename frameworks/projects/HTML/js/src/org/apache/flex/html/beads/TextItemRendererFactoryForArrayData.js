@@ -77,6 +77,7 @@ Object.defineProperties(org.apache.flex.html.beads.TextItemRendererFactoryForArr
 
             this.dataProviderChangedHandler(null);
         },
+        /** @this {org.apache.flex.html.beads.TextItemRendererFactoryForArrayData} */
         get: function() {
             return this.strand_;
         }

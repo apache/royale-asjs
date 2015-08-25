@@ -63,7 +63,7 @@ org.apache.flex.html.beads.ListView.prototype.
 org.apache.flex.html.beads.ListView.
     prototype.createContentView = function() {
   var m2 = org.apache.flex.core.ValuesManager.valuesImpl.
-                  getValue(this.strand_, 'iDataGroup');
+                  getValue(this._strand, 'iDataGroup');
   var contentView = new m2();
   return contentView;
 };
@@ -75,7 +75,7 @@ org.apache.flex.html.beads.ListView.
 org.apache.flex.html.beads.ListView.
     prototype.completeSetup = function() {
   org.apache.flex.html.beads.ListView.base(this, 'completeSetup');
-  this.strand_.addEventListener('itemsCreated',
+  this._strand.addEventListener('itemsCreated',
   goog.bind(this.changeHandler, this));
 };
 
@@ -85,11 +85,10 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
     strand: {
         /** @this {org.apache.flex.html.beads.ListView} */
         set: function(value) {
-            this.strand_ = value;
             org.apache.flex.utils.Language.superSetter(
                 org.apache.flex.html.beads.ListView, this, 'strand', value);
 
-            this.model = this.strand_.model;
+            this.model = this._strand.model;
             this.model.addEventListener('selectedIndexChanged',
                 goog.bind(this.selectionChangeHandler, this));
             this.model.addEventListener('dataProviderChanged',
@@ -97,14 +96,15 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
 
             this.dataGroup_.strand = this;
 
-            /*if (this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
-              var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+            /*if (this._strand.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
+              var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
               this.layout_ = new m3();
-              this.strand_.addBead(this.layout_);
+              this._strand.addBead(this.layout_);
              }*/
         },
+        /** @this {org.apache.flex.html.beads.ListView} */
         get: function() {
-            return this.strand_;
+            return this._strand;
         }
     },
     /** @export */
@@ -192,6 +192,6 @@ org.apache.flex.html.beads.ListView.prototype.
  * @param {org.apache.flex.events.Event} event The event that triggered the resize.
  */
 org.apache.flex.html.beads.ListView.prototype.handleSizeChange = function(event) {
-  this.dataGroup_.width = this.strand_.width;
-  this.dataGroup_.height = this.strand_.height;
+  this.dataGroup_.width = this._strand.width;
+  this.dataGroup_.height = this._strand.height;
 };

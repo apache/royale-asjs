@@ -55,13 +55,6 @@ org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
  * @private
  * @type {Object}
  */
-org.apache.flex.html.beads.ContainerView.prototype.strand_ = null;
-
-
-/**
- * @private
- * @type {Object}
- */
 org.apache.flex.html.beads.ContainerView.prototype.viewport_ = null;
 
 
@@ -103,7 +96,7 @@ org.apache.flex.html.beads.ContainerView.
          }
    }
    else {
-     this.strand_.addEventListener('sizeChanged',
+     this._strand.addEventListener('sizeChanged',
        goog.bind(this.deferredSizeHandler, this));
    }
 };
@@ -114,7 +107,7 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.deferredSizeHandler = function(event) {
-    this.strand_.removeEventListener('sizeChanged',
+    this._strand.removeEventListener('sizeChanged',
       goog.bind(this.deferredSizeHandler, this));
     this.completeSetup();
 
@@ -187,20 +180,20 @@ org.apache.flex.html.beads.ContainerView.
     prototype.completeSetup = function() {
   this.createViewport();
 
-   this.strand_.addEventListener('childrenAdded',
+   this._strand.addEventListener('childrenAdded',
       goog.bind(this.childrenChangedHandler, this));
    this.childrenChangedHandler(null);
-   this.strand_.addEventListener('childrenAdded',
+   this._strand.addEventListener('childrenAdded',
       goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('childrenRemoved',
+  this._strand.addEventListener('childrenRemoved',
       goog.bind(this.changeHandler, this));
-  this.strand_.addEventListener('layoutNeeded',
+  this._strand.addEventListener('layoutNeeded',
      goog.bind(this.performLayout, this));
-  this.strand_.addEventListener('widthChanged',
+  this._strand.addEventListener('widthChanged',
      goog.bind(this.resizeHandler, this));
-  this.strand_.addEventListener('heightChanged',
+  this._strand.addEventListener('heightChanged',
      goog.bind(this.resizeHandler, this));
-  this.strand_.addEventListener('sizeChanged',
+  this._strand.addEventListener('sizeChanged',
      goog.bind(this.resizeHandler, this));
 };
 
@@ -218,7 +211,7 @@ org.apache.flex.html.beads.ContainerView.
   if (this.viewport_ == null) {
     this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
     this.viewport_.model = this.viewportModel_;
-    this.strand_.addBead(this.viewport_);
+    this._strand.addBead(this.viewport_);
   }
 };
 
@@ -228,8 +221,8 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.adjustSizeBeforeLayout = function() {
-    this.viewportModel_.contentWidth = this.strand_.width;
-    this.viewportModel_.contentHeight = this.strand_.height;
+    this.viewportModel_.contentWidth = this._strand.width;
+    this.viewportModel_.contentHeight = this._strand.height;
     this.viewportModel_.contentX = 0;
     this.viewportModel_.contentY = 0;
 };
@@ -242,11 +235,11 @@ org.apache.flex.html.beads.ContainerView.
     prototype.performLayout = function(event) {
   this.adjustSizeBeforeLayout();
   if (this.layout == null) {
-    this.layout = this.strand_.getBeadByType(org.apache.flex.core.IBeadLayout);
+    this.layout = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
     if (this.layout == null) {
-      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this.strand_, 'iBeadLayout');
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
       this.layout = new m3();
-      this.strand_.addBead(this.layout);
+      this._strand.addBead(this.layout);
     }
   }
   this.layout.layout();
@@ -298,8 +291,8 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.layoutContainer = function(widthSizedToContent, heightSizedToContent) {
-  this.viewportModel_.viewportHeight = this.strand_.height;
-  this.viewportModel_.viewportWidth = this.strand_.width;
+  this.viewportModel_.viewportHeight = this._strand.height;
+  this.viewportModel_.viewportWidth = this._strand.width;
   this.viewportModel_.viewportX = 0;
   this.viewportModel_.viewportY = 0;
 };
@@ -320,8 +313,8 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.resizeViewport = function() {
-/*  this.viewportModel_.viewportHeight = this.strand_.height;
-  this.viewportModel_.viewportWidth = this.strand_.width;
+/*  this.viewportModel_.viewportHeight = this._strand.height;
+  this.viewportModel_.viewportWidth = this._strand.width;
   this.viewportModel_.viewportX = 0;
   this.viewportModel_.viewportY = 0;*/
 };
@@ -334,6 +327,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         get: function() {
             return this.contentArea_;
         },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
             this.contentArea_ = value;
         }
@@ -342,8 +336,9 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     resizableView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this.strand_;
+            return this._strand;
         },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
         }
     },
@@ -351,14 +346,13 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     strand: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
-            this.strand_ = value;
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
             this.contentView = this.createContentView();
             this.contentView.percentWidth = 100;
             this.contentView.percentHeight = 100;
             this.host.addElement(this.contentView);
             this.host.setActualParent(this.contentView);
-            this.strand_.addEventListener('initComplete',
+            this._strand.addEventListener('initComplete',
                   goog.bind(this.initCompleteHandler, this));
          }
     },
