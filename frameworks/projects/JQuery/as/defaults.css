@@ -28,6 +28,13 @@ jq|TextButton
 }
 
 
+jq|ToggleTextButton
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
+}
+
+
 jq|CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
