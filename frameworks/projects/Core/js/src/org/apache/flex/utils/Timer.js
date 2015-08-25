@@ -14,6 +14,7 @@
 
 goog.provide('org.apache.flex.utils.Timer');
 
+goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.events.EventDispatcher');
 
 
