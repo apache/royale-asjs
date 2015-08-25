@@ -354,10 +354,12 @@ package org.apache.flex.html.beads
 				}
 			}
 			
+            resizingChildren = true;
 			if (layout) {
 				layout.layout();
 				determineContentSizeFromChildren();
 			}
+            resizingChildren = false;
 			
 			adjustSizeAfterLayout();
 		}
@@ -519,7 +521,7 @@ package org.apache.flex.html.beads
 			resizingChildren = true;
 			
 			var child:UIBase = event.target as UIBase;
-//			performLayout(event);
+			performLayout(event);
 			resizingChildren = false;
 		}
 		
