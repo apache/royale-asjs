@@ -61,12 +61,24 @@ package org.apache.flex.mobile
 		}
 		
 		private var _controller:IBeadController;
+        
+        /**
+         *  Get the controller for the view.
+         * 
+         *  @flexjsignorecoercion Class
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get controller():IBeadController
 		{
 			if (_controller == null) {
 				_controller = getBeadByType(IBeadController) as IBeadController;
 				if (_controller == null) {
-					_controller = new (ValuesManager.valuesImpl.getValue(this, "iBeadController")) as IBeadController;
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
+					_controller = new c() as IBeadController;
 					addBead(_controller);
 				}
 			}
