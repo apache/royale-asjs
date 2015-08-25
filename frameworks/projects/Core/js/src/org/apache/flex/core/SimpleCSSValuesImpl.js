@@ -261,6 +261,41 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.parseStyles = function(styles
 
 
 /**
+ * @param {string} ruleName The name of the rule.
+ * @param {Object} values The styles object.
+ */
+org.apache.flex.core.SimpleCSSValuesImpl.prototype.addRule = function(ruleName, values) {
+  var v;
+  var asValues = {};
+  for (var valueName in values) {
+    v = values[valueName];
+    var c = valueName.indexOf('-');
+    while (c != -1)
+    {
+      valueName = valueName.substr(0, c) +
+        valueName.charAt(c + 1).toUpperCase() +
+        valueName.substr(c + 2);
+      c = valueName.indexOf('-');
+    }
+    asValues[valueName] = v;
+  }
+  this.values[ruleName] = asValues;
+
+  var s = '{';
+  for (var p in values) {
+    v = values[p];
+    if (typeof(v) === 'number')
+      v = v.toString() + 'px';
+    s += p + ':' + v + ';';
+  }
+  s += '}';
+  s = ruleName + ' ' + s;
+  var sheet = document.styleSheets[0];
+  sheet.insertRule(s, 0);
+};
+
+
+/**
  * The styles that apply to each UI widget
  */
 org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles = {

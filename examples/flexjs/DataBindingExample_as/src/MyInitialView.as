@@ -58,30 +58,29 @@ public class MyInitialView extends ViewBase
         states = statesArray;
         */
         var vi:SimpleCSSValuesImpl = ValuesManager.valuesImpl as SimpleCSSValuesImpl;
-        var viv:Object = vi.values;
-        viv[".output"]= {
-            fontSize: 20
-        };
+        vi.addRule(".output", {
+            "font-size": 20
+        });
         
-        viv[".topContainer"] = {
-            padding: 10
-        };
+        vi.addRule(".topContainer", {
+            "padding": 10
+        });
         
-        viv[".leftSide"] = {
-            verticalAlign: "top",
-            marginRight: 10
-        }
+        vi.addRule(".leftSide", {
+            "vertical-align": "top",
+            "margin-right": 10
+        });
         
-        viv[".rightSide"] = {
-            verticalAlign: "top",
-            marginLeft: 10,
-            paddingLeft: 10
-        }
+        vi.addRule(".rightSide", {
+            "vertical-align": "top",
+            "margin-left": 10,
+            "padding-left": 10
+        });
         
-        viv[".quoteButton"] = {
-            marginTop: 10,
-            marginBottom: 10
-        }
+        vi.addRule(".quoteButton", {
+            "margin-top": 10,
+            "margin-bottom": 10
+        });
         
     }
     

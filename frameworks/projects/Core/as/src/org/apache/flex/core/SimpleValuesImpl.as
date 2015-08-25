@@ -163,5 +163,20 @@ package org.apache.flex.core
             return JSON.parse("{" + value + "}");
         }
 
+        /**
+         *  @copy org.apache.flex.core.IValuesImpl#addRule()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function addRule(ruleName:String, values:Object):void
+        {
+            // ignore ruleName since all values are global
+            for (var p:String in values)
+                values[p] = values[p];
+        }
+        
     }
 }
