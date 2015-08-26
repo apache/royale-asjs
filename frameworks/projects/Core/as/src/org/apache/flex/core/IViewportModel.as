@@ -22,6 +22,9 @@ package org.apache.flex.core
 	 * A Viewport is a window onto an area of content. A viewport is given space
 	 * in which to operate by a View bead and given this model with the properties
 	 * necessary for its function.
+     * The viewport is the non-chrome, non-border area in a container.
+     * The contentView is then offset from the viewport area for padding and
+     * potentially scrollbars.
 	 */
 	public interface IViewportModel extends IBeadModel
 	{	
