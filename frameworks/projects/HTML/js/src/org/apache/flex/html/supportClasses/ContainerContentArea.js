@@ -57,5 +57,18 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement
   this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
+  this.addEventListener('layoutNeeded',
+      goog.bind(this.forwardEventHandler_, this));
   return this.element;
+};
+
+
+/**
+ * @private
+ * @param {Object} e The Event.;
+ */
+org.apache.flex.html.supportClasses.ContainerContentArea.prototype.forwardEventHandler_ =
+    function(e) {
+  if (this.parent)
+    this.parent.dispatchEvent(e);
 };
