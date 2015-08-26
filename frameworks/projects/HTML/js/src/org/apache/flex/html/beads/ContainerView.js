@@ -97,7 +97,7 @@ org.apache.flex.html.beads.ContainerView.
    }
    else {
      this._strand.addEventListener('sizeChanged',
-       goog.bind(this.deferredSizeHandler, this));
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'defer_sizeChanged'));
    }
 };
 
@@ -108,7 +108,7 @@ org.apache.flex.html.beads.ContainerView.
 org.apache.flex.html.beads.ContainerView.
     prototype.deferredSizeHandler = function(event) {
     this._strand.removeEventListener('sizeChanged',
-      goog.bind(this.deferredSizeHandler, this));
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'defer_sizeChanged'));
     this.completeSetup();
 
     var num = this.contentView.numElements;
@@ -136,9 +136,9 @@ org.apache.flex.html.beads.ContainerView.
     for (var i = 0; i < num; i++) {
       var child = this.contentView.getElementAt(i);
       child.addEventListener('widthChanged',
-          goog.bind(this.childResizeHandler, this));
+          org.apache.flex.utils.Language.closure(this.childResizeHandler, this, 'child_widthChanged'));
       child.addEventListener('heightChanged',
-          goog.bind(this.childResizeHandler, this));
+          org.apache.flex.utils.Language.closure(this.childResizeHandler, this, 'child_heightChanged'));
     }
 };
 
@@ -179,20 +179,20 @@ org.apache.flex.html.beads.ContainerView.
   this.createViewport();
 
    this._strand.addEventListener('childrenAdded',
-      goog.bind(this.childrenChangedHandler, this));
+      org.apache.flex.utils.Language.closure(this.childrenChangedHandler, this, 'childrenAdded'));
    this.childrenChangedHandler(null);
    this._strand.addEventListener('childrenAdded',
-      goog.bind(this.changeHandler, this));
+      org.apache.flex.utils.Language.closure(this.changeHandler, this, 'childrenAdded'));
   this._strand.addEventListener('childrenRemoved',
-      goog.bind(this.changeHandler, this));
+      org.apache.flex.utils.Language.closure(this.changeHandler, this, 'childrenRemoved'));
   this._strand.addEventListener('layoutNeeded',
-     goog.bind(this.performLayout, this));
+     org.apache.flex.utils.Language.closure(this.performLayout, this, 'layoutNeeded'));
   this._strand.addEventListener('widthChanged',
-     goog.bind(this.resizeHandler, this));
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'widthChanged'));
   this._strand.addEventListener('heightChanged',
-     goog.bind(this.resizeHandler, this));
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'heightChanged'));
   this._strand.addEventListener('sizeChanged',
-     goog.bind(this.resizeHandler, this));
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'sizeChanged'));
 };
 
 
@@ -353,7 +353,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
             this.host.addElement(this.contentView);
             this.host.setActualParent(this.contentView);
             this._strand.addEventListener('initComplete',
-                  goog.bind(this.initCompleteHandler, this));
+                  org.apache.flex.utils.Language.closure(this.initCompleteHandler, this, 'initComplete'));
          }
     },
     /** @export */
