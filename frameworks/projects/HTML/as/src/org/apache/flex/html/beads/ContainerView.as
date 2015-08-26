@@ -75,6 +75,9 @@ package org.apache.flex.html.beads
          */
 		public function ContainerView()
 		{
+			super();
+			
+			layoutRunning = false;
 		}
 		
 		/**
@@ -136,6 +139,7 @@ package org.apache.flex.html.beads
 		private var _viewportModel:IViewportModel;
 		private var _viewport:IViewport;
 		private var _strand:IStrand;
+		private var layoutRunning:Boolean;
 		
 		/**
 		 * Strand setter.
@@ -150,6 +154,8 @@ package org.apache.flex.html.beads
 			_strand = value;
 			super.strand = value;
 			
+			// create the content area where the elements being organized
+			// and laid out reside.
 			_contentArea = createContentView();
 			(host as UIBase).addElement(_contentArea,false);
 			ContainerBase(host).setActualParent(_contentArea as DisplayObjectContainer);
@@ -220,6 +226,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function completeSetup():void
 		{
+			// create the viewport which displays the content
 			createViewport();
 			
 			(contentView as UIBase).setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight, true);
@@ -341,6 +348,8 @@ package org.apache.flex.html.beads
 		 */
 		protected function performLayout(event:Event):void
 		{
+			layoutRunning = true;
+			
 			adjustSizeBeforeLayout();
 			
 			var host:UIBase = _strand as UIBase;
@@ -354,14 +363,14 @@ package org.apache.flex.html.beads
 				}
 			}
 			
-            resizingChildren = true;
 			if (layout) {
 				layout.layout();
 				determineContentSizeFromChildren();
 			}
-            resizingChildren = false;
 			
 			adjustSizeAfterLayout();
+			
+			layoutRunning = false;
 		}
 		
 		/**
@@ -500,9 +509,7 @@ package org.apache.flex.html.beads
 				child.addEventListener("sizeChanged", childResizeHandler);
 			}
 		}
-		
-		private var resizingChildren:Boolean = false;
-		
+				
 		/**
 		 * This event handles changes to the size of children of the container by running
 		 * the layout again and adjusting the size of the container or viewport as necessary. 
@@ -517,12 +524,8 @@ package org.apache.flex.html.beads
 			// during this process we don't want the layout to trigger
 			// an endless event chain should any children get resized
 			// by the layout.
-			if (resizingChildren) return;
-			resizingChildren = true;
-			
-			var child:UIBase = event.target as UIBase;
+			if (layoutRunning) return;			
 			performLayout(event);
-			resizingChildren = false;
 		}
 		
 		protected function displayBackgroundAndBorder(host:UIBase) : void

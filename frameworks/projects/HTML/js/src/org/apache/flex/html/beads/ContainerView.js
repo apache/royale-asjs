@@ -32,7 +32,7 @@ org.apache.flex.html.beads.ContainerView = function() {
   org.apache.flex.html.beads.ContainerView.base(this, 'constructor');
 
   this.className = 'ContainerView';
-  this.resizingChildren = false;
+  this.runningLayout = false;
 };
 goog.inherits(
     org.apache.flex.html.beads.ContainerView,
@@ -166,10 +166,8 @@ org.apache.flex.html.beads.ContainerView.
  */
  org.apache.flex.html.beads.ContainerView.
     prototype.childResizeHandler = function(event) {
-    if (this.resizingChildren) return;
-    this.resizingChildren = true;
+    if (this.runningLayout) return;
     this.performLayout(event);
-    this.resizingChildren = false;
 };
 
 
@@ -233,6 +231,7 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.performLayout = function(event) {
+  this.runningLayout = true;
   this.adjustSizeBeforeLayout();
   if (this.layout == null) {
     this.layout = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
@@ -242,16 +241,10 @@ org.apache.flex.html.beads.ContainerView.
       this._strand.addBead(this.layout);
     }
   }
-  this.resizingChildren = true;
-  /*
-  org.apache.flex.utils.Language.trace(this._strand.id);
-  var foo = false;
-  if (foo)
-  */
-    this.layout.layout();
-  this.resizingChildren = false;
+  this.layout.layout();
 
   this.adjustSizeAfterLayout();
+  this.runningLayout = false;
 };
 
 
