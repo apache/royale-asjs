@@ -375,7 +375,7 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
         /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var p = this.positioner.parentNode;
-            var wrapper = p.flexjs_wrapper;
+            var wrapper = p ? p.flexjs_wrapper : null;
             return wrapper;
         }
     },
