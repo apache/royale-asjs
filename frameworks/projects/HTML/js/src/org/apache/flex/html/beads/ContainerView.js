@@ -242,7 +242,14 @@ org.apache.flex.html.beads.ContainerView.
       this._strand.addBead(this.layout);
     }
   }
-  this.layout.layout();
+  this.resizingChildren = true;
+  /*
+  org.apache.flex.utils.Language.trace(this._strand.id);
+  var foo = false;
+  if (foo)
+  */
+    this.layout.layout();
+  this.resizingChildren = false;
 
   this.adjustSizeAfterLayout();
 };
