@@ -67,6 +67,19 @@ org.apache.flex.html.beads.PanelView.
 };
 
 
+/**
+ * @override
+ */
+org.apache.flex.html.beads.PanelView.
+    prototype.completeSetup = function() {
+  org.apache.flex.html.beads.PanelView.base(this, 'completeSetup');
+  // listen for changes to the strand's model so items can be changed
+  // in the view
+  this._strand.model.addEventListener('titleChange',
+      goog.bind(this.changeHandler, this));
+};
+
+
 Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
     /** @export */
     strand: {
@@ -83,11 +96,6 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
 
 //            this._strand.controlBar =
 //                new org.apache.flex.html.ControlBar();
-
-            // listen for changes to the strand's model so items can be changed
-            // in the view
-            value.model.addEventListener('titleChange',
-                goog.bind(this.changeHandler, this));
 
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.PanelView, this, 'strand', value);
         }
