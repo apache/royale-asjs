@@ -20,6 +20,7 @@ goog.require('org.apache.flex.core.ILayoutParent');
 goog.require('org.apache.flex.html.beads.models.ViewportModel');
 goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
 goog.require('org.apache.flex.html.supportClasses.Viewport');
+goog.require('org.apache.flex.utils.BeadMetrics');
 
 
 
@@ -148,6 +149,7 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.sizeChangeHandler = function(event) {
+  if (this.runningLayout) return;
   this.performLayout(event);
 };
 
@@ -157,6 +159,7 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.resizeHandler = function(event) {
+  if (this.runningLayout) return;
   this.performLayout(event);
 };
 
@@ -166,8 +169,8 @@ org.apache.flex.html.beads.ContainerView.
  */
  org.apache.flex.html.beads.ContainerView.
     prototype.childResizeHandler = function(event) {
-    if (this.runningLayout) return;
-    this.performLayout(event);
+  if (this.runningLayout) return;
+  this.performLayout(event);
 };
 
 
@@ -178,10 +181,10 @@ org.apache.flex.html.beads.ContainerView.
     prototype.completeSetup = function() {
   this.createViewport();
 
-   this._strand.addEventListener('childrenAdded',
+  this._strand.addEventListener('childrenAdded',
       org.apache.flex.utils.Language.closure(this.childrenChangedHandler, this, 'childrenAdded'));
-   this.childrenChangedHandler(null);
-   this._strand.addEventListener('childrenAdded',
+  this.childrenChangedHandler(null);
+  this._strand.addEventListener('childrenAdded',
       org.apache.flex.utils.Language.closure(this.changeHandler, this, 'childrenAdded'));
   this._strand.addEventListener('childrenRemoved',
       org.apache.flex.utils.Language.closure(this.changeHandler, this, 'childrenRemoved'));
@@ -253,14 +256,21 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.adjustSizeAfterLayout = function() {
-  var max = this.contentView.width;//this.layout.maxWidth;
-  if (isNaN(this.resizableView.explicitWidth) && !isNaN(max))
-    this.resizableView.setWidth(max, true);
-  max = this.contentView.height;//this.layout.maxHeight;
-  if (isNaN(this.resizableView.explicitHeight) && !isNaN(max))
-    this.resizableView.setHeight(max, true);
+  var host = this._strand;
+  var metrics = org.apache.flex.utils.BeadMetrics.getMetrics(host);
 
-  this.layoutContainer(false, false);
+  if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+    host.setWidthAndHeight(this.viewportModel_.contentWidth + metrics.left + metrics.right,
+                           this.viewportModel_.contentHeight + metrics.top + metrics.bottom, false);
+  }
+  else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+    host.setHeight(this.viewportModel_.contentHeight + metrics.top + metrics.bottom, false);
+  }
+  else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent()) {
+    host.setWidth(this.viewportModel_.contentWidth + metrics.left + metrics.right, false);
+  }
+
+  this.layoutContainer(host.isWidthSizedToContent(), host.isHeightSizedToContent());
 
   // The JS version of Panel matches the content space to the viewport since HTML
   // takes care of scrollbars

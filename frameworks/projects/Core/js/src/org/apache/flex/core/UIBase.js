@@ -764,7 +764,12 @@ org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
  */
 org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
 {
-  return (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_));
+  if (!isNaN(this.explicitWidth_) || !isNaN(this.percentWidth_))
+    return false;
+  var scv = window.getComputedStyle(this.element);
+  if (scv.left != 'auto' && scv.right != 'auto')
+    return false;
+  return true;
 };
 
 
@@ -774,7 +779,12 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
  */
 org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
 {
-  return (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_));
+  if (!isNaN(this.explicitHeight_) || !isNaN(this.percentHeight_))
+    return false;
+  var scv = window.getComputedStyle(this.element);
+  if (scv.top != 'auto' && scv.bottom != 'auto')
+    return false;
+  return true;
 };
 
 
