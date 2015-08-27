@@ -222,12 +222,15 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.adjustSizeBeforeLayout = function() {
-    this.viewportModel_.contentWidth = this._strand.width;
-    this.viewportModel_.contentHeight = this._strand.height;
+    var host = this._strand;
+    this.viewportModel_.contentWidth = host.width;
+    this.viewportModel_.contentHeight = host.height;
     this.viewportModel_.contentX = 0;
     this.viewportModel_.contentY = 0;
-    this.contentView.width = this.viewportModel_.contentWidth;
-    this.contentView.height = this.viewportModel_.contentHeight;
+    if (!host.isWidthSizedToContent())
+      this.contentView.width = this.viewportModel_.contentWidth;
+    if (!host.isHeightSizedToContent())
+      this.contentView.height = this.viewportModel_.contentHeight;
 };
 
 
@@ -261,8 +264,10 @@ org.apache.flex.html.beads.ContainerView.
   var host = this._strand;
   var metrics = org.apache.flex.utils.BeadMetrics.getMetrics(host);
 
-  this.viewportModel_.contentWidth = Math.max(this.viewportModel_.contentWidth, this.contentView.width);
-  this.viewportModel_.contentHeight = Math.max(this.viewportModel_.contentHeight, this.contentView.height);
+  if (host.isWidthSizedToContent())
+    this.viewportModel_.contentWidth = this.contentView.width;
+  if (host.isWidthSizedToContent())
+    this.viewportModel_.contentHeight = this.contentView.height;
 
   if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
     host.setWidthAndHeight(this.viewportModel_.contentWidth + metrics.left + metrics.right,
@@ -286,8 +291,8 @@ org.apache.flex.html.beads.ContainerView.
 
   this.contentView.x = this.viewportModel_.contentX;
   this.contentView.y = this.viewportModel_.contentY;
-  this.contentView.width = this.viewportModel_.contentWidth;
-  this.contentView.height = this.viewportModel_.contentHeight;
+  //this.contentView.width = this.viewportModel_.contentWidth;
+  //this.contentView.height = this.viewportModel_.contentHeight;
 
   this.viewport_.updateSize();
   this.viewport_.updateContentAreaSize();
@@ -363,8 +368,6 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
             this.contentView = this.createContentView();
-            this.contentView.percentWidth = 100;
-            this.contentView.percentHeight = 100;
             this.host.addElement(this.contentView);
             this.host.setActualParent(this.contentView);
             this._strand.addEventListener('initComplete',
