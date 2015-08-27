@@ -266,7 +266,7 @@ org.apache.flex.html.beads.ContainerView.
 
   if (host.isWidthSizedToContent())
     this.viewportModel_.contentWidth = this.contentView.width;
-  if (host.isWidthSizedToContent())
+  if (host.isHeightSizedToContent())
     this.viewportModel_.contentHeight = this.contentView.height;
 
   if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
