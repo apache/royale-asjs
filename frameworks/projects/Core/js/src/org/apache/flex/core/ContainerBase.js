@@ -209,6 +209,18 @@ org.apache.flex.core.ContainerBase.prototype.getElementAt = function(index) {
 };
 
 
+/**
+ * @param {Object} c The child element.
+ */
+org.apache.flex.core.ContainerBase.prototype.removeElement = function(c) {
+  if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     this.actualParent.element.removeChild(c.element);
+  }
+  else {
+  }
+};
+
+
 Object.defineProperties(org.apache.flex.core.ContainerBase.prototype, {
     /** @export */
     MXMLDescriptor: {
