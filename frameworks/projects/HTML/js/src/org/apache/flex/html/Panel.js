@@ -113,18 +113,9 @@ org.apache.flex.html.Panel.prototype.removeElement =
  */
 org.apache.flex.html.Panel.prototype.createElement =
     function() {
-  var e = org.apache.flex.html.Panel.base(this, 'createElement');
-  e.className = 'Panel';
-/*  this.element = document.createElement('div');
+  org.apache.flex.html.Panel.base(this, 'createElement');
   this.element.className = 'Panel';
   this.typeNames = 'Panel';
-
-  this.contentArea = document.createElement('div');
-  this.contentArea.flexjs_wrapper = this;
-  this.element.appendChild(this.contentArea);
-
-  this.positioner = this.element;
-  this.element.flexjs_wrapper = this;*/
 
   return this.element;
 };

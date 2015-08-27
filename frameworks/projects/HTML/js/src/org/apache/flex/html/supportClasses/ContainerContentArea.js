@@ -55,6 +55,7 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement
   // get set to 'absolute' if the container is
   // also absolutely positioned
   this.positioner.style.position = 'relative';
+  this.positioner.style.backgroundColor = 'inherit';
   this.element.flexjs_wrapper = this;
 
   this.addEventListener('layoutNeeded',
