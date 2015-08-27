@@ -116,6 +116,23 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
 
 /**
  * @override
+ */
+org.apache.flex.html.beads.PanelView.
+    prototype.adjustSizeBeforeLayout = function() {
+    var host = this._strand;
+    this.viewportModel.contentWidth = host.width;
+    this.viewportModel.contentHeight = host.height - this.titleBar_.height;
+    this.viewportModel.contentX = 0;
+    this.viewportModel.contentY = 0;
+    if (!host.isWidthSizedToContent())
+      this.contentView.width = this.viewportModel.contentWidth;
+    if (!host.isHeightSizedToContent())
+      this.contentView.height = this.viewportModel.contentHeight;
+};
+
+
+/**
+ * @override
  * @param {boolean} widthSizedToContent True if the width is determined by content.
  * @param {boolean} heightSizedToContent True if the height is determined by content.
  */
