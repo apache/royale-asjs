@@ -28,8 +28,6 @@ goog.require('org.apache.flex.utils.Language');
 org.apache.flex.html.beads.layouts.BasicLayout =
     function() {
   this.strand_ = null;
-  this.lastWidth_ = '';
-  this.lastHeight_ = '';
   this.className = 'BasicLayout';
 };
 
@@ -66,18 +64,16 @@ org.apache.flex.html.beads.layouts.BasicLayout.
 
   var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = viewBead.contentView;
-  var cvs = contentView.positioner.style;
-  var cv = getComputedStyle(contentView.positioner);
   w = contentView.width;
-  var hasWidth = cvs.width !== undefined && cvs.width != this.lastWidth_;
+  var hasWidth = !this.strand_.isWidthSizedToContent();
   h = contentView.height;
-  var hasHeight = cvs.height !== undefined && cvs.height != this.lastHeight_;
+  var hasHeight = !this.strand_.isHeightSizedToContent();
   var maxHeight = 0;
   var maxWidth = 0;
   n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
-    child.positioner.internalDisplay = 'block';
+    child.internalDisplay = 'block';
     var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
     var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
     var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
@@ -119,10 +115,10 @@ org.apache.flex.html.beads.layouts.BasicLayout.
   }
   // if there are children and maxHeight is ok, use it.
   // maxHeight can be NaN if the child hasn't been rendered yet.
-  if (!hasWidth && n > 0 && !isNaN(maxWidth) && (!(cv.left != 'auto' && cv.right != 'auto'))) {
-    this.lastWidth_ = cvs.width = maxWidth.toString() + 'px';
+  if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
+    contentView.width = maxWidth;
   }
-  if (!hasHeight && n > 0 && !isNaN(maxHeight) && (!(cv.top != 'auto' && cv.bottom != 'auto'))) {
-    this.lastHeight_ = cvs.height = maxHeight.toString() + 'px';
+  if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
+    contentView.height = maxHeight;
   }
 };

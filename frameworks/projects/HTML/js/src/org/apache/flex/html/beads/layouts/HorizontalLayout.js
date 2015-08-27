@@ -26,7 +26,6 @@ org.apache.flex.html.beads.layouts.HorizontalLayout =
     function() {
   this.strand_ = null;
   this.className = 'HorizontalLayout';
-  this.lastHeight_ = '';
 };
 
 
@@ -65,15 +64,13 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
   var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = viewBead.contentView;
   children = contentView.internalChildren();
-  var sps = this.strand_.positioner.style;
-  var scv = getComputedStyle(this.strand_.positioner);
-  var hasHeight = sps.height !== undefined && sps.height != this.lastHeight_;
+  var hasHeight = !this.strand_.isHeightSizedToContent();
   var maxHeight = 0;
   n = children.length;
   for (i = 0; i < n; i++)
   {
     var child = children[i];
-    child.internalDisplay = 'inline-block';
+    child.flexjs_wrapper.internalDisplay = 'inline-block';
     if (child.style.display == 'none')
       child.lastDisplay_ = 'inline-block';
     else
@@ -83,7 +80,7 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
   }
   // if there are children and maxHeight is ok, use it.
   // maxHeight can be NaN if the child hasn't been rendered yet.
-  if (!hasHeight && n > 0 && !isNaN(maxHeight) && (!(scv.top != 'auto' && scv.bottom != 'auto'))) {
-    this.lastHeight_ = sps.height = maxHeight.toString() + 'px';
+  if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
+    contentView.height = maxHeight;
   }
 };

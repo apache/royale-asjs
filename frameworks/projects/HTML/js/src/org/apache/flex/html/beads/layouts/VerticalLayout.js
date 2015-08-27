@@ -27,7 +27,6 @@ org.apache.flex.html.beads.layouts.VerticalLayout =
     function() {
   this.strand_ = null;
   this.className = 'VerticalLayout';
-  this.lastWidth_ = '';
 };
 
 
@@ -68,15 +67,14 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
   var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
   var contentView = viewBead.contentView;
   children = contentView.internalChildren();
-  var sps = this.strand_.positioner.style;
   var scv = getComputedStyle(this.strand_.positioner);
-  var hasWidth = sps.width !== undefined && sps.width != this.lastWidth_;
+  var hasWidth = !this.strand_.isWidthSizedToContent();
   var maxWidth = 0;
   n = children.length;
   for (i = 0; i < n; i++)
   {
     var child = children[i];
-    child.internalDisplay = 'block';
+    child.flexjs_wrapper.internalDisplay = 'block';
     if (child.style.display === 'none') {
       child.lastDisplay_ = 'block';
     } else {
@@ -85,12 +83,12 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     maxWidth = Math.max(maxWidth, child.offsetLeft + child.offsetWidth);
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
-  if (!hasWidth && n > 0 && !isNaN(maxWidth) && (!(scv.left != 'auto' && scv.right != 'auto'))) {
+  if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
     var pl = scv['padding-left'];
     var pr = scv['padding-right'];
     pl = parseInt(pl.substring(0, pl.length - 2), 10);
     pr = parseInt(pr.substring(0, pr.length - 2), 10);
     maxWidth += scv.paddingLeft + pl + pr;
-    this.lastWidth_ = sps.width = maxWidth.toString() + 'px';
+    contentView.width = maxWidth;
   }
 };

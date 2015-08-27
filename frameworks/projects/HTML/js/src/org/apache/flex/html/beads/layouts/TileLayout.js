@@ -123,7 +123,7 @@ org.apache.flex.html.beads.layouts.TileLayout.
   {
     child = children[i].flexjs_wrapper;
     if (!child.visible) continue;
-    child.positioner.internalDisplay = 'inline-block';
+    child.internalDisplay = 'inline-block';
     child.width = useWidth;
     child.height = useHeight;
   }
@@ -151,7 +151,7 @@ org.apache.flex.html.beads.layouts.TileLayout.
   {
     child = children[i].flexjs_wrapper;
     if (!child.visible) continue;
-    child.positioner.internalDisplay = 'inline-block';
+    child.internalDisplay = 'inline-block';
     child.width = useWidth;
     child.height = useHeight;
     child.x = xpos;

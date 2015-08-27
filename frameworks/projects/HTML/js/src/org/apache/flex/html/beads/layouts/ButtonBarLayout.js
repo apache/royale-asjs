@@ -88,7 +88,7 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
   {
     var ir = itemRendererParent.getElementAt(i);
     ir.height = useHeight;
-    ir.positioner.internalDisplay = 'inline-block';
+    ir.internalDisplay = 'inline-block';
     ir.positioner.style['vertical-align'] = 'middle';
     ir.positioner.style['text-align'] = 'center';
     ir.positioner.style['left-margin'] = 'auto';

@@ -59,10 +59,10 @@ org.apache.flex.core.HTMLElementWrapper.prototype._beads = null;
 
 
 /**
- * @protected
+ * Used internally by layouts.
  * @type {string}
  */
-org.apache.flex.core.HTMLElementWrapper.prototype.internalDisplay = 'inline';
+org.apache.flex.core.HTMLElementWrapper.prototype.internalDisplay = 'block';
 
 
 /**
