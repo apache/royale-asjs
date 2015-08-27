@@ -20,7 +20,9 @@ package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
+    import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IMeasurementBead;
+    import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -88,22 +90,19 @@ package org.apache.flex.html.beads.layouts
 			_numColumns = value;
 		}
 		
-        private var lastWidth:Number = 0;
-        private var lastHeight:Number = 0;
-        
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
 		public function layout():Boolean
 		{			
             var host:UIBase = UIBase(_strand);
+            var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
+            var contentView:IParent = layoutParent.contentView;
 			var sw:Number = host.width;
 			var sh:Number = host.height;
 			
-            var hostWidth:* = ValuesManager.valuesImpl.getValue(host, "width");
-            var hasWidth:Boolean = (hostWidth !== undefined) && hostWidth != lastWidth;
-            var hostHeight:* = ValuesManager.valuesImpl.getValue(host, "height");
-            var hasHeight:Boolean = (hostHeight !== undefined) && hostHeight != lastHeight;
+            var hasWidth:Boolean = host.isWidthSizedToContent();
+            var hasHeight:Boolean = host.isHeightSizedToContent();
 			var e:IUIBase;
 			var i:int;
 			var col:int = 0;
@@ -184,19 +183,13 @@ package org.apache.flex.html.beads.layouts
 					curx = 0;
 				}
 			}
-			if (!hasWidth && n > 0 && !isNaN(maxWidth) && 
-                (!(ValuesManager.valuesImpl.getValue(host, "left") !== undefined) &&
-                  (ValuesManager.valuesImpl.getValue(host, "right") !== undefined)))
+			if (!hasWidth && n > 0 && !isNaN(maxWidth))
             {
-                lastWidth = maxWidth;
-                host.setWidth(maxWidth, true);
+                UIBase(contentView).setWidth(maxWidth, true);
             }
-            if (!hasHeight && n > 0 && !isNaN(maxHeight) && 
-                (!(ValuesManager.valuesImpl.getValue(host, "top") !== undefined) &&
-                    (ValuesManager.valuesImpl.getValue(host, "bottom") !== undefined)))
+            if (!hasHeight && n > 0 && !isNaN(maxHeight))
             {
-                lastHeight = maxHeight;
-                host.setHeight(maxHeight, true);
+                UIBase(contentView).setHeight(maxHeight, true);
             }
 			return true;
 		}
