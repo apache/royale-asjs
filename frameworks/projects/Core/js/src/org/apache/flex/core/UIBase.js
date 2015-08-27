@@ -224,10 +224,46 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
 /**
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
-
+  var s, value;
   var styles = this.style;
   if (styles)
     org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, styles);
+
+  if (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_)) {
+    value = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'width');
+    if (value !== undefined) {
+      if (typeof(value) === 'string') {
+        s = value;
+        if (s.indexOf('%') != -1)
+          this.percentWidth_ = Number(s.substring(0, s.length - 1));
+        else {
+          if (s.indexOf('px') != -1)
+             s = s.substring(0, s.length - 2);
+          this.width_ = this.explicitWidth_ = Number(s);
+        }
+      }
+      else
+        this.width_ = this.explicitWidth_ = value;
+    }
+  }
+
+  if (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_)) {
+    value = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'height');
+    if (value !== undefined) {
+      if (typeof(value) === 'string') {
+        s = value;
+        if (s.indexOf('%') != -1)
+          this.percentHeight_ = Number(s.substring(0, s.length - 1));
+        else {
+          if (s.indexOf('px') != -1)
+            s = s.substring(0, s.length - 2);
+          this.height_ = this.explicitHeight_ = Number(s);
+        }
+      }
+      else
+        this.height_ = this.explicitHeight_ = value;
+    }
+  }
 
   if (this.mxmlBeads_) {
     var n = this.mxmlBeads_.length;
@@ -661,7 +697,7 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
                 if (this.lastDisplay_) {
                   this.positioner.style.display = this.lastDisplay_;
                 } else {
-                  this.positioner.style.display = this.positioner.internalDisplay;
+                  this.positioner.style.display = this.internalDisplay;
                 }
                 this.dispatchEvent(new org.apache.flex.events.Event('show'));
               }
