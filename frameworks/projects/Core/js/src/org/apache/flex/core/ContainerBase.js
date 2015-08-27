@@ -197,7 +197,7 @@ org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index, o
      //this.actualParent.addElementAt(c, index);
      var children2 = this.actualParent.internalChildren();
      if (index >= children2.length) {
-       this.actualParent.element.appendChild(c);
+       this.actualParent.element.appendChild(c.positioner);
        c.addedToParent();
      } else {
        this.actualParent.element.insertBefore(c.positioner,
@@ -224,10 +224,32 @@ org.apache.flex.core.ContainerBase.prototype.getElementAt = function(index) {
  */
 org.apache.flex.core.ContainerBase.prototype.removeElement = function(c) {
   if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
-     this.actualParent.element.removeChild(c.element);
+     this.element.removeChild(c.element);
   }
   else {
+     this.actualParent.element.removeChild(c.element);
   }
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.getElementIndex = function(c) {
+  var children;
+  if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
+     children = this.internalChildren();
+  }
+  else {
+    children = this.actualParent.internalChildren();
+  }
+  var n = children.length;
+  for (var i = 0; i < n; i++)
+  {
+    if (children[i] == c.element)
+      return i;
+  }
+  return -1;
 };
 
 
