@@ -259,6 +259,9 @@ org.apache.flex.html.beads.ContainerView.
   var host = this._strand;
   var metrics = org.apache.flex.utils.BeadMetrics.getMetrics(host);
 
+  this.viewportModel_.contentWidth = Math.max(this.viewportModel_.contentWidth, this.contentView.width);
+  this.viewportModel_.contentHeight = Math.max(this.viewportModel_.contentHeight, this.contentView.height);
+
   if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
     host.setWidthAndHeight(this.viewportModel_.contentWidth + metrics.left + metrics.right,
                            this.viewportModel_.contentHeight + metrics.top + metrics.bottom, false);
