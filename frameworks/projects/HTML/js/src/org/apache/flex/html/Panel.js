@@ -121,25 +121,6 @@ org.apache.flex.html.Panel.prototype.createElement =
 };
 
 
-/**
- * @override
- *
-org.apache.flex.html.Panel.prototype.addedToParent =
-    function() {
-  org.apache.flex.html.Panel.base(this, 'addedToParent');
-};*/
-
-
-/**
- * @override
- * @return {Array} the HTML DOM element children.
- *
-org.apache.flex.html.Panel.prototype.internalChildren =
-    function() {
-  return this.contentArea.children;
-};*/
-
-
 Object.defineProperties(org.apache.flex.html.Panel.prototype, {
     /** @export */
     showCloseButton: {
