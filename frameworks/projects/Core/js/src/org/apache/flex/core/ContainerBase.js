@@ -157,7 +157,10 @@ org.apache.flex.core.ContainerBase.prototype.setActualParent = function(parent) 
 /**
  * @override
  */
-org.apache.flex.core.ContainerBase.prototype.addElement = function(c) {
+org.apache.flex.core.ContainerBase.prototype.addElement = function(c, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+
   if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
      //org.apache.flex.core.ContainerBase.base(this, 'addElement', c);
      this.element.appendChild(c.positioner);
@@ -168,13 +171,18 @@ org.apache.flex.core.ContainerBase.prototype.addElement = function(c) {
      this.actualParent.element.appendChild(c.positioner);
      c.addedToParent();
   }
+  if (opt_dispatchEvent)
+    this.dispatchEvent('childrenAdded');
 };
 
 
 /**
  * @override
  */
-org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index) {
+org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+
   if (this.supportsChromeChildren && org.apache.flex.utils.Language.is(c, org.apache.flex.core.IChrome)) {
      //org.apache.flex.core.ContainerBase.base(this, 'addElementAt', c, index);
      var children1 = this.internalChildren();
@@ -197,6 +205,8 @@ org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index) {
        c.addedToParent();
      }
    }
+  if (opt_dispatchEvent)
+    this.dispatchEvent('childrenAdded');
 };
 
 

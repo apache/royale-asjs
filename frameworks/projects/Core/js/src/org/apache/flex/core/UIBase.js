@@ -163,8 +163,9 @@ org.apache.flex.core.UIBase.prototype.finalizeElement = null;
 
 /**
  * @param {Object} c The child element.
+ * @param {boolean=} opt_dispatchEvent Use 'false' to skip sending a childrenAdded event.
  */
-org.apache.flex.core.UIBase.prototype.addElement = function(c) {
+org.apache.flex.core.UIBase.prototype.addElement = function(c, opt_dispatchEvent) {
   this.element.appendChild(c.positioner);
   c.addedToParent();
 };
@@ -173,8 +174,9 @@ org.apache.flex.core.UIBase.prototype.addElement = function(c) {
 /**
  * @param {Object} c The child element.
  * @param {number} index The index.
+ * @param {boolean=} opt_dispatchEvent Use 'false' to skip sending a childrenAdded event.
  */
-org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
+org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index, opt_dispatchEvent) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
@@ -802,7 +804,7 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
 {
   if (!isNaN(this.explicitWidth_) || !isNaN(this.percentWidth_))
     return false;
-  var scv = window.getComputedStyle(this.element);
+  var scv = window.getComputedStyle(this.positioner);
   if (scv.left != 'auto' && scv.right != 'auto')
     return false;
   return true;
@@ -817,7 +819,7 @@ org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
 {
   if (!isNaN(this.explicitHeight_) || !isNaN(this.percentHeight_))
     return false;
-  var scv = window.getComputedStyle(this.element);
+  var scv = window.getComputedStyle(this.positioner);
   if (scv.top != 'auto' && scv.bottom != 'auto')
     return false;
   return true;
