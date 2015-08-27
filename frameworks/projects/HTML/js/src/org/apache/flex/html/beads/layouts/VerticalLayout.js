@@ -78,9 +78,11 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     if (child.style.display === 'none') {
       child.lastDisplay_ = 'block';
     } else {
+      // block elements don't measure width correctly so set to inline for a second
+      child.style.display = 'inline-block';
+      maxWidth = Math.max(maxWidth, child.offsetLeft + child.offsetWidth);
       child.style.display = 'block';
     }
-    maxWidth = Math.max(maxWidth, child.offsetLeft + child.offsetWidth);
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
   if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
@@ -88,7 +90,7 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     var pr = scv['padding-right'];
     pl = parseInt(pl.substring(0, pl.length - 2), 10);
     pr = parseInt(pr.substring(0, pr.length - 2), 10);
-    maxWidth += scv.paddingLeft + pl + pr;
+    maxWidth += pl + pr;
     contentView.width = maxWidth;
   }
 };
