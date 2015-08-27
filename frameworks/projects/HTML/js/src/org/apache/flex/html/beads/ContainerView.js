@@ -226,6 +226,8 @@ org.apache.flex.html.beads.ContainerView.
     this.viewportModel_.contentHeight = this._strand.height;
     this.viewportModel_.contentX = 0;
     this.viewportModel_.contentY = 0;
+    this.contentView.width = this.viewportModel_.contentWidth;
+    this.contentView.height = this.viewportModel_.contentHeight;
 };
 
 
