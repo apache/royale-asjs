@@ -99,6 +99,10 @@ org.apache.flex.html.beads.ContainerView.
    else {
      this._strand.addEventListener('sizeChanged',
        org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+     this._strand.addEventListener('widthChanged',
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+     this._strand.addEventListener('heightChanged',
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
    }
 };
 
@@ -109,6 +113,10 @@ org.apache.flex.html.beads.ContainerView.
 org.apache.flex.html.beads.ContainerView.
     prototype.deferredSizeHandler = function(event) {
     this._strand.removeEventListener('sizeChanged',
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+    this._strand.removeEventListener('widthChanged',
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+    this._strand.removeEventListener('heightChanged',
       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
     this.completeSetup();
 

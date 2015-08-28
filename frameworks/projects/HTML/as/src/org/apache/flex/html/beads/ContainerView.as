@@ -191,6 +191,8 @@ package org.apache.flex.html.beads
 			else {
 				// otherwise, wait until the unknown sizes have been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
+                host.addEventListener("widthChanged", deferredSizeHandler);
+                host.addEventListener("heightChanged", deferredSizeHandler);
 			}
 		}
 		
@@ -205,7 +207,9 @@ package org.apache.flex.html.beads
 		 */
 		private function deferredSizeHandler(event:Event):void
 		{
-			host.removeEventListener(event.type, deferredSizeHandler);
+            host.removeEventListener("sizeChanged", deferredSizeHandler);
+            host.removeEventListener("widthChanged", deferredSizeHandler);
+            host.removeEventListener("heightChanged", deferredSizeHandler);
 			completeSetup();
 			
 			var num:Number = contentView.numElements;
