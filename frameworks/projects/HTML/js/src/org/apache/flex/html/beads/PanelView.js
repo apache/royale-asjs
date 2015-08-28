@@ -142,7 +142,7 @@ org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
   this.titleBar_.x = 0;
   this.titleBar_.y = 0;
   this.titleBar_.width = this._strand.width;
-  this.titleBar_.dispatchEvent('layoutNeeded');
+  this.titleBar_.dispatchEvent('sizeChanged');
 
   if (heightSizedToContent) {
     this._strand.height = this._strand.height + this.titleBar_.height;
