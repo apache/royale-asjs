@@ -806,7 +806,8 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
     return false;
 
   var scv = window.getComputedStyle(/** @type {Element} */ (this.positioner));
-  if (scv.left != 'auto' && scv.right != 'auto')
+  // not sized to content if both left and right are specified
+  if (scv.left !== '' && scv.left != 'auto' && scv.right !== '' && scv.right != 'auto')
     return false;
   return true;
 };
@@ -821,7 +822,8 @@ org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
   if (!isNaN(this.explicitHeight_) || !isNaN(this.percentHeight_))
     return false;
   var scv = window.getComputedStyle(/** @type {Element} */ (this.positioner));
-  if (scv.top != 'auto' && scv.bottom != 'auto')
+  // not sized to content if both top and bottom are specified
+  if (scv.top !== '' && scv.top != 'auto' && scv.bottom !== '' && scv.bottom != 'auto')
     return false;
   return true;
 };
