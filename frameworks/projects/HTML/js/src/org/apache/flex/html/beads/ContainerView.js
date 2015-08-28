@@ -92,7 +92,9 @@ org.apache.flex.html.beads.ContainerView.
          this.completeSetup();
 
          var num = this.contentView.numElements;
-         if (num > 0) {
+         // make sure there are children AND you are in the DOM before laying out.
+         // If not in the DOM, you'll get funky numbers
+         if (num > 0 && document.contains(this.host.element)) {
            this.performLayout(event);
          }
    }
