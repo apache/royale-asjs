@@ -1533,7 +1533,7 @@
         addproperty="base.folder.name"/>
     </target>
     
-    <target name="download-all" depends="get-download-folder" if="airsdk.found" >
+    <target name="download-all" depends="get-download-folder" if="base.folder.name" >
         <echo>Using folder ${base.folder.name}</echo>
         <mkdir dir="${base.folder.name}" />
         <antcall target="warn-before-clone" />
@@ -1687,6 +1687,11 @@
         <ant dir="${base.folder.name}/flex-falcon/compiler" />
         <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
         <ant dir="${base.folder.name}/flex-flexunit" />
+    </target>
+    
+    <target name="all" depends="set.base.folder, download-all, main" />
+    <target name="set.base.folder" >
+        <property name="base.folder.name" value="${basedir}/.." />
     </target>
     
     <target name="last-message-if-airsdk" if="airsdk.found" >
