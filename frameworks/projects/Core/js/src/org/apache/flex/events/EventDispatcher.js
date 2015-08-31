@@ -76,8 +76,11 @@ org.apache.flex.events.EventDispatcher.prototype.getActualDispatcher_ = function
  */
 org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(e) {
   var t;
-  if (typeof(e) === 'string')
+  if (typeof(e) === 'string') {
     t = e;
+    if (e === 'change')
+      e = new Event(e);
+  }
   else
     t = e.type;
   var source = this.getActualDispatcher_(t);
