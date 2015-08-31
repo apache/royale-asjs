@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
 
+goog.require('goog.events.Event');
+goog.require('goog.events.EventType');
 goog.require('org.apache.flex.core.IBeadController');
 
 
