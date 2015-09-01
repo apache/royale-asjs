@@ -5,6 +5,7 @@ package org.apache.flex.core
 	 * in which to operate by a View bead and given this model with the properties
 	 * necessary for its function.
 	 */
+	COMPILE::AS3
 	public interface IViewportModel extends IBeadModel
 	{	
 		// Layout and Content

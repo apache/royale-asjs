@@ -38,7 +38,8 @@ package org.apache.flex.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
+    COMPILE::AS3
 	public class ItemRendererClassFactory extends Strand implements IItemRendererClassFactory, IDocument, IBead
 	{
         /**

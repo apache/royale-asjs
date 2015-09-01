@@ -29,6 +29,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
+    COMPILE::AS3
 	public class ValueChangeEvent extends Event
 	{
         /**

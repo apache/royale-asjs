@@ -40,6 +40,7 @@ import org.apache.flex.events.IEventDispatcher;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::AS3
 public class MXMLDataInterpreter
 {
     /**

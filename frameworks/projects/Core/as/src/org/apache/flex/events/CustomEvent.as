@@ -1,5 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
+
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
@@ -18,30 +19,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
+
 	/**
-	 *  MXML auto-imports flash.events.Event which then requires
-	 *  full qualification to use org.apache.flex.events.Event.
-	 *  Use CustomEvent to skip all that extra typing.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+	 * MXML auto-imports flash.events.Event which then requires
+	 * full qualification to use org.apache.flex.events.Event.
+	 * Use CustomEvent to skip all that extra typing.
+	 *
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
 	 */
+	COMPILE::AS3
 	public class CustomEvent extends Event
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @param type The name of the event.
-         *  @param bubbles Whether the event bubbles.
-         *  @param cancelable Whether the event can be canceled.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+
+		//--------------------------------------
+		//   Constructor
+		//--------------------------------------
+
+		/**
+		 * Constructor.
+		 *
+		 * @param type The name of the event.
+		 * @param bubbles Whether the event bubbles.
+		 * @param cancelable Whether the event can be canceled.
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.0
+		 */
 		public function CustomEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

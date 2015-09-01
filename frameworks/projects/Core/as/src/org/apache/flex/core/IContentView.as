@@ -18,20 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+COMPILE::AS3
 	public interface IContentView
 	{
 		function get x():Number;
 		function set x(value:Number):void;
-		
+
 		function get y():Number;
 		function set y(value:Number):void;
-		
+
 		function get width():Number;
 		function set width(value:Number):void;
-		
+
 		function get height():Number;
 		function set height(value:Number):void;
-		
+
 		function addElement(value:Object, dispatchEvent:Boolean = true):void;
 		function removeAllElements():void;
 	}

@@ -51,6 +51,7 @@ import org.apache.flex.events.ValueEvent;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::AS3
 public class EffectTimer extends EventDispatcher implements IEffectTimer
 {
     /**

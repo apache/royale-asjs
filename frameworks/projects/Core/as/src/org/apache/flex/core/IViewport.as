@@ -6,6 +6,7 @@ package org.apache.flex.core
 	 * is specified by the IViewportModel, adding scrollbars or whatever scrolling
 	 * mechanism they want.
 	 */
+	COMPILE::AS3
 	public interface IViewport extends IBead
 	{
 		/**

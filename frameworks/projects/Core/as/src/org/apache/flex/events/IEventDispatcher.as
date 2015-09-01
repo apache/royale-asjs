@@ -18,19 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-	import flash.events.IEventDispatcher;
-	
+	COMPILE::AS3
+	{
+		import flash.events.IEventDispatcher;
+	}
+
 	/**
-	 *  This class simply wraps flash.events.EventDispatcher so that
-	 *  no flash packages are needed on the JS side.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+	 * This class simply wraps flash.events.EventDispatcher so that
+	 * no flash packages are needed on the JS side.
+	 *
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
 	 */
+	COMPILE::AS3
 	public interface IEventDispatcher extends flash.events.IEventDispatcher
 	{
-		
+
+	}
+
+	COMPILE::JS
+	public interface IEventDispatcher
+	{
+
 	}
 }

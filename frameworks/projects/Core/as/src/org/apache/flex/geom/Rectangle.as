@@ -32,6 +32,7 @@ import flash.geom.Rectangle;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::AS3
 public class Rectangle extends flash.geom.Rectangle
 {
     public function Rectangle(x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0)

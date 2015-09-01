@@ -32,6 +32,7 @@ import flash.geom.Point;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::AS3
 public class Point extends flash.geom.Point
 {
     public function Point(x:Number = 0, y:Number = 0)

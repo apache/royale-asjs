@@ -16,37 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.events
 {
-    import flash.net.navigateToURL;
-    import flash.net.URLRequest;
-    
-    /**
-     *  The BrowserWindow class opens a new browser window.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    COMPILE::AS3
-	public class BrowserWindow
+
+	COMPILE::JS
+	public class ElementEvents
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function BrowserWindow()
-		{
-		}
-		
-        public static function open(url:String, options:String):void
-        {
-            navigateToURL(new URLRequest(url), options);
-        }
+
+		//--------------------------------------
+		//   Static Property
+		//--------------------------------------
+
+		static public const elementEvents:Object = {
+				'mouseover': 1,
+				'mouseout': 1,
+				'mouseup': 1,
+				'mousedown': 1,
+				'mousemove': 1,
+				'rollover': 1,
+				'rollout': 1
+			};
 	}
 }
