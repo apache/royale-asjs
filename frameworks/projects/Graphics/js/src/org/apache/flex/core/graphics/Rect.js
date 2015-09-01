@@ -68,7 +68,7 @@ org.apache.flex.core.graphics.Rect.prototype.drawRect = function(x, y, width, he
     rect.setAttribute('height', String(height) + 'px');
     this.element.appendChild(rect);
 
-    this.resize(x, y, rect.getBBox());
+    this.resize(x, y, rect['getBBox']());
   };
 
 

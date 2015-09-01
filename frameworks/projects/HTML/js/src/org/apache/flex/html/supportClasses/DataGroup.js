@@ -129,8 +129,8 @@ org.apache.flex.html.supportClasses.DataGroup.
 
 /**
  * @export
- * @param {Object} index The index for the itemRenderer.
- * @return {Object} The itemRenderer that matches the index.
+ * @param {number} index The selected index.
+ * @return {Object} The itemRenderer at the given index.
  */
 org.apache.flex.html.supportClasses.DataGroup.
     prototype.getItemRendererForIndex = function(index) {

@@ -49,7 +49,7 @@ FLEXJS_CLASS_INFO =
     interfaces: [org.apache.flex.core.IBeadModel] };
 
 
-Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, {
+Object.defineProperties(org.apache.flex.maps.google.models.MapModel.prototype, {
     /** @export */
     strand: {
         /** @this {org.apache.flex.maps.google.models.MapModel} */
@@ -59,9 +59,11 @@ Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, 
     },
     /** @export */
     searchResults: {
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         get: function() {
             return this._searchResults;
         },
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         set: function(value) {
             this._searchResults = value;
             this.dispatchEvent('searchResultsChanged');
@@ -69,9 +71,11 @@ Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, 
     },
     /** @export */
     zoom: {
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         get: function() {
             return this._zoom;
         },
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         set: function(value) {
             this._zoom = value;
             this.dispatchEvent('zoomChanged');
@@ -79,9 +83,11 @@ Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, 
     },
     /** @export */
     selectedMarker: {
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         get: function() {
             return this._selectedMarker;
         },
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         set: function(value) {
             this._selectedMarker = value;
             this.dispatchEvent('selectedMarkerChanged');
@@ -89,9 +95,11 @@ Object.defineProperties(org.apache.flex.maps.google.models.MapModelv.prototype, 
     },
     /** @export */
     currentLocation: {
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         get: function() {
             return this._currentLocation;
         },
+        /** @this {org.apache.flex.maps.google.models.MapModel} */
         set: function(value) {
             this._currentLocation = value;
             this.dispatchEvent('currentLocationChanged');

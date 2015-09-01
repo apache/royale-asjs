@@ -89,7 +89,7 @@ org.apache.flex.core.graphics.Path.prototype.drawPath = function(x, y, data) {
       this.setPosition(x, y, 0, 0);
     }
 
-    this.resize(x, y, path.getBBox());
+    this.resize(x, y, path['getBBox']());
   };
 
 

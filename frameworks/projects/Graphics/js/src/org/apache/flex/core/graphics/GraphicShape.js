@@ -65,7 +65,7 @@ org.apache.flex.core.graphics.GraphicShape = function() {
 
     /**
    * @export
-   * @type {SVGElement}
+   * @type {Object}
    */
   this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   this.element.flexjs_wrapper = this;

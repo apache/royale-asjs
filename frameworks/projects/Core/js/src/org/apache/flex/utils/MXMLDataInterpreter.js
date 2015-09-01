@@ -267,7 +267,7 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
       self.generateMXMLInstances(
             document, comp, children);
       if (isContainer)
-        comp.childrenAdded();
+        comp['childrenAdded']();
     }
   }
 

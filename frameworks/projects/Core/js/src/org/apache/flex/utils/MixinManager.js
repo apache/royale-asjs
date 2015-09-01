@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.utils.MixinManager');
 
+goog.require('org.apache.flex.core.IBead');
+
 
 
 /**

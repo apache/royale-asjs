@@ -216,7 +216,7 @@ org.apache.flex.core.graphics.GraphicsContainer.prototype.drawPath = function(da
  * @param {string} value The text string to draw.
  * @param {number} x The x position of the text.
  * @param {number} y The y position of the text.
- * @return {object} The text node created to display the graphics.
+ * @return {Object} The text node created to display the graphics.
  */
 org.apache.flex.core.graphics.GraphicsContainer.prototype.drawText = function(value, x, y) {
   var style = this.getStyleStr();
