@@ -38,6 +38,8 @@ package models
 		}
 		
 		private var _cities:Array = ["Sydney", "NYC", "Mexico City", "London", "Rio de Janeiro"];
+		
+		[Bindable]
 		public function get cities():Array
 		{
 			return _cities;
