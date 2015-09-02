@@ -62,21 +62,21 @@ org.apache.flex.maps.google.Place.prototype.id = null;
 
 
 /**
- * @type {String} The name of the place.
+ * @type {string} The name of the place.
  */
-org.apache.flex.maps.google.Place.prototype.name = null;
+org.apache.flex.maps.google.Place.prototype.name = '';
 
 
 /**
- * @type {String} A reference identifier.
+ * @type {string} A reference identifier.
  */
-org.apache.flex.maps.google.Place.prototype.reference = null;
+org.apache.flex.maps.google.Place.prototype.reference = '';
 
 
 /**
- * @type {String} A description of the area of the place.
+ * @type {string} A description of the area of the place.
  */
-org.apache.flex.maps.google.Place.prototype.vicinity = null;
+org.apache.flex.maps.google.Place.prototype.vicinity = '';
 
 
 /**
@@ -84,6 +84,7 @@ org.apache.flex.maps.google.Place.prototype.vicinity = null;
  * @return {string} A description of the area of the place.
  */
 org.apache.flex.maps.google.Place.prototype.toString = function PlaceToString() {
+  /** @type {string} The result of the function call. */
   var results = '';
   if (this.name) results = this.name;
   if (this.vicinity) results += ' ' + this.vicinity;
