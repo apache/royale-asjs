@@ -182,17 +182,19 @@ package org.apache.flex.core
             if (initialView)
             {
                 initialView.applicationModel =  model;
-                if (isNaN(initialView.explicitWidth))
-                    initialView.width = stage.stageWidth;
-                if (isNaN(initialView.explicitHeight))
-                    initialView.height = stage.stageHeight;
+                if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
+                    initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight);
+                else if (!isNaN(initialView.percentWidth))
+                    initialView.setWidth(stage.stageWidth);
+                else if (!isNaN(initialView.percentHeight))
+                    initialView.setHeight(stage.stageHeight);
         	    this.addElement(initialView);
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {
                     var backgroundColor:uint = ValuesManager.valuesImpl.convertColor(bgColor);
                     graphics.beginFill(backgroundColor);
-                    graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
+                    graphics.drawRect(0, 0, initialView.width, initialView.height);
                     graphics.endFill();
                 }
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
