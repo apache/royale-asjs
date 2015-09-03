@@ -17,6 +17,7 @@ goog.provide('org.apache.flex.html.supportClasses.Viewport');
 goog.require('org.apache.flex.core.IBead');
 goog.require('org.apache.flex.core.IContentView');
 goog.require('org.apache.flex.core.IViewport');
+goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.geom.Rectangle');
 goog.require('org.apache.flex.geom.Size');
 
