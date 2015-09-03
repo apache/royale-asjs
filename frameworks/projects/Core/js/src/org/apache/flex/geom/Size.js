@@ -12,25 +12,21 @@
  * limitations under the License.
  */
 
-/**
- * org.apache.flex.core.IViewport
- *
- * @fileoverview
- *
- * @suppress {checkTypes}
- */
-
-goog.provide('org.apache.flex.core.IViewport');
-
-goog.require('org.apache.flex.core.IBead');
+goog.provide('org.apache.flex.geom.Size');
 
 
 
 /**
- * @interface
- * @extends {org.apache.flex.core.IBead}
+ * @constructor
+ * @param {number} width
+ * @param {number} height
  */
-org.apache.flex.core.IViewport = function() {
+org.apache.flex.geom.Size = function(width, height) {
+
+  this.width = width;
+
+  this.height = height;
+
 };
 
 
@@ -39,6 +35,22 @@ org.apache.flex.core.IViewport = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.IViewport.prototype.FLEXJS_CLASS_INFO =
-{ names: [{ name: 'IViewport', qName: 'org.apache.flex.core.IViewport'}],
-  interfaces: [org.apache.flex.core.IBead] };
+org.apache.flex.geom.Size.prototype.FLEXJS_CLASS_INFO =
+    { names: [{ name: 'Size',
+                qName: 'org.apache.flex.geom.Size'}] };
+
+
+/**
+ * @export
+ * The width value.
+ * @type {number} value The width value.
+ */
+org.apache.flex.geom.Size.prototype.width = 0;
+
+
+/**
+ * @export
+ * The height value.
+ * @type {number} value The height value.
+ */
+org.apache.flex.geom.Size.prototype.height = 0;

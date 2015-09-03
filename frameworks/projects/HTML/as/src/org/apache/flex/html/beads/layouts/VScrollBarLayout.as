@@ -23,12 +23,12 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.beads.IScrollBarView;
 	import org.apache.flex.html.beads.ScrollBarView;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The VScrollBarLayout class is a layout
@@ -82,7 +82,7 @@ package org.apache.flex.html.beads.layouts
             if (!sbModel)
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
 					
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
                     
 			var h:Number = DisplayObject(_strand).height + metrics.top + metrics.bottom;
 			var increment:DisplayObject = sbView.increment;

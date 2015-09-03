@@ -24,8 +24,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.PieSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.events.Event;
@@ -64,15 +64,14 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = chart.getBeadByType(IViewport) as IViewport;
-			var viewportModel:IViewportModel = viewport.model;
+            var layoutParent:ILayoutParent = strand.getBeadByType(ILayoutParent) as ILayoutParent;
+            var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			
 			var n:int = dp.length;
 			
 			var xpos:Number = 0;
-			var useWidth:Number = viewportModel.contentWidth;
-			var useHeight:Number = viewportModel.contentHeight;
+			var useWidth:Number = contentView.width;
+			var useHeight:Number = contentView.height;
 			
 			var maxYValue:Number = 0;
 			var seriesMaxes:Array = [];

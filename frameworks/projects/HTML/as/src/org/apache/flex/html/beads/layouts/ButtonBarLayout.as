@@ -22,7 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -101,7 +101,7 @@ package org.apache.flex.html.beads.layouts
 		public function layout():Boolean
 		{
 			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParent = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
 			var viewportModel:IViewportModel = (layoutParent as ButtonBarView).viewportModel;
 			
@@ -115,8 +115,8 @@ package org.apache.flex.html.beads.layouts
 			}
 			
 			var xpos:Number = 0;
-			var useWidth:Number = viewportModel.contentWidth / realN;
-			var useHeight:Number = viewportModel.contentHeight;
+			var useWidth:Number = contentView.width / realN;
+			var useHeight:Number = contentView.height;
 			
 			for (var i:int=0; i < n; i++)
 			{

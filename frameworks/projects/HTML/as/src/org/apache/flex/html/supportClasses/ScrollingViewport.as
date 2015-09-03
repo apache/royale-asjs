@@ -21,6 +21,7 @@ package org.apache.flex.html.supportClasses
 	import flash.geom.Rectangle;
 	
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -28,44 +29,17 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.IViewportScroller;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
-	import org.apache.flex.utils.BeadMetrics;
 	
-	public class ScrollingViewport implements IBead, IViewport
+	public class ScrollingViewport extends Viewport implements IBead, IViewport
 	{		
 		public function ScrollingViewport()
 		{
 		}
-		
-		private var contentArea:UIBase;
-		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
-		private var _model:IViewportModel;
-		
-		public function set model(value:IViewportModel):void
-		{
-			_model = value;
-			
-			if (model.contentArea) contentArea = model.contentArea as UIBase;
-			
-			model.addEventListener("contentAreaChanged", handleContentChange);
-			model.addEventListener("verticalScrollPositionChanged", handleVerticalScrollChange);
-			model.addEventListener("horizontalScrollPositionChanged", handleHorizontalScrollChange);
-		}
-		public function get model():IViewportModel
-		{
-			return _model;
-		}
-		
+				
 		private var _verticalScroller:ScrollBar;
 		public function get verticalScroller():IViewportScroller
 		{
@@ -78,204 +52,151 @@ package org.apache.flex.html.supportClasses
 			return _horizontalScroller;
 		}
         
+        private var _verticalScrollPosition:Number = 0;
         public function get verticalScrollPosition():Number
         {
-            return _model.verticalScrollPosition;
+            return _verticalScrollPosition;
         }
         public function set verticalScrollPosition(value:Number):void
         {
-            _model.verticalScrollPosition = value;
+            _verticalScrollPosition = value;
+            handleVerticalScrollChange();
         }
         
+        private var _horizontalScrollPosition:Number = 0;
         public function get horizontalScrollPosition():Number
         {
-            return _model.horizontalScrollPosition;
+            return _horizontalScrollPosition;
         }
         public function set horizontalScrollPosition(value:Number):void
         {
-            _model.horizontalScrollPosition = value;
+            _horizontalScrollPosition = value;
+            handleHorizontalScrollChange();
         }
 		
-		/**
-		 * Invoke this function to reshape and set the contentArea being managed by
-		 * this viewport. If scrollers are present this will update them as well to
-		 * reflect the current location of the visible portion of the contentArea
-		 * within the viewport.
-		 */
-		public function updateContentAreaSize():void
+        private var viewportWidth:Number;
+        private var viewportHeight:Number;
+        /**
+         * @copy org.apache.flex.core.IViewport 
+         */
+        override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
+        {
+           super.layoutViewportBeforeContentLayout(width, height);
+           viewportWidth = width;
+           viewportHeight = height;
+        }
+        
+        /**
+         * @copy org.apache.flex.core.IViewport 
+         */
+		override public function layoutViewportAfterContentLayout():Size
 		{
-			var host:UIBase = UIBase(_strand);
-			var rect:Rectangle;
-			var vbarAdjustHeightBy:Number = 0;
-			var hbarAdjustWidthBy:Number = 0;
-			
-			if (_verticalScroller) {
-				ScrollBarModel(_verticalScroller.model).maximum = model.contentHeight;
-				_verticalScroller.x = model.viewportWidth - _verticalScroller.width + 1;
-				_verticalScroller.y = model.viewportY;
-				
-				rect = contentArea.scrollRect;
-				rect.y = ScrollBarModel(_verticalScroller.model).value;
-				contentArea.scrollRect = rect;
-				
-				hbarAdjustWidthBy = _verticalScroller.width + 1;
-			}
-			
-			if (_horizontalScroller) {
-				ScrollBarModel(_horizontalScroller.model).maximum = model.contentWidth;
-				_horizontalScroller.x = model.viewportX;
-				_horizontalScroller.y = model.viewportHeight - _horizontalScroller.height + 1;
-				
-				rect = contentArea.scrollRect;
-				rect.x = ScrollBarModel(_horizontalScroller.model).value;
-				contentArea.scrollRect = rect;
-				
-				vbarAdjustHeightBy = _horizontalScroller.height + 1;
-			}
-			
-			if (_verticalScroller) {
-				_verticalScroller.setHeight(model.viewportHeight - vbarAdjustHeightBy, false);
-			}
-			if (_horizontalScroller) {
-				_horizontalScroller.setWidth(model.viewportWidth - hbarAdjustWidthBy, false);
-			} 
-			
-			if (!model.contentIsHost) {
-				contentArea.x = model.contentX;
-				contentArea.y = model.contentY;
-			}
-			contentArea.setWidthAndHeight(model.contentWidth, model.contentHeight, true);
+            var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;            
+            var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
+            var contentSize:Size;
+            do
+            {
+                contentSize = super.layoutViewportAfterContentLayout();
+                if (isNaN(viewportHeight))
+                    viewportHeight = contentSize.height;
+                if (isNaN(viewportWidth))
+                    viewportWidth = contentSize.width;
+                    
+    			var host:UIBase = UIBase(_strand);
+    			var visibleWidth:Number;
+                var visibleHeight:Number;
+                var needV:Boolean = contentSize.height > viewportHeight;
+                var needH:Boolean = contentSize.width > viewportWidth;
+                
+                if (needV)
+                {
+                    if (_verticalScroller == null) {
+                        _verticalScroller = createVerticalScrollBar();
+                        host.addElement(_verticalScroller, false);
+                    }
+                }
+                if (needH)
+                {
+                    if (_horizontalScroller == null) {
+                        _horizontalScroller = createHorizontalScrollBar();
+                        host.addElement(_horizontalScroller, false);
+                    }
+                }
+                
+                if (needV)
+                {
+                    _verticalScroller.visible = true;
+                    _verticalScroller.x = contentArea.x + viewportWidth - _verticalScroller.width;
+                    _verticalScroller.y = contentArea.y;
+                    _verticalScroller.setHeight(viewportHeight - (needH ? _horizontalScroller.height : 0), true);
+                    visibleWidth = _verticalScroller.x;
+                }
+                else if (_verticalScroller)
+                    _verticalScroller.visible = false;
+    			
+    			if (needH) 
+                {
+                    _horizontalScroller.visible = true;
+    				_horizontalScroller.x = contentArea.x;
+    				_horizontalScroller.y = contentArea.y + viewportHeight - _horizontalScroller.height;
+                    _horizontalScroller.setWidth(viewportWidth - (needV ? _verticalScroller.width : 0), true);
+                    visibleHeight = _horizontalScroller.y;
+    			}
+    			
+                var needsLayout:Boolean = false;
+                // resize content area if needed to get out from under scrollbars
+                if (!isNaN(visibleWidth) || !isNaN(visibleHeight))
+                {
+                    if (!isNaN(visibleWidth))
+                        needsLayout = visibleWidth != contentView.width;
+                    if (!isNaN(visibleHeight))
+                        needsLayout = visibleHeight != contentView.height;
+                    if (!isNaN(visibleWidth) && !isNaN(visibleHeight))
+                        contentArea.setWidthAndHeight(visibleWidth, visibleHeight, false);
+                    else if (!isNaN(visibleWidth))
+                        contentArea.setWidth(visibleWidth, false);
+                    else if (!isNaN(visibleHeight))
+                        contentArea.setHeight(visibleHeight, false);
+                }
+                if (needsLayout)
+                {
+                    var layout:IBeadLayout = host.getBeadByType(IBeadLayout) as IBeadLayout;
+                    layout.layout();
+                }
+            } while (needsLayout && (needV != hadV || needH == hadH));
+            if (_verticalScroller)
+            {
+                ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
+                ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
+                ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
+                if (contentSize.height > contentArea.height && 
+                    (contentSize.height - contentArea.height) < _verticalScrollPosition)
+                    _verticalScrollPosition = contentSize.height - contentArea.height;
+            }
+            if (_horizontalScroller)
+            {
+                ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
+                ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
+                ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;                
+                if (contentSize.width > contentArea.width && 
+                    (contentSize.width - contentArea.width) < _horizontalScrollPosition)
+                    _horizontalScrollPosition = contentSize.width - contentArea.width;
+            }
+            
+            var rect:Rectangle = new Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
+                        (_verticalScroller != null && _verticalScroller.visible) ?
+                            _verticalScroller.x : viewportWidth,
+                        (_horizontalScroller != null && _horizontalScroller.visible) ?
+                            _horizontalScroller.y : viewportHeight);
+            contentArea.scrollRect = rect;
+            return contentSize;
 		}
 		
-		public function updateSize():void
-		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
-			var host:UIBase = UIBase(_strand);
-			var addVbar:Boolean = false;
-			var addHbar:Boolean = false;
-			
-			if (model.viewportHeight >= model.contentHeight) {
-				if (_verticalScroller) {
-					host.removeElement(_verticalScroller);
-					_verticalScroller = null;
-				}
-			}
-			else if (model.contentHeight > model.viewportHeight) {
-				if (_verticalScroller == null) {
-					addVbar = true;
-				}
-			}
-			
-			if (model.viewportWidth >= model.contentWidth) {
-				if (_horizontalScroller) {
-					host.removeElement(_horizontalScroller);
-					_horizontalScroller = null;
-				}
-			}
-			else if (model.contentWidth > model.viewportWidth) {
-				if (_horizontalScroller == null) {
-					addHbar = true;
-				}
-			}
-			
-			if (addVbar) needsVerticalScroller();
-			if (_verticalScroller) {
-				ScrollBarModel(_verticalScroller.model).maximum = model.contentHeight;
-				ScrollBarModel(_verticalScroller.model).pageSize = model.viewportHeight;
-				ScrollBarModel(_verticalScroller.model).pageStepSize = model.viewportHeight;
-			}
-			
-			if (addHbar) needsHorizontalScroller();
-			if (_horizontalScroller) {
-				ScrollBarModel(_horizontalScroller.model).maximum = model.contentWidth;
-				ScrollBarModel(_horizontalScroller.model).pageSize = model.viewportWidth;
-				ScrollBarModel(_horizontalScroller.model).pageStepSize = model.viewportWidth;
-			}
-			
-			var rect:Rectangle = contentArea.scrollRect;
-			if (rect) {
-				rect.x = model.viewportX;//0;
-				rect.y = model.viewportY;//0;
-				rect.width = model.viewportWidth - metrics.left;
-				rect.height = model.viewportHeight - 2*metrics.top;
-				contentArea.scrollRect = rect;
-			}
-		}
-		
-		/**
-		 * Call this function when at least one scroller is needed to view the entire
-		 * contentArea.
-		 */
-		public function needsScrollers():void
-		{
-			needsVerticalScroller();
-			needsHorizontalScroller();
-		}
-		
-		/**
-		 * Call this function when only a vertical scroller is needed
-		 */
-		public function needsVerticalScroller():void
-		{
-			var host:UIBase = UIBase(_strand);
-			
-			var needVertical:Boolean = model.contentHeight > model.viewportHeight;
-			
-			if (needVertical && _verticalScroller == null) {
-				_verticalScroller = createVerticalScrollBar();
-				var vMetrics:UIMetrics = BeadMetrics.getMetrics(_verticalScroller);
-				_verticalScroller.visible = true;
-				_verticalScroller.x = model.viewportWidth - (_verticalScroller.width+1) - vMetrics.left - vMetrics.right;
-				_verticalScroller.y = model.viewportY;
-				_verticalScroller.setHeight(model.viewportHeight, true);
-				
-				host.addElement(_verticalScroller, false);
-			}
-		}
-		
-		/**
-		 * Call this function when only a horizontal scroller is needed
-		 */
-		public function needsHorizontalScroller():void
-		{
-			var host:UIBase = UIBase(_strand);
-			
-			var needHorizontal:Boolean = model.contentWidth > model.viewportWidth;
-			
-			if (needHorizontal && _horizontalScroller == null) {
-				_horizontalScroller = createHorizontalScrollBar();
-				var hMetrics:UIMetrics = BeadMetrics.getMetrics(_horizontalScroller);
-				_horizontalScroller.visible = true;
-				_horizontalScroller.x = model.viewportX;
-				_horizontalScroller.y = model.viewportHeight - (_horizontalScroller.height+1) - hMetrics.top - hMetrics.bottom;
-				_horizontalScroller.setWidth(model.viewportWidth, true);
-				
-				host.addElement(_horizontalScroller, false);
-			}
-		}
-		
-		public function scrollerWidth():Number
-		{
-			if (_verticalScroller) return _verticalScroller.width;
-			return 0;
-		}
-		
-		public function scrollerHeight():Number
-		{
-			if (_horizontalScroller) return _horizontalScroller.height;
-			return 0;
-		}
 		
 		private function createVerticalScrollBar():ScrollBar
 		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
 			var vsbm:ScrollBarModel = new ScrollBarModel();
-			vsbm.maximum = model.contentHeight;
 			vsbm.minimum = 0;
-			vsbm.pageSize = model.viewportHeight - metrics.top - metrics.bottom;
-			vsbm.pageStepSize = model.viewportHeight - metrics.top - metrics.bottom;
 			vsbm.snapInterval = 1;
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
@@ -285,29 +206,14 @@ package org.apache.flex.html.supportClasses
 			vsb.model = vsbm;
 			vsb.visible = false;
 			
-			vsb.addEventListener("scroll",handleVerticalScroll);
-			
-			var rect:Rectangle = contentArea.scrollRect;
-			if (rect == null) {
-				rect = new Rectangle(model.viewportX, model.viewportY,//0, 0, 
-					                 model.viewportWidth - metrics.left - metrics.right, 
-									 model.viewportHeight - metrics.top - metrics.bottom);
-				contentArea.scrollRect = rect;
-			}
-			
+			vsb.addEventListener("scroll",handleVerticalScroll);			
 			return vsb;
 		}
 		
 		private function createHorizontalScrollBar():ScrollBar
 		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
 			var hsbm:ScrollBarModel = new ScrollBarModel();
-			hsbm.maximum = model.contentWidth;
 			hsbm.minimum = 0;
-			hsbm.pageSize = model.viewportWidth - metrics.left - metrics.right;
-			hsbm.pageStepSize = model.viewportWidth - metrics.left - metrics.right;
 			hsbm.snapInterval = 1;
 			hsbm.stepSize = 1;
 			hsbm.value = 0;
@@ -317,16 +223,7 @@ package org.apache.flex.html.supportClasses
 			hsb.model = hsbm;
 			hsb.visible = false;
 			
-			hsb.addEventListener("scroll",handleHorizontalScroll);
-			
-			var rect:Rectangle = contentArea.scrollRect;
-			if (rect == null) {
-				rect = new Rectangle(model.viewportX, model.viewportY,//0, 0, 
-					model.viewportWidth - metrics.left - metrics.right, 
-					model.viewportHeight - metrics.top - metrics.bottom);
-				contentArea.scrollRect = rect;
-			}
-			
+			hsb.addEventListener("scroll",handleHorizontalScroll);			
 			return hsb;
 		}
 		
@@ -338,7 +235,7 @@ package org.apache.flex.html.supportClasses
 			rect.y = vpos;
 			contentArea.scrollRect = rect;
 			
-			model.verticalScrollPosition = vpos;
+			_verticalScrollPosition = vpos;
 		}
 		
 		private function handleHorizontalScroll(event:Event):void
@@ -349,25 +246,20 @@ package org.apache.flex.html.supportClasses
 			rect.x = hpos;
 			contentArea.scrollRect = rect;
 			
-			model.horizontalScrollPosition = hpos;
+			_horizontalScrollPosition = hpos;
 		}
 		
-		private function handleContentChange(event:Event):void
-		{
-			contentArea = model.contentArea as UIBase;
-		}
-		
-		private function handleVerticalScrollChange(event:Event):void
+		private function handleVerticalScrollChange():void
 		{
 			if (_verticalScroller) {
-				ScrollBarModel(_verticalScroller.model).value = model.verticalScrollPosition;
+				ScrollBarModel(_verticalScroller.model).value = verticalScrollPosition;
 			}
 		}
 		
-		private function handleHorizontalScrollChange(event:Event):void
+		private function handleHorizontalScrollChange():void
 		{
 			if (_horizontalScroller) {
-				ScrollBarModel(_horizontalScroller.model).value = model.horizontalScrollPosition;
+				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
 			}
 		}
 	}

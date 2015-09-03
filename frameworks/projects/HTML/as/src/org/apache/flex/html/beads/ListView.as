@@ -79,8 +79,6 @@ package org.apache.flex.html.beads
             return _border;
         }
 		
-		private var _dataGroup:IItemRendererParent;
-		
 		/**
 		 *  The area holding the itemRenderers.
 		 *
@@ -91,26 +89,9 @@ package org.apache.flex.html.beads
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			return _dataGroup;
+			return contentView as IItemRendererParent;
 		}
-		public function set dataGroup(value:IItemRendererParent):void
-		{
-			_dataGroup = value;
-		}
-		
-		/**
-		 *  The contentArea includes the dataGroup and scrollBars.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function get contentView():IParentIUIBase
-		{
-			return _dataGroup as IParentIUIBase;
-		}
-		
+				
 		/**
 		 * @private
 		 */
@@ -158,14 +139,6 @@ package org.apache.flex.html.beads
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-		}
-		
-		override protected function createContentView():IParentIUIBase
-		{
-			if (_dataGroup == null) {
-				_dataGroup = new (ValuesManager.valuesImpl.getValue(_strand, "iDataGroup")) as IItemRendererParent;
-			}
-			return _dataGroup as IParentIUIBase;
 		}
 		
 		private var lastSelectedIndex:int = -1;
@@ -235,7 +208,7 @@ package org.apache.flex.html.beads
 		override protected function resizeHandler(event:Event):void
 		{
 			super.resizeHandler(event);
-			_dataGroup.updateAllItemRenderers();
+			dataGroup.updateAllItemRenderers();
 		}
 	}
 }

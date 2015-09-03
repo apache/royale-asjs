@@ -81,8 +81,8 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
 
   var n = itemRendererParent.numElements;
   var xpos = 0;
-  var useWidth = viewportModel.contentWidth / n;
-  var useHeight = viewportModel.contentHeight;
+  var useWidth = contentView.width / n;
+  var useHeight = contentView.height;
 
   for (var i = 0; i < n; i++)
   {

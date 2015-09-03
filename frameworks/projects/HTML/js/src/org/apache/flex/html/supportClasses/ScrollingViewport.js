@@ -15,11 +15,14 @@
 goog.provide('org.apache.flex.html.supportClasses.ScrollingViewport');
 
 goog.require('org.apache.flex.events.Event');
+goog.require('org.apache.flex.geom.Size');
 
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IBead}
+ * @implements {org.apache.flex.core.IViewport}
  */
 org.apache.flex.html.supportClasses.ScrollingViewport =
 function() {
@@ -33,95 +36,95 @@ function() {
  */
 org.apache.flex.html.supportClasses.ScrollingViewport.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ScrollingViewport',
-                qName: 'org.apache.flex.html.supportClasses.ScrollingViewport' }]};
+                qName: 'org.apache.flex.html.supportClasses.ScrollingViewport' }],
+      interfaces: [org.apache.flex.core.IBead,
+                   org.apache.flex.core.IViewport]};
 
 
 /**
- * @private
+ * @protected
  * @type {Object}
  */
-org.apache.flex.html.supportClasses.ScrollingViewport.prototype.strand_ = null;
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype._strand = null;
 
 
 /**
- *
+ * @type {org.apache.flex.html.supportClasses.ContainerContentArea}
  */
-org.apache.flex.html.supportClasses.ScrollingViewport.prototype.updateSize = function() {
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.contentView = null;
+
+
+/**
+ * @param {number} x The x position of the viewport.
+ * @param {number} y The y position of the viewport.
+ */
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.setPosition =
+   function(x, y) {
+  this.contentView.x = x;
+  this.contentView.y = y;
 };
 
 
 /**
- *
+ * @param {number} width The width or NaN if sized to content.
+ * @param {number} height The height or NaN if sized to content.
  */
-org.apache.flex.html.supportClasses.ScrollingViewport.prototype.updateContentAreaSize = function() {
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.layoutViewportBeforeContentLayout =
+   function(width, height) {
+  if (!isNaN(width))
+    this.contentView.width = width;
+  if (!isNaN(height))
+    this.contentView.height = height;
 };
 
 
 /**
- * @param {org.apache.flex.events.Event} event The event.
+ * @return {org.apache.flex.geom.Size} The size of the viewport.
  */
-org.apache.flex.html.supportClasses.ScrollingViewport.prototype.handleInitComplete =
-  function(event) {
-    var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
-    var contentView = viewBead.contentView;
-    contentView.element.style['overflow'] = 'auto';
+org.apache.flex.html.supportClasses.ScrollingViewport.prototype.layoutViewportAfterContentLayout =
+   function() {
+  // nothing to do here?  In theory, the layout and browser will have stretched or shrunk
+  // the contentView to the right size
+  return new org.apache.flex.geom.Size(this.contentView.width, this.contentView.height);
 };
-
 
 
 Object.defineProperties(org.apache.flex.html.supportClasses.ScrollingViewport.prototype, {
     /** @export */
-    model: {
-        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
-        get: function() {
-            return this.model_;
-        },
-        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
-        set: function(value) {
-            this.model_ = value;
-        }
-    },
-    /** @export */
     verticalScrollPosition: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {
-             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
-             var contentView = viewBead.contentView;
-            return contentView.positioner.scrollTop;
+            return this.contentView.positioner.scrollTop;
         },
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
-             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
-             var contentView = viewBead.contentView;
-             contentView.positioner.scrollTop = value;
+            this.contentView.positioner.scrollTop = value;
         }
     },
     /** @export */
     horizontalScrollPosition: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         get: function() {
-             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
-             var contentView = viewBead.contentView;
-            return contentView.positioner.scrollLeft;
+             return this.contentView.positioner.scrollLeft;
         },
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
-             var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
-             var contentView = viewBead.contentView;
-             contentView.positioner.scrollLeft = value;
+             this.contentView.positioner.scrollLeft = value;
         }
     },
     /** @export */
     strand: {
         /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
-        get: function() {
-            return this.strand_;
-        },
-        /** @this {org.apache.flex.html.supportClasses.ScrollingViewport} */
         set: function(value) {
-            this.strand_ = value;
-            this.strand_.addEventListener('initComplete',
-              goog.bind(this.handleInitComplete, this));
-        }
+            this._strand = value;
+            this.contentView = this._strand.getBeadByType(org.apache.flex.core.IContentView);
+            if (this.contentView == null) {
+              var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(
+                       this._strand, 'iContentView');
+              if (c)
+                this.contentView = new c();
+            }
+            this.contentView.element.style.overflow = 'auto';
+         }
     }
 });

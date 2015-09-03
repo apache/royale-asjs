@@ -14,10 +14,9 @@
 
 goog.provide('org.apache.flex.html.beads.PanelView');
 
-goog.require('org.apache.flex.html.ControlBar');
 goog.require('org.apache.flex.html.TitleBar');
 goog.require('org.apache.flex.html.beads.ContainerView');
-goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
+goog.require('org.apache.flex.utils.CSSContainerUtils');
 
 
 
@@ -55,16 +54,6 @@ org.apache.flex.html.beads.PanelView
   .prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'PanelView',
                 qName: 'org.apache.flex.html.beads.PanelView'}]};
-
-
-/**
- * @override
- */
-org.apache.flex.html.beads.PanelView.
-    prototype.createContentView = function() {
-  var ca = new org.apache.flex.html.supportClasses.ContainerContentArea();
-  return ca;
-};
 
 
 /**
@@ -118,41 +107,56 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
  * @override
  */
 org.apache.flex.html.beads.PanelView.
-    prototype.adjustSizeBeforeLayout = function() {
-    var host = this._strand;
-    this.viewportModel.contentWidth = host.width;
-    this.viewportModel.contentHeight = host.height - this.titleBar_.height;
-    this.viewportModel.contentX = 0;
-    this.viewportModel.contentY = 0;
-    if (!host.isWidthSizedToContent())
-      this.contentView.width = this.viewportModel.contentWidth;
-    if (!host.isHeightSizedToContent())
-      this.contentView.height = this.viewportModel.contentHeight;
+    prototype.layoutViewBeforeContentLayout = function() {
+  var vm = this.viewportModel;
+  var host = this._strand;
+
+  vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
+  this.titleBar.x = vm.borderMetrics.left;
+  this.titleBar.y = vm.borderMetrics.top;
+  if (!host.isWidthSizedToContent())
+    this.titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+  vm.chromeMetrics = this.getChromeMetrics();
+  this.viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                            vm.borderMetrics.top + vm.chromeMetrics.top);
+  this.viewport.layoutViewportBeforeContentLayout(
+      !host.isWidthSizedToContent() ?
+          host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                       vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+      !host.isHeightSizedToContent() ?
+          host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                        vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
 };
 
 
 /**
  * @override
- * @param {boolean} widthSizedToContent True if the width is determined by content.
- * @param {boolean} heightSizedToContent True if the height is determined by content.
  */
-org.apache.flex.html.beads.PanelView.prototype.layoutContainer =
-    function(widthSizedToContent, heightSizedToContent) {
-
-  this.titleBar_.x = 0;
-  this.titleBar_.y = 0;
-  this.titleBar_.width = this._strand.width;
-  this.titleBar_.dispatchEvent('sizeChanged');
-
-  if (heightSizedToContent) {
-    this._strand.height = this._strand.height + this.titleBar_.height;
+org.apache.flex.html.beads.PanelView.
+    prototype.layoutViewAfterContentLayout = function() {
+  var vm = this.viewportModel;
+  var host = this._strand;
+  var viewportSize = this.viewport.layoutViewportAfterContentLayout();
+  var hasWidth = !host.isWidthSizedToContent();
+  var hasHeight = !host.isHeightSizedToContent();
+  if (!hasWidth) {
+    this.titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
+    vm.chromeMetrics = this.getChromeMetrics();
   }
-
-  this.viewportModel.viewportHeight = this._strand.height - this.titleBar_.height;
-  this.viewportModel.viewportWidth = this._strand.width;
-  this.viewportModel.viewportX = 0;
-  this.viewportModel.viewportY = this.titleBar_.height;
+  org.apache.flex.html.beads.PanelView.base(this, 'layoutViewAfterContentLayout');
 };
+
+
+/**
+ * @override
+ * Returns the chrome metrics
+ */
+org.apache.flex.html.beads.PanelView.
+    prototype.getChromeMetrics = function() {
+  return new org.apache.flex.geom.Rectangle(0, this.titleBar.height, 0, 0);
+};
+
+
 
 
 /**

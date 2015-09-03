@@ -63,7 +63,7 @@ ButtonBar
     IBeadView:  ClassReference("org.apache.flex.html.beads.ButtonBarView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.ButtonBarLayout");
-    IDataGroup: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer");
@@ -81,6 +81,9 @@ Container
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 }
 
 ControlBar
@@ -154,11 +157,12 @@ List
     IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
-    IDataGroup: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
 }
@@ -193,11 +197,12 @@ SimpleList
     IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
-    IDataGroup: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 }
 
 StringItemRenderer
@@ -271,6 +276,9 @@ ViewBase
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 }
 
 
