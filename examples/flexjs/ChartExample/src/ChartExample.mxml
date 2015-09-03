@@ -23,7 +23,9 @@
 				   xmlns:models="models.*"
 				   xmlns:js="library://ns.apache.org/flexjs/basic" 
 				   >
-	
+	<js:beads>
+        <js:BrowserScroller />
+    </js:beads>
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</js:valuesImpl>
