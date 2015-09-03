@@ -150,7 +150,7 @@ package org.apache.flex.html.beads
          */
         override protected function getChromeMetrics():Rectangle
         {
-            return new Rectangle(0, titleBar.height, 0, titleBar.height + controlBar.height);
+            return new Rectangle(0, titleBar.height, 0, controlBar.height - titleBar.height);
         }
         
         override protected function layoutViewBeforeContentLayout():void

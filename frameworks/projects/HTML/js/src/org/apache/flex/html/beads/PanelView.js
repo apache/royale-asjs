@@ -153,7 +153,7 @@ org.apache.flex.html.beads.PanelView.
  */
 org.apache.flex.html.beads.PanelView.
     prototype.getChromeMetrics = function() {
-  return new org.apache.flex.geom.Rectangle(0, this.titleBar.height, 0, 0);
+  return new org.apache.flex.geom.Rectangle(0, this.titleBar.height, 0, 0 - this.titleBar.height);
 };
 
 
