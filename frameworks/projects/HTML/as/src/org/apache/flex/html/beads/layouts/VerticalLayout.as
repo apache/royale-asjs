@@ -28,8 +28,10 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
     import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -78,7 +80,8 @@ package org.apache.flex.html.beads.layouts
 		{
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
-
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+            
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
 			var hostSizedToContent:Boolean = host.isWidthSizedToContent();
@@ -115,9 +118,9 @@ package org.apache.flex.html.beads.layouts
 				if (i == 0)
                 {
                     if (ilc)
-                        ilc.setY(mt);
+                        ilc.setY(mt + padding.top);
                     else
-    					child.y = mt;
+    					child.y = mt + padding.top;
                 }
 				else
                 {
@@ -172,7 +175,8 @@ package org.apache.flex.html.beads.layouts
 				{
 					// if host is sized by parent,
 					// we can position and size children horizontally now
-					setPositionAndWidth(child, left, ml, right, mr, w);
+					setPositionAndWidth(child, left, ml, padding.left, 
+                        right, mr, padding.right, w);
 				}
 				else
 				{
@@ -197,8 +201,8 @@ package org.apache.flex.html.beads.layouts
 					child = contentView.getElementAt(i) as IUIBase;
 					if (child == null || !child.visible) continue;
 					var obj:Object = flexibleHorizontalMargins[i];
-					setPositionAndWidth(child, obj.left, obj.marginLeft,
-						obj.right, obj.marginRight, maxWidth);
+					setPositionAndWidth(child, obj.left, obj.marginLeft, padding.left,
+						obj.right, obj.marginRight, padding.right, maxWidth);
 				}
 			}
 			if (hasHorizontalFlex)
@@ -216,14 +220,14 @@ package org.apache.flex.html.beads.layouts
                             if (obj.marginLeft == "auto" && obj.marginRight == "auto")
                                 ilc.setX(maxWidth - child.width / 2);
                             else if (obj.marginLeft == "auto")
-                                ilc.setX(maxWidth - child.width - obj.marginRight);                            
+                                ilc.setX(maxWidth - child.width - obj.marginRight - padding.right);                            
                         }
                         else
                         {
         					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
         						child.x = maxWidth - child.width / 2;
         					else if (obj.marginLeft == "auto")
-        						child.x = maxWidth - child.width - obj.marginRight;
+        						child.x = maxWidth - child.width - obj.marginRight - padding.right;
                         }
 					}
 				}
@@ -238,8 +242,8 @@ package org.apache.flex.html.beads.layouts
 			return sizeChanged;
 		}
 		
-		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number,
-											 right:Number, mr:Number, w:Number):void
+		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number, pl:Number,
+											 right:Number, mr:Number, pr:Number, w:Number):void
 		{
 			var widthSet:Boolean = false;
 			
@@ -256,10 +260,10 @@ package org.apache.flex.html.beads.layouts
 			else 
 			{
                 if (ilc)
-                    ilc.setX(ml);
+                    ilc.setX(ml + pl);
                 else
-    				child.x = ml;
-				ww -= ml;
+    				child.x = ml + pl;
+				ww -= ml + pl;
 			}
 			if (!isNaN(right))
 			{

@@ -19,16 +19,18 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
-    import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+    import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The OneFlexibleChildVerticalLayout class is a simple layout
@@ -147,6 +149,7 @@ package org.apache.flex.html.beads.layouts
 		{
             var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			actualChild = document[flexibleChild];
             
             var ilc:ILayoutChild;
@@ -159,8 +162,8 @@ package org.apache.flex.html.beads.layouts
 			maxWidth = 0;
             
             var w:Number = contentView.width;			
-            var hh:Number = contentView.height;
-            var yy:int = 0;
+            var hh:Number = contentView.height - padding.bottom;
+            var yy:int = padding.top;
             var flexChildIndex:int;
             var ml:Number;
             var mr:Number;
@@ -246,7 +249,7 @@ package org.apache.flex.html.beads.layouts
                         ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
                 }
                 maxWidth = Math.max(maxWidth, ml + child.width + mr);
-                setPositionAndWidth(child, left, ml, right, mr, w);
+                setPositionAndWidth(child, left, ml, padding.left, right, mr, padding.right, w);
                 child.y = yy + mt;
                 yy += child.height + mt + mb;
                 lastmb = mb;
@@ -322,7 +325,7 @@ package org.apache.flex.html.beads.layouts
                         if (!isNaN(ilc.percentWidth))
                             ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
                     }
-                    setPositionAndWidth(child, left, ml, right, mr, w);
+                    setPositionAndWidth(child, left, ml, padding.left, right, mr, padding.right, w);
                     maxWidth = Math.max(maxWidth, ml + child.width + mr);
                     child.y = hh - child.height - mb;
     				hh -= child.height + mt + mb;
@@ -396,16 +399,16 @@ package org.apache.flex.html.beads.layouts
                 if (!isNaN(ilc.percentWidth))
                     ilc.setWidth(contentView.width * ilc.percentWidth / 100, !isNaN(ilc.percentHeight));
             }
-            setPositionAndWidth(child, left, ml, right, mr, w);
+            setPositionAndWidth(child, left, ml, padding.left, right, mr, padding.right, w);
             maxWidth = Math.max(maxWidth, ml + child.width + mr);
             child.y = yy + mt;
-            child.height = hh - yy - mb;
+            child.height = hh - mb - child.y;
             
             return true;
 		}
 
-        private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number,
-                                             right:Number, mr:Number, w:Number):void
+        private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number, pl:Number,
+                                             right:Number, mr:Number, pr:Number, w:Number):void
         {
             var widthSet:Boolean = false;
             
@@ -419,7 +422,7 @@ package org.apache.flex.html.beads.layouts
             else 
             {
                 if (isNaN(right))
-                    child.x = ml;
+                    child.x = ml + pl;
                 ww -= ml;
             }
             if (!isNaN(right))

@@ -56,6 +56,11 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement
   // also absolutely positioned
   this.positioner.style.position = 'relative';
   this.positioner.style.backgroundColor = 'inherit';
+  this.positioner.style.paddingLeft = 'inherit';
+  this.positioner.style.paddingRight = 'inherit';
+  this.positioner.style.paddingTop = 'inherit';
+  this.positioner.style.paddingBottom = 'inherit';
+  this.positioner.style.padding = 'inherit';
   this.element.flexjs_wrapper = this;
 
   this.addEventListener('layoutNeeded',

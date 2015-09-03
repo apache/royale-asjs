@@ -21,7 +21,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
@@ -131,7 +131,8 @@ package org.apache.flex.html.beads.layouts
 		public function layout():Boolean
 		{
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParent = layoutParent.contentView;
+			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
 			
 			var n:int = contentView.numElements;
@@ -143,11 +144,10 @@ package org.apache.flex.html.beads.layouts
 			maxHeight = 0;
 			var verticalMargins:Array = [];
 			
-            var xx:Number = layoutParent.resizableView.width;
+            var xx:Number = contentView.width;
             if (isNaN(xx) || xx <= 0)
                 return true;
-            var uiMetrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(layoutParent.resizableView);
-            xx -= uiMetrics.left + uiMetrics.right + 1; // some browsers won't layout to the edge
+            xx -= padding.right + 1; // some browsers won't layout to the edge
             
             for (var i:int = n - 1; i >= 0; i--)
 			{
@@ -208,12 +208,12 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(mr))
 						mr = 0;
 				}
-				child.y = mt;
+				child.y = mt + padding.top;
 				maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				if (i == 0)
                 {
-                    child.x = ml;
-                    child.width = xx - mr;
+                    child.x = ml + padding.left;
+                    child.width = xx - mr - child.x;
                 }
 				else
                     child.x = xx - child.width - mr;
@@ -234,7 +234,7 @@ package org.apache.flex.html.beads.layouts
 					child.y = obj.marginTop;
 			}
             if (hostSizedToContent)
-                ILayoutChild(contentView).setHeight(maxHeight, true);
+                ILayoutChild(contentView).setHeight(maxHeight + padding.top + padding.bottom, true);
 			
             return true;
 		}

@@ -20,16 +20,18 @@ package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
-    import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IMeasurementBead;
-    import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.CSSContainerUtils;    
 	
 	/**
 	 * ColumnLayout is a class that organizes the positioning of children
@@ -98,6 +100,7 @@ package org.apache.flex.html.beads.layouts
             var host:UIBase = UIBase(_strand);
             var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
             var contentView:IParent = layoutParent.contentView;
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
 			var sh:Number = host.height;
 			
@@ -162,8 +165,8 @@ package org.apache.flex.html.beads.layouts
 			}
 			
             var lastmb:Number = 0;
-			var curx:int = 0;
-			var cury:int = 0;
+			var curx:int = padding.left;
+			var cury:int = padding.top;
 			var maxHeight:int = 0;
             var maxWidth:int = 0;
 			col = 0;
@@ -180,7 +183,7 @@ package org.apache.flex.html.beads.layouts
 					cury += rows[0].rowHeight;
                     rows.shift();
 					col = 0;
-					curx = 0;
+					curx = padding.left;
 				}
 			}
 			if (!hasWidth && n > 0 && !isNaN(maxWidth))

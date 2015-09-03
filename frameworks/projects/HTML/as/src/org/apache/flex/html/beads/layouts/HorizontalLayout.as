@@ -28,7 +28,9 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
+    import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The HorizontalLayout class is a simple layout
@@ -81,7 +83,8 @@ package org.apache.flex.html.beads.layouts
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
 			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
 			var contentView:IParentIUIBase = layoutParent.contentView;
-			
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+            
 			var n:int = contentView.numElements;
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
             var ilc:ILayoutChild;
@@ -162,9 +165,9 @@ package org.apache.flex.html.beads.layouts
                 if (i == 0)
                 {
                     if (ilc)
-                        ilc.setX(ml);
+                        ilc.setX(ml + padding.left);
                     else
-                        child.x = ml;
+                        child.x = ml + padding.left;
                 }
                 else
                 {
@@ -185,7 +188,7 @@ package org.apache.flex.html.beads.layouts
                 {
                     // if host is sized by parent,
                     // we can position and size children horizontally now
-                    setPositionAndHeight(child, top, mt, bottom, mb, h);
+                    setPositionAndHeight(child, top, mt, padding.top, bottom, mb, padding.bottom, h);
                     maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 }
                 else
@@ -216,8 +219,8 @@ package org.apache.flex.html.beads.layouts
                     child = contentView.getElementAt(i) as IUIBase;
                     if (child == null || !child.visible) continue;
                     var obj:Object = verticalMargins[i];
-                    setPositionAndHeight(child, obj.top, obj.marginTop,
-                        obj.bottom, obj.marginBottom, maxHeight);
+                    setPositionAndHeight(child, obj.top, obj.marginTop, padding.top,
+                        obj.bottom, obj.marginBottom, padding.bottom, maxHeight);
                 }
             }
 			for (i = 0; i < n; i++)
@@ -234,7 +237,7 @@ package org.apache.flex.html.beads.layouts
                 if (ilc)
                 {
     				if (obj.valign == "top")
-                        ilc.setY(obj.marginTop);
+                        ilc.setY(obj.marginTop + padding.top);
     				else if (valign == "bottom")
                         ilc.setY(maxHeight - child.height - obj.marginBottom);
     				else // TODO: aharui - baseline
@@ -243,7 +246,7 @@ package org.apache.flex.html.beads.layouts
                 else
                 {
                     if (obj.valign == "top")
-                        child.y = obj.marginTop;
+                        child.y = obj.marginTop + padding.top;
                     else if (valign == "bottom")
                         child.y = maxHeight - child.height - obj.marginBottom;
                     else // TODO: aharui - baseline
@@ -260,8 +263,8 @@ package org.apache.flex.html.beads.layouts
 			return sizeChanged;
 		}
         
-        private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number,
-                                             bottom:Number, mb:Number, h:Number):void
+        private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number, pt:Number,
+                                             bottom:Number, mb:Number, pb:Number, h:Number):void
         {
             var heightSet:Boolean = false;
             
@@ -278,10 +281,10 @@ package org.apache.flex.html.beads.layouts
             else 
             {
                 if (ilc)
-                    ilc.setY(mt);
+                    ilc.setY(mt + pt);
                 else
-                    child.y = mt;
-                hh -= mt;
+                    child.y = mt + pt;
+                hh -= mt + pt;
             }
             if (!isNaN(bottom))
             {

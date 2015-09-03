@@ -19,17 +19,19 @@
 package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
-    import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The OneFlexibleChildHorizontalLayout class is a simple layout
@@ -148,6 +150,7 @@ package org.apache.flex.html.beads.layouts
 		{
             var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
             actualChild = document[flexibleChild];
 
             var ilc:ILayoutChild;
@@ -160,9 +163,9 @@ package org.apache.flex.html.beads.layouts
 			maxHeight = 0;
 			var verticalMargins:Array = new Array(n);
 			
-            var ww:Number = contentView.width;
+            var ww:Number = contentView.width - padding.right;
             var hh:Number = contentView.height;
-            var xx:int = 0;
+            var xx:int = padding.left;
             var flexChildIndex:int;
             var ml:Number;
             var mr:Number;
@@ -190,7 +193,7 @@ package org.apache.flex.html.beads.layouts
                 mb = CSSUtils.getBottomValue(marginBottom, margin, hh);
                 mr = CSSUtils.getRightValue(marginRight, margin, ww);
                 ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
-                child.y = mt;
+                child.y = mt + padding.top;
                 if (child is ILayoutChild)
                 {
                     ilc = child as ILayoutChild;
@@ -219,7 +222,7 @@ package org.apache.flex.html.beads.layouts
     				mb = CSSUtils.getTopValue(marginBottom, margin, hh);
                     mr = CSSUtils.getRightValue(marginRight, margin, ww);
                     ml = CSSUtils.getLeftValue(marginLeft, margin, ww);
-                    child.y = mt;
+                    child.y = mt + padding.top;
                     if (child is ILayoutChild)
                     {
                         ilc = child as ILayoutChild;
@@ -252,25 +255,25 @@ package org.apache.flex.html.beads.layouts
                 }
                 maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 child.x = xx + ml;
-                child.width = ww - xx - mr;
+                child.width = ww - xx - child.x;
                 valign = ValuesManager.valuesImpl.getValue(child, "vertical-align");
                 verticalMargins[flexChildIndex] = { marginTop: mt, marginBottom: mb, valign: valign };
             }
             if (hostSizedToContent)
-                ILayoutChild(contentView).setHeight(maxHeight, true);
+                ILayoutChild(contentView).setHeight(maxHeight + padding.top + padding.bottom, true);
             
             for (i = 0; i < n; i++)
 			{
 				var obj:Object = verticalMargins[i]
 				child = contentView.getElementAt(i) as IUIBase;
-                setPositionAndHeight(child, obj.top, obj.marginTop,
-                    obj.bottom, obj.marginBottom, maxHeight, obj.valign);
+                setPositionAndHeight(child, obj.top, obj.marginTop, padding.top,
+                    obj.bottom, obj.marginBottom, padding.bottom, maxHeight, obj.valign);
 			}
             return true;
 		}
 
-        private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number,
-                                              bottom:Number, mb:Number, h:Number, valign:String):void
+        private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number, pt:Number,
+                                              bottom:Number, mb:Number, pb:Number, h:Number, valign:String):void
         {
             var heightSet:Boolean = false; // if we've set the height in a way that gens a change event
             var ySet:Boolean = false; // if we've set the y yet.
@@ -315,7 +318,7 @@ package org.apache.flex.html.beads.layouts
             else if (valign == "bottom")
                 child.y = h - child.height - mb;
             else
-                child.y = mt;
+                child.y = mt + pt;
             if (!heightSet)
                 child.dispatchEvent(new Event("sizeChanged"));
         }
