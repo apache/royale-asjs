@@ -44,6 +44,7 @@ org.apache.flex.html5.RadioButton.prototype.createElement =
   this.element.appendChild(document.createTextNode('radio button'));
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

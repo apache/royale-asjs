@@ -51,6 +51,7 @@ org.apache.flex.html.NumericStepper.prototype.createElement =
     function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.input = new org.apache.flex.html.TextInput();
   this.addElement(this.input);

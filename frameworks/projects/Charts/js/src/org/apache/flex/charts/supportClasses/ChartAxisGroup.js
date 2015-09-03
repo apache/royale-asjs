@@ -52,6 +52,7 @@ org.apache.flex.charts.supportClasses.ChartAxisGroup.prototype.FLEXJS_CLASS_INFO
 org.apache.flex.charts.supportClasses.ChartAxisGroup.
     prototype.createElement = function() {
   this.element = document.createElement('div');
+  this.element.style.position = 'relative';
   this.element.flexjs_wrapper = this;
   this.className = 'ChartAxisGroup';
 

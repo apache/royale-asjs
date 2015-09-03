@@ -52,6 +52,7 @@ org.apache.flex.html.ControlBar.prototype.createElement =
   this.typeNames = 'ControlBar';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   return this.element;

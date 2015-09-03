@@ -52,6 +52,7 @@ org.apache.flex.html.DropDownList.prototype.createElement =
       goog.bind(this.changeHandler, this));
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.element.flexjs_wrapper = this;
 

@@ -37,6 +37,7 @@ org.apache.flex.html5.TextArea.prototype.createElement =
   this.element = document.createElement('textarea');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

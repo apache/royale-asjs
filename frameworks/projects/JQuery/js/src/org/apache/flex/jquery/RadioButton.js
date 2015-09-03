@@ -78,6 +78,7 @@ org.apache.flex.jquery.RadioButton.prototype.createElement =
   this.labelFor.htmlFor = this.input.id;
 
   this.positioner = document.createElement('div');
+  this.positioner.style.position = 'relative';
   this.positioner.appendChild(this.input);
   this.positioner.appendChild(this.labelFor);
   this.element = this.input;

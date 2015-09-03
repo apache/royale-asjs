@@ -54,6 +54,7 @@ org.apache.flex.jquery.CheckBox.prototype.createElement =
   this.element.appendChild(document.createTextNode(''));
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   cb.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
 

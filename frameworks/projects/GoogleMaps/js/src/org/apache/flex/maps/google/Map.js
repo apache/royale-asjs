@@ -79,6 +79,7 @@ org.apache.flex.maps.google.Map.prototype.createElement =
   this.className = 'Map';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   return this.element;

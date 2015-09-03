@@ -32,6 +32,7 @@ org.apache.flex.html.VRule = function() {
   this.element.style.borderBottom = 'none';
   this.element.style.borderRight = 'none';
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 };
 goog.inherits(org.apache.flex.html.VRule,

@@ -54,6 +54,7 @@ org.apache.flex.html.Image.prototype.createElement =
   this.typeNames = 'Image';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   this.model = new

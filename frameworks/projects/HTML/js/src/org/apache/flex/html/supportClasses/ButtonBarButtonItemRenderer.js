@@ -51,6 +51,7 @@ org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer.
 
   this.element = document.createElement('div');
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.button = document.createElement('button');
   this.button.style.width = '100%';

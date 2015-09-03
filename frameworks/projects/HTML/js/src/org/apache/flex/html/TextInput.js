@@ -54,6 +54,7 @@ org.apache.flex.html.TextInput.prototype.createElement = function() {
   goog.events.listen(this.element, 'input', goog.bind(this.inputChangeHandler_, this));
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   return this.element;

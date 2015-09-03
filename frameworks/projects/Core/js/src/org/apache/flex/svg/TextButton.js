@@ -48,6 +48,7 @@ org.apache.flex.svg.TextButton.prototype.createElement =
   this.element.setAttribute('src', 'org/apache/flex/svg/assets/TextButton_Skin.svg');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

@@ -75,6 +75,7 @@ org.apache.flex.html.ButtonBar.prototype.createElement =
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.className = 'ButtonBar';
 

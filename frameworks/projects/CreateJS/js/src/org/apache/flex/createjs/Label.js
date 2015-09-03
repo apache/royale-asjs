@@ -44,6 +44,7 @@ org.apache.flex.createjs.Label.prototype.createElement =
   p.getStage().update();
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 };
 
 

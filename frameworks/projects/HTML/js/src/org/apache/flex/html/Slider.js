@@ -65,6 +65,7 @@ org.apache.flex.html.Slider.prototype.createElement =
   this.addBead(this.controller);
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   this.className = 'Slider';

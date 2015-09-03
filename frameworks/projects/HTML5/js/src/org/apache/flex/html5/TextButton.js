@@ -38,6 +38,7 @@ org.apache.flex.html5.TextButton.prototype.createElement =
   this.element.setAttribute('type', 'button');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

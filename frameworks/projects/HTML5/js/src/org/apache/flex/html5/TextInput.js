@@ -38,6 +38,7 @@ org.apache.flex.html5.TextInput.prototype.createElement =
   this.element.setAttribute('type', 'input');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

@@ -58,9 +58,8 @@ org.apache.flex.flat.DropDownList.prototype.createElement =
   var caret = document.createElement('span');
   caret.className = 'dropdown-caret';
 
-  this.element.style.position = 'relative';
-
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   // add a click handler so that a click outside of the combo box can
   // dismiss the pop-up should it be visible.
