@@ -25,15 +25,15 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIMetrics;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
+    import org.apache.flex.geom.Rectangle;
     import org.apache.flex.html.beads.ITextItemRenderer;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
@@ -229,7 +229,7 @@ package org.apache.flex.html.supportClasses
 			{
 				var w:Number = _width;
 				if (isNaN(w)) w = $width;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
+				var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(this);
 				return w + metrics.left + metrics.right;
 			}
 			else
@@ -267,7 +267,7 @@ package org.apache.flex.html.supportClasses
 			{
 				var h:Number = _height;
 				if (isNaN(h)) h = $height;
-				var metrics:UIMetrics = BeadMetrics.getMetrics(this);
+				var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(this);
 				return h + metrics.top + metrics.bottom;
 			}
 			else

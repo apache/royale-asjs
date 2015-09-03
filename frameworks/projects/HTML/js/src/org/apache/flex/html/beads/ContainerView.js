@@ -17,10 +17,10 @@ goog.provide('org.apache.flex.html.beads.ContainerView');
 goog.require('org.apache.flex.core.BeadViewBase');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.ILayoutParent');
-goog.require('org.apache.flex.html.beads.models.ViewportModel');
-goog.require('org.apache.flex.html.supportClasses.ContainerContentArea');
-goog.require('org.apache.flex.html.supportClasses.Viewport');
-goog.require('org.apache.flex.utils.BeadMetrics');
+goog.require('org.apache.flex.core.IViewport');
+goog.require('org.apache.flex.core.IViewportModel');
+goog.require('org.apache.flex.geom.Rectangle');
+goog.require('org.apache.flex.utils.CSSContainerUtils');
 
 
 
@@ -71,15 +71,6 @@ org.apache.flex.html.beads.ContainerView.prototype.viewportModel_ = null;
  * @type {Object}
  */
 org.apache.flex.html.beads.ContainerView.prototype.contentArea_ = null;
-
-
-/**
- * @return {Object} The container's child content area.
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.createContentView = function() {
-  return new org.apache.flex.html.supportClasses.ContainerContentArea();
-};
 
 
 /**
@@ -210,19 +201,31 @@ org.apache.flex.html.beads.ContainerView.
 
 
 /**
+ * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+ * @return {org.apache.flex.geom.Rectangle} The space.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.getChromeMetrics = function() {
+  return new org.apache.flex.geom.Rectangle(0, 0, 0, 0);
+};
+
+
+/**
  * Creates the viewport and viewportModel.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.createViewport = function() {
-  if (this.viewportModel_ == null) {
-    this.viewportModel_ = new org.apache.flex.html.beads.models.ViewportModel();
-    this.viewportModel_.contentArea = this.contentView;
-    this.viewportModel_.contentIsHost = false;
+  this.viewportModel = this._strand.getBeadByType(org.apache.flex.core.IViewportModel);
+  if (this.viewportModel == null) {
+    var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iViewportModel');
+    this.viewportModel = new m3();
+    this._strand.addBead(this.viewportModel);
   }
-  if (this.viewport_ == null) {
-    this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
-    this.viewport_.model = this.viewportModel_;
-    this._strand.addBead(this.viewport_);
+  this.viewport = this._strand.getBeadByType(org.apache.flex.core.IViewport);
+  if (this.viewport == null) {
+    var m2 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iViewport');
+    this.viewport = new m2();
+    this._strand.addBead(this.viewport);
   }
 };
 
@@ -231,16 +234,20 @@ org.apache.flex.html.beads.ContainerView.
  *
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.adjustSizeBeforeLayout = function() {
-    var host = this._strand;
-    this.viewportModel_.contentWidth = host.width;
-    this.viewportModel_.contentHeight = host.height;
-    this.viewportModel_.contentX = 0;
-    this.viewportModel_.contentY = 0;
-    if (!host.isWidthSizedToContent())
-      this.contentView.width = this.viewportModel_.contentWidth;
-    if (!host.isHeightSizedToContent())
-      this.contentView.height = this.viewportModel_.contentHeight;
+    prototype.layoutViewBeforeContentLayout = function() {
+  var host = this._strand;
+  var vm = this.viewportModel;
+  vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
+  vm.chromeMetrics = this.getChromeMetrics();
+  this.viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                            vm.borderMetrics.top + vm.chromeMetrics.top);
+  this.viewport.layoutViewportBeforeContentLayout(
+      !host.isWidthSizedToContent() ?
+          host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                     vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+      !host.isHeightSizedToContent() ?
+          host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                     vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
 };
 
 
@@ -250,7 +257,7 @@ org.apache.flex.html.beads.ContainerView.
 org.apache.flex.html.beads.ContainerView.
     prototype.performLayout = function(event) {
   this.runningLayout = true;
-  this.adjustSizeBeforeLayout();
+  this.layoutViewBeforeContentLayout();
   if (this.layout == null) {
     this.layout = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
     if (this.layout == null) {
@@ -261,7 +268,7 @@ org.apache.flex.html.beads.ContainerView.
   }
   this.layout.layout();
 
-  this.adjustSizeAfterLayout();
+  this.layoutViewAfterContentLayout();
   this.runningLayout = false;
 };
 
@@ -270,83 +277,26 @@ org.apache.flex.html.beads.ContainerView.
  *
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.adjustSizeAfterLayout = function() {
+    prototype.layoutViewAfterContentLayout = function() {
   var host = this._strand;
-  var metrics = org.apache.flex.utils.BeadMetrics.getMetrics(host);
 
-  if (host.isWidthSizedToContent())
-    this.viewportModel_.contentWidth = this.contentView.width;
-  if (host.isHeightSizedToContent())
-    this.viewportModel_.contentHeight = this.contentView.height;
+  var viewportSize = this.viewport.layoutViewportAfterContentLayout();
+  var vm = this.viewportModel;
 
   if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-    host.setWidthAndHeight(this.viewportModel_.contentWidth + metrics.left + metrics.right,
-                           this.viewportModel_.contentHeight + metrics.top + metrics.bottom, false);
+    host.setWidthAndHeight(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
+                               vm.chromeMetrics.left + vm.chromeMetrics.right,
+                           viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom, false);
   }
   else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-    host.setHeight(this.viewportModel_.contentHeight + metrics.top + metrics.bottom, false);
+    host.setHeight(viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom, false);
   }
   else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent()) {
-    host.setWidth(this.viewportModel_.contentWidth + metrics.left + metrics.right, false);
+    host.setWidth(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
+                               vm.chromeMetrics.left + vm.chromeMetrics.right, false);
   }
-
-  this.layoutContainer(host.isWidthSizedToContent(), host.isHeightSizedToContent());
-
-  // The JS version of Panel matches the content space to the viewport since HTML
-  // takes care of scrollbars
-  this.viewportModel_.contentX = this.viewportModel_.viewportX;
-  this.viewportModel_.contentY = this.viewportModel_.viewportY;
-  this.viewportModel_.contentWidth = this.viewportModel_.viewportWidth;
-  this.viewportModel_.contentHeight = this.viewportModel_.viewportHeight;
-
-  this.contentView.x = this.viewportModel_.contentX;
-  this.contentView.y = this.viewportModel_.contentY;
-  //this.contentView.width = this.viewportModel_.contentWidth;
-  //this.contentView.height = this.viewportModel_.contentHeight;
-
-  this.viewport_.updateSize();
-  this.viewport_.updateContentAreaSize();
-};
-
-
-/**
- * @expose
- * This function determines the size and placement of the viewport by adjusting the viewport
- * values in the viewportModel. Subclasses can use this to position additional items. If either
- * of the two parameters are true, the subclass should adjust the size of the host accordingly
- * to account for any additional elements.
- *
- * @param {boolean} widthSizedToContent True if the width of the container is being sized by its content.
- * @param {boolean} heightSizedToContent True if the height of the container is being sized by its content.
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.layoutContainer = function(widthSizedToContent, heightSizedToContent) {
-  this.viewportModel_.viewportHeight = this._strand.height;
-  this.viewportModel_.viewportWidth = this._strand.width;
-  this.viewportModel_.viewportX = 0;
-  this.viewportModel_.viewportY = 0;
-};
-
-
-/**
- *
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.determineContentSizeFromChildren = function() {
-  // this function has no meaning in the HTML world
-};
-
-
-/**
- * Adjusts the size of the viewportModel's viewport parameters to match those
- * of the strand.
- */
-org.apache.flex.html.beads.ContainerView.
-    prototype.resizeViewport = function() {
-/*  this.viewportModel_.viewportHeight = this._strand.height;
-  this.viewportModel_.viewportWidth = this._strand.width;
-  this.viewportModel_.viewportX = 0;
-  this.viewportModel_.viewportY = 0;*/
 };
 
 
@@ -355,11 +305,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     contentView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this.contentArea_;
-        },
-        /** @this {org.apache.flex.html.beads.ContainerView} */
-        set: function(value) {
-            this.contentArea_ = value;
+            return this.viewport.contentView;
         }
     },
     /** @export */
@@ -377,9 +323,9 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
-            this.contentView = this.createContentView();
-            this.host.addElement(this.contentView);
-            this.host.setActualParent(this.contentView);
+            this.createViewport();
+            this.host.addElement(this.viewport.contentView);
+            this.host.setActualParent(this.viewport.contentView);
             this._strand.addEventListener('initComplete',
                   org.apache.flex.utils.Language.closure(this.initCompleteHandler, this, 'initCompleteHandler'));
          }

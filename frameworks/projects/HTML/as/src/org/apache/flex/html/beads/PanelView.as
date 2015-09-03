@@ -21,19 +21,21 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
-    import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.Panel;
 	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.BeadMetrics;
-    import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSUtils;
 	
 	/**
 	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
@@ -115,74 +117,53 @@ package org.apache.flex.html.beads
 			super.completeSetup();
 		}
 		
-        override protected function adjustSizeBeforeLayout():void
+        /**
+         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function getChromeMetrics():Rectangle
         {
-            var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-            
-            viewportModel.contentWidth = Math.max(host.width - metrics.left - metrics.right, 0);
-            viewportModel.contentHeight = Math.max(host.height - titleBar.height - metrics.top - metrics.bottom, 0);
-            viewportModel.contentX = metrics.left;
-            viewportModel.contentY = metrics.top;
-            
-            contentView.x = viewportModel.contentX;
-            contentView.y = viewportModel.contentY;
-            contentView.width = viewportModel.contentWidth;
-            contentView.height = viewportModel.contentHeight;
+            return new Rectangle(0, titleBar.height, 0, 0);
         }
         
-		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
+        override protected function layoutViewBeforeContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var host:ILayoutChild = this.host as ILayoutChild;
+            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            titleBar.x = vm.borderMetrics.left;
+            titleBar.y = vm.borderMetrics.top;
+            if (!host.isWidthSizedToContent())
+                titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+            vm.chromeMetrics = getChromeMetrics();
+            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                vm.borderMetrics.top + vm.chromeMetrics.top);
+            viewport.layoutViewportBeforeContentLayout(
+                !host.isWidthSizedToContent() ? 
+                host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+                !host.isHeightSizedToContent() ?
+                host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+        }
+        
+		override protected function layoutViewAfterContentLayout():void
 		{
-            var borderThickness:Object = ValuesManager.valuesImpl.getValue(host,"border-width");
-            var borderStyle:Object = ValuesManager.valuesImpl.getValue(host,"border-style");
-            var border:Object = ValuesManager.valuesImpl.getValue(host,"border");
-            var borderOffset:Number;
-            if (borderStyle == "none")
-                borderOffset = 0;
-            else if (borderThickness != null)
-            {
-                if (borderThickness is String)
-                    borderOffset = CSSUtils.toNumber(borderThickness as String, host.width);
-                else
-                    borderOffset = Number(borderThickness);
-                if( isNaN(borderOffset) ) borderOffset = 0;            
+            var vm:IViewportModel = viewportModel;
+            var viewportSize:Size = this.viewport.layoutViewportAfterContentLayout();
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            if (!hasWidth) {
+                titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
+                vm.chromeMetrics = this.getChromeMetrics();
+                vm.chromeMetrics.top = titleBar.height;
             }
-            else // no style and/or no width
-            {
-                border = ValuesManager.valuesImpl.getValue(host,"border");
-                if (border != null)
-                {
-                    if (border is Array)
-                    {
-                        borderOffset = CSSUtils.toNumber(border[0], host.width);
-                        borderStyle = border[1];
-                    }
-                    else if (border == "none")
-                        borderOffset = 0;
-                    else if (border is String)
-                        borderOffset = CSSUtils.toNumber(border as String, host.width);
-                    else
-                        borderOffset = Number(border);
-                }
-                else // no border style set at all so default to none
-                    borderOffset = 0;
-            }
-
-            titleBar.x = borderOffset;
-			titleBar.y = borderOffset;
-			titleBar.width = host.width - 2 * borderOffset;
-			titleBar.dispatchEvent( new Event("layoutNeeded") ); // this shouldn't be needed
-			
-			if (heightSizedToContent) {
-				host.height = viewportModel.contentHeight + titleBar.height + 2 * borderOffset;
-			}
-            if (widthSizedToContent) {
-                host.width = viewportModel +  2 * borderOffset;
-            }
-			
-			viewportModel.viewportHeight = host.height - titleBar.height - 2 * borderOffset;
-			viewportModel.viewportWidth = host.width - 2 * borderOffset;
-			viewportModel.viewportX = borderOffset;
-			viewportModel.viewportY = titleBar.height + borderOffset;
+            super.layoutViewAfterContentLayout();
 		}       
 	}
 }

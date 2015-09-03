@@ -101,8 +101,8 @@ package org.apache.flex.html.beads.layouts
 			var sw:Number = host.width;
 			var sh:Number = host.height;
 			
-            var hasWidth:Boolean = host.isWidthSizedToContent();
-            var hasHeight:Boolean = host.isHeightSizedToContent();
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
 			var e:IUIBase;
 			var i:int;
 			var col:int = 0;

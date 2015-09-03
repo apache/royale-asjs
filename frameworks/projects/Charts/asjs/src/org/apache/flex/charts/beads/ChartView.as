@@ -29,14 +29,15 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
+    import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.ListView;
 	import org.apache.flex.html.beads.models.ViewportModel;
 	import org.apache.flex.html.supportClasses.Viewport;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 	
 	public class ChartView extends ListView implements IBeadView
 	{
@@ -123,9 +124,9 @@ package org.apache.flex.charts.beads
 		 * be calculated so the chart's layout algorithm knows precisely the dimensions of 
 		 * chart for its item renderers.
 		 */
-		override protected function adjustSizeBeforeLayout():void
+		override protected function layoutViewBeforeContentLayout():void
 		{			
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;
@@ -143,17 +144,11 @@ package org.apache.flex.charts.beads
 			
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
-						
-			viewportModel.viewportHeight = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
-			viewportModel.viewportWidth = strandWidth - widthAdjustment - metrics.right - metrics.left;
-			viewportModel.viewportX = widthAdjustment + metrics.left;
-			viewportModel.viewportY = metrics.top;
 			
-			viewportModel.contentX = viewportModel.viewportX;
-			viewportModel.contentY = viewportModel.viewportY;
-			viewportModel.contentWidth = viewportModel.viewportWidth;
-			viewportModel.contentHeight = viewportModel.viewportHeight;
-			
+            viewport.setPosition(widthAdjustment + metrics.left, metrics.top);
+			viewport.layoutViewportBeforeContentLayout(strandWidth - widthAdjustment - metrics.right - metrics.left,
+                                                        strandHeight - heightAdjustment - metrics.bottom - metrics.top);
+            
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = metrics.left;
 				UIBase(verticalAxisGroup).y = metrics.top;
@@ -168,28 +163,13 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
 			
+            /* viewport should be doing this now
 			if (dataGroup) {
 				UIBase(dataGroup).x = viewportModel.contentX;
 				UIBase(dataGroup).y = viewportModel.contentY;
 				UIBase(dataGroup).width = viewportModel.contentWidth;
 				UIBase(dataGroup).height = viewportModel.contentHeight;
-			}
-		}
-		
-		/**
-		 * Charts do not need adjustment after layout.
-		 */
-		override protected function adjustSizeAfterLayout():void
-		{
-			// not used for charts
-		}
-		
-		/**
-		 * Charts do not need their contents changed once determined prior to layout.
-		 */
-		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
-		{
-			// not used for charts
-		}
+			} */
+		}		
 	}
 }

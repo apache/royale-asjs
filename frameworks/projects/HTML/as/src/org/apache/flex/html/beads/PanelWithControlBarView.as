@@ -21,19 +21,21 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IPanelModel;
-    import org.apache.flex.core.ITitleBarModel;
+	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.IPanelModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.ControlBar;
 	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
@@ -138,30 +140,67 @@ package org.apache.flex.html.beads
 			}
 		}
 		
-		override protected function layoutContainer(widthSizedToContent:Boolean, heightSizedToContent:Boolean):void
-		{
-			var adjustHeight:Number = titleBar.height;
-			
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
-			
-			if (controlBar) {
-				controlBar.width = host.width;
-				controlBar.dispatchEvent( new Event("layoutNeeded") );
-				controlBar.y = host.height - controlBar.height;
-				adjustHeight += controlBar.height;
-			}
-			
-			if (heightSizedToContent) {
-				host.height = host.height + adjustHeight;
-			}
-			
-			viewportModel.viewportHeight = host.height - adjustHeight;
-			viewportModel.viewportWidth = host.width;
-			viewportModel.viewportX = 0;
-			viewportModel.viewportY = titleBar.height;
-		}
+        /**
+         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function getChromeMetrics():Rectangle
+        {
+            return new Rectangle(0, titleBar.height, 0, titleBar.height + controlBar.height);
+        }
+        
+        override protected function layoutViewBeforeContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            titleBar.x = vm.borderMetrics.left;
+            titleBar.y = vm.borderMetrics.top;
+            if (hasWidth) 
+            {
+                titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+                controlBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+            }
+            vm.chromeMetrics = getChromeMetrics();
+            controlBar.x = vm.borderMetrics.left;
+            if (hasHeight && hasWidth) 
+                controlBar.y = host.height - vm.borderMetrics.bottom - controlBar.height;
+            
+            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                vm.borderMetrics.top + vm.chromeMetrics.top);
+            viewport.layoutViewportBeforeContentLayout(
+                hasWidth ? 
+                    host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                        vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+                hasHeight ?
+                    host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                        vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+        }
+        
+        override protected function layoutViewAfterContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var viewportSize:Size = this.viewport.layoutViewportAfterContentLayout();
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            if (!hasWidth) {
+                titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
+                vm.chromeMetrics = this.getChromeMetrics();
+                vm.chromeMetrics.top = titleBar.height;
+                controlBar.width = viewportSize.width; // should get controlbar to layout and get new height
+                vm.chromeMetrics.bottom = controlBar.height;
+            }
+            super.layoutViewAfterContentLayout();
+            if (!hasHeight) {
+                controlBar.y = host.height - vm.borderMetrics.bottom - controlBar.height;
+            }
+        }       
 	}
 }

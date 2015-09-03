@@ -22,7 +22,6 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
@@ -30,7 +29,6 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
-	import org.apache.flex.utils.BeadMetrics;
 
 	/**
 	 * The StackedViewManagerView creates the visual elements of the StackedViewManager. This
