@@ -54,6 +54,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
   //  goog.events.listen(this.element, 'change',
   //      goog.bind(this.changeHandler, this));
   this.element = document.createElement('div');
+  this.element.style.position = 'relative';
   this.element.style.overflow = 'auto';
   this.element.style.border = 'solid';
   this.element.style.borderWidth = '1px';
