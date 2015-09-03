@@ -145,6 +145,16 @@ ImageButton
     border-style: none;
 }
 
+ImageButton:hover
+{
+    border-style: none;
+}
+
+ImageButton:active
+{
+    border-style: none;
+}
+
 VContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
