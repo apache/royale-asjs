@@ -244,10 +244,10 @@ org.apache.flex.html.beads.ContainerView.
   this.viewport.layoutViewportBeforeContentLayout(
       !host.isWidthSizedToContent() ?
           host.width - vm.borderMetrics.left - vm.borderMetrics.right -
-                     vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+                     vm.chromeMetrics.left - vm.chromeMetrics.right - 1 : NaN,
       !host.isHeightSizedToContent() ?
           host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
-                     vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+                     vm.chromeMetrics.top - vm.chromeMetrics.bottom - 1 : NaN);
 };
 
 
@@ -285,17 +285,17 @@ org.apache.flex.html.beads.ContainerView.
 
   if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
     host.setWidthAndHeight(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
-                               vm.chromeMetrics.left + vm.chromeMetrics.right,
+                               vm.chromeMetrics.left + vm.chromeMetrics.right + 1,
                            viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
-                               vm.chromeMetrics.top + vm.chromeMetrics.bottom, false);
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom + 1, false);
   }
   else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
     host.setHeight(viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
-                               vm.chromeMetrics.top + vm.chromeMetrics.bottom, false);
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom + 1, false);
   }
   else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent()) {
     host.setWidth(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
-                               vm.chromeMetrics.left + vm.chromeMetrics.right, false);
+                               vm.chromeMetrics.left + vm.chromeMetrics.right + 1, false);
   }
 };
 
