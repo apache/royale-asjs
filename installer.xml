@@ -946,10 +946,20 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     <target name="get-preferred" unless="found-in-cache">
         <get src="${srcDomain}/${srcFolder}/${srcFile}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
         <replace file="${basedir}/mirror.json">
+            <replacefilter token="{"
+            value="" />
+            <replacefilter token="}"
+            value="" />
             <replacefilter token="&quot;"
             value="" />
-            <replacefilter token=": "
+            <replacefilter token=","
+            value="&#x0d;&#x0a;" />
+            <replacefilter token=":"
             value="=" />
+        </replace>
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="http="
+            value="http:" />
         </replace>
         <property file="${basedir}/mirror.json" />
         <delete file="${basedir}/mirror.json" />
