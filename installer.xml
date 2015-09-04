@@ -364,6 +364,18 @@
             <arg value="${FLEXJS_HOME}/js/bin/jsc"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/compcjsc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/jquery"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/externc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
              <arg value="+x" />
              <arg value="${FLEXJS_HOME}/bin/mxmlc"/>
          </exec>
