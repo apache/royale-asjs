@@ -182,13 +182,13 @@ package org.apache.flex.core
             if (initialView)
             {
                 initialView.applicationModel =  model;
+        	    this.addElement(initialView);
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                    initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight);
+                    initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
                 else if (!isNaN(initialView.percentWidth))
                     initialView.setWidth(stage.stageWidth);
                 else if (!isNaN(initialView.percentHeight))
                     initialView.setHeight(stage.stageHeight);
-        	    this.addElement(initialView);
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {
