@@ -30,6 +30,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
+    import org.apache.flex.utils.CSSUtils;
     import org.apache.flex.utils.CSSContainerUtils;
 
     /**
@@ -94,8 +95,9 @@ package org.apache.flex.html.beads.layouts
 			var marginBottom:Object;
 			var margin:Object;
 			var maxHeight:Number = 0;
-            // asking for contentView.width can result in infinite loop if host isn't sized already
+            // asking for contentView.height can result in infinite loop if host isn't sized already
             var h:Number = hostSizedToContent ? 0 : contentView.height;
+            var w:Number = contentView.width;
 			var verticalMargins:Array = [];
 			
 			for (var i:int = 0; i < n; i++)
@@ -104,63 +106,22 @@ package org.apache.flex.html.beads.layouts
 				if (child == null || !child.visible) continue;
                 var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
                 var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
+                margin = ValuesManager.valuesImpl.getValue(child, "margin");
+                marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+                marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+                marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+                marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+                var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, w);
+                var mr:Number = CSSUtils.getRightValue(marginRight, margin, w);
+                var mt:Number = CSSUtils.getTopValue(marginTop, margin, h);
+                var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, h);
+                
                 ilc = child as ILayoutChild;
-				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-				if (margin is Array)
-				{
-					if (margin.length == 1)
-						marginLeft = marginTop = marginRight = marginBottom = margin[0];
-					else if (margin.length <= 3)
-					{
-						marginLeft = marginRight = margin[1];
-						marginTop = marginBottom = margin[0];
-					}
-					else if (margin.length == 4)
-					{
-						marginLeft = margin[3];
-						marginBottom = margin[2];
-						marginRight = margin[1];
-						marginTop = margin[0];					
-					}
-				}
-				else if (margin == null)
-				{
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				}
-				else
-				{
-					marginLeft = marginTop = marginBottom = marginRight = margin;
-				}
-				var ml:Number;
-				var mr:Number;
-				var mt:Number;
-				var mb:Number;
 				var lastmr:Number;
 				if (marginLeft == "auto")
 					ml = 0;
-				else
-				{
-					ml = Number(marginLeft);
-					if (isNaN(ml))
-						ml = 0;
-				}
 				if (marginRight == "auto")
 					mr = 0;
-				else
-				{
-					mr = Number(marginRight);
-					if (isNaN(mr))
-						mr = 0;
-				}
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
                 var xx:Number;
                 if (i == 0)
                 {
