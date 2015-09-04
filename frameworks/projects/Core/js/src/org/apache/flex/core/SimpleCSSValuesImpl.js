@@ -336,7 +336,10 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
   var styleList = org.apache.flex.core.SimpleCSSValuesImpl.perInstanceStyles;
   var colorStyles = org.apache.flex.core.SimpleCSSValuesImpl.colorStyles;
   var skipStyles = org.apache.flex.core.SimpleCSSValuesImpl.skipStyles;
-  for (var p in styles) {
+  var listObj = styles;
+  if (styles.styleList)
+    listObj = styles.styleList;
+  for (var p in listObj) {
     //if (styleList[p])
     if (skipStyles[p])
       continue;
