@@ -253,9 +253,9 @@ package org.apache.flex.html.beads.layouts
                     if (!isNaN(ilc.percentHeight))
                         ilc.setHeight(contentView.height * ilc.percentHeight / 100, true);
                 }
-                maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 child.x = xx + ml;
-                child.width = ww - xx - child.x;
+                child.width = ww - child.x;
+                maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 valign = ValuesManager.valuesImpl.getValue(child, "vertical-align");
                 verticalMargins[flexChildIndex] = { marginTop: mt, marginBottom: mb, valign: valign };
             }
