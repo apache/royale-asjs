@@ -112,13 +112,13 @@ org.apache.flex.html.beads.PanelView.
   var host = this._strand;
 
   vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
-  this.titleBar.x = vm.borderMetrics.left;
-  this.titleBar.y = vm.borderMetrics.top;
+  this.titleBar.x = 0;
+  this.titleBar.y = 0;
   if (!host.isWidthSizedToContent())
     this.titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
   vm.chromeMetrics = this.getChromeMetrics();
-  this.viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
-                            vm.borderMetrics.top + vm.chromeMetrics.top);
+  this.viewport.setPosition(vm.chromeMetrics.left,
+                            vm.chromeMetrics.top);
   this.viewport.layoutViewportBeforeContentLayout(
       !host.isWidthSizedToContent() ?
           host.width - vm.borderMetrics.left - vm.borderMetrics.right -
