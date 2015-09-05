@@ -344,6 +344,8 @@ org.apache.flex.core.SimpleCSSValuesImpl.prototype.applyStyles =
     if (skipStyles[p])
       continue;
     var value = styles[p];
+    if (value === undefined)
+      continue;
     if (typeof(value) == 'number') {
       if (colorStyles[p])
         value = '#' + value.toString(16);
