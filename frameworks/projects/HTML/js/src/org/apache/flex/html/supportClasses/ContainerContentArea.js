@@ -55,7 +55,7 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement
   // get set to 'absolute' if the container is
   // also absolutely positioned
   this.positioner.style.position = 'relative';
-  this.positioner.style.backgroundColor = 'inherit';
+  this.positioner.style.backgroundColor = 'transparent';
   this.positioner.style.paddingLeft = 'inherit';
   this.positioner.style.paddingRight = 'inherit';
   this.positioner.style.paddingTop = 'inherit';
