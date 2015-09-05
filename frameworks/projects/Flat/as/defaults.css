@@ -450,6 +450,7 @@ TextArea
   padding: 6px 10px;
   font-size: 13px;
   border-radius: 6px;
+  border-width: 2px;
   border: 2px solid #1abc9c;
 }
 
@@ -461,6 +462,7 @@ TextInput
   font-size: 13px;
   line-height: 1.462;
   border-radius: 6px;
+  border-width: 2px;
   border: 2px solid #1abc9c;
 }
 
