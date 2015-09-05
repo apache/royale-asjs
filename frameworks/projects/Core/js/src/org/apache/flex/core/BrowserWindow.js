@@ -20,8 +20,7 @@ goog.provide('org.apache.flex.core.BrowserWindow');
  * @constructor
  */
 org.apache.flex.core.BrowserWindow = function() {
-    org.apache.flex.core.BrowserWindow.base(this, 'constructor');
-  };
+};
 
 
 /**
