@@ -110,18 +110,21 @@ org.apache.flex.html.beads.PanelView.
     prototype.layoutViewBeforeContentLayout = function() {
   var vm = this.viewportModel;
   var host = this._strand;
-
+  var w = host.width;
+  var s = window.getComputedStyle(host.element);
+  var sw = Number(s.width.substring(0, s.width.length - 2));
+  if (sw > w) w = sw;
   vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
   this.titleBar.x = 0;
   this.titleBar.y = 0;
   if (!host.isWidthSizedToContent())
-    this.titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+    this.titleBar.width = w - vm.borderMetrics.left - vm.borderMetrics.right;
   vm.chromeMetrics = this.getChromeMetrics();
   this.viewport.setPosition(vm.chromeMetrics.left,
                             vm.chromeMetrics.top);
   this.viewport.layoutViewportBeforeContentLayout(
       !host.isWidthSizedToContent() ?
-          host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+          w - vm.borderMetrics.left - vm.borderMetrics.right -
                        vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
       !host.isHeightSizedToContent() ?
           host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
