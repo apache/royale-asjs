@@ -209,7 +209,6 @@ package org.apache.flex.html.beads.layouts
 						mr = 0;
 				}
 				child.y = mt + padding.top;
-				maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				if (i == 0)
                 {
                     child.x = ml + padding.left;
@@ -217,6 +216,7 @@ package org.apache.flex.html.beads.layouts
                 }
 				else
                     child.x = xx - child.width - mr;
+                maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				xx -= child.width + mr + ml;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
