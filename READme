@@ -25,27 +25,19 @@ Getting the latest sources via git
     You can always checkout the latest source via git using the following
     command:
 
-	 git clone https://git-wip-us.apache.org/repos/asf/flex-asjs.git asjs
-	 cd asjs
+	 git clone https://git-wip-us.apache.org/repos/asf/flex-asjs.git flex-asjs
+	 cd flex-asjs
 	 git checkout develop
 
-    The Apache Flex Compiler also requires code from other Apache Flex git
-    repositories or an Apache Flex SDK.  To get the latest source via git 
-    for the Apache Flex SDK use the following command:
+    Apache FlexJS also requires code from several other Apache Flex git
+    repositories.  To get the latest sources via git, first follow the
+    instructions in ‘Install Prerequisites’, then from the flex-asjs
+    directory, run:
+    
+         ant all
 
-	 git clone https://git-wip-us.apache.org/repos/asf/flex-sdk.git sdk
-	 cd sdk
-	 git checkout develop
-
-    The Apache Flex SDK requires the Text Layout Framework repository which
-    you can get as follows:
-
-	 git clone https://git-wip-us.apache.org/repos/asf/flex-tlf.git tlf
-	 cd tlf
-	 git checkout develop
-
-    To use an Apache Flex SDK, install an Apache Flex SDK on your computer and
-    follow the instructions in 'Install Prerequisites'.
+    This will clone all of the upstream repositories, checkout the develop branches
+    then run the builds in those repositories in the correct order.
 
 Building Apache FlexJS
 ======================
@@ -200,26 +192,29 @@ Install Prerequisites
         environment variables.  On OSX some folks had permission issues after
         the install.  See their documentation on using -g and sudo.
 
-    *9) Set FALCON_HOME to the root of its SDK.  When using the flex-falcon
-        repository, set 
+    *9) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
+        repository as a sibling of the flex-asjs repository, you don’t need to
+        set this variable, otherwise, set it as: 
              FALCON_HOME=<repo-path>/compiler/generated/dist/sdk
 			 
 	    Look at flex-falcon/README for instructions on how to build Falcon
 
-    *10) Set FALCONJX_HOME to the root of its SDK.  When using the flex-falcon
-         repository, set 
+    *10) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
+         repositoryas a sibling of the flex-asjs repository, you don’t need to
+         set this variable, otherwise, set it as
              FALCONJX_HOME=<repo-path>/compiler.jx
         
 	 Look at flex-falcon/README_JX for instructions on how to build FalconJX
 			 
-    *11) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.
+    *11) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
+         have cloned the flex-flexunit repository as a sibling of the flex-asjs
+         repository, you don’t need to set this variable. 
 	 Look at flex-flexunit/README for instructions on how to build FlexUnit
 
 Software Dependencies
 ---------------------
 
-    The Apache FlexJS framework does not have direct dependencies on third-party
-    software.  Applications built with Apache FlexJS need the Google Closure Library.
+    The Apache FlexJS framework depends on the Google Closure Library.
 
 Using the Binary Distribution
 -----------------------------
