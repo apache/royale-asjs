@@ -277,7 +277,11 @@
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!--          JSON doesn't really have a comment format     -->
+                <exclude name="**/*.json"/>
+                <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
+                <exclude name="frameworks/js/.jshintrc"/>
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -290,7 +294,8 @@
         addproperty="rat.license.ok"/>
 		<echo>filtering out AL files to make it easier to see binary files</echo>
 		<copy file="${rat.report}" tofile="${rat.report}.bin.txt" />
-		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
+        <replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="__AL" byline="true"/>
+        <replaceregexp file="${rat.report}.bin.txt" flags="gs" match="__AL." replace="" byline="false"/>
 		<antcall target="display-text" >
             <param name="file" value="${rat.report}.bin.txt" />
         </antcall>
