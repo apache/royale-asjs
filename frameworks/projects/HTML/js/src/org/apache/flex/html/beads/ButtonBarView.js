@@ -40,6 +40,9 @@ goog.inherits(
 org.apache.flex.html.beads.ButtonBarView.
     prototype.layoutViewBeforeContentLayout = function() {
   var host = this._strand;
+  var vm = this.viewportModel;
+  vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
+  vm.chromeMetrics = this.getChromeMetrics();
   this.viewport.setPosition(0, 0);
   this.viewport.layoutViewportBeforeContentLayout(host.width, host.height);
 };
