@@ -35,6 +35,17 @@ goog.inherits(
 
 
 /**
+ * @override
+ */
+org.apache.flex.html.beads.ButtonBarView.
+    prototype.layoutViewBeforeContentLayout = function() {
+  var host = this._strand;
+  this.viewport.setPosition(0, 0);
+  this.viewport.layoutViewportBeforeContentLayout(host.width, host.height);
+};
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
