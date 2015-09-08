@@ -547,6 +547,13 @@
         <!-- frameworks -->
         <antcall target="stage-framework-as"/>
         
+        <copy todir="${basedir}/temp/frameworks/js">
+            <fileset dir="${basedir}/frameworks/js" >
+                <include name="jshint.properties"/>
+                <include name=".jshintrc"/>
+            </fileset>
+        </copy>
+        
         <!-- asdoc -->
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
             <fileset dir="${basedir}/asdoc">

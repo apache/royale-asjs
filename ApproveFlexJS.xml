@@ -87,10 +87,10 @@
 		
 	<available file="${env.FLEX_HOME}" 
 		type="dir" 
-		property="FLEX_HOME" value="${env.FLEX_HOME}" />
+		property="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
 
     <fail message="The FLEX_HOME property is not set in environment or command-line."
-        unless="FLEX_HOME"/>
+        unless="FLEX_SDK_HOME"/>
 				
 	<available file="${env.AIR_HOME}" 
 		type="dir" 
@@ -148,9 +148,6 @@
     <fail message="The release version is not set.  Specify -Drelease.version=&lt;release version (e.g. 3.1, 3.2, etc)&gt;"
     unless="release.version"/>
 
-    <fail message="The release candidate number is not set.  Specify -Drc=&lt;rc number (e.g. 1, 2, 3, etc)&gt;"
-    unless="rc"/>
-        
 	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}" />
 	<property name="package.url.name" value="apache-flex-flexjs-${release.version}-src" />
 	
@@ -227,8 +224,12 @@
             dest="${basedir}/${package.url.name}.${package.suffix}" />
         <get src="${package.url.path}/${package.url.name}.${package.suffix}.md5"
             dest="${basedir}/${package.url.name}.${package.suffix}.md5" />
+        <antcall target="get_asc" />
+    </target>
+
+    <target name="get_asc" if="rc" >
         <get src="${package.url.path}/${package.url.name}.${package.suffix}.asc"
-            dest="${basedir}/${package.url.name}.${package.suffix}.asc" />
+        dest="${basedir}/${package.url.name}.${package.suffix}.asc" />
     </target>
     
     <target name="check-sigs" description="check md5 and gpg sigs">
@@ -241,13 +242,17 @@
 			</not>
         </condition>
         <fail message="MD5 checksum did not match" if="MD5Invalid" />
-		<exec executable="gpg" failonerror="true">
-			<arg value="--verify" />
-			<arg value="${basedir}/${package.url.name}.${package.suffix}.asc" />
-			<arg value="${basedir}/${package.url.name}.${package.suffix}" />
-		</exec>
+        <antcall target="gpg_check" />
     </target>
 
+    <target name="gpg_check" if="rc">
+        <exec executable="gpg" failonerror="true">
+            <arg value="--verify" />
+            <arg value="${basedir}/${package.url.name}.${package.suffix}.asc" />
+            <arg value="${basedir}/${package.url.name}.${package.suffix}" />
+        </exec>
+    </target>
+    
     <target name="uncompress" depends="pre-clean, untar-file, unzip-file" />
 
     <target name="pre-clean" description="remove old uncompressed package" >
