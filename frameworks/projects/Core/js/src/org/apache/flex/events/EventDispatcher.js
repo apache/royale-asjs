@@ -81,8 +81,12 @@ org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(e) {
     if (e === 'change')
       e = new Event(e);
   }
-  else
+  else {
     t = e.type;
+    if (org.apache.flex.events.ElementEvents.elementEvents[t]) {
+        e = new Event(t);
+    }
+  }
   var source = this.getActualDispatcher_(t);
   if (source == this)
     return org.apache.flex.events.EventDispatcher.base(this, 'dispatchEvent', e);
