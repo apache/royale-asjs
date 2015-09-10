@@ -61,6 +61,7 @@ Object.defineProperties(org.apache.flex.html.beads.models.ArraySelectionModel.pr
         },
         /** @this {org.apache.flex.html.beads.models.ArraySelectionModel} */
         set: function(value) {
+            if (value === this.dataProvider_) return;
             this.dataProvider_ = value;
             this.dispatchEvent('dataProviderChanged');
         }
@@ -73,6 +74,7 @@ Object.defineProperties(org.apache.flex.html.beads.models.ArraySelectionModel.pr
         },
         /** @this {org.apache.flex.html.beads.models.ArraySelectionModel} */
         set: function(value) {
+            if (value === this.selectedIndex_) return;
             this.selectedIndex_ = value;
             this.dispatchEvent('selectedIndexChanged');
         }

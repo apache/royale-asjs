@@ -74,12 +74,30 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
               dp.remove(0);
             }
 
+            var lf = this.labelField;
             n = value.length;
             for (i = 0; i < n; i++) {
               opt = document.createElement('option');
-              opt.text = value[i];
+              if (lf)
+                opt.text = value[i][lf];
+              else
+                opt.text = value[i];
               dp.add(opt);
             }
+        }
+    },
+    /** @export */
+    labelField: {
+        // TODO: (aharui) copied from ListBase because you
+        // can't just override the setter in a defineProps
+        // structure.
+        /** @this {org.apache.flex.html.DropDownList} */
+        get: function() {
+            return this.model.labelField;
+        },
+        /** @this {org.apache.flex.html.DropDownList} */
+        set: function(value) {
+            this.model.labelField = value;
         }
     },
     /** @export */
@@ -109,7 +127,7 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
         /** @this {org.apache.flex.html.DropDownList} */
         set: function(value) {
             this.model.selectedItem = value;
-            this.element.selectedIndex = this.selectedIndex;
+            this.element.selectedIndex = this.model.selectedIndex;
         }
     }
 });

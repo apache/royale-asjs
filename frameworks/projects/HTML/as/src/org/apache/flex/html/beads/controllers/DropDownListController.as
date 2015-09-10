@@ -81,6 +81,7 @@ package org.apache.flex.html.beads.controllers
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
             popUpModel.dataProvider = selectionModel.dataProvider;
+            popUpModel.labelField = selectionModel.labelField;
             viewBead.popUpVisible = true; // adds to display list as well
             popUpModel.selectedIndex = selectionModel.selectedIndex;
             var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y + DisplayObject(_strand).height);

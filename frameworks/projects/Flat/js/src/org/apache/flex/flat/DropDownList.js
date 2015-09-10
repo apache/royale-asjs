@@ -152,13 +152,17 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
   goog.events.listen(select, 'click', goog.bind(this.selectChanged, this));
   select.className = 'dropdown-menu';
 
+  var lf = this.labelField;
   dp = /** @type {Array.<string>} */ (this.dataProvider);
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('li');
     opt.style.backgroundColor = 'transparent';
     var ir = document.createElement('a');
-    ir.innerHTML = dp[i];
+    if (lf)
+      ir.innerHTML = dp[i][lf];
+    else
+      ir.innerHTML = dp[i];
     ir.id = i.toString();
     if (i == this.selectedIndex)
       ir.className = 'dropdown-menu-item-renderer-selected';
@@ -186,6 +190,20 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
         }
     },
     /** @export */
+    labelField: {
+        // TODO: (aharui) copied from ListBase because you
+        // can't just override the setter in a defineProps
+        // structure.
+        /** @this {org.apache.flex.flat.DropDownList} */
+        get: function() {
+            return this.model.labelField;
+        },
+        /** @this {org.apache.flex.flat.DropDownList} */
+        set: function(value) {
+            this.model.labelField = value;
+        }
+    },
+    /** @export */
     selectedIndex: {
         // TODO: (aharui) copied from ListBase because you
         // can't just override the setter in a defineProps
@@ -197,7 +215,11 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
         /** @this {org.apache.flex.flat.DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+            var lf = this.labelField;
+            if (lf)
+              this.button.innerHTML = this.selectedItem[lf] + '<span class="dropdown-caret"/>';
+            else
+              this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
         }
     },
     /** @export */
@@ -212,7 +234,11 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
         /** @this {org.apache.flex.flat.DropDownList} */
         set: function(value) {
             this.model.selectedItem = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+            var lf = this.labelField;
+            if (lf)
+              this.button.innerHTML = this.selectedItem[lf] + '<span class="dropdown-caret"/>';
+            else
+              this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
          }
     }
 });

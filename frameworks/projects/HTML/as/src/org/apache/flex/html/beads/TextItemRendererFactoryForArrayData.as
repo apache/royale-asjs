@@ -131,7 +131,10 @@ package org.apache.flex.html.beads
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
                 dataGroup.addElement(tf);
-				tf.text = dp[i];
+                if (selectionModel.labelField)
+                    tf.text = dp[i][selectionModel.labelField];
+                else
+    				tf.text = dp[i];
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

@@ -114,6 +114,7 @@ package org.apache.flex.html.beads
 			super.strand = value;;
             selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+            selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
@@ -139,7 +140,12 @@ package org.apache.flex.html.beads
 		
 		private function selectionChangeHandler(event:Event):void
 		{
-			text = selectionModel.selectedItem.toString();
+            if (selectionModel.selectedItem == null)
+                text = "";
+            else if (selectionModel.labelField != null)
+                text = selectionModel.selectedItem[selectionModel.labelField].toString();
+            else
+                text = selectionModel.selectedItem.toString();
 		}
 		
         private function changeHandler(event:Event):void
