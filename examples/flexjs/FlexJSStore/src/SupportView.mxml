@@ -137,9 +137,9 @@ The width and height are hard-coded in the root tag to help the Design view.
 		</js:VContainer>
 		
 		<js:Container width="68%" height="100%">
-			<js:Image source="assets/support_map.png">
+			<js:Image source="assets/427px-Bayarea_map.png">
                 <js:style>
-                    <js:SimpleCSSStyles left="2" right="2" top="2" bottom="2"/>
+                    <js:SimpleCSSStyles left="12" top="12"/>
                 </js:style>
             </js:Image>
 		</js:Container>
