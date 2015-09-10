@@ -478,6 +478,7 @@ package org.apache.flex.core
 		/**
 		 * @private
 		 */
+        [Bindable("visibleChanged")]
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
