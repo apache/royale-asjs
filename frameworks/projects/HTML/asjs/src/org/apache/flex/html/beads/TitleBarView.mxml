@@ -44,7 +44,7 @@ limitations under the License.
     </fx:Script>
     <js:beads>
         <js:MXMLBeadViewBaseDataBinding />
-        <js:LayoutChangeNotifier watchedProperty="{ITitleBarModel(model).title}" />
+        <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
     <js:Label id="titleLabel" text="{ITitleBarModel(model).title}" >
