@@ -28,10 +28,10 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSUtils;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
-    import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -93,6 +93,7 @@ package org.apache.flex.html.beads.layouts
 			var marginBottom:Object;
 			var margin:Object;
 			var maxWidth:Number = 0;
+            var cssValue:*;
 			// asking for contentView.width can result in infinite loop if host isn't sized already
 			var w:Number = hostSizedToContent ? 0 : contentView.width;
             var h:Number = contentView.height;
@@ -102,8 +103,14 @@ package org.apache.flex.html.beads.layouts
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				if (child == null || !child.visible) continue;
 				ilc = child as ILayoutChild;
-				var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
-				var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
+				var left:Number = NaN;
+                cssValue = ValuesManager.valuesImpl.getValue(child, "left");
+                if (cssValue !== undefined)
+                    left = CSSUtils.toNumber(cssValue);
+                var right:Number = NaN;
+                cssValue = ValuesManager.valuesImpl.getValue(child, "right");
+                if (cssValue !== undefined)
+                    right = CSSUtils.toNumber(cssValue);
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
                 marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
                 marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
