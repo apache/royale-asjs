@@ -231,8 +231,10 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        [Bindable("__NoChangeEvent__")]
         public var initialView:ViewBase;
 
+        [Bindable("__NoChangeEvent__")]
         /**
          *  The data model (for the initial view).
          * 
@@ -241,6 +243,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        [Bindable("__NoChangeEvent__")]
         public var model:Object;
 
         /**
