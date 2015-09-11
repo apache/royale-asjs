@@ -214,7 +214,11 @@ Portions of frameworks/projects/Flat/as/defaults.css is based on
 designmodo’s (http://designmodo.com/flat-free/) Flat UI which is 
 available under an MIT license.  
 
-The map image examples/flexjs/FlexJSStore/src/assets/427px-Bayarea_map.png
+The map image in examples/flexjs/FlexJSStore/src/assets/427px-Bayarea_map.png
 was placed into the Public Domain by its author.  See:
 https://commons.wikimedia.org/wiki/File:Bayarea_map.png
+
+The map coordinates in examples/native/USStatesMap/src/MapCoords.js
+were placed into the Public Domain by its author.  See:
+https://en.wikipedia.org/wiki/File:USA_CIA_Map.svg#file
 
