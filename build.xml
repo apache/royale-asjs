@@ -785,7 +785,8 @@
     	<!-- If GOOG_HOME is set, copy GCL from there, else copy from the downloaded folder -->
     	<antcall target="copy-gcl-from-goog-home"/>
     	<antcall target="copy-gcl-from-downloaded"/>
-                 
+        
+        <antcall target="inject-asf-header" />
         <antcall target="binary-package-zip"/>        
         <antcall target="binary-package-tgz"/>
         <copy todir="${basedir}/out" file="${basedir}/apache-flex-flexjs-installer-config.xml" />
@@ -1699,6 +1700,18 @@
     <target name="all" depends="set.base.folder, download-all, main" />
     <target name="set.base.folder" >
         <property name="base.folder.name" value="${basedir}/.." />
+    </target>
+    
+    <!-- may not work on windows -->
+    <target name="inject-asf-header" >
+        <replaceregexp match="${generated.by.match}"
+            replace="${asfheader}${generated.by.comment}"
+            byline="false"
+            flags="s">
+            <fileset dir="${basedir}/temp">
+                <include name="**/*.js" />
+            </fileset>
+        </replaceregexp>
     </target>
     
     <target name="last-message-if-airsdk" if="airsdk.found" >
