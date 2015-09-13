@@ -804,12 +804,10 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
 {
   if (!isNaN(this.explicitWidth_) || !isNaN(this.percentWidth_))
     return false;
-
-  var scv = window.getComputedStyle(/** @type {Element} */ (this.positioner));
+  var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'left');
+  var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'right');
   // not sized to content if both left and right are specified
-  if (scv.left !== '' && scv.left != 'auto' && scv.right !== '' && scv.right != 'auto')
-    return false;
-  return true;
+  return (left === undefined || right === undefined);
 };
 
 
@@ -821,11 +819,10 @@ org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
 {
   if (!isNaN(this.explicitHeight_) || !isNaN(this.percentHeight_))
     return false;
-  var scv = window.getComputedStyle(/** @type {Element} */ (this.positioner));
+  var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'top');
+  var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'bottom');
   // not sized to content if both top and bottom are specified
-  if (scv.top !== '' && scv.top != 'auto' && scv.bottom !== '' && scv.bottom != 'auto')
-    return false;
-  return true;
+  return (top === undefined || bottom === undefined);
 };
 
 
