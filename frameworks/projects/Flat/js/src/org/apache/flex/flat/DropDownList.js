@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.flat.DropDownList');
 
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -52,6 +53,8 @@ org.apache.flex.flat.DropDownList.prototype.createElement =
 
   this.button = button = document.createElement('button');
   button.className = 'dropdown-toggle-open-btn';
+  if (this.className)
+    button.className += ' ' + this.className;
   goog.events.listen(button, 'click', goog.bind(this.buttonClicked, this));
   this.element.appendChild(button);
 
@@ -148,7 +151,9 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
   */
 
   this.menu = select = document.createElement('ul');
-  select.style.width = width.toString() + 'px';
+  var el = /** @type {Element} */ (this.element);
+  var cv = window.getComputedStyle(el);
+  select.style.width = cv.width;
   goog.events.listen(select, 'click', goog.bind(this.selectChanged, this));
   select.className = 'dropdown-menu';
 
@@ -177,6 +182,22 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
 
 
 Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
+    /** @export */
+    className: {
+        /** @this {org.apache.flex.flat.DropDownList} */
+        get: function() {
+            return org.apache.flex.utils.Language.superGetter(org.apache.flex.flat.DropDownList, this, 'className');
+        },
+        /** @this {org.apache.flex.flat.DropDownList} */
+        set: function(value) {
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.flat.DropDownList, this, 'className', value);
+            if (this.button) {
+              this.button.className = this.typeNames ?
+                      value + ' ' + 'dropdown-toggle-open-btn' + ' ' + this.typeNames :
+                      value + ' ' + 'dropdown-toggle-open-btn';
+            }
+        }
+    },
     dataProvider: {
         /** @this {org.apache.flex.flat.DropDownList} */
         get: function() {
