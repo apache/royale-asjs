@@ -25,6 +25,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -89,6 +90,16 @@ package org.apache.flex.html.beads.controllers
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+            IUIBase(_strand).topMostEventDispatcher.addEventListener("click", dismissHandler);
+        }
+        
+        private function dismissHandler(event:Event):void
+        {
+            if (event.target == _strand) return;
+            
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener("click", dismissHandler);
+            var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
+            viewBead.popUpVisible = false;
         }
         
         private function changeHandler(event:Event):void
