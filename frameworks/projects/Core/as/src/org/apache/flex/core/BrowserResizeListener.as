@@ -18,21 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.utils.getQualifiedClassName;
     
-    import org.apache.flex.events.Event;
-    
     /**
-     *  The BrowserScroller class enables browser scrollbars
-     *  when the application is larger than the screen.
+     *  The BrowserResizeListener class listens for browser
+     *  resizing and resizes the application accordingly.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class BrowserScroller implements IBead
+	public class BrowserResizeListener implements IBead
 	{
         /**
          *  Constructor.
@@ -42,11 +41,31 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function BrowserScroller()
+		public function BrowserResizeListener()
 		{
 		}
 		
         private var app:Application;
+        
+        /**
+         *  Minimum height
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var minHeight:Number;
+        
+        /**
+         *  Minimum width
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var minWidth:Number;
         
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -59,21 +78,32 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             app = value as Application;
-            app.addEventListener("viewChanged", viewChangedHandler);
-        }
-        
-        private function viewChangedHandler(event:Event):void
-        {
-            if (ExternalInterface.available)
+            app.stage.addEventListener("resize", resizeHandler);
+            if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
             {
                 // Get application name.  This assumes that the wrapper is using an
                 // object tag with the id that matches the application name
                 var appName:String = getQualifiedClassName(app);
                 var js:String = "var o = document.getElementById('" + appName + "');";
-                js += "o.width = " + app.initialView.width.toString() + ";";
-                js += "o.height = " + app.initialView.height.toString() + ";"
+                if (!isNaN(minWidth))
+                    js += "o.style.minWidth = '" + minWidth.toString() + "px';";
+                if (!isNaN(minHeight))
+                    js += "o.style.minHeight = '" + minHeight.toString() + "px';"
                 ExternalInterface.call("eval", js); 
             }
+        }
+        
+        private function resizeHandler(event:Event):void
+        {
+            var initialView:UIBase = app.initialView;
+            if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
+                initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
+                    Math.max(minHeight, app.stage.stageHeight), true);
+            else if (!isNaN(initialView.percentWidth))
+                initialView.setWidth(Math.max(minWidth, app.stage.stageWidth));
+            else if (!isNaN(initialView.percentHeight))
+                initialView.setHeight(Math.max(minHeight, app.stage.stageHeight));
+            
         }
 
 	}

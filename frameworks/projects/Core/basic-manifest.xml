@@ -23,6 +23,7 @@
 
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
+    <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>

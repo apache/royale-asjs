@@ -183,12 +183,19 @@ package org.apache.flex.core
             {
                 initialView.applicationModel =  model;
         	    this.addElement(initialView);
-                if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                    initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
-                else if (!isNaN(initialView.percentWidth))
-                    initialView.setWidth(stage.stageWidth);
-                else if (!isNaN(initialView.percentHeight))
-                    initialView.setHeight(stage.stageHeight);
+                // if someone has installed a resize listener, fake an event to run it now
+                if (stage.hasEventListener("resize"))
+                    stage.dispatchEvent(new flash.events.Event("resize"));
+                else
+                {
+                    // otherwise, size once like this
+                    if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
+                        initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
+                    else if (!isNaN(initialView.percentWidth))
+                        initialView.setWidth(stage.stageWidth);
+                    else if (!isNaN(initialView.percentHeight))
+                        initialView.setHeight(stage.stageHeight);
+                }
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {

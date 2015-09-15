@@ -72,7 +72,8 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
-  this.element.style.overflow = 'hidden';
+  if (!this.element.style.overflow)
+    this.element.style.overflow = 'hidden';
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
 
