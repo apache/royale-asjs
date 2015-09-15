@@ -145,11 +145,13 @@ package org.apache.flex.html.beads.layouts
                 lastmr = mr;
                 var marginObject:Object = {};
                 verticalMargins[i] = marginObject;
+                var valign:* = ValuesManager.valuesImpl.getValue(child, "vertical-align");
+                marginObject.valign = valign;
                 if (!hostSizedToContent)
                 {
                     // if host is sized by parent,
                     // we can position and size children horizontally now
-                    setPositionAndHeight(child, top, mt, padding.top, bottom, mb, padding.bottom, h);
+                    setPositionAndHeight(child, top, mt, padding.top, bottom, mb, padding.bottom, h, valign);
                     maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 }
                 else
@@ -167,8 +169,6 @@ package org.apache.flex.html.beads.layouts
                     maxHeight = Math.max(maxHeight, mt + child.height + mb);
                 }
 				xx = child.x + child.width;
-				var valign:* = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-				marginObject.valign = valign;
 			}
             if (hostSizedToContent)
             {
@@ -181,39 +181,9 @@ package org.apache.flex.html.beads.layouts
                     if (child == null || !child.visible) continue;
                     var obj:Object = verticalMargins[i];
                     setPositionAndHeight(child, obj.top, obj.marginTop, padding.top,
-                        obj.bottom, obj.marginBottom, padding.bottom, maxHeight);
+                        obj.bottom, obj.marginBottom, padding.bottom, maxHeight, obj.valign);
                 }
             }
-			for (i = 0; i < n; i++)
-			{
-				child = contentView.getElementAt(i) as IUIBase;
-                ilc = child as ILayoutChild;
-				if (child == null || !child.visible) continue;
-                obj = verticalMargins[i];
-                if (ilc)
-                {
-                    if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentHeight));
-                }
-                if (ilc)
-                {
-    				if (obj.valign == "top")
-                        ilc.setY(obj.marginTop + padding.top);
-    				else if (valign == "bottom")
-                        ilc.setY(maxHeight - child.height - obj.marginBottom);
-    				else // TODO: aharui - baseline
-                        ilc.setY((maxHeight - child.height) / 2);
-                }
-                else
-                {
-                    if (obj.valign == "top")
-                        child.y = obj.marginTop + padding.top;
-                    else if (valign == "bottom")
-                        child.y = maxHeight - child.height - obj.marginBottom;
-                    else // TODO: aharui - baseline
-                        child.y = (maxHeight - child.height) / 2;                    
-                }
-			}
 			
 			// Only return true if the contentView needs to be larger; that new
 			// size is stored in the model.
@@ -225,53 +195,72 @@ package org.apache.flex.html.beads.layouts
 		}
         
         private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number, pt:Number,
-                                             bottom:Number, mb:Number, pb:Number, h:Number):void
+                                             bottom:Number, mb:Number, pb:Number, h:Number,
+                                             valign:*):void
         {
             var heightSet:Boolean = false;
             
             var hh:Number = h;
             var ilc:ILayoutChild = child as ILayoutChild;
-            if (!isNaN(top))
+            if (ilc)
             {
-                if (ilc)
-                    ilc.setY(top + mt);
-                else
-                    child.y = top + mt;
-                hh -= top + mt;
+                if (!isNaN(ilc.percentHeight))
+                    ilc.setHeight(h * ilc.percentHeight / 100, true);
             }
-            else 
-            {
-                if (ilc)
-                    ilc.setY(mt + pt);
-                else
-                    child.y = mt + pt;
-                hh -= mt + pt;
-            }
-            if (!isNaN(bottom))
+            if (valign == "top")
             {
                 if (!isNaN(top))
                 {
                     if (ilc)
-                        ilc.setHeight(hh - bottom - mb, true);
-                    else 
+                        ilc.setY(top + mt);
+                    else
+                        child.y = top + mt;
+                    hh -= top + mt;
+                }
+                else 
+                {
+                    if (ilc)
+                        ilc.setY(mt + pt);
+                    else
+                        child.y = mt + pt;
+                    hh -= mt + pt;
+                }
+                if (ilc.isHeightSizedToContent())
+                {
+                    if (!isNaN(bottom))
                     {
-                        child.height = hh - bottom - mb;
-                        heightSet = true;
+                        if (!isNaN(top))
+                        {
+                            if (ilc)
+                                ilc.setHeight(hh - bottom - mb, true);
+                            else 
+                            {
+                                child.height = hh - bottom - mb;
+                                heightSet = true;
+                            }
+                        }
                     }
                 }
-                else
+            }
+            else if (valign == "bottom")
+            {
+                if (!isNaN(bottom))
                 {
                     if (ilc)
                         ilc.setY(h - bottom - mb - child.height);
                     else
                         child.y = h - bottom - mb - child.height;
                 }
+                else
+                {
+                    if (ilc)
+                        ilc.setY(h - mb - child.height);
+                    else
+                        child.y = h - mb - child.height;
+                }
             }
-            if (ilc)
-            {
-                if (!isNaN(ilc.percentHeight))
-                    ilc.setHeight(h * ilc.percentHeight / 100, true);
-            }
+            else
+                child.y = (h - child.height) / 2;                    
             if (!heightSet)
                 child.dispatchEvent(new Event("sizeChanged"));
         }
