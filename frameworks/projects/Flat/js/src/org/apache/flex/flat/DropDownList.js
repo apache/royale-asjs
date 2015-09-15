@@ -203,8 +203,8 @@ org.apache.flex.flat.DropDownList.prototype.addedToParent = function() {
   s = /** @type {string} */ (cv.borderRightWidth);
   var br = org.apache.flex.utils.CSSUtils.toNumber(s);
   var caretWidth = this.caret.offsetWidth;
-  // is 4 for spacing between spans?
-  var fluff = pl + pr + bl + br + caretWidth + 1 + 4;
+  // 10 seems to factor spacing between span and extra FF padding?
+  var fluff = pl + pr + bl + br + caretWidth + 1 + 10;
   var labelWidth = this.width - fluff;
   var strWidth = labelWidth.toString();
   strWidth += 'px';
