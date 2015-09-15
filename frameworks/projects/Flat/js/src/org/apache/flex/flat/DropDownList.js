@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.flat.DropDownList');
 
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.utils.CSSUtils');
 goog.require('org.apache.flex.utils.Language');
 
 
@@ -47,7 +48,7 @@ org.apache.flex.flat.DropDownList.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.flat.DropDownList.prototype.createElement =
     function() {
-  var button, input;
+  var button, caret;
 
   this.element = document.createElement('div');
 
@@ -58,7 +59,11 @@ org.apache.flex.flat.DropDownList.prototype.createElement =
   goog.events.listen(button, 'click', goog.bind(this.buttonClicked, this));
   this.element.appendChild(button);
 
-  var caret = document.createElement('span');
+  this.label = document.createElement('span');
+  this.label.className = 'dropdown-label';
+  button.appendChild(this.label);
+  this.caret = caret = document.createElement('span');
+  button.appendChild(caret);
   caret.className = 'dropdown-caret';
 
   this.positioner = this.element;
@@ -71,6 +76,7 @@ org.apache.flex.flat.DropDownList.prototype.createElement =
 
   button.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
+  this.label.flexjs_wrapper = this;
   caret.flexjs_wrapper = this;
 
   return this.element;
@@ -181,6 +187,31 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
 };
 
 
+/**
+ * @override
+ */
+org.apache.flex.flat.DropDownList.prototype.addedToParent = function() {
+  org.apache.flex.flat.DropDownList.base(this, 'addedToParent');
+  var el = /** @type {Element} */ (this.button);
+  var cv = window.getComputedStyle(el);
+  var s = /** @type {string} */ (cv.paddingLeft);
+  var pl = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.paddingRight);
+  var pr = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.borderLeftWidth);
+  var bl = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.borderRightWidth);
+  var br = org.apache.flex.utils.CSSUtils.toNumber(s);
+  var caretWidth = this.caret.offsetWidth;
+  // is 4 for spacing between spans?
+  var fluff = pl + pr + bl + br + caretWidth + 1 + 4;
+  var labelWidth = this.width - fluff;
+  var strWidth = labelWidth.toString();
+  strWidth += 'px';
+  this.label.style.width = strWidth;
+};
+
+
 Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
     /** @export */
     className: {
@@ -238,9 +269,9 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
             this.model.selectedIndex = value;
             var lf = this.labelField;
             if (lf)
-              this.button.innerHTML = this.selectedItem[lf] + '<span class="dropdown-caret"/>';
+              this.label.innerHTML = this.selectedItem[lf];
             else
-              this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+              this.label.innerHTML = this.selectedItem;
         }
     },
     /** @export */
@@ -257,9 +288,9 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
             this.model.selectedItem = value;
             var lf = this.labelField;
             if (lf)
-              this.button.innerHTML = this.selectedItem[lf] + '<span class="dropdown-caret"/>';
+              this.label.innerHTML = this.selectedItem[lf];
             else
-              this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+              this.label.innerHTML = this.selectedItem;
          }
     }
 });

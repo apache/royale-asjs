@@ -291,6 +291,14 @@ DateField {
           transition: border-color .25s, color .25s;
   }
 
+.dropdown-label {
+  color: inherit;
+  background-color: inherit;
+  font: inherit;
+  text-align: left;
+  display: inline-block;
+  }
+  
 HContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
