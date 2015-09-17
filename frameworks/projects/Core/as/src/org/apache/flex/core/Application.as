@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.utils.MXMLDataInterpreter;
 
     COMPILE::AS3 {
@@ -29,11 +33,6 @@ package org.apache.flex.core
         import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
-
-        import org.apache.flex.events.Event;
-        import org.apache.flex.events.IEventDispatcher;
-        import org.apache.flex.events.MouseEvent;
-        import org.apache.flex.events.utils.MouseEventConverter;
     }
 
     //--------------------------------------
@@ -556,87 +555,5 @@ package org.apache.flex.core
             dispatchEvent('viewChanged');
         };
 
-    }
-
-    COMPILE::JS {
-        import org.apache.flex.events.IEventDispatcher;
-    }
-
-    COMPILE::JS
-    public class Application extends HTMLElementWrapper implements IParent{
-        private var _controller:IBead;
-        private var _initialView:Object;
-
-        public function start():void {
-            element = document.getElementsByTagName('body')[0];
-            this.element["flexjs_wrapper"] = this;
-            this.element["className"] = 'Application';
-
-            MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
-
-            this.dispatchEvent('initialize');
-
-            if (this.model) this.addBead(this.model);
-            if (this.controller) this.addBead(controller as IBead);
-
-            this.initialView.applicationModel = this.model;
-            this.addElement(this.initialView);
-
-            this.dispatchEvent('viewChanged');
-        }
-
-        public function generateMXMLAttributes(data:Array):void
-        {
-            MXMLDataInterpreter.generateMXMLProperties(this, data);
-        }
-
-        public function get controller():IBead {
-            return _controller;
-        }
-
-        public function set controller(value:IBead):void {
-            if (value != _controller)
-                _controller = value;
-        }
-
-        public function get initialView():Object {
-            return _initialView;
-        }
-
-        public function set initialView(value:Object):void {
-            if (value != _initialView)
-                _initialView = value;
-        }
-
-        public function set valuesImpl(value:IValuesImpl):void {
-            ValuesManager.valuesImpl = value;
-            if (value.init) {
-                value.init(this);
-            }
-        }
-
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void {
-            (element as HTMLBodyElement).appendChild(c.element);
-            c.addedToParent();
-        }
-
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
-        {
-        }
-
-        public function getElementIndex(c:Object):int {
-            return 0;
-        }
-
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void {
-        }
-
-        public function get numElements():int {
-            return 0;
-        }
-
-        public function getElementAt(index:int):Object {
-            return null;
-        }
     }
 }
