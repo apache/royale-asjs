@@ -82,7 +82,7 @@ package org.apache.flex.utils
 		 * @param {?} value The value to be cast.
 		 * @return {number}
 		 */
-		static public function _int(value:Number):int
+		static public function _int(value:Number):Number
 		{
 			return value >> 0;
 		}
@@ -315,7 +315,7 @@ package org.apache.flex.utils
 		 * @param {?} value The value to be cast.
 		 * @return {number}
 		 */
-		static public function uint(value:Number):uint
+		static public function uint(value:Number):Number
 		{
 			return value >>> 0;
 		}
