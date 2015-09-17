@@ -236,7 +236,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var initialView:ViewBase;
+        public var initialView:Object;
 
         /**
          *  The data model (for the initial view).
