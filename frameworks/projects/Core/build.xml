@@ -95,9 +95,11 @@
         <compc fork="true"
                output="${FLEXJS_HOME}/frameworks/libs/Core.swc">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="compile-config.xml"/>
-            <arg value="+playerglobal.version=${playerglobal.version}"/>
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
+            <load-config filename="compile-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </compc>
     </target>
 
@@ -153,20 +155,41 @@
     <target name="compile-asjs">
         <echo message="Cross-compiling Core/asjs"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true">
-            <jvmarg value="-Xmx384m"/>
-            <jvmarg value="-Dsun.io.useCanonCaches=false"/>
-            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler"/>
-            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
-            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
-            <arg value="-js-output-type=FLEXJS"/>
-            <arg value="-keep-asdoc"/>
-            <!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${basedir}/js/out"/>
-            <arg value="-load-config=${basedir}/compile-asjs-config.xml"/>
-            <arg value="+playerglobal.version=${playerglobal.version}"/>
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}"/>
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/js/out" />
+            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-define=COMPILE::AS3,true" />
+        </java>
+    </target>
+
+    <target name="compile-as-for-js" >
+        <echo message="Cross-compiling Core/as for js"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/js/out" />
+            <arg value="-load-config=${basedir}/compile-js-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
         </java>
     </target>
 
