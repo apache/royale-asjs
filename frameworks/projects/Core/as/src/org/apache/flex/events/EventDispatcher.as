@@ -20,6 +20,7 @@ package org.apache.flex.events
 {
 	COMPILE::JS
 	{
+        import goog.events;
 		import goog.events.EventTarget;
 	}
 
