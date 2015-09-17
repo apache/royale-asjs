@@ -53,7 +53,7 @@ package org.apache.flex.core
 		//   Property
 		//--------------------------------------
 
-		public var element:EventTarget;
+		public var element:WrappedHTMLElement;
 		public var model:IBead;
 
 		protected var beads:Array;

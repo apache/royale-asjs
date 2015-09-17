@@ -246,7 +246,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var model:Object;
+        COMPILE::AS3
+        public var model:IBead;
 
         /**
          *  The controller.  The controller typically watches
@@ -257,7 +258,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var controller:Object;
+        public var controller:IBead;
 
         /**
          *  An array of data that describes the MXML attributes
@@ -271,6 +272,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function get MXMLDescriptor():Array
         {
             return null;
@@ -419,7 +421,7 @@ package org.apache.flex.core
                     addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS {
-                var children:Array = internalChildren();
+                var children:NodeList = internalChildren();
                 if (index >= children.length)
                     addElement(c);
                 else
@@ -446,7 +448,7 @@ package org.apache.flex.core
                 return getChildAt(index);
             }
             COMPILE::JS {
-                var children:Array = internalChildren();
+                var children:NodeList = internalChildren();
                 return children[index].flexjs_wrapper;
             }
         }
@@ -468,7 +470,7 @@ package org.apache.flex.core
                 return getChildIndex(c as DisplayObject);
             }
             COMPILE::JS {
-                var children:Array = internalChildren();
+                var children:NodeList = internalChildren();
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
@@ -516,7 +518,7 @@ package org.apache.flex.core
                 return numChildren;
             }
             COMPILE::JS {
-                var children:Array = internalChildren();
+                var children:NodeList = internalChildren();
                 return children.length;
             }
         }
@@ -525,7 +527,7 @@ package org.apache.flex.core
          * @return {Object} The array of children.
          */
         COMPILE::JS
-        protected function internalChildren():Array
+        protected function internalChildren():NodeList
         {
             return element.childNodes;
         };
