@@ -14,11 +14,13 @@
 package org.apache.flex.events
 {
 
-import goog.events.BrowserEvent.MouseButton;
+	COMPILE::JS {
+		import goog.events.BrowserEvent.MouseButton;
+	}
 
 	[ExcludeClass]
 	COMPILE::AS3
-	internal class BrowserEvent
+	public class BrowserEvent
 	{
 	}
 
@@ -67,7 +69,7 @@ import goog.events.BrowserEvent.MouseButton;
 		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */
-		public var wrappedEvent:goog.events.BrowserEvent;
+		public var wrappedEvent:Object;
 
 		//--------------------------------------
 		//   Function
@@ -245,7 +247,7 @@ import goog.events.BrowserEvent.MouseButton;
 		 */
 		public function isMouseActionButton():Boolean
 		{
-			wrappedEvent.isMouseActionButton();
+			return wrappedEvent.isMouseActionButton();
 		}
 
 		/**

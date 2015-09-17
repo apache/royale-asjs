@@ -19,6 +19,12 @@
 package org.apache.flex.events
 {
 
+	[ExcludeClass]
+	COMPILE::AS3
+	public class ElementEvents
+	{
+	}
+
 	COMPILE::JS
 	public class ElementEvents
 	{

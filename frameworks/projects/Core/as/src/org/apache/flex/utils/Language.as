@@ -19,6 +19,11 @@
 package org.apache.flex.utils
 {
 
+	[ExcludeClass]
+	COMPILE::AS3
+	public class Language {}
+
+	COMPILE::JS
 	public class Language
 	{
 
@@ -104,7 +109,7 @@ package org.apache.flex.utils
 				return false;
 			}
 
-			checkInterfaces = function(left:Object) {
+			checkInterfaces = function(left:Object):Boolean {
 				var i:uint, interfaces:Array;
 
 				interfaces = left.FLEXJS_CLASS_INFO.interfaces;

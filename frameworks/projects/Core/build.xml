@@ -21,15 +21,15 @@
 
 <project name="Core" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../.."/>
-    
+
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
-    <property name="gjslint" value="gjslint" />
-    <property name="jshint" value="jshint" />
+    <property name="gjslint" value="gjslint"/>
+    <property name="jshint" value="jshint"/>
     <condition property="no.lint" value="true">
         <os family="windows"/>
     </condition>
@@ -41,18 +41,18 @@
     </target>
 
     <target name="test" unless="is.jenkins">
-        <ant dir="as/tests" />
+        <ant dir="as/tests"/>
         <!-- no tests yet
         <ant dir="asjs/tests" />
         -->
     </target>
-    
+
     <target name="test-js" unless="is.jenkins">
         <!-- no tests yet
          <ant dir="js/tests" />
          -->
     </target>
-    
+
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/libs">
@@ -65,9 +65,9 @@
             </fileset>
         </delete>
     </target>
-    
+
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+        <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
 
     <target name="compile" description="Compiles .as files into .swc">
@@ -75,7 +75,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
-        <mkdir dir="${basedir}/js/out" />
+        <mkdir dir="${basedir}/js/out"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -95,39 +95,89 @@
         <compc fork="true"
                output="${FLEXJS_HOME}/frameworks/libs/Core.swc">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="compile-config.xml" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <load-config filename="compile-config.xml"/>
+            <arg value="+playerglobal.version=${playerglobal.version}"/>
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
         </compc>
     </target>
 
-    <target name="compile-asjs" >
-        <echo message="Cross-compiling Core/asjs"/>
+    <target name="compile-as-to-js-core-application-using-falcon">
+        <echo message="Cross-compiling Core"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
-            <jvmarg value="-Xmx384m" />
-            <jvmarg value="-Dsun.io.useCanonCaches=false" />
-            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
-            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${basedir}/js/out" />
-            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+        <echo message="FLEXJS_HOME: ${FLEXJS_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true">
+            <!--<jvmarg value="-agentlib:jdwp=transport=dt_shmem,server=n,address=javadebug,suspend=y"/>-->
+            <jvmarg value="-Xmx384m"/>
+            <jvmarg value="-Dsun.io.useCanonCaches=false"/>
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler"/>
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
+            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+            <arg value="-keep-asdoc"/> <!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/as/out/js"/>
+            <arg value="-load-config=${basedir}/compile-as-to-js-config.xml"/>
+            <arg value="-define+=COMPILE::AS3,false"/>
+            <arg value="-define+=COMPILE::JS,true"/>
+            <arg value="-js-output-type=FLEXJS"/>
+            <arg value="+playerglobal.version=${playerglobal.version}"/>
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}"/>
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
         </java>
     </target>
 
-    <target name="lint-js" depends="gjslint, jshint, copy-js" />
-    <target name="copy-js" >
+
+    <target name="compile-as-to-js-core-application-using-oem">
+        <echo message="Cross-compiling Core"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="FLEXJS_HOME: ${FLEXJS_HOME}"/>
+        <java classname="flex2.tools.Compc" classpath="${FALCON_HOME}/lib/flex-compiler-oem.jar" fork="true">
+            <jvmarg value="-agentlib:jdwp=transport=dt_shmem,server=n,address=javadebug,suspend=y"/>
+            <jvmarg value="-Xmx384m"/>
+            <jvmarg value="-Dsun.io.useCanonCaches=false"/>
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler"/>
+            <arg value="-keep-asdoc"/> <!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/as/out/js"/>
+            <arg value="-load-config=${basedir}/compile-as-to-js-config.xml"/>
+            <arg value="-define+=COMPILE::AS3,false"/>
+            <arg value="-define+=COMPILE::JS,true"/>
+            <arg value="-js-output-type=FLEXJS"/>
+            <arg value="+playerglobal.version=${playerglobal.version}"/>
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}"/>
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
+        </java>
+    </target>
+
+    <target name="compile-asjs">
+        <echo message="Cross-compiling Core/asjs"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true">
+            <jvmarg value="-Xmx384m"/>
+            <jvmarg value="-Dsun.io.useCanonCaches=false"/>
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler"/>
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
+            <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+            <arg value="-js-output-type=FLEXJS"/>
+            <arg value="-keep-asdoc"/>
+            <!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/js/out"/>
+            <arg value="-load-config=${basedir}/compile-asjs-config.xml"/>
+            <arg value="+playerglobal.version=${playerglobal.version}"/>
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}"/>
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}"/>
+        </java>
+    </target>
+
+    <target name="lint-js" depends="gjslint, jshint, copy-js"/>
+    <target name="copy-js">
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
             <fileset dir="${basedir}/js/src">
-                <include name="**/**" />
+                <include name="**/**"/>
             </fileset>
             <fileset dir="${basedir}/js/out">
-                <include name="**/**" />
+                <include name="**/**"/>
             </fileset>
         </copy>
     </target>
@@ -135,26 +185,26 @@
     <target name="gjslint" unless="no.lint">
         <echo>running gjslint</echo>
         <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
-            <arg value="--strict" />
-            <arg value="--disable" />
-            <arg value="006,100,214,300" />
+            <arg value="--strict"/>
+            <arg value="--disable"/>
+            <arg value="006,100,214,300"/>
             <!-- 006: wrong indentation -->
             <!-- 100: cannot have non-primitive value -->
             <!-- 214: @fileoverview tag missing description -->
             <!-- 300: missing newline at end of file -->
-            <arg value="--max_line_length" />
-            <arg value="120" />
-            <arg value="-r" />
-            <arg value="${basedir}/js/src" />
+            <arg value="--max_line_length"/>
+            <arg value="120"/>
+            <arg value="-r"/>
+            <arg value="${basedir}/js/src"/>
         </exec>
     </target>
 
     <target name="jshint" unless="no.lint">
         <echo>running jshint</echo>
         <exec executable="${jshint}" dir="${basedir}" failonerror="true">
-            <arg value="--config" />
-            <arg value="${FLEX_HOME}/frameworks/js/jshint.properties" />
-            <arg value="${basedir}/js/src" />
+            <arg value="--config"/>
+            <arg value="${FLEX_HOME}/frameworks/js/jshint.properties"/>
+            <arg value="${basedir}/js/src"/>
         </exec>
     </target>
 

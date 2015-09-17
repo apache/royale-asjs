@@ -4,6 +4,7 @@ package org.apache.flex.core
     {
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.events.EventDispatcher;
+		import goog.events;
     }
 
     [ExcludeClass]
@@ -37,7 +38,7 @@ package org.apache.flex.core
 		static public function fireListenerOverride(listener:Object, eventObject:BrowserEvent):Boolean
 		{
 			var e:BrowserEvent = new BrowserEvent();
-			e.wrappedEvent = eventObject as goog.events.BrowserEvent;
+			e.wrappedEvent = eventObject.wrappedEvent;
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}
 
@@ -46,8 +47,8 @@ package org.apache.flex.core
          */
 		static public function installOverride():Boolean
 		{
-			HTMLElementWrapper.googFireListener = goog.events["fireListener"];
-			goog.events["fireListener"] = HTMLElementWrapper.fireListenerOverride;
+			HTMLElementWrapper.googFireListener = events.fireListener;
+			events.fireListener = HTMLElementWrapper.fireListenerOverride;
 			return true;
 		}
 

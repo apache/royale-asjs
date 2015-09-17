@@ -18,74 +18,77 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.display.DisplayObject;
-    import flash.display.Sprite;
-    import flash.display.StageAlign;
-    import flash.display.StageQuality;
-    import flash.display.StageScaleMode;
-    import flash.events.Event;
-    import flash.system.ApplicationDomain;
-    import flash.utils.getQualifiedClassName;
-    
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.events.utils.MouseEventConverter;
+
     import org.apache.flex.utils.MXMLDataInterpreter;
-    
+
+    COMPILE::AS3 {
+        import flash.display.DisplayObject;
+        import flash.display.Sprite;
+        import flash.display.StageAlign;
+        import flash.display.StageQuality;
+        import flash.display.StageScaleMode;
+        import flash.events.Event;
+        import flash.system.ApplicationDomain;
+        import flash.utils.getQualifiedClassName;
+
+        import org.apache.flex.events.Event;
+        import org.apache.flex.events.IEventDispatcher;
+        import org.apache.flex.events.MouseEvent;
+        import org.apache.flex.events.utils.MouseEventConverter;
+    }
+
     //--------------------------------------
     //  Events
     //--------------------------------------
-    
+
     /**
      *  Dispatched at startup. Attributes and sub-instances of
      *  the MXML document have been created and assigned.
      *  The component lifecycle is different
      *  than the Flex SDK.  There is no creationComplete event.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     [Event(name="initialize", type="org.apache.flex.events.Event")]
-    
+
     /**
      *  Dispatched at startup before the instances get created.
      *  Beads can call preventDefault and defer initialization.
      *  This event will be dispatched on every frame until no
      *  listeners call preventDefault(), then the initialize()
      *  method will be called.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     [Event(name="preinitialize", type="org.apache.flex.events.Event")]
-    
+
     /**
      *  Dispatched at startup after the initial view has been
      *  put on the display list.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     [Event(name="viewChanged", type="org.apache.flex.events.Event")]
-    
+
     /**
      *  Dispatched at startup after the initial view has been
      *  put on the display list.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
-
     /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
@@ -484,6 +487,88 @@ package org.apache.flex.core
         public function get numElements():int
         {
             return numChildren;
+        }
+    }
+
+    COMPILE::JS {
+        import org.apache.flex.events.IEventDispatcher;
+    }
+
+    COMPILE::JS
+    public class Application extends HTMLElementWrapper implements IParent{
+        private var _controller:IBead;
+        private var _initialView:Object;
+
+        public function start():void {
+            element = document.getElementsByTagName('body')[0];
+            this.element["flexjs_wrapper"] = this;
+            this.element["className"] = 'Application';
+
+            MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
+
+            this.dispatchEvent('initialize');
+
+            if (this.model) this.addBead(this.model);
+            if (this.controller) this.addBead(controller as IBead);
+
+            this.initialView.applicationModel = this.model;
+            this.addElement(this.initialView);
+
+            this.dispatchEvent('viewChanged');
+        }
+
+        public function generateMXMLAttributes(data:Array):void
+        {
+            MXMLDataInterpreter.generateMXMLProperties(this, data);
+        }
+
+        public function get controller():IBead {
+            return _controller;
+        }
+
+        public function set controller(value:IBead):void {
+            if (value != _controller)
+                _controller = value;
+        }
+
+        public function get initialView():Object {
+            return _initialView;
+        }
+
+        public function set initialView(value:Object):void {
+            if (value != _initialView)
+                _initialView = value;
+        }
+
+        public function set valuesImpl(value:IValuesImpl):void {
+            ValuesManager.valuesImpl = value;
+            if (value.init) {
+                value.init(this);
+            }
+        }
+
+        public function addElement(c:Object, dispatchEvent:Boolean = true):void {
+            (element as HTMLBodyElement).appendChild(c.element);
+            c.addedToParent();
+        }
+
+        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        {
+        }
+
+        public function getElementIndex(c:Object):int {
+            return 0;
+        }
+
+        public function removeElement(c:Object, dispatchEvent:Boolean = true):void {
+        }
+
+        public function get numElements():int {
+            return 0;
+        }
+
+        public function getElementAt(index:int):Object {
+            return null;
         }
     }
 }

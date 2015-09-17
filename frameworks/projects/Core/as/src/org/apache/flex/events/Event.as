@@ -18,11 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-import goog.events.Event;
 
     COMPILE::AS3 {
         import flash.events.Event;
     }
+
+	COMPILE::JS {
+		import goog.events.Event;
+	}
 
 	/**
 	 * This class simply wraps flash.events.Event so that

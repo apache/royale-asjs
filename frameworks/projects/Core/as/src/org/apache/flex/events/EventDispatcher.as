@@ -55,7 +55,7 @@ package org.apache.flex.events
 	}
 
 	COMPILE::JS
-	public class EventDispatcher extends EventTarget implements IEventDispatcher
+	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
 
 		override public function addEventListener(type:String, handler:Object, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
@@ -77,7 +77,7 @@ package org.apache.flex.events
 				source = that.element;
 			}
 
-			goog.events["listen"](source, type, handler);
+			goog.events.listen(source, type, handler);
 		}
 	}
 }
