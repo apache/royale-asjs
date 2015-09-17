@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-
     import org.apache.flex.utils.MXMLDataInterpreter;
 
     COMPILE::AS3 {
@@ -102,8 +101,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
-    public class Application extends Sprite implements IStrand, IFlexInfo, IParent, IEventDispatcher
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
     {
         /**
          *  Constructor.
@@ -116,15 +114,18 @@ package org.apache.flex.core
         public function Application()
         {
             super();
-			if (stage)
-			{
-				stage.align = StageAlign.TOP_LEFT;
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-                // should be opt-in
-				//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
-			}
-			
-            loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
+            
+            COMPILE::AS3 {
+    			if (stage)
+    			{
+    				stage.align = StageAlign.TOP_LEFT;
+    				stage.scaleMode = StageScaleMode.NO_SCALE;
+                    // should be opt-in
+    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
+    			}
+    			
+                loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
+            }
         }
         
         /**
@@ -139,6 +140,7 @@ package org.apache.flex.core
          */
         public var document:Object = this;
         
+        COMPILE::AS3
         private function initHandler(event:flash.events.Event):void
         {
 			if (model is IBead) addBead(model as IBead);
@@ -158,6 +160,7 @@ package org.apache.flex.core
             
         }
         
+        COMPILE::AS3
         private function enterFrameHandler(event:flash.events.Event):void
         {
             if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
@@ -176,6 +179,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         protected function initialize():void
         {
             
@@ -309,6 +313,7 @@ package org.apache.flex.core
          */
         public var beads:Array;
         
+        COMPILE::AS3
         private var _beads:Vector.<IBead>;
         
         /**
@@ -319,6 +324,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function addBead(bead:IBead):void
         {
             if (!_beads)
@@ -335,6 +341,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function getBeadByType(classOrInterface:Class):IBead
         {
             for each (var bead:IBead in _beads)
@@ -353,6 +360,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function removeBead(value:IBead):IBead	
         {
             var n:int = _beads.length;
@@ -368,29 +376,6 @@ package org.apache.flex.core
             return null;
         }
         
-        private var _info:Object;
-        
-        /**
-         *  An Object containing information generated
-         *  by the compiler that is useful at startup time.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function info():Object
-        {
-            if (!_info)
-            {
-                var mainClassName:String = getQualifiedClassName(this);
-                var initClassName:String = "_" + mainClassName + "_FlexInit";
-                var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
-                _info = c.info();
-            }
-            return _info;
-        }
-        
         /**
          *  @copy org.apache.flex.core.IParent#addElement()
          * 
@@ -401,13 +386,18 @@ package org.apache.flex.core
          */
         public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-            {
-                addChild(IUIBase(c).element as DisplayObject);
-                IUIBase(c).addedToParent();
+            COMPILE::AS3 {
+                if (c is IUIBase)
+                {
+                    addChild(IUIBase(c).element as DisplayObject);
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    addChild(c as DisplayObject);
             }
-            else
-                addChild(c as DisplayObject);
+            COMPILE::JS {
+                this.element.appendChild(c.element);
+            }
         }
         
         /**
@@ -420,13 +410,27 @@ package org.apache.flex.core
          */
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-            {
-                addChildAt(IUIBase(c).element as DisplayObject, index);
-                IUIBase(c).addedToParent();
+            COMPILE::AS3 {
+                if (c is IUIBase)
+                {
+                    addChildAt(IUIBase(c).element as DisplayObject, index);
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    addChildAt(c as DisplayObject, index);
             }
-            else
-                addChildAt(c as DisplayObject, index);
+            COMPILE::JS {
+                var children:Array = internalChildren();
+                if (index >= children.length)
+                    addElement(c);
+                else
+                {
+                    element.insertBefore(c.positioner,
+                        children[index]);
+                    c.addedToParent();
+                }
+
+            }
         }
 
         /**
@@ -439,7 +443,13 @@ package org.apache.flex.core
          */
         public function getElementAt(index:int):Object
         {
-            return getChildAt(index);
+            COMPILE::AS3 {
+                return getChildAt(index);
+            }
+            COMPILE::JS {
+                var children:Array = internalChildren();
+                return children[index].flexjs_wrapper;
+            }
         }
         
         /**
@@ -452,10 +462,22 @@ package org.apache.flex.core
          */
         public function getElementIndex(c:Object):int
         {
-            if (c is IUIBase)
-                return getChildIndex(IUIBase(c).element as DisplayObject);
-
-            return getChildIndex(c as DisplayObject);
+            COMPILE::AS3 {
+                if (c is IUIBase)
+                    return getChildIndex(IUIBase(c).element as DisplayObject);
+    
+                return getChildIndex(c as DisplayObject);
+            }
+            COMPILE::JS {
+                var children:Array = internalChildren();
+                var n:int = children.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    if (children[i] == c.element)
+                        return i;
+                }
+                return -1;
+            }
         }
         
         /**
@@ -468,12 +490,17 @@ package org.apache.flex.core
          */
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-            {
-                removeChild(IUIBase(c).element as DisplayObject);
+            COMPILE::AS3 {
+                if (c is IUIBase)
+                {
+                    removeChild(IUIBase(c).element as DisplayObject);
+                }
+                else
+                    removeChild(c as DisplayObject);
             }
-            else
-                removeChild(c as DisplayObject);
+            COMPILE::JS {
+                element.removeChild(c.element);
+            }
         }
         
         /**
@@ -486,8 +513,49 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            return numChildren;
+            COMPILE::AS3 {
+                return numChildren;
+            }
+            COMPILE::JS {
+                var children:Array = internalChildren();
+                return children.length;
+            }
         }
+        
+        /**
+         * @return {Object} The array of children.
+         */
+        COMPILE::JS
+        protected function internalChildren():Array
+        {
+            return element.childNodes;
+        };
+        
+        
+
+        /**
+         * @export
+         */
+        COMPILE::JS
+        public function start():void 
+        {
+            element = document.getElementsByTagName('body')[0];
+            element.flexjs_wrapper = this;
+            element.className = 'Application';
+            
+            MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+            
+            dispatchEvent('initialize');
+            
+            if (model) addBead(model);
+            if (controller) addBead(controller);
+            
+            initialView.applicationModel = model;
+            addElement(initialView);
+            
+            dispatchEvent('viewChanged');
+        };
+
     }
 
     COMPILE::JS {
