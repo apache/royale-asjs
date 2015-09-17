@@ -22,8 +22,7 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.flex.core.Application"/>
-
-    <!--<component id="Application" class="org.apache.flex.core.Application"/>
+    <!-- temporarily remove these classes while we try to get Application to compile
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
@@ -37,6 +36,6 @@
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
     
-    <component id="State" class="org.apache.flex.states.State"/>-->
-    
+    <component id="State" class="org.apache.flex.states.State"/>
+    -->
 </componentPackage>
