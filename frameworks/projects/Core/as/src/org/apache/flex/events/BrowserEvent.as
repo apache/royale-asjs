@@ -14,15 +14,9 @@
 package org.apache.flex.events
 {
 
-	COMPILE::JS {
-		import goog.events.BrowserEvent.MouseButton;
-	}
-
-	[ExcludeClass]
-	COMPILE::AS3
-	public class BrowserEvent
-	{
-	}
+    COMPILE::JS {        
+        import goog.events.BrowserEvent;
+    }
 
 	/**
 	 * @fileoverview A patched, standardized event object for browser events.
@@ -227,7 +221,7 @@ package org.apache.flex.events
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
 		 */
-		public function isButton(button:MouseButton):Boolean
+		public function isButton(button:int):Boolean
 		{
 			return wrappedEvent.isButton(button);
 		}
