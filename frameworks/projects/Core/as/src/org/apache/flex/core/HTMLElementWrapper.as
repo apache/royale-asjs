@@ -4,12 +4,9 @@ package org.apache.flex.core
     {
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.events.EventDispatcher;
-		import goog.events;
+        import goog.events;
+        import goog.events.EventTarget;
     }
-
-    [ExcludeClass]
-    COMPILE::AS3
-    public class HTMLElementWrapper {}
 
 	COMPILE::JS
 	public class HTMLElementWrapper extends EventDispatcher implements IStrand
@@ -47,8 +44,8 @@ package org.apache.flex.core
          */
 		static public function installOverride():Boolean
 		{
-			HTMLElementWrapper.googFireListener = events.fireListener;
-			events.fireListener = HTMLElementWrapper.fireListenerOverride;
+			HTMLElementWrapper.googFireListener = goog.events.fireListener;
+			goog.events.fireListener = HTMLElementWrapper.fireListenerOverride;
 			return true;
 		}
 
