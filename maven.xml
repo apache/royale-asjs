@@ -91,6 +91,12 @@
         </antcall>
 
         <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Flat"/>
+            <param name="artifactName" value="flat"/>
+            <param name="fileName" value="frameworks/libs/Flat.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
             <param name="moduleName" value="Formatters"/>
             <param name="artifactName" value="formatters"/>
             <param name="fileName" value="frameworks/libs/Formatters.swc"/>
@@ -194,6 +200,11 @@
         </antcall>
 
         <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="flat"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
             <param name="artifactName" value="formatters"/>
             <param name="artifactExtension" value="swc"/>
         </antcall>
@@ -267,6 +278,10 @@
 
         <antcall target="-deploy-maven-artifact-file-with-sources">
             <param name="artifactName" value="effects"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="flat"/>
         </antcall>
 
         <antcall target="-deploy-maven-artifact-file-with-sources">

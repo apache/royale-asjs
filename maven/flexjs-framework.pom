@@ -78,6 +78,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>flat</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>formatters</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
