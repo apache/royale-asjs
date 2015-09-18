@@ -27,7 +27,6 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IScrollingLayoutParent;
 	import org.apache.flex.core.IParent;
     import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRollOverModel;

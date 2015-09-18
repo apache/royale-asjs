@@ -74,7 +74,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerBase extends UIBase implements IMXMLDocument, IStatesObject, IContainer
+	public class ContainerBase extends UIBase implements IMXMLDocument, IStatesObject, IContainer, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -87,46 +87,31 @@ package org.apache.flex.core
 		public function ContainerBase()
 		{
 			super();
-            actualParent = this;
+            
+			_strandChildren = new ContainerBaseStrandChildren(this);
 		}
 		
-        /**
-         *  False if IChrome children are treated just like
-         *  any other children.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected var supportsChromeChildren:Boolean = true;
-        
-        private var actualParent:DisplayObjectContainer;
-        
-        /**
-         *  Set a platform-specific object as the actual parent for 
-         *  children.  This must be public so it can be accessed
-         *  by beads.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function setActualParent(parent:DisplayObjectContainer):void
-        {
-            actualParent = parent;	
-        }
+		private var _strandChildren:ContainerBaseStrandChildren;
+		
+		/**
+		 * @private
+		 */
+		public function get strandChildren():IParent
+		{
+			return _strandChildren;
+		}
         
         /**
          *  @private
          */
         override public function getElementIndex(c:Object):int
         {
-            if (c is IUIBase)
-                return actualParent.getChildIndex(IUIBase(c).element as DisplayObject);
-            else
-                return actualParent.getChildIndex(c as DisplayObject);
+			var contentView:IContentViewHost = view as IContentViewHost;
+			if (contentView != null) {
+				return contentView.getElementIndex(c);
+			} else {
+				return getChildIndex(c as DisplayObject);
+			}
         }
         
         /**
@@ -134,27 +119,15 @@ package org.apache.flex.core
          */
         override public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-            {
-                if (supportsChromeChildren && c is IChrome) {
-                    addChild(IUIBase(c).element as DisplayObject);
-                    IUIBase(c).addedToParent();
-                }
-                else {
-                    actualParent.addChild(IUIBase(c).element as DisplayObject);
-                    IUIBase(c).addedToParent();
-                }
-            }
-            else {
-                if (supportsChromeChildren && c is IChrome) {
-                    addChild(c as DisplayObject);
-                }
-                else {
-                    actualParent.addChild(c as DisplayObject);
-                }
-            }
-            if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.addElement(c, dispatchEvent);
+			}
+			else {
+				addChild(c as DisplayObject);
+				if (dispatchEvent)
+					this.dispatchEvent(new Event("childrenAdded"));
+			}
         }
         
         /**
@@ -162,26 +135,15 @@ package org.apache.flex.core
          */
         override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-            {
-                if (supportsChromeChildren && c is IChrome) {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
-                    IUIBase(c).addedToParent();
-                }
-                else {
-                    actualParent.addChildAt(IUIBase(c).element as DisplayObject, index);
-                    IUIBase(c).addedToParent();
-                }
-            }
-            else {
-                if (supportsChromeChildren && c is IChrome) {
-                    addChildAt(c as DisplayObject, index);
-                } else {
-                    actualParent.addChildAt(c as DisplayObject, index);
-                }
-            }
-            if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenAdded"));
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.addElementAt(c, index, dispatchEvent);
+			}
+			else {
+				addChildAt(c as DisplayObject, index);
+				if (dispatchEvent)
+					this.dispatchEvent(new Event("childrenAdded"));
+			}
         }
         
         /**
@@ -189,21 +151,15 @@ package org.apache.flex.core
          */
         override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-			{
-				if (supportsChromeChildren && c is IChrome) {
-					removeChild(IUIBase(c).element as DisplayObject);
-				}
-				else {
-					actualParent.removeChild(IUIBase(c).element as DisplayObject);
-				}
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.removeElement(c, dispatchEvent);
 			}
 			else {
-				actualParent.removeChild(c as DisplayObject);
-			}    
-            
-            if (dispatchEvent)
-                this.dispatchEvent(new Event("childrenRemoved"));
+				removeChild(c as DisplayObject);
+				if (dispatchEvent)
+					this.dispatchEvent(new Event("childrenRemoved"));
+			}
         }
         
         /**
@@ -212,11 +168,24 @@ package org.apache.flex.core
          */
         public function getChildren():Array
         {
-            var children:Array = [];
-            var n:int = actualParent.numChildren;
-            for (var i:int = 0; i < n; i++)
-                children.push(actualParent.getChildAt(i));
-            return children;
+			var contentView:IParent = view as IParent;
+			var children:Array = [];
+			var n:int = 0;
+			var i:int = 0;
+			
+			if (contentView != null) {
+				n = contentView.numElements;
+				for (i=0; i < n; i++) {
+					children.push(contentView.getElementAt(i));
+				}
+			}
+			else {
+	            for (i = 0; i < n; i++) {
+	                children.push(getChildAt(i));
+				}
+			}
+			
+			return children;
         }
         
         /**
@@ -254,6 +223,60 @@ package org.apache.flex.core
     			dispatchEvent(new Event("initComplete"));
                 _initialized = true;
             }
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $numElements():int
+		{
+			return super.numElements();
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $addElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			super.addElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		{
+			super.addElementAt(c, index, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $removeElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			super.removeElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $getElementIndex(c:Object):int
+		{
+			return super.getElementIndex(c);
+		}
+		
+		/**
+		 * @private
+		 * Support strandChildren.
+		 */
+		public function $getElementAt(index:int):Object
+		{
+			return super.getElementAt(index);
 		}
 
         private var _mxmlDescriptor:Array;

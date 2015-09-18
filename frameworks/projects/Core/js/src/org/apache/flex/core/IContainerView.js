@@ -13,18 +13,23 @@
  */
 
 /**
+ * org.apache.flex.core.IContainerView
+ *
  * @fileoverview
+ *
  * @suppress {checkTypes}
  */
 
-goog.provide('org.apache.flex.core.ILayoutParent');
+goog.provide('org.apache.flex.core.IContainerView');
+
+goog.require('org.apache.flex.core.IParent');
 
 
 
 /**
  * @interface
  */
-org.apache.flex.core.ILayoutParent = function() {
+org.apache.flex.core.IContainerView = function() {
 };
 
 
@@ -33,27 +38,7 @@ org.apache.flex.core.ILayoutParent = function() {
  *
  * @type {Object.<string, Array.<Object>>}
  */
-org.apache.flex.core.ILayoutParent.prototype.FLEXJS_CLASS_INFO =
-    { names: [{ name: 'ILayoutParent',
-                qName: 'org.apache.flex.core.ILayoutParent' }] };
-
-
-Object.defineProperties(org.apache.flex.core.ILayoutParent.prototype, {
-    /** @export */
-    contentView: {
-        get: function() {}
-    },
-    /** @export */
-    border: {
-        get: function() {}
-    },
-    /** @export */
-    vScrollBar: {
-        get: function() {},
-        set: function(value) {}
-    },
-    /** @export */
-    resizeableView: {
-        get: function() {}
-    }
-});
+org.apache.flex.core.IContainerView.prototype.FLEXJS_CLASS_INFO = {
+  names: [{ name: 'IContainerView', qName: 'org.apache.flex.core.IContainerView'}],
+  interfaces: [org.apache.flex.core.IParent]
+};

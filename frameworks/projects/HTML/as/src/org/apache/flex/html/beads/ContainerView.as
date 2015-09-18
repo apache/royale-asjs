@@ -26,8 +26,10 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.IContainerView;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -61,7 +63,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class ContainerView extends BeadViewBase implements IBeadView, ILayoutParent
+	public class ContainerView extends BeadViewBase implements IBeadView, IContainerView, ILayoutHost
 	{
 		/**
      	 *  The ContainerView class is the default view for
@@ -142,6 +144,54 @@ package org.apache.flex.html.beads
 		private var layoutRunning:Boolean;
 		
 		/**
+		 * @private
+		 */
+		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			contentView.addElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		{
+			contentView.addElementAt(c, index, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		public function getElementIndex(c:Object):int
+		{
+			return contentView.getElementIndex(c);
+		}
+		
+		/**
+		 * @private
+		 */
+		public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			contentView.removeElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		public function get numElements():int
+		{
+			return contentView.numElements();
+		}
+		
+		/**
+		 * @private
+		 */
+		public function getElementAt(index:int):Object
+		{
+			return contentView.getElementAt(index);
+		}
+		
+		/**
 		 * Strand setter.
 		 *  
 		 *  @langversion 3.0
@@ -155,8 +205,8 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			
             createViewport();
-			(host as UIBase).addElement(viewport.contentView, false);
-			ContainerBase(host).setActualParent(viewport.contentView as DisplayObjectContainer);
+			
+			(host as IContentViewHost).strandChildren.addElement(viewport.contentView, false);
 			
 			displayBackgroundAndBorder(host as UIBase);
 			

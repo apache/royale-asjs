@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
     /**
-     *  The ILayoutParent interface is the basic interface for the 
+     *  The ILayoutHost interface is the basic interface for the 
      *  container views that have an IBeadLayout.  The layout implementation
      *  often needs to know certain things about other objects in
      *  the view.
@@ -29,7 +29,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface ILayoutParent
+	public interface ILayoutHost
 	{
         /**
          *  The container that parents all of the content.
@@ -40,17 +40,5 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
 		function get contentView():IParentIUIBase;
-		
-        /**
-         *  The container whose size changes
-         *  imply the need for another layout pass.  This
-         *  is normally the host component.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function get resizableView():IUIBase;
 	}
 }

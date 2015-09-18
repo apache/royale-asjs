@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.ButtonBarLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.html.beads.ListView');
 
 
@@ -74,7 +75,7 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.ButtonBarLayout.proto
 org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.layout = function() {
 
-  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
   var viewportModel = layoutParent.viewportModel;

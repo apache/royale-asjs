@@ -46,13 +46,15 @@ internal class CoreClasses
     import org.apache.flex.core.IChrome; IChrome;
     import org.apache.flex.core.IComboBoxModel; IComboBoxModel;
     import org.apache.flex.core.IContainer; IContainer;
+	import org.apache.flex.core.IContainerView; IContainerView;
     import org.apache.flex.core.IContentView; IContentView;
+	import org.apache.flex.core.IContentViewHost; IContentViewHost;
     import org.apache.flex.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
     import org.apache.flex.core.IDocument; IDocument;
     import org.apache.flex.core.IFormatBead; IFormatBead;
     import org.apache.flex.core.IImageModel; IImageModel;
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
-    import org.apache.flex.core.ILayoutParent; ILayoutParent;
+	import org.apache.flex.core.ILayoutHost; ILayoutHost;
     import org.apache.flex.core.IPanelModel; IPanelModel;
     import org.apache.flex.core.IParent; IParent;
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
@@ -71,6 +73,8 @@ internal class CoreClasses
 	import org.apache.flex.core.IViewport; IViewport;
 	import org.apache.flex.core.IViewportModel; IViewportModel;
 	import org.apache.flex.core.IViewportScroller; IViewportScroller;
+	import org.apache.flex.core.ListBase; ListBase;
+	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;

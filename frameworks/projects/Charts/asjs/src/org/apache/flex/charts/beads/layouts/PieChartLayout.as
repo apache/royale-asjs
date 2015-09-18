@@ -24,7 +24,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.PieSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.SolidColor;
@@ -64,7 +64,7 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
-            var layoutParent:ILayoutParent = strand.getBeadByType(ILayoutParent) as ILayoutParent;
+            var layoutParent:ILayoutHost = strand.getBeadByType(ILayoutHost) as ILayoutHost;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			
 			var n:int = dp.length;

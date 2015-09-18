@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.VerticalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.utils.Language');
 
 
@@ -64,7 +65,7 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     prototype.layout = function() {
   var children, i, n;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = viewBead.contentView;
   children = contentView.internalChildren();
   var scv = getComputedStyle(this.strand_.positioner);

@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.beads.layouts.BasicLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.ILayoutChild');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.Language');
 
@@ -62,7 +63,7 @@ org.apache.flex.html.beads.layouts.BasicLayout.
     prototype.layout = function() {
   var i, n, h, w;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = viewBead.contentView;
   w = contentView.width;
   var hasWidth = !this.strand_.isWidthSizedToContent();

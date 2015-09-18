@@ -19,6 +19,7 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
+	import org.apache.flex.core.UIBase;
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
@@ -36,7 +37,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class NumericStepper extends Container
+	public class NumericStepper extends UIBase
 	{
 		/**
 		 *  constructor.

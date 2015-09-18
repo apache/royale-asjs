@@ -21,6 +21,7 @@ goog.require('org.apache.flex.core.IListPresentationModel');
 goog.require('org.apache.flex.core.ItemRendererClassFactory');
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.html.beads.TextItemRendererFactoryForArrayData');
 goog.require('org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController');
@@ -143,6 +144,8 @@ org.apache.flex.html.List.prototype.addedToParent =
     itemRendererFactory = new m2();
     this.addBead(itemRendererFactory);
   }
+
+  this.dispatchEvent(new org.apache.flex.events.Event('initComplete'));
 };
 
 

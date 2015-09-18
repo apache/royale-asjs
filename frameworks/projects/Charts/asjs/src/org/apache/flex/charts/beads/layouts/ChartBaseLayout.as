@@ -23,7 +23,7 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -116,7 +116,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get chartDataGroup():IChartDataGroup
 		{
 			if (_chartDataGroup == null) {
-				var layoutParent:ILayoutParent = chart.getBeadByType(ILayoutParent) as ILayoutParent;
+				var layoutParent:ILayoutHost = chart.getBeadByType(ILayoutHost) as ILayoutHost;
 				_chartDataGroup = layoutParent.contentView as IChartDataGroup;
 			}
 			return _chartDataGroup;

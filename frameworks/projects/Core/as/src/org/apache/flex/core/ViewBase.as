@@ -62,8 +62,6 @@ package org.apache.flex.core
 		public function ViewBase()
 		{
 			super();
-			
-            supportsChromeChildren = false;
             
 			className = "flexjs";
 		}

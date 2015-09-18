@@ -81,7 +81,7 @@ Object.defineProperties(org.apache.flex.html.beads.PanelView.prototype, {
             this.titleBar_.id = 'panelTitleBar';
             this.titleBar_.model = value.model;
             this.titleBarAdded_ = true;
-            value.addElement(this.titleBar_);
+            value.strandChildren.addElement(this.titleBar_);
 
 //            this._strand.controlBar =
 //                new org.apache.flex.html.ControlBar();

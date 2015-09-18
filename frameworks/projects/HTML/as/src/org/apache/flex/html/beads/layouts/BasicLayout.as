@@ -21,7 +21,7 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -80,7 +80,7 @@ package org.apache.flex.html.beads.layouts
 		public function layout():Boolean
 		{
             //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
-			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
+			var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
 			
             var gotMargin:Boolean;

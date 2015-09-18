@@ -21,7 +21,7 @@ package org.apache.flex.html
 	import org.apache.flex.states.State;
 	
 	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.ILayoutHost;
     import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -44,7 +44,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBase extends ContainerView implements IStrand, ILayoutParent
+	public class MXMLBeadViewBase extends ContainerView implements IStrand, ILayoutHost
 	{
         /**
          *  Constructor.

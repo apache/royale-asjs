@@ -16,7 +16,7 @@ goog.provide('org.apache.flex.html.beads.ContainerView');
 
 goog.require('org.apache.flex.core.BeadViewBase');
 goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.core.ILayoutParent');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.IViewport');
 goog.require('org.apache.flex.core.IViewportModel');
 goog.require('org.apache.flex.geom.Rectangle');
@@ -27,6 +27,7 @@ goog.require('org.apache.flex.utils.CSSContainerUtils');
 /**
  * @constructor
  * @extends {org.apache.flex.core.BeadViewBase}
+ * @implements {org.apache.flex.core.ILayoutHost}
  */
 org.apache.flex.html.beads.ContainerView = function() {
   this.lastSelectedIndex = -1;
@@ -48,7 +49,7 @@ goog.inherits(
 org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerView',
                 qName: 'org.apache.flex.html.beads.ContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutParent]
+    interfaces: [org.apache.flex.core.ILayoutHost]
     };
 
 
@@ -300,6 +301,72 @@ org.apache.flex.html.beads.ContainerView.
 };
 
 
+/**
+ * @expose
+ * @return {number} The count of the elements in this object.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.numElements =
+  function() {
+  return this.contentView.numElements();
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being added.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.addElement =
+  function(c, opt_dispatchEvent) {
+  this.contentView.addElement(c, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being added.
+ * @param {number} index The index of the new element.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.addElementAt =
+  function(c, index, opt_dispatchEvent) {
+  this.contentView.addElementAt(c, index, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being removed.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.removeElement =
+  function(c, opt_dispatchEvent) {
+  this.contentView.removeElement(c, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element whose index is sought.
+ * @return {number} The index of the given element.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.getElementIndex =
+  function(c) {
+  return this.contentView.getElementIndex(c);
+};
+
+
+/**
+ * @expose
+ * @param {number} index The index of the element.
+ * @return {Object} The element at the given index.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.getElementAt =
+  function(index) {
+  return this.contentView.getElementAt(index);
+};
+
+
 Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     /** @export */
     contentView: {
@@ -324,8 +391,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
             this.createViewport();
-            this.host.addElement(this.viewport.contentView);
-            this.host.setActualParent(this.viewport.contentView);
+            this.host.strandChildren.addElement(this.viewport.contentView, false);
             this._strand.addEventListener('initComplete',
                   org.apache.flex.utils.Language.closure(this.initCompleteHandler, this, 'initCompleteHandler'));
          }

@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.HorizontalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 
 
 
@@ -61,7 +62,7 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
     prototype.layout = function() {
   var children, i, n;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = viewBead.contentView;
   children = contentView.internalChildren();
   var hasHeight = !this.strand_.isHeightSizedToContent();

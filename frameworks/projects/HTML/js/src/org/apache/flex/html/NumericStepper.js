@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.NumericStepper');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.html.Spinner');
 goog.require('org.apache.flex.html.TextInput');
 goog.require('org.apache.flex.html.beads.models.RangeModel');

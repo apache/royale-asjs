@@ -23,6 +23,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
@@ -112,14 +113,14 @@ package org.apache.flex.html.supportClasses
                 {
                     if (_verticalScroller == null) {
                         _verticalScroller = createVerticalScrollBar();
-                        host.addElement(_verticalScroller, false);
+						(host as IContentViewHost).strandChildren.addElement(_verticalScroller);
                     }
                 }
                 if (needH)
                 {
                     if (_horizontalScroller == null) {
                         _horizontalScroller = createHorizontalScrollBar();
-                        host.addElement(_horizontalScroller, false);
+						(host as IContentViewHost).strandChildren.addElement(_horizontalScroller);
                     }
                 }
                 

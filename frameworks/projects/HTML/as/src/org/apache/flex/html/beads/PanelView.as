@@ -22,6 +22,7 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
@@ -113,7 +114,7 @@ package org.apache.flex.html.beads
 		
 		override protected function completeSetup():void
 		{
-			UIBase(_strand).addElement(titleBar);
+			(host as IContentViewHost).strandChildren.addElement(titleBar);
 			super.completeSetup();
 		}
 		

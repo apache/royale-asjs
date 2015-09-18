@@ -682,6 +682,29 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
         }
     },
     /** @export */
+    view: {
+        /** @this {org.apache.flex.core.UIBase} */
+        get: function() {
+            if (this.view_ == null) {
+                /**
+                 * @type {Function}
+                 */
+                var v = /** @type {Function} */(org.apache.flex.core.ValuesManager.valuesImpl.
+                        getValue(this, 'iBeadView'));
+                this.view_ = new v();
+                this.addBead(this.view_);
+            }
+            return this.view_;
+        },
+        /** @this {org.apache.flex.core.UIBase} */
+        set: function(value) {
+            if (this.view_ != value) {
+                this.view_ = value;
+                this.addBead(value);
+            }
+        }
+    },
+    /** @export */
     visible: {
         /** @this {org.apache.flex.core.UIBase} */
         get: function() {

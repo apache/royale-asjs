@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IPanelModel;
 	import org.apache.flex.core.IStrand;
@@ -133,10 +134,10 @@ package org.apache.flex.html.beads
 		{
 			super.completeSetup();
 			
-			UIBase(_strand).addElement(titleBar, false);
+			(_strand as IContentViewHost).strandChildren.addElement(titleBar, false);
 			
 			if (controlBar) {
-				UIBase(_strand).addElement(_controlBar, false);
+				(_strand as IContentViewHost).strandChildren.addElement(_controlBar, false);
 			}
 		}
 		
