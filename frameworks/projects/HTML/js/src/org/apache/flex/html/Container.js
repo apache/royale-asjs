@@ -118,7 +118,7 @@ org.apache.flex.html.Container.prototype.runLayoutHandler =
  */
 org.apache.flex.html.Container.prototype.internalChildren =
     function() {
-  return this.actualParent.element.children;
+  return this.element.children;
 };
 
 
@@ -126,7 +126,7 @@ org.apache.flex.html.Container.prototype.internalChildren =
  * @return {Array} All of the children of the container.
  */
 org.apache.flex.html.Container.prototype.getChildren = function() {
-  var arr = this.actualParent.element.children;
+  var arr = this.element.children;
   var comparr = [];
   var n = arr.length;
   for (var i = 0; i < n; i++)

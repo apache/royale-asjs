@@ -988,7 +988,7 @@ package org.apache.flex.core
                         addBead(model);
                 }
             }
-            if (getBeadByType(IBeadView) == null) 
+            if (_view == null && getBeadByType(IBeadView) == null) 
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
                 if (c)

@@ -291,7 +291,7 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
+  if (this.view_ == null && this.getBeadByType(org.apache.flex.core.IBeadView) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
       c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
@@ -299,8 +299,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       if (c)
       {
         var view = new c();
-        if (view)
+        if (view) {
+          this.view_ = view;
           this.addBead(view);
+        }
       }
     }
   }

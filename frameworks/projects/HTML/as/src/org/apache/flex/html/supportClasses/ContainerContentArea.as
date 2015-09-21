@@ -23,7 +23,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.events.Event;
 	
     /**
-     *  The ContainerContentArea class implements the actualParent for
+     *  The ContainerContentArea class implements the contentView for
      *  a Container.  Container's don't always parent their children directly as
      *  that makes it harder to handle scrolling.
      *  

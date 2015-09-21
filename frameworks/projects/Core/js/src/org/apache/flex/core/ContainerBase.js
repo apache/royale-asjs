@@ -63,7 +63,6 @@ org.apache.flex.core.ContainerBase = function() {
   this.strandChildren_ = new org.apache.flex.core.ContainerBaseStrandChildren(this);
 
   this.document = this;
-  this.actualParent_ = this;
 
 };
 goog.inherits(org.apache.flex.core.ContainerBase,
@@ -88,13 +87,6 @@ org.apache.flex.core.ContainerBase.prototype.mxmlDescriptor = null;
  * @type {Array}
  */
 org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
-
-
-/**
- * @private
- * @type {Object}
- */
-org.apache.flex.core.ContainerBase.prototype.actualParent_ = null;
 
 
 /**
@@ -374,17 +366,6 @@ Object.defineProperties(org.apache.flex.core.ContainerBase.prototype, {
         /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
            this.transitions_ = s;
-        }
-    },
-    /** @export */
-    actualParent: {
-        /** @this {org.apache.flex.core.ContainerBase} */
-        get: function() {
-             return this.actualParent_;
-        },
-        /** @this {org.apache.flex.core.ContainerBase} */
-        set: function(s) {
-             this.actualParent_ = s;
         }
     },
     /** @export */
