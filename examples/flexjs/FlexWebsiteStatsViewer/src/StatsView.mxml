@@ -51,9 +51,6 @@ limitations under the License.
 		}
 	</fx:Style>
 	
-	<js:beads>
-		<js:ViewBaseDataBinding />
-	</js:beads>
 	
 	<js:Label text="Number of users on flex.apache.org for last 30 days" x="10" y="10" />
 	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="refreshBtnClick(event)"/> 

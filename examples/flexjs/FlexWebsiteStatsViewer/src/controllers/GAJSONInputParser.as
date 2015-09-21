@@ -1,14 +1,14 @@
 package controllers
 {
-	import org.apache.flex.collections.parsers.IInputParser;
+	import org.apache.flex.collections.parsers.JSONInputParser;
 	
-	public class GAJSONInputParser implements IInputParser
+	public class GAJSONInputParser extends JSONInputParser
 	{
 		public function GAJSONInputParser()
 		{
 		}
 		
-		public function parseItems(s:String):Array
+		override public function parseItems(s:String):Array
 		{
 			var rowsArrayStartIndex:int = s.indexOf('"rows": [', 0);
 			var rowsArrayEndIndex:int = s.indexOf("]]", rowsArrayStartIndex);
