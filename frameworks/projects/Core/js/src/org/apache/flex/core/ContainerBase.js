@@ -228,7 +228,7 @@ org.apache.flex.core.ContainerBase.prototype.removeElement = function(c, opt_dis
 org.apache.flex.core.ContainerBase.prototype.getElementIndex = function(c) {
   var contentView = this.view;
   if (contentView != null) {
-    return contentView(c);
+    return contentView.getElementIndex(c);
   } else {
     return this.$getElementIndex(c);
   }

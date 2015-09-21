@@ -106,7 +106,7 @@ package org.apache.flex.core
          */
         override public function getElementIndex(c:Object):int
         {
-			var contentView:IContentViewHost = view as IContentViewHost;
+			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				return contentView.getElementIndex(c);
 			} else {
