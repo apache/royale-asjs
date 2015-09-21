@@ -180,7 +180,7 @@ package org.apache.flex.html.beads
 		 */
 		public function get numElements():int
 		{
-			return contentView.numElements();
+			return contentView.numElements;
 		}
 		
 		/**
