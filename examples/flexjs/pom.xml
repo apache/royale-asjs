@@ -34,16 +34,11 @@
         <!--flexmojos-compiler-name>FlexJS</flexmojos-compiler-name-->
     </properties>
 
-
     <modules>
         <module>ChartExample</module>
         <module>CordovaCameraExample</module>
         <module>DataBindingExample</module>
         <module>DataBindingExample_as</module>
-        <!--
-            This tag could not be resolved to an ActionScript class. It will be ignored.
-            <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-        -->
         <module>DataBindingExample_Flat</module>
         <module>DataGridExample</module>
         <module>DesktopMap</module>
@@ -65,6 +60,50 @@
         <module>TodoListSampleApp</module>
     </modules>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>net.flexmojos.oss</groupId>
+                    <artifactId>flexmojos-maven-plugin</artifactId>
+                    <version>7.1.0-SNAPSHOT</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <compilerName>${flexmojos-compiler-name}</compilerName>
+                        <debug>true</debug>
+                        <defines>
+                            <property>
+                                <name>CONFIG::theme</name>
+                                <value>false</value>
+                            </property>
+                        </defines>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.flex.compiler</groupId>
+                            <artifactId>falcon-jx-compiler</artifactId>
+                            <version>0.5.0-SNAPSHOT</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flex.flexjs</groupId>
+            <artifactId>framework</artifactId>
+            <version>0.5.0-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.flash.framework</groupId>
+            <artifactId>playerglobal</artifactId>
+            <version>18.0</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <!--

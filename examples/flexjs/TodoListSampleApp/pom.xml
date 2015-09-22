@@ -42,33 +42,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <sourceFile>TodoListSampleApp.mxml</sourceFile>
-                    <compilerName>${flexmojos-compiler-name}</compilerName>
-                    <debug>true</debug>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.flex.compiler</groupId>
-                        <artifactId>falcon-jx-compiler</artifactId>
-                        <version>0.5.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.flex.flexjs</groupId>
-            <artifactId>framework</artifactId>
-            <version>0.5.0-SNAPSHOT</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>com.adobe.flash.framework</groupId>
-            <artifactId>playerglobal</artifactId>
-            <version>18.0</version>
-            <type>swc</type>
-        </dependency>
-    </dependencies>
 
 </project>
