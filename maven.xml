@@ -144,6 +144,19 @@
             <param name="fileName" value="frameworks/libs/Network.swc"/>
         </antcall>
 
+        <!-- Zip up the config-xmls -->
+        <copy file="maven/flexjs-framework-framework.pom" tofile="generated/maven/flexjs-framework-framework.pom">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="@VERSION@" to="${maven.version}"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <zip destfile="generated/maven/flexjs-framework-framework-configs.zip">
+            <fileset dir="frameworks" includes="*.xml"/>
+            <fileset dir="frameworks" includes="projects/*/*-manifest.xml"/>
+        </zip>
+
         <copy file="maven/flexjs-framework.pom" tofile="generated/maven/flexjs-framework.pom">
             <filterchain>
                 <tokenfilter>
@@ -244,6 +257,8 @@
             <param name="artifactExtension" value="swc"/>
         </antcall>
 
+        <antcall target="-install-maven-framework-config-artifact"/>
+
         <antcall target="-install-maven-artifact-pom">
             <param name="artifactName" value="flexjs-framework"/>
         </antcall>
@@ -315,6 +330,8 @@
         <antcall target="-deploy-maven-artifact-file-with-sources">
             <param name="artifactName" value="network"/>
         </antcall>
+
+        <antcall target="-deploy-maven-framework-config-artifact"/>
 
         <antcall target="-deploy-maven-artifact-pom">
             <param name="artifactName" value="flexjs-framework"/>
@@ -393,6 +410,15 @@
         </artifact:install>
     </target>
 
+    <target name="-install-maven-framework-config-artifact" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Installing Framework config"/>
+        <artifact:install>
+            <artifact:pom file="generated/maven/flexjs-framework-framework.pom"/>
+            <artifact:artifact file="generated/maven/flexjs-framework-framework-configs.zip" classifier="configs"/>
+        </artifact:install>
+    </target>
+
     <target name="-install-maven-artifact-file-with-sources" depends="-setup-aether-antlib"
             xmlns:artifact="antlib:org.eclipse.aether.ant">
         <echo message="Installing File: ${artifactName}"/>
@@ -410,6 +436,16 @@
             <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
             <artifact:pom file="generated/maven/${artifactName}.pom"/>
         </artifact:deploy>
+    </target>
+
+    <target name="-deploy-maven-framework-config-artifact" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Deploying Framework config"/>
+        <artifact:install>
+            <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
+            <artifact:pom file="generated/maven/flexjs-framework-framework.pom"/>
+            <artifact:artifact file="generated/maven/flexjs-framework-framework-configs.zip" classifier="configs"/>
+        </artifact:install>
     </target>
 
     <target name="-deploy-maven-artifact-file" depends="-setup-aether-antlib"
