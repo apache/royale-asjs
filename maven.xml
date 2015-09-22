@@ -441,11 +441,11 @@
     <target name="-deploy-maven-framework-config-artifact" depends="-setup-aether-antlib"
             xmlns:artifact="antlib:org.eclipse.aether.ant">
         <echo message="Deploying Framework config"/>
-        <artifact:install>
+        <artifact:deploy>
             <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
             <artifact:pom file="generated/maven/flexjs-framework-framework.pom"/>
             <artifact:artifact file="generated/maven/flexjs-framework-framework-configs.zip" classifier="configs"/>
-        </artifact:install>
+        </artifact:deploy>
     </target>
 
     <target name="-deploy-maven-artifact-file" depends="-setup-aether-antlib"
