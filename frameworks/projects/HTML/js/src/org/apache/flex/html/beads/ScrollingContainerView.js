@@ -41,7 +41,7 @@ goog.inherits(
 org.apache.flex.html.beads.ScrollingContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ScrollingContainerView',
                 qName: 'org.apache.flex.html.beads.ScrollingContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutParent]
+    interfaces: [org.apache.flex.core.ILayoutHost]
     };
 
 

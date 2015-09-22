@@ -17,7 +17,7 @@ goog.provide('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
-goog.require('org.apache.flex.core.ILayoutParent');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.html.beads.ContainerView');
 goog.require('org.apache.flex.html.beads.IListView');
@@ -30,7 +30,7 @@ goog.require('org.apache.flex.html.supportClasses.DataGroup');
 /**
  * @constructor
  * @extends {org.apache.flex.html.beads.ContainerView}
- * @implements {org.apache.flex.core.ILayoutParent}
+ * @implements {org.apache.flex.core.ILayoutHost}
  * @implements {org.apache.flex.html.beads.IListView}
  */
 org.apache.flex.html.beads.ListView = function() {
@@ -53,7 +53,7 @@ org.apache.flex.html.beads.ListView.prototype.
     FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListView',
                 qName: 'org.apache.flex.html.beads.ListView' }],
-      interfaces: [org.apache.flex.html.beads.IListView, org.apache.flex.core.ILayoutParent] };
+      interfaces: [org.apache.flex.html.beads.IListView, org.apache.flex.core.ILayoutHost] };
 
 
 /**
