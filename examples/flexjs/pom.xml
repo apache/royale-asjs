@@ -29,9 +29,9 @@
 
     <properties>
         <!-- Comment this in to build Flash output -->
-        <!--flexmojos-compiler-name>Falcon</flexmojos-compiler-name-->
+        <flexmojos-compiler-name>Falcon</flexmojos-compiler-name>
         <!-- Comment this in to build HTML+JavaScript output -->
-        <flexmojos-compiler-name>FlexJS</flexmojos-compiler-name>
+        <!--flexmojos-compiler-name>FlexJS</flexmojos-compiler-name-->
     </properties>
 
 
@@ -44,7 +44,7 @@
             This tag could not be resolved to an ActionScript class. It will be ignored.
             <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
         -->
-        <!--module>DataBindingExample_Flat</module-->
+        <module>DataBindingExample_Flat</module>
         <module>DataGridExample</module>
         <module>DesktopMap</module>
         <!--
@@ -55,6 +55,7 @@
             "Ambiguous reference to MouseEvent" problem
         -->
         <!--module>FlexJSStore</module-->
+        <module>FlexWebsiteStatsViewer</module>
         <module>MapSearch</module>
         <!--
             Implicit coercion of a value with static type Event to a possibly unrelated type Event.
