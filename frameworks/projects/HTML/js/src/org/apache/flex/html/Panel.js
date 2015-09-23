@@ -54,9 +54,9 @@ org.apache.flex.html.Panel.prototype.addElement = function(c) {
   }
   else {
     this.contentArea.appendChild(c.element);
-    this.dispatchEvent('childrenAdded');
   }
   c.addedToParent();
+  this.dispatchEvent('childrenAdded');
 };*/
 
 

@@ -348,6 +348,7 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
     this.model_ = bead;
 
   if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadView)) {
+    this.view_ = bead;
     this.dispatchEvent(new org.apache.flex.events.Event('viewChanged'));
   }
 
