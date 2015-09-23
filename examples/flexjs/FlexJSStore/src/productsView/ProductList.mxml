@@ -138,6 +138,7 @@ limitations under the License.
 			for (var i:int = startIndex; i < n ; i++)
 			{
 			    var item:ProductListItem = items[i];
+			    item.width = width;
                 var yTo:Number = i * (item.height);
                 //still need to prevent items that are already in motion from getting
                 //jumpy
