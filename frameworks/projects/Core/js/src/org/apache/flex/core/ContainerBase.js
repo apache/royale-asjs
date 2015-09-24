@@ -159,6 +159,8 @@ org.apache.flex.core.ContainerBase.prototype.addElement = function(c, opt_dispat
   var contentView = this.view;
   if (contentView != null) {
     contentView.addElement(c, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenAdded');
   }
   else {
     this.$addElement(c, opt_dispatchEvent);
@@ -179,6 +181,8 @@ org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index, o
   var contentView = this.view;
   if (contentView != null) {
     contentView.addElementAt(c, index, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenAdded');
   }
   else {
     this.$addElementAt(c, index, opt_dispatchEvent);
@@ -208,6 +212,8 @@ org.apache.flex.core.ContainerBase.prototype.removeElement = function(c, opt_dis
   var contentView = this.view;
   if (contentView != null) {
     contentView.removeElement(c, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenRemoved');
   } else {
     this.$removeElement(c, opt_dispatchEvent);
   }
@@ -246,8 +252,6 @@ org.apache.flex.core.ContainerBase.prototype.$addElement = function(c, opt_dispa
     opt_dispatchEvent = true;
   this.element.appendChild(c.positioner);
   c.addedToParent();
-  if (opt_dispatchEvent)
-     this.dispatchEvent('childrenAdded');
 };
 
 
@@ -268,8 +272,6 @@ org.apache.flex.core.ContainerBase.prototype.$addElementAt = function(c, index, 
         children1[index]);
     c.addedToParent();
   }
-  if (opt_dispatchEvent)
-     this.dispatchEvent('childrenAdded');
 };
 
 
@@ -280,8 +282,6 @@ org.apache.flex.core.ContainerBase.prototype.$addElementAt = function(c, index, 
  */
 org.apache.flex.core.ContainerBase.prototype.$removeElement = function(c, opt_dispatchEvent) {
   this.element.removeChild(c.element);
-  if (opt_dispatchEvent)
-     this.dispatchEvent('childrenRemoved');
 };
 
 

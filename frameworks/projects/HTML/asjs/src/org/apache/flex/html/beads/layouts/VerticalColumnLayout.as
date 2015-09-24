@@ -124,13 +124,12 @@ package org.apache.flex.html.beads.layouts
             var mr:Number;
             var mt:Number;
             var mb:Number;
-			var children:Array = IContainer(_strand).getChildren();
-			var n:int = children.length;
+			var n:int = contentView.numElements;
             var rowData:Object = { rowHeight: 0 };
 			
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
-				e = children[i];
+				e = contentView.getElementAt(i) as IUIBase;
                 margin = ValuesManager.valuesImpl.getValue(e, "margin");
                 marginLeft = ValuesManager.valuesImpl.getValue(e, "margin-left");
                 marginTop = ValuesManager.valuesImpl.getValue(e, "margin-top");
@@ -172,7 +171,7 @@ package org.apache.flex.html.beads.layouts
 			col = 0;
 			for (i = 0; i < n; i++) 
             {
-				e = children[i];
+				e = contentView.getElementAt(i) as IUIBase;
 				e.x = curx + ml;
 				e.y = cury + data[i].mt;
 				curx += columns[col++];

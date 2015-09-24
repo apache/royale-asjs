@@ -35,12 +35,6 @@ org.apache.flex.core.IContainer = function() {
 
 
 /**
- * @return {Array} All of the children of the container.
- */
-org.apache.flex.core.IContainer.prototype.getChildren = function() {};
-
-
-/**
  * Called after all of the children have been added to the container.
  * @return {void}
  */

@@ -122,11 +122,11 @@ package org.apache.flex.core
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.addElement(c, dispatchEvent);
+                if (dispatchEvent)
+                    this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
 				addChild(c as DisplayObject);
-				if (dispatchEvent)
-					this.dispatchEvent(new Event("childrenAdded"));
 			}
         }
         
@@ -138,11 +138,11 @@ package org.apache.flex.core
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.addElementAt(c, index, dispatchEvent);
+                if (dispatchEvent)
+                    this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
 				addChildAt(c as DisplayObject, index);
-				if (dispatchEvent)
-					this.dispatchEvent(new Event("childrenAdded"));
 			}
         }
         
@@ -154,38 +154,12 @@ package org.apache.flex.core
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.removeElement(c, dispatchEvent);
+                if (dispatchEvent)
+                    this.dispatchEvent(new Event("childrenRemoved"));
 			}
 			else {
 				removeChild(c as DisplayObject);
-				if (dispatchEvent)
-					this.dispatchEvent(new Event("childrenRemoved"));
 			}
-        }
-        
-        /**
-         *  Get the array of children.  To change the children use
-         *  addElement, removeElement.
-         */
-        public function getChildren():Array
-        {
-			var contentView:IParent = view as IParent;
-			var children:Array = [];
-			var n:int = 0;
-			var i:int = 0;
-			
-			if (contentView != null) {
-				n = contentView.numElements;
-				for (i=0; i < n; i++) {
-					children.push(contentView.getElementAt(i));
-				}
-			}
-			else {
-	            for (i = 0; i < n; i++) {
-	                children.push(getChildAt(i));
-				}
-			}
-			
-			return children;
         }
         
         /**

@@ -121,18 +121,3 @@ org.apache.flex.html.Container.prototype.internalChildren =
   return this.element.children;
 };
 
-
-/**
- * @return {Array} All of the children of the container.
- */
-org.apache.flex.html.Container.prototype.getChildren = function() {
-  var arr = this.element.children;
-  var comparr = [];
-  var n = arr.length;
-  for (var i = 0; i < n; i++)
-  {
-    comparr.push(arr[i].flexjs_wrapper);
-  }
-  return comparr;
-};
-
