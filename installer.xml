@@ -321,11 +321,11 @@
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
-            <arg value="${FLEXJS_HOME}/js/bin/jsc"/>
+            <arg value="${FLEXJS_HOME}/js/bin/asjsc"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
-            <arg value="${FLEXJS_HOME}/js/bin/compcjsc"/>
+            <arg value="${FLEXJS_HOME}/js/bin/asjscompc"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
