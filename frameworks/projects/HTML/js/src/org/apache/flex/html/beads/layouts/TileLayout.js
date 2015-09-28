@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.TileLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 
 
 
@@ -93,7 +94,9 @@ org.apache.flex.html.beads.layouts.TileLayout.
   var children, i, n, child;
   var xpos, ypos, useWidth, useHeight;
 
-  children = this.strand_.internalChildren();
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
+  var contentView = viewBead.contentView;
+  children = contentView.internalChildren();
   n = children.length;
   if (n === 0) return;
 
@@ -120,7 +123,7 @@ org.apache.flex.html.beads.layouts.TileLayout.
   {
     child = children[i].flexjs_wrapper;
     if (!child.visible) continue;
-    child.positioner.internalDisplay = 'inline-block';
+    child.internalDisplay = 'inline-block';
     child.width = useWidth;
     child.height = useHeight;
   }
@@ -148,7 +151,7 @@ org.apache.flex.html.beads.layouts.TileLayout.
   {
     child = children[i].flexjs_wrapper;
     if (!child.visible) continue;
-    child.positioner.internalDisplay = 'inline-block';
+    child.internalDisplay = 'inline-block';
     child.width = useWidth;
     child.height = useHeight;
     child.x = xpos;

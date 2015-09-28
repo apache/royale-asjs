@@ -71,6 +71,7 @@ org.apache.flex.createjs.TextButton.prototype.createElement =
   p.addChild(this.element);
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 };
 

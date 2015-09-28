@@ -32,17 +32,6 @@ package org.apache.flex.core
      */
     public interface IContainer extends IParent
 	{
-		/**
-		 *  This method returns an array of the content children
-		 *  of the container.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function getChildren():Array;
-		
         /**
          *  This method is called after children have been
          *  added to the container so the container doesn't

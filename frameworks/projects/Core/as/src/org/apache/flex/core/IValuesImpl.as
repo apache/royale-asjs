@@ -119,5 +119,19 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function parseStyles(value:String):Object;
+        
+        /**
+         *  Add a style rule like a class selector.
+         *
+         *  @param ruleName The name of the rule like '.myClassSelector'.
+         *  @param values Name/value pairs.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        function addRule(ruleName:String, values:Object):void;
+
     }
 }

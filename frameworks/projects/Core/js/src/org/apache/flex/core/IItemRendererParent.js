@@ -41,6 +41,7 @@ org.apache.flex.core.IItemRendererParent.prototype.FLEXJS_CLASS_INFO =
 /**
  * @export
  * @param {number} index The selected index.
+ * @return {Object} The itemRenderer at the given index.
  */
 org.apache.flex.core.IItemRendererParent.prototype.
     getItemRendererForIndex = function(index) {

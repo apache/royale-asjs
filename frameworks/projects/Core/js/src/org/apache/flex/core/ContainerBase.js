@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.core.ContainerBase');
 
+goog.require('org.apache.flex.core.ContainerBaseStrandChildren');
+goog.require('org.apache.flex.core.IContentViewHost');
 goog.require('org.apache.flex.core.IMXMLDocument');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.core.ValuesManager');
@@ -23,6 +25,8 @@ goog.require('org.apache.flex.core.ValuesManager');
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
+ * @implements {org.apache.flex.core.IMXMLDocument}
+ * @implements {org.apache.flex.core.IContentViewHost}
  */
 org.apache.flex.core.ContainerBase = function() {
   this.mxmlProperties = null;
@@ -52,6 +56,12 @@ org.apache.flex.core.ContainerBase = function() {
    */
   this.currentState_ = null;
 
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.strandChildren_ = new org.apache.flex.core.ContainerBaseStrandChildren(this);
+
   this.document = this;
 
 };
@@ -80,6 +90,13 @@ org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
 
 
 /**
+ * @export
+ * @type {boolean}
+ */
+org.apache.flex.core.ContainerBase.prototype.supportsChrome = true;
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
@@ -87,7 +104,8 @@ org.apache.flex.core.ContainerBase.prototype.mxmlsd = null;
 org.apache.flex.core.ContainerBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerBase',
                 qName: 'org.apache.flex.core.ContainerBase'}] ,
-      interfaces: [org.apache.flex.core.IMXMLDocument]};
+      interfaces: [org.apache.flex.core.IMXMLDocument,
+                   org.apache.flex.core.IContentViewHost]};
 
 
 /**
@@ -104,7 +122,7 @@ org.apache.flex.core.ContainerBase.prototype.addedToParent = function() {
     this.dispatchEvent('initComplete');
     this.initialized_ = true;
   }
-  this.dispatchEvent('childrenAdded');
+//??  this.dispatchEvent('childrenAdded');
 };
 
 
@@ -126,6 +144,172 @@ org.apache.flex.core.ContainerBase.prototype.setMXMLDescriptor =
     function(doc, desc) {
   this.mxmlDescriptor = desc;
   this.document = doc;
+};
+
+
+/**
+ * @override
+ * @param {Object} c
+ * @param {boolean=} opt_dispatchEvent
+ */
+org.apache.flex.core.ContainerBase.prototype.addElement = function(c, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+
+  var contentView = this.view;
+  if (contentView != null) {
+    contentView.addElement(c, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenAdded');
+  }
+  else {
+    this.$addElement(c, opt_dispatchEvent);
+  }
+};
+
+
+/**
+ * @override
+ * @param {Object} c
+ * @param {number} index
+ * @param {boolean=} opt_dispatchEvent
+ */
+org.apache.flex.core.ContainerBase.prototype.addElementAt = function(c, index, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+
+  var contentView = this.view;
+  if (contentView != null) {
+    contentView.addElementAt(c, index, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenAdded');
+  }
+  else {
+    this.$addElementAt(c, index, opt_dispatchEvent);
+  }
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.getElementAt = function(index) {
+  var contentView = this.view;
+  if (contentView != null) {
+    return contentView.getElementAt(index);
+  } else {
+    return this.$getElementAt(index);
+  }
+};
+
+
+/**
+ * @override
+ * @param {Object} c
+ * @param {boolean=} opt_dispatchEvent
+ */
+org.apache.flex.core.ContainerBase.prototype.removeElement = function(c, opt_dispatchEvent) {
+  var contentView = this.view;
+  if (contentView != null) {
+    contentView.removeElement(c, opt_dispatchEvent);
+    if (opt_dispatchEvent)
+      this.dispatchEvent('childrenRemoved');
+  } else {
+    this.$removeElement(c, opt_dispatchEvent);
+  }
+};
+
+
+/**
+ * @override
+ */
+org.apache.flex.core.ContainerBase.prototype.getElementIndex = function(c) {
+  var contentView = this.view;
+  if (contentView != null) {
+    return contentView.getElementIndex(c);
+  } else {
+    return this.$getElementIndex(c);
+  }
+};
+
+
+/**
+ * @expose
+ * @return {number} The number of raw elements.
+ */
+org.apache.flex.core.ContainerBase.prototype.$numElements = function() {
+  return this.internalChildren().length;
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element to add.
+ * @param {boolean=} opt_dispatchEvent If true, an event is dispatched.
+ */
+org.apache.flex.core.ContainerBase.prototype.$addElement = function(c, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+  this.element.appendChild(c.positioner);
+  c.addedToParent();
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element to add.
+ * @param {number} index The index of the element.
+ * @param {boolean=} opt_dispatchEvent If true, an event is dispatched.
+ */
+org.apache.flex.core.ContainerBase.prototype.$addElementAt = function(c, index, opt_dispatchEvent) {
+  if (opt_dispatchEvent === undefined)
+    opt_dispatchEvent = true;
+  var children1 = this.internalChildren();
+  if (index >= children1.length) {
+    this.$addElement(c, false);
+  } else {
+    this.element.insertBefore(c.positioner,
+        children1[index]);
+    c.addedToParent();
+  }
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element to add.
+ * @param {boolean=} opt_dispatchEvent If true, an event is dispatched.
+ */
+org.apache.flex.core.ContainerBase.prototype.$removeElement = function(c, opt_dispatchEvent) {
+  this.element.removeChild(c.element);
+};
+
+
+/**
+ * @expose
+ * @param {number} index The index of the number.
+ * @return {Object} The element at the given index.
+ */
+org.apache.flex.core.ContainerBase.prototype.$getElementAt = function(index) {
+  var children = this.internalChildren();
+  return children[index].flexjs_wrapper;
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being queried.
+ * @return {number} The index of the element.
+ */
+org.apache.flex.core.ContainerBase.prototype.$getElementIndex = function(c) {
+  var children = this.internalChildren();
+   var n = children.length;
+   for (var i = 0; i < n; i++)
+   {
+     if (children[i] == c.element)
+       return i;
+   }
+   return -1;
 };
 
 
@@ -182,6 +366,13 @@ Object.defineProperties(org.apache.flex.core.ContainerBase.prototype, {
         /** @this {org.apache.flex.core.ContainerBase} */
         set: function(s) {
            this.transitions_ = s;
+        }
+    },
+    /** @export */
+    strandChildren: {
+        /** @this {org.apache.flex.core.ContainerBase} */
+        get: function() {
+             return this.strandChildren_;
         }
     }
 });

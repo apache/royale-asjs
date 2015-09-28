@@ -16,6 +16,8 @@
 
 goog.provide('org.apache.flex.maps.google.beads.MapView');
 
+goog.require('org.apache.flex.core.IBeadView');
+
 
 
 /**

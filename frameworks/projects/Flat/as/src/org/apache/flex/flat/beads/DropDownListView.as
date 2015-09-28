@@ -126,6 +126,7 @@ package org.apache.flex.flat.beads
 			super.strand = value;;
             selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+            selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
 			shape = new Shape();
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
@@ -135,7 +136,7 @@ package org.apache.flex.flat.beads
 			SimpleButton(value).overState = overSprite;
 			SimpleButton(value).hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
-				text = selectionModel.selectedItem.toString();
+				selectionChangeHandler(null);
             else
                 text = "^W_";
             upTextField.height = upTextField.textHeight + 4;
@@ -151,7 +152,12 @@ package org.apache.flex.flat.beads
 		
 		private function selectionChangeHandler(event:Event):void
 		{
-			text = selectionModel.selectedItem.toString();
+            if (selectionModel.selectedItem == null)
+                text = "";
+            else if (selectionModel.labelField != null)
+                text = selectionModel.selectedItem[selectionModel.labelField].toString();
+            else
+    			text = selectionModel.selectedItem.toString();
 		}
 		
         private function changeHandler(event:Event):void

@@ -17,7 +17,7 @@ goog.provide('org.apache.flex.html.beads.ListView');
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.IBeadView');
 goog.require('org.apache.flex.core.IItemRendererParent');
-goog.require('org.apache.flex.core.ILayoutParent');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.html.beads.ContainerView');
 goog.require('org.apache.flex.html.beads.IListView');
@@ -30,7 +30,7 @@ goog.require('org.apache.flex.html.supportClasses.DataGroup');
 /**
  * @constructor
  * @extends {org.apache.flex.html.beads.ContainerView}
- * @implements {org.apache.flex.core.ILayoutParent}
+ * @implements {org.apache.flex.core.ILayoutHost}
  * @implements {org.apache.flex.html.beads.IListView}
  */
 org.apache.flex.html.beads.ListView = function() {
@@ -53,7 +53,18 @@ org.apache.flex.html.beads.ListView.prototype.
     FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListView',
                 qName: 'org.apache.flex.html.beads.ListView' }],
-      interfaces: [org.apache.flex.html.beads.IListView, org.apache.flex.core.ILayoutParent] };
+      interfaces: [org.apache.flex.html.beads.IListView, org.apache.flex.core.ILayoutHost] };
+
+
+/**
+ * @override
+ */
+org.apache.flex.html.beads.ListView.
+    prototype.completeSetup = function() {
+  org.apache.flex.html.beads.ListView.base(this, 'completeSetup');
+  this._strand.addEventListener('itemsCreated',
+  goog.bind(this.changeHandler, this));
+};
 
 
 Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
@@ -70,72 +81,24 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
             this.model.addEventListener('dataProviderChanged',
                 goog.bind(this.dataProviderChangeHandler, this));
 
-            if (this.dataGroup_ == null) {
-              var m2 = org.apache.flex.core.ValuesManager.valuesImpl.
-                  getValue(this._strand, 'iDataGroup');
-              this.dataGroup_ = new m2();
-            }
-            this.dataGroup_.strand = this;
-            this._strand.addElement(this.dataGroup_);
+            this.dataGroup.strand = this;
 
-            if (this._strand.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
+            /*if (this._strand.getBeadByType(org.apache.flex.core.IBeadLayout) == null) {
               var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
               this.layout_ = new m3();
               this._strand.addBead(this.layout_);
-            }
+             }*/
+        },
+        /** @this {org.apache.flex.html.beads.ListView} */
+        get: function() {
+            return this._strand;
         }
     },
     /** @export */
     dataGroup: {
         /** @this {org.apache.flex.html.beads.ListView} */
         get: function() {
-            return this.dataGroup_;
-        },
-        /** @this {org.apache.flex.html.beads.ListView} */
-        set: function(value) {
-            this.dataGroup_ = value;
-        }
-    }
-});
-
-
-/**
- * @export
- * @param {org.apache.flex.events.Event} value The event that triggered the selection.
- */
-org.apache.flex.html.beads.ListView.prototype.
-    selectionChangeHandler = function(value) {
-  var ir;
-  if (this.lastSelectedIndex != -1) {
-    ir = this.dataGroup_.getItemRendererForIndex(this.lastSelectedIndex);
-    if (ir) ir.selected = false;
-  }
-  if (this.model.selectedIndex != -1) {
-    ir = this.dataGroup_.getItemRendererForIndex(
-        this.model.selectedIndex);
-    if (ir) ir.selected = true;
-  }
-  this.lastSelectedIndex = this.model.selectedIndex;
-};
-
-
-/**
- * @export
- * @param {org.apache.flex.events.Event} value The event that triggered the selection.
- */
-org.apache.flex.html.beads.ListView.prototype.
-    dataProviderChangeHandler = function(value) {
-    // override in subclass
-    this.changeHandler(value);
-};
-
-
-Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
-    /** @export */
-    contentView: {
-        /** @this {org.apache.flex.html.beads.ListView} */
-        get: function() {
-            return this.dataGroup_;
+            return this.contentView;
         }
     },
     /** @export */
@@ -167,9 +130,40 @@ Object.defineProperties(org.apache.flex.html.beads.ListView.prototype, {
 
 /**
  * @export
+ * @param {org.apache.flex.events.Event} value The event that triggered the selection.
+ */
+org.apache.flex.html.beads.ListView.prototype.
+    selectionChangeHandler = function(value) {
+  var ir;
+  if (this.lastSelectedIndex != -1) {
+    ir = this.dataGroup.getItemRendererForIndex(this.lastSelectedIndex);
+    if (ir) ir.selected = false;
+  }
+  if (this.model.selectedIndex != -1) {
+    ir = this.dataGroup.getItemRendererForIndex(
+        this.model.selectedIndex);
+    if (ir) ir.selected = true;
+  }
+  this.lastSelectedIndex = this.model.selectedIndex;
+};
+
+
+/**
+ * @export
+ * @param {org.apache.flex.events.Event} value The event that triggered the selection.
+ */
+org.apache.flex.html.beads.ListView.prototype.
+    dataProviderChangeHandler = function(value) {
+    // override in subclass
+    this.changeHandler(value);
+};
+
+
+/**
+ * @export
  * @param {org.apache.flex.events.Event} event The event that triggered the resize.
  */
 org.apache.flex.html.beads.ListView.prototype.handleSizeChange = function(event) {
-  this.dataGroup_.width = this._strand.width;
-  this.dataGroup_.height = this._strand.height;
+  this.dataGroup.width = this._strand.width;
+  this.dataGroup.height = this._strand.height;
 };

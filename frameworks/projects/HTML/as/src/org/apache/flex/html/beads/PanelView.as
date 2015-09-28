@@ -21,17 +21,22 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.Panel;
 	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSUtils;
 	
 	/**
 	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
@@ -55,6 +60,7 @@ package org.apache.flex.html.beads
 		 */
 		public function PanelView()
 		{
+			super();
 		}
 		
 		private var _titleBar:TitleBar;
@@ -72,6 +78,7 @@ package org.apache.flex.html.beads
 		{
 			return _titleBar;
 		}
+		
         /**
          *  @private
          */
@@ -107,85 +114,57 @@ package org.apache.flex.html.beads
 		
 		override protected function completeSetup():void
 		{
+			(host as IContentViewHost).strandChildren.addElement(titleBar);
 			super.completeSetup();
-			
-			UIBase(_strand).addElement(titleBar, false);
 		}
 		
-		/**
-		 * Sets up the viewport and model to reflect the addition of the titlebar.
-		 */
-		override protected function resizeViewport():void
+        /**
+         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function getChromeMetrics():Rectangle
+        {
+            return new Rectangle(0, titleBar.height, 0, 0 - titleBar.height);
+        }
+        
+        override protected function layoutViewBeforeContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var host:ILayoutChild = this.host as ILayoutChild;
+            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            titleBar.x = vm.borderMetrics.left;
+            titleBar.y = vm.borderMetrics.top;
+            if (!host.isWidthSizedToContent())
+                titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+            vm.chromeMetrics = getChromeMetrics();
+            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                vm.borderMetrics.top + vm.chromeMetrics.top);
+            viewport.layoutViewportBeforeContentLayout(
+                !host.isWidthSizedToContent() ? 
+                host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+                !host.isHeightSizedToContent() ?
+                host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+        }
+        
+		override protected function layoutViewAfterContentLayout():void
 		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
-			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
-			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = 0;
-			model.viewportY = titleBar.height;
-			model.viewportWidth = host.width;
-			model.viewportHeight = host.height - titleBar.height;
-			model.contentX = model.viewportX + metrics.left;
-			model.contentY = model.viewportY + metrics.top;
-			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
-			model.contentHeight = model.viewportHeight - metrics.bottom;
-			model.contentArea = contentView;
-			model.contentIsHost = false;
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
-		
-		/**
-		 * This function is called when the layout has changed the size of the contentArea
-		 * (aka, actualParent). Depending on how the Panel is being sized, the contentArea
-		 * affects how the panel is presented.
-		 */
-		override protected function adjustSizeAfterLayout():void
-		{
-			var host:UIBase = UIBase(_strand);
-			var viewportModel:IViewportModel = viewport.model;
-						
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = host.width;
-			
-			// If the host is being sized by its content, the change in the contentArea
-			// causes the host's size to change
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
-				titleBar.setWidth(host.width, true);
-				resizeViewport();
-			}
-				
-			// if the width is fixed and the height is changing, then set up horizontal
-			// scrolling (if the viewport supports it).
-			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
-			{
-				viewport.needsHorizontalScroller();
-				resizeViewport();
-				
-			}
-				
-				// if the height is fixed and the width can change, then set up
-				// vertical scrolling (if the viewport supports it).
-			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
-			{
-				viewport.needsVerticalScroller();
-				resizeViewport();
-			}
-				
-				// Otherwise the viewport needs to display some scrollers (or other elements
-				// allowing the rest of the contentArea to be visible)
-			else {
-				viewport.needsScrollers();
-				viewport.updateSize();
-				viewport.updateContentAreaSize();
-			}
-		}
-                
+            var vm:IViewportModel = viewportModel;
+            var viewportSize:Size = this.viewport.layoutViewportAfterContentLayout();
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            if (!hasWidth) {
+                titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
+                vm.chromeMetrics = this.getChromeMetrics();
+                vm.chromeMetrics.top = titleBar.height;
+            }
+            super.layoutViewAfterContentLayout();
+		}       
 	}
 }

@@ -23,6 +23,7 @@
 goog.provide('org.apache.flex.core.ISelectableItemRenderer');
 
 goog.require('org.apache.flex.core.IItemRenderer');
+goog.require('org.apache.flex.events.IEventDispatcher');
 
 
 

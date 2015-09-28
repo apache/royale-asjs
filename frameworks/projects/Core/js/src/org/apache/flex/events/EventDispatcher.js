@@ -44,28 +44,95 @@ org.apache.flex.events.EventDispatcher.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- * @override
+ * @private
+ * @param {string} type The event name.
+ * @return {goog.events.EventTarget} The target.
  */
-org.apache.flex.events.EventDispatcher.prototype.addEventListener =
-    function(type, handler, opt_capture, opt_handlerScope) {
-  var source;
-
+org.apache.flex.events.EventDispatcher.prototype.getActualDispatcher_ = function(type) {
   /**
    *  A bit of a hack, but for 'native' HTML element based controls, we
    *  want to listen to the 'native' events from the element; for other
    *  types of controls, we listen to 'custom' events.
    */
-  source = this;
+  var source = this;
+  /*
   if (this.element && this.element.nodeName &&
       this.element.nodeName.toLowerCase() !== 'div' &&
+      // we don't use any native img events right now, we wrapthem
+      this.element.nodeName.toLowerCase() !== 'img' &&
       this.element.nodeName.toLowerCase() !== 'body') {
     source = this.element;
-  } else if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
+  } else */ if (org.apache.flex.events.ElementEvents.elementEvents[type]) {
     // mouse and keyboard events also dispatch off the element.
     source = this.element;
   }
+  return source;
+};
+
+
+/**
+ * @override
+ * @export
+ */
+org.apache.flex.events.EventDispatcher.prototype.dispatchEvent = function(e) {
+  var t;
+  if (typeof(e) === 'string') {
+    t = e;
+    if (e === 'change')
+      e = new Event(e);
+  }
+  else {
+    t = e.type;
+    if (org.apache.flex.events.ElementEvents.elementEvents[t]) {
+        e = new Event(t);
+    }
+  }
+  var source = this.getActualDispatcher_(t);
+  if (source == this)
+    return org.apache.flex.events.EventDispatcher.base(this, 'dispatchEvent', e);
+
+  return source.dispatchEvent(e);
+};
+
+
+/**
+ * @override
+ * @export
+ */
+org.apache.flex.events.EventDispatcher.prototype.addEventListener =
+    function(type, handler, opt_capture, opt_handlerScope) {
+  var source;
+
+  source = this.getActualDispatcher_(type);
 
   goog.events.listen(source, type, handler);
 };
 
 
+/**
+ * @override
+ * @export
+ */
+org.apache.flex.events.EventDispatcher.prototype.removeEventListener =
+    function(type, handler, opt_capture, opt_handlerScope) {
+  var source;
+
+  source = this.getActualDispatcher_(type);
+
+  goog.events.unlisten(source, type, handler);
+};
+
+
+/**
+ * @export
+ * @param {string} type The event name.
+ * @return {boolean} True if there is a listener.
+ */
+org.apache.flex.events.EventDispatcher.prototype.hasEventListener =
+    function(type) {
+  var source;
+
+  source = this.getActualDispatcher_(type);
+
+  return goog.events.hasListener(source, type);
+};

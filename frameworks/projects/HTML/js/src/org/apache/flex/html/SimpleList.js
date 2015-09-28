@@ -51,6 +51,7 @@ org.apache.flex.html.SimpleList.prototype.
   goog.events.listen(this.element, 'change',
       goog.bind(this.changeHandler, this));
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.className = 'SimpleList';
 
   return this.element;

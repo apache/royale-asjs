@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.NumericStepper');
 
 goog.require('org.apache.flex.core.UIBase');
+goog.require('org.apache.flex.events.Event');
 goog.require('org.apache.flex.html.Spinner');
 goog.require('org.apache.flex.html.TextInput');
 goog.require('org.apache.flex.html.beads.models.RangeModel');
@@ -51,6 +52,7 @@ org.apache.flex.html.NumericStepper.prototype.createElement =
     function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.input = new org.apache.flex.html.TextInput();
   this.addElement(this.input);
@@ -60,20 +62,20 @@ org.apache.flex.html.NumericStepper.prototype.createElement =
   this.spinner = new org.apache.flex.html.Spinner();
   this.spinner.positioner.style.display = 'inline-block';
   this.spinner.positioner.style.height = '24px';
-  this.spinner.positioner.style.marginLeft = '-2px';
-  this.spinner.positioner.style.marginTop = '2px';
+  this.spinner.positioner.style.marginLeft = '-1px';
+  this.spinner.positioner.style.marginTop = '-1px';
   this.addElement(this.spinner);
   /* TODO: ajh move to view and css */
   this.spinner.incrementButton.positioner.style.display = 'block';
   this.spinner.incrementButton.positioner.style.marginBottom = '-1px';
-  this.spinner.incrementButton.positioner.style.paddingTop = '1px';
-  this.spinner.incrementButton.positioner.style.paddingBottom = '1px';
-  this.spinner.incrementButton.positioner.style.fontSize = '6px';
+  this.spinner.incrementButton.positioner.style.paddingTop = '1.5px';
+  this.spinner.incrementButton.positioner.style.paddingBottom = '2px';
+  this.spinner.incrementButton.positioner.style.fontSize = '7px';
   this.spinner.decrementButton.positioner.style.marginTop = '0px';
   this.spinner.decrementButton.positioner.style.display = 'block';
-  this.spinner.decrementButton.positioner.style.paddingTop = '1px';
-  this.spinner.decrementButton.positioner.style.paddingBottom = '1px';
-  this.spinner.decrementButton.positioner.style.fontSize = '6px';
+  this.spinner.decrementButton.positioner.style.paddingTop = '2px';
+  this.spinner.decrementButton.positioner.style.paddingBottom = '1.5px';
+  this.spinner.decrementButton.positioner.style.fontSize = '7px';
   this.spinner.positioner.style.display = 'inline-block';
   goog.events.listen(this.spinner, 'valueChange',
       goog.bind(this.spinnerChange, this));

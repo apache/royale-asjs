@@ -74,10 +74,8 @@ org.apache.flex.html.ButtonBar.prototype.createElement =
 
   this.element = document.createElement('div');
   this.element.style.overflow = 'auto';
-  this.element.style.border = 'solid';
-  this.element.style.borderWidth = '1px';
-  this.element.style.borderColor = '#333333';
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.className = 'ButtonBar';
 

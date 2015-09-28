@@ -21,19 +21,22 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IPanelModel;
-    import org.apache.flex.core.ITitleBarModel;
+	import org.apache.flex.core.IContentViewHost;
+	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.IPanelModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.ControlBar;
 	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
@@ -131,100 +134,74 @@ package org.apache.flex.html.beads
 		{
 			super.completeSetup();
 			
-			UIBase(_strand).addElement(titleBar, false);
+			(_strand as IContentViewHost).strandChildren.addElement(titleBar, false);
 			
 			if (controlBar) {
-				UIBase(_strand).addElement(_controlBar, false);
+				(_strand as IContentViewHost).strandChildren.addElement(_controlBar, false);
 			}
 		}
 		
-		override protected function resizeViewport():void
-		{
-			var host:UIBase = UIBase(_strand);
-			var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-			
-			titleBar.width = host.width;
-			titleBar.dispatchEvent( new Event("layoutNeeded") );
-			
-			if (controlBar) {
-				controlBar.width = host.width;
-				controlBar.dispatchEvent( new Event("layoutNeeded") );
-				controlBar.y = host.height - controlBar.height;
-			}
-			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = 0;
-			model.viewportY = titleBar.height;
-			model.viewportWidth = host.width;
-			model.viewportHeight = host.height - titleBar.height;
-			if (controlBar) {
-				model.viewportHeight -= controlBar.height;
-			}
-			model.contentX = model.viewportX + metrics.left;
-			model.contentY = model.viewportY + metrics.top;
-			model.contentWidth = model.viewportWidth - metrics.left - metrics.right;
-			model.contentHeight = model.viewportHeight - metrics.top - metrics.bottom;
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
-		
-		override protected function adjustSizeAfterLayout():void
-		{
-			var host:UIBase = UIBase(_strand);
-			var viewportModel:IViewportModel = viewport.model;
-			
-			titleBar.x = 0;
-			titleBar.y = 0;
-			titleBar.width = host.width;
-			
-			if (controlBar) {
-				controlBar.width = host.width;
-				controlBar.y = host.height - controlBar.height;
-			}
-			
-			// If the host is being sized by its content, the change in the contentArea
-			// causes the host's size to change
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
-				host.setWidthAndHeight(viewportModel.contentWidth, viewportModel.contentHeight + titleBar.height, false);
-				resizeViewport();
-			}
-				
-				// if the width is fixed and the height is changing, then set up horizontal
-				// scrolling (if the viewport supports it).
-			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
-			{
-				viewport.needsHorizontalScroller();
-				
-				var metrics:UIMetrics = BeadMetrics.getMetrics(host);
-				
-				var cbHeight:Number = 0;
-				if (controlBar) {
-					controlBar.y = viewportModel.contentHeight + titleBar.height + metrics.top + metrics.bottom;
-					cbHeight = controlBar.height;
-				}
-				
-				host.setHeight(viewportModel.contentHeight + titleBar.height + cbHeight, false);
-				resizeViewport();
-			}
-				
-				// if the height is fixed and the width can change, then set up
-				// vertical scrolling (if the viewport supports it).
-			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
-			{
-				viewport.needsVerticalScroller();				
-				host.setWidth(viewportModel.contentWidth+viewport.scrollerWidth(), false);
-				resizeViewport();
-			}
-				
-				// Otherwise the viewport needs to display some scrollers (or other elements
-				// allowing the rest of the contentArea to be visible)
-			else {
-				
-				viewport.needsScrollers();
-				viewport.updateSize();
-				viewport.updateContentAreaSize();
-			}
-		}
+        /**
+         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override protected function getChromeMetrics():Rectangle
+        {
+            return new Rectangle(0, titleBar.height, 0, controlBar.height - titleBar.height);
+        }
+        
+        override protected function layoutViewBeforeContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+            titleBar.x = vm.borderMetrics.left;
+            titleBar.y = vm.borderMetrics.top;
+            if (hasWidth) 
+            {
+                titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+                controlBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
+            }
+            vm.chromeMetrics = getChromeMetrics();
+            controlBar.x = vm.borderMetrics.left;
+            if (hasHeight && hasWidth) 
+                controlBar.y = host.height - vm.borderMetrics.bottom - controlBar.height;
+            
+            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                vm.borderMetrics.top + vm.chromeMetrics.top);
+            viewport.layoutViewportBeforeContentLayout(
+                hasWidth ? 
+                    host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                        vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
+                hasHeight ?
+                    host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                        vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+        }
+        
+        override protected function layoutViewAfterContentLayout():void
+        {
+            var vm:IViewportModel = viewportModel;
+            var viewportSize:Size = this.viewport.layoutViewportAfterContentLayout();
+            var host:ILayoutChild = this.host as ILayoutChild;
+            var hasWidth:Boolean = !host.isWidthSizedToContent();
+            var hasHeight:Boolean = !host.isHeightSizedToContent();
+            if (!hasWidth) {
+                titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
+                vm.chromeMetrics = this.getChromeMetrics();
+                vm.chromeMetrics.top = titleBar.height;
+                controlBar.width = viewportSize.width; // should get controlbar to layout and get new height
+                vm.chromeMetrics.bottom = controlBar.height;
+            }
+            super.layoutViewAfterContentLayout();
+            if (!hasHeight) {
+                controlBar.y = host.height - vm.borderMetrics.bottom - controlBar.height;
+            }
+        }       
 	}
 }

@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.html.beads.controllers.ItemRendererMouseController');
 
+goog.require('goog.events.Event');
+goog.require('goog.events.EventType');
 goog.require('org.apache.flex.core.IBeadController');
 
 
@@ -62,28 +64,34 @@ Object.defineProperties(org.apache.flex.html.beads.controllers.ItemRendererMouse
 
 /**
  * @export
- * @param {Object} event The mouse event that triggered the hover.
+ * @param {Object} e The mouse event that triggered the hover.
  */
-org.apache.flex.html.beads.controllers.ItemRendererMouseController.prototype.handleMouseOver = function(event) {
+org.apache.flex.html.beads.controllers.ItemRendererMouseController.prototype.handleMouseOver = function(e) {
 
   this.strand_.hovered = true;
 
-  var newEvent = new goog.events.Event('rollover');
-  newEvent.target = this.strand_;
+  var newEvent = new MouseEvent('rollover');
+  newEvent.initMouseEvent('rollover', false, false,
+    e.view, e.detail, e.screenX, e.screenY,
+    e.clientX, e.clientY, e.ctrlKey, e.altKey,
+    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
   this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 
 
 /**
  * @export
- * @param {Object} event The mouse-out event.
+ * @param {Object} e The mouse-out event.
  */
-org.apache.flex.html.beads.controllers.ItemRendererMouseController.prototype.handleMouseOut = function(event) {
+org.apache.flex.html.beads.controllers.ItemRendererMouseController.prototype.handleMouseOut = function(e) {
 
   this.strand_.hovered = false;
 
-  var newEvent = new goog.events.Event('rollout');
-  newEvent.target = this.strand_;
+  var newEvent = new MouseEvent('rollout');
+  newEvent.initMouseEvent('rollout', false, false,
+    e.view, e.detail, e.screenX, e.screenY,
+    e.clientX, e.clientY, e.ctrlKey, e.altKey,
+    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
   this.strand_.itemRendererParent.dispatchEvent(newEvent);
 };
 

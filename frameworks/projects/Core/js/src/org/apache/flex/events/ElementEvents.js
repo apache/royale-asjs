@@ -36,6 +36,11 @@ org.apache.flex.events.ElementEvents.prototype.FLEXJS_CLASS_INFO =
  * @type {Object}
  */
 org.apache.flex.events.ElementEvents.elementEvents = {
+  'click': 1,
+  'change': 1,
+  'keyup': 1,
+  'keydown': 1,
+  'load': 1,
   'mouseover': 1,
   'mouseout': 1,
   'mouseup': 1,

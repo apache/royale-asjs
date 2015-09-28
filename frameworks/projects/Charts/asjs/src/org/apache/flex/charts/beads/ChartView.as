@@ -29,14 +29,15 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
+    import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.ListView;
 	import org.apache.flex.html.beads.models.ViewportModel;
 	import org.apache.flex.html.supportClasses.Viewport;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 	
 	public class ChartView extends ListView implements IBeadView
 	{
@@ -60,7 +61,7 @@ package org.apache.flex.charts.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+						
 			var listModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
@@ -85,17 +86,11 @@ package org.apache.flex.charts.beads
 		
 		override protected function completeSetup():void
 		{
-			super.completeSetup();
-			
 			if (border) {
 				IParent(_strand).removeElement(border);
 			}
-		}
-		
-		override protected function viewCreatedHandler(event:Event):void
-		{
-			// prevented because itemsCreated needs to happen first
-			createViewport();
+					
+			super.completeSetup();
 		}
 		
 		public function get horizontalAxisGroup():IAxisGroup
@@ -123,10 +118,15 @@ package org.apache.flex.charts.beads
 			
 			dataGroup.removeAllElements();
 		}
-		
-		override protected function resizeViewport():void
-		{
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+				
+		/**
+		 * ChartView overrides performLayout so that the exact area of the ChartDataGroup can
+		 * be calculated so the chart's layout algorithm knows precisely the dimensions of 
+		 * chart for its item renderers.
+		 */
+		override protected function layoutViewBeforeContentLayout():void
+		{			
+			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
 			var widthAdjustment:Number = 0;
 			var heightAdjustment:Number = 0;
@@ -145,16 +145,10 @@ package org.apache.flex.charts.beads
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
 			
-			var model:IViewportModel = viewport.model;
-			model.viewportX = widthAdjustment + metrics.left;
-			model.viewportY = metrics.top;
-			model.viewportWidth = strandWidth - widthAdjustment - metrics.right - metrics.left;
-			model.viewportHeight = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
-			model.contentX = model.viewportX;
-			model.contentY = model.viewportY;
-			model.contentWidth = model.viewportWidth;
-			model.contentHeight = model.viewportHeight;
-			
+            viewport.setPosition(widthAdjustment + metrics.left, metrics.top);
+			viewport.layoutViewportBeforeContentLayout(strandWidth - widthAdjustment - metrics.right - metrics.left,
+                                                        strandHeight - heightAdjustment - metrics.bottom - metrics.top);
+            
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = metrics.left;
 				UIBase(verticalAxisGroup).y = metrics.top;
@@ -169,15 +163,13 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
 			
+            /* viewport should be doing this now
 			if (dataGroup) {
-				UIBase(dataGroup).x = model.contentX;
-				UIBase(dataGroup).y = model.contentY;
-				UIBase(dataGroup).width = model.contentWidth;
-				UIBase(dataGroup).height = model.contentHeight;
-			}
-			
-			viewport.updateSize();
-			viewport.updateContentAreaSize();
-		}
+				UIBase(dataGroup).x = viewportModel.contentX;
+				UIBase(dataGroup).y = viewportModel.contentY;
+				UIBase(dataGroup).width = viewportModel.contentWidth;
+				UIBase(dataGroup).height = viewportModel.contentHeight;
+			} */
+		}		
 	}
 }

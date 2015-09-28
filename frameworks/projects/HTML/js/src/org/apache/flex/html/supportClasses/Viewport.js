@@ -15,12 +15,18 @@
 goog.provide('org.apache.flex.html.supportClasses.Viewport');
 
 goog.require('org.apache.flex.core.IBead');
+goog.require('org.apache.flex.core.IContentView');
 goog.require('org.apache.flex.core.IViewport');
+goog.require('org.apache.flex.core.ValuesManager');
+goog.require('org.apache.flex.geom.Rectangle');
+goog.require('org.apache.flex.geom.Size');
 
 
 
 /**
  * @constructor
+ * @implements {org.apache.flex.core.IBead}
+ * @implements {org.apache.flex.core.IViewport}
  */
 org.apache.flex.html.supportClasses.Viewport =
 function() {
@@ -40,29 +46,67 @@ org.apache.flex.html.supportClasses.Viewport.prototype.FLEXJS_CLASS_INFO =
 
 
 /**
- *
+ * @protected
+ * @type {Object}
  */
-org.apache.flex.html.supportClasses.Viewport.prototype.updateSize = function() {
+org.apache.flex.html.supportClasses.Viewport.prototype._strand = null;
+
+
+/**
+ * @type {org.apache.flex.html.supportClasses.ContainerContentArea}
+ */
+org.apache.flex.html.supportClasses.Viewport.prototype.contentView = null;
+
+
+/**
+ * @param {number} x The x position of the viewport.
+ * @param {number} y The y position of the viewport.
+ */
+org.apache.flex.html.supportClasses.Viewport.prototype.setPosition =
+   function(x, y) {
+  this.contentView.x = x;
+  this.contentView.y = y;
 };
 
 
 /**
- *
+ * @param {number} width The width or NaN if sized to content.
+ * @param {number} height The height or NaN if sized to content.
  */
-org.apache.flex.html.supportClasses.Viewport.prototype.updateContentAreaSize = function() {
+org.apache.flex.html.supportClasses.Viewport.prototype.layoutViewportBeforeContentLayout =
+   function(width, height) {
+  if (!isNaN(width))
+    this.contentView.width = width;
+  if (!isNaN(height))
+    this.contentView.height = height;
+};
+
+
+/**
+ * @return {org.apache.flex.geom.Size}
+ */
+org.apache.flex.html.supportClasses.Viewport.prototype.layoutViewportAfterContentLayout =
+   function() {
+  // nothing to do here?  In theory, the layout and browser will have stretched or shrunk
+  // the contentView to the right size
+  return new org.apache.flex.geom.Size(this.contentView.width, this.contentView.height);
 };
 
 
 Object.defineProperties(org.apache.flex.html.supportClasses.Viewport.prototype, {
     /** @export */
-    model: {
-        /** @this {org.apache.flex.html.supportClasses.Viewport} */
-        get: function() {
-            return this.model_;
-        },
+    strand: {
         /** @this {org.apache.flex.html.supportClasses.Viewport} */
         set: function(value) {
-            this.model_ = value;
-        }
+            this._strand = value;
+            this.contentView = this._strand.getBeadByType(org.apache.flex.core.IContentView);
+            if (this.contentView == null) {
+              var c = org.apache.flex.core.ValuesManager.valuesImpl.getValue(
+                       this._strand, 'iContentView');
+              if (c)
+                this.contentView = new c();
+            }
+            this.contentView.element.style.overflow = 'visible';
+         }
     }
 });

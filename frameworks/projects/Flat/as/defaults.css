@@ -32,7 +32,6 @@
     font-family: "Arial";
     font-size: 12px;
     color: #34495e;
-    background-color: #fff;
 }
 
 .flexjs *, . flexjs *:before, . flexjs *:after {
@@ -292,6 +291,14 @@ DateField {
           transition: border-color .25s, color .25s;
   }
 
+.dropdown-label {
+  color: inherit;
+  background-color: inherit;
+  font: inherit;
+  text-align: left;
+  display: inline-block;
+  }
+  
 HContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
@@ -330,9 +337,10 @@ Panel
     IBeadView: ClassReference("org.apache.flex.html.beads.PanelView");
     
     background-color: #FFFFFF;
+    border-radius: 6px;
+    border-color: #1abc9c;
     border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
+    border-width: 2px;
 	padding: 2px;
 }
 
@@ -342,9 +350,10 @@ PanelWithControlBar
     IBeadView: ClassReference("org.apache.flex.html.beads.PanelWithControlBarView");
     
     background-color: #FFFFFF;
+    border-radius: 6px;
+    border-color: #1abc9c;
     border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
+    border-width: 2px;
 	padding: 2px;
 }
 
@@ -449,29 +458,38 @@ TextArea
   padding: 6px 10px;
   font-size: 13px;
   border-radius: 6px;
+  border-width: 2px;
   border: 2px solid #1abc9c;
 }
 
 TextInput
 {
+  background-color: #ffffff;
   height: 35px;
   padding: 6px 10px;
   font-size: 13px;
   line-height: 1.462;
   border-radius: 6px;
+  border-width: 2px;
   border: 2px solid #1abc9c;
 }
 
+#titleLabel {
+   color: #fff;
+   font-size: 15px;
+}
+ 
 TitleBar
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.TitleBarModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.TitleBarView");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.TitleBarMeasurementBead");
-    background-color: #E2E2E2;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
+    color: #fff;
+    background-color: #1abc9c;
+    font-size: 15px;
+    border-style: none;
+    border-radius: 4px;
 }
 
 ToolTip

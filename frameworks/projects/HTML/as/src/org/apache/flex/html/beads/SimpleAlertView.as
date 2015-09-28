@@ -26,13 +26,13 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IParent;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.TextButton;
-	import org.apache.flex.utils.BeadMetrics;
+    import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 
@@ -124,7 +124,7 @@ package org.apache.flex.html.beads
 			}
 			var maxWidth:Number = Math.max(UIBase(_strand).width,ruler.measuredWidth);
 			
-			var metrics:UIMetrics = BeadMetrics.getMetrics(_strand);
+			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
 			messageLabel.x = metrics.left;
 			messageLabel.y = metrics.top;

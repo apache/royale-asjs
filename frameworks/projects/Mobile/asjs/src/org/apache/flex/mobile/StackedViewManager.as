@@ -19,20 +19,12 @@
 package org.apache.flex.mobile
 {	
 	import org.apache.flex.events.Event;
-	import org.apache.flex.mobile.ManagerBase;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.mobile.IView;
+	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
-	
-	/**
-	 * Event dispatched when the currently selected view changes.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	[Event("viewChanged")]
 	
 	/**
 	 * The StackedViewManager displays a single View at a time from a
@@ -48,7 +40,7 @@ package org.apache.flex.mobile
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class StackedViewManager extends ManagerBase implements IViewManager
+	public class StackedViewManager extends ViewManagerBase implements IViewManager
 	{
 		/**
 		 * Constructor.
@@ -65,95 +57,6 @@ package org.apache.flex.mobile
 			className = "StackedViewManager";
 		}
 		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			
-			var n:int = ViewManagerModel(model).views.length;
-			if (n > 0) {
-				for (var i:int = 0; i < n; i++)
-				{
-					var view:IView = ViewManagerModel(model).views[i] as IView;
-					view.viewManager = this;
-					if (i == (n-1)) {
-						addElement(view,false);
-						_topView = view;
-					}
-				}
-			}
-		}
-		
-		/**
-		 * The title to use in the NavigationBar.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get title():String
-		{
-			return ViewManagerModel(model).title;
-		}
-		public function set title(value:String):void
-		{
-			ViewManagerModel(model).title = value;
-		}
-		
-		/**
-		 * @private
-		 */
-		override public function toString():String
-		{
-			return ViewManagerModel(model).title;
-		}
-		
-		/**
-		 * True if this view manager is displaying a NavigationBar.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get hasNavigationBar():Boolean
-		{
-			return ViewManagerModel(model).navigationBarItems != null;
-		}
-		
-		/**
-		 * The contents of the NavigationBar.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get navigationBarItems():Array
-		{
-			return ViewManagerModel(model).navigationBarItems;
-		}
-		public function set navigationBarItems(value:Array):void
-		{
-			ViewManagerModel(model).navigationBarItems = value;
-		}
-		
-		/**
-		 * The NavigationBar (or null if not present).
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get navigationBar():NavigationBar
-		{
-			return ViewManagerModel(model).navigationBar; 
-		}
-				
 		/**
 		 * True if this view manager is displaying a ToolBar.
 		 *  
@@ -196,9 +99,10 @@ package org.apache.flex.mobile
 		{
 			return ViewManagerModel(model).toolBar;
 		}
+
 		
 		private var _topView:IView;
-		
+
 		/**
 		 * The top-most (current) view.
 		 *  
@@ -207,28 +111,11 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get selectedView():IView
+		override public function get selectedView():IView
 		{
 			return _topView;
 		}
-		
-		/**
-		 *  The current set of views in the stack. The last entry is
-		 *  the top-most (visible) view.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get views():Array
-		{
-			return ViewManagerModel(model).views;
-		}
-		public function set views(value:Array):void
-		{
-			ViewManagerModel(model).views = value;
-		}
+
 		
 		/**
 		 *  Pushes the next view onto the navigation stack.
@@ -249,6 +136,7 @@ package org.apache.flex.mobile
 			
 			dispatchEvent( new Event("viewChanged") );
 		}
+		
 		/**
 		 *  Pops the top-most view from the navigation stack.
 		 *  
@@ -268,24 +156,6 @@ package org.apache.flex.mobile
 				dispatchEvent( new Event("viewChanged") );
 			}
 		}
-		
-		private var _viewManager:IViewManager;
-		
-		/**
-		 * This view manager's parent view manager, if any.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get viewManager():IViewManager
-		{
-			return _viewManager;
-		}
-		public function set viewManager(value:IViewManager):void
-		{
-			_viewManager = value;
-		}
+
 	}
 }

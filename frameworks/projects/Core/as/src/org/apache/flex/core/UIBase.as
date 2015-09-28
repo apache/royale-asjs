@@ -26,7 +26,6 @@ package org.apache.flex.core
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.utils.MouseEventConverter;
-	import org.apache.flex.utils.BeadMetrics;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -549,6 +548,7 @@ package org.apache.flex.core
 		/**
 		 * @private
 		 */
+        [Bindable("visibleChanged")]
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
@@ -932,7 +932,7 @@ package org.apache.flex.core
         {
             var c:Class;
 			
-			if (isNaN(_width) && isNaN(_percentWidth)) 
+			if (isNaN(_explicitWidth) && isNaN(_percentWidth)) 
             {
 				var value:* = ValuesManager.valuesImpl.getValue(this,"width");
 				if (value !== undefined) 
@@ -940,14 +940,21 @@ package org.apache.flex.core
 					if (value is String)
                     {
                         var s:String = String(value);
-    					_percentWidth = Number(s.substring(0, s.length - 1));
+                        if (s.indexOf("%") != -1)
+        					_percentWidth = Number(s.substring(0, s.length - 1));
+                        else
+                        {
+                            if (s.indexOf("px") != -1)
+                                s = s.substring(0, s.length - 2);
+                            _width = _explicitWidth = Number(s);                            
+                        }
                     }
 					else 
-						_width = value as Number;
+						_width = _explicitWidth = value as Number;
 				}
 			}
 			
-			if (isNaN(_height) && isNaN(_percentHeight)) 
+			if (isNaN(_explicitHeight) && isNaN(_percentHeight)) 
             {
 				value = ValuesManager.valuesImpl.getValue(this,"height");
 				if (value !== undefined) 
@@ -955,10 +962,17 @@ package org.apache.flex.core
                     if (value is String)
                     {
     					s = String(value);
-						_percentHeight = Number(s.substring(0, s.length - 1));
+                        if (s.indexOf("%") != -1)
+    						_percentHeight = Number(s.substring(0, s.length - 1));
+                        else
+                        {
+                            if (s.indexOf("px") != -1)
+                                s = s.substring(0, s.length - 2);
+                            _height = _explicitHeight = Number(s);
+                        }
 					} 
                     else
-						_height = value as Number;
+						_height = _explicitHeight = value as Number;
 				}
 			}
             
@@ -975,7 +989,7 @@ package org.apache.flex.core
                         addBead(model);
                 }
             }
-            if (getBeadByType(IBeadView) == null) 
+            if (_view == null && getBeadByType(IBeadView) == null) 
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
                 if (c)

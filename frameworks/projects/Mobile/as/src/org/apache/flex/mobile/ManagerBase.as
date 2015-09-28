@@ -20,6 +20,7 @@ package org.apache.flex.mobile
 {
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
 	
 	/**
 	 *  The ManagerBase is a base class for mobile display managers such as StackedViewManager
@@ -47,6 +48,24 @@ package org.apache.flex.mobile
 			
 			_contentArea = new UIBase();
 			super.addElement(_contentArea,false);
+			
+			addEventListener("initComplete", handleInitComplete);
+			addEventListener("sizeChanged", handleInitComplete);
+			addEventListener("widthChanged", handleInitComplete);
+			addEventListener("heightChanged", handleInitComplete);
+		}
+		
+		private function handleInitComplete(event:Event):void
+		{
+			trace("Manager base event: "+event.type+"; width="+width+", height="+height);
+			_contentArea.setWidthAndHeight(width, height, true);
+			// todo: listen for changes to this item
+			
+			var num:Number = UIBase(_contentArea).numElements;
+			for (var i:int = 0; i < num; i++) {
+				var child:UIBase = UIBase(_contentArea).getElementAt(i) as UIBase;
+				child.setWidthAndHeight(width, height);
+			}
 		}
 		
 		private var _contentArea:UIBase;
@@ -80,9 +99,10 @@ package org.apache.flex.mobile
 				super.addElementAt(c,0,dispatchEvent);
 			}
 			else {
-				(c as UIBase).width = _contentArea.width;
-				(c as UIBase).height = _contentArea.height;
 				_contentArea.addElement(c, dispatchEvent);
+//				(c as UIBase).setWidthAndHeight(_contentArea.width, _contentArea.height, false);
+//				(c as UIBase).width = _contentArea.width;
+//				(c as UIBase).height = _contentArea.height;
 			}
 		}
 		

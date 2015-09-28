@@ -51,8 +51,11 @@ org.apache.flex.binding.SimpleBinding.prototype.eventName = '';
  * @export
  */
 org.apache.flex.binding.SimpleBinding.prototype.changeHandler = function() {
-  this.destination[this.destinationPropertyName] =
-      this.source[this.sourcePropertyName];
+  try {
+    this.destination[this.destinationPropertyName] =
+        this.source[this.sourcePropertyName];
+  }
+  catch (e) {}
 };
 
 

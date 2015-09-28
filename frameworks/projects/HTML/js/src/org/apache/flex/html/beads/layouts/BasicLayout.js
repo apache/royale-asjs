@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.beads.layouts.BasicLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
 goog.require('org.apache.flex.core.ILayoutChild');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.ValuesManager');
 goog.require('org.apache.flex.utils.Language');
 
@@ -62,18 +63,31 @@ org.apache.flex.html.beads.layouts.BasicLayout.
     prototype.layout = function() {
   var i, n, h, w;
 
-  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = viewBead.contentView;
   w = contentView.width;
+  var hasWidth = !this.strand_.isWidthSizedToContent();
   h = contentView.height;
+  var hasHeight = !this.strand_.isHeightSizedToContent();
+  var maxHeight = 0;
+  var maxWidth = 0;
   n = contentView.numElements;
   for (i = 0; i < n; i++) {
     var child = contentView.getElementAt(i);
-    child.positioner.internalDisplay = 'block';
+    child.internalDisplay = 'block';
     var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
     var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
     var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
     var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
+    var margin = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin');
+    var marginLeft = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-left');
+    var marginRight = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-right');
+    var horizontalCenter =
+        (marginLeft == 'auto' && marginRight == 'auto') ||
+          (typeof(margin) === 'string' && margin == 'auto') ||
+          (margin && margin.hasOwnProperty('length') &&
+            ((margin.length < 4 && margin[1] == 'auto') ||
+            (margin.length == 4 && margin[1] == 'auto' && margin[3] == 'auto')));
 
     if (!isNaN(left)) {
       child.positioner.style.position = 'absolute';
@@ -91,6 +105,21 @@ org.apache.flex.html.beads.layouts.BasicLayout.
       child.positioner.style.position = 'absolute';
       child.positioner.style.bottom = bottom.toString() + 'px';
     }
+    if (horizontalCenter)
+    {
+      child.positioner.style.position = 'absolute';
+      child.positioner.style.left = ((w - child.width) / 2).toString() + 'px';
+    }
     child.dispatchEvent('sizeChanged');
+    maxWidth = Math.max(maxWidth, child.positioner.offsetLeft + child.positioner.offsetWidth);
+    maxHeight = Math.max(maxHeight, child.positioner.offsetTop + child.positioner.offsetHeight);
+  }
+  // if there are children and maxHeight is ok, use it.
+  // maxHeight can be NaN if the child hasn't been rendered yet.
+  if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
+    contentView.width = maxWidth;
+  }
+  if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
+    contentView.height = maxHeight;
   }
 };

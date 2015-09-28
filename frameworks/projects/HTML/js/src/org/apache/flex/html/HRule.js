@@ -27,6 +27,7 @@ org.apache.flex.html.HRule = function() {
 
   this.element = document.createElement('hr');
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 };
 goog.inherits(org.apache.flex.html.HRule,

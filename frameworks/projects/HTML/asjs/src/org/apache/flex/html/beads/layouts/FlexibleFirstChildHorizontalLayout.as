@@ -20,17 +20,19 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
+    import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
+    import org.apache.flex.html.supportClasses.Viewport;
+    import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The FlexibleFirstChildHorizontalLayout class is a simple layout
@@ -77,25 +79,6 @@ package org.apache.flex.html.beads.layouts
             host = value as ILayoutChild;
 		}
 		
-		private var _viewportModel:IViewportModel;
-		
-		/**
-		 *  The data that describes the viewport used by this layout.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get viewportModel():IViewportModel
-		{
-			return _viewportModel;
-		}
-		public function set viewportModel(value:IViewportModel):void
-		{
-			_viewportModel = value;
-		}
-	
         private var _maxWidth:Number;
         
         /**
@@ -147,14 +130,11 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParent = layoutParent.contentView;
+			var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
 			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = host.getBeadByType(IViewport) as IViewport;
-			if (viewport) viewportModel = viewport.model;
-
 			var n:int = contentView.numElements;
 			var marginLeft:Object;
 			var marginRight:Object;
@@ -164,12 +144,10 @@ package org.apache.flex.html.beads.layouts
 			maxHeight = 0;
 			var verticalMargins:Array = [];
 			
-            var xx:Number = layoutParent.resizableView.width;
+            var xx:Number = contentView.width;
             if (isNaN(xx) || xx <= 0)
                 return true;
-            var padding:Object = determinePadding();
-            // some browsers don't like it when you go all the way to the right edge.
-            xx -= padding.paddingLeft + padding.paddingRight + 1;
+            xx -= padding.right + 1; // some browsers won't layout to the edge
             
             for (var i:int = n - 1; i >= 0; i--)
 			{
@@ -230,15 +208,15 @@ package org.apache.flex.html.beads.layouts
 					if (isNaN(mr))
 						mr = 0;
 				}
-				child.y = mt;
-				maxHeight = Math.max(maxHeight, mt + child.height + mb);
+				child.y = mt + padding.top;
 				if (i == 0)
                 {
-                    child.x = ml;
-                    child.width = xx - mr;
+                    child.x = ml + padding.left;
+                    child.width = xx - mr - child.x;
                 }
 				else
                     child.x = xx - child.width - mr;
+                maxHeight = Math.max(maxHeight, mt + child.height + mb);
 				xx -= child.width + mr + ml;
 				lastmr = mr;
 				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
@@ -256,84 +234,10 @@ package org.apache.flex.html.beads.layouts
 					child.y = obj.marginTop;
 			}
             if (hostSizedToContent)
-                ILayoutChild(contentView).setHeight(maxHeight, true);
+                ILayoutChild(contentView).setHeight(maxHeight + padding.top + padding.bottom, true);
 			
-			// Only return true if the contentView needs to be larger; that new
-			// size is stored in the model.
-			var sizeChanged:Boolean = false;
-			if (viewportModel != null) {
-				if (viewportModel.contentHeight < maxHeight) {
-					viewportModel.contentHeight = maxHeight;
-					sizeChanged = true;
-				}
-				if (viewportModel.contentWidth < xx) {
-					viewportModel.contentWidth = xx;
-					sizeChanged = true;
-				}
-			} else {
-				sizeChanged = true;
-			}
-
-            return sizeChanged;
+            return true;
 		}
-
-        // TODO (aharui): utility class or base class
-        /**
-         *  Determines the top and left padding values, if any, as set by
-         *  padding style values. This includes "padding" for all padding values
-         *  as well as "padding-left" and "padding-top".
-         * 
-         *  Returns an object with paddingLeft and paddingTop properties.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected function determinePadding():Object
-        {
-            var paddingLeft:Object;
-            var paddingTop:Object;
-            var paddingRight:Object;
-            var padding:Object = ValuesManager.valuesImpl.getValue(host, "padding");
-            if (typeof(padding) == "Array")
-            {
-                if (padding.length == 1)
-                    paddingLeft = paddingTop = paddingRight = padding[0];
-                else if (padding.length <= 3)
-                {
-                    paddingLeft = padding[1];
-                    paddingTop = padding[0];
-                    paddingRight = padding[1];
-                }
-                else if (padding.length == 4)
-                {
-                    paddingLeft = padding[3];
-                    paddingTop = padding[0];					
-                    paddingRight = padding[1];
-                }
-            }
-            else if (padding == null)
-            {
-                paddingLeft = ValuesManager.valuesImpl.getValue(host, "padding-left");
-                paddingTop = ValuesManager.valuesImpl.getValue(host, "padding-top");
-                paddingRight = ValuesManager.valuesImpl.getValue(host, "padding-right");
-            }
-            else
-            {
-                paddingLeft = paddingTop = paddingRight = padding;
-            }
-            var pl:Number = Number(paddingLeft);
-            var pt:Number = Number(paddingTop);
-            var pr:Number = Number(paddingRight);
-            if (isNaN(pl))
-                pl = 0;
-            if (isNaN(pt))
-                pt = 0;
-            if (isNaN(pr))
-                pr = 0;
-            return {paddingLeft:pl, paddingTop:pt, paddingRight:pr};
-        }
 
     }
         

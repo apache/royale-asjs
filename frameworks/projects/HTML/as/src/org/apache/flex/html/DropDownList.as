@@ -135,5 +135,23 @@ package org.apache.flex.html
             ISelectionModel(model).selectedItem = value;
         }
                         
+        /**
+         *  The name of field within the data used for display. Each item of the
+         *  data should have a property with this name.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get labelField():String
+        {
+            return ISelectionModel(model).labelField;
+        }
+        public function set labelField(value:String):void
+        {
+            ISelectionModel(model).labelField = value;
+        }
+        
     }
 }

@@ -157,7 +157,11 @@ package org.apache.flex.binding
             else
                 source = document as IEventDispatcher;
 			source.addEventListener(eventName, changeHandler);
-			destination[destinationPropertyName] = source[sourcePropertyName];
+            try 
+            {
+    			destination[destinationPropertyName] = source[sourcePropertyName];
+            }
+            catch (e:Error) {}
 		}
 		
         /**

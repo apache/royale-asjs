@@ -250,13 +250,15 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
     comp.addEventListener(name, goog.bind(value, document));
   }
 
+  var isContainer = (typeof comp.childrenAdded === 'function');
+
   children = data[i++];
   if (children && comp['setMXMLDescriptor']) {
     comp['setMXMLDescriptor'](document, children);
   }
   if (parent && org.apache.flex.utils.Language.is(comp,
       org.apache.flex.core.IUIBase)) {
-    parent.addElement(comp);
+    parent.addElement(comp, !isContainer);
   }
 
   if (children) {
@@ -264,8 +266,8 @@ org.apache.flex.utils.MXMLDataInterpreter.initializeStrandBasedObject =
       self = org.apache.flex.utils.MXMLDataInterpreter;
       self.generateMXMLInstances(
             document, comp, children);
-      if (typeof comp.childrenAdded === 'function')
-        comp.childrenAdded();
+      if (isContainer)
+        comp['childrenAdded']();
     }
   }
 

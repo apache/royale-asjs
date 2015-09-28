@@ -14,6 +14,8 @@
 
 goog.provide('org.apache.flex.core.ListBase');
 
+goog.require('org.apache.flex.core.IContentViewHost');
+goog.require('org.apache.flex.core.ListBaseStrandChildren');
 goog.require('org.apache.flex.core.UIBase');
 goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 
@@ -22,6 +24,7 @@ goog.require('org.apache.flex.html.supportClasses.StringItemRenderer');
 /**
  * @constructor
  * @extends {org.apache.flex.core.UIBase}
+ * @implements {org.apache.flex.core.IContentViewHost}
  */
 org.apache.flex.core.ListBase = function() {
   org.apache.flex.core.ListBase.base(this, 'constructor');
@@ -31,6 +34,12 @@ org.apache.flex.core.ListBase = function() {
    * @type {number}
    */
   this.selectedIndex_ = -1;
+
+  /**
+   * @private
+   * @type {Object}
+   */
+  this.strandChildren_ = new org.apache.flex.core.ListBaseStrandChildren(this);
 };
 goog.inherits(org.apache.flex.core.ListBase,
     org.apache.flex.core.UIBase);
@@ -43,7 +52,8 @@ goog.inherits(org.apache.flex.core.ListBase,
  */
 org.apache.flex.core.ListBase.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ListBase',
-                qName: 'org.apache.flex.core.ListBase' }] };
+                qName: 'org.apache.flex.core.ListBase' }],
+      interfaces: [org.apache.flex.core.IContentViewHost] };
 
 
 /**
@@ -54,6 +64,7 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
   //  goog.events.listen(this.element, 'change',
   //      goog.bind(this.changeHandler, this));
   this.element = document.createElement('div');
+  this.element.style.position = 'relative';
   this.element.style.overflow = 'auto';
   this.element.style.border = 'solid';
   this.element.style.borderWidth = '1px';
@@ -62,6 +73,56 @@ org.apache.flex.core.ListBase.prototype.createElement = function() {
   this.element.flexjs_wrapper = this;
 
   return this.element;
+};
+
+
+/**
+ * @expose
+ * @return {number} The number of raw elements.
+ */
+org.apache.flex.core.ListBase.prototype.$numElements = function() {
+  return this.numElements();
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element to add.
+ * @param {boolean=} opt_dispatchEvent If true, an event is dispatched.
+ */
+org.apache.flex.core.ListBase.prototype.$addElement = function(c, opt_dispatchEvent) {
+  this.addElement(c, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element to add.
+ * @param {number} index The index of the element.
+ * @param {boolean=} opt_dispatchEvent If true, an event is dispatched.
+ */
+org.apache.flex.core.ListBase.prototype.$addElementAt = function(c, index, opt_dispatchEvent) {
+  this.addElementAt(c, index, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {number} index The index of the number.
+ * @return {Object} The element at the given index.
+ */
+org.apache.flex.core.ListBase.prototype.$getElementAt = function(index) {
+  return this.getElementAt(index);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being queried.
+ * @return {number} The index of the element.
+ */
+org.apache.flex.core.ListBase.prototype.$getElementIndex = function(c) {
+  return this.getElementIndex(c);
 };
 
 
@@ -97,6 +158,13 @@ Object.defineProperties(org.apache.flex.core.ListBase.prototype, {
         /** @this {org.apache.flex.core.ListBase} */
         set: function(value) {
             this.model.selectedItem = value;
+        }
+    },
+    /** @export */
+    strandChildren: {
+        /** @this {org.apache.flex.core.ListBase} */
+        get: function() {
+             return this.strandChildren_;
         }
     }
 });

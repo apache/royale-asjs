@@ -57,8 +57,8 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flexjs.version" value="0.0.3"/>
-    <property name="falcon.version" value="0.0.3"/>
+    <property name="flexjs.version" value="0.5.0"/>
+    <property name="falcon.version" value="0.5.0"/>
     
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
@@ -88,19 +88,13 @@
     </condition>
     <property name="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_MAC}" />
 
-    <condition property="goog.donot.ask" value="true">
-        <isset property="installer" />
-    </condition>
     <condition property="air.donot.ask" value="true">
         <isset property="installer" />
     </condition>
     <condition property="flash.donot.ask" value="true">
         <isset property="installer" />
     </condition>
-    <condition property="swfobject.donot.ask" value="true">
-        <isset property="installer" />
-    </condition>
-    
+
     <condition property="COMPC" value="compc.bat">
         <os family="windows" />
     </condition>
@@ -213,10 +207,6 @@
         <property name="falcon.md5.server.url" value="${falcon.server.url}" />
         <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
-        <property name="goog.lib.url.server" value="${config.google-closure-library.server}" />
-        <property name="goog.lib.url.folder" value="${config.google-closure-library.folder}" />
-        <property name="goog.lib.url.file" value="${config.google-closure-library.file}" />
-        <property name="goog.lib.md5" value="${config.google-closure-library.md5}" />
     </target>
     
     <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
@@ -287,23 +277,8 @@
         </fail>
     </target>
     
-    <target name="ask-licenses" depends="ask-goog,ask-air,ask-flash,ask-swfobject" description="Ask about the various licenses">
+    <target name="ask-licenses" depends="ask-air,ask-flash" description="Ask about the various licenses">
 	</target>
-    
-    <target name="ask-goog" unless="goog.donot.ask"
-        description="Prompt the user before downloading Google Closure Library">
-        
-        <input
-        message="${goog.prompt.text}"
-        validargs="${yes.no.prompts}"
-        defaultvalue="${no}"
-        addproperty="input.goog.download"/>
-        <condition property="do.goog.install">
-            <equals arg1="${yes}" arg2="${input.goog.download}"/>
-        </condition>
-        <!-- Only ask once per ant run.  -->
-        <property name="goog.donot.ask" value="set"/>
-    </target>
     
     <target name="ask-air" unless="air.donot.ask"
         description="Prompt the user before downloading AIR">
@@ -335,21 +310,6 @@
         <property name="flash.donot.ask" value="set"/>
     </target>
 
-    <target name="ask-swfobject" unless="swfobject.donot.ask"
-        description="Prompt the user before downloading SWFObject">
-        
-        <input
-        message="${swfobject.prompt.text}"
-        validargs="${yes.no.prompts}"
-        defaultvalue="${no}"
-        addproperty="input.swfobject.download"/>
-        <condition property="do.swfobject.install">
-            <equals arg1="${yes}" arg2="${input.swfobject.download}"/>
-        </condition>
-        <!-- Only ask once per ant run.  -->
-        <property name="swfobject.donot.ask" value="set"/>
-    </target>
-
     <target name="mac-chmod" description="makes some scripts executable" unless="isWindows">
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
@@ -361,7 +321,19 @@
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
-            <arg value="${FLEXJS_HOME}/js/bin/jsc"/>
+            <arg value="${FLEXJS_HOME}/js/bin/asjsc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/asjscompc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/jquery"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/externc"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
              <arg value="+x" />
@@ -437,40 +409,6 @@
     </target>
 
     <target name="get-third-party-files" depends="air-download,flash-download,swfobject-download" />
-    
-    <!-- Because this requires a network connection it downloads artifacts only if it doesn't already exist. -->
-    <target name="goog-check" description="Checks if Google Closure Library has been downloaded.">
-        <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" property="goog.lib.present"/>
-    </target>
-    
-    <target name="goog-download" depends="goog-check" unless="goog.lib.present"
-        description="Downloads Google Closure Library and copies to correct locations">
-        
-        <mkdir dir="${download.dir}"/>
-        <antcall target="goog-get" />
-        <unzip src="${download.dir}/${goog.lib.url.file}" dest="${download.dir}/temp" />
-        <copy todir="${FLEXJS_HOME}/js/lib/google/closure-library">
-            <fileset dir="${download.dir}/temp/closure-library-master">
-                <include name="**" />
-            </fileset>
-        </copy>
-    </target>
-    
-    <target name="goog-get-check" >
-        <available file="${download.dir}/${goog.lib.url.file}" property="goog.downloaded" />
-    </target>
-            
-    <target name="goog-get" depends="goog-get-check" unless="goog.downloaded" >
-        <echo>${INFO_INSTALLING_GOOG} ${goog.lib.url.server}/${goog.lib.url.folder}/${goog.lib.url.file}</echo>
-        <antcall target="download_using_get" >
-            <param name="srcDomain" value="${goog.lib.url.server}" />
-            <param name="srcFolder" value="${goog.lib.url.folder}" />
-            <param name="srcFile" value="${goog.lib.url.file}" />
-            <param name="dest" value="${download.dir}/${goog.lib.url.file}" />
-			<param name="failmessage" value="Google Closure Library download failed" />
-			<param name="md5" value="${goog.lib.md5}" />
-        </antcall>
-    </target>
     
     <target name="air-check" description="Checks if AIR SDK has been downloaded.">
         <available file="${FLEXJS_HOME}/lib/adt.jar" property="air.jar.present"/>
@@ -725,7 +663,7 @@
     </target>
     
     <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present"
-        description="Copies SWFObject from code.google.com">
+        description="Copies SWFObject from github">
         
         <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
         <replace file="${basedir}/swfobject.properties" token="{0}" value="${swfobject.url.file}" />
@@ -934,10 +872,20 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
     <target name="get-preferred" unless="found-in-cache">
         <get src="${srcDomain}/${srcFolder}/${srcFile}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
         <replace file="${basedir}/mirror.json">
+            <replacefilter token="{"
+            value="" />
+            <replacefilter token="}"
+            value="" />
             <replacefilter token="&quot;"
             value="" />
-            <replacefilter token=": "
+            <replacefilter token=","
+            value="&#x0d;&#x0a;" />
+            <replacefilter token=":"
             value="=" />
+        </replace>
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="http="
+            value="http:" />
         </replace>
         <property file="${basedir}/mirror.json" />
         <delete file="${basedir}/mirror.json" />

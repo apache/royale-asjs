@@ -163,8 +163,9 @@ org.apache.flex.core.UIBase.prototype.finalizeElement = null;
 
 /**
  * @param {Object} c The child element.
+ * @param {boolean=} opt_dispatchEvent Use 'false' to skip sending a childrenAdded event.
  */
-org.apache.flex.core.UIBase.prototype.addElement = function(c) {
+org.apache.flex.core.UIBase.prototype.addElement = function(c, opt_dispatchEvent) {
   this.element.appendChild(c.positioner);
   c.addedToParent();
 };
@@ -173,8 +174,9 @@ org.apache.flex.core.UIBase.prototype.addElement = function(c) {
 /**
  * @param {Object} c The child element.
  * @param {number} index The index.
+ * @param {boolean=} opt_dispatchEvent Use 'false' to skip sending a childrenAdded event.
  */
-org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index) {
+org.apache.flex.core.UIBase.prototype.addElementAt = function(c, index, opt_dispatchEvent) {
   var children = this.internalChildren();
   if (index >= children.length)
     this.addElement(c);
@@ -224,10 +226,46 @@ org.apache.flex.core.UIBase.prototype.removeElement = function(c) {
 /**
  */
 org.apache.flex.core.UIBase.prototype.addedToParent = function() {
-
+  var s, value;
   var styles = this.style;
   if (styles)
     org.apache.flex.core.ValuesManager.valuesImpl.applyStyles(this, styles);
+
+  if (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_)) {
+    value = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'width');
+    if (value !== undefined) {
+      if (typeof(value) === 'string') {
+        s = value;
+        if (s.indexOf('%') != -1)
+          this.percentWidth_ = Number(s.substring(0, s.length - 1));
+        else {
+          if (s.indexOf('px') != -1)
+             s = s.substring(0, s.length - 2);
+          this.width_ = this.explicitWidth_ = Number(s);
+        }
+      }
+      else
+        this.width_ = this.explicitWidth_ = value;
+    }
+  }
+
+  if (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_)) {
+    value = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'height');
+    if (value !== undefined) {
+      if (typeof(value) === 'string') {
+        s = value;
+        if (s.indexOf('%') != -1)
+          this.percentHeight_ = Number(s.substring(0, s.length - 1));
+        else {
+          if (s.indexOf('px') != -1)
+            s = s.substring(0, s.length - 2);
+          this.height_ = this.explicitHeight_ = Number(s);
+        }
+      }
+      else
+        this.height_ = this.explicitHeight_ = value;
+    }
+  }
 
   if (this.mxmlBeads_) {
     var n = this.mxmlBeads_.length;
@@ -253,7 +291,7 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
-  if (this.getBeadByType(org.apache.flex.core.IBeadView) == null)
+  if (this.view_ == null && this.getBeadByType(org.apache.flex.core.IBeadView) == null)
   {
     if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
       c = /** @type {Function} */ (org.apache.flex.core.ValuesManager.valuesImpl.
@@ -261,8 +299,10 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       if (c)
       {
         var view = new c();
-        if (view)
+        if (view) {
+          this.view_ = view;
           this.addBead(view);
+        }
       }
     }
   }
@@ -308,6 +348,7 @@ org.apache.flex.core.UIBase.prototype.addBead = function(bead) {
     this.model_ = bead;
 
   if (org.apache.flex.utils.Language.is(bead, org.apache.flex.core.IBeadView)) {
+    this.view_ = bead;
     this.dispatchEvent(new org.apache.flex.events.Event('viewChanged'));
   }
 
@@ -375,7 +416,7 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
         /** @this {org.apache.flex.core.UIBase} */
         get: function() {
             var p = this.positioner.parentNode;
-            var wrapper = p.flexjs_wrapper;
+            var wrapper = p ? p.flexjs_wrapper : null;
             return wrapper;
         }
     },
@@ -644,6 +685,29 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
         }
     },
     /** @export */
+    view: {
+        /** @this {org.apache.flex.core.UIBase} */
+        get: function() {
+            if (this.view_ == null) {
+                /**
+                 * @type {Function}
+                 */
+                var v = /** @type {Function} */(org.apache.flex.core.ValuesManager.valuesImpl.
+                        getValue(this, 'iBeadView'));
+                this.view_ = new v();
+                this.addBead(this.view_);
+            }
+            return this.view_;
+        },
+        /** @this {org.apache.flex.core.UIBase} */
+        set: function(value) {
+            if (this.view_ != value) {
+                this.view_ = value;
+                this.addBead(value);
+            }
+        }
+    },
+    /** @export */
     visible: {
         /** @this {org.apache.flex.core.UIBase} */
         get: function() {
@@ -661,7 +725,7 @@ Object.defineProperties(org.apache.flex.core.UIBase.prototype, {
                 if (this.lastDisplay_) {
                   this.positioner.style.display = this.lastDisplay_;
                 } else {
-                  this.positioner.style.display = this.positioner.internalDisplay;
+                  this.positioner.style.display = this.internalDisplay;
                 }
                 this.dispatchEvent(new org.apache.flex.events.Event('show'));
               }
@@ -764,7 +828,12 @@ org.apache.flex.core.UIBase.prototype.setWidthAndHeight =
  */
 org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
 {
-  return (isNaN(this.explicitWidth_) && isNaN(this.percentWidth_));
+  if (!isNaN(this.explicitWidth_) || !isNaN(this.percentWidth_))
+    return false;
+  var left = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'left');
+  var right = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'right');
+  // not sized to content if both left and right are specified
+  return (left === undefined || right === undefined);
 };
 
 
@@ -774,7 +843,12 @@ org.apache.flex.core.UIBase.prototype.isWidthSizedToContent = function()
  */
 org.apache.flex.core.UIBase.prototype.isHeightSizedToContent = function()
 {
-  return (isNaN(this.explicitHeight_) && isNaN(this.percentHeight_));
+  if (!isNaN(this.explicitHeight_) || !isNaN(this.percentHeight_))
+    return false;
+  var top = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'top');
+  var bottom = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this, 'bottom');
+  // not sized to content if both top and bottom are specified
+  return (top === undefined || bottom === undefined);
 };
 
 

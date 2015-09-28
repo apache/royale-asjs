@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.HorizontalLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 
 
 
@@ -61,16 +62,39 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
     prototype.layout = function() {
   var children, i, n;
 
-  children = this.strand_.internalChildren();
+  var viewBead = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
+  var contentView = viewBead.contentView;
+  children = contentView.internalChildren();
+  var hasHeight = !this.strand_.isHeightSizedToContent();
+  var hasWidth = !this.strand_.isWidthSizedToContent();
+  var maxHeight = 0;
+  var computedWidth = 0;
   n = children.length;
   for (i = 0; i < n; i++)
   {
     var child = children[i];
-    child.internalDisplay = 'inline-block';
+    child.flexjs_wrapper.internalDisplay = 'inline-block';
     if (child.style.display == 'none')
       child.lastDisplay_ = 'inline-block';
     else
       child.style.display = 'inline-block';
+    maxHeight = Math.max(maxHeight, child.offsetHeight);
+    if (!hasWidth) {
+      var cv = window.getComputedStyle(child);
+      var mls = cv['margin-left'];
+      var ml = Number(mls.substring(0, mls.length - 2));
+      var mrs = cv['margin-right'];
+      var mr = Number(mrs.substring(0, mrs.length - 2));
+      computedWidth += ml + child.offsetWidth + mr;
+    }
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
+  }
+  // if there are children and maxHeight is ok, use it.
+  // maxHeight can be NaN if the child hasn't been rendered yet.
+  if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
+    contentView.height = maxHeight;
+  }
+  if (!hasWidth && n > 0 && !isNaN(computedWidth)) {
+    contentView.width = computedWidth + 1; // some browser need one more pixel
   }
 };

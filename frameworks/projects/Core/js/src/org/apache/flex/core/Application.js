@@ -72,6 +72,8 @@ org.apache.flex.core.Application.prototype.start = function() {
   this.element = document.getElementsByTagName('body')[0];
   this.element.flexjs_wrapper = this;
   this.element.className = 'Application';
+  if (!this.element.style.overflow)
+    this.element.style.overflow = 'hidden';
 
   org.apache.flex.utils.MXMLDataInterpreter.generateMXMLInstances(this, null, this.MXMLDescriptor);
 
@@ -82,7 +84,11 @@ org.apache.flex.core.Application.prototype.start = function() {
 
   this.initialView.applicationModel = this.model;
   this.addElement(this.initialView);
-
+  if (!isNaN(this.initialView.percentWidth) || !isNaN(this.initialView.percentHeight)) {
+    this.element.style.height = window.innerHeight.toString() + 'px';
+    this.element.style.width = window.innerWidth.toString() + 'px';
+    this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+  }
   this.dispatchEvent('viewChanged');
 };
 

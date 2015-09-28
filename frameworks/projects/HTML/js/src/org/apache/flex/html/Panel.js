@@ -44,7 +44,7 @@ org.apache.flex.html.Panel.prototype.FLEXJS_CLASS_INFO =
 /**
  * @override
  * @param {Object} c Element being added.
- */
+ *
 org.apache.flex.html.Panel.prototype.addElement = function(c) {
   if (c == this.titleBar) {
     this.element.insertBefore(this.titleBar.element, this.contentArea);
@@ -54,17 +54,17 @@ org.apache.flex.html.Panel.prototype.addElement = function(c) {
   }
   else {
     this.contentArea.appendChild(c.element);
-    this.dispatchEvent('childrenAdded');
   }
   c.addedToParent();
-};
+  this.dispatchEvent('childrenAdded');
+};*/
 
 
 /**
  * @override
  * @param {Object} c The child element.
  * @param {number} index The index.
- */
+ *
 org.apache.flex.html.Panel.prototype.addElementAt =
     function(c, index) {
   var children = this.internalChildren();
@@ -77,14 +77,14 @@ org.apache.flex.html.Panel.prototype.addElementAt =
     c.addedToParent();
     this.dispatchEvent('childrenAdded');
   }
-};
+};*/
 
 
 /**
  * @override
  * @param {Object} c The child element.
  * @return {number} The index in parent.
- */
+ *
 org.apache.flex.html.Panel.prototype.getElementIndex =
     function(c) {
   var children = this.internalChildren();
@@ -95,17 +95,17 @@ org.apache.flex.html.Panel.prototype.getElementIndex =
       return i;
   }
   return -1;
-};
+};*/
 
 
 /**
  * @override
  * @param {Object} c The child element.
- */
+ *
 org.apache.flex.html.Panel.prototype.removeElement =
     function(c) {
   this.contentArea.removeChild(c.element);
-};
+};*/
 
 
 /**
@@ -113,38 +113,11 @@ org.apache.flex.html.Panel.prototype.removeElement =
  */
 org.apache.flex.html.Panel.prototype.createElement =
     function() {
-
-  this.element = document.createElement('div');
+  org.apache.flex.html.Panel.base(this, 'createElement');
   this.element.className = 'Panel';
   this.typeNames = 'Panel';
 
-  this.contentArea = document.createElement('div');
-  this.contentArea.flexjs_wrapper = this;
-  this.element.appendChild(this.contentArea);
-
-  this.positioner = this.element;
-  this.element.flexjs_wrapper = this;
-
   return this.element;
-};
-
-
-/**
- * @override
- */
-org.apache.flex.html.Panel.prototype.addedToParent =
-    function() {
-  org.apache.flex.html.Panel.base(this, 'addedToParent');
-};
-
-
-/**
- * @override
- * @return {Array} the HTML DOM element children.
- */
-org.apache.flex.html.Panel.prototype.internalChildren =
-    function() {
-  return this.contentArea.children;
 };
 
 

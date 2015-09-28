@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.apache.flex.examples.flexjs</groupId>
+    <artifactId>examples</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- Comment this in to build Flash output -->
+        <flexmojos-compiler-name>Falcon</flexmojos-compiler-name>
+        <!-- Comment this in to build HTML+JavaScript output -->
+        <!--flexmojos-compiler-name>FlexJS</flexmojos-compiler-name-->
+    </properties>
+
+    <modules>
+        <module>ChartExample</module>
+        <module>CordovaCameraExample</module>
+        <module>DataBindingExample</module>
+        <module>DataBindingExample_as</module>
+        <module>DataBindingExample_Flat</module>
+        <module>DataGridExample</module>
+        <module>DesktopMap</module>
+        <!--
+            "Ambiguous reference to MouseEvent" problem
+        -->
+        <!--module>FlexJSStore_jquery</module-->
+        <!--
+            "Ambiguous reference to MouseEvent" problem
+        -->
+        <!--module>FlexJSStore</module-->
+        <module>FlexWebsiteStatsViewer</module>
+        <module>MapSearch</module>
+        <!--
+            Implicit coercion of a value with static type Event to a possibly unrelated type Event.
+	        <basic:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+	    -->
+        <!--module>MobileTrader</module-->
+        <module>TodoListSampleApp</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>net.flexmojos.oss</groupId>
+                    <artifactId>flexmojos-maven-plugin</artifactId>
+                    <version>7.1.0-SNAPSHOT</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <compilerName>${flexmojos-compiler-name}</compilerName>
+                        <debug>true</debug>
+                        <defines>
+                            <property>
+                                <name>CONFIG::theme</name>
+                                <value>false</value>
+                            </property>
+                        </defines>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.flex.compiler</groupId>
+                            <artifactId>falcon-jx-compiler</artifactId>
+                            <version>0.5.0-SNAPSHOT</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flex.flexjs</groupId>
+            <artifactId>framework</artifactId>
+            <version>0.5.0-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.flash.framework</groupId>
+            <artifactId>playerglobal</artifactId>
+            <version>18.0</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <!--
+                This is where we get released stuff from.
+            -->
+        <repository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!--
+            This is where we get unreleased Apache stuff from
+        -->
+        <repository>
+            <id>apache-snapshots</id>
+            <url>http://repository.apache.org/content/groups/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!--
+            This is where we get unreleased Flexmojos stuff from.
+        -->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!--
+            This is where third party dependencies for flexmojos come from.
+        -->
+        <repository>
+            <id>sonatype-flexmojos-cache</id>
+            <url>https://repository.sonatype.org/content/groups/flexgroup/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <!--
+            This is where we get released stuff from.
+        -->
+        <pluginRepository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!--
+             This is where we get unreleased Apache stuff from
+        -->
+        <pluginRepository>
+            <id>apache-snapshots</id>
+            <url>http://repository.apache.org/content/groups/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!--
+            This is where we get unreleased Flexmojos stuff from.
+        -->
+        <pluginRepository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!--
+            This is where third party dependencies for flexmojos come from.
+        -->
+        <pluginRepository>
+            <id>sonatype-flexmojos-cache</id>
+            <url>https://repository.sonatype.org/content/groups/flexgroup/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

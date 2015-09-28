@@ -25,7 +25,7 @@ BarChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.BarChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
@@ -44,7 +44,7 @@ ColumnChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.ColumnChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
@@ -58,7 +58,7 @@ LineChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IConnectedItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.LineSegmentItemRenderer");
@@ -73,7 +73,7 @@ PieChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.PieChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.WedgeItemRenderer");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
@@ -85,7 +85,7 @@ StackedColumnChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.StackedColumnChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");
@@ -99,7 +99,7 @@ StackedBarChart
     IBeadView:  ClassReference("org.apache.flex.charts.beads.ChartView");			
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.charts.beads.layouts.StackedBarChartLayout");
-    IDataGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
+    IContentView: ClassReference("org.apache.flex.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.flex.charts.supportClasses.BoxItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.supportClasses.ChartAxisGroup");

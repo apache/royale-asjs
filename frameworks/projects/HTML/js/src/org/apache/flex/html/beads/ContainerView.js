@@ -16,21 +16,25 @@ goog.provide('org.apache.flex.html.beads.ContainerView');
 
 goog.require('org.apache.flex.core.BeadViewBase');
 goog.require('org.apache.flex.core.IBeadLayout');
-goog.require('org.apache.flex.core.ILayoutParent');
-goog.require('org.apache.flex.html.beads.models.ViewportModel');
-goog.require('org.apache.flex.html.supportClasses.Viewport');
+goog.require('org.apache.flex.core.ILayoutHost');
+goog.require('org.apache.flex.core.IViewport');
+goog.require('org.apache.flex.core.IViewportModel');
+goog.require('org.apache.flex.geom.Rectangle');
+goog.require('org.apache.flex.utils.CSSContainerUtils');
 
 
 
 /**
  * @constructor
  * @extends {org.apache.flex.core.BeadViewBase}
+ * @implements {org.apache.flex.core.ILayoutHost}
  */
 org.apache.flex.html.beads.ContainerView = function() {
   this.lastSelectedIndex = -1;
   org.apache.flex.html.beads.ContainerView.base(this, 'constructor');
 
   this.className = 'ContainerView';
+  this.runningLayout = false;
 };
 goog.inherits(
     org.apache.flex.html.beads.ContainerView,
@@ -45,7 +49,7 @@ goog.inherits(
 org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerView',
                 qName: 'org.apache.flex.html.beads.ContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutParent]
+    interfaces: [org.apache.flex.core.ILayoutHost]
     };
 
 
@@ -71,27 +75,49 @@ org.apache.flex.html.beads.ContainerView.prototype.contentArea_ = null;
 
 
 /**
- *
+ * @param {org.apache.flex.events.Event} event The event.
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.addOtherListeners = function() {
-  this._strand.addEventListener('childrenAdded',
-      goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('elementAdded',
-      goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('layoutNeeded',
-     goog.bind(this.changeHandler, this));
-  this._strand.addEventListener('itemsCreated',
-     goog.bind(this.changeHandler, this));
+    prototype.initCompleteHandler = function(event) {
+  if ((this.host.isHeightSizedToContent() || !isNaN(this.host.explicitHeight)) &&
+      (this.host.isWidthSizedToContent() || !isNaN(this.host.explicitWidth))) {
+         this.completeSetup();
+
+         var num = this.contentView.numElements;
+         // make sure there are children AND you are in the DOM before laying out.
+         // If not in the DOM, you'll get funky numbers
+         if (num > 0 && document.body.contains(this.host.element)) {
+           this.performLayout(event);
+         }
+   }
+   else {
+     this._strand.addEventListener('sizeChanged',
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+     this._strand.addEventListener('widthChanged',
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+     this._strand.addEventListener('heightChanged',
+       org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+   }
 };
 
 
 /**
- * @return {Object} The container's child content area.
+ * @param {org.apache.flex.events.Event} event The event.
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.createContentView = function() {
-  return this._strand;
+    prototype.deferredSizeHandler = function(event) {
+    this._strand.removeEventListener('sizeChanged',
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+    this._strand.removeEventListener('widthChanged',
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+    this._strand.removeEventListener('heightChanged',
+      org.apache.flex.utils.Language.closure(this.deferredSizeHandler, this, 'deferredSizeHandler'));
+    this.completeSetup();
+
+    var num = this.contentView.numElements;
+    if (num > 0) {
+      this.performLayout(event);
+    }
 };
 
 
@@ -100,9 +126,23 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.changeHandler = function(event) {
-  this.createViewport();
+  this.performLayout(event);
+};
 
-  this.performLayout(null);
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.childrenChangedHandler = function(event) {
+    var num = this.contentView.numElements;
+    for (var i = 0; i < num; i++) {
+      var child = this.contentView.getElementAt(i);
+      child.addEventListener('widthChanged',
+          org.apache.flex.utils.Language.closure(this.childResizeHandler, this, 'childResizeHandler'));
+      child.addEventListener('heightChanged',
+          org.apache.flex.utils.Language.closure(this.childResizeHandler, this, 'childResizeHandler'));
+    }
 };
 
 
@@ -111,8 +151,8 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.sizeChangeHandler = function(event) {
-  this.addOtherListeners();
-  this.changeHandler(event);
+  if (this.runningLayout) return;
+  this.performLayout(event);
 };
 
 
@@ -120,18 +160,19 @@ org.apache.flex.html.beads.ContainerView.
  * @param {org.apache.flex.events.Event} event The event.
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.performLayout = function(event) {
-  if (this.layout_ == null) {
-    this.layout_ = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
-    if (this.layout_ == null) {
-      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
-      this.layout_ = new m3();
-      this._strand.addBead(this.layout_);
-    }
-  }
-  this.layout_.layout();
+    prototype.resizeHandler = function(event) {
+  if (this.runningLayout) return;
+  this.performLayout(event);
+};
 
-  this.adjustSizeAfterLayout();
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+ org.apache.flex.html.beads.ContainerView.
+    prototype.childResizeHandler = function(event) {
+  if (this.runningLayout) return;
+  this.performLayout(event);
 };
 
 
@@ -139,22 +180,34 @@ org.apache.flex.html.beads.ContainerView.
  *
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.adjustSizeAfterLayout = function() {
-  var max = this.layout_.maxWidth;
-  if (isNaN(this.resizableView.explicitWidth) && !isNaN(max))
-    this.resizableView.setWidth(max, true);
-  max = this.layout_.maxHeight;
-  if (isNaN(this.resizableView.explicitHeight) && !isNaN(max))
-    this.resizableView.setHeight(max, true);
+    prototype.completeSetup = function() {
+  this.createViewport();
+
+  this._strand.addEventListener('childrenAdded',
+      org.apache.flex.utils.Language.closure(this.childrenChangedHandler, this, 'childrenChangedHandler'));
+  this.childrenChangedHandler(null);
+  this._strand.addEventListener('childrenAdded',
+      org.apache.flex.utils.Language.closure(this.changeHandler, this, 'changeHandler'));
+  this._strand.addEventListener('childrenRemoved',
+      org.apache.flex.utils.Language.closure(this.changeHandler, this, 'changeHandler'));
+  this._strand.addEventListener('layoutNeeded',
+     org.apache.flex.utils.Language.closure(this.performLayout, this, 'performLayout'));
+  this._strand.addEventListener('widthChanged',
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'resizeHandler'));
+  this._strand.addEventListener('heightChanged',
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'resizeHandler'));
+  this._strand.addEventListener('sizeChanged',
+     org.apache.flex.utils.Language.closure(this.resizeHandler, this, 'resizeHandler'));
 };
 
 
 /**
- *
+ * Calculate the space taken up by non-content children like a TItleBar in a Panel.
+ * @return {org.apache.flex.geom.Rectangle} The space.
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.determineContentSizeFromChildren = function() {
-  // this function has no meaning in the HTML world
+    prototype.getChromeMetrics = function() {
+  return new org.apache.flex.geom.Rectangle(0, 0, 0, 0);
 };
 
 
@@ -163,34 +216,154 @@ org.apache.flex.html.beads.ContainerView.
  */
 org.apache.flex.html.beads.ContainerView.
     prototype.createViewport = function() {
-  if (this.viewportModel_ == null) {
-    this.viewportModel_ = new org.apache.flex.html.beads.models.ViewportModel();
-    this.viewportModel_.contentArea = this.contentView;
-    this.viewportModel_.contentIsHost = true;
-    this.viewportModel_.contentWidth = this._strand.width;
-    this.viewportModel_.contentHeight = this._strand.height;
-    this.viewportModel_.contentX = 0;
-    this.viewportModel_.contentY = 0;
+  this.viewportModel = this._strand.getBeadByType(org.apache.flex.core.IViewportModel);
+  if (this.viewportModel == null) {
+    var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iViewportModel');
+    this.viewportModel = new m3();
+    this._strand.addBead(this.viewportModel);
   }
-  if (this.viewport_ == null) {
-    this.viewport_ = new org.apache.flex.html.supportClasses.Viewport();
-    this.viewport_.model = this.viewportModel_;
-    this._strand.addBead(this.viewport_);
+  this.viewport = this._strand.getBeadByType(org.apache.flex.core.IViewport);
+  if (this.viewport == null) {
+    var m2 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iViewport');
+    this.viewport = new m2();
+    this._strand.addBead(this.viewport);
   }
-  this.resizeViewport();
 };
 
 
 /**
- * Adjusts the size of the viewportModel's viewport parameters to match those
- * of the strand.
+ *
  */
 org.apache.flex.html.beads.ContainerView.
-    prototype.resizeViewport = function() {
-  this.viewportModel_.viewportHeight = this._strand.height;
-  this.viewportModel_.viewportWidth = this._strand.width;
-  this.viewportModel_.viewportX = 0;
-  this.viewportModel_.viewportY = 0;
+    prototype.layoutViewBeforeContentLayout = function() {
+  var host = this._strand;
+  var vm = this.viewportModel;
+  vm.borderMetrics = org.apache.flex.utils.CSSContainerUtils.getBorderMetrics(host);
+  vm.chromeMetrics = this.getChromeMetrics();
+  this.viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
+                            vm.borderMetrics.top + vm.chromeMetrics.top);
+  this.viewport.layoutViewportBeforeContentLayout(
+      !host.isWidthSizedToContent() ?
+          host.width - vm.borderMetrics.left - vm.borderMetrics.right -
+                     vm.chromeMetrics.left - vm.chromeMetrics.right - 1 : NaN,
+      !host.isHeightSizedToContent() ?
+          host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
+                     vm.chromeMetrics.top - vm.chromeMetrics.bottom - 1 : NaN);
+};
+
+
+/**
+ * @param {org.apache.flex.events.Event} event The event.
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.performLayout = function(event) {
+  this.runningLayout = true;
+  this.layoutViewBeforeContentLayout();
+  if (this.layout == null) {
+    this.layout = this._strand.getBeadByType(org.apache.flex.core.IBeadLayout);
+    if (this.layout == null) {
+      var m3 = org.apache.flex.core.ValuesManager.valuesImpl.getValue(this._strand, 'iBeadLayout');
+      this.layout = new m3();
+      this._strand.addBead(this.layout);
+    }
+  }
+  this.layout.layout();
+
+  this.layoutViewAfterContentLayout();
+  this.runningLayout = false;
+};
+
+
+/**
+ *
+ */
+org.apache.flex.html.beads.ContainerView.
+    prototype.layoutViewAfterContentLayout = function() {
+  var host = this._strand;
+
+  var viewportSize = this.viewport.layoutViewportAfterContentLayout();
+  var vm = this.viewportModel;
+
+  if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+    host.setWidthAndHeight(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
+                               vm.chromeMetrics.left + vm.chromeMetrics.right + 1,
+                           viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom + 1, false);
+  }
+  else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+    host.setHeight(viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
+                               vm.chromeMetrics.top + vm.chromeMetrics.bottom + 1, false);
+  }
+  else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent()) {
+    host.setWidth(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
+                               vm.chromeMetrics.left + vm.chromeMetrics.right + 1, false);
+  }
+};
+
+
+/**
+ * @expose
+ * @return {number} The count of the elements in this object.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.numElements =
+  function() {
+  return this.contentView.numElements();
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being added.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.addElement =
+  function(c, opt_dispatchEvent) {
+  this.contentView.addElement(c, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being added.
+ * @param {number} index The index of the new element.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.addElementAt =
+  function(c, index, opt_dispatchEvent) {
+  this.contentView.addElementAt(c, index, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element being removed.
+ * @param {boolean=} opt_dispatchEvent If true and event is dispatched.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.removeElement =
+  function(c, opt_dispatchEvent) {
+  this.contentView.removeElement(c, opt_dispatchEvent);
+};
+
+
+/**
+ * @expose
+ * @param {Object} c The element whose index is sought.
+ * @return {number} The index of the given element.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.getElementIndex =
+  function(c) {
+  return this.contentView.getElementIndex(c);
+};
+
+
+/**
+ * @expose
+ * @param {number} index The index of the element.
+ * @return {Object} The element at the given index.
+ */
+org.apache.flex.html.beads.ContainerView.prototype.getElementAt =
+  function(index) {
+  return this.contentView.getElementAt(index);
 };
 
 
@@ -199,7 +372,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
     contentView: {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
-            return this.contentArea_;
+            return this.viewport.contentView;
         }
     },
     /** @export */
@@ -208,6 +381,7 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         get: function() {
             return this._strand;
         },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
         }
     },
@@ -216,21 +390,10 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         set: function(value) {
             org.apache.flex.utils.Language.superSetter(org.apache.flex.html.beads.ContainerView, this, 'strand', value);
-            this.contentArea_ = this.createContentView();
-            if (this._strand.isWidthSizedToContent() &&
-                this._strand.isHeightSizedToContent())
-              this.addOtherListeners();
-            else {
-              this._strand.addEventListener('heightChanged',
-                  goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('widthChanged',
-                  goog.bind(this.changeHandler, this));
-              this._strand.addEventListener('sizeChanged',
-                  goog.bind(this.sizeChangeHandler, this));
-              if (!isNaN(this._strand.explicitWidth) &&
-                  !isNaN(this._strand.explicitHeight))
-                this.addOtherListeners();
-            }
+            this.createViewport();
+            this.host.strandChildren.addElement(this.viewport.contentView, false);
+            this._strand.addEventListener('initComplete',
+                  org.apache.flex.utils.Language.closure(this.initCompleteHandler, this, 'initCompleteHandler'));
          }
     },
     /** @export */
@@ -253,6 +416,17 @@ Object.defineProperties(org.apache.flex.html.beads.ContainerView.prototype, {
         /** @this {org.apache.flex.html.beads.ContainerView} */
         get: function() {
             return this.viewportModel_;
+        }
+    },
+    /** @export */
+    layout: {
+        /** @this {org.apache.flex.html.beads.ContainerView} */
+        set: function(value) {
+            this.layout_ = value;
+        },
+        /** @this {org.apache.flex.html.beads.ContainerView} */
+        get: function() {
+            return this.layout_;
         }
     }
 

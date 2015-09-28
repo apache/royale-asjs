@@ -15,6 +15,7 @@
 goog.provide('org.apache.flex.html.beads.layouts.ButtonBarLayout');
 
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.html.beads.ListView');
 
 
@@ -74,20 +75,21 @@ Object.defineProperties(org.apache.flex.html.beads.layouts.ButtonBarLayout.proto
 org.apache.flex.html.beads.layouts.ButtonBarLayout.
     prototype.layout = function() {
 
-  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutParent);
+  var layoutParent = this.strand_.getBeadByType(org.apache.flex.core.ILayoutHost);
   var contentView = layoutParent.contentView;
   var itemRendererParent = contentView;
+  var viewportModel = layoutParent.viewportModel;
 
   var n = itemRendererParent.numElements;
   var xpos = 0;
-  var useWidth = this.strand_.width / n;
-  var useHeight = this.strand_.height;
+  var useWidth = contentView.width / n;
+  var useHeight = contentView.height;
 
   for (var i = 0; i < n; i++)
   {
     var ir = itemRendererParent.getElementAt(i);
     ir.height = useHeight;
-    ir.positioner.internalDisplay = 'inline-block';
+    ir.internalDisplay = 'inline-block';
     ir.positioner.style['vertical-align'] = 'middle';
     ir.positioner.style['text-align'] = 'center';
     ir.positioner.style['left-margin'] = 'auto';
@@ -95,8 +97,8 @@ org.apache.flex.html.beads.layouts.ButtonBarLayout.
     ir.positioner.style['top-margin'] = 'auto';
     ir.positioner.style['bottom-margin'] = 'auto';
 
-    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i] - 2;
-    else ir.width = useWidth - 2;
+    if (this.buttonWidths_ && !isNaN(this.buttonWidths_[i])) ir.width = this.buttonWidths_[i];
+    else ir.width = useWidth;
 
     if (ir.positioner.style.display == 'none')
       ir.positioner.lastDisplay_ = 'inline-block';

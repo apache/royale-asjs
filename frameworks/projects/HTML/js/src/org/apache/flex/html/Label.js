@@ -53,6 +53,7 @@ Object.defineProperties(org.apache.flex.html.Label.prototype, {
         /** @this {org.apache.flex.html.Label} */
         set: function(value) {
             this.element.innerHTML = value;
+            this.dispatchEvent('textChange');
         }
     },
     /** @export */
@@ -64,6 +65,7 @@ Object.defineProperties(org.apache.flex.html.Label.prototype, {
         /** @this {org.apache.flex.html.Label} */
         set: function(value) {
             this.element.innerHTML = value;
+            this.dispatchEvent('htmlChange');
         }
     }
 });

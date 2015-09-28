@@ -19,7 +19,7 @@
 package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -132,7 +132,7 @@ package org.apache.flex.html.beads.layouts
 		{
 			// this is where the layout is calculated
 			var host:UIBase = _strand as UIBase;
-			var p:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
+			var p:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
 			var area:UIBase = p.contentView as UIBase;
 			
 			var xpos:Number = 0;

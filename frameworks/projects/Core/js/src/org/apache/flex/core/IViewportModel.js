@@ -22,7 +22,7 @@
 
 goog.provide('org.apache.flex.core.IViewportModel');
 
-goog.require('org.apache.flex.core.IBeadModel');
+goog.require('org.apache.flex.core.IBead');
 
 
 
@@ -34,70 +34,6 @@ org.apache.flex.core.IViewportModel = function() {
 };
 
 
-Object.defineProperties(org.apache.flex.core.IViewportModel.prototype, {
-    /** @export */
-    contentIsHost: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    contentArea: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    viewportX: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    viewportY: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    viewportWidth: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    viewportHeight: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    contentX: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    contentY: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    contentWidth: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    contentHeight: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    verticalScrollPosition: {
-        set: function(value) {},
-        get: function() {}
-    },
-    /** @export */
-    horizontalScrollPosition: {
-        set: function(value) {},
-        get: function() {}
-    }
-});
-
-
 /**
  * Metadata
  *
@@ -105,4 +41,4 @@ Object.defineProperties(org.apache.flex.core.IViewportModel.prototype, {
  */
 org.apache.flex.core.IViewportModel.prototype.FLEXJS_CLASS_INFO =
 { names: [{ name: 'IViewportModel', qName: 'org.apache.flex.core.IViewportModel'}],
-  interfaces: [org.apache.flex.core.IBeadModel] };
+  interfaces: [org.apache.flex.core.IBead] };

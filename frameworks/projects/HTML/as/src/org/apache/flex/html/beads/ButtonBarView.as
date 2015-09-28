@@ -23,7 +23,6 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
@@ -70,18 +69,6 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-		}
-		
-		override protected function resizeHandler(event:Event):void
-		{
-			// the ButtonBar is always matched to its size so it is
-			// important that the contentWidth/Height match the host's
-			// width/height
-						
-			viewportModel.contentWidth = UIBase(host).width;
-			viewportModel.contentHeight = UIBase(host).height;
-			
-			super.resizeHandler(event);
-		}
+		}		
 	}
 }

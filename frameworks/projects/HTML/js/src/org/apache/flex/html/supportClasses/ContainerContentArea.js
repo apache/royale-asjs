@@ -47,6 +47,7 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.FLEXJS_CLASS_
 org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement =
     function() {
   this.element = document.createElement('div');
+  this.element.className = 'ContainerContentArea';
 
   this.positioner = this.element;
   // absolute positioned children need a non-null
@@ -54,7 +55,26 @@ org.apache.flex.html.supportClasses.ContainerContentArea.prototype.createElement
   // get set to 'absolute' if the container is
   // also absolutely positioned
   this.positioner.style.position = 'relative';
+  this.positioner.style.backgroundColor = 'transparent';
+  this.positioner.style.paddingLeft = 'inherit';
+  this.positioner.style.paddingRight = 'inherit';
+  this.positioner.style.paddingTop = 'inherit';
+  this.positioner.style.paddingBottom = 'inherit';
+  this.positioner.style.padding = 'inherit';
   this.element.flexjs_wrapper = this;
 
+  this.addEventListener('layoutNeeded',
+      goog.bind(this.forwardEventHandler_, this));
   return this.element;
+};
+
+
+/**
+ * @private
+ * @param {Object} e The Event.;
+ */
+org.apache.flex.html.supportClasses.ContainerContentArea.prototype.forwardEventHandler_ =
+    function(e) {
+  if (this.parent)
+    this.parent.dispatchEvent(e);
 };

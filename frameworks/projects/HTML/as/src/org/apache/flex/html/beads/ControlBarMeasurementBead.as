@@ -62,10 +62,10 @@ package org.apache.flex.html.beads
 			// since it would know the arrangement of the items and how far apart they are and if
 			// there are margins and paddings and gaps involved.
 			var mwidth:Number = 0;
-			var children:Array = Container(_strand).getChildren();
-			var n:int = children.length;
+            var container:Container = Container(_strand);
+			var n:int = container.numElements;
 			for(var i:int=0; i < n; i++) {
-				var child:IUIBase = children[i] as IUIBase;
+				var child:IUIBase = container.getElementAt(i) as IUIBase;
 				if( child == null ) continue;
 				var childMeasure:IMeasurementBead = child.getBeadByType(IMeasurementBead) as IMeasurementBead;
                 if (childMeasure)

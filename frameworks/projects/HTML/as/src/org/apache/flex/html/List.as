@@ -20,18 +20,38 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IFactory;
 	
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.core.ContainerBaseStrandChildren;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.ListBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.models.ListPresentationModel;
 	
+	/**
+	 *  Indicates that the initialization of the list is complete.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	
+	/**
+	 * The change event is dispatched whenever the list's selection changes.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
     [Event(name="change", type="org.apache.flex.events.Event")]
     
 	/**
@@ -51,7 +71,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends ContainerBase
+	public class List extends ListBase
 	{
 		/**
 		 *  constructor.
@@ -226,7 +246,8 @@ package org.apache.flex.html
 				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				addBead(itemRendererFactory);
 			}
-//			IEventDispatcher(this).dispatchEvent(new Event("layoutNeeded"));
+			
+			dispatchEvent(new Event("initComplete"));
 		}
         
 	}

@@ -140,12 +140,6 @@
 			<zh_CN>拷贝 FalconJX SDK 文件</zh_CN>
 			<zh_TW>拷貝 FalconJX SDK 檔案</zh_TW>
 		</step>
-		<step id="goog-download" property="do.goog.install">
-			<el_GR>Λήψη Google Closure Library</el_GR>
-            <en_US>Google Closure Library jar (Required)</en_US>
-            <zh_CN>Google Closure Library jar (必须的)</zh_CN>
-            <zh_TW>Google Closure Library jar (必須的)</zh_TW>
-        </step>
         <step id="air-download" property="do.air.install">
 			<el_GR>Αποσυμπίεση του Adobe AIR Runtime Kit</el_GR>
 			<en_US>Adobe AIR SDK (Required)</en_US>
@@ -158,7 +152,7 @@
 			<zh_CN>Adobe Flash Player playerglobal.swc (必须的)</zh_CN>
 			<zh_TW>Adobe Flash Player playerglobal.swc (必須的)</zh_TW>
 		</step>
-		<step id="swfobject-download" property="do.swfobject.install">
+		<step id="swfobject-download">
 			<el_GR>SWFObject (Απαιτούμενο)</el_GR>
 			<en_US>SWFObject (Required)</en_US>
 			<zh_CN>SWFObject (必须的)</zh_CN>
@@ -237,28 +231,6 @@
 			<label>Adobe Flash Player playerglobal.swc (必須的)</label>
 			<message>Adobe SDK 授權合約適用於 Adobe Flash Player 的 playerglobal.swc 檔案. 您想要安裝 Adobe Flash Player 的 playerglobal.swc 檔案嗎?</message>
 			<license>Adobe Flex SDK 授權合約</license>
-		</zh_TW>
-	</component>
-	<component id="SWFObject (Required)" required="true" property="do.swfobject.install">
-		<el_GR>
-			<label>SWFObject (Απαιτούμενο)</label>
-			<message>Για το SWFObject ισχύει η συμφωνία χρήσης του MIT License (MIT). Θέλετε να εγκαταστήσετε το SWFObject;</message>
-		</el_GR>
-		<en_US>
-			<label>SWFObject (Required)</label>
-			<message>The MIT License (MIT) applies to the SWFObject utility.  Do you want to install the SWFObject utility?</message>
-			<license>MIT License</license>
-			<licenseURL>http://opensource.org/licenses/mit-license.php</licenseURL>
-		</en_US>
-		<zh_CN>
-			<label>SWFObject (必须的)</label>
-			<message>MIT 许可协议适用于 SWFObject 实用程序. 您想要安装 SWFObject 实用程序吗?</message>
-			<license>MIT 许可协议</license>
-		</zh_CN>
-		<zh_TW>
-			<label>SWFObject (必須的)</label>
-			<message>MIT 授權合約適用於 SWFObject 實用程式. 您想要安裝 SWFObject 實用程式嗎?</message>
-			<license>MIT 授權合約</license>
 		</zh_TW>
 	</component>
 </config>

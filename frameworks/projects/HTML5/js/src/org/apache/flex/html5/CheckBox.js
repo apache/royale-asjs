@@ -44,6 +44,7 @@ org.apache.flex.html5.CheckBox.prototype.createElement =
   this.element.appendChild(document.createTextNode('check box'));
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   return this.element;
 };

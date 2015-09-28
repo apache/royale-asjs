@@ -65,9 +65,8 @@ org.apache.flex.html.ComboBox.prototype.createElement =
   goog.events.listen(button, 'click', goog.bind(this.buttonClicked, this));
   this.element.appendChild(button);
 
-  this.element.style.position = 'relative';
-
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   // add a click handler so that a click outside of the combo box can
   // dismiss the pop-up should it be visible.

@@ -21,17 +21,19 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
+	import org.apache.flex.html.beads.ButtonBarView;
 	
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
@@ -98,9 +100,10 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function layout():Boolean
 		{
-			var layoutParent:ILayoutParent = _strand.getBeadByType(ILayoutParent) as ILayoutParent;
-			var contentView:IParent = layoutParent.contentView;
+			var layoutParent:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
+			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
+			var viewportModel:IViewportModel = (layoutParent as ButtonBarView).viewportModel;
 			
 			var n:int = contentView.numElements;
 			var realN:int = n;
@@ -112,8 +115,8 @@ package org.apache.flex.html.beads.layouts
 			}
 			
 			var xpos:Number = 0;
-			var useWidth:Number = UIBase(contentView).width / realN;
-			var useHeight:Number = UIBase(contentView).height;
+			var useWidth:Number = contentView.width / realN;
+			var useHeight:Number = contentView.height;
 			
 			for (var i:int=0; i < n; i++)
 			{
@@ -131,6 +134,9 @@ package org.apache.flex.html.beads.layouts
 				}
 				xpos += UIBase(ir).width;
 			}
+			
+			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
+			
             return true;
 		}
 	}

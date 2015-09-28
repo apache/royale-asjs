@@ -34,15 +34,6 @@ org.apache.flex.core.IViewport = function() {
 };
 
 
-Object.defineProperties(org.apache.flex.core.IViewport.prototype, {
-    /** @export */
-    model: {
-        set: function(value) {},
-        get: function() {}
-    }
-});
-
-
 /**
  * Metadata
  *

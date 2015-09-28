@@ -92,10 +92,10 @@ org.apache.flex.utils.Language._int = function(value) {
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
-  if (!leftOperand)
+  if (leftOperand == null)
     return false;
 
-  if (leftOperand && !rightOperand) {
+  if (leftOperand && rightOperand == null) {
     return false;
   }
 
@@ -292,4 +292,25 @@ org.apache.flex.utils.Language.superSetter = function(clazz, pthis, prop, value)
     superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
   }
   superdesc.set.apply(pthis, [value]);
+};
+
+
+/**
+ * caches closures and returns the one closure
+ *
+ * @export
+ * @param {Function} fn The method on the instance.
+ * @param {Object} object The instance.
+ * @param {string} boundMethodName The name to use to cache the closure.
+ * @return {Function} The closure.
+ */
+org.apache.flex.utils.Language.closure = function(fn, object, boundMethodName) {
+  if (object.hasOwnProperty(boundMethodName)) {
+    return object[boundMethodName];
+  }
+  var boundMethod = goog.bind(fn, object);
+  Object.defineProperty(object, boundMethodName, {
+    value: boundMethod
+  });
+  return boundMethod;
 };

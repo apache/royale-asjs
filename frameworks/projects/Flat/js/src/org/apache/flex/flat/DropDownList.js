@@ -16,6 +16,8 @@ goog.provide('org.apache.flex.flat.DropDownList');
 
 goog.require('org.apache.flex.core.ListBase');
 goog.require('org.apache.flex.html.beads.models.ArraySelectionModel');
+goog.require('org.apache.flex.utils.CSSUtils');
+goog.require('org.apache.flex.utils.Language');
 
 
 
@@ -46,21 +48,26 @@ org.apache.flex.flat.DropDownList.prototype.FLEXJS_CLASS_INFO =
  */
 org.apache.flex.flat.DropDownList.prototype.createElement =
     function() {
-  var button, input;
+  var button, caret;
 
   this.element = document.createElement('div');
 
   this.button = button = document.createElement('button');
   button.className = 'dropdown-toggle-open-btn';
+  if (this.className)
+    button.className += ' ' + this.className;
   goog.events.listen(button, 'click', goog.bind(this.buttonClicked, this));
   this.element.appendChild(button);
 
-  var caret = document.createElement('span');
+  this.label = document.createElement('span');
+  this.label.className = 'dropdown-label';
+  button.appendChild(this.label);
+  this.caret = caret = document.createElement('span');
+  button.appendChild(caret);
   caret.className = 'dropdown-caret';
 
-  this.element.style.position = 'relative';
-
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   // add a click handler so that a click outside of the combo box can
   // dismiss the pop-up should it be visible.
@@ -69,6 +76,7 @@ org.apache.flex.flat.DropDownList.prototype.createElement =
 
   button.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;
+  this.label.flexjs_wrapper = this;
   caret.flexjs_wrapper = this;
 
   return this.element;
@@ -149,17 +157,23 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
   */
 
   this.menu = select = document.createElement('ul');
-  select.style.width = width.toString() + 'px';
+  var el = /** @type {Element} */ (this.element);
+  var cv = window.getComputedStyle(el);
+  select.style.width = cv.width;
   goog.events.listen(select, 'click', goog.bind(this.selectChanged, this));
   select.className = 'dropdown-menu';
 
+  var lf = this.labelField;
   dp = /** @type {Array.<string>} */ (this.dataProvider);
   n = dp.length;
   for (i = 0; i < n; i++) {
     opt = document.createElement('li');
     opt.style.backgroundColor = 'transparent';
     var ir = document.createElement('a');
-    ir.innerHTML = dp[i];
+    if (lf)
+      ir.innerHTML = dp[i][lf];
+    else
+      ir.innerHTML = dp[i];
     ir.id = i.toString();
     if (i == this.selectedIndex)
       ir.className = 'dropdown-menu-item-renderer-selected';
@@ -173,7 +187,48 @@ org.apache.flex.flat.DropDownList.prototype.buttonClicked =
 };
 
 
+/**
+ * @override
+ */
+org.apache.flex.flat.DropDownList.prototype.addedToParent = function() {
+  org.apache.flex.flat.DropDownList.base(this, 'addedToParent');
+  var el = /** @type {Element} */ (this.button);
+  var cv = window.getComputedStyle(el);
+  var s = /** @type {string} */ (cv.paddingLeft);
+  var pl = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.paddingRight);
+  var pr = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.borderLeftWidth);
+  var bl = org.apache.flex.utils.CSSUtils.toNumber(s);
+  s = /** @type {string} */ (cv.borderRightWidth);
+  var br = org.apache.flex.utils.CSSUtils.toNumber(s);
+  var caretWidth = this.caret.offsetWidth;
+  // 10 seems to factor spacing between span and extra FF padding?
+  var fluff = pl + pr + bl + br + caretWidth + 1 + 10;
+  var labelWidth = this.width - fluff;
+  var strWidth = labelWidth.toString();
+  strWidth += 'px';
+  this.label.style.width = strWidth;
+};
+
+
 Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
+    /** @export */
+    className: {
+        /** @this {org.apache.flex.flat.DropDownList} */
+        get: function() {
+            return org.apache.flex.utils.Language.superGetter(org.apache.flex.flat.DropDownList, this, 'className');
+        },
+        /** @this {org.apache.flex.flat.DropDownList} */
+        set: function(value) {
+            org.apache.flex.utils.Language.superSetter(org.apache.flex.flat.DropDownList, this, 'className', value);
+            if (this.button) {
+              this.button.className = this.typeNames ?
+                      value + ' ' + 'dropdown-toggle-open-btn' + ' ' + this.typeNames :
+                      value + ' ' + 'dropdown-toggle-open-btn';
+            }
+        }
+    },
     dataProvider: {
         /** @this {org.apache.flex.flat.DropDownList} */
         get: function() {
@@ -184,6 +239,20 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
             var dp, i, n, opt;
 
             this.model.dataProvider = value;
+        }
+    },
+    /** @export */
+    labelField: {
+        // TODO: (aharui) copied from ListBase because you
+        // can't just override the setter in a defineProps
+        // structure.
+        /** @this {org.apache.flex.flat.DropDownList} */
+        get: function() {
+            return this.model.labelField;
+        },
+        /** @this {org.apache.flex.flat.DropDownList} */
+        set: function(value) {
+            this.model.labelField = value;
         }
     },
     /** @export */
@@ -198,7 +267,11 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
         /** @this {org.apache.flex.flat.DropDownList} */
         set: function(value) {
             this.model.selectedIndex = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+            var lf = this.labelField;
+            if (lf)
+              this.label.innerHTML = this.selectedItem[lf];
+            else
+              this.label.innerHTML = this.selectedItem;
         }
     },
     /** @export */
@@ -213,7 +286,11 @@ Object.defineProperties(org.apache.flex.flat.DropDownList.prototype, {
         /** @this {org.apache.flex.flat.DropDownList} */
         set: function(value) {
             this.model.selectedItem = value;
-            this.button.innerHTML = this.selectedItem + '<span class="dropdown-caret"/>';
+            var lf = this.labelField;
+            if (lf)
+              this.label.innerHTML = this.selectedItem[lf];
+            else
+              this.label.innerHTML = this.selectedItem;
          }
     }
 });

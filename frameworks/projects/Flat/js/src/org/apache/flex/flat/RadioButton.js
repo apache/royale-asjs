@@ -76,6 +76,7 @@ org.apache.flex.flat.RadioButton.prototype.createElement =
   this.typeNames = 'RadioButton';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.input.flexjs_wrapper = this;
   this.radio.flexjs_wrapper = this;
   this.element.flexjs_wrapper = this;

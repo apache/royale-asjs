@@ -48,6 +48,7 @@ org.apache.flex.html.Button.prototype.createElement =
   this.element.setAttribute('type', 'button');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {

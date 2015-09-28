@@ -20,6 +20,7 @@ package org.apache.flex.mobile.models
 {
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.mobile.chrome.NavigationBar;
@@ -59,6 +60,11 @@ package org.apache.flex.mobile.models
 		{
 			_strand = value;
 		}
+		
+		public var contentX:Number = 0;
+		public var contentY:Number = 0;
+		public var contentWidth:Number = 0;
+		public var contentHeight:Number = 0;
 		
 		private var _views:Array;
 		

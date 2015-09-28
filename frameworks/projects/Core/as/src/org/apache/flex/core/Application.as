@@ -189,17 +189,26 @@ package org.apache.flex.core
             if (initialView)
             {
                 initialView.applicationModel =  model;
-                if (isNaN(initialView.explicitWidth))
-                    initialView.width = stage.stageWidth;
-                if (isNaN(initialView.explicitHeight))
-                    initialView.height = stage.stageHeight;
         	    this.addElement(initialView);
+                // if someone has installed a resize listener, fake an event to run it now
+                if (stage.hasEventListener("resize"))
+                    stage.dispatchEvent(new flash.events.Event("resize"));
+                else
+                {
+                    // otherwise, size once like this
+                    if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
+                        initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
+                    else if (!isNaN(initialView.percentWidth))
+                        initialView.setWidth(stage.stageWidth);
+                    else if (!isNaN(initialView.percentHeight))
+                        initialView.setHeight(stage.stageHeight);
+                }
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {
                     var backgroundColor:uint = ValuesManager.valuesImpl.convertColor(bgColor);
                     graphics.beginFill(backgroundColor);
-                    graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
+                    graphics.drawRect(0, 0, initialView.width, initialView.height);
                     graphics.endFill();
                 }
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
@@ -236,7 +245,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var initialView:Object;
+        [Bindable("__NoChangeEvent__")]
+        public var initialView:ViewBase;
 
         /**
          *  The data model (for the initial view).
@@ -246,6 +256,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        [Bindable("__NoChangeEvent__")]
         COMPILE::AS3
         public var model:IBead;
 

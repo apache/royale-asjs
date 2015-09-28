@@ -21,13 +21,16 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSUtils;
 	import org.apache.flex.utils.dbg.DOMPathUtil;
 	
 	/**
@@ -75,9 +78,10 @@ package org.apache.flex.html.beads.layouts
 		
 		public function layout():Boolean
 		{
-			var layoutParent:ILayoutParent = host.getBeadByType(ILayoutParent) as ILayoutParent;
+			var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
 			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
-
+            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+            
 			var n:int = contentView.numElements;
 			var hasHorizontalFlex:Boolean;
 			var hostSizedToContent:Boolean = host.isWidthSizedToContent();
@@ -89,63 +93,41 @@ package org.apache.flex.html.beads.layouts
 			var marginBottom:Object;
 			var margin:Object;
 			var maxWidth:Number = 0;
+            var cssValue:*;
 			// asking for contentView.width can result in infinite loop if host isn't sized already
 			var w:Number = hostSizedToContent ? 0 : contentView.width;
+            var h:Number = contentView.height;
 			
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				if (child == null || !child.visible) continue;
 				ilc = child as ILayoutChild;
-				var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
-				var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
+				var left:Number = NaN;
+                cssValue = ValuesManager.valuesImpl.getValue(child, "left");
+                if (cssValue !== undefined)
+                    left = CSSUtils.toNumber(cssValue);
+                var right:Number = NaN;
+                cssValue = ValuesManager.valuesImpl.getValue(child, "right");
+                if (cssValue !== undefined)
+                    right = CSSUtils.toNumber(cssValue);
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-				if (margin is Array)
-				{
-					if (margin.length == 1)
-						marginLeft = marginTop = marginRight = marginBottom = margin[0];
-					else if (margin.length <= 3)
-					{
-						marginLeft = marginRight = margin[1];
-						marginTop = marginBottom = margin[0];
-					}
-					else if (margin.length == 4)
-					{
-						marginLeft = margin[3];
-						marginBottom = margin[2];
-						marginRight = margin[1];
-						marginTop = margin[0];					
-					}
-				}
-				else if (margin == null)
-				{
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				}
-				else
-				{
-					marginLeft = marginTop = marginBottom = marginRight = margin;
-				}
-				var ml:Number;
-				var mr:Number;
-				var mt:Number;
-				var mb:Number;
+                marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+                marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+                marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+                marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+				var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, w);
+				var mr:Number = CSSUtils.getRightValue(marginRight, margin, w);
+				var mt:Number = CSSUtils.getTopValue(marginTop, margin, h);
+				var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, h);
 				var lastmb:Number;
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
 				var yy:Number;
 				if (i == 0)
                 {
                     if (ilc)
-                        ilc.setY(mt);
+                        ilc.setY(mt + padding.top);
                     else
-    					child.y = mt;
+    					child.y = mt + padding.top;
                 }
 				else
                 {
@@ -200,7 +182,8 @@ package org.apache.flex.html.beads.layouts
 				{
 					// if host is sized by parent,
 					// we can position and size children horizontally now
-					setPositionAndWidth(child, left, ml, right, mr, w);
+					setPositionAndWidth(child, left, ml, padding.left, 
+                        right, mr, padding.right, w);
 				}
 				else
 				{
@@ -225,8 +208,8 @@ package org.apache.flex.html.beads.layouts
 					child = contentView.getElementAt(i) as IUIBase;
 					if (child == null || !child.visible) continue;
 					var obj:Object = flexibleHorizontalMargins[i];
-					setPositionAndWidth(child, obj.left, obj.marginLeft,
-						obj.right, obj.marginRight, maxWidth);
+					setPositionAndWidth(child, obj.left, obj.marginLeft, padding.left,
+						obj.right, obj.marginRight, padding.right, maxWidth);
 				}
 			}
 			if (hasHorizontalFlex)
@@ -244,14 +227,14 @@ package org.apache.flex.html.beads.layouts
                             if (obj.marginLeft == "auto" && obj.marginRight == "auto")
                                 ilc.setX(maxWidth - child.width / 2);
                             else if (obj.marginLeft == "auto")
-                                ilc.setX(maxWidth - child.width - obj.marginRight);                            
+                                ilc.setX(maxWidth - child.width - obj.marginRight - padding.right);                            
                         }
                         else
                         {
         					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
         						child.x = maxWidth - child.width / 2;
         					else if (obj.marginLeft == "auto")
-        						child.x = maxWidth - child.width - obj.marginRight;
+        						child.x = maxWidth - child.width - obj.marginRight - padding.right;
                         }
 					}
 				}
@@ -266,8 +249,8 @@ package org.apache.flex.html.beads.layouts
 			return sizeChanged;
 		}
 		
-		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number,
-											 right:Number, mr:Number, w:Number):void
+		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number, pl:Number,
+											 right:Number, mr:Number, pr:Number, w:Number):void
 		{
 			var widthSet:Boolean = false;
 			
@@ -284,10 +267,10 @@ package org.apache.flex.html.beads.layouts
 			else 
 			{
                 if (ilc)
-                    ilc.setX(ml);
+                    ilc.setX(ml + pl);
                 else
-    				child.x = ml;
-				ww -= ml;
+    				child.x = ml + pl;
+				ww -= ml + pl;
 			}
 			if (!isNaN(right))
 			{

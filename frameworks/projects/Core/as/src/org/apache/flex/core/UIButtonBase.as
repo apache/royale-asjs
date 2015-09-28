@@ -30,7 +30,6 @@ package org.apache.flex.core
 	import org.apache.flex.events.Event;
     import org.apache.flex.events.utils.MouseEventConverter;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.utils.BeadMetrics;
 	
     //--------------------------------------
     //  Events
@@ -480,6 +479,7 @@ package org.apache.flex.core
 		/**
 		 * @private
 		 */
+        [Bindable("visibleChanged")]
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;

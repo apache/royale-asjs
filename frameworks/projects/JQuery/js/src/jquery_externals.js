@@ -16,5 +16,6 @@
 /**
  * This file is used to establish external APIs so the closure-compiler
  * can resolve references and won't minify names
+ * @param {Object} arg Selector.
  */
-function $() {}
+function $(arg) {}

@@ -54,6 +54,7 @@ org.apache.flex.html.Spinner.prototype.createElement =
     function() {
   this.element = document.createElement('div');
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 
   this.element.style.verticalAlign = 'middle';
 

@@ -59,5 +59,59 @@ Object.defineProperties(org.apache.flex.html.beads.ImageView.prototype, {
  */
 org.apache.flex.html.beads.ImageView.prototype.
     sourceChangeHandler = function(event) {
+  this.strand_.element.addEventListener('load',
+      goog.bind(this.loadHandler, this));
+  this.strand_.addEventListener('sizeChanged',
+      goog.bind(this.sizeChangedHandler, this));
   this.strand_.element.src = this.model.source;
+};
+
+
+/**
+ * @export
+ * @param {Object} event The event triggered by the load.
+ */
+org.apache.flex.html.beads.ImageView.prototype.
+    loadHandler = function(event) {
+  this.strand_.parent.dispatchEvent('layoutNeeded');
+};
+
+
+/**
+ * @export
+ * @param {Object} event The event triggered by the size change.
+ */
+org.apache.flex.html.beads.ImageView.prototype.
+    sizeChangedHandler = function(event) {
+  var s = this.strand_.positioner.style;
+  var l = NaN;
+  var ls = s.left;
+  if (typeof(ls) === 'string' && ls.length > 0)
+    l = parseFloat(ls.substring(0, ls.length - 2));
+  var r = NaN;
+  var rs = s.right;
+  if (typeof(rs) === 'string' && rs.length > 0)
+    r = parseFloat(rs.substring(0, rs.length - 2));
+  if (!isNaN(l) &&
+      !isNaN(r)) {
+    // if just using size constraints and image will not shrink or grow
+    var computedWidth = this.strand_.positioner.offsetParent.offsetWidth -
+                           l - r;
+    s.width = computedWidth.toString() + 'px';
+  }
+  var t = NaN;
+  var ts = s.top;
+  if (typeof(ts) === 'string' && ts.length > 0)
+    t = parseFloat(ts.substring(0, ts.length - 2));
+  var b = NaN;
+  var bs = s.right;
+  if (typeof(bs) === 'string' && bs.length > 0)
+    b = parseFloat(bs.substring(0, bs.length - 2));
+  if (!isNaN(t) &&
+      !isNaN(b)) {
+    // if just using size constraints and image will not shrink or grow
+    var computedHeight = this.strand_.positioner.offsetParent.offsetHeight -
+                           t - b;
+    s.height = computedHeight.toString() + 'px';
+  }
 };

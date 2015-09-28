@@ -23,8 +23,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.supportClasses.ColumnSeries;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
+    import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -83,13 +83,12 @@ package org.apache.flex.charts.beads.layouts
 			if (!dp)
 				return;
 			
-			// this layout will use and modify the IViewportMode
-			var viewport:IViewport = chart.getBeadByType(IViewport) as IViewport;
-			var viewportModel:IViewportModel = viewport.model;
+            var layoutParent:ILayoutHost = strand.getBeadByType(ILayoutHost) as ILayoutHost;
+            var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			
 			var n:int = dp.length;
-			var useWidth:Number = viewportModel.contentWidth;
-			var useHeight:Number = viewportModel.contentHeight;
+            var useWidth:Number = contentView.width;
+            var useHeight:Number = contentView.height;
 			var itemWidth:Number = (useWidth - gap*(dp.length-1))/dp.length;
 			var seriesWidth:Number = itemWidth;
 			var xpos:Number = 0;

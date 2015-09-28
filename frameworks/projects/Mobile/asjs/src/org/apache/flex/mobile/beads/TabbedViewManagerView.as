@@ -19,12 +19,13 @@
 package org.apache.flex.mobile.beads
 {
 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
-	import org.apache.flex.mobile.ManagerBase;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.TabBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -38,7 +39,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TabbedViewManagerView implements IBeadView
+	public class TabbedViewManagerView extends ViewManagerView
 	{
 		/**
 		 * Constructor.
@@ -51,97 +52,29 @@ package org.apache.flex.mobile.beads
 		public function TabbedViewManagerView()
 		{
 			super();
-			layoutReady = false;
 		}
 		
-		private var _navigationBar:NavigationBar;
 		private var _tabBar:TabBar;
 		
-		private var layoutReady:Boolean;
-		
-		private var _strand:ManagerBase;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
+		private var _strand:IStrand;
+		override public function get strand():IStrand
 		{
-			_strand = value as ManagerBase;
-			_strand.addEventListener("widthChanged", changeHandler);
-			_strand.addEventListener("heightChanged", changeHandler);
-			_strand.addEventListener("sizeChanged", changeHandler);
+			return _strand;
+		}
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
-			model.addEventListener("viewsChanged", changeHandler);
-			
-			if (model.navigationBarItems)
-			{
-				_navigationBar = new NavigationBar();
-				_navigationBar.controls = model.navigationBarItems;
-				_navigationBar.addBead(new HorizontalLayout());
-				_strand.addElement(_navigationBar);
-			}
 			
 			// TabbedViewManager always has a TabBar
 			_tabBar = new TabBar();
 			_tabBar.dataProvider = model.views;
 			_tabBar.labelField = "title";
-			_strand.addElement(_tabBar);
 			_tabBar.addEventListener("change",handleButtonBarChange);
+			UIBase(_strand).addElement(_tabBar, false);
 			
-			layoutReady = true;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function layoutChromeElements():void
-		{
-			var contentAreaY:Number = 0;
-			var contentAreaHeight:Number = _strand.height;
-			
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
-			
-			if (_navigationBar)
-			{
-				_navigationBar.x = 0;
-				_navigationBar.y = 0;
-				_navigationBar.width = _strand.width;
-				
-				contentAreaY = _navigationBar.height;
-				contentAreaHeight -= _navigationBar.height;
-				
-				model.navigationBar = _navigationBar;
-			}
-			
-			if (_tabBar)
-			{
-				_tabBar.x = 0;
-				_tabBar.y = _strand.height - _tabBar.height;
-				_tabBar.width = _strand.width;
-								
-				contentAreaHeight -= _tabBar.height;
-				
-				model.tabBar = _tabBar;
-			}
-			
-			_strand.contentArea.x = 0;
-			_strand.contentArea.y = contentAreaY;
-			_strand.contentArea.width = _strand.width;
-			_strand.contentArea.height = contentAreaHeight;
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function changeHandler(event:Event):void
-		{
-			if (layoutReady) layoutChromeElements();
+			super.strand = value;
 		}
 		
 		/**
@@ -150,7 +83,7 @@ package org.apache.flex.mobile.beads
 		private function handleButtonBarChange(event:Event):void
 		{
 			var newIndex:Number = _tabBar.selectedIndex;
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			// doing this will trigger the selectedIndexChanged event which will
 			// tell the strand to switch views
@@ -160,25 +93,47 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		public function get host():IUIBase
+		override protected function layoutChromeElements():void
 		{
-			return _strand;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get viewWidth():Number
-		{
-			return _strand.width;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get viewHeight():Number
-		{
-			return _strand.height;
+			var host:UIBase = _strand as UIBase;
+			var contentAreaY:Number = 0;
+			var contentAreaHeight:Number = host.height;
+			
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			
+			if (navigationBar)
+			{
+				navigationBar.x = 0;
+				navigationBar.y = 0;
+				navigationBar.width = host.width;
+				
+				contentAreaHeight -= navigationBar.height;
+				contentAreaY = navigationBar.height;
+				
+				model.navigationBar = navigationBar;
+			}
+			
+			if (_tabBar)
+			{
+				_tabBar.x = 0;
+				_tabBar.y = host.height - _tabBar.height;
+				_tabBar.width = host.width;
+				_tabBar.dispatchEvent(new Event("layoutNeeded"));
+				
+				contentAreaHeight -= _tabBar.height;
+				
+				model.tabBar = _tabBar;
+			}
+			
+			model.contentX = 0;
+			model.contentY = contentAreaY;
+			model.contentWidth = host.width;
+			model.contentHeight = contentAreaHeight;
+			
+			sizeViewsToFitContentArea();
+			
+			// notify the views that the content size has changed
+			IEventDispatcher(strand).dispatchEvent( new Event("contentSizeChanged") );
 		}
 	}
 }

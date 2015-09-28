@@ -53,6 +53,7 @@ org.apache.flex.createjs.core.UIBase.prototype.createElement =
   this.element = new createjs.Container();
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
 };
 
 

@@ -123,10 +123,13 @@ org.apache.flex.mobile.ManagerBase.prototype.createElement =
   this.element.className = 'ManagerBase';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   this._contentArea = new org.apache.flex.core.UIBase();
   this._contentArea.className = 'ContentArea';
+  this._contentArea.positioner.style['width'] = '100%';
+  this._contentArea.positioner.style['height'] = '100%';
   org.apache.flex.core.UIBase.prototype.addElement.call(this, this._contentArea);
 
   return this.element;

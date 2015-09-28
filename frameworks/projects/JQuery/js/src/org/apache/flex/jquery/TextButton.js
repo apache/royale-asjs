@@ -38,6 +38,7 @@ org.apache.flex.jquery.TextButton.prototype.createElement =
   this.element.setAttribute('type', 'button');
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
   return this.element;
 };

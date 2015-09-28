@@ -548,6 +548,33 @@ package org.apache.flex.core
         }
         
         /**
+         *  @copy org.apache.flex.core.IValuesImpl#addRule()
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function addRule(ruleName:String, values:Object):void
+        {
+            var asValues:Object = {};
+            for (var valueName:String in values)
+            {
+                var v:* = values[valueName];
+                var c:int = valueName.indexOf("-");
+                while (c != -1)
+                {
+                    valueName = valueName.substr(0, c) +
+                        valueName.charAt(c + 1).toUpperCase() +
+                        valueName.substr(c + 2);
+                    c = valueName.indexOf("-");
+                }
+                asValues[valueName] = v;
+            }
+            this.values[ruleName] = asValues;
+        }
+        
+        /**
          *  A map of inheriting styles 
          *  
          *  @langversion 3.0

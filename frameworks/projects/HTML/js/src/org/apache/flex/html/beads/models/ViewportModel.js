@@ -54,64 +54,15 @@ org.apache.flex.html.beads.models.ViewportModel.prototype.strand_ = null;
 
 
 /**
- * @type {boolean}
+ * @type {org.apache.flex.geom.Rectangle}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentIsHost = false;
+org.apache.flex.html.beads.models.ViewportModel.prototype.borderMetrics = null;
 
 
 /**
- * @private
- * @type {Object}
+ * @type {org.apache.flex.geom.Rectangle}
  */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentArea_ = null;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentWidth = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentHeight = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentX = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.contentY = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportWidth = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportHeight = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportX = NaN;
-
-
-/**
- * @type {number}
- */
-org.apache.flex.html.beads.models.ViewportModel.prototype.viewportY = NaN;
+org.apache.flex.html.beads.models.ViewportModel.prototype.chromeMetrics = null;
 
 
 /**
@@ -127,17 +78,6 @@ org.apache.flex.html.beads.models.ViewportModel.prototype.horizontalScrollPositi
 
 
 Object.defineProperties(org.apache.flex.html.beads.models.ViewportModel.prototype, {
-    /** @export */
-    contentArea: {
-        /** @this {org.apache.flex.html.beads.models.ViewportModel} */
-        get: function() {
-            return this.contentArea_;
-        },
-        /** @this {org.apache.flex.html.beads.models.ViewportModel} */
-        set: function(value) {
-            this.contentArea_ = value;
-        }
-    },
     /** @export */
     strand: {
         /** @this {org.apache.flex.html.beads.models.ViewportModel} */

@@ -33,15 +33,17 @@ org.apache.flex.core.IParent = function() {
 
 /**
  * @param {Object} c
+ * @param {boolean=} opt_dispatchEvent
  */
-org.apache.flex.core.IParent.prototype.addElement = function(c) {};
+org.apache.flex.core.IParent.prototype.addElement = function(c, opt_dispatchEvent) {};
 
 
 /**
  * @param {Object} c
  * @param {number} index
+ * @param {boolean=} opt_dispatchEvent
  */
-org.apache.flex.core.IParent.prototype.addElementAt = function(c, index) {};
+org.apache.flex.core.IParent.prototype.addElementAt = function(c, index, opt_dispatchEvent) {};
 
 
 /**
@@ -53,8 +55,9 @@ org.apache.flex.core.IParent.prototype.getElementIndex = function(c) {};
 
 /**
  * @param {Object} c
+ * @param {boolean=} opt_dispatchEvent
  */
-org.apache.flex.core.IParent.prototype.removeElement = function(c) {};
+org.apache.flex.core.IParent.prototype.removeElement = function(c, opt_dispatchEvent) {};
 
 
 /**

@@ -208,8 +208,8 @@
         </delete>
         <delete dir="${basedir}/libs/generated"/>
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
-        <delete includeemptydirs="true" failonerror="false">
-            <fileset dir="${FLEXJS_HOME}/templates" excludes="**/*" />
+        <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
+            <exclude name="swfobject/index.template.html" />
         </delete> 
     </target>
     

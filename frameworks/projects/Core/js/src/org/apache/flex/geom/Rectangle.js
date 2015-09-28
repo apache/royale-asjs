@@ -76,3 +76,29 @@ org.apache.flex.geom.Rectangle.prototype.width = 0;
  * @type {number} value The height coordinate.
  */
 org.apache.flex.geom.Rectangle.prototype.height = 9;
+
+
+Object.defineProperties(org.apache.flex.geom.Rectangle.prototype, {
+    /** @export */
+    right: {
+        /** @this {org.apache.flex.geom.Rectangle} */
+        get: function() {
+            return this.left + this.width;
+        },
+        /** @this {org.apache.flex.geom.Rectangle} */
+        set: function(value) {
+            this.width = value - this.left;
+        }
+    },
+    /** @export */
+    bottom: {
+        /** @this {org.apache.flex.geom.Rectangle} */
+        get: function() {
+            return this.top + this.height;
+        },
+        /** @this {org.apache.flex.geom.Rectangle} */
+        set: function(value) {
+            this.height = value - this.top;
+        }
+    }
+});

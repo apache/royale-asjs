@@ -59,6 +59,12 @@ org.apache.flex.maps.google.Map.prototype.searchResults = null;
 
 
 /**
+ * @private
+ */
+org.apache.flex.maps.google.Map.prototype.token_ = null;
+
+
+/**
  * @override
  * @protected
  * @return {Object} The actual element to be parented.
@@ -73,6 +79,7 @@ org.apache.flex.maps.google.Map.prototype.createElement =
   this.className = 'Map';
 
   this.positioner = this.element;
+  this.positioner.style.position = 'relative';
   this.element.flexjs_wrapper = this;
 
   return this.element;
@@ -84,7 +91,11 @@ Object.defineProperties(org.apache.flex.maps.google.Map.prototype, {
     token: {
         /** @this {org.apache.flex.maps.google.Map} */
         set: function(value) {
-            this.token = value;
+            this.token_ = value;
+        },
+        /** @this {org.apache.flex.maps.google.Map} */
+        get: function() {
+            return this.token_;
         }
     },
     /** @export */

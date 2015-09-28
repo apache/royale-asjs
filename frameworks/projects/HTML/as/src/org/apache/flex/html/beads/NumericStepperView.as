@@ -21,7 +21,6 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRangeModel;
@@ -33,7 +32,6 @@ package org.apache.flex.html.beads
     import org.apache.flex.html.Label;
 	import org.apache.flex.html.Spinner;
 	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 	
@@ -48,7 +46,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class NumericStepperView extends BeadViewBase implements IBeadView, ILayoutParent
+	public class NumericStepperView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -77,9 +75,6 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			// add a horizontal layout bead
-			value.addBead(new HorizontalLayout());
             
 			// add an input field
 			input = new TextInput();

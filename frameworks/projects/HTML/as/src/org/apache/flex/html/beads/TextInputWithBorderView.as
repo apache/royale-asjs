@@ -26,11 +26,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.utils.BeadMetrics;
+	import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The TextInputWithBorderView class is the default view for
@@ -77,7 +77,7 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 autoWidth = false;
-                var uiMetrics:UIMetrics = BeadMetrics.getMetrics(host);
+                var uiMetrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(host);
                 textField.width = host.width - uiMetrics.left - uiMetrics.right;
                 textField.x = uiMetrics.left;
             }

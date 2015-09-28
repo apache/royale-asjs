@@ -36,6 +36,12 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>framework</artifactId>
+            <version>@VERSION@</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>binding</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
@@ -73,6 +79,12 @@
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>effects</artifactId>
+            <version>@VERSION@</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>flat</artifactId>
             <version>@VERSION@</version>
             <type>swc</type>
         </dependency>

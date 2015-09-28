@@ -22,10 +22,10 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIMetrics;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.BeadMetrics;
+    import org.apache.flex.geom.Rectangle;
+    import org.apache.flex.utils.CSSContainerUtils;
 	
     /**
      *  The TextInputView class is the view for
@@ -72,11 +72,11 @@ package org.apache.flex.html.beads
 
             var w:Number;
             var h:Number;
-            var uiMetrics:UIMetrics;
+            var uiMetrics:Rectangle;
             var ilc:ILayoutChild = host as ILayoutChild;
             if (ilc.isWidthSizedToContent())
             {
-                uiMetrics = BeadMetrics.getMetrics(host);
+                uiMetrics = CSSContainerUtils.getBorderAndPaddingMetrics(host);
                 // use default width of 20
                 var s:String = textField.text;
                 textField.text = "0";
@@ -88,7 +88,7 @@ package org.apache.flex.html.beads
             if (ilc.isHeightSizedToContent())
             {
                 if (!uiMetrics)
-                    uiMetrics = BeadMetrics.getMetrics(host);
+                    uiMetrics = CSSContainerUtils.getBorderAndPaddingMetrics(host);
                 if (isNaN(h))
                 {
                     s = textField.text;
