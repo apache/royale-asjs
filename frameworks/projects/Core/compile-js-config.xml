@@ -24,6 +24,7 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../libs/js.swc</path-element>
+            <path-element>../../libs/GCL.swc</path-element>
         </external-library-path>
         
 		<mxml>

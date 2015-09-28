@@ -175,6 +175,7 @@
     <target name="compile-as-for-js" >
         <!-- copy js.swc into frameworks/libs -->
         <copy file="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" todir="${basedir}/../../libs" />
+        <copy file="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" todir="${basedir}/../../libs" />
         <echo message="Cross-compiling Core/as for js"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
