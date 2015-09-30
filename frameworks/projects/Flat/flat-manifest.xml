@@ -54,7 +54,6 @@
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"  lookupOnly="true" />
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"  lookupOnly="true" />
     <component id="ListView" class="org.apache.flex.html.beads.ListView" lookupOnly="true" />
-    <!--component id="ListViewNoSelectionState" class="org.apache.flex.html.beads.ListViewNoSelectionState" lookupOnly="true" /-->
     <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView" lookupOnly="true" />
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert" lookupOnly="true" />

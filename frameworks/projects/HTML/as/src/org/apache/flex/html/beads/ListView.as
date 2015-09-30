@@ -106,9 +106,7 @@ package org.apache.flex.html.beads
         {
             return _strand as IUIBase;
         }
-        
-		private var _strand:IStrand;
-		
+        		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  

@@ -46,7 +46,6 @@ package org.apache.flex.charts.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
 		private var _horizontalAxisGroup:IAxisGroup;
 		private var _verticalAxisGroup:IAxisGroup;
 		

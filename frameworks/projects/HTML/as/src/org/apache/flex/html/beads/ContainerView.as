@@ -140,7 +140,6 @@ package org.apache.flex.html.beads
 		
 		private var _viewportModel:IViewportModel;
 		private var _viewport:IViewport;
-		private var _strand:IStrand;
 		private var layoutRunning:Boolean;
 		
 		/**
