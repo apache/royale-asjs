@@ -32,7 +32,9 @@ package org.apache.flex.binding
     
     /**
      *  The ContainerDataBinding class implements databinding for
-     *  Container instances.  Different classes can have
+     *  Container instances.  Place a ContainerDataBinding tag into
+     *  the MXML file that has Container as its root tag.
+     *  Different classes can have
      *  different databinding implementation that optimize for
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings

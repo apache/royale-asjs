@@ -25,8 +25,8 @@ package org.apache.flex.html
 	/**
 	 *  The Panel class is a Container component capable of parenting other
 	 *  components. The Panel has a TitleBar.  If you want to a Panel with
-     *  a ControlBar, use org.apache.flex.hmlt.PanelWithControlBar which
-     *  will instantiate, by default, an org.apache.flex.html.ControlBar. 
+     *  a ControlBar, use PanelWithControlBar which
+     *  will instantiate, by default, an ControlBar. 
 	 *  The Panel uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
@@ -35,6 +35,9 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
 	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
+	 *  @see PanelWithControlBar
+	 *  @see ControlBar
+	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -30,12 +30,16 @@ package org.apache.flex.html
 	[DefaultProperty("mxmlContent")]
     
     /**
-     *  The Container class implements a basic container of
+     *  The Container class implements a basic container for
      *  other controls and containers.  The position and size
-     *  of the children are determined by a layout or by
-     *  absolute positioning and sizing.  This Container does
-     *  not have a built-in scrollbar or clipping of content
-     *  exceeds its boundaries.
+     *  of the children are determined by a layout while the size of
+     *  a Container can either be determined by its children or by
+     *  specifying an exact size in pixels or as a percentage of the
+     *  parent element.
+     *
+     *  This Container does not have a built-in scroll bar or clipping of
+     *  its content should the content exceed the Container's boundaries. To
+     *  have scroll bars and clipping, add the ScrollingView bead.  
      * 
      *  While the container is relatively lightweight, it should
      *  generally not be used as the base class for other controls,
@@ -53,6 +57,8 @@ package org.apache.flex.html
      *  control and not a Container because the Alert does not
      *  support an arbitrary set of children.
      *  
+     *  @see org.apache.flex.html.beads.layout
+     *  @see org.apache.flex.html.supportClasses.ScrollingViewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

@@ -66,7 +66,8 @@ package org.apache.flex.core
     
     /**
      *  Dispatched at startup after the initial view has been
-     *  put on the display list.
+     *  put on the display list. This event is sent before
+     *  applicationComplete is dispatched.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -90,10 +91,11 @@ package org.apache.flex.core
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
      *  Flex SDK's mx:Application or spark:Application in that it does not contain
-     *  user interface elements.  Those UI elements go in the views.  This
+     *  user interface elements.  Those UI elements go in the views (ViewBase).  This
      *  Application class expects there to be a main model, a controller, and 
      *  an initial view.
      *  
+     *  @see ViewBase
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

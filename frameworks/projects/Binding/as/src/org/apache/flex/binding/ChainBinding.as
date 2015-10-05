@@ -27,9 +27,7 @@ package org.apache.flex.binding
 	import org.apache.flex.events.ValueChangeEvent;
 
     /**
-     *  The SimpleBinding class is lightweight data-binding class that
-     *  is optimized for simple assignments of one object's property to
-     *  another object's property.
+     *  The ChainBinding class is used to track changes of nested properties.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
