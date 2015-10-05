@@ -27,6 +27,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -139,11 +141,16 @@ package org.apache.flex.html.beads
 			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
-			{
+			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				ir.index = i;
 				ir.labelField = labelField;
-				if (presentationModel) IUIBase(ir).height = presentationModel.rowHeight;
+				if (presentationModel) {
+					var style:SimpleCSSStyles = new SimpleCSSStyles();
+					style.marginBottom = presentationModel.separatorThickness;
+					UIBase(ir).style = style;
+					UIBase(ir).height = presentationModel.rowHeight;
+				}
 				dataGroup.addElement(ir);
 				ir.data = dp[i];
 			}

@@ -91,6 +91,7 @@ package org.apache.flex.html.beads.controllers
 			{
                 target.hovered = false;
                 target.down = false;
+				target.dispatchEvent(new Event("rollout",true));
 			}
 		}
 

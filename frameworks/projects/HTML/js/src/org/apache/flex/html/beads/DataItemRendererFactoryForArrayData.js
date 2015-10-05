@@ -129,7 +129,10 @@ org.apache.flex.html.beads.DataItemRendererFactoryForArrayData.
     ir.index = i;
     ir.labelField = this.model.labelField;
     ir.data = dp[i];
-    if (presModel) ir.height = presModel.rowHeight;
+    if (presModel) {
+      ir.element.style['margin-bottom'] = presModel.separatorThickness;
+      ir.height = presModel.rowHeight;
+    }
   }
 
   var newEvent = new org.apache.flex.events.Event('itemsCreated');

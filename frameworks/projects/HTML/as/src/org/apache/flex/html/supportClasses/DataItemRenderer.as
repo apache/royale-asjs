@@ -123,7 +123,7 @@ package org.apache.flex.html.supportClasses
 			super.updateRenderer();
 			
 			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
+			background.graphics.beginFill(useColor, 1);
 			background.graphics.drawRect(0, 0, this.width, this.height);
 			background.graphics.endFill();
 		}

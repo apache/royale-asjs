@@ -27,7 +27,6 @@ package
  */
 internal class CoreASJSClasses
 {
-    import org.apache.flex.core.IDataGridLayout; IDataGridLayout;
     import org.apache.flex.core.IDataGridModel; IDataGridModel;
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;

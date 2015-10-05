@@ -35,15 +35,38 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.utils.CSSContainerUtils;
 	
     /**
-     * @copy org.apache.flex.core.IViewport
+     * A Viewport is the area of a Container set aside for displaying
+     * content and any scrolling controls.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
      */
 	public class Viewport implements IBead, IViewport
 	{	
+		/**
+		 * Constructor
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
 		public function Viewport()
 		{
 		}
 		
 		protected var contentArea:UIBase;
+		
+		/**
+		 * Get the actual parent of the container's content.
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
         public function get contentView():IUIBase
         {
             return contentArea;
@@ -51,6 +74,14 @@ package org.apache.flex.html.supportClasses
         
 		protected var _strand:IStrand;
 		
+		/**
+		 * @copy org.apache.flex.core.IStrand
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -63,7 +94,12 @@ package org.apache.flex.html.supportClasses
 		}
 		
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#setPosition()
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
         public function setPosition(x:Number, y:Number):void
         {
@@ -72,7 +108,12 @@ package org.apache.flex.html.supportClasses
         }
         
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#layoutViewportBeforeContentLayout()
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
 		public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
@@ -83,7 +124,12 @@ package org.apache.flex.html.supportClasses
 		}
 		
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#layoutViewportAfterContentLayout()
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
 		public function layoutViewportAfterContentLayout():Size
 		{

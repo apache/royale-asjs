@@ -42,6 +42,13 @@ org.apache.flex.html.beads.models.ListPresentationModel.prototype.rowHeight_ = 3
 
 
 /**
+ * @private
+ * @type {number}
+ */
+org.apache.flex.html.beads.models.ListPresentationModel.prototype.separatorThickness_ = 0;
+
+
+/**
  * Metadata
  *
  * @type {Object.<string, Array.<Object>>}
@@ -70,6 +77,18 @@ Object.defineProperties(org.apache.flex.html.beads.models.ListPresentationModel.
         set: function(value) {
             this.rowHeight_ = value;
             this.dispatchEvent('rowHeightChanged');
+        }
+    },
+    /** @export */
+    separatorThickness: {
+        /** @this {org.apache.flex.html.beads.models.ListPresentationModel} */
+        get: function() {
+            return this.separatorThickness_;
+        },
+        /** @this {org.apache.flex.html.beads.models.ListPresentationModel} */
+        set: function(value) {
+            this.separatorThickness_ = value;
+            this.dispatchEvent('separatorThicknessChanged');
         }
     }
 });

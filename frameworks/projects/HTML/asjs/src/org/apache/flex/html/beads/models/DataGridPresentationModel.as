@@ -44,6 +44,8 @@ package org.apache.flex.html.beads.models
 		public function DataGridPresentationModel()
 		{
 			super();
+			
+			separatorThickness = 1;
 		}
 		
 		private var _columnLabels:Array;
