@@ -54,6 +54,7 @@
         
         <source-path>
             <path-element>as/src</path-element>
+            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -66,6 +67,7 @@
 
     <include-classes>
         <class>CollectionsClasses</class>
+        <class>CollectionsASJSClasses</class>
     </include-classes>
     
     <include-namespaces>

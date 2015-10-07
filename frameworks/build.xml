@@ -79,10 +79,10 @@
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
+        <antcall target="Collections"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
-        <antcall target="Collections"/>
         <antcall target="CreateJS"/>
         <antcall target="DragDrop"/>
         <antcall target="Effects"/>
@@ -136,10 +136,10 @@
         <ant dir="${basedir}/projects/Core" target="compile"/>
         <ant dir="${basedir}/projects/Graphics" target="compile"/>
         <ant dir="${basedir}/projects/Binding" target="compile"/>
+        <ant dir="${basedir}/projects/Collections" target="compile"/>
         <ant dir="${basedir}/projects/HTML" target="compile"/>
         <ant dir="${basedir}/projects/Flat" target="compile"/>
         <ant dir="${basedir}/projects/Charts" target="compile"/>
-        <ant dir="${basedir}/projects/Collections" target="compile"/>
         <ant dir="${basedir}/projects/CreateJS" target="compile"/>
         <ant dir="${basedir}/projects/DragDrop" target="compile"/>
         <ant dir="${basedir}/projects/Effects" target="compile"/>

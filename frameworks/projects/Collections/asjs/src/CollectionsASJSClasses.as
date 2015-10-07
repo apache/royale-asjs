@@ -25,10 +25,9 @@ package
  *  beyond those that are found by dependecy analysis starting
  *  from the classes specified in manifest.xml.
  */
-internal class CollectionsClasses
-{	
-	import org.apache.flex.collections.LazyCollection; LazyCollection;
+internal class CollectionsASJSClasses
+{
+    import org.apache.flex.collections.ArrayList; ArrayList;
 }
 
 }
-
