@@ -29,9 +29,12 @@ internal class HTMLASJSClasses
 {
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
+	import org.apache.flex.html.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
+	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;
     import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
+	import org.apache.flex.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.flex.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;

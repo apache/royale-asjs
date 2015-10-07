@@ -140,5 +140,25 @@ package org.apache.flex.html
 		{
 			presentationModel.rowHeight = value;
 		}
+		
+		/**
+		 * @private
+		 * The DataGrid needs to know whenever its size is being changed so the columns can be
+		 * be aligned properly, so the noEvent value must always be false.
+		 */
+		override public function setWidth(value:Number, noEvent:Boolean=false):void
+		{
+			super.setWidth(value,false);
+		}
+		
+		/**
+		 * @private
+		 * The DataGrid needs to know whenever its size is being changed so the columns can be
+		 * be aligned properly, so the noEvent value must always be false.
+		 */
+		override public function setHeight(value:Number, noEvent:Boolean=false):void
+		{
+			super.setHeight(value,false);
+		}
 	}
 }

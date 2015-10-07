@@ -113,8 +113,25 @@ DataGrid
 	border-width: 1px;
 }
 
+.DataGridColumn {
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
+	IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayList");
+	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
+	border-style: none;
+	background-color: #FFFFFF;
+}
+
 .DataGridListArea {
-	background-color: #999999;
+	background-color: #AAAAAA;
+	border-style: solid;
+	border-color: #333333;
 }
 
 DateChooser {

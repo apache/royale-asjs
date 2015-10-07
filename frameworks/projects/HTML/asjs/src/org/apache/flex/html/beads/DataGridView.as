@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {	
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
@@ -25,8 +26,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.ButtonBar;
@@ -90,6 +91,8 @@ package org.apache.flex.html.beads
 			_strand = value;
 			
 			var host:UIBase = value as UIBase;
+			host.addEventListener("widthChanged", handleSizeChanges);
+			host.addEventListener("heightChanged", handleSizeChanges);
 			
 			_header = new ButtonBar();
 			_header.id = "dataGridHeader";
@@ -101,13 +104,6 @@ package org.apache.flex.html.beads
 			_listArea.id = "dataGridListArea";
 			_listArea.className = "DataGridListArea";
 			_listArea.addBead(scrollPort);
-			
-			// place a border around the list area
-			var style:SimpleCSSStyles = new SimpleCSSStyles();
-			style.borderWidth = 1;
-			style.borderColor = 0x333333;
-			style.borderStyle = "solid";
-			_listArea.style = style;
 			
 			finishSetup(null);
 		}
@@ -180,12 +176,20 @@ package org.apache.flex.html.beads
 			_listArea.width = host.width;
 			_listArea.height = host.height - _header.height;
 			
-			if (_lists != null) {
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			
+			if (_lists != null && _lists.length > 0) {
 				var xpos:Number = 0;
+				var listWidth:Number = host.width / _lists.length;
 				for (var i:int=0; i < _lists.length; i++) {
 					var list:List = _lists[i] as List;
 					list.x = xpos;
 					list.y = 0;
+					
+					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var colWidth:Number = dataGridColumn.columnWidth;
+					if (!isNaN(colWidth)) list.width = colWidth - 1;
+					else list.width = listWidth - 1;
 					
 					xpos += list.width + 1;
 				}
@@ -274,31 +278,19 @@ package org.apache.flex.html.beads
 			
 			_lists = new Array();
 			
-			for (var i:int=0; i < sharedModel.columns.length; i++) {
-				
-				var listModel:ISelectionModel = new ArraySelectionModel();
-				listModel.dataProvider = sharedModel.dataProvider;
-				
+			for (var i:int=0; i < sharedModel.columns.length; i++) {				
 				var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				
 				var list:List = new List();
 				list.id = "dataGridColumn"+String(i);
 				list.className = "DataGridColumn";
-				list.addBead(listModel); 
-				list.addBead(new Viewport()); // do not want lists to scroll independently
-				list.addBead(new VerticalLayout());
+				list.addBead(sharedModel); 
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;
 				list.addEventListener('change',handleColumnListChange);
 				list.addEventListener('rollover',handleColumnListRollOver);
 				list.addEventListener('rollout',handleColumnListRollOut);
 				list.addBead(presentationModel);
-				
-				// do not want lists to have their own sizes
-				var style:SimpleCSSStyles = new SimpleCSSStyles();
-				style.borderWidth = 0;
-				style.backgroundColor = 0xFFFFFF;
-				list.style = style;
 				
 				var colWidth:Number = dataGridColumn.columnWidth;
 				if (!isNaN(colWidth)) list.width = colWidth - 1;

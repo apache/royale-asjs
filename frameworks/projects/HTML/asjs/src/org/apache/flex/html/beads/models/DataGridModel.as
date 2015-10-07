@@ -22,16 +22,15 @@ package org.apache.flex.html.beads.models
 	import org.apache.flex.events.Event;
 	
 	/**
-	 *  The DataGridModel class bead extends org.apache.flex.html.beads.modelsArraySelectionModel 
-	 *  and adds the array of org.apache.flex.html.supportClasses.DataGridColumns used to define 
-	 *  each of the column in the DataGrid.
+	 *  The DataGridModel class bead extends org.apache.flex.html.beads.models.ArrayListSelectionModel 
+	 *  to facilitate using an ArrayList as the dataProvider for the DataGrid.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridModel extends ArraySelectionModel implements IDataGridModel
+	public class DataGridModel extends ArrayListSelectionModel implements IDataGridModel
 	{
 		/**
 		 *  constructor.
