@@ -60,6 +60,7 @@ limitations under the License.
 			private function addSymbol():void
 			{
 				dispatchEvent(new org.apache.flex.events.Event("addSymbol"));
+				dataGrid.model.dispatchEvent(new org.apache.flex.events.Event("dataProviderChanged"));
 			}
 			
 			public var selectedStockIndex:Number;

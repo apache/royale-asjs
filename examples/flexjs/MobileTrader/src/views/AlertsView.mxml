@@ -48,6 +48,7 @@ limitations under the License.
 			private function onAlertSet():void
 			{
 				dispatchEvent(new org.apache.flex.events.Event("alertSet"));
+				dataGrid.model.dispatchEvent(new org.apache.flex.events.Event("dataProviderChanged"));
 			}
 		]]>
 	</fx:Script>
@@ -64,7 +65,7 @@ limitations under the License.
 		<js:TextButton text="Set" click="onAlertSet()" />
 	</js:Container>
 	
-	<js:DataGrid x="0" y="40" width="100%" height="200">
+	<js:DataGrid id="dataGrid" x="0" y="40" width="100%" height="200">
 		<js:beads>
 			<js:SimpleBinding
 				eventName="alertsUpdate"

@@ -25,6 +25,7 @@ package models
 	import org.apache.flex.net.HTTPService;
 	import org.apache.flex.collections.parsers.JSONInputParser;
 	import org.apache.flex.collections.LazyCollection;
+	import org.apache.flex.collections.ArrayList;
 		
 	public class ProductsModel extends EventDispatcher implements IBeadModel
 	{
@@ -36,6 +37,9 @@ package models
 			collection = new LazyCollection;
 			collection.inputParser = new JSONInputParser();
 			collection.itemConverter = new StockDataJSONItemConverter();
+			
+			_watchList = new ArrayList();
+			_alerts = new ArrayList();
 		}
 		
 		private var service:HTTPService;
@@ -64,16 +68,16 @@ package models
 			return _labelFields;
 		}
 		
-		private var _watchList:Array = [];
+		private var _watchList:ArrayList;
 		
-		public function get watchList():Array
+		public function get watchList():ArrayList
 		{
 			return _watchList;
 		}
 		
-		private var _alerts:Array = [];
+		private var _alerts:ArrayList;
 		
-		public function get alerts():Array
+		public function get alerts():ArrayList
 		{
 			return _alerts;
 		}
@@ -82,14 +86,14 @@ package models
 		{
 			for (var i:int =0; i < _alerts.length; i++)
 			{
-				var alert:Alert = _alerts[i] as Alert;
+				var alert:Alert = _alerts.getItemAt(i) as Alert;
 				if (alert.symbol == value.symbol) {
-					_alerts[i] = value;
+				    _alerts.setItemAt(value, i);
 					return;
 				}
 			}
 			
-			_alerts.push(value);
+			_alerts.addItem(value);
 			dispatchEvent(new Event("alertsUpdate"));
 		}
 		
@@ -97,13 +101,13 @@ package models
 		{
 			for (var i:int=0; i < _watchList.length; i++)
 			{
-				var stock:Stock = _watchList[i];
+				var stock:Stock = _watchList.getItemAt(i) as Stock;
 				if (stock.symbol == symbol) return stock;
 			}
 			
 			stock = new Stock(symbol);
 			
-			_watchList.push(stock);
+			_watchList.addItem(stock);
 			dispatchEvent(new Event("update"));
 			
 			updateStockData(stock);
@@ -122,18 +126,18 @@ package models
 		{
 			for (var i:int=0; i < alerts.length; i++)
 			{
-				var alert:Alert = alerts[i] as Alert;
+				var alert:Alert = alerts.getItemAt(i) as Alert;
 				if (stock.symbol == alert.symbol) {
-					alerts.splice(i,1);
+					alerts.removeItemAt(i);
 					break;
 				}
 			}
 			
 			for (i=0; i < _watchList.length; i++)
 			{
-				var s:Stock = _watchList[i] as Stock;
+				var s:Stock = _watchList.getItemAt(i) as Stock;
 				if (stock.symbol == s.symbol) {
-					_watchList.splice(i,1);
+					_watchList.removeItemAt(i);
 					break;
 				}
 			}
@@ -149,7 +153,7 @@ package models
 			var sym:String = responseData["Symbol"];
 			for (var i:int=0; i < _watchList.length; i++)
 			{
-				var stock:Stock = _watchList[i];
+				var stock:Stock = _watchList.getItemAt(i) as Stock;
 				if (stock.symbol == sym) {
 					stock.updateFromData(responseData);
 					break;
