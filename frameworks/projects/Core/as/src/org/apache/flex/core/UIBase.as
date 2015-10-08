@@ -19,12 +19,14 @@
 package org.apache.flex.core
 {
 	import flash.display.DisplayObject;
+	import flash.display.JointStyle;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.utils.MouseEventConverter;
 	
 	/**
@@ -134,8 +136,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
-	public class UIBase extends Sprite implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild
+	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
 	{
         /**
          *  Constructor.
@@ -149,7 +150,15 @@ package org.apache.flex.core
 		{
 			super();
             
-            MouseEventConverter.setupInstanceConverters(this);
+            COMPILE::AS3
+            {
+                MouseEventConverter.setupInstanceConverters(this);
+            }
+            
+            COMPILE::JS
+            {
+                createElement();
+            }
         }
         
 		private var _explicitWidth:Number;
@@ -303,6 +312,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         override public function get width():Number
 		{
 			var w:Number = _width;
@@ -311,10 +321,33 @@ package org.apache.flex.core
 			}
 			return w;
 		}
+        
+        /**
+         * @flexjsignorecoercion String
+         */
+        COMPILE::JS
+        public function get width():Number
+        {
+            var pixels:Number;
+            var strpixels:String = positioner.style.width as String;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+                pixels = NaN;
+            else
+                pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+                pixels = positioner.offsetWidth;
+                if (pixels === 0 && positioner.scrollWidth !== 0) {
+                    // invisible child elements cause offsetWidth to be 0.
+                    pixels = positioner.scrollWidth;
+                }
+            }
+            return pixels;
+        }
 
         /**
          *  @private
          */
+        COMPILE::AS3
 		override public function set width(value:Number):void
 		{
 			if (explicitWidth != value)
@@ -324,6 +357,20 @@ package org.apache.flex.core
 			
             setWidth(value);
 		}
+        
+        /**
+         *  @private
+         */
+        COMPILE::JS
+        public function set width(value:Number):void
+        {
+            if (explicitWidth != value)
+            {
+                explicitWidth = value;
+            }
+            
+            setWidth(value);
+        }
 
         /**
          *  Retrieve the low-level bounding box width.
@@ -334,6 +381,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public function get $width():Number
 		{
 			return super.width;
@@ -354,6 +402,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		override public function get height():Number
 		{
 			var h:Number = _height;
@@ -362,10 +411,33 @@ package org.apache.flex.core
 			}
 			return h;
 		}
+        
+        /**
+         * @flexjsignorecoercion String
+         */
+        COMPILE::JS
+        public function get height():Number
+        {
+            var pixels:Number;
+            var strpixels:String = positioner.style.height as String;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+                pixels = NaN;
+            else
+                pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+                pixels = positioner.offsetHeight;
+                if (pixels === 0 && positioner.scrollHeight !== 0) {
+                    // invisible child elements cause offsetHeight to be 0.
+                    pixels = positioner.scrollHeight;
+                }
+            }
+            return pixels;
+        }
 
         /**
          *  @private
          */
+        COMPILE::AS3
 		override public function set height(value:Number):void
 		{
 			if (explicitHeight != value)
@@ -377,6 +449,20 @@ package org.apache.flex.core
 		}
         
         /**
+         *  @private
+         */
+        COMPILE::JS
+        public function set height(value:Number):void
+        {
+            if (explicitHeight != value)
+            {
+                explicitHeight = value;
+            }
+            
+            setHeight(value);
+        }
+        
+        /**
          *  Retrieve the low-level bounding box height.
          *  Not implemented in JS.
          *  
@@ -385,6 +471,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public function get $height():Number
 		{
 			return super.height;
@@ -403,6 +490,10 @@ package org.apache.flex.core
             if (_height != value)
             {
                 _height = value;
+                COMPILE::JS
+                {
+                    this.positioner.style.height = value.toString() + 'px';        
+                }
                 if (!noEvent)
                     dispatchEvent(new Event("heightChanged"));
             }            
@@ -421,6 +512,10 @@ package org.apache.flex.core
             if (_width != value)
             {
                 _width = value;
+                COMPILE::JS
+                {
+                    this.positioner.style.width = value.toString() + 'px';        
+                }
                 if (!noEvent)
                     dispatchEvent(new Event("widthChanged"));
             }
@@ -439,13 +534,20 @@ package org.apache.flex.core
             if (_width != newWidth)
             {
                 _width = newWidth;
-                if (_width == newWidth)
-                    if (!noEvent) 
-                        dispatchEvent(new Event("widthChanged"));
+                COMPILE::JS
+                {
+                    this.positioner.style.width = newWidth.toString() + 'px';        
+                }
+                if (!noEvent) 
+                    dispatchEvent(new Event("widthChanged"));
             }
             if (_height != newHeight)
             {
                 _height = newHeight;
+                COMPILE::JS
+                {
+                    this.positioner.style.height = newHeight.toString() + 'px';        
+                }
                 if (!noEvent)
                     dispatchEvent(new Event("heightChanged"));
             }            
@@ -496,6 +598,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
+        COMPILE::AS3
         override public function set x(value:Number):void
         {
             super.x = _x = value;
@@ -503,6 +606,26 @@ package org.apache.flex.core
                 style = { left: value };
             else
                 style.left = value;
+        }
+        
+        COMPILE::JS
+        public function set x(value:Number):void
+        {
+            positioner.style.position = 'absolute';
+            positioner.style.left = value.toString() + 'px';
+        }
+
+        /**
+         * @flexjsignorecoercion String
+         */
+        COMPILE::JS
+        public function get x():Number
+        {
+            var strpixels:String = positioner.style.left as String;
+            var pixels:Number = parseFloat(strpixels);
+            if (isNaN(pixels))
+                pixels = positioner.offsetLeft;
+            return pixels;
         }
         
         /**
@@ -513,6 +636,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function setX(value:Number):void
         {
             super.x = value;
@@ -523,6 +647,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
+        COMPILE::AS3
         override public function set y(value:Number):void
         {
             super.y = _y = value;
@@ -530,6 +655,26 @@ package org.apache.flex.core
                 style = { top: value };
             else
                 style.top = value;
+        }
+        
+        COMPILE::JS
+        public function set y(value:Number):void
+        {
+            positioner.style.position = 'absolute';
+            positioner.style.top = value.toString() + 'px';
+        }
+        
+        /**
+         * @flexjsignorecoercion String
+         */
+        COMPILE::JS
+        public function get y():Number
+        {
+            var strpixels:String = positioner.style.top as String;
+            var pixels:Number = parseFloat(strpixels);
+            if (isNaN(pixels))
+                pixels = positioner.offsetTop;
+            return pixels;
         }
         
         /**
@@ -540,6 +685,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function setY(value:Number):void
         {
             super.y = value;
@@ -549,13 +695,62 @@ package org.apache.flex.core
 		 * @private
 		 */
         [Bindable("visibleChanged")]
+        COMPILE::AS3
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
-		}
+        }
         
+        COMPILE::JS
+        private var lastDisplay_:String;
+        
+        COMPILE::JS
+        public function get visible():Boolean
+        {
+            return positioner.style.display !== 'none';
+        }
+        
+        COMPILE::JS
+        public function set visible(value:Boolean):void
+        {
+            var oldValue:Boolean = positioner.style.display !== 'none';
+            if (value !== oldValue) 
+            {
+                if (!value) 
+                {
+                    lastDisplay_ = positioner.style.display;
+                    positioner.style.display = 'none';
+                    dispatchEvent(new Event('hide'));
+                } 
+                else 
+                {
+                    if (lastDisplay_) 
+                    {
+                        positioner.style.display = lastDisplay_;
+                    } else 
+                    {
+                        positioner.style.display = internalDisplay;
+                    }
+                    dispatchEvent(new Event('show'));
+                }
+                dispatchEvent(new Event('visibleChanged'));
+            }
+        }
+        
+        /**
+         * @return The array of children.
+         * @flexjsignorecoercion Array
+         */
+        COMPILE::JS
+        public function internalChildren():Array
+        {
+            return element.childNodes as Array;
+        }
+        
+        
+        COMPILE::AS3
 		private var _model:IBeadModel;
 
         /**
@@ -566,7 +761,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get model():IBeadModel
+        COMPILE::AS3
+        public function get model():Object
 		{
             if (_model == null)
             {
@@ -579,7 +775,8 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		public function set model(value:IBeadModel):void
+        COMPILE::AS3
+		public function set model(value:Object):void
 		{
 			if (_model != value)
 			{
@@ -597,6 +794,7 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Class
          */
         public function get view():IBeadView
         {
@@ -654,7 +852,7 @@ package org.apache.flex.core
 			}
 		}
 		
-        private var _styles:Object;
+        private var _style:Object;
         
         /**
          *  The object that contains
@@ -670,26 +868,27 @@ package org.apache.flex.core
          */
         public function get style():Object
         {
-            return _styles;
+            return _style;
         }
         
         /**
          *  @private
+         *  @flexjsignorecoercion String
          */
         public function set style(value:Object):void
         {
-            if (_styles != value)
+            if (_style != value)
             {
                 if (value is String)
                 {
-                    _styles = ValuesManager.valuesImpl.parseStyles(value as String);
+                    _style = ValuesManager.valuesImpl.parseStyles(value as String);
                 }
                 else
-                    _styles = value;
+                    _style = value;
                 if (!isNaN(_y))
-                    _styles.top = _y;
+                    _style.top = _y;
                 if (!isNaN(_x))
-                    _styles.left = _x;
+                    _style.left = _x;
                 dispatchEvent(new Event("stylesChanged"));
             }
         }
@@ -728,6 +927,10 @@ package org.apache.flex.core
 		{
 			if (_className != value)
 			{
+                COMPILE::JS
+                {
+                    element.className = typeNames ? value + ' ' + typeNames : value;             
+                }
 				_className = value;
 				dispatchEvent(new Event("classNameChanged"));
 			}
@@ -741,7 +944,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get element():Object
+        COMPILE::AS3
+        public function get element():IFlexJSElement
         {
             return this;
         }
@@ -754,8 +958,10 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public var beads:Array;
 		
+        COMPILE::AS3
 		private var _beads:Vector.<IBead>;
         
         /**
@@ -766,6 +972,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
+        COMPILE::AS3
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -790,6 +997,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -808,6 +1016,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -833,13 +1042,21 @@ package org.apache.flex.core
          */
 		public function addElement(c:Object, dispatchEvent:Boolean = true):void
 		{
-            if (c is IUIBase)
+            COMPILE::AS3
             {
-                addChild(IUIBase(c).element as DisplayObject);
-                IUIBase(c).addedToParent();
+                if (c is IUIBase)
+                {
+                    addChild(IUIBase(c).element as DisplayObject);
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    addChild(c as DisplayObject);
             }
-            else
-                addChild(c as DisplayObject);
+            COMPILE::JS
+            {
+                element.appendChild(c.positioner);
+                c.addedToParent();
+            }
 		}
         
         /**
@@ -852,13 +1069,28 @@ package org.apache.flex.core
          */
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
+            COMPILE::AS3
             {
-                addChildAt(IUIBase(c).element as DisplayObject, index);
-                IUIBase(c).addedToParent();
+                if (c is IUIBase)
+                {
+                    addChildAt(IUIBase(c).element as DisplayObject, index);
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    addChildAt(c as DisplayObject, index);
             }
-            else
-                addChildAt(c as DisplayObject, index);
+            COMPILE::JS
+            {
+                var children:Array = internalChildren();
+                if (index >= children.length)
+                    addElement(c);
+                else
+                {
+                    element.insertBefore(c.positioner,
+                        children[index]);
+                    c.addedToParent();
+                }
+            }
         }
         
         /**
@@ -871,7 +1103,15 @@ package org.apache.flex.core
          */
         public function getElementAt(index:int):Object
         {
-            return getChildAt(index);
+            COMPILE::AS3
+            {
+                return getChildAt(index);
+            }
+            COMPILE::JS
+            {
+                var children:Array = internalChildren();
+                return children[index].flexjs_wrapper;
+            }
         }        
         
         /**
@@ -884,10 +1124,24 @@ package org.apache.flex.core
          */
         public function getElementIndex(c:Object):int
         {
-            if (c is IUIBase)
-                return getChildIndex(IUIBase(c).element as DisplayObject);
-            else
-                return getChildIndex(c as DisplayObject);
+            COMPILE::AS3
+            {
+                if (c is IUIBase)
+                    return getChildIndex(IUIBase(c).element as DisplayObject);
+                else
+                    return getChildIndex(c as DisplayObject);
+            }
+            COMPILE::JS
+            {
+                var children:Array = internalChildren();
+                var n:int = children.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    if (children[i] == c.element)
+                        return i;
+                }
+                return -1;                
+            }
         }
 
         /**
@@ -900,10 +1154,17 @@ package org.apache.flex.core
          */
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            if (c is IUIBase)
-                removeChild(IUIBase(c).element as DisplayObject);
-            else
-                removeChild(c as DisplayObject);
+            COMPILE::AS3
+            {
+                if (c is IUIBase)
+                    removeChild(IUIBase(c).element as DisplayObject);
+                else
+                    removeChild(c as DisplayObject);
+            }
+            COMPILE::JS
+            {
+                element.removeChild(c.element);
+            }
         }
 		
         /**
@@ -916,7 +1177,15 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            return numChildren;
+            COMPILE::AS3
+            {
+                return numChildren;
+            }
+            COMPILE::JS
+            {
+                var children:Array = internalChildren();
+                return children.length;
+            }
         }
         
         /**
@@ -927,11 +1196,19 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Class
+         *  @flexjsignorecoercion Number
          */
         public function addedToParent():void
         {
             var c:Class;
 			
+            COMPILE::JS
+            {
+                if (style)
+                    ValuesManager.valuesImpl.applyStyles(this, style);
+            }
+            
 			if (isNaN(_explicitWidth) && isNaN(_percentWidth)) 
             {
 				var value:* = ValuesManager.valuesImpl.getValue(this,"width");
@@ -1030,6 +1307,7 @@ package org.apache.flex.core
 			return measurementBead;
 		}
         
+        COMPILE::AS3
         private var _stageProxy:StageProxy;
         
         /**
@@ -1039,26 +1317,109 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
          */
 		public function get topMostEventDispatcher():IEventDispatcher
         {
-            if (!_stageProxy)
+            COMPILE::AS3
             {
-                _stageProxy = new StageProxy(stage);
-                _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
+                if (!_stageProxy)
+                {
+                    _stageProxy = new StageProxy(stage);
+                    _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
+                }
+                
+                return _stageProxy;
             }
-            
-            return _stageProxy;
+            COMPILE::JS
+            {
+                var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
+                return e.flexjs_wrapper as IEventDispatcher;
+            }
         }
         
+        COMPILE::AS3
         private function stageProxy_removedFromStageHandler(event:Event):void
         {
             _stageProxy = null;
         }
         
+        /**
+         * Rebroadcast an event from a sub component from the component.
+         */
         protected function repeaterListener(event:Event):void
         {
             dispatchEvent(event);
         }
+        
+        /**
+         * The HTMLElement used to position the component.
+         */
+        COMPILE::JS
+        protected var positioner:WrappedHTMLElement = null;
+        
+        /**
+         * @return The actual element to be parented.
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        protected function createElement():WrappedHTMLElement
+        {
+            if (element == null)
+                element = document.createElement('div') as WrappedHTMLElement;
+            if (positioner == null)
+                positioner = element;
+            positioner.style.display = 'block';
+            positioner.style.position = 'relative';
+            
+            element.flexjs_wrapper = this;
+            
+            return positioner;
+        }
+        
+        
+        /**
+         * The HTMLElement used to position the component.
+         * @flexjsignorecoercion String
+         */
+        COMPILE::JS
+        public function get alpha():Number 
+        {
+            var stralpha:String = positioner.style.opacity as String;
+            var alpha:Number = parseFloat(stralpha);
+            return alpha;
+        }
+        
+        COMPILE::JS
+        public function set alpha(value:Number):void
+        {
+            positioner.style.opacity = value;
+        }
+
+        /**
+         * @param value The event containing new style properties.
+         */
+        COMPILE::JS
+        protected function styleChangeHandler(value:ValueChangeEvent):void
+        {
+            var newStyle:Object = {};
+            newStyle[value.propertyName] = value.newValue;
+            ValuesManager.valuesImpl.applyStyles(this, newStyle);
+        };
+
+        /**
+         * @param value The event containing new style properties.
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion org.apache.flex.core.IUIBase
+         */
+        COMPILE::JS
+        public function get parent():IUIBase
+        {
+            var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
+            var wrapper:IUIBase = p ? p.flexjs_wrapper as IUIBase : null;
+            return wrapper;
+        }
+        
 	}
 }

@@ -127,18 +127,6 @@ package org.apache.flex.core
             }
         }
         
-        /**
-         *  The document property is used to provide
-         *  a property lookup context for non-display objects.
-         *  For Application, it points to itself.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public var document:Object = this;
-        
         COMPILE::AS3
         private function initHandler(event:flash.events.Event):void
         {
@@ -258,7 +246,35 @@ package org.apache.flex.core
          */
         [Bindable("__NoChangeEvent__")]
         COMPILE::AS3
-        public var model:IBead;
+        public var model:Object;
+        
+        COMPILE::JS
+        private var _model:Object;
+        
+        /**
+         *  The data model (for the initial view).
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        [Bindable("__NoChangeEvent__")]
+        COMPILE::JS
+        override public function get model():Object
+        {
+            return _model;
+        }
+        
+        /**
+         *  @private
+         */
+        [Bindable("__NoChangeEvent__")]
+        COMPILE::JS
+        override public function set model(value:Object):void
+        {
+            _model = value;
+        }
 
         /**
          *  The controller.  The controller typically watches
@@ -269,7 +285,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var controller:IBead;
+        public var controller:Object;
 
         /**
          *  An array of data that describes the MXML attributes
@@ -409,6 +425,7 @@ package org.apache.flex.core
             }
             COMPILE::JS {
                 this.element.appendChild(c.element);
+                c.addedToParent();
             }
         }
         
@@ -546,7 +563,7 @@ package org.apache.flex.core
         
 
         /**
-         * @export
+         * @flexjsignorecoercion org.apache.flex.core.IBead 
          */
         COMPILE::JS
         public function start():void 
@@ -559,8 +576,8 @@ package org.apache.flex.core
             
             dispatchEvent('initialize');
             
-            if (model) addBead(model);
-            if (controller) addBead(controller);
+            if (model is IBead) addBead(model as IBead);
+            if (controller is IBead) addBead(controller as IBead);
             
             initialView.applicationModel = model;
             addElement(initialView);

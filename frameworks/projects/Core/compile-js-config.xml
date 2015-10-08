@@ -23,8 +23,6 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../libs/js.swc</path-element>
-            <path-element>../../libs/GCL.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -65,11 +63,13 @@
         <name>js/out/*</name>
         <path>js/out/*</path>
     </include-file>
+    <!--
     <include-file>
         <name>js/src/*</name>
         <path>js/src/*</path>
     </include-file>
-
+     -->
+    
     <include-classes>
         <class>CoreJSClasses</class>
         <!-- leave out for now until we get Application to compile

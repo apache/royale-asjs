@@ -174,8 +174,6 @@
 
     <target name="compile-as-for-js" >
         <!-- copy js.swc into frameworks/libs -->
-        <copy file="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" todir="${basedir}/../../libs" />
-        <copy file="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" todir="${basedir}/../../libs" />
         <echo message="Cross-compiling Core/as for js"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
@@ -191,6 +189,9 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </java>

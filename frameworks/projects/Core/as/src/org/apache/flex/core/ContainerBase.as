@@ -74,7 +74,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public class ContainerBase extends UIBase implements IMXMLDocument, IStatesObject, IContainer, IContentViewHost
 	{
         /**
@@ -103,6 +102,24 @@ package org.apache.flex.core
 		}
         
         /**
+         *  @copy org.apache.flex.core.IParent#getElementAt()
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override public function getElementAt(index:int):Object
+        {
+            var contentView:IParent = view as IParent;
+            if (contentView != null) {
+                return contentView.getElementAt(index);
+            } else {
+                return super.getElementIndex(index);
+            }
+        }        
+        
+        /**
          *  @private
          */
         override public function getElementIndex(c:Object):int
@@ -111,7 +128,7 @@ package org.apache.flex.core
 			if (contentView != null) {
 				return contentView.getElementIndex(c);
 			} else {
-				return getChildIndex(c as DisplayObject);
+				return super.getElementIndex(c);
 			}
         }
         
@@ -127,7 +144,7 @@ package org.apache.flex.core
                     this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
-				addChild(c as DisplayObject);
+				super.addElement(c);
 			}
         }
         
@@ -143,7 +160,7 @@ package org.apache.flex.core
                     this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
-				addChildAt(c as DisplayObject, index);
+				super.addElementAt(c, index);
 			}
         }
         
@@ -159,7 +176,7 @@ package org.apache.flex.core
                     this.dispatchEvent(new Event("childrenRemoved"));
 			}
 			else {
-				removeChild(c as DisplayObject);
+				super.removeElement(c);
 			}
         }
         
@@ -266,11 +283,26 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
 		public function get MXMLDescriptor():Array
 		{
 			return _mxmlDescriptor;
 		}
 
+        /**
+         *  @copy org.apache.flex.core.Application#MXMLDescriptor
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        COMPILE::JS
+        override public function get MXMLDescriptor():Array
+        {
+            return _mxmlDescriptor;
+        }
+        
         /**
          *  @private
          */
@@ -321,6 +353,8 @@ package org.apache.flex.core
 
         /**
          *  @private
+         *  @flexjsignorecoercion Class
+         *  @flexjsignorecoercion org.apache.flex.core.IBead
          */
         public function set states(value:Array):void
         {
@@ -329,7 +363,11 @@ package org.apache.flex.core
             
 			try{
 				if (getBeadByType(IStatesImpl) == null)
-					addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iStatesImpl") as Class;
+                    var b:Object = new c();
+					addBead(b as IBead);
+                }
 			}
 			//TODO:  Need to handle this case more gracefully
 			catch(e:Error)

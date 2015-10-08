@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.display.DisplayObjectContainer;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObjectContainer;
+    }
     
     /**
      *  The IChild interface is the basic interface for a 
@@ -29,7 +32,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
     public interface ILayoutChild extends IChild, IUIBase
 	{
         /**
@@ -116,6 +118,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         function setX(value:Number):void;
         
         /**
@@ -128,6 +131,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         function setY(value:Number):void;
         
         /**

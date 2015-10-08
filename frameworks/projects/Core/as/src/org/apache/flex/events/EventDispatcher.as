@@ -58,27 +58,9 @@ package org.apache.flex.events
 	COMPILE::JS
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
-
-		override public function addEventListener(type:String, handler:Object, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-		{
-			super.addEventListener(type, handler, opt_capture, opt_handlerScope);
-
-			const that:* = this;
-			var source:* = this;
-
-			if (that.element && that.element.nodeName &&
-				that.element.nodeName.toLowerCase() !== 'div' &&
-				that.element.nodeName.toLowerCase() !== 'body')
-			{
-				source = that.element;
-			}
-			else if (ElementEvents.elementEvents[type])
-			{
-				// mouse and keyboard events also dispatch off the element.
-				source = that.element;
-			}
-
-			goog.events.listen(source, type, handler);
-		}
+        public function hasEventListener(type:String):Boolean
+        {
+            return goog.events.hasListener(this, type);
+        }
 	}
 }

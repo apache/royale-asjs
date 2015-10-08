@@ -34,7 +34,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public interface IStrandWithModel extends IStrand
 	{
         /**
@@ -45,7 +44,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function get model():IBeadModel;
+        function get model():Object;
         	
 	}
 }

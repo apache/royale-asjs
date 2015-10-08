@@ -133,5 +133,21 @@ package org.apache.flex.core
          */
         function addRule(ruleName:String, values:Object):void;
 
+        /**
+         *  Applies a set of styles to an instance.  This is used
+         *  by implementations that wrap internal elements to
+         *  propagate styles to the right internal elements.
+         *
+         *  @param instance An instance to apply styles to.
+         *  @param styles An Object map of styles to apply.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        COMPILE::JS
+        function applyStyles(instance:IUIBase, styles:Object):void;
+        
     }
 }

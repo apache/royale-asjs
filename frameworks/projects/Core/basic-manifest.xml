@@ -22,22 +22,22 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.flex.core.Application"/>
+    <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
+    <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
+    <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <!-- temporarily remove these classes while we try to get Application to compile
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
-    <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
-    <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
     <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
     <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
-    <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
+     -->
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
     
     <component id="State" class="org.apache.flex.states.State"/>
-    -->
 </componentPackage>

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import flash.display.JointStyle;
 	import flash.system.ApplicationDomain;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
@@ -25,8 +26,8 @@ package org.apache.flex.core
 	
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.events.ValueEvent;
-    import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.events.ValueEvent;
+	import org.apache.flex.utils.CSSUtils;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
@@ -42,7 +43,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
 	{
         /**
@@ -70,6 +70,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function init(mainClass:Object):void
         {
 			var styleClassName:String;
@@ -100,6 +101,46 @@ package org.apache.flex.core
                     dispatchEvent(new ValueEvent("init", false, false, c["fontFaces" + i.toString()]));
                 i++;
             }
+        }
+        COMPILE::JS
+        public function init(mainClass:Object):void
+        {
+            var cssData:Array = mainClass.cssData;
+            var values:Object = this.values;
+            if (values == null)
+                values = {};
+            
+            if (cssData) {
+                var n:int = cssData.length;
+                var i:int = 0;
+                while (i < n)
+                {
+                    var numMQ:int = cssData[i++];
+                    if (numMQ > 0)
+                    {
+                        // skip MediaQuery tests for now
+                        i += numMQ;
+                    }
+                    var numSel:int = cssData[i++];
+                    var props:Object = {};
+                    for (var j:int = 0; j < numSel; j++)
+                    {
+                        var selName:String = cssData[i++];
+                        if (values[selName])
+                            props = values[selName];
+                        values[selName] = props;
+                    }
+                    var numProps:int = cssData[i++];
+                    for (j = 0; j < numProps; j++)
+                    {
+                        var propName:String = cssData[i++];
+                        var propValue:Object = cssData[i++];
+                        props[propName] = propValue;
+                    }
+                }
+            }
+            
+            this.values = values;            
         }
         
         /**
@@ -200,7 +241,7 @@ package org.apache.flex.core
                             values[finalName] = valuesObject;
                         else
                         {
-                            valuesFunction.prototype = o;
+                            valuesFunction["prototype"] = o;
                             values[finalName] = new valuesFunction();
                         }
                     }
@@ -345,7 +386,14 @@ package org.apache.flex.core
                 }
 			}
 			
-			className = getQualifiedClassName(thisObject);
+            COMPILE::AS3
+            {
+    			className = getQualifiedClassName(thisObject);
+            }
+            COMPILE::JS
+            {
+                className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
+            }
             var thisInstance:Object = thisObject;
 			while (className != "Object")
 			{
@@ -372,8 +420,19 @@ package org.apache.flex.core
 	                if (value !== undefined)
 	                    return value;
 	            }
-				className = getQualifiedSuperclassName(thisInstance);
-				thisInstance = getDefinitionByName(className);
+                COMPILE::AS3
+                {
+                    className = getQualifiedSuperclassName(thisInstance);
+                    thisInstance = getDefinitionByName(className);                        
+                }
+                COMPILE::JS
+                {
+                    thisInstance = thisInstance.constructor["superClass_"];
+                    if (!thisInstance || !thisInstance.FLEXJS_CLASS_INFO)
+                        break;
+                    
+                    className = thisInstance.FLEXJS_CLASS_INFO.names[0].qName;                    
+                }
 			}
             
             if (inheritingStyles[valueName] != null && 
@@ -589,7 +648,77 @@ package org.apache.flex.core
             "fontStyle" : 1,
             "textAlign" : 1
         }
-                                                        
+
+        /**
+         * The styles that apply to each UI widget
+         */
+        COMPILE::JS
+        public static var perInstanceStyles:Object = {
+            'backgroundColor': 1,
+            'backgroundImage': 1,
+            'color': 1,
+            'fontFamily': 1,
+            'fontWeight': 1,
+            'fontSize': 1,
+            'fontStyle': 1
+        }
+        
+        
+        /**
+         * The styles that use color format #RRGGBB
+         */
+        COMPILE::JS
+        public static var colorStyles:Object = {
+            'backgroundColor': 1,
+            'borderColor': 1,
+            'color': 1
+        }
+        
+        
+        /**
+         * The properties that enumerate that we skip
+         */
+        COMPILE::JS
+        public static var skipStyles:Object = {
+            'constructor': 1
+        }
+        
+        
+
+        /**
+         * @param thisObject The object to apply styles to;
+         * @param styles The styles.
+         */
+        COMPILE::JS
+        public function applyStyles(thisObject:IUIBase, styles:Object):void
+        {
+            var styleList:Object = perInstanceStyles;
+            var colorStyles:Object = colorStyles;
+            var skipStyles:Object = skipStyles;
+            var listObj:Object = styles;
+            if (styles.styleList)
+                listObj = styles.styleList;
+            for (var p:String in listObj) 
+            {
+                //if (styleList[p])
+                if (skipStyles[p])
+                    continue;
+                var value:* = styles[p];
+                if (value === undefined)
+                    continue;
+                if (typeof(value) == 'number') {
+                    if (colorStyles[p])
+                        value = '#' + value.toString(16);
+                    else
+                        value = value.toString() + 'px';
+                }
+                else if (p == 'backgroundImage') {
+                    if (p.indexOf('url') !== 0)
+                        value = 'url(' + value + ')';
+                }
+                thisObject.element.style[p] = value;
+            }
+        }
 	}
 }
 

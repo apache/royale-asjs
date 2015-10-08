@@ -28,7 +28,6 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	COMPILE::AS3
 	public class ValueEvent extends Event
 	{
         /**
@@ -42,7 +41,16 @@ package org.apache.flex.events
 		public function ValueEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 value:Object = null)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+    			super(type, bubbles, cancelable);
+            }
+            
+            COMPILE::JS
+            {
+                super(type);
+            }
+            
 			this.value = value;
 		}
 		

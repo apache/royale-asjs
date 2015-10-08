@@ -27,7 +27,7 @@ package org.apache.flex.core
      * of the Viewport.
 	 */
 	COMPILE::AS3
-	public interface IViewportModel extends IBeadModel
+	public interface IViewportModel extends IBead
 	{	
 		/**
 		 * Size of the borders.

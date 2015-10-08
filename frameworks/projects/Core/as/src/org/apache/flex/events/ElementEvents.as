@@ -34,6 +34,11 @@ package org.apache.flex.events
 		//--------------------------------------
 
 		static public const elementEvents:Object = {
+                'click': 1,
+                'change': 1,
+                'keyup': 1,
+                'keydown': 1,
+                'load': 1,
 				'mouseover': 1,
 				'mouseout': 1,
 				'mouseup': 1,

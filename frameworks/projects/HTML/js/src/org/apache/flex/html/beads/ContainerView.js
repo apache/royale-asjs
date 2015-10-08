@@ -16,6 +16,7 @@ goog.provide('org.apache.flex.html.beads.ContainerView');
 
 goog.require('org.apache.flex.core.BeadViewBase');
 goog.require('org.apache.flex.core.IBeadLayout');
+goog.require('org.apache.flex.core.IContainerView');
 goog.require('org.apache.flex.core.ILayoutHost');
 goog.require('org.apache.flex.core.IViewport');
 goog.require('org.apache.flex.core.IViewportModel');
@@ -49,7 +50,7 @@ goog.inherits(
 org.apache.flex.html.beads.ContainerView.prototype.FLEXJS_CLASS_INFO =
     { names: [{ name: 'ContainerView',
                 qName: 'org.apache.flex.html.beads.ContainerView' }],
-    interfaces: [org.apache.flex.core.ILayoutHost]
+    interfaces: [org.apache.flex.core.ILayoutHost, org.apache.flex.core.IContainerView]
     };
 
 

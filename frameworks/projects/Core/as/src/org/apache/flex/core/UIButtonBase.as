@@ -58,7 +58,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	COMPILE::AS3
-	public class UIButtonBase extends SimpleButton implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild
+	public class UIButtonBase extends SimpleButton implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
 	{
         /**
          *  Constructor.
@@ -510,7 +510,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get model():IBeadModel
+        public function get model():Object
         {
             if (_model == null)
             {
@@ -523,7 +523,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        public function set model(value:IBeadModel):void
+        public function set model(value:Object):void
         {
             if (_model != value)
             {
@@ -694,7 +694,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get element():Object
+        public function get element():IFlexJSElement
         {
             return this;
         }

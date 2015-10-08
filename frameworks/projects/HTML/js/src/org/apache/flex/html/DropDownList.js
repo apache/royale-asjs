@@ -139,5 +139,4 @@ Object.defineProperties(org.apache.flex.html.DropDownList.prototype, {
 org.apache.flex.html.DropDownList.prototype.changeHandler =
     function() {
   this.model.selectedIndex = this.element.selectedIndex;
-  this.dispatchEvent('change');
 };

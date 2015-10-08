@@ -35,7 +35,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::AS3
-	public class ApplicationBase extends Sprite
+	public class ApplicationBase extends Sprite implements IFlexInfo
 	{
         /**
          *  Constructor.
@@ -50,6 +50,28 @@ package org.apache.flex.core
 			super();
 		}
         
+        private var _info:Object;
+        
+        /**
+         *  An Object containing information generated
+         *  by the compiler that is useful at startup time.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function info():Object
+        {
+            if (!_info)
+            {
+                var mainClassName:String = getQualifiedClassName(this);
+                var initClassName:String = "_" + mainClassName + "_FlexInit";
+                var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
+                _info = c.info();
+            }
+            return _info;
+        }
    	}
     
     COMPILE::JS

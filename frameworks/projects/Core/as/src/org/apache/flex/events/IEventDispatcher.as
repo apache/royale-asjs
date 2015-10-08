@@ -41,6 +41,8 @@ package org.apache.flex.events
 	COMPILE::JS
 	public interface IEventDispatcher
 	{
-
+        function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void;
+        function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void;
+        //function hasEventListener(type:String):Boolean;
 	}
 }

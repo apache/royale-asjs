@@ -29,7 +29,6 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public class ValueChangeEvent extends Event
 	{
         /**
@@ -43,7 +42,14 @@ package org.apache.flex.events
 		public function ValueChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 oldValue:Object = null, newValue:Object = null)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+    			super(type, bubbles, cancelable);
+            }
+            COMPILE::JS
+            {
+                super(type);
+            }
 			this.oldValue = oldValue;
 			this.newValue = newValue;
 		}

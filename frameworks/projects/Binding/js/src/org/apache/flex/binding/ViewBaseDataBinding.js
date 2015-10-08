@@ -60,8 +60,8 @@ Object.defineProperties(org.apache.flex.binding.ViewBaseDataBinding.prototype, {
         set: function(value) {
             if (this.strand_ !== value) {
               this.strand_ = value;
-              this.strand_.addEventListener('initComplete',
-              goog.bind(this.initCompleteHandler, this));
+              this.strand_.addEventListener('initBindings',
+              goog.bind(this.initBindingsHandler, this));
             }
         }
     }
@@ -72,7 +72,7 @@ Object.defineProperties(org.apache.flex.binding.ViewBaseDataBinding.prototype, {
  * @protected
  * @param {Object} event The event.
  */
-org.apache.flex.binding.ViewBaseDataBinding.prototype.initCompleteHandler =
+org.apache.flex.binding.ViewBaseDataBinding.prototype.initBindingsHandler =
     function(event) {
 
   var prop;
