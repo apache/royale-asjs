@@ -131,6 +131,7 @@ package controller
 						alert.message = "Now @"+alert.stock.last;
 					}
 				}
+				alerts.itemUpdatedAt(i);
 			}
 			
 			var newEvent:Event = new Event("alertsUpdate");

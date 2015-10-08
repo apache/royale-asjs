@@ -108,7 +108,7 @@ package models
 			stock = new Stock(symbol);
 			
 			_watchList.addItem(stock);
-			dispatchEvent(new Event("update"));
+	//		dispatchEvent(new Event("update"));
 			
 			updateStockData(stock);
 			return stock;
@@ -156,6 +156,7 @@ package models
 				var stock:Stock = _watchList.getItemAt(i) as Stock;
 				if (stock.symbol == sym) {
 					stock.updateFromData(responseData);
+					_watchList.itemUpdatedAt(i);
 					break;
 				}
 			}
