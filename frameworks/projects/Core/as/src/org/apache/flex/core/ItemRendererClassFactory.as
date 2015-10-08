@@ -175,7 +175,6 @@ package org.apache.flex.core
         {
             var renderer:IItemRenderer = itemRendererFactory.newInstance();
 			renderer.itemRendererParent = parent;
-            parent.addElement(renderer);
             return renderer;
         }
         

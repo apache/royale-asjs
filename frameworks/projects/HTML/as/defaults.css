@@ -104,8 +104,6 @@ DataGrid
     IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.DataGridView");
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
-    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 
     background-color: #FFFFFF;
 	border-style: solid;
@@ -129,7 +127,7 @@ DataGrid
 }
 
 .DataGridListArea {
-	background-color: #AAAAAA;
+	background-color: #FFFFFF;
 	border-style: solid;
 	border-color: #333333;
 }

@@ -205,7 +205,6 @@ package org.apache.flex.html.beads
 		override protected function resizeHandler(event:Event):void
 		{
 			super.resizeHandler(event);
-			dataGroup.updateAllItemRenderers();
 		}
 	}
 }

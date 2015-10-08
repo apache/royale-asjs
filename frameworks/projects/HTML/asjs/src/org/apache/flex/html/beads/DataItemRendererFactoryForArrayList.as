@@ -156,10 +156,13 @@ package org.apache.flex.html.beads
 				ir.index = i;
 				ir.labelField = labelField;
 				if (presentationModel) {
-					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.marginBottom = presentationModel.separatorThickness;
-					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
+					
+					// ensure that the IR spans the width of its column
+					var style:SimpleCSSStyles = new SimpleCSSStyles();
+					style.right = 0;
+					style.left = 0;
+					UIBase(ir).style = style;
 				}
 				dataGroup.addElement(ir);
 				ir.data = dp.getItemAt(i);

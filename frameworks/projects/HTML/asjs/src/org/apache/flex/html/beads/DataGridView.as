@@ -188,10 +188,10 @@ package org.apache.flex.html.beads
 					
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 					var colWidth:Number = dataGridColumn.columnWidth;
-					if (!isNaN(colWidth)) list.width = colWidth - 1;
-					else list.width = listWidth - 1;
+					if (!isNaN(colWidth)) list.width = colWidth;
+					else list.width = listWidth;
 					
-					xpos += list.width + 1;
+					xpos += list.width;
 				}
 			}
 		}
@@ -293,8 +293,8 @@ package org.apache.flex.html.beads
 				list.addBead(presentationModel);
 				
 				var colWidth:Number = dataGridColumn.columnWidth;
-				if (!isNaN(colWidth)) list.width = colWidth - 1;
-				else list.width = listWidth - 1;
+				if (!isNaN(colWidth)) list.width = colWidth;
+				else list.width = listWidth;
 				
 				_listArea.addElement(list);	
 				_lists.push(list);
