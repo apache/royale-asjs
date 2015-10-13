@@ -73,6 +73,9 @@
         <echo message="Compiling libs/Collections.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${basedir}/js/out" />
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
