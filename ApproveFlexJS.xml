@@ -85,14 +85,7 @@
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 		
-	<available file="${env.FLEX_HOME}" 
-		type="dir" 
-		property="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
-
-    <fail message="The FLEX_HOME property is not set in environment or command-line."
-        unless="FLEX_SDK_HOME"/>
-				
-	<available file="${env.AIR_HOME}" 
+	<available file="${env.AIR_HOME}"
 		type="dir" 
 		property="AIR_HOME" value="${env.AIR_HOME}" />
 
@@ -121,22 +114,13 @@
         type="dir"
         property="FALCON_HOME" value="${env.FALCON_HOME}" />
     
-    <fail message="The FALCON_HOME property is not set in environment or command-line."
-        unless="FALCON_HOME"/>
-    
     <available file="${env.FALCONJX_HOME}"
         type="dir"
         property="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
     
-    <fail message="The FALCONJX_HOME property is not set in environment or command-line."
-        unless="FALCONJX_HOME"/>
-    
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"
         property="FLEXUNIT_HOME" value="${env.FLEXUNIT_HOME}" />
-    
-    <fail message="The FLEXUNIT_HOME property is not set in environment or command-line."
-        unless="FLEXUNIT_HOME"/>
     
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
@@ -147,6 +131,13 @@
 		
     <fail message="The release version is not set.  Specify -Drelease.version=&lt;release version (e.g. 3.1, 3.2, etc)&gt;"
     unless="release.version"/>
+
+    <condition property="package.url.path"
+        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs/lastSuccessfulBuild/artifact/out">
+        <not>
+            <isset property="rc" />
+        </not>
+    </condition>
 
 	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}" />
 	<property name="package.url.name" value="apache-flex-flexjs-${release.version}-src" />
@@ -287,6 +278,8 @@
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
+                <!--          fragments           -->
+                <exclude name="LICENSE.bin"/>
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -377,11 +370,14 @@
         addproperty="license.ok"/>
     </target>
 
-    <target name="build" depends="copy.downloads">
-		<input
-			message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  Press y to start the build."
-            validargs="y"
+    <target name="ask.build">
+        <input
+        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  Press y to start the build."
+        validargs="y"
         defaultvalue="y" />
+    </target>
+
+    <target name="build" depends="ask.build,get.dependencies,copy.downloads">
         <ant dir="${basedir}/${package.url.name}" target="main" />
     </target>
 
@@ -391,7 +387,69 @@
 			<fileset dir="${download.cache.dir}" />
 		</copy>
     </target>
-    	
+    
+    <target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.flexunit.if.needed" />
+    <target name="set.falcon.flags" >
+        <condition property="falcon.nightly">
+            <and>
+                <not>
+                    <isset property="FALCON_HOME" />
+                </not>
+                <not>
+                    <isset property="rc" />
+                </not>
+            </and>
+        </condition>
+        <condition property="falcon.rc">
+            <and>
+                <not>
+                    <isset property="FALCON_HOME" />
+                </not>
+                <isset property="rc" />
+            </and>
+        </condition>
+    </target>
+    <target name="get.falcon.if.needed" depends="get.falcon.nightly,get.falcon.rc" unless="FALCON_HOME" />
+    <target name="get.falcon.nightly" if="falcon.nightly">
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
+        <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+             dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
+        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <!-- Copy compiler external dependencies -->
+        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/compiler.jx" />
+    </target>
+    <target name="get.falcon.rc" if="falcon.rc">
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
+        <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip"
+        dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
+        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <!-- Copy compiler external dependencies -->
+        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/compiler.jx" />
+    </target>
+    <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
+        <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
+        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
+        dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
+        <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
+        <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
+    </target>
+    
 	<target name="approve" >
 		<condition property="vote" value="+1">
 			<and>
