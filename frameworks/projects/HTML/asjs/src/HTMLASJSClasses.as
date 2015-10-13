@@ -28,6 +28,7 @@ package
 internal class HTMLASJSClasses
 {
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
+	import org.apache.flex.html.beads.DataGridLinesBead; DataGridLinesBead;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;

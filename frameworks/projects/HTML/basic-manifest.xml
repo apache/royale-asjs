@@ -82,6 +82,7 @@
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataProviderChangeNotifier" class="org.apache.flex.html.beads.DataProviderChangeNotifier"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
+    <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
 
     <component id="DateChooser" class="org.apache.flex.html.DateChooser"/>
     <component id="DateField" class="org.apache.flex.html.DateField"/>
