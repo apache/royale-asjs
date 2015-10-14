@@ -37,7 +37,7 @@
     <target name="main" depends="clean,compile,test" description="Clean build of Core.swc">
     </target>
 
-    <target name="all" depends="main,compile-asjs,lint-js,test-js" description="Full build of Core.swc">
+    <target name="all" depends="clean,compile-asjs,compile,test" description="Full build of Core.swc">
     </target>
 
     <target name="test" unless="is.jenkins">
@@ -153,7 +153,7 @@
     </target>
 
     <target name="compile-asjs">
-        <echo message="Cross-compiling Core/asjs"/>
+        <echo message="Cross-compiling Core"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
@@ -164,11 +164,15 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <arg value="-output=${basedir}/js/out" />
-            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
+            <arg value="-load-config=${basedir}/compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
         </java>
     </target>
 
