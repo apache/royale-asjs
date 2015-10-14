@@ -33,7 +33,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public interface IDragInitiator
 	{
         /**

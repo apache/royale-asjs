@@ -19,12 +19,15 @@
 package org.apache.flex.utils
 {
 
-import flash.display.InteractiveObject;
-import flash.events.ContextMenuEvent;
-import flash.net.URLRequest;
-import flash.net.navigateToURL;
-import flash.ui.ContextMenu;
-import flash.ui.ContextMenuItem;
+COMPILE::AS3
+{
+    import flash.display.InteractiveObject;
+    import flash.events.ContextMenuEvent;
+    import flash.net.URLRequest;
+    import flash.net.navigateToURL;
+    import flash.ui.ContextMenu;
+    import flash.ui.ContextMenuItem;
+}
 
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IStrand;
@@ -68,19 +71,23 @@ public class ViewSourceContextMenuOption implements IBead
 	{
 		_strand = value;
 		
-		var menuHost:InteractiveObject = InteractiveObject(value);
-		var cm:ContextMenu = ContextMenu(menuHost.contextMenu);
-		if (!cm)
-		{
-			cm = new ContextMenu();
-			menuHost.contextMenu = cm;
-		}
-		var cmi:ContextMenuItem = new ContextMenuItem("View Source...");
-		cm.hideBuiltInItems();
-		cm.customItems.push(cmi);
-		cmi.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, viewSource);
+        COMPILE::AS3
+        {
+    		var menuHost:InteractiveObject = InteractiveObject(value);
+    		var cm:ContextMenu = ContextMenu(menuHost.contextMenu);
+    		if (!cm)
+    		{
+    			cm = new ContextMenu();
+    			menuHost.contextMenu = cm;
+    		}
+    		var cmi:ContextMenuItem = new ContextMenuItem("View Source...");
+    		cm.hideBuiltInItems();
+    		cm.customItems.push(cmi);
+    		cmi.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, viewSource);
+        }
 	}
 	
+    COMPILE::AS3
 	private function viewSource(e:ContextMenuEvent):void
 	{
 		var urlRequest:URLRequest = new URLRequest("srcview/index.html");

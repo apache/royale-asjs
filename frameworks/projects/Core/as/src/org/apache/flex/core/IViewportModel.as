@@ -26,7 +26,6 @@ package org.apache.flex.core
      * The ViewportModel caches the offsets required to compute the size
      * of the Viewport.
 	 */
-	COMPILE::AS3
 	public interface IViewportModel extends IBead
 	{	
 		/**

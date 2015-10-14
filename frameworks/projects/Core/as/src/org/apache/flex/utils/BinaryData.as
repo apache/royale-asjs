@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-import flash.utils.ByteArray;
+COMPILE::AS3
+{
+    import flash.utils.ByteArray;
+}
 
     
 /**
@@ -31,7 +34,6 @@ import flash.utils.ByteArray;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::AS3
 public class BinaryData
 {
     /**
@@ -47,8 +49,15 @@ public class BinaryData
 		
 	}
 	
+    COMPILE::AS3
 	private var ba:ByteArray = new ByteArray();
 	
+    COMPILE::JS
+    private var ba:ArrayBuffer = new ArrayBuffer(0);
+    
+    COMPILE::JS
+    private var _position:int = 0;
+    
 	/**
 	 * Get the platform-specific data for sending.
 	 * Generally only used by the network services.
@@ -73,7 +82,20 @@ public class BinaryData
      */
 	public function writeByte(byte:int):void
 	{
-		ba.writeByte(byte);
+        COMPILE::AS3
+        {
+            ba.writeByte(byte);                
+        }
+        COMPILE::JS
+        {
+            var view:Int8Array;
+            
+            growBuffer(1);
+            
+            view = new Int8Array(ba, _position, 1);
+            view[0] = byte;
+            _position++;
+        }
 	}
 	
     /**
@@ -86,7 +108,20 @@ public class BinaryData
      */
 	public function writeShort(short:int):void
 	{
-		ba.writeShort(short);
+        COMPILE::AS3
+        {
+            ba.writeShort(short);                
+        }
+        COMPILE::JS
+        {
+            var view:Int16Array;
+            
+            growBuffer(2);
+            
+            view = new Int16Array(ba, _position, 1);
+            view[0] = short;
+            _position += 2;
+        }
 	}
 	
     /**
@@ -99,7 +134,20 @@ public class BinaryData
      */
 	public function writeUnsignedInt(unsigned:uint):void
 	{
-		ba.writeUnsignedInt(unsigned);
+        COMPILE::AS3
+        {
+            ba.writeUnsignedInt(unsigned);                
+        }
+        COMPILE::JS
+        {
+            var view:Uint32Array;
+            
+            growBuffer(4);
+            
+            view = new Uint32Array(ba, _position, 1);
+            view[0] = unsigned;
+            _position += 4;
+        }
 	}
 
     /**
@@ -112,7 +160,20 @@ public class BinaryData
      */
 	public function writeInt(integer:uint):void
 	{
-		ba.writeInt(integer);
+        COMPILE::AS3
+        {
+            ba.writeInt(integer);                
+        }
+        COMPILE::JS
+        {
+            var view:Int32Array;
+            
+            growBuffer(4);
+            
+            view = new Int32Array(ba, _position, 1);
+            view[0] = integer;
+            _position += 4;
+        }
 	}
 
     /**
@@ -125,7 +186,18 @@ public class BinaryData
      */
 	public function readByte():int
 	{
-		return ba.readByte();
+        COMPILE::AS3
+        {
+            return ba.readByte();                
+        }
+        COMPILE::JS
+        {
+            var view:Int8Array;
+            
+            view = new Int8Array(ba, _position, 1);
+            _position++;
+            return view[0];
+        }
 	}
 	
     /**
@@ -138,7 +210,18 @@ public class BinaryData
      */
 	public function readShort():int
 	{
-		return ba.readShort();
+        COMPILE::AS3
+        {
+            return ba.readShort();                
+        }
+        COMPILE::JS
+        {
+            var view:Int16Array;
+            
+            view = new Int16Array(ba, _position, 1);
+            _position += 2;
+            return view[0];
+        }
 	}
 	
     /**
@@ -151,7 +234,18 @@ public class BinaryData
      */
 	public function readUnsignedInt():uint
 	{
-		return ba.readUnsignedInt();
+        COMPILE::AS3
+        {
+            return ba.readUnsignedInt();                
+        }
+        COMPILE::JS
+        {
+            var view:Uint32Array;
+            
+            view = new Uint32Array(ba, _position, 1);
+            _position += 4;
+            return view[0];
+        }
 	}
 	
     /**
@@ -164,7 +258,18 @@ public class BinaryData
      */
     public function readInt():int
 	{
-		return ba.readInt();
+        COMPILE::AS3
+        {
+            return ba.readInt();                
+        }
+        COMPILE::JS
+        {
+            var view:Int32Array;
+            
+            view = new Int32Array(ba, _position, 1);
+            _position += 4;
+            return view[0];
+        }
 	}
 
     /**
@@ -177,7 +282,14 @@ public class BinaryData
      */
 	public function get length():int
 	{
-		return ba.length;
+        COMPILE::AS3
+        {
+            return ba.length;                
+        }
+        COMPILE::JS
+        {
+            return ba.byteLength;
+        }
 	}
 	
     /**
@@ -190,7 +302,14 @@ public class BinaryData
      */
 	public function get bytesAvailable():int
 	{
-		return ba.bytesAvailable;
+        COMPILE::AS3
+        {
+            return ba.bytesAvailable;                
+        }
+        COMPILE::JS
+        {
+            return ba.byteLength - position;
+        }
 	}
 
     /**
@@ -203,7 +322,14 @@ public class BinaryData
      */
 	public function get position():int
 	{
-		return ba.position;
+        COMPILE::AS3
+        {
+            return ba.position;                
+        }
+        COMPILE::JS
+        {
+            return _position;
+        }
 	}
 	
     /**
@@ -211,7 +337,14 @@ public class BinaryData
      */
 	public function set position(value:int):void
 	{
-		ba.position = value;
+        COMPILE::AS3
+        {
+            ba.position = value;
+        }
+        COMPILE::JS
+        {
+            _position = value;
+        }
 	}
 	
     /**
@@ -232,6 +365,27 @@ public class BinaryData
 	public function growBuffer(extra:int):void
 	{
 		// no need to do anything in AS
+        COMPILE::JS
+        {
+            var newBuffer:ArrayBuffer;
+            var newView:Int8Array;
+            var view:Int8Array;
+            var i:int;
+            var n:int;
+            
+            if (_position >= ba.byteLength)
+            {
+                n = ba.byteLength;
+                newBuffer = new ArrayBuffer(n + extra);
+                newView = new Int8Array(newBuffer, 0, n);
+                view = new Int8Array(ba, 0, n);
+                for (i = 0; i < n; i++)
+                {
+                    newView[i] = view[i];
+                }
+                ba = newBuffer;
+            }
+        }
 	}
 }
 }

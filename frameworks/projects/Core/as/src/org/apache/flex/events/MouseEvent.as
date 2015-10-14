@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {	
-    import flash.events.MouseEvent;
+    COMPILE::AS3
+    {
+        import flash.events.MouseEvent;
+    }
     
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
@@ -32,7 +35,6 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-    COMPILE::AS3
 	public class MouseEvent extends Event
 	{
 		public static const MOUSE_DOWN:String = "mouseDown";
@@ -64,7 +66,14 @@ package org.apache.flex.events
                                    commandKey:Boolean = false, controlKey:Boolean = false, 
                                    clickCount:int = 0)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+                super(type, bubbles, cancelable);                    
+            }
+            COMPILE::JS
+            {
+                super(type);
+            }
             this.localX = localX;
             this.localY = localY;
             this.relatedObject = relatedObject;

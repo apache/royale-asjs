@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-COMPILE::AS3
 	public interface IContentView
 	{
 		function get x():Number;

@@ -18,10 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+COMPILE::AS3
+{
     import flash.events.Event;
     import flash.external.ExternalInterface;
-    import flash.utils.getQualifiedClassName;
-    
+    import flash.utils.getQualifiedClassName;        
+}
+COMPILE::JS
+{
+    import goog.bind;    
+}
+
     /**
      *  The BrowserResizeListener class listens for browser
      *  resizing and resizes the application accordingly.
@@ -30,6 +37,7 @@ package org.apache.flex.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
+     *  @flexjsignoreimport goog.bind
      */
 	public class BrowserResizeListener implements IBead
 	{
@@ -78,32 +86,57 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             app = value as Application;
-            app.stage.addEventListener("resize", resizeHandler);
-            if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
+            COMPILE::AS3
             {
-                // Get application name.  This assumes that the wrapper is using an
-                // object tag with the id that matches the application name
-                var appName:String = getQualifiedClassName(app);
-                var js:String = "var o = document.getElementById('" + appName + "');";
-                if (!isNaN(minWidth))
-                    js += "o.style.minWidth = '" + minWidth.toString() + "px';";
-                if (!isNaN(minHeight))
-                    js += "o.style.minHeight = '" + minHeight.toString() + "px';"
-                ExternalInterface.call("eval", js); 
+                app.stage.addEventListener("resize", resizeHandler);
+                if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
+                {
+                    // Get application name.  This assumes that the wrapper is using an
+                    // object tag with the id that matches the application name
+                    var appName:String = getQualifiedClassName(app);
+                    var js:String = "var o = document.getElementById('" + appName + "');";
+                    if (!isNaN(minWidth))
+                        js += "o.style.minWidth = '" + minWidth.toString() + "px';";
+                    if (!isNaN(minHeight))
+                        js += "o.style.minHeight = '" + minHeight.toString() + "px';"
+                    ExternalInterface.call("eval", js); 
+                }                    
+            }
+            COMPILE::JS
+            {
+                window.addEventListener('resize',
+                    goog.bind(this.resizeHandler, this), false);
+                if (!isNaN(this.minWidth))
+                    document.body.style.minWidth = this.minWidth.toString() + 'px';
+                if (!isNaN(this.minHeight))
+                    document.body.style.minHeight = this.minHeight.toString() + 'px';
+                document.body.style.overflow = 'auto';
             }
         }
         
         private function resizeHandler(event:Event):void
         {
-            var initialView:UIBase = app.initialView;
-            if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
-                    Math.max(minHeight, app.stage.stageHeight), true);
-            else if (!isNaN(initialView.percentWidth))
-                initialView.setWidth(Math.max(minWidth, app.stage.stageWidth));
-            else if (!isNaN(initialView.percentHeight))
-                initialView.setHeight(Math.max(minHeight, app.stage.stageHeight));
-            
+            COMPILE::AS3
+            {
+                var initialView:UIBase = app.initialView;
+                if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
+                    initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
+                        Math.max(minHeight, app.stage.stageHeight), true);
+                else if (!isNaN(initialView.percentWidth))
+                    initialView.setWidth(Math.max(minWidth, app.stage.stageWidth));
+                else if (!isNaN(initialView.percentHeight))
+                    initialView.setHeight(Math.max(minHeight, app.stage.stageHeight));
+            }
+            COMPILE::JS
+            {
+                var initialView:UIBase = app.initialView;
+                var element:HTMLElement = app.element;
+                if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
+                    element.style.height = window.innerHeight.toString() + 'px';
+                    element.style.width = window.innerWidth.toString() + 'px';
+                    initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+                }
+            }
         }
 
 	}

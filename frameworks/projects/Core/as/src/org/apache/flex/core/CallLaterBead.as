@@ -18,8 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.display.DisplayObject;
-    import flash.events.Event;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;
+        import flash.events.Event;
+    }
+    COMPILE::JS
+    {
+        import goog.bind;
+    }
     
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
@@ -33,8 +40,8 @@ package org.apache.flex.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
+     *  @flexjsignoreimport goog.bind
      */
-    COMPILE::AS3
 	public class CallLaterBead implements IBead
 	{
         /**
@@ -87,17 +94,30 @@ package org.apache.flex.core
          */
         public function callLater(fn:Function, args:Array = null, thisArg:Object = null):void
         {
-            DisplayObject(_strand).addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+            COMPILE::AS3
+            {
+                DisplayObject(_strand).addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+            }
             if (calls == null)
                 calls = [ {thisArg: thisArg, fn: fn, args: args } ];
             else
                 calls.push({thisArg: thisArg, fn: fn, args: args });
+            
+            COMPILE::JS
+            {
+                setTimeout(goog.bind(this.makeCalls, this), 0);
+            }
         }
         
+        COMPILE::AS3
         private function enterFrameHandler(event:Event):void
         {
             DisplayObject(_strand).removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
-            
+            makeCalls();
+        }
+        
+        private function makeCalls():void
+        {
             var list:Array = calls;
             var n:int = list.length;
             for (var i:int = 0; i < n; i++)

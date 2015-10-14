@@ -1,9 +1,5 @@
 package org.apache.flex.core
 {
-    COMPILE::JS
-    {
-    }
-
 	COMPILE::JS
 	public class WrappedHTMLElement extends HTMLElement
 	{

@@ -18,11 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-import flash.events.EventDispatcher;
-import flash.events.TimerEvent;
-import flash.utils.Timer;
-import flash.utils.getTimer;
-
+COMPILE::AS3
+{
+    import flash.events.EventDispatcher;
+    import flash.events.TimerEvent;
+    import flash.utils.Timer;
+    import flash.utils.getTimer;
+}
+COMPILE::JS
+{
+    import goog.bind;
+    import org.apache.flex.events.EventDispatcher;
+}
 import org.apache.flex.core.IEffectTimer;
 import org.apache.flex.core.ValuesManager;
 import org.apache.flex.events.ValueEvent;
@@ -50,8 +57,8 @@ import org.apache.flex.events.ValueEvent;
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
+ *  @flexjsignoreimport goog.bind
  */
-COMPILE::AS3
 public class EffectTimer extends EventDispatcher implements IEffectTimer
 {
     /**
@@ -69,28 +76,63 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
      */
     public function EffectTimer()
     {
-		var interval:int = ValuesManager.valuesImpl.getValue(this, "effectTimerInterval");
-		timer = new flash.utils.Timer(interval);
-		timer.addEventListener("timer", timerHandler);
+		interval = ValuesManager.valuesImpl.getValue(this, "effectTimerInterval");
+        COMPILE::AS3
+        {
+    		timer = new flash.utils.Timer(interval);
+    		timer.addEventListener("timer", timerHandler);
+        }
     }
 
+    private var interval:int;
+    
+    COMPILE::AS3
 	private var timer:flash.utils.Timer;
+    
+    COMPILE::JS
+    private var timerInterval:Number;
 	
 	public function start():int
 	{
-		timer.start();
-		return getTimer();
+        COMPILE::AS3
+        {
+    		timer.start();
+    		return getTimer();
+        }
+        COMPILE::JS
+        {
+            timerInterval =
+                setInterval(goog.bind(timerHandler, this), interval);
+            var d:Date = new Date();
+            return d.getTime();
+        }
 	}
 	
 	public function stop():void
 	{
-		timer.stop();
+        COMPILE::AS3
+        {
+    		timer.stop();
+        }
+        COMPILE::JS
+        {
+            clearInterval(timerInterval);
+            timerInterval = -1;
+        }
 	}
 	
+    COMPILE::AS3
 	private function timerHandler(event:flash.events.TimerEvent):void
 	{
 		event.updateAfterEvent();
 		dispatchEvent(new ValueEvent("update", false, false, getTimer()));
 	}
+    
+    COMPILE::JS
+    private function timerHandler():void
+    {
+        var d:Date = new Date();
+        dispatchEvent(new org.apache.flex.events.ValueEvent('update', d.getTime()));
+    }
 }
 }

@@ -30,7 +30,6 @@ package org.apache.flex.events
 	 * @playerversion AIR 2.6
 	 * @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
 	public class CustomEvent extends Event
 	{
 
@@ -52,7 +51,14 @@ package org.apache.flex.events
 		 */
 		public function CustomEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+                super(type, bubbles, cancelable);                    
+            }
+            COMPILE::JS
+            {
+                super(type);
+            }
 		}
 	}
 }

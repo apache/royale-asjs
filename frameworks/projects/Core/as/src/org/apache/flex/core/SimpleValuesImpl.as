@@ -32,7 +32,6 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
 	public class SimpleValuesImpl extends EventDispatcher implements IValuesImpl
 	{
 		public function SimpleValuesImpl()
@@ -179,5 +178,11 @@ package org.apache.flex.core
                 values[p] = values[p];
         }
         
+        COMPILE::JS
+        public function applyStyles(thisObject:IUIBase, styles:Object):void
+        {
+            // to do or not needed?
+        }
+
     }
 }

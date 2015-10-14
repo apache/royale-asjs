@@ -44,5 +44,6 @@ package org.apache.flex.events
         function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void;
         function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void;
         //function hasEventListener(type:String):Boolean;
+        function dispatchEvent(event:Object):Boolean;
 	}
 }
