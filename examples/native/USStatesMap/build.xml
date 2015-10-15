@@ -67,6 +67,11 @@
         property="JS.SWC"
         value="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
         
+    <available file="${FALCONJX_HOME}/libs/js.swc"
+        type="file"
+        property="JS.SWC"
+        value="${FALCONJX_HOME}/libs/js.swc" />
+        
     <path id="lib.path">
         <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
