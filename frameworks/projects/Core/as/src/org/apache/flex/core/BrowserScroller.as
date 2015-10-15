@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.external.ExternalInterface;
-    import flash.utils.getQualifiedClassName;
-    
+    COMPILE::AS3
+    {        
+        import flash.external.ExternalInterface;
+        import flash.utils.getQualifiedClassName;
+    }    
     import org.apache.flex.events.Event;
     
     /**
@@ -64,15 +66,22 @@ package org.apache.flex.core
         
         private function viewChangedHandler(event:Event):void
         {
-            if (ExternalInterface.available)
+            COMPILE::AS3
             {
-                // Get application name.  This assumes that the wrapper is using an
-                // object tag with the id that matches the application name
-                var appName:String = getQualifiedClassName(app);
-                var js:String = "var o = document.getElementById('" + appName + "');";
-                js += "o.width = " + app.initialView.width.toString() + ";";
-                js += "o.height = " + app.initialView.height.toString() + ";"
-                ExternalInterface.call("eval", js); 
+                if (ExternalInterface.available)
+                {
+                    // Get application name.  This assumes that the wrapper is using an
+                    // object tag with the id that matches the application name
+                    var appName:String = getQualifiedClassName(app);
+                    var js:String = "var o = document.getElementById('" + appName + "');";
+                    js += "o.width = " + app.initialView.width.toString() + ";";
+                    js += "o.height = " + app.initialView.height.toString() + ";"
+                    ExternalInterface.call("eval", js); 
+                }                    
+            }
+            COMPILE::JS
+            {
+                app.element.style.overflow = 'auto';
             }
         }
 

@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.JointStyle;
-	import flash.system.ApplicationDomain;
-	import flash.utils.getDefinitionByName;
-	import flash.utils.getQualifiedClassName;
-	import flash.utils.getQualifiedSuperclassName;
+    COMPILE::AS3
+    {
+        import flash.system.ApplicationDomain;
+        import flash.utils.getDefinitionByName;
+        import flash.utils.getQualifiedClassName;
+        import flash.utils.getQualifiedSuperclassName;            
+    }
 	
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;

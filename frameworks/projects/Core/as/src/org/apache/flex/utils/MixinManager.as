@@ -19,7 +19,10 @@
 package org.apache.flex.utils
 {
 
-import flash.system.ApplicationDomain;
+COMPILE::AS3
+{
+    import flash.system.ApplicationDomain;            
+}
 
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IFlexInfo;

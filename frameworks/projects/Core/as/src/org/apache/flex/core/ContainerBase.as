@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -372,7 +369,10 @@ package org.apache.flex.core
 			//TODO:  Need to handle this case more gracefully
 			catch(e:Error)
 			{
-				trace(e.message);
+                COMPILE::AS3
+                {
+                    trace(e.message);                        
+                }
 			}
             
         }

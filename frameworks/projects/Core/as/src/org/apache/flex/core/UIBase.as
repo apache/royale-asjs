@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.JointStyle;
-	import flash.display.Sprite;
-	import flash.display.Stage;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;
+        import flash.display.Sprite;
+        import flash.display.Stage;            
+    }
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;

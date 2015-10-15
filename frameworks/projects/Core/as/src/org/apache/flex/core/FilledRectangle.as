@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.Shape;
+    COMPILE::AS3
+    {
+        import flash.display.Shape;            
+    }
 	
 	import org.apache.flex.core.UIBase;
 	
@@ -45,10 +48,14 @@ package org.apache.flex.core
 		{
 			super();
 			
-			_shape = new flash.display.Shape();
-			this.addElement(_shape);
+            COMPILE::AS3
+            {
+                _shape = new flash.display.Shape();
+                this.addElement(_shape);
+            }
 		}
 		
+        COMPILE::AS3
 		private var _shape:flash.display.Shape;
 		
 		private var _fillColor:uint = 0x000000;
@@ -97,10 +104,22 @@ package org.apache.flex.core
          */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-			_shape.graphics.clear();
-			_shape.graphics.beginFill(_fillColor);
-			_shape.graphics.drawRect(x, y, width, height);
-			_shape.graphics.endFill();
+            COMPILE::AS3
+            {
+                _shape.graphics.clear();
+                _shape.graphics.beginFill(_fillColor);
+                _shape.graphics.drawRect(x, y, width, height);
+                _shape.graphics.endFill();                    
+            }
+            COMPILE::JS
+            {
+                element.style.position = 'absolute';
+                element.style.backgroundColor = '#' + _fillColor.toString(16);
+                if (!isNaN(x)) this.x = x;
+                if (!isNaN(y)) this.y = y;
+                if (!isNaN(width)) this.width = width;
+                if (!isNaN(height)) this.height = height;
+            }
 		}
 	}
 }

@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.system.ApplicationDomain;
-    import flash.utils.getQualifiedClassName;
-
     COMPILE::AS3 {
         import flash.display.Sprite;
+        import flash.system.ApplicationDomain;
+        import flash.utils.getQualifiedClassName;
     }
         
     /**
@@ -103,13 +102,6 @@ package org.apache.flex.core
          */
         public function info():Object
         {
-            if (!_info)
-            {
-                var mainClassName:String = getQualifiedClassName(this);
-                var initClassName:String = "_" + mainClassName + "_FlexInit";
-                var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
-                _info = c.info();
-            }
             return _info;
         }
         
