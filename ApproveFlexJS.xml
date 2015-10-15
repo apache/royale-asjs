@@ -379,6 +379,7 @@
 
     <target name="build" depends="ask.build,get.dependencies,copy.downloads">
         <ant dir="${basedir}/${package.url.name}" target="main" />
+        <ant dir="${basedir}/${package.url.name}" target="examples" />
     </target>
 
     <target name="copy.downloads" if="${do.copy.downloads}" description="instead of actually downloading all of the dependencies, you can save lots of time by just copying from some other folder in some other SDK.">
@@ -417,14 +418,21 @@
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
         <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
         <!-- Copy compiler external dependencies -->
         <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
             <fileset dir="${basedir}/falconjx/compiler/lib">
                 <include name="**"/>
             </fileset>
         </copy>
+        <!-- Copy compiler.jx external dependencies -->
+        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
         <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
-        <property name="FALCONJX_HOME" value="${basedir}/falconjx/compiler.jx" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
     </target>
     <target name="get.falcon.rc" if="falcon.rc">
         <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
@@ -433,14 +441,21 @@
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
         <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
         <!-- Copy compiler external dependencies -->
         <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
             <fileset dir="${basedir}/falconjx/compiler/lib">
                 <include name="**"/>
             </fileset>
         </copy>
+        <!-- Copy compiler.jx external dependencies -->
+        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
         <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
-        <property name="FALCONJX_HOME" value="${basedir}/falconjx/compiler.jx" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
     </target>
     <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
         <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
