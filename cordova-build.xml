@@ -79,6 +79,7 @@
 		<!-- build the app -->
 		<exec executable="cordova" dir="${app.dir}">
 			<arg value="build" />
+			<arg value="android" />
 		</exec>
     </target>
     
