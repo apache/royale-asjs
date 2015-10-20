@@ -100,10 +100,6 @@
         unless="PLAYERGLOBAL_HOME"/>
     
     <available file="${env.FLASHPLAYER_DEBUGGER}"
-        type="dir"
-        property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
-    
-    <available file="${env.FLASHPLAYER_DEBUGGER}"
         type="file"
         property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
     
@@ -416,6 +412,15 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
+             dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
+        <condition property="FalconMD5Invalid">
+            <not>
+                <equals arg1="${falcon.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
         <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
         <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
@@ -439,6 +444,15 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip.md5"
+        dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
+        <condition property="FalconMD5Invalid">
+            <not>
+                <equals arg1="${falcon.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
         <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
         <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
@@ -461,6 +475,15 @@
         <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
         <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
         dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.md5"
+        dest="${basedir}/${binary.flexunit.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="md5" verifyproperty="flexunit.md5.ok" />
+        <condition property="FlexUnitMD5Invalid">
+            <not>
+                <equals arg1="${flexunit.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FlexUnitMD5Invalid" />
         <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
         <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
     </target>
