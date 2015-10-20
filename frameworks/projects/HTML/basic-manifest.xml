@@ -61,7 +61,6 @@
     <component id="Alert" class="org.apache.flex.html.Alert"/>
     <component id="Spinner" class="org.apache.flex.html.Spinner"/>
     <component id="Slider" class="org.apache.flex.html.Slider"/>
-    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead"/>
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>

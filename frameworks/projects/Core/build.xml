@@ -119,6 +119,42 @@
         </java>
     </target>
 
+    <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
+        <echo message="Compiling externs/Core.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/externs"/>
+        
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+         Link in the classes (and their dependencies) for the MXML tags
+         listed in this project's manifest.xml.
+         Also link the additional classes (and their dependencies)
+         listed in CoreClasses.as,
+         because these aren't referenced by the manifest classes.
+         Keep the standard metadata when compiling.
+         Include the appropriate CSS files and assets in the SWC.
+         Don't include any resources in the SWC.
+         Write a bundle list of referenced resource bundles
+         into the file bundles.properties in this directory.
+         -->
+        <compc fork="true"
+            output="${FLEXJS_HOME}/frameworks/externs/Core.swc">
+            <jvmarg line="${compc.jvm.args}"/>
+            <load-config filename="compile-asjs-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
+        </compc>
+    </target>
+
     <target name="copy-js">
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
             <fileset dir="${basedir}/js/out">

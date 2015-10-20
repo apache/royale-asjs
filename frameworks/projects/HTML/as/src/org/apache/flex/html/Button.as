@@ -20,9 +20,17 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIButtonBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.IEventDispatcher;
+    COMPILE::AS3
+    {
+    	import org.apache.flex.core.UIButtonBase;
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.UIBase;
+    }
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.IEventDispatcher;
+    
 	
     //--------------------------------------
     //  Events
@@ -57,6 +65,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
+    COMPILE::AS3
 	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
 	{
         /**
@@ -72,4 +81,30 @@ package org.apache.flex.html
 			super();
 		}
 	}
+    
+    COMPILE::JS
+    public class Button extends UIBase implements IStrand, IEventDispatcher, IUIBase
+    {
+        /**
+         */
+        override protected function createElement()
+        {
+            element = document.createElement('button');
+            element.setAttribute('type', 'button');
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            /* AJH comment out until we figure out why it is needed
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+                var impl:Object = org.apache.flex.core.ValuesManager.valuesImpl.
+                    getValue(this, 'iStatesImpl');
+            }*/
+            
+            return element;
+        }        
+
+    }        
+
 }
