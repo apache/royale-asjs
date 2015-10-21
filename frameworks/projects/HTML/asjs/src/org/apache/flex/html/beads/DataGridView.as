@@ -166,15 +166,26 @@ package org.apache.flex.html.beads
 		 */
 		private function handleSizeChanges(event:Event):void
 		{
+			var useWidth:Number = _listArea.width;
+			var useHeight:Number = _listArea.height;
+			
+			if (host.width > 0) {
+				useWidth = host.width;
+			}
+			
 			_header.x = 0;
 			_header.y = 0;
-			_header.width = host.width;
+			_header.width = useWidth;
 			_header.height = 25;
+			
+			if (host.height > 0) {
+				useHeight = host.height - _header.height;
+			}
 			
 			_listArea.x = 0;
 			_listArea.y = 26;
-			_listArea.width = host.width;
-			_listArea.height = host.height - _header.height;
+			_listArea.width = useWidth;
+			_listArea.height = useHeight;
 			
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			
