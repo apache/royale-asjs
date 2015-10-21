@@ -57,9 +57,9 @@ limitations under the License.
 			<js:HorizontalLayout />
 		</js:beads>
 		<js:Label text="Symbol:" />
-		<js:TextInput id="symbolField" />
+		<js:TextInput id="symbolField" width="50" />
 		<js:Label text="Value:" />
-		<js:TextInput id="valueField" />
+		<js:TextInput id="valueField" width="50" />
 		<js:CheckBox text="Higher?" id="higherCheck" />
 		<js:TextButton text="Set" click="onAlertSet()" />
 	</js:Container>
