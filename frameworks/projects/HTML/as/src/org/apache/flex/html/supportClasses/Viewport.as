@@ -25,7 +25,6 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.IViewportScroller;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;

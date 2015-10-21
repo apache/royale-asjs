@@ -32,7 +32,7 @@
     <target name="main" depends="clean,compile,test" description="Clean build of Core.swc">
     </target>
 
-    <target name="all" depends="clean,compile-asjs,copy-js,compile,test" description="Full build of Core.swc">
+    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Core.swc">
     </target>
 
     <target name="test" unless="is.jenkins">

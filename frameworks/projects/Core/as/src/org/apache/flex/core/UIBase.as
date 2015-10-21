@@ -1355,11 +1355,26 @@ package org.apache.flex.core
             dispatchEvent(event);
         }
         
+        COMPILE::JS
+        private var _positioner:WrappedHTMLElement;
+        
         /**
          * The HTMLElement used to position the component.
          */
         COMPILE::JS
-        protected var positioner:WrappedHTMLElement = null;
+        public function get positioner():WrappedHTMLElement
+        {
+            return _positioner;
+        }
+        
+        /**
+         * @private
+         */
+        COMPILE::JS
+        public function set positioner(value:WrappedHTMLElement):void
+        {
+            _positioner = value;
+        }
         
         /**
          * @return The actual element to be parented.
