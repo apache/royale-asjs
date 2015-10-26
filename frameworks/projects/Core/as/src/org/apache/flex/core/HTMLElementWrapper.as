@@ -104,11 +104,6 @@ package org.apache.flex.core
 		//   Function
 		//--------------------------------------
 
-		public function get MXMLDescriptor():Array
-		{
-			return null;
-		}
-
         /**
          * @param bead The new bead.
          */

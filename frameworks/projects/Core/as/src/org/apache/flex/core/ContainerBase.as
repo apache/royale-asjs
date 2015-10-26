@@ -280,26 +280,11 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
 		public function get MXMLDescriptor():Array
 		{
 			return _mxmlDescriptor;
 		}
 
-        /**
-         *  @copy org.apache.flex.core.Application#MXMLDescriptor
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::JS
-        override public function get MXMLDescriptor():Array
-        {
-            return _mxmlDescriptor;
-        }
-        
         /**
          *  @private
          */
