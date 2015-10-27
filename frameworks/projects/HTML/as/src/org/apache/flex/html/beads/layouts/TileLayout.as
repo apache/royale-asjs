@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -130,66 +131,116 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-			// this is where the layout is calculated
-			var host:UIBase = _strand as UIBase;
-			var p:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
-			var area:UIBase = p.contentView as UIBase;
-			
-			var xpos:Number = 0;
-			var ypos:Number = 0;
-			var useWidth:Number = columnWidth;
-			var useHeight:Number = rowHeight;
-			var n:Number = area.numChildren;
-			if (n == 0) return false;
-			
-			var realN:Number = n;
-			for(var j:int=0; j < n; j++)
+			COMPILE::AS3
 			{
-				var testChild:IUIBase = area.getChildAt(i) as IUIBase;
-				if (testChild && !testChild.visible) realN--;
+				// this is where the layout is calculated
+				var host:UIBase = _strand as UIBase;
+				var p:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
+				var area:UIBase = p.contentView as UIBase;
+				
+				var xpos:Number = 0;
+				var ypos:Number = 0;
+				var useWidth:Number = columnWidth;
+				var useHeight:Number = rowHeight;
+				var n:Number = area.numElements;
+				if (n == 0) return false;
+				
+				var realN:Number = n;
+				for(var j:int=0; j < n; j++)
+				{
+					var testChild:IUIBase = area.getElementAt(i) as IUIBase;
+					if (testChild && !testChild.visible) realN--;
+				}
+				
+				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useHeight)) {
+					// given the width and total number of items, how many rows?
+					var numRows:Number = Math.floor(realN/numColumns);
+					useHeight = Math.floor(host.height / numRows);
+				}
+				
+				var maxWidth:Number = useWidth;
+				var maxHeight:Number = useHeight;
+				
+				for(var i:int=0; i < n; i++)
+				{
+					var child:IUIBase = area.getElementAt(i) as IUIBase;
+					if (child && !child.visible) continue;
+					child.width = useWidth;
+					child.height = useHeight;
+					child.x = xpos;
+					child.y = ypos;
+					
+					xpos += useWidth;
+					maxWidth = Math.max(maxWidth,xpos);
+					
+					var test:Number = (i+1)%numColumns;
+					
+					if (test == 0) {
+						xpos = 0;
+						ypos += useHeight;
+						maxHeight = Math.max(maxHeight,ypos);
+					} 
+				}
+				
+				maxWidth = Math.max(maxWidth, numColumns*useWidth);
+				maxHeight = Math.max(maxHeight, numRows*useHeight);
+				
+				// Only return true if the contentView needs to be larger; that new
+				// size is stored in the model.
+				var sizeChanged:Boolean = true;
+				
+				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
+				
+				return sizeChanged;
 			}
-			
-			if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
-			if (isNaN(useHeight)) {
-				// given the width and total number of items, how many rows?
-				var numRows:Number = Math.floor(realN/numColumns);
-				useHeight = Math.floor(host.height / numRows);
-			}
-			
-			var maxWidth:Number = useWidth;
-			var maxHeight:Number = useHeight;
-			
-			for(var i:int=0; i < n; i++)
+			COMPILE::JS
 			{
-				var child:IUIBase = area.getChildAt(i) as IUIBase;
-				if (child && !child.visible) continue;
-				child.width = useWidth;
-				child.height = useHeight;
-				child.x = xpos;
-				child.y = ypos;
+				var children:Array;
+				var i:int;
+				var n:int;
+				var child:UIBase;
+				var xpos:Number;
+				var ypos:Number;
+				var useWidth:Number;
+				var useHeight:Number;
 				
-				xpos += useWidth;
-				maxWidth = Math.max(maxWidth,xpos);
+				var host:UIBase = _strand as UIBase;
+				var viewBead:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
+				var contentView:IParentIUIBase = viewBead.contentView;
+				children = contentView.internalChildren();
+				n = children.length;
+				if (n === 0) return false;
 				
-				var test:Number = (i+1)%numColumns;
+				var realN:int = n;
+				for (i = 0; i < n; i++)
+				{
+					child = children[i].flexjs_wrapper;
+					if (!child.visible) realN--;
+				}
 				
-				if (test == 0) {
-					xpos = 0;
-					ypos += useHeight;
-					maxHeight = Math.max(maxHeight,ypos);
-				} 
+				xpos = 0;
+				ypos = 0;
+				useWidth = columnWidth;
+				useHeight = rowHeight;
+				
+				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useHeight)) {
+					// given the width and total number of items, how many rows?
+					var numRows:Number = Math.floor(realN / numColumns);
+					useHeight = Math.floor(host.height / numRows);
+				}
+				
+				for (i = 0; i < n; i++)
+				{
+					child = children[i].flexjs_wrapper;
+					if (!child.visible) continue;
+					child.setDisplayStyleForLayout('inline-block');
+					child.width = useWidth;
+					child.height = useHeight;
+				}
+				return true;
 			}
-			
-			maxWidth = Math.max(maxWidth, numColumns*useWidth);
-			maxHeight = Math.max(maxHeight, numRows*useHeight);
-			
-			// Only return true if the contentView needs to be larger; that new
-			// size is stored in the model.
-			var sizeChanged:Boolean = true;
-			
-			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-			
-			return sizeChanged;
 		}
 	}
 }

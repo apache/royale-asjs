@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IParent;

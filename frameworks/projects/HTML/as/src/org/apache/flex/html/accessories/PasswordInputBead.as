@@ -18,12 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	import org.apache.flex.core.CSSTextField;
+	COMPILE::AS3
+	{
+		import org.apache.flex.core.CSSTextField;			
+	}
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.ITextFieldView;
+	COMPILE::AS3
+	{
+		import org.apache.flex.html.beads.ITextFieldView;
+	}
 	
 	/**
 	 *  The PasswordInput class is a specialty bead that can be used with
@@ -63,12 +70,22 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 			
-			IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);
+			COMPILE::AS3
+			{
+				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
+			}
+			COMPILE::JS
+			{
+				var host:UIBase = value as UIBase;
+				var e:HTMLInputElement = host.element as HTMLInputElement;
+				e.type = 'password';
+			}
 		}
 		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function viewChangeHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work

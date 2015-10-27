@@ -85,8 +85,8 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function thumbDownHandler( event:MouseEvent ) : void
 		{
-			UIBase(_strand).stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
-			UIBase(_strand).stage.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+			UIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			UIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
 			
@@ -99,8 +99,8 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function thumbUpHandler( event:MouseEvent ) : void
 		{
-			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
-			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}

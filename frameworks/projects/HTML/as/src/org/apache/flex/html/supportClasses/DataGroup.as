@@ -57,8 +57,8 @@ package org.apache.flex.html.supportClasses
          */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {
-			if (index < 0 || index >= numChildren) return null;
-            return getChildAt(index) as IItemRenderer;
+			if (index < 0 || index >= numElements) return null;
+            return getElementAt(index) as IItemRenderer;
         }
 		
 		/**

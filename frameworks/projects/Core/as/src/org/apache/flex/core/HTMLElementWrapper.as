@@ -98,8 +98,6 @@ package org.apache.flex.core
         }
 
 		protected var beads:Array;
-		protected var internalDisplay:String = 'inline';
-
 		//--------------------------------------
 		//   Function
 		//--------------------------------------

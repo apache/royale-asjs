@@ -638,10 +638,17 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
         public function setX(value:Number):void
         {
-            super.x = value;
+			COMPILE::AS3
+			{
+				super.x = value;					
+			}
+			COMPILE::JS
+			{
+				positioner.style.position = 'absolute';
+				positioner.style.left = value.toString() + 'px';
+			}
         }
         
         private var _y:Number;
@@ -687,10 +694,17 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
         public function setY(value:Number):void
         {
-            super.y = value;
+			COMPILE::AS3
+			{
+				super.y = value;					
+			}
+			COMPILE::JS
+			{
+				positioner.style.position = 'absolute';
+				positioner.style.top = value.toString() + 'px';				
+			}
         }
         
 		/**
@@ -706,7 +720,25 @@ package org.apache.flex.core
         }
         
         COMPILE::JS
-        private var lastDisplay_:String;
+        private var displayStyleForLayout:String;
+		
+		/**
+		 *  The display style is used for both visible
+		 *  and layout so is managed as a special case.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::JS
+		public function setDisplayStyleForLayout(value:String):void
+		{
+			if (positioner.style.display !== 'none')
+				positioner.style.display = value;
+			else
+				displayStyleForLayout = value;
+		}
         
         COMPILE::JS
         public function get visible():Boolean
@@ -722,19 +754,14 @@ package org.apache.flex.core
             {
                 if (!value) 
                 {
-                    lastDisplay_ = positioner.style.display;
+					displayStyleForLayout = positioner.style.display;
                     positioner.style.display = 'none';
                     dispatchEvent(new Event('hide'));
                 } 
                 else 
                 {
-                    if (lastDisplay_) 
-                    {
-                        positioner.style.display = lastDisplay_;
-                    } else 
-                    {
-                        positioner.style.display = internalDisplay;
-                    }
+                    if (displayStyleForLayout) 
+                        positioner.style.display = displayStyleForLayout;
                     dispatchEvent(new Event('show'));
                 }
                 dispatchEvent(new Event('visibleChanged'));
@@ -750,7 +777,6 @@ package org.apache.flex.core
         {
             return element.childNodes as Array;
         }
-        
         
         COMPILE::AS3
 		private var _model:IBeadModel;

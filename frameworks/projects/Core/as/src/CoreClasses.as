@@ -68,6 +68,7 @@ internal class CoreClasses
     import org.apache.flex.core.IParent; IParent;
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
     import org.apache.flex.core.IPopUp; IPopUp;
+    import org.apache.flex.core.IRangeModel; IRangeModel;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
 	COMPILE::AS3
 	{

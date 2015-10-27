@@ -18,14 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	import flash.events.TextEvent;
-	
-	import org.apache.flex.core.CSSTextField;
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
+	COMPILE::AS3
+	{
+		import flash.events.TextEvent;
+		
+		import org.apache.flex.core.CSSTextField;			
+	}
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.ITextFieldView;
+	COMPILE::AS3
+	{
+		import org.apache.flex.html.beads.ITextFieldView;			
+	}
 	
 	/**
 	 *  The NumericOnlyTextInputBead class is a specialty bead that can be used with
@@ -65,7 +75,14 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 			
-			IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);
+			COMPILE::AS3
+			{
+				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
+			}
+			COMPILE::JS
+			{
+				IEventDispatcher(value).addEventListener("keypress",validateInput);									
+			}
 		}
 		
 		private var _decimalSeparator:String = ".";
@@ -113,6 +130,7 @@ package org.apache.flex.html.accessories
         /**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function viewChangeHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work
@@ -133,6 +151,7 @@ package org.apache.flex.html.accessories
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function handleTextInput(event:TextEvent):void
 		{
 			var insert:String = event.text;
@@ -141,6 +160,40 @@ package org.apache.flex.html.accessories
 			var value:String = current.substring(0,caretIndex) + insert + current.substr(caretIndex);
 			var n:Number = Number(value);
 			if (isNaN(n)) event.preventDefault();
+		}
+		
+		COMPILE::JS
+		private function validateInput(event:BrowserEvent):void
+		{
+			var code:int = event.charCode;
+			
+			// backspace or delete
+			if (event.keyCode == 8 || event.keyCode == 46) return;
+			
+			// tab or return/enter
+			if (event.keyCode == 9 || event.keyCode == 13) return;
+			
+			// left or right cursor arrow
+			if (event.keyCode == 37 || event.keyCode == 39) return;
+			
+			var key:String = String.fromCharCode(code);
+			
+			var regex:RegExp = /[0-9]|\./;
+			if (!regex.test(key)) {
+				event["returnValue"] = false;
+				if (event.preventDefault) event.preventDefault();
+				return;
+			}
+			var cursorStart:int = event.target.selectionStart;
+			var cursorEnd:int = event.target.selectionEnd;
+			var left:String = event.target.value.substring(0, cursorStart);
+			var right:String = event.target.value.substr(cursorEnd);
+			var complete:String = left + key + right;
+			if (isNaN(parseFloat(complete))) {
+				event["returnValue"] = false;
+				if (event.preventDefault) event.preventDefault();
+			}
+
 		}
 	}
 }

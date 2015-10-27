@@ -26,12 +26,15 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;			
+	}
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSContainerUtils;
 	import org.apache.flex.utils.CSSUtils;
-	import org.apache.flex.utils.dbg.DOMPathUtil;
 	
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -76,179 +79,233 @@ package org.apache.flex.html.beads.layouts
 			host = value as ILayoutChild; 
 		}
 		
+		/**
+		 *  Layout children vertically
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 */
 		public function layout():Boolean
 		{
-			var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
-			var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
-            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-            
-			var n:int = contentView.numElements;
-			var hasHorizontalFlex:Boolean;
-			var hostSizedToContent:Boolean = host.isWidthSizedToContent();
-			var flexibleHorizontalMargins:Array = [];
-			var ilc:ILayoutChild;
-			var marginLeft:Object;
-			var marginRight:Object;
-			var marginTop:Object;
-			var marginBottom:Object;
-			var margin:Object;
-			var maxWidth:Number = 0;
-            var cssValue:*;
-			// asking for contentView.width can result in infinite loop if host isn't sized already
-			var w:Number = hostSizedToContent ? 0 : contentView.width;
-            var h:Number = contentView.height;
-			
-			for (var i:int = 0; i < n; i++)
+			COMPILE::AS3
 			{
-				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-				if (child == null || !child.visible) continue;
-				ilc = child as ILayoutChild;
-				var left:Number = NaN;
-                cssValue = ValuesManager.valuesImpl.getValue(child, "left");
-                if (cssValue !== undefined)
-                    left = CSSUtils.toNumber(cssValue);
-                var right:Number = NaN;
-                cssValue = ValuesManager.valuesImpl.getValue(child, "right");
-                if (cssValue !== undefined)
-                    right = CSSUtils.toNumber(cssValue);
-				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-                marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-                marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-                marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-                marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, w);
-				var mr:Number = CSSUtils.getRightValue(marginRight, margin, w);
-				var mt:Number = CSSUtils.getTopValue(marginTop, margin, h);
-				var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, h);
-				var lastmb:Number;
-				var yy:Number;
-				if (i == 0)
-                {
-                    if (ilc)
-                        ilc.setY(mt + padding.top);
-                    else
-    					child.y = mt + padding.top;
-                }
-				else
-                {
-                    if (ilc)
-                        ilc.setY(yy + Math.max(mt, lastmb));
-                    else
-    					child.y = yy + Math.max(mt, lastmb);
-                }
-				if (ilc)
+				var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+				var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
+				var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+				
+				var n:int = contentView.numElements;
+				var hasHorizontalFlex:Boolean;
+				var hostSizedToContent:Boolean = host.isWidthSizedToContent();
+				var flexibleHorizontalMargins:Array = [];
+				var ilc:ILayoutChild;
+				var marginLeft:Object;
+				var marginRight:Object;
+				var marginTop:Object;
+				var marginBottom:Object;
+				var margin:Object;
+				var maxWidth:Number = 0;
+				var cssValue:*;
+				// asking for contentView.width can result in infinite loop if host isn't sized already
+				var w:Number = hostSizedToContent ? 0 : contentView.width;
+				var h:Number = contentView.height;
+				
+				for (var i:int = 0; i < n; i++)
 				{
-					if (!isNaN(ilc.percentHeight))
-						ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentWidth));
-				}
-				lastmb = mb;
-				var marginObject:Object = {};
-				flexibleHorizontalMargins[i] = marginObject;
-				if (marginLeft == "auto")
-				{
-					ml = 0;
-					marginObject.marginLeft = marginLeft;
-					hasHorizontalFlex = true;
-				}
-				else
-				{
-					ml = Number(marginLeft);
-					if (isNaN(ml))
+					var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+					if (child == null || !child.visible) continue;
+					ilc = child as ILayoutChild;
+					var left:Number = NaN;
+					cssValue = ValuesManager.valuesImpl.getValue(child, "left");
+					if (cssValue !== undefined)
+						left = CSSUtils.toNumber(cssValue);
+					var right:Number = NaN;
+					cssValue = ValuesManager.valuesImpl.getValue(child, "right");
+					if (cssValue !== undefined)
+						right = CSSUtils.toNumber(cssValue);
+					margin = ValuesManager.valuesImpl.getValue(child, "margin");
+					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+					var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, w);
+					var mr:Number = CSSUtils.getRightValue(marginRight, margin, w);
+					var mt:Number = CSSUtils.getTopValue(marginTop, margin, h);
+					var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, h);
+					var lastmb:Number;
+					var yy:Number;
+					if (i == 0)
+					{
+						if (ilc)
+							ilc.setY(mt + padding.top);
+						else
+							child.y = mt + padding.top;
+					}
+					else
+					{
+						if (ilc)
+							ilc.setY(yy + Math.max(mt, lastmb));
+						else
+							child.y = yy + Math.max(mt, lastmb);
+					}
+					if (ilc)
+					{
+						if (!isNaN(ilc.percentHeight))
+							ilc.setHeight(contentView.height * ilc.percentHeight / 100, !isNaN(ilc.percentWidth));
+					}
+					lastmb = mb;
+					var marginObject:Object = {};
+					flexibleHorizontalMargins[i] = marginObject;
+					if (marginLeft == "auto")
 					{
 						ml = 0;
 						marginObject.marginLeft = marginLeft;
+						hasHorizontalFlex = true;
 					}
 					else
-						marginObject.marginLeft = ml;
-				}
-				if (marginRight == "auto")
-				{
-					mr = 0;
-					marginObject.marginRight = marginRight;
-					hasHorizontalFlex = true;
-				}
-				else
-				{
-					mr = Number(marginRight);
-					if (isNaN(mr))
+					{
+						ml = Number(marginLeft);
+						if (isNaN(ml))
+						{
+							ml = 0;
+							marginObject.marginLeft = marginLeft;
+						}
+						else
+							marginObject.marginLeft = ml;
+					}
+					if (marginRight == "auto")
 					{
 						mr = 0;
 						marginObject.marginRight = marginRight;
+						hasHorizontalFlex = true;
 					}
 					else
-						marginObject.marginRight = mr;
-				}
-				if (!hostSizedToContent)
-				{
-					// if host is sized by parent,
-					// we can position and size children horizontally now
-					setPositionAndWidth(child, left, ml, padding.left, 
-                        right, mr, padding.right, w);
-				}
-				else
-				{
-					if (!isNaN(left))
 					{
-						ml = left;
-						marginObject.left = ml;
+						mr = Number(marginRight);
+						if (isNaN(mr))
+						{
+							mr = 0;
+							marginObject.marginRight = marginRight;
+						}
+						else
+							marginObject.marginRight = mr;
 					}
-					if (!isNaN(right))
+					if (!hostSizedToContent)
 					{
-						mr = right;
-						marginObject.right = mr;
+						// if host is sized by parent,
+						// we can position and size children horizontally now
+						setPositionAndWidth(child, left, ml, padding.left, 
+							right, mr, padding.right, w);
 					}
-					maxWidth = Math.max(maxWidth, ml + child.width + mr);                    
+					else
+					{
+						if (!isNaN(left))
+						{
+							ml = left;
+							marginObject.left = ml;
+						}
+						if (!isNaN(right))
+						{
+							mr = right;
+							marginObject.right = mr;
+						}
+						maxWidth = Math.max(maxWidth, ml + child.width + mr);                    
+					}
+					yy = child.y + child.height;
 				}
-				yy = child.y + child.height;
+				if (hostSizedToContent)
+				{
+					for (i = 0; i < n; i++)
+					{
+						child = contentView.getElementAt(i) as IUIBase;
+						if (child == null || !child.visible) continue;
+						var obj:Object = flexibleHorizontalMargins[i];
+						setPositionAndWidth(child, obj.left, obj.marginLeft, padding.left,
+							obj.right, obj.marginRight, padding.right, maxWidth);
+					}
+				}
+				if (hasHorizontalFlex)
+				{
+					for (i = 0; i < n; i++)
+					{
+						child = contentView.getElementAt(i) as IUIBase;
+						if (child == null || !child.visible) continue;
+						ilc = child as ILayoutChild;
+						obj = flexibleHorizontalMargins[i];
+						if (hasHorizontalFlex)
+						{
+							if (ilc)
+							{
+								if (obj.marginLeft == "auto" && obj.marginRight == "auto")
+									ilc.setX(maxWidth - child.width / 2);
+								else if (obj.marginLeft == "auto")
+									ilc.setX(maxWidth - child.width - obj.marginRight - padding.right);                            
+							}
+							else
+							{
+								if (obj.marginLeft == "auto" && obj.marginRight == "auto")
+									child.x = maxWidth - child.width / 2;
+								else if (obj.marginLeft == "auto")
+									child.x = maxWidth - child.width - obj.marginRight - padding.right;
+							}
+						}
+					}
+				}
+				
+				// Only return true if the contentView needs to be larger; that new
+				// size is stored in the model.
+				var sizeChanged:Boolean = true;
+				
+				host.dispatchEvent( new Event("layoutComplete") );
+				
+				return sizeChanged;
+				
 			}
-			if (hostSizedToContent)
+			COMPILE::JS
 			{
+				var children:Array;
+				var i:int;
+				var n:int;
+				
+				var viewBead:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+				var contentView:IParentIUIBase = viewBead.contentView;
+				children = contentView.internalChildren();
+				var scv:Object = getComputedStyle(host.positioner);
+				var hasWidth:Boolean = !host.isWidthSizedToContent();
+				var maxWidth:Number = 0;
+				n = children.length;
 				for (i = 0; i < n; i++)
 				{
-					child = contentView.getElementAt(i) as IUIBase;
-					if (child == null || !child.visible) continue;
-					var obj:Object = flexibleHorizontalMargins[i];
-					setPositionAndWidth(child, obj.left, obj.marginLeft, padding.left,
-						obj.right, obj.marginRight, padding.right, maxWidth);
-				}
-			}
-			if (hasHorizontalFlex)
-			{
-				for (i = 0; i < n; i++)
-				{
-					child = contentView.getElementAt(i) as IUIBase;
-					if (child == null || !child.visible) continue;
-					ilc = child as ILayoutChild;
-					obj = flexibleHorizontalMargins[i];
-					if (hasHorizontalFlex)
+					var child:WrappedHTMLElement = children[i];
+					child.flexjs_wrapper.setDisplayStyleForLayout('block');
+					if (child.style.display === 'none') 
 					{
-                        if (ilc)
-                        {
-                            if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-                                ilc.setX(maxWidth - child.width / 2);
-                            else if (obj.marginLeft == "auto")
-                                ilc.setX(maxWidth - child.width - obj.marginRight - padding.right);                            
-                        }
-                        else
-                        {
-        					if (obj.marginLeft == "auto" && obj.marginRight == "auto")
-        						child.x = maxWidth - child.width / 2;
-        					else if (obj.marginLeft == "auto")
-        						child.x = maxWidth - child.width - obj.marginRight - padding.right;
-                        }
+						child.flexjs_wrapper.setDisplayStyleForLayout('block');
+					} 
+					else 
+					{
+						// block elements don't measure width correctly so set to inline for a second
+						child.style.display = 'inline-block';
+						maxWidth = Math.max(maxWidth, child.offsetLeft + child.offsetWidth);
+						child.style.display = 'block';
 					}
+					child.flexjs_wrapper.dispatchEvent('sizeChanged');
 				}
+				if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
+					var pl:String = scv['padding-left'];
+					var pr:String = scv['padding-right'];
+					var npl:int = parseInt(pl.substring(0, pl.length - 2), 10);
+					var npr:int = parseInt(pr.substring(0, pr.length - 2), 10);
+					maxWidth += npl + npr;
+					contentView.width = maxWidth;
+				}
+				return true;
 			}
-			
-			// Only return true if the contentView needs to be larger; that new
-			// size is stored in the model.
-			var sizeChanged:Boolean = true;
-			
-			host.dispatchEvent( new Event("layoutComplete") );
-
-			return sizeChanged;
 		}
 		
+		COMPILE::AS3
 		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number, pl:Number,
 											 right:Number, mr:Number, pr:Number, w:Number):void
 		{

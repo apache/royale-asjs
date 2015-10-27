@@ -18,7 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	import flash.display.Sprite;
+	COMPILE::AS3
+	{
+		import flash.display.Sprite;			
+	}
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;			
+		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;			
+	}
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
@@ -102,11 +110,16 @@ package org.apache.flex.html.supportClasses
 			_dataField = value;
 		}
 		
+		COMPILE::AS3
 		private var background:Sprite;
+
+		COMPILE::JS
+		private var controller:ItemRendererMouseController;
 		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -120,12 +133,47 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function updateRenderer():void
 		{
-			super.updateRenderer();
-			
-			background.graphics.clear();
-			background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
-			background.graphics.drawRect(0, 0, this.width, this.height);
-			background.graphics.endFill();
+			COMPILE::AS3
+			{
+				super.updateRenderer();
+				
+				background.graphics.clear();
+				background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
+				background.graphics.drawRect(0, 0, width, height);
+				background.graphics.endFill();
+			}
+			COMPILE::JS
+			{
+				if (selected)
+					element.style.backgroundColor = '#9C9C9C';
+				else if (hovered)
+					element.style.backgroundColor = '#ECECEC';
+				else
+					element.style.backgroundColor = null;
+			}
 		}
+		
+		/**
+		 * @override
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * 
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{				
+			element = document.createElement('div') as WrappedHTMLElement;
+			positioner = element;
+			positioner.style.position = 'relative';
+			
+			element.flexjs_wrapper = this;
+			className = 'DataItemRenderer';
+						
+			controller = new ItemRendererMouseController();
+			controller.strand = this;
+			
+			return element;
+		}
+		
+
 	}
 }

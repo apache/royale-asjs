@@ -41,25 +41,22 @@ internal class HTMLClasses
 	COMPILE::AS3
 	{
 		import org.apache.flex.html.beads.CheckBoxView; CheckBoxView;
+	    import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
 	}
-    import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
     import org.apache.flex.html.beads.ContainerView; ContainerView;
-    import org.apache.flex.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	COMPILE::AS3
 	{
+	    import org.apache.flex.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	    import org.apache.flex.html.beads.CSSButtonView; CSSButtonView;
 	    import org.apache.flex.html.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
 		import org.apache.flex.html.beads.CSSTextButtonView; CSSTextButtonView;
 	    import org.apache.flex.html.beads.CSSTextToggleButtonView; CSSTextToggleButtonView;
 		import org.apache.flex.html.beads.DropDownListView; DropDownListView;
 		import org.apache.flex.html.beads.CloseButtonView; CloseButtonView;
-	}
-    import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
-	COMPILE::AS3
-	{
+	    import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
     	import org.apache.flex.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
+		import org.apache.flex.html.beads.ImageView; ImageView;
 	}
-	import org.apache.flex.html.beads.ImageView; ImageView;
 	import org.apache.flex.html.beads.ListView; ListView;
 	COMPILE::AS3
 	{
@@ -89,10 +86,7 @@ internal class HTMLClasses
     	import org.apache.flex.html.beads.TextButtonView; TextButtonView;
     	import org.apache.flex.html.beads.TextFieldView; TextFieldView;
     	import org.apache.flex.html.beads.TextInputView; TextInputView;
-	}
-    import org.apache.flex.html.beads.TextInputWithBorderView; TextInputWithBorderView;
-	COMPILE::AS3
-	{
+	    import org.apache.flex.html.beads.TextInputWithBorderView; TextInputWithBorderView;
 	    import org.apache.flex.html.beads.models.AlertModel; AlertModel;
 	}
     import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
@@ -100,9 +94,9 @@ internal class HTMLClasses
 	{
 	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
 	}
-	import org.apache.flex.html.beads.models.ImageModel; ImageModel;
 	COMPILE::AS3
 	{
+		import org.apache.flex.html.beads.models.ImageModel; ImageModel;
 	    import org.apache.flex.html.beads.models.ImageAndTextModel; ImageAndTextModel;
 	}
 	import org.apache.flex.html.beads.models.PanelModel; PanelModel;
@@ -127,10 +121,10 @@ internal class HTMLClasses
 	}
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
-	import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
-	import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
 	COMPILE::AS3
 	{
+		import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
+		import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
 	    import org.apache.flex.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
 		import org.apache.flex.html.beads.controllers.HScrollBarMouseController; HScrollBarMouseController;
 	}

@@ -112,5 +112,17 @@ package org.apache.flex.events
 		public function init(type:String):void {
 			this.type = type;
 		}
+		
+		/**
+		 * Google Closure doesn't seem to support stopImmediatePropagation, but
+		 * actually the HTMLElementWrapper fireListener override sends a
+		 * BrowserEvent in most/all cases where folks need stopImmediatePropagation
+		 * so we put this in here for compile time since it will exist in
+		 * the BrowserEvent that does get sent around.
+		 */
+		public function stopImmediatePropagation():void
+		{
+			// do nothing
+		}
     }
 }

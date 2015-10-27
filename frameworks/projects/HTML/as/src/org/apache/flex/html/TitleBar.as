@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import flash.display.Shape;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IChrome;

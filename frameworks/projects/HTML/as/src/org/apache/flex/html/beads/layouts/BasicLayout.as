@@ -29,7 +29,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.utils.CSSUtils;
-	import org.apache.flex.utils.dbg.DOMPathUtil;
+	//import org.apache.flex.utils.dbg.DOMPathUtil;
 
     /**
      *  The BasicLayout class is a simple layout

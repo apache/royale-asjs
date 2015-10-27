@@ -27,6 +27,7 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import org.apache.flex.core.UIBase;
+		import org.apache.flex.core.WrappedHTMLElement;
     }
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.IEventDispatcher;
@@ -86,10 +87,11 @@ package org.apache.flex.html
     public class Button extends UIBase implements IStrand, IEventDispatcher, IUIBase
     {
         /**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        override protected function createElement()
+        override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('button');
+            element = document.createElement('button') as WrappedHTMLElement;
             element.setAttribute('type', 'button');
             
             positioner = element;

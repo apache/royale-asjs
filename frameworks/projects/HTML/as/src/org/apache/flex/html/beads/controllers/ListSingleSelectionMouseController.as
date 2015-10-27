@@ -120,7 +120,7 @@ package org.apache.flex.html.beads.controllers
         {
 			var renderer:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (renderer) {
-				trace("ListSingleSelectionMouseController.ROLL_OVER");
+				//trace("ListSingleSelectionMouseController.ROLL_OVER");
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
         }
