@@ -23,6 +23,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.ITitleBarModel;
 	import org.apache.flex.core.ValuesManager;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Label;
 	
@@ -121,5 +125,22 @@ package org.apache.flex.html
 			if( getBeadByType(IBeadLayout) == null )
 				addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBead);
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            className = 'TitleBar';
+            
+            return element;
+        }        
 	}
 }

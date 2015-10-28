@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
@@ -140,6 +144,64 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).snapInterval = value;
 		}
-		
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            input = new TextInput();
+            addElement(input);
+            input.positioner.style.display = 'inline-block';
+            input.positioner.style.width = '100px';
+            
+            spinner = new Spinner();
+            spinner.positioner.style.display = 'inline-block';
+            spinner.positioner.style.height = '24px';
+            spinner.positioner.style.marginLeft = '-1px';
+            spinner.positioner.style.marginTop = '-1px';
+            addElement(spinner);
+            
+            /* TODO: ajh move to view and css */
+            spinner.incrementButton.positioner.style.display = 'block';
+            spinner.incrementButton.positioner.style.marginBottom = '-1px';
+            spinner.incrementButton.positioner.style.paddingTop = '1.5px';
+            spinner.incrementButton.positioner.style.paddingBottom = '2px';
+            spinner.incrementButton.positioner.style.fontSize = '7px';
+            spinner.decrementButton.positioner.style.marginTop = '0px';
+            spinner.decrementButton.positioner.style.display = 'block';
+            spinner.decrementButton.positioner.style.paddingTop = '2px';
+            spinner.decrementButton.positioner.style.paddingBottom = '1.5px';
+            spinner.decrementButton.positioner.style.fontSize = '7px';
+            spinner.positioner.style.display = 'inline-block';
+            goog.events.listen(spinner, 'valueChange',
+                goog.bind(spinnerChange, this));
+            
+            element.flexjs_wrapper = this;
+            className = 'NumericStepper';
+            
+            input.text = String(spinner.value);
+            
+            return element;
+        }        
+
+        /**
+         * @param event The input event.
+         */
+        COMPILE::JS
+        private function spinnerChange(event:Event):void
+        {
+            var newValue = spinner.value;
+            value = newValue;
+            input.text = String(spinner.value);
+            dispatchEvent(new Event('valueChange'));
+        };
+        
+        
 	}
 }

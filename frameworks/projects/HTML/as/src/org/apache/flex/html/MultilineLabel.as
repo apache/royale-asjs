@@ -23,6 +23,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
 	/*
 	 *  Label probably should extend TextField directly,
@@ -55,6 +59,17 @@ package org.apache.flex.html
 		{
 			super();
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            positioner = element;
+            element.flexjs_wrapper = this;
+        }        
 						
 	}
 }

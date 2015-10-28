@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The TextArea class implements the basic control for
@@ -87,5 +91,20 @@ package org.apache.flex.html
 			ITextModel(model).html = value;
 		}
 		
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('textarea') as WrappedHTMLElement;
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            element.className = 'TextArea';
+            typeNames = 'TextArea';
+            
+            return element;
+        }        
 	}
 }

@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+        
 	/**
 	 *  The SimpleList class is a component that displays data in a vertical column. This
 	 *  component differs from org.apache.flex.html.List in that it displays 
@@ -42,5 +47,23 @@ package org.apache.flex.html
 		{
 			super();
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('select') as WrappedHTMLElement;
+            element.size = 5;
+            goog.events.listen(element, 'change',
+                goog.bind(changeHandler, this));
+            positioner = element;
+            positioner.style.position = 'relative';
+            className = 'SimpleList';
+            
+            return element;
+        }        
+
 	}
 }

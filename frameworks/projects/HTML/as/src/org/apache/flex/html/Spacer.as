@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The Spacer class takes up space in the UI layout.
@@ -45,5 +46,19 @@ package org.apache.flex.html
 		{
 			super();
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            this.element = document.createElement('div') as WrappedHTMLElement;
+            this.positioner = this.element;
+            this.element.flexjs_wrapper = this;
+            
+            return element;
+        }        
+
 	}
 }

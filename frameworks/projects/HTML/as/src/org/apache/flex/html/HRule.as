@@ -17,11 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The HRule class displays a horizontal line
@@ -45,5 +46,18 @@ package org.apache.flex.html
 		{
 			super();
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('hr');
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            return element;
+        }        
 	}
 }

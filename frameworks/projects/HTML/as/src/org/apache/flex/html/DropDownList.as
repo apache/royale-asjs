@@ -19,6 +19,10 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.ISelectionModel;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
     
     //--------------------------------------
     //  Events
@@ -88,6 +92,32 @@ package org.apache.flex.html
         public function set dataProvider(value:Object):void
         {
             ISelectionModel(model).dataProvider = value;
+            COMPILE::JS
+            {
+                var dp:Array;
+                var i:int;
+                var n:int;
+                var opt:HTMLOptionElement;
+                
+                model.dataProvider = value;
+                dp = element.options;
+                n = dp.length;
+                for (i = 0; i < n; i++) {
+                    dp.remove(0);
+                }
+                
+                var lf:String = labelField;
+                n = value.length;
+                for (i = 0; i < n; i++) {
+                    opt = document.createElement('option');
+                    if (lf)
+                        opt.text = value[i][lf];
+                    else
+                        opt.text = value[i];
+                    dp.add(opt);
+                }
+
+            }
         }
         
         [Bindable("change")]
@@ -153,5 +183,23 @@ package org.apache.flex.html
             ISelectionModel(model).labelField = value;
         }
         
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('select') as WrappedHTMLElement;
+            element.size = 1;
+            goog.events.listen(element, 'change',
+                goog.bind(changeHandler, this));
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
     }
 }

@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
 	/**
 	 *  The Image class is a component that displays a bitmap. The Image uses
@@ -64,5 +68,29 @@ package org.apache.flex.html
 		{
 			IImageModel(model).source = value;
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('img') as WrappedHTMLElement;
+            element.className = 'Image';
+            typeNames = 'Image';
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            model = new
+                ImageModel();
+            
+            addBead(new
+                ImageView());
+            
+            return element;
+        }        
+
 	}
 }

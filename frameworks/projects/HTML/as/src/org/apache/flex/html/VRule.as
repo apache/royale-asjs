@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The VRule class displays a vertical line
@@ -45,5 +46,22 @@ package org.apache.flex.html
 		{
 			super();
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            element.style.borderLeftStyle = 'solid';
+            element.style.borderLeftWidth = '1px';
+            element.style.borderTop = 'none';
+            element.style.borderBottom = 'none';
+            element.style.borderRight = 'none';
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+        }        
 	}
 }

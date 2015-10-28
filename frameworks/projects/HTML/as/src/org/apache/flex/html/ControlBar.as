@@ -23,6 +23,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ValuesManager;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position
@@ -72,5 +76,24 @@ package org.apache.flex.html
 				addBead(layout);
 			}
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            element.className = 'ControlBar';
+            element.style.display = 'inline';
+            typeNames = 'ControlBar';
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
+
 	}
 }

@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IFactory;
-	
 	import org.apache.flex.core.ContainerBaseStrandChildren;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
+	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
@@ -30,6 +29,12 @@ package org.apache.flex.html
 	import org.apache.flex.core.ListBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.beads.ListView;
+        import org.apache.flex.html.supportClasses.DataGroup;
+    }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.models.ListPresentationModel;
@@ -250,5 +255,29 @@ package org.apache.flex.html
 			dispatchEvent(new Event("initComplete"));
 		}
         
-	}
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            className = 'List';
+            
+            return element;
+        }        
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.html.beads.ListView 
+         * @flexjsignorecoercion org.apache.flex.html.supportClasses.DataGroup 
+         */
+        COMPILE::JS
+        override public function internalChildren():Array
+        {
+            var listView:ListView = getBeadByType(ListView) as ListView;
+            var dg:DataGroup = listView.dataGroup as DataGroup;
+            var renderers:Array = dg.internalChildren();
+            return renderers;
+        };
+   	}
 }

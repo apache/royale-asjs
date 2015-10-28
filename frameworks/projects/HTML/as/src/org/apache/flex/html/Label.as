@@ -23,7 +23,11 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+
 	/*
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
@@ -110,6 +114,18 @@ package org.apache.flex.html
             model.addEventListener("textChange", repeaterListener);
             model.addEventListener("htmlChange", repeaterListener);
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('span') as WrappedHTMLElement;
+            positioner = element;
+            element.flexjs_wrapper = this;
+            return element;
+        }        
 
 	}
 }

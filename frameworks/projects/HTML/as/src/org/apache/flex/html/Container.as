@@ -22,6 +22,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	import org.apache.flex.events.Event;
 	
 	[DefaultProperty("mxmlContent")]
@@ -70,5 +74,29 @@ package org.apache.flex.html
 			super();
 		}
 
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            
+            positioner = element;
+            
+            // absolute positioned children need a non-null
+            // position value in the parent.  It might
+            // get set to 'absolute' if the container is
+            // also absolutely positioned
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            /*addEventListener('childrenAdded',
+            goog.bind(runLayoutHandler, this));
+            addEventListener('elementRemoved',
+            goog.bind(runLayoutHandler, this));*/
+            
+            return element;
+        }        
 	}
 }

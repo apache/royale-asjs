@@ -20,6 +20,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 
 	/**
      *  Dispatched when the user changes the text.
@@ -116,5 +120,28 @@ package org.apache.flex.html
             if (!inSetter)
                 dispatchEvent(new Event(Event.CHANGE));
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('input') as WrappedHTMLElement;
+            element.setAttribute('type', 'input');
+            element.className = 'TextInput';
+            typeNames = 'TextInput';
+            
+            //attach input handler to dispatch flexjs change event when user write in textinput
+            //goog.events.listen(element, 'change', goog.bind(killChangeHandler, this));
+            goog.events.listen(element, 'input', goog.bind(inputChangeHandler_, this));
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
+        
 	}
 }

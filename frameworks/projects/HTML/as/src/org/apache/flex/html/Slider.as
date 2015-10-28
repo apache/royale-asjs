@@ -20,7 +20,11 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
-	
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
 	/**
@@ -147,6 +151,34 @@ package org.apache.flex.html
         {
             IRangeModel(model).stepSize = value;
         }
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            element.style.width = '200px';
+            element.style.height = '30px';
+            
+            track = new org.apache.flex.html.beads.SliderTrackView();
+            addBead(track);
+            
+            thumb = new org.apache.flex.html.beads.SliderThumbView();
+            addBead(thumb);
+            
+            controller = new org.apache.flex.html.beads.controllers.SliderMouseController();
+            addBead(controller);
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            className = 'Slider';
+            
+            return element;
+        }        
 
     }
 }

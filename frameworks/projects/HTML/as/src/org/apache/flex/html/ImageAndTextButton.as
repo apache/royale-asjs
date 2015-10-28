@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.events.Event;
     import org.apache.flex.html.beads.models.ImageAndTextModel;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The ImageTextButton class implements a basic button that
@@ -65,6 +69,22 @@ package org.apache.flex.html
         {
             ImageAndTextModel(model).image = value;
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('button') as WrappedHTMLElement;
+            element.setAttribute('type', 'button');
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
 
 	}
 }
