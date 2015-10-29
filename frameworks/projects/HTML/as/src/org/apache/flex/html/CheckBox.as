@@ -129,18 +129,18 @@ package org.apache.flex.html
 	}
     
     COMPILE::JS
-    public class CheckBox extends UIBase implements IStrand, IEventDispatcher, IUIBase
+    public class CheckBox extends UIBase
     {
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
-            var cb:WrappedHTMLElement;
+            var cb:HTMLInputElement;
             
             element = document.createElement('label') as WrappedHTMLElement;
             
-            cb = document.createElement('input');
+            cb = document.createElement('input') as HTMLInputElement;
             cb.type = 'checkbox';
             element.appendChild(cb);
             element.appendChild(document.createTextNode(''));
@@ -150,7 +150,7 @@ package org.apache.flex.html
             
             positioner = element;
             positioner.style.position = 'relative';
-            cb.flexjs_wrapper = this;
+            (cb as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             
             return element;

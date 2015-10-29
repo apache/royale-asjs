@@ -57,10 +57,7 @@ internal class CoreClasses
     import org.apache.flex.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
     import org.apache.flex.core.IDocument; IDocument;
     import org.apache.flex.core.IFormatBead; IFormatBead;
-	COMPILE::AS3
-	{
-	    import org.apache.flex.core.IImageModel; IImageModel;
-	}
+    import org.apache.flex.core.IImageModel; IImageModel;
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
 	import org.apache.flex.core.ILayoutHost; ILayoutHost;
     import org.apache.flex.core.IListPresentationModel; IListPresentationModel;

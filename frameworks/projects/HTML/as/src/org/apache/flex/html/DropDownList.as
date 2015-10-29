@@ -19,8 +19,10 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.ISelectionModel;
+
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
     
@@ -88,33 +90,36 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLOptionElement
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set dataProvider(value:Object):void
         {
             ISelectionModel(model).dataProvider = value;
             COMPILE::JS
             {
-                var dp:Array;
+                var dp:HTMLOptionsCollection;
                 var i:int;
                 var n:int;
                 var opt:HTMLOptionElement;
+                var dd:HTMLSelectElement = element as HTMLSelectElement;
                 
                 model.dataProvider = value;
-                dp = element.options;
+                dp = dd.options;
                 n = dp.length;
                 for (i = 0; i < n; i++) {
-                    dp.remove(0);
+                    dd.remove(0);
                 }
                 
                 var lf:String = labelField;
                 n = value.length;
                 for (i = 0; i < n; i++) {
-                    opt = document.createElement('option');
+                    opt = document.createElement('option') as HTMLOptionElement;
                     if (lf)
                         opt.text = value[i][lf];
                     else
                         opt.text = value[i];
-                    dp.add(opt);
+                    dd.add(opt, null);
                 }
 
             }
@@ -185,12 +190,13 @@ package org.apache.flex.html
         
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('select') as WrappedHTMLElement;
-            element.size = 1;
+            (element as HTMLSelectElement).size = 1;
             goog.events.listen(element, 'change',
                 goog.bind(changeHandler, this));
             
@@ -200,6 +206,15 @@ package org.apache.flex.html
             element.flexjs_wrapper = this;
             
             return element;
-        }        
+        } 
+        
+        /**
+         * @flexjsignorecoercion HTMLSelectElement
+         */
+        COMPILE::JS
+        protected function changeHandler(event:Event):void
+        {
+            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
+        }
     }
 }

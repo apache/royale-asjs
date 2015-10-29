@@ -37,7 +37,7 @@
     <target name="main" depends="clean,compile,test" description="Clean build of HTML.swc">
     </target>
     
-    <target name="all" depends="main,compile-asjs,copy-js" description="Full build of HTML.swc">
+    <target name="all" depends="clean,compile-asjs,copy-js,compile,test" description="Full build of HTML.swc">
     </target>
     
     <target name="test" unless="is.jenkins">

@@ -22,6 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.events.Event;
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 
@@ -108,7 +109,7 @@ package org.apache.flex.html
         private var inSetter:Boolean;
         
 		/**
-		 * @dispatch change event in response to a textChange event
+		 *  dispatch change event in response to a textChange event
 		 *
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -134,7 +135,7 @@ package org.apache.flex.html
             
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', goog.bind(killChangeHandler, this));
-            goog.events.listen(element, 'input', goog.bind(inputChangeHandler_, this));
+            goog.events.listen(element, 'input', goog.bind(textChangeHandler, this));
             
             positioner = element;
             positioner.style.position = 'relative';

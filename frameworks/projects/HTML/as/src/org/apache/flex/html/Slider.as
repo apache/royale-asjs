@@ -20,8 +20,12 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
+
     COMPILE::JS
     {
+        import org.apache.flex.html.beads.SliderTrackView;
+        import org.apache.flex.html.beads.SliderThumbView;
+        import org.apache.flex.html.beads.controllers.SliderMouseController;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 
@@ -152,6 +156,15 @@ package org.apache.flex.html
             IRangeModel(model).stepSize = value;
         }
 
+        COMPILE::JS
+        private var track:SliderTrackView;
+        
+        COMPILE::JS
+        private var thumb:SliderThumbView;
+        
+        COMPILE::JS
+        private var controller:SliderMouseController;
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -162,13 +175,13 @@ package org.apache.flex.html
             element.style.width = '200px';
             element.style.height = '30px';
             
-            track = new org.apache.flex.html.beads.SliderTrackView();
+            track = new SliderTrackView();
             addBead(track);
             
-            thumb = new org.apache.flex.html.beads.SliderThumbView();
+            thumb = new SliderThumbView();
             addBead(thumb);
             
-            controller = new org.apache.flex.html.beads.controllers.SliderMouseController();
+            controller = new SliderMouseController();
             addBead(controller);
             
             positioner = element;
@@ -178,6 +191,42 @@ package org.apache.flex.html
             className = 'Slider';
             
             return element;
+        } 
+        
+        /**
+         */
+        COMPILE::JS
+        public function snap(value:Number):Number
+        {
+            var si:Number = snapInterval;
+            var n:Number = Math.round((value - minimum) / si) *
+                si + minimum;
+            if (value > 0)
+            {
+                if (value - n < n + si - value)
+                    return n;
+                return n + si;
+            }
+            if (value - n > n + si - value)
+                return n + si;
+            return n;
+        }
+        
+        
+        /**
+         * @param {number} value The value used to calculate new position of the thumb.
+         * @return {void} Moves the thumb to the corresponding position.
+         */
+        COMPILE::JS
+        public function setThumbFromValue(value:Number):void
+        {
+            var min:Number = model.minimum;
+            var max:Number = model.maximum;
+            var p:Number = (value - min) / (max - min);
+            var xloc:Number = p * (parseInt(track.element.style.width, 10) -
+                parseInt(thumb.element.style.width, 10));
+            
+            thumb.element.style.left = String(xloc) + 'px';
         }        
 
     }

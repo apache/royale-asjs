@@ -69,6 +69,7 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
             element.flexjs_wrapper = this;
+            return element;
         }        
 						
 	}

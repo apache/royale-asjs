@@ -158,7 +158,7 @@ package org.apache.flex.html.beads
 			
 			var sw:Number = UIBase(_strand).width;
 			var sh:Number = UIBase(_strand).height;
-			trace("Strand's width x height is "+sw+" x "+sh);
+			//trace("Strand's width x height is "+sw+" x "+sh);
 			dayContainer.width = sw;
 			dayContainer.height = sh - (monthLabel.height+5);
 			

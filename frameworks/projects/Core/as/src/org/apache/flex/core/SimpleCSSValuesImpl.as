@@ -694,9 +694,9 @@ package org.apache.flex.core
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void
         {
-            var styleList:Object = perInstanceStyles;
-            var colorStyles:Object = colorStyles;
-            var skipStyles:Object = skipStyles;
+            var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
+            var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
+            var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
             var listObj:Object = styles;
             if (styles.styleList)
                 listObj = styles.styleList;

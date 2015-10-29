@@ -220,27 +220,32 @@ package org.apache.flex.html
 	}
     
     COMPILE::JS
-    public class Button extends UIBase implements IStrand, IEventDispatcher, IUIBase
+    public class RadioButton extends UIBase
     {
+        public static var radioCounter:int = 0;
+        
         private var input:HTMLInputElement;
         private var labelFor:HTMLLabelElement;
-        private var textNode:HTMLTextElement;
+        private var textNode:Text;
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLInputElement
+         * @flexjsignorecoercion HTMLLabelElement
+         * @flexjsignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {            
-            input = document.createElement('input');
+            input = document.createElement('input') as HTMLInputElement;
             input.type = 'radio';
             input.id = '_radio_' + RadioButton.radioCounter++;
             
-            textNode = document.createTextNode('radio button');
+            textNode = document.createTextNode('radio button') as Text;
             
-            labelFor = document.createElement('label');
+            labelFor = document.createElement('label') as HTMLLabelElement;
             labelFor.appendChild(input);
             labelFor.appendChild(textNode);
             
-            element = labelFor;
+            element = labelFor as WrappedHTMLElement;
             element.className = 'RadioButton';
             typeNames = 'RadioButton';
             
@@ -263,7 +268,7 @@ package org.apache.flex.html
         
         public function get groupName():String
         {
-            return input.name;
+            return input.name as String;
         }
         public function set groupName(value:String):void
         {
@@ -272,7 +277,7 @@ package org.apache.flex.html
         
         public function get text():String
         {
-            return textNode.nodeValue;
+            return textNode.nodeValue as String;
         }
         public function set text(value:String):void
         {
@@ -295,17 +300,17 @@ package org.apache.flex.html
         }
         public function set value(v:Object):void
         {
-            input.value = v;
+            input.value = v as String;
         }
         
         public function get selectedValue():Object
         {
-            var buttons:Array;
+            var buttons:NodeList;
             var groupName:String;
             var i:int;
             var n:int;
             
-            groupName = input.name;
+            groupName = input.name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
             
@@ -317,14 +322,17 @@ package org.apache.flex.html
             return null;
         }
         
+        /**
+         * @flexjsignorecoercion Array
+         */
         public function set selectedValue(value:Object):void
         {
-            var buttons:Array;
+            var buttons:NodeList;
             var groupName:String;
             var i:int;
             var n:int;
             
-            groupName = input.name;
+            groupName = input.name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
             for (i = 0; i < n; i++) {

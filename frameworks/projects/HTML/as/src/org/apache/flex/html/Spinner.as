@@ -22,6 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.UIBase;
     COMPILE::JS
     {
+        import org.apache.flex.html.beads.controllers.SpinnerMouseController;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 	
@@ -146,6 +147,15 @@ package org.apache.flex.html
 			IRangeModel(model).stepSize = value;
 		}
 		
+        COMPILE::JS
+        public var incrementButton:TextButton;
+        
+        COMPILE::JS
+        public var decrementButton:TextButton;
+        
+        COMPILE::JS
+        private var controller:SpinnerMouseController;
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */

@@ -24,6 +24,7 @@ package org.apache.flex.html
 
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 	
@@ -197,6 +198,11 @@ package org.apache.flex.html
         /**
          * @export
          * @param {Object} event The event.
+         * @flexjsignorecoercion HTMLInputElement
+         * @flexjsignorecoercion HTMLElement
+         * @flexjsignorecoercion HTMLSelectElement
+         * @flexjsignorecoercion HTMLOptionElement
+         * @flexjsignorecoercion Array
          */
         COMPILE::JS
         private function buttonClicked(event:Event):void
@@ -207,7 +213,6 @@ package org.apache.flex.html
             var left:Number;
             var n:int;
             var opt:HTMLOptionElement;
-            var opts:Array;
             var pn:HTMLElement;
             var popup:HTMLElement;
             var select:HTMLSelectElement;
@@ -218,19 +223,19 @@ package org.apache.flex.html
             event.stopPropagation();
             
             if (popup) {
-                dismissPopup();
+                dismissPopup(null);
                 
                 return;
             }
             
-            input = element.childNodes.item(0);
+            input = element.childNodes.item(0) as HTMLInputElement;
             
             pn = element;
             top = pn.offsetTop + input.offsetHeight;
             left = pn.offsetLeft;
             width = pn.offsetWidth;
             
-            popup = document.createElement('div');
+            popup = document.createElement('div') as HTMLElement;
             popup.className = 'popup';
             popup.id = 'test';
             popup.style.position = 'absolute';
@@ -241,17 +246,16 @@ package org.apache.flex.html
             popup.style.padding = '0px';
             popup.style.zIndex = '10000';
             
-            select = document.createElement('select');
+            select = document.createElement('select') as HTMLSelectElement;
             select.style.width = width.toString() + 'px';
             goog.events.listen(select, 'change', goog.bind(selectChanged, this));
-            opts = select.options;
             
-            dp = dataProvider;
+            dp = dataProvider as Array;
             n = dp.length;
             for (i = 0; i < n; i++) {
-                opt = document.createElement('option');
+                opt = document.createElement('option') as HTMLOptionElement;
                 opt.text = dp[i];
-                opts.add(opt);
+                select.add(opt, null);
             }
             
             select.size = n;

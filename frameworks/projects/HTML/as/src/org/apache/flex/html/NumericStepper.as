@@ -22,6 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.UIBase;
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 
@@ -145,6 +146,12 @@ package org.apache.flex.html
 			IRangeModel(model).snapInterval = value;
 		}
         
+        COMPILE::JS
+        private var input:TextInput;
+        
+        COMPILE::JS
+        private var spinner:Spinner;
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -196,7 +203,7 @@ package org.apache.flex.html
         COMPILE::JS
         private function spinnerChange(event:Event):void
         {
-            var newValue = spinner.value;
+            var newValue:Number = spinner.value;
             value = newValue;
             input.text = String(spinner.value);
             dispatchEvent(new Event('valueChange'));

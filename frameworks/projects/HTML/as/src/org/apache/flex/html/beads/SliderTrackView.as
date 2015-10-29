@@ -129,7 +129,7 @@ package org.apache.flex.html.beads
 		}
 		
 		COMPILE::JS
-		private var element:WrappedHTMLElement;
+		public var element:WrappedHTMLElement;
 		
 		COMPILE::AS3
 		private var upView:Shape;

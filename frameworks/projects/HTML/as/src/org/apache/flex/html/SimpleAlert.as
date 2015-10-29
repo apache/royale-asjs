@@ -126,14 +126,14 @@ package org.apache.flex.html
                 var alert:SimpleAlert = new SimpleAlert();
                 alert.message = message;
                 alert.show(parent);                    
+                
+                return alert;
             }
             COMPILE::JS
             {
                 alert(message);
                 return null;
             }
-			
-			return alert;
 		}
 		
 	}

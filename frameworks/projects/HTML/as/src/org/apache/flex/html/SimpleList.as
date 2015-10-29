@@ -20,6 +20,7 @@ package org.apache.flex.html
 {
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
         
@@ -50,12 +51,13 @@ package org.apache.flex.html
         
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('select') as WrappedHTMLElement;
-            element.size = 5;
+            (element as HTMLSelectElement).size = 5;
             goog.events.listen(element, 'change',
                 goog.bind(changeHandler, this));
             positioner = element;
@@ -63,7 +65,15 @@ package org.apache.flex.html
             className = 'SimpleList';
             
             return element;
-        }        
-
+        }   
+        
+        /**
+         * @flexjsignorecoercion HTMLSelectElement
+         */
+        COMPILE::JS
+        protected function changeHandler(event:Event):void
+        {
+            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
+        }
 	}
 }

@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;            
+    }
 	
 	import org.apache.flex.core.IBead;
 	
@@ -41,6 +44,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+        COMPILE::AS3
 		function get increment():DisplayObject;
 		
 		/**
@@ -51,6 +55,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+        COMPILE::AS3
 		function get decrement():DisplayObject;
 	}
 }

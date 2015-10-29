@@ -112,7 +112,7 @@ package org.apache.flex.core
             if (contentView != null) {
                 return contentView.getElementAt(index);
             } else {
-                return super.getElementIndex(index);
+                return super.getElementAt(index);
             }
         }        
         

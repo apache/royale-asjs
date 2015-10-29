@@ -18,13 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
-	
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.beads.ITextItemRenderer;
-
+    COMPILE::AS3
+    {
+        import flash.text.TextFieldAutoSize;
+        import flash.text.TextFieldType;
+        
+        import org.apache.flex.core.CSSTextField;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;        
+    }
+    import org.apache.flex.events.Event;
+    import org.apache.flex.html.beads.ITextItemRenderer;
+    
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
 	 *  function.
@@ -48,18 +56,23 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 			
-			textField = new CSSTextField();
-			textField.type = TextFieldType.DYNAMIC;
-			textField.autoSize = TextFieldAutoSize.LEFT;
-			textField.selectable = false;
-            textField.parentDrawsBackground = true;
+            COMPILE::AS3
+            {
+                textField = new CSSTextField();
+                textField.type = TextFieldType.DYNAMIC;
+                textField.autoSize = TextFieldAutoSize.LEFT;
+                textField.selectable = false;
+                textField.parentDrawsBackground = true;         
+            }
 		}
 		
+        COMPILE::AS3
 		public var textField:CSSTextField;
 		
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -72,13 +85,14 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		override public function adjustSize():void
 		{
-			var cy:Number = this.height/2;
+			var cy:Number = height/2;
 			
 			textField.x = 0;
 			textField.y = cy - textField.height/2;
-			textField.width = this.width;
+			textField.width = width;
 			
 			updateRenderer();
 		}
@@ -93,12 +107,26 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function get text():String
 		{
-			return textField.text;
+            COMPILE::AS3
+            {
+                return textField.text;                    
+            }
+            COMPILE::JS
+            {
+                return this.element.innerHTML;
+            }
 		}
 		
 		public function set text(value:String):void
 		{
-			textField.text = value;
+            COMPILE::AS3
+            {
+                textField.text = value;                    
+            }
+            COMPILE::JS
+            {
+                this.element.innerHTML = value;
+            }
 		}
 		
 		/**
@@ -114,10 +142,42 @@ package org.apache.flex.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			if (labelField) textField.text = String(value[labelField]);
-			else if (dataField) textField.text = String(value[dataField]);
-			else textField.text = String(value);
+            var text:String;
+			if (labelField) text = String(value[labelField]);
+			else if (dataField) text = String(value[dataField]);
+			else text = String(value);
+            
+            this.text = text;
 		}
 		
+        COMPILE::JS
+        private var controller:ItemRendererMouseController;
+            
+        COMPILE::JS
+        private var backgroundView:WrappedHTMLElement;
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement;
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {            
+            element = document.createElement('div') as WrappedHTMLElement;
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            element.flexjs_wrapper = this;
+            className = 'StringItemRenderer';
+            
+            // itemRenderers should provide something for the background to handle
+            // the selection and highlight
+            backgroundView = element;
+            
+            controller = new ItemRendererMouseController();
+            controller.strand = this;
+            
+            return element;
+        }
+
 	}
 }

@@ -139,7 +139,7 @@ package org.apache.flex.html.beads
 		private var overView:Shape;
 		
         COMPILE::JS
-        private var element:WrappedHTMLElement;
+        public var element:WrappedHTMLElement;
         
 		/**
 		 * @private

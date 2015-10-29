@@ -23,6 +23,8 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.html.beads.models.ImageModel;
+        import org.apache.flex.html.beads.ImageView;
     }
 	
 	/**
@@ -59,14 +61,15 @@ package org.apache.flex.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
 		 */
 		public function get source():String
 		{
-			return IImageModel(model).source;
+			return (model as IImageModel).source;
 		}
 		public function set source(value:String):void
 		{
-			IImageModel(model).source = value;
+			(model as IImageModel).source = value;
 		}
         
         /**

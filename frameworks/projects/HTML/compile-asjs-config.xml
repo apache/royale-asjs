@@ -50,8 +50,18 @@
             <path-element>../../libs/Graphics.swc</path-element>
         </library-path>
         
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>basic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/svg</uri>
+                <manifest>svg-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <source-path>
-            <path-element>asjs/src</path-element>
             <path-element>as/src</path-element>
         </source-path>
         

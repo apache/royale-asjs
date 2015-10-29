@@ -165,7 +165,10 @@ package org.apache.flex.html
             //TODO:  Need to handle this case more gracefully
             catch(e:Error)
             {
-                trace(e.message);
+                COMPILE::AS3
+                {
+                    trace(e.message);                        
+                }
             }
             
         }

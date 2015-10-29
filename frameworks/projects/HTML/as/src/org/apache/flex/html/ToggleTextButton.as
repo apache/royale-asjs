@@ -21,7 +21,6 @@ package org.apache.flex.html
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIButtonBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
 	

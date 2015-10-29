@@ -23,9 +23,16 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ISpinnerView;
+    COMPILE::JS
+    {
+        import org.apache.flex.html.Spinner;
+        import goog.events;
+        import goog.events.EventType;
+    }
 	
 	/**
 	 *  The SpinnerMouseController class bead handles mouse events on the 
@@ -69,13 +76,33 @@ package org.apache.flex.html.beads.controllers
 			
 			rangeModel = UIBase(value).model as IRangeModel;
 			
-			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
-			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
-			spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
-			spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
-			spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
+            COMPILE::AS3
+            {
+                var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+                spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
+                spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
+                spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
+                spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);                    
+            }
+            
+            COMPILE::JS
+            {
+                var host:Spinner = value as Spinner;
+                incrementButton = host.incrementButton;
+                decrementButton = host.decrementButton;
+                
+                goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
+                    goog.bind(incrementClickHandler, this));
+                
+                goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
+                    goog.bind(decrementClickHandler, this));
+
+            }
 		}
 		
+        private var incrementButton:TextButton;
+        private var decrementButton:TextButton;
+        
 		/**
 		 * @private
 		 */

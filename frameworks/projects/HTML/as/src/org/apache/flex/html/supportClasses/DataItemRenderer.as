@@ -154,7 +154,6 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 * @override
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 * 
 		 */
