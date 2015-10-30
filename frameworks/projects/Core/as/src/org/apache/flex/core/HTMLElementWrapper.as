@@ -97,7 +97,8 @@ package org.apache.flex.core
             }
         }
 
-		protected var beads:Array;
+		protected var _beads:Vector.<IBead>;
+        
 		//--------------------------------------
 		//   Function
 		//--------------------------------------
@@ -107,12 +108,12 @@ package org.apache.flex.core
          */
 		public function addBead(bead:IBead):void
 		{
-			if (!beads)
+			if (!_beads)
 			{
-				beads = [];
+				_beads = new Vector.<IBead>();
 			}
 
-			beads.push(bead);
+			_beads.push(bead);
 
 			if (bead is IBeadModel)
 			{
@@ -130,13 +131,13 @@ package org.apache.flex.core
 		{
 			var bead:IBead, i:uint, n:uint;
 
-            if (!beads) return null;
+            if (!_beads) return null;
             
-			n = beads.length;
+			n = _beads.length;
 
 			for (i = 0; i < n; i++)
 			{
-				bead = beads[i];
+				bead = _beads[i];
 
 				if (bead is classOrInterface)
 				{
@@ -155,15 +156,15 @@ package org.apache.flex.core
 		{
 			var i:uint, n:uint, value:Object;
 
-			n = beads.length;
+			n = _beads.length;
 
 			for (i = 0; i < n; i++)
 			{
-				value = beads[i];
+				value = _beads[i];
 
 				if (bead === value)
 				{
-					beads.splice(i, 1);
+					_beads.splice(i, 1);
 
 					return bead;
 				}

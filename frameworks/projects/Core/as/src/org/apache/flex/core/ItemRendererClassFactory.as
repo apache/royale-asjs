@@ -63,6 +63,7 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Class
          */
         public function set strand(value:IStrand):void
         {

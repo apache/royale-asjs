@@ -50,6 +50,9 @@ package org.apache.flex.html.supportClasses
         
 		protected var _strand:IStrand;
 		
+        /**
+         * @flexjsignorecoercion Class
+         */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
