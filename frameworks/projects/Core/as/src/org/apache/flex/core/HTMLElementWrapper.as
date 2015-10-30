@@ -83,9 +83,21 @@ package org.apache.flex.core
         
 		private var _model:IBeadModel;
         
+        /**
+         * @flexjsignorecoercion Class 
+         * @flexjsignorecoercion org.apache.flex.core.IBeadModel 
+         */
         public function get model():Object
         {
-            return IBeadModel(_model);
+            if (_model == null) 
+            {
+                // addbead will set _model
+                var m:Class = org.apache.flex.core.ValuesManager.valuesImpl.
+                        getValue(this, 'iBeadModel') as Class;
+                var b:IBeadModel = new m() as IBeadModel;
+                addBead(b);
+            }
+            return _model;
         }
         
         public function set model(value:Object):void

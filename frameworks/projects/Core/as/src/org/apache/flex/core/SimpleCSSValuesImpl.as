@@ -537,17 +537,30 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Function
          */
         public function getInstance(valueName:String):Object
         {
             var o:Object = values["global"];
-            if (o is Class)
+            o = o[valueName];
+            COMPILE::AS3
             {
-                o[valueName] = new o[valueName]();
-                if (o[valueName] is IDocument)
-                    o[valueName].setDocument(mainClass);
+                var i:Class = o as Class;                    
             }
-            return o[valueName];
+            COMPILE::JS
+            {
+                var i:Function = null;
+                if (typeof(o) === "function")
+                    i = o as Function;
+            }
+            if (i)
+            {
+                o[valueName] = new i();
+                var d:IDocument = o[valueName] as IDocument;
+                if (d)
+                    d.setDocument(mainClass);
+            }
+            return o;
         }
         
         /**

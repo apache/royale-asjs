@@ -156,6 +156,25 @@ package org.apache.flex.html
             return element;
         }        
         
+        public function get text():String
+        {
+            return element.childNodes.item(1).nodeValue;
+        }
+        
+        public function set text(value:String):void
+        {
+            element.childNodes.item(1).nodeValue = value;
+        }
+        
+        public function get selected():Boolean
+        {
+            return (element.childNodes.item(0) as HTMLInputElement).checked;
+        }
+        
+        public function set selected(value:Boolean):void
+        {
+            (element.childNodes.item(0) as HTMLInputElement).checked = value;
+        }
     }        
 
 }

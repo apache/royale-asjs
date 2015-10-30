@@ -59,7 +59,10 @@ package org.apache.flex.html
 		{
 			super();
 
-			model.addEventListener("textChange", textChangeHandler);
+            COMPILE::AS3
+            {
+                model.addEventListener("textChange", textChangeHandler);                    
+            }
 		}
 		
         /**
@@ -69,20 +72,37 @@ package org.apache.flex.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function get text():String
 		{
-			return ITextModel(model).text;
+            COMPILE::AS3
+            {
+                return ITextModel(model).text;                    
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
 		}
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function set text(value:String):void
 		{
-            inSetter = true;
-			ITextModel(model).text = value;
-            inSetter = false;
+            COMPILE::AS3
+            {
+                inSetter = true;
+                ITextModel(model).text = value;
+                inSetter = false;                    
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
+            }
 		}
 		
         /**
@@ -92,18 +112,35 @@ package org.apache.flex.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function get html():String
 		{
-			return ITextModel(model).html;
+            COMPILE::AS3
+            {
+                return ITextModel(model).html;                    
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
 		}
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function set html(value:String):void
 		{
-			ITextModel(model).html = value;
+            COMPILE::AS3
+            {
+                ITextModel(model).html = value;                    
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
+            }
 		}
 
         private var inSetter:Boolean;
