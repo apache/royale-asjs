@@ -118,6 +118,10 @@
         type="dir"
         property="FLEXUNIT_HOME" value="${env.FLEXUNIT_HOME}" />
     
+    <available file="${env.FLEX_HOME}"
+        type="dir"
+        property="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
+    
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
         property="apache.rat.found"/>
@@ -368,12 +372,12 @@
 
     <target name="ask.build">
         <input
-        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  Press y to start the build."
+        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  You will be asked to accept the Adobe license for the font jars.  Press y to start the build."
         validargs="y"
         defaultvalue="y" />
     </target>
 
-    <target name="build" depends="ask.build,get.dependencies,copy.downloads">
+    <target name="build" depends="ask.build,ask-font,get.dependencies,copy.downloads">
         <ant dir="${basedir}/${package.url.name}" target="main" />
         <ant dir="${basedir}/${package.url.name}" target="examples" />
     </target>
@@ -385,7 +389,30 @@
 		</copy>
     </target>
     
-    <target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.flexunit.if.needed" />
+    <!-- Prompt before downloading.  -->
+    <target name="ask-font" unless="font.donot.ask"
+        description="Prompt the user before downloading BlaseDS">
+        
+        <property name="font.prompt.text"
+        value="Apache Flex can optionally integrate with Adobe's embedded font support.
+        ${line.separator}This feature requires a few font jars from the Adobe Flex SDK.
+        ${line.separator}The Adobe SDK license agreement for Adobe Flex 4.6 applies to these jars.
+        ${line.separator}This license is not compatible with the Apache v2 license.
+        ${adobe.flex.license}
+        ${line.separator}Do you want to install these jars from the Adobe Flex SDK?"/>
+        <input
+        message="${font.prompt.text}"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="input.font.download"/>
+        <condition property="do.font.install">
+            <equals arg1="y" arg2="${input.font.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="font.donot.ask" value="set"/>
+    </target>
+    
+    <target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />
     <target name="set.falcon.flags" >
         <condition property="falcon.nightly">
             <and>
@@ -486,6 +513,25 @@
         <fail message="MD5 checksum did not match" if="FlexUnitMD5Invalid" />
         <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
         <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
+    </target>
+    <target name="get.sdk.if.needed" depends="get.sdk" unless="FLEX_SDK_HOME" />
+    <target name="get.sdk">
+        <property name="kit.sdk.prefix" value="apache-flex-sdk-4.14.1"/>
+        <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
+        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip"
+        dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip.md5"
+        dest="${basedir}/${binary.sdk.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="md5" verifyproperty="sdk.md5.ok" />
+        <condition property="SDKMD5Invalid">
+            <not>
+                <equals arg1="${sdk.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="SDKMD5Invalid" />
+        <unzip src="${basedir}/${binary.sdk.kit}.zip" dest="${basedir}/sdk" />
+        <ant dir="${basedir}/sdk/frameworks" antfile="downloads.xml" />
+        <property name="FLEX_SDK_HOME" value="${basedir}/sdk" />
     </target>
     
 	<target name="approve" >
