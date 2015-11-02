@@ -378,6 +378,7 @@
     </target>
 
     <target name="build" depends="ask.build,ask-font,get.dependencies,copy.downloads">
+        <property name="no.lint" value="true" />
         <ant dir="${basedir}/${package.url.name}" target="main" />
         <ant dir="${basedir}/${package.url.name}" target="examples" />
     </target>

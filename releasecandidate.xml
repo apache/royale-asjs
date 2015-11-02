@@ -483,7 +483,7 @@ The vote passes if there is:\n\
 - At least 3 +1 votes from the PMC\n\
 - More positive votes than negative votes\n\
 \n\
-Remember that this is an initial 'alpha-quality' release so I expect there\n\
+Remember that this is a 'beta-quality' release so I expect there\n\
 will be many bugs found.  IMO the goal is not to try to find and fix bugs\n\
 in the RC, but to make sure we have the packaging right, and enough\n\
 functionality that folks will have some success trying to use it.\n\
@@ -506,9 +506,6 @@ https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/Ap
 You are not required to use this script, and more testing of the packages\n\
 and build results are always encouraged.\n\
 \n\
-\n\
-You will have to install Google Closure Linter and JSHint prior to running\n\
-the script.\n\
 \n\
 Please put all discussion about this release in the DISCUSSION thread not\n\
 this VOTE thread.\n\
