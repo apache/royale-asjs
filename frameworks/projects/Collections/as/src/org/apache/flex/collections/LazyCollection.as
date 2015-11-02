@@ -18,12 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.collections
 {
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
+    COMPILE::AS3
+    {
+        import flash.events.Event;            
+    }
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.collections.parsers.IInputParser;
     import org.apache.flex.collections.converters.IItemConverter;
     
@@ -110,7 +114,7 @@ package org.apache.flex.collections
 			if (_inputParser != value)
 			{
                 _inputParser = value;
-				dispatchEvent(new Event("inputParserChanged"));
+				dispatchEvent(new org.apache.flex.events.Event("inputParserChanged"));
 			}
 		}
 		
@@ -139,7 +143,7 @@ package org.apache.flex.collections
             if (_itemConverter != value)
             {
                 _itemConverter = value;
-                dispatchEvent(new Event("itemConverterChanged"));
+                dispatchEvent(new org.apache.flex.events.Event("itemConverterChanged"));
             }
         }
 
@@ -166,7 +170,7 @@ package org.apache.flex.collections
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+				dispatchEvent(new org.apache.flex.events.Event("idChanged"));
 			}
 		}
 		
@@ -183,7 +187,14 @@ package org.apache.flex.collections
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(_strand).addEventListener(Event.COMPLETE, completeHandler);
+            COMPILE::AS3
+            {
+                IEventDispatcher(_strand).addEventListener(flash.events.Event.COMPLETE, completeHandler);                    
+            }
+            COMPILE::JS
+            {
+                IEventDispatcher(_strand).addEventListener("complete", completeHandler);                    
+            }
         }
         
         /**
@@ -207,7 +218,15 @@ package org.apache.flex.collections
          */
         protected var data:Array;
         
-        private function completeHandler(event:Event):void
+        COMPILE::AS3
+        private function completeHandler(event:flash.events.Event):void
+        {
+            rawData = inputParser.parseItems(_strand["data"]);  
+            data = new Array(rawData.length);
+            dispatchEvent(event);
+        }
+        COMPILE::JS
+        private function completeHandler(event:org.apache.flex.events.Event):void
         {
             rawData = inputParser.parseItems(_strand["data"]);  
             data = new Array(rawData.length);
