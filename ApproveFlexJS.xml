@@ -470,9 +470,9 @@
     <target name="get.falcon.rc" if="falcon.rc">
         <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip"
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip.md5"
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/${binary.jx.kit}.zip.md5"
         dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
         <condition property="FalconMD5Invalid">
