@@ -23,7 +23,15 @@ package org.apache.flex.utils
 	COMPILE::AS3
 	public class Language {}
 
-	COMPILE::JS
+    COMPILE::JS
+    {
+        import goog.bind;
+    }
+    
+    /**
+     * @flexjsignoreimport goog.bind
+     */
+    COMPILE::JS
 	public class Language
 	{
 
@@ -36,25 +44,24 @@ package org.apache.flex.utils
 		//--------------------------------------
 
 		/**
-		 * _as()
+		 * as()
 		 *
-		 * @export
-		 * @param {?} leftOperand The lefthand operand of the
+		 * @param leftOperand The lefthand operand of the
 		 * binary as operator in AS3.
-		 * @param {?} rightOperand The righthand operand of the
+		 * @param rightOperand The righthand operand of the
 		 * binary operator in AS3.
-		 * @param {?=} coercion The cast is a coercion,
-		 * throw expception if it fails.
-		 * @return {?} Returns the lefthand operand if it is of the
+		 * @param coercion The cast is a coercion,
+		 * throw exception if it fails.
+		 * @return Returns the lefthand operand if it is of the
 		 * type of the righthand operand, otherwise null.
 		 */
-		static public function _as(leftOperand:Object, rightOperand:Object, coercion:* = null):Object
+		static public function as(leftOperand:Object, rightOperand:Object, coercion:* = null):Object
 		{
 			var error:Error, itIs:Boolean, message:String;
 
 			coercion = (coercion !== undefined) ? coercion : false;
 
-			itIs = _is(leftOperand, rightOperand);
+			itIs = Language.is(leftOperand, rightOperand);
 
 			if (!itIs && coercion)
 			{
@@ -78,8 +85,7 @@ package org.apache.flex.utils
 		/**
 		 * int()
 		 *
-		 * @export
-		 * @param {?} value The value to be cast.
+		 * @param value The value to be cast.
 		 * @return {number}
 		 */
 		static public function _int(value:Number):Number
@@ -88,16 +94,15 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * _is()
+		 * is()
 		 *
-		 * @export
-		 * @param {?} leftOperand The lefthand operand of the
+		 * @param leftOperand The lefthand operand of the
 		 * binary as operator in AS3.
-		 * @param {?} rightOperand The righthand operand of the
+		 * @param rightOperand The righthand operand of the
 		 * binary operator in AS3.
 		 * @return {boolean}
 		 */
-		static public function _is(leftOperand:Object, rightOperand:Object):Boolean
+		static public function is(leftOperand:Object, rightOperand:Object):Boolean
 		{
 			var checkInterfaces:Function, superClass:Object;
 
@@ -110,7 +115,7 @@ package org.apache.flex.utils
 			}
 
 			checkInterfaces = function(left:Object):Boolean {
-				var i:uint, interfaces:Array;
+				var i:int, interfaces:Array;
 
 				interfaces = left.FLEXJS_CLASS_INFO.interfaces;
 				for (i = interfaces.length - 1; i > -1; i--) {
@@ -127,8 +132,8 @@ package org.apache.flex.utils
 				return false;
 			};
 
-			if ((rightOperand === String && typeof leftOperand === 'string') ||
-				(leftOperand instanceof /** @type {Object} */(rightOperand)))
+			if ((rightOperand === String && typeof(leftOperand) === 'string') ||
+				(leftOperand instanceof (rightOperand)))
 			{
 				return true;
 			}
@@ -153,7 +158,8 @@ package org.apache.flex.utils
 				}
 			}
 
-			superClass = leftOperand.constructor.superClass_;
+			superClass = leftOperand.constructor;
+            superClass = superClass.superClass_;
 
 			if (superClass)
 			{
@@ -166,7 +172,8 @@ package org.apache.flex.utils
 							return true;
 						}
 					}
-					superClass = superClass.constructor.superClass_;
+					superClass = superClass.constructor;
+                    superClass = superClass.superClass_;
 				}
 			}
 
@@ -176,9 +183,8 @@ package org.apache.flex.utils
 		/**
 		 * postdecrement handles foo++
 		 *
-		 * @export
-		 * @param {Object} obj The object with the getter/setter.
-		 * @param {string} prop The name of a property.
+		 * @param obj The object with the getter/setter.
+		 * @param prop The name of a property.
 		 * @return {number}
 		 */
 		static public function postdecrement(obj:Object, prop:String):int
@@ -191,9 +197,8 @@ package org.apache.flex.utils
 		/**
 		 * postincrement handles foo++
 		 *
-		 * @export
-		 * @param {Object} obj The object with the getter/setter.
-		 * @param {string} prop The name of a property.
+		 * @param obj The object with the getter/setter.
+		 * @param prop The name of a property.
 		 * @return {number}
 		 */
 		static public function postincrement(obj:Object, prop:String):int
@@ -206,9 +211,8 @@ package org.apache.flex.utils
 		/**
 		 * predecrement handles ++foo
 		 *
-		 * @export
-		 * @param {Object} obj The object with the getter/setter.
-		 * @param {string} prop The name of a property.
+		 * @param obj The object with the getter/setter.
+		 * @param prop The name of a property.
 		 * @return {number}
 		 */
 		static public function predecrement(obj:Object, prop:String):int
@@ -221,9 +225,8 @@ package org.apache.flex.utils
 		/**
 		 * preincrement handles --foo
 		 *
-		 * @export
-		 * @param {Object} obj The object with the getter/setter.
-		 * @param {string} prop The name of a property.
+		 * @param obj The object with the getter/setter.
+		 * @param prop The name of a property.
 		 * @return {number}
 		 */
 		static public function preincrement(obj:Object, prop:String):int
@@ -236,10 +239,9 @@ package org.apache.flex.utils
 		/**
 		 * superGetter calls the getter on the given class' superclass.
 		 *
-		 * @export
-		 * @param {Object} clazz The class.
-		 * @param {Object} pthis The this pointer.
-		 * @param {string} prop The name of the getter.
+		 * @param clazz The class.
+		 * @param pthis The this pointer.
+		 * @param prop The name of the getter.
 		 * @return {Object}
 		 */
 		static public function superGetter(clazz:Object, pthis:Object, prop:String):Object
@@ -249,7 +251,8 @@ package org.apache.flex.utils
 
 			while (superdesc == null)
 			{
-				superClass = superClass.constructor.superClass_;
+				superClass = superClass.constructor;
+                superClass = superClass.superClass_;
 				superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
 			}
 			return superdesc.get.call(pthis);
@@ -258,11 +261,10 @@ package org.apache.flex.utils
 		/**
 		 * superSetter calls the setter on the given class' superclass.
 		 *
-		 * @export
-		 * @param {Object} clazz The class.
-		 * @param {Object} pthis The this pointer.
-		 * @param {string} prop The name of the getter.
-		 * @param {Object} value The value.
+		 * @param clazz The class.
+		 * @param pthis The this pointer.
+		 * @param prop The name of the getter.
+		 * @param value The value.
 		 */
 		static public function superSetter(clazz:Object, pthis:Object, prop:String, value:Object):void
 		{
@@ -271,7 +273,8 @@ package org.apache.flex.utils
 
 			while (superdesc == null)
 			{
-				superClass = superClass.constructor.superClass_;
+				superClass = superClass.constructor;
+                superClass = superClass.superClass_;
 				superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
 			}
 			superdesc.set.apply(pthis, [value]);
@@ -280,10 +283,11 @@ package org.apache.flex.utils
 		static public function trace(...rest):void
 		{
 			var theConsole:*;
+            var windowConsole:* = window.console;
 
 			var msg:String = '';
 
-			for (var i:uint = 0; i < rest.length; i++)
+			for (var i:int = 0; i < rest.length; i++)
 			{
 				if (i > 0)
 					msg += ' ';
@@ -292,8 +296,8 @@ package org.apache.flex.utils
 
 			theConsole = ["goog"]["global"]["console"];
 
-			if (theConsole === undefined && window.console !== undefined)
-				theConsole = window.console;
+			if (theConsole === undefined && windowConsole !== undefined)
+				theConsole = windowConsole;
 
 			try
 			{
@@ -311,13 +315,32 @@ package org.apache.flex.utils
 		/**
 		 * uint()
 		 *
-		 * @export
-		 * @param {?} value The value to be cast.
+		 * @param value The value to be cast.
 		 * @return {number}
 		 */
 		static public function uint(value:Number):Number
 		{
 			return value >>> 0;
 		}
+        
+        /**
+         * caches closures and returns the one closure
+         *
+         * @param fn The method on the instance.
+         * @param object The instance.
+         * @param boundMethodName The name to use to cache the closure.
+         * @return The closure.
+         */
+        static public function closure(fn:Function, object:Object, boundMethodName:String):Function {
+            if (object.hasOwnProperty(boundMethodName)) {
+                return object[boundMethodName];
+            }
+            var boundMethod:Function = goog.bind(fn, object);
+            Object.defineProperty(object, boundMethodName, {
+                value: boundMethod
+            });
+            return boundMethod;
+        };
+
 	}
 }
