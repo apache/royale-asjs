@@ -37,7 +37,7 @@
     <target name="main" depends="clean,compile,test" description="Clean build of Binding.swc">
     </target>
 
-    <target name="all" depends="clean,compile-asjs,compile-extern-swc,compile,test-js" description="Full build of Binding.swc">
+    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test-js" description="Full build of Binding.swc">
     </target>
     
     <target name="test" unless="is.jenkins">

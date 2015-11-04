@@ -145,7 +145,7 @@ package org.apache.flex.binding
                     val = source.constructor[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
-                catch (e:Error)
+                catch (e2:Error)
                 {
                 }
             }
