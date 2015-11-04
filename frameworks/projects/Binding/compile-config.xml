@@ -54,7 +54,6 @@
         
         <source-path>
             <path-element>as/src</path-element>
-            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>

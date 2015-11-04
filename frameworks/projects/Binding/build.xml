@@ -164,9 +164,6 @@
 
     <target name="copy-js" >
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
-            <fileset dir="${basedir}/js/src">
-                <include name="**/**" />
-            </fileset>
             <fileset dir="${basedir}/js/out">
                 <include name="**/**" />
             </fileset>
