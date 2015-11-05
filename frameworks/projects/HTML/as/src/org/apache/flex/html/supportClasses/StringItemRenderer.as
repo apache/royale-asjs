@@ -157,7 +157,7 @@ package org.apache.flex.html.supportClasses
         private var backgroundView:WrappedHTMLElement;
         
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement;
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
