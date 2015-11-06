@@ -23,6 +23,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.flex.core.IItemRendererProvider;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
@@ -76,7 +77,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends ListBase
+	public class List extends ListBase implements IItemRendererProvider
 	{
 		/**
 		 *  constructor.
@@ -232,6 +233,33 @@ package org.apache.flex.html
 		{
 			_itemRenderer = value;
 		}
+		
+		/**
+		 * Returns whether or not the itemRenderer property has been set.
+		 *
+		 *  @see org.apache.flex.core.IItemRendererProvider
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get hasItemRenderer():Boolean
+		{
+			var result:Boolean = false;
+			
+			COMPILE::AS3 {
+				result = _itemRenderer != null;
+			}
+			
+			COMPILE::JS {
+				var test:* = _itemRenderer;
+				result = _itemRenderer !== null && test !== undefined;
+			}
+			
+			return result;
+		}
+		
 		
 		/**
 		 * @private
