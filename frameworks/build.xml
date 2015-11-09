@@ -95,7 +95,6 @@
     </target>
     
     <target name="compile-asjs" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Charts" target="compile-asjs"/>
         <ant dir="${basedir}/projects/CreateJS" target="compile-asjs"/>
         <ant dir="${basedir}/projects/DragDrop" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Effects" target="compile-asjs"/>
@@ -108,7 +107,6 @@
     </target>
 
     <target name="lint-js" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Charts" target="lint-js"/>
         <ant dir="${basedir}/projects/CreateJS" target="lint-js"/>
         <ant dir="${basedir}/projects/DragDrop" target="lint-js"/>
         <ant dir="${basedir}/projects/Effects" target="lint-js"/>
@@ -124,7 +122,6 @@
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
         <!-- order may matter due to dependencies -->
         <ant dir="${basedir}/projects/Flat" target="compile"/>
-        <ant dir="${basedir}/projects/Charts" target="compile"/>
         <ant dir="${basedir}/projects/CreateJS" target="compile"/>
         <ant dir="${basedir}/projects/DragDrop" target="compile"/>
         <ant dir="${basedir}/projects/Effects" target="compile"/>
@@ -203,7 +200,7 @@
     </target>
     
     <target name="Charts" description="Clean build of Charts.swc">
-        <ant dir="${basedir}/projects/Charts"/>
+        <ant dir="${basedir}/projects/Charts" target="all"/>
     </target>
 
     <target name="Core" description="Clean build of Core.swc">
