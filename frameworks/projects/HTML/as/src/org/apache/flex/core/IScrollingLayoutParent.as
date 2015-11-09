@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
@@ -35,7 +32,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IScrollingLayoutParent extends ILayoutParent
+	public interface IScrollingLayoutParent
 	{
         /**
          *  The border.
