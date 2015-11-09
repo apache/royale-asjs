@@ -101,7 +101,6 @@
         <ant dir="${basedir}/projects/Effects" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Graphics" target="compile-asjs"/>
         <ant dir="${basedir}/projects/HTML5" target="compile-asjs"/>
         <ant dir="${basedir}/projects/JQuery" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Mobile" target="compile-asjs"/>
@@ -116,7 +115,6 @@
         <ant dir="${basedir}/projects/Flat" target="lint-js"/>
         <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="lint-js"/>
-        <ant dir="${basedir}/projects/Graphics" target="lint-js"/>
         <ant dir="${basedir}/projects/HTML5" target="lint-js"/>
         <ant dir="${basedir}/projects/JQuery" target="lint-js"/>
         <ant dir="${basedir}/projects/Mobile" target="lint-js"/>
@@ -125,7 +123,6 @@
 
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
         <!-- order may matter due to dependencies -->
-        <ant dir="${basedir}/projects/Graphics" target="compile"/>
         <ant dir="${basedir}/projects/Flat" target="compile"/>
         <ant dir="${basedir}/projects/Charts" target="compile"/>
         <ant dir="${basedir}/projects/CreateJS" target="compile"/>
@@ -242,7 +239,7 @@
     </target>
 
     <target name="Graphics" description="Clean build of Graphics.swc">
-        <ant dir="${basedir}/projects/Graphics"/>
+        <ant dir="${basedir}/projects/Graphics" target="all"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">

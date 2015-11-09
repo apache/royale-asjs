@@ -45,9 +45,9 @@
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
-            <path-element>../../libs/Binding.swc</path-element>
+            <path-element>../../externs/Binding.swc</path-element>
             <path-element>../../externs/Core.swc</path-element>
-            <path-element>../../libs/Graphics.swc</path-element>
+            <path-element>../../externs/Graphics.swc</path-element>
         </library-path>
         
         <namespaces>
