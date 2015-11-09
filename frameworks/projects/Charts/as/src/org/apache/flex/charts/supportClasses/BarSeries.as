@@ -18,83 +18,86 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
+    import org.apache.flex.core.IFactory;
+    
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.supportClasses.DataGroup;
 	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The BarSeries defines what field is being plotted from
+	 *  the chart's dataProvider. For BarChartSeries, only the xField
+	 *  is used. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends DataGroup implements IChartDataGroup
+	public class BarSeries implements IChartSeries
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ChartDataGroup()
+		public function BarSeries()
 		{
-			super();
 		}
 		
-		/**
-		 *  Returns the itemRenderer that matches both the series and child index. A null return is
-		 *  valid since some charts have optional itemRenderers for their series.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer
-		{
-			var n:int = numElements;
-			for(var i:int=0; i < n; i++)
-			{
-				var child:IChartItemRenderer = getElementAt(i) as IChartItemRenderer;
-				if (child && child.series == series) {
-					if (index == 0) return child;
-					--index;
-				}
-			}
-			
-			return null;
-		}
+		private var _xField:String = "x";
 		
 		/**
-		 *  Returns the first itemRenderer that encompasses the point.
-		 *  
+		 *  The name of the field corresponding to the X or horizontal value
+		 *  for an item in the chart. 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function getItemRendererUnderPoint(point:Point):IChartItemRenderer
+		public function get xField():String
 		{
-			var n:int = numElements;
-			for(var i:int=0; i < n; i++)
-			{
-				var child:IUIBase = getElementAt(i) as IUIBase;
-				if (child) {
-					if (child.x <= point.x && point.x <= (child.x+child.width) &&
-						child.y <= point.y && point.y <= (child.y+child.height))
-						return child as IChartItemRenderer;
-				}
-			}
-			
+			return _xField;
+		}
+		public function set xField(value:String):void
+		{
+			_xField = value;
+		}
+		
+		private var _yField:String;
+		
+		/**
+		 *  @private
+		 */
+		public function get yField():String
+		{
 			return null;
+		}
+		public function set yField(value:String):void
+		{
+			// not used
+		}
+		
+		private var _itemRenderer:IFactory;
+		
+		/**
+		 *  The class or class factory to use as the itemRenderer for each X/Y pair. The
+		 *  itemRenderer class must implement the IChartItemRenderer interface.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
 		}
 	}
 }

@@ -18,83 +18,97 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.supportClasses
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
+	import org.apache.flex.core.IFactory;
+	
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.supportClasses.DataGroup;
 	
 	/**
-	 *  The ChartDataGroup class provides the actual space for rendering the
-	 *  chart. 
+	 *  The LineChartSeries represents a pair of X and Y values to be drawn
+	 *  within a org.apache.flex.charts.LineChart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends DataGroup implements IChartDataGroup
+	public class LineSeries implements IChartSeries
 	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function ChartDataGroup()
+		public function LineSeries()
 		{
-			super();
 		}
 		
-		/**
-		 *  Returns the itemRenderer that matches both the series and child index. A null return is
-		 *  valid since some charts have optional itemRenderers for their series.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer
-		{
-			var n:int = numElements;
-			for(var i:int=0; i < n; i++)
-			{
-				var child:IChartItemRenderer = getElementAt(i) as IChartItemRenderer;
-				if (child && child.series == series) {
-					if (index == 0) return child;
-					--index;
-				}
-			}
-			
-			return null;
-		}
+		private var _xField:String;
 		
 		/**
-		 *  Returns the first itemRenderer that encompasses the point.
-		 *  
+		 *  The name of the field corresponding to the X or horizontal value
+		 *  for an item in the chart. 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function getItemRendererUnderPoint(point:Point):IChartItemRenderer
+		public function get xField():String
 		{
-			var n:int = numElements;
-			for(var i:int=0; i < n; i++)
-			{
-				var child:IUIBase = getElementAt(i) as IUIBase;
-				if (child) {
-					if (child.x <= point.x && point.x <= (child.x+child.width) &&
-						child.y <= point.y && point.y <= (child.y+child.height))
-						return child as IChartItemRenderer;
-				}
-			}
-			
-			return null;
+			return _xField;
+		}
+		public function set xField(value:String):void
+		{
+			_xField = value;
+		}
+		
+		private var _yField:String;
+		
+		/**
+		 *  The name of the field that provides the Y or vertical value for an
+		 *  item in the chart.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get yField():String
+		{
+			return _yField;
+		}
+		public function set yField(value:String):void
+		{
+			_yField = value;
+		}
+		
+		private var _itemRenderer:IFactory;
+		
+		/**
+		 *  The class or class factory to use as the itemRenderer for each X/Y pair. The
+		 *  itemRenderer class must implement the IChartItemRenderer interface.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
+		}
+		
+		private var _lineSegmentRenderer:IFactory;
+		
+		/**
+		 * The class or class factory to use to render each segment of the series.
+		 */
+		public function get lineSegmentRenderer():IFactory
+		{
+			return _lineSegmentRenderer;
+		}
+		public function set lineSegmentRenderer(value:IFactory):void
+		{
+			_lineSegmentRenderer = value;
 		}
 	}
 }

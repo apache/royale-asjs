@@ -56,7 +56,6 @@
         
         <source-path>
             <path-element>as/src</path-element>
-            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -64,7 +63,7 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>asjs/defaults.css</path>
+        <path>as/defaults.css</path>
     </include-file>
     <include-file>
         <name>js/out/*</name>
@@ -77,7 +76,6 @@
 
     <include-classes>
         <class>ChartsClasses</class>
-        <class>ChartASJSClasses</class>
     </include-classes>
     
     <include-namespaces>

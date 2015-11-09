@@ -16,26 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.graphics.GraphicsContainer;
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.html.Label;
 	
 	/**
-	 * The ChartAxisGroup provides a space where the objects for a chart's
-	 * axis can be placed.
+	 * The SVGChartAxisGroup provides a GraphicsContainer whose drawing functions
+	 * can be used to display a chart's axis graphics without resorting to the
+	 * creation of extra objects.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartAxisGroup extends UIBase implements IAxisGroup, IChrome
+	public class SVGChartAxisGroup extends GraphicsContainer implements IAxisGroup
 	{
 		/**
 		 * Constructor.
@@ -45,31 +43,17 @@ package org.apache.flex.charts.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ChartAxisGroup()
+		public function SVGChartAxisGroup()
 		{
 			super();
 		}
-				
+		
 		/**
-		 * Removes all of the items in the group.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 * @private
 		 */
-		public function removeAllElements():void
+		override public function addedToParent():void
 		{
-			COMPILE::AS3 {
-				this.removeChildren(0);
-			}
-			
-			COMPILE::JS {
-				var svg:Object = this.element;
-				while (svg.lastChild) {
-					svg.removeChild(svg.lastChild);
-				}
-			}
+			super.addedToParent();
 		}
 		
 		/**
@@ -89,14 +73,8 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
-			var label:Label = new Label();
-			label.text = text;
-			label.x = xpos - label.width/2;
-			label.y = ypos;
-			
-			addElement(label);
-			
-			return label;
+			fill = tickFill;
+			return drawText(text, xpos-boxWidth/2, ypos);
 		}
 		
 		/**
@@ -116,14 +94,8 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
-			var label:Label = new Label();
-			label.text = text;
-			label.x = xpos;
-			label.y = ypos - label.height/2;
-			
-			addElement(label);
-			
-			return label;
+			fill = tickFill;
+			return drawText(text, xpos, ypos-boxHeight/4);
 		}
 		
 		/**
@@ -142,14 +114,8 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function drawTickMarks( originX:Number, originY:Number, width:Number, height:Number, marks:String, tickStroke:IStroke ):void
 		{
-			var tickPath:Path = new Path();
-			tickPath.x = 0;
-			tickPath.y = 0;
-			tickPath.width = this.width;
-			tickPath.height = this.height;
-			addElement(tickPath);
-			tickPath.stroke = tickStroke;
-			tickPath.drawPath( 0, 0, marks );
+			stroke = tickStroke;
+			drawPath(marks);
 		}
 		
 		/**
@@ -168,15 +134,9 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function drawAxisLine( originX:Number, originY:Number, width:Number, height:Number, lineStroke:IStroke ):void
 		{
-			var axisPath:Path = new Path();
-			axisPath.x = 0;
-			axisPath.y = 0;
-			axisPath.width = this.width;
-			axisPath.height = this.height;
-			addElement(axisPath);
-			axisPath.stroke = lineStroke;
+			stroke = lineStroke;
 			var pathLine:String = "M " + String(originX) + " " + String(originY) + " l "+String(width)+" "+String(height);
-			axisPath.drawPath(0, 0, pathLine);
+			drawPath(pathLine);
 		}
 	}
 }

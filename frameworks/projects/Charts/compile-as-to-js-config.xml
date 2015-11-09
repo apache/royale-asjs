@@ -23,50 +23,54 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
+            <path-element>D:/SDKs/FlexJS/nightly_PF18_AIR18.0_en_US/js/libs/js.swc</path-element>
+            <path-element>D:/SDKs/FlexJS/nightly_PF18_AIR18.0_en_US/js/libs/gcl.swc</path-element>
         </external-library-path>
-        
-		<mxml>
-			<children-as-data>true</children-as-data>
-		</mxml>
-		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
-		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <mxml>
+            <children-as-data>true</children-as-data>
+        </mxml>
+        <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+        <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+        <binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <keep-as3-metadata>
-          <name>Bindable</name>
-          <name>Managed</name>
-          <name>ChangeEvent</name>
-          <name>NonCommittingChangeEvent</name>
-          <name>Transient</name>
+            <name>Bindable</name>
+            <name>Managed</name>
+            <name>ChangeEvent</name>
+            <name>NonCommittingChangeEvent</name>
+            <name>Transient</name>
         </keep-as3-metadata>
-	  
+
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <locale/>
-        
-        <library-path>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-             if these swcs are on the external-library-path then their requires
-             will not be listed -->
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/Graphics.swc</path-element>
-            <path-element>../../libs/HTML.swc</path-element>
-        </library-path>
-        
+
         <source-path>
-            <path-element>as/src</path-element>
+            <!--<path-element>as/src</path-element>-->
         </source-path>
-        
+
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
-    
+
     <include-sources>
         <path-element>as/src</path-element>
     </include-sources>
+
+    <include-classes>
+        <class>ChartsClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
         
-    <target-player>${playerglobal.version}</target-player>
+    <target-player>11.1</target-player>
 	
 
 </flex-config>

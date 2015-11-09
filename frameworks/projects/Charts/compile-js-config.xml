@@ -42,29 +42,44 @@
 	  
         <locale/>
         
-        <library-path>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-             if these swcs are on the external-library-path then their requires
-             will not be listed -->
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/Graphics.swc</path-element>
-            <path-element>../../libs/HTML.swc</path-element>
-        </library-path>
+        <library-path/>
+
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
         
         <source-path>
             <path-element>as/src</path-element>
+            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-sources>
-        <path-element>as/src</path-element>
-    </include-sources>
+    <include-file>
+        <name>js/out/*</name>
+        <path>js/out/*</path>
+    </include-file>
+    <!--
+    <include-file>
+        <name>js/src/*</name>
+        <path>js/src/*</path>
+    </include-file>
+     -->
+    
+    <include-classes>
+        <class>CoreJSClasses</class>
+        <!-- leave out for now until we get Application to compile
+        <class>CoreASJSClasses</class>-->
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
-    </include-namespaces>
+		<uri>library://ns.apache.org/flexjs/svg</uri>
+    </include-namespaces>  
         
     <target-player>${playerglobal.version}</target-player>
 	
