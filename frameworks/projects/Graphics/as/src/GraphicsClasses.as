@@ -38,7 +38,6 @@ internal class GraphicsClasses
 	import org.apache.flex.core.graphics.Text; Text;
 	import org.apache.flex.core.graphics.GraphicsContainer; GraphicsContainer;
 	import org.apache.flex.core.graphics.LinearGradient; LinearGradient;
-    import org.apache.flex.core.DataBindingBase; DataBindingBase;
 }
 
 }

@@ -14,12 +14,19 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+    COMPILE::AS3
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
 
 	public interface IFill
 	{
+        COMPILE::AS3
 		function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
+        COMPILE::AS3
 		function end(s:GraphicShape):void;
+        COMPILE::JS
+        function addFillAttrib(s:GraphicShape):String;
 	}
 }

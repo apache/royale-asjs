@@ -14,10 +14,17 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.display.CapsStyle;
-	import flash.display.JointStyle;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+    COMPILE::AS3
+    {
+        import flash.display.CapsStyle;
+        import flash.display.JointStyle;
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 
 	public class Rect extends GraphicShape
 	{
@@ -33,14 +40,42 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-			graphics.clear();
-			applyStroke();
-			beginFill(new Rectangle(x, y, width, height), new Point(x,y));
-			graphics.drawRect(x, y, width, height);
-			endFill();
+            COMPILE::AS3
+            {
+                graphics.clear();
+                applyStroke();
+                beginFill(new Rectangle(x, y, width, height), new Point(x,y));
+                graphics.drawRect(x, y, width, height);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = this.getStyleStr();
+                var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+                rect.flexjs_wrapper = this;
+                rect.setAttribute('style', style);
+                if (stroke)
+                {
+                    rect.setAttribute('x', String(stroke.weight / 2) + 'px');
+                    rect.setAttribute('y', String(stroke.weight / 2) + 'px');
+                    setPosition(x, y, stroke.weight, stroke.weight);
+                }
+                else
+                {
+                    rect.setAttribute('x', '0' + 'px');
+                    rect.setAttribute('y', '0' + 'px');
+                    setPosition(x, y, 0, 0);
+                }
+                rect.setAttribute('width', String(width) + 'px');
+                rect.setAttribute('height', String(height) + 'px');
+                element.appendChild(rect);
+                
+                resize(x, y, rect['getBBox']());
+            }
 		}
 		
 		override protected function draw():void

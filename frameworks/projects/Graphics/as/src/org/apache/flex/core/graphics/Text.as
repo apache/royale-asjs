@@ -18,9 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core.graphics
 {
-	import flash.text.TextFieldType;
-	
-	import org.apache.flex.core.CSSTextField;
+    COMPILE::AS3
+    {
+        import flash.text.TextFieldType;        
+        import org.apache.flex.core.CSSTextField;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 	
 	/**
 	 *  Draws a string of characters at a specific location using the stroke
@@ -45,11 +51,15 @@ package org.apache.flex.core.graphics
 		{
 			super();
 			
-			_textField = new CSSTextField();
-			addChild(_textField);
+            COMPILE::AS3
+            {
+                _textField = new CSSTextField();
+                addChild(_textField);                    
+            }
 		}
 		
-		
+
+        COMPILE::AS3
 		private var _textField:CSSTextField;
 		
 		/**
@@ -60,6 +70,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+        COMPILE::AS3
 		public function get textField() : CSSTextField
 		{
 			return _textField;
@@ -75,23 +86,53 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion Text
+         *  @flexjsignorecoercion Node
+         *  @flexjsignorecoercion SVGLocatable
 		 */
 		public function drawText(value:String, x:Number, y:Number):void
 		{
-			textField.selectable = false;
-			textField.type = TextFieldType.DYNAMIC;
-			textField.mouseEnabled = false;
-			textField.autoSize = "left";
-			textField.text = value;
-			
-			var color:SolidColorStroke = stroke as SolidColorStroke;
-			if (color) {
-				textField.textColor = color.color;
-				textField.alpha = color.alpha;
-			}
-			
-			textField.x = x;
-			textField.y = y;
+            COMPILE::AS3
+            {
+                textField.selectable = false;
+                textField.type = TextFieldType.DYNAMIC;
+                textField.mouseEnabled = false;
+                textField.autoSize = "left";
+                textField.text = value;
+                
+                var color:SolidColorStroke = stroke as SolidColorStroke;
+                if (color) {
+                    textField.textColor = color.color;
+                    textField.alpha = color.alpha;
+                }
+                
+                textField.x = x;
+                textField.y = y;                    
+            }
+            COMPILE::JS
+            {
+                var style:String = this.getStyleStr();
+                var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                text.flexjs_wrapper = this;
+                text.setAttribute('style', style);
+                text.setAttribute('x', String(x) + 'px');
+                text.setAttribute('y', String(y) + 'px');
+                setPosition(x, y, 0, 0);
+                var textNode:Text = document.createTextNode(value) as Text;
+                text.appendChild(textNode as Node);
+                element.appendChild(text);
+                
+                resize(x, y, (text as SVGLocatable).getBBox());
+
+            }
 		}
+        
+        COMPILE::JS
+        override protected function draw():void
+        {
+            
+        }
+
 	}
 }
