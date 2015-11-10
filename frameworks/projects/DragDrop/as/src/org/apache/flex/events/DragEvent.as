@@ -19,7 +19,10 @@
 package org.apache.flex.events
 {
     import org.apache.flex.core.IDragInitiator;
-    import org.apache.flex.events.MouseEvent;
+    COMPILE::JS
+    {
+        import window.MouseEvent;
+    }
     
 	/**
 	 *  Drag and Drop Events.
@@ -29,7 +32,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class DragEvent extends MouseEvent
+	public class DragEvent extends DragEventBase
 	{
         /**
          *  The <code>DragEvent.DRAG_START</code> constant defines the value of the 
@@ -268,7 +271,14 @@ package org.apache.flex.events
          */
 		public function DragEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+                super(type, bubbles, cancelable);                    
+            }
+            COMPILE::JS
+            {
+                this.type = type;
+            }
 		}
 
         /**
@@ -282,19 +292,32 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.events.DragEvent
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
-            var de:DragEvent = new DragEvent(type, true, true);
-            de.localX = event.localX;
-            de.localY = event.localY;
-            de.altKey = event.altKey;
-            de.ctrlKey = event.ctrlKey;
-            de.shiftKey = event.shiftKey;
-            de.buttonDown = event.buttonDown;
-            de.delta = event.delta;
-            de.relatedObject = event.relatedObject;
-            return de;
+            COMPILE::AS3
+            {
+                var de:DragEvent = new DragEvent(type, true, true);
+                de.localX = event.localX;
+                de.localY = event.localY;
+                de.altKey = event.altKey;
+                de.ctrlKey = event.ctrlKey;
+                de.shiftKey = event.shiftKey;
+                de.buttonDown = event.buttonDown;
+                de.delta = event.delta;
+                de.relatedObject = event.relatedObject;
+                return de;                    
+            }
+            COMPILE::JS
+            {
+                var out:MouseEvent = new MouseEvent(type);
+                out.initMouseEvent(type, true, true,
+                    e.view, e.detail, e.screenX, e.screenY,
+                    e.clientX, e.clientY, e.ctrlKey, e.altKey,
+                    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+                return out as DragEvent;
+            }
         }
         
         
@@ -311,7 +334,14 @@ package org.apache.flex.events
          */
         public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
         {
-            target.dispatchEvent(event);
+            COMPILE::AS3
+            {
+                target.dispatchEvent(event);                    
+            }
+            COMPILE::JS
+            {
+                target.element.dispatchEvent(event);
+            }
         }
 	}
 }
