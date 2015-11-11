@@ -96,7 +96,6 @@
     
     <target name="compile-asjs" description="Cross-compiles all SWCs">
         <ant dir="${basedir}/projects/CreateJS" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/DragDrop" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Effects" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
@@ -108,7 +107,6 @@
 
     <target name="lint-js" description="Cross-compiles all SWCs">
         <ant dir="${basedir}/projects/CreateJS" target="lint-js"/>
-        <ant dir="${basedir}/projects/DragDrop" target="lint-js"/>
         <ant dir="${basedir}/projects/Effects" target="lint-js"/>
         <ant dir="${basedir}/projects/Flat" target="lint-js"/>
         <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
@@ -123,7 +121,6 @@
         <!-- order may matter due to dependencies -->
         <ant dir="${basedir}/projects/Flat" target="compile"/>
         <ant dir="${basedir}/projects/CreateJS" target="compile"/>
-        <ant dir="${basedir}/projects/DragDrop" target="compile"/>
         <ant dir="${basedir}/projects/Effects" target="compile"/>
         <ant dir="${basedir}/projects/Formatters" target="compile"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
@@ -216,7 +213,7 @@
     </target>
 
     <target name="DragDrop" description="Clean build of DragDrop.swc">
-        <ant dir="${basedir}/projects/DragDrop"/>
+        <ant dir="${basedir}/projects/DragDrop" target="all"/>
     </target>
 
     <target name="Effects" description="Clean build of Effects.swc">
