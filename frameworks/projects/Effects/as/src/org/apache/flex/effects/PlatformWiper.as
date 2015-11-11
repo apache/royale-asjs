@@ -102,11 +102,11 @@ public class PlatformWiper
             if (value == null) 
             {
                 if (_overflow == null)
-                    delete _target.positioner.style.overflow;
+                    delete _target.positioner.style["overflow"];
                 else
                     _target.positioner.style.overflow = _overflow;
             }
-            _target = target;
+            _target = value;
             if (value != null) {
                 _overflow = _target.positioner.style.overflow;
             }
