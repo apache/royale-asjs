@@ -27,6 +27,7 @@ package
  */
 internal class DragDropClasses
 {	  
+    import org.apache.flex.core.DropType; DropType;
     import org.apache.flex.events.DragEvent; DragEvent;   
 }
 

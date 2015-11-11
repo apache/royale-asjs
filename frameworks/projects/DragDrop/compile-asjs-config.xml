@@ -22,7 +22,6 @@
         <accessible>false</accessible>
         
         <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -46,12 +45,11 @@
             <!-- asjscompc won't 'link' these classes in, but will list their requires
              if these swcs are on the external-library-path then their requires
              will not be listed -->
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/DragDrop.swc</path-element>
+            <path-element>../../externs/Core.swc</path-element>
         </library-path>
         
         <source-path>
-            <path-element>asjs/src</path-element>
+            <path-element>as/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -60,9 +58,9 @@
     <include-file>
     </include-file>
 
-    <include-sources>
-        <path-element>asjs/src</path-element>
-    </include-sources>
+    <include-classes>
+        <class>DragDropClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>

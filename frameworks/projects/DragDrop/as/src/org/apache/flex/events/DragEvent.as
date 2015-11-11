@@ -21,6 +21,8 @@ package org.apache.flex.events
     import org.apache.flex.core.IDragInitiator;
     COMPILE::JS
     {
+        import org.apache.flex.core.IUIBase;
+        import window.Event;
         import window.MouseEvent;
     }
     
@@ -293,6 +295,7 @@ package org.apache.flex.events
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.events.DragEvent
+         *  @flexjsignorecoercion window.Event
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
@@ -312,7 +315,8 @@ package org.apache.flex.events
             COMPILE::JS
             {
                 var out:MouseEvent = new MouseEvent(type);
-                out.initMouseEvent(type, true, true,
+                var e:window.Event = event as window.Event;
+                (out as window.Event).initMouseEvent(type, true, true,
                     e.view, e.detail, e.screenX, e.screenY,
                     e.clientX, e.clientY, e.ctrlKey, e.altKey,
                     e.shiftKey, e.metaKey, e.button, e.relatedTarget);
@@ -331,6 +335,8 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion window.Event
          */
         public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
         {
@@ -340,7 +346,7 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                target.element.dispatchEvent(event);
+                (target as IUIBase).element.dispatchEvent(event as window.Event);
             }
         }
 	}

@@ -38,10 +38,14 @@ package org.apache.flex.events
     COMPILE::AS3
 	public class DragEventBase extends MouseEvent
 	{
+        public function DragEventBase(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+        {
+            super(type, bubbles, cancelable);
+        }
     }
 
     COMPILE::JS
-    public class DragEventBase extends BrowserEvent
+    public class DragEventBase extends goog.events.BrowserEvent
     {
     }
 }
