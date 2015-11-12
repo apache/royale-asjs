@@ -26,8 +26,8 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class HTMLClasses
-{	
-	
+{
+
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
@@ -53,10 +53,10 @@ internal class HTMLClasses
 	    import org.apache.flex.html.beads.CSSTextToggleButtonView; CSSTextToggleButtonView;
 		import org.apache.flex.html.beads.DropDownListView; DropDownListView;
 		import org.apache.flex.html.beads.CloseButtonView; CloseButtonView;
-	    import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
     	import org.apache.flex.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
 		import org.apache.flex.html.beads.ImageView; ImageView;
 	}
+	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ListView; ListView;
 	COMPILE::AS3
 	{
@@ -129,7 +129,7 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.controllers.HScrollBarMouseController; HScrollBarMouseController;
 	}
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
-    import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;  
+    import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout; HorizontalLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
 	COMPILE::AS3
@@ -143,7 +143,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
-	
+
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
@@ -158,7 +158,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
-    
+
     import org.apache.flex.html.MXMLBeadViewBase; MXMLBeadViewBase;
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;

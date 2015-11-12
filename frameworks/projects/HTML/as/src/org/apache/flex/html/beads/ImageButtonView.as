@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+COMPILE::AS3 {
 	import flash.display.Loader;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -25,21 +26,23 @@ package org.apache.flex.html.beads
 	import flash.events.Event;
     import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
-	
+
+	import org.apache.flex.core.UIButtonBase;
+}
+
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIButtonBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
-	
+
 	/**
 	 *  The ImageButtonView class provides an image-only view
 	 *  for the standard Button. Unlike the CSSButtonView, this
 	 *  class does not support background and border; only images
 	 *  for the up, over, and active states.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -49,7 +52,7 @@ package org.apache.flex.html.beads
 	{
 		/**
 		 *  Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -57,14 +60,16 @@ package org.apache.flex.html.beads
 		 */
 		public function ImageButtonView()
 		{
-			upSprite = new Sprite();
-			downSprite = new Sprite();
-			overSprite = new Sprite();
+			COMPILE::AS3 {
+				upSprite = new Sprite();
+				downSprite = new Sprite();
+				overSprite = new Sprite();
+			}
 		}
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -73,29 +78,34 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			shape = new Shape();
-			shape.graphics.beginFill(0xCCCCCC);
-			shape.graphics.drawRect(0, 0, 10, 10);
-			shape.graphics.endFill();
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
-			
-			setupBackground(upSprite);
-			setupBackground(overSprite, "hover");
-			setupBackground(downSprite, "active");
+
+			COMPILE::AS3 {
+				shape = new Shape();
+				shape.graphics.beginFill(0xCCCCCC);
+				shape.graphics.drawRect(0, 0, 10, 10);
+				shape.graphics.endFill();
+				SimpleButton(value).upState = upSprite;
+				SimpleButton(value).downState = downSprite;
+				SimpleButton(value).overState = overSprite;
+				SimpleButton(value).hitTestState = shape;
+
+				setupBackground(upSprite);
+				setupBackground(overSprite, "hover");
+				setupBackground(downSprite, "active");
+			}
 		}
-		
-		private var upSprite:Sprite;
-		private var downSprite:Sprite;
-		private var overSprite:Sprite;
-		private var shape:Shape;
-		
+
+		COMPILE::AS3 {
+			private var upSprite:Sprite;
+			private var downSprite:Sprite;
+			private var overSprite:Sprite;
+			private var shape:Shape;
+		}
+
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function setupBackground(sprite:Sprite, state:String = null):void
 		{
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
@@ -109,7 +119,7 @@ package org.apache.flex.html.beads
                     trace(e);
                     e.preventDefault();
                 });
-				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
+				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void {
                     var host:UIButtonBase = UIButtonBase(_strand);
                     if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
                     {
@@ -119,7 +129,7 @@ package org.apache.flex.html.beads
                     }
                     else
                         loader.content.width = host.width;
-                    
+
                     if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
                     {
                         host.setHeight(loader.content.height);
@@ -132,10 +142,11 @@ package org.apache.flex.html.beads
 				});
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function updateHitArea():void
 		{
 			shape.graphics.clear();
