@@ -253,13 +253,21 @@ package org.apache.flex.core
          */
 		public function set percentWidth(value:Number):void
 		{
-			if (_percentWidth == value)
-				return;
-			
-			if (!isNaN(value))
-				_explicitWidth = NaN;
-			
-			_percentWidth = value;
+			COMPILE::AS3 {
+				if (_percentWidth == value)
+					return;
+				
+				if (!isNaN(value))
+					_explicitWidth = NaN;
+				
+				_percentWidth = value;
+			}
+			COMPILE::JS {
+				this._percentWidth = value;
+				this.positioner.style.width = value.toString() + '%';
+				if (!isNaN(value))
+					this._explicitWidth = NaN;
+			}
 			
 			dispatchEvent(new Event("percentWidthChanged"));
 		}
@@ -288,13 +296,22 @@ package org.apache.flex.core
          */
 		public function set percentHeight(value:Number):void
 		{
-			if (_percentHeight == value)
-				return;
-			
-			if (!isNaN(value))
-				_explicitHeight = NaN;
-			
-			_percentHeight = value;
+			COMPILE::AS3 {
+				if (_percentHeight == value)
+					return;
+				
+				if (!isNaN(value))
+					_explicitHeight = NaN;
+				
+				_percentHeight = value;
+			}
+				
+			COMPILE::JS {
+				this._percentHeight = value;
+				this.positioner.style.height = value.toString() + '%';
+				if (!isNaN(value))
+					this._explicitHeight = NaN;
+			}
 			
 			dispatchEvent(new Event("percentHeightChanged"));
 		}
