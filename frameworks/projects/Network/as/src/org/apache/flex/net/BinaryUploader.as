@@ -148,6 +148,7 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		public function BinaryUploader()
 		{
