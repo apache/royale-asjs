@@ -18,13 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-	import flash.events.HTTPStatusEvent;
-	import flash.events.IOErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.net.URLRequestHeader;
-	import flash.net.URLRequestMethod;
-	
+    COMPILE::AS3
+    {
+        import flash.events.HTTPStatusEvent;
+        import flash.events.IOErrorEvent;
+        import flash.net.URLLoader;
+        import flash.net.URLRequest;
+        import flash.net.URLRequestHeader;
+        import flash.net.URLRequestMethod;            
+    }
+	COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+    
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
@@ -92,7 +99,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class BinaryUploader extends EventDispatcher implements IStrand, IBead
+	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
         /**
          *  The GET request method.
@@ -102,7 +109,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public static const HTTP_METHOD_GET:String = URLRequestMethod.GET;
+		public static const HTTP_METHOD_GET:String = "GET";
 
         /**
          *  The POST request method.
@@ -112,7 +119,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public static const HTTP_METHOD_POST:String = URLRequestMethod.POST;
+		public static const HTTP_METHOD_POST:String = "POST";
 
         /**
          *  The PUT request method.
@@ -122,7 +129,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static const HTTP_METHOD_PUT:String = URLRequestMethod.PUT;
+        public static const HTTP_METHOD_PUT:String = "PUT";
 
         /**
          *  The DELETE request method.
@@ -132,7 +139,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static const HTTP_METHOD_DELETE:String = URLRequestMethod.DELETE;
+        public static const HTTP_METHOD_DELETE:String = "DELETE";
 		
         /**
          *  Constructor.
@@ -145,6 +152,10 @@ package org.apache.flex.net
 		public function BinaryUploader()
 		{
 			super();
+            COMPILE::JS
+            {
+                element = new XMLHttpRequest() as WrappedHTMLElement;
+            }
 		}
 		
 		private var _contentType:String = "application/octet-stream";
@@ -275,21 +286,51 @@ package org.apache.flex.net
          */        
 		public function get responseHeaders():Array
 		{
-			if (_responseHeaders && _responseHeaders.length > 0)
-			{
-				if (_responseHeaders[0] is URLRequestHeader)
-				{
-					var n:int = _responseHeaders.length;
-					for (var i:int = 0; i < n; i++)
-					{
-						var old:URLRequestHeader = _responseHeaders[i];
-						var nu:HTTPHeader = new HTTPHeader(old.name, old.value);
-						_responseHeaders[i] = nu;
-					}
-				}
-			}
-			return _responseHeaders;
-		}
+            COMPILE::AS3
+            {
+                if (_responseHeaders && _responseHeaders.length > 0)
+                {
+                    if (_responseHeaders[0] is URLRequestHeader)
+                    {
+                        var n:int = _responseHeaders.length;
+                        for (var i:int = 0; i < n; i++)
+                        {
+                            var old:URLRequestHeader = _responseHeaders[i];
+                            var nu:HTTPHeader = new HTTPHeader(old.name, old.value);
+                            _responseHeaders[i] = nu;
+                        }
+                    }
+                }
+            }
+            COMPILE::JS
+            {
+                var allHeaders:String;
+                var c:int;
+                var hdr:String;
+                var i:int;
+                var n:int;
+                var part1:String;
+                var part2:String;
+                var element:XMLHttpRequest = this.element as XMLHttpRequest;
+                
+                if (typeof _responseHeaders === 'undefined') 
+                {
+                    allHeaders = element.getAllResponseHeaders();
+                    _responseHeaders = allHeaders.split('\n');
+                    n = _responseHeaders.length;
+                    for (i = 0; i < n; i++) 
+                    {
+                        hdr = _responseHeaders[i];
+                        c = hdr.indexOf(':');
+                        part1 = hdr.substring(0, c);
+                        part2 = hdr.substring(c + 2);
+                        _responseHeaders[i] =
+                            new HTTPHeader(part1, part2);
+                    }
+                }
+            }
+            return _responseHeaders;
+   		}
 		
 		private var _responseURL:String;
 
@@ -432,6 +473,7 @@ package org.apache.flex.net
          */        
 		public var beads:Array;
 		
+        COMPILE::AS3
 		private var _beads:Vector.<IBead>;
 
         /**
@@ -441,7 +483,8 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */        
+         */       
+        COMPILE::AS3
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -457,7 +500,8 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */        
+         */     
+        COMPILE::AS3
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -475,7 +519,8 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */        
+         */  
+        COMPILE::AS3
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -491,6 +536,7 @@ package org.apache.flex.net
 			return null;
 		}
 
+        COMPILE::AS3
         private var urlLoader:URLLoader;
         
         /**
@@ -504,48 +550,103 @@ package org.apache.flex.net
          */        
         public function send():void
         {
-            if (!urlLoader)
-                urlLoader = new URLLoader();
-			var request:URLRequest = new URLRequest(url);
-			request.method = method;
-			if ("idleTimeout" in request)
-			{
-				request["idleTimeout"] = timeout;
-			}
-			var sawContentType:Boolean;
-			if (headers)
-			{
-				for each (var header:HTTPHeader in headers)
-				{
-					var urlHeader:URLRequestHeader = new URLRequestHeader(header.name, header.value);
-					request.requestHeaders.push(urlHeader);
-					if (header.name == HTTPHeader.CONTENT_TYPE)
-						sawContentType = true;
-				}
-			}
-			if (method != HTTP_METHOD_GET && !sawContentType)
-			{
-				urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
-				request.requestHeaders.push(urlHeader);
-			}
-			if (binaryData)
-			{
-				if (method == HTTP_METHOD_GET)
-				{
-					if (url.indexOf("?") != -1)
-						url += binaryData.data.toString();
-					else
-						url += "?" + binaryData.data.toString();
-				}
-				else
-					request.data = binaryData.data;
-			}
-			urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-			if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
-				urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
-			urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
-            urlLoader.load(request);
+            COMPILE::AS3
+            {
+                if (!urlLoader)
+                    urlLoader = new URLLoader();
+                var request:URLRequest = new URLRequest(url);
+                request.method = method;
+                if ("idleTimeout" in request)
+                {
+                    request["idleTimeout"] = timeout;
+                }
+                var sawContentType:Boolean;
+                if (headers)
+                {
+                    for each (var header:HTTPHeader in headers)
+                    {
+                        var urlHeader:URLRequestHeader = new URLRequestHeader(header.name, header.value);
+                        request.requestHeaders.push(urlHeader);
+                        if (header.name == HTTPHeader.CONTENT_TYPE)
+                            sawContentType = true;
+                    }
+                }
+                if (method != HTTP_METHOD_GET && !sawContentType)
+                {
+                    urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
+                    request.requestHeaders.push(urlHeader);
+                }
+                if (binaryData)
+                {
+                    if (method == HTTP_METHOD_GET)
+                    {
+                        if (url.indexOf("?") != -1)
+                            url += binaryData.data.toString();
+                        else
+                            url += "?" + binaryData.data.toString();
+                    }
+                    else
+                        request.data = binaryData.data;
+                }
+                urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
+                urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+                if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
+                    urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
+                urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
+                urlLoader.load(request);
+                
+            }
+            COMPILE::JS
+            {
+                var element:XMLHttpRequest = this.element as XMLHttpRequest;
+                element.onreadystatechange = progressHandler;
+                
+                url = _url;
+                
+                var binaryData:String = null;
+                if (_binaryData != null) {
+                    if (_method === HTTP_METHOD_GET) {
+                        if (url.indexOf('?') !== -1) {
+                            url += _binaryData.data;
+                        } else {
+                            url += '?' + _binaryData.data;
+                        }
+                    } else {
+                        binaryData = _binaryData.data.toString();
+                    }
+                }
+                
+                element.open(_method, _url, true);
+                element.timeout = _timeout;
+                
+                var sawContentType:Boolean = false;
+                if (_headers) {
+                    var n:int = _headers.length;
+                    for (var i:int = 0; i < n; i++) {
+                        var header:HTTPHeader = _headers[i];
+                        if (header.name === HTTPHeader.CONTENT_TYPE) {
+                            sawContentType = true;
+                        }
+                        
+                        element.setRequestHeader(header.name, header.value);
+                    }
+                }
+                
+                if (_method !== HTTP_METHOD_GET &&
+                    !sawContentType && binaryData) {
+                    element.setRequestHeader(
+                        HTTPHeader.CONTENT_TYPE, _contentType);
+                }
+                
+                if (binaryData) {
+                    element.setRequestHeader('Content-length', binaryData.length.toString());
+                    element.setRequestHeader('Connection', 'close');
+                    element.send(binaryData);
+                } else {
+                    element.send();
+                }
+
+            }
         }
         
         /**
@@ -556,6 +657,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
+        COMPILE::AS3
 		protected function statusHandler(event:HTTPStatusEvent):void
 		{
 			_status = event.status;
@@ -573,7 +675,8 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */        
+         */  
+        COMPILE::AS3
 		protected function ioErrorHandler(event:IOErrorEvent):void
 		{
 			dispatchEvent(new Event(event.type));
@@ -587,9 +690,26 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
+        COMPILE::AS3
         protected function completeHandler(event:flash.events.Event):void
         {
             dispatchEvent(new Event(event.type));
+        }
+        
+        /**
+         * @flexjsignorecoercion XMLHttpRequest
+         */
+        COMPILE::JS
+        protected function progressHandler():void
+        {
+            var element:XMLHttpRequest = this.element as XMLHttpRequest;
+            if (element.readyState === 2) {
+                _status = element.status;
+                dispatchEvent('httpResponseStatus');
+                dispatchEvent('httpStatus');
+            } else if (element.readyState === 4) {
+                dispatchEvent('complete');
+            }
         }
         
         /**
@@ -600,10 +720,18 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion XMLHttpRequest
          */        
         public function get data():*
         {
-            return urlLoader.data;
+            COMPILE::AS3
+            {
+                return urlLoader.data;                    
+            }
+            COMPILE::JS
+            {
+                return (element as XMLHttpRequest).responseText;
+            }
         }
     }
 }

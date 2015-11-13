@@ -293,7 +293,7 @@ org.apache.flex.net.BinaryUploader.prototype.send = function() {
         url += '?' + this.binaryData_.data;
       }
     } else {
-      binaryData = this.binaryData_.data;
+      binaryData = this.binaryData_.data.toString();
     }
   }
 
