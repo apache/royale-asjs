@@ -90,7 +90,7 @@ package org.apache.flex.html.beads
 			_model = value.getBeadByType(IImageModel) as IImageModel;
 			_model.addEventListener("urlChanged",handleUrlChange);
 			
-			handleUrlChange(null);
+//			handleUrlChange(null);
 		}
 		
 		/**
@@ -112,12 +112,14 @@ package org.apache.flex.html.beads
             }
             COMPILE::JS
             {
-                var host:IUIBase = _strand as IUIBase;
-                host.element.addEventListener('load',
-                    goog.bind(loadHandler, this), false);
-                host.addEventListener('sizeChanged',
-                    goog.bind(sizeChangedHandler, this));
-                (host.element as HTMLImageElement).src = _model.source;
+				if (_model.source) {
+	                var host:IUIBase = _strand as IUIBase;
+	                host.element.addEventListener('load',
+	                    goog.bind(loadHandler, this), false);
+	                host.addEventListener('sizeChanged',
+	                    goog.bind(sizeChangedHandler, this));
+	                (host.element as HTMLImageElement).src = _model.source;
+				}
             }
 		}
 		
