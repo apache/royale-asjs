@@ -101,7 +101,6 @@
         <ant dir="${basedir}/projects/HTML5" target="compile-asjs"/>
         <ant dir="${basedir}/projects/JQuery" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Mobile" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Network" target="compile-asjs"/>
     </target>
 
     <target name="lint-js" description="Cross-compiles all SWCs">
@@ -112,7 +111,6 @@
         <ant dir="${basedir}/projects/HTML5" target="lint-js"/>
         <ant dir="${basedir}/projects/JQuery" target="lint-js"/>
         <ant dir="${basedir}/projects/Mobile" target="lint-js"/>
-        <ant dir="${basedir}/projects/Network" target="lint-js"/>
     </target>
 
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
@@ -124,7 +122,6 @@
         <ant dir="${basedir}/projects/HTML5" target="compile"/>
         <ant dir="${basedir}/projects/JQuery" target="compile"/>
         <ant dir="${basedir}/projects/Mobile" target="compile"/>
-        <ant dir="${basedir}/projects/Network" target="compile"/>
     </target>
 
     <target name="js" depends="compile-asjs, lint-js" />
@@ -250,7 +247,7 @@
     </target>
 
     <target name="Network" description="Clean build of Network.swc">
-        <ant dir="${basedir}/projects/Network"/>
+        <ant dir="${basedir}/projects/Network" target="all"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
