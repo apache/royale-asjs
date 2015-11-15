@@ -163,7 +163,12 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 
-
+	COMPILE::AS3
+	{
+		import org.apache.flex.html.beads.HRuleView; HRuleView;
+		import org.apache.flex.html.beads.VRuleView; VRuleView;
+		import org.apache.flex.html.beads.MultilineTextFieldView; MultilineTextFieldView;
+	}
 }
 
 }
