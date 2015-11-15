@@ -333,7 +333,7 @@
 		<delete file="${basedir}/getresult.txt" />
 	</target>
 	
-	<target name="update-installer-config-release" >
+	<target name="update-installer-config-release" depends="credentials">
 		<exec executable="${svn}" dir="${site}" failonerror="true" >
 			<arg value="update" />
 			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
@@ -528,7 +528,7 @@ ${my.name}
 		<delete file="${basedir}/discussthread.properties" />
     </target>
 
-	<target name="release" >
+	<target name="release" depends="credentials">
 		<available file="${svn.dist.release}"
 			type="dir" 
 			property="dist.release" value="${svn.dist.release}" />
@@ -539,29 +539,10 @@ ${my.name}
 		<exec executable="${svn}" dir="${dist.release}/flex" failonerror="true" >
 			<arg value="update" />
 		</exec>
-		<mkdir dir="${dist.release}/flex/flexjs/${release.version}" />
-		<mkdir dir="${dist.release}/flex/flexjs/${release.version}/binaries" />
-		<mkdir dir="${dist.release}/flex/flexjs/${release.version}/doc" />
-		<copy todir="${dist.release}/flex/flexjs/${release.version}/doc" >
-			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}/doc" >
-				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
-			</fileset>
-		</copy>
-		<copy todir="${dist.release}/flex/flexjs/${release.version}/binaries" >
-			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}/binaries" >
-				<include name="apache-flex-flexjs-${release.version}-bin*" />
-				<include name="apache-flex-flexjs-installer-config.xml" />
-			</fileset>
-		</copy>
-		<copy todir="${dist.release}/flex/flexjs/${release.version}" >
-			<fileset dir="${dist.dev}/flex/flexjs/rc${rc}" >
-				<include name="READme" />
-				<include name="apache-flex-flexjs-${release.version}-src*" />
-			</fileset>
-		</copy>
 		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
-			<arg value="add" />
-			<arg value="${release.version}" />
+			<arg value="mv" />
+			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
+            <arg value="${dist.release}/flex/flexjs/${release.version}" />
 		</exec>
 		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
 			<arg value="commit" />
@@ -572,18 +553,28 @@ ${my.name}
 			<arg value="-m" />
 			<arg value="Apache FlexJS ${release.version}" />
 		</exec>
-		<exec executable="${git}" dir="${basedir}" failonerror="true" >
-			<arg value="tag" />
-			<arg value="-a" />
-			<arg value="apache-flex-flexjs-${release.version}" />
-			<arg value="-m" />
-			<arg value="&quot;Official release of apache-flex-flexjs-${release.version}&quot;" />
-		</exec>
+        <antcall target="release.tag" />
 		<exec executable="${git}" dir="${basedir}" failonerror="true" >
 			<arg value="push" />
 			<arg value="--tags" />
 		</exec>
 		<echo>Wait at least 24 hours before running update-installer-config-release target</echo>
 	</target>
-	
+
+    <target name="release.tag" >
+        <exec executable="${git}" dir="${basedir}" failonerror="true" output="${basedir}/taghash.txt">
+            <arg value="show" />
+            <arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
+        </exec>
+        <replaceregexp file="${basedir}/taghash.txt" match="(.*).commit (.*).Author(.*)" replace="\2" byline="false" flags="s" />
+        <loadfile srcFile="${basedir}/taghash.txt" property="releasehash" />
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="tag" />
+            <arg value="-a" />
+            <arg value="apache-flex-flexjs-${release.version}" />
+            <arg value="${releasehash}" />
+            <arg value="-m" />
+            <arg value="&quot;Official release of apache-flex-flexjs-${release.version}&quot;" />
+        </exec>
+    </target>
 </project>
