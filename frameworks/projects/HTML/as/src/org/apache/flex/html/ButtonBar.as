@@ -56,7 +56,6 @@ package org.apache.flex.html
 		}
         
         /**
-         * @override
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
