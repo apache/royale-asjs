@@ -125,17 +125,17 @@ limitations under the License.
             <js:SimpleCSSStyles marginTop="4" right="16" top="36" />
         </js:style>
         <js:Spacer width="100%"/>
-        <js:ImageButton id="purchase" backgroundImage="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
+        <js:ImageButton id="purchase" source="assets/button_cart_empty.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" width="30">
             <js:beads>
                 <js:ToolTipBead toolTip="Add to cart"/>
             </js:beads>
         </js:ImageButton>
-        <js:ImageButton id="compare" backgroundImage="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
+        <js:ImageButton id="compare" source="assets/button_compare.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" width="30">
             <js:beads>
                 <js:ToolTipBead toolTip="Add to compare list"/>
             </js:beads>
         </js:ImageButton>
-        <js:ImageButton id="tiles" backgroundImage="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
+        <js:ImageButton id="tiles" source="assets/button_tiles.png" click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.BROWSE, product));" width="30">
             <js:beads>
                 <js:ToolTipBead toolTip="Back to thumbnail view"/>
             </js:beads>
