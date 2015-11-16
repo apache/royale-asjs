@@ -338,7 +338,16 @@
 			<arg value="update" />
 			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
 		</exec>
-		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />	
+        <exec executable="${svn}" dir="${site}" failonerror="true" >
+            <arg value="update" />
+            <arg value="trunk/content/download-flexjs.cmsPage" />
+        </exec>
+        <exec executable="${svn}" dir="${site}" failonerror="true" >
+            <arg value="update" />
+            <arg value="trunk/templates" />
+        </exec>
+        <xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
+		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />
         <replaceregexp byline="true" flags="g">
             <regexp pattern="ApacheFlexJS(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
             <substitution expression="ApacheFlexJS\1latestVersion=&quot;${release.version}&quot;\2"/>
