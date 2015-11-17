@@ -28,7 +28,6 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IListView;
-	
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
@@ -107,7 +106,6 @@ package org.apache.flex.html.beads.controllers
 			dataGroup = listView.dataGroup;
             dataGroup.addEventListener("selected", selectedHandler, true);
             IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rolloverHandler);
-//			dataGroup.addEventListener(MouseEvent.ROLL_OVER, rolloverHandler, true);
 		}
 		
         private function selectedHandler(event:Event):void
