@@ -21,8 +21,18 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
+COMPILE::AS3 {
 	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.MouseEvent;
+}
+COMPILE::JS {
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.WrappedHTMLElement;
+	import org.apache.flex.events.BrowserEvent;
+	import goog.events.Event;
+	import goog.events.EventType;
+	import goog.bind;
+}
 
 	/**
 	 *  The ItemRendererMouseController class bead handles mouse events in itemRenderers. This
@@ -33,6 +43,8 @@ package org.apache.flex.html.beads.controllers
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
+	 *  @flexjsignoreimport goog.events.Event
+     *  @flexjsignoreimport goog.bind
 	 */
 	public class ItemRendererMouseController implements IBeadController
 	{
@@ -63,14 +75,27 @@ package org.apache.flex.html.beads.controllers
 		{
 			_strand = value;
             renderer = value as ISelectableItemRenderer;
-            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
-            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
-            renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			
+			COMPILE::AS3 {
+	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+	            renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			}
+				
+			COMPILE::JS {
+				var element:WrappedHTMLElement = (_strand as UIBase).element;
+				
+				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
+				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
+				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
+				goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
+			}
 		}
 		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		protected function rollOverHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
@@ -81,9 +106,20 @@ package org.apache.flex.html.beads.controllers
 			}
 		}
 		
+		COMPILE::JS
+		protected function handleMouseOver(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			if (target) {
+				target.hovered = true;
+				target.dispatchEvent(new Event("rollover",true));
+			}
+		}
+		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		protected function rollOutHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
@@ -93,10 +129,22 @@ package org.apache.flex.html.beads.controllers
                 target.down = false;
 			}
 		}
+		
+		COMPILE::JS
+		protected function handleMouseOut(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			if (target)
+			{
+				target.hovered = false;
+				target.down = false;
+			}
+		}
 
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
@@ -107,9 +155,21 @@ package org.apache.flex.html.beads.controllers
 			}
 		}
 		
+		COMPILE::JS
+		protected function handleMouseDown(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			if (target)
+			{
+				target.down = true;
+				target.hovered = false;
+			}
+		}
+		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
@@ -119,6 +179,17 @@ package org.apache.flex.html.beads.controllers
 				target.selected = true;
 				target.dispatchEvent(new Event("selected"));
 			}			
+		}
+		
+		COMPILE::JS
+		protected function handleMouseUp(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			if (target)
+			{
+				target.selected = true;
+				target.dispatchEvent(new Event("selected"));
+			}
 		}
 	
 	}
