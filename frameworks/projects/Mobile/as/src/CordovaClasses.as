@@ -25,18 +25,11 @@ package
  *  beyond those that are found by dependecy analysis starting
  *  from the classes specified in manifest.xml.
  */
-internal class MobileClasses
+internal class CordovaClasses
 {	
-	import org.apache.flex.mobile.ManagerBase; ManagerBase;
-	
-	import org.apache.flex.mobile.ViewManagerBase; ViewManagerBase;
-	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
-	import org.apache.flex.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
-	import org.apache.flex.mobile.beads.ViewManagerView; ViewManagerView;
-	import org.apache.flex.mobile.chrome.NavigationBar; NavigationBar;
-	import org.apache.flex.mobile.chrome.TabBar; TabBar;
-	import org.apache.flex.mobile.chrome.ToolBar; ToolBar;
-	import org.apache.flex.mobile.models.ViewManagerModel; ViewManagerModel;
+	import org.apache.cordova.camera.Camera; Camera;
+	import org.apache.cordova.Application; Application;
+	import org.apache.cordova.Weinre; Weinre;
 }
 
 }

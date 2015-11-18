@@ -68,7 +68,6 @@ package org.apache.flex.mobile.chrome
 			super.addedToParent();
 			
 			var layout:IBeadLayout = this.getBeadByType(IBeadLayout) as IBeadLayout;
-			trace("layout = "+layout);
 			
 			for (var i:int=0; i < _controls.length; i++)
 			{

@@ -83,10 +83,17 @@ package org.apache.flex.mobile
 			ViewManagerModel(model).title = value;
 		}
 		
+		COMPILE::AS3
+		override public function toString():String
+		{
+			return ViewManagerModel(model).title;
+		}
+		
 		/**
 		 * @private
 		 */
-		override public function toString():String
+		COMPILE::JS
+		public function toString():String
 		{
 			return ViewManagerModel(model).title;
 		}
