@@ -68,6 +68,27 @@ package org.apache.flex.html.beads.models
 			dispatchEvent(new Event("rowHeightChanged"));
 		}
 		
+		private var _separatorThickness:Number = 0;
+		
+		/**
+		 *  The distance between rows.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get separatorThickness():Number
+		{
+			return _separatorThickness;
+		}
+		
+		public function set separatorThickness(value:Number):void
+		{
+			_separatorThickness = value;
+			dispatchEvent(new Event("separatorThicknessChanged"));
+		}
+		
 		private var _strand:IStrand;
 		
 		/**

@@ -81,6 +81,7 @@
 			<compiler.source-path path-element="${project_home}/Charts/as/src"/>
 			<compiler.source-path path-element="${project_home}/Charts/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Collections/as/src"/>
+            <compiler.source-path path-element="${project_home}/Collections/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Core/as/src"/>
 			<compiler.source-path path-element="${project_home}/Core/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/CreateJS/as/src"/>

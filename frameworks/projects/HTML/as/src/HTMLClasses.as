@@ -140,6 +140,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
+	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
@@ -148,7 +149,6 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;
-	import org.apache.flex.html.beads.layouts.DataGridLayout; DataGridLayout;
     import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.flex.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.beads.models.DateChooserModel; DateChooserModel;

@@ -16,40 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package
 {
-	/**
-	 *  The IDataGridLayout interface provides the features necessary to lay
-	 *  out the components of a DataGrid: the size and position of its column
-	 *  headers and the size and position of each column.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public interface IDataGridLayout extends IBeadLayout
-	{
-		/**
-		 *  The component used as the column header.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get header():IUIBase;
-		function set header(value:IUIBase):void;
-		
-		/**
-		 *  The set of components used for the columns of the DataGrid.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get columns():Array;
-		function set columns(value:Array):void;
-	}
+
+/**
+ *  @private
+ *  This class is used to link additional classes into rpc.swc
+ *  beyond those that are found by dependecy analysis starting
+ *  from the classes specified in manifest.xml.
+ */
+internal class CollectionsASJSClasses
+{
+    import org.apache.flex.collections.ArrayList; ArrayList;
+}
+
 }

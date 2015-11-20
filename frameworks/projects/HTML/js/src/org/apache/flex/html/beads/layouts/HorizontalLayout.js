@@ -81,9 +81,9 @@ org.apache.flex.html.beads.layouts.HorizontalLayout.
     maxHeight = Math.max(maxHeight, child.offsetHeight);
     if (!hasWidth) {
       var cv = window.getComputedStyle(child);
-      var mls = cv['margin-left'];
+      var mls = cv.getPropertyValue('margin-left');
       var ml = Number(mls.substring(0, mls.length - 2));
-      var mrs = cv['margin-right'];
+      var mrs = cv.getPropertyValue('margin-right');
       var mr = Number(mrs.substring(0, mrs.length - 2));
       computedWidth += ml + child.offsetWidth + mr;
     }

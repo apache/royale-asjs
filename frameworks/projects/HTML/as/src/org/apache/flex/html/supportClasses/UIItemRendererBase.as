@@ -124,6 +124,7 @@ package org.apache.flex.html.supportClasses
 		public var highlightColor:uint = 0xCEDBEF;
 		public var selectedColor:uint = 0xA8C6EE;
 		public var downColor:uint = 0x808080;
+		protected var useColor:uint = backgroundColor;
 		
 		private var _data:Object;
 		
@@ -247,11 +248,13 @@ package org.apache.flex.html.supportClasses
 		public function updateRenderer():void
 		{
 			if (down)
-				backgroundColor = downColor;
+				useColor = downColor;
 			else if (hovered)
-				backgroundColor = highlightColor;
+				useColor = highlightColor;
 			else if (selected)
-				backgroundColor = selectedColor;
+				useColor = selectedColor;
+			else
+				useColor = backgroundColor;
 		}
 		
 		/**

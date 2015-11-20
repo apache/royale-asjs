@@ -27,6 +27,7 @@ package controller
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.utils.Timer;
+	import org.apache.flex.collections.ArrayList;
 	
 	import views.StockView;
 	import views.WatchListView;
@@ -121,13 +122,13 @@ package controller
 		 */
 		protected function timerHandler(event:*):void
 		{
-			var stockList:Array = (model as ProductsModel).watchList;
+			var stockList:ArrayList = (model as ProductsModel).watchList;
 			
 			if (stockList.length == 0) return;
 			
 			if (index >= stockList.length) index = 0;
 			
-			(model as ProductsModel).updateStockData(stockList[index] as Stock);
+			(model as ProductsModel).updateStockData(stockList.getItemAt(index) as Stock);
 			index++;
 			
 			var newEvent:Event = new Event("update");

@@ -25,7 +25,7 @@ package {
  *  from the classes specified in manifest.xml.
  */
 internal class CoreClasses
-{	
+{
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::AS3
@@ -35,7 +35,7 @@ internal class CoreClasses
 		import org.apache.flex.core.CSSTextField; CSSTextField;
 	    import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
 	}
-    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;  
+    import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.IAlertModel; IAlertModel;
     import org.apache.flex.core.IBead; IBead;
@@ -129,14 +129,13 @@ internal class CoreClasses
 }
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
-    
+
 	import org.apache.flex.core.ClassFactory; ClassFactory;
     import org.apache.flex.states.AddItems; AddItems;
     import org.apache.flex.states.SetEventHandler; SetEventHandler;
     import org.apache.flex.states.SetProperty; SetProperty;
     import org.apache.flex.states.State; State;
-	
-	import org.apache.flex.core.IDataGridLayout; IDataGridLayout;
+
     import org.apache.flex.core.IDataGridModel; IDataGridModel;
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;

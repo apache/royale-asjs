@@ -28,6 +28,7 @@ package controller
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.utils.Timer;
+	import org.apache.flex.collections.ArrayList;
 	
 	import views.AlertsView;
 	
@@ -111,13 +112,13 @@ package controller
 		 */
 		protected function timerHandler(event:*):void
 		{
-			var alerts:Array = (model as ProductsModel).alerts;
+			var alerts:ArrayList = (model as ProductsModel).alerts;
 			
 			if (alerts.length == 0) return;
 			
 			for (var i:int=0; i < alerts.length; i++)
 			{
-				var alert:Alert = alerts[i] as Alert;
+				var alert:Alert = alerts.getItemAt(i) as Alert;
 				alert.message = "";
 				
 				if (alert.greaterThan) {
@@ -130,6 +131,7 @@ package controller
 						alert.message = "Now @"+alert.stock.last;
 					}
 				}
+				alerts.itemUpdatedAt(i);
 			}
 			
 			var newEvent:Event = new Event("alertsUpdate");

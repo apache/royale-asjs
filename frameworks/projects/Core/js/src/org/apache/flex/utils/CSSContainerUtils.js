@@ -33,10 +33,11 @@ org.apache.flex.utils.CSSContainerUtils = function() {
  */
 org.apache.flex.utils.CSSContainerUtils.getBorderMetrics = function(object) {
   var style = getComputedStyle(object.element);
-  var borderLeft = org.apache.flex.utils.CSSUtils.toNumber(style['border-left-width'], object.width);
-  var borderRight = org.apache.flex.utils.CSSUtils.toNumber(style['border-right-width'], object.width);
-  var borderTop = org.apache.flex.utils.CSSUtils.toNumber(style['border-top-width'], object.width);
-  var borderBottom = org.apache.flex.utils.CSSUtils.toNumber(style['border-bottom-width'], object.width);
+  var borderLeft = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-left-width'), object.width);
+  var borderRight = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-right-width'), object.width);
+  var borderTop = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-top-width'), object.width);
+  var borderBottom = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-bottom-width'),
+      object.width);
   return new org.apache.flex.geom.Rectangle(borderLeft, borderTop, borderRight - borderLeft, borderBottom - borderTop);
 };
 
@@ -48,10 +49,10 @@ org.apache.flex.utils.CSSContainerUtils.getBorderMetrics = function(object) {
  */
 org.apache.flex.utils.CSSContainerUtils.getPaddingMetrics = function(object) {
   var style = getComputedStyle(object.element);
-  var paddingLeft = org.apache.flex.utils.CSSUtils.toNumber(style['padding-left'], object.width);
-  var paddingRight = org.apache.flex.utils.CSSUtils.toNumber(style['padding-right'], object.width);
-  var paddingTop = org.apache.flex.utils.CSSUtils.toNumber(style['padding-top'], object.width);
-  var paddingBottom = org.apache.flex.utils.CSSUtils.toNumber(style['padding-bottom'], object.width);
+  var paddingLeft = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-left'), object.width);
+  var paddingRight = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-right'), object.width);
+  var paddingTop = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-top'), object.width);
+  var paddingBottom = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-bottom'), object.width);
   return new org.apache.flex.geom.Rectangle(paddingLeft, paddingTop,
                                             paddingRight - paddingLeft, paddingBottom - paddingTop);
 };
@@ -64,14 +65,15 @@ org.apache.flex.utils.CSSContainerUtils.getPaddingMetrics = function(object) {
  */
 org.apache.flex.utils.CSSContainerUtils.getBorderAndPaddingMetrics = function(object) {
   var style = getComputedStyle(object.element);
-  var borderLeft = org.apache.flex.utils.CSSUtils.toNumber(style['border-left-width'], object.width);
-  var borderRight = org.apache.flex.utils.CSSUtils.toNumber(style['border-right-width'], object.width);
-  var borderTop = org.apache.flex.utils.CSSUtils.toNumber(style['border-top-width'], object.width);
-  var borderBottom = org.apache.flex.utils.CSSUtils.toNumber(style['border-bottom-width'], object.width);
-  var paddingLeft = org.apache.flex.utils.CSSUtils.toNumber(style['padding-left'], object.width);
-  var paddingRight = org.apache.flex.utils.CSSUtils.toNumber(style['padding-right'], object.width);
-  var paddingTop = org.apache.flex.utils.CSSUtils.toNumber(style['padding-top'], object.width);
-  var paddingBottom = org.apache.flex.utils.CSSUtils.toNumber(style['padding-bottom'], object.width);
+  var borderLeft = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-left-width'), object.width);
+  var borderRight = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-right-width'), object.width);
+  var borderTop = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-top-width'), object.width);
+  var borderBottom = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('border-bottom-width'),
+      object.width);
+  var paddingLeft = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-left'), object.width);
+  var paddingRight = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-right'), object.width);
+  var paddingTop = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-top'), object.width);
+  var paddingBottom = org.apache.flex.utils.CSSUtils.toNumber(style.getPropertyValue('padding-bottom'), object.width);
   paddingLeft += borderLeft;
   paddingRight += borderRight;
   paddingTop += borderTop;

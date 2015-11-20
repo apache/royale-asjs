@@ -184,7 +184,7 @@
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
-    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-flex-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
+    <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
         description="Check for the required environment variables for compilation.">
             <echo>OS: ${os.name} / ${os.version} / ${os.arch}</echo>
             <echo>VM: ${java.vm.name} / ${java.vm.version}</echo>
@@ -524,7 +524,7 @@
         <antcall target="stage-scripts"/>
     </target>
         
-    <target name="stage-source-no-scripts" >
+    <target name="stage-source-no-scripts" depends="check-flex-home" >
         <antcall target="clean-temp"/>
         
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
@@ -1268,7 +1268,7 @@
         <taskdef resource="flexTasks.tasks" classpath="${FALCON_HOME}/lib/falcon-flexTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="load-task" description="run basic tests using mustella">
+    <target name="basictests" depends="check-flex-home,load-task" description="run basic tests using mustella">
 
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"

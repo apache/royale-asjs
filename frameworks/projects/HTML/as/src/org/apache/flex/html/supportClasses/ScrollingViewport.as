@@ -32,77 +32,96 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IViewportModel;
     COMPILE::AS3
     {
-        import org.apache.flex.core.IViewportScroller;            
+        import org.apache.flex.core.IViewportScroller;
     }
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
-	
+
+	/**
+	 * The ScrollingViewport extends the Viewport class by adding horizontal and
+	 * vertical scroll bars, if needed, to the content area of a Container. In
+	 * addition, the content of the Container is clipped so that items extending
+	 * outside the Container are hidden and reachable only by scrolling.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ScrollingViewport extends Viewport implements IBead, IViewport
-	{		
+	{
+		/**
+		 * Constructor
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
 		public function ScrollingViewport()
 		{
 		}
-		
+
         COMPILE::AS3
 		private var _verticalScroller:ScrollBar;
-        
+
         COMPILE::AS3
 		public function get verticalScroller():IViewportScroller
 		{
 			return _verticalScroller;
 		}
-		
+
         COMPILE::AS3
 		private var _horizontalScroller:ScrollBar
-        
+
         COMPILE::AS3
 		public function get horizontalScroller():IViewportScroller
 		{
 			return _horizontalScroller;
 		}
-        
+
         COMPILE::AS3
         private var _verticalScrollPosition:Number = 0;
-        
+
         public function get verticalScrollPosition():Number
         {
             COMPILE::AS3
             {
-                return _verticalScrollPosition;                    
+                return _verticalScrollPosition;
             }
             COMPILE::JS
             {
                 return this.contentView.positioner.scrollTop;
-            }            
+            }
         }
         public function set verticalScrollPosition(value:Number):void
         {
             COMPILE::AS3
             {
                 _verticalScrollPosition = value;
-                handleVerticalScrollChange();                    
+                handleVerticalScrollChange();
             }
             COMPILE::JS
             {
-                this.contentView.positioner.scrollTop = value;                
+                this.contentView.positioner.scrollTop = value;
             }
         }
-        
+
         COMPILE::AS3
         private var _horizontalScrollPosition:Number = 0;
-        
+
         public function get horizontalScrollPosition():Number
         {
             COMPILE::AS3
             {
-                return _horizontalScrollPosition;                    
+                return _horizontalScrollPosition;
             }
             COMPILE::JS
             {
-                return this.contentView.positioner.scrollLeft;                
+                return this.contentView.positioner.scrollLeft;
             }
         }
         public function set horizontalScrollPosition(value:Number):void
@@ -110,25 +129,26 @@ package org.apache.flex.html.supportClasses
             COMPILE::AS3
             {
                 _horizontalScrollPosition = value;
-                handleHorizontalScrollChange();                    
+                handleHorizontalScrollChange();
             }
             COMPILE::JS
             {
-                this.contentView.positioner.scrollLeft = value;                
+                this.contentView.positioner.scrollLeft = value;
             }
         }
-		
+
         COMPILE::JS
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
             contentView.element.style.overflow = 'auto';
         }
-        
+
         private var viewportWidth:Number;
         private var viewportHeight:Number;
+
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport
          */
         override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
         {
@@ -136,15 +156,15 @@ package org.apache.flex.html.supportClasses
            viewportWidth = width;
            viewportHeight = height;
         }
-        
+
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport
          */
 		override public function layoutViewportAfterContentLayout():Size
 		{
             COMPILE::AS3
             {
-                var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;            
+                var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
                 var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
                 var contentSize:Size;
                 do
@@ -154,13 +174,13 @@ package org.apache.flex.html.supportClasses
                         viewportHeight = contentSize.height;
                     if (isNaN(viewportWidth))
                         viewportWidth = contentSize.width;
-                    
+
                     var host:UIBase = UIBase(_strand);
                     var visibleWidth:Number;
                     var visibleHeight:Number;
                     var needV:Boolean = contentSize.height > viewportHeight;
                     var needH:Boolean = contentSize.width > viewportWidth;
-                    
+
                     if (needV)
                     {
                         if (_verticalScroller == null) {
@@ -175,7 +195,7 @@ package org.apache.flex.html.supportClasses
                             (host as IContentViewHost).strandChildren.addElement(_horizontalScroller);
                         }
                     }
-                    
+
                     if (needV)
                     {
                         _verticalScroller.visible = true;
@@ -186,8 +206,8 @@ package org.apache.flex.html.supportClasses
                     }
                     else if (_verticalScroller)
                         _verticalScroller.visible = false;
-                    
-                    if (needH) 
+
+                    if (needH)
                     {
                         _horizontalScroller.visible = true;
                         _horizontalScroller.x = contentArea.x;
@@ -195,7 +215,7 @@ package org.apache.flex.html.supportClasses
                         _horizontalScroller.setWidth(viewportWidth - (needV ? _verticalScroller.width : 0), true);
                         visibleHeight = _horizontalScroller.y;
                     }
-                    
+
                     var needsLayout:Boolean = false;
                     // resize content area if needed to get out from under scrollbars
                     if (!isNaN(visibleWidth) || !isNaN(visibleHeight))
@@ -222,7 +242,7 @@ package org.apache.flex.html.supportClasses
                     ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
                     ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
                     ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
-                    if (contentSize.height > contentArea.height && 
+                    if (contentSize.height > contentArea.height &&
                         (contentSize.height - contentArea.height) < _verticalScrollPosition)
                         _verticalScrollPosition = contentSize.height - contentArea.height;
                 }
@@ -230,12 +250,12 @@ package org.apache.flex.html.supportClasses
                 {
                     ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
                     ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
-                    ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;                
-                    if (contentSize.width > contentArea.width && 
+                    ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
+                    if (contentSize.width > contentArea.width &&
                         (contentSize.width - contentArea.width) < _horizontalScrollPosition)
                         _horizontalScrollPosition = contentSize.width - contentArea.width;
                 }
-                
+
                 var rect:Rectangle = new Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
                     (_verticalScroller != null && _verticalScroller.visible) ?
                     _verticalScroller.x : viewportWidth,
@@ -243,7 +263,7 @@ package org.apache.flex.html.supportClasses
                     _horizontalScroller.y : viewportHeight);
                 contentArea.scrollRect = rect;
                 return contentSize;
-                
+
             }
             COMPILE::JS
             {
@@ -251,7 +271,7 @@ package org.apache.flex.html.supportClasses
             }
 
 		}
-		
+
 		COMPILE::AS3
 		private function createVerticalScrollBar():ScrollBar
 		{
@@ -260,16 +280,16 @@ package org.apache.flex.html.supportClasses
 			vsbm.snapInterval = 1;
 			vsbm.stepSize = 1;
 			vsbm.value = 0;
-			
+
 			var vsb:VScrollBar;
 			vsb = new VScrollBar();
 			vsb.model = vsbm;
 			vsb.visible = false;
-			
-			vsb.addEventListener("scroll",handleVerticalScroll);			
+
+			vsb.addEventListener("scroll",handleVerticalScroll);
 			return vsb;
 		}
-		
+
         COMPILE::AS3
 		private function createHorizontalScrollBar():ScrollBar
 		{
@@ -278,16 +298,16 @@ package org.apache.flex.html.supportClasses
 			hsbm.snapInterval = 1;
 			hsbm.stepSize = 1;
 			hsbm.value = 0;
-			
+
 			var hsb:HScrollBar;
 			hsb = new HScrollBar();
 			hsb.model = hsbm;
 			hsb.visible = false;
-			
-			hsb.addEventListener("scroll",handleHorizontalScroll);			
+
+			hsb.addEventListener("scroll",handleHorizontalScroll);
 			return hsb;
 		}
-		
+
         COMPILE::AS3
 		private function handleVerticalScroll(event:Event):void
 		{
@@ -296,10 +316,10 @@ package org.apache.flex.html.supportClasses
 			var rect:Rectangle = contentArea.scrollRect;
 			rect.y = vpos;
 			contentArea.scrollRect = rect;
-			
+
 			_verticalScrollPosition = vpos;
 		}
-		
+
         COMPILE::AS3
 		private function handleHorizontalScroll(event:Event):void
 		{
@@ -308,10 +328,10 @@ package org.apache.flex.html.supportClasses
 			var rect:Rectangle = contentArea.scrollRect;
 			rect.x = hpos;
 			contentArea.scrollRect = rect;
-			
+
 			_horizontalScrollPosition = hpos;
 		}
-		
+
         COMPILE::AS3
 		private function handleVerticalScrollChange():void
 		{
@@ -319,7 +339,7 @@ package org.apache.flex.html.supportClasses
 				ScrollBarModel(_verticalScroller.model).value = verticalScrollPosition;
 			}
 		}
-		
+
         COMPILE::AS3
 		private function handleHorizontalScrollChange():void
 		{

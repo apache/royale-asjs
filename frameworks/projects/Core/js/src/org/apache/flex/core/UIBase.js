@@ -332,6 +332,8 @@ org.apache.flex.core.UIBase.prototype.addedToParent = function() {
       }
     }
   }
+
+  this.dispatchEvent(new org.apache.flex.events.Event('beadsAdded'));
 };
 
 

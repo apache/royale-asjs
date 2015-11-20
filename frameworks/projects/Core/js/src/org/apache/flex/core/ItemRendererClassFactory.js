@@ -92,6 +92,5 @@ org.apache.flex.core.ItemRendererClassFactory.
 org.apache.flex.core.ItemRendererClassFactory.
     prototype.createFromClass = function(parent) {
   var renderer = this.itemRendererClassFactory.newInstance();
-  parent.addElement(renderer);
   return renderer;
 };

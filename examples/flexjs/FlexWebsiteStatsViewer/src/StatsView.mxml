@@ -55,7 +55,7 @@ limitations under the License.
 	<js:Label text="Number of users on flex.apache.org for last 30 days" x="10" y="10" />
 	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="refreshBtnClick(event)"/> 
 	
-	<js:ColumnChart id="columnChart" x="40" y="40" width="1024" height="768" className="AllCharts">
+	<js:ColumnChart id="columnChart" x="40" y="40" width="2000" height="768" className="AllCharts">
 		<js:beads>
 			<js:SimpleBinding
 				sourceID="applicationModel"
@@ -72,8 +72,16 @@ limitations under the License.
 					<fx:Component>
 						<js:BoxItemRenderer>
 							<js:fill>
-								<js:SolidColor color="#FF964D" alpha="1.0" />
+								<js:SolidColor color="#7CB5EC" alpha="1.0" />
 							</js:fill>
+							<!--<js:fill>
+								<js:LinearGradient rotation="90">
+									<js:entries>
+										<js:GradientEntry color="#7CB5EC" ratio="0" />
+										<js:GradientEntry color="#EFF7FF" ratio="0.5" />
+									</js:entries>
+								</js:LinearGradient>
+							</js:fill>-->
 						</js:BoxItemRenderer>                      
 					</fx:Component>
 				</js:itemRenderer>

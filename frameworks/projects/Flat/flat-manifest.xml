@@ -54,7 +54,6 @@
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"  lookupOnly="true" />
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"  lookupOnly="true" />
     <component id="ListView" class="org.apache.flex.html.beads.ListView" lookupOnly="true" />
-    <!--component id="ListViewNoSelectionState" class="org.apache.flex.html.beads.ListViewNoSelectionState" lookupOnly="true" /-->
     <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView" lookupOnly="true" />
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert" lookupOnly="true" />
@@ -83,7 +82,6 @@
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid" lookupOnly="true" />
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn" lookupOnly="true" />
-    <component id="DataGridLayout" class="org.apache.flex.html.beads.layouts.DataGridLayout"  lookupOnly="true" />
 
     <component id="DateChooser" class="org.apache.flex.html.DateChooser" lookupOnly="true" />
     <component id="DateField" class="org.apache.flex.html.DateField" lookupOnly="true" />

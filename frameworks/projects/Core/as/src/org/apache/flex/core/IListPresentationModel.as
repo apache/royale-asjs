@@ -39,5 +39,16 @@ package org.apache.flex.core
 		 */
 		function get rowHeight():Number;
 		function set rowHeight(value:Number):void;
+		
+		/**
+		 * The distance each row should be separated from the row above.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get separatorThickness():Number;
+		function set separatorThickness(value:Number):void;
 	}
 }

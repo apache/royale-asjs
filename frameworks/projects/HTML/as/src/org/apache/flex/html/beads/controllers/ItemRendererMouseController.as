@@ -127,6 +127,7 @@ COMPILE::JS {
 			{
                 target.hovered = false;
                 target.down = false;
+				target.dispatchEvent(new Event("rollout",true));
 			}
 		}
 		

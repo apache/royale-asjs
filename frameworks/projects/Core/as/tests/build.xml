@@ -52,9 +52,27 @@
         property="FLEXUNIT_HOME"
         value="${env.FLEXUNIT_HOME}"/>
     
+    <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
+        type="dir"
+        property="FLEXUNIT_LIBPATH1"
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target" />
+    <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/flexunit" />
+        
+    <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
+        type="dir"
+        property="FLEXUNIT_LIBPATH2"
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
+    <property name="FLEXUNIT_LIBPATH2" value="-define=CONFIG::dummy,false" />
+        
+    <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
+        type="dir"
+        property="FLEXUNIT_CLASSPATH"
+        value="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target" />
+    <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/flexunit" />
+        
     <target name="main" depends="clean,compile,test" description="Clean test of FlexJSUI.swc">
     </target>
-    
+
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${basedir}">
@@ -109,15 +127,15 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/Core/as/src" />
             <arg value="-library-path+=${FLEXJS_HOME}/frameworks/libs" />
-            <arg value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target" />
-            <arg value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
+            <arg value="${FLEXUNIT_LIBPATH1}" />
+            <arg value="${FLEXUNIT_LIBPATH2}" />
         </mxmlc>
     </target>
 
     <target name="test">
         <taskdef resource="flexUnitTasks.tasks">
             <classpath>
-                <fileset dir="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target">
+                <fileset dir="${FLEXUNIT_CLASSPATH}">
                     <include name="flexUnitTasks*.jar" />
                 </fileset>
             </classpath>

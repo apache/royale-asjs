@@ -28,27 +28,16 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
-    <property name="gjslint" value="gjslint" />
-    <property name="jshint" value="jshint" />
-    <condition property="no.lint" value="true">
-        <os family="windows"/>
-    </condition>
 
     <target name="main" depends="clean,compile,test" description="Clean build of Collections.swc">
     </target>
 
-    <target name="all" depends="clean,compile-asjs,compile-extern-swc,compile,copy-js,test-js" description="Full build of Collections.swc">
+    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Collections.swc">
     </target>
 
     <target name="test" unless="is.jenkins">
         <!-- no tests yet
          <ant dir="as/tests" />
-         -->
-    </target>
-    
-    <target name="test-js" unless="is.jenkins">
-        <!-- no tests yet
-         <ant dir="js/tests" />
          -->
     </target>
     
@@ -73,6 +62,8 @@
         <echo message="Compiling libs/Collections.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${basedir}/js/out" />
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -160,10 +151,10 @@
         </compc>
     </target>
 
-    <target name="copy-js" >
+    <target name="copy-js">
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
             <fileset dir="${basedir}/js/out">
-                <include name="**/**" />
+                <include name="**/**"/>
             </fileset>
         </copy>
     </target>

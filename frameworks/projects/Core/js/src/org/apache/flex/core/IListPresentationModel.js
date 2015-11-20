@@ -41,6 +41,11 @@ Object.defineProperties(org.apache.flex.core.IListPresentationModel.prototype, {
     rowHeight: {
         set: function(value) {},
         get: function() {}
+    },
+    /** @export */
+    separatorThickness: {
+        set: function(value) {},
+        get: function() {}
     }
 });
 

@@ -63,6 +63,10 @@
         <name>js/out/*</name>
         <path>js/out/*</path>
     </include-file>
+    <include-file>
+        <name>js/src/*</name>
+        <path>js/src/*</path>
+    </include-file>
 
     <include-classes>
         <class>CollectionsClasses</class>
@@ -70,7 +74,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
-    </include-namespaces>  
+    </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
 	

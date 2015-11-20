@@ -26,7 +26,9 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class CollectionsClasses
-{	
+{
+    import org.apache.flex.collections.ArrayList; ArrayList;
+	import org.apache.flex.collections.LazyCollection; LazyCollection;
 }
 
 }

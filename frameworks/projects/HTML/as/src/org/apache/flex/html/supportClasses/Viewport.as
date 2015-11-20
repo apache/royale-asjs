@@ -32,24 +32,47 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
     import org.apache.flex.utils.CSSContainerUtils;
-	
+
     /**
-     * @copy org.apache.flex.core.IViewport
+     * A Viewport is the area of a Container set aside for displaying
+     * content and any scrolling controls.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
      */
 	public class Viewport implements IBead, IViewport
-	{	
+	{
+		/**
+		 * Constructor
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
 		public function Viewport()
 		{
 		}
-		
+
 		protected var contentArea:UIBase;
+
+		/**
+		 * Get the actual parent of the container's content.
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
+		 */
         public function get contentView():IUIBase
         {
             return contentArea;
         }
-        
+
 		protected var _strand:IStrand;
-		
+
         /**
          * @flexjsignorecoercion Class
          */
@@ -63,18 +86,28 @@ package org.apache.flex.html.supportClasses
                 contentArea = new c() as UIBase;
             }
 		}
-		
+
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#setPosition()
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
         public function setPosition(x:Number, y:Number):void
         {
             contentArea.x = x;
             contentArea.y = y;
         }
-        
+
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#layoutViewportBeforeContentLayout()
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
 		public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
@@ -83,9 +116,14 @@ package org.apache.flex.html.supportClasses
             if (!isNaN(height))
                 contentArea.height = height;
 		}
-		
+
         /**
-         * @copy org.apache.flex.core.IViewport 
+         * @copy org.apache.flex.core.IViewport#layoutViewportAfterContentLayout()
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
 		public function layoutViewportAfterContentLayout():Size
 		{
@@ -95,7 +133,7 @@ package org.apache.flex.html.supportClasses
             var maxWidth:Number = 0;
             var maxHeight:Number = 0;
             var num:Number = contentArea.numElements;
-            
+
             for (var i:int=0; i < num; i++) {
                 var child:IUIBase = contentArea.getElementAt(i) as IUIBase;
                 if (child == null || !child.visible) continue;
@@ -104,10 +142,10 @@ package org.apache.flex.html.supportClasses
                 maxWidth = Math.max(maxWidth, childXMax);
                 maxHeight = Math.max(maxHeight, childYMax);
             }
-            
+
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
             return new Size(maxWidth + padding.right, maxHeight + padding.bottom);
 		}
-		
+
 	}
 }

@@ -43,10 +43,10 @@ limitations under the License.
 		
 		basic|TabbedViewManager {
 			position : absolute ;
-			height : 640px ;
-			width : 480px ;
-			left : 100px ;
-			top : 20px ;
+			height : 100% ;
+			width : 100% ;
+			left : 0px ;
+			top : 0px ;
 			border: solid 1px #444444;
 			background-color: #FFFFFF;
 		}
@@ -82,25 +82,26 @@ limitations under the License.
 		}
 		
 		views|AssetsView {
-			width: 480px;
-			height: 640px;
+			width: 100%;
+			height: 100%;
 		}
 		
 		views|WatchListView {
-			width: 480px;
-			height: 640px;
+			width: 100%;
+			height: 100%;
 			IBeadController:ClassReference('controller.WatchListController');
 			background-color: #FFFFFF;
 		}
 		
 		.WatchListInner {
 			height: 480px;
-			width:  480px;
+			width:  100%;
+			background-color: #FFFFFF;
 		}
 		
 		.WatchListDataGrid {
 			height: 480px;
-			width:  480px;
+			width:  100%;
 		}
 		
 		.WatchListInputArea {
@@ -112,13 +113,13 @@ limitations under the License.
 		}
 		
 		views|StockView {
-			width: 480px;
-			height: 640px;
+			width: 100%;
+			height: 100%;
 		}
 		
 		views|AlertsView {
-			width: 480px;
-			height: 640px;
+			width: 100%;
+			height: 100%;
 			IBeadController:ClassReference('controller.AlertsViewController');
 		}
 		

@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
     import org.apache.flex.geom.Size;
-	
+
 	/**
 	 * A Viewport is a window onto an area of content. A viewport is given space
 	 * in which to operate by a View bead. Viewports can control their area which
@@ -30,31 +30,51 @@ package org.apache.flex.core
 	{
         /**
          * Get the actual parent of the container's content.
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
         function get contentView():IUIBase;
-        
+
 		/**
 		 * Sets the upper left position of the viewport
          * @param x The left position.
          * @param y The top position.
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
 		 */
 		function setPosition(x:Number, y:Number):void;
-		
+
 		/**
 		 * Size the content area based on any visible scrolling controls and
          * the given width and height.  If width and/or height is NaN
          * then that dimension is being sized to content.
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
 		 */
 		function layoutViewportBeforeContentLayout(width:Number, height:Number):void;
-		
+
         /**
          * This method is invoked after layout is complete.  If width and/or height is
          * sized to content, the viewport should determine that size and set the
          * content area size appropriately, and display any scrolling controls
          * before returning the resulting size of the viewport (which means the
          * area used up by both content area and scrolling controls).
+	     *
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.0
          */
         function layoutViewportAfterContentLayout():Size;
-        
+
 	}
 }

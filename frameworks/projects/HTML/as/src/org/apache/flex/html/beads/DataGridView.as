@@ -17,38 +17,41 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
-{	
-    import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadModel;
-    import org.apache.flex.core.IDataGridLayout;
-    import org.apache.flex.core.IDataGridModel;
-    import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.html.ButtonBar;
-    import org.apache.flex.html.Container;
-    import org.apache.flex.html.List;
-    import org.apache.flex.html.beads.layouts.ButtonBarLayout;
-    import org.apache.flex.html.beads.layouts.DataGridLayout;
-    import org.apache.flex.html.beads.models.ArraySelectionModel;
-    import org.apache.flex.html.beads.models.DataGridPresentationModel;
-    import org.apache.flex.html.supportClasses.DataGridColumn;
+{
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IDataGridModel;
+	import org.apache.flex.core.ISelectableItemRenderer;
+	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.ButtonBar;
+	import org.apache.flex.html.Container;
+	import org.apache.flex.html.List;
+	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
+	import org.apache.flex.html.beads.layouts.VerticalLayout;
+	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.beads.models.DataGridPresentationModel;
+	import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.flex.html.supportClasses.ScrollingViewport;
 	import org.apache.flex.html.supportClasses.Viewport;
-	
+
 	/**
-	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid. 
-	 *  This class constructs the items that make the DataGrid: Lists for each column and a 
-	 *  org.apache.flex.html.ButtonBar for the column headers.  
-	 *  
+	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid.
+	 *  This class constructs the items that make the DataGrid: Lists for each column and a
+	 *  org.apache.flex.html.ButtonBar for the column headers.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridView extends BeadViewBase implements IDataGridView
+	public class DataGridView implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -61,191 +64,255 @@ package org.apache.flex.html.beads
 		public function DataGridView()
 		{
 		}
-		
-		//private var background:Shape;
-		private var buttonBar:ButtonBar;
-		private var buttonBarModel:ArraySelectionModel;
-		private var columnContainer:Container;
-		private var columns:Array;
-		
+
+		private var _strand:IStrand;
+		private var _header:ButtonBar;
+		private var _listArea:Container;
+		private var _lists:Array;
+
 		/**
-		 *  The array of org.apache.flex.html.supportClasses.DataGridColumn instances.
+		 * @private
+		 */
+		public function get host():IUIBase
+		{
+			return _strand as IUIBase;
+		}
+
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function getColumnLists():Array
-		{
-			return columns;
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set strand(value:IStrand):void
+		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			super.strand = value;
-			
-			IEventDispatcher(_strand).addEventListener("sizeChanged", onSizeChanged);
-			IEventDispatcher(_strand).addEventListener("widthChanged", onSizeChanged);
-			IEventDispatcher(_strand).addEventListener("heightChanged", onSizeChanged);
-			
+
+			var host:UIBase = value as UIBase;
+			host.addEventListener("widthChanged", handleSizeChanges);
+			host.addEventListener("heightChanged", handleSizeChanges);
+
+			_header = new ButtonBar();
+			_header.id = "dataGridHeader";
+
+			var scrollPort:ScrollingViewport = new ScrollingViewport();
+//			scrollPort.showsHorizontalScrollBar = false;
+
+			_listArea = new Container();
+			_listArea.id = "dataGridListArea";
+			_listArea.className = "DataGridListArea";
+			_listArea.addBead(scrollPort);
+
+			finishSetup(null);
+		}
+
+		/**
+		 * @private
+		 */
+		private function finishSetup(event:Event):void
+		{
+			var host:UIBase = _strand as UIBase;
+
 			// see if there is a presentation model already in place. if not, add one.
-			var modBead:IBead = _strand.getBeadByType(DataGridPresentationModel);
-			var presentationModel:DataGridPresentationModel;
-			if (modBead == null) {
+			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
+			if (presentationModel == null) {
 				presentationModel = new DataGridPresentationModel();
 				_strand.addBead(presentationModel);
 			}
-			else {
-				presentationModel = modBead as DataGridPresentationModel;
-			}
-			
+
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",onDataProviderChanged);
-			
-			// create an array of columnLabels for use by the ButtonBar/DataGrid header.
+			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
+
 			var columnLabels:Array = new Array();
+			var buttonWidths:Array = new Array();
+
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
 				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				columnLabels.push(dgc.label);
+				if (!isNaN(dgc.columnWidth)) buttonWidths.push(dgc.columnWidth);
 			}
-			var bblayout:ButtonBarLayout = new ButtonBarLayout();
-			
-			buttonBarModel = new ArraySelectionModel();
-			buttonBarModel.dataProvider = columnLabels;
-			
-			buttonBar = new ButtonBar();
-			buttonBar.addBead(buttonBarModel);
-			buttonBar.addBead(bblayout);
-			buttonBar.addBead(new Viewport());
-			buttonBar.height = 25;
-			buttonBar.width = UIBase(_strand).width;
-			UIBase(_strand).addElement(buttonBar);
-			
-			// Create a List for each column, storing a reference to each List in
-			// the columns property.
-			columns = new Array();
-			for(i=0; i < sharedModel.columns.length; i++) 
-			{
-				// Each list shares the same dataProvider but needs its own model to
-				// keep track of its own data.
-				var listModel:ISelectionModel = new ArraySelectionModel();
-				listModel.dataProvider = sharedModel.dataProvider;
-				
-				var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-				
-				var list:List = new List();
-				list.addBead(listModel); 
-				list.itemRenderer = dataGridColumn.itemRenderer;
-				list.labelField = dataGridColumn.dataField;
-				list.addBead(presentationModel);
-				
-				var colWidth:Number = dataGridColumn.columnWidth;
-				if (!isNaN(colWidth)) list.width = colWidth;
 
-				UIBase(_strand).addElement(list);
-				columns.push(list);
-				list.addEventListener('change',columnListChangeHandler);
-				list.addEventListener('rollover',columnListRollOverHandler);
-				list.addEventListener('layoutComplete',forwardEvent);
+			var bblayout:ButtonBarLayout = new ButtonBarLayout();
+			if (buttonWidths.length == sharedModel.columns.length) {
+				bblayout.buttonWidths = buttonWidths;
 			}
-			
-			// TODO: allow a developer to specify their own DataGridLayout
-			// possibly by seeing if a bead already exists
-			
-			onSizeChanged(null);
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-		}
-		
-		private function onSizeChanged(event:Event):void
-		{
-			var bead:IBead = _strand.getBeadByType(IDataGridLayout);
-			var layout:IDataGridLayout;
-			if (bead == null) {
-				// NOTE: the following line will not cross-compile correctly into JavaScript
-				// so it has been commented and the class hard-coded.
-				//layout = new ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IDataGridLayout;
-				layout = new DataGridLayout();
-				_strand.addBead(layout);
-			} else {
-				layout = bead as IDataGridLayout;
+
+			var buttonBarModel:ArraySelectionModel = new ArraySelectionModel();
+			buttonBarModel.dataProvider = columnLabels;
+
+			_header.addBead(buttonBarModel);
+			_header.addBead(bblayout);
+			_header.addBead(new Viewport());
+			host.addElement(_header);
+
+			host.addElement(_listArea);
+
+			// do we know what the size is? If not, wait to be sized
+
+			if (host.isHeightSizedToContent() || host.isWidthSizedToContent()) {
+				host.addEventListener("sizeChanged", handleSizeChanges);
 			}
-			layout.header = buttonBar;
-			layout.columns = columns;
-			layout.layout();
+
+				// else size now
+			else {
+				handleDataProviderChanged(event);
+			}
 		}
-		
+
 		/**
 		 * @private
-		 * When the dataProvider is changed for the DataGrid, this updates each List (column)
-		 * with the new (or changed) dataProvider.
 		 */
-		private function onDataProviderChanged(event:Event):void
+		private function handleSizeChanges(event:Event):void
+		{
+			var useWidth:Number = _listArea.width;
+			var useHeight:Number = _listArea.height;
+
+			if (host.width > 0) {
+				useWidth = host.width;
+			}
+
+			_header.x = 0;
+			_header.y = 0;
+			_header.width = useWidth;
+			_header.height = 25;
+
+			if (host.height > 0) {
+				useHeight = host.height - _header.height;
+			}
+
+			_listArea.x = 0;
+			_listArea.y = 26;
+			_listArea.width = useWidth;
+			_listArea.height = useHeight;
+
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+
+			if (_lists != null && _lists.length > 0) {
+				var xpos:Number = 0;
+				var listWidth:Number = host.width / _lists.length;
+				for (var i:int=0; i < _lists.length; i++) {
+					var list:List = _lists[i] as List;
+					list.x = xpos;
+					list.y = 0;
+
+					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var colWidth:Number = dataGridColumn.columnWidth;
+					if (!isNaN(colWidth)) list.width = colWidth;
+					else list.width = listWidth;
+
+					xpos += list.width;
+				}
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function handleDataProviderChanged(event:Event):void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-			
-			for (var i:int=0; i < columns.length; i++)
+
+			if (_lists == null || _lists.length == 0) {
+				createLists();
+			}
+
+			for (var i:int=0; i < _lists.length; i++)
 			{
-				var list:List = columns[i] as List;
+				var list:List = _lists[i] as List;
 				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
 				listModel.dataProvider = sharedModel.dataProvider;
 			}
+
+			handleSizeChanges(event);
 		}
-		
+
 		/**
 		 * @private
 		 */
-		private function columnListChangeHandler(event:Event):void
+		private function handleColumnListChange(event:Event):void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			var list:List = event.target as List;
 			sharedModel.selectedIndex = list.selectedIndex;
-			
-			for(var i:int=0; i < columns.length; i++) {
-				if (list != columns[i]) {
-					var otherList:List = columns[i] as List;
+
+			for(var i:int=0; i < _lists.length; i++) {
+				if (list != _lists[i]) {
+					var otherList:List = _lists[i] as List;
 					otherList.selectedIndex = list.selectedIndex;
 				}
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 		}
-		
+
 		/**
 		 * @private
 		 */
-		private function columnListRollOverHandler(event:Event):void
+		private function handleColumnListRollOver(event:Event):void
 		{
-			var list:List = event.target as List;
+			var itemRenderer:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			var list:List = event.currentTarget as List;
 			if (list == null) return;
-			for(var i:int=0; i < columns.length; i++) {
-				if (list != columns[i]) {
-					var otherList:List = columns[i] as List;
-					otherList.rollOverIndex = list.rollOverIndex;
+			for(var i:int=0; i < _lists.length; i++) {
+				if (list != _lists[i]) {
+					var otherList:List = _lists[i] as List;
+					otherList.rollOverIndex = itemRenderer.index;
 				}
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
 		}
-		
+
 		/**
 		 * @private
 		 */
-		private function forwardEvent(event:Event):void
+		private function handleColumnListRollOut(event:Event):void
 		{
-			IEventDispatcher(_strand).dispatchEvent(event);
+			for(var i:int=0; i < _lists.length; i++) {
+				var otherList:List = _lists[i] as List;
+				otherList.rollOverIndex = -1;
+			}
+
+			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
 		}
-		 
+
+		/**
+		 * @private
+		 */
+		private function createLists():void
+		{
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
+			var listWidth:Number = host.width / sharedModel.columns.length;
+
+			_lists = new Array();
+
+			for (var i:int=0; i < sharedModel.columns.length; i++) {
+				var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+
+				var list:List = new List();
+				list.id = "dataGridColumn"+String(i);
+				list.className = "DataGridColumn";
+				list.addBead(sharedModel);
+				list.itemRenderer = dataGridColumn.itemRenderer;
+				list.labelField = dataGridColumn.dataField;
+				list.addEventListener('change',handleColumnListChange);
+				list.addEventListener('rollover',handleColumnListRollOver);
+				list.addEventListener('rollout',handleColumnListRollOut);
+				list.addBead(presentationModel);
+
+				var colWidth:Number = dataGridColumn.columnWidth;
+				if (!isNaN(colWidth)) list.width = colWidth;
+				else list.width = listWidth;
+
+				_listArea.addElement(list);
+				_lists.push(list);
+			}
+
+			_listArea.dispatchEvent(new Event("layoutNeeded"));
+		}
 	}
 }
+

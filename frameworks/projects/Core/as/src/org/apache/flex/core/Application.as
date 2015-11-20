@@ -68,7 +68,8 @@ package org.apache.flex.core
 
     /**
      *  Dispatched at startup after the initial view has been
-     *  put on the display list.
+     *  put on the display list. This event is sent before
+     *  applicationComplete is dispatched.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -91,10 +92,11 @@ package org.apache.flex.core
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
      *  Flex SDK's mx:Application or spark:Application in that it does not contain
-     *  user interface elements.  Those UI elements go in the views.  This
-     *  Application class expects there to be a main model, a controller, and 
+     *  user interface elements.  Those UI elements go in the views (ViewBase).  This
+     *  Application class expects there to be a main model, a controller, and
      *  an initial view.
-     *  
+     *
+     *  @see ViewBase
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -104,7 +106,7 @@ package org.apache.flex.core
     {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -113,40 +115,40 @@ package org.apache.flex.core
         public function Application()
         {
             super();
-            
+
             COMPILE::AS3 {
     			if (stage)
     			{
     				stage.align = StageAlign.TOP_LEFT;
     				stage.scaleMode = StageScaleMode.NO_SCALE;
                     // should be opt-in
-    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
+    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
     			}
-    			
+
                 loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
             }
         }
-        
+
         COMPILE::AS3
         private function initHandler(event:flash.events.Event):void
         {
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
-			
+
             MouseEventConverter.setupAllConverters(stage);
-                
+
             for each (var bead:IBead in beads)
                 addBead(bead);
-                
+
             dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 
             if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
                 initialize();
             else
                 addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
-            
+
         }
-        
+
         COMPILE::AS3
         private function enterFrameHandler(event:flash.events.Event):void
         {
@@ -154,9 +156,9 @@ package org.apache.flex.core
             {
                 removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
                 initialize();
-            }    
+            }
         }
-        
+
         /**
          *  This method gets called when all preinitialize handlers
          *  no longer call preventDefault();
@@ -169,9 +171,9 @@ package org.apache.flex.core
         COMPILE::AS3
         protected function initialize():void
         {
-            
+
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
-            
+
             dispatchEvent(new org.apache.flex.events.Event("initialize"));
 
             if (initialView)
@@ -209,7 +211,7 @@ package org.apache.flex.core
          *  determine the default values and other values
          *  for the application.  The most common choice
          *  is org.apache.flex.core.SimpleCSSValuesImpl.
-         * 
+         *
          *  @see org.apache.flex.core.SimpleCSSValuesImpl
          *
          *  @langversion 3.0
@@ -225,7 +227,7 @@ package org.apache.flex.core
 
         /**
          *  The initial view.
-         * 
+         *
          *  @see org.apache.flex.core.ViewBase
          *
          *  @langversion 3.0
@@ -238,7 +240,7 @@ package org.apache.flex.core
 
         /**
          *  The data model (for the initial view).
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -247,13 +249,13 @@ package org.apache.flex.core
         [Bindable("__NoChangeEvent__")]
         COMPILE::AS3
         public var model:Object;
-        
+
         COMPILE::JS
         private var _model:Object;
-        
+
         /**
          *  The data model (for the initial view).
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -265,7 +267,7 @@ package org.apache.flex.core
         {
             return _model;
         }
-        
+
         /**
          *  @private
          */
@@ -279,7 +281,7 @@ package org.apache.flex.core
         /**
          *  The controller.  The controller typically watches
          *  the UI for events and updates the model accordingly.
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -291,9 +293,9 @@ package org.apache.flex.core
          *  An array of data that describes the MXML attributes
          *  and tags in an MXML document.  This data is usually
          *  decoded by an MXMLDataInterpreter
-         * 
+         *
          *  @see org.apache.flex.utils.MXMLDataInterpreter
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -308,16 +310,16 @@ package org.apache.flex.core
          *  An method called by the compiler's generated
          *  code to kick off the setting of MXML attribute
          *  values and instantiation of child tags.
-         * 
+         *
          *  The call has to be made in the generated code
          *  in order to ensure that the constructors have
          *  completed first.
-         * 
+         *
          *  @param data The encoded data representing the
          *  MXML attributes.
-         * 
+         *
          *  @see org.apache.flex.utils.MXMLDataInterpreter
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -327,25 +329,25 @@ package org.apache.flex.core
         {
 			MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
-        
+
         /**
          *  The array property that is used to add additional
          *  beads to an MXML tag.  From ActionScript, just
          *  call addBead directly.
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
         public var beads:Array;
-        
+
         COMPILE::AS3
         private var _beads:Vector.<IBead>;
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#addBead()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -359,10 +361,10 @@ package org.apache.flex.core
             _beads.push(bead);
             bead.strand = this;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#getBeadByType()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -378,17 +380,17 @@ package org.apache.flex.core
             }
             return null;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#removeBead()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
         COMPILE::AS3
-        public function removeBead(value:IBead):IBead	
+        public function removeBead(value:IBead):IBead
         {
             var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)
@@ -402,10 +404,10 @@ package org.apache.flex.core
             }
             return null;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IParent#addElement()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -427,10 +429,10 @@ package org.apache.flex.core
                 c.addedToParent();
             }
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IParent#addElementAt()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -463,7 +465,7 @@ package org.apache.flex.core
 
         /**
          *  @copy org.apache.flex.core.IParent#getElementAt()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -479,10 +481,10 @@ package org.apache.flex.core
                 return children[index].flexjs_wrapper;
             }
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IParent#getElementIndex()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -493,7 +495,7 @@ package org.apache.flex.core
             COMPILE::AS3 {
                 if (c is IUIBase)
                     return getChildIndex(IUIBase(c).element as DisplayObject);
-    
+
                 return getChildIndex(c as DisplayObject);
             }
             COMPILE::JS {
@@ -507,10 +509,10 @@ package org.apache.flex.core
                 return -1;
             }
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IParent#removeElement()
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -530,10 +532,10 @@ package org.apache.flex.core
                 element.removeChild(c.element);
             }
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IParent#numElements
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -549,7 +551,7 @@ package org.apache.flex.core
                 return children.length;
             }
         }
-        
+
         /**
          * @return {Object} The array of children.
          */
@@ -558,29 +560,29 @@ package org.apache.flex.core
         {
             return element.childNodes;
         };
-        
-        
+
+
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.IBead 
+         * @flexjsignorecoercion org.apache.flex.core.IBead
          */
         COMPILE::JS
-        public function start():void 
+        public function start():void
         {
             element = document.getElementsByTagName('body')[0];
             element.flexjs_wrapper = this;
             element.className = 'Application';
-            
+
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
-            
+
             dispatchEvent('initialize');
-            
+
             if (model is IBead) addBead(model as IBead);
             if (controller is IBead) addBead(controller as IBead);
-            
+
             initialView.applicationModel = model;
             addElement(initialView);
-            
+
             dispatchEvent('viewChanged');
         };
 

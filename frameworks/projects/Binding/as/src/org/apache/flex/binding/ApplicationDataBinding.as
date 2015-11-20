@@ -31,7 +31,11 @@ package org.apache.flex.binding
     
     /**
      *  The ApplicationDataBinding class implements databinding for
-     *  Application instances.  Different classes can have
+     *  Application instances. When you want to use databinding within
+     *  the MXML file that has Application as its root tag, include
+     *  the ApplicationDataBinding tag as well.
+     *
+     *  Different classes can have
      *  different databinding implementation that optimize for
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings

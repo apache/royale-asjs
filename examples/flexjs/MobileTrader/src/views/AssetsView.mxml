@@ -43,7 +43,7 @@ limitations under the License.
 
 	<js:Label text="Summary" height="10%" />
 	
-	<js:DataGrid height="40%" width="100%">
+	<js:DataGrid height="150" width="100%">
 		<js:style>
 			<js:SimpleCSSStyles top="0" left="0" right="0" />
 		</js:style>
@@ -66,7 +66,7 @@ limitations under the License.
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="model"
-				sourcePropertyName="assetsData"
+				sourcePropertyName="assetsDataAsArray"
 				destinationPropertyName="dataProvider" />
 			<js:VerticalCategoryAxisBead categoryField="label" />
 			<js:HorizontalLinearAxisBead valueField="netChange" />

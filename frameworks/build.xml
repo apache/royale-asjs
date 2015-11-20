@@ -79,10 +79,10 @@
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
+        <antcall target="Collections"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
-        <antcall target="Collections"/>
         <antcall target="CreateJS"/>
         <antcall target="DragDrop"/>
         <antcall target="Effects"/>

@@ -18,18 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.text.TextField;
-    import flash.text.TextFieldAutoSize;
-    import flash.text.TextFormat;
-    
+	COMPILE::AS3 {
+		import flash.text.TextField;
+		import flash.text.TextFieldAutoSize;
+		import flash.text.TextFormat;
+	}
+
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.utils.CSSUtils;
-		
+
     /**
      *  The CSSTextField class implements CSS text styles in a TextField.
      *  Not every CSS text style is currently supported.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -40,7 +42,7 @@ package org.apache.flex.core
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -50,7 +52,7 @@ package org.apache.flex.core
 		{
 			super();
 		}
-		
+
         /**
          *  @private
          *  The styleParent property is set if the CSSTextField
@@ -63,7 +65,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
 		public var styleParent:Object;
-		
+
         /**
          *  @private
          *  The CSS pseudo-state for lookups.
@@ -74,7 +76,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         public var styleState:String;
-        
+
         /**
          *  @private
          *  The parentDrawsBackground property is set if the CSSTextField
@@ -86,7 +88,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         public var parentDrawsBackground:Boolean;
-        
+
         /**
          *  @private
          *  The parentHandlesPadding property is set if the CSSTextField
@@ -98,7 +100,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         public var parentHandlesPadding:Boolean;
-        
+
         /**
          *  @private
          */
@@ -108,7 +110,7 @@ package org.apache.flex.core
 			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);
-            
+
 			var tf: TextFormat = new TextFormat();
 			tf.font = ValuesManager.valuesImpl.getValue(sp, "fontFamily", styleState) as String;
 			tf.size = ValuesManager.valuesImpl.getValue(sp, "fontSize", styleState);
@@ -131,7 +133,7 @@ package org.apache.flex.core
             else if (align == "right")
 			{
                 tf.align = "right";
-				autoSize = TextFieldAutoSize.NONE;	
+				autoSize = TextFieldAutoSize.NONE;
 			}
             if (!parentDrawsBackground)
             {
@@ -145,12 +147,17 @@ package org.apache.flex.core
 			defaultTextFormat = tf;
 			super.text = value;
 		}
-        
+
         private function updateStyles(event:Event):void
         {
             // force styles to be re-calculated
             this.text = text;
         }
-        
+
+	}
+
+	COMPILE::JS
+	public class CSSTextField extends TextField
+	{
 	}
 }

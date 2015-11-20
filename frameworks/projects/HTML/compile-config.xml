@@ -26,6 +26,7 @@
             <path-element>../../libs/Binding.swc</path-element>
             <path-element>../../libs/Core.swc</path-element>
             <path-element>../../libs/Graphics.swc</path-element>
+            <path-element>../../libs/Collections.swc</path-element>
         </external-library-path>
         
 		<mxml>

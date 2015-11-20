@@ -87,8 +87,8 @@ org.apache.flex.html.beads.layouts.VerticalLayout.
     child.flexjs_wrapper.dispatchEvent('sizeChanged');
   }
   if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
-    var pl = scv['padding-left'];
-    var pr = scv['padding-right'];
+    var pl = scv.getPropertyValue('padding-left');
+    var pr = scv.getPropertyValue('padding-right');
     pl = parseInt(pl.substring(0, pl.length - 2), 10);
     pr = parseInt(pr.substring(0, pr.length - 2), 10);
     maxWidth += pl + pr;

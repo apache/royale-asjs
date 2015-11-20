@@ -20,17 +20,17 @@ package org.apache.flex.html.supportClasses
 {
 	COMPILE::AS3
 	{
-		import flash.display.Sprite;			
+		import flash.display.Sprite;
 	}
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;			
-		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;			
+		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 	}
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
-	 *  extends org.apache.flex.html.supportClasses.UIItemRendererBase and 
+	 *  extends org.apache.flex.html.supportClasses.UIItemRendererBase and
 	 *  includes row and column index values.
 	 *
 	 *  @langversion 3.0
@@ -52,9 +52,9 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 		}
-		
+
 		private var _columnIndex:int;
-		
+
 		/**
 		 *  The index of the column the itemRenderer represents.
 		 *
@@ -71,9 +71,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_columnIndex = value;
 		}
-		
+
 		private var _rowIndex:int;
-		
+
 		/**
 		 *  The index of the row the itemRenderer represents.
 		 *
@@ -90,9 +90,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_rowIndex = value;
 		}
-		
+
 		private var _dataField:String;
-		
+
 		/**
 		 *  The name of the field within the data the itemRenderer should use.
 		 *
@@ -109,13 +109,13 @@ package org.apache.flex.html.supportClasses
 		{
 			_dataField = value;
 		}
-		
+
 		COMPILE::AS3
 		private var background:Sprite;
 
 		COMPILE::JS
 		private var controller:ItemRendererMouseController;
-		
+
 		/**
 		 * @private
 		 */
@@ -123,11 +123,11 @@ package org.apache.flex.html.supportClasses
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
+
 			background = new Sprite();
 			addChild(background);
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -136,7 +136,7 @@ package org.apache.flex.html.supportClasses
 			COMPILE::AS3
 			{
 				super.updateRenderer();
-				
+
 				background.graphics.clear();
 				background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
 				background.graphics.drawRect(0, 0, width, height);
@@ -152,27 +152,27 @@ package org.apache.flex.html.supportClasses
 					element.style.backgroundColor = null;
 			}
 		}
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * 
+		 *
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
-		{				
+		{
 			element = document.createElement('div') as WrappedHTMLElement;
 			positioner = element;
 			positioner.style.position = 'relative';
-			
+
 			element.flexjs_wrapper = this;
 			className = 'DataItemRenderer';
-						
+
 			controller = new ItemRendererMouseController();
 			controller.strand = this;
-			
+
 			return element;
 		}
-		
+
 
 	}
 }
