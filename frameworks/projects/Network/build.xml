@@ -147,7 +147,7 @@
          into the file bundles.properties in this directory.
          -->
         <compc fork="true"
-            output="${FLEXJS_HOME}/frameworks/externs/Core.swc">
+            output="${FLEXJS_HOME}/frameworks/externs/Network.swc">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
