@@ -23,6 +23,11 @@ package org.apache.flex.html
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
+    
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 	
     //--------------------------------------
     //  Events
@@ -60,7 +65,17 @@ package org.apache.flex.html
 		public function ToggleTextButton()
 		{
 			super();
+            COMPILE::JS
+            {
+                this.typeNames = 'toggleTextButton';
+            }
 		}
+        
+        COMPILE::JS
+        private var _selected:Boolean;
+        
+        COMPILE::JS
+        private var SELECTED:String = "selected";
         
         /**
          *  <code>true</code> if the Button is selected.
@@ -72,7 +87,14 @@ package org.apache.flex.html
          */
         public function get selected():Boolean
         {
-            return IToggleButtonModel(model).selected;
+            COMPILE::AS3
+            {
+                return IToggleButtonModel(model).selected;                    
+            }
+            COMPILE::JS
+            {
+                return _selected;
+            }
         }
         
         /**
@@ -80,7 +102,38 @@ package org.apache.flex.html
          */
         public function set selected(value:Boolean):void
         {
-            IToggleButtonModel(model).selected = value;
+            COMPILE::AS3
+            {
+                IToggleButtonModel(model).selected = value;                    
+            }
+            COMPILE::JS
+            {
+                if (_selected != value) 
+                {
+                    _selected = value;
+                    
+                    var className:String = this.className;
+                    var typeNames:String = this.typeNames;
+                    if (value) {
+                        if (typeNames.indexOf(SELECTED) == -1) {
+                            typeNames = typeNames + SELECTED;
+                            if (className)
+                                element.className = typeNames + ' ' + className;
+                            else
+                                element.className = typeNames;
+                        }
+                    }
+                    else {
+                        if (typeNames.indexOf(SELECTED) == typeNames.length - SELECTED.length) {
+                            typeNames = typeNames.substring(0, typeNames.length - SELECTED.length);
+                            if (className)
+                                element.className = typeNames + ' ' + className;
+                            else
+                                element.className = typeNames;
+                        }
+                    }
+                }
+            }
         }
         
         /**
@@ -100,6 +153,18 @@ package org.apache.flex.html
                 return "toggleTextButton" + (name ? " " + name : "");
         }
         
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            element.addEventListener("click", clickHandler, false);
+            return element;
+        }
         
+        COMPILE::JS
+        private function clickHandler(event:Event):void
+        {
+            selected = !selected;
+        }
 	}
 }
