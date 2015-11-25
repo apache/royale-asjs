@@ -134,12 +134,17 @@ package org.apache.flex.binding
             else
                 source = document;
             var val:*;
-            try 
+            if (sourcePropertyName in source)
             {
-                val = source[sourcePropertyName];
-                destination[destinationPropertyName] = val;
-            } 
-            catch (e:Error)
+                try {
+                    val = source[sourcePropertyName];
+                    destination[destinationPropertyName] = val;
+                }
+                catch (e:Error)
+                {
+                }
+            }
+            else if (sourcePropertyName in source.constructor)
             {
                 try {
                     val = source.constructor[sourcePropertyName];
