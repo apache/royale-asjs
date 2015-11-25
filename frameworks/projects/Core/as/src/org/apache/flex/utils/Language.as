@@ -106,10 +106,10 @@ package org.apache.flex.utils
 		{
 			var checkInterfaces:Function, superClass:Object;
 
-			if (!leftOperand)
+			if (leftOperand == null)
 				return false;
 
-			if (leftOperand && !rightOperand)
+			if (leftOperand != null && rightOperand == null)
 			{
 				return false;
 			}
@@ -294,7 +294,7 @@ package org.apache.flex.utils
 				msg += rest[i];
 			}
 
-			theConsole = ["goog"]["global"]["console"];
+			theConsole = window["goog"]["global"]["console"];
 
 			if (theConsole === undefined && windowConsole !== undefined)
 				theConsole = windowConsole;
