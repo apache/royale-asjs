@@ -1,0 +1,63 @@
+<html>
+	<head>
+ 		<style> 
+			.button {
+				position: absolute;
+			}
+			
+			#html5{
+				position:absolute;
+				left:600px;
+				top:10px;
+			}
+
+			.ok{
+				width: 50px;
+				height: 30px;
+				left:0px;
+				top:50px;
+			}
+			
+			.timer{
+				width: 100px;
+				height: 30px;
+			}
+			
+			.start{
+				left:0px;
+				top:100px;	
+			}
+			
+			.stop{
+				left:0px;
+				top:150px;	
+			}
+			
+			.big{
+				width: 100px;
+				height: 100px;
+				left:0px;
+				top:200px;
+			}
+			
+		</style>
+		<script>
+			function okBtnClicked(evt,target)
+			{
+				alert("OKBtn clicked");
+			}
+		
+			function clicked(evt,target)
+			{
+				document.getElementById("console").innerHTML = "Clicked " + target.frameElement.id;
+			}
+		</script>
+	</head>
+	<body >
+		<p id="console">Console:</p>
+		<embed id="okBtn" src="buttonSkin.svg" class="button ok" label="OK" onclick="okBtnClicked()" />
+		<embed id="startTimerBtn" src="buttonSkin.svg" class="button timer start" label="Start Timer" onclick="clicked" />
+		<embed id="stopTimerBtn" src="buttonSkin.svg" class="button timer stop" label="End Timer" onclick="clicked" />
+		<embed id="bigButton" src="buttonSkin.svg" class="button big" label="Big Button" onclick="clicked" />
+	</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    initialize="initComponents()"
+    >
+
+<fx:Script>
+<![CDATA[
+
+    import mx.collections.*;
+    import mx.controls.*;
+    import mx.events.*;
+    import mx.managers.*;
+    import mx.utils.ObjectProxy;
+
+    public var treeDP:Array = [ new ObjectProxy({ label: "Inbox", children: [
+                                                    new ObjectProxy({ label: "Personal", data: "personal"}),
+                                                    new ObjectProxy({ label: "Marketing", data: "mktg"}),
+                                                    new ObjectProxy({ label: "To do", data: "todo"}) ]}),
+                                new ObjectProxy({ label: "Calendar", children: [
+                                                     new ObjectProxy({ label: "Appointments", data: "appointments"}),
+                                                     new ObjectProxy({ label: "Meetings", data: "meetings"}) ]}), 
+                                new ObjectProxy({ label: "Sent", data: "sent" }),
+                                new ObjectProxy({ label: "Deleted Items", data: "deleted" }),
+                                new ObjectProxy({ label: "Spam", data: "spam" }) ];
+
+
+    public var dataGridDP:Array =
+     [
+       new ObjectProxy({ Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99, Rating:'Excellent' }),
+       new ObjectProxy({ Artist:'Pavement', Album:'Crooked Rain, Crooked Rain', Price:10.99, Rating:'Excellent' }),
+       new ObjectProxy({ Artist:'Pavement', Album:'Wowee Zowee', Price:12.99, Rating:'Excellent' }),
+       new ObjectProxy({ Artist:'Pavement', Album:'Brighten the Corners', Price:11.99, Rating:'Good' }),
+       new ObjectProxy({ Artist:'Pavement', Album:'Terror Twilight', Price:11.99, Rating:'Good' }),
+       new ObjectProxy({ Artist:'Other', Album:'Other', Price:5.99, Rating:'Bad' })
+     ];
+
+    public function initComponents():void
+    {
+            testTree.dataProvider = treeDP;
+            testDataGrid.dataProvider = dataGridDP;
+    }
+
+]]>
+</fx:Script>
+
+    <mx:Tree id="testTree" >
+        <mx:itemRenderer>
+            <fx:Component>
+                <s:MXTreeItemRenderer height="22">
+                    <s:states>
+                        <s:State name="normal" />            
+                        <s:State name="hovered" />
+                        <s:State name="selected" />
+                    </s:states>
+                    <s:HGroup left="0" right="0" verticalCenter="0">
+                        <s:Rect id="indentationSpacer" width="{treeListData.indent}" height="22" alpha="0">
+                            <s:fill>
+                                <s:SolidColor color="0xFFFFFF" />
+                            </s:fill>
+                        </s:Rect>
+                        <s:Group id="disclosureGroup">
+                            <s:BitmapImage source="{treeListData.disclosureIcon}" width="16" height="16" visible="{treeListData.hasChildren}" />
+                        </s:Group>
+                        <s:BitmapImage source="{treeListData.icon}" width="16" height="16"/>
+                        <s:Label text="{data.label}" color.hovered="0xFF0000" color.selected="0xFFFFFF" />
+                    </s:HGroup>
+                </s:MXTreeItemRenderer>
+            </fx:Component>
+        </mx:itemRenderer>
+    </mx:Tree>
+
+    <mx:DataGrid id="testDataGrid" editable="true">
+        <mx:columns>
+            <mx:DataGridColumn dataField="Album" headerText="Record" width="200">
+                <mx:itemRenderer>
+                    <fx:Component>
+                        <s:MXDataGridItemRenderer height="22">
+                            <s:states>
+                                <s:State name="normal" />            
+                                <s:State name="hovered" />
+                                <s:State name="selected" />
+                            </s:states>
+                            <s:HGroup left="0" right="0" verticalCenter="0">
+                                <s:Label id="album" text="{data.Album}" color.hovered="0xFF0000" color.selected="0xFFFFFF" />
+                                <s:Label id="artist" text="{data.Artist}" color.hovered="0xFF0000" color.selected="0xFFFFFF" />
+                            </s:HGroup>
+                        </s:MXDataGridItemRenderer>
+                    </fx:Component>
+                </mx:itemRenderer>
+                <mx:itemEditor>
+                    <fx:Component>
+                        <s:MXDataGridItemRenderer focusEnabled="true" height="22" >
+                            <s:TextInput id="editor" top="0" left="0" right="0" bottom="0" text="{data.Album}" />
+                        </s:MXDataGridItemRenderer>
+                    </fx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+            <mx:DataGridColumn dataField="Rating" />
+        </mx:columns>
+    </mx:DataGrid>
+</mx:VBox>

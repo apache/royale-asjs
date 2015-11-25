@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="ASDocs" default="main" basedir=".">
+    <property environment="env"/>
+    <available file="${basedir}/../../sdk"
+        type="dir"
+        property="FLEX_HOME"
+        value="${basedir}/../../sdk" />
+	<property name="FLEX_HOME" value="${basedir}/../../flex-sdk"/>
+	<property name="lenient" value="true"/>
+	<property name="flexlib" location="${basedir}/../frameworks"/>
+
+    <property name="doc_output" location="${basedir}/../asdoc-output"   />
+    <property name="project_home" location="${basedir}/../frameworks/projects"/>
+
+    <property file="${FLEX_HOME}/env.properties"/>
+	<property file="${FLEX_HOME}/build.properties"/>
+	
+	<echo message="FLEX_HOME = ${FLEX_HOME}" />
+	<echo message="flexlib = ${flexlib}" />
+	<echo message="doc_output = ${doc_output}" />
+    <echo message="compiler.source-path = ${project_home}/*/as/src" />
+	<echo message="compiler.source-path = ${project_home}/*/asjs/src" />
+
+	<target name="main" depends="clean,doc" description="Clean build of all ASDocs"/>
+
+	<target name="clean" description="Cleans all ASDocs">
+		<delete dir="${doc_output}"/>
+	</target>
+
+	<target name="doc">
+
+	    <condition property="asdoc.jvm.args" value="-Xmx512m">
+	        <os family="windows"/>
+	    </condition>
+
+	    <condition property="asdoc.jvm.args" value="-Xmx1024m">
+	        <os family="mac"/>
+	    </condition>
+
+	    <condition property="asdoc.jvm.args" value="-Xmx512m">
+	        <os family="unix"/>
+	    </condition>
+
+        <path id="flexTasks.path">
+            <fileset dir="${FLEX_HOME}">
+                <include name="lib/flexTasks.jar" />
+                <include name="ant/lib/flexTasks.jar" />
+            </fileset>
+        </path>
+        <taskdef resource="flexTasks.tasks" classpathref="flexTasks.path"/>
+        
+		<!-- Call asdoc to generate dita xml files -->
+		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true"
+               window-title="Apache FlexJS API Reference"
+               main-title="${release} API Reference "
+               footer="${manifest.Implementation-Vendor}" >
+               
+            <load-config filename="${flexlib}/asdoc-config.xml" />
+               
+            <!-- source path for asdoc -->
+			<compiler.source-path path-element="${project_home}/Binding/as/src"/>
+			<compiler.source-path path-element="${project_home}/Binding/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Charts/as/src"/>
+			<compiler.source-path path-element="${project_home}/Charts/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Collections/as/src"/>
+            <compiler.source-path path-element="${project_home}/Collections/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Core/as/src"/>
+			<compiler.source-path path-element="${project_home}/Core/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/CreateJS/as/src"/>
+			<compiler.source-path path-element="${project_home}/DragDrop/as/src"/>
+			<compiler.source-path path-element="${project_home}/DragDrop/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Effects/as/src"/>
+			<compiler.source-path path-element="${project_home}/Effects/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Formatters/as/src"/>
+			<compiler.source-path path-element="${project_home}/Formatters/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/GoogleMaps/as/src"/>
+			<compiler.source-path path-element="${project_home}/Graphics/as/src"/>
+			<compiler.source-path path-element="${project_home}/HTML/as/src"/>
+			<compiler.source-path path-element="${project_home}/HTML/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/HTML5/as/src"/>
+			<compiler.source-path path-element="${project_home}/JQuery/as/src"/>
+			<compiler.source-path path-element="${project_home}/Mobile/as/src"/>
+			<compiler.source-path path-element="${project_home}/Mobile/asjs/src"/>
+			<compiler.source-path path-element="${project_home}/Network/as/src"/>
+						
+			<!-- namespaces to include in asdoc -->
+ 			<doc-namespaces uri="library://ns.apache.org/flexjs/basic"/>
+			<doc-namespaces uri="library://ns.apache.org/flexjs/createjs"/>
+			<doc-namespaces uri="library://ns.apache.org/flexjs/google"/>
+			<doc-namespaces uri="library://ns.apache.org/flexjs/html5"/>
+			<doc-namespaces uri="library://ns.apache.org/flexjs/jquery"/>
+
+			<!-- classes to include in asdoc -->
+			<doc-sources path-element="${project_home}/Binding/as/src"/>
+			<doc-sources path-element="${project_home}/Binding/asjs/src"/>
+			<doc-sources path-element="${project_home}/Charts/as/src"/>
+			<doc-sources path-element="${project_home}/Charts/asjs/src"/>
+			<doc-sources path-element="${project_home}/Collections/as/src"/>
+			<doc-sources path-element="${project_home}/Core/as/src"/>
+			<doc-sources path-element="${project_home}/Core/asjs/src"/>
+			<doc-sources path-element="${project_home}/CreateJS/as/src"/>
+			<doc-sources path-element="${project_home}/DragDrop/as/src"/>
+			<doc-sources path-element="${project_home}/DragDrop/asjs/src"/>
+			<doc-sources path-element="${project_home}/Effects/as/src"/>
+			<doc-sources path-element="${project_home}/Effects/asjs/src"/>
+			<doc-sources path-element="${project_home}/Formatters/as/src"/>
+			<doc-sources path-element="${project_home}/Formatters/asjs/src"/>
+			<doc-sources path-element="${project_home}/GoogleMaps/as/src"/>
+			<doc-sources path-element="${project_home}/Graphics/as/src"/>
+			<doc-sources path-element="${project_home}/HTML/as/src"/>
+			<!--<doc-sources path-element="${project_home}/HTML/asjs/src"/>-->
+			<doc-sources path-element="${project_home}/HTML5/as/src"/>
+			<doc-sources path-element="${project_home}/JQuery/as/src"/>
+			<doc-sources path-element="${project_home}/Mobile/as/src"/>
+			<doc-sources path-element="${project_home}/Mobile/asjs/src"/>
+			<doc-sources path-element="${project_home}/Network/as/src"/>
+			 
+			<!-- namespace declaration for asdoc -->
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Binding/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Charts/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Collections/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Core/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/createjs" manifest="${project_home}/CreateJS/createjs-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/DragDrop/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Effects/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Formatters/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/google" manifest="${project_home}/GoogleMaps/google-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Graphics/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/HTML/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/html5" manifest="${project_home}/HTML5/html5-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/jquery" manifest="${project_home}/JQuery/jquery-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Mobile/basic-manifest.xml" />
+			<namespace uri="library://ns.apache.org/flexjs/basic" manifest="${project_home}/Network/basic-manifest.xml" />
+			
+			<library-path/>
+            <external-library-path dir="${env.AIR_HOME}/frameworks/libs/air">
+                <include name="airglobal.swc"/>
+            </external-library-path>
+
+			<jvmarg line="${asdoc.jvm.args}"/>
+
+			<define name="CONFIG::debug" value="false"/>
+			<define name="CONFIG::release" value="true"/>
+            <define name="CONFIG::LOGGING" value="false"/>
+			<define name="CONFIG::performanceInstrumentation" value="false"/>        
+		</asdoc>
+	</target>
+</project>

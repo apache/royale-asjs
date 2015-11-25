@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*" >
+    <fx:Script>
+        <![CDATA[
+			
+			import org.apache.cordova.camera.Camera;
+			
+			private var cam:org.apache.cordova.camera.Camera = new org.apache.cordova.camera.Camera();
+			
+			public function set ready(value:Boolean):void
+			{
+				status.text = "ready";
+			}
+			
+			public function snapPicture() : void
+			{
+				trace("snapping");
+				cam.getPicture(success,failure,{quality:100, destinationType:org.apache.cordova.camera.Camera.DestinationType.FILE_URI});
+			}
+			
+			private function success(data:Object):void
+			{
+				output.text = "Success: "+String(data);
+				image.source = String(data);
+			}
+			
+			private function failure(message:Object):void
+			{
+				output.text = "Failed: "+String(message);
+			}
+			
+			private function onFromPhotoLibrary() : void
+			{
+				cam.getPicture(success,failure,{ quality: 50,
+					destinationType: org.apache.cordova.camera.Camera.DestinationType.FILE_URI,
+					sourceType: org.apache.cordova.camera.Camera.PictureSourceType.PHOTOLIBRARY });
+			}
+			
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+	
+	</fx:Style>
+	
+	<js:Label id="status" x="20" y="140" width="400" text="loading..."/>
+	
+	<js:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
+	<js:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
+	
+	<js:Label id="output" x="20" y="110" width="400"/>
+	
+	<js:Image id="image" x="20" y="200" width="200" height="200" />
+
+</js:ViewBase>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*">
+    <fx:Script>
+        <![CDATA[
+			
+			private function handleListChange() : void
+			{
+				pickLabel.text = "Selected: "+productList.selectedItem.title;
+			}
+		]]>
+    </fx:Script>
+
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		@namespace sample "products.*";
+		
+		/* use className="productList" on the List element in place of itemRenderer if you want to specify
+		 * the itemRenderer in a style definition along with other settings.
+		 */
+		.productList {
+			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+			IItemRenderer: ClassReference("products.ProductItemRenderer");
+		}
+		
+		sample|ProductItemRenderer {
+			height: 40;
+			IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+		}
+		
+	</fx:Style>
+	
+	<js:List id="productList" itemRenderer="products.ProductItemRenderer" x="20" y="20" width="200" height="150" change="handleListChange()">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="products"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+	</js:List>
+	
+	<js:Label id="pickLabel" x="250" y="20" width="200" />
+
+</js:ViewBase>

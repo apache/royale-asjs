@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ -->
+<catalog>
+
+    <product productId="1">
+        <name>Andrew Brilliam</name>
+        <description>15 years experience. 8 years with Flex.  Specializing in Text Layout Framework</description>
+        <price>60.00</price>
+        <image>assets/pic/abrilliam.jpg</image>
+        <experience>15</experience>
+        <blazeds>false</blazeds>
+        <mobile>false</mobile>
+        <video>false</video>
+        <highlight1>Text Layout Framework</highlight1>
+		<highlight2>Parsley</highlight2>
+    </product>
+
+    <product productId="2">
+        <name>Annette Kotter</name>
+        <description>Specializing in custom components.  PHP servers.</description>
+        <price>55</price>
+        <image>assets/pic/akotter.jpg</image>
+        <experience>3</experience>
+        <blazeds>true</blazeds>
+        <mobile>false</mobile>
+        <video>false</video>
+        <highlight1>Custom Components</highlight1>
+		<highlight2>PHP</highlight2>
+    </product>
+
+    <product productId="3">
+        <name>Ben Crater</name>
+        <description>Specializing in BlazeDS backends.</description>
+        <price>55</price>
+        <image>assets/pic/bcrater.jpg</image>
+        <experience>4</experience>
+        <blazeds>true</blazeds>
+        <mobile>false</mobile>
+        <video>false</video>
+        <highlight1>BlazeDS</highlight1>
+		<highlight2>Remote Object</highlight2>
+    </product>
+
+    <product productId="4">
+        <name>Beth Leporte</name>
+        <description>BlazeDS or PHP servers.  Multimedia messagin.</description>
+        <price>70.00</price>
+        <image>assets/pic/bleporte.jpg</image>
+        <experience>6</experience>
+        <blazeds>true</blazeds>
+        <mobile>false</mobile>
+        <video>false</video>
+        <highlight1>Multimedia messaging</highlight1>
+		<highlight2>BlazeDS</highlight2>
+    </product>
+
+    <product productId="5">
+        <name>Brad Van Brocklin</name>
+        <description>Emphasis on mobile application development</description>
+        <price>80</price>
+        <image>assets/pic/bvanbrocklin.jpg</image>
+        <experience>6</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>false</video>
+        <highlight1>Mobile</highlight1>
+		<highlight2>Android</highlight2>
+    </product>
+
+    <product productId="6">
+        <name>Carlos Carpenter</name>
+        <description>Built many mobile apps and video apps.</description>
+        <price>80</price>
+        <image>assets/pic/ccarpenter.jpg</image>
+        <experience>4</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Mobile</highlight1>
+		<highlight2>Video</highlight2>
+    </product>
+
+    <product productId="7">
+        <name>Christine Lampberto</name>
+        <description>7 years experience building mobile applications.</description>
+        <price>90</price>
+        <image>assets/pic/clampberto.jpg</image>
+        <experience>7</experience>
+        <blazeds>true</blazeds>
+        <mobile>true</mobile>
+        <video>false</video>
+        <highlight1>BlazeDS</highlight1>
+		<highlight2>Mobile</highlight2>
+    </product>
+
+    <product productId="8">
+        <name>Dee Dee Avenon</name>
+        <description>I've been making video apps for over 5 years and mobile apps for about 3 years.</description>
+        <price>100</price>
+        <image>assets/pic/davenon.jpg</image>
+        <experience>10</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="9">
+        <name>Denise McGoyal</name>
+        <description>Specializing in video sharing applicaions.  MObile apps too.</description>
+        <price>100</price>
+        <image>assets/pic/dmcgoyal.jpg</image>
+        <experience>5</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="10">
+        <name>Daniel Willhelm</name>
+        <description>I'm into mobile apps, video apps and social apps.</description>
+        <price>70</price>
+        <image>assets/pic/dwillhelm.jpg</image>
+        <experience>90</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="11">
+        <name>Eunice Sunderland</name>
+        <description>My recent focus is on mobile apps, but I have considerable experience in video apps as well.</description>
+        <price>150</price>
+        <image>assets/pic/esunderland.jpg</image>
+        <experience>30</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="12">
+        <name>Jane Proctor</name>
+        <description>I've been developing mobile companion apps for the past 3 years.</description>
+        <price>75</price>
+        <image>assets/pic/jproctor.jpg</image>
+        <experience>6</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="13">
+        <name>Mark Fields</name>
+        <description>Video is my favorite thing.  Mobile is also a favorite.</description>
+        <price>60</price>
+        <image>assets/pic/mfields.jpg</image>
+        <experience>70</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="14">
+        <name>Patricia Dempsey</name>
+        <description>I've been cranking out mobile apps for the past 6 years.  A few have involved video as well.</description>
+        <price>120</price>
+        <image>assets/pic/pdempsey.jpg</image>
+        <experience>7</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="15">
+        <name>Paul Trandep</name>
+        <description>I've been working on a mobile app that incorporates music.  It just shipped so now I'm looking for the next fun thing to work on.'</description>
+        <price>50</price>
+        <image>assets/pic/ptranep.jpg</image>
+        <experience>6</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="16">
+        <name>Roscoe Crawley</name>
+        <description>My main specialty is in BlazeDS connected to Flex.</description>
+        <price>59</price>
+        <image>assets/pic/rcrawley.jpg</image>
+        <experience>9</experience>
+        <blazeds>true</blazeds>
+        <mobile>false</mobile>
+        <video>false</video>
+        <highlight1>BlazeDS</highlight1>
+		<highlight2>Remote Object</highlight2>
+    </product>
+
+    <product productId="17">
+        <name>Renee Dreifus</name>
+            <description>I can do it all: BlazeDS, Mobile, Video.</description>
+        <price>79</price>
+        <image>assets/pic/rdreifus.jpg</image>
+        <experience>90</experience>
+        <blazeds>true</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+    <product productId="18">
+        <name>Tina Wong</name>
+        <description>I've been developing Flex apps since 1.5.  Most of my recent work has been on mobile apps.</description>
+        <price>109</price>
+        <image>assets/pic/twong.jpg</image>
+        <experience>9</experience>
+        <blazeds>false</blazeds>
+        <mobile>true</mobile>
+        <video>true</video>
+        <highlight1>Video Applications</highlight1>
+		<highlight2>Mobile Applications</highlight2>
+    </product>
+
+</catalog>

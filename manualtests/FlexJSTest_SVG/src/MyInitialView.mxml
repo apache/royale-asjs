@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:html5="library://ns.apache.org/flexjs/html5"
+				xmlns:svg="library://ns.apache.org/flexjs/svg"				
+			   >
+    <fx:Script>
+        <![CDATA[            
+			import org.apache.flex.events.Event;
+			import org.apache.flex.utils.Timer;
+			
+			private var timer:org.apache.flex.utils.Timer;
+			
+			public function startTimer():void
+			{
+				timer = new org.apache.flex.utils.Timer(1000);
+				timer.addEventListener('timer', timerHandler);
+				timer.start()				
+			}
+			
+			public function timerHandler(event:org.apache.flex.events.Event):void
+			{
+				timerLabel.text = timer.currentCount.toString();	
+			}
+        ]]>
+    </fx:Script>
+	<html5:Label id="lbl" x="100" y="25" >
+		<html5:beads>
+			<js:SimpleBinding eventName="labelTextChanged"
+								 sourceID="applicationModel"
+								 sourcePropertyName="labelText"
+								 destinationPropertyName="text" />
+		</html5:beads>
+	</html5:Label>
+	<html5:TextButton text="Start Timer" x="100" y="75" click="startTimer()" />
+	<html5:TextButton text="Stop Timer" x="100" y="100" click="timer.removeEventListener('timer', timerHandler);timer.stop()" />
+	<html5:Label id="timerLabel" x="100" y="125" />
+
+	<svg:TextButton text="SVG Button" x="100" y="175" width="100" height="30" click="startTimer()" />
+</js:ViewBase>

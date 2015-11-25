@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:SkinnableContainer
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	width="600" height="600"
+	backgroundColor="0x000000">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Declarations>
+		<s:Parallel id="bd">
+			<s:Move id="m1" duration="200" target="{bl}" yFrom="100" yTo="575">
+				<s:easer>
+					<s:Bounce/>
+				</s:easer>
+			</s:Move>
+			<s:Move id="m2" duration="200" target="{rl}" yFrom="100" yTo="575">
+				<s:easer>
+					<s:Elastic/>
+				</s:easer>
+			</s:Move>
+		</s:Parallel>
+	</fx:Declarations>
+
+	<s:Line xFrom="{bl.x + (bl.width/2)}" yFrom="{bl.y + (bl.height/2)}" xTo="{rl.x + (rl.width/2)}" yTo="{rl.y + (rl.height/2)}">
+		<s:stroke>
+			<s:SolidColorStroke color="0xFFFFFF" weight="3"/>
+		</s:stroke>
+	</s:Line>
+
+	<s:Group id="bl" left="200" y="100">
+		<s:Ellipse width="25" height="25">
+			<s:fill>
+				<s:SolidColor color="white"/>
+			</s:fill>
+		</s:Ellipse>
+	</s:Group>
+
+	<s:Group id="rl" right="200" y="100">
+		<s:Ellipse width="25" height="25">
+			<s:fill>
+				<s:SolidColor color="white"/>
+			</s:fill>
+		</s:Ellipse>
+	</s:Group>
+
+</s:SkinnableContainer>

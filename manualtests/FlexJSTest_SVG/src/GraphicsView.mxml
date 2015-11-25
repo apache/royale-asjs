@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:svg="library://ns.apache.org/flexjs/svg"
+				initComplete="viewbase1_initCompleteHandler(event)"
+			   >
+    <fx:Script>
+        <![CDATA[            
+			import org.apache.flex.core.graphics.Circle;
+			import org.apache.flex.core.graphics.Ellipse;
+			import org.apache.flex.core.graphics.GradientEntry;
+			import org.apache.flex.core.graphics.GraphicsContainer;
+			import org.apache.flex.core.graphics.LinearGradient;
+			import org.apache.flex.core.graphics.Path;
+			import org.apache.flex.core.graphics.Rect;
+			import org.apache.flex.core.graphics.SolidColor;
+			import org.apache.flex.core.graphics.SolidColorStroke;
+			import org.apache.flex.events.Event;
+
+			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
+			{
+				//drawIndividualShapes();
+				//drawOnGraphicsContainer();
+			}
+			
+			private function drawIndividualShapes():void
+			{
+				var fill:SolidColor = new SolidColor();
+				fill.color = 0xFF0000;
+				fill.alpha = 0.5;
+				
+				//LinearGradient Fill
+				var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFFFFFF,0), new GradientEntry(1,0x000000,1)];
+				lg.scaleX = 1;
+				lg.rotation = 0;
+				
+				var lg1:LinearGradient = new LinearGradient();
+				lg1.entries = [new GradientEntry(1,0xFF0000,0.33),new GradientEntry(1,0x00FF00,0.66), new GradientEntry(1,0x0000FF,0.99)];
+				lg1.scaleX = 1;
+				lg1.rotation = 90;
+				//container.fill = lg;
+				
+				var stroke:SolidColorStroke = new SolidColorStroke();
+				stroke.weight = 10;
+				stroke.color = 0x00FF00;
+				stroke.alpha = 0.9;
+				
+				var rect1:Rect = new Rect();
+				rect1.fill = fill;
+				rect1.stroke = stroke;
+				rect1.drawRect(200,50,250,250);
+				this.addElement(rect1);
+				
+				var rect2:Rect = new Rect();
+				fill.color = 0xCC9900;
+				rect2.fill = lg1;
+				stroke.color = 0x333333;
+				stroke.weight = 5;
+				rect2.stroke = stroke;
+				rect2.drawRect(100,200,100,300);
+				this.addElement(rect2);
+				
+				var rect3:Rect = new Rect();
+				fill.color = 0xCCCC11;
+				rect3.fill = lg1;
+				stroke.color = 0x0000CC;
+				stroke.weight = 1;
+				rect3.stroke = stroke;
+				rect3.drawRect(400,600,200,200);
+				this.addElement(rect3);
+				
+				var rect4:Rect = new Rect();
+				fill.color = 0xAA33EE;
+				rect4.fill = fill;
+				stroke.color = 0x11C309;
+				stroke.weight = 2;
+				rect4.stroke = stroke;
+				rect4.drawRect(500,700,200,100);
+				this.addElement(rect4);
+				
+				var rect5:Rect = new Rect();
+				fill.color = 0x11CC44;
+				rect5.fill = lg;
+				stroke.color = 0x830011;
+				stroke.weight = 3;
+				rect5.stroke = stroke;
+				rect5.drawRect(0,750,50,200);
+				this.addElement(rect5);
+				
+				var ellipse1:Ellipse = new Ellipse();
+				fill.color = 0x290149;
+				ellipse1.fill = lg;
+				stroke.color = 0x830011;
+				stroke.weight = 3;
+				ellipse1.stroke = stroke;
+				ellipse1.drawEllipse(300,300,50,200);
+				this.addElement(ellipse1);
+				
+				var ellipse2:Ellipse = new Ellipse();
+				fill.color = 0x2222CC;
+				ellipse2.fill = lg1;
+				stroke.color = 0xabcdef;
+				stroke.weight = 5;
+				ellipse2.stroke = stroke;
+				ellipse2.drawEllipse(100,100,500,200);
+				this.addElement(ellipse2);
+				
+				var ellipse3:Ellipse = new Ellipse();
+				fill.color = 0xfedcba;
+				ellipse3.fill = fill;
+				stroke.color = 0x123456;
+				stroke.weight = 2;
+				ellipse3.stroke = stroke;
+				ellipse3.drawEllipse(250,150,300,250);
+				this.addElement(ellipse3);
+				
+				var circle1:Circle = new Circle();
+				fill.color = 0xee11bb;
+				circle1.fill = lg1;
+				stroke.color = 0x123456;
+				stroke.weight = 2;
+				circle1.stroke = stroke;
+				circle1.x = 700;
+				circle1.y = 200;
+				circle1.radius = 200;
+				this.addElement(circle1);
+				
+				var circle2:Circle = new Circle();
+				fill.color = 0xabbaab;
+				fill.alpha = 0.8;
+				circle2.fill = fill;
+				stroke.color = 0xccff11;
+				stroke.weight = 5;
+				circle2.stroke = stroke;
+				circle2.x = 100;
+				circle2.y = 700;
+				circle2.radius = 100;
+				//circle2.drawCircle(100,700,100);
+				this.addElement(circle2);
+				
+				var path1:Path = new Path();
+				fill.color = 0x33B5E5;
+				fill.alpha = 0.8;
+				path1.fill = fill;
+				stroke.color = 0x000000;
+				stroke.weight = 1;
+				path1.stroke = stroke;
+				path1.drawPath(50,50,"M14.165 0 16.3838 2.21924 5.24023 13.3232 0 8.52441 2.18164 6.11719 5.37305 9.06348 14.165 0Z");
+				this.addElement(path1);
+				
+				var path2:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path2.fill = lg;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path2.stroke = stroke;
+				path2.drawPath(250,500,"M150 0 L75 200 L225 200 Z");
+				this.addElement(path2);
+				
+				var path3:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path3.fill = lg1;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path3.stroke = stroke;
+				path3.drawPath(250,500,"M 100 350 q 150 -300 300 0");
+				this.addElement(path3);
+				
+				var path4:Path = new Path();
+				fill.color = 0x00FF00;
+				fill.alpha = 0.5;
+				path4.fill = lg1;
+				stroke.color = 0x0000FF;
+				stroke.weight = 3;
+				path4.stroke = stroke;
+				path4.drawPath(250,500,"M 50 50 L 100 50 A 50 50 0 0 0 50 0 Z");
+				this.addElement(path4);
+			}
+			
+			private function drawOnGraphicsContainer():void
+			{
+				var container:GraphicsContainer = new GraphicsContainer();
+				
+/*				var fill:SolidColor = new SolidColor();
+				fill.color = 0xFF0000;
+				fill.alpha = 0.5;
+				
+				var stroke:SolidColorStroke = new SolidColorStroke();
+				stroke.weight = 10;
+				stroke.color = 0x00FF00;
+				stroke.alpha = 0.9;
+				
+				container.fill = fill;
+				container.stroke = stroke;
+				//Circle
+				container.drawCircle(300,300,200);
+				fill.color = 0x00FF00;
+				stroke.color = 0x0000FF;
+				//Rect
+				container.drawRect(0,400,500,200);
+				fill.color = 0x00FFFF;
+				stroke.color = 0xFF00FF;
+				//Ellipse
+				container.drawEllipse(600,300,200,300);
+				fill.color = 0xCCCC00;
+				stroke.color = 0x000000;
+				//Path
+				container.drawPath("M 100 350 q 150 -300 300 0");
+				fill.color = 0x00CCCC;
+				stroke.color = 0x0CCCC0C;
+				stroke.weight = 5;
+				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");*/
+				
+				//LinearGradient Fill
+				var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFFFFFF,0), new GradientEntry(1,0x000000,1)];
+				lg.scaleX = 1;
+				lg.rotation = 0;
+				container.fill = lg;
+				//container.drawRect(20,20,200,100);
+
+				//var lg:LinearGradient = new LinearGradient();
+				lg.entries = [new GradientEntry(1,0xFF0000,0.33),new GradientEntry(1,0x00FF00,0.66), new GradientEntry(1,0x0000FF,0.99)];
+				lg.scaleX = 1;
+				lg.rotation = 90;
+				container.drawCircle(400, 400, 300);
+				container.drawPath("M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z");
+				container.drawPath("M 100 350 q 150 -300 300 0");
+				container.drawPath("M 100 100 L 200 100 200 200 100 200 Z");
+				
+				
+				
+				this.addElement(container);
+			}
+			
+		]]>
+    </fx:Script>
+	<js:Rect x="0" y="0" width="200" height="200" >
+		<js:fill>
+			<js:SolidColor color="#FF0000" />
+		</js:fill>
+	</js:Rect>
+	
+	<js:Rect x="300" y="0" width="200" height="200">
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Rect>
+	
+	<js:Circle x="100" y="350" radius="100">
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Circle>
+	
+	<js:Circle x="400" y="350" radius="100">
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Circle>
+	
+	<js:Ellipse x="0" y="500" width="200" height="100" >
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Ellipse>
+	
+	<js:Ellipse x="300" y="500" width="200" height="100" >
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Ellipse>
+	
+	<js:Path x="0" y="0" width="1000" height="1000" data="M 800 800 L 900 800 A 100 100 0 0 0 800 700 Z" >
+		<js:fill>
+			<js:LinearGradient >
+				<js:entries>
+					<js:GradientEntry ratio="0.1" alpha="1" color="#FF0000" />
+					<js:GradientEntry ratio="0.9" alpha="1" color="#0000FF" />
+				</js:entries>
+			</js:LinearGradient>
+		</js:fill>
+	</js:Path>
+	
+	<js:Path x="0" y="300" width="200" height="100" data="M 100 350 q 150 -300 300 0" >
+		<js:fill>
+			<js:SolidColor color="#0000FF" alpha="0.5" />
+		</js:fill>
+	</js:Path>
+	
+</js:ViewBase>

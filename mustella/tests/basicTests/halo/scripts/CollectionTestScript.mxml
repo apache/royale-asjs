@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+<!--
+-->
+		<TestCase testID="SetupCollectionTest">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="haloCollectionTest" 
+                    waitEvent="updateComplete" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid" propertyName="dataProvider" valueExpression="value=null" />
+			</body>
+		</TestCase>
+		<TestCase testID="HaloCollectionTest1">
+			<body>
+				<DispatchMouseEvent target="haloCollectionTests.loadButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="haloCollectionTests.loadButton"  localX="10" localY="10" waitEvent="result" waitTarget="haloCollectionTests.svc" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid.dataProvider" propertyName="length" value="50" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid.mx_internal:rendererArray.2.0" propertyName="text" value="California" />
+			</body>
+		</TestCase>
+		<TestCase testID="HaloCollectionTest2">
+			<body>
+				<DispatchMouseEvent target="haloCollectionTests.testDataGrid" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="haloCollectionTests.testDataGrid" localX="10" localY="10" waitEvent="updateComplete"/>
+				<AssertEvent target="haloCollectionTests.testDataGrid" eventName="headerRelease" eventClass="mx.events::DataGridEvent" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid.mx_internal:rendererArray.2.0" propertyName="text" value="Alaska" />
+			</body>
+		</TestCase>
+		<TestCase testID="HaloCollectionTest3">
+			<body>
+				<DispatchMouseEvent target="haloCollectionTests.filterButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="haloCollectionTests.filterButton"  localX="10" localY="10" waitEvent="updateComplete" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid.dataProvider" propertyName="length" value="4" />
+				<AssertPropertyValue target="haloCollectionTests.testDataGrid.mx_internal:rendererArray.2.0" propertyName="text" value="West Virginia" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

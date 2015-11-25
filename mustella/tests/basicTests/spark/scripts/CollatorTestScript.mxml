@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+    
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void
+            {
+            }
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+    <mx:Script>
+        <![CDATA[
+            import flash.globalization.Collator;
+            import flash.globalization.CollatorMode;
+            public var flashMatchingCollator:flash.globalization.Collator;
+            public var flashSortingCollator:flash.globalization.Collator;
+            private static const testSortData : Array = [
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                "Ä", "ä", "AE", "ae", "Æ", "æ", "OE", "oe", "Œ", "œ", "ç",
+                "Ö", "ö", "Ô", "ô",                    // sw, de
+                "İ", "ı",                             // tr
+                "CX", "CH", "CHX", "cx", "ch", "chx",
+                "SS", "ss", "ß",                    // de
+                "VU", "WO", "vu", "wo",                // sw
+                "あ", "ア", "ぁ", "ァ", "ｱ", "ｧ",    // ja Kanas
+                "Ａ", "ａ",    "Ｂ", "ｂ",                // Full-width alphabets
+                "手", "中", "土", "岀",                // Unihan
+                "cote", "côte", "coté", "côté",        // Explains accented chars are evaluated from the end in fr
+                "acxa", "acha", "adxa",                // es-ES@collation=traditional
+                "öf", "of",                            // de_dictionary
+                "z9.txt", "z12.txt", "z012.txt", "z13.txt", "z013.txt",    // numeric comparison
+            ];
+        ]]>
+    </mx:Script>
+    
+    <testCases>
+        <TestCase testID="SetupCollatorTest">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkCollatorTest" 
+                             waitEvent="updateComplete" />
+            </body>
+        </TestCase>
+        <TestCase testID="Matching_Collator_test" description="" keywords="[MatchingCollator]">
+            <setup>
+                <RunCode code="flashMatchingCollator=new flash.globalization.Collator('fr',CollatorMode.MATCHING)" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCollatorTests.matchingCollator" propertyName="actualLocaleIDName" valueExpression="value=flashMatchingCollator.actualLocaleIDName" />
+                <AssertMethodValue method="value=application.sparkCollatorTests.matchingCollator.equals('coté','côte')" valueExpression="value=flashMatchingCollator.equals('coté','côte')" />
+            </body>
+        </TestCase>
+        <TestCase testID="Matching_Collator_test1" description="" keywords="[MatchingCollator]">
+            <setup>
+                <RunCode code="flashMatchingCollator=new flash.globalization.Collator('fr',CollatorMode.MATCHING)" />
+                <RunCode code="flashMatchingCollator.ignoreCase=false" />
+                <RunCode code="flashMatchingCollator.ignoreCharacterWidth=false" />
+                <RunCode code="flashMatchingCollator.ignoreDiacritics=false" />
+                <RunCode code="flashMatchingCollator.ignoreKanaType=false" />
+                <RunCode code="flashMatchingCollator.ignoreSymbols=false" />
+                <RunCode code="flashMatchingCollator.numericComparison=false" />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="ignoreCase" value="false"  />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="ignoreCharacterWidth" value="false" />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="ignoreDiacritics" value="false"  />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="ignoreKanaType" value="false"  />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="ignoreSymbols" value="false"  />
+                <SetProperty target="sparkCollatorTests.matchingCollator" propertyName="numericComparison" value="false" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCollatorTests.matchingCollator" propertyName="actualLocaleIDName" valueExpression="value=flashMatchingCollator.actualLocaleIDName" />
+                <AssertMethodValue method="value=application.sparkCollatorTests.matchingCollator.equals('coté','côte')" valueExpression="value=flashMatchingCollator.equals('coté','côte')" />
+            </body>
+        </TestCase>
+        <TestCase testID="Matching_Collator_test2" description="" keywords="[MatchingCollator, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashMatchingCollator=new flash.globalization.Collator(application.sparkCollatorTests.getLocale.text,CollatorMode.MATCHING)" />
+            </setup>
+            <body>
+                <AssertPropertyValue propertyName="actualLocaleIDName" valueExpression="value=flashMatchingCollator.actualLocaleIDName" target="sparkCollatorTests.matchingCollatorNoLocaleInline"/>
+            </body>
+        </TestCase>
+        <TestCase testID="Sorting_Collator_test" description="" keywords="[SortingCollator]">
+            <setup>
+                <RunCode code="flashSortingCollator=new flash.globalization.Collator('xx',CollatorMode.SORTING)" />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCollatorTests.sortingCollator" propertyName="actualLocaleIDName" valueExpression="value=flashSortingCollator.actualLocaleIDName" />
+                <AssertMethodValue method="value=application.sparkCollatorTests.sortingCollator.equals('coté','côte')" valueExpression="value=flashSortingCollator.equals('coté','côte')" />
+            </body>
+        </TestCase>
+        <TestCase testID="Sorting_Collator_test1" description="" keywords="[SortingCollator]">
+            <setup>
+                <RunCode code="flashSortingCollator=new flash.globalization.Collator('xx',CollatorMode.SORTING)" />
+                <RunCode code="flashSortingCollator.ignoreCase=false" />
+                <RunCode code="flashSortingCollator.ignoreCharacterWidth=false" />
+                <RunCode code="flashSortingCollator.ignoreDiacritics=false" />
+                <RunCode code="flashSortingCollator.ignoreKanaType=false" />
+                <RunCode code="flashSortingCollator.ignoreSymbols=false" />
+                <RunCode code="flashSortingCollator.numericComparison=false" />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="ignoreCase" value="false" />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="ignoreCharacterWidth" value="false" />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="ignoreDiacritics" value="false"  />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="ignoreKanaType" value="false" />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="ignoreSymbols" value="false"  />
+                <SetProperty target="sparkCollatorTests.sortingCollator" propertyName="numericComparison" value="false"  />
+            </setup>
+            <body>
+                <AssertPropertyValue target="sparkCollatorTests.sortingCollator" propertyName="actualLocaleIDName" valueExpression="value=flashSortingCollator.actualLocaleIDName" />
+                <AssertMethodValue method="value=testSortData.sort(application.sparkCollatorTests.sortingCollator.compare)" valueExpression="value=testSortData.sort(flashSortingCollator.compare)" />
+            </body>
+        </TestCase>
+        <TestCase testID="Sorting_Collator_test2" description="" keywords="[SortingCollator, actualLocaleIDName]">
+            <setup>
+                <RunCode code="flashSortingCollator=new flash.globalization.Collator(application.sparkCollatorTests.getLocale.text,CollatorMode.SORTING)" />
+            </setup>
+            <body>
+                <AssertPropertyValue propertyName="actualLocaleIDName" valueExpression="value=flashSortingCollator.actualLocaleIDName" target="sparkCollatorTests.sortingCollatorNoLocaleInline"/>
+            </body>
+        </TestCase>
+    </testCases>
+</UnitTester>

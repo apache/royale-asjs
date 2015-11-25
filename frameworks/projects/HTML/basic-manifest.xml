@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+    <component id="Button" class="org.apache.flex.html.Button"/>
+    <component id="CloseButton" class="org.apache.flex.html.CloseButton"/>
+    <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"/>
+    <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
+    <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
+    <component id="Image" class="org.apache.flex.html.Image"/>
+    <component id="Label" class="org.apache.flex.html.Label"/>
+    <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"/>
+    <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"/>
+    <component id="TextButton" class="org.apache.flex.html.TextButton"/>
+    <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"/>
+    <component id="TextInput" class="org.apache.flex.html.TextInput"/>
+    <component id="TextArea" class="org.apache.flex.html.TextArea"/>
+    <component id="List" class="org.apache.flex.html.List"/>
+    <component id="SimpleList" class="org.apache.flex.html.SimpleList"/>
+    <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
+    <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
+    <component id="Container" class="org.apache.flex.html.Container"/>
+    <component id="HContainer" class="org.apache.flex.html.HContainer"/>
+    <component id="VContainer" class="org.apache.flex.html.VContainer"/>
+    <component id="Panel" class="org.apache.flex.html.Panel"/>
+    <component id="PanelView" class="org.apache.flex.html.beads.PanelView"/>
+    <component id="PanelWithControlBar" class="org.apache.flex.html.PanelWithControlBar"/>
+    <component id="ControlBar" class="org.apache.flex.html.ControlBar"/>
+    <component id="TitleBar" class="org.apache.flex.html.TitleBar"/>
+    <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>
+    <component id="ToolTip" class="org.apache.flex.html.ToolTip"/>
+    <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"/>
+    <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"/>
+    <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"/>
+    <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
+    <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
+    <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView"/>
+    
+    <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
+    <component id="Alert" class="org.apache.flex.html.Alert"/>
+    <component id="Spinner" class="org.apache.flex.html.Spinner"/>
+    <component id="Slider" class="org.apache.flex.html.Slider"/>
+    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead"/>
+    <component id="NumericStepper" class="org.apache.flex.html.NumericStepper" />
+    <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
+    <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
+    <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
+    <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
+    <component id="HScrollBar" class="org.apache.flex.html.supportClasses.HScrollBar"/>
+    <component id="VScrollBar" class="org.apache.flex.html.supportClasses.VScrollBar"/>
+    <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
+    <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
+    <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
+    <component id="HRule" class="org.apache.flex.html.HRule" />
+    <component id="HRuleView" class="org.apache.flex.html.beads.HRuleView" />
+    <component id="VRule" class="org.apache.flex.html.VRule" />
+    <component id="VRuleView" class="org.apache.flex.html.beads.VRuleView" />
+    <component id="Spacer" class="org.apache.flex.html.Spacer" />
+    <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
+    <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
+
+    <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
+    <component id="DataProviderChangeNotifier" class="org.apache.flex.html.beads.DataProviderChangeNotifier"/>
+    <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
+    <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
+
+    <component id="DateChooser" class="org.apache.flex.html.DateChooser"/>
+    <component id="DateField" class="org.apache.flex.html.DateField"/>
+    <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
+
+    <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" />
+
+    <component id="LayoutChangeNotifier" class="org.apache.flex.html.beads.layouts.LayoutChangeNotifier"/>
+    <component id="ImageButton" class="org.apache.flex.html.ImageButton"/>
+    <component id="FlexibleFirstChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout"/>
+    <component id="OneFlexibleChildVerticalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout"/>
+    <component id="OneFlexibleChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout"/>
+    <component id="MXMLBeadViewBase" class="org.apache.flex.html.MXMLBeadViewBase"/>
+
+    <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
+
+</componentPackage>

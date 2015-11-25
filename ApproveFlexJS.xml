@@ -1,0 +1,570 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="ApproveApacheFlexJS" default="main" basedir=".">
+
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+		<and>
+			<os family="unix" />
+			<not>
+				<isset property="isMac" />
+			</not>
+		</and>
+    </condition>
+    <condition property="package.suffix" value="zip">
+        <os family="windows" />
+    </condition>
+	<property name="package.suffix" value="tar.gz" />
+	
+	<property name="rat.report" value="${basedir}/rat-report.txt"/>
+	<property name="apache.rat.jar" value="apache-rat-0.8.jar" />
+	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.8.jar" />
+	<property name="apache.rat.url" value="http://people.apache.org/~aharui/rat" />
+	   
+    <property file="${basedir}/approvefalcon.properties"/>
+    
+	<property name="mac.text.display" value="cat" />
+	<property name="win.text.display" value="type" />
+	<property name="linux.text.display" value="cat" />
+    <property environment="env"/>
+
+    <property name="build.target" value="main" />
+	
+	<available file="${env.APPDATA}/npm/jshint.cmd" 
+		type="file" 
+		property="jshint" value="${env.APPDATA}/npm/jshint.cmd" />
+	<property name="jshint" value="jshint" />
+    
+	<available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" 
+		type="file" 
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+	<available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe" 
+		type="file" 
+		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+
+	<condition property="do.copy.downloads" >
+		<isset property="download.cache.dir" /> 
+	</condition>
+	
+    <fail message="The ANT_HOME environment variable is not set."
+        unless="env.ANT_HOME"/>
+		
+	<available file="${env.AIR_HOME}"
+		type="dir" 
+		property="AIR_HOME" value="${env.AIR_HOME}" />
+
+    <fail message="The AIR_HOME property is not set in environment or command-line."
+        unless="AIR_HOME"/>
+		
+    <available file="${env.PLAYERGLOBAL_HOME}"
+        type="dir"
+        property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}" />
+    
+    <fail message="The PLAYERGLOBAL_HOME property is not set in environment or command-line."
+        unless="PLAYERGLOBAL_HOME"/>
+    
+    <available file="${env.FLASHPLAYER_DEBUGGER}"
+        type="file"
+        property="FLASHPLAYER_DEBUGGER" value="${env.FLASHPLAYER_DEBUGGER}" />
+    
+    <fail message="The FLASHPLAYER_DEBUGGER property is not set in environment or command-line."
+        unless="FLASHPLAYER_DEBUGGER"/>
+    
+    <available file="${env.FALCON_HOME}"
+        type="dir"
+        property="FALCON_HOME" value="${env.FALCON_HOME}" />
+    
+    <available file="${env.FALCONJX_HOME}"
+        type="dir"
+        property="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
+    
+    <available file="${env.FLEXUNIT_HOME}"
+        type="dir"
+        property="FLEXUNIT_HOME" value="${env.FLEXUNIT_HOME}" />
+    
+    <available file="${env.FLEX_HOME}"
+        type="dir"
+        property="FLEX_SDK_HOME" value="${env.FLEX_HOME}" />
+    
+    <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
+        type="file"
+        property="apache.rat.found"/>
+    <available file="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"
+        type="file"
+        property="apache.rat.tasks.found"/>
+		
+    <fail message="The release version is not set.  Specify -Drelease.version=&lt;release version (e.g. 3.1, 3.2, etc)&gt;"
+    unless="release.version"/>
+
+    <condition property="package.url.path"
+        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs/lastSuccessfulBuild/artifact/out">
+        <not>
+            <isset property="rc" />
+        </not>
+    </condition>
+
+	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}" />
+	<property name="package.url.name" value="apache-flex-flexjs-${release.version}-src" />
+	
+    <condition property="zip.package">
+        <equals arg1="zip" arg2="${package.suffix}" />
+    </condition>
+    
+	<target name="display-text-mac" if="isMac">
+		<echo>========================= Begin ${file} ==============================</echo>
+		<exec executable="${mac.text.display}" >
+			<arg value="${file}" /> 
+		</exec>
+		<echo>========================= End ${file} ==============================</echo>
+	</target>
+	<target name="display-text-win" if="isWindows">
+		<pathconvert targetos="windows" property="winfile">
+			<path path="${file}" />
+		</pathconvert>
+		<echo>========================= Begin ${winfile} ==============================</echo>
+		<exec executable="cmd.exe" >
+			<arg value="/c" />
+			<arg value="${win.text.display}" />
+			<arg value="${winfile}" /> 
+		</exec>		
+		<echo>========================= End ${winfile} ==============================</echo>
+	</target>
+	<target name="display-text-linux" if="isLinux">
+		<echo>========================= Begin ${file} ==============================</echo>
+		<exec executable="${linux.text.display}" >
+			<arg value="${file}" /> 
+		</exec>
+		<echo>========================= End ${file} ==============================</echo>
+	</target>
+	
+	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
+	<target name="install-rat.jar" unless="apache.rat.found">
+		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
+	</target>
+	<target name="install-rat.tasks.jar" unless="apache.rat.tasks.found">
+		<get src="${apache.rat.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
+	</target>
+	
+    <target name="rat-taskdef" description="Rat taskdef">
+        <typedef resource="org/apache/rat/anttasks/antlib.xml"
+        uri="antlib:org.apache.rat.anttasks"
+        classpathref="anttask.classpath"/>
+    </target>
+
+    <target name="main" depends="install-rat,download,check-sigs,uncompress,rat-check,check-notices,build,approve" description="Perform required release approval steps">
+    </target>
+    
+    <target name="main-no-download" depends="install-rat,check-sigs,uncompress,rat-check,check-notices,build,approve" description="Perform required release approval steps">
+    </target>
+	
+    <target name="test" >
+		<echo>${rat.report}.bin.txt</echo>
+		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
+    </target>
+	
+	<target name="display-text" >
+		<antcall target="display-text-mac" />
+		<antcall target="display-text-win" />
+		<antcall target="display-text-linux" />
+	</target>
+
+	<target name="display-text-test" >
+		<antcall target="display-text" >
+			<param name="file" value="${basedir}/rat-report.txt" />
+		</antcall>
+	</target>
+	
+    <target name="download" description="download the release package">
+        <get src="${package.url.path}/${package.url.name}.${package.suffix}"
+            dest="${basedir}/${package.url.name}.${package.suffix}" />
+        <get src="${package.url.path}/${package.url.name}.${package.suffix}.md5"
+            dest="${basedir}/${package.url.name}.${package.suffix}.md5" />
+        <antcall target="get_asc" />
+    </target>
+
+    <target name="get_asc" if="rc" >
+        <get src="${package.url.path}/${package.url.name}.${package.suffix}.asc"
+        dest="${basedir}/${package.url.name}.${package.suffix}.asc" />
+    </target>
+    
+    <target name="check-sigs" description="check md5 and gpg sigs">
+		<replace file="${basedir}/${package.url.name}.${package.suffix}.md5"
+			token=" " />
+		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="md5" verifyproperty="md5.ok" />
+        <condition property="MD5Invalid">
+			<not>
+				<equals arg1="${md5.ok}" arg2="true" />
+			</not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="MD5Invalid" />
+        <antcall target="gpg_check" />
+    </target>
+
+    <target name="gpg_check" if="rc">
+        <exec executable="gpg" failonerror="true">
+            <arg value="--verify" />
+            <arg value="${basedir}/${package.url.name}.${package.suffix}.asc" />
+            <arg value="${basedir}/${package.url.name}.${package.suffix}" />
+        </exec>
+    </target>
+    
+    <target name="uncompress" depends="pre-clean, untar-file, unzip-file" />
+
+    <target name="pre-clean" description="remove old uncompressed package" >
+		<delete dir="${basedir}/${package.url.name}" failonerror="false" />
+	</target>
+	
+    <target name="untar-file" unless="zip.package" description="Untars zipFile">
+        <untar src="${basedir}/${package.url.name}.${package.suffix}"
+                dest="${basedir}" compression="gzip"/>
+    </target>
+
+    <target name="unzip-file" if="zip.package" description="Unzips zipFile">
+        <unzip src="${basedir}/${package.url.name}.${package.suffix}"
+                dest="${basedir}/${package.url.name}"/>
+    </target>
+
+    <target name="rat-check" >
+
+        <echo message="Checking files at ${basedir}/${package.url.name}, report is ${rat.report}"/>
+
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
+            reportFile="${rat.report}">
+            <fileset dir="${basedir}/${package.url.name}">
+                <!-- exclude media (png, gif, jpg, mp3, flv) -->
+                <exclude name="**/*.png"/>
+                <exclude name="**/*.gif"/>
+                <exclude name="**/*.jpg"/>
+                <exclude name="**/*.mp3"/>
+                <exclude name="**/*.flv"/>
+                <!--          JSON doesn't really have a comment format     -->
+                <exclude name="**/*.json"/>
+                <!--          JSHint properties file           -->
+                <exclude name="frameworks/js/jshint.properties"/>
+                <exclude name="frameworks/js/.jshintrc"/>
+                <!--          fragments           -->
+                <exclude name="LICENSE.bin"/>
+            </fileset>
+        </rat:report>
+		<antcall target="display-text" >
+            <param name="file" value="${rat.report}" />
+        </antcall>
+        <input
+			message="Check that there are no unknown or unapproved licenses or archives. Is it ok?"
+            validargs="y,n"
+        defaultvalue="y"
+        addproperty="rat.license.ok"/>
+		<echo>filtering out AL files to make it easier to see binary files</echo>
+		<copy file="${rat.report}" tofile="${rat.report}.bin.txt" />
+        <replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="__AL" byline="true"/>
+        <replaceregexp file="${rat.report}.bin.txt" flags="gs" match="__AL." replace="" byline="false"/>
+		<antcall target="display-text" >
+            <param name="file" value="${rat.report}.bin.txt" />
+        </antcall>
+        <input
+			message="Check that there are no unexpected binaries.  Is it ok?"
+            validargs="y,n"
+        defaultvalue="n"
+        addproperty="rat.binaries.ok"/>
+    </target>
+
+    <target name="check-notices" description="open each notice file for review, grep for a few things" >
+        <fail message="README not in package">
+			<condition>
+	            <not>
+    	            <available file="${basedir}/${package.url.name}/README" />
+        	    </not>
+			</condition>
+        </fail>
+        <fail message="RELEASE_NOTES not in package">
+			<condition>
+				<not>
+					<available file="${basedir}/${package.url.name}/RELEASE_NOTES" />
+				</not>
+			</condition>
+        </fail>
+        <fail message="NOTICE not in package">
+			<condition>
+				<not>
+					<available file="${basedir}/${package.url.name}/NOTICE" />
+				</not>
+			</condition>
+        </fail>
+        <fail message="LICENSE not in package">
+			<condition>
+				<not>
+					<available file="${basedir}/${package.url.name}/LICENSE" />
+				</not>
+			</condition>
+        </fail>
+		<antcall target="display-text" >
+            <param name="file" value="${basedir}/${package.url.name}/README" />
+        </antcall>
+		<input
+			message="Check the README for version numbers, spelling, grammar, accuracy.  Is it ok?"
+            validargs="y,n"
+        defaultvalue="y"
+        addproperty="readme.ok"/>
+		<antcall target="display-text" >
+            <param name="file" value="${basedir}/${package.url.name}/RELEASE_NOTES" />
+        </antcall>
+		<input
+			message="Check the RELEASE_NOTES for copyright years, spelling, grammar, accuracy. Is it ok?"
+            validargs="y,n"
+        defaultvalue="y"
+        addproperty="releasenotes.ok"/>
+		
+        
+		<antcall target="display-text" >
+            <param name="file" value="${basedir}/${package.url.name}/NOTICE" />
+        </antcall>
+		<input
+			message="Check the NOTICE for required notices from third-parties. Is it ok?"
+            validargs="y,n"
+        defaultvalue="y"
+        addproperty="notice.ok"/>
+
+		<antcall target="display-text" >
+            <param name="file" value="${basedir}/${package.url.name}/LICENSE" />
+        </antcall>
+		<input
+			message="Check the LICENSE for the Apache License and third-party licenses. Is it ok?"
+            validargs="y,n"
+        defaultvalue="y"
+        addproperty="license.ok"/>
+    </target>
+
+    <target name="ask.build">
+        <input
+        message="The final step is to run the build and any tests the build script runs.  This can take several minutes.  You will be asked to accept the Adobe license for the font jars.  Press y to start the build."
+        validargs="y"
+        defaultvalue="y" />
+    </target>
+
+    <target name="build" depends="ask.build,ask-font,get.dependencies,copy.downloads">
+        <property name="no.lint" value="true" />
+        <ant dir="${basedir}/${package.url.name}" target="main" />
+        <ant dir="${basedir}/${package.url.name}" target="examples" />
+    </target>
+
+    <target name="copy.downloads" if="${do.copy.downloads}" description="instead of actually downloading all of the dependencies, you can save lots of time by just copying from some other folder in some other SDK.">
+		<echo>Copying downloads</echo>
+        <copy todir="${basedir}/${package.url.name}/in" >
+			<fileset dir="${download.cache.dir}" />
+		</copy>
+    </target>
+    
+    <!-- Prompt before downloading.  -->
+    <target name="ask-font" unless="font.donot.ask"
+        description="Prompt the user before downloading BlaseDS">
+        
+        <property name="font.prompt.text"
+        value="Apache Flex can optionally integrate with Adobe's embedded font support.
+        ${line.separator}This feature requires a few font jars from the Adobe Flex SDK.
+        ${line.separator}The Adobe SDK license agreement for Adobe Flex 4.6 applies to these jars.
+        ${line.separator}This license is not compatible with the Apache v2 license.
+        ${adobe.flex.license}
+        ${line.separator}Do you want to install these jars from the Adobe Flex SDK?"/>
+        <input
+        message="${font.prompt.text}"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="input.font.download"/>
+        <condition property="do.font.install">
+            <equals arg1="y" arg2="${input.font.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="font.donot.ask" value="set"/>
+    </target>
+    
+    <target name="get.dependencies" depends="set.falcon.flags,get.falcon.if.needed,get.sdk.if.needed,get.flexunit.if.needed" />
+    <target name="set.falcon.flags" >
+        <condition property="falcon.nightly">
+            <and>
+                <not>
+                    <isset property="FALCON_HOME" />
+                </not>
+                <not>
+                    <isset property="rc" />
+                </not>
+            </and>
+        </condition>
+        <condition property="falcon.rc">
+            <and>
+                <not>
+                    <isset property="FALCON_HOME" />
+                </not>
+                <isset property="rc" />
+            </and>
+        </condition>
+    </target>
+    <target name="get.falcon.if.needed" depends="get.falcon.nightly,get.falcon.rc" unless="FALCON_HOME" />
+    <target name="get.falcon.nightly" if="falcon.nightly">
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
+        <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+             dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
+             dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
+        <condition property="FalconMD5Invalid">
+            <not>
+                <equals arg1="${falcon.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
+        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
+        <!-- Copy compiler external dependencies -->
+        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <!-- Copy compiler.jx external dependencies -->
+        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
+    </target>
+    <target name="get.falcon.rc" if="falcon.rc">
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.5.0"/>
+        <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip"
+        dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.5.0/rc1/binaries/{binary.jx.kit}.zip.md5"
+        dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
+        <condition property="FalconMD5Invalid">
+            <not>
+                <equals arg1="${falcon.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
+        <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
+        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
+        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
+        <!-- Copy compiler external dependencies -->
+        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <!-- Copy compiler.jx external dependencies -->
+        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
+    </target>
+    <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
+        <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
+        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
+        dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.md5"
+        dest="${basedir}/${binary.flexunit.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="md5" verifyproperty="flexunit.md5.ok" />
+        <condition property="FlexUnitMD5Invalid">
+            <not>
+                <equals arg1="${flexunit.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="FlexUnitMD5Invalid" />
+        <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
+        <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
+    </target>
+    <target name="get.sdk.if.needed" depends="get.sdk" unless="FLEX_SDK_HOME" />
+    <target name="get.sdk">
+        <property name="kit.sdk.prefix" value="apache-flex-sdk-4.14.1"/>
+        <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
+        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip"
+        dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip.md5"
+        dest="${basedir}/${binary.sdk.kit}.zip.md5" verbose="true" skipexisting="true"/>
+        <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="md5" verifyproperty="sdk.md5.ok" />
+        <condition property="SDKMD5Invalid">
+            <not>
+                <equals arg1="${sdk.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="MD5 checksum did not match" if="SDKMD5Invalid" />
+        <unzip src="${basedir}/${binary.sdk.kit}.zip" dest="${basedir}/sdk" />
+        <ant dir="${basedir}/sdk/frameworks" antfile="downloads.xml" />
+        <property name="FLEX_SDK_HOME" value="${basedir}/sdk" />
+    </target>
+    
+	<target name="approve" >
+		<condition property="vote" value="+1">
+			<and>
+				<equals arg1="${rat.license.ok}" arg2="y" />
+				<equals arg1="${rat.binaries.ok}" arg2="y" />
+				<equals arg1="${readme.ok}" arg2="y" />
+				<equals arg1="${releasenotes.ok}" arg2="y" />
+				<equals arg1="${notice.ok}" arg2="y" />
+				<equals arg1="${license.ok}" arg2="y" />
+			</and>
+		</condition>
+		<property name="vote" value="-1" />
+		<echo>
+${vote}
+Package ${package.url.path}/${package.url.name}.${package.suffix}
+Java ${ant.java.version}
+OS: ${os.name} ${os.arch} ${os.version}
+Source kit signatures match: y
+Source kit builds: y
+README is ok: ${readme.ok}
+RELEASE_NOTES is ok: ${releasenotes.ok}
+NOTICE is ok: ${notice.ok}
+LICENSE is ok: ${license.ok}
+No unapproved licenses or archives: ${rat.license.ok}
+No unapproved binaries: ${rat.binaries.ok}
+		</echo>
+		<fail>
+			<condition>
+	            <equals arg1="-1" arg2="${vote}"/>
+			</condition>
+		</fail>
+	</target>
+</project>

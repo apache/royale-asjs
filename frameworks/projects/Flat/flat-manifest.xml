@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+    <component id="Button" class="org.apache.flex.html.Button"  lookupOnly="true" />
+    <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
+    <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
+    <component id="DropDownList" class="org.apache.flex.flat.DropDownList" />
+    <component id="DropDownListList" class="org.apache.flex.flat.supportClasses.DropDownListList" />
+    <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
+    <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
+    <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"  lookupOnly="true" />
+    <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"  lookupOnly="true" />
+    <component id="TextButton" class="org.apache.flex.html.TextButton"  lookupOnly="true" />
+    <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"  lookupOnly="true" />
+    <component id="TextInput" class="org.apache.flex.html.TextInput"  lookupOnly="true" />
+    <component id="TextArea" class="org.apache.flex.html.TextArea"  lookupOnly="true" />
+    <component id="List" class="org.apache.flex.html.List"  lookupOnly="true" />
+    <component id="SimpleList" class="org.apache.flex.html.SimpleList"  lookupOnly="true" />
+    <component id="CheckBox" class="org.apache.flex.flat.CheckBox" />
+    <component id="RadioButton" class="org.apache.flex.flat.RadioButton" />
+    <component id="ComboBox" class="org.apache.flex.html.ComboBox"  lookupOnly="true" />
+    <component id="Container" class="org.apache.flex.html.Container"  lookupOnly="true" />
+    <component id="HContainer" class="org.apache.flex.html.HContainer"  lookupOnly="true" />
+    <component id="VContainer" class="org.apache.flex.html.VContainer"  lookupOnly="true" />
+    <component id="Panel" class="org.apache.flex.html.Panel"  lookupOnly="true" />
+    <component id="PanelView" class="org.apache.flex.html.beads.PanelView" lookupOnly="true" />
+    <component id="PanelWithControlBar" class="org.apache.flex.html.PanelWithControlBar"  lookupOnly="true" />
+    <component id="ControlBar" class="org.apache.flex.html.ControlBar"  lookupOnly="true" />
+    <component id="TitleBar" class="org.apache.flex.html.TitleBar"  lookupOnly="true" />
+    <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"  lookupOnly="true" />
+    <component id="ToolTip" class="org.apache.flex.html.ToolTip"  lookupOnly="true" />
+    <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"  lookupOnly="true" />
+    <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"  lookupOnly="true" />
+    <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"  lookupOnly="true" />
+    <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"  lookupOnly="true" />
+    <component id="ListView" class="org.apache.flex.html.beads.ListView" lookupOnly="true" />
+    <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView" lookupOnly="true" />
+    
+    <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert" lookupOnly="true" />
+    <component id="Alert" class="org.apache.flex.html.Alert" lookupOnly="true" />
+    <component id="Spinner" class="org.apache.flex.html.Spinner" lookupOnly="true" />
+    <component id="Slider" class="org.apache.flex.html.Slider" lookupOnly="true" />
+    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead" lookupOnly="true" />
+    <component id="NumericStepper" class="org.apache.flex.html.NumericStepper"  lookupOnly="true" />
+    <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
+    <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer" lookupOnly="true" />
+    <component id="DropDownListView" class="org.apache.flex.flat.beads.DropDownListView" />
+    <component id="DropDownListStringItemRenderer" class="org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer" />
+    <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer" lookupOnly="true" />
+    <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer" lookupOnly="true" />
+    <component id="VScrollBar" class="org.apache.flex.html.supportClasses.VScrollBar" lookupOnly="true" />
+    <component id="CSSScrollBarView" class="org.apache.flex.flat.beads.CSSScrollBarView" />
+    <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead"  lookupOnly="true" />
+    <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead"  lookupOnly="true" />
+    <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead"  lookupOnly="true" />
+    <component id="HRule" class="org.apache.flex.html.HRule"  lookupOnly="true" />
+    <component id="Spacer" class="org.apache.flex.html.Spacer"  lookupOnly="true" />
+    <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView"  lookupOnly="true" />
+    <component id="CheckboxCSSContentAndTextToggleButtonView" class="org.apache.flex.flat.beads.CheckboxCSSContentAndTextToggleButtonView" />
+    <component id="RadioCSSContentAndTextToggleButtonView" class="org.apache.flex.flat.beads.RadioCSSContentAndTextToggleButtonView" />
+    <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport"  lookupOnly="true" />
+
+    <component id="DataGrid" class="org.apache.flex.html.DataGrid" lookupOnly="true" />
+    <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn" lookupOnly="true" />
+
+    <component id="DateChooser" class="org.apache.flex.html.DateChooser" lookupOnly="true" />
+    <component id="DateField" class="org.apache.flex.html.DateField" lookupOnly="true" />
+    <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout"  lookupOnly="true" />
+
+    <component id="ToolTipBead" class="org.apache.flex.html.accessories.ToolTipBead" lookupOnly="true" />
+
+    <component id="LayoutChangeNotifier" class="org.apache.flex.html.beads.layouts.LayoutChangeNotifier" lookupOnly="true" />
+    <component id="ImageButton" class="org.apache.flex.html.ImageButton" lookupOnly="true" />
+    <component id="FlexibleFirstChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout" lookupOnly="true" />
+    <component id="OneFlexibleChildVerticalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout" lookupOnly="true" />
+    <component id="OneFlexibleChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout" lookupOnly="true" />
+    <component id="MXMLBeadViewBase" class="org.apache.flex.html.MXMLBeadViewBase" lookupOnly="true" />
+
+    <component id="Border" class="org.apache.flex.html.supportClasses.Border" lookupOnly="true" />
+
+    <component id="ViewBase" class="org.apache.flex.core.ViewBase" lookupOnly="true" />
+    <component id="ViewBaseDataBinding" class="org.apache.flex.binding.ViewBaseDataBinding" lookupOnly="true" />
+    <component id="State" class="org.apache.flex.states.State" lookupOnly="true" />
+
+</componentPackage>

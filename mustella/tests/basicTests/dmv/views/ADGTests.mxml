@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    initialize="initListComponents()"
+    >
+
+<fx:Script>
+<![CDATA[
+
+    import mx.collections.*;
+    import mx.controls.*;
+    import mx.events.*;
+    import mx.managers.*;
+
+    public var listDP:Array = [
+       { Artist:'Pavement', Album:'Enchanted and Slanted', Price:11.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Rain Crooked, Rain Crooked', Price:10.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Zowee Wowee', Price:12.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Corners the Brighten', Price:11.99, Rating:'Good' },
+       { Artist:'Pavement', Album:'Twilight Terror', Price:11.99, Rating:'Good' },
+       { Artist:'Other', Album:'Other', Price:5.99, Rating:'Bad' }
+               ];
+
+    public var adgDP:Array =
+     [
+       { Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Crooked Rain, Crooked Rain', Price:10.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Wowee Zowee', Price:12.99, Rating:'Excellent' },
+       { Artist:'Pavement', Album:'Brighten the Corners', Price:11.99, Rating:'Good' },
+       { Artist:'Pavement', Album:'Terror Twilight', Price:11.99, Rating:'Good' },
+       { Artist:'Other', Album:'Other', Price:5.99, Rating:'Bad' }
+     ];
+     
+     public var treeDP:Array = [ { label: "Inbox", children: [
+                                                    { label: "Personal", data: "personal"},
+                                                    { label: "Marketing", data: "mktg"},
+                                                    { label: "To do", data: "todo"} ]},
+                                                    { label: "Calendar", children: [
+                                                                 { label: "Appointments", data: "appointments"},
+                                                                 { label: "Meetings", data: "meetings"} ]}, 
+                                                    { label: "Sent", data: "sent" },
+                                                    { label: "Deleted Items", data: "deleted" },
+                                                    { label: "Spam", data: "spam" } ];
+
+
+    public function initListComponents():void
+    {
+            testList.dataProvider = listDP;
+            testADG.dataProvider = adgDP;
+            testADG2.dataProvider = new HierarchicalData(treeDP);
+            
+            var gc:GroupingCollection2 = new GroupingCollection2();
+			gc.source = adgDP;
+			var grouping:Grouping = new Grouping();
+			grouping.fields = [new GroupingField("Rating")];
+			gc.grouping = grouping;
+			gc.refresh();
+			
+			testADG3.dataProvider = gc;
+
+    }
+    
+    public function insertItemInADG():void
+    {
+            var c:ICollectionView = ICollectionView(testADG2.dataProvider);
+            var cursor:IViewCursor = c.createCursor();
+            cursor.seek(CursorBookmark.FIRST, 1);
+            cursor.insert({label:'Archive', data:'archive'});
+    }
+
+]]>
+</fx:Script>
+
+    <mx:List id="testList" labelField="Album" dragEnabled="true" dragMoveEnabled="false" />
+
+    <mx:AdvancedDataGrid id="testADG" dropEnabled="true">
+            <mx:columns>
+                        <mx:AdvancedDataGridColumn dataField="Album" headerText="Record" />
+                        <mx:AdvancedDataGridColumn dataField="Price" />
+            </mx:columns>
+    </mx:AdvancedDataGrid>
+    
+    <mx:AdvancedDataGrid id="testADG2">
+            <mx:columns>
+                        <mx:AdvancedDataGridColumn dataField="label" headerText="Label" />
+                        <mx:AdvancedDataGridColumn dataField="data" />
+            </mx:columns>
+    </mx:AdvancedDataGrid>
+
+    <mx:Button id="addNodeButton" label="addNodeAt" click="insertItemInADG()" />
+    
+    <mx:AdvancedDataGrid id="testADG3" displayItemsExpanded="true">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="Rating" headerText="Rating" />
+			<mx:AdvancedDataGridColumn dataField="Album" />
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+
+</mx:VBox>

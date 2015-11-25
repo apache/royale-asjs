@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<!-- Note:
+    If you modify this file you may have to make the same change in build_framework.xml.
+    build_framework.xml is renamed to build.xml when it is packaged.
+    It is used to build the frameworks directory from the zip file. 
+-->
+<project name="frameworks-js" default="main" basedir=".">
+
+    <property name="FLEXJS_HOME" location="../.."/>
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="mac"/>
+            <matches pattern="1.6.*" string="${java.version}"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+        </and>
+    </condition>
+
+    <!-- Property for the platform.  -->
+    <condition property="isMac">
+        <os family="mac"/>
+    </condition>
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>   
+    <condition property="isLinux">
+        <and>
+          <os family="unix"/>    
+          <not>
+            <os family="mac"/>    
+          </not>
+        </and>
+    </condition>  
+
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}" />
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+	<property name="gjslint" value="gjslint" />
+	<property name="jshint" value="jshint" />
+	<condition property="no.lint" value="true">
+		<os family="windows"/>
+	</condition>
+ 
+    <target name="main" depends="check-compile-env,clean,prepare,compile" 
+        description="Clean build of all SWCs"/>
+
+    <target name="check-compile-env" description="Check for the required environment variables">
+        <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
+    </target>
+
+    <path id="lib.path">
+        <fileset dir="${FALCONJX_HOME}/lib" includes="compc.jar"/>
+    </path>
+
+    <target name="prepare" depends="thirdparty-downloads"/>
+            
+    <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
+        <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
+    </target>
+    
+    <target name="compile" depends="flexjsjx, gjslint, jshint" description="Validates JS code" />
+    
+    <target name="lint" depends="gjslint, jshint" />
+    
+    <target name="gjslint" unless="no.lint">
+        <echo>running gjslint</echo>
+        <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
+            <arg value="--strict" />
+            <arg value="--disable" />
+            <arg value="006,100,214,300" />
+            <!-- 006: wrong indentation -->
+            <!-- 100: cannot have non-primitive value -->
+            <!-- 214: @fileoverview tag missing description -->
+            <!-- 300: missing newline at end of file -->
+            <arg value="--max_line_length" />
+            <arg value="120" />
+            <arg value="-r" />
+            <arg value="FlexJS/src" />
+        </exec>
+    </target>
+    
+    <target name="jshint" unless="no.lint">
+        <echo>running jshint</echo>
+        <exec executable="${jshint}" dir="${basedir}" failonerror="true">
+            <arg value="--config" />
+            <arg value="jshint.properties" />
+            <arg value="FlexJS/src" />
+        </exec>
+    </target>
+	
+    <target name="flexjsjx" >
+        <echo message="Compiling libs/FlexJSJX.swc"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-load-config=${FLEXJS_HOME}/frameworks/as/projects/FlexJSJX/compile-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </java>
+    </target>
+    
+    <!--
+		Cleanup
+	-->
+
+    <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
+	
+    <target name="thirdparty-clean" unless="no.thirdparty-clean" description="Removes all thirdparty downloads.">
+        <!--<ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>-->
+    </target>
+    
+    <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+                <include name="**/**" />
+            </fileset>
+        </delete>
+    </target>
+    
+</project>

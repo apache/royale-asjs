@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<g:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:g="http://flex.apache.org/jsg"
+			   creationComplete="creationCompleteHandler(event)" >
+	
+	<fx:Script><![CDATA[
+		
+		import js.goog.mx.events.FlexEvent;
+		
+		protected function creationCompleteHandler(event:FlexEvent):void
+		{
+			var main:Example = new Example();
+			
+			this.addElement(main);
+		}
+		
+	]]></fx:Script>
+	
+	<fx:Declarations />
+	
+</g:Application>

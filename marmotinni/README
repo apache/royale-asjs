@@ -1,0 +1,8 @@
+1) change the paths in 'build.properties' to match your system
+
+2) run 'ant' (or, if you want to check the output: 'ant -Ddo.teardown=false')
+
+NOTES:
+- this requires a fully build copy of FalconJX (mxmlc)
+- it uses the Selenium 2 test framework for Java
+- it runs only one test: TextButton (see 'build.xml' properties: test.file and test.case)

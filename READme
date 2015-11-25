@@ -1,0 +1,270 @@
+Apache FlexJS
+=============
+
+    Apache FlexJS is a next-generation Flex SDK that has the goal of allowing 
+    applications developed in MXML and ActionScript to not only run in the 
+    Flash/AIR runtimes, but also to run natively in the browser without Flash, 
+    on mobile devices as a PhoneGap/Cordova application, and in embedded JS 
+    environments such as Chromium Embedded Framework.  FlexJS has the potential 
+    to allow your MXML and ActionScript code to run in even more places than 
+    Flash currently does. 
+
+    For detailed information about Apache Flex please visit
+    https://cwiki.apache.org/confluence/display/FLEX/FlexJS
+
+    For detailed information about Apache Flex please visit
+    http://flex.apache.org/
+
+Getting the latest sources via git
+==================================
+
+    Getting the source code is the recommended way to get Apache FlexJS.  
+    We also offer an automated installer along with binary distributions on our 
+    website at http://flex.apache.org/.
+
+    You can always checkout the latest source via git using the following
+    command:
+
+	 git clone https://git-wip-us.apache.org/repos/asf/flex-asjs.git flex-asjs
+	 cd flex-asjs
+	 git checkout develop
+
+    Apache FlexJS also requires code from several other Apache Flex git
+    repositories.  To get the latest sources via git, first follow the
+    instructions in ‘Install Prerequisites’, then from the flex-asjs
+    directory, run:
+    
+         ant all
+
+    This will clone all of the upstream repositories, checkout the develop branches
+    then run the builds in those repositories in the correct order.
+
+Building Apache FlexJS
+======================
+
+    Apache FlexJS is a large project. It requires some build tools 
+    which must be installed prior to building the SDK.  
+    Some of these have different licenses.  See the Software Dependencies section 
+    for more information on the external software dependencies.
+
+    Linux support is currently experimental and while it is possible to compile
+    the SDK it has not been fully tested so you may run into issues.
+
+Install Prerequisites
+---------------------
+
+    Before building Apache FlexJS you must install the following software 
+    and set the corresponding environment variables using absolute file paths.  
+    Relative file paths will result in build errors.
+
+    ==================================================================================
+    SOFTWARE                                    ENVIRONMENT VARIABLE (absolute paths)
+    ==================================================================================
+
+    Java SDK 1.6 or greater (*1)                JAVA_HOME
+        (for Java 1.7 see note at (*2))
+
+    Ant 1.7.1 or greater (*1)                   ANT_HOME
+        (for Java 1.7 see note at (*2))
+
+    Google Closure Library (*3)                 GOOG_HOME
+
+    Google Closure Linter (*4)                  see note
+
+    Adobe Flash Player playerglobal swcs (*5)   PLAYERGLOBAL_HOME
+
+    Adobe AIR Integration Kit (* 6)             AIR_HOME
+
+    Adobe Flash Player Content Debugger (* 7)   FLASHPLAYER_DEBUGGER
+
+    JSHint (*8)                                 see note
+
+    Apache Flex 'Falcon' Compiler (*9)          FALCON_HOME
+
+    Apache Flex 'FalconJX' Compiler (*10)       FALCONJX_HOME
+
+    Apache Flex FlexUnit (*11)                  FLEXUNIT_HOME
+
+    Apache Flex SDK or repository               FLEX_HOME
+
+    ==================================================================================
+
+    *1) The bin directories for ANT_HOME and JAVA_HOME should be added to your
+        PATH.
+
+        On Windows, set PATH to
+
+            PATH=%PATH%;%ANT_HOME%\bin;%JAVA_HOME%\bin
+
+        On the Mac (bash), set PATH to
+
+            export PATH="$PATH:$ANT_HOME/bin:$JAVA_HOME/bin"
+
+         On Linux make sure you path include ANT_HOME and JAVA_HOME.
+
+    *2)  If you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8
+         or greater. If you use Java 1.7 with Ant 1.7, ant reports the java
+         version as 1.6 so the JVM args for the data model (-d32/-d64) will not
+         be set correctly and you will get compile errors.
+
+    *3) The Google Closure Library can be downloaded or cloned from GitHub:
+           https://github.com/google/closure-library
+
+        Set GOOG_HOME to the absolute path of the folder that contains the 
+        third_party and closure sub-folders.
+
+    *4) The Google Closure Linter can be installed by following the directions here:
+            https://developers.google.com/closure/utilities/docs/linter_howto
+
+        It should automatically make the linter available.  No need to change paths 
+        or environment variables.  Some folks on OSX had permission issues after the
+        install.  See their support channels for assistance.
+
+    *5) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
+            http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
+
+        Use URL above to download playerglobal11_1.swc. Create the directory,
+        player/11.1 and copy playerglobal11_1.swc to
+        player/11.1/playerglobal.swc.
+
+        Set PLAYERGLOBAL_HOME to the absolute path of the player directory (not
+        including the version subdirectory). The target-player option controls
+        which PLAYERGLOBAL_HOME subdirectory is used.
+
+        Other more recent versions of Adobe Flash Player playerglobal.swc can be
+        downloaded from:
+            http://download.macromedia.com/get/flashplayer/updaters/<version.major>/playerglobal<version.major>_<version.minor>.swc
+
+        (e.g. http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc)
+
+        These can be used with Apache FlexJS but not all have not been fully
+        tested.
+
+
+         Copy the target playerglobal.swc to the directory:
+
+            frameworks/libs/player/<version.major>.<version.minor>/playerglobal.swc
+
+    *6) The Adobe AIR integration kit for Windows can be downloaded from:
+
+           http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip
+
+        The Adobe AIR integration kit for Mac can be downloaded from:
+
+           http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2
+
+        The Adobe AIR integration kit for Linux can be downloaded from:
+
+           http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2
+
+        Download the AIR SDK for your platform and unzip it. Set AIR_HOME to the
+        absolute path of the AIR SDK directory.
+
+        This version of Apache FlexJS was certified for use with Adobe AIR 16
+        and is compatible with version 3.1 and up.
+
+    *7) The Adobe Flash Player content debuggers can be found here:
+
+           http://www.adobe.com/support/flashplayer/downloads.html
+
+        This version of Apache FlexJS was certified for use with Adobe Flash
+        Player 11.1, and is compatible with version 10.2 and up. It has been tested
+        with versions 16.0 on Windows and Mac. It has been compiled, but not fully
+        tested, with other Adobe Flash Player versions. It has not been 
+        fully tested on Linux.
+
+        On Windows, set FLASHPLAYER_DEBUGGER to the absolute path including the
+        filename of the FlashPlayerDebugger.exe. Note the filename of flash player
+        debugger may be different, e.g. C:\MyPath\FlashPlayerDebugger.exe.
+
+        On the Mac, set FLASHPLAYER_DEBUGGER to the absolute path of
+        'Flash Player Debugger.app/Contents/MacOS/Flash Player Debugger'
+
+        On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
+
+    *8) You will need npm (Node Package Manager) to install JSHint. You can get npm from here:
+            https://nodejs.org/
+    
+        The JSHint utility can be installed by following the instructions here:
+            http://www.jshint.com/install/
+
+        JSHint will also be automatically available.  No need to change paths or
+        environment variables.  On OSX some folks had permission issues after
+        the install.  See their documentation on using -g and sudo.
+
+    *9) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
+        repository as a sibling of the flex-asjs repository, you don’t need to
+        set this variable, otherwise, set it as: 
+             FALCON_HOME=<repo-path>/compiler/generated/dist/sdk
+			 
+	    Look at flex-falcon/README for instructions on how to build Falcon
+
+    *10) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
+         repositoryas a sibling of the flex-asjs repository, you don’t need to
+         set this variable, otherwise, set it as
+             FALCONJX_HOME=<repo-path>/compiler.jx
+        
+	 Look at flex-falcon/README_JX for instructions on how to build FalconJX
+			 
+    *11) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
+         have cloned the flex-flexunit repository as a sibling of the flex-asjs
+         repository, you don’t need to set this variable. 
+	 Look at flex-flexunit/README for instructions on how to build FlexUnit
+
+Software Dependencies
+---------------------
+
+    The Apache FlexJS framework depends on the Google Closure Library.
+
+Using the Binary Distribution
+-----------------------------
+
+    The binary distribution requires the download and installation of the third-party
+    dependencies before it can be used.
+
+    There is an Apache Ant script in the binary distribution that will copy the 
+    files into the right places.
+
+    To run it, use:
+        ant -f installer.xml
+
+    Another option is to use the InstallApacheFlex (version 3.0 or higher).
+
+    Other Ant targets, such as the examples target, expect certain environment
+    variables to be set as described earlier in this README.  However, because
+    the installer copies various SDKs into an IDE compatible SDK, you can set
+    PLAYERGLOBAL_HOME to the absolute path of the distribution's 
+    frameworks/libs/player folder, set FALCON_HOME to the SDK's root folder,
+    set FALCONJX_HOME to the SDK's js folder, and set GOOG_HOME to the SDK's
+    js/lib/google/closure-library folder. 
+
+Building the Source in the Source Distribution
+----------------------------------------------
+
+    When you have all the prerequisites in place and the environment variables
+    set (see Install Prerequisites above), use
+
+        cd <flex-asjs.dir>
+        ant main        (or just ant since the default target is main)
+
+    To clean the build, of everything other than the downloaded third-party
+    dependencies use
+
+        ant clean
+
+    To generate a source distribution package and a binary distribution package
+    use
+
+        ant -Dbuild.number=<YYYYMMDD> -Dbuild.noprompt= release
+
+    The packages can be found in the "out" subdirectory.
+
+    To get a brief listing of all the targets type
+
+        ant -projecthelp
+
+
+Thanks for using Apache FlexJS.  Enjoy!
+
+                                          The Apache Flex Project
+                                          <http://flex.apache.org>

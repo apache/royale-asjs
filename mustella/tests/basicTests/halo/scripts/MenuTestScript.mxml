@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+<!--
+-->
+		<TestCase testID="SetupMenuTest">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="haloMenuTest" 
+                    waitEvent="updateComplete" />
+				<AssertPropertyValue target="haloMenuTests.testMenuButton" propertyName="label" value="Create and Show Menu" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest1">
+			<body>
+				<DispatchMouseEvent target="haloMenuTests.testMenuButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="haloMenuTests.testMenuButton" localX="10" localY="10" />
+				<AssertEvent target="haloMenuTests.testMenu.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="haloMenuTests.testMenu" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest2">
+			<body>
+				<DispatchMouseEvent target="haloMenuTests.testMenu" type="mouseOver" localX="20" localY="10" />
+				<AssertEvent target="haloMenuTests.testMenu" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="haloMenuTests.testMenu.mx_internal:subMenus.0.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="haloMenuTests.testMenu.mx_internal:subMenus.0" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest3">
+			<body>
+				<DispatchMouseEvent target="haloMenuTests.testMenu" type="mouseOver" localX="20" localY="30" />
+				<AssertEvent target="haloMenuTests.testMenu" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertPropertyValue target="haloMenuTests.testMenu.mx_internal:subMenus.0" propertyName="visible" value="false" />
+				<AssertEvent target="haloMenuTests.testMenu" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="haloMenuTests.testMenu.mx_internal:subMenus.1.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="haloMenuTests.testMenu.mx_internal:subMenus.1" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest4">
+			<body>
+				<DispatchMouseEvent target="haloMenuTests.testMenu.mx_internal:subMenus.1" type="mouseOver" localX="20" localY="10" />
+				<DispatchMouseEvent target="haloMenuTests.testMenu.mx_internal:subMenus.1" type="mouseDown" localX="20" localY="10" />
+				<DispatchMouseEvent target="haloMenuTests.testMenu.mx_internal:subMenus.1" type="mouseUp" localX="20" localY="10" />
+				<AssertEvent target="haloMenuTests.testMenu" eventName="itemClick" eventClass="mx.events::MenuEvent" />
+				<AssertEventPropertyValue propertyName="label" value="Copy" />
+				<AssertEvent target="haloMenuTests.testMenu" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertPropertyValue target="haloMenuTests.testMenuLabel" propertyName="text" value="Copy" />
+				<AssertPropertyValue target="haloMenuTests.testMenu" propertyName="visible" value="false" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

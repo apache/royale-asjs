@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+    
+    <!-- this set of lines form a template that must be in each unit test -->
+    <mx:Script>
+        <![CDATA[
+            public static function init(o:DisplayObject):void
+            {
+            }
+        ]]>
+    </mx:Script>
+    <mx:Metadata>
+        <![CDATA[
+        [Mixin]
+        ]]>
+    </mx:Metadata>
+    <!-- end of set of lines that must be in each unit test -->
+    
+    <mx:Script>
+        <![CDATA[
+		import flash.globalization.Collator;
+		import flash.globalization.CollatorMode;
+		
+		
+		public var myCollator:Collator ;
+        [Bindable]
+        public var myArray:Array =
+                new Array("cote", "côte", "coté", "côté",
+                    "海 (U+6D77)", "雨 (U+96E8)", "水 (U+6C34)", "川 (U+5DDD)");
+ 
+		
+            
+        ]]>
+    </mx:Script>
+    
+    <testCases>
+        <TestCase testID="SetupSortTest">
+            <body>
+                <SetProperty target="" propertyName="currentState" value="sparkSortTest" 
+                             waitEvent="updateComplete" />
+            </body>
+        </TestCase>
+       <TestCase testID="SparkSort_en_US">
+            <setup>
+                <RunCode code="myCollator=new flash.globalization.Collator('en-US')" />
+				<RunCode code="myArray.sort(myCollator.compare)"/>
+				<RunCode code="application.sparkSortTests.sortArraycollectionSpark('en-US')" />
+             </setup>
+            <body>
+			    <AssertMethodValue method="value=myArray.toString()" valueExpression="value=application.sparkSortTests.myArrayCollection.toArray().toString()" />
+            </body>
+        </TestCase>
+		<TestCase testID="SparkSort_fr-FR">
+            <setup>
+                <RunCode code="myCollator=new flash.globalization.Collator('fr-FR')" />
+				<RunCode code="myArray.sort(myCollator.compare)"/>
+				<RunCode code="application.sparkSortTests.sortArraycollectionSpark('fr-FR')" />
+             </setup>
+            <body>
+			    <AssertMethodValue method="value=myArray.toString()" valueExpression="value=application.sparkSortTests.myArrayCollection.toArray().toString()" />
+            </body>
+        </TestCase>
+<!--
+		<TestCase testID="SparkSort_ja-JP">
+            <setup>
+                <RunCode code="myCollator=new flash.globalization.Collator('ja-JP')" />
+				<RunCode code="myArray.sort(myCollator.compare)"/>
+				<RunCode code="application.sparkSortTests.sortArraycollectionSpark('ja-JP')" />
+             </setup>
+            <body>
+			    <AssertMethodValue method="value=myArray.toString()" valueExpression="value=application.sparkSortTests.myArrayCollection.toArray().toString()" />
+            </body>
+        </TestCase>
+-->
+		<TestCase testID="MXSort">
+            <setup>
+                <RunCode code="myCollator=new flash.globalization.Collator('en-US')" />
+				<RunCode code="myArray.sort(myCollator.compare)"/>
+				<RunCode code="application.sparkSortTests.sortArraycollectionMX()" />
+             </setup>
+            <body>
+			    <AssertMethodValue method="value=myArray.toString()" valueExpression="value=application.sparkSortTests.myArrayCollection.toArray().toString()" />
+            </body>
+        </TestCase>
+        
+    </testCases>
+</UnitTester>

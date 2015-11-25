@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="vf2js" default="main" basedir=".">
+
+  <property environment="env" />
+
+  <property name="flex.sdk.loc" value="${basedir}/../../flex-sdk" />
+
+  <property name="antlr.version" value="3.5.2" />
+  <property name="closure.compiler.version" value="20140625" />
+  <property name="commons-io.version" value="2.4" />
+  <property name="falconjx.version" value="0.0.2" />
+
+  <!-- ==
+    Setup
+  === -->
+
+  <condition property="platform" value="windows">
+      <os family="windows" />
+  </condition>
+
+  <condition property="isWindows" value="windows">
+      <os family="windows" />
+  </condition>
+
+
+
+  <!-- ============
+    Primary targets
+  ============= -->
+
+  <target name="build.release" depends="release.zip,release.md5" description="Build release artefacts" />
+
+  <target name="download.deps" depends="falconjx.overlay" description="Download VF2JS dependencies" />
+
+  <target name="install" depends="main,clean.sdk,overlay.sdk,build.examples" description="Overlay VF2JS on chosen (-Dflex.sdk.loc) directory" />
+
+  <target name="main" depends="clean,build.as.frameworks" description="Build binaries from source" />
+
+  <target name="overlay.sdk" depends="download.deps,copy.examples,copy.as.swcs,copy.falconjx.scripts,copy.js.framework,copy.launch.config" description="Overlay VF2JS on Flex SDK" />
+
+
+
+  <!-- ============
+    Secondary targets
+  ============= -->
+
+  <target name="release.zip" depends="" description="Create release zip file">
+    <defaultexcludes add="**/.actionScriptProperties" />
+    <defaultexcludes add="**/.flexProperties" />
+    <defaultexcludes add="**/.project" />
+    <zip destfile="${basedir}/out/apache-flex-vf2js-0.0.1-src.zip">
+      <zipfileset dir="${basedir}/examples/vf2js_DatabindingTest/src" prefix="examples/vf2js_DatabindingTest/src" />
+      <zipfileset dir="${basedir}/examples/vf2js_DatabindingTest" prefix="examples/vf2js_DatabindingTest">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/examples/vf2js_SimpleTest/src" prefix="examples/vf2js_SimpleTest/src" />
+      <zipfileset dir="${basedir}/examples/vf2js_SimpleTest" prefix="examples/vf2js_SimpleTest">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/examples" prefix="examples">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_mx/src" prefix="frameworks/as/projects/vf2js_mx/src" />
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_mx" prefix="frameworks/as/projects/vf2js_mx">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_s/src" prefix="frameworks/as/projects/vf2js_s/src" />
+      <zipfileset dir="${basedir}/frameworks/as/projects/vf2js_s" prefix="frameworks/as/projects/vf2js_s">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/as" prefix="frameworks/as">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+      <zipfileset dir="${basedir}/frameworks/js/vf2js/src" prefix="frameworks/js/vf2js/src" />
+      <zipfileset dir="${basedir}/ide" prefix="ide" />
+      <zipfileset dir="${basedir}/js" prefix="js" />
+      <zipfileset dir="${basedir}">
+        <include name="*" />
+        <type type="file" />
+      </zipfileset>
+    </zip>
+  </target>
+    
+  <target name="release.md5" depends="" description="Create MD5 for release zip file">
+    <checksum file="${basedir}/out/apache-flex-vf2js-0.0.1-src.zip" forceOverwrite="yes"/>
+  </target>
+    
+  <target name="build.as.frameworks" depends="" description="Build SWCs from AS source">
+    <ant dir="${basedir}/frameworks/as" />
+  </target>
+
+  <target name="build.examples" depends="" description="Build VF2JS examples in newly overlayed Flex SDK">
+    <ant dir="${flex.sdk.loc}/examples/vf2js">
+      <property name="FLEX_HOME" value="${flex.sdk.loc}" />
+      <property name="GOOG_HOME" value="${flex.sdk.loc}/js/vf2js/falconjx/lib/google/closure-library" />
+      <property name="PLAYERGLOBAL_HOME" value="${flex.sdk.loc}/frameworks/libs/player" />
+      <property name="playerglobal.version" value="14.0" />
+    </ant>
+  </target>
+
+  <target name="copy.examples" depends="" description="Copy VF2JS examples to Flex SDK">
+    <copy todir="${flex.sdk.loc}/examples/vf2js" overwrite="true">
+      <fileset dir="${basedir}/examples" />
+    </copy>
+  </target>
+
+  <target name="copy.falconjx.scripts" depends="" description="Copy customized FalconJS scripts - mxmlc and mxmlc.bat - to Flex SDK">
+    <copy todir="${flex.sdk.loc}/js/vf2js/falconjx/bin" overwrite="true">
+      <fileset dir="${basedir}/js/vf2js/falconjx/bin" />
+    </copy>
+    <antcall target="chmod" />
+  </target>
+
+  <target name="copy.js.framework" depends="" description="Copy VF2JS JS framework to Flex SDK">
+    <copy todir="${flex.sdk.loc}/frameworks/js/vf2js/src" overwrite="true">
+      <fileset dir="${basedir}/frameworks/js/vf2js/src" />
+    </copy>
+  </target>
+
+  <target name="copy.launch.config" depends="" description="Copy launch config to Flex SDK">
+    <copy todir="${flex.sdk.loc}/ide/flashbuilder/launch" overwrite="true">
+      <fileset dir="${basedir}/ide/flashbuilder/launch" />
+    </copy>
+    <replace file="${flex.sdk.loc}/ide/flashbuilder/launch/VF2JS (Debug and Release Build).launch">
+        <replacefilter token="$flex_sdk_loc" value="${flex.sdk.loc}" />
+    </replace>
+  </target>
+
+  <target name="copy.as.swcs" depends="" description="Copy VF2JS SWCs to Flex SDK">
+    <ant dir="${basedir}/frameworks/as" target="copy.to.sdk" />
+  </target>
+
+  <target name="falconjx.build" depends="" description="Build FalconJX dependencies">
+    <!-- Closure Compiler -->
+    <ant dir="${basedir}/in/closure-compiler-${closure.compiler.version}" inheritAll="false" />
+  </target>
+
+  <target name="falconjx.download" depends="" description="Download FalconJX nightly binary and dependencies">
+    <mkdir dir="${basedir}/in" />
+    <!-- Antlr -->
+    <get src="http://search.maven.org/remotecontent?filepath=org/antlr/antlr-complete/${antlr.version}/antlr-complete-${antlr.version}.jar" dest="${basedir}/in/antlr-complete-${antlr.version}.jar" />
+    <!-- Closure Compiler -->
+    <get src="https://codeload.github.com/google/closure-compiler/zip/v${closure.compiler.version}" dest="${basedir}/in/closure-compiler-${closure.compiler.version}.zip" />
+    <!-- Closure Library -->
+    <exec executable="git" failifexecutionfails="true">
+      <arg value="clone" />
+      <arg value="https://github.com/google/closure-library" />
+      <arg value="${basedir}/in/closure-library" />
+    </exec>
+    <!-- Commons-IO -->
+    <get src="http://archive.apache.org/dist/commons/io/binaries/commons-io-${commons-io.version}-bin.tar.gz" dest="${basedir}/in/commons-io-${commons-io.version}-bin.tar.gz" />
+    <!-- FalconJX -->
+    <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/apache-flex-falconjx-${falconjx.version}-bin.zip" dest="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin.zip" />
+  </target>
+
+  <target name="falconjx.overlay" depends="falconjx.download,falconjx.unzip,falconjx.build" description="Overlay FalconJX artefacts on Flex SDK">
+    <!-- Antlr -->
+    <copy tofile="${flex.sdk.loc}/js/vf2js/lib/external/antlr.jar" overwrite="true">
+      <fileset file="${basedir}/in/antlr-complete-${antlr.version}.jar" />
+    </copy>
+    <!-- Closure Compiler -->
+    <copy toDir="${flex.sdk.loc}/js/vf2js/falconjx/lib/google/closure-compiler" verbose="true">
+      <fileset file="${basedir}/in/closure-compiler-${closure.compiler.version}/build/compiler.jar" />
+    </copy>
+    <!-- Closure Library -->
+    <copy todir="${flex.sdk.loc}/js/vf2js/falconjx/lib/google/closure-library" overwrite="true">
+      <fileset dir="${basedir}/in/closure-library" />
+    </copy>
+    <!-- Commons-IO -->
+    <copy tofile="${flex.sdk.loc}/js/vf2js/falconjx/lib/commons-io.jar" overwrite="true">
+      <fileset file="${basedir}/in/commons-io-${commons-io.version}/commons-io-${commons-io.version}.jar" />
+    </copy>
+    <!-- FalconJX -->
+    <copy todir="${flex.sdk.loc}/js/vf2js/lib" overwrite="true">
+      <fileset file="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin/compiler/generated/dist/sdk/lib/compiler.jar" />
+    </copy>
+    <copy todir="${flex.sdk.loc}/js/vf2js/falconjx/lib" overwrite="true">
+      <fileset file="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin/js/lib/jsc.jar" />
+      <fileset file="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin/js/lib/mxmlc.jar" />
+    </copy>
+  </target>
+
+  <target name="falconjx.unzip" depends="" description="Unzip FalconJX artefacts and dependencies">
+    <!-- Closure Compiler -->
+    <unzip src="${basedir}/in/closure-compiler-${closure.compiler.version}.zip" dest="${basedir}/in" />
+    <!-- Commons-IO -->
+    <untar src="${basedir}/in/commons-io-${commons-io.version}-bin.tar.gz" dest="${basedir}/in" compression="gzip" />
+    <!-- FalconJX -->
+    <unzip src="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin.zip" dest="${basedir}/in/apache-flex-falconjx-${falconjx.version}-bin" />
+  </target>
+
+
+
+  <!-- ============
+    Utility targets
+  ============= -->
+
+  <target name="clean" depends="" description="Cleans all possible 'garbage'">
+    <delete dir="${basedir}/in" />
+
+    <ant dir="${basedir}/frameworks/as" target="clean" />
+  </target>
+
+  <target name="clean.sdk" depends="" description="Cleans previous VF2JS overlay">
+    <delete dir="${flex.sdk.loc}/examples/vf2js" />
+    <delete dir="${flex.sdk.loc}/js/vf2js" />
+    <delete dir="${flex.sdk.loc}/frameworks/js/vf2js" />
+    <delete>
+      <fileset dir="${flex.sdk.loc}/ide/flashbuilder/launch" includes="VF2JS*" />
+    </delete>
+    <delete>
+      <fileset dir="${flex.sdk.loc}/frameworks/libs" includes="vf2js_*" />
+    </delete>
+  </target>
+
+  <target name="chmod" unless="isWindows" description="Make mxmlc script executable on *nix">
+      <exec executable="chmod" dir="${flex.sdk.loc}">
+          <arg value="+x" />
+          <arg value="${flex.sdk.loc}/js/vf2js/falconjx/bin/mxmlc" />
+      </exec>
+  </target>
+  
+</project>

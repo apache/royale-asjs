@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+<!--
+-->
+		<TestCase testID="SetupADGTest1">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="dmvADGTest" 
+                    waitEvent="updateComplete" />
+				<AssertPropertyValue target="dmvADGTests.testADG.dataProvider" propertyName="length" value="6" />
+				<AssertPropertyValue target="dmvADGTests.testADG2.dataProvider" propertyName="length" value="5" />
+				<AssertPropertyValue target="dmvADGTests.testADG3.dataProvider" propertyName="length" value="9" />
+			</body>
+		</TestCase>
+		<TestCase testID="DragDropADGTest1">
+			<body>
+				<DispatchMouseEvent target="dmvADGTests.testList" type="mouseOver" localX="10" localY="55" />
+				<DispatchMouseEvent target="dmvADGTests.testList" type="mouseDown" localX="10" localY="55" buttonDown="true" />
+ 				<DispatchMouseEvent target="dmvADGTests.testList" type="mouseMove" buttonDown="true" localX="2" localY="55" waitEvent="dragStart" />
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="60"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="80"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="100"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="120"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="140"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="180"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="0" localY="210"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="10" localY="210" waitTarget="dmvADGTests.testADG" waitEvent="dragEnter" />
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="20" localY="230"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="30" localY="230"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseMove" buttonDown="true" localX="40" localY="230" />
+ 				<DispatchMouseEvent target="dmvADGTests" type="mouseUp" localX="40" localY="210" waitTarget="dmvADGTests.testADG" waitEvent="dragDrop" />
+				<AssertEvent target="dmvADGTests.testList" eventName="dragComplete" eventClass="mx.events::DragEvent" />
+				<AssertPropertyValue target="dmvADGTests.testADG.dataProvider" propertyName="length" value="7" />
+			</body>
+		</TestCase>
+		<TestCase testID="ADGAddItemTest">
+			<body>
+				<DispatchMouseEvent target="dmvADGTests.addNodeButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="dmvADGTests.addNodeButton"  localX="10" localY="10" waitEvent="updateComplete" waitTarget="dmvADGTests.testADG2" />
+				<AssertPropertyValue target="dmvADGTests.testADG2.dataProvider" propertyName="length" value="6" />
+			</body>
+		</TestCase>
+		<TestCase testID="ADGItemOpenTest">
+			<body>
+				<DispatchMouseEvent target="dmvADGTests.testADG2" type="mouseOver" localX="10" localY="78" />
+				<DispatchMouseClickEvent target="dmvADGTests.testADG2" localX="10" localY="78" />
+				<AssertEvent target="dmvADGTests.testADG2" eventName="itemOpen" eventClass="mx.events::AdvancedDataGridEvent" />
+				<AssertPropertyValue target="dmvADGTests.testADG2.dataProvider" propertyName="length" value="8" />
+			</body>
+		</TestCase>
+		<TestCase testID="ADGItemCloseTest">
+			<body>
+				<DispatchMouseEvent target="dmvADGTests.testADG3" type="mouseOver" localX="10" localY="78" />
+				<DispatchMouseClickEvent target="dmvADGTests.testADG3" localX="10" localY="78" />
+				<AssertEvent target="dmvADGTests.testADG3" eventName="itemClose" eventClass="mx.events::AdvancedDataGridEvent" />
+				<AssertPropertyValue target="dmvADGTests.testADG3.dataProvider" propertyName="length" value="6" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

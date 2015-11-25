@@ -1,0 +1,1032 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="asjs_ide_install" default="install" basedir=".">
+
+    <property name="FLEXJS_HOME" location="${basedir}"/>
+    
+	<!-- this script supports the usingDownloadCache property and
+	     downloadCacheFolder property to cache downloads in the
+		 folder specified by downloadCacheFolder.  This can make
+		 a huge difference in future runs although there is some
+		 risk around caching bad downloads and/or needing to
+		 clean up the cache -->
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>  
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
+    <property file="${FLEXJS_HOME}/nightly.properties"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="bundle" value="en_US" />
+
+	<property name="flex.properties.url" value="http://flex.apache.org/installer/properties/flexjs/${bundle}.properties" />
+	<get src="${flex.properties.url}" dest="${basedir}/${bundle}.properties" ignoreerrors="true" />
+    <property file="${basedir}/${bundle}.properties"/>
+    <property file="${FLEXJS_HOME}/installer.properties/${bundle}.properties"/>
+    <property file="${FLEXJS_HOME}/installer.properties/en_US.properties"/>
+    <property name="download.dir" value="${FLEXJS_HOME}/in"/>
+    
+    <property name="air.sdk.version" value="14.0"/>
+    <property name="flash.sdk.version" value="14.0"/>
+    <property name="flexjs.version" value="0.5.0"/>
+    <property name="falcon.version" value="0.5.0"/>
+    
+    <property name="swfobject.url.server" value="https://github.com" />
+    <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
+    <property name="swfobject.url.file" value="2.2.zip" />
+	
+    <condition property="platform" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="platform" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="platform" value="linux">
+        <os family="unix" />
+    </condition>
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+        <os family="unix" />
+    </condition>
+    
+    <condition property="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_WINDOWS}">
+        <os family="windows" />
+    </condition>
+    <property name="AIRDownloadEcho" value="${INFO_DOWNLOADING_AIR_RUNTIME_KIT_MAC}" />
+
+    <condition property="air.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    <condition property="flash.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+
+    <condition property="COMPC" value="compc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="COMPC" value="compc" />
+    <condition property="MXMLC" value="mxmlc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="MXMLC" value="mxmlc" />
+    
+    <condition property="java.home" value="${env.JAVA_HOME}" >
+        <and>
+            <available file="${env.JAVA_HOME}" type="dir" />
+            <not>
+                <equals arg1="" arg2="${env.JAVA_HOME}" />
+            </not>
+        </and>
+    </condition>
+
+    <target name="get-md5-data" depends="get-air-md5-data,get-flash-md5-data">
+	</target>
+	<target name="get-air-md5-data" if="air-has-md5">
+        <property name="air.sdk.url.md5" refid="${air.sdk.url.md5.ref}" />	
+	</target>
+	<target name="get-flash-md5-data" if="flash-has-md5">
+        <property name="flash.sdk.url.md5" refid="${flash.sdk.url.md5.ref}" />	
+	</target>
+		
+    <target name="get-data">
+		<tstamp />
+		<property name="ts" value="${DSTAMP}${TSTAMP}" />
+		<property name="xml.properties" value="http://flex.apache.org/installer/sdk-installer-config-4.0.xml?ts=${ts}" />
+        <get src="${xml.properties}" dest="${basedir}/sdk-installer-config-4.0.xml" />
+        <xmlproperty file="${basedir}/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
+        <condition property="air.sdk.version" value="${config.airsdk.linux.versions.default}">
+            <equals arg1="${platform}" arg2="linux" />
+        </condition>
+        <condition property="air.sdk.version" value="${config.airsdk.windows.versions.default}">
+            <equals arg1="${platform}" arg2="windows" />
+        </condition>
+        <condition property="air.sdk.version" value="${config.airsdk.mac.versions.default}">
+            <equals arg1="${platform}" arg2="mac" />
+        </condition>
+        <property name="flash.sdk.version" value="${config.flashsdk.versions.default}"/>
+        <condition property="air.sdk.version.ref" value="${air.sdk.versionID}" >
+            <isset property="air.sdk.versionID" />
+        </condition>
+        <property name="air.sdk.version.ref" value="${air.sdk.version}" />
+        <condition property="flash.sdk.version.ref" value="${flash.sdk.versionID}" >
+            <isset property="flash.sdk.versionID" />
+        </condition>
+        <property name="flash.sdk.version.ref" value="${flash.sdk.version}" />
+        
+        <property name="air.sdk.url.server.ref" value="air.sdk.server.${platform}.${air.sdk.version.ref}" />
+        <property name="air.sdk.url.server" refid="${air.sdk.url.server.ref}" />
+        <property name="air.sdk.url.folder.ref" value="air.sdk.folder.${platform}.${air.sdk.version.ref}" />
+        <property name="air.sdk.url.folder" refid="${air.sdk.url.folder.ref}" />
+        <property name="air.sdk.url.file.ref" value="air.sdk.file.${platform}.${air.sdk.version.ref}" />
+        <property name="air.sdk.url.file" refid="${air.sdk.url.file.ref}" />
+        <property name="air.sdk.url.md5.ref" value="air.sdk.md5.${platform}.${air.sdk.version.ref}" />
+		<condition property="air-has-md5">
+			<isreference refid="${air.sdk.url.md5.ref}" />
+		</condition>
+        <property name="flash.sdk.url.server.ref" value="flash.sdk.server.${flash.sdk.version.ref}" />
+        <property name="flash.sdk.url.server" refid="${flash.sdk.url.server.ref}" />
+        <property name="flash.sdk.url.folder.ref" value="flash.sdk.folder.${flash.sdk.version.ref}" />
+        <property name="flash.sdk.url.folder" refid="${flash.sdk.url.folder.ref}" />
+        <property name="flash.sdk.url.file.ref" value="flash.sdk.file.${flash.sdk.version.ref}" />
+        <property name="flash.sdk.url.file" refid="${flash.sdk.url.file.ref}" />
+        <property name="flash.sdk.url.md5.ref" value="flash.sdk.md5.${flash.sdk.version.ref}" />
+		<condition property="flash-has-md5">
+			<isreference refid="${flash.sdk.url.md5.ref}" />
+		</condition>
+        <property name="flash.sdk.swfversion.ref" value="flash.sdk.swfversion.${flash.sdk.version.ref}" />
+        <property name="flash.sdk.swfversion" refid="${flash.sdk.swfversion.ref}" />
+        
+        <property name="flexjs.dev.version" value="${config.products.ApacheFlexJS.developmentVersion}" />
+        <property name="falcon.dev.version" value="${config.products.ApacheFlexFalconJX.developmentVersion}" />
+        <property name="falcon.latest.version" value="${config.products.ApacheFlexFalconJX.latestVersion}" />
+        <property name="falcon.rc" value="${config.products.ApacheFlexFalconJX.rc}" />
+        <!-- if both flexjs and falcon are development versions, then get falcon from the rc server -->
+        <!-- for nightly builds, we package a nightly.properties that sets these values to the nightly falcon builds -->
+        <condition property="falcon.server.url" value="https://dist.apache.org/repos/dist/dev" >
+            <and>
+                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
+            </and>
+        </condition>
+        <condition property="falcon.folder" value="flex/falcon/${falcon.version}/${falcon.rc}/binaries" >
+            <and>
+                <equals arg1="${flexjs.dev.version}" arg2="${flexjs.version}" />
+                <equals arg1="${falcon.dev.version}" arg2="${falcon.version}" />
+            </and>
+        </condition>
+        <!-- otherwise, pull the specified version -->
+         <condition property="falcon.server.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" >
+             <equals arg1="${falcon.version}" arg2="${falcon.latest.version}" />
+         </condition>
+         <condition property="falcon.uses.mirror" value="true" >
+             <and>
+                 <not>
+                     <isset property="nightly" />
+                 </not>
+                 <equals arg1="${falcon.version}" arg2="${falcon.latest.version}" />
+             </and>
+         </condition>
+        <condition property="falcon.md5.server.url" value="https://dist.apache.org/repos/dist/release" >
+            <equals arg1="${falcon.uses.mirror}" arg2="true" />
+        </condition>
+        <property name="falcon.server.url" value="http://archive.apache.org/dist" />
+        <property name="falcon.md5.server.url" value="${falcon.server.url}" />
+        <property name="falcon.folder" value="flex/falcon/${falcon.version}/binaries" />
+        <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
+    </target>
+    
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
+        <echo>${install.complete.echo}</echo>
+    </target>
+
+    <target name="find-java" depends="find-java-executable-windows,find-java-executable-others,search-java,check-java" description="get path to java executable">
+        <echo file="${basedir}/findjava.properties">find.java.echo=${find.java.echo.pattern}</echo>
+        <property file="${basedir}/findjava.properties" />
+        <delete file="${basedir}/findjava.properties" />
+        <echo>${find.java.echo}</echo>
+    </target>
+
+    <target name="check-java" description="fail if java doesn't exist">
+        <fail message="${unable.to.find.java}">
+            <condition>
+                <not>
+                    <isset property="java.executable" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+
+    <target name="find-java-executable-windows" if="isWindows">
+        <condition property="java.executable" value="${java.home}/bin/java.exe" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}/bin/java.exe" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="find-java-executable-others" unless="isWindows">
+        <condition property="java.executable" value="${java.home}/bin/java" >
+            <and>
+                <isset property="java.home" />
+                <available file="${java.home}" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="search-java" depends="search-java-windows,search-java-others" description="search for java executable" unless="java.home">
+    </target>
+
+    <target name="search-java-windows" unless="java.home">
+        <exec executable="where.exe" os="windows" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+    </target>
+    <target name="search-java-others" unless="java.home">
+        <exec executable="which" os="mac,linux" outputproperty="java.executable" >
+            <arg value="java"/>
+        </exec>
+    </target>
+
+    <target name="check-binary" description="Make sure this is a binary package">
+        <fail message="${basedir} is not an FlexJS binary package">
+            <condition>
+                <not>
+                    <available file="${basedir}/frameworks/libs/Binding.swc" />
+                </not>
+            </condition>
+        </fail>
+        <fail message="${basedir} is not an FlexJS binary package and is probably a git repo">
+            <condition>
+                <available file="$[basedir}/.gitignore" />
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="ask-licenses" depends="ask-air,ask-flash" description="Ask about the various licenses">
+	</target>
+    
+    <target name="ask-air" unless="air.donot.ask"
+        description="Prompt the user before downloading AIR">
+        
+        <input
+        message="${air.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.air.download"/>
+        <condition property="do.air.install">
+            <equals arg1="${yes}" arg2="${input.air.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="air.donot.ask" value="set"/>
+    </target>
+
+    <target name="ask-flash" unless="flash.donot.ask"
+        description="Prompt the user before downloading playerglobal.swc">
+        
+        <input
+        message="${flash.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.flash.download"/>
+        <condition property="do.flash.install">
+            <equals arg1="${yes}" arg2="${input.flash.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="flash.donot.ask" value="set"/>
+    </target>
+
+    <target name="mac-chmod" description="makes some scripts executable" unless="isWindows">
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/mxmlc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/compc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/asjsc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/asjscompc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/jquery"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/externc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+             <arg value="+x" />
+             <arg value="${FLEXJS_HOME}/bin/mxmlc"/>
+         </exec>
+         <exec executable="chmod" dir="${FLEXJS_HOME}">
+             <arg value="+x" />
+             <arg value="${FLEXJS_HOME}/bin/compc"/>
+         </exec>
+    </target>
+
+    <target name="get-falcon" depends="falcon-check,falcon-get" unless="falcon.present"
+        description="downloads and installs Falcon compiler">
+        <echo>${INFO_UNZIPPING} ${download.dir}/${falcon.file}</echo>
+        <unzip src="${download.dir}/${falcon.file}" dest="${download.dir}/falcon"/>
+        <antcall target="falcon-install" />
+        <antcall target="mac-chmod" />
+    </target>
+    <target name="falcon-install" >
+        <property name="flexjs" value="true" />
+        <property name="FLEX_HOME" value="${basedir}" />
+        <ant dir="${download.dir}/falcon" antfile="installer.xml" />
+    </target>
+    <target name="falcon-check" description="Checks if Falcon compiler has been downloaded.">
+        <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" property="falcon.present"/>
+    </target>
+    <target name="falcon-get-check" >
+        <available file="${download.dir}/${falcon.file}" property="falcon.downloaded" />
+    </target>
+    <target name="falcon-get" depends="falcon-get-check,set-falcon-cache-flag" unless="falcon.downloaded" >
+        <mkdir dir="${download.dir}"/>
+        <echo>${INFO_INSTALLING_FALCON} ${falcon.server.url}/${falcon.folder}/${falcon.file}</echo>
+        <antcall target="falcon_get_from_mirror" >
+            <param name="server" value="${falcon.server.url}" />
+            <param name="md5server" value="${falcon.md5.server.url}" />
+            <param name="folder" value="${falcon.folder}" />
+            <param name="file" value="${falcon.file}" />
+            <param name="dest" value="${download.dir}/${falcon.file}" />
+			<param name="message" value="${INFO_INSTALLING_FALCON}" />
+			<param name="failmessage" value="FalconJX download failed" />
+        </antcall>
+        <antcall target="falcon_get_download" >
+            <param name="server" value="${falcon.server.url}" />
+            <param name="md5server" value="${falcon.md5.server.url}" />
+            <param name="folder" value="${falcon.folder}" />
+            <param name="file" value="${falcon.file}" />
+            <param name="dest" value="${download.dir}/${falcon.file}" />
+			<param name="message" value="${INFO_INSTALLING_FALCON}" />
+			<param name="failmessage" value="FalconJX download failed" />
+        </antcall>
+    </target>
+
+    <target name="falcon_get_from_mirror" if="falcon.uses.mirror" >
+        <antcall target="download_using_mirror" >
+            <param name="srcMD5Domain" value="${md5server}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
+        </antcall>
+    </target>
+
+    <target name="falcon_get_download" unless="falcon.uses.mirror" >
+        <antcall target="download_using_get" >
+            <param name="srcMD5Domain" value="${md5server}" />
+            <param name="srcDomain" value="${server}" />
+            <param name="srcFolder" value="${folder}" />
+            <param name="srcFile" value="${file}" />
+        </antcall>
+    </target>
+
+    <target name="set-falcon-cache-flag" if="nightly" >
+        <property name="skipCache" value="true" />
+    </target>
+
+    <target name="get-third-party-files" depends="air-download,flash-download,swfobject-download" />
+    
+    <target name="air-check" description="Checks if AIR SDK has been downloaded.">
+        <available file="${FLEXJS_HOME}/lib/adt.jar" property="air.jar.present"/>
+    </target>
+    
+    <target name="air-download" depends="air-check" unless="air.jar.present"
+        description="Downloads AIR SDK and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="air-get" />
+
+        <echo>${INFO_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
+        
+        <antcall target="air-setup-win" />
+        <antcall target="air-setup-mac" />
+        
+    </target>
+
+    <target name="air-get-check" >
+        <available file="${download.dir}/${air.sdk.url.file}" property="air.downloaded" />
+    </target>
+        
+    <target name="air-get" depends="air-get-check" unless="air.downloaded" >
+		<echo>${AIRDownloadEcho} ${air.sdk.url.server}/${air.sdk.url.folder}/${air.sdk.url.file}</echo>
+        <antcall target="download_air" >
+            <param name="srcDomain" value="${air.sdk.url.server}" />
+            <param name="srcFolder" value="${air.sdk.url.folder}" />
+            <param name="srcFile" value="${air.sdk.url.file}" />
+            <param name="dest" value="${download.dir}/${air.sdk.url.file}" />
+			<param name="failmessage" value="AIR SDK download failed" />
+        </antcall>
+        <antcall target="download_air_with_md5" >
+            <param name="srcDomain" value="${air.sdk.url.server}" />
+            <param name="srcFolder" value="${air.sdk.url.folder}" />
+            <param name="srcFile" value="${air.sdk.url.file}" />
+            <param name="dest" value="${download.dir}/${air.sdk.url.file}" />
+			<param name="failmessage" value="AIR SDK download failed" />
+			<param name="md5" value="${air.sdk.url.md5}" />
+        </antcall>
+    </target>
+    
+    <target name="air-setup-win" if="isWindows">
+        <unzip src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />
+        <echo>${INFO_FINISHED_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
+        <copy todir="${FLEXJS_HOME}" overwrite="true">
+            <fileset dir="${download.dir}/airsdk">
+                <include name="AIR SDK license.pdf" />
+                <include name="AIR SDK Readme.txt" />
+                <include name="airsdk.xml" />
+                <include name="bin/adl.exe" />
+                <include name="bin/adt.bat" />
+                <include name="frameworks/libs/air/**" />
+                <include name="frameworks/projects/air/**" />
+                <include name="include/**" />
+                <include name="install/android/**" />
+                <include name="lib/adt.jar" />
+                <include name="lib/android/**" />
+                <include name="lib/aot/**" />
+                <include name="lib/nai/**" />
+                <include name="lib/win/**" />
+                <include name="runtimes/**" />
+                <include name="samples/badge/**" />
+                <include name="samples/descriptor-sample.xml" />
+                <include name="samples/icons/**" />
+                <include name="templates/air/**" />
+                <include name="templates/extensions/**" />
+                <include name="templates/sdk/**" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="air-setup-mac" unless="isWindows">
+        <!--The tbz2 contains symlinks which Ant does not preserve
+        <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />-->
+        <mkdir dir="${download.dir}/airsdk" />
+        <move file="${download.dir}/${air.sdk.url.file}" todir="${download.dir}/airsdk" />
+        <exec executable="bunzip2" dir="${download.dir}/airsdk" >
+            <arg value="${air.sdk.url.file}" />
+        </exec>
+        <echo file="${basedir}/airtar.properties">air.tar.name=${air.sdk.url.file}</echo>
+        <replace file="${basedir}/airtar.properties" token="tbz2" value="tar" />
+        <property file="${basedir}/airtar.properties" />
+        <exec executable="tar" dir="${download.dir}/airsdk" >
+            <arg value="-xvf" />
+            <arg value="${air.tar.name}" />
+        </exec>
+        <echo>${INFO_FINISHED_UNTARING} ${download.dir}/airsdk/${air.tar.name}</echo>
+        <delete file="${basedir}/airtar.properties" />
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK license.pdf"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="AIR SDK Readme.txt"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="." />
+            <param name="filename" value="airsdk.xml"/>
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adl"/>
+            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="bin" />
+            <param name="filename" value="adt"/>
+            <param name="destdir" value="${FLEXJS_HOME}/bin" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="lib" />
+            <param name="filename" value="adt.jar"/>
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-file">
+            <param name="srcdir" value="samples" />
+            <param name="filename" value="descriptor-sample.xml"/>
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/libs/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/libs" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="frameworks/projects/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/frameworks/projects" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="include" />
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir-if-exists">
+            <param name="srcdir" value="install/android" />
+            <param name="destdir" value="${FLEXJS_HOME}/install" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/android" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/aot" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="lib/nai" />
+            <param name="destdir" value="${FLEXJS_HOME}/lib" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="runtimes" />
+            <param name="destdir" value="${FLEXJS_HOME}" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/badge" />
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="samples/icons" />
+            <param name="destdir" value="${FLEXJS_HOME}/samples" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/air" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/extensions" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+        <antcall target="mac-copy-dir">
+            <param name="srcdir" value="templates/sdk" />
+            <param name="destdir" value="${FLEXJS_HOME}/templates" />
+        </antcall>
+    </target>
+    
+    <target name="mac-copy-file" description="copies a file">
+        <mkdir dir="${destdir}" />
+        <exec executable="cp" dir="${FLEXJS_HOME}">
+            <arg value="-p" />
+            <arg value="${download.dir}/airsdk/${srcdir}/${filename}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+    
+    <target name="mac-copy-dir" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <delete file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
+        <exec executable="rsync" dir="${FLEXJS_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${download.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+
+    <target name="mac-copy-dir-if-exists" depends="mac-check-exists" if="${srcdir}.exists" description="copies a directory using exec and rsync so that symbolic links are preserved">
+        <echo file="${basedir}/maccopy.properties">mac.copy.echo=${mac.copy.echo.pattern}</echo>
+        <property file="${basedir}/maccopy.properties" />
+        <echo>${mac.copy.echo}</echo>
+        <exec executable="rsync" dir="${FLEXJS_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="${download.dir}/airsdk/${srcdir}"/>
+            <arg value="${destdir}" />
+        </exec>
+    </target>
+    
+    <target name="mac-check-exists">
+        <available file="${download.dir}/airsdk/${srcdir}" type="dir" property="${srcdir}.exists" />
+    </target>
+
+    <!-- Because this requires a network connection it downloads Flash SDK only if it doesn't already exist. -->
+    <target name="flash-check" description="Checks if Flash SDK has been downloaded.">
+        <available file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" property="flash.swc.present"/>
+    </target>
+    
+    <target name="flash-download" depends="flash-check" unless="flash.swc.present"
+        description="Downloads playerglobal.swc and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}"/>
+        <echo>${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}</echo>
+        <antcall target="download_flash" >
+            <param name="srcDomain" value="${flash.sdk.url.server}" />
+            <param name="srcFolder" value="${flash.sdk.url.folder}" />
+            <param name="srcFile" value="${flash.sdk.url.file}" />
+            <param name="dest" value="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" />
+			<param name="message" value="${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}" />
+			<param name="failmessage" value="Flash SDK download failed" />
+        </antcall>
+        <antcall target="download_flash_with_md5" >
+            <param name="srcDomain" value="${flash.sdk.url.server}" />
+            <param name="srcFolder" value="${flash.sdk.url.folder}" />
+            <param name="srcFile" value="${flash.sdk.url.file}" />
+            <param name="dest" value="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" />
+			<param name="message" value="${INFO_INSTALLING_PLAYERGLOBAL_SWC} ${flash.sdk.url.server}/${flash.sdk.url.folder}/${flash.sdk.url.file}" />
+			<param name="failmessage" value="Flash SDK download failed" />
+			<param name="md5" value="${flash.sdk.url.md5}" />
+        </antcall>
+    </target>
+    
+    <!-- swfobject.js (Version 2.2) -->
+    <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
+    <target name="swfobject-check" description="Checks if SWFObject has been downloaded.">
+        <available file="${basedir}/../templates/swfobject/swfobject.js" property="swfobject.js.present"/>
+    </target>
+    
+    <target name="swfobject-download" depends="swfobject-check" unless="swfobject.js.present"
+        description="Copies SWFObject from github">
+        
+        <echo file="${basedir}/swfobject.properties">swfobject.echo=${INFO_DOWNLOADING_FILE_FROM}</echo>
+        <replace file="${basedir}/swfobject.properties" token="{0}" value="${swfobject.url.file}" />
+        <replace file="${basedir}/swfobject.properties" token="{1}" value="${swfobject.url.server}/${swfobject.url.folder}" />
+        <property file="${basedir}/swfobject.properties" />
+        <delete file="${basedir}/swfobject.properties" />
+
+		<echo>${swfobject.echo}</echo>
+        <mkdir dir="${download.dir}"/>
+        <antcall target="download_using_get" >
+            <param name="srcDomain" value="${swfobject.url.server}" />
+            <param name="srcFolder" value="${swfobject.url.folder}" />
+            <param name="srcFile" value="${swfobject.url.file}" />
+            <param name="dest" value="${download.dir}/swfobject_2_2.zip" />
+			<param name="failmessage" value="SWFObject download failed" />
+        </antcall>        
+        <echo>${INFO_DOWNLOADED}</echo>
+        <mkdir dir="${download.dir}/swfobject"/>
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${download.dir}/swfobject">
+            <patternset>
+                <include name="swfobject-2.2/swfobject/expressInstall.swf"/>
+                <include name="swfobject-2.2/swfobject/swfobject.js"/>
+            </patternset>
+        </unzip>
+        <mkdir dir="${FLEXJS_HOME}/templates/swfobject"/>
+		<copy file="${download.dir}/swfobject/swfobject-2.2/swfobject/expressInstall.swf"
+			tofile="${FLEXJS_HOME}/templates/swfobject/expressInstall.swf" />
+		<copy file="${download.dir}/swfobject/swfobject-2.2/swfobject/swfobject.js"
+			tofile="${FLEXJS_HOME}/templates/swfobject/swfobject.js" />
+    </target>
+    
+    <target name="fixup-config-files">
+        <echo>${INFO_INSTALLING_CONFIG_FILES}</echo>
+        <copy file="${FLEXJS_HOME}/frameworks/flex-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" overwrite="true"/>
+        <copy file="${FLEXJS_HOME}/frameworks/air-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/air-config.xml" overwrite="true"/>
+        <replace file="${FLEXJS_HOME}/frameworks/flex-config.xml">
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="{playerglobalHome}"
+                            value="libs/player"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/frameworks/air-config.xml" >
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="{airHome}/frameworks/libs"
+                            value="libs"/>
+        </replace>
+    </target>
+    
+    <target name="hack-fb-files" description="create files needed by Adobe Flash Builder">
+        <!-- read in flex-sdk-description -->
+        <xmlproperty file="${FLEXJS_HOME}/flex-sdk-description.xml" semanticAttributes="true" collapseAttributes="true"/>
+        <!-- write out new one based on original values -->
+        <echo file="${FLEXJS_HOME}/flex-sdk-description.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;flex-sdk-description&gt;
+&lt;name&gt;${release.name} ${release.version} FP${flash.sdk.version} AIR${air.sdk.version} en_US&lt;/name&gt;
+&lt;version&gt;${fb.release.version}&lt;/version&gt;
+&lt;build&gt;${flex-sdk-description.build}&lt;/build&gt;
+&lt;/flex-sdk-description&gt;
+</echo>
+
+        <echo file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;flashbuilder-config&gt;
+&lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
+&lt;/flashbuilder-config&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;componentPackage&gt;
+&lt;/componentPackage&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;componentPackage&gt;
+&lt;/componentPackage&gt;
+</echo>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/locale" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/mx" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
+        <copy file="${FLEXJS_HOME}/frameworks/libs/Binding.swc"
+tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
+        <touch file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css" />
+        <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
+            tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
+        <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
+    </target>
+    
+    <target name="setup-launch-configs" description="Creates custom Flash Builder launch configurations">
+        <echo>${INFO_INSTALLING_LAUNCH_CONFIG_FILES}</echo>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug and Release Build).launch">
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
+            <replacefilter
+            token="$COMPC"
+            value="${COMPC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/js/bin/mxmlc.bat">
+            <replacefilter
+            token="@java"
+            value="&quot;${java.executable}&quot;"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/js/bin/compc.bat">
+            <replacefilter
+            token="@java"
+            value="&quot;${java.executable}&quot;"/>
+        </replace>
+    </target>
+
+    <target name="download_using_mirror" depends="check-cache,get-preferred">
+        <antcall target="get-if-not-cached">
+			<param name="srcDomain" value="${preferred}"/>
+		</antcall>
+		<antcall target="copy-if-cached">
+		</antcall>
+    </target>
+    <target name="get-preferred" unless="found-in-cache">
+        <get src="${srcDomain}/${srcFolder}/${srcFile}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="{"
+            value="" />
+            <replacefilter token="}"
+            value="" />
+            <replacefilter token="&quot;"
+            value="" />
+            <replacefilter token=","
+            value="&#x0d;&#x0a;" />
+            <replacefilter token=":"
+            value="=" />
+        </replace>
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="http="
+            value="http:" />
+        </replace>
+        <property file="${basedir}/mirror.json" />
+        <delete file="${basedir}/mirror.json" />
+        <echo>${message} ${preferred}${srcFolder}/${srcFile}</echo>
+	</target>
+
+	<target name="download_air" unless="air-has-md5">
+		<antcall target="download_using_get" />
+	</target>
+	<target name="download_air_with_md5" if="air-has-md5">
+		<antcall target="download_using_get" />		
+	</target>
+	<target name="download_flash" unless="flash-has-md5">
+		<antcall target="download_using_get" />
+	</target>
+	<target name="download_flash_with_md5" if="flash-has-md5">
+		<antcall target="download_using_get" />
+	</target>
+	
+    <!--
+        Download a file and optionally verify the checksum.
+        If the checksum fails, this script fails.  This
+		target uses the cache, if desired.
+        
+        Params are:
+            srcDomain
+			srcFolder
+            srcFile
+            dest
+            [md5]
+			[srcMD5Domain]
+    -->
+    <target name="download_using_get" depends="check-cache"
+        description="Downloads file, and optionally verifies checksum.">                
+     
+        <antcall target="get-if-not-cached">
+		</antcall>
+		<antcall target="copy-if-cached">
+		</antcall>
+    </target>
+    
+    <target name="get-if-not-cached" unless="found-in-cache"> 
+		<antcall target="get-with-no-params" />
+		<antcall target="get-with-params" />
+		<antcall target="get-local" />
+        <antcall target="check-sum" />
+        <antcall target="check-sum-from-file" />
+		<condition property="skipCache">
+			<not>
+				<isset property="usingDownloadCache" />
+			</not>
+		</condition>
+		<antcall target="put-in-cache" />
+	</target>
+	
+	<target name="check-params" >
+		<condition property="has-params">
+			<and>
+				<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="?" />
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+				</not>
+			</and>
+		</condition>
+		<condition property="is-local">
+			<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+		</condition>
+		<condition property="not-local-no-params">
+			<and>
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="file://" />
+				</not>
+				<not>
+					<contains string="${srcDomain}/${srcFolder}/${srcFile}" substring="?" />
+				</not>
+			</and>
+		</condition>
+	</target>
+	
+	<target name="get-local" depends="check-params" if="is-local" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}" dest="${dest}"/>
+	</target>
+	<target name="get-with-no-params" depends="check-params" if="not-local-no-params" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}?ts=${ts}" dest="${dest}"/>
+	</target>
+	<target name="get-with-params" depends="check-params" if="has-params" >
+        <get src="${srcDomain}/${srcFolder}/${srcFile}&amp;ts=${ts}" dest="${dest}"/>
+	</target>
+	
+    <target name="copy-if-cached" if="found-in-cache">
+		<echo>${INFO_USING_CACHED_FILE} ${downloadCacheFolder}/${srcFolder}/${srcFile}</echo>
+		<copy file="${downloadCacheFolder}/${srcFolder}/${srcFile}" tofile="${dest}" overwrite="true" />
+	</target> 
+	
+    <target name="check-cache" if="usingDownloadCache">
+		<available file="${downloadCacheFolder}/${srcFolder}/${srcFile}" property="found-in-cache" />
+	</target> 
+	
+    <target name="put-in-cache" unless="skipCache">
+		<copy tofile="${downloadCacheFolder}/${srcFolder}/${srcFile}" file="${dest}" />
+	</target> 
+	
+    <target name="check-sum" if="md5" 
+        description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        
+        <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
+        <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" property="${md5}" />
+        <fail message="${failmessage}">
+			<condition>
+				<equals arg1="${we.failed}" arg2="false" />
+			</condition>
+		</fail>
+    </target>
+	
+    <target name="check-sum-from-file" if="srcMD5Domain" 
+        description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        
+        <antcall target="get-with-no-params">
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
+        <antcall target="get-with-params" >
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
+        <antcall target="get-local" >
+            <param name="srcDomain" value="${srcMD5Domain}"/>
+            <param name="srcFile" value="${srcFile}.md5"/>
+            <param name="dest" value="${dest}.md5" />
+        </antcall>
+        <echo>${INFO_VALIDATING_FILE} ${dest}</echo>
+        <checksum file="${dest}" algorithm="MD5" verifyproperty="we.failed" />
+        <fail message="${failmessage}">
+			<condition>
+				<equals arg1="${we.failed}" arg2="false" />
+			</condition>
+		</fail>
+    </target>
+	<target name="delete-download-dir">
+		<delete dir="${download.dir}"/>
+	</target>
+</project>

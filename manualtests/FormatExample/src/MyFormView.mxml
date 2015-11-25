@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*" 
+				xmlns:models="models.*" 
+				xmlns:acc="org.apache.flex.html.accessories.*">
+	
+	<fx:Style>
+		.title {
+			font-size: 14pt;
+			font-weight: bold;
+		}
+
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import dialogs.LoginDialog;
+			
+			import org.apache.flex.core.IPopUpHost;
+			import org.apache.flex.events.Event;
+			import org.apache.flex.utils.UIUtils;
+			
+			
+			private function showLogin():void
+			{
+				var dialog:LoginDialog = new LoginDialog();
+				var host:IPopUpHost = UIUtils.findPopUpHost(this);
+				host.addElement(dialog);
+				UIUtils.center(dialog,this);
+				
+				dialog.addEventListener("close",closeDialog);
+			}
+			
+			private function closeDialog(event:org.apache.flex.events.Event):void
+			{
+				var dialog:LoginDialog = event.currentTarget as LoginDialog;
+				UIUtils.removePopUp(dialog);
+			}
+		]]>
+	</fx:Script>
+	
+	<js:Container width="600" height="700" x="50" y="50">
+		<js:beads>
+			<js:VerticalLayout />
+		</js:beads>
+		
+		<js:Label text="Loan Form" className="title" />
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="Your Name:" />
+			<js:TextInput id="nameField" />
+		</js:Container>
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="Your Age:" />
+			<js:TextInput id="ageField">
+				<js:beads>
+					<js:NumericOnlyTextInputBead />
+				</js:beads>
+			</js:TextInput>
+		</js:Container>
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="Phone Number:" />
+			<js:TextInput id="phoneField" >
+				<js:beads>
+					<js:TextPromptBead prompt="9995551235" />
+					<js:FormatableTextInputView />
+					<acc:PhoneNumberFormatter propertyName="text" />
+				</js:beads>
+			</js:TextInput>
+		</js:Container>
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="Date of Loan:" />
+			<js:DateField id="dateOfLoan"/>
+		</js:Container>
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="Loan Amount:" />
+			<js:TextInput id="loanAmount">
+				<js:beads>
+					<js:TextPromptBead prompt="US dollars" />
+					<js:FormatableTextInputView />
+					<acc:NumberFormatter />
+				</js:beads>
+			</js:TextInput>
+		</js:Container>
+		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:TextButton text="Login" click="showLogin()" />
+		</js:Container>
+		
+	</js:Container>
+	
+</js:ViewBase>

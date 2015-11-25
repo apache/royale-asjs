@@ -1,0 +1,36 @@
+Vanilla Flex to Javascript (VF2JS)
+==================================
+
+Install prerequisits
+____________________
+
+- you will need to install 'ant' and 'git' on your machine
+- get a release version of the Flex SDK (i.e. Apache Flex SDK 4.13.0, 
+  but any other will do fine as well)
+
+
+
+Using the source distribution
+_____________________________
+
+- open command line and 'cd' to the VF2JS directory 
+- run 'ant install -Dflex.sdk.loc="[sdk.directory]"' (where 
+  [sdk.directory] is the full path to the Flex SDK you want to overlay,
+  i.e. "/Applications/Adobe Flash Builder 4.7/sdks/4.13.0")
+  - if your 'PLAYERGLOBAL_HOME' environment variable is set to a value
+    that is different from the version you chose for the Flex SDK, or
+    if you have not set that environment variable, add 
+    ' -DPLAYERGLOBAL_HOME=[sdk.directory]/frameworks/libs/player' to the
+    end of the command
+
+
+
+Publishing with VF2JS
+_____________________
+
+- open Flex project, select your newly overlayed Flex SDK
+  in 'Project/Properties -> Flex Compiler'
+- import the VF2JS launch config:
+  - choose 'File/Import... -> Launch Configurations' and point
+    to '[sdk.directory]/ide/flashbuilder/launch'
+- to publish to JS, choose 'Run/External Tool/VF2JS (Debug and Release Build)'

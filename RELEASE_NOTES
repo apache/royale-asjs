@@ -1,0 +1,83 @@
+Apache FlexJS 0.5.0
+=================
+
+Apache FlexJS is a next-generation Flex SDK that provides the capability
+to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
+in a browser without Flash.
+
+This is the third release of Apache FlexJS.  It is an ‘beta’ type of release.
+Expect to find lots of bugs and missing features.
+
+Apache FlexJS 0.0.2
+=================
+
+Apache FlexJS is a next-generation Flex SDK that provides the capability
+to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
+in a browser without Flash.
+
+This is the second release of Apache FlexJS.  It is an 'alpha' type of release.
+Expect to find lots of bugs and missing features.
+
+Known Issues
+_____________
+
+Adobe Flash Builder Integration
+
+Flash Builder will not generate correct MXML when generating a new Flex Project
+that uses an Apache FlexJS SDK.  It is recommended that you copy an the MXML
+for the main application from one of the FlexJS example applications.  More details
+can be found on the Apache Flex Wiki at: 
+https://cwiki.apache.org/confluence/display/FLEX/Using+FlexJS+with+Adobe+Flash+Builder
+
+Examples and Compiler Warnings
+
+Several of the Examples will have compiler warnings in the output and return
+an exit code of 2.  But they still be operational.
+
+Building the Examples
+
+There are several examples in the "examples" folder.  Use "ant examples" from the
+SDK's build.xml to build them.  Building them individually may result in errors.
+The DataBindingTest is the most up-to-date example and should allow both the SWF
+version and cross-compiled version to select one of the stock symbols from
+the drop down and hit a button to get a stock price.  Some of other the examples 
+may not cross-compile or work correctly.
+
+Java Version Mismatch
+
+If you get an error: Exception in thread "main" java.lang.UnsupportedClassVersionError:
+org/apache/flex/compiler/clients/MXMLJSC : Unsupported major.minor version 51.0 (or a
+larger number), this indicates that FlexJS is trying to use Java 6 to compile cross-
+compile the application.  Check the path to Java specified in the js/bin/mxmlc or 
+js/bin/mxmlc.bat file.  You may have to modify it to point to a Java 7 JDK.  If the
+error occurred when using one of the Flash Builder launch configurations, try
+running the js/bin/mxmlc or js/bin/mxmlc.bat file from the command line.
+
+"${project_loc}" Error
+
+You may get the following error using one of the Flash Builder launch configurations:
+    
+    Variable references empty selection: ${project_loc}
+
+This indicates that Flash Builder cannot determine which project in the workspace is
+the active project.  Click on the project in the Package Explorer, or on a file in the
+editor that belongs to that project before using the launch configuration.
+
+Differences from Apache FlexJS 0.0.1 include:
+
+New Features
+------------
+-support for Move and Fade effects
+-example using Google Maps
+-support for Cordova Application, Camera, and Weinre
+
+Bug Fixes
+---------
+-FLEX-34258 Error cross-compiling on Windows
+
+Please report new issues to our bugbase at:
+
+    https://issues.apache.org/jira/browse/FLEX
+
+                                          The Apache Flex Project
+                                          <http://flex.apache.org/>

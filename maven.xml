@@ -1,0 +1,472 @@
+<?xml version="1.0" ?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project default="install" basedir=".">
+
+    <property name="version" value="0.5.0"/>
+
+    <!-- Set type to RELEASE in order to deploy to the release repo -->
+    <property name="type" value="SNAPSHOT"/>
+
+    <condition property="maven.version"
+               value="${version}"
+               else="${version}-SNAPSHOT">
+        <equals arg1="${type}" arg2="RELEASE"/>
+    </condition>
+
+    <condition property="maven.repositoryId"
+               value="apache.releases.https"
+               else="apache.snapshots.https">
+        <equals arg1="${type}" arg2="RELEASE"/>
+    </condition>
+
+    <condition property="maven.repositoryUrl"
+               value="https://repository.apache.org/service/local/staging/deploy/maven2"
+               else="https://repository.apache.org/content/repositories/snapshots">
+        <equals arg1="${type}" arg2="RELEASE"/>
+    </condition>
+
+    <target name="package">
+        <echo message="Preparing Maven artifacts vor version ${maven.version} ..."/>
+
+        <delete dir="generated/maven"/>
+        <mkdir dir="generated/maven"/>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Binding"/>
+            <param name="artifactName" value="binding"/>
+            <param name="fileName" value="frameworks/libs/Binding.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Charts"/>
+            <param name="artifactName" value="charts"/>
+            <param name="fileName" value="frameworks/libs/Charts.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Collections"/>
+            <param name="artifactName" value="collections"/>
+            <param name="fileName" value="frameworks/libs/Collections.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Core"/>
+            <param name="artifactName" value="core"/>
+            <param name="fileName" value="frameworks/libs/Core.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="CreateJS"/>
+            <param name="artifactName" value="createjs"/>
+            <param name="fileName" value="frameworks/libs/CreateJS.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="DragDrop"/>
+            <param name="artifactName" value="dragdrop"/>
+            <param name="fileName" value="frameworks/libs/DragDrop.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Effects"/>
+            <param name="artifactName" value="effects"/>
+            <param name="fileName" value="frameworks/libs/Effects.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Flat"/>
+            <param name="artifactName" value="flat"/>
+            <param name="fileName" value="frameworks/libs/Flat.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Formatters"/>
+            <param name="artifactName" value="formatters"/>
+            <param name="fileName" value="frameworks/libs/Formatters.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="GoogleMaps"/>
+            <param name="artifactName" value="googlemaps"/>
+            <param name="fileName" value="frameworks/libs/GoogleMaps.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Graphics"/>
+            <param name="artifactName" value="graphics"/>
+            <param name="fileName" value="frameworks/libs/Graphics.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="HTML"/>
+            <param name="artifactName" value="html"/>
+            <param name="fileName" value="frameworks/libs/HTML.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="HTML5"/>
+            <param name="artifactName" value="html5"/>
+            <param name="fileName" value="frameworks/libs/HTML5.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="JQuery"/>
+            <param name="artifactName" value="jquery"/>
+            <param name="fileName" value="frameworks/libs/JQuery.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Mobile"/>
+            <param name="artifactName" value="mobile"/>
+            <param name="fileName" value="frameworks/libs/Mobile.swc"/>
+        </antcall>
+
+        <antcall target="-pack-maven-artifact">
+            <param name="moduleName" value="Network"/>
+            <param name="artifactName" value="network"/>
+            <param name="fileName" value="frameworks/libs/Network.swc"/>
+        </antcall>
+
+        <!-- Zip up the config-xmls -->
+        <copy file="maven/flexjs-framework-framework.pom" tofile="generated/maven/flexjs-framework-framework.pom">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="@VERSION@" to="${maven.version}"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <zip destfile="generated/maven/flexjs-framework-framework-configs.zip">
+            <fileset dir="frameworks" includes="*.xml"/>
+            <fileset dir="frameworks" includes="projects/*/*-manifest.xml"/>
+        </zip>
+
+        <copy file="maven/flexjs-framework.pom" tofile="generated/maven/flexjs-framework.pom">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="@VERSION@" to="${maven.version}"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <!-- Zip up all the JavaScript in one zip archive -->
+        <zip destfile="generated/maven/flexjs-js.jar">
+            <fileset dir="frameworks/js"/>
+        </zip>
+
+        <antcall target="-prepare-maven-pom-artifact">
+            <param name="artifactName" value="flexjs-framework"/>
+        </antcall>
+    </target>
+
+    <target name="install" depends="package, -setup-aether-antlib">
+        <echo message="Installing Maven artifacts ..."/>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="binding"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="charts"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="collections"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="core"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="createjs"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="dragdrop"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="effects"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="flat"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="formatters"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="googlemaps"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="graphics"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html5"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="jquery"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="mobile"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-artifact-file-with-sources">
+            <param name="artifactName" value="network"/>
+            <param name="artifactExtension" value="swc"/>
+        </antcall>
+
+        <antcall target="-install-maven-framework-config-artifact"/>
+
+        <antcall target="-install-maven-artifact-pom">
+            <param name="artifactName" value="flexjs-framework"/>
+        </antcall>
+    </target>
+
+    <target name="deploy" depends="install">
+        <echo message="Deploying Maven artifacts to repository with id ${maven.repositoryId} and url ${maven.repositoryUrl} ..."/>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="binding"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="charts"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="collections"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="core"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="createjs"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="dragdrop"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="effects"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="flat"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="formatters"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="googlemaps"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="graphics"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="html5"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="jquery"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="mobile"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-artifact-file-with-sources">
+            <param name="artifactName" value="network"/>
+        </antcall>
+
+        <antcall target="-deploy-maven-framework-config-artifact"/>
+
+        <antcall target="-deploy-maven-artifact-pom">
+            <param name="artifactName" value="flexjs-framework"/>
+        </antcall>
+    </target>
+
+    <!--
+
+        Internal helper targets.
+
+    -->
+
+    <target name="-setup-aether-antlib">
+        <mkdir dir="utils"/>
+        <get src="http://search.maven.org/remotecontent?filepath=org/eclipse/aether/aether-ant-tasks/1.0.0.v20140518/aether-ant-tasks-1.0.0.v20140518-uber.jar"
+             dest="utils/aether-ant-tasks-uber.jar" verbose="true" skipexisting="true"/>
+        <fail message="Checksum mismatch for 'antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload.">
+            <condition>
+                <not>
+                    <checksum file="utils/aether-ant-tasks-uber.jar" algorithm="SHA"
+                              property="95dadd03392a75564904da45108cf048abe6e5bb" verifyproperty="checksum.matches"/>
+                </not>
+            </condition>
+        </fail>
+        <!-- Setup the maven-ant-tasks. -->
+        <path id="aether-ant-tasks.classpath" path="utils/aether-ant-tasks-uber.jar" />
+        <typedef resource="org/eclipse/aether/ant/antlib.xml"
+                 uri="antlib:org.eclipse.aether.ant"
+                 classpathref="aether-ant-tasks.classpath" />
+    </target>
+
+    <target name="-pack-maven-artifact">
+        <echo message="Packing module ${moduleName} as Maven artifact ${artifactName}"/>
+        <copy file="maven/flexjs-artifact.pom" tofile="generated/maven/${artifactName}.pom">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="@ARTIFACT@" to="${artifactName}"/>
+                    <replacestring from="@VERSION@" to="${maven.version}"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <copy file="${fileName}" tofile="generated/maven/${artifactName}.swc"/>
+        <zip destfile="generated/maven/${artifactName}-sources.jar">
+            <fileset dir="frameworks/projects/${moduleName}/as/src"/>
+            <fileset dir="frameworks/projects/${moduleName}/asjs/src" erroronmissingdir="false"/>
+            <fileset dir="frameworks/projects/${moduleName}/js/src"/>
+        </zip>
+    </target>
+
+    <target name="-prepare-maven-pom-artifact">
+        <echo message="Preparing Maven pom artifact ${artifactName}"/>
+        <copy file="maven/${artifactName}.pom" tofile="generated/maven/${artifactName}.pom">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="@ARTIFACT@" to="${artifactName}"/>
+                    <replacestring from="@VERSION@" to="${maven.version}"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="-install-maven-artifact-pom" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Installing Pom: ${artifactName}"/>
+        <artifact:install>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+        </artifact:install>
+    </target>
+
+    <target name="-install-maven-artifact-file" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Installing File: ${artifactName}"/>
+        <artifact:install>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+            <artifact:artifact file="generated/maven/${artifactName}.${artifactExtension}"/>
+        </artifact:install>
+    </target>
+
+    <target name="-install-maven-framework-config-artifact" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Installing Framework config"/>
+        <artifact:install>
+            <artifact:pom file="generated/maven/flexjs-framework-framework.pom"/>
+            <artifact:artifact file="generated/maven/flexjs-framework-framework-configs.zip" classifier="configs"/>
+        </artifact:install>
+    </target>
+
+    <target name="-install-maven-artifact-file-with-sources" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Installing File: ${artifactName}"/>
+        <artifact:install>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+            <artifact:artifact file="generated/maven/${artifactName}.${artifactExtension}"/>
+            <artifact:artifact file="generated/maven/${artifactName}-sources.jar" classifier="sources"/>
+        </artifact:install>
+    </target>
+
+    <target name="-deploy-maven-artifact-pom" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Deploying Pom: ${artifactName} to ${maven.repositoryUrl}"/>
+        <artifact:deploy>
+            <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+        </artifact:deploy>
+    </target>
+
+    <target name="-deploy-maven-framework-config-artifact" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Deploying Framework config"/>
+        <artifact:deploy>
+            <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
+            <artifact:pom file="generated/maven/flexjs-framework-framework.pom"/>
+            <artifact:artifact file="generated/maven/flexjs-framework-framework-configs.zip" classifier="configs"/>
+        </artifact:deploy>
+    </target>
+
+    <target name="-deploy-maven-artifact-file" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Deploying File: ${artifactName} to ${maven.repositoryUrl}"/>
+        <artifact:deploy>
+            <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+            <artifact:artifact file="generated/maven/${artifactName}.${artifactExtension}"/>
+        </artifact:deploy>
+    </target>
+
+    <target name="-deploy-maven-artifact-file-with-sources" depends="-setup-aether-antlib"
+            xmlns:artifact="antlib:org.eclipse.aether.ant">
+        <echo message="Deploying File: ${artifactName} to ${maven.repositoryUrl}"/>
+        <artifact:deploy>
+            <artifact:remoterepo id="${maven.repositoryId}" url="${maven.repositoryUrl}"/>
+            <artifact:pom file="generated/maven/${artifactName}.pom"/>
+            <artifact:artifact file="generated/maven/${artifactName}.swc"/>
+            <artifact:artifact file="generated/maven/${artifactName}-sources.jar" classifier="sources"/>
+        </artifact:deploy>
+    </target>
+
+</project>

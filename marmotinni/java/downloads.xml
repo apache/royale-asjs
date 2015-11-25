@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="downloads" default="main" basedir=".">
+	
+	<property name="MARMOTINNI_HOME" location="."/>
+    <property name="lib.dir" value="${MARMOTINNI_HOME}/lib"/>    
+	<property name="download.dir" value="${MARMOTINNI_HOME}/in"/>
+    
+	<!-- 
+	   Notes:
+	       For Apache, the JARS must be removed from the repository.
+	       
+	       Licenses:
+            selenium (2.32.0) - Apache 2.0
+	-->
+	
+    <property name="selenium2.jar.dir.name" value="2.45"/>
+    <property name="selenium2.jar.name" value="selenium-java-2.45.0"/>
+    <property name="selenium2.dir.name" value="selenium-2.45.0"/>
+	
+    <!-- 
+        Because the downloads requires a network connection and the JARs don't change very often, 
+        they are each downloaded only if they don't already exist. 
+    -->
+    
+	<target name="main" depends="prepare, selenium2-jar" 
+		description="Downloads all the required thirdparty JARs"/>
+
+    <target name="prepare" >
+		<echo message="Making lib directory ${basedir}/${lib.dir}"/>
+        <mkdir dir="${lib.dir}" />
+    </target>
+	
+	
+    <!--
+	    Download thirdparty JARs    
+	-->
+
+    <!--
+        Download a zip or gz file, extracts the jar file, and optionally copies the jar
+        file to a different location and optinally verifies the checksum.  
+        If the checksum fails, this script fails.
+
+        Params are:
+            srcUrl
+            zipFile - a .gz file for untar with gzip, else unzip
+            [md5]
+            [srcJarPath] - both src and dest required for the copy
+            [destJarFile]
+
+        Note: This is purposely coded without <if><else><then> so that a dependency on
+        ant-contrib.jar isn't required.        
+    -->
+    
+    <target name="download-zip"
+        description="Downloads tar/zip, and optionally verifies checksum and copies extracted jar.">                
+        
+        <mkdir dir="${download.dir}"/>        
+    	
+        <get src="${srcUrl}/${zipFile}" dest="${download.dir}/${zipFile}"/>
+
+        <condition property="zip.compressed">
+            <matches string="${zipFile}" pattern="^*.zip$"/>      
+        </condition>
+ 
+        <antcall target="untar-file"/>
+        <antcall target="unzip-file"/>
+        
+        <antcall target="check-sum">
+            <param name="message" value="Checksum mismatch for ${download.dir}/${zipFile}"/>
+        </antcall>
+        
+        <condition property="destination.known">
+            <and>
+                <isset property="srcJarPath"/>
+                <isset property="destJarFile"/>
+            </and>
+        </condition> 
+        <antcall target="copy-downloaded-jar"/>
+     </target>   	
+     
+    <target name="download-bz2"
+        description="Downloads bz2, and optionally verifies checksum and copies extracted jar.">                
+        
+        <mkdir dir="${download.dir}"/>        
+    	
+        <get src="${srcUrl}/${zipFile}" dest="${download.dir}/${zipFile}"/>
+
+        <untar src="${download.dir}/${zipFile}" dest="${download.dir}/temp" compression="bzip2"/> 
+        
+        <antcall target="check-sum">
+            <param name="message" value="Checksum mismatch for ${download.dir}/${zipFile}"/>
+        </antcall>
+        
+        <condition property="destination.known">
+            <and>
+                <isset property="srcJarPath"/>
+                <isset property="destJarFile"/>
+            </and>
+        </condition> 
+        <antcall target="copy-downloaded-jar"/>
+     </target>   	
+     
+    <!--
+        Download a jar file and optionally verify the checksum.
+        If the checksum fails, this script fails.
+        
+        Params are:
+            srcUrl
+            srcJarFile
+            destJarFile
+            [md5]
+    -->
+    <target name="download-jar" 
+        description="Downloads jar, and optionally verifies checksum.">                
+     
+        <get src="${srcUrl}/${srcJarFile}" dest="${destJarFile}"/>
+        <checksum file="${destJarFile}" algorithm="MD5" property="${we.failed}"/>
+        <antcall target="fail-with-message">
+            <param name="message" value="Checksum mismatch for ${destJarFile}"/>
+        </antcall>
+    </target>
+
+    <target name="untar-file" unless="zip.compressed" description="Untars zipFile">
+        <untar src="${download.dir}/${zipFile}" dest="${download.dir}/temp" compression="gzip"/> 
+    </target>
+    
+    <target name="unzip-file" if="zip.compressed" description="Unzips zipFile">
+        <unzip src="${download.dir}/${zipFile}" dest="${download.dir}/temp"/>    
+    </target>
+    
+    <target name="check-sum" if="md5" 
+        description="Verifies MD5 checksum, and fails if checksum doesn't match">
+        
+        <checksum file="${download.dir}/${zipFile}" algorithm="MD5" property="${we.failed}"/>
+        <antcall target="fail-with-message">
+            <param name="message" value="${message}"/>
+        </antcall>
+    </target>
+    
+    <target name="copy-downloaded-jar" if="destination.known">
+        <mkdir dir="${lib.dir}"/>
+        <copy file="${download.dir}/temp/${srcJarPath}" toFile="${destJarFile}" verbose="true"/>
+    </target>
+    
+    <target name="fail-with-message" if="we.failed" 
+        description="Conditionally fails with the specified message">                
+        <fail message="${message}"/>
+    </target>
+	
+	<!--
+	    Selenium 2 - Web application test framework
+	-->
+	
+	<target name="selenium2-jar-check" description="Checks if selenium jar exists.">
+	    <available file="${lib.dir}/selenium/${selenium2.jar.name}.jar" property="selenium2.jar.exists" />
+	</target>
+	
+	<target name="selenium2-jar" depends="selenium2-jar-check" unless="selenium2.jar.exists" 
+	    description="Copies the selenium build jars.">
+		<mkdir dir="${lib.dir}/selenium" />
+	    <antcall target="download-zip">
+	      <param name="srcUrl" value="http://selenium-release.storage.googleapis.com/${selenium2.jar.dir.name}"/>
+	      <param name="zipFile" value="${selenium2.jar.name}.zip"/>
+	    </antcall>
+	    <get src="http://www.apache.org/licenses/LICENSE-2.0" dest="${lib.dir}/selenium/selenium-LICENSE.txt"/>
+	    <copy todir="${lib.dir}/selenium">
+	        <fileset dir="${download.dir}/temp/${selenium2.dir.name}">
+	            <include name="**/*"/>
+	        </fileset>
+	    </copy>
+		<antcall target="clean" />
+	</target>
+	
+    <!--
+		Cleanup
+	-->
+	
+    <target name="clean" 
+        description="Removes thirdparty downloads.">
+        
+        <delete failonerror="false" includeEmptyDirs="true">
+            <fileset dir="${download.dir}" />
+        </delete>
+    </target>
+    
+</project>

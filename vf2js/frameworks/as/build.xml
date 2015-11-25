@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="vf2js-frameworks-as" default="main" basedir=".">
+
+  <property name="flex.sdk.loc" value="${basedir}/.." />
+
+  <target name="main" depends="clean,compile" description="Clean build of all SWCs" />
+
+  <target name="compile" description="Builds all SWCs but not their resource bundles">
+    <antcall target="vf2js_mx" />
+    <antcall target="vf2js_s" />
+  </target>
+
+  <target name="clean" description="Cleans all artefacts">
+    <ant dir="${basedir}/projects/vf2js_mx" target="clean" />
+    <ant dir="${basedir}/projects/vf2js_s" target="clean" />
+    
+    <delete dir="${basedir}/libs" />
+  </target>
+
+  <target name="vf2js_mx" description="Clean build of vf2js_mx.swc">
+    <ant dir="${basedir}/projects/vf2js_mx" />
+  </target>
+
+  <target name="vf2js_s" description="Clean build of vf2js_s.swc">
+    <ant dir="${basedir}/projects/vf2js_s" />
+  </target>
+
+  <target name="copy.to.sdk" description="Copy SWCs to SDK">
+    <copy todir="${flex.sdk.loc}/frameworks/libs">
+      <fileset dir="./libs" />
+    </copy>
+  </target>
+
+</project>

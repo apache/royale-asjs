@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    initialize="creationCompleteHandler()"
+    >
+	<fx:Script>
+		<![CDATA[
+			import mx.olap.OLAPMember;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.messaging.messages.ErrorMessage;
+			import mx.olap.OLAPQuery;
+			import mx.olap.OLAPSet;
+			import mx.olap.IOLAPQuery;
+			import mx.olap.IOLAPQueryAxis;
+			import mx.olap.IOLAPCube;
+			import mx.olap.OLAPResult;
+			import mx.events.CubeEvent;
+			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;
+			
+			include "DataIntro.as"
+			
+			private function creationCompleteHandler():void {
+				myMXMLCube.refresh();
+			}
+			private function getQuery(cube:IOLAPCube):IOLAPQuery {
+				var query:OLAPQuery = new OLAPQuery;
+				var om:OLAPMember;
+				
+				var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS);
+				var productSet:OLAPSet = new OLAPSet;
+				productSet.addElement(
+					cube.findDimension("ProductDim").findAttribute("Product").findMember("ColdFusion"));
+				productSet.addElement(
+					cube.findDimension("ProductDim").findAttribute("Product").findMember("Flex"));
+				
+				om = OLAPMember(cube.findDimension("ProductDim").findAttribute("Product").defaultMember); 
+				om.displayName = "Total";
+				productSet.addElement(om);
+				
+				rowQueryAxis.addSet(productSet);
+				
+				var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);         
+				var quarterSet:OLAPSet= new OLAPSet;
+				quarterSet.addElement(
+					cube.findDimension("TimeDim").findAttribute("Quarter").findMember("Q1"));
+				quarterSet.addElement(
+					cube.findDimension("TimeDim").findAttribute("Quarter").findMember("Q2"));
+				
+				om = OLAPMember(cube.findDimension("TimeDim").findAttribute("Quarter").defaultMember); 
+				om.displayName = "Total";
+				quarterSet.addElement(om);
+				
+				colQueryAxis.addSet(quarterSet);
+				
+				return query;       
+			}
+
+			private function runQuery():void {
+				var cube:IOLAPCube = myMXMLCube;
+				var query:IOLAPQuery = getQuery(cube);
+				var token:AsyncToken = cube.execute(query);
+				token.addResponder(new AsyncResponder(showResult, showFault));
+			}
+			
+			private function showFault(error:ErrorMessage, token:Object):void {
+				Alert.show(error.faultString);
+			}
+			
+			private function showResult(result:Object, token:Object):void {
+				if (!result) {
+					Alert.show("No results from query.");
+					return;
+				}
+				testODG.dataProvider= result as OLAPResult;            
+			}        
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<mx:OLAPCube name="FlatSchemaCube" dataProvider="{flatData}" id="myMXMLCube" complete="runQuery()">
+		<mx:OLAPDimension name="CustomerDim">
+			<mx:OLAPAttribute name="Customer" dataField="customer"/>
+			<mx:OLAPHierarchy name="CustomerHier" 
+							  hasAll="true">
+				<mx:OLAPLevel attributeName="Customer"/>
+			</mx:OLAPHierarchy>
+		</mx:OLAPDimension>
+		
+		<mx:OLAPDimension name="ProductDim">
+			<mx:OLAPAttribute name="Product" dataField="product"/>
+			<mx:OLAPHierarchy name="ProductHier" 
+							  hasAll="true">
+				<mx:OLAPLevel attributeName="Product"/>
+			</mx:OLAPHierarchy>
+		</mx:OLAPDimension>
+		
+		<mx:OLAPDimension name="TimeDim">
+			<mx:OLAPAttribute name="Year" dataField="year"/>
+			<mx:OLAPAttribute name="Quarter" dataField="quarter"/>
+			<mx:OLAPAttribute name="Month" dataField="month"/>
+			<mx:OLAPHierarchy name="Time-Period" 
+							  hasAll="true">
+				<mx:OLAPLevel attributeName="Year"/>
+				<mx:OLAPLevel attributeName="Quarter"/>
+				<mx:OLAPLevel attributeName="Month"/>
+			</mx:OLAPHierarchy> 
+		</mx:OLAPDimension>
+		
+		<mx:OLAPDimension name="GeographyDim">  
+			<mx:OLAPAttribute name="Country" dataField="country"/>
+			<mx:OLAPAttribute name="Region" dataField="region"/>
+			<mx:OLAPAttribute name="State" dataField="state"/>
+			<mx:OLAPHierarchy name="Country-Region-State" 
+							  hasAll="true">
+				<mx:OLAPLevel attributeName="Country"/>
+				<mx:OLAPLevel attributeName="Region"/>
+				<mx:OLAPLevel attributeName="State"/>
+			</mx:OLAPHierarchy> 
+		</mx:OLAPDimension>
+		
+		<mx:OLAPMeasure name="Revenue" dataField="revenue" aggregator="SUM"/>
+		<mx:OLAPMeasure name="Cost" dataField="cost" aggregator="SUM"/>
+	</mx:OLAPCube>		
+	</fx:Declarations>	
+
+	<mx:OLAPDataGrid id="testODG"/>
+
+
+
+</mx:VBox>

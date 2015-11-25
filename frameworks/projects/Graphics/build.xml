@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="Graphics" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../../.."/>
+    
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <property name="gjslint" value="gjslint" />
+    <property name="jshint" value="jshint" />
+    <condition property="no.lint" value="true">
+        <os family="windows"/>
+    </condition>
+    
+    <target name="main" depends="clean,compile,test" description="Clean build of Graphics.swc">
+    </target>
+    
+    <target name="all" depends="main,compile-asjs,lint-js,test-js" description="Full build of Graphics.swc">
+    </target>
+    
+    <target name="test" unless="is.jenkins">
+        <!-- no tests yet
+         <ant dir="as/tests" />
+         <ant dir="asjs/tests" />
+         -->
+    </target>
+    
+    <target name="test-js" unless="is.jenkins">
+        <!-- no tests yet
+         <ant dir="js/tests" />
+         -->
+    </target>
+    
+    
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/libs">
+                <include name="Graphics.swc"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false">
+            <fileset dir="${basedir}/js/out">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <path id="lib.path">
+      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+    </path>
+
+    <target name="compile" description="Compiles .as files into .swc">
+        <echo message="Compiling libs/Graphics.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+            Link in the classes (and their dependencies) for the MXML tags
+            listed in this project's manifest.xml.
+            Also link the additional classes (and their dependencies)
+            listed in GraphicsClasses.as,
+            because these aren't referenced by the manifest classes.
+            Keep the standard metadata when compiling.
+            Include the appropriate CSS files and assets in the SWC.
+            Don't include any resources in the SWC.
+            Write a bundle list of referenced resource bundles
+            into the file bundles.properties in this directory.
+        -->
+        <compc fork="true"
+               output="${FLEXJS_HOME}/frameworks/libs/Graphics.swc">
+            <jvmarg line="${compc.jvm.args}"/>
+            <load-config filename="compile-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+        </compc>
+    </target>
+
+    <target name="compile-asjs" >
+        <!-- nothing to cross-compile yet -->
+    </target>
+
+    <target name="lint-js" depends="gjslint, jshint, copy-js" />
+    <target name="copy-js" >
+        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+            <fileset dir="${basedir}/js/src">
+                <include name="**/**" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="gjslint" unless="no.lint">
+        <echo>running gjslint</echo>
+        <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
+            <arg value="--strict" />
+            <arg value="--disable" />
+            <arg value="006,100,214,300" />
+            <!-- 006: wrong indentation -->
+            <!-- 100: cannot have non-primitive value -->
+            <!-- 214: @fileoverview tag missing description -->
+            <!-- 300: missing newline at end of file -->
+            <arg value="--max_line_length" />
+            <arg value="120" />
+            <arg value="-r" />
+            <arg value="${basedir}/js/src" />
+        </exec>
+    </target>
+
+    <target name="jshint" unless="no.lint">
+        <echo>running jshint</echo>
+        <exec executable="${jshint}" dir="${basedir}" failonerror="true">
+            <arg value="--config" />
+            <arg value="${FLEX_HOME}/frameworks/js/jshint.properties" />
+            <arg value="${basedir}/js/src" />
+        </exec>
+    </target>
+
+</project>
