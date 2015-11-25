@@ -50,6 +50,19 @@ package org.apache.flex.html
 		}
 		
         /**
+         *  @private
+         */
+        COMPILE::JS
+        override public function set text(value:String):void
+        {
+            ImageAndTextModel(model).text = value;
+            COMPILE::JS
+            {
+                setInnerHTML();                    
+            }
+        }
+        
+        /**
          *  The URL of an icon to use in the button
          *  
          *  @langversion 3.0
@@ -68,6 +81,10 @@ package org.apache.flex.html
         public function set image(value:String):void
         {
             ImageAndTextModel(model).image = value;
+            COMPILE::JS
+            {
+                setInnerHTML();                    
+            }
         }
         
         /**
@@ -86,5 +103,17 @@ package org.apache.flex.html
             return element;
         }        
 
+        /**
+         */
+        COMPILE::JS
+        protected function setInnerHTML():void
+        {
+            var inner:String = '';
+            if (image != null)
+                inner += "<img src='" + image + "'/>";
+            inner += '&nbsp;';
+            inner += text;
+            element.innerHTML = inner;
+        };
 	}
 }
