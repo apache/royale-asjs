@@ -90,6 +90,7 @@ internal class HTMLClasses
 	    import org.apache.flex.html.beads.models.AlertModel; AlertModel;
 	}
     import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
+    import org.apache.flex.html.beads.models.RangeModel; RangeModel;
 	COMPILE::AS3
 	{
 	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
