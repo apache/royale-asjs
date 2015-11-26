@@ -1317,7 +1317,13 @@ package org.apache.flex.core
                 {
                     var view:IBeadView = new c as IBeadView;
                     if (view)
-                        addBead(view);
+                    {
+                        COMPILE::JS
+                        {
+                            _view = view;
+                        }
+                        addBead(view);                        
+                    }
                 }
             }
             if (getBeadByType(IBeadController) == null) 
