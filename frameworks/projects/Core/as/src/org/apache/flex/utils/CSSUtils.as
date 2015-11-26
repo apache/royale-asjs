@@ -92,6 +92,7 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
          */
         public static function toColorWithAlpha(value:Object):uint
         {
@@ -151,6 +152,7 @@ package org.apache.flex.utils
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
          */
         public static function getLeftValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -191,6 +193,7 @@ package org.apache.flex.utils
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
          */
         public static function getRightValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -228,6 +231,7 @@ package org.apache.flex.utils
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
          */
         public static function getTopValue(value:Object, values:Object, reference:Number = NaN):Number
         {
@@ -265,6 +269,7 @@ package org.apache.flex.utils
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
          */
         public static function getBottomValue(value:Object, values:Object, reference:Number = NaN):Number
         {
