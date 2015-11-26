@@ -23,10 +23,6 @@ COMPILE::AS3
     import flash.events.TimerEvent;
     import flash.utils.Timer;
 }
-COMPILE::JS
-{
-    import goog.bind;
-}
 
 import org.apache.flex.events.Event;
 
@@ -58,7 +54,6 @@ COMPILE::JS
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
- *  @flexjsignoreimport goog.bind
  */
 COMPILE::AS3
 public class Timer extends flash.utils.Timer
@@ -136,7 +131,7 @@ public class Timer extends EventDispatcher
     public function start():void
     {
         timerInterval =
-            setInterval(goog.bind(timerHandler, this), delay);
+            setInterval(timerHandler, delay);
     }
     
     private function timerHandler():void

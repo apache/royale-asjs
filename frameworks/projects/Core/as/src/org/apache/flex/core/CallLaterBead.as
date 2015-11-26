@@ -23,10 +23,6 @@ package org.apache.flex.core
         import flash.display.DisplayObject;
         import flash.events.Event;
     }
-    COMPILE::JS
-    {
-        import goog.bind;
-    }
     
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
@@ -40,7 +36,6 @@ package org.apache.flex.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     *  @flexjsignoreimport goog.bind
      */
 	public class CallLaterBead implements IBead
 	{
@@ -105,7 +100,7 @@ package org.apache.flex.core
             
             COMPILE::JS
             {
-                setTimeout(goog.bind(this.makeCalls, this), 0);
+                setTimeout(makeCalls, 0);
             }
         }
         

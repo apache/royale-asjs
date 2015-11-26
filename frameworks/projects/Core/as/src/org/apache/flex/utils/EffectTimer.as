@@ -27,7 +27,6 @@ COMPILE::AS3
 }
 COMPILE::JS
 {
-    import goog.bind;
     import org.apache.flex.events.EventDispatcher;
 }
 import org.apache.flex.core.IEffectTimer;
@@ -57,7 +56,6 @@ import org.apache.flex.events.ValueEvent;
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
- *  @flexjsignoreimport goog.bind
  */
 public class EffectTimer extends EventDispatcher implements IEffectTimer
 {
@@ -102,7 +100,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
         COMPILE::JS
         {
             timerInterval =
-                setInterval(goog.bind(timerHandler, this), interval);
+                setInterval(timerHandler, interval);
             var d:Date = new Date();
             return d.getTime();
         }
@@ -132,7 +130,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
     private function timerHandler():void
     {
         var d:Date = new Date();
-        dispatchEvent(new org.apache.flex.events.ValueEvent('update', d.getTime()));
+        dispatchEvent(new ValueEvent('update', false, false, d.getTime()));
     }
 }
 }

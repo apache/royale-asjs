@@ -171,8 +171,8 @@ package org.apache.flex.html
             typeNames = 'TextInput';
             
             //attach input handler to dispatch flexjs change event when user write in textinput
-            //goog.events.listen(element, 'change', goog.bind(killChangeHandler, this));
-            goog.events.listen(element, 'input', goog.bind(textChangeHandler, this));
+            //goog.events.listen(element, 'change', killChangeHandler);
+            goog.events.listen(element, 'input', textChangeHandler);
             
             positioner = element;
             positioner.style.position = 'relative';

@@ -142,7 +142,7 @@ package org.apache.flex.html
             button.style.height = '20px';
             button.style.margin = '0';
             button.style.border = 'solid #609 1px';
-            goog.events.listen(button, 'click', goog.bind(buttonClicked, this));
+            goog.events.listen(button, 'click', buttonClicked);
             element.appendChild(button);
             
             positioner = element;
@@ -151,7 +151,7 @@ package org.apache.flex.html
             // add a click handler so that a click outside of the combo box can
             // dismiss the pop-up should it be visible.
             goog.events.listen(document, 'click',
-                goog.bind(dismissPopup, this));
+                dismissPopup);
             
             input.flexjs_wrapper = this;
             
@@ -248,7 +248,7 @@ package org.apache.flex.html
             
             select = document.createElement('select') as HTMLSelectElement;
             select.style.width = width.toString() + 'px';
-            goog.events.listen(select, 'change', goog.bind(selectChanged, this));
+            goog.events.listen(select, 'change', selectChanged);
             
             dp = dataProvider as Array;
             n = dp.length;

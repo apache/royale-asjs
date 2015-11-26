@@ -98,9 +98,9 @@ package org.apache.flex.html
             element.flexjs_wrapper = this;
             
             /*addEventListener('childrenAdded',
-            goog.bind(runLayoutHandler, this));
+            runLayoutHandler);
             addEventListener('elementRemoved',
-            goog.bind(runLayoutHandler, this));*/
+            runLayoutHandler);*/
             
             return element;
         }        

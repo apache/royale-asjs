@@ -24,10 +24,6 @@ COMPILE::AS3
     import flash.external.ExternalInterface;
     import flash.utils.getQualifiedClassName;        
 }
-COMPILE::JS
-{
-    import goog.bind;    
-}
 
     /**
      *  The BrowserResizeListener class listens for browser
@@ -37,7 +33,6 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     *  @flexjsignoreimport goog.bind
      */
 	public class BrowserResizeListener implements IBead
 	{
@@ -105,7 +100,7 @@ COMPILE::JS
             COMPILE::JS
             {
                 window.addEventListener('resize',
-                    goog.bind(this.resizeHandler, this), false);
+                    this.resizeHandler, false);
                 if (!isNaN(this.minWidth))
                     document.body.style.minWidth = this.minWidth.toString() + 'px';
                 if (!isNaN(this.minHeight))

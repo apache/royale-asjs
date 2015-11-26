@@ -115,9 +115,9 @@ package org.apache.flex.html.beads
 				if (_model.source) {
 	                var host:IUIBase = _strand as IUIBase;
 	                host.element.addEventListener('load',
-	                    goog.bind(loadHandler, this), false);
+	                    loadHandler, false);
 	                host.addEventListener('sizeChanged',
-	                    goog.bind(sizeChangedHandler, this));
+	                    sizeChangedHandler);
 	                (host.element as HTMLImageElement).src = _model.source;
 				}
             }

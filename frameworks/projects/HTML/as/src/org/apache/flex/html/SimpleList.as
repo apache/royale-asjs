@@ -59,7 +59,7 @@ package org.apache.flex.html
             element = document.createElement('select') as WrappedHTMLElement;
             (element as HTMLSelectElement).size = 5;
             goog.events.listen(element, 'change',
-                goog.bind(changeHandler, this));
+                changeHandler);
             positioner = element;
             positioner.style.position = 'relative';
             className = 'SimpleList';

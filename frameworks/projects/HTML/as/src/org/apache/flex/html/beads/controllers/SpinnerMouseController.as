@@ -92,10 +92,10 @@ package org.apache.flex.html.beads.controllers
                 decrementButton = host.decrementButton;
                 
                 goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
-                    goog.bind(incrementClickHandler, this));
+                    incrementClickHandler);
                 
                 goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
-                    goog.bind(decrementClickHandler, this));
+                    decrementClickHandler);
 
             }
 		}

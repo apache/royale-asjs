@@ -187,7 +187,7 @@ package org.apache.flex.html
             spinner.decrementButton.positioner.style.fontSize = '7px';
             spinner.positioner.style.display = 'inline-block';
             goog.events.listen(spinner, 'valueChange',
-                goog.bind(spinnerChange, this));
+                spinnerChange);
             
             element.flexjs_wrapper = this;
             className = 'NumericStepper';

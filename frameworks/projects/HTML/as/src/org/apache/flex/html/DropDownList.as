@@ -203,7 +203,7 @@ package org.apache.flex.html
             element = document.createElement('select') as WrappedHTMLElement;
             (element as HTMLSelectElement).size = 1;
             goog.events.listen(element, 'change',
-                goog.bind(changeHandler, this));
+                changeHandler);
             
             positioner = element;
             positioner.style.position = 'relative';

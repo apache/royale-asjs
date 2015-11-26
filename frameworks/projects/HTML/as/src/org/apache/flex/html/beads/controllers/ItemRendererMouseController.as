@@ -31,7 +31,7 @@ COMPILE::JS {
 	import org.apache.flex.events.BrowserEvent;
 	import goog.events.Event;
 	import goog.events.EventType;
-	import goog.bind;
+    import goog.events;
 }
 
 	/**
@@ -44,7 +44,6 @@ COMPILE::JS {
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport goog.events.Event
-     *  @flexjsignoreimport goog.bind
 	 */
 	public class ItemRendererMouseController implements IBeadController
 	{
