@@ -56,18 +56,34 @@ package org.apache.flex.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function get text():String
 		{
-			return ITextModel(model).text;
+            COMPILE::AS3
+            {
+                return ITextModel(model).text;                    
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
 		}
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function set text(value:String):void
 		{
-			ITextModel(model).text = value;
+            COMPILE::AS3
+            {
+                ITextModel(model).text = value;                    
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+            }
 		}
 		
         /**
