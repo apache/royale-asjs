@@ -53,6 +53,15 @@ package org.apache.flex.html
          *  @private
          */
         COMPILE::JS
+        override public function get text():String
+        {
+            return ImageAndTextModel(model).text;
+        }
+        
+        /**
+         *  @private
+         */
+        COMPILE::JS
         override public function set text(value:String):void
         {
             ImageAndTextModel(model).text = value;
