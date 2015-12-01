@@ -155,6 +155,30 @@ org.apache.flex.utils.Language.checkInterfaces = function(leftOperand, rightOper
 };
 
 /**
+ * Implementation of "classDef is Class"
+ * 
+ * @export
+ * @param {?} classDef A possible Class definition
+ * @return {boolean} Returns true if classDef is a Class definition.
+ */
+org.apache.flex.utils.Language.isClass = function(classDef) {
+  return typeof classDef === 'function'
+    && classDef.prototype
+    && classDef.prototype.constructor === classDef;
+};
+
+/**
+ * Implementation of "classDef as Class"
+ * 
+ * @export
+ * @param {?} classDef A possible Class definition
+ * @return {boolean} Returns classDef if it is a Class, otherwise null.
+ */
+org.apache.flex.utils.Language.asClass = function(classDef) {
+  return isClass(classDef) ? classDef : null;
+};
+
+/**
  * trace()
  *
  * @export
