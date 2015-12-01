@@ -194,7 +194,7 @@ org.apache.flex.utils.Language.uint = function(value) {
 
 
 /**
- * preincrement handles --foo
+ * preincrement handles ++foo
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -209,7 +209,7 @@ org.apache.flex.utils.Language.preincrement = function(obj, prop) {
 
 
 /**
- * predecrement handles ++foo
+ * predecrement handles --foo
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -239,7 +239,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
 
 
 /**
- * postdecrement handles foo++
+ * postdecrement handles foo--
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -248,7 +248,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
  */
 org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
   var value = obj[prop];
-  obj[prop] = value + 1;
+  obj[prop] = value - 1;
   return value;
 };
 
