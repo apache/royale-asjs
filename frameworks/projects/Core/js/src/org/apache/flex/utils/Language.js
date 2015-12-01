@@ -90,29 +90,10 @@ org.apache.flex.utils.Language._int = function(value) {
  * @return {boolean}
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
-  var checkInterfaces, superClass;
+  var superClass;
 
   if (leftOperand == null || rightOperand == null)
     return false;
-
-  checkInterfaces = function(left) {
-    var i, interfaces;
-
-    interfaces = left.FLEXJS_CLASS_INFO.interfaces;
-    for (i = interfaces.length - 1; i > -1; i--) {
-      if (interfaces[i] === rightOperand) {
-        return true;
-      }
-
-      if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
-        var isit = checkInterfaces(interfaces[i].prototype);
-        if (isit) return true;
-      }
-    }
-
-    return false;
-  };
-
   if (leftOperand instanceof rightOperand)
     return true;
   if (typeof leftOperand === 'string')
@@ -127,7 +108,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   if (leftOperand.FLEXJS_CLASS_INFO === undefined)
     return false; // could be a function but not an instance
   if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
-    if (checkInterfaces(leftOperand)) {
+    if (org.apache.flex.utils.Language.checkInterfaces(leftOperand)) {
       return true;
     }
   }
@@ -136,7 +117,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   if (superClass) {
     while (superClass && superClass.FLEXJS_CLASS_INFO) {
       if (superClass.FLEXJS_CLASS_INFO.interfaces) {
-        if (checkInterfaces(superClass)) {
+        if (org.apache.flex.utils.Language.checkInterfaces(superClass)) {
           return true;
         }
       }
@@ -147,6 +128,31 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   return false;
 };
 
+/**
+ * Helper function for is()
+ * 
+ * @private
+ * @param {?} leftOperand
+ * @param {?} rightOperand
+ * @return {boolean}
+ */
+org.apache.flex.utils.Language.checkInterfaces = function(leftOperand, rightOperand) {
+  var i, interfaces;
+
+  interfaces = leftOperand.FLEXJS_CLASS_INFO.interfaces;
+  for (i = interfaces.length - 1; i > -1; i--) {
+    if (interfaces[i] === rightOperand) {
+      return true;
+    }
+
+    if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+      var isit = org.apache.flex.utils.Language.checkInterfaces(interfaces[i].prototype, rightOperand);
+      if (isit) return true;
+    }
+  }
+
+  return false;
+};
 
 /**
  * trace()
