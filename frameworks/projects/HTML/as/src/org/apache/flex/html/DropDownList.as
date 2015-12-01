@@ -146,10 +146,15 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
         
 
@@ -169,10 +174,15 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
                         
         /**
