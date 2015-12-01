@@ -19,7 +19,13 @@ package org.apache.flex.core
     COMPILE::AS3
     public class HTMLElementWrapper extends Sprite
     {
-        
+        /**
+         * "abstract" method so we can override in JS
+         * @param bead The new bead.
+         */
+        public function addBead(bead:IBead):void
+        {            
+        }
     }
     
 	COMPILE::JS
@@ -81,7 +87,10 @@ package org.apache.flex.core
             _element = value;
         }
         
-		private var _model:IBeadModel;
+        /**
+         * allow access from overrides
+         */
+		protected var _model:IBeadModel;
         
         /**
          * @flexjsignorecoercion Class 

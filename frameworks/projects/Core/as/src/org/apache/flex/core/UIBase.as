@@ -1016,8 +1016,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
-        COMPILE::AS3
-		public function addBead(bead:IBead):void
+		override public function addBead(bead:IBead):void
 		{
 			if (!_beads)
 				_beads = new Vector.<IBead>;
@@ -1317,13 +1316,7 @@ package org.apache.flex.core
                 {
                     var view:IBeadView = new c as IBeadView;
                     if (view)
-                    {
-                        COMPILE::JS
-                        {
-                            _view = view;
-                        }
                         addBead(view);                        
-                    }
                 }
             }
             if (getBeadByType(IBeadController) == null) 
