@@ -20,6 +20,11 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IPanelModel;
 
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+    
 	[Event(name="close", type="org.apache.flex.events.Event")]
 	
 	/**
@@ -103,6 +108,14 @@ package org.apache.flex.html
 		{
 			IPanelModel(model).showCloseButton = value;
 		}
-				
+		
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            element.className = "Panel";
+            typeNames = "Panel";
+            return element;
+        }
 	}
 }
