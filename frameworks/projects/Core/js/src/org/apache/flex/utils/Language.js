@@ -160,12 +160,6 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 org.apache.flex.utils.Language.trace = function(var_args) {
   var theConsole;
 
-  var msg = '';
-  for (var i = 0; i < arguments.length; i++) {
-    if (i > 0) msg += ' ';
-    msg += arguments[i];
-  }
-
   theConsole = goog.global.console;
 
   if (theConsole === undefined && window.console !== undefined)
@@ -173,7 +167,7 @@ org.apache.flex.utils.Language.trace = function(var_args) {
 
   try {
     if (theConsole && theConsole.log) {
-      theConsole.log(msg);
+      theConsole.log.apply(theConsole, arguments);
     }
   } catch (e) {
     // ignore; at least we tried ;-)
