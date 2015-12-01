@@ -90,7 +90,7 @@ package org.apache.flex.html.beads
 			_model = value.getBeadByType(IImageModel) as IImageModel;
 			_model.addEventListener("urlChanged",handleUrlChange);
 			
-//			handleUrlChange(null);
+			handleUrlChange(null);
 		}
 		
 		/**
