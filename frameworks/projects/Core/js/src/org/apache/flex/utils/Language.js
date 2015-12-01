@@ -92,12 +92,8 @@ org.apache.flex.utils.Language._int = function(value) {
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   var checkInterfaces, superClass;
 
-  if (leftOperand == null)
+  if (leftOperand == null || rightOperand == null)
     return false;
-
-  if (leftOperand && rightOperand == null) {
-    return false;
-  }
 
   checkInterfaces = function(left) {
     var i, interfaces;
@@ -117,16 +113,17 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
     return false;
   };
 
-  if ((rightOperand === String && typeof leftOperand === 'string') ||
-      (leftOperand instanceof /** @type {Object} */(rightOperand))) {
+  if (leftOperand instanceof rightOperand)
     return true;
-  }
   if (typeof leftOperand === 'string')
-    return false; // right was not String otherwise exit above
+    return rightOperand === String;
   if (typeof leftOperand === 'number')
     return rightOperand === Number;
-  if (rightOperand === Array && Array.isArray(leftOperand))
-    return true;
+  if (typeof leftOperand === 'boolean')
+    return rightOperand === Boolean;
+  if (rightOperand === Array)
+    return Array.isArray(leftOperand);
+
   if (leftOperand.FLEXJS_CLASS_INFO === undefined)
     return false; // could be a function but not an instance
   if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
