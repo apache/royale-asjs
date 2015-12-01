@@ -105,7 +105,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
       }
 
       if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
-        var isit = checkInterfaces(new interfaces[i]());
+        var isit = checkInterfaces(interfaces[i].prototype);
         if (isit) return true;
       }
     }
