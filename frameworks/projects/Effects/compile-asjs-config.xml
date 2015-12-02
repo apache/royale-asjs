@@ -52,6 +52,13 @@
             <path-element>as/src</path-element>
         </source-path>
         
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
