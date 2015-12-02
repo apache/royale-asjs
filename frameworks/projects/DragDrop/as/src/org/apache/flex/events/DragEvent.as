@@ -296,6 +296,7 @@ package org.apache.flex.events
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.events.DragEvent
          *  @flexjsignorecoercion window.Event
+         *  @flexjsignorecoercion Event
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
@@ -314,7 +315,7 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                var out:MouseEvent = new MouseEvent(type);
+                var out:window.MouseEvent = new window.MouseEvent(type);
                 var e:window.Event = event as window.Event;
                 (out as window.Event).initMouseEvent(type, true, true,
                     e.view, e.detail, e.screenX, e.screenY,
@@ -349,5 +350,24 @@ package org.apache.flex.events
                 (target as IUIBase).element.dispatchEvent(event as window.Event);
             }
         }
-	}
+
+        /**
+         */
+        COMPILE::JS
+        private static function installDragEventMixin():Boolean 
+        {
+            var o:Object = org.apache.flex.events.ElementEvents.elementEvents;
+            o['dragEnd'] = 1;
+            o['dragMove'] = 1;
+            return true;
+        }
+        
+        
+        /**
+         * Add some other events to listen from the element
+         */
+        COMPILE::JS
+        private static var dragEventMixin:Boolean = installDragEventMixin();
+
+    }
 }

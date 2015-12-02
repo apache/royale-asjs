@@ -130,6 +130,7 @@ package org.apache.flex.html.beads.controllers
         
         /**
          *  @private
+		 * @flexjsignorecoercion org.apache.flex.events.MouseEvent
          */
         private function dragMoveHandler(event:DragEvent):void
         {
@@ -137,7 +138,7 @@ package org.apache.flex.html.beads.controllers
             var dragEvent:DragEvent;
             if (!inside)
             {
-                dragEvent = DragEvent.createDragEvent("dragEnter", event);
+                dragEvent = DragEvent.createDragEvent("dragEnter", event as MouseEvent);
                 dispatchEvent(dragEvent);
                 inside = true;
                 IUIBase(_strand).topMostEventDispatcher.addEventListener(DragEvent.DRAG_END, dragEndHandler);
@@ -145,7 +146,7 @@ package org.apache.flex.html.beads.controllers
             }
             else
             {
-                dragEvent = DragEvent.createDragEvent("dragOver", event);
+                dragEvent = DragEvent.createDragEvent("dragOver", event as MouseEvent);
                 dispatchEvent(dragEvent);
             }
         }
@@ -164,12 +165,15 @@ package org.apache.flex.html.beads.controllers
             IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
         
+		/**
+		 * @flexjsignorecoercion org.apache.flex.events.MouseEvent
+		 */
         private function dragEndHandler(event:DragEvent):void
         {
             trace("dragEnd");
             var dragEvent:DragEvent;
             
-            dragEvent = DragEvent.createDragEvent("dragDrop", event);
+            dragEvent = DragEvent.createDragEvent("dragDrop", event as MouseEvent);
             dispatchEvent(dragEvent);
             
             inside = false;
