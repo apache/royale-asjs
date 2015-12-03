@@ -22,5 +22,6 @@ package org.apache.flex.jquery
 	
 	public class CheckBox extends org.apache.flex.html.CheckBox 
 	{
+		
 	}
 }

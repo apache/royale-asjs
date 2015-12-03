@@ -23,8 +23,6 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -44,8 +42,17 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <library-path>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+                 if these swcs are on the external-library-path then their requires
+                 will not be listed -->
+            <path-element>../../externs/Binding.swc</path-element>
+            <path-element>../../externs/Core.swc</path-element>
+            <path-element>../../externs/Graphics.swc</path-element>
+            <path-element>../../externs/Collections.swc</path-element>
+            <path-element>../../externs/HTML.swc</path-element>
+        </library-path>
+        
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/jquery</uri>
@@ -61,21 +68,18 @@
     </compiler>
     
     <include-file>
-        <name>defaults.css</name>
-        <path>as/defaults.css</path>
-    </include-file>
-    <include-file>
-        <name>js/out/*</name>
-        <path>js/out/*</path>
     </include-file>
 
+    <include-sources>
+    </include-sources>
+    
     <include-classes>
-        <class>JQueryClasses</class>
+        <class>HTMLClasses</class>
     </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/jquery</uri>
-    </include-namespaces>  
+    </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
 	
