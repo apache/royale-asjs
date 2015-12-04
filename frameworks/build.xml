@@ -98,7 +98,6 @@
         <ant dir="${basedir}/projects/CreateJS" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/HTML5" target="compile-asjs"/>
     </target>
 
     <target name="lint-js" description="Cross-compiles all SWCs">
@@ -106,7 +105,6 @@
         <ant dir="${basedir}/projects/Flat" target="lint-js"/>
         <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="lint-js"/>
-        <ant dir="${basedir}/projects/HTML5" target="lint-js"/>
     </target>
 
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
@@ -115,7 +113,6 @@
         <ant dir="${basedir}/projects/CreateJS" target="compile"/>
         <ant dir="${basedir}/projects/Formatters" target="compile"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
-        <ant dir="${basedir}/projects/HTML5" target="compile"/>
     </target>
 
     <target name="js" depends="compile-asjs, lint-js" />
@@ -229,7 +226,7 @@
     </target>
 
     <target name="HTML5" description="Clean build of HTML5.swc">
-        <ant dir="${basedir}/projects/HTML5"/>
+        <ant dir="${basedir}/projects/HTML5" target="all"/>
     </target>
 
     <target name="JQuery" description="Clean build of JQuery.swc">
