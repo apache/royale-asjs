@@ -18,9 +18,105 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-	import org.apache.flex.html.CheckBox;
+    COMPILE::AS3
+    {
+        import org.apache.flex.html.CheckBox;            
+    }
+    COMPILE::JS
+    {
+        import createjs.Container;
+        import createjs.Shape;
+        import createjs.Text;
+        
+        import org.apache.flex.createjs.core.UIBase;
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.Event;
+    }
 	
+    COMPILE::AS3
 	public class CheckBox extends org.apache.flex.html.CheckBox
 	{	
 	}
+    
+    COMPILE::JS
+    public class CheckBox extends UIBase
+    {
+        private var checkMark:Shape;
+        private var checkMarkBackground:Shape;
+        private var checkBoxLabel:Text;
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        override public function createElement():WrappedHTMLElement
+        {
+            checkMarkBackground = new createjs.Shape(null);
+            checkMarkBackground.name = 'checkmarkbackground';
+            checkMarkBackground.graphics.beginFill('red').
+                drawRoundRect(0, 0, 40, 40, 8);
+            
+            checkMark = new createjs.Shape(null);
+            checkMark.name = 'checkmark';
+            checkMark.graphics.beginFill('white').drawRoundRect(0, 0, 32, 32, 6);
+            checkMark.x = 4;
+            checkMark.y = 4;
+            checkMark.visible = false;
+            
+            checkBoxLabel = new createjs.Text('checkbox', '20px Arial', '#ff7700');
+            checkBoxLabel.name = 'label';
+            checkBoxLabel.textAlign = 'left';
+            checkBoxLabel.textBaseline = 'middle';
+            checkBoxLabel.x = 45;
+            checkBoxLabel.y = 40 / 2;
+            
+            var container:createjs.Container = new createjs.Container();
+            element = container as WrappedHTMLElement;
+            container.name = 'checkbox';
+            container.addChild(this.checkMarkBackground);
+            container.addChild(this.checkBoxLabel);
+            container.addChild(this.checkMark);
+            container.onClick = clickHandler;
+            
+            this.positioner = this.element;
+            this.positioner.style.position = 'relative';
+            
+            return this.element;
+        }
+        
+        public function get text():String
+        {
+            return checkBoxLabel.text;   
+        }
+        
+        public function set text(value:String):void
+        {
+            checkBoxLabel.text = value;
+        }
+            
+        public function get selected():Boolean
+        {
+            return checkMark.visible;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container
+         */
+        public function set selected(value:Boolean):void
+        {
+            checkMark.visible = value;
+            (element as Container).getStage().update();
+        }
+        
+        
+        /**
+         * @param event The event.
+         */
+        private function clickHandler(event:Event):void
+        {
+            selected = !selected;
+        }
+
+        
+    }
+
 }

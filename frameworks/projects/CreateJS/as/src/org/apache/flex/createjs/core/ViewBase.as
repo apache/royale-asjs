@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.core
 {
-	import flash.display.DisplayObject;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;            
+    }
 	
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IUIBase;
@@ -37,7 +40,9 @@ package org.apache.flex.createjs.core
 		{
 			_applicationModel = model;
 			dispatchEvent(new Event("modelChanged"));
+            /* AJH needed?
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+            */
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 		}
 		
@@ -46,11 +51,13 @@ package org.apache.flex.createjs.core
 			return null;
 		}
 		
+        /*
 		public function get MXMLProperties():Array
 		{
 			return null;
 		}
-		
+		*/
+        
 		public var mxmlContent:Array;
 		
 		private var _applicationModel:Object;
@@ -61,31 +68,37 @@ package org.apache.flex.createjs.core
 			return _applicationModel;
 		}
         
+        COMPILE::AS3
         public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
             addChild(c as DisplayObject);
         }
 
+        COMPILE::AS3
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
             addChildAt(c as DisplayObject, index);
         }
         
+        COMPILE::AS3
         public function getElementAt(index:int):Object
         {
             return getChildAt(index);
         }
         
+        COMPILE::AS3
         public function getElementIndex(c:Object):int
         {
             return getChildIndex(c as DisplayObject);
         }
         
+        COMPILE::AS3
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
             removeChild(c as DisplayObject);
         }
         
+        COMPILE::AS3
         public function get numElements():int
         {
             return numChildren;

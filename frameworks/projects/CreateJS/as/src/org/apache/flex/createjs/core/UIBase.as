@@ -18,44 +18,223 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.core
 {
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
+    import org.apache.flex.core.HTMLElementWrapper;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class UIBase extends Sprite implements IStrand, IEventDispatcher
+    COMPILE::JS
+    {
+        import createjs.Container;
+        import createjs.DisplayObject;
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+        
+	public class UIBase extends HTMLElementWrapper implements IStrand, IEventDispatcher
 	{
 		public function UIBase()
 		{
 			super();
+            COMPILE::JS
+            {
+                createElement();                    
+            }
 		}
 		
+        COMPILE::JS
+        public var positioner:WrappedHTMLElement;
+        
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        {
+            (element as Container).addChild(c as DisplayObject);
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        {
+            (element as Container).addChildAt(c as DisplayObject, index);
+        }
+        
+        
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function getElementIndex(c:Object):int
+        {
+            return (element as Container).getChildIndex(c as DisplayObject);
+        }
+        
+
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        {
+            (element as Container).removeChild(c as DisplayObject);
+        }
+        
+
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function getElementAt(index:int):Object
+        {
+            return (element as Container).getChildAt(index);
+        }
+        
+
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function get numElements():int
+        {
+            return (element as Container).numChildren;
+        }
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement;
+         */
+        COMPILE::JS
+        public function createElement():WrappedHTMLElement
+        {
+            element = new Container() as WrappedHTMLElement;
+            
+            positioner = this.element;
+            positioner.style.position = 'relative';
+            return element;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function get x():Number
+        {
+            return (positioner as Container).x;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function set x(value:Number):void
+        {
+            var container:Container = positioner as Container;
+            container.x = value;
+            container.getStage().update();
+        }
+
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function get y():Number
+        {
+            return (positioner as Container).y;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function set y(value:Number):void
+        {
+            var container:Container = positioner as Container;
+            container.y = value;
+            container.getStage().update();
+        }        
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function get width():Number
+        {
+            return (positioner as Container).width;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function set width(value:Number):void
+        {
+            var container:Container = positioner as Container;
+            container.width = value;
+            container.getStage().update();
+        }
+
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function get height():Number
+        {
+            return (positioner as Container).height;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Container;
+         */
+        COMPILE::JS
+        public function set height(value:Number):void
+        {
+            var container:Container = positioner as Container;
+            container.height = value;
+            container.getStage().update();
+        }
+        
+        COMPILE::AS3
 		private var _width:Number = 0;
+        COMPILE::AS3
 		override public function get width():Number
 		{
-			return _width;
+            return _width;                    
 		}
+        
+        COMPILE::AS3
 		override public function set width(value:Number):void
 		{
-			if (_width != value)
-			{
-				_width = value;
-				dispatchEvent(new Event("widthChanged"));
-			}
+            if (_width != value)
+            {
+                _width = value;
+                dispatchEvent(new Event("widthChanged"));
+            }                    
 		}
+        COMPILE::AS3
 		protected function get $width():Number
 		{
 			return super.width;
 		}
 		
+        COMPILE::AS3
 		private var _height:Number = 0;
+        COMPILE::AS3
 		override public function get height():Number
 		{
 			return _height;
 		}
+        COMPILE::AS3
 		override public function set height(value:Number):void
 		{
 			if (_height != value)
@@ -64,16 +243,20 @@ package org.apache.flex.createjs.core
 				dispatchEvent(new Event("heightChanged"));
 			}
 		}
+        COMPILE::AS3
 		protected function get $height():Number
 		{
 			return super.height;
 		}
 		
+        COMPILE::AS3
 		private var _model:IBeadModel;
+        COMPILE::AS3
 		public function get model():IBeadModel
 		{
 			return _model;
 		}
+        COMPILE::AS3
 		public function set model(value:IBeadModel):void
 		{
 			if (_model != value)
@@ -99,10 +282,13 @@ package org.apache.flex.createjs.core
 		
 		// beads declared in MXML are added to the strand.
 		// from AS, just call addBead()
+        COMPILE::AS3
 		public var beads:Array;
 		
+        COMPILE::AS3
 		private var _beads:Vector.<IBead>;
-		public function addBead(bead:IBead):void
+        COMPILE::AS3
+		override public function addBead(bead:IBead):void
 		{
 			if (!_beads)
 				_beads = new Vector.<IBead>;
@@ -112,6 +298,7 @@ package org.apache.flex.createjs.core
 			bead.strand = this;
 		}
 		
+        COMPILE::AS3
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -122,6 +309,7 @@ package org.apache.flex.createjs.core
 			return null;
 		}
 		
+        COMPILE::AS3
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
