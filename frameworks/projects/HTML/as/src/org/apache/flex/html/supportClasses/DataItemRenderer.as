@@ -138,7 +138,7 @@ package org.apache.flex.html.supportClasses
 				super.updateRenderer();
 
 				background.graphics.clear();
-				background.graphics.beginFill(backgroundColor, (down||selected||hovered)?1:0);
+				background.graphics.beginFill(useColor, (down||selected||hovered)?1:0);
 				background.graphics.drawRect(0, 0, width, height);
 				background.graphics.endFill();
 			}
