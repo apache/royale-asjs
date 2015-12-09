@@ -28,6 +28,10 @@ package
 internal class FormattersClasses
 {	
 	import org.apache.flex.core.FormatBase; FormatBase;
+	
+	import org.apache.flex.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
+	import org.apache.flex.html.beads.FormatableLabelView; FormatableLabelView;
+	import org.apache.flex.html.beads.FormatableTextInputView; FormatableTextInputView;
 }
 
 }
