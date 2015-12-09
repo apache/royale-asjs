@@ -95,22 +95,17 @@
     </target>
     
     <target name="compile-asjs" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/CreateJS" target="compile-asjs"/>
         <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
     </target>
 
     <target name="lint-js" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/CreateJS" target="lint-js"/>
-        <ant dir="${basedir}/projects/Flat" target="lint-js"/>
         <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="lint-js"/>
     </target>
 
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
         <!-- order may matter due to dependencies -->
-        <ant dir="${basedir}/projects/Flat" target="compile"/>
-        <ant dir="${basedir}/projects/CreateJS" target="compile"/>
         <ant dir="${basedir}/projects/Formatters" target="compile"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
     </target>
@@ -194,7 +189,7 @@
     </target>
 
     <target name="CreateJS" description="Clean build of CreateJS.swc">
-        <ant dir="${basedir}/projects/CreateJS"/>
+        <ant dir="${basedir}/projects/CreateJS" target="all"/>
     </target>
 
     <target name="DragDrop" description="Clean build of DragDrop.swc">
@@ -206,7 +201,7 @@
     </target>
 
     <target name="Flat" description="Clean build of Flat.swc">
-        <ant dir="${basedir}/projects/Flat"/>
+        <ant dir="${basedir}/projects/Flat" target="all"/>
     </target>
 
     <target name="Formatters" description="Clean build of Formatters.swc">
