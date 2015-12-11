@@ -22,6 +22,8 @@ package org.apache.flex.createjs.core
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -29,10 +31,11 @@ package org.apache.flex.createjs.core
     {
         import createjs.Container;
         import createjs.DisplayObject;
+        import createjs.Stage;
         import org.apache.flex.core.WrappedHTMLElement;
     }
         
-	public class UIBase extends HTMLElementWrapper implements IStrand, IEventDispatcher
+	public class UIBase extends HTMLElementWrapper implements IStrand, IEventDispatcher, IUIBase, IFlexJSElement
 	{
 		public function UIBase()
 		{
@@ -43,9 +46,6 @@ package org.apache.flex.createjs.core
             }
 		}
 		
-        COMPILE::JS
-        public var positioner:WrappedHTMLElement;
-        
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
@@ -53,7 +53,7 @@ package org.apache.flex.createjs.core
         COMPILE::JS
         public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            (element as Container).addChild(c as DisplayObject);
+            (element as Container).addChild(c.element as DisplayObject);
         }
         
         /**
@@ -63,7 +63,7 @@ package org.apache.flex.createjs.core
         COMPILE::JS
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            (element as Container).addChildAt(c as DisplayObject, index);
+            (element as Container).addChildAt(c.element as DisplayObject, index);
         }
         
         
@@ -74,7 +74,7 @@ package org.apache.flex.createjs.core
         COMPILE::JS
         public function getElementIndex(c:Object):int
         {
-            return (element as Container).getChildIndex(c as DisplayObject);
+            return (element as Container).getChildIndex(c.element as DisplayObject);
         }
         
 
@@ -85,7 +85,7 @@ package org.apache.flex.createjs.core
         COMPILE::JS
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            (element as Container).removeChild(c as DisplayObject);
+            (element as Container).removeChild(c.element as DisplayObject);
         }
         
 
@@ -111,7 +111,7 @@ package org.apache.flex.createjs.core
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement;
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         public function createElement():WrappedHTMLElement
@@ -119,12 +119,11 @@ package org.apache.flex.createjs.core
             element = new Container() as WrappedHTMLElement;
             
             positioner = this.element;
-            positioner.style.position = 'relative';
             return element;
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function get x():Number
@@ -133,19 +132,21 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function set x(value:Number):void
         {
             var container:Container = positioner as Container;
             container.x = value;
-            container.getStage().update();
+            var stage:Stage = container.getStage();
+            if (stage)
+                stage.update();
         }
 
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function get y():Number
@@ -154,18 +155,20 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function set y(value:Number):void
         {
             var container:Container = positioner as Container;
             container.y = value;
-            container.getStage().update();
+            var stage:Stage = container.getStage();
+            if (stage)
+                stage.update();
         }        
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function get width():Number
@@ -174,18 +177,20 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function set width(value:Number):void
         {
             var container:Container = positioner as Container;
             container.width = value;
-            container.getStage().update();
+            var stage:Stage = container.getStage();
+            if (stage)
+                stage.update();
         }
 
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function get height():Number
@@ -194,14 +199,16 @@ package org.apache.flex.createjs.core
         }
         
         /**
-         * @flexjsignorecoercion createjs.Container;
+         * @flexjsignorecoercion createjs.Container
          */
         COMPILE::JS
         public function set height(value:Number):void
         {
             var container:Container = positioner as Container;
             container.height = value;
-            container.getStage().update();
+            var stage:Stage = container.getStage();
+            if (stage)
+                stage.update();
         }
         
         COMPILE::AS3
@@ -325,5 +332,118 @@ package org.apache.flex.createjs.core
 			return null;
 		}
 		
+        /**
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function get visible():Boolean
+        {
+            return (positioner as DisplayObject).visible;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function set visible(value:Boolean):void
+        {
+            var oldValue:Boolean = (positioner as DisplayObject).visible;
+            if (value !== oldValue) 
+            {
+                if (!value) 
+                {
+                    (positioner as DisplayObject).visible = value;
+                    dispatchEvent(new Event('hide'));
+                } 
+                else 
+                {
+                    (positioner as DisplayObject).visible = value;
+                    dispatchEvent(new Event('show'));
+                }
+                dispatchEvent(new Event('visibleChanged'));
+            }
+        }
+
+        /**
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function get alpha():Number 
+        {
+            return (positioner as DisplayObject).alpha;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        public function set alpha(value:Number):void
+        {
+            (positioner as DisplayObject).alpha = value;
+        }
+
+        COMPILE::JS
+        private var _positioner:WrappedHTMLElement;
+        
+        /**
+         * The HTMLElement used to position the component.
+         */
+        COMPILE::JS
+        public function get positioner():WrappedHTMLElement
+        {
+            return _positioner;
+        }
+        
+        /**
+         * @private
+         */
+        COMPILE::JS
+        public function set positioner(value:WrappedHTMLElement):void
+        {
+            _positioner = value;
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+         */
+        public function get topMostEventDispatcher():IEventDispatcher
+        {
+            COMPILE::AS3
+            {
+                return null;
+            }
+            COMPILE::JS
+            {
+                var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
+                return e.flexjs_wrapper as IEventDispatcher;                    
+            }
+        }
+
+        public function addedToParent():void
+        {
+            
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.IUIBase#element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        COMPILE::AS3
+        public function get element():IFlexJSElement
+        {
+            return this;
+        }
+
 	}
 }

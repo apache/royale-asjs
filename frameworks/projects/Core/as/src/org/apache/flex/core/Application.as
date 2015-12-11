@@ -183,15 +183,16 @@ package org.apache.flex.core
                 // if someone has installed a resize listener, fake an event to run it now
                 if (stage.hasEventListener("resize"))
                     stage.dispatchEvent(new flash.events.Event("resize"));
-                else
+                else if (initialView is ILayoutChild)
                 {
+                    var ilc:ILayoutChild = initialView as ILayoutChild;
                     // otherwise, size once like this
-                    if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                        initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
-                    else if (!isNaN(initialView.percentWidth))
-                        initialView.setWidth(stage.stageWidth);
-                    else if (!isNaN(initialView.percentHeight))
-                        initialView.setHeight(stage.stageHeight);
+                    if (!isNaN(ilc.percentWidth) && !isNaN(ilc.percentHeight))
+                        ilc.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
+                    else if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(stage.stageWidth);
+                    else if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(stage.stageHeight);
                 }
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
@@ -236,7 +237,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         [Bindable("__NoChangeEvent__")]
-        public var initialView:ViewBase;
+        public var initialView:IApplicationView;
 
         /**
          *  The data model (for the initial view).

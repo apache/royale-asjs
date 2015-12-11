@@ -26,6 +26,7 @@ package org.apache.flex.createjs
     {
         import createjs.Container;
         import createjs.Shape;
+        import createjs.Stage;
         import createjs.Text;
         
         import org.apache.flex.createjs.core.UIBase;
@@ -78,7 +79,6 @@ package org.apache.flex.createjs
             container.onClick = clickHandler;
             
             this.positioner = this.element;
-            this.positioner.style.position = 'relative';
             
             return this.element;
         }
@@ -104,7 +104,9 @@ package org.apache.flex.createjs
         public function set selected(value:Boolean):void
         {
             checkMark.visible = value;
-            (element as Container).getStage().update();
+            var stage:Stage = (element as Container).getStage();
+            if (stage)
+                stage.update();
         }
         
         

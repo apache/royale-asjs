@@ -113,7 +113,7 @@ COMPILE::AS3
         {
             COMPILE::AS3
             {
-                var initialView:UIBase = app.initialView;
+                var initialView:UIBase = app.initialView as UIBase;
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
                     initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
                         Math.max(minHeight, app.stage.stageHeight), true);
@@ -124,7 +124,7 @@ COMPILE::AS3
             }
             COMPILE::JS
             {
-                var initialView:UIBase = app.initialView;
+                var initialView:UIBase = app.initialView as UIBase;
                 var element:HTMLElement = app.element;
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
                     element.style.height = window.innerHeight.toString() + 'px';

@@ -46,15 +46,18 @@ package org.apache.flex.createjs
 	[Event(name="initialize", type="org.apache.flex.events.Event")]
 	
     /**
-     * FalconJX will inject html into the index.html file.  Surround with
-     * "inject_html" tag as follows:
-     *
-     * <inject_html>
-     * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-     * </inject_html>
+     * CreateJS Application
      */
 	public class Application extends org.apache.flex.core.Application implements IStrand, IFlexInfo
 	{
+        /**
+         * FalconJX will inject html into the index.html file.  Surround with
+         * "inject_html" tag as follows:
+         *
+         * <inject_html>
+         * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+         * </inject_html>
+         */
 		public function Application()
 		{
 			super();
@@ -78,6 +81,7 @@ package org.apache.flex.createjs
             // and it provides convenient access to the stage.
             
             element = document.createElement('canvas') as WrappedHTMLElement;
+            element.flexjs_wrapper = this;
             canvas = element as HTMLCanvasElement;
             canvas.id = 'flexjsCanvas';
             canvas.width = 700;
@@ -99,6 +103,8 @@ package org.apache.flex.createjs
             addElement(initialView);
             
             dispatchEvent('viewChanged');
+            
+            stage.update();
         }
         
         /**
@@ -107,7 +113,7 @@ package org.apache.flex.createjs
         COMPILE::JS
         override public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            stage.addChild(c as DisplayObject);
+            stage.addChild(c.element as DisplayObject);
             c.addedToParent();
         }
 	}

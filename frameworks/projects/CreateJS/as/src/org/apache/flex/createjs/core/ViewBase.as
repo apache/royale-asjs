@@ -21,25 +21,32 @@ package org.apache.flex.createjs.core
     COMPILE::AS3
     {
         import flash.display.DisplayObject;            
+        import org.apache.flex.core.ViewBase;
     }
 	
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+    import org.apache.flex.core.IApplicationView;
+    import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.utils.MXMLDataInterpreter;
 	
+    COMPILE::AS3
+    public class ViewBase extends org.apache.flex.core.ViewBase
+    {
+        
+    }
+    
 	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase implements IParent
+    COMPILE::JS
+	public class ViewBase extends UIBase implements IParent, IApplicationView
 	{
 		public function ViewBase()
 		{
 			super();
 		}
 		
-		public function initUI(model:Object):void
+		override public function addedToParent():void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
             /* AJH needed?
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
             */
@@ -68,40 +75,10 @@ package org.apache.flex.createjs.core
 			return _applicationModel;
 		}
         
-        COMPILE::AS3
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function set applicationModel(value:Object):void
         {
-            addChild(c as DisplayObject);
-        }
-
-        COMPILE::AS3
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
-        {
-            addChildAt(c as DisplayObject, index);
-        }
-        
-        COMPILE::AS3
-        public function getElementAt(index:int):Object
-        {
-            return getChildAt(index);
-        }
-        
-        COMPILE::AS3
-        public function getElementIndex(c:Object):int
-        {
-            return getChildIndex(c as DisplayObject);
-        }
-        
-        COMPILE::AS3
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
-        {
-            removeChild(c as DisplayObject);
-        }
-        
-        COMPILE::AS3
-        public function get numElements():int
-        {
-            return numChildren;
+            _applicationModel = value;
+            dispatchEvent(new Event("modelChanged"));
         }
 
 	}

@@ -18,10 +18,64 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-	import org.apache.flex.html.Label;
-	
+    COMPILE::AS3
+    {
+        import org.apache.flex.html.Label;            
+    }
+
+    COMPILE::JS
+    {
+        import createjs.Text;
+        import createjs.Stage;
+        
+        import org.apache.flex.createjs.core.UIBase;
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+    
+    COMPILE::AS3
 	public class Label extends org.apache.flex.html.Label
 	{
 		
 	}
+    
+    COMPILE::JS
+    public class Label extends UIBase
+    {
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        override public function createElement():WrappedHTMLElement
+        {
+            var text:Text = new Text('default text', '20px Arial', '#ff7700');
+            text.x = 0;
+            text.y = 20;
+            text.textBaseline = 'alphabetic';
+            
+            positioner = element = text as WrappedHTMLElement;
+            return element;
+        }
+        
+        
+        /**
+         * @flexjsignorecoercion createjs.Text
+         */
+        public function get text():String
+        {
+            return (element as Text).text;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Text
+         */
+        public function set text(value:String):void
+        {
+            var text:Text = element as Text;
+            text.text = value;
+            var stage:Stage = text.getStage();
+            if (stage)
+                stage.update();
+        }
+        
+    }
 }
