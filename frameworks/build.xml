@@ -95,19 +95,13 @@
     </target>
     
     <target name="compile-asjs" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
     </target>
 
     <target name="lint-js" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="lint-js"/>
     </target>
 
     <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
         <!-- order may matter due to dependencies -->
-        <ant dir="${basedir}/projects/Formatters" target="compile"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
     </target>
 
     <target name="js" depends="compile-asjs, lint-js" />
@@ -205,11 +199,11 @@
     </target>
 
     <target name="Formatters" description="Clean build of Formatters.swc">
-        <ant dir="${basedir}/projects/Formatters"/>
+        <ant dir="${basedir}/projects/Formatters" target="all"/>
     </target>
 
     <target name="GoogleMaps" description="Clean build of GoogleMaps.swc">
-        <ant dir="${basedir}/projects/GoogleMaps"/>
+        <ant dir="${basedir}/projects/GoogleMaps" target="all"/>
     </target>
 
     <target name="Graphics" description="Clean build of Graphics.swc">
