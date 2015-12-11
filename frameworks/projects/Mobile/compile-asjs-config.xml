@@ -55,10 +55,10 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>basic-manifest.xml</manifest>
             </namespace>
-            <!--<namespace>
+            <namespace>
                 <uri>library://ns.apache.org/flexjs/cordova</uri>
                 <manifest>cordova-manifest.xml</manifest>
-            </namespace>-->
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -76,11 +76,11 @@
     
     <include-classes>
         <class>MobileClasses</class>
-        <!-- <class>CordovaClasses</class> -->
     </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/cordova</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

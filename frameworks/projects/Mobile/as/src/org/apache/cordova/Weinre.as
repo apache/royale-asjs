@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.cordova
 {
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
+    COMPILE::AS3
+    {
+        import flash.net.URLRequest;
+        import flash.net.navigateToURL;            
+    }
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
@@ -61,10 +64,25 @@ package org.apache.cordova
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLScriptElement
+         *  @flexjsignorecoercion HTMLHeadElement
 		 */
 		public function set guid(value:String):void
 		{
-			navigateToURL(new URLRequest("http://debug.phonegap.com/client/#" + value), "_blank");
+            COMPILE::AS3
+            {
+                navigateToURL(new URLRequest("http://debug.phonegap.com/client/#" + value), "_blank");                    
+            }
+            COMPILE::JS
+            {
+                var scriptNode:HTMLScriptElement = document.createElement('SCRIPT') as HTMLScriptElement;
+                scriptNode.type = 'text/javascript';
+                scriptNode.src = 'http://debug.phonegap.com/target/target-script-min.js#' + value;
+                
+                var headNode:HTMLHeadElement = document.getElementsByTagName('HEAD') as HTMLHeadElement;
+                if (headNode[0] != null)
+                    headNode[0].appendChild(scriptNode);
+            }
 		}
 	}
 }

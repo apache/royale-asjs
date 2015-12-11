@@ -52,6 +52,10 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>basic-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/cordova</uri>
+                <manifest>cordova-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -76,6 +80,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/cordova</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
