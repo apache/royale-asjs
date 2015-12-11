@@ -102,7 +102,7 @@ package org.apache.flex.core.graphics
         COMPILE::JS
         public function addFillAttrib(value:GraphicShape):String
         {
-            var color:String = Number(color).toString(16);
+            var color:String = Number(this.color).toString(16);
             if (color.length == 1) color = '00' + color;
             if (color.length == 2) color = '00' + color;
             if (color.length == 4) color = '00' + color;

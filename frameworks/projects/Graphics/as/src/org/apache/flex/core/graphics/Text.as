@@ -36,6 +36,8 @@ package org.apache.flex.core.graphics
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
+     *  // TODO (aharui) ignore imports of external linkage interfaces?
+     *  @flexjsignoreimport SVGLocatable
 	 */
 	public class Text extends GraphicShape
 	{
