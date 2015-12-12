@@ -99,7 +99,7 @@ limitations under the License.
         <js:ContainerDataBinding />
     </js:beads>
         
-    <js:ImageButton id="removeButton" backgroundImage="assets/trashcan.png"
+    <js:ImageButton id="removeButton" source="assets/trashcan.png"
         width="14" height="14" y="5"
         click="removeItem()">
         <js:beads>
