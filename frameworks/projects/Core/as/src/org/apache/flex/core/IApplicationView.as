@@ -27,7 +27,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public interface IApplicationView extends IUIBase
+    public interface IApplicationView extends IUIBase, IStatesObject
 	{
         /**
          *  The application model.

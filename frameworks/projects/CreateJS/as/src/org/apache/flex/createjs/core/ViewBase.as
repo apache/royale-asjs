@@ -29,6 +29,15 @@ package org.apache.flex.createjs.core
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.events.Event;
     import org.apache.flex.utils.MXMLDataInterpreter;
+    
+    COMPILE::JS
+    {
+        import org.apache.flex.core.IBead;
+        import org.apache.flex.core.IStatesImpl;
+        import org.apache.flex.core.ValuesManager;
+        import org.apache.flex.events.ValueChangeEvent;
+        import org.apache.flex.states.State;
+    }
 	
     COMPILE::AS3
     public class ViewBase extends org.apache.flex.core.ViewBase
@@ -81,5 +90,117 @@ package org.apache.flex.createjs.core
             dispatchEvent(new Event("modelChanged"));
         }
 
+        private var _states:Array;
+        
+        /**
+         *  The array of view states. These should
+         *  be instances of org.apache.flex.states.State.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get states():Array
+        {
+            return _states;
+        }
+        
+        /**
+         *  @private
+         *  @flexjsignorecoercion Class
+         *  @flexjsignorecoercion org.apache.flex.core.IBead
+         */
+        public function set states(value:Array):void
+        {
+            _states = value;
+            _currentState = _states[0].name;
+            
+            try{
+                if (getBeadByType(IStatesImpl) == null)
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iStatesImpl") as Class;
+                    var b:Object = new c();
+                    addBead(b as IBead);
+                }
+            }
+            //TODO:  Need to handle this case more gracefully
+            catch(e:Error)
+            {
+            }
+            
+        }
+        
+        /**
+         *  <code>true</code> if the array of states
+         *  contains a state with this name.
+         * 
+         *  @param state The state namem.
+         *  @return True if state in state array
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function hasState(state:String):Boolean
+        {
+            for each (var s:State in _states)
+            {
+                if (s.name == state)
+                    return true;
+            }
+            return false;
+        }
+        
+        private var _currentState:String;
+        
+        [Bindable("currentStateChange")]
+        /**
+         *  The name of the current state.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get currentState():String
+        {
+            return _currentState;   
+        }
+        
+        /**
+         *  @private
+         */
+        public function set currentState(value:String):void
+        {
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
+            _currentState = value;
+            dispatchEvent(event);
+        }
+        
+        private var _transitions:Array;
+        
+        /**
+         *  The array of transitions.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get transitions():Array
+        {
+            return _transitions;   
+        }
+        
+        /**
+         *  @private
+         */
+        public function set transitions(value:Array):void
+        {
+            _transitions = value;   
+        }
+        
 	}
 }
