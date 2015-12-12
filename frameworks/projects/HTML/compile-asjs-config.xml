@@ -81,6 +81,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
