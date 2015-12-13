@@ -21,19 +21,19 @@
     <property environment="env"/>
     <available file="${basedir}/../../sdk"
         type="dir"
-        property="FLEX_HOME"
+        property="FLEX_SDK_HOME"
         value="${basedir}/../../sdk" />
-	<property name="FLEX_HOME" value="${basedir}/../../flex-sdk"/>
+	<property name="FLEX_SDK_HOME" value="${basedir}/../../flex-sdk"/>
 	<property name="lenient" value="true"/>
 	<property name="flexlib" location="${basedir}/../frameworks"/>
 
     <property name="doc_output" location="${basedir}/../asdoc-output"   />
     <property name="project_home" location="${basedir}/../frameworks/projects"/>
 
-    <property file="${FLEX_HOME}/env.properties"/>
-	<property file="${FLEX_HOME}/build.properties"/>
+    <property file="${FLEX_SDK_HOME}/env.properties"/>
+	<property file="${FLEX_SDK_HOME}/build.properties"/>
 	
-	<echo message="FLEX_HOME = ${FLEX_HOME}" />
+	<echo message="FLEX_SDK_HOME = ${FLEX_SDK_HOME}" />
 	<echo message="flexlib = ${flexlib}" />
 	<echo message="doc_output = ${doc_output}" />
     <echo message="compiler.source-path = ${project_home}/*/as/src" />
@@ -60,7 +60,7 @@
 	    </condition>
 
         <path id="flexTasks.path">
-            <fileset dir="${FLEX_HOME}">
+            <fileset dir="${FLEX_SDK_HOME}">
                 <include name="lib/flexTasks.jar" />
                 <include name="ant/lib/flexTasks.jar" />
             </fileset>
