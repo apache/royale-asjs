@@ -23,8 +23,6 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../externs/GoogleMaps.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -44,14 +42,12 @@
 	  
         <locale/>
         
-        <library-path/>
-
-        <namespaces>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/google</uri>
-                <manifest>google-manifest.xml</manifest>
-            </namespace>
-        </namespaces>
+        <library-path>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+             if these swcs are on the external-library-path then their requires
+             will not be listed -->
+            <path-element>../../externs/Core.swc</path-element>
+        </library-path>
         
         <source-path>
             <path-element>as/src</path-element>
@@ -60,18 +56,9 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-file>
-        <name>defaults.css</name>
-        <path>as/defaults.css</path>
-    </include-file>
-    <include-file>
-        <name>js/src/*</name>
-        <path>js/src/*</path>
-    </include-file>
-
-    <include-classes>
-        <class>GoogleMapsClasses</class>
-    </include-classes>
+    <include-sources>
+        <path-element>as/src</path-element>
+    </include-sources>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/google</uri>

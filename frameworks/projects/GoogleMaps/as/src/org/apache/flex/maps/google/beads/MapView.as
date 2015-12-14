@@ -16,12 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * NOTE
+ *
+ * THIS IS THE OLD MapView. The new one is GoogleMapView. This code exists to preserve
+ * the AS/HTMLLoader version for use with AIR. Someday we will come back to this and make
+ * it work again.
+ */
 package org.apache.flex.maps.google.beads
 {
-	import flash.events.Event;
-	import flash.html.HTMLLoader;
-	import flash.net.URLRequest;
-	
+	COMPILE::AS3 {
+		import flash.events.Event;
+		import flash.html.HTMLLoader;
+		import flash.net.URLRequest;
+	}
+
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
@@ -29,20 +39,52 @@ package org.apache.flex.maps.google.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.maps.google.LatLng;
-	import org.apache.flex.maps.google.Map;
-	import org.apache.flex.maps.google.Marker;
-	import org.apache.flex.maps.google.Place;
+	import org.apache.flex.maps.google.GoogleMap;
 	import org.apache.flex.maps.google.models.MapModel;
-	
+
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::JS
+	public class MapView extends BeadViewBase implements IBeadView
+	{
+		public function MapView()
+		{
+			super();
+		}
+
+		private var _strand:IStrand;
+
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			_strand = value;
+
+			var token:String = (_strand as GoogleMap).token;
+			var src:String = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+			if (token)
+				src += '&key=' + token;
+			src += '&libraries=places&sensor=false&callback=mapInit';
+
+			var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
+			script.type = 'text/javascript';
+			script.src = src;
+
+/**			window.mapView = this;
+			window['mapInit'] = function() {
+				(this.mapView._strand as GoogleMap).finishInitialization();
+			}
+**/
+			document.head.appendChild(script);
+		}
+	}
+
+	COMPILE::AS3
 	public class MapView extends BeadViewBase implements IBeadView
 	{
 		/**
@@ -56,12 +98,12 @@ package org.apache.flex.maps.google.beads
 		public function MapView()
 		{
 		}
-		
+
 		private var _loader:HTMLLoader;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -70,52 +112,52 @@ package org.apache.flex.maps.google.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
+
 			_loader = new HTMLLoader();
 			_loader.x = 0;
 			_loader.y = 0;
 			_loader.width = UIBase(value).width;
 			_loader.height = UIBase(value).height;
-			
+
 			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
 			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
-			
+
 			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 			model.addEventListener("zoomChanged", handleZoomChange);
 			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
-						
+
 			(_strand as UIBase).addChild(_loader);
-			
+
 			var token:String = Map(_strand).token;
 			if (token)
 				page = pageTemplateStart + "&key=" + token + pageTemplateEnd;
 			else
 				page = pageTemplateStart + pageTemplateEnd;
-			
+
 			if (page) {
 				_loader.loadString(page);
 				_loader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
 			}
 		}
-		
+
 		private function completeHandler(event:flash.events.Event):void
 		{
 			trace("htmlLoader complete");
-			
+
 			if (_loader && page) {
 				_loader.window.map.center_changed = onMapCentered;
 				_loader.window.map.bounds_changed = onMapBoundsChanged;
 				_loader.window.map.zoom_changed   = onMapZoomChanged;
 				_loader.window.map.dragend        = onMapDragEnd;
-				
+
 				// custom event handlers
 				_loader.window.addEventListener("searchResults",onSearchResults);
 				_loader.window.addEventListener("markerClicked",onMarkerClicked);
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
 		}
-		
+
 		private function handleZoomChange(event:org.apache.flex.events.Event):void
 		{
 			if (_loader && page) {
@@ -123,7 +165,7 @@ package org.apache.flex.maps.google.beads
 				setZoom(model.zoom);
 			}
 		}
-		
+
 		private function handleCurrentLocationChange(event:org.apache.flex.events.Event):void
 		{
 			if (_loader && page) {
@@ -131,12 +173,12 @@ package org.apache.flex.maps.google.beads
 				setCenter(model.currentLocation.location);
 			}
 		}
-				
+
 		private var page:String;
-		
+
 		/**
 		 *  Adjusts the map to the given coordinate and zoom level.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -148,11 +190,11 @@ package org.apache.flex.maps.google.beads
 				_loader.window.mapit(lat,lng,zoomLevel);
 			}
 		}
-		
+
 		/**
 		 *  Finds the given address and places a marker on it. This function may be dropped
 		 *  since centerOnAddress + markCurrentLocation does the same thing.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -164,10 +206,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.codeaddress(address);
 			}
 		}
-		
+
 		/**
 		 * Centers the map on the address given.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -179,10 +221,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.centeronaddress(address);
 			}
 		}
-		
+
 		/**
 		 * Marks the current center of the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -194,11 +236,11 @@ package org.apache.flex.maps.google.beads
 				_loader.window.markcurrentlocation();
 			}
 		}
-		
+
 		/**
 		 * Performs a search near the center of map. The result is a set of
 		 * markers displayed on the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -210,10 +252,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.nearbysearch(placeName);
 			}
 		}
-		
+
 		/**
 		 * Removes all of the markers from the map
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -225,10 +267,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.clearmarkers();
 			}
 		}
-		
+
 		/**
 		 * Sets the zoom factor of the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -240,10 +282,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.map.setZoom(zoom);
 			}
 		}
-		
+
 		/**
 		 * Sets the center of the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -255,7 +297,7 @@ package org.apache.flex.maps.google.beads
 				_loader.window.setCenter(location.lat, location.lng);
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -264,7 +306,7 @@ package org.apache.flex.maps.google.beads
 			_loader.width = UIBase(_strand).width;
 			_loader.height = UIBase(_strand).height;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -272,7 +314,7 @@ package org.apache.flex.maps.google.beads
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("centered") );
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -280,7 +322,7 @@ package org.apache.flex.maps.google.beads
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("boundsChanged") );
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -288,7 +330,7 @@ package org.apache.flex.maps.google.beads
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("zoomChanged") );
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -296,7 +338,7 @@ package org.apache.flex.maps.google.beads
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("dragEnd") );
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -314,11 +356,11 @@ package org.apache.flex.maps.google.beads
 				result.vicinity = event.results[i].vicinity;
 				results.push(result);
 			}
-			
+
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			model.searchResults = results;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -329,13 +371,13 @@ package org.apache.flex.maps.google.beads
 			marker.position.lng = event.marker.position.lng();
 			marker.title = event.marker.title;
 			marker.map = Map(_strand);
-			
+
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			model.selectedMarker = marker;
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("markerClicked"));
 		}
-		
+
 		/**
 		 * @private
 		 * This page definition is used with HTMLLoader to bring in the Google Maps
@@ -352,7 +394,7 @@ package org.apache.flex.maps.google.beads
 			'    </style>'+
 			'    <script type="text/javascript"'+
 			'      src="https://maps.googleapis.com/maps/api/js?v=3.exp';
-		
+
 		private static var pageTemplateEnd:String = '&libraries=places&sensor=false">'+
 			'    </script>'+
 			'    <script type="text/javascript">'+
@@ -469,5 +511,5 @@ package org.apache.flex.maps.google.beads
 			'  </body>'+
 			'</html>';
 	}
-	
+
 }
