@@ -30,8 +30,8 @@
     <property name="doc_output" location="${basedir}/../asdoc-output"   />
     <property name="project_home" location="${basedir}/../frameworks/projects"/>
 
-    <property file="${FLEX_HOME}/env.properties"/>
-	<property file="${FLEX_HOME}/build.properties"/>
+    <property file="${FLEXJS_HOME}/env.properties"/>
+	<property file="${FLEXJS_HOME}/build.properties"/>
 	
 	<echo message="FLEX_HOME = ${FLEX_HOME}" />
 	<echo message="flexlib = ${flexlib}" />
@@ -70,7 +70,7 @@
 		<!-- Call asdoc to generate dita xml files -->
 		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true"
                window-title="Apache FlexJS API Reference"
-               main-title="${release} API Reference "
+               main-title="${release.name} ${release.version} API Reference "
                footer="${manifest.Implementation-Vendor}" >
                
             <load-config filename="${flexlib}/asdoc-config.xml" />
