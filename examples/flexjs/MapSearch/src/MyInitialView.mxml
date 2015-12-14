@@ -24,12 +24,11 @@ limitations under the License.
 				initComplete="initControls()">
 	<fx:Script>
 		<![CDATA[		
-			import org.apache.flex.maps.google.models.MapModel;
-			import models.MyModel;
-			
+			import models.MyModel;			
 			import org.apache.flex.events.Event;
-			import org.apache.flex.maps.google.Place;
-			import org.apache.flex.maps.google.Marker;
+			
+			import google.maps.places.PlaceResult;
+			import google.maps.Marker;
 			
 			private function initControls() : void
 			{
@@ -102,7 +101,7 @@ limitations under the License.
 			 */
 			private function onSearchResults(event:org.apache.flex.events.Event):void
 			{
-				var searchResults:Array = MapModel(map.model).searchResults;
+				var searchResults:Array = map.searchResults;
 				MyModel(applicationModel).searchResults = searchResults;
 			}
 			
@@ -115,7 +114,7 @@ limitations under the License.
 			{
 				var marker:Marker = map.selectedMarker;
 				map.setZoom(12);
-				map.setCenter(marker.position);
+				map.setCenter(marker.getPosition());
 			}
 			
 		]]>
@@ -183,7 +182,7 @@ limitations under the License.
 								dataProvider="{MyModel(applicationModel).cities}" />
 		</js:Container>
 		
-		<google:Map id="map" width="450" height="300" className="MainMap"
+		<google:GoogleMap id="map" width="450" height="300" className="MainMap"
 				   token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
 				   ready="onMapReady()"/>
 		
