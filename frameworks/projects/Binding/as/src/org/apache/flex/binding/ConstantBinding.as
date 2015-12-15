@@ -154,6 +154,28 @@ package org.apache.flex.binding
                 {
                 }
             }
+            else 
+            {
+                COMPILE::JS
+                {
+                    // GCC optimizer only puts exported class constants on
+                    // Window and not on the class itself (which got renamed)
+                    var cname:Object = source.FLEXJS_CLASS_INFO;
+                    if (cname) 
+                    {
+                        cname = cname.names[0].qName;
+                        var parts:Array = cname.split('.');
+                        var n:int = parts.length;
+                        var o:Object = window;
+                        for (var i:int = 0; i < n; i++) {
+                            o = o[parts[i]];
+                        }
+                        val = o[sourcePropertyName];
+                        destination[destinationPropertyName] = val;
+                    }                    
+                }
+            }
+
 		}
 		
         /**
