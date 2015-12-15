@@ -26,10 +26,12 @@ package org.apache.flex.utils
     COMPILE::JS
     {
         import goog.bind;
+        import goog.global;
     }
     
     /**
      * @flexjsignoreimport goog.bind
+     * @flexjsignoreimport goog.global
      */
     COMPILE::JS
 	public class Language
@@ -294,7 +296,7 @@ package org.apache.flex.utils
 				msg += rest[i];
 			}
 
-			theConsole = window["goog"]["global"]["console"];
+			theConsole = goog.global.console;
 
 			if (theConsole === undefined && windowConsole !== undefined)
 				theConsole = windowConsole;
