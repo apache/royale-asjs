@@ -431,7 +431,8 @@ package org.apache.flex.core
                 }
                 COMPILE::JS
                 {
-                    thisInstance = thisInstance.constructor["superClass_"];
+                    var constructorAsObject:Object = thisInstance["constructor"];
+                    thisInstance = constructorAsObject.superClass_;
                     if (!thisInstance || !thisInstance.FLEXJS_CLASS_INFO)
                         break;
                     
