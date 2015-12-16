@@ -90,47 +90,27 @@ org.apache.flex.utils.Language._int = function(value) {
  * @return {boolean}
  */
 org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
-  var checkInterfaces, superClass;
+  var superClass;
 
-  if (leftOperand == null)
+  if (leftOperand == null || rightOperand == null)
     return false;
-
-  if (leftOperand && rightOperand == null) {
-    return false;
-  }
-
-  checkInterfaces = function(left) {
-    var i, interfaces;
-
-    interfaces = left.FLEXJS_CLASS_INFO.interfaces;
-    for (i = interfaces.length - 1; i > -1; i--) {
-      if (interfaces[i] === rightOperand) {
-        return true;
-      }
-
-      if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
-        var isit = checkInterfaces(new interfaces[i]());
-        if (isit) return true;
-      }
-    }
-
-    return false;
-  };
-
-  if ((rightOperand === String && typeof leftOperand === 'string') ||
-      (leftOperand instanceof /** @type {Object} */(rightOperand))) {
+  if (leftOperand instanceof rightOperand)
     return true;
-  }
+  if (rightOperand === Object)
+    return true; // every value is an Object in ActionScript except null and undefined (caught above)
   if (typeof leftOperand === 'string')
-    return false; // right was not String otherwise exit above
+    return rightOperand === String;
   if (typeof leftOperand === 'number')
     return rightOperand === Number;
-  if (rightOperand === Array && Array.isArray(leftOperand))
-    return true;
+  if (typeof leftOperand === 'boolean')
+    return rightOperand === Boolean;
+  if (rightOperand === Array)
+    return Array.isArray(leftOperand);
+
   if (leftOperand.FLEXJS_CLASS_INFO === undefined)
     return false; // could be a function but not an instance
   if (leftOperand.FLEXJS_CLASS_INFO.interfaces) {
-    if (checkInterfaces(leftOperand)) {
+    if (org.apache.flex.utils.Language.checkInterfaces(leftOperand)) {
       return true;
     }
   }
@@ -139,7 +119,7 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   if (superClass) {
     while (superClass && superClass.FLEXJS_CLASS_INFO) {
       if (superClass.FLEXJS_CLASS_INFO.interfaces) {
-        if (checkInterfaces(superClass)) {
+        if (org.apache.flex.utils.Language.checkInterfaces(superClass)) {
           return true;
         }
       }
@@ -150,6 +130,55 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
   return false;
 };
 
+/**
+ * Helper function for is()
+ * 
+ * @private
+ * @param {?} leftOperand
+ * @param {?} rightOperand
+ * @return {boolean}
+ */
+org.apache.flex.utils.Language.checkInterfaces = function(leftOperand, rightOperand) {
+  var i, interfaces;
+
+  interfaces = leftOperand.FLEXJS_CLASS_INFO.interfaces;
+  for (i = interfaces.length - 1; i > -1; i--) {
+    if (interfaces[i] === rightOperand) {
+      return true;
+    }
+
+    if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+      var isit = org.apache.flex.utils.Language.checkInterfaces(interfaces[i].prototype, rightOperand);
+      if (isit) return true;
+    }
+  }
+
+  return false;
+};
+
+/**
+ * Implementation of "classDef is Class"
+ * 
+ * @export
+ * @param {?} classDef A possible Class definition
+ * @return {boolean} Returns true if classDef is a Class definition.
+ */
+org.apache.flex.utils.Language.isClass = function(classDef) {
+  return typeof classDef === 'function'
+    && classDef.prototype
+    && classDef.prototype.constructor === classDef;
+};
+
+/**
+ * Implementation of "classDef as Class"
+ * 
+ * @export
+ * @param {?} classDef A possible Class definition
+ * @return {boolean} Returns classDef if it is a Class, otherwise null.
+ */
+org.apache.flex.utils.Language.asClass = function(classDef) {
+  return isClass(classDef) ? classDef : null;
+};
 
 /**
  * trace()
@@ -160,12 +189,6 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
 org.apache.flex.utils.Language.trace = function(var_args) {
   var theConsole;
 
-  var msg = '';
-  for (var i = 0; i < arguments.length; i++) {
-    if (i > 0) msg += ' ';
-    msg += arguments[i];
-  }
-
   theConsole = goog.global.console;
 
   if (theConsole === undefined && window.console !== undefined)
@@ -173,7 +196,7 @@ org.apache.flex.utils.Language.trace = function(var_args) {
 
   try {
     if (theConsole && theConsole.log) {
-      theConsole.log(msg);
+      theConsole.log.apply(theConsole, arguments);
     }
   } catch (e) {
     // ignore; at least we tried ;-)
@@ -194,7 +217,7 @@ org.apache.flex.utils.Language.uint = function(value) {
 
 
 /**
- * preincrement handles --foo
+ * preincrement handles ++foo
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -209,7 +232,7 @@ org.apache.flex.utils.Language.preincrement = function(obj, prop) {
 
 
 /**
- * predecrement handles ++foo
+ * predecrement handles --foo
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -239,7 +262,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
 
 
 /**
- * postdecrement handles foo++
+ * postdecrement handles foo--
  *
  * @export
  * @param {Object} obj The object with the getter/setter.
@@ -248,7 +271,7 @@ org.apache.flex.utils.Language.postincrement = function(obj, prop) {
  */
 org.apache.flex.utils.Language.postdecrement = function(obj, prop) {
   var value = obj[prop];
-  obj[prop] = value + 1;
+  obj[prop] = value - 1;
   return value;
 };
 
