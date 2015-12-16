@@ -63,6 +63,8 @@
     
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
     
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc"/>
+    
     
     <condition property="adl" value="adl.exe">
         <os family="windows"/>
@@ -82,7 +84,7 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compilejsair" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
