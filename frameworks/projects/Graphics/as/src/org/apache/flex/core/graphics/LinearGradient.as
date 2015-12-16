@@ -90,7 +90,7 @@ package org.apache.flex.core.graphics
             }
             
             //Process gradient entries and create a stop for each entry
-            var entries:Array = entries;
+            var entries:Array = this.entries;
             for (var i:int = 0; i < entries.length; i++)
             {
                 var gradientEntry:GradientEntry = entries[i];
