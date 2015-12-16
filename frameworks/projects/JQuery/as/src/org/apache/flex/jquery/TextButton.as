@@ -31,6 +31,9 @@ package org.apache.flex.jquery
 			super();
 		}
 	
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
