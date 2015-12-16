@@ -57,6 +57,8 @@
     property="GOOG_HOME"
     value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
+    
     <include file="${basedir}/../../build_example.xml" />
     
 <!-- temp remove build_example.compilejs -->
