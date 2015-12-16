@@ -117,6 +117,10 @@
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </java>
+        <!-- hack: inject some jsdoc to get rid of a warning when building examples -->
+        <replace file="${basedir}/js/out/org/apache/flex/events/IEventDispatcher.js"
+            token="org.apache.flex.events.IEventDispatcher.prototype.dispatchEvent"
+            value="/** @param {(Object|null|string)} event The event. &#xD;&#xA;@return {boolean} The return. */&#xD;&#xA;org.apache.flex.events.IEventDispatcher.prototype.dispatchEvent" />
     </target>
 
     <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
