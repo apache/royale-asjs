@@ -21,20 +21,20 @@ package org.apache.flex.jquery
     import org.apache.flex.core.Application;
 	import org.apache.flex.core.IFlexInfo;
 	
-	/*
-	FalconJX will inject html into the index.html file.  Surround with
-	"inject_html" tag as follows:
-	
-	<inject_html>
-	<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-	</inject_html>
-	*/
 	
 	public class Application extends org.apache.flex.core.Application implements IFlexInfo
 	{
+		/**
+		 * FalconJX will inject html into the index.html file.  Surround with
+		 * "inject_html" tag as follows:
+		 *
+		 * <inject_html>
+		 * <link rel="stylesheet"
+		 * href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+		 * <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		 * <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+		 * </inject_html>
+		 */
 		public function Application()
 		{
 			super();
