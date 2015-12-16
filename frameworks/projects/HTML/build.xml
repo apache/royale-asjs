@@ -44,7 +44,7 @@
         <!-- no tests yet
          <ant dir="as/tests" />
          -->
-         <ant dir="asjs/tests" />
+         <ant dir="as/tests" />
     </target>
     
     <target name="test-js" unless="is.jenkins">

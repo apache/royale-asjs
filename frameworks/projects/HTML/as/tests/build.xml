@@ -119,7 +119,7 @@
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/HTML/asjs/src" />
+            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/HTML/as/src" />
             <arg value="-library-path+=${FLEXJS_HOME}/frameworks/libs" />
             <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="${FLEXUNIT_LIBPATH2}" />
@@ -144,7 +144,7 @@
 			localTrusted="true"
 			command="${browser}"
 			timeout="90000">
-            <source dir="${FLEXJS_HOME}/frameworks/projects/HTML/asjs/src" />
+            <source dir="${FLEXJS_HOME}/frameworks/projects/HTML/as/src" />
             <library dir="${FLEXJS_HOME}/frameworks/libs" />
         </flexunit>
         
