@@ -57,6 +57,8 @@
     property="GOOG_HOME"
     value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/jquery/out/bin/jquery-1.9.swc"/>
+    
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
