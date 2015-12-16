@@ -96,6 +96,8 @@ org.apache.flex.utils.Language.is = function(leftOperand, rightOperand) {
     return false;
   if (leftOperand instanceof rightOperand)
     return true;
+  if (rightOperand === Object)
+    return true; // every value is an Object in ActionScript except null and undefined (caught above)
   if (typeof leftOperand === 'string')
     return rightOperand === String;
   if (typeof leftOperand === 'number')
