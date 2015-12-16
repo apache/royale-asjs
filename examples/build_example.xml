@@ -20,6 +20,60 @@
 
 <project name="build_example" basedir=".">
 
+    <condition property="FALCON_HOME" value="${env.FALCON_HOME}">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${env.FALCONJX_HOME}">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${env.FALCONJX_HOME}/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler.jx">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${env.GOOG_HOME}/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${FLEXJS_HOME}/js/lib/google/closure-library">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
     <path id="lib.path">
       <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
