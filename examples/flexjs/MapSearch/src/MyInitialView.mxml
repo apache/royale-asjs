@@ -112,7 +112,7 @@ limitations under the License.
 			 */
 			private function onMarkerClicked(event:org.apache.flex.events.Event):void
 			{
-				var marker:Marker = map.selectedMarker;
+				var marker:Marker = map.selectedMarker as Marker;
 				map.setZoom(12);
 				map.setCenter(marker.getPosition());
 			}
@@ -182,7 +182,7 @@ limitations under the License.
 								dataProvider="{MyModel(applicationModel).cities}" />
 		</js:Container>
 		
-		<google:GoogleMap id="map" width="450" height="300" className="MainMap"
+		<google:Map id="map" width="450" height="300" className="MainMap"
 				   token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
 				   ready="onMapReady()"/>
 		

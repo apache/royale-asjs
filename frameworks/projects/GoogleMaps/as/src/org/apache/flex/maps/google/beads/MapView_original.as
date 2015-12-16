@@ -51,9 +51,9 @@ package org.apache.flex.maps.google.beads
 	 *  @productversion FlexJS 0.0
 	 */
 	COMPILE::JS
-	public class MapView extends BeadViewBase implements IBeadView
+	public class MapView_original extends BeadViewBase implements IBeadView
 	{
-		public function MapView()
+		public function MapView_original()
 		{
 			super();
 		}
@@ -85,7 +85,7 @@ package org.apache.flex.maps.google.beads
 	}
 
 	COMPILE::AS3
-	public class MapView extends BeadViewBase implements IBeadView
+	public class MapView_original extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  Constructor.
@@ -95,7 +95,7 @@ package org.apache.flex.maps.google.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function MapView()
+		public function MapView_original()
 		{
 		}
 

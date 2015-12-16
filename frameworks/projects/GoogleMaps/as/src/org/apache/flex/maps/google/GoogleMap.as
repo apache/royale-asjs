@@ -26,11 +26,8 @@ package org.apache.flex.maps.google
 	import org.apache.flex.maps.google.beads.GoogleMapView;
 	import org.apache.flex.maps.google.models.MapModel;
 
-	COMPILE::JS {
-		import google.maps.LatLng;
-		import google.maps.Marker;
-		import org.apache.flex.core.WrappedHTMLElement;
-	}
+	import google.maps.LatLng;
+	import google.maps.Marker;
 
 	[Event(name="ready", type="org.apache.flex.events.Event")]
 	[Event(name="centered", type="org.apache.flex.events.Event")]
@@ -77,7 +74,6 @@ package org.apache.flex.maps.google
 			MapModel(model).token = value;
 		}
 
-		COMPILE::JS
 		public function get selectedMarker():Marker
 		{
 			return MapModel(model).selectedMarker;
@@ -103,7 +99,6 @@ package org.apache.flex.maps.google
 			GoogleMapView(view).centerOnAddress(address);
 		}
 
-		COMPILE::JS
 		public function setCenter(location:LatLng):void
 		{
 			GoogleMapView(view).setCenter(location);
@@ -119,7 +114,6 @@ package org.apache.flex.maps.google
 			GoogleMapView(view).markAddress(address);
 		}
 
-		COMPILE::JS
 		public function createMarker(location:LatLng):Marker
 		{
 			return GoogleMapView(view).createMarker(location);

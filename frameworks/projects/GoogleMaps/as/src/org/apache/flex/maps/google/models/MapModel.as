@@ -22,17 +22,15 @@ package org.apache.flex.maps.google.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-	
-	COMPILE::JS {
-		import google.maps.LatLng;
-		import google.maps.Marker;
-	}
-	
+
+	import google.maps.LatLng;
+	import google.maps.Marker;
+
 	/**
 	 * The data model for the Map class, this holds the maps current center
 	 * location, its current zoom level, the last marker selected, and any
 	 * search results.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -42,7 +40,7 @@ package org.apache.flex.maps.google.models
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -52,12 +50,12 @@ package org.apache.flex.maps.google.models
 		{
 			super();
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -67,9 +65,9 @@ package org.apache.flex.maps.google.models
 		{
 			_strand = value;
 		}
-		
+
 		private var _token:String;
-		
+
 		public function get token():String
 		{
 			return _token;
@@ -79,60 +77,54 @@ package org.apache.flex.maps.google.models
 			_token = value;
 			dispatchEvent(new Event("tokenChanged"));
 		}
-		
-		COMPILE::JS
+
 		private var _currentCenter:LatLng;
-		
+
 		/**
 		 * The current center of the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		COMPILE::JS
 		public function get currentCenter():LatLng
 		{
 			return _currentCenter;
 		}
-		
-		COMPILE::JS
+
 		public function set currentCenter(value:LatLng):void
 		{
 			_currentCenter = value;
 			dispatchEvent( new Event("currentCenterChanged") );
 		}
-		
-		COMPILE::JS
+
 		private var _selectedMarker:Marker;
-		
+
 		/**
 		 * The last marker selected, if any.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		COMPILE::JS
 		public function get selectedMarker():Marker
 		{
 			return _selectedMarker;
 		}
-		
-		COMPILE::JS
+
 		public function set selectedMarker(value:Marker):void
 		{
 			_selectedMarker = value;
 			dispatchEvent( new Event("selectedMarkerChanged") );
 		}
-		
+
 		private var _zoom:Number;
-		
+
 		/**
 		 * The current zoom level.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -149,12 +141,12 @@ package org.apache.flex.maps.google.models
 				dispatchEvent( new Event("zoomChanged") );
 			}
 		}
-		
+
 		private var _searchResults:Array;
-		
+
 		/**
 		 * Results from the last search.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

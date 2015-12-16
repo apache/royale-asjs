@@ -19,7 +19,7 @@
 
 @namespace g "library://ns.apache.org/flexjs/google";
 
-g|GoogleMap
+g|Map
 {
     IBeadView: ClassReference("org.apache.flex.maps.google.beads.GoogleMapView");
 	IBeadModel: ClassReference("org.apache.flex.maps.google.models.MapModel");
