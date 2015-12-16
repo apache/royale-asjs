@@ -60,6 +60,14 @@ package org.apache.flex.maps.google.beads
 	COMPILE::JS
 	public class GoogleMapView extends BeadViewBase implements IBeadView
 	{
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function GoogleMapView()
 		{
 			super();
@@ -74,6 +82,14 @@ package org.apache.flex.maps.google.beads
 
 		private var _strand:IStrand;
 
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -97,6 +113,14 @@ package org.apache.flex.maps.google.beads
 			document.head.appendChild(script);
 		}
 
+		/**
+		 *  Adjusts the map to the given coordinate and zoom level.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function mapit( centerLat:Number, centerLng:Number, zoom:Number ):void
 		{
 			if (!initialized) {
@@ -118,6 +142,9 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 
+		/**
+		 * @private
+		 */
 		private function finishInitialization():void
 		{
 			mapit(37.333, -121.900, 12);
@@ -125,25 +152,58 @@ package org.apache.flex.maps.google.beads
 			dispatchEvent(new Event('ready'));
 		}
 
+		/**
+		 * Centers the map on the address given.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function centerOnAddress(value:String):void
 		{
 			if (geocoder == null) geocoder = new Geocoder();
 			geocoder.geocode({address:value}, positionHandler);
 		}
 
+		/**
+		 * Sets the center of the map.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function setCenter(location:LatLng):void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			model.currentCenter = new LatLng(location.lat(), location.lng());
-			realMap.setCenter(model.currentCenter as LatLng);
+			realMap.setCenter(model.currentCenter);
 		}
 
+		/**
+		 * Marks the current center of the map.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function markCurrentLocation():void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			createMarker(model.currentCenter as LatLng);
 		}
 
+		/**
+		 *  Finds the given address and places a marker on it. This function may be dropped
+		 *  since centerOnAddress + markCurrentLocation does the same thing.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function markAddress(address:String):void
 		{
 			if (initialized) {
@@ -152,13 +212,33 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 
+		/**
+		 * Creates a marker for placement on the map.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion google.maps.Marker
+		 */
 		public function createMarker(location:LatLng):Marker
 		{
 			var marker:Marker = new Marker({map:realMap, position:location});
-			google.maps.event.addListener(marker, 'click', goog.bind(markerClicked, this));
+		//	google.maps.event.addListener(marker, 'click', goog.bind(markerClicked, this));
+		    marker.addListener('click', markerClicked);
+
 			return marker;
 		}
 
+		/**
+		 * Performs a search near the center of map. The result is a set of
+		 * markers displayed on the map.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function nearbySearch(placeName:String):void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -168,6 +248,14 @@ package org.apache.flex.maps.google.beads
 			service.nearbySearch({location:model.currentCenter, radius:5000, name:placeName}, searchResultsHandler);
 		}
 
+		/**
+		 * Clears the previous search results.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function clearSearchResults():void
 		{
 			if (markers) {
@@ -181,6 +269,9 @@ package org.apache.flex.maps.google.beads
 
 		// Callbacks
 
+		/**
+		 * @private
+		 */
 		public function centerChangeHandler() : void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -190,6 +281,9 @@ package org.apache.flex.maps.google.beads
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 		}
 
+		/**
+		 * @private
+		 */
 		public function boundsChangeHandler():void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -199,6 +293,9 @@ package org.apache.flex.maps.google.beads
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 		}
 
+		/**
+		 * @private
+		 */
 		public function zoomChangeHandler():void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -208,28 +305,38 @@ package org.apache.flex.maps.google.beads
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 		}
 
+		/**
+		 * @private
+		 */
 		public function positionHandler(results:Array, status:String):void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			if (status == GeocoderStatus.OK) {
 				model.currentCenter = results[0].geometry.location;
-				realMap.setCenter(model.currentCenter as LatLng);
+				realMap.setCenter(model.currentCenter);
 
 				// dispatch an event to indicate the map has been centered
 			}
 		}
 
+		/**
+		 * @flexjsignorecoercion google.maps.Marker
+		 * @flexjsignorecoercion google.maps.LatLng
+		 */
 		public function geocodeHandler(results:Array, status:String):void
 		{
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			if (status == GeocoderStatus.OK) {
 				model.currentCenter = results[0].geometry.location;
-				realMap.setCenter(model.currentCenter as LatLng);
+				realMap.setCenter(model.currentCenter);
 
 				var marker:Marker = new Marker({map:realMap, position:model.currentCenter});
 			}
 		}
 
+		/**
+		 * @private
+		 */
 		public function searchResultsHandler(results:Array, status:String):void
 		{
 			searchResults = [];
@@ -270,16 +377,22 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 
-		public function markerClicked(marker:Marker, event:Object):void
+		/**
+		 * @flexjsignorecoercion google.maps.Marker
+		 * @flexjsignorecoercion google.maps.LatLng
+		 */
+		public function markerClicked(marker:Marker):void
 		{
-			var newMarker:Marker = new Marker();
-			var pos:LatLng = marker.getPosition();
-			newMarker.setPosition(pos);
-			newMarker.setTitle(marker.getTitle());
-			newMarker.setMap(realMap);
+			var pos:LatLng = marker["latLng"] as LatLng;//marker.getPosition();
 
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
-			model.selectedMarker = newMarker;
+			for (var i:int=0; i < markers.length; i++) {
+				var test:LatLng = marker.getPosition();
+				if (test.lat() == pos.lat() && test.lng() == pos.lng()) {
+					var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+					model.selectedMarker = markers[i];
+					break;
+				}
+			}
 
 			var newEvent:Event = new Event('markerClicked');
 			dispatchEvent(newEvent);
@@ -441,6 +554,14 @@ package org.apache.flex.maps.google.beads
 
 		}
 
+		/**
+		 * Clears the previous search results.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function clearSearchResults():void
 		{
 			// not implemented

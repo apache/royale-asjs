@@ -59,10 +59,10 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
-    
-    <include-sources>
-        <path-element>as/src</path-element>
-    </include-sources>
+
+    <include-classes>
+        <class>GoogleMapsClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/google</uri>
