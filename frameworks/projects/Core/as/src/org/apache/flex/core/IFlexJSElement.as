@@ -1,11 +1,9 @@
 package org.apache.flex.core
 {
     COMPILE::AS3
+    public interface IFlexJSElement
     {
-        public interface IFlexJSElement
-        {
-            
-        }
+        
     }
 
 	COMPILE::JS
