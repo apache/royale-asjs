@@ -37,7 +37,6 @@
 	<echo message="flexlib = ${flexlib}" />
 	<echo message="doc_output = ${doc_output}" />
     <echo message="compiler.source-path = ${project_home}/*/as/src" />
-	<echo message="compiler.source-path = ${project_home}/*/asjs/src" />
 
 	<target name="main" depends="clean,doc" description="Clean build of all ASDocs"/>
 
@@ -74,31 +73,31 @@
                footer="${manifest.Implementation-Vendor}" >
                
             <load-config filename="${flexlib}/asdoc-config.xml" />
-               
+            
+            <exclude-classes>org.apache.flex.utils.Language</exclude-classes>
+            <exclude-classes>org.apache.flex.core.IFlexJSElement</exclude-classes>
+            <exclude-classes>org.apache.flex.core.WrappedHTMLElement</exclude-classes>
+            <exclude-classes>org.apache.flex.events.BrowserEvent</exclude-classes>
+            <exclude-sources path-element="${project_home}/Core/as/src/org/apache/flex/utils/Language.as" />
+            <exclude-sources path-element="${project_home}/Core/as/src/org/apache/flex/core/WrappedHTMLElement.as" />
+            <exclude-sources path-element="${project_home}/Core/as/src/org/apache/flex/events/BrowserEvent.as" />
+            <exclude-sources path-element="${project_home}/Core/as/src/org/apache/flex/core/IFlexJSElement.as" />
+            
             <!-- source path for asdoc -->
 			<compiler.source-path path-element="${project_home}/Binding/as/src"/>
-			<compiler.source-path path-element="${project_home}/Binding/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Charts/as/src"/>
-			<compiler.source-path path-element="${project_home}/Charts/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Collections/as/src"/>
-            <compiler.source-path path-element="${project_home}/Collections/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Core/as/src"/>
-			<compiler.source-path path-element="${project_home}/Core/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/CreateJS/as/src"/>
 			<compiler.source-path path-element="${project_home}/DragDrop/as/src"/>
-			<compiler.source-path path-element="${project_home}/DragDrop/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Effects/as/src"/>
-			<compiler.source-path path-element="${project_home}/Effects/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Formatters/as/src"/>
-			<compiler.source-path path-element="${project_home}/Formatters/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/GoogleMaps/as/src"/>
 			<compiler.source-path path-element="${project_home}/Graphics/as/src"/>
 			<compiler.source-path path-element="${project_home}/HTML/as/src"/>
-			<compiler.source-path path-element="${project_home}/HTML/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/HTML5/as/src"/>
 			<compiler.source-path path-element="${project_home}/JQuery/as/src"/>
 			<compiler.source-path path-element="${project_home}/Mobile/as/src"/>
-			<compiler.source-path path-element="${project_home}/Mobile/asjs/src"/>
 			<compiler.source-path path-element="${project_home}/Network/as/src"/>
 						
 			<!-- namespaces to include in asdoc -->
@@ -110,27 +109,19 @@
 
 			<!-- classes to include in asdoc -->
 			<doc-sources path-element="${project_home}/Binding/as/src"/>
-			<doc-sources path-element="${project_home}/Binding/asjs/src"/>
 			<doc-sources path-element="${project_home}/Charts/as/src"/>
-			<doc-sources path-element="${project_home}/Charts/asjs/src"/>
 			<doc-sources path-element="${project_home}/Collections/as/src"/>
 			<doc-sources path-element="${project_home}/Core/as/src"/>
-			<doc-sources path-element="${project_home}/Core/asjs/src"/>
 			<doc-sources path-element="${project_home}/CreateJS/as/src"/>
 			<doc-sources path-element="${project_home}/DragDrop/as/src"/>
-			<doc-sources path-element="${project_home}/DragDrop/asjs/src"/>
 			<doc-sources path-element="${project_home}/Effects/as/src"/>
-			<doc-sources path-element="${project_home}/Effects/asjs/src"/>
 			<doc-sources path-element="${project_home}/Formatters/as/src"/>
-			<doc-sources path-element="${project_home}/Formatters/asjs/src"/>
 			<doc-sources path-element="${project_home}/GoogleMaps/as/src"/>
 			<doc-sources path-element="${project_home}/Graphics/as/src"/>
 			<doc-sources path-element="${project_home}/HTML/as/src"/>
-			<!--<doc-sources path-element="${project_home}/HTML/asjs/src"/>-->
 			<doc-sources path-element="${project_home}/HTML5/as/src"/>
 			<doc-sources path-element="${project_home}/JQuery/as/src"/>
 			<doc-sources path-element="${project_home}/Mobile/as/src"/>
-			<doc-sources path-element="${project_home}/Mobile/asjs/src"/>
 			<doc-sources path-element="${project_home}/Network/as/src"/>
 			 
 			<!-- namespace declaration for asdoc -->
@@ -157,6 +148,8 @@
 
 			<jvmarg line="${asdoc.jvm.args}"/>
 
+            <define name="COMPILE::AS3" value="true"/>
+            <define name="COMPILE::JS" value="false"/>
 			<define name="CONFIG::debug" value="false"/>
 			<define name="CONFIG::release" value="true"/>
             <define name="CONFIG::LOGGING" value="false"/>
