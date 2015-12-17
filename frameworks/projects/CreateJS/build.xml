@@ -32,10 +32,7 @@
         <os family="windows"/>
     </condition>
 
-    <target name="main" depends="clean,compile,test" description="Clean build of CreateJS.swc">
-    </target>
-
-    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of CreateJS.swc">
+    <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of CreateJS.swc">
     </target>
 
     <target name="test" unless="is.jenkins">

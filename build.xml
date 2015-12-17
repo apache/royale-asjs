@@ -87,14 +87,14 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="check-if-ide,prebuild,frameworks-as,frameworks-js,frameworks-recompile,post-build,last-message-if-airsdk" description="Full build" unless="airsdk.found">
+    <target name="main" depends="check-if-ide,prebuild,frameworks,post-build,last-message-if-airsdk" description="Full build" unless="airsdk.found">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
+    <target name="main-jenkins" depends="dump-config,prebuild,frameworks,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -372,7 +372,7 @@
         <delete dir="${basedir}/lib"/>
     </target>
 
-    <target name="clean" depends="examples-clean,frameworks-as-clean,package-clean,checkintests-clean"
+    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
@@ -398,7 +398,7 @@
         <ant dir="${basedir}/manualtests" target="clean"/>
     </target>
 
-    <target name="frameworks-as-clean">
+    <target name="frameworks-clean">
         <ant dir="${basedir}/frameworks" target="clean"/>
     </target>
 
@@ -427,27 +427,8 @@
         Build framework SWCs
     -->
 
-    <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
+    <target name="frameworks" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
         <ant dir="${basedir}/frameworks">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-
-    <target name="frameworks-js-jenkins" description="Full check of all JavaScript framework files, using gsjlint and jshint">
-        <property name="no.lint" value="true" />
-        <ant dir="${basedir}/frameworks" target="js">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-    
-    <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="js">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-
-    <target name="frameworks-recompile" description="Full build of all Actionscript framework SWCs, which picks up JS files" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
@@ -546,13 +527,6 @@
          
         <!-- frameworks -->
         <antcall target="stage-framework-as"/>
-        
-        <copy todir="${basedir}/temp/frameworks/js">
-            <fileset dir="${basedir}/frameworks/js" >
-                <include name="jshint.properties"/>
-                <include name=".jshintrc"/>
-            </fileset>
-        </copy>
         
         <!-- asdoc -->
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
@@ -1148,8 +1122,6 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
         </java>
         <fail>

@@ -28,16 +28,8 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
-    <property name="gjslint" value="gjslint" />
-    <property name="jshint" value="jshint" />
-    <condition property="no.lint" value="true">
-        <os family="windows"/>
-    </condition>
     
-    <target name="main" depends="clean,compile,test" description="Clean build of Network.swc">
-    </target>
-    
-    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile" description="Full build of Network.swc">
+    <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile" description="Full build of Network.swc">
     </target>
     
     <target name="test" unless="is.jenkins">

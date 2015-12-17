@@ -29,10 +29,7 @@
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
 
-    <target name="main" depends="clean,compile,test" description="Clean build of Collections.swc">
-    </target>
-
-    <target name="all" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Collections.swc">
+    <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Collections.swc">
     </target>
 
     <target name="test" unless="is.jenkins">

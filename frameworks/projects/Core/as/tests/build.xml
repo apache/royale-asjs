@@ -19,7 +19,7 @@
 -->
 
 
-<project name="flexjsui.test" default="main" basedir=".">
+<project name="Core.test" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>

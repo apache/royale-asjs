@@ -94,18 +94,6 @@
         <antcall target="Network"/>
     </target>
     
-    <target name="compile-asjs" description="Cross-compiles all SWCs">
-    </target>
-
-    <target name="lint-js" description="Cross-compiles all SWCs">
-    </target>
-
-    <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
-        <!-- order may matter due to dependencies -->
-    </target>
-
-    <target name="js" depends="compile-asjs, lint-js" />
-    
     <target name="fonts">
         <ant dir="${basedir}/fontsrc" target="main"/>
     </target>
@@ -167,67 +155,67 @@
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">
-        <ant dir="${basedir}/projects/Binding" target="all"/>
+        <ant dir="${basedir}/projects/Binding"/>
     </target>
     
     <target name="Charts" description="Clean build of Charts.swc">
-        <ant dir="${basedir}/projects/Charts" target="all"/>
+        <ant dir="${basedir}/projects/Charts"/>
     </target>
 
     <target name="Core" description="Clean build of Core.swc">
-        <ant dir="${basedir}/projects/Core" target="all"/>
+        <ant dir="${basedir}/projects/Core"/>
     </target>
 
     <target name="Collections" description="Clean build of Collections.swc">
-        <ant dir="${basedir}/projects/Collections" target="all"/>
+        <ant dir="${basedir}/projects/Collections"/>
     </target>
 
     <target name="CreateJS" description="Clean build of CreateJS.swc">
-        <ant dir="${basedir}/projects/CreateJS" target="all"/>
+        <ant dir="${basedir}/projects/CreateJS"/>
     </target>
 
     <target name="DragDrop" description="Clean build of DragDrop.swc">
-        <ant dir="${basedir}/projects/DragDrop" target="all"/>
+        <ant dir="${basedir}/projects/DragDrop"/>
     </target>
 
     <target name="Effects" description="Clean build of Effects.swc">
-        <ant dir="${basedir}/projects/Effects" target="all"/>
+        <ant dir="${basedir}/projects/Effects"/>
     </target>
 
     <target name="Flat" description="Clean build of Flat.swc">
-        <ant dir="${basedir}/projects/Flat" target="all"/>
+        <ant dir="${basedir}/projects/Flat"/>
     </target>
 
     <target name="Formatters" description="Clean build of Formatters.swc">
-        <ant dir="${basedir}/projects/Formatters" target="all"/>
+        <ant dir="${basedir}/projects/Formatters"/>
     </target>
 
     <target name="GoogleMaps" description="Clean build of GoogleMaps.swc">
-        <ant dir="${basedir}/projects/GoogleMaps" target="all"/>
+        <ant dir="${basedir}/projects/GoogleMaps"/>
     </target>
 
     <target name="Graphics" description="Clean build of Graphics.swc">
-        <ant dir="${basedir}/projects/Graphics" target="all"/>
+        <ant dir="${basedir}/projects/Graphics"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">
-        <ant dir="${basedir}/projects/HTML" target="all"/>
+        <ant dir="${basedir}/projects/HTML"/>
     </target>
 
     <target name="HTML5" description="Clean build of HTML5.swc">
-        <ant dir="${basedir}/projects/HTML5" target="all"/>
+        <ant dir="${basedir}/projects/HTML5"/>
     </target>
 
     <target name="JQuery" description="Clean build of JQuery.swc">
-        <ant dir="${basedir}/projects/JQuery" target="all"/>
+        <ant dir="${basedir}/projects/JQuery"/>
     </target>
 
     <target name="Mobile" description="Clean build of Mobile.swc">
-        <ant dir="${basedir}/projects/Mobile" target="all"/>
+        <ant dir="${basedir}/projects/Mobile"/>
     </target>
 
     <target name="Network" description="Clean build of Network.swc">
-        <ant dir="${basedir}/projects/Network" target="all"/>
+        <ant dir="${basedir}/projects/Network"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
