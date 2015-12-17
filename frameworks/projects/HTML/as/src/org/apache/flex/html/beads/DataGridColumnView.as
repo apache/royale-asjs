@@ -45,8 +45,6 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -58,8 +56,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_strand = value;
-		}
+    	}
 		
 		private var _columnIndex:uint;
 		
