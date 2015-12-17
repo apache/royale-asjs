@@ -19,7 +19,6 @@
 package org.apache.flex.html.beads.layouts
 {	
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IDataGridLayout;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -39,7 +38,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridLayout implements IBeadLayout, IDataGridLayout
+	public class DataGridLayout implements IBeadLayout
 	{
 		/**
 		 *  constructor
