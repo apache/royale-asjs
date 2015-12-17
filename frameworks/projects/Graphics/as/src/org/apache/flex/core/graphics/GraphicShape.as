@@ -66,6 +66,11 @@ package org.apache.flex.core.graphics
 			_fill = value;
 		}
 		
+		/**
+		 * Constructor
+		 * 
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement 
+		 */
         public function GraphicShape()
         {
             COMPILE::JS

@@ -18,20 +18,20 @@ package org.apache.flex.core.graphics
     {
         import flash.display.GraphicsPath;
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
 	COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	import org.apache.flex.core.graphics.utils.PathHelper;
 
 	public class Path extends GraphicShape
 	{
-		
+
 		private var _data:String;
-		
+
 		public function get data():String
 		{
 			return _data;
@@ -48,14 +48,15 @@ package org.apache.flex.core.graphics
 		 *  The value is a space-delimited string describing each path segment. Each
 	     *  segment entry has a single character which denotes the segment type and
     	 *  two or more segment parameters.
-		 * 
+		 *
 		 *  If the segment command is upper-case, the parameters are absolute values.
 		 *  If the segment command is lower-case, the parameters are relative values.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawPath(x:Number,y:Number,data:String):void
 		{
@@ -69,7 +70,7 @@ package org.apache.flex.core.graphics
                 beginFill(bounds,new Point(bounds.left + x, bounds.top + y) );
                 var graphicsPath:GraphicsPath = PathHelper.getSegments(data,x,y);
                 graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
@@ -88,12 +89,12 @@ package org.apache.flex.core.graphics
                 {
                     setPosition(x, y, 0, 0);
                 }
-                
+
                 resize(x, y, path['getBBox']());
 
             }
 		}
-		
+
 		override protected function draw():void
 		{
 			drawPath(0, 0, data);
