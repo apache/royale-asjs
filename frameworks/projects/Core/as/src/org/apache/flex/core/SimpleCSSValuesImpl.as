@@ -18,15 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.system.ApplicationDomain;
-	import flash.utils.getDefinitionByName;
-	import flash.utils.getQualifiedClassName;
-	import flash.utils.getQualifiedSuperclassName;
+    COMPILE::AS3
+    {
+        import flash.system.ApplicationDomain;
+        import flash.utils.getDefinitionByName;
+        import flash.utils.getQualifiedClassName;
+        import flash.utils.getQualifiedSuperclassName;            
+    }
 	
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.events.ValueEvent;
-    import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.events.ValueEvent;
+	import org.apache.flex.utils.CSSUtils;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
@@ -69,6 +72,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function init(mainClass:Object):void
         {
 			var styleClassName:String;
@@ -101,6 +105,47 @@ package org.apache.flex.core
             }
         }
         
+        COMPILE::JS
+        public function init(mainClass:Object):void
+        {
+            var cssData:Array = mainClass.cssData;
+            var values:Object = this.values;
+            if (values == null)
+                values = {};
+            
+            if (cssData) {
+                var n:int = cssData.length;
+                var i:int = 0;
+                while (i < n)
+                {
+                    var numMQ:int = cssData[i++];
+                    if (numMQ > 0)
+                    {
+                        // skip MediaQuery tests for now
+                        i += numMQ;
+                    }
+                    var numSel:int = cssData[i++];
+                    var props:Object = {};
+                    for (var j:int = 0; j < numSel; j++)
+                    {
+                        var selName:String = cssData[i++];
+                        if (values[selName])
+                            props = values[selName];
+                        values[selName] = props;
+                    }
+                    var numProps:int = cssData[i++];
+                    for (j = 0; j < numProps; j++)
+                    {
+                        var propName:String = cssData[i++];
+                        var propValue:Object = cssData[i++];
+                        props[propName] = propValue;
+                    }
+                }
+            }
+            
+            this.values = values;            
+        }
+        
         /**
          *  Process the encoded CSS data into data structures.  Usually not called
          *  directly by application developers.
@@ -110,6 +155,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
 			if (factoryFunctions == null)
@@ -199,7 +245,7 @@ package org.apache.flex.core
                             values[finalName] = valuesObject;
                         else
                         {
-                            valuesFunction.prototype = o;
+                            valuesFunction["prototype"] = o;
                             values[finalName] = new valuesFunction();
                         }
                     }
@@ -344,7 +390,14 @@ package org.apache.flex.core
                 }
 			}
 			
-			className = getQualifiedClassName(thisObject);
+            COMPILE::AS3
+            {
+    			className = getQualifiedClassName(thisObject);
+            }
+            COMPILE::JS
+            {
+                className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
+            }
             var thisInstance:Object = thisObject;
 			while (className != "Object")
 			{
@@ -371,8 +424,20 @@ package org.apache.flex.core
 	                if (value !== undefined)
 	                    return value;
 	            }
-				className = getQualifiedSuperclassName(thisInstance);
-				thisInstance = getDefinitionByName(className);
+                COMPILE::AS3
+                {
+                    className = getQualifiedSuperclassName(thisInstance);
+                    thisInstance = getDefinitionByName(className);                        
+                }
+                COMPILE::JS
+                {
+                    var constructorAsObject:Object = thisInstance["constructor"];
+                    thisInstance = constructorAsObject.superClass_;
+                    if (!thisInstance || !thisInstance.FLEXJS_CLASS_INFO)
+                        break;
+                    
+                    className = thisInstance.FLEXJS_CLASS_INFO.names[0].qName;                    
+                }
 			}
             
             if (inheritingStyles[valueName] != null && 
@@ -439,7 +504,7 @@ package org.apache.flex.core
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
-                    valueName..substr(c + 2);
+                    valueName.substr(c + 2);
                 c = valueName.indexOf("-");
             }
 			var oldValue:Object = values[valueName];
@@ -473,17 +538,30 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Function
          */
         public function getInstance(valueName:String):Object
         {
             var o:Object = values["global"];
-            if (o is Class)
+            o = o[valueName];
+            COMPILE::AS3
             {
-                o[valueName] = new o[valueName]();
-                if (o[valueName] is IDocument)
-                    o[valueName].setDocument(mainClass);
+                var i:Class = o as Class;                    
             }
-            return o[valueName];
+            COMPILE::JS
+            {
+                var i:Function = null;
+                if (typeof(o) === "function")
+                    i = o as Function;
+            }
+            if (i)
+            {
+                o[valueName] = new i();
+                var d:IDocument = o[valueName] as IDocument;
+                if (d)
+                    d.setDocument(mainClass);
+            }
+            return o;
         }
         
         /**
@@ -588,10 +666,81 @@ package org.apache.flex.core
             "fontStyle" : 1,
             "textAlign" : 1
         }
-                                                        
+
+        /**
+         * The styles that apply to each UI widget
+         */
+        COMPILE::JS
+        public static var perInstanceStyles:Object = {
+            'backgroundColor': 1,
+            'backgroundImage': 1,
+            'color': 1,
+            'fontFamily': 1,
+            'fontWeight': 1,
+            'fontSize': 1,
+            'fontStyle': 1
+        }
+        
+        
+        /**
+         * The styles that use color format #RRGGBB
+         */
+        COMPILE::JS
+        public static var colorStyles:Object = {
+            'backgroundColor': 1,
+            'borderColor': 1,
+            'color': 1
+        }
+        
+        
+        /**
+         * The properties that enumerate that we skip
+         */
+        COMPILE::JS
+        public static var skipStyles:Object = {
+            'constructor': 1
+        }
+        
+        
+
+        /**
+         * @param thisObject The object to apply styles to;
+         * @param styles The styles.
+         */
+        COMPILE::JS
+        public function applyStyles(thisObject:IUIBase, styles:Object):void
+        {
+            var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
+            var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
+            var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
+            var listObj:Object = styles;
+            if (styles.styleList)
+                listObj = styles.styleList;
+            for (var p:String in listObj) 
+            {
+                //if (styleList[p])
+                if (skipStyles[p])
+                    continue;
+                var value:* = styles[p];
+                if (value === undefined)
+                    continue;
+                if (typeof(value) == 'number') {
+                    if (colorStyles[p])
+                        value = '#' + value.toString(16);
+                    else
+                        value = value.toString() + 'px';
+                }
+                else if (p == 'backgroundImage') {
+                    if (p.indexOf('url') !== 0)
+                        value = 'url(' + value + ')';
+                }
+                thisObject.element.style[p] = value;
+            }
+        }
 	}
 }
 
+COMPILE::AS3
 class CSSClass
 {
     public static const CSSSelector:int = 0;
@@ -600,6 +749,7 @@ class CSSClass
     public static const CSSMediaQuery:int = 3;
 }
 
+COMPILE::AS3
 class CSSFactory
 {
     public static const DefaultFactory:int = 0;
@@ -607,6 +757,7 @@ class CSSFactory
     public static const Override:int = 2;
 }
 
+COMPILE::AS3
 class CSSDataType
 {
     public static const Native:int = 0;

@@ -18,14 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
-	import flash.utils.Dictionary;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;
+        import flash.events.MouseEvent;
+        import flash.utils.Dictionary;            
+    }
 	
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
-	import org.apache.flex.core.UIButtonBase;
+    COMPILE::AS3
+    {
+        import org.apache.flex.core.UIButtonBase;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.UIBase;
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 	import org.apache.flex.events.Event;
+	import org.apache.flex.core.IUIBase;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
@@ -42,6 +54,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+    COMPILE::AS3
 	public class RadioButton extends UIButtonBase implements IStrand
 	{
 		/**
@@ -205,4 +218,130 @@ package org.apache.flex.html
 			}
 		}
 	}
+    
+    COMPILE::JS
+    public class RadioButton extends UIBase
+    {
+        public static var radioCounter:int = 0;
+        
+        private var input:HTMLInputElement;
+        private var labelFor:HTMLLabelElement;
+        private var textNode:Text;
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLInputElement
+         * @flexjsignorecoercion HTMLLabelElement
+         * @flexjsignorecoercion Text
+         */
+        override protected function createElement():WrappedHTMLElement
+        {            
+            input = document.createElement('input') as HTMLInputElement;
+            input.type = 'radio';
+            input.id = '_radio_' + RadioButton.radioCounter++;
+            
+            textNode = document.createTextNode('radio button') as Text;
+            
+            labelFor = document.createElement('label') as HTMLLabelElement;
+            labelFor.appendChild(input);
+            labelFor.appendChild(textNode);
+            
+            element = labelFor as WrappedHTMLElement;
+            element.className = 'RadioButton';
+            typeNames = 'RadioButton';
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            (input as WrappedHTMLElement).flexjs_wrapper = this;
+            (element as WrappedHTMLElement).flexjs_wrapper = this;
+            (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+            
+            return element;
+        }        
+        
+        override public function set id(value:String):void 
+        {
+            super.id = value;
+            labelFor.id = value;
+            input.id = value;
+        }
+        
+        public function get groupName():String
+        {
+            return input.name as String;
+        }
+        public function set groupName(value:String):void
+        {
+            input.name = value;
+        }
+        
+        public function get text():String
+        {
+            return textNode.nodeValue as String;
+        }
+        public function set text(value:String):void
+        {
+            textNode.nodeValue = value;
+        }
+        
+        /** @export */
+        public function get selected():Boolean
+        {
+            return input.checked;
+        }
+        public function set selected(value:Boolean):void
+        {
+            input.checked = value;            
+        }
+        
+        public function get value():Object
+        {
+            return input.value;
+        }
+        public function set value(v:Object):void
+        {
+            input.value = v as String;
+        }
+        
+        public function get selectedValue():Object
+        {
+            var buttons:NodeList;
+            var groupName:String;
+            var i:int;
+            var n:int;
+            
+            groupName = input.name as String;
+            buttons = document.getElementsByName(groupName);
+            n = buttons.length;
+            
+            for (i = 0; i < n; i++) {
+                if (buttons[i].checked) {
+                    return buttons[i].value;
+                }
+            }
+            return null;
+        }
+        
+        /**
+         * @flexjsignorecoercion Array
+         */
+        public function set selectedValue(value:Object):void
+        {
+            var buttons:NodeList;
+            var groupName:String;
+            var i:int;
+            var n:int;
+            
+            groupName = input.name as String;
+            buttons = document.getElementsByName(groupName);
+            n = buttons.length;
+            for (i = 0; i < n; i++) {
+                if (buttons[i].value === value) {
+                    buttons[i].checked = true;
+                    break;
+                }
+            }
+        }
+    }        
+
 }

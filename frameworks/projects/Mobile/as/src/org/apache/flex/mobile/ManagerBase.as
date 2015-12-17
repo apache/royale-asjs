@@ -21,6 +21,10 @@ package org.apache.flex.mobile
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	COMPILE::JS
+	{
+			import org.apache.flex.core.WrappedHTMLElement;
+	}
 	
 	/**
 	 *  The ManagerBase is a base class for mobile display managers such as StackedViewManager
@@ -47,17 +51,38 @@ package org.apache.flex.mobile
 			super();
 			
 			_contentArea = new UIBase();
-			super.addElement(_contentArea,false);
 			
-			addEventListener("initComplete", handleInitComplete);
-			addEventListener("sizeChanged", handleInitComplete);
-			addEventListener("widthChanged", handleInitComplete);
-			addEventListener("heightChanged", handleInitComplete);
+			COMPILE::AS3 {
+				addEventListener("initComplete", handleInitComplete);
+				addEventListener("sizeChanged", handleInitComplete);
+				addEventListener("widthChanged", handleInitComplete);
+				addEventListener("heightChanged", handleInitComplete);
+			}
+			
+			COMPILE::JS {
+				createElement();
+			}
+			
+			super.addElement(_contentArea,false);
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			super.createElement();
+			element.className = 'ManagerBase';
+			
+			_contentArea.positioner.style['width'] = '100%';
+			_contentArea.positioner.style['height'] = '100%';
+			
+			return element;
 		}
 		
 		private function handleInitComplete(event:Event):void
 		{
-			trace("Manager base event: "+event.type+"; width="+width+", height="+height);
 			_contentArea.setWidthAndHeight(width, height, true);
 			// todo: listen for changes to this item
 			

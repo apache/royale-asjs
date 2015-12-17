@@ -121,11 +121,19 @@ package org.apache.flex.html
 		 */
 		static public function show(message:String, parent:Object):SimpleAlert
 		{
-			var alert:SimpleAlert = new SimpleAlert();
-			alert.message = message;
-			alert.show(parent);
-			
-			return alert;
+            COMPILE::AS3
+            {
+                var alert:SimpleAlert = new SimpleAlert();
+                alert.message = message;
+                alert.show(parent);                    
+                
+                return alert;
+            }
+            COMPILE::JS
+            {
+                alert(message);
+                return null;
+            }
 		}
 		
 	}

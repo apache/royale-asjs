@@ -18,13 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.Graphics;
-	import flash.display.Shape;
-	import flash.display.SimpleButton;
+	COMPILE::AS3
+	{
+		import flash.display.Graphics;
+		import flash.display.Shape;
+		import flash.display.SimpleButton;			
+	}
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;			
+	}
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
@@ -49,15 +57,19 @@ package org.apache.flex.html.beads
 		 */
 		public function SliderTrackView()
 		{
-			hitArea = new Shape();
-			upView = new Shape();
-			downView = new Shape();
-			overView = new Shape();
+			COMPILE::AS3
+			{
+				hitArea = new Shape();
+				upView = new Shape();
+				downView = new Shape();
+				overView = new Shape();					
+			}
 		}
 		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
 			g.clear();
@@ -67,6 +79,7 @@ package org.apache.flex.html.beads
 			g.endFill();
 		}
 		
+		COMPILE::AS3
 		private var hitArea:Shape;
 		
 		/**
@@ -81,27 +94,54 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-			drawView(hitArea.graphics, 0xDD0000);
-			drawView(upView.graphics, 0xCCCCCC);
-			drawView(downView.graphics, 0x808080);
-			drawView(overView.graphics, 0xEEEEEE);
-			
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = hitArea;
-			
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+			COMPILE::AS3
+			{
+				drawView(hitArea.graphics, 0xDD0000);
+				drawView(upView.graphics, 0xCCCCCC);
+				drawView(downView.graphics, 0x808080);
+				drawView(overView.graphics, 0xEEEEEE);
+				
+				SimpleButton(value).upState = upView;
+				SimpleButton(value).downState = downView;
+				SimpleButton(value).overState = overView;
+				SimpleButton(value).hitTestState = hitArea;
+				
+				IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+				IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);					
+			}
+			COMPILE::JS
+			{
+				element = document.createElement('div') as WrappedHTMLElement;
+				element.className = 'SliderTrack';
+				element.id = 'track';
+				element.style.backgroundColor = '#E4E4E4';
+				element.style.height = '10px';
+				element.style.width = '200px';
+				element.style.border = 'thin solid #C4C4C4';
+				element.style.position = 'relative';
+				element.style.left = '0px';
+				element.style.top = '10px';
+				element.style.zIndex = '1';
+				
+				var host:UIBase = value as UIBase;
+				host.element.appendChild(element);				
+			}
 		}
 		
+		COMPILE::JS
+		public var element:WrappedHTMLElement;
+		
+		COMPILE::AS3
 		private var upView:Shape;
+		COMPILE::AS3
 		private var downView:Shape;
+		COMPILE::AS3
 		private var overView:Shape;
 		
 		/**
 		 * @private
 		 */
+		COMPILE::AS3
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			drawView(hitArea.graphics, 0xDD0000);

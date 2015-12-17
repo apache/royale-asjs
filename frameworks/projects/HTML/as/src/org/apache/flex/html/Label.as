@@ -23,7 +23,11 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+
 	/*
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
@@ -67,7 +71,14 @@ package org.apache.flex.html
          */
 		public function get text():String
 		{
-			return ITextModel(model).text;
+            COMPILE::AS3
+            {                    
+                return ITextModel(model).text;
+            }
+            COMPILE::JS
+            {
+                return element.innerHTML;
+            }
 		}
 
         /**
@@ -75,7 +86,16 @@ package org.apache.flex.html
          */
 		public function set text(value:String):void
 		{
-			ITextModel(model).text = value;
+            COMPILE::AS3
+            {
+                ITextModel(model).text = value;                    
+            }
+            COMPILE::JS
+            {
+                this.element.innerHTML = value;
+                this.dispatchEvent('textChange');                
+            }
+
 		}
 		
         [Bindable("htmlChange")]
@@ -89,7 +109,14 @@ package org.apache.flex.html
          */
 		public function get html():String
 		{
-			return ITextModel(model).html;
+            COMPILE::AS3
+            {
+                return ITextModel(model).html;                    
+            }
+            COMPILE::JS
+            {
+                return element.innerHTML;
+            }
 		}
 
         /**
@@ -97,19 +124,40 @@ package org.apache.flex.html
          */
 		public function set html(value:String):void
 		{
-			ITextModel(model).html = value;
+            COMPILE::AS3
+            {
+                ITextModel(model).html = value;                    
+            }
+            COMPILE::JS
+            {
+                this.element.innerHTML = value;
+                this.dispatchEvent('textChange');                
+            }
 		}
 
         
         /**
          *  @private
          */
+        COMPILE::AS3
         override public function addedToParent():void
         {
             super.addedToParent();
             model.addEventListener("textChange", repeaterListener);
             model.addEventListener("htmlChange", repeaterListener);
         }
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('span') as WrappedHTMLElement;
+            positioner = element;
+            element.flexjs_wrapper = this;
+            return element;
+        }        
 
 	}
 }

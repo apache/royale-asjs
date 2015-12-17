@@ -27,6 +27,9 @@ package
  */
 internal class GoogleMapsClasses
 {	
+	import org.apache.flex.maps.google.GoogleMap; GoogleMap;
+	import org.apache.flex.maps.google.models.MapModel; MapModel;
+	import org.apache.flex.maps.google.beads.GoogleMapView; GoogleMapView;
 }
 
 }

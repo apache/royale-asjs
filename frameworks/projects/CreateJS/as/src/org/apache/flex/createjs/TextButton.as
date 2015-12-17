@@ -18,9 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.html.Button;
-	
+    COMPILE::AS3
+    {
+        import org.apache.flex.core.ITextModel;
+        import org.apache.flex.html.Button;            
+    }
+    COMPILE::JS
+    {
+        import createjs.Container;
+        import createjs.Text;
+        import createjs.Shape;
+        import createjs.Stage;
+        
+        import org.apache.flex.createjs.core.UIBase;
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+
+    COMPILE::AS3
 	public class TextButton extends Button
 	{
 		public function TextButton()
@@ -47,4 +61,58 @@ package org.apache.flex.createjs
 		}
 				
 	}
+    
+    COMPILE::JS
+    public class TextButton extends UIBase
+    {
+        private var buttonBackground:Shape;
+        private var buttonLabel:Text;
+        private var button:Container;
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        override public function createElement():WrappedHTMLElement
+        {
+            buttonBackground = new createjs.Shape(null);
+            buttonBackground.name = 'background';
+            buttonBackground.graphics.beginFill('red').
+                drawRoundRect(0, 0, 200, 60, 10);
+            
+            buttonLabel = new createjs.Text('button', 'bold 24px Arial',
+                '#FFFFFF');
+            buttonLabel.name = 'label';
+            buttonLabel.textAlign = 'center';
+            buttonLabel.textBaseline = 'middle';
+            buttonLabel.x = 200 / 2;
+            buttonLabel.y = 60 / 2;
+            
+            button = new createjs.Container();
+            button.name = 'button';
+            button.x = 50;
+            button.y = 25;
+            button.addChild(buttonBackground);
+            button.addChild(buttonLabel);
+            
+            positioner = element = button as WrappedHTMLElement;
+            element.flexjs_wrapper = this;
+            return element;
+        }
+        
+        
+        /**
+         * @flexjsignorecoercion createjs.Text
+         */
+        public function get text():String
+        {
+            return buttonLabel.text;
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.Text
+         */
+        public function set text(value:String):void
+        {
+            buttonLabel.text = value;
+        }
+    }
 }

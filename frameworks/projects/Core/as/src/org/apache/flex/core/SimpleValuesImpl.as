@@ -178,5 +178,11 @@ package org.apache.flex.core
                 values[p] = values[p];
         }
         
+        COMPILE::JS
+        public function applyStyles(thisObject:IUIBase, styles:Object):void
+        {
+            // to do or not needed?
+        }
+
     }
 }

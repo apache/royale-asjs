@@ -14,9 +14,15 @@
 
 package org.apache.flex.core.graphics
 {
-	
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+	COMPILE::AS3
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;        
+    }
 	
 	import org.apache.flex.core.UIBase;
 	
@@ -60,6 +66,21 @@ package org.apache.flex.core.graphics
 			_fill = value;
 		}
 		
+        public function GraphicShape()
+        {
+            COMPILE::JS
+            {
+                element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
+                element.flexjs_wrapper = this;
+                element.offsetLeft = 0;
+                element.offsetTop = 0;
+                element.offsetParent = null;
+                positioner = element;
+                positioner.style.position = 'relative';                        
+            }
+        }
+        
+        COMPILE::AS3
 		protected function applyStroke():void
 		{
 			if(stroke)
@@ -68,6 +89,7 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
+        COMPILE::AS3
 		protected function beginFill(targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			if(fill)
@@ -76,6 +98,7 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
+        COMPILE::AS3
 		protected function endFill():void
 		{
 			if(fill)
@@ -94,9 +117,92 @@ package org.apache.flex.core.graphics
 		
 		override public function addedToParent():void
 		{
-			super.addedToParent();
+            COMPILE::AS3
+            {
+                super.addedToParent();                    
+            }
 			draw();
+            COMPILE::JS
+            {
+                element.style.overflow = 'visible';                    
+            }
 		}
 		
+        /**
+         * @return {string} The style attribute.
+         */
+        COMPILE::JS
+        public function getStyleStr():String
+        {
+            var fillStr:String;
+            if (fill)
+            {
+                fillStr = fill.addFillAttrib(this);
+            }
+            else
+            {
+                fillStr = 'fill:none';
+            }
+            
+            var strokeStr:String;
+            if (stroke)
+            {
+                strokeStr = stroke.addStrokeAttrib(this);
+            }
+            else
+            {
+                strokeStr = 'stroke:none';
+            }
+            
+            
+            return fillStr + ';' + strokeStr;
+        }
+        
+        
+        /**
+         * @param x X position.
+         * @param y Y position.
+         * @param bbox The bounding box of the svg element.
+         */
+        COMPILE::JS
+        public function resize(x:Number, y:Number, bbox:SVGRect):void
+        {
+            var width:Number = Math.max(width, bbox.width);
+            var height:Number = Math.max(height, bbox.height);
+            
+            element.style.position = 'absolute';
+            if (!isNaN(x)) element.style.top = String(x) + 'px';
+            if (!isNaN(y)) element.style.left = String(y) + 'px';
+            element.style.width = String(width) + 'px';
+            element.style.height = String(height) + 'px';
+            element.offsetLeft = x;
+            element.offsetTop = y;
+        }
+
+        COMPILE::JS
+        private var _x:Number;
+        COMPILE::JS
+        private var _y:Number;
+        COMPILE::JS
+        private var _xOffset:Number;
+        COMPILE::JS
+        private var _yOffset:Number;
+        
+        /**
+         * @param x X position.
+         * @param y Y position.
+         * @param xOffset offset from x position.
+         * @param yOffset offset from y position.
+         */
+        COMPILE::JS
+        public function setPosition(x:Number, y:Number, xOffset:Number, yOffset:Number):void
+        {
+            _x = x;
+            _y = y;
+            _xOffset = xOffset;
+            _yOffset = yOffset;
+            element.offsetLeft = xOffset;
+            element.offsetTop = yOffset;
+        }
 	}
 }

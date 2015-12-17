@@ -17,23 +17,25 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
-{
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	import flash.events.IOErrorEvent;
+{	
+    import org.apache.flex.core.ApplicationBase;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IFlexInfo;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.IValuesImpl;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.createjs.core.ViewBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.utils.MXMLDataInterpreter;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IFlexInfo;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IValuesImpl;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.createjs.core.ViewBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
-	
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+        import createjs.DisplayObject;
+        import createjs.Stage;
+    }
+    
 	//--------------------------------------
 	//  Events
 	//--------------------------------------
@@ -43,98 +45,76 @@ package org.apache.flex.createjs
 	 */
 	[Event(name="initialize", type="org.apache.flex.events.Event")]
 	
-	public class Application extends Sprite implements IStrand, IFlexInfo
+    /**
+     * CreateJS Application
+     */
+	public class Application extends org.apache.flex.core.Application implements IStrand, IFlexInfo
 	{
+        /**
+         * FalconJX will inject html into the index.html file.  Surround with
+         * "inject_html" tag as follows:
+         *
+         * <inject_html>
+         * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+         * </inject_html>
+         */
 		public function Application()
 		{
 			super();
-			if (stage)
-			{
-				stage.align = StageAlign.TOP_LEFT;
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-			}
-			
-			loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-		}
-		
-		private function initHandler(event:flash.events.Event):void
-		{
-			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
-			
-			ValuesManager.valuesImpl = valuesImpl;
-			ValuesManager.valuesImpl.init(this);
-			
-			dispatchEvent(new Event("initialize"));
-			
-			addElement(initialView);
-			initialView.initUI(model);
-			dispatchEvent(new Event("viewChanged"));
-		}
-		
-		public var valuesImpl:IValuesImpl;
-		
-		public var initialView:ViewBase;
-		
-		public var model:Object;
-		
-		public var controller:Object;
-		
-		public function get MXMLDescriptor():Array
-		{
-			return null;
-		}
-		
-		public function get MXMLProperties():Array
-		{
-			return null;
-		}
-		
-		// beads declared in MXML are added to the strand.
-		// from AS, just call addBead()
-		public var beads:Array;
-		
-		private var _beads:Vector.<IBead>;
-		public function addBead(bead:IBead):void
-		{
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			bead.strand = this;
-		}
-		
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
-		}
-		
-		public function info():Object
-		{
-			return {};           
 		}
         
-        public function addElement(c:Object):void
+        COMPILE::JS
+        private var stage:Stage;
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLBodyElement
+         * @flexjsignorecoercion HTMLCanvasElement
+         */
+        COMPILE::JS
+		override public function start():void
         {
-            addChild(c as DisplayObject);
+            var body:HTMLBodyElement;
+            var canvas:HTMLCanvasElement;
+            
+            // For createjs, the application is the same as the canvas
+            // and it provides convenient access to the stage.
+            
+            element = document.createElement('canvas') as WrappedHTMLElement;
+            element.flexjs_wrapper = this;
+            canvas = element as HTMLCanvasElement;
+            canvas.id = 'flexjsCanvas';
+            canvas.width = 700;
+            canvas.height = 500;
+            
+            body = document.getElementsByTagName('body')[0] as HTMLBodyElement;
+            body.appendChild(this.element);
+            
+            stage = new createjs.Stage('flexjsCanvas');
+
+            /* AJH is this needed
+            MXMLDataInterpreter.generateMXMLProperties(this,
+                MXMLProperties);
+            */
+            
+            dispatchEvent('initialize');
+            
+            initialView.applicationModel = this.model;
+            addElement(initialView);
+            
+            dispatchEvent('viewChanged');
+            
+            stage.update();
+        }
+        
+        /**
+         * @flexjsignorecoercion createjs.DisplayObject
+         */
+        COMPILE::JS
+        override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        {
+            stage.addChild(c.element as DisplayObject);
+            c.addedToParent();
         }
 	}
 }

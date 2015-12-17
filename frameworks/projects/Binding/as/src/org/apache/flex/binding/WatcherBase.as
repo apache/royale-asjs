@@ -253,8 +253,22 @@ package org.apache.flex.binding
                     }
                 }
                 
-                if (allowedErrors.indexOf(error.errorID) == -1)
+                COMPILE::AS3
+                {
+                    if (allowedErrors.indexOf(error.errorID) == -1)
+                        throw error;                        
+                }
+                COMPILE::JS
+                {
+                    var s:String = error.message;
+                    n = allowedErrors.length;
+                    for (i = 0; i < n; i++)
+                    {
+                        if (s.indexOf(allowedErrors[i]) != -1)
+                            return;
+                    }
                     throw error;
+                }
             }
         }
         
@@ -267,6 +281,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+        COMPILE::AS3
         public static var allowedErrors:Array = [
             1006, //   Error #1006: Call attempted on an object that is not a function.
             1009, //   Error #1009: null has no properties.
@@ -274,7 +289,16 @@ package org.apache.flex.binding
             1055, //   Error #1055: - has no properties.
             1069, //   Error #1069: Property - not found on - and there is no default value
             1507 //   Error #1507: - invalid null argument.
-            ];
+            ];        
+        COMPILE::JS
+        public static var allowedErrors:Array = [
+            "Call attempted on an object that is not a function.",
+            "null has no properties.",
+            "undefined has no properties.",
+            "has no properties.",
+            "and there is no default value",
+            "invalid null argument."
+        ];
         
         /**
          *  Certain errors classes are normal when executing an update, so we swallow all

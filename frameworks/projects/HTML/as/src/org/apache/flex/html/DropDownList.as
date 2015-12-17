@@ -19,6 +19,13 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.ISelectionModel;
+
+    COMPILE::JS
+    {
+        import goog.events;
+        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.html.beads.models.ArraySelectionModel;
+    }
     
     //--------------------------------------
     //  Events
@@ -65,6 +72,10 @@ package org.apache.flex.html
          */
 		public function DropDownList()
 		{
+            COMPILE::JS
+            {
+                model = new ArraySelectionModel();
+            }
 		}
 		
         /**
@@ -84,10 +95,39 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLOptionElement
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set dataProvider(value:Object):void
         {
             ISelectionModel(model).dataProvider = value;
+            COMPILE::JS
+            {
+                var dp:HTMLOptionsCollection;
+                var i:int;
+                var n:int;
+                var opt:HTMLOptionElement;
+                var dd:HTMLSelectElement = element as HTMLSelectElement;
+                
+                model.dataProvider = value;
+                dp = dd.options;
+                n = dp.length;
+                for (i = 0; i < n; i++) {
+                    dd.remove(0);
+                }
+                
+                var lf:String = labelField;
+                n = value.length;
+                for (i = 0; i < n; i++) {
+                    opt = document.createElement('option') as HTMLOptionElement;
+                    if (lf)
+                        opt.text = value[i][lf];
+                    else
+                        opt.text = value[i];
+                    dd.add(opt, null);
+                }
+
+            }
         }
         
         [Bindable("change")]
@@ -106,10 +146,15 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
         
 
@@ -129,10 +174,15 @@ package org.apache.flex.html
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLSelectElement
          */
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
+            COMPILE::JS
+            {
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
+            }
         }
                         
         /**
@@ -153,5 +203,33 @@ package org.apache.flex.html
             ISelectionModel(model).labelField = value;
         }
         
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLSelectElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('select') as WrappedHTMLElement;
+            (element as HTMLSelectElement).size = 1;
+            goog.events.listen(element, 'change',
+                changeHandler);
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            element.flexjs_wrapper = this;
+            
+            return element;
+        } 
+        
+        /**
+         * @flexjsignorecoercion HTMLSelectElement
+         */
+        COMPILE::JS
+        protected function changeHandler(event:Event):void
+        {
+            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
+        }
     }
 }

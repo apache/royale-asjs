@@ -49,7 +49,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewBase extends ContainerBase implements IPopUpHost
+	public class ViewBase extends ContainerBase implements IPopUpHost, IApplicationView
 	{
         /**
          *  Constructor.

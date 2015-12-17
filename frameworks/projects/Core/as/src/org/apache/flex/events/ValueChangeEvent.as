@@ -42,7 +42,14 @@ package org.apache.flex.events
 		public function ValueChangeEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 oldValue:Object = null, newValue:Object = null)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+    			super(type, bubbles, cancelable);
+            }
+            COMPILE::JS
+            {
+                super(type);
+            }
 			this.oldValue = oldValue;
 			this.newValue = newValue;
 		}

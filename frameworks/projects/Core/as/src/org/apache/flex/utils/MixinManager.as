@@ -19,7 +19,10 @@
 package org.apache.flex.utils
 {
 
-import flash.system.ApplicationDomain;
+COMPILE::AS3
+{
+    import flash.system.ApplicationDomain;            
+}
 
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IFlexInfo;
@@ -59,20 +62,41 @@ public class MixinManager implements IBead
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
+     *  @flexjsignorecoercion Array
+     *  @flexjsignorecoercion org.apache.flex.core.IFlexInfo
+     *  @flexjsignoreimport org.apache.flex.core.IFlexInfo
      */
     public function set strand(value:IStrand):void
     {
         _strand = value;
         
-        var app:IFlexInfo = value as IFlexInfo;
-        if (app)
+        COMPILE::AS3
         {
-            var mixins:Array = app.info().mixins;
-            var domain:ApplicationDomain = app.info().currentDomain;
-            for each (var mixin:String in mixins)
+            var app:IFlexInfo = value as IFlexInfo;
+            if (app)
             {
-                var mixinClass:Object = domain.getDefinition(mixin); 
-                mixinClass.init(value);
+                var mixins:Array = app.info().mixins;
+                var domain:ApplicationDomain = app.info().currentDomain;
+                for each (var mixin:String in mixins)
+                {
+                    var mixinClass:Object = domain.getDefinition(mixin); 
+                    mixinClass.init(value);
+                }
+            }
+        }
+        COMPILE::JS
+        {
+            var app:IFlexInfo = value as IFlexInfo;
+            if (app) 
+            {
+                var mixins:Array = app.info()['mixins'] as Array;
+                if (mixins) {
+                    var n:int = mixins.length;
+                    for (var i:int = 0; i < n; i++) 
+                    {
+                        mixins[i].init(value);
+                    }
+                }
             }
         }
     }    

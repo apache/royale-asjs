@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+
 	/**
 	 *  The ButtonBar class is a component that displays a set of Buttons. The ButtonBar
 	 *  is actually a List with a default horizontal layout and an itemRenderer that 
@@ -49,5 +54,23 @@ package org.apache.flex.html
 		{
 			super();
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            element.style.overflow = 'auto';
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            className = 'ButtonBar';
+            
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }
 	}
 }

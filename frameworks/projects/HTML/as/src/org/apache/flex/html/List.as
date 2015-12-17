@@ -18,18 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IFactory;
-	
 	import org.apache.flex.core.ContainerBaseStrandChildren;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
+	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.flex.core.IItemRendererProvider;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.ListBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.beads.ListView;
+        import org.apache.flex.html.supportClasses.DataGroup;
+    }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.models.ListPresentationModel;
@@ -71,7 +77,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends ListBase
+	public class List extends ListBase implements IItemRendererProvider
 	{
 		/**
 		 *  constructor.
@@ -229,6 +235,33 @@ package org.apache.flex.html
 		}
 		
 		/**
+		 * Returns whether or not the itemRenderer property has been set.
+		 *
+		 *  @see org.apache.flex.core.IItemRendererProvider
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get hasItemRenderer():Boolean
+		{
+			var result:Boolean = false;
+			
+			COMPILE::AS3 {
+				result = _itemRenderer != null;
+			}
+			
+			COMPILE::JS {
+				var test:* = _itemRenderer;
+				result = _itemRenderer !== null && test !== undefined;
+			}
+			
+			return result;
+		}
+		
+		
+		/**
 		 * @private
 		 */
 		override public function addedToParent():void
@@ -250,5 +283,29 @@ package org.apache.flex.html
 			dispatchEvent(new Event("initComplete"));
 		}
         
-	}
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            className = 'List';
+            
+            return element;
+        }        
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.html.beads.ListView 
+         * @flexjsignorecoercion org.apache.flex.html.supportClasses.DataGroup 
+         */
+        COMPILE::JS
+        override public function internalChildren():Array
+        {
+            var listView:ListView = getBeadByType(ListView) as ListView;
+            var dg:DataGroup = listView.dataGroup as DataGroup;
+            var renderers:Array = dg.internalChildren();
+            return renderers;
+        };
+   	}
 }

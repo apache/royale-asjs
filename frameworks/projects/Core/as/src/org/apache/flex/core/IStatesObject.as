@@ -51,6 +51,11 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get currentState():String;
+        
+        /**
+         *  @private
+         */
+        function set currentState(value:String):void;
 
         /**
          *  The array of view state transitions. 

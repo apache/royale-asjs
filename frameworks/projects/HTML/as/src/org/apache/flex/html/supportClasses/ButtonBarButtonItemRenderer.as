@@ -20,6 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ITextItemRenderer;
@@ -64,7 +65,8 @@ package org.apache.flex.html.supportClasses
 		 */
 		private function handleClickEvent(event:Event):void
 		{
-			this.dispatchEvent(new Event("selected"));
+			var parent:Object = itemRendererParent;
+			(parent as UIBase).dispatchEvent(new Event("selected", this));
 		}
 		
 		/**

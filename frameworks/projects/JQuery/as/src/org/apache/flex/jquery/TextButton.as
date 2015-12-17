@@ -20,11 +20,37 @@ package org.apache.flex.jquery
 {
 	import org.apache.flex.html.TextButton;
 	
+	COMPILE::JS {
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
+	
 	public class TextButton extends org.apache.flex.html.TextButton
 	{
 		public function TextButton()
 		{
 			super();
+		}
+	
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			element = document.createElement('button') as WrappedHTMLElement;
+			element.setAttribute('type', 'button');
+			
+			positioner = element;
+			positioner.style.position = 'relative';
+			element.flexjs_wrapper = this;
+			return element;
+		}
+		
+		COMPILE::JS
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			$(element).button();
 		}
 	}
 }

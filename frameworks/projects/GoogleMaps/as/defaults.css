@@ -21,7 +21,8 @@
 
 g|Map
 {
-    IBeadView: ClassReference("org.apache.flex.maps.google.beads.MapView");
+    IBeadView: ClassReference("org.apache.flex.maps.google.beads.GoogleMapView");
+	IBeadModel: ClassReference("org.apache.flex.maps.google.models.MapModel");
 }
 
 

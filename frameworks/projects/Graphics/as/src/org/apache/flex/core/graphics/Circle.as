@@ -14,8 +14,15 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+    COMPILE::AS3
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 
 	public class Circle extends GraphicShape
 	{
@@ -41,14 +48,45 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion SVGCircleElement
 		 */
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
-			graphics.clear();
-			applyStroke();
-			beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
-			graphics.drawCircle(x,y,radius);
-			endFill();
+            COMPILE::AS3
+            {
+                graphics.clear();
+                applyStroke();
+                beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
+                graphics.drawCircle(x,y,radius);
+                endFill();
+            }
+            COMPILE::JS                
+            {
+                var style:String = getStyleStr();
+                var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                circle.flexjs_wrapper = this;
+                circle.setAttribute('style', style);
+                if (stroke)
+                {
+                    circle.setAttribute('cx', String(radius + stroke.weight));
+                    circle.setAttribute('cy', String(radius + stroke.weight));
+                    setPosition(x - radius, y - radius, stroke.weight, stroke.weight);
+                }
+                else
+                {
+                    circle.setAttribute('cx', String(radius));
+                    circle.setAttribute('cy', String(radius));
+                    setPosition(x - radius, y - radius, 0, 0);
+                }
+                
+                circle.setAttribute('rx', String(radius));
+                circle.setAttribute('ry', String(radius));
+                element.appendChild(circle);
+                
+                resize(x, y, (circle as SVGCircleElement).getBBox());
+
+            }
 		}
 		
 		override public function addedToParent():void

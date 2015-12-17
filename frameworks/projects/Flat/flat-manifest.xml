@@ -25,7 +25,6 @@
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
     <component id="DropDownList" class="org.apache.flex.flat.DropDownList" />
-    <component id="DropDownListList" class="org.apache.flex.flat.supportClasses.DropDownListList" />
     <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"  lookupOnly="true" />
@@ -64,20 +63,15 @@
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper"  lookupOnly="true" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer" lookupOnly="true" />
-    <component id="DropDownListView" class="org.apache.flex.flat.beads.DropDownListView" />
-    <component id="DropDownListStringItemRenderer" class="org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer" />
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer" lookupOnly="true" />
     <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer" lookupOnly="true" />
     <component id="VScrollBar" class="org.apache.flex.html.supportClasses.VScrollBar" lookupOnly="true" />
-    <component id="CSSScrollBarView" class="org.apache.flex.flat.beads.CSSScrollBarView" />
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead"  lookupOnly="true" />
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead"  lookupOnly="true" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead"  lookupOnly="true" />
     <component id="HRule" class="org.apache.flex.html.HRule"  lookupOnly="true" />
     <component id="Spacer" class="org.apache.flex.html.Spacer"  lookupOnly="true" />
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView"  lookupOnly="true" />
-    <component id="CheckboxCSSContentAndTextToggleButtonView" class="org.apache.flex.flat.beads.CheckboxCSSContentAndTextToggleButtonView" />
-    <component id="RadioCSSContentAndTextToggleButtonView" class="org.apache.flex.flat.beads.RadioCSSContentAndTextToggleButtonView" />
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport"  lookupOnly="true" />
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid" lookupOnly="true" />

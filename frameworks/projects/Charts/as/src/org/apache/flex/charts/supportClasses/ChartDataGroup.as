@@ -60,10 +60,10 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function getItemRendererForSeriesAtIndex(series:IChartSeries, index:int):IChartItemRenderer
 		{
-			var n:int = numChildren;
+			var n:int = numElements;
 			for(var i:int=0; i < n; i++)
 			{
-				var child:IChartItemRenderer = getChildAt(i) as IChartItemRenderer;
+				var child:IChartItemRenderer = getElementAt(i) as IChartItemRenderer;
 				if (child && child.series == series) {
 					if (index == 0) return child;
 					--index;
@@ -83,10 +83,10 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function getItemRendererUnderPoint(point:Point):IChartItemRenderer
 		{
-			var n:int = numChildren;
+			var n:int = numElements;
 			for(var i:int=0; i < n; i++)
 			{
-				var child:IUIBase = getChildAt(i) as IUIBase;
+				var child:IUIBase = getElementAt(i) as IUIBase;
 				if (child) {
 					if (child.x <= point.x && point.x <= (child.x+child.width) &&
 						child.y <= point.y && point.y <= (child.y+child.height))

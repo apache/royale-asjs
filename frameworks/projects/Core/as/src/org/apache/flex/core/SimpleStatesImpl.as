@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.display.DisplayObject;
-    
     import org.apache.flex.states.AddItems;
     import org.apache.flex.states.SetEventHandler;
     import org.apache.flex.states.SetProperty;
     import org.apache.flex.states.State;
     
+    import org.apache.flex.core.IChild;
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStatesObject;
     import org.apache.flex.events.Event;
@@ -118,7 +117,7 @@ package org.apache.flex.core
                 if (o is AddItems)
                 {
                     var ai:AddItems = AddItems(o);
-                    for each (var item:DisplayObject in ai.items)
+                    for each (var item:IChild in ai.items)
                     {
                         var parent:IParent = item.parent as IParent;
                         parent.removeElement(item);
@@ -168,7 +167,7 @@ package org.apache.flex.core
                             ai.itemsDescriptor.items = ai.items;
                         }
                     }
-                    for each (var item:DisplayObject in ai.items)
+                    for each (var item:IChild in ai.items)
                     {
                         var parent:IParent = ai.document as IParent;
                         if (ai.destination != null)

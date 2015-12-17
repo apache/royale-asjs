@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+
     /**
      *  The CloseButton class is Button that displays an X
      *  and is commonly used in a Panel's TitleBar.
@@ -41,5 +46,21 @@ package org.apache.flex.html
 		{
 			super();
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            element.innerHTML = 'x';
+            
+            element.style.padding = 0;
+            height = 11;
+            width = 11;
+            return element;
+        }        
+
 	}
 }

@@ -112,7 +112,10 @@ package org.apache.flex.core.graphics
 		 */
 		public function begin(s:GraphicShape):void
 		{
-			s.graphics.beginFill(color,alpha);
+            COMPILE::AS3
+            {
+                s.graphics.beginFill(color,alpha);                    
+            }
 		}
 		
 		/**
@@ -120,7 +123,10 @@ package org.apache.flex.core.graphics
 		 */
 		public function end(s:GraphicShape):void
 		{
-			s.graphics.endFill();
+            COMPILE::AS3
+            {
+    			s.graphics.endFill();
+            }
 		}
 
 	}

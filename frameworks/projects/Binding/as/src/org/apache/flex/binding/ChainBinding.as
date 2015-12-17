@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.binding
 {	
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.IStrand;

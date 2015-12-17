@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.net.navigateToURL;
-    import flash.net.URLRequest;
+    COMPILE::AS3
+    {
+        import flash.net.navigateToURL;
+        import flash.net.URLRequest;            
+    }
     
     /**
      *  The BrowserWindow class opens a new browser window.
@@ -45,7 +48,14 @@ package org.apache.flex.core
 		
         public static function open(url:String, options:String):void
         {
-            navigateToURL(new URLRequest(url), options);
+            COMPILE::AS3
+            {
+                navigateToURL(new URLRequest(url), options);                    
+            }
+            COMPILE::JS
+            {
+                window.open(url, options);
+            }
         }
 	}
 }

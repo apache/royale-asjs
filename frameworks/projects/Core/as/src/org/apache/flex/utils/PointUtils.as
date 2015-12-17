@@ -18,10 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-    import flash.display.DisplayObject;
-    import flash.geom.Point;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;
+        import flash.geom.Point;
+    }
     
-	import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
 
 	/**
@@ -53,11 +56,35 @@ package org.apache.flex.utils
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
 		 */
 		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
-            var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
-            return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+            COMPILE::AS3
+            {
+                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
+                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+            }
+            COMPILE::JS
+            {
+                var x:Number = pt.x;
+                var y:Number = pt.y;
+                var element:HTMLElement = local.element as HTMLElement;
+                
+                do {
+                    x -= element.offsetLeft;
+                    y -= element.offsetTop;
+                    if (local.hasOwnProperty('parent')) {
+                        local = local.parent;
+                        element = local.element as HTMLElement;
+                    } else {
+                        element = null;
+                    }
+                }
+                while (element);
+                return new org.apache.flex.geom.Point(x, y);
+
+            }
 		}
 		
         /**
@@ -70,11 +97,29 @@ package org.apache.flex.utils
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
          */
         public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
         {
-            var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
-            return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+            COMPILE::AS3
+            {
+                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
+                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+            }
+            COMPILE::JS
+            {
+                var x:Number = pt.x;
+                var y:Number = pt.y;
+                var element:HTMLElement = local.element as HTMLElement;
+                
+                do {
+                    x += element.offsetLeft;
+                    y += element.offsetTop;
+                    element = element.offsetParent as HTMLElement;
+                }
+                while (element);
+                return new org.apache.flex.geom.Point(x, y);
+            }
         }
 	}
 }

@@ -14,8 +14,11 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.display.CapsStyle;
-	import flash.display.JointStyle;
+    COMPILE::AS3
+    {
+        import flash.display.CapsStyle;
+        import flash.display.JointStyle;            
+    }
 
 	public class SolidColorStroke implements IStroke
 	{
@@ -100,10 +103,28 @@ package org.apache.flex.core.graphics
 			_weight = value;
 		}
 		
+        COMPILE::AS3
 		public function apply(s:GraphicShape):void
 		{
 			s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
 		}
 		
+        /**
+         * addStrokeAttrib()
+         * 
+         * @param value The GraphicShape object on which the stroke must be added.
+         * @return {string}
+         */
+        COMPILE::JS
+        public function addStrokeAttrib(value:GraphicShape):String
+        {
+            var strokeColor:String = Number(color).toString(16);
+            if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
+            if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
+            if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
+            return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+                String(weight) + ';stroke-opacity:' + String(alpha);
+        };
+
 	}
 }

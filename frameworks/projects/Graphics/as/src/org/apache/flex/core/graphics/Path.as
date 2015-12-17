@@ -14,10 +14,17 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.display.GraphicsPath;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	
+    COMPILE::AS3
+    {
+        import flash.display.GraphicsPath;
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+	COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
+    
 	import org.apache.flex.core.graphics.utils.PathHelper;
 
 	public class Path extends GraphicShape
@@ -52,16 +59,39 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawPath(x:Number,y:Number,data:String):void
 		{
-			
-			graphics.clear();
-			applyStroke();
-			var bounds:Rectangle = PathHelper.getBounds(data);
-			this.width = bounds.width;
-			this.height = bounds.height;
-			beginFill(bounds,new Point(bounds.left + x, bounds.top + y) );
-			var graphicsPath:GraphicsPath = PathHelper.getSegments(data,x,y);
-			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-			endFill();
+			COMPILE::AS3
+            {
+                graphics.clear();
+                applyStroke();
+                var bounds:Rectangle = PathHelper.getBounds(data);
+                this.width = bounds.width;
+                this.height = bounds.height;
+                beginFill(bounds,new Point(bounds.left + x, bounds.top + y) );
+                var graphicsPath:GraphicsPath = PathHelper.getSegments(data,x,y);
+                graphics.drawPath(graphicsPath.commands, graphicsPath.data);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                if (data == null || data.length === 0) return;
+                var style:String = getStyleStr();
+                var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
+                path.flexjs_wrapper = this;
+                path.setAttribute('style', style);
+                path.setAttribute('d', data);
+                element.appendChild(path);
+                if (stroke)
+                {
+                    setPosition(x, y, stroke.weight, stroke.weight);
+                }
+                else
+                {
+                    setPosition(x, y, 0, 0);
+                }
+                
+                resize(x, y, path['getBBox']());
+
+            }
 		}
 		
 		override protected function draw():void

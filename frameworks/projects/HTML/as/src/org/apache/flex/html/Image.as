@@ -20,6 +20,12 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.html.beads.models.ImageModel;
+        import org.apache.flex.html.beads.ImageView;
+    }
 	
 	/**
 	 *  The Image class is a component that displays a bitmap. The Image uses
@@ -55,14 +61,39 @@ package org.apache.flex.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
 		 */
 		public function get source():String
 		{
-			return IImageModel(model).source;
+			return (model as IImageModel).source;
 		}
 		public function set source(value:String):void
 		{
-			IImageModel(model).source = value;
+			(model as IImageModel).source = value;
 		}
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('img') as WrappedHTMLElement;
+            element.className = 'Image';
+            typeNames = 'Image';
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            model = new
+                ImageModel();
+            
+            addBead(new
+                ImageView());
+            
+            return element;
+        }        
+
 	}
 }

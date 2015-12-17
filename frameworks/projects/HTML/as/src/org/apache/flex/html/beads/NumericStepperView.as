@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads
 {
     import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.IParent;
@@ -82,7 +83,7 @@ package org.apache.flex.html.beads
 			
 			// add a spinner
 			spinner = new Spinner();
-			spinner.addBead( UIBase(value).model );
+			spinner.addBead( UIBase(value).model as IBead );
 			IParent(value).addElement(spinner);
 			spinner.height = input.height;
 			

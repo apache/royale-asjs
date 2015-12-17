@@ -18,11 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {	
-    import flash.events.MouseEvent;
+    COMPILE::AS3
+    {
+        import flash.events.MouseEvent;
+    }
+    COMPILE::JS
+    {
+        import window.MouseEvent;
+    }
     
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
+    
     
 	/**
 	 *  Mouse events
@@ -34,15 +42,27 @@ package org.apache.flex.events
 	 */
 	public class MouseEvent extends Event
 	{
-		public static const MOUSE_DOWN:String = "mouseDown";
-        public static const MOUSE_MOVE:String = "mouseMove";
-		public static const MOUSE_UP:String = "mouseUp";
-		public static const MOUSE_OUT:String = "mouseOut";
-		public static const MOUSE_OVER:String = "mouseOver";
-		public static const ROLL_OVER:String = "rollOver";
-		public static const ROLL_OUT:String = "rollOut";
+        private static function platformConstant(s:String):String
+        {
+            COMPILE::AS3
+            {
+                return s;
+            }
+            COMPILE::JS
+            {
+                return s.toLowerCase();
+            }
+        }
+        
+		public static const MOUSE_DOWN:String = platformConstant("mouseDown");
+        public static const MOUSE_MOVE:String = platformConstant("mouseMove");
+		public static const MOUSE_UP:String = platformConstant("mouseUp");
+		public static const MOUSE_OUT:String = platformConstant("mouseOut");
+		public static const MOUSE_OVER:String = platformConstant("mouseOver");
+		public static const ROLL_OVER:String = platformConstant("rollOver");
+		public static const ROLL_OUT:String = platformConstant("rollOut");
         public static const CLICK:String = "click";
-
+        
          /**
          *  Constructor.
          *  
@@ -63,7 +83,14 @@ package org.apache.flex.events
                                    commandKey:Boolean = false, controlKey:Boolean = false, 
                                    clickCount:int = 0)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+                super(type, bubbles, cancelable);                    
+            }
+            COMPILE::JS
+            {
+                super(type);
+            }
             this.localX = localX;
             this.localY = localY;
             this.relatedObject = relatedObject;
@@ -150,5 +177,114 @@ package org.apache.flex.events
             }
             return _stagePoint.y;            
         }
+        
+        /**
+         * @private
+         */
+        COMPILE::JS
+        private static function installRollOverMixin():Boolean
+        {
+            window.addEventListener(MOUSE_OVER,
+                mouseOverHandler, false);
+            return true;
+        }
+        
+        
+        /**
+         * @param e The event.
+         * RollOver/RollOut is entirely implemented in mouseOver because
+         * when a parent and child share an edge, you only get a mouseout
+         * for the child and not the parent and you need to send rollout
+         * to both.  A similar issue exists for rollover.
+         */
+        COMPILE::JS
+        private static function mouseOverHandler(e:MouseEvent):void
+        {
+            var j:int;
+            var m:int;
+            var outs:Array;
+            var me:window.MouseEvent;
+            var parent:Object;
+            var target:Object = e.target.flexjs_wrapper;
+            if (target == null)
+                return; // probably over the html tag
+            var targets:Array = MouseEvent.targets;
+            var index:int = targets.indexOf(target);
+            if (index != -1) {
+                // get all children
+                outs = targets.slice(index + 1);
+                m = outs.length;
+                for (j = 0; j < m; j++) {
+                    me = makeMouseEvent(
+                        ROLL_OUT, e);
+                    outs[j].element.dispatchEvent(me);
+                }
+                MouseEvent.targets = targets.slice(0, index + 1);
+            }
+            else {
+                var newTargets:Array = [target];
+                if (!('parent' in target))
+                    parent = null;
+                else
+                    parent = target.parent;
+                while (parent) {
+                    index = targets.indexOf(parent);
+                    if (index == -1) {
+                        newTargets.unshift(parent);
+                        if (!('parent' in parent))
+                            break;
+                        parent = parent.parent;
+                    }
+                    else {
+                        outs = targets.slice(index + 1);
+                        m = outs.length;
+                        for (j = 0; j < m; j++) {
+                            me = makeMouseEvent(
+                                ROLL_OUT, e);
+                            outs[j].element.dispatchEvent(me);
+                        }
+                        targets = targets.slice(0, index + 1);
+                        break;
+                    }
+                }
+                var n:int = newTargets.length;
+                for (var i:int = 0; i < n; i++) {
+                    me = makeMouseEvent(
+                        ROLL_OVER, e);
+                    newTargets[i].element.dispatchEvent(me);
+                }
+                MouseEvent.targets = targets.concat(newTargets);
+            }
+        }
+        
+        
+        /**
+         */
+        COMPILE::JS
+        private static var rollOverMixin:Boolean =
+            installRollOverMixin();
+        
+        
+        /**
+         */
+        COMPILE::JS
+        private static var targets:Array = [];
+
+        /**
+         * @param {string} type The event type.
+         * @param {Event} e The mouse event.
+         * @return {MouseEvent} The new event.
+         */
+        COMPILE::JS
+        private static function makeMouseEvent(type:String, e:window.MouseEvent):window.MouseEvent
+        {
+            var out:window.MouseEvent = new window.MouseEvent(type);
+            out.initMouseEvent(type, false, false,
+                e.view, e.detail, e.screenX, e.screenY,
+                e.clientX, e.clientY, e.ctrlKey, e.altKey,
+                e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+            return out;
+        };
+
 	}
 }

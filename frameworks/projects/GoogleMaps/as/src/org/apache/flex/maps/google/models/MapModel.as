@@ -22,14 +22,15 @@ package org.apache.flex.maps.google.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.maps.google.Geometry;
-	import org.apache.flex.maps.google.Marker;
-	
+
+	import google.maps.LatLng;
+	import google.maps.Marker;
+
 	/**
 	 * The data model for the Map class, this holds the maps current center
 	 * location, its current zoom level, the last marker selected, and any
 	 * search results.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -39,7 +40,7 @@ package org.apache.flex.maps.google.models
 	{
 		/**
 		 * Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -49,12 +50,12 @@ package org.apache.flex.maps.google.models
 		{
 			super();
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -64,32 +65,45 @@ package org.apache.flex.maps.google.models
 		{
 			_strand = value;
 		}
-		
-		private var _currentLocation:Geometry;
-		
+
+		private var _token:String;
+
+		public function get token():String
+		{
+			return _token;
+		}
+		public function set token(value:String):void
+		{
+			_token = value;
+			dispatchEvent(new Event("tokenChanged"));
+		}
+
+		private var _currentCenter:LatLng;
+
 		/**
 		 * The current center of the map.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get currentLocation():Geometry
+		public function get currentCenter():LatLng
 		{
-			return _currentLocation;
+			return _currentCenter;
 		}
-		public function set currentLocation(value:Geometry):void
+
+		public function set currentCenter(value:LatLng):void
 		{
-			_currentLocation = value;
-			dispatchEvent( new Event("currentLocationChanged") );
+			_currentCenter = value;
+			dispatchEvent( new Event("currentCenterChanged") );
 		}
-		
+
 		private var _selectedMarker:Marker;
-		
+
 		/**
 		 * The last marker selected, if any.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -99,17 +113,18 @@ package org.apache.flex.maps.google.models
 		{
 			return _selectedMarker;
 		}
+
 		public function set selectedMarker(value:Marker):void
 		{
 			_selectedMarker = value;
 			dispatchEvent( new Event("selectedMarkerChanged") );
 		}
-		
+
 		private var _zoom:Number;
-		
+
 		/**
 		 * The current zoom level.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -126,12 +141,12 @@ package org.apache.flex.maps.google.models
 				dispatchEvent( new Event("zoomChanged") );
 			}
 		}
-		
+
 		private var _searchResults:Array;
-		
+
 		/**
 		 * Results from the last search.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

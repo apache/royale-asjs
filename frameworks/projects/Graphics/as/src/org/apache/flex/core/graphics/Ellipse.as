@@ -18,8 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core.graphics
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+    COMPILE::AS3
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 
 	public class Ellipse extends GraphicShape
 	{
@@ -35,19 +42,49 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion SVGEllipseElement
 		 */
 		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
 		{
-			graphics.clear();
-			applyStroke();
-			beginFill(new Rectangle(x, y, width, height), new Point(x,y));
-			graphics.drawEllipse(x,y,width,height);
-			endFill();
+            COMPILE::AS3
+            {
+                graphics.clear();
+                applyStroke();
+                beginFill(new Rectangle(x, y, width, height), new Point(x,y));
+                graphics.drawEllipse(x,y,width,height);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                ellipse.flexjs_wrapper = this;
+                ellipse.setAttribute('style', style);
+                if (stroke)
+                {
+                    ellipse.setAttribute('cx', String(width / 2 + stroke.weight));
+                    ellipse.setAttribute('cy', String(height / 2 + stroke.weight));
+                    setPosition(x, y, stroke.weight * 2, stroke.weight * 2);
+                }
+                else
+                {
+                    ellipse.setAttribute('cx', String(width / 2));
+                    ellipse.setAttribute('cy', String(height / 2));
+                    setPosition(x, y, 0, 0);
+                }
+                ellipse.setAttribute('rx', String(width / 2));
+                ellipse.setAttribute('ry', String(height / 2));
+                element.appendChild(ellipse);
+                
+                resize(x, y, (ellipse as SVGEllipseElement).getBBox());
+
+            }
 		}
 		
 		override protected function draw():void
 		{
-			this.drawEllipse(0, 0, width, height);	
+			drawEllipse(0, 0, width, height);	
 		}
 		
 	}

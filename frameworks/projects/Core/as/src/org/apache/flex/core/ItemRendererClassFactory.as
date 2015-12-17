@@ -21,6 +21,7 @@ package org.apache.flex.core
     
     import org.apache.flex.core.ClassFactory;
     import org.apache.flex.core.IFactory;
+    import org.apache.flex.core.IItemRendererProvider;
     
     import org.apache.flex.utils.MXMLDataInterpreter;
 
@@ -38,7 +39,7 @@ package org.apache.flex.core
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
 	public class ItemRendererClassFactory extends Strand implements IItemRendererClassFactory, IDocument, IBead
 	{
         /**
@@ -63,25 +64,22 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion Class
          */
         public function set strand(value:IStrand):void
         {
             _strand = value;
-			
-			// see if the _strand has an itemRenderer property that isn't empty. if that's
-			// true, use that value instead of pulling it from the the style
-			if (Object(_strand).hasOwnProperty("itemRenderer")) {
-				itemRendererFactory = Object(_strand)["itemRenderer"] as ClassFactory;
-				if (itemRendererFactory) {
+            
+            if (_strand is IItemRendererProvider && (_strand as IItemRendererProvider).hasItemRenderer) {
+            	itemRendererFactory = (_strand as IItemRendererProvider).itemRenderer;
+            	createFunction = createFromClass;
+            }
+			else {
+				var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
+				if (itemRendererClass) {
+					itemRendererFactory = new ClassFactory(itemRendererClass);
 					createFunction = createFromClass;
-					return;
 				}
-			}
-			
-            var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
-            if (itemRendererClass) {
-				itemRendererFactory = new ClassFactory(itemRendererClass);
-                createFunction = createFromClass;
 			}
         }
 

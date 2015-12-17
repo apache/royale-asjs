@@ -24,6 +24,7 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../libs/Core.swc</path-element>
+            <path-element>../../libs/Graphics.swc</path-element>
             <path-element>../../libs/HTML.swc</path-element>
         </external-library-path>
         
@@ -59,7 +60,6 @@
         
         <source-path>
             <path-element>as/src</path-element>
-            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -67,26 +67,21 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>asjs/defaults.css</path>
+        <path>as/defaults.css</path>
     </include-file>
     <include-file>
         <name>js/out/*</name>
         <path>js/out/*</path>
     </include-file>
-    <include-file>
-        <name>js/src/*</name>
-        <path>js/src/*</path>
-    </include-file>
 
     <include-classes>
         <class>MobileClasses</class>
-        <class>MobileASJSClasses</class>
     </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
         <uri>library://ns.apache.org/flexjs/cordova</uri>
-    </include-namespaces>  
+    </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
 	

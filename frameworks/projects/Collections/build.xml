@@ -28,27 +28,13 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
-    <property name="gjslint" value="gjslint" />
-    <property name="jshint" value="jshint" />
-    <condition property="no.lint" value="true">
-        <os family="windows"/>
-    </condition>
 
-    <target name="main" depends="clean,compile,test" description="Clean build of Collections.swc">
-    </target>
-
-    <target name="all" depends="main,compile-asjs,lint-js,test-js" description="Full build of Binding.swc">
+    <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Collections.swc">
     </target>
 
     <target name="test" unless="is.jenkins">
         <!-- no tests yet
          <ant dir="as/tests" />
-         -->
-    </target>
-    
-    <target name="test-js" unless="is.jenkins">
-        <!-- no tests yet
-         <ant dir="js/tests" />
          -->
     </target>
     
@@ -73,7 +59,6 @@
         <echo message="Compiling libs/Collections.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-        
         <!-- make JS output folder now so include-file doesn't error -->
         <mkdir dir="${basedir}/js/out" />
 
@@ -98,64 +83,77 @@
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </compc>
     </target>
 
-    <target name="compile-asjs" >
-    	<echo message="Cross-compiling Collections/asjs"/>
-    	        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-    	        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
-    	            <jvmarg value="-Xmx384m" />
-    	            <jvmarg value="-Dsun.io.useCanonCaches=false" />
-    	            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
-    	            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
-    	            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
-    	            <arg value="-js-output-type=FLEXJS" />
-    	            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-    	            <arg value="-output=${basedir}/js/out" />
-    	            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
-    	            <arg value="+playerglobal.version=${playerglobal.version}" />
-    	            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-    	            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-    	        </java>
+    <target name="compile-asjs">
+        <echo message="Cross-compiling Collections"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/js/out" />
+            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
+        </java>
     </target>
 
-    <target name="lint-js" depends="gjslint, jshint, copy-js" />
-    <target name="copy-js" >
+    <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
+        <echo message="Compiling externs/Collections.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/externs"/>
+        
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+         Link in the classes (and their dependencies) for the MXML tags
+         listed in this project's manifest.xml.
+         Also link the additional classes (and their dependencies)
+         listed in CoreClasses.as,
+         because these aren't referenced by the manifest classes.
+         Keep the standard metadata when compiling.
+         Include the appropriate CSS files and assets in the SWC.
+         Don't include any resources in the SWC.
+         Write a bundle list of referenced resource bundles
+         into the file bundles.properties in this directory.
+         -->
+        <compc fork="true"
+            output="${FLEXJS_HOME}/frameworks/externs/Collections.swc">
+            <jvmarg line="${compc.jvm.args}"/>
+            <load-config filename="compile-asjs-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
+        </compc>
+    </target>
+
+    <target name="copy-js">
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
-            <fileset dir="${basedir}/js/src">
-                <include name="**/**" />
-            </fileset>
             <fileset dir="${basedir}/js/out">
-                <include name="**/**" />
+                <include name="**/**"/>
             </fileset>
         </copy>
-    </target>
-
-    <target name="gjslint" unless="no.lint">
-        <echo>running gjslint</echo>
-        <exec executable="${gjslint}" dir="${basedir}" failonerror="true">
-            <arg value="--strict" />
-            <arg value="--disable" />
-            <arg value="006,100,214,300" />
-            <!-- 006: wrong indentation -->
-            <!-- 100: cannot have non-primitive value -->
-            <!-- 214: @fileoverview tag missing description -->
-            <!-- 300: missing newline at end of file -->
-            <arg value="--max_line_length" />
-            <arg value="120" />
-            <arg value="-r" />
-            <arg value="${basedir}/js/src" />
-        </exec>
-    </target>
-
-    <target name="jshint" unless="no.lint">
-        <echo>running jshint</echo>
-        <exec executable="${jshint}" dir="${basedir}" failonerror="true">
-            <arg value="--config" />
-            <arg value="${FLEX_HOME}/frameworks/js/jshint.properties" />
-            <arg value="${basedir}/js/src" />
-        </exec>
     </target>
 
 </project>

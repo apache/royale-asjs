@@ -134,21 +134,48 @@ package org.apache.flex.binding
             else
                 source = document;
             var val:*;
-            try 
-            {
-                val = source[sourcePropertyName];
-                destination[destinationPropertyName] = val;
-            } 
-            catch (e:Error)
+            if (sourcePropertyName in source)
             {
                 try {
-                    val = source.constructor[sourcePropertyName];
+                    val = source[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
                 catch (e:Error)
                 {
                 }
             }
+            else if (sourcePropertyName in source.constructor)
+            {
+                try {
+                    val = source.constructor[sourcePropertyName];
+                    destination[destinationPropertyName] = val;
+                }
+                catch (e2:Error)
+                {
+                }
+            }
+            else 
+            {
+                COMPILE::JS
+                {
+                    // GCC optimizer only puts exported class constants on
+                    // Window and not on the class itself (which got renamed)
+                    var cname:Object = source.FLEXJS_CLASS_INFO;
+                    if (cname) 
+                    {
+                        cname = cname.names[0].qName;
+                        var parts:Array = cname.split('.');
+                        var n:int = parts.length;
+                        var o:Object = window;
+                        for (var i:int = 0; i < n; i++) {
+                            o = o[parts[i]];
+                        }
+                        val = o[sourcePropertyName];
+                        destination[destinationPropertyName] = val;
+                    }                    
+                }
+            }
+
 		}
 		
         /**

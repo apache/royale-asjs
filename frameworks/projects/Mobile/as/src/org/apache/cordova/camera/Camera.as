@@ -18,24 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.cordova.camera
 {
-	import flash.display.BitmapData;
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
-	import flash.events.ActivityEvent;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.filesystem.File;
-	import flash.filesystem.FileMode;
-	import flash.filesystem.FileStream;
-	import flash.geom.Rectangle;
-	import flash.media.Camera;
-	import flash.media.Video;
-	import flash.ui.Keyboard;
-	import flash.utils.ByteArray;
-	
-	import org.apache.flex.utils.PNGEncoder;
-
+    COMPILE::AS3
+    {
+        import flash.display.BitmapData;
+        import flash.display.DisplayObject;
+        import flash.display.DisplayObjectContainer;
+        import flash.display.Sprite;
+        import flash.events.ActivityEvent;
+        import flash.events.KeyboardEvent;
+        import flash.events.MouseEvent;
+        import flash.filesystem.File;
+        import flash.filesystem.FileMode;
+        import flash.filesystem.FileStream;
+        import flash.geom.Rectangle;
+        import flash.media.Camera;
+        import flash.media.Video;
+        import flash.ui.Keyboard;
+        import flash.utils.ByteArray;
+        
+        import org.apache.flex.utils.PNGEncoder;
+    }
+    
 	[Mixin]
 	public class Camera
 	{
@@ -67,8 +70,10 @@ package org.apache.cordova.camera
 			FRONT : 1      // Use the front-facing camera
 		};
 
+        COMPILE::AS3
 		private static var root:DisplayObjectContainer;
 		
+        COMPILE::AS3
 		public static function init(r:DisplayObjectContainer):void
 		{
 			root = r;		
@@ -91,35 +96,47 @@ package org.apache.cordova.camera
 		
 		private var cameraSuccess:Function;
 		private var cameraError:Function;
+        COMPILE::AS3
 		private var ui:Sprite;
+        COMPILE::AS3
 		private var camera:flash.media.Camera;
 		
 		public function getPicture( cameraSuccess:Function, cameraError:Function, cameraOptions:Object ) : void
 		{
-			this.cameraSuccess = cameraSuccess;
-			this.cameraError = cameraError;
-			
-			camera = flash.media.Camera.getCamera();
-			
-			if (camera != null) {
-				ui = new Sprite();
-				var video:Video = new Video(camera.width * 2, camera.height * 2);
-				video.attachCamera(camera);
-				ui.addChild(video);
-				root.addChild(ui);
-				ui.addEventListener(MouseEvent.CLICK, mouseClickHandler);
-				ui.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-			} else {
-				trace("You need a camera.");
-			}
+            COMPILE::AS3
+            {
+                this.cameraSuccess = cameraSuccess;
+                this.cameraError = cameraError;
+                
+                camera = flash.media.Camera.getCamera();
+                
+                if (camera != null) {
+                    ui = new Sprite();
+                    var video:Video = new Video(camera.width * 2, camera.height * 2);
+                    video.attachCamera(camera);
+                    ui.addChild(video);
+                    root.addChild(ui);
+                    ui.addEventListener(MouseEvent.CLICK, mouseClickHandler);
+                    ui.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+                } else {
+                    trace("You need a camera.");
+                }                    
+            }
+            COMPILE::JS
+            {
+                // TODO: (aharui) Cordova externs
+                navigator["camera"].getPicture(cameraSuccess, cameraError, cameraOptions);
+            }
 		}
 		
+        COMPILE::AS3
 		private function mouseClickHandler(event:MouseEvent):void
 		{
 			savePicture();
 			root.removeChild(ui);
 		}
 		
+        COMPILE::AS3
 		private function keyDownHandler(event:KeyboardEvent):void
 		{
 			if (event.keyCode == Keyboard.ESCAPE)
@@ -131,6 +148,7 @@ package org.apache.cordova.camera
 			}
 		}
 
+        COMPILE::AS3
 		private function savePicture():void
 		{
 			var f:File = File.createTempFile();
@@ -151,7 +169,11 @@ package org.apache.cordova.camera
 		
 		public function cleanup( cameraSuccess:Function, cameraError:Function ) : void
 		{
-			// no cleanup required in Flash
+            // no cleanup required in Flash
+            COMPILE::JS
+            {
+                navigator["camera"].cleanup();                
+            }
 		}
 	}
 }

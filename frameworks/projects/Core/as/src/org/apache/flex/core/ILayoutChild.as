@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    import flash.display.DisplayObjectContainer;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObjectContainer;
+    }
     
     /**
      *  The IChild interface is the basic interface for a 

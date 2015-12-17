@@ -16,6 +16,14 @@ package org.apache.flex.core.graphics
 {
 	public interface IStroke
 	{
+        COMPILE::AS3
 		function apply(s:GraphicShape):void;
+        
+        COMPILE::JS
+        function get weight():Number;
+        
+        COMPILE::JS
+        function addStrokeAttrib(s:GraphicShape):String;
+
 	}
 }

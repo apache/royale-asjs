@@ -33,6 +33,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 */
+        COMPILE::AS3
 		protected var compoundTransform:CompoundTransform;
 		
 		/**
@@ -44,6 +45,14 @@ package org.apache.flex.core.graphics
 		 */ 
 		public static const GRADIENT_DIMENSION:Number = 1638.4;
 		
+        /**
+         *  generate uid
+         */
+        public function get newId():String
+        {
+            return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
+        }
+
 		/**
 		 *  Storage for the entries property.
 		 */
@@ -71,7 +80,10 @@ package org.apache.flex.core.graphics
 		public function set entries(value:Array):void
 		{
 			_entries = value;
-			processEntries();
+            COMPILE::AS3
+            {
+                processEntries();                    
+            }
 		}
 		
 		/**
@@ -138,12 +150,12 @@ package org.apache.flex.core.graphics
 			_y = value;                
 		}
 
-		
+		COMPILE::AS3
 		protected function toRad(a:Number):Number {
 			return a*Math.PI/180;
 		}
 		
-		
+		COMPILE::AS3
 		protected function get rotationInRadians():Number
 		{
 			return rotation / 180 * Math.PI;
@@ -155,6 +167,7 @@ package org.apache.flex.core.graphics
 		 *  Array into the internal <code>colors</code>, <code>ratios</code>,
 		 *  and <code>alphas</code> arrays.
 		 */
+        COMPILE::AS3
 		private function processEntries():void
 		{
 			colors = [];

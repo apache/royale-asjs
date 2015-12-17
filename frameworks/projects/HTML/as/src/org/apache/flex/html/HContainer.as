@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
 	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;

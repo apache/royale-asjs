@@ -60,8 +60,8 @@
     </compiler>
     
     <include-file>
-        <name>js/src/*</name>
-        <path>js/src/*</path>
+        <name>js/out/*</name>
+        <path>js/out/*</path>
     </include-file>
 
     <include-classes>

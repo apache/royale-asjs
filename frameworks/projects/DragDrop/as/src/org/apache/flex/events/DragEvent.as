@@ -19,7 +19,12 @@
 package org.apache.flex.events
 {
     import org.apache.flex.core.IDragInitiator;
-    import org.apache.flex.events.MouseEvent;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.IUIBase;
+        import window.Event;
+        import window.MouseEvent;
+    }
     
 	/**
 	 *  Drag and Drop Events.
@@ -29,7 +34,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class DragEvent extends MouseEvent
+	public class DragEvent extends DragEventBase
 	{
         /**
          *  The <code>DragEvent.DRAG_START</code> constant defines the value of the 
@@ -268,7 +273,14 @@ package org.apache.flex.events
          */
 		public function DragEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-			super(type, bubbles, cancelable);
+            COMPILE::AS3
+            {
+                super(type, bubbles, cancelable);                    
+            }
+            COMPILE::JS
+            {
+                this.type = type;
+            }
 		}
 
         /**
@@ -282,19 +294,35 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.events.DragEvent
+         *  @flexjsignorecoercion window.Event
+         *  @flexjsignorecoercion Event
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
-            var de:DragEvent = new DragEvent(type, true, true);
-            de.localX = event.localX;
-            de.localY = event.localY;
-            de.altKey = event.altKey;
-            de.ctrlKey = event.ctrlKey;
-            de.shiftKey = event.shiftKey;
-            de.buttonDown = event.buttonDown;
-            de.delta = event.delta;
-            de.relatedObject = event.relatedObject;
-            return de;
+            COMPILE::AS3
+            {
+                var de:DragEvent = new DragEvent(type, true, true);
+                de.localX = event.localX;
+                de.localY = event.localY;
+                de.altKey = event.altKey;
+                de.ctrlKey = event.ctrlKey;
+                de.shiftKey = event.shiftKey;
+                de.buttonDown = event.buttonDown;
+                de.delta = event.delta;
+                de.relatedObject = event.relatedObject;
+                return de;                    
+            }
+            COMPILE::JS
+            {
+                var out:window.MouseEvent = new window.MouseEvent(type);
+                var e:window.Event = event as window.Event;
+                (out as window.Event).initMouseEvent(type, true, true,
+                    e.view, e.detail, e.screenX, e.screenY,
+                    e.clientX, e.clientY, e.ctrlKey, e.altKey,
+                    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+                return out as DragEvent;
+            }
         }
         
         
@@ -308,10 +336,38 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion window.Event
          */
         public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
         {
-            target.dispatchEvent(event);
+            COMPILE::AS3
+            {
+                target.dispatchEvent(event);                    
+            }
+            COMPILE::JS
+            {
+                (target as IUIBase).element.dispatchEvent(event as window.Event);
+            }
         }
-	}
+
+        /**
+         */
+        COMPILE::JS
+        private static function installDragEventMixin():Boolean 
+        {
+            var o:Object = org.apache.flex.events.ElementEvents.elementEvents;
+            o['dragEnd'] = 1;
+            o['dragMove'] = 1;
+            return true;
+        }
+        
+        
+        /**
+         * Add some other events to listen from the element
+         */
+        COMPILE::JS
+        private static var dragEventMixin:Boolean = installDragEventMixin();
+
+    }
 }

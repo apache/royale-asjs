@@ -18,15 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.Graphics;
-	import flash.display.Shape;
-	import flash.display.SimpleButton;
-	
+    COMPILE::AS3
+    {
+    	import flash.display.Graphics;
+    	import flash.display.Shape;
+    	import flash.display.SimpleButton;
+    }	
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IStrand;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 	
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
@@ -49,15 +55,19 @@ package org.apache.flex.html.beads
 		 */
 		public function SliderThumbView()
 		{
-			hitArea = new Shape();
-			upView = new Shape();
-			downView = new Shape();
-			overView = new Shape();
+            COMPILE::AS3
+            {
+                hitArea = new Shape();
+                upView = new Shape();
+                downView = new Shape();
+                overView = new Shape();                
+            }
 		}
 		
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
 			g.clear();
@@ -67,6 +77,7 @@ package org.apache.flex.html.beads
 			g.endFill();
 		}
 		
+        COMPILE::AS3
 		private var hitArea:Shape;
 		
 		/**
@@ -76,32 +87,64 @@ package org.apache.flex.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignoreimport org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 			
-			drawView(hitArea.graphics, 0xDD0000);
-			drawView(upView.graphics, 0xFFFFFF);
-			drawView(downView.graphics, 0x999999);
-			drawView(overView.graphics, 0xDDDDDD);
-			
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = hitArea;
-			
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+            COMPILE::AS3
+            {
+                drawView(hitArea.graphics, 0xDD0000);
+                drawView(upView.graphics, 0xFFFFFF);
+                drawView(downView.graphics, 0x999999);
+                drawView(overView.graphics, 0xDDDDDD);
+                
+                SimpleButton(value).upState = upView;
+                SimpleButton(value).downState = downView;
+                SimpleButton(value).overState = overView;
+                SimpleButton(value).hitTestState = hitArea;
+                
+                IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+                IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);                
+            }
+            COMPILE::JS
+            {
+                
+                element = document.createElement('div') as WrappedHTMLElement;
+                element.className = 'SliderThumb';
+                element.id = 'thumb';
+                element.style.backgroundColor = '#949494';
+                element.style.border = 'thin solid #747474';
+                element.style.position = 'relative';
+                element.style.height = '30px';
+                element.style.width = '10px';
+                element.style.zIndex = '2';
+                element.style.top = '-10px';
+                element.style.left = '20px';
+                
+                host.element.appendChild(element);
+                
+                element.flexjs_wrapper = this;
+
+            }
 		}
 		
+        COMPILE::AS3
 		private var upView:Shape;
+        COMPILE::AS3
 		private var downView:Shape;
+        COMPILE::AS3
 		private var overView:Shape;
 		
+        COMPILE::JS
+        public var element:WrappedHTMLElement;
+        
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			drawView(hitArea.graphics, 0xDD0000);

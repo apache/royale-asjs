@@ -20,8 +20,15 @@
 package org.apache.flex.effects
 {
 
-import flash.display.DisplayObject;
-import flash.geom.Rectangle;
+COMPILE::AS3
+{
+    import flash.display.DisplayObject;
+    import flash.geom.Rectangle;            
+}
+COMPILE::JS
+{
+    import org.apache.flex.geom.Rectangle;
+}
 
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
@@ -69,6 +76,12 @@ public class PlatformWiper
 	private var _target:IUIBase;
       
     /**
+     *  @private
+     *  The old overflow value.
+     */
+    private var _overflow:String;
+    
+    /**
      *  The object that will be clipped.
      *
      *  @langversion 3.0
@@ -78,9 +91,26 @@ public class PlatformWiper
      */
     public function set target(value:IUIBase):void
     {
-        if (value == null)
-            DisplayObject(_target).scrollRect = null;
-        _target = value;
+        COMPILE::AS3
+        {
+            if (value == null)
+                DisplayObject(_target).scrollRect = null;
+            _target = value;                
+        }
+        COMPILE::JS
+        {
+            if (value == null) 
+            {
+                if (_overflow == null)
+                    delete _target.positioner.style["overflow"];
+                else
+                    _target.positioner.style.overflow = _overflow;
+            }
+            _target = value;
+            if (value != null) {
+                _overflow = _target.positioner.style.overflow;
+            }
+        }
     }
     
     /**
@@ -93,7 +123,15 @@ public class PlatformWiper
      */
     public function set visibleRect(value:Rectangle):void
     {
-        DisplayObject(_target).scrollRect = value;
+        COMPILE::AS3
+        {
+            DisplayObject(_target).scrollRect = value;                
+        }
+        COMPILE::JS
+        {
+            _target.positioner.style.height = value.height.toString() + 'px';
+            _target.positioner.style.overflow = 'hidden';
+        }
     }
 }
 

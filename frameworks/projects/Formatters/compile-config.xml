@@ -55,7 +55,6 @@
         
         <source-path>
             <path-element>as/src</path-element>
-            <path-element>asjs/src</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -65,14 +64,9 @@
         <name>js/out/*</name>
         <path>js/out/*</path>
     </include-file>
-    <include-file>
-        <name>js/src/*</name>
-        <path>js/src/*</path>
-    </include-file>
 
     <include-classes>
         <class>FormattersClasses</class>
-        <class>FormattersASJSClasses</class>
     </include-classes>
     
     <include-namespaces>

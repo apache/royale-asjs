@@ -18,10 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-import flash.events.TimerEvent;
-import flash.utils.Timer;
+COMPILE::AS3
+{
+    import flash.events.TimerEvent;
+    import flash.utils.Timer;
+}
 
 import org.apache.flex.events.Event;
+
+COMPILE::JS
+{
+    import org.apache.flex.events.EventDispatcher;
+}
 
 //--------------------------------------
 //  Events
@@ -47,6 +55,7 @@ import org.apache.flex.events.Event;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::AS3
 public class Timer extends flash.utils.Timer
 {
     /**
@@ -77,4 +86,63 @@ public class Timer extends flash.utils.Timer
 		}
 	}
 }
+
+COMPILE::JS
+public class Timer extends EventDispatcher
+{
+    /**
+     *  Constructor.
+     * 
+     *  @param delay The number of milliseconds 
+     *  to wait before dispatching the event.
+     *  @param repeatCount The number of times to dispatch
+     *  the event.  If 0, keep dispatching forever.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function Timer(delay:Number, repeatCount:int = 0)
+    {
+        this.delay = delay;
+        this.repeatCount = repeatCount;
+    }
+    
+    public var delay:Number;
+    public var repeatCount:int;
+    
+    private var currentCount:int = 0;
+    
+    private var timerInterval:int = -1;
+    
+    public function reset():void
+    {
+        stop();
+        currentCount = 0;
+    }
+    
+    public function stop():void
+    {
+        clearInterval(timerInterval);
+        timerInterval = -1;
+    }
+    
+    public function start():void
+    {
+        timerInterval =
+            setInterval(timerHandler, delay);
+    }
+    
+    private function timerHandler():void
+    {
+        currentCount++;
+        if (repeatCount > 0 && currentCount >= repeatCount) {
+            stop();
+        }
+        
+        dispatchEvent(new Event('timer'));
+    }
+}
+
 }

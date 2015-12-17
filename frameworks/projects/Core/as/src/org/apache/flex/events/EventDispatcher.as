@@ -18,30 +18,49 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-	import flash.events.EventDispatcher;
-	
+	COMPILE::JS
+	{
+        import goog.events;
+		import goog.events.EventTarget;
+	}
+
+	COMPILE::AS3
+	{
+		import flash.events.EventDispatcher;
+	}
+
 	/**
-	 *  This class simply wraps flash.events.EventDispatcher so that
-	 *  no flash packages are needed on the JS side.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+	 * This class simply wraps flash.events.EventDispatcher so that
+	 * no flash packages are needed on the JS side.
+	 *
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
 	 */
+	COMPILE::AS3
 	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+		/**
+		 * Constructor.
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.0
+		 */
 		public function EventDispatcher()
 		{
 			super();
 		}
-    }
+	}
+
+	COMPILE::JS
+	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
+	{
+        public function hasEventListener(type:String):Boolean
+        {
+            return goog.events.hasListener(this, type);
+        }
+	}
 }

@@ -42,6 +42,33 @@ internal class ChartsClasses
 	import org.apache.flex.charts.core.PolarChart; PolarChart;
 	import org.apache.flex.charts.supportClasses.ChartAxisGroup; ChartAxisGroup;
 	import org.apache.flex.charts.supportClasses.ChartDataGroup; ChartDataGroup;
+	
+	import org.apache.flex.charts.beads.ChartView; ChartView;
+	import org.apache.flex.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
+	import org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData; DataItemRendererFactoryForSeriesData;
+	import org.apache.flex.charts.beads.DataTipBead; DataTipBead;
+	import org.apache.flex.charts.beads.HorizontalCategoryAxisBead; HorizontalCategoryAxisBead;
+	import org.apache.flex.charts.beads.HorizontalLinearAxisBead; HorizontalLinearAxisBead;
+	import org.apache.flex.charts.beads.VerticalCategoryAxisBead; VerticalCategoryAxisBead;
+	import org.apache.flex.charts.beads.VerticalLinearAxisBead; VerticalLinearAxisBead;
+	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
+	import org.apache.flex.charts.beads.layouts.ColumnChartLayout; ColumnChartLayout;
+	import org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout; LineChartCategoryVsLinearLayout;
+	import org.apache.flex.charts.beads.layouts.LineChartLinearVsLinearLayout; LineChartLinearVsLinearLayout;
+	import org.apache.flex.charts.beads.layouts.PieChartLayout; PieChartLayout;
+	import org.apache.flex.charts.beads.layouts.StackedBarChartLayout; StackedBarChartLayout;
+	import org.apache.flex.charts.beads.layouts.StackedColumnChartLayout; StackedColumnChartLayout;
+	import org.apache.flex.charts.supportClasses.BarSeries; BarSeries;
+	import org.apache.flex.charts.supportClasses.LineSeries; LineSeries;
+	import org.apache.flex.charts.supportClasses.PieSeries; PieSeries;
+	import org.apache.flex.charts.supportClasses.BoxItemRenderer; BoxItemRenderer;
+	import org.apache.flex.charts.supportClasses.LineSegmentItemRenderer; LineSegmentItemRenderer;
+	import org.apache.flex.charts.supportClasses.WedgeItemRenderer; WedgeItemRenderer;
+	import org.apache.flex.charts.optimized.SVGChartAxisGroup; SVGChartAxisGroup;
+	import org.apache.flex.charts.optimized.SVGChartDataGroup; SVGChartDataGroup;
+	import org.apache.flex.charts.optimized.SVGBoxItemRenderer; SVGBoxItemRenderer;
+	import org.apache.flex.charts.optimized.SVGWedgeItemRenderer; SVGWedgeItemRenderer;
+	import org.apache.flex.charts.optimized.SVGLineSegmentItemRenderer; SVGLineSegmentItemRenderer;
 }
 
 }

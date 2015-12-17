@@ -53,6 +53,10 @@
                 <uri>library://ns.apache.org/flexjs/flat</uri>
                 <manifest>flat-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/flat</uri>
+                <manifest>flat-as-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -70,10 +74,6 @@
     <include-file>
         <name>js/out/*</name>
         <path>js/out/*</path>
-    </include-file>
-    <include-file>
-        <name>js/src/*</name>
-        <path>js/src/*</path>
     </include-file>
 
     <include-classes>

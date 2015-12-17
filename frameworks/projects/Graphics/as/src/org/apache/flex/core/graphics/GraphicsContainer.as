@@ -14,14 +14,21 @@
  
 package org.apache.flex.core.graphics
 {
-	import flash.display.GraphicsPath;
-	import flash.display.Shape;
-	import flash.display.Sprite;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import flash.text.TextFieldType;
-	
-	import org.apache.flex.core.CSSTextField;
+    COMPILE::AS3
+    {
+        import flash.display.GraphicsPath;
+        import flash.display.Shape;
+        import flash.display.Sprite;
+        import flash.geom.Point;
+        import flash.geom.Rectangle;
+        import flash.text.TextFieldType;
+        
+        import org.apache.flex.core.CSSTextField;            
+    }
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 	import org.apache.flex.core.graphics.utils.PathHelper;
 	
 	/**
@@ -44,7 +51,17 @@ package org.apache.flex.core.graphics
 		 */
 		public function removeAllElements():void
 		{
-			graphics.clear();
+            COMPILE::AS3
+            {
+                graphics.clear();                    
+            }
+            COMPILE::JS
+            {
+                var svg:HTMLElement = element;
+                while (svg.lastChild) {
+                    svg.removeChild(svg.lastChild);
+                }
+            }
 		}
 		
 		/**
@@ -58,15 +75,34 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0.3
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-			applyStroke();
-			beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
-			graphics.drawRect(x, y, width, height);
-			endFill();
+            COMPILE::AS3
+            {
+                applyStroke();
+                beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
+                graphics.drawRect(x, y, width, height);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+                rect.flexjs_wrapper = this;
+                rect.offsetLeft = x;
+                rect.offsetTop = y;
+                rect.setAttribute('style', style);
+                rect.setAttribute('x', String(x) + 'px');
+                rect.setAttribute('y', String(y) + 'px');
+                rect.setAttribute('width', String(width) + 'px');
+                rect.setAttribute('height', String(height) + 'px');
+                element.appendChild(rect);
+            }
 		}
 		
+        COMPILE::AS3
 		public function createRect(x:Number, y:Number, width:Number, height:Number):void
 		{
 			var color:uint = (fill as SolidColor).color;
@@ -78,7 +114,7 @@ package org.apache.flex.core.graphics
 			shape.graphics.endFill();
 			shape.x = x;
 			shape.y = y;
-			this.addChild(shape);
+			addChild(shape);
 		}
 		
 		/**
@@ -92,13 +128,31 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0.3
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
 		{
-			applyStroke();
-			beginFill(new Rectangle(x,y,width,height), new Point(x,y));
-			graphics.drawEllipse(x,y,width,height);
-			endFill();
+            COMPILE::AS3
+            {
+                applyStroke();
+                beginFill(new Rectangle(x,y,width,height), new Point(x,y));
+                graphics.drawEllipse(x,y,width,height);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                ellipse.flexjs_wrapper = this;
+                ellipse.offsetLeft = x;
+                ellipse.offsetTop = y;
+                ellipse.setAttribute('style', style);
+                ellipse.setAttribute('cx', String(x + width / 2));
+                ellipse.setAttribute('cy', String(y + height / 2));
+                ellipse.setAttribute('rx', String(width / 2));
+                ellipse.setAttribute('ry', String(height / 2));
+                element.appendChild(ellipse);
+            }
 		}
 		
 		/**
@@ -111,13 +165,32 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
-			applyStroke();
-			beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
-			graphics.drawCircle(x,y,radius);
-			endFill();
+            COMPILE::AS3
+            {
+                applyStroke();
+                beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
+                graphics.drawCircle(x,y,radius);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                circle.flexjs_wrapper = this;
+                circle.offsetLeft = x;
+                circle.offsetTop = y;
+                circle.setAttribute('style', style);
+                circle.setAttribute('cx', String(x));
+                circle.setAttribute('cy', String(y));
+                circle.setAttribute('rx', String(radius));
+                circle.setAttribute('ry', String(radius));
+                element.appendChild(circle);
+
+            }
 		}
 		
 		/**
@@ -134,15 +207,30 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		public function drawPath(data:String):void
 		{
-			applyStroke();
-			var bounds:Rectangle = PathHelper.getBounds(data);
-			beginFill(bounds,bounds.topLeft);
-			var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
-			graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-			endFill();
+            COMPILE::AS3
+            {
+                applyStroke();
+                var bounds:Rectangle = PathHelper.getBounds(data);
+                beginFill(bounds,bounds.topLeft);
+                var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
+                graphics.drawPath(graphicsPath.commands, graphicsPath.data);
+                endFill();                    
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
+                path.flexjs_wrapper = this;
+                path.offsetLeft = 0;
+                path.offsetTop = 0;
+                path.setAttribute('style', style);
+                path.setAttribute('d', data);
+                element.appendChild(path);
+            }
 		}
 		
 		public function drawLine():void
@@ -165,28 +253,50 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @flexjsignorecoercion Text
+         *  @flexjsignorecoercion Node
 		 */
 		public function drawText(value:String, x:Number, y:Number):Object
 		{
-			var textField:CSSTextField = new CSSTextField();
-			addChild(textField);
-			
-			textField.selectable = false;
-			textField.type = TextFieldType.DYNAMIC;
-			textField.mouseEnabled = false;
-			textField.autoSize = "left";
-			textField.text = value;
-			
-			var lineColor:SolidColorStroke = stroke as SolidColorStroke;
-			if (lineColor) {
-				textField.textColor = lineColor.color;
-				textField.alpha = lineColor.alpha;
-			}
-			
-			textField.x = x;
-			textField.y = y + textField.textHeight/4;
-			
-			return textField;
+            COMPILE::AS3
+            {
+                var textField:CSSTextField = new CSSTextField();
+                addChild(textField);
+                
+                textField.selectable = false;
+                textField.type = TextFieldType.DYNAMIC;
+                textField.mouseEnabled = false;
+                textField.autoSize = "left";
+                textField.text = value;
+                
+                var lineColor:SolidColorStroke = stroke as SolidColorStroke;
+                if (lineColor) {
+                    textField.textColor = lineColor.color;
+                    textField.alpha = lineColor.alpha;
+                }
+                
+                textField.x = x;
+                textField.y = y + textField.textHeight/4;
+                
+                return textField;
+                
+            }
+            COMPILE::JS
+            {
+                var style:String = getStyleStr();
+                var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                text.flexjs_wrapper = this;
+                text.offsetLeft = x;
+                text.offsetTop = y;
+                text.setAttribute('style', style);
+                text.setAttribute('x', String(x) + 'px');
+                text.setAttribute('y', String(y + 15) + 'px');
+                var textNode:Text = document.createTextNode(value) as Text;
+                text.appendChild(textNode as Node);
+                element.appendChild(text);
+                return text;
+            }
 		}
 	}
 }

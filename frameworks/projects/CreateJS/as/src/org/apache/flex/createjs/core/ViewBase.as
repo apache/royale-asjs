@@ -18,26 +18,47 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.core
 {
-	import flash.display.DisplayObject;
+    COMPILE::AS3
+    {
+        import flash.display.DisplayObject;            
+        import org.apache.flex.core.ViewBase;
+    }
 	
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+    import org.apache.flex.core.IApplicationView;
+    import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.utils.MXMLDataInterpreter;
+    
+    COMPILE::JS
+    {
+        import org.apache.flex.core.IBead;
+        import org.apache.flex.core.IStatesImpl;
+        import org.apache.flex.core.ValuesManager;
+        import org.apache.flex.events.ValueChangeEvent;
+        import org.apache.flex.states.State;
+    }
 	
+    COMPILE::AS3
+    public class ViewBase extends org.apache.flex.core.ViewBase
+    {
+        
+    }
+    
 	[DefaultProperty("mxmlContent")]
-	public class ViewBase extends UIBase implements IParent
+    COMPILE::JS
+	public class ViewBase extends UIBase implements IParent, IApplicationView
 	{
 		public function ViewBase()
 		{
 			super();
 		}
 		
-		public function initUI(model:Object):void
+		override public function addedToParent():void
 		{
-			_applicationModel = model;
-			dispatchEvent(new Event("modelChanged"));
+            /* AJH needed?
 			MXMLDataInterpreter.generateMXMLProperties(this, MXMLProperties);
+            */
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 		}
 		
@@ -46,11 +67,13 @@ package org.apache.flex.createjs.core
 			return null;
 		}
 		
+        /*
 		public function get MXMLProperties():Array
 		{
 			return null;
 		}
-		
+		*/
+        
 		public var mxmlContent:Array;
 		
 		private var _applicationModel:Object;
@@ -61,35 +84,123 @@ package org.apache.flex.createjs.core
 			return _applicationModel;
 		}
         
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function set applicationModel(value:Object):void
         {
-            addChild(c as DisplayObject);
+            _applicationModel = value;
+            dispatchEvent(new Event("modelChanged"));
         }
 
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        private var _states:Array;
+        
+        /**
+         *  The array of view states. These should
+         *  be instances of org.apache.flex.states.State.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get states():Array
         {
-            addChildAt(c as DisplayObject, index);
+            return _states;
         }
         
-        public function getElementAt(index:int):Object
+        /**
+         *  @private
+         *  @flexjsignorecoercion Class
+         *  @flexjsignorecoercion org.apache.flex.core.IBead
+         */
+        public function set states(value:Array):void
         {
-            return getChildAt(index);
+            _states = value;
+            _currentState = _states[0].name;
+            
+            try{
+                if (getBeadByType(IStatesImpl) == null)
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iStatesImpl") as Class;
+                    var b:Object = new c();
+                    addBead(b as IBead);
+                }
+            }
+            //TODO:  Need to handle this case more gracefully
+            catch(e:Error)
+            {
+            }
+            
         }
         
-        public function getElementIndex(c:Object):int
+        /**
+         *  <code>true</code> if the array of states
+         *  contains a state with this name.
+         * 
+         *  @param state The state namem.
+         *  @return True if state in state array
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function hasState(state:String):Boolean
         {
-            return getChildIndex(c as DisplayObject);
+            for each (var s:State in _states)
+            {
+                if (s.name == state)
+                    return true;
+            }
+            return false;
         }
         
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        private var _currentState:String;
+        
+        [Bindable("currentStateChange")]
+        /**
+         *  The name of the current state.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get currentState():String
         {
-            removeChild(c as DisplayObject);
+            return _currentState;   
         }
         
-        public function get numElements():int
+        /**
+         *  @private
+         */
+        public function set currentState(value:String):void
         {
-            return numChildren;
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
+            _currentState = value;
+            dispatchEvent(event);
         }
-
+        
+        private var _transitions:Array;
+        
+        /**
+         *  The array of transitions.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get transitions():Array
+        {
+            return _transitions;   
+        }
+        
+        /**
+         *  @private
+         */
+        public function set transitions(value:Array):void
+        {
+            _transitions = value;   
+        }
+        
 	}
 }

@@ -21,6 +21,13 @@ package org.apache.flex.html
 	import org.apache.flex.core.IAlertModel;
 	import org.apache.flex.core.IPopUp;
 	import org.apache.flex.core.UIBase;
+
+    COMPILE::JS
+    {
+        import goog.events;
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.Event;
+    }
 	
 	/**
 	 *  The Alert class is a component that displays a message and one or more buttons
@@ -96,6 +103,42 @@ package org.apache.flex.html
 			
 			className = "Alert";
 		}
+
+        COMPILE::JS
+        private var titleBar:TitleBar;
+        
+        COMPILE::JS
+        private var label:Label;
+        
+        COMPILE::JS
+        private var buttonArea:Container;
+        
+        /**
+         * @override
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            super.createElement();
+            
+            element.className = 'Alert';
+            
+            // add in a title bar
+            titleBar = new TitleBar();
+            addElement(titleBar);
+            titleBar.element.id = 'titleBar';
+            
+            label = new Label();
+            addElement(label);
+            label.element.id = 'message';
+            
+            // add a place for the buttons
+            buttonArea = new Container();
+            addElement(buttonArea);
+            buttonArea.element.id = 'buttonArea';
+            
+            return element;
+        };
 		
 		// note: only passing parent to this function as I don't see a way to identify
 		// the 'application' or top level view without supplying a place to start to
@@ -122,6 +165,14 @@ package org.apache.flex.html
 			alert.flags = flags;
 			
 			alert.show(parent);
+            
+            COMPILE::JS
+            {
+                alert.positioner.style.position = 'relative';
+                alert.positioner.style.width = '200px';
+                alert.positioner.style.margin = 'auto';
+                alert.positioner.style.top = '100px';
+            }
 		}
 		
 		/**
@@ -189,7 +240,48 @@ package org.apache.flex.html
 		public function set flags(value:uint):void
 		{
 			IAlertModel(model).flags = value;
+            
+            COMPILE::JS
+            {
+                // add buttons based on flags
+                if (flags & Alert.OK) {
+                    var ok:TextButton = new TextButton();
+                    buttonArea.addElement(ok);
+                    ok.text = 'OK';
+                    goog.events.listen(ok.element, 'click', dismissAlert);
+                }
+                if (flags & Alert.CANCEL) {
+                    var cancel:TextButton = new TextButton();
+                    buttonArea.addElement(cancel);
+                    cancel.text = 'Cancel';
+                    goog.events.listen(cancel.element, 'click', dismissAlert);
+                }
+                if (flags & Alert.YES) {
+                    var yes:TextButton = new TextButton();
+                    buttonArea.addElement(yes);
+                    yes.text = 'YES';
+                    goog.events.listen(yes.element, 'click', dismissAlert);
+                }
+                if (flags & Alert.NO) {
+                    var nob:TextButton = new TextButton();
+                    buttonArea.addElement(nob);
+                    nob.text = 'NO';
+                    goog.events.listen(nob.element, 'click', dismissAlert);
+                }
+                
+            }
 		}
-		
+        
+        /**
+         * @param event The event object.
+         * @flexjsignorecoercion HTMLElement
+         */
+        COMPILE::JS
+        private function dismissAlert(event:Event):void
+        {
+            var htmlElement:HTMLElement = element as HTMLElement;
+            htmlElement.parentElement.removeChild(element);
+        };
+	
 	}
 }

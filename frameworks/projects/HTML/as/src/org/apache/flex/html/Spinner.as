@@ -20,6 +20,11 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.html.beads.controllers.SpinnerMouseController;
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
@@ -142,5 +147,41 @@ package org.apache.flex.html
 			IRangeModel(model).stepSize = value;
 		}
 		
+        COMPILE::JS
+        public var incrementButton:TextButton;
+        
+        COMPILE::JS
+        public var decrementButton:TextButton;
+        
+        COMPILE::JS
+        private var controller:SpinnerMouseController;
+        
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('div') as WrappedHTMLElement;
+            positioner = element;
+            positioner.style.position = 'relative';
+            
+            element.style.verticalAlign = 'middle';
+            
+            incrementButton = new TextButton();
+            incrementButton.text = '\u25B2';
+            addElement(incrementButton);
+            
+            decrementButton = new TextButton();
+            decrementButton.text = '\u25BC';
+            addElement(decrementButton);
+            
+            controller = new SpinnerMouseController();
+            addBead(controller);
+            
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
 	}
 }

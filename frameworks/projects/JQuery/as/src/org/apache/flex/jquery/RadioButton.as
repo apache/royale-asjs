@@ -20,7 +20,24 @@ package org.apache.flex.jquery
 {
 	import org.apache.flex.html.RadioButton;
 	
+	COMPILE::AS3
 	public class RadioButton extends org.apache.flex.html.RadioButton
 	{
+		
+	}
+
+	/**
+	 * @flexjsignorecoercion HTMLInputElement
+	 */
+	COMPILE::JS
+	public class RadioButton extends org.apache.flex.html.RadioButton
+	{
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			var input:HTMLInputElement = element.childNodes.item(0) as HTMLInputElement;
+			$(input).button();
+		}
 	}
 }

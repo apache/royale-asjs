@@ -94,65 +94,6 @@
         <antcall target="Network"/>
     </target>
     
-    <target name="compile-asjs" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Binding" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Charts" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Collections" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Core" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/CreateJS" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/DragDrop" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Effects" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Formatters" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Graphics" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/HTML" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/HTML5" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/JQuery" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Mobile" target="compile-asjs"/>
-        <ant dir="${basedir}/projects/Network" target="compile-asjs"/>
-    </target>
-
-    <target name="lint-js" description="Cross-compiles all SWCs">
-        <ant dir="${basedir}/projects/Binding" target="lint-js"/>
-        <ant dir="${basedir}/projects/Charts" target="lint-js"/>
-        <ant dir="${basedir}/projects/Collections" target="lint-js"/>
-        <ant dir="${basedir}/projects/Core" target="lint-js"/>
-        <ant dir="${basedir}/projects/CreateJS" target="lint-js"/>
-        <ant dir="${basedir}/projects/DragDrop" target="lint-js"/>
-        <ant dir="${basedir}/projects/Effects" target="lint-js"/>
-        <ant dir="${basedir}/projects/Flat" target="lint-js"/>
-        <ant dir="${basedir}/projects/Formatters" target="lint-js"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="lint-js"/>
-        <ant dir="${basedir}/projects/Graphics" target="lint-js"/>
-        <ant dir="${basedir}/projects/HTML" target="lint-js"/>
-        <ant dir="${basedir}/projects/HTML5" target="lint-js"/>
-        <ant dir="${basedir}/projects/JQuery" target="lint-js"/>
-        <ant dir="${basedir}/projects/Mobile" target="lint-js"/>
-        <ant dir="${basedir}/projects/Network" target="lint-js"/>
-    </target>
-
-    <target name="re-compile" description="Builds all SWCs which should pick up the JS files from asjs">
-        <!-- order may matter due to dependencies -->
-        <ant dir="${basedir}/projects/Core" target="compile"/>
-        <ant dir="${basedir}/projects/Graphics" target="compile"/>
-        <ant dir="${basedir}/projects/Binding" target="compile"/>
-        <ant dir="${basedir}/projects/Collections" target="compile"/>
-        <ant dir="${basedir}/projects/HTML" target="compile"/>
-        <ant dir="${basedir}/projects/Flat" target="compile"/>
-        <ant dir="${basedir}/projects/Charts" target="compile"/>
-        <ant dir="${basedir}/projects/CreateJS" target="compile"/>
-        <ant dir="${basedir}/projects/DragDrop" target="compile"/>
-        <ant dir="${basedir}/projects/Effects" target="compile"/>
-        <ant dir="${basedir}/projects/Formatters" target="compile"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="compile"/>
-        <ant dir="${basedir}/projects/HTML5" target="compile"/>
-        <ant dir="${basedir}/projects/JQuery" target="compile"/>
-        <ant dir="${basedir}/projects/Mobile" target="compile"/>
-        <ant dir="${basedir}/projects/Network" target="compile"/>
-    </target>
-
-    <target name="js" depends="compile-asjs, lint-js" />
-    
     <target name="fonts">
         <ant dir="${basedir}/fontsrc" target="main"/>
     </target>

@@ -40,7 +40,34 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function get element():Object;
+        COMPILE::AS3
+        function get element():IFlexJSElement;
+        
+        /**
+         *  Each IUIBase has an element that is actually added to
+         *  the platform's display list DOM.  It may not be the actual
+         *  component itself.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        COMPILE::JS
+        function get element():WrappedHTMLElement;
+        
+        /**
+         *  Each IUIBase has an element that is actually added to
+         *  the platform's display list DOM.  It may not be the actual
+         *  component itself.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        COMPILE::JS
+        function get positioner():WrappedHTMLElement;
         
         /**
          *  Called by parent components when the component is

@@ -20,5 +20,5 @@
 
 
 <componentPackage>
-    <component id="Map" class="org.apache.flex.maps.google.Map" />
+    <component id="Map" class="org.apache.flex.maps.google.GoogleMap" />
 </componentPackage>

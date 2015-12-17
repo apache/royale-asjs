@@ -34,6 +34,7 @@ import flash.utils.ByteArray;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+COMPILE::AS3
 public class PNGEncoder
 {
 

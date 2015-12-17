@@ -19,7 +19,7 @@
 -->
 
 
-<project name="flexjsui.test" default="main" basedir=".">
+<project name="Core.test" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
@@ -117,6 +117,8 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
+            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-define=COMPILE::JS,false" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />

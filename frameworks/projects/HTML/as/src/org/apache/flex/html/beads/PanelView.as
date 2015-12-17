@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.Sprite;
-	
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IContentViewHost;

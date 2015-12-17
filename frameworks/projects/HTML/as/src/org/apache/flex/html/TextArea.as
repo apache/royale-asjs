@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
     /**
      *  The TextArea class implements the basic control for
@@ -52,18 +56,34 @@ package org.apache.flex.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function get text():String
 		{
-			return ITextModel(model).text;
+            COMPILE::AS3
+            {
+                return ITextModel(model).text;                    
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
 		}
 
         /**
          *  @private
+         *  @flexjsignorecoercion HTMLInputElement
          */
 		public function set text(value:String):void
 		{
-			ITextModel(model).text = value;
+            COMPILE::AS3
+            {
+                ITextModel(model).text = value;                    
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+            }
 		}
 		
         /**
@@ -87,5 +107,20 @@ package org.apache.flex.html
 			ITextModel(model).html = value;
 		}
 		
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('textarea') as WrappedHTMLElement;
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            element.className = 'TextArea';
+            typeNames = 'TextArea';
+            
+            return element;
+        }        
 	}
 }

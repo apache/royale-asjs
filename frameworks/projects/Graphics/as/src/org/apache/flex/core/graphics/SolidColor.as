@@ -14,8 +14,11 @@
 
 package org.apache.flex.core.graphics
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
+    COMPILE::AS3
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
 
 	public class SolidColor implements IFill
 	{
@@ -78,14 +81,32 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
+        COMPILE::AS3
 		public function begin(s:GraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			s.graphics.beginFill(color,alpha);
 		}
 		
+        COMPILE::AS3
 		public function end(s:GraphicShape):void
 		{
 			s.graphics.endFill();
 		}
+        
+        /**
+         * addFillAttrib()
+         *
+         * @param value The GraphicShape object on which the fill must be added.
+         * @return {string}
+         */
+        COMPILE::JS
+        public function addFillAttrib(value:GraphicShape):String
+        {
+            var color:String = Number(this.color).toString(16);
+            if (color.length == 1) color = '00' + color;
+            if (color.length == 2) color = '00' + color;
+            if (color.length == 4) color = '00' + color;
+            return 'fill:#' + String(color) + ';fill-opacity:' + String(alpha);
+        }
 	}
 }

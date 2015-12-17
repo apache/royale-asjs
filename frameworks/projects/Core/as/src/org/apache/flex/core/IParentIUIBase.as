@@ -29,5 +29,9 @@ package org.apache.flex.core
      */
     public interface IParentIUIBase extends IParent, IUIBase
 	{
+		COMPILE::JS
+		{
+			function internalChildren():Array;
+		}
     }
 }

@@ -23,6 +23,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadController;
+    import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
@@ -43,7 +44,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IFlexJSElement
 	{
 		/**
 		 *  constructor.
@@ -440,7 +441,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-        public function get element():Object
+        public function get element():IFlexJSElement
         {
             return this;
         }

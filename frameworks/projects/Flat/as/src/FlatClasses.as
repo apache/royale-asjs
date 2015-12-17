@@ -27,10 +27,17 @@ package
  */
 internal class FlatClasses
 {	
-	
-    import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
-    import org.apache.flex.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
-    import org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
+	COMPILE::AS3
+	{
+		import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
+		import org.apache.flex.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
+		import org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
+    	import org.apache.flex.flat.supportClasses.DropDownListList; DropDownListList;
+		import org.apache.flex.flat.beads.DropDownListView; DropDownListView;
+    	import org.apache.flex.flat.beads.CheckboxCSSContentAndTextToggleButtonView; CheckboxCSSContentAndTextToggleButtonView;
+    	import org.apache.flex.flat.beads.RadioCSSContentAndTextToggleButtonView; RadioCSSContentAndTextToggleButtonView;
+
+	}
 }
 
 }

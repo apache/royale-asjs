@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IRangeModel;
@@ -26,9 +25,20 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.geom.Point;
+	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.beads.ISliderView;
+	import org.apache.flex.html.beads.SliderTrackView;
+
+    COMPILE::JS
+    {
+        import goog.events;
+        import goog.events.EventType;
+        import org.apache.flex.events.BrowserEvent;
+        import org.apache.flex.html.Slider;
+        import org.apache.flex.html.beads.SliderThumbView;
+        import org.apache.flex.html.beads.SliderTrackView;
+    }
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
@@ -73,20 +83,45 @@ package org.apache.flex.html.beads.controllers
 			
 			rangeModel = UIBase(value).model as IRangeModel;
 			
-			var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
-			sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
-			
-			// add handler to detect click on track
-			sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
+            COMPILE::AS3
+            {
+                var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
+                sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
+                
+                // add handler to detect click on track
+                sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
+                                    
+            }
+            COMPILE::JS
+            {
+                track = value.getBeadByType(
+                    SliderTrackView) as SliderTrackView;
+                thumb = value.getBeadByType(
+                    SliderThumbView) as SliderThumbView;
+                
+                goog.events.listen(track.element, goog.events.EventType.CLICK,
+                    handleTrackClick, false, this);
+                
+                goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN,
+                    handleThumbDown, false, this);
+
+            }
 		}
 		
+        COMPILE::JS
+        private var track:SliderTrackView;
+        
+        COMPILE::JS
+        private var thumb:SliderThumbView;
+        
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function thumbDownHandler( event:MouseEvent ) : void
 		{
-			UIBase(_strand).stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
-			UIBase(_strand).stage.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+			UIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			UIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
 			
@@ -97,20 +132,24 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function thumbUpHandler( event:MouseEvent ) : void
 		{
-			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
-			UIBase(_strand).stage.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 		
+        COMPILE::AS3
 		private var origin:Point;
+        COMPILE::AS3
 		private var thumb:Point;
 		
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function thumbMoveHandler( event:MouseEvent ) : void
 		{
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
@@ -130,6 +169,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
+        COMPILE::AS3
 		private function trackClickHandler( event:MouseEvent ) : void
 		{
 			event.stopImmediatePropagation();
@@ -144,5 +184,103 @@ package org.apache.flex.html.beads.controllers
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
-	}
+        
+        /**
+         */
+        COMPILE::JS
+        private function handleTrackClick(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+            var xloc:Number = event.clientX;
+            var p:Number = Math.min(1, xloc / parseInt(track.element.style.width, 10));
+            var n:Number = p * (host.maximum - host.minimum) +
+                host.minimum;
+            
+            host.value = n;
+            
+            origin = parseInt(thumb.element.style.left, 10);
+            position = parseInt(thumb.element.style.left, 10);
+            
+            calcValFromMousePosition(event, true);
+            
+            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+        }
+        
+        
+        /**
+         */
+        COMPILE::JS
+        private function handleThumbDown(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+            goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
+                handleThumbUp, false, this);
+            goog.events.listen(host.element, goog.events.EventType.MOUSEMOVE,
+                handleThumbMove, false, this);
+            
+            origin = event.clientX;
+            position = parseInt(thumb.element.style.left, 10);
+        }
+        
+        COMPILE::JS
+        private var origin:Number;
+        COMPILE::JS
+        private var position:int;
+        
+        /**
+         */
+        COMPILE::JS
+        private function handleThumbUp(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+            goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
+                handleThumbUp, false, this);
+            goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
+                handleThumbMove, false, this);
+            
+            calcValFromMousePosition(event, false);
+            
+            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+        }
+        
+        
+        /**
+         */
+        COMPILE::JS
+        private function handleThumbMove(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+            calcValFromMousePosition(event, false);
+            
+            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+        }
+        
+        
+        /**
+         */
+        COMPILE::JS
+        private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
+        {
+            var host:Slider = _strand as Slider;
+            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - origin;
+            var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
+            var newX:Number = position + deltaX;
+            
+            var p:Number = newX / parseInt(track.element.style.width, 10);
+            var n:Number = p * (host.maximum - host.minimum) +
+                host.minimum;
+            n = host.snap(n);
+            if (n < host.minimum) n = host.minimum;
+            else if (n > host.maximum) n = host.maximum;
+            
+            p = (n - host.minimum) / (host.maximum -
+                host.minimum);
+            newX = p * parseInt(track.element.style.width, 10);
+            
+            thumb.element.style.left = String(newX -
+                parseInt(thumb.element.style.width, 10) / 2) + 'px';
+            
+            host.value = n;
+        }
+    }
 }

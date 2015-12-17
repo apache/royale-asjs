@@ -64,7 +64,17 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function removeAllElements():void
 		{
-			this.removeChildren(0);
+			COMPILE::AS3
+			{
+				removeChildren(0);					
+			}
+			COMPILE::JS
+			{
+				while (element.hasChildNodes()) 
+				{
+					element.removeChild(element.lastChild);
+				}
+			}
 		}
 	}
 }
