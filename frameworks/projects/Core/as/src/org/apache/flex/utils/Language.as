@@ -106,55 +106,33 @@ package org.apache.flex.utils
 		 */
 		static public function is(leftOperand:Object, rightOperand:Object):Boolean
 		{
-			var checkInterfaces:Function, superClass:Object;
+			var superClass:Object;
 
-			if (leftOperand == null)
+			if (leftOperand == null || rightOperand == null)
 				return false;
 
-			if (leftOperand != null && rightOperand == null)
-			{
-				return false;
-			}
-
-			checkInterfaces = function(left:Object):Boolean {
-				var i:int, interfaces:Array;
-
-				interfaces = left.FLEXJS_CLASS_INFO.interfaces;
-				for (i = interfaces.length - 1; i > -1; i--) {
-					if (interfaces[i] === rightOperand) {
-						return true;
-					}
-
-					if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
-						var isit:Boolean = checkInterfaces(new interfaces[i]());
-						if (isit) return true;
-					}
-				}
-
-				return false;
-			};
-
-			if ((rightOperand === String && typeof(leftOperand) === 'string') ||
-				(leftOperand instanceof (rightOperand)))
-			{
-				return true;
-			}
-
+            if (leftOperand instanceof rightOperand)
+                return true;
+            if (rightOperand === Object)
+                return true; // every value is an Object in ActionScript except null and undefined (caught above)
+            
 			if (typeof leftOperand === 'string')
-				return false; // right was not String otherwise exit above
+				return rightOperand === String;
 
 			if (typeof leftOperand === 'number')
 				return rightOperand === Number;
 
-			if (rightOperand === Array && Array.isArray(leftOperand))
-				return true;
+            if (typeof leftOperand === 'boolean')
+                return rightOperand === Boolean;
+            if (rightOperand === Array)
+                return Array.isArray(leftOperand);
 
 			if (leftOperand.FLEXJS_CLASS_INFO === undefined)
 				return false; // could be a function but not an instance
 
 			if (leftOperand.FLEXJS_CLASS_INFO.interfaces)
 			{
-				if (checkInterfaces(leftOperand))
+				if (checkInterfaces(leftOperand, rightOperand))
 				{
 					return true;
 				}
@@ -169,7 +147,7 @@ package org.apache.flex.utils
 				{
 					if (superClass.FLEXJS_CLASS_INFO.interfaces)
 					{
-						if (checkInterfaces(superClass))
+						if (checkInterfaces(superClass, rightOperand))
 						{
 							return true;
 						}
@@ -182,8 +160,48 @@ package org.apache.flex.utils
 			return false;
 		}
 
+        /**
+         * Helper function for is()
+         */
+        private static function checkInterfaces(leftOperand:*, rightOperand:*):Boolean
+        {
+            var i:int, interfaces:Array;
+            
+            interfaces = leftOperand.FLEXJS_CLASS_INFO.interfaces;
+            for (i = interfaces.length - 1; i > -1; i--) {
+                if (interfaces[i] === rightOperand) {
+                    return true;
+                }
+                
+                if (interfaces[i].prototype.FLEXJS_CLASS_INFO.interfaces) {
+                    var isit:Boolean = checkInterfaces(interfaces[i].prototype, rightOperand);
+                    if (isit) return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        /**
+         * Implementation of "classDef is Class"
+         */
+        public function isClass(classDef:*):Boolean
+        {
+            return typeof classDef === 'function'
+                   && classDef.prototype
+                   && classDef.prototype.constructor === classDef;
+        }
+            
+        /**
+         * Implementation of "classDef as Class"
+         */
+        public function asClass(classDef:*):Boolean
+        {
+            return isClass(classDef) ? classDef : null;
+        }
+        
 		/**
-		 * postdecrement handles foo++
+		 * postdecrement handles foo--
 		 *
 		 * @param obj The object with the getter/setter.
 		 * @param prop The name of a property.
@@ -211,7 +229,7 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * predecrement handles ++foo
+		 * predecrement handles --foo
 		 *
 		 * @param obj The object with the getter/setter.
 		 * @param prop The name of a property.
@@ -225,7 +243,7 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * preincrement handles --foo
+		 * preincrement handles ++foo
 		 *
 		 * @param obj The object with the getter/setter.
 		 * @param prop The name of a property.
@@ -287,15 +305,6 @@ package org.apache.flex.utils
 			var theConsole:*;
             var windowConsole:* = window.console;
 
-			var msg:String = '';
-
-			for (var i:int = 0; i < rest.length; i++)
-			{
-				if (i > 0)
-					msg += ' ';
-				msg += rest[i];
-			}
-
 			theConsole = goog.global.console;
 
 			if (theConsole === undefined && windowConsole !== undefined)
@@ -305,7 +314,7 @@ package org.apache.flex.utils
 			{
 				if (theConsole && theConsole.log)
 				{
-					theConsole.log(msg);
+					theConsole.log.apply(theConsole, rest);
 				}
 			}
 			catch (e:Error)
