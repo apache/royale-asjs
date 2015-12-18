@@ -74,7 +74,6 @@ package org.apache.flex.maps.google
 			MapModel(model).token = value;
 		}
 
-		COMPILE::JS
 		public function get selectedMarker():Marker
 		{
 			return MapModel(model).selectedMarker;
@@ -100,7 +99,6 @@ package org.apache.flex.maps.google
 			GoogleMapView(view).centerOnAddress(address);
 		}
 
-		COMPILE::JS
 		public function setCenter(location:LatLng):void
 		{
 			GoogleMapView(view).setCenter(location);
