@@ -584,7 +584,28 @@ package org.apache.flex.core
             initialView.applicationModel = model;
             addElement(initialView);
 
-            dispatchEvent('viewChanged');
+            if (initialView)
+            {
+                initialView.applicationModel =  model;
+                // if someone has installed a resize listener, fake an event to run it now
+                if (initialView is ILayoutChild)
+                {
+                    var ilc:ILayoutChild = initialView as ILayoutChild;
+                    var useWidth:Number = document.width;
+                    var useHeight:Number = document.height;
+                    // otherwise, size once like this
+                    if (!isNaN(ilc.percentWidth) && !isNaN(ilc.percentHeight)) {
+                        ilc.setWidthAndHeight(useWidth, useHeight);
+                    }
+                    else if (!isNaN(ilc.percentWidth))
+                        ilc.setWidth(useWidth);
+                    else if (!isNaN(ilc.percentHeight))
+                        ilc.setHeight(useHeight);
+                }
+
+                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+            }
+            dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
         };
 
     }
