@@ -23,8 +23,11 @@ package org.apache.flex.maps.google.models
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 
-	import google.maps.LatLng;
-	import google.maps.Marker;
+	COMPILE::JS
+	{
+		import google.maps.LatLng;
+		import google.maps.Marker;
+	}
 
 	/**
 	 * The data model for the Map class, this holds the maps current center
@@ -78,6 +81,7 @@ package org.apache.flex.maps.google.models
 			dispatchEvent(new Event("tokenChanged"));
 		}
 
+		COMPILE::JS
 		private var _currentCenter:LatLng;
 
 		/**
@@ -88,17 +92,20 @@ package org.apache.flex.maps.google.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		COMPILE::JS
 		public function get currentCenter():LatLng
 		{
 			return _currentCenter;
 		}
 
+		COMPILE::JS
 		public function set currentCenter(value:LatLng):void
 		{
 			_currentCenter = value;
 			dispatchEvent( new Event("currentCenterChanged") );
 		}
 
+		COMPILE::JS
 		private var _selectedMarker:Marker;
 
 		/**
@@ -109,11 +116,13 @@ package org.apache.flex.maps.google.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		COMPILE::JS
 		public function get selectedMarker():Marker
 		{
 			return _selectedMarker;
 		}
 
+		COMPILE::JS
 		public function set selectedMarker(value:Marker):void
 		{
 			_selectedMarker = value;

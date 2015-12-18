@@ -36,18 +36,18 @@ package org.apache.flex.maps.google.beads
 
 	COMPILE::JS {
 		import goog.bind;
-	}
 
-	import google.maps.event;
-	import google.maps.Geocoder;
-	import google.maps.GeocoderResult;
-	import google.maps.GeocoderStatus;
-	import google.maps.LatLng;
-	import google.maps.Map;
-	import google.maps.Marker;
-	import google.maps.places.PlaceResult;
-	import google.maps.places.PlacesService;
-	import google.maps.places.PlacesServiceStatus;
+		import google.maps.event;
+		import google.maps.Geocoder;
+		import google.maps.GeocoderResult;
+		import google.maps.GeocoderStatus;
+		import google.maps.LatLng;
+		import google.maps.Map;
+		import google.maps.Marker;
+		import google.maps.places.PlaceResult;
+		import google.maps.places.PlacesService;
+		import google.maps.places.PlacesServiceStatus;
+	}
 
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
@@ -510,6 +510,7 @@ package org.apache.flex.maps.google.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		COMPILE::JS
 		public function createMarker(location:LatLng):Marker
 		{
 			return null;
@@ -549,6 +550,7 @@ package org.apache.flex.maps.google.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		COMPILE::JS
 		public function setCenter( location:LatLng ):void
 		{
 
