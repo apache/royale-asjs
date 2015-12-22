@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.apache.flex.core.graphics
 {
     COMPILE::AS3
@@ -22,22 +22,22 @@ package org.apache.flex.core.graphics
         import flash.geom.Point;
         import flash.geom.Rectangle;
         import flash.text.TextFieldType;
-        
-        import org.apache.flex.core.CSSTextField;            
+
+        import org.apache.flex.core.CSSTextField;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 	import org.apache.flex.core.graphics.utils.PathHelper;
-	
+
 	/**
-	 * GraphicsContainer is a surface on which you can 
+	 * GraphicsContainer is a surface on which you can
 	 * draw various graphic elements such as Rect, Circle,
 	 * Ellipse, Path etc.
 	 * Use this class if you want to draw multiple graphic
-	 * shapes on a single container. 
-	 * 
+	 * shapes on a single container.
+	 *
 	 */
 	public class GraphicsContainer extends GraphicShape
 	{
@@ -53,7 +53,7 @@ package org.apache.flex.core.graphics
 		{
             COMPILE::AS3
             {
-                graphics.clear();                    
+                graphics.clear();
             }
             COMPILE::JS
             {
@@ -63,7 +63,7 @@ package org.apache.flex.core.graphics
                 }
             }
 		}
-		
+
 		/**
 		 *  Draw the rectangle.
 		 *  @param x The x position of the top-left corner of the rectangle.
@@ -84,15 +84,15 @@ package org.apache.flex.core.graphics
                 applyStroke();
                 beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
                 graphics.drawRect(x, y, width, height);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
                 var style:String = getStyleStr();
                 var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
                 rect.flexjs_wrapper = this;
-                rect.offsetLeft = x;
-                rect.offsetTop = y;
+                rect.style.left = x;
+                rect.style.top = y;
                 rect.setAttribute('style', style);
                 rect.setAttribute('x', String(x) + 'px');
                 rect.setAttribute('y', String(y) + 'px');
@@ -101,13 +101,13 @@ package org.apache.flex.core.graphics
                 element.appendChild(rect);
             }
 		}
-		
+
         COMPILE::AS3
 		public function createRect(x:Number, y:Number, width:Number, height:Number):void
 		{
 			var color:uint = (fill as SolidColor).color;
 			var alpha:uint = (fill as SolidColor).alpha;
-			
+
 			var shape:Sprite = new Sprite();
 			shape.graphics.beginFill(color,alpha);
 			shape.graphics.drawRect(0, 0, width, height);
@@ -116,7 +116,7 @@ package org.apache.flex.core.graphics
 			shape.y = y;
 			addChild(shape);
 		}
-		
+
 		/**
 		 *  Draw the ellipse.
 		 *  @param x The x position of the top-left corner of the bounding box of the ellipse.
@@ -137,15 +137,15 @@ package org.apache.flex.core.graphics
                 applyStroke();
                 beginFill(new Rectangle(x,y,width,height), new Point(x,y));
                 graphics.drawEllipse(x,y,width,height);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
                 var style:String = getStyleStr();
                 var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
                 ellipse.flexjs_wrapper = this;
-                ellipse.offsetLeft = x;
-                ellipse.offsetTop = y;
+                ellipse.style.left = x;
+                ellipse.style.top = y;
                 ellipse.setAttribute('style', style);
                 ellipse.setAttribute('cx', String(x + width / 2));
                 ellipse.setAttribute('cy', String(y + height / 2));
@@ -154,7 +154,7 @@ package org.apache.flex.core.graphics
                 element.appendChild(ellipse);
             }
 		}
-		
+
 		/**
 		 *  Draw the circle.
 		 *  @param x The x location of the center of the circle
@@ -174,15 +174,15 @@ package org.apache.flex.core.graphics
                 applyStroke();
                 beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
                 graphics.drawCircle(x,y,radius);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
                 var style:String = getStyleStr();
                 var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
                 circle.flexjs_wrapper = this;
-                circle.offsetLeft = x;
-                circle.offsetTop = y;
+                circle.style.left = x;
+                circle.style.top = y;
                 circle.setAttribute('style', style);
                 circle.setAttribute('cx', String(x));
                 circle.setAttribute('cy', String(y));
@@ -192,17 +192,17 @@ package org.apache.flex.core.graphics
 
             }
 		}
-		
+
 		/**
 		 *  Draw the path.
 		 *  @param data A string containing a compact represention of the path segments.
 		 *  The value is a space-delimited string describing each path segment. Each
 		 *  segment entry has a single character which denotes the segment type and
 		 *  two or more segment parameters.
-		 * 
+		 *
 		 *  If the segment command is upper-case, the parameters are absolute values.
 		 *  If the segment command is lower-case, the parameters are relative values.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -218,31 +218,31 @@ package org.apache.flex.core.graphics
                 beginFill(bounds,bounds.topLeft);
                 var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
                 graphics.drawPath(graphicsPath.commands, graphicsPath.data);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
                 var style:String = getStyleStr();
                 var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
                 path.flexjs_wrapper = this;
-                path.offsetLeft = 0;
-                path.offsetTop = 0;
+                path.style.left = 0;
+                path.style.top = 0;
                 path.setAttribute('style', style);
                 path.setAttribute('d', data);
                 element.appendChild(path);
             }
 		}
-		
+
 		public function drawLine():void
 		{
-			
+
 		}
-		
+
 		public function drawPolygon():void
 		{
-			
-		} 
-		
+
+		}
+
 		/**
 		 *  Draw a string of characters.
 		 *  @param value The string to draw.
@@ -263,32 +263,32 @@ package org.apache.flex.core.graphics
             {
                 var textField:CSSTextField = new CSSTextField();
                 addChild(textField);
-                
+
                 textField.selectable = false;
                 textField.type = TextFieldType.DYNAMIC;
                 textField.mouseEnabled = false;
                 textField.autoSize = "left";
                 textField.text = value;
-                
+
                 var lineColor:SolidColorStroke = stroke as SolidColorStroke;
                 if (lineColor) {
                     textField.textColor = lineColor.color;
                     textField.alpha = lineColor.alpha;
                 }
-                
+
                 textField.x = x;
                 textField.y = y + textField.textHeight/4;
-                
+
                 return textField;
-                
+
             }
             COMPILE::JS
             {
                 var style:String = getStyleStr();
                 var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
                 text.flexjs_wrapper = this;
-                text.offsetLeft = x;
-                text.offsetTop = y;
+                text.style.left = x;
+                text.style.top = y;
                 text.setAttribute('style', style);
                 text.setAttribute('x', String(x) + 'px');
                 text.setAttribute('y', String(y + 15) + 'px');
