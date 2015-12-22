@@ -17,28 +17,28 @@ package org.apache.flex.core.graphics
 	COMPILE::AS3
     {
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
 	import org.apache.flex.core.UIBase;
-	
+
 	public class GraphicShape extends UIBase
 	{
 		private var _fill:IFill;
 		private var _stroke:IStroke;
-		
+
 		public function get stroke():IStroke
 		{
 			return _stroke;
 		}
-		
+
 		/**
-		 *  A solid color fill. 
-		 *  
+		 *  A solid color fill.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
@@ -48,14 +48,14 @@ package org.apache.flex.core.graphics
 		{
 			_stroke = value;
 		}
-		
+
 		public function get fill():IFill
 		{
 			return _fill;
 		}
 		/**
-		 *  A solid color fill. 
-		 *  
+		 *  A solid color fill.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
@@ -65,11 +65,11 @@ package org.apache.flex.core.graphics
 		{
 			_fill = value;
 		}
-		
+
 		/**
 		 * Constructor
-		 * 
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement 
+		 *
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
         public function GraphicShape()
         {
@@ -81,10 +81,10 @@ package org.apache.flex.core.graphics
                 element.offsetTop = 0;
                 element.offsetParent = null;
                 positioner = element;
-                positioner.style.position = 'relative';                        
+                positioner.style.position = 'relative';
             }
         }
-        
+
         COMPILE::AS3
 		protected function applyStroke():void
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.core.graphics
 				stroke.apply(this);
 			}
 		}
-		
+
         COMPILE::AS3
 		protected function beginFill(targetBounds:Rectangle,targetOrigin:Point):void
 		{
@@ -102,7 +102,7 @@ package org.apache.flex.core.graphics
 				fill.begin(this, targetBounds,targetOrigin);
 			}
 		}
-		
+
         COMPILE::AS3
 		protected function endFill():void
 		{
@@ -111,7 +111,7 @@ package org.apache.flex.core.graphics
 				fill.end(this);
 			}
 		}
-		
+
 		/**
 		 * This is where the drawing methods get called from
 		 */
@@ -119,20 +119,20 @@ package org.apache.flex.core.graphics
 		{
 			//Overwrite in subclass
 		}
-		
+
 		override public function addedToParent():void
 		{
             COMPILE::AS3
             {
-                super.addedToParent();                    
+                super.addedToParent();
             }
 			draw();
             COMPILE::JS
             {
-                element.style.overflow = 'visible';                    
+                element.style.overflow = 'visible';
             }
 		}
-		
+
         /**
          * @return {string} The style attribute.
          */
@@ -148,7 +148,7 @@ package org.apache.flex.core.graphics
             {
                 fillStr = 'fill:none';
             }
-            
+
             var strokeStr:String;
             if (stroke)
             {
@@ -158,12 +158,12 @@ package org.apache.flex.core.graphics
             {
                 strokeStr = 'stroke:none';
             }
-            
-            
+
+
             return fillStr + ';' + strokeStr;
         }
-        
-        
+
+
         /**
          * @param x X position.
          * @param y Y position.
@@ -172,14 +172,14 @@ package org.apache.flex.core.graphics
         COMPILE::JS
         public function resize(x:Number, y:Number, bbox:SVGRect):void
         {
-            var width:Number = Math.max(width, bbox.width);
-            var height:Number = Math.max(height, bbox.height);
-            
+            var useWidth:Number = Math.max(this.width, bbox.width);
+            var useHeight:Number = Math.max(this.height, bbox.height);
+
             element.style.position = 'absolute';
             if (!isNaN(x)) element.style.top = String(x) + 'px';
             if (!isNaN(y)) element.style.left = String(y) + 'px';
-            element.style.width = String(width) + 'px';
-            element.style.height = String(height) + 'px';
+            element.style.width = String(useWidth) + 'px';
+            element.style.height = String(useHeight) + 'px';
             element.offsetLeft = x;
             element.offsetTop = y;
         }
@@ -192,7 +192,7 @@ package org.apache.flex.core.graphics
         private var _xOffset:Number;
         COMPILE::JS
         private var _yOffset:Number;
-        
+
         /**
          * @param x X position.
          * @param y Y position.
