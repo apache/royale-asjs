@@ -55,7 +55,7 @@
     <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
         type="dir"
         property="FLEXUNIT_LIBPATH1"
-        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target" />
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
     <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/flexunit" />
         
     <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
@@ -148,7 +148,6 @@
 			haltonfailure="false"
 			verbose="true"
 			localTrusted="true"
-			command="${browser}"
 			timeout="90000">
             <source dir="${FLEXJS_HOME}/frameworks/projects/Core/as/src" />
             <library dir="${FLEXJS_HOME}/frameworks/libs" />
