@@ -27,7 +27,7 @@
 
 if [ "x${FALCON_HOME}" = "x" ]
 then
-    SCRIPT_HOME=`dirname $0`
+    SCRIPT_HOME=`dirname "$0"`
     FALCON_HOME=${SCRIPT_HOME}/../..
 fi
 

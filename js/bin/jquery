@@ -25,7 +25,7 @@
 # In Windows Command Prompt, use mxmlc.bat instead.
 #
 
-SCRIPT_HOME=`dirname $0`
+SCRIPT_HOME=`dirname "$0"`
 if [ "x${FALCON_HOME}" = "x" ]
 then
     FALCON_HOME=${SCRIPT_HOME}/../..
