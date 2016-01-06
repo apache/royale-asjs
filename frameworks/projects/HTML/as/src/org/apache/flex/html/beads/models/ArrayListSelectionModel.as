@@ -164,8 +164,10 @@ package org.apache.flex.html.beads.models
          */
 		public function set rollOverIndex(value:int):void
 		{
-			_rollOverIndex = value;
-			dispatchEvent(new Event("rollOverIndexChanged"));			
+			if (value != _rollOverIndex) {
+				_rollOverIndex = value;
+				dispatchEvent(new Event("rollOverIndexChanged"));
+			}
 		}
 		
 		private var _selectedItem:Object;

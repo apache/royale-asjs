@@ -68,7 +68,16 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		private var _header:ButtonBar;
 		private var _listArea:Container;
+		
 		private var _lists:Array;
+		
+		/**
+		 * An array of List objects the comprise the columns of the DataGrid.
+		 */
+		public function get getColumnLists():Array
+		{
+			return _lists;
+		}
 
 		/**
 		 * @private

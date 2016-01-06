@@ -126,7 +126,7 @@ COMPILE::JS {
 			{
                 target.hovered = false;
                 target.down = false;
-				target.dispatchEvent(new Event("itemRendererRollout",true));
+				target.dispatchEvent(new Event("itemRendererRollOut",true));
 			}
 		}
 		
@@ -138,7 +138,7 @@ COMPILE::JS {
 			{
 				target.hovered = false;
 				target.down = false;
-				target.dispatchEvent(new Event("itemRendererRollout",true));
+				target.dispatchEvent(new Event("itemRendererRollOut",true));
 			}
 		}
 
