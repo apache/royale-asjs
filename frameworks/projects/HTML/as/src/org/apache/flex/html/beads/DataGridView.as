@@ -250,37 +250,6 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleColumnListRollOver(event:Event):void
-		{
-			var itemRenderer:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
-			var list:List = event.currentTarget as List;
-			if (list == null) return;
-			for(var i:int=0; i < _lists.length; i++) {
-				if (list != _lists[i]) {
-					var otherList:List = _lists[i] as List;
-					otherList.rollOverIndex = itemRenderer.index;
-				}
-			}
-
-			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
-		}
-
-		/**
-		 * @private
-		 */
-		private function handleColumnListRollOut(event:Event):void
-		{
-			for(var i:int=0; i < _lists.length; i++) {
-				var otherList:List = _lists[i] as List;
-				otherList.rollOverIndex = -1;
-			}
-
-			IEventDispatcher(_strand).dispatchEvent(new Event('rollOver'));
-		}
-
-		/**
-		 * @private
-		 */
 		private function createLists():void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
@@ -299,8 +268,6 @@ package org.apache.flex.html.beads
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;
 				list.addEventListener('change',handleColumnListChange);
-				list.addEventListener('rollover',handleColumnListRollOver);
-				list.addEventListener('rollout',handleColumnListRollOut);
 				list.addBead(presentationModel);
 
 				var colWidth:Number = dataGridColumn.columnWidth;

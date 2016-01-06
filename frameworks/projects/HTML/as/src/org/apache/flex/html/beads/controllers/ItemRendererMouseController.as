@@ -101,7 +101,7 @@ COMPILE::JS {
 			if (target)
 			{
                 target.hovered = true;
-				target.dispatchEvent(new Event("rollover",true));
+				target.dispatchEvent(new Event("itemRendererRollOver",true));
 			}
 		}
 		
@@ -111,7 +111,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target) {
 				target.hovered = true;
-				target.dispatchEvent(new Event("rollover",true));
+				target.dispatchEvent(new Event("itemRendererRollOver",true));
 			}
 		}
 		
@@ -126,7 +126,7 @@ COMPILE::JS {
 			{
                 target.hovered = false;
                 target.down = false;
-				target.dispatchEvent(new Event("rollout",true));
+				target.dispatchEvent(new Event("itemRendererRollout",true));
 			}
 		}
 		
@@ -138,6 +138,7 @@ COMPILE::JS {
 			{
 				target.hovered = false;
 				target.down = false;
+				target.dispatchEvent(new Event("itemRendererRollout",true));
 			}
 		}
 
@@ -155,6 +156,9 @@ COMPILE::JS {
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
 		{
@@ -181,6 +185,9 @@ COMPILE::JS {
 			}			
 		}
 		
+		/**
+		 * @private
+		 */
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
