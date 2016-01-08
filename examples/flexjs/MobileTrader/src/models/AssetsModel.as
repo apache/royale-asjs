@@ -22,7 +22,7 @@ package models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.collections.ArrayList;
-	
+
 	public class AssetsModel extends EventDispatcher implements IBeadModel
 	{
 		public function AssetsModel()
@@ -32,23 +32,23 @@ package models
 			_assetsData.source = source;
 		}
 		private var source:Array = [
-			{label:"Net Worth:",    value:161984, netChange:-2.37},
-			{label:"Last Month:",   value:165915, netChange:10.98},
-			{label:"6 Months Ago:", value:145962, netChange:16.56},
-			{label:"Last Year:",    value:138972, netChange:8.36}
+			new Asset("NetWorth:", 161984, 2.36),
+			new Asset("Last Month:", 165915, 10.98),
+			new Asset("6 Months Ago:", 145962, 16.56),
+			new Asset("Last Year:", 138972, 8.36)
 		];
 		private var _assetsData:ArrayList;
-		
+
 		public function get assetsData():ArrayList
 		{
 			return _assetsData;
 		}
-		
+
 		public function get assetsDataAsArray():Array
 		{
 		    return source;
 		}
-		
+
 		public function set strand(value:IStrand):void
 		{
 			// not used
