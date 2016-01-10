@@ -195,7 +195,7 @@ package org.apache.flex.utils
         /**
          * Implementation of "classDef as Class"
          */
-        public function asClass(classDef:*):Boolean
+        public function asClass(classDef:*):Class
         {
             return isClass(classDef) ? classDef : null;
         }
