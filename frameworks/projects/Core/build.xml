@@ -47,7 +47,7 @@
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/libs">
-                <include name="Core.swc"/>
+                <include name="${target.name.no.version}"/>
             </fileset>
         </delete>
         <delete failonerror="false">
