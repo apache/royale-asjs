@@ -52,7 +52,7 @@
         </namespaces>
         
         <source-path>
-            <path-element>as/src</path-element>
+            <path-element>../flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
