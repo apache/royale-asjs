@@ -106,29 +106,108 @@
       <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
       <!-- elements.                                                                -->
-         <namespace>
-            <uri>library://ns.apache.org/flexjs/basic</uri>
-            
-            <manifest>projects/Core/basic-manifest.xml</manifest>
-         
-        </namespace>                                                 
-         <namespace>
-            <uri>library://ns.apache.org/flexjs/html5</uri>
-            
-            <manifest>projects/HTML5/html5-manifest.xml</manifest>
-         
-        </namespace>
-		<namespace>
-            <uri>library://ns.apache.org/flexjs/svg</uri>
-         	<manifest>projects/HTML/svg-manifest.xml</manifest>
-        </namespace>   
-        <namespace>
-            <uri>library://ns.apache.org/flexjs/flat</uri>
-            
-            <manifest>projects/Flat/flat-manifest.xml</manifest>
-            
-        </namespace>
-   
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Binding/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Charts/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Collections/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Core/src/main/resources/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/DragDrop/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Effects/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Formatters/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Graphics/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/HTML/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Mobile/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/basic</uri>
+          
+          <manifest>projects/Network/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/html5</uri>
+          
+          <manifest>projects/HTML5/html5-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/flat</uri>
+          
+          <manifest>projects/Flat/flat-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/jquery</uri>
+          
+          <manifest>projects/JQuery/jquery-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/google</uri>
+          
+          <manifest>projects/GoogleMaps/google-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/cordova</uri>
+          
+          <manifest>projects/Mobile/cordova-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/createjs</uri>
+          
+          <manifest>projects/CreateJS/createjs-manifest.xml</manifest>
+          
+      </namespace>
       </namespaces>
 
       <!-- Enable post-link SWF optimization. -->
