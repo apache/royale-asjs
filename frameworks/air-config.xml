@@ -154,7 +154,7 @@
          <namespace>
              <uri>library://ns.apache.org/flexjs/basic</uri>
              
-             <manifest>projects/HTML/basic-manifest.xml</manifest>
+             <manifest>projects/HTML/src/main/resources/basic-manifest.xml</manifest>
              
          </namespace>
          <namespace>
