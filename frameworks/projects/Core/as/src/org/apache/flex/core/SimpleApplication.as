@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	COMPILE::AS3
+	{
     import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -26,7 +28,8 @@ package org.apache.flex.core
     import flash.events.Event;
     import flash.system.ApplicationDomain;
     import flash.utils.getQualifiedClassName;
-    
+	}
+	
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
@@ -45,7 +48,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class SimpleApplication extends Sprite
+    public class SimpleApplication extends ApplicationBase
     {
         /**
          *  Constructor.
@@ -58,17 +61,21 @@ package org.apache.flex.core
         public function SimpleApplication()
         {
             super();
-			if (stage)
+			COMPILE::AS3
 			{
-				stage.align = StageAlign.TOP_LEFT;
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-                // should be opt-in
-				//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
+				if (stage)
+				{
+					stage.align = StageAlign.TOP_LEFT;
+					stage.scaleMode = StageScaleMode.NO_SCALE;
+					// should be opt-in
+					//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
+				}
+				
+				loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
 			}
-			
-            loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
         }
         
+		COMPILE::AS3
         private function initHandler(event:flash.events.Event):void
         {
 			start();
@@ -84,6 +91,12 @@ package org.apache.flex.core
          */
 		public function start():void
 		{
+		  COMPILE::JS
+		  {
+			  this.element = document.getElementsByTagName('body')[0];
+			  this.element.flexjs_wrapper = this;
+			  this.element.className = 'SimpleApplication';
+		  }
 		}
 	}
 }

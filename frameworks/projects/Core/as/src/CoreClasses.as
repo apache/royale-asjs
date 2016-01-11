@@ -90,10 +90,7 @@ internal class CoreClasses
 	import org.apache.flex.core.ListBase; ListBase;
 	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
-	COMPILE::AS3
-	{
-	    import org.apache.flex.core.SimpleApplication; SimpleApplication;
-	}
+    import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.core.UIBase; UIBase;
 	COMPILE::AS3
