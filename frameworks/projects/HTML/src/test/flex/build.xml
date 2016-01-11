@@ -20,13 +20,14 @@
 
 
 <project name="HTML.test" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="../../../../.."/>
+    <property name="FLEXJS_HOME" location="../../../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="target.name" value="Core-${release.version}.swc" />
 
 	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
 		<os family="windows"/>
@@ -70,13 +71,18 @@
         value="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target" />
     <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/flexunit" />
 
-    <target name="main" depends="clean,compile,test" description="Clean test of FlexJSUI.swc">
+    <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
     </target>
     
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${basedir}">
                 <include name="FlexUnitFlexJSApplication.swf"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false">
+            <fileset dir="${basedir}/bin">
+                <include name="**/**"/>
             </fileset>
         </delete>
     </target>
@@ -119,7 +125,7 @@
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/HTML/as/src" />
+            <arg value="-source-path+=${FLEXJS_HOME}/frameworks/projects/HTML/src/main/flex" />
             <arg value="-library-path+=${FLEXJS_HOME}/frameworks/libs" />
             <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="${FLEXUNIT_LIBPATH2}" />
@@ -143,7 +149,7 @@
 			verbose="true"
 			localTrusted="true"
 			timeout="90000">
-            <source dir="${FLEXJS_HOME}/frameworks/projects/HTML/as/src" />
+            <source dir="${FLEXJS_HOME}/frameworks/projects/HTML/src/main/flex" />
             <library dir="${FLEXJS_HOME}/frameworks/libs" />
         </flexunit>
         
