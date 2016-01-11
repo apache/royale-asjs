@@ -26,8 +26,12 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ItemAddedEvent;
+	import org.apache.flex.events.ItemRemovedEvent;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IListView;
+	
+	import org.apache.flex.events.ItemClickedEvent;
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
@@ -103,25 +107,48 @@ package org.apache.flex.html.beads.controllers
 			_strand = value;
 			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
-            dataGroup.addEventListener("selected", selectedHandler, true);
-            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rolloverHandler);
+			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
+			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
 		}
 		
-        private function selectedHandler(event:Event):void
+		private function handleItemAdded(event:ItemAddedEvent):void
+		{
+			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
+		}
+		
+		private function handleItemRemoved(event:ItemAddedEvent):void
+		{
+			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
+		}
+		
+        private function selectedHandler(event:ItemClickedEvent):void
         {
-            listModel.selectedIndex = ISelectableItemRenderer(event.target).index;
+            listModel.selectedIndex = event.index;
             listView.host.dispatchEvent(new Event("change"));
         }
 		
-        private function rolloverHandler(event:Event):void
-        {
-			var renderer:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+		private function rolloverHandler(event:Event):void
+		{
+			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (renderer) {
-				//trace("ListSingleSelectionMouseController.ROLL_OVER");
+				renderer.hovered = true;
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
-        }
+		}
+		
+		private function rolloutHandler(event:Event):void
+		{
+			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			if (renderer) {
+				renderer.hovered = false;
+				renderer.down = false;
+				IRollOverModel(listModel).rollOverIndex = -1;
+			}
+		}
 	
 	}
 }

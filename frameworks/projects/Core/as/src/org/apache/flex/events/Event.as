@@ -124,5 +124,10 @@ package org.apache.flex.events
 		{
 			// do nothing
 		}
+		
+		public function cloneEvent():org.apache.flex.events.Event
+		{
+			return this;
+		}
     }
 }
