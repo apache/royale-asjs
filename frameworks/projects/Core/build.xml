@@ -29,6 +29,7 @@
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
+    <property name="target.name.no.version" value="Core.swc" />
 
     <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test" description="Full build of Core.swc">
     </target>
@@ -91,7 +92,7 @@
             <arg value="-define=COMPILE::AS3,true" />
             <arg value="-define=COMPILE::JS,false" />
         </compc>
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name.no.version}" />
     </target>
 
     <target name="compile-asjs">
@@ -157,7 +158,7 @@
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </compc>
-        <copy file="${basedir}/target/externs/${target.name}" tofile="${FLEXJS_HOME}/frameworks/externs/${target.name}" />
+        <copy file="${basedir}/target/externs/${target.name}" tofile="${FLEXJS_HOME}/frameworks/externs/${target.name.no.version}" />
     </target>
 
     <target name="copy-js">
