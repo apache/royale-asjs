@@ -23,6 +23,7 @@
     <property name="FLEXJS_HOME" location="../../.."/>
     <property name="example" value="DataBindingExample" />
     <property name="theme_arg" value="-theme=${FLEXJS_HOME}/frameworks/libs/Flat.swc" />
+    <property name="opt1_arg" value="-js-output-optimization=skipAsCoercions" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>

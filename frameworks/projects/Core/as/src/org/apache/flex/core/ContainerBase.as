@@ -216,6 +216,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $numElements():int
@@ -225,6 +226,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $addElement(c:Object, dispatchEvent:Boolean = true):void
@@ -234,6 +236,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
@@ -243,6 +246,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $removeElement(c:Object, dispatchEvent:Boolean = true):void
@@ -252,6 +256,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $getElementIndex(c:Object):int
@@ -261,6 +266,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
+         * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
 		public function $getElementAt(index:int):Object

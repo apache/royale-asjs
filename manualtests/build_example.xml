@@ -169,6 +169,7 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="-remove-circulars" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -209,6 +210,7 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="-remove-circulars" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -250,6 +252,7 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="-remove-circulars" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />

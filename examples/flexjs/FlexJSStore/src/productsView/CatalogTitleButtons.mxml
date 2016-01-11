@@ -37,7 +37,9 @@ limitations under the License.
             
             private function rollOverLabel(event:Event):void
             {
-                Label(event.target).className = "catalogTitleButtonHighlighted";
+                try {
+                    Label(event.target).className = "catalogTitleButtonHighlighted";
+                } catch (e:Error) {}
             }
             
             private function rollOutLabel(event:Event):void

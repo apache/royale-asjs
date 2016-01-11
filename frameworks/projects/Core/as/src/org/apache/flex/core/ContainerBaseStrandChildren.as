@@ -33,6 +33,7 @@ package org.apache.flex.core
         /**
          *  Constructor.
          *  
+         *  @flexjsignorecoercion org.apache.flex.core.ContainerBase
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

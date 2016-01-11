@@ -31,6 +31,7 @@
     <include file="${basedir}/../../build_example.xml" />
     
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/jquery/out/bin/jquery-1.9.swc"/>
+    <property name="opt1_arg" value="-js-output-optimization=skipFunctionCoercions" />
     
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
         <mkdir dir="${basedir}/bin-debug/data" />

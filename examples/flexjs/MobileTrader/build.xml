@@ -26,6 +26,7 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
 

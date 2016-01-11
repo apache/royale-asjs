@@ -65,6 +65,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
+		 *  @flexjsignorecoercion org.apache.flex.html.Spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
