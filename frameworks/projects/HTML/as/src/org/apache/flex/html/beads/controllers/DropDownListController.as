@@ -25,10 +25,11 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IDropDownListView;
 
     /**
@@ -72,10 +73,10 @@ package org.apache.flex.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener("click", clickHandler);
+            IEventDispatcher(value).addEventListener(org.apache.flex.events.MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:Event):void
+        private function clickHandler(event:org.apache.flex.events.MouseEvent):void
         {
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -90,14 +91,14 @@ package org.apache.flex.html.beads.controllers
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener("click", dismissHandler);
+            IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
         }
         
-        private function dismissHandler(event:Event):void
+        private function dismissHandler(event:org.apache.flex.events.MouseEvent):void
         {
             if (event.target == _strand) return;
             
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener("click", dismissHandler);
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             viewBead.popUpVisible = false;
         }

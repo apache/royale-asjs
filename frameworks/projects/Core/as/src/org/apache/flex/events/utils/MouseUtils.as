@@ -43,7 +43,7 @@ package org.apache.flex.events.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		static public function eventTarget(event:Event):Object
+		static public function eventTarget(event:MouseEvent):Object
 		{
 			return event.target;
 		}
