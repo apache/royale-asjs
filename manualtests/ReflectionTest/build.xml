@@ -26,6 +26,8 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <!-- use this to add keep metadata option -->
+    <property name="theme_arg" value="-keep-as3-metadata+=Event" />
     <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
     type="file"
     property="FALCON_HOME"

@@ -41,7 +41,7 @@ package org.apache.flex.reflection
             COMPILE::AS3
             {
                 var xml:XML = rawData as XML;
-                var data:XMLList = xml.args;
+                var data:XMLList = xml.arg;
                 var n:int = data.length();
                 for (var i:int = 0; i < n; i++)
                 {
@@ -53,13 +53,10 @@ package org.apache.flex.reflection
             }
             COMPILE::JS
             {
-                var data:Object = rawData;
-                var name:String = data.names[0].qName;
-                var def:Object = getDefinitionByName(name);
-                var rdata:* = def.prototype.FLEXJS_REFLECTION_INFO();
+                var rdata:* = rawData;
                 if (rdata !== undefined)
                 {
-                    var args:Array = rdata.args();
+                    var args:Array = rdata.args;
                     if (args)
                     {
                         var n:int = args.length;
