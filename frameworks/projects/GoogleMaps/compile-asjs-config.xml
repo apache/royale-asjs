@@ -61,6 +61,7 @@
     </compiler>
 
     <include-classes>
+        <class>GoogleStubClasses</class>
         <class>GoogleMapsClasses</class>
     </include-classes>
     

@@ -20,8 +20,9 @@ package org.apache.flex.maps.google.beads
 {
 	COMPILE::AS3 {
 		import flash.events.Event;
-		import flash.html.HTMLLoader;
 		import flash.net.URLRequest;
+		
+		import org.apache.flex.utils.HTMLLoader;
 	}
 
     import org.apache.flex.core.BeadViewBase;
@@ -99,7 +100,7 @@ package org.apache.flex.maps.google.beads
 			var src:String = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
 			if (token)
 				src += '&key=' + token;
-			src += '&libraries=geometry,places&sensor=false&callback=mapInit';
+			src += '&libraries=geometry,places&callback=mapInit';
 
 			var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
 			script.type = 'text/javascript';
@@ -383,22 +384,22 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function markerClicked(marker:Marker):void
 		{
-			var pos:LatLng = marker["latLng"] as LatLng;//marker.getPosition();
+			var newMarker:Marker = new Marker({
+				position: marker["latLng"],
+				title: marker["title"],
+				map: realMap
+			});
 
-			for (var i:int=0; i < markers.length; i++) {
-				var test:LatLng = marker.getPosition();
-				if (test.lat() == pos.lat() && test.lng() == pos.lng()) {
-					var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
-					model.selectedMarker = markers[i];
-					break;
-				}
-			}
+			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			model.selectedMarker = newMarker;
 
 			var newEvent:Event = new Event('markerClicked');
-			dispatchEvent(newEvent);
+			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 
 	} // end ::JS
+
+
 
 	/**
 	 * The AS3 version of GoogleMapView is geared toward its use with HTMLLoader
@@ -421,6 +422,7 @@ package org.apache.flex.maps.google.beads
 		}
 
 		private var _loader:HTMLLoader;
+		private var page:String;
 
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -433,6 +435,157 @@ package org.apache.flex.maps.google.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+
+			_loader = new HTMLLoader();
+			_loader.x = 0;
+			_loader.y = 0;
+			_loader.width = UIBase(value).width;
+			_loader.height = UIBase(value).height;
+			_loader.placeLoadStringContentInApplicationSandbox = false;
+
+			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
+			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
+
+			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			model.addEventListener("zoomChanged", handleZoomChange);
+			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
+
+			(_strand as UIBase).addChild(_loader);
+
+			var token:String = GoogleMap(_strand).token;
+			if (token)
+				page = pageTemplateStart + "&key=" + token + pageTemplateEnd;
+			else
+				page = pageTemplateStart + pageTemplateEnd;
+
+			if (page) {
+				_loader.loadString(page);
+				//trace(page);
+				//_loader.load(new URLRequest("https://google-developers.appspot.com/maps/documentation/javascript/examples/full/map-simple"));
+				_loader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
+			}
+		}
+
+		private function completeHandler(event:flash.events.Event):void
+		{
+			trace("htmlLoader complete");
+
+			if (_loader && page) {
+/*				_loader.window.map.center_changed = onMapCentered;
+				_loader.window.map.bounds_changed = onMapBoundsChanged;
+				_loader.window.map.zoom_changed   = onMapZoomChanged;
+				_loader.window.map.dragend        = onMapDragEnd;
+				_loader.window.map.draggable      = true;
+
+				// custom event handlers
+				_loader.window.addEventListener("searchResults",onSearchResults);
+				_loader.window.addEventListener("markerClicked",onMarkerClicked);*/
+			}
+
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
+		}
+
+		private function handleZoomChange(event:org.apache.flex.events.Event):void
+		{
+			if (_loader && page) {
+				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				setZoom(model.zoom);
+			}
+		}
+
+		private function handleCurrentLocationChange(event:org.apache.flex.events.Event):void
+		{
+			if (_loader && page) {
+				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				setCenter(model.currentCenter);
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function handleSizeChange(event:org.apache.flex.events.Event):void
+		{
+			_loader.width = UIBase(_strand).width;
+			_loader.height = UIBase(_strand).height;
+		}
+
+		/**
+		 * @private
+		 */
+		private function onMapCentered():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("centered") );
+			//_loader.window.recenter();
+		}
+
+		/**
+		 * @private
+		 */
+		private function onMapBoundsChanged():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("boundsChanged") );
+			//_loader.window.recenter();
+		}
+
+		/**
+		 * @private
+		 */
+		private function onMapZoomChanged():void
+		{
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("zoomChanged") );
+		}
+
+		/**
+		 * @private
+		 */
+		private function onMapDragEnd():void
+		{
+			trace("GMV: drag-end");
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("dragEnd") );
+		}
+
+		/**
+		 * @private
+		 */
+		private function onSearchResults(event:*):void
+		{
+			var results:Array = [];
+			for(var i:int=0; i < event.results.length; i++) {
+				/*var result:Place = new Place();
+				result.geometry.location.lat = event.results[i].geometry.location.lat();
+				result.geometry.location.lng = event.results[i].geometry.location.lng();
+				result.icon = event.results[i].icon;
+				result.id = event.results[i].id;
+				result.name = event.results[i].name;
+				result.reference = event.results[i].reference;
+				result.vicinity = event.results[i].vicinity;
+				results.push(result);*/
+				var place:Object = event.results[i];
+				results.push(place);
+			}
+
+			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			model.searchResults = results;
+		}
+
+		/**
+		 * @private
+		 */
+		private function onMarkerClicked(event:*):void
+		{
+			trace("GMV: onMarkerClicked");
+			var marker:Marker = new Marker({
+				position: event.marker.getPosition(),
+				title: event.marker.getTitle(),
+				map: event.marker.getMap()
+			});
+
+			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			model.selectedMarker = marker;
+
+			trace("GMV: dispatching event");
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("markerClicked"));
 		}
 
 		/**
@@ -445,7 +598,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function mapit(lat:Number, lng:Number, zoomLevel:Number):void
 		{
-
+			if (_loader && page) {
+				_loader.window.mapit(lat, lng, zoomLevel);
+			}
 		}
 
 		/**
@@ -459,7 +614,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function markAddress(address:String):void
 		{
-
+			if (_loader && page) {
+				_loader.window.codeaddress(address);
+			}
 		}
 
 		/**
@@ -472,7 +629,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function centerOnAddress(address:String):void
 		{
-
+			if (_loader && page) {
+				_loader.window.centeronaddress(address);
+			}
 		}
 
 		/**
@@ -485,7 +644,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function markCurrentLocation():void
 		{
-
+			if (_loader && page) {
+				_loader.window.markcurrentlocation();
+			}
 		}
 
 		/**
@@ -499,7 +660,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function nearbySearch(placeName:String):void
 		{
-
+			if (_loader && page) {
+				_loader.window.nearbysearch(placeName);
+			}
 		}
 
 		/**
@@ -525,7 +688,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function removeAllMarkers():void
 		{
-
+			if (_loader && page) {
+				_loader.window.clearmarkers();
+			}
 		}
 
 		/**
@@ -538,7 +703,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function setZoom(zoom:Number):void
 		{
-
+			if (_loader && page) {
+				_loader.window.map.setZoom(zoom);
+			}
 		}
 
 		/**
@@ -551,7 +718,9 @@ package org.apache.flex.maps.google.beads
 		 */
 		public function setCenter( location:LatLng ):void
 		{
-
+			if (_loader && page) {
+				_loader.window.setCenter(location.lat, location.lng);
+			}
 		}
 
 		/**
@@ -566,6 +735,165 @@ package org.apache.flex.maps.google.beads
 		{
 			// not implemented
 		}
-	}
+
+		/**
+		 * @private
+		 * This page definition is used with HTMLLoader to bring in the Google Maps
+		 * API (a Google APP token is required).
+		 */
+		private static var pageTemplateStart:String = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n'+
+			'<html>\n'+
+			'  <head>\n'+
+			'    <style type="text/css">\n'+
+			'      html { height: 100%; }\n'+
+			'      body { height: 100%; margin: 0; padding: 0; background-color: #FFFFCC; }\n'+
+			'      #map-canvas { height: 100% }\n'+
+			'    </style>\n'+
+			'    <script type="text/javascript"'+
+			'      src="https://maps.googleapis.com/maps/api/js?v=3.exp';
+		
+		private static var pageTemplateEnd:String = '&libraries=places">\n'+
+			'    </script>\n'+
+			'    <script type="text/javascript">\n'+
+			'      var map;\n'+
+			'      function mapit(lat, lng, zoomLevel) {\n' +
+			'        var currentCenter = new google.maps.LatLng(lat, lng);\n'+
+			'        var mapOptions = {\n'+
+			'              center: currentCenter,\n'+
+			'              zoom: zoomLevel\n'+
+			'        };\n'+
+			'        map = new google.maps.Map(document.getElementById("map-canvas"),\n'+
+			'              mapOptions);\n' +
+			'      };\n' +
+			'      function initialize() {\n'+
+			'        mapit(37.333, -121.900, 12);\n'+
+			'      };\n'+
+			'  </script>\n'+
+			'  </head>\n'+
+			'  <body onload="initialize()">\n'+
+			'    <div id="map-canvas"></div>\n'+
+			'  </body>\n'+
+			'</html>\n';
+
+		private static var pageTemplateEndOLD:String = '&libraries=places">'+
+			'    </script>\n'+
+			'    <script type="text/javascript">\n'+
+			'      var map;'+
+			'      var geocoder;'+
+			'      var currentCenter;' +
+			'      var service;' +
+			'      var places;' +
+			'      var markers;'+
+			'      function mapit(lat, lng, zoomLevel) {' +
+			'        currentCenter = new google.maps.LatLng(lat, lng);'+
+			'        if (map == null) {' +
+			'            var mapOptions = {'+
+			'              center: currentCenter,'+
+			'              zoom: zoomLevel'+
+			'            };'+
+			'            map = new google.maps.Map(document.getElementById("map-canvas"),'+
+			'              mapOptions);' +
+			'        }' +
+			'        google.maps.event.addListener(map, "center_changed", function() {' +
+			'            currentCenter = map.getCenter();' +
+			'        });' +
+			'        google.maps.event.addListener(map, "bounds_changed", function() {' +
+			'            currentCenter = map.getCenter();' +
+			'        });' +
+			'        map.setCenter(currentCenter);'+
+			'      };' +
+			'      function recenter() {' +
+			'        ' +
+			'      };' +
+			'      function setCenter(lat, lng) {' +
+			'          currentCenter = new google.maps.LatLng(lat,lng);' +
+			'          map.setCenter(currentCenter);' +
+			'      };'+
+			'      function codeaddress(address) {'+
+			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
+		    '        geocoder.geocode( { "address": address}, function(results, status) {'+
+			'           if (status == google.maps.GeocoderStatus.OK) {'+
+			'             currentCenter = results[0].geometry.location;'+
+			'             map.setCenter(currentCenter);'+
+			'             var marker = new google.maps.Marker({'+
+			'                map: map,'+
+			'                position: currentCenter,'+
+			'            });'+
+			'            } else {'+
+			'                alert("Geocode was not successful for the following reason: " + status);'+
+			'            }'+
+			'        });'+
+		    '      };'+
+			'      function centeronaddress(address) {'+
+			'        if (!geocoder) geocoder = new google.maps.Geocoder();'+
+			'        geocoder.geocode( { "address": address}, function(results, status) {'+
+			'          if (status == google.maps.GeocoderStatus.OK) {'+
+			'             currentCenter = results[0].geometry.location;'+
+			'             map.setCenter(currentCenter);' +
+			'          } else {'+
+			'                alert("Geocode was not successful for the following reason: " + status);'+
+			'          }'+
+			'        });'+
+			'      };'+
+			'      function markcurrentlocation() {'+
+			'         createMarker(currentCenter);'+
+			'      };' +
+			'      function createMarker(location) {' +
+			'         var marker = new google.maps.Marker({'+
+			'            map: map,'+
+			'            position: location,'+
+			'         });' +
+			'         google.maps.event.addListener(marker, "click", function() {' +
+			'             markerClicked(marker);' +
+			'         });'+
+			'         return marker;'+
+			'      };' +
+			'      function clearmarkers() {' +
+			'        if (markers) {' +
+			'          for(var i=0; i < markers.length; i++) {' +
+			'             markers[i].setMap(null);' +
+			'          }' +
+			'          markers = null;' +
+			'        }' +
+			'      };'+
+			'      function nearbysearch(placename) {' +
+			'         if (markers == null) markers = [];' +
+			'         service = new google.maps.places.PlacesService(map);'+
+		    '         service.nearbySearch({"location": currentCenter,' +
+			'           "radius": 5000,' +
+			'           "name": placename}, function(results, status) {' +
+			'              places = results;' +
+			'              if (status == google.maps.places.PlacesServiceStatus.OK) {' +
+			'                 for(var i=0; i < results.length; i++) {' +
+			'                    var place = results[i];' +
+			'                    var marker = createMarker(place.geometry.location);' +
+			'                    marker.title = place.name;' +
+			'                    markers.push(marker);' +
+			'                 }' +
+			'                 var event = document.createEvent("Event");' +
+			'                 event.results = places;'+
+            '                 event.initEvent("searchResults", true, true);' +
+			'                 window.dispatchEvent(event);' +
+			'              }' +
+			'          });'+
+			'      };' +
+			'      function markerClicked(marker) {' +
+			'         window.alert("Marker clicked");' +
+			'         var newEvent = document.createEvent("Event");' +
+			'         newEvent.marker = marker;' +
+			'         newEvent.initEvent("markerClicked", true, true);' +
+			'         window.dispatchEvent(newEvent);' +
+			'      };'+
+			'      function initialize() {'+
+			'        mapit(37.333, -121.900, 12);'+
+			'      };'+
+			'      google.maps.event.addDomListener(window, "load", initialize);'+
+			'    </script>\n'+
+			'  </head>\n'+
+			'  <body>\n'+
+			'    <div id="map-canvas"></div>\n'+
+			'  </body>\n'+
+			'</html>';
+	} // end ::AS3
 
 }

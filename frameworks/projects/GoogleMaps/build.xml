@@ -83,7 +83,7 @@
             <load-config filename="compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc" />
+            <!--arg value="-external-library-path+=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc" /-->
             <arg value="-define=COMPILE::AS3,true" />
             <arg value="-define=COMPILE::JS,false" />
         </compc>
