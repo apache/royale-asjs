@@ -28,6 +28,8 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <property name="target.name" value="Binding-${release.version}.swc" />
+    <property name="target.name.no.version" value="Binding.swc" />
 
     <target name="main" depends="clean,compile-asjs,compile-extern-swc,copy-js,compile,test-js" description="Full build of Binding.swc">
     </target>
@@ -51,7 +53,7 @@
             </fileset>
         </delete>
         <delete failonerror="false">
-            <fileset dir="${basedir}/js/out">
+            <fileset dir="${basedir}/target/generated-sources/flexjs">
                 <include name="**/**"/>
             </fileset>
         </delete>
@@ -66,7 +68,7 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
-        <mkdir dir="${basedir}/js/out" />
+        <mkdir dir="${basedir}/target/generated-sources/flexjs" />
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -84,18 +86,19 @@
             into the file bundles.properties in this directory.
         -->
         <compc fork="true"
-               output="${FLEXJS_HOME}/frameworks/libs/Binding.swc">
+            output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="compile-config.xml" />
+            <load-config filename="${basedir}/src/main/resources/compile-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-define=COMPILE::AS3,true" />
             <arg value="-define=COMPILE::JS,false" />
         </compc>
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name.no.version}" />
     </target>
 
     <target name="compile-asjs">
-        <echo message="Cross-compiling Binding"/>
+        <echo message="Cross-compiling ${target.name}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
@@ -105,8 +108,8 @@
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${basedir}/js/out" />
-            <arg value="-load-config=${basedir}/compile-asjs-config.xml" />
+            <arg value="-output=${basedir}/target/generated-sources/flexjs" />
+            <arg value="-load-config=${basedir}/src/main/resources/compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
@@ -119,11 +122,12 @@
     </target>
 
     <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
-        <echo message="Compiling externs/Binding.swc"/>
+        <echo message="Compiling target/externs/${target.name}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
         <mkdir dir="${FLEXJS_HOME}/frameworks/externs"/>
+        <mkdir dir="${basedir}/target/externs"/>
         
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -141,9 +145,9 @@
          into the file bundles.properties in this directory.
          -->
         <compc fork="true"
-            output="${FLEXJS_HOME}/frameworks/externs/Binding.swc">
+            output="${basedir}/target/externs/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="compile-asjs-config.xml" />
+            <load-config filename="src/main/resources/compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
@@ -152,11 +156,12 @@
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </compc>
+        <copy file="${basedir}/target/externs/${target.name}" tofile="${FLEXJS_HOME}/frameworks/externs/${target.name.no.version}" />
     </target>
 
     <target name="copy-js" >
         <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
-            <fileset dir="${basedir}/js/out">
+            <fileset dir="${basedir}/target/generated-sources/flexjs">
                 <include name="**/**" />
             </fileset>
         </copy>
