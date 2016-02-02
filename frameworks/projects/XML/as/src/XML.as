@@ -29,6 +29,16 @@ package
 		 * the prefix together with the namespaceURI form a QName
 		*/
 
+		static private var defaultNamespace:Namespace;
+
+		static public function setDefaultNamespace(ns:*)
+		{
+			if(!ns)
+				defaultNamespace = null;
+			else
+				ns = new Namespace(ns);
+		}
+
 		/**
 		 * [static] Determines whether XML comments are ignored when XML objects parse the source XML data.
 		 *  
@@ -47,11 +57,28 @@ package
 		 */
 		static public var ignoreWhitespace:Boolean = true;
 		
+		static private var _prettyIndent:int = 2;
 		/**
 		 * [static] Determines the amount of indentation applied by the toString() and toXMLString() methods when the XML.prettyPrinting property is set to true.
 		 * 
 		 */
-		static public var prettyIndent:int = 2;
+		static public function set prettyIndent(value:int):void
+		{
+			_prettyIndent = value;
+			_indentStr = "";
+			for(var i:int = 0; i < value; i++)
+			{
+				_indentStr = _indentStr + INDENT_CHAR;
+			}
+		}
+
+		static public function get prettyIndent():int
+		{
+			return _prettyIndent;
+		}
+
+		static private var _indentStr:String = "  ";
+		static private var INDENT_CHAR:String = " ";
 		
 		/**
 		 * [static] Determines whether the toString() and toXMLString() methods normalize white space characters between some tags.
@@ -59,17 +86,170 @@ package
 		 */
 		static public var prettyPrinting:Boolean = true;
 		
-		static private function fromNode(node:Element):XML
+		static private function escapeAttributeValue(value:String):String
 		{
-			// returns an XML object from an existing node without the need to parse the XML.
-			
+			var outArr:Array = [];
+			var arr = value.split("");
+			var len:int = arr.length;
+			for(var i:int=0;i<len;i++)
+			{
+				switch(arr[i])
+				{
+					case "<":
+						outArr[i] = "&lt;";
+						break;
+					case "&":
+						outArr[i] = "&amp;";
+						break;
+					case "\u000A":
+						outArr[i] = "&#xA;";
+						break;
+					case "\u000D":
+						outArr[i] = "&#xD;";
+						break;
+					case "\u0009":
+						outArr[i] = "&#x9;";
+						break;
+					default:
+						outArr[i] = arr[i];
+						break;
+				}
+			}
+			return outArr.join("");
 		}
 
-		public function XML(xml:String)
+		static private function escapeElementValue(value:String):String
 		{
-			var parser:DOMParser = new DOMParser();
-			_parentDocument = parser.parseFromString(xml, "application/xml");
-			_node = _parentDocument.childNodes[0];
+			var outArr:Array = [];
+			var arr = value.split("");
+			for(var i=0;i<arr.length;i++)
+			{
+				switch(arr[i])
+				{
+					case "<":
+						outArr[i] = "&lt;";
+						break;
+					case ">":
+						outArr[i] = "&gt;";
+						break;
+					case "&":
+						outArr[i] = "&amp;";
+						break;
+					default:
+						outArr[i] = arr[i];
+						break;
+				}
+			}
+			return outArr.join("");
+		}
+
+		static private function insertAttribute(att:Attr,parent:XML):XML()
+		{
+			var xml:XML = new XML();
+			xml.setParent(parent);
+			xml.setNodeKind("attribute");
+			xml.setName(att.name);
+			xml.setValue(att.value);
+			parent.
+			return xml;
+		}
+		static private function iterateElement(node:Element,xml:XML):void
+		{
+			// add attributes
+			for(i=0;i<node.attributes.length;i++)
+			{
+				insertAttribute(node.attributes[i],xml);
+			}
+			// loop through childNodes which will be one of:
+			// text, cdata, processing instrution or comment and add them as children of the element
+			for(i=0;i<node.childNodes.length;i++)
+			{
+				var child:XML = fromNode(node.childNodes[i]);
+				xml.addChild(child);
+			}
+		}
+		/**
+		* returns an XML object from an existing node without the need to parse the XML.
+		* The new XML object is not normalized
+		*/
+		static private function fromNode(node:Element):XML
+		{
+			var xml:XML;
+			var i:int;
+			var data:* = node.nodeValue;
+			switch(node.nodeType)
+			{
+				case 1:
+					//ELEMENT_NODE
+					xml = new XML();
+					xml.setNodeKind("element");
+					iterateElement(node,xml);
+					break;
+				//case 2:break;// ATTRIBUTE_NODE (handled separately)
+				case 3:
+					//TEXT_NODE
+					xml = new XML();
+					xml.setNodeKind("text");
+					xml.setValue(data);
+					break;
+				case 4:
+					//CDATA_SECTION_NODE
+					xml = new XML();
+					xml.setNodeKind("text");
+					data = "<![CDATA[" + data + "]]>";
+					xml.setValue(data);
+					break;
+				//case 5:break;//ENTITY_REFERENCE_NODE
+				//case 6:break;//ENTITY_NODE
+				case 7:
+					//PROCESSING_INSTRUCTION_NODE
+					xml = new XML();
+					xml.setNodeKind("processing-instruction");
+					xml.setName(node.nodeName);
+					xml.setValue(data);
+					break;
+				case 8:
+					//COMMENT_NODE
+					xml = new XML();
+					xml.setNodeKind("comment");
+					xml.setValue(data);
+					break;
+				//case 9:break;//DOCUMENT_NODE
+				//case 10:break;//DOCUMENT_TYPE_NODE
+				//case 11:break;//DOCUMENT_FRAGMENT_NODE
+				//case 12:break;//NOTATION_NODE
+				default:
+					throw new TypeError("Unknown XML node type!");
+					break;
+			}
+			return xml;
+		}
+
+		static private function trimXMLWhitespace(value:String):String
+		{
+			return value.replace(/^\s+|\s+$/gm,'');
+		}
+
+		public function XML(xml:String = null)
+		{
+			if(xml != "")
+			{
+				var parser:DOMParser = new DOMParser();
+				// get error namespace. It's different in different browsers.
+				var errorNS:Element = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
+
+				var doc:Document = parser.parseFromString(xml, "application/xml");
+
+				//check for errors
+				if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
+        			throw new Error('XML parse error');
+    			
+				var node:Element = doc.childNodes[0];
+				_version = doc.xmlVersion;
+				_encoding = doc.xmlEncoding;
+				iterateElement(node,this);
+				normalize();
+			}
 			//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
 			
 			// get rid of nodes we do not want 
@@ -78,41 +258,45 @@ package
 
 		}
 		
-		private var _doc:Document;
 		private var _children:Array;
 		private var _attributes:Array;
 		private var _processingInstructions:Array;
-		private var _collection:HTMLCollection;
-		private var _nodeList:NodeList;
-		private var _parentDocument:Document;
-		private var _node:Element;
 		private var _parentXML:XML;
 		private var _name:*;
 		private var _value:String;
+		private var _version:String;
+		private var _encoding:String;
+		private var _appliedNamespace:Namespace;
+		private var _namespaces:Array = [];
 
 
-		public function getNode():Element
+		/**
+		 * @private
+		 * 
+		 * Similar to appendChild, but accepts all XML types (text, comment, processing-instruction, attribute, or element)
+		 *
+		 * 	
+		 */
+		public function addChild(child:XML):void
 		{
-			return _node;
-		}
-		
-		public function getDocument():Document
-		{
-			return _parentDocument;
-		}
-
-		public function setDocument(doc:Document)
-		{
-			if(_parentDocument != doc)
+			if(!child)
+				return;
+			
+			child.setParent(this);
+			if(child.nodeKind() =="attribute")
 			{
-				if(_node.parentElement)
-					_node.parentElement.removeChild(_node);
-				//I think just using importNode on the top level node with deep set to true if enough.
-				if(doc)
-					_node = doc.importNode(_node,true);
-				_parentDocument = doc;
+				if(!_attributes)
+					_attributes = [];
+
+				_attributes.push(child);
+
 			}
+			else
+				_children.push(child);
+			normalize();
 		}
+
+
 		/**
 		 * Adds a namespace to the set of in-scope namespaces for the XML object.
 		 *
@@ -120,7 +304,7 @@ package
 		 * @return 
 		 * 	
 		 */
-		public function addNamespace(ns:Object):XML
+		public function addNamespace(ns:Namespace):XML
 		{
 			/*
 				When the [[AddInScopeNamespace]] method of an XML object x is called with a namespace N, the following steps are taken:
@@ -139,7 +323,36 @@ package
 				    i. If attr.[[Name]].[[Prefix]] == N.prefix, let attr.[[Name]].prefix = undefined
 				3. Return
 			*/
-			return null;
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+				return this;
+			if(ns.prefix === undefined)
+				return this;
+			if(ns.prefix == "" && _name.uri == "")
+				return this;
+			var match:Namespace = null;
+			var i:int;
+			for(i=0;i<_namespaces.length;i++)
+			{
+				if(_namespaces[i].prefix == ns.prefix)
+				{
+					match = _namespaces[i];
+					break;
+				}
+			}
+			if(match)
+				_namespaces[i] = ns;
+			else
+				_namespaces.push(ns);
+
+			if(ns.prefix == _name.prefix)
+				_name.prefix = undefined;
+
+			for(i=0;i<_attributes.length;i++)
+			{
+				if(_attributes[i].name().prefix == ns.prefix)
+					_attributes[i].name().prefix = undefined;
+			}
+			return this;
 		}
 		
 		/**
@@ -170,12 +383,10 @@ package
 				  a. Call the [[Replace]] method of x with arguments i and V
 				12. Return
 			*/
-			child.setDocument(_parentDocument);
 			child.setParent(this);
 			
 			_children.push(child);
-			_node.appendChild(child.getNode());
-
+			normalize();
 			return child;
 		}
 		
@@ -189,7 +400,17 @@ package
 		 */
 		public function attribute(attributeName:*):XMLList
 		{
-			return null;
+			var i:int;
+			attributeName = toAttributeName(attributeName);
+			var list:XMLList = new XMLList();
+			for(i=0;i<_attributes.length;i++)
+			{
+				if(_atributes[i].name().equals(attributeName))
+					list.appendChild(_atributes[i]);
+			}
+			list.targetObject = this;
+			list.targetProperty = attributeName;
+			return list;
 		}
 		
 		/**
@@ -240,7 +461,10 @@ package
 		 */
 		public function childIndex():int
 		{
-			return -1;
+			if(!parent)
+				return -1;
+
+			return parent.getIndexOf(this);
 		}
 		
 		/**
@@ -376,7 +600,54 @@ package
 				10. Return true
 			*/
 		}
+
+		private function getAncestorNamespaces(namespaces:Array):Array
+		{
+			//don't modify original
+			namespaces = namespaces.slice();
+			var nsIdx:int;
+			var pIdx:int;
+			if(_parentXML)
+			{
+				var parentNS:Array = _parentXML.inScopeNamespaces();
+				var len:int = parentNS.length;
+				for(pIdx=0;pIdx<len;pIdx++)
+				{
+					var curNS:Namespace = parentNS[pIdx];
+					var doInsert:Boolean = true;
+					for(nsIdx=0;nsIdx<namespaces.length;nsIdx++)
+					{
+						if(curNS.uri == namespaces[nsIdx].uri && curNS.prefix == namespaces[nsIdx].prefix)
+						{
+							doInsert = false;
+							break;
+						}
+					}
+					if(doInsert)
+						namespaces.push(curNS);
+
+				}
+				namespaces = _parentXML.getAncestorNamespaces(namespaces);
+			}
+			return namespaces;
+		}
+
+		public function getIndexOf(elem:XML):int
+		{
+			return _children.indexOf(elem);
+		}
 		
+		private function getURI(prefix:String):String
+		{
+			var i:int;
+			var namespaces:Array = getAncestorNamespaces(_namespaces);
+			for(i=0;i<namespaces.length;i++)
+			{
+				if(namespaces[i].prefix == prefix)
+					return namespaces[i].uri;
+			}
+			return "";
+		}
 		/**
 		 * Checks to see whether the XML object contains complex content.
 		 * 
@@ -476,6 +747,8 @@ package
 		{
 			return null;
 		}
+
+		private var _name:QName;
 		
 		/**
 		 * Gives the qualified name for the XML object.
@@ -485,6 +758,7 @@ package
 		 */
 		public function name():Object
 		{
+			return _name;
 			return null;
 		}
 		
@@ -511,7 +785,7 @@ package
 			return null;
 		}
 		
-		private var _nodeKind:String;
+		private var _nodeKind:String = "element";
 		/**
 		 * Specifies the type of node: text, comment, processing-instruction, attribute, or element.
 		 * @return 
@@ -519,7 +793,7 @@ package
 		 */
 		public function nodeKind():String
 		{
-			return null;
+			return _nodeKind;
 		}
 		
 		/**
@@ -530,7 +804,31 @@ package
 		 */
 		public function normalize():XML
 		{
-			return null;
+			var len:int = this._children.length-1;
+			var lastChild:XML;
+			for(var i:int=len;i>=0;i--)
+			{
+				var child:XML = this.child(i)[0];
+				// can we have a null child?
+
+				if(child.nodeKind() == "element")
+				{
+					child.normalize();
+				}
+				else if(child.nodeKind() == "text")
+				{
+					if(lastChild && lastChild.nodeKind() == "text")
+					{
+						child.setValue(child.text() + lastChild.text());
+						this.removeChildAt(i+1);
+					}
+					if(!child.text())
+						this.removeChildAt(i);
+				}
+				lastChild = child;
+			}
+			for(i=0;i<)
+			return this;
 		}
 		
 		/**
@@ -552,15 +850,10 @@ package
 		 */
 		public function prependChild(child:XML):XML
 		{
-			child.setDocument(_parentDocument);
 			child.setParent(this);
 			
 			_children.unshift(child);
-			if(_node.childNodes.length)
-				_node.insertBefore(child.getNode(), _node.childNodes[0]);
-			else
-				_node.appendChild(child.getNode());
-			
+
 			return child;
 		}
 		
@@ -607,13 +900,11 @@ package
 				6. Let x.[[Length]] = x.[[Length]] - dp
 				7. Return true.
 			*/
-			child.setParent(null);
-			
+			if(child.nodeKind())
 			var removed:XML;
-			var idx:int = child.childIndex;
+			var idx:int = _children.indexOf(child);
 			removed = _children.splice(idx,1);
-			var n:Element = removed.getNode();
-			n.parentElement.removeChild(n);
+			child.setParent(null);
 			return removed;
 		}
 
@@ -685,6 +976,39 @@ package
 			return null;
 		}
 
+		public function setAttribute(attr:*,value:String):void
+		{
+			var i:int;
+			if(!_attributes)
+				_attributes = [];
+
+			if(attr is XML)
+			{
+				if(attr.nodeKind() == "attribute")
+				{
+					for(i=0;i<_attributes.length;i++)
+					{
+						if(_attributes[i].name.equals() )
+						addChild(_att)
+					}
+				}
+
+			}
+			if(attr.indexOf("xmlns") == 0)
+			{
+				//it's a namespace declaration
+				var ns:Namespace = new Namespace(value.toString());
+				if(attr.indexOf("xmlns:") == 0)// it has a prefix
+					ns.prefix = attr.split(":")[1];
+				this.addNamespace(ns);
+			}
+			else
+			{
+				//it's a regular attribute string
+
+			}
+
+		}
 		/**
 		 * Replaces the child properties of the XML object with the specified name with the specified XML or XMLList.
 		 * This is primarily used to support dot notation assignment of XML.
@@ -858,7 +1182,10 @@ package
 		 */
 		public function setLocalName(name:String):void
 		{
-			
+			if(!_name)
+				_name = new QName();
+
+			_name.localName = name;
 		}
 		
 		/**
@@ -867,9 +1194,12 @@ package
 		 * @param name
 		 * 
 		 */
-		public function setName(name:String):void
+		public function setName(name:*):void
 		{
-			
+			if(name is QName)
+				_name = name;
+			else
+				_name = new QName(name);
 		}
 		
 		/**
@@ -878,14 +1208,41 @@ package
 		 * @param ns
 		 * 
 		 */
-		public function setNamespace(ns:Namespace):void
+		public function setNamespace(ns:Object):void
 		{
-			
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction")
+				return;
+			var ns2:Namespace = new Namespace(ns);
+			_name = new QName(ns2,_name);
+
+			if(_nodeKind == "attribute")
+			{
+				_name.isAttribute = true;
+				if(_parent == null)
+					return;
+				_parent.addNamespace(ns2);
+			}
+			if(_nodeKind == "element")
+				addNamespace(ns2);
+		}
+
+		/**
+		 * @private
+		 * 
+		 */
+		public function setNodeKind(value:String):void
+		{
+			_nodeKind = value;
 		}
 		
 		public function setParent(parent:XML):void
 		{
 			_parentXML = parent;
+		}
+
+		public function setValue(value:String):void
+		{
+			_value = value;
 		}
 		
 		/**
@@ -949,6 +1306,68 @@ package
 				return "";
 			return toXMLString();
 		}
+
+		private function toAttributeName(name:*):QName
+		{
+			if(!name is QName)
+			{
+				name = name.toString();
+				if(name.indexOf("@") > -1)
+					name = name.substring(name.indexOf("@"));
+			}
+			name = toXMLName(name);
+			name.isAttribute = true;
+
+		}
+		private function toXMLName(name:*):QName
+		{
+			if(name.toString().indexOf("@") > -1)
+				return toAttributeName(name);
+
+			/*
+				Given a string s, the ToXMLName conversion function returns a QName object or AttributeName. If the first character of s is "@", ToXMLName creates an AttributeName using the ToAttributeName operator. Otherwise, it creates a QName object using the QName constructor.
+				Semantics
+				Given a String value s, ToXMLName operator converts it to a QName object or AttributeName using the following steps:
+				1. If ToString(ToUint32(s)) == ToString(s), throw a TypeError exception
+				2. If the first character of s is "@"
+				a. Let name = s.substring(1, s.length)
+				b. Return ToAttributeName(name)
+				3. Else
+				a. Return a QName object created as if by calling the constructor new QName(s)
+			*/
+			if(parseInt(name,10).toString() == name)
+				throw new TypeError("invalid element name");
+
+			if(!name is QName)
+			{
+				name = name.toString();
+				if(name.indexOf(":") >= 0)
+				{
+					// Get the QName for prefix
+					var qname:QName() = new QName();
+					qname.prefix = name.substring(0,name.indexOf(":"));
+					qname.localName = name.substring(name.lastIndexOf(":")+1);
+					//get the qname uri
+					qname.uri = getURI(qname.prefix);
+					name = qname;
+				}
+				else
+				{
+					qname = new QName(_name);
+					if(!qname.uri && defaultNamespace)
+					{
+						qname = new QName(defaultNamespace);
+					}
+					qname.localName = name;
+					name = qname;
+				}
+			}
+			else
+			{
+				name  = new QName(name);
+			}
+			return name;
+		}
 		
 		/**
 		 * Returns a string representation of the XML object.
@@ -956,9 +1375,118 @@ package
 		 * @return 
 		 * 
 		 */
-		public function toXMLString():String
+		public function toXMLString(indentLevel:int=0):String
 		{
-			return null;
+			/*
+				Given an XML object x and an optional argument AncestorNamespaces and an optional argument IndentLevel, ToXMLString converts it to an XML encoded string s by taking the following steps:
+				1. Let s be the empty string
+				2. If IndentLevel was not provided, Let IndentLevel = 0
+				3. If (XML.prettyPrinting == true)
+				  a. For i = 0 to IndentLevel-1, let s be the result of concatenating s and the space <SP> character
+				4. If x.[[Class]] == "text",
+				  a. If (XML.prettyPrinting == true)
+				    i. Let v be the result of removing all the leading and trailing XMLWhitespace characters from x.[[Value]]
+				    ii. Return the result of concatenating s and EscapeElementValue(v)
+				  b. Else
+				    i. Return EscapeElementValue(x.[[Value]])
+				5. If x.[[Class]] == "attribute", return the result of concatenating s and EscapeAttributeValue(x.[[Value]])
+				6. If x.[[Class]] == "comment", return the result of concatenating s, the string "<!--", x.[[Value]] and the string "-->"
+				7. If x.[[Class]] == "processing-instruction", return the result of concatenating s, the string "<?", x.[[Name]].localName, the space <SP> character, x.[[Value]] and the string "?>"
+				8. If AncestorNamespaces was not provided, let AncestorNamespaces = { }
+				9. Let namespaceDeclarations = { }
+				10. For each ns in x.[[InScopeNamespaces]]
+				  a. If there is no ans ∈ AncestorNamespaces, such that ans.uri == ns.uri and ans.prefix == ns.prefix
+				    i. Let ns1 be a copy of ns
+				    ii. Let namespaceDeclarations = namespaceDeclarations ∪ { ns1 } NOTE implementations may also exclude unused namespace declarations from namespaceDeclarations
+				11. For each name in the set of names consisting of x.[[Name]] and the name of each attribute in x.[[Attributes]]
+				  a. Let namespace be a copy of the result of calling [[GetNamespace]] on name with argument (AncestorNamespaces ∪ namespaceDeclarations)
+				  b. If (namespace.prefix == undefined),
+				    i. Let namespace.prefix be an arbitrary implementation defined namespace prefix, such that there is no ns2 ∈ (AncestorNamespaces ∪ namespaceDeclarations) with namespace.prefix == ns2.prefix
+				    ii. Note: implementations should prefer the empty string as the implementation defined prefix if it is not already used in the set (AncestorNamespaces ∪ namespaceDeclarations)
+				    iii. Let namespaceDeclarations = namespaceDeclarations ∪ { namespace }
+				12. Let s be the result of concatenating s and the string "<"
+				13. If namespace.prefix is not the empty string,
+				  a. Let s be the result of concatenating s, namespace.prefix and the string ":"
+				14. Let s be the result of concatenating s and x.[[Name]].localName
+				15. Let attrAndNamespaces = x.[[Attributes]] ∪ namespaceDeclarations
+				16. For each an in attrAndNamespaces
+				  a. Let s be the result of concatenating s and the space <SP> character
+				  b. If Type(an) is XML and an.[[Class]] == "attribute"
+				    i. Let ans be a copy of the result of calling [[GetNamespace]] on a.[[Name]] with argument AncestorNamespaces
+				    ii. If (ans.prefix == undefined),
+				      1. Let ans.prefix be an arbitrary implementation defined namespace prefix, such that there is no ns2 ∈ (AncestorNamespaces ∪ namespaceDeclarations) with ans.prefix == ns2.prefix
+				      2. If there is no ns2 ∈ (AncestorNamespaces ∪ namespaceDeclarations), such that ns2.uri == ans.uri and ns2.prefix == ans.prefix
+				        a. Let namespaceDeclarations = namespaceDeclarations ∪ { ans }
+				    iii. If ans.prefix is not the empty string
+				      1. Let s be the result of concatenating s, namespace.prefix and the string ":"
+				    iv. Let s be the result of concatenating s and a.[[Name]].localName
+				  c. Else
+				    i. Let s be the result of concatenating s and the string "xmlns"
+				    ii. If (an.prefix == undefined),
+				      1. Let an.prefix be an arbitrary implementation defined namespace prefix, such that there is no ns2 ∈ (AncestorNamespaces ∪ namespaceDeclarations) with an.prefix == ns2.prefix
+				    iii. If an.prefix is not the empty string
+				      1. Let s be the result of concatenating s, the string ":" and an.prefix
+				  d. Let s be the result of concatenating s, the string "=" and a double-quote character (i.e. Unicode codepoint \u0022)
+				  e. If an.[[Class]] == "attribute"
+				    i. Let s be the result of concatenating s and EscapeAttributeValue(an.[[Value]])
+				  f. Else
+				    i. Let s be the result of concatenating s and EscapeAttributeValue(an.uri)
+				  g. Let s be the result of concatenating s and a double-quote character (i.e. Unicode codepoint \u0022)
+				17. If x.[[Length]] == 0
+				  a. Let s be the result of concatenating s and "/>"
+				  b. Return s
+				18. Let s be the result of concatenating s and the string ">"
+				19. Let indentChildren = ((x.[[Length]] > 1) or (x.[[Length]] == 1 and x[0].[[Class]] is not equal to "text"))
+				20. If (XML.prettyPrinting == true and indentChildren == true)
+				  a. Let nextIndentLevel = IndentLevel + XML.PrettyIndent.
+				21. Else
+				  a. Let nextIndentLevel = 0
+				22. For i = 0 to x.[[Length]]-1
+				  a. If (XML.prettyPrinting == true and indentChildren == true)
+				    i. Let s be the result of concatenating s and a LineTerminator
+				  b. Let child = ToXMLString (x[i], (AncestorNamespaces ∪ namespaceDeclarations), nextIndentLevel)
+				  c. Let s be the result of concatenating s and child
+				23. If (XML.prettyPrinting == true and indentChildren == true),
+				  a. Let s be the result of concatenating s and a LineTerminator
+				  b. For i = 0 to IndentLevel, let s be the result of concatenating s and a space <SP> character
+				24. Let s be the result of concatenating s and the string "</"
+				25. If namespace.prefix is not the empty string
+				  a. Let s be the result of concatenating s, namespace.prefix and the string ":"
+				26. Let s be the result of concatenating s, x.[[Name]].localName and the string ">"
+				27. Return s
+				NOTE Implementations may also preserve insignificant whitespace (e.g., inside and between element tags) and attribute quoting conventions in ToXMLString().			
+			*/
+			var i:int;
+			var strArr:Array = [];
+
+			var indentArr:Array = [];
+			for(i=0;i<indentLevel;i++)
+				indentArr.push(_indentStr);
+
+			var indent:String = indentArr.join("");
+			if(this.nodeKind() == "text")
+			{
+				if(prettyPrinting)
+				{
+					var v:String = trimXMLWhitespace(_value);
+					return indent + escapeElementValue(v);
+				}
+				return escapeElementValue(_value);
+			}
+			if(this.nodeKind() == "attribute")
+				return indent + escapeAttributeValue(_value);
+
+			if(this.nodeKind() == "comment")
+				return indent + "<!--" +  _value + "-->";
+
+			if(this.nodeKind() == "processing-instruction")
+				return indent + "<?" + _name.localName + " " + _value + "?>";
+
+			// We excluded the other types, so it's a normal element
+			//TODO I'm here...
+			// step 8.
+
+			return strArray.join("");
 		}
 		
 		/**
@@ -972,15 +1500,6 @@ package
 			return this;
 		}
 		
-		private function removeAllNodeChildren():void
-		{
-			var lastChild = _node.lastChild;
-			while(lastChild)
-			{
-				_node.removeChild(lastChild);
-				lastChild = _node.lastChild;
-			}
-		}
 	}
 }
 }

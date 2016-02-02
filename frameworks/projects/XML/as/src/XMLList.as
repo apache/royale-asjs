@@ -26,6 +26,16 @@ package
 		{
 			addIndex(0);
 		}
+		private var _targetObject:XML;
+		public function set targetObject(value:XML):void
+		{
+			_targetObject = value;
+		}
+		private var _targetProperty:QName;
+		public function set targetProperty(value:QName):void
+		{
+			_targetProperty = value;
+		}
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -421,13 +431,13 @@ package
 		public function parent():Object
 		{
 			if(this.length() == 0)
-				return null;
+				return undefined;
 			var retVal = this[0].parent;
 			var len:int = this.length();
 			for (var i:int=1;i<len;i++)
 			{
 				if(this[i].parent != retVal)
-					return null;
+					return undefined;
 			}
 			return retVal;
 		}

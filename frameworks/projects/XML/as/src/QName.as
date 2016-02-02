@@ -53,6 +53,7 @@ package
 			else if(qNameOrUri is Namespace)
 			{
 				_uri = (qNameOrUri as Namespace).uri;
+				_prefix = (qNameOrUri as Namespace).prefix;
 				if(localNameVal)
 					_localName = localNameVal.toString();
 			}
@@ -83,6 +84,36 @@ package
 		{
 			_localName = value;
 		}
+
+		private var _prefix:String;
+		public function get prefix():String
+		{
+			return _prefix;
+		}
+		public function set prefix(value:String):void
+		{
+			_prefix = value;
+		}
+
+		public function toString():String
+		{
+			return _localName;
+		}
+
+		public function equals(name:QName):Boolean
+		{
+			return this.uri == name.uri && this.prefix == name.prefix && this.localName == name.localName;
+		}
+		private var _isAttribute:Boolean;
+		public function get isAttribute():Boolean
+		{
+			return _isAttribute;
+		}
+		public function set isAttribute(value:Boolean):void
+		{
+			_isAttribute = value;
+		}
+
 	}
 }
 }
