@@ -23,6 +23,7 @@ package org.apache.flex.events.utils
     import flash.events.MouseEvent;
     
     import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.utils.IHandlesOriginalEvent;
     
 	/**
 	 *  Mouse events conversion.
@@ -76,6 +77,12 @@ package org.apache.flex.events.utils
         {
             if (event is flash.events.MouseEvent && (!(event is org.apache.flex.events.MouseEvent)))
             {
+				var p:* = event.target;
+				while (p != null) {
+					if (p is IHandlesOriginalEvent) return;
+					p = p.parent;
+				}
+				
                 var newEvent:org.apache.flex.events.MouseEvent = 
                     convert(flash.events.MouseEvent(event));
                 if (newEvent) 

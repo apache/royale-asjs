@@ -79,7 +79,8 @@ COMPILE::JS {
 			COMPILE::AS3 {
 	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
-	            renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+				renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+				renderer.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 				
 			COMPILE::JS {
@@ -174,6 +175,8 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
+				event.stopImmediatePropagation();
+				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
 				newEvent.multipleSelection = event.shiftKey;

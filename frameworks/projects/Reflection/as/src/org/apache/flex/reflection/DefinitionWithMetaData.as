@@ -34,7 +34,7 @@ package org.apache.flex.reflection
             super(name, rawData);
         }
         
-        public function getMetaData():Array
+        public function get metadata():Array
         {
             var results:Array = [];
             
@@ -52,8 +52,17 @@ package org.apache.flex.reflection
             }
             COMPILE::JS
             {
-                var rdata:* = rawData;
-                if (rdata !== undefined)
+                var rdata:*;
+                var data:Object = rawData;
+                if (data.names !== undefined)
+                {
+                    var name:String = data.names[0].qName;
+                    var def:Object = getDefinitionByName(name);
+                    rdata = def.prototype.FLEXJS_REFLECTION_INFO();
+                }
+                else
+                    rdata = data;
+                if (rdata !== undefined && rdata.metadata !== undefined)
                 {
                     var metadatas:Array = rdata.metadata();
                     if (metadatas)

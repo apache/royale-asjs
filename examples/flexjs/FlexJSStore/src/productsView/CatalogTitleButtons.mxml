@@ -35,14 +35,14 @@ limitations under the License.
             [Bindable]
             public var cartCount:int;
             
-            private function rollOverLabel(event:Event):void
+            private function rollOverLabel(event:MouseEvent):void
             {
                 try {
                     Label(event.target).className = "catalogTitleButtonHighlighted";
                 } catch (e:Error) {}
             }
             
-            private function rollOutLabel(event:Event):void
+            private function rollOutLabel(event:MouseEvent):void
             {
                 Label(event.target).className = "catalogTitleButtonDeselected";
             }

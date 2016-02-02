@@ -35,6 +35,7 @@ package org.apache.flex.maps.google
 	[Event(name="zoomChanged", type="org.apache.flex.events.Event")]
 	[Event(name="dragEnd", type="org.apache.flex.events.Event")]
 	[Event(name="searchResult", type="org.apache.flex.events.Event")]
+	[Event(name="markerClicked", type="org.apache.flex.events.MouseEvent")]
 
 	/**
 	 *  The Map class displays a Google Map centered on lat/lng coordinates. The Map uses
@@ -114,7 +115,6 @@ package org.apache.flex.maps.google
 			GoogleMapView(view).markAddress(address);
 		}
 
-		COMPILE::JS
 		public function createMarker(location:LatLng):Marker
 		{
 			return GoogleMapView(view).createMarker(location);

@@ -38,21 +38,67 @@ limitations under the License.
 			import org.apache.flex.utils.UIUtils;
 						
             import org.apache.flex.reflection.describeType;
+            import org.apache.flex.reflection.MetaDataArgDefinition;
+            import org.apache.flex.reflection.MetaDataDefinition;
             import org.apache.flex.reflection.MethodDefinition;
             import org.apache.flex.reflection.TypeDefinition;
-                       
+            
+            [Event(name="foo", type="org.apache.flex.events.Event")]
             public function runTest():void
             {
+                var metadata:Array;
+                var mtd:MetaDataDefinition;
+                var mtdarg:MetaDataArgDefinition;
+                var args:Array;
+                var j:int;
+                var m:int;
+                
                 var td:TypeDefinition = describeType(this);
                 trace(td.name);
                 var methods:Array = td.methods;
-                var md:MethodDefinition = methods[0] as MethodDefinition;
-                trace(md.name);
+                var n:int = methods.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var md:MethodDefinition = methods[i] as MethodDefinition;
+                    trace(md.name);
+                    if (md.name == "runTest")
+                    {
+                        metadata = md.metadata;
+                        for each (mtd in metadata)
+                        {
+                            trace(mtd.name);
+                            args = mtd.args;
+                            m = args.length;
+                            for (j = 0; j < m; j++)
+                            {
+                                mtdarg = args[j] as MetaDataArgDefinition;
+                                trace(mtdarg.name, mtdarg.value);
+                            }
+                        }
+                        break;
+                    }
+                }
+                td = describeType(cont);
+                trace(td.name);
+                metadata = td.metadata;
+                n = metadata.length;
+                for (i = 0; i < n; i++)
+                {
+                    mtd = metadata[0] as MetaDataDefinition;
+                    trace(mtd.name);
+                    args = mtd.args;
+                    m = args.length;
+                    for (j = 0; j < m; j++)
+                    {
+                        mtdarg = args[j] as MetaDataArgDefinition;
+                        trace(mtdarg.name, mtdarg.value);
+                    }
+                }
             }
 		]]>
 	</fx:Script>
 	
-	<js:Container width="600" height="700" x="50" y="50">
+	<js:Container id="cont" width="600" height="700" x="50" y="50">
 		<js:beads>
 			<js:VerticalLayout />
 		</js:beads>

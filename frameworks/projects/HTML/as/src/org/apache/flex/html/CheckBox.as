@@ -36,6 +36,7 @@ package org.apache.flex.html
         import org.apache.flex.core.WrappedHTMLElement;        
     }
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	
     //--------------------------------------
     //  Events
@@ -75,7 +76,7 @@ package org.apache.flex.html
 		{
 			super();
 			
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
+			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 		
         /**
@@ -121,7 +122,7 @@ package org.apache.flex.html
 			IToggleButtonModel(model).selected = value;
 		}
 				
-		private function internalMouseHandler(event:Event) : void
+		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
 		{
 			selected = !selected;
 			dispatchEvent(new Event("change"));

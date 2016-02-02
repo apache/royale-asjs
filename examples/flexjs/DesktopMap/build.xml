@@ -51,10 +51,10 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc"/>
+    <!--property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc"/-->
     <property name="opt1_arg" value="-remove-circulars" />
 
-    <target name="main" depends="clean,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
