@@ -13,7 +13,7 @@ public class GeocoderResult {
     }
 
     /**
-     * @see JSType - [(Array<(google.maps.GeocoderAddressComponent|null)>|null)] 
+     * @see JSType - [(Array((google.maps.GeocoderAddressComponent|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var address_components:Array;
@@ -25,7 +25,7 @@ public class GeocoderResult {
     public var formatted_address:String;
 
     /**
-     * @see JSType - [(Array<string>|null)] 
+     * @see JSType - [(Array(string>|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var types:Array;

@@ -31,7 +31,7 @@ public class PlaceReview {
     public var author_name:String;
 
     /**
-     * @see JSType - [(Array<(google.maps.places.PlaceAspectRating|null)>|null)] 
+     * @see JSType - [(Array(google.maps.places.PlaceAspectRating|null)|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var aspects:Array;

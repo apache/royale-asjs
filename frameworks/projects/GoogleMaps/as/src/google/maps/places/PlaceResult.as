@@ -19,7 +19,7 @@ public class PlaceResult {
     public var icon:String;
 
     /**
-     * @see JSType - [(Array<(google.maps.places.PlaceReview|null)>|null)] 
+     * @see JSType - [(Array((google.maps.places.PlaceReview|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var reviews:Array;
@@ -31,7 +31,7 @@ public class PlaceResult {
     public var website:String;
 
     /**
-     * @see JSType - [(Array<(google.maps.places.PlaceAspectRating|null)>|null)] 
+     * @see JSType - [(Array((google.maps.places.PlaceAspectRating|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var aspects:Array;
@@ -85,7 +85,7 @@ public class PlaceResult {
     public var id:String;
 
     /**
-     * @see JSType - [(Array<(google.maps.places.PlacePhoto|null)>|null)] 
+     * @see JSType - [(Array((google.maps.places.PlacePhoto|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var photos:Array;
@@ -97,13 +97,13 @@ public class PlaceResult {
     public var vicinity:String;
 
     /**
-     * @see JSType - [(Array<string>|null)] 
+     * @see JSType - [(Array(string)|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var html_attributions:Array;
 
     /**
-     * @see JSType - [(Array<(google.maps.GeocoderAddressComponent|null)>|null)] 
+     * @see JSType - [(Array((google.maps.GeocoderAddressComponent|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var address_components:Array;
@@ -133,7 +133,7 @@ public class PlaceResult {
     public var rating:Number;
 
     /**
-     * @see JSType - [(Array<string>|null)] 
+     * @see JSType - [(Array(string)|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var types:Array;

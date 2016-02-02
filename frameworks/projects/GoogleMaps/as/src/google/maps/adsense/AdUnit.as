@@ -3,6 +3,7 @@ package google.maps.adsense {
 import google.maps.Map;
 import google.maps.MVCObject;
 import google.maps.ControlPosition;
+import google.pseudo.Node;
 
 /**
  * @see [google_maps_api_v3_11]

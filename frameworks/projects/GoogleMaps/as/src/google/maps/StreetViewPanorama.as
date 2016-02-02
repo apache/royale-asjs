@@ -15,7 +15,7 @@ public class StreetViewPanorama extends google.maps.MVCObject {
     }
 
     /**
-     * @see JSType - [(Array<(google.maps.MVCArray|null)>|null)] 
+     * @see JSType - [(Array((google.maps.MVCArray|null))|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var controls:Array;

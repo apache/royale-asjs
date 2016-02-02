@@ -1,4 +1,6 @@
 package google.maps {
+	
+import google.pseudo.Node;
 
 /**
  * @see [google_maps_api_v3_11]

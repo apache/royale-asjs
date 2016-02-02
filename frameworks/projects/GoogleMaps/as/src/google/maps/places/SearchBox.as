@@ -2,6 +2,8 @@ package google.maps.places {
 
 import google.maps.MVCObject;
 import google.maps.LatLngBounds;
+import google.pseudo.Node;
+import google.pseudo.HTMLInputElement;
 
 /**
  * @see [google_maps_api_v3_11]

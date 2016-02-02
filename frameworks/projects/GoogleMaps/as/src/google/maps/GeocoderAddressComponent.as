@@ -19,7 +19,7 @@ public class GeocoderAddressComponent {
     public var long_name:String;
 
     /**
-     * @see JSType - [(Array<string>|null)] 
+     * @see JSType - [(Array(string)|null)] 
      * @see [google_maps_api_v3_11]
      */
     public var types:Array;
