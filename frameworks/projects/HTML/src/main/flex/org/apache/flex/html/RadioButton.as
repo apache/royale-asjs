@@ -37,6 +37,7 @@ package org.apache.flex.html
         import org.apache.flex.core.WrappedHTMLElement;
     }
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.core.IUIBase;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
@@ -69,7 +70,7 @@ package org.apache.flex.html
 		{
 			super(upState, overState, downState, hitTestState);
 			
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
+			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 		
 		protected static var dict:Dictionary = new Dictionary(true);
@@ -209,7 +210,7 @@ package org.apache.flex.html
 		/**
 		 * @private
 		 */
-		private function internalMouseHandler(event:Event) : void
+		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
 		{
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {

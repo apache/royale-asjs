@@ -22,10 +22,14 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IRollOverModel;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ItemAddedEvent;
+	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.flex.events.ItemRemovedEvent;
 
     /**
      *  The DataGroup class is the IItemRendererParent used internally
@@ -58,59 +62,25 @@ package org.apache.flex.html.supportClasses
 		{
 			super.addElement(c, dispatchEvent);
 			
-			var dispatcher:IEventDispatcher = c as IEventDispatcher;
-			dispatcher.addEventListener("itemRendererRollOver", handleRollOver);
-			dispatcher.addEventListener("itemRendererRollOut", handleRollOut);
+			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+			newEvent.item = c;
+			
+			var strand:IEventDispatcher = parent as IEventDispatcher;
+			strand.dispatchEvent(newEvent);
 		}
 		
 		/**
 		 * @private
 		 */
 		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
-		{
-			var dispatcher:IEventDispatcher = c as IEventDispatcher;
-			dispatcher.removeEventListener("itemRendererRollOver", handleRollOver);
-			dispatcher.removeEventListener("itemRendererRollOut", handleRollOut);
-			
+		{	
 			super.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleRollOver(event:Event):void
-		{
-			var strand:IStrand = parent as IStrand;
-			var rollModel:IRollOverModel = strand.getBeadByType(IRollOverModel) as IRollOverModel;
-			if (rollModel) {
-				var n:int = numElements;
-				for (var i:int=0; i < n; i++) {
-					var renderer:Object = getElementAt(i);
-					if (renderer == event.currentTarget) {
-						rollModel.rollOverIndex = i;
-						break;
-					}
-				}
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleRollOut(event:Event):void
-		{
-			var strand:IStrand = parent as IStrand;
-			var rollModel:IRollOverModel = strand.getBeadByType(IRollOverModel) as IRollOverModel;
-			if (rollModel) {
-				var n:int = numElements;
-				for (var i:int=0; i < n; i++) {
-					var renderer:Object = getElementAt(i);
-					if (renderer == event.currentTarget) {
-						rollModel.rollOverIndex = -1;
-						break;
-					}
-				}
-			}
+			
+			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			newEvent.item = c;
+			
+			var strand:IEventDispatcher = parent as IEventDispatcher;
+			strand.dispatchEvent(newEvent);
 		}
 
         /**

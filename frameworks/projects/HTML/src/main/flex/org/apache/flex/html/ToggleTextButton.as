@@ -23,30 +23,30 @@ package org.apache.flex.html
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
-    
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
     //--------------------------------------
     //  Events
     //--------------------------------------
-    
+
     /**
      *  Dispatched when the user clicks on a button.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.Event")]
+	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
      *  The ToggleButton class is a TextButton that supports
      *  a selected property.
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -56,7 +56,7 @@ package org.apache.flex.html
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -70,16 +70,16 @@ package org.apache.flex.html
                 this.typeNames = 'toggleTextButton';
             }
 		}
-        
+
         COMPILE::JS
         private var _selected:Boolean;
-        
+
         COMPILE::JS
         private var SELECTED:String = "selected";
-        
+
         /**
          *  <code>true</code> if the Button is selected.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -89,14 +89,14 @@ package org.apache.flex.html
         {
             COMPILE::AS3
             {
-                return IToggleButtonModel(model).selected;                    
+                return IToggleButtonModel(model).selected;
             }
             COMPILE::JS
             {
                 return _selected;
             }
         }
-        
+
         /**
          *  @private
          */
@@ -104,14 +104,14 @@ package org.apache.flex.html
         {
             COMPILE::AS3
             {
-                IToggleButtonModel(model).selected = value;                    
+                IToggleButtonModel(model).selected = value;
             }
             COMPILE::JS
             {
-                if (_selected != value) 
+                if (_selected != value)
                 {
                     _selected = value;
-                    
+
                     var className:String = this.className;
                     var typeNames:String = this.typeNames;
                     if (value) {
@@ -135,7 +135,7 @@ package org.apache.flex.html
                 }
             }
         }
-        
+
         /**
          *  @private
          *  add another class selector
@@ -145,14 +145,14 @@ package org.apache.flex.html
             // we don't have a model yet so just pass through otherwise you will loop
             if (!parent)
                 return super.className;
-            
-            var name:String = super.className;            
+
+            var name:String = super.className;
             if (selected)
                 return "toggleTextButton_Selected" + (name ? " " + name : "");
             else
                 return "toggleTextButton" + (name ? " " + name : "");
         }
-        
+
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
@@ -160,7 +160,7 @@ package org.apache.flex.html
             element.addEventListener("click", clickHandler, false);
             return element;
         }
-        
+
         COMPILE::JS
         private function clickHandler(event:Event):void
         {

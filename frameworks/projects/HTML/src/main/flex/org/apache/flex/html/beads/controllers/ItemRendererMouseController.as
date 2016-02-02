@@ -33,9 +33,10 @@ COMPILE::JS {
 	import goog.events.EventType;
     import goog.events;
 }
+	import org.apache.flex.events.ItemClickedEvent;
 
 	/**
-	 *  The ItemRendererMouseController class bead handles mouse events in itemRenderers. This
+	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
 	 *  includes roll-overs, mouse down, and mouse up. These platform-specific events are then
 	 *  re-dispatched as FlexJS events.
 	 *  
@@ -78,7 +79,8 @@ COMPILE::JS {
 			COMPILE::AS3 {
 	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
-	            renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+				renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+				renderer.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 				
 			COMPILE::JS {
@@ -100,8 +102,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target)
 			{
-                target.hovered = true;
-				target.dispatchEvent(new Event("itemRendererRollOver",true));
+				target.dispatchEvent(new Event("itemRollOver",true));
 			}
 		}
 		
@@ -110,8 +111,7 @@ COMPILE::JS {
 		{
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target) {
-				target.hovered = true;
-				target.dispatchEvent(new Event("itemRendererRollOver",true));
+				target.dispatchEvent(new Event("itemRollOver",true));
 			}
 		}
 		
@@ -124,9 +124,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target)
 			{
-                target.hovered = false;
-                target.down = false;
-				target.dispatchEvent(new Event("itemRendererRollOut",true));
+				target.dispatchEvent(new Event("itemRollOut",true));
 			}
 		}
 		
@@ -136,9 +134,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
 			if (target)
 			{
-				target.hovered = false;
-				target.down = false;
-				target.dispatchEvent(new Event("itemRendererRollOut",true));
+				target.dispatchEvent(new Event("itemRollOut",true));
 			}
 		}
 
@@ -179,9 +175,15 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
+				event.stopImmediatePropagation();
+				
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+				
                 target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
-				target.selected = true;
-				target.dispatchEvent(new Event("selected"));
+				target.dispatchEvent(newEvent);
 			}			
 		}
 		
@@ -194,8 +196,12 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				target.selected = true;
-				target.dispatchEvent(new Event("selected"));
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
 			}
 		}
 	

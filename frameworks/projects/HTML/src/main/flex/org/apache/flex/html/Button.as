@@ -45,7 +45,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.Event")]
+	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
      *  The Button class is a simple button.  Use TextButton for

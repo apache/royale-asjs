@@ -22,8 +22,10 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ITextItemRenderer;
+	import org.apache.flex.events.ItemClickedEvent;
 
 	/**
 	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the 
@@ -63,10 +65,13 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		private function handleClickEvent(event:Event):void
+		private function handleClickEvent(event:MouseEvent):void
 		{
-			var parent:Object = itemRendererParent;
-			(parent as UIBase).dispatchEvent(new Event("selected", this));
+			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+			newEvent.multipleSelection = event.shiftKey;
+			newEvent.index = index;
+			newEvent.data = data;
+			dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -102,6 +107,9 @@ package org.apache.flex.html.supportClasses
 			var added:Boolean = false;
 			if (textButton == null) {
 				textButton = new TextButton();
+				
+				// listen for clicks on the button and translate them into
+				// an itemClicked event.
 				textButton.addEventListener('click',handleClickEvent);
 				added = true;
 			}

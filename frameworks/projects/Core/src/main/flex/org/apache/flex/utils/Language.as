@@ -303,12 +303,17 @@ package org.apache.flex.utils
 		static public function trace(...rest):void
 		{
 			var theConsole:*;
-            var windowConsole:* = window.console;
 
 			theConsole = goog.global.console;
 
-			if (theConsole === undefined && windowConsole !== undefined)
-				theConsole = windowConsole;
+			if (theConsole === undefined)
+			{
+            	var windowConsole:* = window.console;
+				if (windowConsole !== undefined)
+				{
+					theConsole = windowConsole;
+				}
+			}
 
 			try
 			{

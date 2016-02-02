@@ -329,6 +329,10 @@
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/asnodec"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
             <arg value="${FLEXJS_HOME}/js/bin/jquery"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
