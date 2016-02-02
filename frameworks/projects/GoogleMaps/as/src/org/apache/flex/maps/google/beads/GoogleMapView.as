@@ -21,6 +21,9 @@ package org.apache.flex.maps.google.beads
 	COMPILE::AS3 {
 		import flash.events.Event;
 		import flash.net.URLRequest;
+		import flash.filesystem.File;
+		import flash.filesystem.FileMode;
+		import flash.filesystem.FileStream;
 		
 		import org.apache.flex.utils.HTMLLoader;
 	}
@@ -457,21 +460,26 @@ package org.apache.flex.maps.google.beads
 				page = pageTemplateStart + "&key=" + token + pageTemplateEnd;
 			else
 				page = pageTemplateStart + pageTemplateEnd;
-
+			
+			var pathToFile:String;
+			
 			if (page) {
-				_loader.loadString(page);
-				//trace(page);
-				//_loader.load(new URLRequest("https://google-developers.appspot.com/maps/documentation/javascript/examples/full/map-simple"));
-				_loader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
+				pathToFile = File.applicationDirectory.resolvePath('flexjs_mapapi.html').nativePath;
+				var someFile:File = new File(pathToFile);
+				var writeStream:FileStream = new FileStream();
+				writeStream.open(someFile, FileMode.WRITE);
+				writeStream.writeUTFBytes(page);
+				writeStream.close();
 			}
+			
+			_loader.load(new URLRequest("file://"+pathToFile));
+			_loader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
 		}
 
 		private function completeHandler(event:flash.events.Event):void
 		{
-			trace("htmlLoader complete");
-
 			if (_loader && page) {
-/*				_loader.window.map.center_changed = onMapCentered;
+				_loader.window.map.center_changed = onMapCentered;
 				_loader.window.map.bounds_changed = onMapBoundsChanged;
 				_loader.window.map.zoom_changed   = onMapZoomChanged;
 				_loader.window.map.dragend        = onMapDragEnd;
@@ -479,7 +487,7 @@ package org.apache.flex.maps.google.beads
 
 				// custom event handlers
 				_loader.window.addEventListener("searchResults",onSearchResults);
-				_loader.window.addEventListener("markerClicked",onMarkerClicked);*/
+				_loader.window.addEventListener("markerClicked",onMarkerClicked);
 			}
 
 			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
@@ -516,7 +524,6 @@ package org.apache.flex.maps.google.beads
 		private function onMapCentered():void
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("centered") );
-			//_loader.window.recenter();
 		}
 
 		/**
@@ -525,7 +532,6 @@ package org.apache.flex.maps.google.beads
 		private function onMapBoundsChanged():void
 		{
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("boundsChanged") );
-			//_loader.window.recenter();
 		}
 
 		/**
@@ -541,7 +547,6 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapDragEnd():void
 		{
-			trace("GMV: drag-end");
 			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("dragEnd") );
 		}
 
@@ -552,15 +557,6 @@ package org.apache.flex.maps.google.beads
 		{
 			var results:Array = [];
 			for(var i:int=0; i < event.results.length; i++) {
-				/*var result:Place = new Place();
-				result.geometry.location.lat = event.results[i].geometry.location.lat();
-				result.geometry.location.lng = event.results[i].geometry.location.lng();
-				result.icon = event.results[i].icon;
-				result.id = event.results[i].id;
-				result.name = event.results[i].name;
-				result.reference = event.results[i].reference;
-				result.vicinity = event.results[i].vicinity;
-				results.push(result);*/
 				var place:Object = event.results[i];
 				results.push(place);
 			}
@@ -574,7 +570,6 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMarkerClicked(event:*):void
 		{
-			trace("GMV: onMarkerClicked");
 			var marker:Marker = new Marker({
 				position: event.marker.getPosition(),
 				title: event.marker.getTitle(),
@@ -584,7 +579,6 @@ package org.apache.flex.maps.google.beads
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			model.selectedMarker = marker;
 
-			trace("GMV: dispatching event");
 			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("markerClicked"));
 		}
 
@@ -751,31 +745,8 @@ package org.apache.flex.maps.google.beads
 			'    </style>\n'+
 			'    <script type="text/javascript"'+
 			'      src="https://maps.googleapis.com/maps/api/js?v=3.exp';
-		
-		private static var pageTemplateEnd:String = '&libraries=places">\n'+
-			'    </script>\n'+
-			'    <script type="text/javascript">\n'+
-			'      var map;\n'+
-			'      function mapit(lat, lng, zoomLevel) {\n' +
-			'        var currentCenter = new google.maps.LatLng(lat, lng);\n'+
-			'        var mapOptions = {\n'+
-			'              center: currentCenter,\n'+
-			'              zoom: zoomLevel\n'+
-			'        };\n'+
-			'        map = new google.maps.Map(document.getElementById("map-canvas"),\n'+
-			'              mapOptions);\n' +
-			'      };\n' +
-			'      function initialize() {\n'+
-			'        mapit(37.333, -121.900, 12);\n'+
-			'      };\n'+
-			'  </script>\n'+
-			'  </head>\n'+
-			'  <body onload="initialize()">\n'+
-			'    <div id="map-canvas"></div>\n'+
-			'  </body>\n'+
-			'</html>\n';
 
-		private static var pageTemplateEndOLD:String = '&libraries=places">'+
+		private static var pageTemplateEnd:String = '&libraries=places">'+
 			'    </script>\n'+
 			'    <script type="text/javascript">\n'+
 			'      var map;'+
@@ -801,9 +772,6 @@ package org.apache.flex.maps.google.beads
 			'            currentCenter = map.getCenter();' +
 			'        });' +
 			'        map.setCenter(currentCenter);'+
-			'      };' +
-			'      function recenter() {' +
-			'        ' +
 			'      };' +
 			'      function setCenter(lat, lng) {' +
 			'          currentCenter = new google.maps.LatLng(lat,lng);' +
@@ -878,7 +846,6 @@ package org.apache.flex.maps.google.beads
 			'          });'+
 			'      };' +
 			'      function markerClicked(marker) {' +
-			'         window.alert("Marker clicked");' +
 			'         var newEvent = document.createEvent("Event");' +
 			'         newEvent.marker = marker;' +
 			'         newEvent.initEvent("markerClicked", true, true);' +
