@@ -104,6 +104,16 @@ package
 		{
 			return this.uri == name.uri && this.prefix == name.prefix && this.localName == name.localName;
 		}
+		public function matches(name:QName):Boolean
+		{
+			if(this.uri == "*" || name.uri == "*")
+				return this.localName == "*" || name.localName == "*" || this.localName == name.localName;
+
+			if(this.localName == "*" || name.localName == "*")
+				return this.uri == name.uri;
+
+			return this.uri == name.uri && this.localName == name.localName;
+		}
 		private var _isAttribute:Boolean;
 		public function get isAttribute():Boolean
 		{

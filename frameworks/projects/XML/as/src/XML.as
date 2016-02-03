@@ -230,6 +230,57 @@ package
 			return value.replace(/^\s+|\s+$/gm,'');
 		}
 
+		/**
+		 * [static] Returns an object with the following properties set to the default values: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
+		 * @return 
+		 * 
+		 */
+		static public function defaultSettings():Object
+		{
+			return {
+			    ignoreComments : true,
+			    ignoreProcessingInstructions : true,
+			    ignoreWhitespace : true,
+			    prettyIndent : 2,
+			    prettyPrinting : true
+			}
+		}
+		
+		/**
+		 * [static] Sets values for the following XML properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
+		 * @param rest
+		 * 
+		 */
+		static public function setSettings(value:Object):void
+		{
+			if(!value)
+				return;
+				
+		    ignoreComments = value.ignoreComments === undefined ? ignoreComments : value.ignoreComments;
+		    ignoreProcessingInstructions = value.ignoreProcessingInstructions === undefined ? ignoreProcessingInstructions : value.ignoreProcessingInstructions;
+		    ignoreWhitespace = value.ignoreWhitespace === undefined ? ignoreWhitespace : value.ignoreWhitespace;
+		    prettyIndent = value.prettyIndent === undefined ? prettyIndent : value.prettyIndent;
+		    prettyPrinting = value.prettyPrinting === undefined ? prettyPrinting : value.prettyPrinting;
+		}
+		
+		/**
+		 * [static] Retrieves the following properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
+		 * 
+		 * @return 
+		 * 
+		 */
+		static public function settings():Object
+		{
+			return {
+			    ignoreComments : ignoreComments,
+			    ignoreProcessingInstructions : ignoreProcessingInstructions,
+			    ignoreWhitespace : ignoreWhitespace,
+			    prettyIndent : prettyIndent,
+			    prettyPrinting : prettyPrinting
+			}
+		}
+
+
 		public function XML(xml:String = null)
 		{
 			if(xml != "")
@@ -401,11 +452,14 @@ package
 		public function attribute(attributeName:*):XMLList
 		{
 			var i:int;
+			if(attributeName == "*")
+				return attributes();
+
 			attributeName = toAttributeName(attributeName);
 			var list:XMLList = new XMLList();
 			for(i=0;i<_attributes.length;i++)
 			{
-				if(_atributes[i].name().equals(attributeName))
+				if(_atributes[i].name().matches(attributeName))
 					list.appendChild(_atributes[i]);
 			}
 			list.targetObject = this;
@@ -421,7 +475,12 @@ package
 		 */
 		public function attributes():XMLList
 		{
-			return null;
+			var list:XMLList = new XMLList();
+			for(i=0;i<_attributes.length;i++)
+				list.appendChild(_atributes[i]);
+
+			list.targetObject = this;
+			return list;
 		}
 		
 		/**
@@ -435,6 +494,7 @@ package
 		{
 			/*
 			 * 
+			When the [[Get]] method of an XML object x is called with property name P, the following steps are taken:
 			1. If ToString(ToUint32(P)) == P
 			  a. Let list = ToXMLList(x)
 			  b. Return the result of calling the [[Get]] method of list with argument P
@@ -450,7 +510,36 @@ package
 			    i. Call the [[Append]] method of list with argument x[k]
 			6. Return list
 			*/
-			return null;
+			var i:int;
+			var list:XMLList = new XMLList();
+			if(parseInt(name,10).toString() == propertyName)
+			{
+				if(propertyName != "0")
+					return undefined;
+				list.appendChild(this);
+				list.targetObject = this;
+				return list;
+			}
+			propertyName = toXMLName(propertyName);
+			if(propertyName.isAttribute)
+			{
+				for(i=0;i<_attributes.length;i++)
+				{
+					if(propertyName.matches(_attributes[i].name()))
+						list.append(_attributes[i]);
+				}
+			}
+			else
+			{
+				for(i=0;i<_children.length;i++)
+				{
+					if(propertyName.matches(_children[i].name()))
+						list.append(_children[i]);
+				}
+			}
+			list.targetObject = this;
+			list.targetProperty = propertyName;
+			return list;
 		}
 		
 		/**
@@ -475,7 +564,15 @@ package
 		 */
 		public function children():XMLList
 		{
-			return null;
+			var list:XMLList = new XMLList();
+			for(i=0;i<_children.length;i++)
+			{
+				//TODO filter out non-elements
+				if(propertyName.matches(_children[i].name()))
+					list.append(_children[i]);
+			}
+			list.targetObject = this;
+			return list;
 		}
 		
 		/**
@@ -486,7 +583,14 @@ package
 		 */
 		public function comments():XMLList
 		{
-			return null;
+			var list:XMLList = new XMLList();
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "comment" && propertyName.matches(_children[i].name()))
+					list.append(_children[i]);
+			}
+			list.targetObject = this;
+			return list;
 		}
 		
 		/**
@@ -498,7 +602,7 @@ package
 		 */
 		public function contains(value:XML):Boolean
 		{
-			return null;
+			return this.equals(value);
 		}
 		
 		/**
@@ -526,16 +630,6 @@ package
 				  c. Let c.[[Parent]] = y
 				6. Return y
 			*/
-			return null;
-		}
-		
-		/**
-		 * [static] Returns an object with the following properties set to the default values: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
-		 * @return 
-		 * 
-		 */
-		static public function defaultSettings():Object
-		{
 			return null;
 		}
 		
@@ -1243,27 +1337,6 @@ package
 		public function setValue(value:String):void
 		{
 			_value = value;
-		}
-		
-		/**
-		 * [static] Sets values for the following XML properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
-		 * @param rest
-		 * 
-		 */
-		static public function setSettings(... rest):void
-		{
-
-		}
-		
-		/**
-		 * [static] Retrieves the following properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
-		 * 
-		 * @return 
-		 * 
-		 */
-		static public function settings():Object
-		{
-			return null;
 		}
 		
 		/**
