@@ -109,19 +109,19 @@
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Binding/basic-manifest.xml</manifest>
+          <manifest>projects/Binding/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Charts/basic-manifest.xml</manifest>
+          <manifest>projects/Charts/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Collections/basic-manifest.xml</manifest>
+          <manifest>projects/Collections/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
@@ -133,25 +133,25 @@
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/DragDrop/basic-manifest.xml</manifest>
+          <manifest>projects/DragDrop/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Effects/basic-manifest.xml</manifest>
+          <manifest>projects/Effects/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Formatters/basic-manifest.xml</manifest>
+          <manifest>projects/Formatters/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Graphics/basic-manifest.xml</manifest>
+          <manifest>projects/Graphics/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
@@ -163,49 +163,49 @@
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Mobile/basic-manifest.xml</manifest>
+          <manifest>projects/Mobile/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
-          <manifest>projects/Network/basic-manifest.xml</manifest>
+          <manifest>projects/Network/src/main/resources/basic-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/html5</uri>
           
-          <manifest>projects/HTML5/html5-manifest.xml</manifest>
+          <manifest>projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/flat</uri>
           
-          <manifest>projects/Flat/flat-manifest.xml</manifest>
+          <manifest>projects/Flat/src/main/resources/flat-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/jquery</uri>
           
-          <manifest>projects/JQuery/jquery-manifest.xml</manifest>
+          <manifest>projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/google</uri>
           
-          <manifest>projects/GoogleMaps/google-manifest.xml</manifest>
+          <manifest>projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/cordova</uri>
           
-          <manifest>projects/Mobile/cordova-manifest.xml</manifest>
+          <manifest>projects/Mobile/src/main/resources/cordova-manifest.xml</manifest>
           
       </namespace>
       <namespace>
           <uri>library://ns.apache.org/flexjs/createjs</uri>
           
-          <manifest>projects/CreateJS/createjs-manifest.xml</manifest>
+          <manifest>projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
           
       </namespace>
       </namespaces>
