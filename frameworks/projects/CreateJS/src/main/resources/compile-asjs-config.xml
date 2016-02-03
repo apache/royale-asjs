@@ -52,12 +52,12 @@
         </namespaces>
         
         <source-path>
-            <path-element>as/src</path-element>
+            <path-element>../flex</path-element>
         </source-path>
         
         <library-path>
-            <path-element>../../externs/Core.swc</path-element>
-            <path-element>../../externs/HTML.swc</path-element>
+            <path-element>../../../../../externs/Core.swc</path-element>
+            <path-element>../../../../../externs/HTML.swc</path-element>
         </library-path>
         
         <warn-no-constructor>false</warn-no-constructor>
