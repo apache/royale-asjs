@@ -640,7 +640,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function descendants(name:Object = *):XMLList
+		public function descendants(name:Object = "*"):XMLList
 		{
 			/*
 				When the [[Descendants]] method of an XML object x is called with property name P, the following steps are taken:
@@ -657,7 +657,28 @@ package
 				  c. If dq.[[Length]] > 0, call the [[Append]] method of list with argument dq
 				5. Return list
 			*/
-			return null;
+			var i:int;
+			name = toXMLName(name);
+			var list:XMLList = new XMLList();
+			if(name.isAttribute)
+			{
+				for(i=0;i<_attributes.length;i++)
+				{
+					if(name.matches(_attributes[i].name()))
+						list.appendChild(_attributes[i]);
+				}
+				for(i=0;i<_children.length;i++)
+				{
+					if(_children[i].nodeKind() == "element")
+					{
+						if(name.matches(_children[i].name()))
+							list.appendChild(_children[i]);
+
+						list = list.concat(_children[i].descendants());
+					} 
+				}
+			}
+			return list;
 		}
 		
 		/**
@@ -667,7 +688,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function elements(name:Object = *):XMLList
+		public function elements(name:Object = "*"):XMLList
 		{
 			return null;
 		}

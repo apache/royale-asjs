@@ -171,10 +171,10 @@ package
 		public function attribute(attributeName:*):XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].attribute(attributeName);
+				var list:XMLList = _xmlArray[i].attribute(attributeName);
 				if(list.length())
 					retVal = retVal.concat(list);
 			}
@@ -189,10 +189,10 @@ package
 		public function attributes():XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].attributes();
+				var list:XMLList = _xmlArray[i].attributes();
 				if(list.length())
 					retVal = retVal.concat(list);
 			}
@@ -208,10 +208,10 @@ package
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].child(propertyName);
+				var list:XMLList = _xmlArray[i].child(propertyName);
 				if(list.length())
 					retVal = retVal.concat(list);
 			}
@@ -226,10 +226,10 @@ package
 		public function children():XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].children();
+				var list:XMLList = _xmlArray[i].children();
 				if(list.length)
 					retVal = retVal.concat(list);
 			}
@@ -244,10 +244,10 @@ package
 		public function comments():XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].comments();
+				var list:XMLList = _xmlArray[i].comments();
 				if(list.length)
 					retVal = retVal.concat(list);
 			}
@@ -274,10 +274,10 @@ package
 		public function contains(value:XML):Boolean
 		{
 			
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				if(this[i].contains(value))
+				if(_xmlArray[i].contains(value))
 					return true;
 			}
 			return false;
@@ -292,9 +292,9 @@ package
 		public function copy():XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
-				retVal[i] = this[i].copy();
+				retVal[i] = _xmlArray[i].copy();
 			
 			return retVal;
 		}
@@ -309,10 +309,10 @@ package
 		public function descendants(name:Object = *):XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].descendants(name);
+				var list:XMLList = _xmlArray[i].descendants(name);
 				if(list.length())
 					retVal = retVal.concat(list);
 			}
@@ -329,10 +329,10 @@ package
 		public function elements(name:Object = *):XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].elements(name);
+				var list:XMLList = _xmlArray[i].elements(name);
 				if(list.length())
 					retVal = retVal.concat(list);
 			}
@@ -342,12 +342,12 @@ package
 		public function hasComplexContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return true.
-			if(this.length() == 0)
+			if(_xmlArray.length == 0)
 				return false;
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
 			{
-				if(this[i].hasComplexContent())
+				if(_xmlArray[i].hasComplexContent())
 					return true;
 			}
 			return false;
@@ -368,12 +368,12 @@ package
 			*/
 			if(parseInt(propertyName,10).toString() == propertyName)
 			{
-				return parseInt(propertyName,10) < this.length();
+				return parseInt(propertyName,10) < _xmlArray.length;
 			}
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
 			{
-				if(this[i].hasOwnProperty(propertyName))
+				if(_xmlArray[i].hasOwnProperty(propertyName))
 					return true;
 			}
 			return false;
@@ -388,12 +388,12 @@ package
 		public function hasSimpleContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return false.
-			if(this.length() == 0)
+			if(_xmlArray.length == 0)
 				return true;
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
 			{
-				if(this[i].hasComplexContent())
+				if(_xmlArray[i].hasComplexContent())
 					return false;
 			}
 			return true;
@@ -430,13 +430,13 @@ package
 		 */
 		public function parent():Object
 		{
-			if(this.length() == 0)
+			if(_xmlArray.length == 0)
 				return undefined;
 			var retVal = this[0].parent;
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
 			{
-				if(this[i].parent != retVal)
+				if(_xmlArray[i].parent != retVal)
 					return undefined;
 			}
 			return retVal;
@@ -454,17 +454,17 @@ package
 			var retVal:XMLList = new XMLList();
 			if(!name)
 				return retVal;
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				if(this[i].nodeKind() != "processing-instruction")
+				if(_xmlArray[i].nodeKind() != "processing-instruction")
 					continue;
 				if(name == "*")
 				{
-					retVal.appendChild(this[i]);
+					retVal.appendChild(_xmlArray[i]);
 				}
-				else if(name == this[i].localName)
-					retVal.appendChild(this[i]);
+				else if(name == _xmlArray[i].localName)
+					retVal.appendChild(_xmlArray[i]);
 			}
 			return retVal;
 		}
@@ -539,10 +539,10 @@ package
 		public function text():XMLList
 		{
 			var retVal:XMLList = new XMLList();
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = this[i].text();
+				var list:XMLList = _xmlArray[i].text();
 				if(list.length())
 					retVal.concat(list);
 			}
@@ -558,10 +558,10 @@ package
 		public function toLocaleString():String
 		{
 			var retVal:Array = [];
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var str:String = this[i].toLocaleString();
+				var str:String = _xmlArray[i].toLocaleString();
 				if(str)
 					retVal.push(str);
 			}
@@ -577,10 +577,10 @@ package
 		public function toString():String
 		{
 			var retVal:Array = [];
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var str:String = this[i].toString();
+				var str:String = _xmlArray[i].toString();
 				if(str)
 					retVal.push(str);
 			}
@@ -596,10 +596,10 @@ package
 		public function toXMLString():String
 		{
 			var retVal:Array = [];
-			var len:int = this.length();
+			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var str:String = this[i].toXMLString();
+				var str:String = _xmlArray[i].toXMLString();
 				if(str)
 					retVal.push(str);
 			}
