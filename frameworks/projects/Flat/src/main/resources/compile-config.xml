@@ -23,10 +23,10 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../libs/Binding.swc</path-element>
-            <path-element>../../libs/Core.swc</path-element>
-            <path-element>../../libs/Graphics.swc</path-element>
-            <path-element>../../libs/HTML.swc</path-element>
+            <path-element>../../../../../libs/Binding.swc</path-element>
+            <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/Graphics.swc</path-element>
+            <path-element>../../../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -60,7 +60,7 @@
         </namespaces>
         
         <source-path>
-            <path-element>as/src</path-element>
+            <path-element>../flex</path-element>
             <!--<path-element>asjs/src</path-element>-->
         </source-path>
         
@@ -69,11 +69,11 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>as/defaults.css</path>
+        <path>defaults.css</path>
     </include-file>
     <include-file>
         <name>js/out/*</name>
-        <path>js/out/*</path>
+        <path>../../../target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>
