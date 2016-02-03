@@ -566,11 +566,8 @@ package
 		{
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
-			{
-				//TODO filter out non-elements
-				if(propertyName.matches(_children[i].name()))
-					list.append(_children[i]);
-			}
+				list.append(_children[i]);
+
 			list.targetObject = this;
 			return list;
 		}
@@ -682,7 +679,7 @@ package
 		}
 		
 		/**
-		 * Lists the elements of an XML object.
+		 * Lists the elements of an XML object. (handles E4X dot notation)
 		 * 
 		 * @param name
 		 * @return 
@@ -690,6 +687,18 @@ package
 		 */
 		public function elements(name:Object = "*"):XMLList
 		{
+			name = toXMLName(name);
+			var list:XMLList = new XMLList();
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "element" && name.matches(_children[i].name()))
+					list.append(_children[i]);
+			}
+
+			list.targetObject = this;
+			list.targetProperty = name;
+			return list;
+
 			return null;
 		}
 

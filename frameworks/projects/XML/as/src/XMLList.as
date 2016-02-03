@@ -338,6 +338,33 @@ package
 			}
 			return retVal;
 		}
+
+		public function equals(list:*):Boolean
+		{
+			/*
+				Overview
+				The XMLList type adds the internal [[Equals]] method to the internal properties defined by the Object type.
+				The XMLList [[Equals]] method is used to compare this XMLList object for content equality 
+				with another XMLList object V or determine whether this XMLList object contains a single XML object that compares equal to V. 
+				The [[Equals]] operator returns true if this XMLList object is considered equal to V 
+				or contains only one XML object that is considered equal to V. Otherwise, it returns false. 
+				Empty XMLList objects are considered equal to undefined. 
+				The input argument V may be a value of type XMLList, XML, undefined or any value that can be converted to a String with ToString().
+				
+				Semantics
+				When the [[Equals]] method of an XML object x is called with value V, the following steps are taken:
+				1. If V == undefined and x.[[Length]] == 0, return true
+				2. If Type(V) is XMLList
+				  a. If x.[[Length]] is not equal to V.[[Length]], return false
+				  b. For i = 0 to x.[[Length]]
+				    i. If the result of the comparison x[i] == V[i] is false, return false
+				  c. Return true
+				3. Else if x.[[Length]] == 1
+				  a. Return the result of the comparison x[0] == V
+				4. Return false
+			*/
+			return false;
+		}
 		
 		public function hasComplexContent():Boolean
 		{
