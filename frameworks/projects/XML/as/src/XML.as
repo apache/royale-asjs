@@ -378,7 +378,7 @@ package
 				return this;
 			if(ns.prefix === undefined)
 				return this;
-			if(ns.prefix == "" && _name.uri == "")
+			if(ns.prefix == "" && name().uri == "")
 				return this;
 			var match:Namespace = null;
 			var i:int;
@@ -395,8 +395,8 @@ package
 			else
 				_namespaces.push(ns);
 
-			if(ns.prefix == _name.prefix)
-				_name.prefix = undefined;
+			if(ns.prefix == name().prefix)
+				name().prefix = undefined;
 
 			for(i=0;i<_attributes.length;i++)
 			{
@@ -860,7 +860,7 @@ package
 		 */
 		public function localName():Object
 		{
-			return null;
+			return name().localName;
 		}
 
 		private var _name:QName;
@@ -873,8 +873,9 @@ package
 		 */
 		public function name():Object
 		{
+			if(!_name)
+				_name = new QName();
 			return _name;
-			return null;
 		}
 		
 		/**
@@ -919,11 +920,11 @@ package
 		 */
 		public function normalize():XML
 		{
-			var len:int = this._children.length-1;
+			var len:int = _children.length-1;
 			var lastChild:XML;
 			for(var i:int=len;i>=0;i--)
 			{
-				var child:XML = this.child(i)[0];
+				var child:XML = _children[i];
 				// can we have a null child?
 
 				if(child.nodeKind() == "element")
@@ -942,7 +943,6 @@ package
 				}
 				lastChild = child;
 			}
-			for(i=0;i<)
 			return this;
 		}
 		
@@ -1328,7 +1328,7 @@ package
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction")
 				return;
 			var ns2:Namespace = new Namespace(ns);
-			_name = new QName(ns2,_name);
+			_name = new QName(ns2,name());
 
 			if(_nodeKind == "attribute")
 			{
@@ -1447,7 +1447,7 @@ package
 				}
 				else
 				{
-					qname = new QName(_name);
+					qname = new QName(name());
 					if(!qname.uri && defaultNamespace)
 					{
 						qname = new QName(defaultNamespace);
@@ -1574,7 +1574,7 @@ package
 				return indent + "<!--" +  _value + "-->";
 
 			if(this.nodeKind() == "processing-instruction")
-				return indent + "<?" + _name.localName + " " + _value + "?>";
+				return indent + "<?" + name().localName + " " + _value + "?>";
 
 			// We excluded the other types, so it's a normal element
 			//TODO I'm here...
