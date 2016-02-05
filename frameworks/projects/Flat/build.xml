@@ -28,6 +28,8 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+    <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
     <property name="target.name" value="Flat-${release.version}.swc" />
     <property name="target.name.no.version" value="Flat.swc" />
     
@@ -114,9 +116,9 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <arg value="-external-library-path+=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
-            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-library-path+=${GCL.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </java>
@@ -151,9 +153,9 @@
             <load-config filename="src/main/resources/compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-external-library-path+=${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+            <arg value="-external-library-path+=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
-            <arg value="-library-path+=${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+            <arg value="-library-path+=${GCL.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </compc>
