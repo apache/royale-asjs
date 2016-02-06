@@ -765,7 +765,7 @@ package
 			var xmlChildren:Array = xml.getChildrenArray();
 			if(selfChldrn.length != xmlChildren.length)
 				return false;
-			
+
 			for(i=0;i<selfChldrn.length;i++)
 			{
 				if(!selfChldrn[i].equals(xmlChildren[i]))
@@ -1467,7 +1467,15 @@ package
 		 */
 		public function text():XMLList
 		{
-			return null;
+			var list:XMLList = new XMLList();
+			var i:int;
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "text")
+					list.list.appendChild(_atributes[i]);
+			}
+			list.targetObject = this;
+			return list;
 		}
 		
 		/**
