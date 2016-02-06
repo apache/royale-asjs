@@ -49,6 +49,7 @@ package
 			{
 				_uri = qNameOrUri.uri;
 				_localName = qNameOrUri.localName;
+				_prefix = qNameOrUri.prefix;
 			}
 			else if(qNameOrUri is Namespace)
 			{
@@ -102,7 +103,7 @@ package
 
 		public function equals(name:QName):Boolean
 		{
-			return this.uri == name.uri && this.prefix == name.prefix && this.localName == name.localName;
+			return this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
 		}
 		public function matches(name:QName):Boolean
 		{

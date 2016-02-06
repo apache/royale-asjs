@@ -150,7 +150,7 @@ package
 			xml.setNodeKind("attribute");
 			xml.setName(att.name);
 			xml.setValue(att.value);
-			parent.
+			parent.addChild(xml);
 			return xml;
 		}
 		static private function iterateElement(node:Element,xml:XML):void
@@ -283,7 +283,7 @@ package
 
 		public function XML(xml:String = null)
 		{
-			if(xml != "")
+			if(xml)
 			{
 				var parser:DOMParser = new DOMParser();
 				// get error namespace. It's different in different browsers.
@@ -627,7 +627,23 @@ package
 				  c. Let c.[[Parent]] = y
 				6. Return y
 			*/
-			return null;
+			var i:int;
+			var xml:XML = new XML();
+			xml.setNodeKind(_nodeKind);
+			xml.setName(name());
+			xml.setValue(_value);
+			for(i-0;i<_namespaces.length;i++)
+			{
+				xml.addNamespace(new Namespace(_namespaces[i]));
+			}
+			//parent should be null by default
+			for(i=0;i<_attributes.length;i++)
+				xml.addChild(_attributes[i].copy());
+
+			for(i=0;i<_children.length;i++)
+				xml.addChild(_children[i].copy());
+			
+			return xml;
 		}
 		
 		/**
@@ -702,7 +718,7 @@ package
 			return null;
 		}
 
-		public function equals(xml:XML):Boolean
+		public function equals(xml:*):Boolean
 		{
 			/*
 				When the [[Equals]] method of an XML object x is called with value V, the following steps are taken:
@@ -723,6 +739,66 @@ package
 				  b. If r == false, return false
 				10. Return true
 			*/
+			var i:int;
+			if(!(xml is XML))
+				return false;
+
+			if(xml.nodeKind() != _nodeKind)
+				return false;
+
+			if(!name().equals(xml.name()))
+				return false;
+			var selfAttrs:Array = getAttributeArray();
+			var xmlAttrs:Array = xml.getAttributeArray();
+			if(selfAttrs.length != xmlAttrs.length)
+				return false;
+			//length comparison should not be necessary because xml always has a length of 1
+			if(getValue() != xml.getValue())
+				return false;
+
+			for(i=0;i<selfAttrs.length;i++)
+			{
+				if(!xml.hasAttribute(selfAttrs[i]))
+					return false;
+			}
+			var selfChldrn:Array = getChildrenArray();
+			var xmlChildren:Array = xml.getChildrenArray();
+			if(selfChldrn.length != xmlChildren.length)
+				return false;
+			
+			for(i=0;i<selfChldrn.length;i++)
+			{
+				if(!selfChldrn[i].equals(xmlChildren[i]))
+					return false;
+			}
+			return true;
+		}
+
+		public function hasAttribute(nameOrXML:*,value:String=null):Boolean
+		{
+			if(!_attributes)
+				return false;
+			var name:QName;
+			if(nameOrXML is XML)
+			{
+				name = nameOrXML.name();
+				value = nameOrXML.getValue();
+			}
+			else
+			{
+				name = new QName(nameOrXML);
+			}
+			var i:int;
+			for(i=0;i<_attributes.length;i++)
+			{
+				if(name.matches(_attributes[i].name()))
+				{
+					if(!value)
+						return true;
+					return value == _attributes[i].getValue();
+				}
+			}
+			return false;
 		}
 
 		private function getAncestorNamespaces(namespaces:Array):Array
@@ -756,6 +832,15 @@ package
 			return namespaces;
 		}
 
+		public function getAttributeArray():Array
+		{
+			return _attributes ? _attributes.slice() : [];
+		}
+		public function getChildrenArray():Array
+		{
+			return _children ? _children.slice() : [];
+		}
+
 		public function getIndexOf(elem:XML):int
 		{
 			return _children.indexOf(elem);
@@ -771,6 +856,11 @@ package
 					return namespaces[i].uri;
 			}
 			return "";
+		}
+
+		public function getValue():String
+		{
+			return _value;
 		}
 		/**
 		 * Checks to see whether the XML object contains complex content.
