@@ -961,6 +961,15 @@ package
 			return _namespaces.slice();
 		}
 		
+		private function insertChildAt(child:XML,idx:int):void{
+			if(!child)
+				return;
+			var parent:XML = child.parent();
+			if(parent)
+				parent.removeChild(child);
+			child.setParent(this);
+			_children.splice(idx,0,child);
+		}
 		/**
 		 * Inserts the given child2 parameter after the child1 parameter in this XML object and returns the resulting object.
 		 * 
@@ -969,9 +978,32 @@ package
 		 * @return 
 		 * 
 		 */
-		public function insertChildAfter(child1:Object, child2:Object):*
+		public function insertChildAfter(child1:Object, child2:Object):XML
 		{
-			return null;
+			/*
+				When the insertChildAfter method is called on an XML object x with parameters child1 and child2, the following steps are taken:
+				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
+				2. If (child1 == null)
+				a. Call the [[Insert]] method of x with arguments "0" and child2
+				b. Return x
+				3. Else if Type(child1) is XML
+				a. For i = 0 to x.[[Length]]-1
+				i. If x[i] is the same object as child1
+				1. Call the [[Insert]] method of x with a
+			*/
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+				return null;
+			if(!child1)
+			{
+				insertChildAt(child2,0);
+				return child2;
+			}
+			var idx:int = _children.indexOf(child1);
+			if(idx >= 0)
+			{
+				insertChildAt(child2,idx+1);
+			}
+			return child2;
 		}
 		
 		/**
@@ -982,9 +1014,34 @@ package
 		 * @return 
 		 * 
 		 */
-		public function insertChildBefore(child1:Object, child2:Object):*
+		public function insertChildBefore(child1:Object, child2:Object):XML
 		{
-			return null;
+			/*
+				When the insertChildBefore method is called on an XML object x with parameters child1 and child2, the following steps are taken:
+				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
+				2. If (child1 == null)
+				a. Call the [[Insert]] method of x with arguments ToString(x.[[Length]]) and child2
+				b. Return x
+				3. Else if Type(child1) is XML
+				a. For i = 0 to x.[[Length]]-1
+				i. If x[i] is the same object as child1
+				1. Call the [[Insert]] method of x with arguments ToString(i) and child2
+				2. Return x
+				4. Return			
+			*/
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+				return null;
+			if(!child1)
+			{
+				insertChildAt(child2,_children.length);
+				return child2;
+			}
+			var idx:int = _children.indexOf(child1);
+			if(idx >= 0)
+			{
+				insertChildAt(child2,idx);
+			}
+			return child2;
 		}
 		
 		/**
