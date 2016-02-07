@@ -870,10 +870,25 @@ package
 		 */
 		public function hasComplexContent():Boolean
 		{
-			return false
+			/*
+				When the hasComplexContent method is called on an XML object x, the following steps are taken:
+				1. If x.[[Class]] ∈ {"attribute", "comment", "processing-instruction", "text"}, return false
+				2. For each property p in x
+				a. If p.[[Class]] == "element", return true
+				3. Return false
+			*/
+			if(_nodeKind == "attribute" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "text")
+				return false;
+			var i:int;
+			for(i=0i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "element")
+					return true;
+			}
+			return false;
 		}
 
-		public function hasOwnProperty():Boolean
+		public function hasOwnProperty(p:*):Boolean
 		{
 			/*
 				When the [[HasProperty]] method of an XML object x is called with property name P, the following steps are taken:
@@ -890,6 +905,23 @@ package
 				    i. Return true
 				5. Return false
 			*/
+			if(parseInt(p,10).toString() == p)
+				return p == "0";
+			var name:QName = toXMLName(p);
+			var i:int;
+			for(i=0;i<_attributes.length;i++)
+			{
+				if(_attributes[i].name().matches(name))
+					return true;
+			}
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() != "element")
+					continue;
+				if(_children[i].name().matches(name))
+					return true;
+			}
+			return false;
 		}
 				
 		/**
@@ -900,7 +932,22 @@ package
 		 */
 		public function hasSimpleContent():Boolean
 		{
-			return false;
+			/*
+				When the hasSimpleContent method is called on an XML object x, the following steps are taken:
+				1. If x.[[Class]] ∈ {"comment", "processing-instruction"}, return false
+				2. For each property p in x
+				a. If p.[[Class]] == "element", return false
+				3. Return true
+			*/
+			if(_nodeKind == "comment" || _nodeKind == "processing-instruction")
+				return false;
+			var i:int;
+			for(i=0i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "element")
+					return false;
+			}
+			return true;
 		}
 		
 		/**
