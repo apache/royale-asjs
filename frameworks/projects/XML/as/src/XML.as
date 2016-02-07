@@ -911,7 +911,7 @@ package
 		 */
 		public function inScopeNamespaces():Array
 		{
-			return null;
+			return _namespaces.slice();
 		}
 		
 		/**
@@ -986,7 +986,39 @@ package
 		 */
 		public function namespace(prefix:String = null):*
 		{
-			return null;
+			/*
+				When the namespace method is called on an XML object x with zero arguments or one argument prefix, the following steps are taken:
+				1. Let y = x
+				2. Let inScopeNS = { }
+				3. While (y is not null)
+				  a. For each ns in y.[[InScopeNamespaces]]
+				    i. If there exists no n ∈ inScopeNS, such that n.prefix == ns.prefix
+				      1. Let inScopeNS = inScopeNS ∪ { ns }
+				  b. Let y = y.[[Parent]]
+				4. If prefix was not specified
+				  a. If x.[[Class]] ∈ {"text", "comment", "processing-instruction"}, return null
+				  b. Return the result of calling the [[GetNamespace]] method of x.[[Name]] with argument inScopeNS
+				5. Else
+				  a. Let prefix = ToString(prefix)
+				  b. Find a Namespace ns ∈ inScopeNS, such that ns.prefix = prefix. If no such ns exists, let ns = undefined.
+				  c. Return ns
+			*/
+			var i:int;
+			if(prefix)
+			{
+				for(i=0;i<_namespaces.length;i++)
+				{
+					if(_namespaces[i].prefix == prefix)
+						return _namespaces[i];
+				}
+				if(_parent)
+					return _parent.namespace(prefix);
+				return undefined;
+			}
+			//no prefix. get the namespace of our object
+			if(_nodeKind == "text" || _nodeKind ==  "comment" || _nodeKind ==  "processing-instruction")
+				return null;
+			return name().getNamespace(namespaceDeclarations());
 		}
 		
 		/**
@@ -997,7 +1029,54 @@ package
 		 */
 		public function namespaceDeclarations():Array
 		{
-			return null;
+			/*
+				When the namespaceDeclarations method is called on an XML object x, the following steps are taken:
+				1. Let a be a new Array created as if by calling the constructor, new Array()
+				2. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return a
+				3. Let y = x.[[Parent]]
+				4. Let ancestorNS = { }
+				5. While (y is not null)
+				  a. For each ns in y.[[InScopeNamespaces]]
+				    i. If there exists no n ∈ ancestorNS, such that n.prefix == ns.prefix
+				      1. Let ancestorNS = ancestorNS ∪ { ns }
+				  b. Let y = y.[[Parent]]
+				6. Let declaredNS = { }
+				7. For each ns in x.[[InScopeNamespaces]]
+				  a. If there exists no n ∈ ancestorNS, such that n.prefix == ns.prefix and n.uri == ns.uri
+				    i. Let declaredNS = declaredNS ∪ { ns }
+				8. Let i = 0
+				9. For each ns in declaredNS
+				  a. Call the [[Put]] method of a with arguments ToString(i) and ns
+				  b. Let i = i + 1
+				10. Return a
+			*/
+			var retVal:Array = [];
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+				return retVal;
+			var declaredNS:Array = _namespaces.slice();
+			var parent:XML = _parent;
+			while(parent)
+			{
+				var parentNS:Array = parent.inScopeNamespaces();
+				var idx:int;
+				var pIdx:int;
+				for(pIdx=0;i<parentNS.length;pIdx++)
+				{
+					var uri:String = parentNS[pIdx].uri;
+					var prefix:String = parentNS[pIdx].prefix;
+					for(idx=0;i<declaredNS.length;idx++)
+					{
+						if(declaredNS[idx].uri == uri && declaredNS[idx].prefix == prefix)
+						{
+							declaredNS.push(parentNS[pIdx]);
+							break;
+						}
+					}
+				}
+				parent = parent.parent();
+			}
+
+			return declaredNS;
 		}
 		
 		private var _nodeKind:String = "element";
@@ -1053,7 +1132,7 @@ package
 		 */
 		public function parent():*
 		{
-			return null;
+			return _parent;
 		}
 		
 		/**
@@ -1207,8 +1286,30 @@ package
 		 * @return 
 		 * 
 		 */
-		public function removeNamespace(ns:Namespace):XML
+		public function removeNamespace(ns:*):XML
 		{
+			/*
+				When the removeNamespace method is called on an XML object x with parameter namespace, the following steps are taken:
+				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return x
+				2. Let ns be a Namespace object created as if by calling the function Namespace( namespace )
+				3. Let thisNS be the result of calling [[GetNamespace]] on x.[[Name]] with argument x.[[InScopeNamespaces]]
+				4. If (thisNS == ns), return x
+				5. For each a in x.[[Attributes]]
+				  a. Let aNS be the result of calling [[GetNamespace]] on a.[[Name]] with argument x.[[InScopeNamespaces]]
+				  b. If (aNS == ns), return x
+				6. If ns.prefix == undefined
+				  a. If there exists a namespace n ∈ x.[[InScopeNamespaces]], such that n.uri == ns.uri, remove the namespace n from x.[[InScopeNamespaces]]
+				7. Else
+				  a. If there exists a namespace n ∈ x.[[InScopeNamespaces]], such that n.uri == ns.uri and n.prefix == ns.prefix, remove the namespace n from x.[[InScopeNamespaces]]
+				8. For each property p of x
+				  a. If p.[[Class]] = "element", call the removeNamespace method of p with argument ns
+				9. Return x
+			*/
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+				return this;
+			if(!(ns is Namespace))
+				ns = new Namespace(ns);
+
 			return null;
 		}
 		

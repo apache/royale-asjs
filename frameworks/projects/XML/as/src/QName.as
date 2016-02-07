@@ -125,6 +125,37 @@ package
 			_isAttribute = value;
 		}
 
+		public function getNamespace(namespaces:Array=null):Namespace
+		{
+			/*
+				When the [[GetNamespace]] method of a QName q is called with no arguments or one argument InScopeNamespaces, the following steps are taken:
+				1. If q.uri is null, throw a TypeError exception NOTE the exception above should never occur due to the way [[GetNamespace]] is called in this specification
+				2. If InScopeNamespaces was not specified, let InScopeNamespaces = { }
+				3. Find a Namespace ns in InScopeNamespaces, such that ns.uri == q.uri. If more than one such Namespace ns exists, the implementation may choose one of the matching Namespaces arbitrarily. NOTE implementations that preserve prefixes in qualified names may additionally constrain ns, such that ns.prefix == q.[[Prefix]]
+				4. If no such namespace ns exists
+				a. Let ns be a new namespace created as if by calling the constructor new Namespace(q.uri) NOTE implementations that preserve prefixes and qualified names may create the new namespaces as if by calling the constructor Namespace(q.[[Prefix]], q.uri)
+				5. Return ns
+			*/
+			var i:int;
+			var possibleMatch:Namespace;
+			if(!namespaces)
+				namespaces = [];
+			for(i=0;i<namespaces.length;i++)
+			{
+				if(namespaces[i].uri == _uri)
+				{
+					possibleMatch = namespaces[i];
+					if(namespaces[i].prefix == _prefix)
+						return namespaces[i];
+				}
+			}
+			if(possibleMatch)
+				return possibleMatch;
+			if(!_prefix)
+				return new Namespace(_uri);
+			return new Namespace(_prefix,_uri);
+		}
+
 	}
 }
 }
