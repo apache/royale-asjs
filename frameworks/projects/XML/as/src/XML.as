@@ -1114,14 +1114,73 @@ package
 				6. Let x.[[Length]] = x.[[Length]] - dp
 				7. Return true.
 			*/
-			if(child.nodeKind())
 			var removed:XML;
+			if(!child)
+				return false;
+			if(!_attributes)
+				return false;
+
+			if(!(child is XML))
+				return removeChildByName(child);
+			
+			if(child.nodeKind() == "attribute")
+			{
+				for(i=0;i<_attributes.length;i++)
+				{
+					if(child.equals(_attributes[i]))
+					{
+						removed = _attributes[i];
+						removed.setParent(null);
+						_attributes.splice(i,1);
+						return true;
+					}
+				}
+			}
 			var idx:int = _children.indexOf(child);
+			if(idx < 0)
+				return false;
 			removed = _children.splice(idx,1);
 			child.setParent(null);
 			return removed;
 		}
+		private function removeChildByName(name:*):Boolean
+		{
+			var i:int;
+			name = toXMLName(name);
+			child = null;
+			var removedItem:Boolean = false;
+			if(name.isAttribute)
+			{
+				if(!_attributes)
+					return false;
 
+				for(i=_attributes.length-1;i>=0;i--)
+				{
+					if(_attributes[i].name().matches(name))
+					{
+						child = _attributes[i];
+						child.setParent(null);
+						_attributes.splice(i,1);
+						removedItem = true;
+					}
+				}
+				return removedItem;
+			}
+			//QUESTION am I handling non-elements correctly?
+			if(!_children)
+				return false;
+			for(i=_children.length-1;i>=0;i--)
+			{
+				if(_children[i].name().matches(name))
+				{
+					child = _children[i];
+					child.setParent(null);
+					_children.splice(i,1);
+					removedItem = true;
+				}
+			}
+			return removedItem;
+		}
 		public function removeChildAt(index:int):void
 		{
 			/*
@@ -1138,6 +1197,7 @@ package
 				  b. Return true
 				3. Else throw a TypeError exception
 			*/
+			//Do nothing for XML objects?
 		}
 
 		/**
