@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
 <launchConfiguration type="org.eclipse.ant.AntBuilderLaunchConfigurationType">
 <stringAttribute key="org.eclipse.ant.ui.ATTR_ANT_AFTER_CLEAN_TARGETS" value="compile-asjs,compile-extern-swc,copy-js,"/>
 <stringAttribute key="org.eclipse.ant.ui.ATTR_ANT_MANUAL_TARGETS" value="compile-asjs,compile-extern-swc,copy-js,"/>
@@ -18,9 +36,9 @@
 </mapAttribute>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTY_FILES" value="${PROJECT_FRAMEWORKS}/fb.properties,"/>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_BUILDER_ENABLED" value="true"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${project_loc}/build.xml"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/Reflection/build.xml}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_RUN_BUILD_KINDS" value="full,incremental,"/>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_TRIGGERS_CONFIGURED" value="true"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${project_loc}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/Reflection}"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>

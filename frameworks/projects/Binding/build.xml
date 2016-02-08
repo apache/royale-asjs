@@ -51,11 +51,11 @@
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/libs">
-                <include name="Binding.swc"/>
+                <include name="${target.name.no.version}"/>
             </fileset>
         </delete>
         <delete failonerror="false">
-            <fileset dir="${basedir}/target/generated-sources/flexjs">
+            <fileset dir="${basedir}/target">
                 <include name="**/**"/>
             </fileset>
         </delete>
