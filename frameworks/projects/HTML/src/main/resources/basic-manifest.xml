@@ -101,5 +101,7 @@
     <component id="MXMLBeadViewBase" class="org.apache.flex.html.MXMLBeadViewBase"/>
 
     <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
+    
+    <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
 
 </componentPackage>

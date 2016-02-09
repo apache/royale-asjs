@@ -163,6 +163,9 @@ internal class HTMLClasses
     import org.apache.flex.html.MXMLBeadViewBase; MXMLBeadViewBase;
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
+	
+	import org.apache.flex.html.beads.WebBrowserView; WebBrowserView;
+	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 
 	COMPILE::AS3
 	{

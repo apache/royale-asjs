@@ -37,6 +37,10 @@ internal class MobileClasses
 	import org.apache.flex.mobile.chrome.TabBar; TabBar;
 	import org.apache.flex.mobile.chrome.ToolBar; ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel; ViewManagerModel;
+	
+	COMPILE::AS3 {
+		import org.apache.flex.mobile.beads.MobileWebBrowserView; MobileWebBrowserView;
+	}
 }
 
 }
