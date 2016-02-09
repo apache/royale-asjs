@@ -645,6 +645,11 @@ package
 			
 			return xml;
 		}
+
+		private function deleteChildAt(idx:int):void
+		{
+
+		}
 		
 		/**
 		 * Returns all descendants (children, grandchildren, great-grandchildren, and so on) of the XML object that have the given name parameter.
@@ -962,6 +967,27 @@ package
 		}
 		
 		private function insertChildAt(child:XML,idx:int):void{
+			/*
+				When the [[Insert]] method of an XML object x is called with property name P and value V, the following steps are taken:
+				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
+				2. Let i = ToUint32(P)
+				3. If (ToString(i) is not equal to P), throw a TypeError exception
+				4. If Type(V) is XML and (V is x or an ancestor of x) throw an Error exception
+				5. Let n = 1
+				6. If Type(V) is XMLList, let n = V.[[Length]]
+				7. If n == 0, Return
+				8. For j = x.[[Length]]-1 downto i, rename property ToString(j) of x to ToString(j + n)
+				9. Let x.[[Length]] = x.[[Length]] + n
+				10. If Type(V) is XMLList
+				  a. For j = 0 to V.[[Length-1]]
+				    i. V[j].[[Parent]] = x
+				    ii. x[i + j] = V[j]
+				11. Else
+				  a. Call the [[Replace]] method of x with arguments i and V
+				12. Return
+			*/
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+				return;
 			if(!child)
 				return;
 			var parent:XML = child.parent();
@@ -1218,10 +1244,10 @@ package
 					if(lastChild && lastChild.nodeKind() == "text")
 					{
 						child.setValue(child.text() + lastChild.text());
-						this.removeChildAt(i+1);
+						deleteChildAt(i+1);
 					}
 					if(!child.text())
-						this.removeChildAt(i);
+						deleteChildAt(i);
 				}
 				lastChild = child;
 			}
@@ -1381,6 +1407,7 @@ package
 				3. Else throw a TypeError exception
 			*/
 			//Do nothing for XML objects?
+			throw new Error("Cannot call delete on XML");
 		}
 
 		/**
@@ -1393,6 +1420,11 @@ package
 		public function removeNamespace(ns:*):XML
 		{
 			/*
+				Overview
+				The removeNamespace method removes the given namespace from the in scope namespaces of this object and all its descendents,
+				then returns a copy of this XML object. The removeNamespaces method will not remove a namespace from an object where it is referenced
+				by that object’s QName or the QNames of that object’s attributes.
+				Semantics
 				When the removeNamespace method is called on an XML object x with parameter namespace, the following steps are taken:
 				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return x
 				2. Let ns be a Namespace object created as if by calling the function Namespace( namespace )
@@ -1409,12 +1441,33 @@ package
 				  a. If p.[[Class]] = "element", call the removeNamespace method of p with argument ns
 				9. Return x
 			*/
+			var i:int;
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
 				return this;
 			if(!(ns is Namespace))
 				ns = new Namespace(ns);
-
-			return null;
+			if(ns == name().getNamespace(_namespaces))
+				return this;
+			for(i=0;i<_attributes.length;i++)
+			{
+				if(ns == _attributes[i].name().getNamespace(_namespaces))
+					return this;
+			}
+			
+			//
+			for(i=_namespaces.length-1;i>=0;i--)
+			{
+				if(_namespaces[i].uri == ns.uri && _namespaces[i].prefix == ns.prefix)
+					_namespaces.splice(i,1);
+				else if(ns.prefix == undefined && _namespaces[i].uri == ns.uri)
+					_namespaces.splice(i,1);
+			}
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "element")
+					_children[i].removeNamespace(ns);
+			}
+			return this;
 		}
 		
 		/**
@@ -1425,7 +1478,39 @@ package
 		 * @return 
 		 * 
 		 */
-		public function replace(propertyName:Object, value:XML):XML
+		public function replace(propertyName:Object, value:*):XML
+		{
+			/*
+				Semantics
+				When the replace method is called on an XML object x with parameters propertyName and value, the following steps are taken:
+				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return x
+				2. If Type(value) ∉ {XML, XMLList}, let c = ToString(value)
+				3. Else let c be the result of calling the [[DeepCopy]] method of value
+				4. If ToString(ToUint32(P)) == P
+				  a. Call the [[Replace]] method of x with arguments P and c and return x
+				5. Let n be a QName object created as if by calling the function QName(P)
+				6. Let i = undefined
+				7. For k = x.[[Length]]-1 downto 0
+				  a. If ((n.localName == "*") or ((x[k].[[Class]] == "element") and (x[k].[[Name]].localName==n.localName))) and ((n.uri == null) or ((x[k].[[Class]] == "element") and (n.uri == x[k].[[Name]].uri )))
+				    i. If (i is not undefined), call the [[DeleteByIndex]] method of x with argument ToString(i)
+				    ii. Let i = k
+				8. If i == undefined, return x
+				9. Call the [[Replace]] method of x with arguments ToString(i) and c
+				10. Return x			
+			*/
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+				return this;
+			if(value === null || value === undefined)
+				return this;
+			if((value is XML) || (value is XMLList))
+				value = value.copy();
+			else
+				value = value.toString();
+
+			return null;
+		}
+
+		private function replaceChild(idx:int,v:*):void
 		{
 			/*
 				When the [[Replace]] method of an XML object x is called with property name P and value V, the following steps are taken:
@@ -1439,7 +1524,7 @@ package
 				  a. If V.[[Class]] is “element” and (V is x or an ancestor of x) throw an Error exception
 				  b. Let V.[[Parent]] = x
 				  c. If x has a property with name P
-				    i. Let x[P].[[Parent]] = null
+				  i. Let x[P].[[Parent]] = null
 				  d. Let x[P] = V
 				6. Else if Type(V) is XMLList
 				  a. Call the [[DeleteByIndex]] method of x with argument P
@@ -1450,9 +1535,44 @@ package
 				  c. If x has a property with name P
 				    i. Let x[P].[[Parent]] = null
 				  d. Let the value of property P of x be t
-				8. Return			
+				8. Return
 			*/
-			return null;
+			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+				return this;
+			if(idx > _children.length)
+				idx = _children.length;
+			if(v is XML && v.nodeKind() != "attribute")
+			{
+				if(v.nodeKind() == "element" && (v==this || isAncestor(v)) )
+					throw new TypeError("cannot assign parent xml as child");
+				v.setParent(this);
+				if(_children[idx])
+					_children[idx].setParent(null);
+				_children[idx] = v;
+			}
+			else if(v is XMLList)
+			{
+				//6.
+				if(_children[idx])
+					_children[idx].setParent(null);
+
+			}
+			else
+			{
+				//7. attribute?
+			}
+		}
+
+		private function isAncestor(xml:XML):Boolean
+		{
+			var p:XML = parent();
+			while(p)
+			{
+				if(p == xml)
+					return true;
+				p = p.parent();
+			}
+			return false;
 		}
 
 		public function setAttribute(attr:*,value:String):void
@@ -1716,6 +1836,8 @@ package
 		
 		public function setParent(parent:XML):void
 		{
+			if(_parentXML)
+				_parentXML.removeChild(this);
 			_parentXML = parent;
 		}
 
