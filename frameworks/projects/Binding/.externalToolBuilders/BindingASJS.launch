@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<launchConfiguration type="org.eclipse.ant.AntBuilderLaunchConfigurationType">
+<stringAttribute key="org.eclipse.ant.ui.ATTR_ANT_AFTER_CLEAN_TARGETS" value="compile-asjs,compile-extern-swc,copy-js,"/>
+<stringAttribute key="org.eclipse.ant.ui.ATTR_ANT_MANUAL_TARGETS" value="compile-asjs,compile-extern-swc,copy-js,"/>
+<booleanAttribute key="org.eclipse.ant.ui.ATTR_TARGETS_UPDATED" value="true"/>
+<booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="false"/>
+<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${project}"/>
+<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
+<booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java 1.7"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Binding"/>
+<mapAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTIES">
+<mapEntry key="eclipse.home" value="/Applications/Adobe Flash Builder 4.7/eclipse"/>
+<mapEntry key="eclipse.running" value="true"/>
+<mapEntry key="fb.running" value="true"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTY_FILES" value="${PROJECT_FRAMEWORKS}/fb.properties,"/>
+<booleanAttribute key="org.eclipse.ui.externaltools.ATTR_BUILDER_ENABLED" value="true"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/Binding/build.xml}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_RUN_BUILD_KINDS" value="full,incremental,"/>
+<booleanAttribute key="org.eclipse.ui.externaltools.ATTR_TRIGGERS_CONFIGURED" value="true"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/Binding}"/>
+<stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
+</launchConfiguration>
