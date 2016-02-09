@@ -336,6 +336,12 @@ ViewBase
 	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 }
 
+WebBrowser
+{
+	IBeadView: ClassReference("org.apache.flex.html.beads.WebBrowserView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.WebBrowserModel");
+}
+
 
 /* Global Style Declaration */
 global
