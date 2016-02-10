@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile.beads
 {
-	import flash.events.Event;
-	import flash.media.StageWebView;
-	import flash.geom.Rectangle;
-	import flash.geom.Point;
+	COMPILE::AS3 {
+		import flash.events.Event;
+		import flash.media.StageWebView;
+		import flash.geom.Rectangle;
+		import flash.geom.Point;
+	}
 
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -30,6 +32,10 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.models.WebBrowserModel;
+	
+	COMPILE::JS {
+		import org.apache.flex.html.beads.WebBrowserView;
+	}
 
 	/**
 	 *  The MobileWebBrowserView creates an instance of StageWebView to load
@@ -42,6 +48,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::AS3
 	public class MobileWebBrowserView implements IBeadView
 	{
 		/**
@@ -124,6 +131,13 @@ package org.apache.flex.mobile.beads
 			model.setURL(stageWebView.location);
 			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
 		}
+	}
+	
+	COMPILE::JS
+	public class MobileWebBrowserView extends WebBrowserView
+	{
+		// does nothing but provide a placeholder so JavaScript version
+		// builds and runs
 	}
 }
 
