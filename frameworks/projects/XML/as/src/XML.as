@@ -306,6 +306,15 @@ package
 			// get rid of nodes we do not want 
 
 			//loop through the child nodes and build XML obejcts for each.
+			Object.defineProperty(this,"0",
+				{
+					get: function() { return this; },
+					set: function(newValue:*) {
+					},
+					enumerable: true,
+					configurable: true
+				}
+			);
 
 		}
 		
@@ -1703,15 +1712,17 @@ package
 				len = chldrn.length() -1;
 				for (i= len; i >= 0;  i--)
 				{
+					removeChild(chldrn[i]);
 					// remove the nodes
 					// remove the children
 					// adjust the childIndexes
 				}
 				var curChild = _children[childIdx];
 				// Now add them in.
-				for each(chld in elements)
+				len = elements.length();
+				for(i=0;i<len;i++)
 				{
-				
+					child = elements[i];
 					if(!curChild)
 					{
 						curChild = appendChild(chld);
@@ -1740,7 +1751,7 @@ package
 				list[0] = value;
 				value = list;
 			}
-			if(elements is XMLList)
+			if(value is XMLList)
 			{
 				// remove all existing elements
 				var chldrn:XMLList = this.child(elementName);
@@ -1751,15 +1762,17 @@ package
 				len = chldrn.length() -1;
 				for (i= len; i >= 0;  i--)
 				{
+					removeChild(chldrn[i]);
 					// remove the nodes
 					// remove the children
 					// adjust the childIndexes
 				}
 				var curChild = _children[childIdx];
 				// Now add them in.
-				for each(chld in elements)
+				len = value.length();
+				for(i=0;i<len;i++)
 				{
-					
+					child = value[i];
 					if(!curChild)
 					{
 						curChild = appendChild(chld);
