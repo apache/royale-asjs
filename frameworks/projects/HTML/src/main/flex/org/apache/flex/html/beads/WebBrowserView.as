@@ -168,7 +168,7 @@ package org.apache.flex.html.beads
 			model.addEventListener("urlChanged", loadPage);
 
 			var iframe:HTMLIFrameElement = (host as UIBase).element as HTMLIFrameElement;
-			iframe.addEventListener("pageshow", handlePageShow, false);
+			iframe.addEventListener("load", handlePageShow, false);
 		}
 
 		/**
