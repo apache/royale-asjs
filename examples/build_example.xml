@@ -208,6 +208,8 @@
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
+        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
+        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
 
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -223,6 +225,8 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="${opt1_arg}" />
+            <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -247,6 +251,8 @@
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
+        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
+        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
         
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -263,6 +269,8 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="${opt1_arg}" />
+            <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -287,6 +295,8 @@
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
+        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
+        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
 
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
@@ -304,6 +314,8 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
+            <arg value="${opt1_arg}" />
+            <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />

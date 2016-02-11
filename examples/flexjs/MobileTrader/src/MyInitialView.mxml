@@ -214,7 +214,7 @@ limitations under the License.
 				backButton.visible = manager.views.length > 1;
 			}
 			
-			private function goBack(event:org.apache.flex.events.Event):void
+			private function goBack(event:org.apache.flex.events.MouseEvent):void
 			{
 				if (navController.selectedIndex == 1) {
 					watchListStack.pop();

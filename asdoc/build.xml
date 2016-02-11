@@ -36,7 +36,7 @@
 	<echo message="FLEX_HOME = ${FLEX_HOME}" />
 	<echo message="flexlib = ${flexlib}" />
 	<echo message="doc_output = ${doc_output}" />
-    <echo message="compiler.source-path = ${project_home}/*/as/src" />
+    <echo message="compiler.source-path = ${project_home}/*/src/main/flex" />
 
 	<target name="main" depends="clean,doc" description="Clean build of all ASDocs"/>
 

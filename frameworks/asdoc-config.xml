@@ -52,21 +52,22 @@
       </source-path>
       -->
       <source-path>
-          <path-element>${frameworks_dir}/projects/Binding/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Charts/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Collections/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Core/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/CreateJS/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/DragDrop/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Effects/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Formatters/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/GoogleMaps/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Graphics/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/HTML/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/HTML5/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/JQuery/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Mobile/as/src</path-element>
-          <path-element>${frameworks_dir}/projects/Network/as/src</path-element>
+          <path-element>${frameworks_dir}/projects/Binding/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Charts/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Collections/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Core/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/CreateJS/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
      </source-path>
 
      <!-- Allow the source-path to have path-elements which contain other path-elements -->
@@ -105,67 +106,67 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Binding/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Binding/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Charts/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Charts/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Collections/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Collections/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Core/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Core/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/createjs</uri>
-                <manifest>${frameworks_dir}/projects/CreateJS/createjs-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/DragDrop/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/DragDrop/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Effects/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Effects/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Formatters/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Formatters/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/google</uri>
-                <manifest>${frameworks_dir}/projects/GoogleMaps/google-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/GoogleMaps/src/main/resources/google-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Graphics/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Graphics/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/HTML/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/html5</uri>
-                <manifest>${frameworks_dir}/projects/HTML5/html5-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/jquery</uri>
-                <manifest>${frameworks_dir}/projects/JQuery/jquery-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Mobile/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Mobile/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/Network/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Network/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>${frameworks_dir}/projects/HTML/svg-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
 
@@ -429,11 +430,11 @@
     </exclude-classes>
    
    <exclude-sources>
-       <path-element>${frameworks_dir}/projects/Core/as/src/org/apache/flex/utils/Language.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/as/src/org/apache/flex/core/WrappedHTMLElement.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/as/src/org/apache/flex/events/BrowserEvent.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/as/src/org/apache/flex/core/IFlexJSElement.as</path-element>
-       <path-element>${frameworks_dir}/projects/GoogleMaps/as/src/org/apache/flex/maps/google/beads/MapView_original.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/utils/Language.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/WrappedHTMLElement.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/BrowserEvent.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/IFlexJSElement.as</path-element>
+       <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org/apache/flex/maps/google/beads/MapView_original.as</path-element>
     </exclude-sources>
    
    <!-- source path for asdoc -->
@@ -449,21 +450,22 @@
             
             <!-- classes to include in asdoc -->
             <doc-sources>
-                <path-element>${frameworks_dir}/projects/Binding/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Charts/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Collections/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Core/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/CreateJS/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/DragDrop/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Effects/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Formatters/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/GoogleMaps/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Graphics/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/HTML/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/HTML5/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/JQuery/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Mobile/as/src</path-element>
-            <path-element>${frameworks_dir}/projects/Network/as/src</path-element>
+                <path-element>${frameworks_dir}/projects/Binding/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Charts/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Collections/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Core/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/CreateJS/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
             </doc-sources>
             
 </flex-config>
