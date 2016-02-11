@@ -109,7 +109,7 @@ package
 			_uri = value;
 		}
 		
-		private var _prefix:String;
+		private var _prefix:String = null;
 		public function get prefix():String
 		{
 			return _prefix;

@@ -225,6 +225,24 @@ package
 			return xml;
 		}
 
+		static private function namespaceInArray(ns:Namespace,arr:Array,considerPrefix:Boolean=true):Boolean
+		{
+			if(!arr)
+				return false;
+			var i:int;
+			for(i=0;i<arr.length;i++)
+			{
+				if(ns.uri == arr[i].uri)
+				{
+					if(!considerPrefix)
+						return true;
+					if(ns.prefix == arr[i].prefix)
+						return true;
+				}
+			}
+			return false;
+		}
+
 		static private function trimXMLWhitespace(value:String):String
 		{
 			return value.replace(/^\s+|\s+$/gm,'');
@@ -599,6 +617,26 @@ package
 			return list;
 		}
 		
+		public function concat(list:*):XMLList
+		{
+			if(list is XML)
+			{
+				var newList:XMLList = new XMLList();
+				newList.appendChild(list);
+				list = newList;
+			}
+			if(!(list is XMLList))
+				throw new TypeError("invalid type");
+
+			var retVal:XMLList = new XMLList();
+			retVal.appendChild(this);
+			var item:XML;
+			for each(item in list)
+				retVal.appendChild(item);
+				
+			return retVal;
+		}
+
 		/**
 		 * Compares the XML object against the given value parameter.
 		 *
@@ -1976,7 +2014,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function toXMLString(indentLevel:int=0):String
+		public function toXMLString(indentLevel:int=0,ancestors:Array=[]):String
 		{
 			/*
 				Given an XML object x and an optional argument AncestorNamespaces and an optional argument IndentLevel, ToXMLString converts it to an XML encoded string s by taking the following steps:
@@ -2058,6 +2096,7 @@ package
 				NOTE Implementations may also preserve insignificant whitespace (e.g., inside and between element tags) and attribute quoting conventions in ToXMLString().			
 			*/
 			var i:int;
+			var ns:Namespace;
 			var strArr:Array = [];
 
 			var indentArr:Array = [];
@@ -2086,6 +2125,98 @@ package
 			// We excluded the other types, so it's a normal element
 			//TODO I'm here...
 			// step 8.
+			//ancestors
+			var declarations:Array = [];
+			for(i=0;i<_namespaces.length;i++)
+			{
+				if(!namespaceInArray(_namespaces[i],ancestors))
+					declarations.push(new Namespace(_namespaces[i]));
+			}
+			//11
+			for(i=0;i<_attributes.length)
+			{
+				ns = new Namespace(_attributes[i].name().getNamespace(ancestors.concat(declarations)));
+				if(ns.prefix === null)
+				{
+					ns.prefix = "";
+					declarations.push(ns);
+				}
+			}
+			ns = new Namespace(name().getNamespace(ancestors.concat(declarations)));
+			if(ns.prefix === null)
+			{
+				ns.prefix = "";
+				declarations.push(ns);
+			}
+			strArray.push("<");
+			if(ns.prefix)
+				strArr.push(ns.prefix+":");
+			strArray.push(name().localName);
+
+			//attributes and namespace declarations... (15-16)
+			for(i=0;i<declarations.length;i++)
+			{
+				strArray.push(" xmlns");
+				if(declarations[i].prefix)
+				{
+					strArray.push(":");
+					strArray.push(declarations[i].prefix);
+				}
+				strArray.push('="');
+				strArray.push(escapeAttributeValue(declarations[i].uri));
+				strArray.push('"');
+
+			}
+			for(i=0;i<_attributes.length;i++)
+			{
+				strArray.push(" ");
+				// the following seems to be the spec, but it does not make sense to me.
+				//var ans:Namespace = _attributes[i].name().getNamespace(ancestors);
+				var aName:QName = _attributes[i].name();
+				var ans:Namespace = aName.getNamespace(ancestors.concat(declarations));
+				if(ans.prefix)
+				{
+					strArray.push(ans.prefix);
+					strArray.push(":");
+				}
+				strArray.push(aName.localName);
+				strArray.push('="');
+				strArray.push(escapeAttributeValue(_attributes[i].getValue()));
+				strArray.push('"');
+			}
+			// now write elements or close the tag if none exist
+			if(_children.length == 0)
+			{
+				strArray.push("/>");
+				return strArray.join("");
+			}
+			strArray.push(">");
+			var indentChildren:Boolean = _children.length > 1 || (_children.length == 1 && _children[0].nodeKind() != "text");
+			var nextIndentLevel:int;
+			if(XML.prettyPrinting && indentChildren)
+				nextIndentLevel = indentLevel + prettyIndent;
+			else
+				nextIndentLevel = 0;
+			for(i=0;i<_children.length;i++)
+			{
+				//
+				if(XML.prettyPrinting && indentChildren)
+					strArray.push("\n");
+				strArray.push(_children[i].toXMLString(nextIndentLevel,ancestors.concat(declarations)));
+			}
+			if(XML.prettyPrinting && indentChildren)
+			{
+				strArray.push("\n");
+				strArray.push(new Array(indentLevel + 1).join(' '));
+			}
+			strArray.push("</");
+			if(ns.prefix)
+			{
+				strArray.push(ns.prefix);
+				strArray.push(":");
+			}
+			strArray.push(ns.localName);
+			strArray.push(">");
 
 			return strArray.join("");
 		}

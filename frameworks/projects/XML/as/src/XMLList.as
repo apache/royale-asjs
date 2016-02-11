@@ -254,8 +254,17 @@ package
 			return retVal;
 		}
 		
-		public function concat(list:XMLList):XMLList
+		public function concat(list:*):XMLList
 		{
+			if(list is XML)
+			{
+				var newList:XMLList = new XMLList();
+				newList.appendChild(list);
+				list = newList;
+			}
+			if(!(list is XMLList))
+				throw new TypeError("invalid type");
+
 			var retVal:XMLList = this.copy();
 			var item:XML;
 			for each(item in list)
