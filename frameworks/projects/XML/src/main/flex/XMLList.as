@@ -176,7 +176,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].attribute(attributeName);
 				if(list.length())
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -194,7 +194,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].attributes();
 				if(list.length())
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -213,7 +213,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].child(propertyName);
 				if(list.length())
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -231,7 +231,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].children();
 				if(list.length)
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -249,7 +249,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].comments();
 				if(list.length)
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -265,12 +265,11 @@ package
 			if(!(list is XMLList))
 				throw new TypeError("invalid type");
 
-			var retVal:XMLList = this.copy();
 			var item:XML;
 			for each(item in list)
-				retVal.appendChild(item);
+				appendChild(item);
 				
-			return retVal;
+			return this;
 		}
 		
 		/**
@@ -303,7 +302,7 @@ package
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
-				retVal[i] = _xmlArray[i].copy();
+				retVal.appendChild(_xmlArray[i].copy());
 			
 			return retVal;
 		}
@@ -323,7 +322,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].descendants(name);
 				if(list.length())
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
@@ -343,7 +342,7 @@ package
 			{
 				var list:XMLList = _xmlArray[i].elements(name);
 				if(list.length())
-					retVal = retVal.concat(list);
+					retVal.concat(list);
 			}
 			return retVal;
 		}
