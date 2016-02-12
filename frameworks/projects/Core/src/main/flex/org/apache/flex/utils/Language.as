@@ -308,10 +308,9 @@ package org.apache.flex.utils
 
 			if (theConsole === undefined)
 			{
-            	var windowConsole:* = window.console;
-				if (windowConsole !== undefined)
+				if(typeof window !== "undefined")
 				{
-					theConsole = windowConsole;
+					theConsole = window.console;
 				}
 			}
 
