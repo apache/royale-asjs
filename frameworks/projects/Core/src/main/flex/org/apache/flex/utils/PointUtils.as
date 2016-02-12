@@ -58,33 +58,32 @@ package org.apache.flex.utils
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLElement
 		 */
-		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+		COMPILE::AS3
+		public static function globalToLocal( pt:flash.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
-            COMPILE::AS3
-            {
-                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
-                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
-            }
-            COMPILE::JS
-            {
-                var x:Number = pt.x;
-                var y:Number = pt.y;
-                var element:HTMLElement = local.element as HTMLElement;
-                
-                do {
-                    x -= element.offsetLeft;
-                    y -= element.offsetTop;
-                    if (local.hasOwnProperty('parent')) {
-                        local = local.parent;
-                        element = local.element as HTMLElement;
-                    } else {
-                        element = null;
-                    }
-                }
-                while (element);
-                return new org.apache.flex.geom.Point(x, y);
+            var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
+            return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+        }
 
+		COMPILE::JS
+		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+        {
+            var x:Number = pt.x;
+            var y:Number = pt.y;
+            var element:HTMLElement = local.element as HTMLElement;
+            
+            do {
+                x -= element.offsetLeft;
+                y -= element.offsetTop;
+                if (local.hasOwnProperty('parent')) {
+                    local = local.parent;
+                    element = local.element as HTMLElement;
+                } else {
+                    element = null;
+                }
             }
+            while (element);
+            return new org.apache.flex.geom.Point(x, y);
 		}
 		
         /**
@@ -99,27 +98,27 @@ package org.apache.flex.utils
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLElement
          */
-        public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+		COMPILE::AS3
+        public static function localToGlobal( pt:flash.geom.Point, local:Object ):org.apache.flex.geom.Point
         {
-            COMPILE::AS3
-            {
-                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
-                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+            var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
+            return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+        }
+		
+        COMPILE::JS
+		public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+        {
+            var x:Number = pt.x;
+            var y:Number = pt.y;
+            var element:HTMLElement = local.element as HTMLElement;
+            
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent as HTMLElement;
             }
-            COMPILE::JS
-            {
-                var x:Number = pt.x;
-                var y:Number = pt.y;
-                var element:HTMLElement = local.element as HTMLElement;
-                
-                do {
-                    x += element.offsetLeft;
-                    y += element.offsetTop;
-                    element = element.offsetParent as HTMLElement;
-                }
-                while (element);
-                return new org.apache.flex.geom.Point(x, y);
-            }
+            while (element);
+            return new org.apache.flex.geom.Point(x, y);
         }
 	}
 }
