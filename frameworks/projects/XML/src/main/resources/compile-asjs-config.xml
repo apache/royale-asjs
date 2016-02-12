@@ -42,6 +42,10 @@
         <locale/>
         
         <library-path>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+             if these swcs are on the external-library-path then their requires
+             will not be listed -->
+            <path-element>../../../../../externs/Core.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -52,7 +56,7 @@
         </namespaces>
         
         <source-path>
-            <path-element>as/src</path-element>
+            <path-element>../flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -62,17 +66,14 @@
     </include-file>
 
     <include-sources>
+        <path-element>../flex</path-element>
     </include-sources>
-    
-    <include-classes>
-        <class>CoreClasses</class>
-    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
-    
-    <!--<target-player>${playerglobal.version}</target-player>-->
+        
+    <target-player>${playerglobal.version}</target-player>
 	
 
 </flex-config>
