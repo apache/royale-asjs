@@ -42,6 +42,14 @@ public class Rectangle extends flash.geom.Rectangle
     {
         super(x, y, width, height);
     }
+	
+	/**
+	 *  Convert rectangles of other types to this Rectangle type.
+	 */
+	public static function convert(obj:Object):org.apache.flex.geom.Rectangle
+	{
+		return new org.apache.flex.geom.Rectangle(obj.x, obj.y, obj.width, obj.height);
+	}
 }
 
 /**
@@ -89,6 +97,11 @@ public class Rectangle
     {
         height = value - top;
     }
+
+	public static function convert(obj:Object):org.apache.flex.geom.Rectangle
+	{
+		return new org.apache.flex.geom.Rectangle(obj.x, obj.y, obj.width, obj.height);
+	}
 }
 
 
