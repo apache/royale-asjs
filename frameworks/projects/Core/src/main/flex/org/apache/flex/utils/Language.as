@@ -312,6 +312,10 @@ package org.apache.flex.utils
 				{
 					theConsole = window.console;
 				}
+				else if(typeof console !== "undefined")
+				{
+					theConsole = console;
+				}
 			}
 
 			try
