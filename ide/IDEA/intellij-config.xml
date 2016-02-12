@@ -49,18 +49,18 @@
          <namespace>
             <uri>library://ns.apache.org/flexjs/basic</uri>
             
-            <manifest>../../frameworks/projects/Core/basic-manifest.xml</manifest>
+            <manifest>../../frameworks/projects/Core/src/main/resources/basic-manifest.xml</manifest>
          
         </namespace>                                                 
          <namespace>
             <uri>library://ns.apache.org/flexjs/html5</uri>
             
-            <manifest>../../frameworks/projects/HTML5/html5-manifest.xml</manifest>
+            <manifest>../../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
          
         </namespace>
 		<namespace>
             <uri>library://ns.apache.org/flexjs/svg</uri>
-         	<manifest>../../frameworks/projects/HTML/svg-manifest.xml</manifest>
+         	<manifest>../../frameworks/projects/HTML/src/main/resources/svg-manifest.xml</manifest>
         </namespace>   
    
       </namespaces>
