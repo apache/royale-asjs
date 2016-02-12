@@ -49,15 +49,22 @@ package org.apache.flex.events
 		 * @playerversion AIR 2.6
 		 * @productversion FlexJS 0.0
 		 */
-		public function EventDispatcher()
+		public function EventDispatcher(target:IEventDispatcher = null)
 		{
-			super();
+			super(target);
 		}
 	}
 
 	COMPILE::JS
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
+		public function EventDispatcher(target:IEventDispatcher = null)
+		{
+			super();
+			if (target)
+				setTargetForTesting(target);
+		}
+		
         public function hasEventListener(type:String):Boolean
         {
             return goog.events.hasListener(this, type);
