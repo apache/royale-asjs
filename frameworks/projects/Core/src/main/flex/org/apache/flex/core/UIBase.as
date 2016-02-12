@@ -140,6 +140,36 @@ package org.apache.flex.core
      */
 	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
 	{
+		/**
+		 *  Constant for the childAdded event
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const CHILD_ADDED:String = "childAdded";
+		
+		/**
+		 *  Constant for the childRemoved event
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const CHILD_REMOVED:String = "childRemoved";
+		
+		/**
+		 *  Constant for the sizeChanged event
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const SIZE_CHANGED = "sizeChanged";
+		
         /**
          *  Constructor.
          *  
