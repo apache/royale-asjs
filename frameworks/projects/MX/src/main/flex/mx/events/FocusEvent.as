@@ -1,0 +1,159 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+package mx.events
+{
+
+COMPILE::AS3
+{
+	import flash.display.InteractiveObject;
+}
+COMPILE::JS
+{
+	import flex.display.InteractiveObject;
+}
+import org.apache.flex.events.Event;
+
+/**
+ *  The FlexEvent class represents the event object passed to
+ *  the event listener for many Flex events.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+public class FocusEvent extends Event
+{
+    include "../core/Version.as";
+
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  The <code>FocusEvent.FOCUS_IN</code> constant defines the value of the
+     *  <code>type</code> property of the event object for an <code>focusIn</code> event.
+     *
+     * <p>This event will only be dispatched when there are one or more relevant listeners 
+     * attached to the dispatching object.</p>
+     * 
+     *  <p>The properties of the event object have the following values:</p>
+     *  <table class="innertable">
+     *     <tr><th>Property</th><th>Value</th></tr>
+     *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+     *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+     *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+     *       event listener that handles the event. For example, if you use
+     *       <code>myButton.addEventListener()</code> to register an event listener,
+     *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+     *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+     *       it is not always the Object listening for the event.
+     *       Use the <code>currentTarget</code> property to always access the
+     *       Object listening for the event.</td></tr>
+     *  </table>
+     *
+     *  @eventType focusIn
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const FOCUS_IN:String = "focusIn";
+
+    /**
+     *  The <code>FlexEvent.FOCUS_OUT</code> constant defines the value of the
+     *  <code>type</code> property of the event object for an <code>focusOut</code> event.
+     *  This event is dispatched from an IFocusManagerContainer when its focusManager
+     *  is assigned.
+     *
+     *  <p>The properties of the event object have the following values:</p>
+     *  <table class="innertable">
+     *     <tr><th>Property</th><th>Value</th></tr>
+     *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+     *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+     *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+     *       event listener that handles the event. For example, if you use
+     *       <code>myButton.addEventListener()</code> to register an event listener,
+     *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+     *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+     *       it is not always the Object listening for the event.
+     *       Use the <code>currentTarget</code> property to always access the
+     *       Object listening for the event.</td></tr>
+     *  </table>
+     *
+     *  @eventType focusOut
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public static const FOCUS_OUT:String = "focusOut";
+
+
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  Constructor.
+     *
+     *  @param type The event type; indicates the action that caused the event.
+     *
+     *  @param bubbles Specifies whether the event can bubble up
+     *  the display list hierarchy.
+     *
+     *  @param cancelable Specifies whether the behavior
+     *  associated with the event can be prevented.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function FocusEvent(type:String, bubbles:Boolean = false,
+                              cancelable:Boolean = false)
+    {
+        super(type, bubbles, cancelable);
+    }
+
+	public var relatedObject:InteractiveObject;
+	
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: Event
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     */
+    override public function cloneEvent():Event
+    {
+        return new FocusEvent(type, bubbles, cancelable);
+    }
+}
+
+}
