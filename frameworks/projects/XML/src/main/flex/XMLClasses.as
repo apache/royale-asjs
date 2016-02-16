@@ -33,3 +33,4 @@ internal class XMLClasses
 		import QName; QName;
 	}
 }
+}

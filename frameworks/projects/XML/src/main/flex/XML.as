@@ -342,8 +342,7 @@ package
 		private var _children:Array;
 		private var _attributes:Array;
 		private var _processingInstructions:Array;
-		private var _parentXML:XML;
-		private var _name:*;
+		private var _parent:XML;
 		private var _value:String;
 		private var _version:String;
 		private var _encoding:String;
@@ -406,7 +405,7 @@ package
 			*/
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
 				return this;
-			if(ns.prefix === undefined)
+			if(ns.prefix === null)
 				return this;
 			if(ns.prefix == "" && name().uri == "")
 				return this;
@@ -426,12 +425,12 @@ package
 				_namespaces.push(ns);
 
 			if(ns.prefix == name().prefix)
-				name().prefix = undefined;
+				name().prefix = null;
 
 			for(i=0;i<_attributes.length;i++)
 			{
 				if(_attributes[i].name().prefix == ns.prefix)
-					_attributes[i].name().prefix = undefined;
+					_attributes[i].name().prefix = null;
 			}
 			return this;
 		}
@@ -489,8 +488,8 @@ package
 			var list:XMLList = new XMLList();
 			for(i=0;i<_attributes.length;i++)
 			{
-				if(_atributes[i].name().matches(attributeName))
-					list.appendChild(_atributes[i]);
+				if(_attributes[i].name().matches(attributeName))
+					list.appendChild(_attributes[i]);
 			}
 			list.targetObject = this;
 			list.targetProperty = attributeName;
@@ -505,9 +504,10 @@ package
 		 */
 		public function attributes():XMLList
 		{
+			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_attributes.length;i++)
-				list.appendChild(_atributes[i]);
+				list.appendChild(_attributes[i]);
 
 			list.targetObject = this;
 			return list;
@@ -545,7 +545,7 @@ package
 			if(parseInt(name,10).toString() == propertyName)
 			{
 				if(propertyName != "0")
-					return undefined;
+					return null;
 				list.appendChild(this);
 				list.targetObject = this;
 				return list;
@@ -594,6 +594,7 @@ package
 		 */
 		public function children():XMLList
 		{
+			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
 				list.append(_children[i]);
@@ -614,7 +615,7 @@ package
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
 			{
-				if(_children[i].nodeKind() == "comment" && propertyName.matches(_children[i].name()))
+				if(_children[i].nodeKind() == "comment")
 					list.append(_children[i]);
 			}
 			list.targetObject = this;
@@ -760,6 +761,7 @@ package
 		public function elements(name:Object = "*"):XMLList
 		{
 			name = toXMLName(name);
+			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
 			{
@@ -863,9 +865,9 @@ package
 			namespaces = namespaces.slice();
 			var nsIdx:int;
 			var pIdx:int;
-			if(_parentXML)
+			if(_parent)
 			{
-				var parentNS:Array = _parentXML.inScopeNamespaces();
+				var parentNS:Array = _parent.inScopeNamespaces();
 				var len:int = parentNS.length;
 				for(pIdx=0;pIdx<len;pIdx++)
 				{
@@ -883,7 +885,7 @@ package
 						namespaces.push(curNS);
 
 				}
-				namespaces = _parentXML.getAncestorNamespaces(namespaces);
+				namespaces = _parent.getAncestorNamespaces(namespaces);
 			}
 			return namespaces;
 		}
@@ -936,7 +938,7 @@ package
 			if(_nodeKind == "attribute" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "text")
 				return false;
 			var i:int;
-			for(i=0i<_children.length;i++)
+			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "element")
 					return true;
@@ -998,7 +1000,7 @@ package
 			if(_nodeKind == "comment" || _nodeKind == "processing-instruction")
 				return false;
 			var i:int;
-			for(i=0i<_children.length;i++)
+			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "element")
 					return false;
@@ -1055,7 +1057,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function insertChildAfter(child1:Object, child2:Object):XML
+		public function insertChildAfter(child1:XML, child2:XML):XML
 		{
 			/*
 				When the insertChildAfter method is called on an XML object x with parameters child1 and child2, the following steps are taken:
@@ -1091,7 +1093,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function insertChildBefore(child1:Object, child2:Object):XML
+		public function insertChildBefore(child1:XML, child2:XML):XML
 		{
 			/*
 				When the insertChildBefore method is called on an XML object x with parameters child1 and child2, the following steps are taken:
@@ -1194,7 +1196,7 @@ package
 				}
 				if(_parent)
 					return _parent.namespace(prefix);
-				return undefined;
+				return null;
 			}
 			//no prefix. get the namespace of our object
 			if(_nodeKind == "text" || _nodeKind ==  "comment" || _nodeKind ==  "processing-instruction")
@@ -1231,6 +1233,7 @@ package
 				  b. Let i = i + 1
 				10. Return a
 			*/
+			var i:int;
 			var retVal:Array = [];
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
 				return retVal;
@@ -1374,6 +1377,7 @@ package
 				6. Let x.[[Length]] = x.[[Length]] - dp
 				7. Return true.
 			*/
+			var i:int;
 			var removed:XML;
 			if(!child)
 				return false;
@@ -1407,7 +1411,7 @@ package
 		{
 			var i:int;
 			name = toXMLName(name);
-			child = null;
+			var child:XML = null;
 			var removedItem:Boolean = false;
 			if(name.isAttribute)
 			{
@@ -1510,7 +1514,7 @@ package
 			{
 				if(_namespaces[i].uri == ns.uri && _namespaces[i].prefix == ns.prefix)
 					_namespaces.splice(i,1);
-				else if(ns.prefix == undefined && _namespaces[i].uri == ns.uri)
+				else if(ns.prefix == null && _namespaces[i].uri == ns.uri)
 					_namespaces.splice(i,1);
 			}
 			for(i=0;i<_children.length;i++)
@@ -1589,7 +1593,7 @@ package
 				8. Return
 			*/
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
-				return this;
+				return;
 			if(idx > _children.length)
 				idx = _children.length;
 			if(v is XML && v.nodeKind() != "attribute")
@@ -1638,8 +1642,9 @@ package
 				{
 					for(i=0;i<_attributes.length;i++)
 					{
-						if(_attributes[i].name.equals() )
-						addChild(_att)
+						//TODO incomplete...
+						//if(_attributes[i].name.equals() )
+						//addChild(_att)
 					}
 				}
 
@@ -1759,12 +1764,12 @@ package
 					// remove the children
 					// adjust the childIndexes
 				}
-				var curChild = _children[childIdx];
+				var curChild:XML = _children[childIdx];
 				// Now add them in.
 				len = elements.length();
 				for(i=0;i<len;i++)
 				{
-					child = elements[i];
+					chld = elements[i];
 					if(!curChild)
 					{
 						curChild = appendChild(chld);
@@ -1787,6 +1792,9 @@ package
 		 */
 		public function setChildren(value:Object):XML
 		{
+			var i:int;
+			var len:int;
+			var chld:XML;
 			if(value is XML)
 			{
 				var list:XMLList = new XMLList();
@@ -1809,12 +1817,12 @@ package
 					// remove the children
 					// adjust the childIndexes
 				}
-				var curChild = _children[childIdx];
+				var curChild:XML = _children[childIdx];
 				// Now add them in.
 				len = value.length();
 				for(i=0;i<len;i++)
 				{
-					child = value[i];
+					chld = value[i];
 					if(!curChild)
 					{
 						curChild = appendChild(chld);
@@ -1891,9 +1899,9 @@ package
 		
 		public function setParent(parent:XML):void
 		{
-			if(_parentXML)
-				_parentXML.removeChild(this);
-			_parentXML = parent;
+			if(_parent)
+				_parent.removeChild(this);
+			_parent = parent;
 		}
 
 		public function setValue(value:String):void
@@ -1914,7 +1922,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "text")
-					list.list.appendChild(_atributes[i]);
+					list.list.appendChild(_attributes[i]);
 			}
 			list.targetObject = this;
 			return list;
@@ -1927,7 +1935,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function toJSON(k:String):*
+		override public function toJSON(k:String):String
 		{
 			return this.name();
 		}
@@ -1952,18 +1960,20 @@ package
 
 		private function toAttributeName(name:*):QName
 		{
+			var qname:QName;
 			if(!name is QName)
 			{
 				name = name.toString();
 				if(name.indexOf("@") > -1)
 					name = name.substring(name.indexOf("@"));
 			}
-			name = toXMLName(name);
-			name.isAttribute = true;
-
+			qname = toXMLName(name);
+			qname.isAttribute = true;
+			return qname;
 		}
 		private function toXMLName(name:*):QName
 		{
+			var qname:QName;
 			if(name.toString().indexOf("@") > -1)
 				return toAttributeName(name);
 
@@ -1987,12 +1997,11 @@ package
 				if(name.indexOf(":") >= 0)
 				{
 					// Get the QName for prefix
-					var qname:QName() = new QName();
+					qname = new QName();
 					qname.prefix = name.substring(0,name.indexOf(":"));
 					qname.localName = name.substring(name.lastIndexOf(":")+1);
 					//get the qname uri
 					qname.uri = getURI(qname.prefix);
-					name = qname;
 				}
 				else
 				{
@@ -2002,14 +2011,13 @@ package
 						qname = new QName(defaultNamespace);
 					}
 					qname.localName = name;
-					name = qname;
 				}
 			}
 			else
 			{
-				name  = new QName(name);
+				qname  = new QName(name);
 			}
-			return name;
+			return qname;
 		}
 		
 		/**
@@ -2018,7 +2026,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function toXMLString(indentLevel:int=0,ancestors:Array=[]):String
+		public function toXMLString(indentLevel:int=0,ancestors:Array=null):String
 		{
 			/*
 				Given an XML object x and an optional argument AncestorNamespaces and an optional argument IndentLevel, ToXMLString converts it to an XML encoded string s by taking the following steps:
@@ -2130,6 +2138,9 @@ package
 			//TODO I'm here...
 			// step 8.
 			//ancestors
+			if(!ancestors)
+				ancestors = [];
+
 			var declarations:Array = [];
 			for(i=0;i<_namespaces.length;i++)
 			{
@@ -2137,7 +2148,7 @@ package
 					declarations.push(new Namespace(_namespaces[i]));
 			}
 			//11
-			for(i=0;i<_attributes.length)
+			for(i=0;i<_attributes.length;i++)
 			{
 				ns = new Namespace(_attributes[i].name().getNamespace(ancestors.concat(declarations)));
 				if(ns.prefix === null)
@@ -2152,49 +2163,49 @@ package
 				ns.prefix = "";
 				declarations.push(ns);
 			}
-			strArray.push("<");
+			strArr.push("<");
 			if(ns.prefix)
 				strArr.push(ns.prefix+":");
-			strArray.push(name().localName);
+			strArr.push(name().localName);
 
 			//attributes and namespace declarations... (15-16)
 			for(i=0;i<declarations.length;i++)
 			{
-				strArray.push(" xmlns");
+				strArr.push(" xmlns");
 				if(declarations[i].prefix)
 				{
-					strArray.push(":");
-					strArray.push(declarations[i].prefix);
+					strArr.push(":");
+					strArr.push(declarations[i].prefix);
 				}
-				strArray.push('="');
-				strArray.push(escapeAttributeValue(declarations[i].uri));
-				strArray.push('"');
+				strArr.push('="');
+				strArr.push(escapeAttributeValue(declarations[i].uri));
+				strArr.push('"');
 
 			}
 			for(i=0;i<_attributes.length;i++)
 			{
-				strArray.push(" ");
+				strArr.push(" ");
 				// the following seems to be the spec, but it does not make sense to me.
 				//var ans:Namespace = _attributes[i].name().getNamespace(ancestors);
 				var aName:QName = _attributes[i].name();
 				var ans:Namespace = aName.getNamespace(ancestors.concat(declarations));
 				if(ans.prefix)
 				{
-					strArray.push(ans.prefix);
-					strArray.push(":");
+					strArr.push(ans.prefix);
+					strArr.push(":");
 				}
-				strArray.push(aName.localName);
-				strArray.push('="');
-				strArray.push(escapeAttributeValue(_attributes[i].getValue()));
-				strArray.push('"');
+				strArr.push(aName.localName);
+				strArr.push('="');
+				strArr.push(escapeAttributeValue(_attributes[i].getValue()));
+				strArr.push('"');
 			}
 			// now write elements or close the tag if none exist
 			if(_children.length == 0)
 			{
-				strArray.push("/>");
-				return strArray.join("");
+				strArr.push("/>");
+				return strArr.join("");
 			}
-			strArray.push(">");
+			strArr.push(">");
 			var indentChildren:Boolean = _children.length > 1 || (_children.length == 1 && _children[0].nodeKind() != "text");
 			var nextIndentLevel:int;
 			if(XML.prettyPrinting && indentChildren)
@@ -2205,24 +2216,24 @@ package
 			{
 				//
 				if(XML.prettyPrinting && indentChildren)
-					strArray.push("\n");
-				strArray.push(_children[i].toXMLString(nextIndentLevel,ancestors.concat(declarations)));
+					strArr.push("\n");
+				strArr.push(_children[i].toXMLString(nextIndentLevel,ancestors.concat(declarations)));
 			}
 			if(XML.prettyPrinting && indentChildren)
 			{
-				strArray.push("\n");
-				strArray.push(new Array(indentLevel + 1).join(' '));
+				strArr.push("\n");
+				strArr.push(new Array(indentLevel + 1).join(' '));
 			}
-			strArray.push("</");
+			strArr.push("</");
 			if(ns.prefix)
 			{
-				strArray.push(ns.prefix);
-				strArray.push(":");
+				strArr.push(ns.prefix);
+				strArr.push(":");
 			}
-			strArray.push(ns.localName);
-			strArray.push(">");
+			strArr.push(ns.localName);
+			strArr.push(">");
 
-			return strArray.join("");
+			return strArr.join("");
 		}
 		
 		/**
@@ -2231,7 +2242,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function valueOf():XML
+		override public function valueOf():*
 		{
 			return this;
 		}

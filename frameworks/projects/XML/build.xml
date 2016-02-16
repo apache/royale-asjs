@@ -206,6 +206,8 @@
         <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
         unless="FALCONJX_HOME"/>
     </target>
+    <target name="asjs" depends="check-falcon-home,check-falconjx-home,more-props,compile-asjs">
+    </target>
 
 
 </project>
