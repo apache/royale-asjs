@@ -944,7 +944,7 @@ package
 			return false;
 		}
 
-		public function hasOwnProperty(p:*):Boolean
+		override public function hasOwnProperty(p:*):Boolean
 		{
 			/*
 				When the [[HasProperty]] method of an XML object x is called with property name P, the following steps are taken:

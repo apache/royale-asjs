@@ -26,16 +26,6 @@ package
 		{
 			addIndex(0);
 		}
-		private var _targetObject:XML;
-		public function set targetObject(value:XML):void
-		{
-			_targetObject = value;
-		}
-		private var _targetProperty:QName;
-		public function set targetProperty(value:QName):void
-		{
-			_targetProperty = value;
-		}
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -230,7 +220,7 @@ package
 			for (var i:int=0;i<len;i++)
 			{
 				var list:XMLList = _xmlArray[i].children();
-				if(list.length)
+				if(list.length())
 					retVal.concat(list);
 			}
 			return retVal;
@@ -248,7 +238,7 @@ package
 			for (var i:int=0;i<len;i++)
 			{
 				var list:XMLList = _xmlArray[i].comments();
-				if(list.length)
+				if(list.length())
 					retVal.concat(list);
 			}
 			return retVal;
@@ -314,7 +304,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function descendants(name:Object = *):XMLList
+		public function descendants(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
@@ -334,7 +324,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function elements(name:Object = *):XMLList
+		public function elements(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
@@ -388,7 +378,7 @@ package
 			return false;
 		}
 
-		public function hasOwnProperty(propertyName:*):Boolean
+		override public function hasOwnProperty(propertyName:*):Boolean
 		{
 			/*
 				Overview
@@ -454,7 +444,26 @@ package
 		 */
 		public function normalize():XMLList
 		{
-			//TODO: Figure out what to do here.
+			/*
+			When the normalize method is called on an XMLList object list, the following steps are taken:
+			1. Let i = 0
+			2. While i < list.[[Length]]
+			  a. If list[i].[[Class]] == "element"
+			    i. Call the normalize method of list[i]
+			    ii. Let i = i + 1
+			  b. Else if list[i].[[Class]] == "text"
+			    i. While ((i+1) < list.[[Length]]) and (list[i + 1].[[Class]] == "text")
+			      1. Let list[i].[[Value]] be the result of concatenating list[i].[[Value]] and list[i + 1].[[Value]]
+			      2. Call the [[Delete]] method of list with argument ToString(i + 1)
+			    ii. If list[i].[[Value]].length == 0
+			      1. Call the [[Delete]] method of list with argument ToString(i)
+			    iii. Else
+			      1. Let i = i + 1
+			  c. Else
+			    i. Let i = i + 1
+			3. Return list
+			*/
+			return this;
 		}
 		
 		/**
@@ -467,11 +476,11 @@ package
 		{
 			if(_xmlArray.length == 0)
 				return undefined;
-			var retVal = this[0].parent;
+			var retVal:XML = _xmlArray[0].parent();
 			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
 			{
-				if(_xmlArray[i].parent != retVal)
+				if(_xmlArray[i].parent() != retVal)
 					return undefined;
 			}
 			return retVal;
@@ -590,7 +599,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function toLocaleString():String
+		override public function toLocaleString():String
 		{
 			var retVal:Array = [];
 			var len:int = _xmlArray.length;
@@ -647,7 +656,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function valueOf():XMLList
+		override public function valueOf():*
 		{
 			return this;
 		}
