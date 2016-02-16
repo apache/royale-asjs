@@ -31,6 +31,7 @@ internal class XMLClasses
 		import XML; XML;
 		import XMLList; XMLList;
 		import QName; QName;
+		import Namespace; Namespace;
 	}
 }
 }
