@@ -31,7 +31,7 @@ package
 
 		static private var defaultNamespace:Namespace;
 
-		static public function setDefaultNamespace(ns:*)
+		static public function setDefaultNamespace(ns:*):void
 		{
 			if(!ns)
 				defaultNamespace = null;
@@ -89,7 +89,7 @@ package
 		static private function escapeAttributeValue(value:String):String
 		{
 			var outArr:Array = [];
-			var arr = value.split("");
+			var arr:Array = value.split("");
 			var len:int = arr.length;
 			for(var i:int=0;i<len;i++)
 			{
@@ -120,9 +120,10 @@ package
 
 		static private function escapeElementValue(value:String):String
 		{
+			var i:int;
 			var outArr:Array = [];
-			var arr = value.split("");
-			for(var i=0;i<arr.length;i++)
+			var arr:Array = value.split("");
+			for(i=0;i<arr.length;i++)
 			{
 				switch(arr[i])
 				{
@@ -143,7 +144,7 @@ package
 			return outArr.join("");
 		}
 
-		static private function insertAttribute(att:Attr,parent:XML):XML()
+		static private function insertAttribute(att:Attr,parent:XML):XML
 		{
 			var xml:XML = new XML();
 			xml.setParent(parent);
@@ -155,6 +156,7 @@ package
 		}
 		static private function iterateElement(node:Element,xml:XML):void
 		{
+			var i:int;
 			// add attributes
 			for(i=0;i<node.attributes.length;i++)
 			{
@@ -324,6 +326,7 @@ package
 			// get rid of nodes we do not want 
 
 			//loop through the child nodes and build XML obejcts for each.
+			/*
 			Object.defineProperty(this,"0",
 				{
 					get: function() { return this; },
@@ -333,7 +336,7 @@ package
 					configurable: true
 				}
 			);
-
+			*/
 		}
 		
 		private var _children:Array;
@@ -607,6 +610,7 @@ package
 		 */
 		public function comments():XMLList
 		{
+			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
 			{

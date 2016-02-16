@@ -124,7 +124,7 @@ package
 			return uri;
 		}
 
-		public function valueOf():Object
+		override public function valueOf():*
 		{
 			return this;
 		}
