@@ -173,9 +173,6 @@ package org.apache.flex.html.supportClasses
             // the selection and highlight
             backgroundView = element;
             
-            controller = new ItemRendererMouseController();
-            controller.strand = this;
-            
             return element;
         }
 

@@ -89,7 +89,7 @@ internal class HTMLClasses
 	    import org.apache.flex.html.beads.TextInputWithBorderView; TextInputWithBorderView;
 	    import org.apache.flex.html.beads.models.AlertModel; AlertModel;
 	}
-    import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
+	import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.beads.models.RangeModel; RangeModel;
 	COMPILE::AS3
 	{
@@ -122,6 +122,7 @@ internal class HTMLClasses
 	}
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+	import org.apache.flex.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	COMPILE::AS3
 	{
 		import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
@@ -142,6 +143,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
+	import org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
@@ -163,7 +165,7 @@ internal class HTMLClasses
     import org.apache.flex.html.MXMLBeadViewBase; MXMLBeadViewBase;
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
-	
+
 	import org.apache.flex.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 

@@ -16,22 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CollectionsClasses
-{
-    import org.apache.flex.collections.ArrayList; ArrayList;
-	import org.apache.flex.collections.FlattenedList; FlattenedList;
-	import org.apache.flex.collections.HierarchicalData; HierarchicalData;
-	import org.apache.flex.collections.LazyCollection; LazyCollection;
+package org.apache.flex.html.supportClasses
+{	
+	public class TreeItemRenderer extends StringItemRenderer
+	{
+		/**
+		 * Constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+		 */
+		public function TreeItemRenderer()
+		{
+			super();
+		}
+		
+		/**
+		 * Sets the data for the itemRenderer instance along with the listData
+		 * (TreeListData).
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+		 */
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			
+			var treeData:TreeListData = listData as TreeListData;
+			
+			var indent:String = treeData.hasChildren ? (treeData.isOpen ? "-" : "+") : " ";
+			for (var i:int=0; i < treeData.depth; i++) {
+				indent += "    ";
+			}
+			
+			this.text = indent + this.text;
+		}
+	}
 }
-
-}
-
