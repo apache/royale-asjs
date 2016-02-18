@@ -111,27 +111,27 @@ package org.apache.flex.html.beads.controllers
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
 		}
 		
-		private function handleItemAdded(event:ItemAddedEvent):void
+		protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
 		
-		private function handleItemRemoved(event:ItemAddedEvent):void
+		protected function handleItemRemoved(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
 		
-        private function selectedHandler(event:ItemClickedEvent):void
+		protected function selectedHandler(event:ItemClickedEvent):void
         {
             listModel.selectedIndex = event.index;
             listView.host.dispatchEvent(new Event("change"));
         }
 		
-		private function rolloverHandler(event:Event):void
+		protected function rolloverHandler(event:Event):void
 		{
 			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (renderer) {
@@ -140,7 +140,7 @@ package org.apache.flex.html.beads.controllers
 			}
 		}
 		
-		private function rolloutHandler(event:Event):void
+		protected function rolloutHandler(event:Event):void
 		{
 			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (renderer) {

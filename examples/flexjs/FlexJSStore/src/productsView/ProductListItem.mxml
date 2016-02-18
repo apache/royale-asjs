@@ -60,6 +60,16 @@ limitations under the License.
         {
             _data = value;
         }
+        
+        public function get listData():Object
+        {
+        	return null;
+        }
+        
+        public function set listData(value:Object):void
+        {
+        	// not used
+        }
 
         private var _itemRendererParent:Object;
         
