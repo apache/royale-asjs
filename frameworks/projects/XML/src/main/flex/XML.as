@@ -307,7 +307,7 @@ package
 			{
 				var parser:DOMParser = new DOMParser();
 				// get error namespace. It's different in different browsers.
-				var errorNS:Element = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
+				var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
 
 				var doc:Document = parser.parseFromString(xml, "application/xml");
 
