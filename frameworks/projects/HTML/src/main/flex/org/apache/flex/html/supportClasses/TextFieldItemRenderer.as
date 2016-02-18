@@ -312,6 +312,25 @@ package org.apache.flex.html.supportClasses
         {
             text = String(value);
         }
+
+	private var _listData:Object;
+
+		/**
+		 *  Additional data about the list the itemRenderer may find useful.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+	public function get listData():Object
+	{
+		return _listData;
+	}
+	public function set listData(value:Object):void
+	{
+		_listData = value;
+	}
 		
 		/**
 		 * @private
