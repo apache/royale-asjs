@@ -113,8 +113,8 @@ package
 			var idxStr:String = "" + idx;
 			Object.defineProperty(this,idxStr,
 				{
-					get: function() { return _xmlArray[idx]; },
-					set: function(newValue:*) {
+					"get": function():* { return _xmlArray[idx]; },
+					"set": function(newValue:*):void {
 						var i:int;
 						if(newValue is XML)
 						{

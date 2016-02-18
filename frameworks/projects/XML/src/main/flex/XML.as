@@ -326,17 +326,17 @@ package
 			// get rid of nodes we do not want 
 
 			//loop through the child nodes and build XML obejcts for each.
-			/*
+			
 			Object.defineProperty(this,"0",
 				{
-					get: function() { return this; },
-					set: function(newValue:*) {
+					"get": function():* { return this; },
+					"set": function(newValue:*):void {
 					},
 					enumerable: true,
 					configurable: true
 				}
 			);
-			*/
+			
 		}
 		
 		private var _children:Array;
@@ -556,7 +556,7 @@ package
 				for(i=0;i<_attributes.length;i++)
 				{
 					if(propertyName.matches(_attributes[i].name()))
-						list.append(_attributes[i]);
+						list.appendChild(_attributes[i]);
 				}
 			}
 			else
@@ -564,7 +564,7 @@ package
 				for(i=0;i<_children.length;i++)
 				{
 					if(propertyName.matches(_children[i].name()))
-						list.append(_children[i]);
+						list.appendChild(_children[i]);
 				}
 			}
 			list.targetObject = this;
@@ -597,7 +597,7 @@ package
 			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
-				list.append(_children[i]);
+				list.appendChild(_children[i]);
 
 			list.targetObject = this;
 			return list;
@@ -616,7 +616,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "comment")
-					list.append(_children[i]);
+					list.appendChild(_children[i]);
 			}
 			list.targetObject = this;
 			return list;
@@ -766,7 +766,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "element" && name.matches(_children[i].name()))
-					list.append(_children[i]);
+					list.appendChild(_children[i]);
 			}
 
 			list.targetObject = this;
@@ -1804,8 +1804,8 @@ package
 			if(value is XMLList)
 			{
 				// remove all existing elements
-				var chldrn:XMLList = this.child(elementName);
-				var childIdx:int = children().length() -1;
+				var chldrn:XMLList = children();
+				var childIdx:int = chldrn.length() -1;
 				if(chldrn.length())
 					childIdx = chldrn[0].childIndex();
 				
@@ -1922,7 +1922,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "text")
-					list.list.appendChild(_attributes[i]);
+					list.appendChild(_attributes[i]);
 			}
 			list.targetObject = this;
 			return list;
@@ -1935,11 +1935,13 @@ package
 		 * @return 
 		 * 
 		 */
+		 /*
 		override public function toJSON(k:String):String
 		{
 			return this.name();
 		}
-		
+		*/
+
 		/**
 		 * Returns a string representation of the XML object.
 		 * 
@@ -2230,7 +2232,7 @@ package
 				strArr.push(ns.prefix);
 				strArr.push(":");
 			}
-			strArr.push(ns.localName);
+			strArr.push(name().localName);
 			strArr.push(">");
 
 			return strArr.join("");
