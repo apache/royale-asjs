@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.collections.ArrayList;
+	import org.apache.flex.collections.IArrayList;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
@@ -61,9 +61,9 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-		private var selectionModel:ISelectionModel;
+		protected var selectionModel:ISelectionModel;
 		
-		private var labelField:String;
+		protected var labelField:String;
 		
 		private var _strand:IStrand;
 		
@@ -138,9 +138,22 @@ package org.apache.flex.html.beads
          */
 		protected var dataGroup:IItemRendererParent;
 		
-		private function dataProviderChangeHandler(event:Event):void
+		/**
+		 * @private
+		 */
+		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
-			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
+			ir.index = index;
+			ir.labelField = labelField;
+			ir.data = data;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function dataProviderChangeHandler(event:Event):void
+		{
+			var dp:IArrayList = selectionModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			
@@ -153,8 +166,6 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				ir.index = i;
-				ir.labelField = labelField;
 				if (presentationModel) {
 					UIBase(ir).height = presentationModel.rowHeight;
 					
@@ -165,7 +176,7 @@ package org.apache.flex.html.beads
 					UIBase(ir).style = style;
 				}
 				dataGroup.addElement(ir);
-				ir.data = dp.getItemAt(i);
+				setData(ir, dp.getItemAt(i), i);
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

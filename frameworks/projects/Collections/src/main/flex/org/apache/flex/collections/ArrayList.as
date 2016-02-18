@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.collections
-{	
+{
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
@@ -25,67 +25,67 @@ package org.apache.flex.collections
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.collections.parsers.IInputParser;
     import org.apache.flex.collections.converters.IItemConverter;
-    
+
     //--------------------------------------
     //  Events
     //--------------------------------------
-	
+
 	/**
 	 *  Dispatched when the collection's underlying source array
 	 *  is changed.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="collectionChanged", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  Dispatched when the collection has added an item.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="itemAdded", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  Dispatched when the collection has removed an item.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="itemRemoved", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  Dispatched when the collection has updated an item.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="itemUpdated", type="org.apache.flex.events.Event")]
-    
+
     /**
      *  The ArrayList class provides an event-driven wrapper for the
 	 *  standard Array. Events are dispatched when items are added, removed,
 	 *  or changed.
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ArrayList extends EventDispatcher implements IBead, ICollection
+	public class ArrayList extends EventDispatcher implements IBead, ICollection, IArrayList
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -99,10 +99,10 @@ package org.apache.flex.collections
 		}
 
         private var _id:String;
-        
+
         /**
          *  @copy org.apache.flex.core.UIBase#id
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -124,12 +124,12 @@ package org.apache.flex.collections
 				dispatchEvent(new Event("idChanged"));
 			}
 		}
-		
+
         private var _strand:IStrand;
-        
+
         /**
          *  @copy org.apache.flex.core.UIBase#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -140,12 +140,12 @@ package org.apache.flex.collections
             _strand = value;
 			_source = new Array();
         }
-		
+
 		private var _source:Array;
-        
+
         /**
          *  The array of raw data needing conversion.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -155,7 +155,7 @@ package org.apache.flex.collections
 		{
 			return _source;
 		}
-		
+
 		public function set source(value:Array):void
 		{
 			if (_source != value) {
@@ -164,10 +164,10 @@ package org.apache.flex.collections
 				dispatchEvent(new Event("collectionChanged"));
 			}
 		}
-		
+
 		/**
 		 * Returns a copy of the source array.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -177,10 +177,10 @@ package org.apache.flex.collections
 		{
 			return _source.concat();
 		}
-        
+
         /**
          *  Fetches an item from the collection
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -189,11 +189,11 @@ package org.apache.flex.collections
         public function getItemAt(index:int):Object
         {
             return _source[index];
-        } 
-		
+        }
+
 		/**
 		 *  Fetches an item from the collection given an index.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -208,10 +208,10 @@ package org.apache.flex.collections
 			}
 			return -1;
 		}
-		
+
 		/**
 		 *  Adds an item to the end of the array.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -221,10 +221,10 @@ package org.apache.flex.collections
 		{
 			addItemAt(item, length);
 		}
-		
+
 		/**
 		 *  Inserts an item to a specific location within the array.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -233,7 +233,7 @@ package org.apache.flex.collections
 		public function addItemAt(item:Object, index:int):void
 		{
 			const spliceUpperBound:int = length;
-			
+
 			if (index < spliceUpperBound && index > 0)
 			{
 				source.splice(index, 0, item);
@@ -246,19 +246,19 @@ package org.apache.flex.collections
 			{
 				source.unshift(item);
 			}
-			else 
+			else
 			{
 				// error
 				return;
 			}
-			
+
 			dispatchEvent(new Event("itemAdded"));
 		}
-		
+
 		/**
 		 *  Replaces the item at the given index with a new item and
 		 *  returns the old item.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -268,7 +268,7 @@ package org.apache.flex.collections
 		{
 			const spliceUpperBound:int = length;
 			var oldItem:Object;
-			
+
 			if (index >= 0 && index < spliceUpperBound) {
 				oldItem = source[index];
 				source[index] = item;
@@ -277,13 +277,13 @@ package org.apache.flex.collections
 			else {
 				// error
 			}
-			
+
 			return oldItem;
 		}
-		
+
 		/**
 		 *  Removed an item from the array and returns it.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -298,11 +298,11 @@ package org.apache.flex.collections
 			}
 			return result;
 		}
-		
+
 		/**
 		 *  Removes an item from a specific location within the array and
 		 *  returns it.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -312,7 +312,7 @@ package org.apache.flex.collections
 		{
 			const spliceUpperBound:int = length - 1;
 			var removed:Object;
-			
+
 			if (index > 0 && index < spliceUpperBound)
 			{
 				removed = source.splice(index, 1)[0];
@@ -329,14 +329,14 @@ package org.apache.flex.collections
 				// error
 				return null;
 			}
-			
+
 			dispatchEvent(new Event("itemRemoved"));
 			return removed;
 		}
-		
+
 		/**
 		 *  Removes all of the items from the array.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -349,10 +349,10 @@ package org.apache.flex.collections
 				dispatchEvent(new Event("itemRemoved"));
 			}
 		}
-		
+
 		/**
 		 *  Signals that an item in the array has been updated.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -365,10 +365,10 @@ package org.apache.flex.collections
 				dispatchEvent(new Event("itemUpdated"));
 			}
 		}
-		
+
 		/**
 		 *  Signals that an item in the array has been updated.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -378,10 +378,10 @@ package org.apache.flex.collections
 		{
 			dispatchEvent(new Event("itemUpdated"));
 		}
-        
+
         /**
          *  The number of items.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -389,7 +389,7 @@ package org.apache.flex.collections
          */
         public function get length():int
         {
-            return _source ? _source.length : 0;   
+            return _source ? _source.length : 0;
         }
 
 	}

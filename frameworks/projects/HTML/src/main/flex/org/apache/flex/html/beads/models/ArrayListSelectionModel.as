@@ -18,18 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.models
 {
-	import org.apache.flex.collections.ArrayList;
+	import org.apache.flex.collections.IArrayList;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-			
+
     /**
      *  The ArrayListSelectionModel class is a selection model for
      *  a dataProvider that is an ArrayList. It assumes that items
      *  can be fetched from the dataProvider using dataProvider.getItemAt(index).
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -39,7 +39,7 @@ package org.apache.flex.html.beads.models
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -50,10 +50,10 @@ package org.apache.flex.html.beads.models
 		}
 
 		private var _strand:IStrand;
-		
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -63,12 +63,12 @@ package org.apache.flex.html.beads.models
 		{
 			_strand = value;
 		}
-		
-		private var _dataProvider:ArrayList;
-        
+
+		private var _dataProvider:IArrayList;
+
         /**
          *  @copy org.apache.flex.core.ISelectionModel#dataProvider
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -85,10 +85,10 @@ package org.apache.flex.html.beads.models
 		public function set dataProvider(value:Object):void
 		{
             if (value === _dataProvider) return;
-            
-            _dataProvider = value as ArrayList;
+
+            _dataProvider = value as IArrayList;
             if (_selectedIndex != -1)
-                _selectedItem = (_dataProvider == null || _selectedIndex >= _dataProvider.length) ? null : 
+                _selectedItem = (_dataProvider == null || _selectedIndex >= _dataProvider.length) ? null :
                     _dataProvider.getItemAt(_selectedIndex);
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
@@ -96,10 +96,10 @@ package org.apache.flex.html.beads.models
 		private var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
 		private var _labelField:String = null;
-		
+
         /**
          *  @copy org.apache.flex.core.ISelectionModel#labelField
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -120,10 +120,10 @@ package org.apache.flex.html.beads.models
 				dispatchEvent(new Event("labelFieldChanged"));
 			}
 		}
-		
+
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -140,15 +140,15 @@ package org.apache.flex.html.beads.models
 		public function set selectedIndex(value:int):void
 		{
             if (value === _selectedIndex) return;
-            
+
 			_selectedIndex = value;
 			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? _dataProvider.getItemAt(value) : null;
-			dispatchEvent(new Event("selectedIndexChanged"));			
+			dispatchEvent(new Event("selectedIndexChanged"));
 		}
-		
+
         /**
          *  @copy org.apache.flex.core.IRollOverModel#rollOverIndex
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -169,12 +169,12 @@ package org.apache.flex.html.beads.models
 				dispatchEvent(new Event("rollOverIndexChanged"));
 			}
 		}
-		
+
 		private var _selectedItem:Object;
-		
+
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedItem
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -191,8 +191,8 @@ package org.apache.flex.html.beads.models
 		public function set selectedItem(value:Object):void
 		{
             if (value === _selectedItem) return;
-            
-			_selectedItem = value;	
+
+			_selectedItem = value;
 			var n:int = _dataProvider.length;
 			for (var i:int = 0; i < n; i++)
 			{
@@ -202,16 +202,16 @@ package org.apache.flex.html.beads.models
 					break;
 				}
 			}
-			dispatchEvent(new Event("selectedItemChanged"));			
+			dispatchEvent(new Event("selectedItemChanged"));
 			dispatchEvent(new Event("selectedIndexChanged"));
 		}
-		
+
 		private var _selectedString:String;
-		
+
         /**
          *  An alternative to selectedItem for strongly typing the
          *  the selectedItem if the Array is an Array of Strings.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -237,8 +237,8 @@ package org.apache.flex.html.beads.models
 					break;
 				}
 			}
-			dispatchEvent(new Event("selectedItemChanged"));			
-			dispatchEvent(new Event("selectedIndexChanged"));			
+			dispatchEvent(new Event("selectedItemChanged"));
+			dispatchEvent(new Event("selectedIndexChanged"));
 		}
 	}
 }
